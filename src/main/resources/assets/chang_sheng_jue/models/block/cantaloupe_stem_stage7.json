@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/stem_growth7",
+  "textures": {
+    "stem": "chang_sheng_jue:block/cantaloupe_stem"
+  }
+}

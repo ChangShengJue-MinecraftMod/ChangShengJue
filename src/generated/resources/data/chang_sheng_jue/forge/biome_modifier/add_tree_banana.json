@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_jungle",
+  "features": "chang_sheng_jue:banana_tree_placed_key",
+  "step": "vegetal_decoration"
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 600,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "chang_sheng_jue:corn"
+  },
+  "result": "chang_sheng_jue:baked_corn"
+}

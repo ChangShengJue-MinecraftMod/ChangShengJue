@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/door_bottom_rh",
+	"textures": {
+		"top": "chang_sheng_jue:block/door_dark_oak_block_bottom",
+		"bottom": "chang_sheng_jue:block/door_dark_oak_block_bottom"
+	}
+}

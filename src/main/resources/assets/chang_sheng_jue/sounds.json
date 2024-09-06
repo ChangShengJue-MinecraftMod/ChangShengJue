@@ -1,0 +1,183 @@
+{
+  "cicada_sound": {
+    "subtitle": "sounds.chang_sheng_jue.cicada_sound",
+    "sounds": [
+      "chang_sheng_jue:cicada"
+    ]
+  },
+  "cicada_hurt": {
+    "subtitle": "sounds.chang_sheng_jue.cicada_hurt",
+    "sounds": [
+      "chang_sheng_jue:cicada_hurt"
+    ]
+  },
+  "crane_sound": {
+    "subtitle": "sounds.chang_sheng_jue.crane_sound",
+    "sounds": [
+      "chang_sheng_jue:crane_sound"
+    ]
+  },
+  "crane_hurt": {
+    "subtitle": "sounds.chang_sheng_jue.crane_hurt",
+    "sounds": [
+      "chang_sheng_jue:crane_hurt"
+    ]
+  },
+  "crane_death": {
+    "subtitle": "sounds.chang_sheng_jue.crane_death",
+    "sounds": [
+      "chang_sheng_jue:crane_death"
+    ]
+  },
+  "croc_sound": {
+    "subtitle": "sounds.chang_sheng_jue.croc_sound",
+    "sounds": [
+      "chang_sheng_jue:croc_sound"
+    ]
+  },
+  "croc_hurt": {
+    "subtitle": "sounds.chang_sheng_jue.croc_hurt",
+    "sounds": [
+      "chang_sheng_jue:croc_hurt"
+    ]
+  },
+  "croc_death": {
+    "subtitle": "sounds.chang_sheng_jue.croc_death",
+    "sounds": [
+      "chang_sheng_jue:croc_death"
+    ]
+  },
+  "dragonfly_hurt": {
+    "subtitle": "sounds.chang_sheng_jue.dragonfly_hurt",
+    "sounds": [
+      "chang_sheng_jue:dragonfly_hurt"
+    ]
+  },
+  "dragonfly_death": {
+    "subtitle": "sounds.chang_sheng_jue.dragonfly_death",
+    "sounds": [
+      "chang_sheng_jue:dragonfly_death"
+    ]
+  },
+  "monkey_sound": {
+    "subtitle": "sounds.chang_sheng_jue.monkey_sound",
+    "sounds": [
+      "chang_sheng_jue:monkey_sound"
+    ]
+  },
+  "monkey_baby_sound": {
+    "subtitle": "sounds.chang_sheng_jue.monkey_baby_sound",
+    "sounds": [
+      "chang_sheng_jue:monkey_baby_sound"
+    ]
+  },
+  "monkey_angry_sound": {
+    "subtitle": "sounds.chang_sheng_jue.monkey_angry_sound",
+    "sounds": [
+      "chang_sheng_jue:monkey_angry_sound"
+    ]
+  },
+  "monkey_hurt": {
+    "subtitle": "sounds.chang_sheng_jue.monkey_hurt",
+    "sounds": [
+      "chang_sheng_jue:monkey_hurt"
+    ]
+  },
+  "monkey_death": {
+    "subtitle": "sounds.chang_sheng_jue.monkey_death",
+    "sounds": [
+      "chang_sheng_jue:monkey_death"
+    ]
+  },
+  "tiger_sound": {
+    "subtitle": "sounds.chang_sheng_jue.tiger_sound",
+    "sounds": [
+      "chang_sheng_jue:tiger_sound"
+    ]
+  },
+  "tiger_sound_1": {
+    "subtitle": "sounds.chang_sheng_jue.tiger_sound_1",
+    "sounds": [
+      "chang_sheng_jue:tiger_sound_1"
+    ]
+  },
+  "tiger_hurt": {
+    "subtitle": "sounds.chang_sheng_jue.tiger_hurt",
+    "sounds": [
+      "chang_sheng_jue:tiger_hurt"
+    ]
+  },
+  "tiger_death": {
+    "subtitle": "sounds.chang_sheng_jue.tiger_death",
+    "sounds": [
+      "chang_sheng_jue:tiger_death"
+    ]
+  },
+
+  "deer_sound": {
+    "subtitle": "sounds.chang_sheng_jue.deer_sound",
+    "sounds": [
+      "chang_sheng_jue:deer_sound"
+    ]
+  },
+  "deer_sound_1": {
+    "subtitle": "sounds.chang_sheng_jue.deer_sound_1",
+    "sounds": [
+      "chang_sheng_jue:deer_sound_1"
+    ]
+  },
+  "deer_sound_2": {
+    "subtitle": "sounds.chang_sheng_jue.deer_sound_2",
+    "sounds": [
+      "chang_sheng_jue:deer_sound_2"
+    ]
+  },
+  "deer_sound_3": {
+    "subtitle": "sounds.chang_sheng_jue.deer_sound_3",
+    "sounds": [
+      "chang_sheng_jue:deer_sound_3"
+    ]
+  },
+  "deer_sound_4": {
+    "subtitle": "sounds.chang_sheng_jue.deer_sound_4",
+    "sounds": [
+      "chang_sheng_jue:deer_sound_4"
+    ]
+  },
+  "deer_sound_5": {
+    "subtitle": "sounds.chang_sheng_jue.deer_sound_5",
+    "sounds": [
+      "chang_sheng_jue:deer_sound_5"
+    ]
+  },
+  "deer_hurt": {
+    "subtitle": "sounds.chang_sheng_jue.deer_hurt",
+    "sounds": [
+      "chang_sheng_jue:deer_hurt"
+    ]
+  },
+  "deer_death": {
+    "subtitle": "sounds.chang_sheng_jue.deer_death",
+    "sounds": [
+      "chang_sheng_jue:deer_death"
+    ]
+  },
+  "peacock_sound": {
+    "subtitle": "sounds.chang_sheng_jue.peacock_sound",
+    "sounds": [
+      "chang_sheng_jue:peacock_sound"
+    ]
+  },
+  "peacock_hurt": {
+    "subtitle": "sounds.chang_sheng_jue.peacock_hurt",
+    "sounds": [
+      "chang_sheng_jue:peacock_hurt"
+    ]
+  },
+  "peacock_death": {
+    "subtitle": "sounds.chang_sheng_jue.peacock_death",
+    "sounds": [
+      "chang_sheng_jue:peacock_death"
+    ]
+  }
+}

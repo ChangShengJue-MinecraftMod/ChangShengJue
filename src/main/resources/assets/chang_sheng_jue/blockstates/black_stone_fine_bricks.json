@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "chang_sheng_jue:block/black_stone_fine_bricks"
+      },
+      {
+        "model": "chang_sheng_jue:block/black_stone_fine_bricks"
+      },
+      {
+        "model": "chang_sheng_jue:block/black_stone_fine_bricks",
+        "y": 180
+      },
+      {
+        "model": "chang_sheng_jue:block/black_stone_fine_bricks",
+        "y": 180
+      }
+    ]
+  }
+}

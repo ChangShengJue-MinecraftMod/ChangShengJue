@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/crop",
+	"textures": {
+		"crop": "chang_sheng_jue:block/sorghum_stage2"
+	},
+	"shade": false
+}

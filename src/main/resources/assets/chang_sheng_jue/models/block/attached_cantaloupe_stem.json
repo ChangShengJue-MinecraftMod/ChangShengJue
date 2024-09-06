@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/stem_fruit",
+  "textures": {
+    "stem": "chang_sheng_jue:block/cantaloupe_stem",
+    "upperstem": "chang_sheng_jue:block/attached_cantaloupe_stem"
+  }
+}

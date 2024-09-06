@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_side",
+  "textures": {
+    "wall": "chang_sheng_jue:block/hang_tu_block"
+  }
+}

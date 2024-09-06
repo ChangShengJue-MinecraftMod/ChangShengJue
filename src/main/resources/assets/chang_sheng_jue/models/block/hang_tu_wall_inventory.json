@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "chang_sheng_jue:block/hang_tu_block"
+  }
+}

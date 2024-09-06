@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "chang_sheng_jue:item/crane_feathers"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_deepslate_ag_ore": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "chang_sheng_jue:deepslate_ag_ore"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:ag_ingot_from_blasting_deepslate_ag_ore"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_deepslate_ag_ore",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:ag_ingot_from_blasting_deepslate_ag_ore"
+    ]
+  },
+  "sends_telemetry_event": false
+}

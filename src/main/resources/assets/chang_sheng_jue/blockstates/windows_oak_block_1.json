@@ -1,0 +1,77 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "chang_sheng_jue:block/windows_oak_block_1_post"
+      }
+    },
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/windows_oak_block_1_side"
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/windows_oak_block_1_side",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/windows_oak_block_1_side_alt"
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/windows_oak_block_1_side_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "north": "false"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/windows_oak_block_1_noside"
+      }
+    },
+    {
+      "when": {
+        "east": "false"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/windows_oak_block_1_noside_alt"
+      }
+    },
+    {
+      "when": {
+        "south": "false"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/windows_oak_block_1_noside_alt",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "west": "false"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/windows_oak_block_1_noside",
+        "y": 270
+      }
+    }
+  ]
+}

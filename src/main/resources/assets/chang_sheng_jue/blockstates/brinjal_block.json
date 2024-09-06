@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "chang_sheng_jue:block/brinjal_stage0"
+    },
+    "age=1": {
+      "model": "chang_sheng_jue:block/brinjal_stage0"
+    },
+    "age=2": {
+      "model": "chang_sheng_jue:block/brinjal_stage1"
+    },
+    "age=3": {
+      "model": "chang_sheng_jue:block/brinjal_stage1"
+    },
+    "age=4": {
+      "model": "chang_sheng_jue:block/brinjal_stage2"
+    },
+    "age=5": {
+      "model": "chang_sheng_jue:block/brinjal_stage2"
+    },
+    "age=6": {
+      "model": "chang_sheng_jue:block/brinjal_stage2"
+    },
+    "age=7": {
+      "model": "chang_sheng_jue:block/brinjal_stage3"
+    }
+  }
+}

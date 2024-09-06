@@ -1,0 +1,12 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "minecraft:flower_forest"
+  ],
+  "spawners": {
+    "type": "chang_sheng_jue:butterfly_entity",
+    "maxCount": 2,
+    "minCount": 1,
+    "weight": 100
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "chang_sheng_jue:venison"
+  },
+  "result": "chang_sheng_jue:cooked_venison",
+  "experience": 0.35,
+  "cookingtime": 600
+}

@@ -1,0 +1,344 @@
+{
+  "itemGroup.chang_sheng_jue_block_tab": "长生诀 建筑方块",
+  "itemGroup.chang_sheng_jue_decorative_block_tab": "长生诀 装饰性方块",
+  "itemGroup.chang_sheng_jue_sundry_tab": "长生诀 杂项",
+  "itemGroup.chang_sheng_jue_foods_tab": "长生诀 食物",
+
+  "item.chang_sheng_jue.pineapple_seeds": "菠萝种子",
+  "item.chang_sheng_jue.pineapple": "菠萝",
+
+  "item.chang_sheng_jue.tomato_seeds": "番茄种子",
+  "item.chang_sheng_jue.tomato": "番茄",
+
+  "item.chang_sheng_jue.soybean": "大豆",
+
+  "item.chang_sheng_jue.gu_seeds": "谷种",
+  "item.chang_sheng_jue.gu_sui": "谷穗",
+
+  "item.chang_sheng_jue.sorghum_seeds": "高粱种子",
+  "item.chang_sheng_jue.sorghum": "高粱穗",
+
+  "item.chang_sheng_jue.lotus_root": "莲藕",
+  "item.chang_sheng_jue.lotus_seeds": "莲子",
+  "item.chang_sheng_jue.lotus": "莲花",
+
+  "item.chang_sheng_jue.redbean": "红豆",
+
+  "item.chang_sheng_jue.cotton_seeds": "棉花种子",
+  "item.chang_sheng_jue.cotton": "棉花",
+
+  "item.chang_sheng_jue.stickyrice_seeds": "糯稻种子",
+  "item.chang_sheng_jue.stickyrice": "糯稻",
+  "item.chang_sheng_jue.stickyrice_1": "糯米",
+
+  "item.chang_sheng_jue.corn_seeds": "玉米种子",
+  "item.chang_sheng_jue.corn": "玉米",
+
+  "item.chang_sheng_jue.jalapenos_seeds": "胡椒种子",
+  "item.chang_sheng_jue.jalapenos": "胡椒",
+
+  "item.chang_sheng_jue.peanut_seeds": "花生种子",
+  "item.chang_sheng_jue.peanut": "花生",
+
+  "item.chang_sheng_jue.brinjal_seeds": "茄子种子",
+  "item.chang_sheng_jue.brinjal": "茄子",
+
+  "item.chang_sheng_jue.cantaloupe": "哈密瓜片",
+  "item.chang_sheng_jue.cantaloupe_seeds": "哈密瓜种子",
+  "block.chang_sheng_jue.cantaloupe_block": "哈密瓜",
+
+  "item.chang_sheng_jue.grape_seeds": "葡萄种子",
+  "item.chang_sheng_jue.grape": "葡萄",
+
+  "item.chang_sheng_jue.ci_pan": "瓷盘",
+  "item.chang_sheng_jue.ci_wan": "瓷碗",
+
+  "item.chang_sheng_jue.capsule_jiao_zi": "荠菜饺子",
+  "item.chang_sheng_jue.zheng_cai": "蒸菜",
+  "item.chang_sheng_jue.portulaca_oleracea_cake": "马齿苋饼",
+  "item.chang_sheng_jue.qing_tuan": "青团",
+  "item.chang_sheng_jue.baked_corn": "烤玉米",
+  "item.chang_sheng_jue.tomato_egg": "番茄炒蛋",
+  "item.chang_sheng_jue.gu_lao_rou": "咕咾肉",
+  "item.chang_sheng_jue.meat_foam_brinjal": "肉沫茄子",
+  "item.chang_sheng_jue.sorghum_cake": "高粱饼",
+  "item.chang_sheng_jue.stinky_tofu": "臭豆腐",
+  "item.chang_sheng_jue.zhu_du_ji": "猪肚鸡",
+  "item.chang_sheng_jue.xiao_mi_fan": "小米饭",
+  "item.chang_sheng_jue.mi_fan": "米饭",
+  "item.chang_sheng_jue.gui_hua_tang_ou": "桂花糖藕",
+  "item.chang_sheng_jue.ba_bao_zhou": "八宝粥",
+
+  "block.chang_sheng_jue.mango_log": "芒果原木",
+  "block.chang_sheng_jue.mango_leaves": "芒果树叶",
+  "block.chang_sheng_jue.mango_leaves_1": "芒果树叶",
+  "block.chang_sheng_jue.mango_sapling": "芒果树苗",
+  "item.chang_sheng_jue.mango": "芒果",
+
+  "block.chang_sheng_jue.banana_log": "香蕉原木",
+  "block.chang_sheng_jue.banana_leaves": "香蕉树叶",
+  "block.chang_sheng_jue.banana_sapling": "香蕉树苗",
+  "item.chang_sheng_jue.banana": "香蕉",
+
+  "block.chang_sheng_jue.pear_log": "梨树原木",
+  "block.chang_sheng_jue.pear_leaves": "梨树树叶",
+  "block.chang_sheng_jue.pear_leaves_1": "梨树树叶",
+  "block.chang_sheng_jue.pear_sapling": "梨树树苗",
+  "item.chang_sheng_jue.pear": "梨子",
+
+  "block.chang_sheng_jue.lichee_log": "荔枝原木",
+  "block.chang_sheng_jue.lichee_leaves": "荔枝树叶",
+  "block.chang_sheng_jue.lichee_leaves_1": "荔枝树叶",
+  "block.chang_sheng_jue.lichee_sapling": "荔枝树苗",
+  "item.chang_sheng_jue.lichee": "荔枝",
+
+  "block.chang_sheng_jue.durian_log": "榴莲原木",
+  "block.chang_sheng_jue.durian_leaves": "榴莲树叶",
+  "block.chang_sheng_jue.durian_leaves_1": "榴莲树叶",
+  "block.chang_sheng_jue.durian_sapling": "榴莲树苗",
+  "item.chang_sheng_jue.durian": "榴莲",
+  "item.chang_sheng_jue.durian_open": "打开的榴莲",
+
+  "block.chang_sheng_jue.gui_hua_log": "桂花原木",
+  "block.chang_sheng_jue.gui_hua_leaves": "桂花树叶",
+  "block.chang_sheng_jue.gui_hua_sapling": "桂花树苗",
+  "item.chang_sheng_jue.gui_hua": "桂花",
+
+  "block.chang_sheng_jue.mei_hua_log": "梅花原木",
+  "block.chang_sheng_jue.mei_hua_leaves": "梅花树叶",
+  "block.chang_sheng_jue.mei_hua_sapling": "梅花树苗",
+  "item.chang_sheng_jue.mei_hua": "梅花",
+
+  "block.chang_sheng_jue.mugwort_block": "艾蒿",
+  "block.chang_sheng_jue.mugwort_block_1": "艾蒿",
+  "block.chang_sheng_jue.potted_mugwort_block": "艾蒿",
+
+  "block.chang_sheng_jue.capsule_block": "荠菜",
+  "item.chang_sheng_jue.capsule": "荠菜",
+
+  "block.chang_sheng_jue.cuckoo_block": "杜鹃花",
+  "block.chang_sheng_jue.potted_cuckoo_block": "杜鹃花",
+
+  "block.chang_sheng_jue.portulaca_oleracea_block": "马齿苋",
+  "block.chang_sheng_jue.potted_portulaca_oleracea_block": "马齿苋",
+
+  "block.chang_sheng_jue.jasmine_block": "茉莉花",
+  "block.chang_sheng_jue.potted_jasmine_block": "茉莉花",
+
+  "block.chang_sheng_jue.kochia_scoparia_block": "地肤草",
+
+  "block.chang_sheng_jue.shui_xian_block": "水仙花",
+
+  "block.chang_sheng_jue.tan_hua_block": "昙花",
+
+  "block.chang_sheng_jue.zhu_tai_block": "烛台",
+  "block.chang_sheng_jue.hang_tu_block": "夯土",
+  "block.chang_sheng_jue.hang_tu_stairs": "夯土楼梯",
+  "block.chang_sheng_jue.hang_tu_slab": "夯土台阶",
+  "block.chang_sheng_jue.hang_tu_wall": "夯土墙",
+  "block.chang_sheng_jue.tu_pei_block": "土坯",
+  "block.chang_sheng_jue.tu_pei_stairs": "土坯楼梯",
+  "block.chang_sheng_jue.tu_pei_slab": "土坯台阶",
+  "block.chang_sheng_jue.tu_pei_wall": "土坯墙",
+
+  "block.chang_sheng_jue.white_walls_block": "白墙",
+  "block.chang_sheng_jue.cool_white_walls_block": "冷白色墙",
+  "block.chang_sheng_jue.warm_white_walls_block": "暖白色墙",
+
+  "block.chang_sheng_jue.white_fine_bricks": "白细砖",
+  "block.chang_sheng_jue.white_bricks": "白砖",
+  "block.chang_sheng_jue.black_stone_fine_bricks": "黑石细砖",
+  "block.chang_sheng_jue.black_stone_bricks": "黑石砖",
+  "block.chang_sheng_jue.blue_stone_fine_bricks": "青石细砖",
+  "block.chang_sheng_jue.blue_stone_bricks": "青石砖",
+
+  "block.chang_sheng_jue.white_bricks_stairs": "白砖楼梯",
+  "block.chang_sheng_jue.black_stone_bricks_stairs": "黑石砖楼梯",
+  "block.chang_sheng_jue.blue_stone_bricks_stairs": "青石砖楼梯",
+
+  "block.chang_sheng_jue.white_bricks_slab": "白砖台阶",
+  "block.chang_sheng_jue.black_stone_bricks_slab": "黑石台阶",
+  "block.chang_sheng_jue.blue_stone_bricks_slab": "青石台阶",
+
+  "block.chang_sheng_jue.white_bricks_vertical_walls": "白砖竖墙",
+  "block.chang_sheng_jue.black_stone_vertical_walls": "黑石竖墙",
+  "block.chang_sheng_jue.blue_stone_vertical_walls": "青石竖墙",
+
+  "block.chang_sheng_jue.stone_lamps_base_block": "石灯底座",
+  "block.chang_sheng_jue.stone_lamps_block": "未点亮的石灯",
+  "block.chang_sheng_jue.stone_lamps_liang_block": "石灯",
+  "block.chang_sheng_jue.yellow_stone_lion_block": "黄色石狮子",
+  "block.chang_sheng_jue.gre_stone_lion_block": "灰色石狮子",
+  "block.chang_sheng_jue.bai_hua_fu_ti_block": "白桦扶梯",
+  "block.chang_sheng_jue.yun_shan_fu_ti_block": "云杉扶梯",
+
+  "block.chang_sheng_jue.cylinder_tile_gre_block": "灰色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_gre_block_1": "灰色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_gre_block_2": "灰色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_gre_block_3": "灰色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_red_block": "红色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_red_block_1": "红色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_red_block_2": "红色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_red_block_3": "红色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_black_block": "黑色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_black_block_1": "黑色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_black_block_2": "黑色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_black_block_3": "黑色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_golden_block": "金色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_golden_block_1": "金色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_golden_block_2": "金色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_golden_block_3": "金色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_blue_block": "青色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_blue_block_1": "青色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_blue_block_2": "青色筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_blue_block_3": "青色筒瓦",
+
+
+  "block.chang_sheng_jue.golden_tile_block": "金色瓦片",
+  "block.chang_sheng_jue.golden_tile_block_1": "金色瓦片",
+  "block.chang_sheng_jue.golden_tile_block_2": "金色瓦片",
+  "block.chang_sheng_jue.golden_tile_block_3": "金色瓦片",
+  "block.chang_sheng_jue.golden_tile_block_4": "金色瓦片",
+  "block.chang_sheng_jue.tile_block": "瓦片",
+  "block.chang_sheng_jue.tile_block_1": "瓦片",
+  "block.chang_sheng_jue.tile_block_2": "瓦片",
+  "block.chang_sheng_jue.tile_block_3": "瓦片",
+  "block.chang_sheng_jue.tile_block_4": "瓦片",
+
+  "block.chang_sheng_jue.bitumen_floor_tiles_block": "沥青地砖",
+  "block.chang_sheng_jue.blue_floor_tiles_block": "青石地砖",
+  "block.chang_sheng_jue.blue_floor_tiles_block_1": "青石地砖",
+
+  "block.chang_sheng_jue.huang_hua_li_log": "黄花梨原木",
+  "block.chang_sheng_jue.stripped_huang_hua_li_log": "去皮黄花梨原木",
+  "block.chang_sheng_jue.huang_hua_li_wood": "黄花梨木板",
+
+  "block.chang_sheng_jue.ji_chi_mu_log": "鸡翅木原木",
+  "block.chang_sheng_jue.ji_chi_mu_stripped_log": "去皮鸡翅木原木",
+  "block.chang_sheng_jue.ji_chi_mu_wood": "鸡翅木木板",
+
+  "block.chang_sheng_jue.zi_tan_log": "紫檀原木",
+  "block.chang_sheng_jue.zi_tan_stripped_log": "去皮紫檀原木",
+  "block.chang_sheng_jue.zi_tan_wood": "紫檀木板",
+
+  "block.chang_sheng_jue.windows_birch_block": "白桦木窗户",
+  "block.chang_sheng_jue.windows_birch_block_1": "白桦木窗户",
+  "block.chang_sheng_jue.windows_birch_block_2": "白桦木窗户",
+  "block.chang_sheng_jue.windows_acacia_block": "金合欢窗户",
+  "block.chang_sheng_jue.windows_acacia_block_1": "金合欢窗户",
+  "block.chang_sheng_jue.windows_acacia_block_2": "金合欢窗户",
+  "block.chang_sheng_jue.windows_dark_oak_block": "深色橡木窗户",
+  "block.chang_sheng_jue.windows_dark_oak_block_1": "深色橡木窗户",
+  "block.chang_sheng_jue.windows_dark_oak_block_2": "深色橡木窗户",
+  "block.chang_sheng_jue.windows_oak_block": "橡木窗户",
+  "block.chang_sheng_jue.windows_oak_block_1": "橡木窗户",
+  "block.chang_sheng_jue.windows_oak_block_2": "橡木窗户",
+  "block.chang_sheng_jue.windows_spruce_block": "云杉窗户",
+  "block.chang_sheng_jue.windows_spruce_block_1": "云杉窗户",
+  "block.chang_sheng_jue.windows_spruce_block_2": "云杉窗户",
+
+  "block.chang_sheng_jue.door_birch_block": "白桦木门",
+  "block.chang_sheng_jue.door_acacia_block": "金合欢门",
+  "block.chang_sheng_jue.door_dark_oak_block": "深色橡木门",
+  "block.chang_sheng_jue.door_oak_block": "橡木门",
+  "block.chang_sheng_jue.door_spruce_block": "云杉木门",
+
+  "block.chang_sheng_jue.mei_ren_kao_acacia_block": "金合欢木美人靠",
+  "block.chang_sheng_jue.mei_ren_kao_dark_oak_block": "深色橡木美人靠",
+  "block.chang_sheng_jue.mei_ren_kao_oak_block": "橡木美人靠",
+  "block.chang_sheng_jue.mei_ren_kao_spruce_block": "云杉木美人靠",
+
+  "block.chang_sheng_jue.grape_shelf_block": "葡萄架",
+  "block.chang_sheng_jue.pillar_block": "支柱",
+
+  "item.chang_sheng_jue.butterfly_egg": "蝴蝶刷怪蛋",
+  "item.chang_sheng_jue.monkey_egg": "金丝猴刷怪蛋",
+  "item.chang_sheng_jue.dragonfly_egg": "蜻蜓刷怪蛋",
+  "item.chang_sheng_jue.cicada_egg": "蝉刷怪蛋",
+  "item.chang_sheng_jue.crane_egg": "鹤刷怪蛋",
+  "item.chang_sheng_jue.peacock_egg": "雄孔雀刷怪蛋",
+  "item.chang_sheng_jue.peacock_egg_1": "雌孔雀刷怪蛋",
+  "item.chang_sheng_jue.stag_egg": "雄鹿刷怪蛋",
+  "item.chang_sheng_jue.hind_egg": "雌鹿刷怪蛋",
+  "item.chang_sheng_jue.tiger_egg": "虎刷怪蛋",
+  "item.chang_sheng_jue.croc_egg": "鳄鱼刷怪蛋",
+
+  "item.chang_sheng_jue.crane_feathers": "鹤羽",
+  "item.chang_sheng_jue.peacock_feathers": "孔雀羽翎",
+  "item.chang_sheng_jue.peacock_eggs": "孔雀蛋",
+
+  "item.chang_sheng_jue.antler": "鹿茸",
+  "item.chang_sheng_jue.deerskin": "鹿皮",
+  "item.chang_sheng_jue.deer_blood": "鹿血",
+  "item.chang_sheng_jue.venison": "生鹿肉",
+  "item.chang_sheng_jue.cooked_venison": "熟鹿肉",
+
+  "item.chang_sheng_jue.tiger_skin": "虎皮",
+  "item.chang_sheng_jue.croc_skin": "鳄鱼皮",
+
+  "entity.chang_sheng_jue.butterfly_entity": "蝴蝶",
+  "entity.chang_sheng_jue.monkey_entity": "金丝猴",
+  "entity.chang_sheng_jue.dragonfly_entity": "蜻蜓",
+  "entity.chang_sheng_jue.cicada_entity": "蝉",
+  "entity.chang_sheng_jue.crane_entity": "鹤",
+  "entity.chang_sheng_jue.male_peacock_entity": "孔雀",
+  "entity.chang_sheng_jue.stag_entity": "鹿",
+  "entity.chang_sheng_jue.hind_entity": "鹿",
+  "entity.chang_sheng_jue.tiger_entity": "老虎",
+  "entity.chang_sheng_jue.croc_entity": "鳄鱼",
+
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.none": "村民",
+  "entity.chang_sheng_jue.chang_sheng_jue_hunter.none": "猎人",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager_chief.none": "村长",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.farmer": "农民",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_farmer": "农民",
+  "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_farmer": "农民",
+  "item.chang_sheng_jue.chang_sheng_jue_villager_egg": "村民刷怪蛋",
+  "item.chang_sheng_jue.chang_sheng_jue_hunter_egg": "猎人村民刷怪蛋",
+  "item.chang_sheng_jue.chang_sheng_jue_villager_chief_egg": "村长刷怪蛋",
+
+  "sounds.chang_sheng_jue.cicada_sound": "蝉 : 鸣叫",
+  "sounds.chang_sheng_jue.cicada_hurt": "蝉 : 受伤",
+
+  "sounds.chang_sheng_jue.crane_sound": "鹤 : 鸣叫",
+  "sounds.chang_sheng_jue.crane_hurt": "鹤 : 受伤",
+  "sounds.chang_sheng_jue.crane_death": "鹤 : 死亡",
+
+  "sounds.chang_sheng_jue.croc_sound": "鳄鱼 : 咆哮",
+  "sounds.chang_sheng_jue.croc_hurt": "鳄鱼 : 受伤",
+  "sounds.chang_sheng_jue.croc_death": "鳄鱼 : 死亡",
+
+  "sounds.chang_sheng_jue.dragonfly_hurt": "蜻蜓 : 受伤",
+  "sounds.chang_sheng_jue.dragonfly_death": "蜻蜓 : 死亡",
+
+  "sounds.chang_sheng_jue.monkey_sound" : "金丝猴 : 嚎叫",
+  "sounds.chang_sheng_jue.monkey_baby_sound" : "金丝猴 : 嚎叫",
+  "sounds.chang_sheng_jue.monkey_angry_sound" : "金丝猴 : 生气",
+  "sounds.chang_sheng_jue.monkey_hurt" : "金丝猴 : 受伤",
+  "sounds.chang_sheng_jue.monkey_death" : "金丝猴 : 死亡",
+
+  "sounds.chang_sheng_jue.tiger_sound" : "虎 : 咆哮",
+  "sounds.chang_sheng_jue.tiger_sound_1" : "虎 : 咆哮",
+  "sounds.chang_sheng_jue.tiger_hurt" : "虎 : 受伤",
+  "sounds.chang_sheng_jue.tiger_death" : "虎 : 死亡",
+
+  "sounds.chang_sheng_jue.deer_sound" : "鹿 : 鸣叫",
+  "sounds.chang_sheng_jue.deer_sound_1" : "鹿 : 鸣叫",
+  "sounds.chang_sheng_jue.deer_sound_2" : "鹿 : 鸣叫",
+  "sounds.chang_sheng_jue.deer_sound_3" : "鹿 : 鸣叫",
+  "sounds.chang_sheng_jue.deer_sound_4" : "鹿 : 鸣叫",
+  "sounds.chang_sheng_jue.deer_sound_5" : "鹿 : 鸣叫",
+  "sounds.chang_sheng_jue.deer_hurt" : "鹿 : 受伤",
+  "sounds.chang_sheng_jue.deer_death" : "鹿 : 死亡",
+
+  "sounds.chang_sheng_jue.peacock_sound" : "孔雀 : 鸣叫",
+  "sounds.chang_sheng_jue.peacock_hurt" : "孔雀 : 受伤",
+  "sounds.chang_sheng_jue.peacock_death" : "孔雀 : 死亡",
+
+  "block.chang_sheng_jue.ag_ore": "银矿石",
+  "block.chang_sheng_jue.deepslate_ag_ore": "深层银矿石",
+  "item.chang_sheng_jue.raw_ag": "粗银",
+  "item.chang_sheng_jue.ag_ingot": "银锭",
+
+  "item.chang_sheng_jue.tong_qian": "铜钱"
+}

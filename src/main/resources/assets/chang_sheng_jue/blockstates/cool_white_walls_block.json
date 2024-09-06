@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "chang_sheng_jue:block/cool_white_walls_block"
+      },
+      {
+        "model": "chang_sheng_jue:block/cool_white_walls_block"
+      },
+      {
+        "model": "chang_sheng_jue:block/cool_white_walls_block",
+        "y": 180
+      },
+      {
+        "model": "chang_sheng_jue:block/cool_white_walls_block",
+        "y": 180
+      }
+    ]
+  }
+}

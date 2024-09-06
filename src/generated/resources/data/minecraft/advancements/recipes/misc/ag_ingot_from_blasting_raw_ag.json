@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_ag": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "chang_sheng_jue:raw_ag"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:ag_ingot_from_blasting_raw_ag"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_ag",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:ag_ingot_from_blasting_raw_ag"
+    ]
+  },
+  "sends_telemetry_event": false
+}

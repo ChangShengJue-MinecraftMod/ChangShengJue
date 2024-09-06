@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_glass_pane_noside",
+  "textures": {
+    "pane": "chang_sheng_jue:block/windows_spruce_block"
+  }
+}

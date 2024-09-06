@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "chang_sheng_jue:block/cool_white_walls_block"
+  }
+}

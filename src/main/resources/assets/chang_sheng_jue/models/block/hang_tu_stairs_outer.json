@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "chang_sheng_jue:block/hang_tu_block",
+    "top": "chang_sheng_jue:block/hang_tu_block",
+    "side": "chang_sheng_jue:block/hang_tu_block"
+  }
+}

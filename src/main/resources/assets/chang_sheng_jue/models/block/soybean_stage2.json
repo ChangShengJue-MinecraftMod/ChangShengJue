@@ -1,0 +1,61 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/crop",
+	"textures": {
+		"crop": "chang_sheng_jue:block/soybean_stage2"
+	},
+	"elements": [
+		{
+			"from": [4, 0, 0],
+			"to": [4, 15, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [0, 1, 0, 16], "texture": "#crop"},
+				"east": {"uv": [0, 1, 16, 16], "texture": "#crop"},
+				"south": {"uv": [0, 1, 0, 16], "texture": "#crop"},
+				"west": {"uv": [0, 1, 16, 16], "texture": "#crop"},
+				"up": {"uv": [0, 1, 16, 16], "texture": "#crop"},
+				"down": {"uv": [0, 1, 16, 16], "texture": "#crop"}
+			}
+		},
+		{
+			"from": [12, 0, 0],
+			"to": [12, 15, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [0, 1, 0, 16], "texture": "#crop"},
+				"east": {"uv": [16, 1, 0, 16], "texture": "#crop"},
+				"south": {"uv": [0, 1, 0, 16], "texture": "#crop"},
+				"west": {"uv": [16, 1, 0, 16], "texture": "#crop"},
+				"up": {"uv": [0, 1, 16, 16], "texture": "#crop"},
+				"down": {"uv": [0, 1, 16, 16], "texture": "#crop"}
+			}
+		},
+		{
+			"from": [0, 0, 12],
+			"to": [16, 15, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [16, 1, 0, 16], "texture": "#crop"},
+				"east": {"uv": [0, 1, 0, 16], "texture": "#crop"},
+				"south": {"uv": [16, 1, 0, 16], "texture": "#crop"},
+				"west": {"uv": [0, 1, 16, 16], "texture": "#crop"},
+				"up": {"uv": [0, 1, 16, 16], "rotation": 90, "texture": "#crop"},
+				"down": {"uv": [0, 1, 16, 16], "rotation": 270, "texture": "#crop"}
+			}
+		},
+		{
+			"from": [0, 0, 4],
+			"to": [16, 15, 4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [0, 1, 16, 16], "texture": "#crop"},
+				"east": {"uv": [0, 1, 0, 16], "texture": "#crop"},
+				"south": {"uv": [0, 1, 16, 16], "texture": "#crop"},
+				"west": {"uv": [0, 1, 16, 16], "texture": "#crop"},
+				"up": {"uv": [0, 1, 0, 16], "rotation": 90, "texture": "#crop"},
+				"down": {"uv": [0, 1, 0, 16], "rotation": 270, "texture": "#crop"}
+			}
+		}
+	]
+}

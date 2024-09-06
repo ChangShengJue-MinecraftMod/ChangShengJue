@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "chang_sheng_jue:block/tu_pei_block",
+    "top": "chang_sheng_jue:block/tu_pei_block",
+    "side": "chang_sheng_jue:block/tu_pei_block"
+  }
+}

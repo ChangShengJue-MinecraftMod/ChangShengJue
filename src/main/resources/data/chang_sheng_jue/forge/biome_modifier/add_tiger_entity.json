@@ -1,0 +1,13 @@
+{
+  "type": "forge:add_spawns",
+  "biomes": [
+    "minecraft:jungle",
+    "minecraft:forest"
+  ],
+  "spawners": {
+    "type": "chang_sheng_jue:tiger_entity",
+    "maxCount": 6,
+    "minCount": 3,
+    "weight": 40
+  }
+}

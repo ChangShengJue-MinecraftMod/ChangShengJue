@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "chang_sheng_jue:block/hang_tu_slab"
+    },
+    "type=double": {
+      "model": "chang_sheng_jue:block/hang_tu_block"
+    },
+    "type=top": {
+      "model": "chang_sheng_jue:block/hang_tu_slab_top"
+    }
+  }
+}

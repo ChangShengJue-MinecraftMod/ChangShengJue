@@ -1,0 +1,7 @@
+{
+  "parent" : "block/cube_all",
+  "credit": "Made with Blockbench",
+  "textures": {
+    "all": "chang_sheng_jue:block/bitumen_floor_tiles_block"
+  }
+}

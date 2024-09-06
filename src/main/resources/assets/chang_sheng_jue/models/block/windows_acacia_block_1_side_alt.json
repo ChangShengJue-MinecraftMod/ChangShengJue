@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_glass_pane_side_alt",
+  "textures": {
+    "pane": "chang_sheng_jue:block/windows_acacia_block_1",
+    "edge": "minecraft:block/acacia_planks"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_glass_pane_side",
+  "textures": {
+    "pane": "chang_sheng_jue:block/windows_dark_oak_block_1",
+    "edge": "minecraft:block/dark_oak_planks"
+  }
+}

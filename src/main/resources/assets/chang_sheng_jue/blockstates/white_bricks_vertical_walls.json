@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "chang_sheng_jue:block/white_bricks_vertical_walls",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "chang_sheng_jue:block/white_bricks_vertical_walls"
+    },
+    "facing=south": {
+      "model": "chang_sheng_jue:block/white_bricks_vertical_walls",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "chang_sheng_jue:block/white_bricks_vertical_walls",
+      "y": 270
+    }
+  }
+}

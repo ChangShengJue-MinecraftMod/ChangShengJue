@@ -1,0 +1,37 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/crop",
+	"textures": {
+		"crop": "chang_sheng_jue:block/pineapple_stage3"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 8],
+			"to": [16, 16, 8],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#crop"},
+				"east": {"uv": [0, 0, 0, 8], "texture": "#crop"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#crop"},
+				"west": {"uv": [0, 0, 0, 8], "texture": "#crop"},
+				"up": {"uv": [8, 0, 0, 0], "texture": "#crop"},
+				"down": {"uv": [8, 0, 0, 0], "texture": "#crop"}
+			}
+		},
+		{
+			"from": [0, 0, 8],
+			"to": [16, 16, 8],
+			"shade": false,
+			"rotation": {"angle": -45, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#crop"},
+				"east": {"uv": [0, 0, 0, 8], "texture": "#crop"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#crop"},
+				"west": {"uv": [0, 0, 0, 8], "texture": "#crop"},
+				"up": {"uv": [8, 0, 0, 0], "texture": "#crop"},
+				"down": {"uv": [8, 0, 0, 0], "texture": "#crop"}
+			}
+		}
+	]
+}
