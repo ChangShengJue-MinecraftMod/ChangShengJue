@@ -28,6 +28,7 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -70,7 +71,6 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> GRAPE_BLOCK =registerBlockWithoutBlockItem("grape_block",
             ()-> new GrapeBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
 
-
     //哈密瓜
     public static final RegistryObject<Block> CANTALOUPE_BLOCK = registerBlock("cantaloupe_block",
             ()-> new CantaloupeBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN)
@@ -81,11 +81,9 @@ public class ChangShengJueBlocks {
             ()-> new StemBlock((StemGrownBlock)CANTALOUPE_BLOCK.get(), () -> ChangShengJueItems.CANTALOUPE_SEEDS.get(),
                    BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.HARD_CROP).pushReaction(PushReaction.DESTROY)));
 
-
     public static final RegistryObject<Block> ATTACHED_CANTALOUPE_STEM = registerBlockWithoutBlockItem("attached_cantaloupe_stem",
             ()-> new AttachedStemBlock((StemGrownBlock)CANTALOUPE_BLOCK.get(),()-> ChangShengJueItems.CANTALOUPE_SEEDS.get()
                     ,BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().instabreak().sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY)));
-
 
     //莲花
     public static final RegistryObject<Block> LOTUS_BLOCK =registerBlockWithoutBlockItem("lotus_block",
@@ -96,8 +94,8 @@ public class ChangShengJueBlocks {
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),300);
     public static final RegistryObject<Block> MANGO_LEAVES =registerBlock("mango_leaves",
             ()-> new LeavesBlocks(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)),0);
-    public static final RegistryObject<Block> MANGO_LEAVES_1 =registerBlock("mango_leaves_1",
-            ()-> new LeavesBlocks(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)),0);
+//    public static final RegistryObject<Block> MANGO_LEAVES_1 =registerBlock("mango_leaves_1",
+//            ()-> new LeavesBlocks(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)),0);
     public static final RegistryObject<Block> MANGO_SAPLING =registerBlock("mango_sapling",
             ()-> new SaplingBlock(new MangoTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)),100);
 
@@ -112,8 +110,8 @@ public class ChangShengJueBlocks {
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),300);
     public static final RegistryObject<Block> PEAR_LEAVES =registerBlock("pear_leaves",
             ()-> new LeavesBlocks(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)),0);
-    public static final RegistryObject<Block> PEAR_LEAVES_1 =registerBlock("pear_leaves_1",
-            ()-> new LeavesBlocks(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)),0);
+//    public static final RegistryObject<Block> PEAR_LEAVES_1 =registerBlock("pear_leaves_1",
+//            ()-> new LeavesBlocks(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)),0);
     public static final RegistryObject<Block> PEAR_SAPLING =registerBlock("pear_sapling",
             ()-> new SaplingBlock(new PearTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)),100);
 
@@ -121,8 +119,8 @@ public class ChangShengJueBlocks {
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),300);
     public static final RegistryObject<Block> LICHEE_LEAVES =registerBlock("lichee_leaves",
             ()-> new LeavesBlocks(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)),0);
-    public static final RegistryObject<Block> LICHEE_LEAVES_1 =registerBlock("lichee_leaves_1",
-            ()-> new LeavesBlocks(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)),0);
+//    public static final RegistryObject<Block> LICHEE_LEAVES_1 =registerBlock("lichee_leaves_1",
+//            ()-> new LeavesBlocks(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)),0);
     public static final RegistryObject<Block> LICHEE_SAPLING =registerBlock("lichee_sapling",
             ()-> new SaplingBlock(new LicheeTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)),100);
 
@@ -130,8 +128,8 @@ public class ChangShengJueBlocks {
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),300);
     public static final RegistryObject<Block> DURIAN_LEAVES =registerBlock("durian_leaves",
             ()-> new LeavesBlocks(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)),0);
-    public static final RegistryObject<Block> DURIAN_LEAVES_1 =registerBlock("durian_leaves_1",
-            ()-> new LeavesBlocks(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)),0);
+//    public static final RegistryObject<Block> DURIAN_LEAVES_1 =registerBlock("durian_leaves_1",
+//            ()-> new LeavesBlocks(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)),0);
     public static final RegistryObject<Block> DURIAN_SAPLING =registerBlock("durian_sapling",
             ()-> new SaplingBlock(new DurianTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)),100);
 
@@ -548,15 +546,40 @@ public class ChangShengJueBlocks {
             ()-> new WindowBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()),0);
 
     public static final RegistryObject<Block> WINDOWS_BIRCH_BLOCK_2 =registerBlock("windows_birch_block_2",
-            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR), BlockSetType.BIRCH),0);
+            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR), BlockSetType.BIRCH){
+                @Override
+                public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+                    return false;
+                }
+            },0);
     public static final RegistryObject<Block> WINDOWS_ACACIA_BLOCK_2 =registerBlock("windows_acacia_block_2",
-            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.ACACIA),0);
+            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.ACACIA){
+                @Override
+                public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+                    return false;
+                }
+            },0);
     public static final RegistryObject<Block> WINDOWS_DARK_OAK_BLOCK_2 =registerBlock("windows_dark_oak_block_2",
-            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.DARK_OAK),0);
+            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.DARK_OAK){
+                @Override
+                public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+                    return false;
+                }
+            },0);
     public static final RegistryObject<Block> WINDOWS_OAK_BLOCK_2 = registerBlock("windows_oak_block_2",
-            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.OAK),0);
+            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.OAK){
+                @Override
+                public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+                    return false;
+                }
+            },0);
     public static final RegistryObject<Block> WINDOWS_SPRUCE_BLOCK_2 =registerBlock("windows_spruce_block_2",
-            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.SPRUCE),0);
+            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.SPRUCE){
+                @Override
+                public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+                    return false;
+                }
+            },0);
 
     //方块
     public static final RegistryObject<Block> HANG_TU_WALL =registerBlock("hang_tu_wall",
@@ -616,7 +639,6 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> BLUE_STONE_BRICKS_SLAB =registerBlock("blue_stone_bricks_slab",
             ()-> new SlabBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().sound(SoundType.STONE).strength(1.5F, 6.0F)),0);
 
-
     //竖墙
     public static final RegistryObject<Block> WHITE_BRICKS_VERTICAL_WALLS =registerBlock("white_bricks_vertical_walls",
             ()-> new VerticalWalls(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().sound(SoundType.STONE).strength(1.5F, 6.0F).noOcclusion()),0);
@@ -626,13 +648,13 @@ public class ChangShengJueBlocks {
             ()-> new VerticalWalls(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().sound(SoundType.STONE).strength(1.5F, 6.0F).noOcclusion()),0);
 
     //葡萄架
-    public static final RegistryObject<Block> GRAPE_SHELF_BLOCK =registerBlock("grape_shelf_block",
-            ()-> new GrapeShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1.0F, 6.0F).noOcclusion()),
-            300);
-
-    public static final RegistryObject<Block> PILLAR_BLOCK =registerBlock("pillar_block",
-            ()-> new PillarBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1.0F, 6.0F).noOcclusion()),
-            300);
+//    public static final RegistryObject<Block> GRAPE_SHELF_BLOCK =registerBlock("grape_shelf_block",
+//            ()-> new GrapeShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1.0F, 6.0F).noOcclusion()),
+//            300);
+//
+//    public static final RegistryObject<Block> PILLAR_BLOCK =registerBlock("pillar_block",
+//            ()-> new PillarBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1.0F, 6.0F).noOcclusion()),
+//            300);
 
     //矿石
     public static final RegistryObject<Block> AG_ORE =registerBlock("ag_ore",

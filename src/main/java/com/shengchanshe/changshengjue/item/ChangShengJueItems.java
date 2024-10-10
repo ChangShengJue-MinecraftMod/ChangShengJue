@@ -8,6 +8,7 @@ import com.shengchanshe.changshengjue.item.foods.ChangShengJueFoods;
 import com.shengchanshe.changshengjue.item.foods.DurianItem;
 import com.shengchanshe.changshengjue.item.items.PeacockEggItem;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -217,6 +218,9 @@ public class ChangShengJueItems {
             ()-> new Item((new Item.Properties())));
     public static final RegistryObject<Item> AG_INGOT = ITEMS.register("ag_ingot",
             ()-> new Item((new Item.Properties())));
+
+    //画
+    public static final RegistryObject<Item> PAINTING_SCROLL  = ITEMS.register("painting_scroll",()-> new HangingEntityItem(EntityType.PAINTING, new Item.Properties()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

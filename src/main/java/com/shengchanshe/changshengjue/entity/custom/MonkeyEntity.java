@@ -23,6 +23,7 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.animal.Bee;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -44,12 +45,9 @@ public class MonkeyEntity extends Animal implements GeoEntity,NeutralMob{
     protected int xpReward;
     @Nullable
     private UUID persistentAngerTarget;
-    @Nullable
-    private Entity vehicle;
+    private int aggroTime;
     public boolean attackTick;
-    private int anInt = 0;
-    private static final EntityDataAccessor<Boolean> MONKEY_ATTACK =
-            SynchedEntityData.defineId(MonkeyEntity.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> MONKEY_ATTACK = SynchedEntityData.defineId(MonkeyEntity.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(MonkeyEntity.class, EntityDataSerializers.INT);
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
     public MonkeyEntity(EntityType<? extends MonkeyEntity> p_27557_, Level p_27558_) {
@@ -71,8 +69,8 @@ public class MonkeyEntity extends Animal implements GeoEntity,NeutralMob{
     protected void registerGoals(){
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(1, new BreedGoal(this, 0.6D));
-        this.goalSelector.addGoal(2, new TemptGoal(this, 0.8D, Ingredient.of(ChangShengJueItems.BANANA.get()), false));
-        this.goalSelector.addGoal(2,new MonkeyAttackGoal(this,0.8D, false));
+        this.goalSelector.addGoal(2, new MonkeyAttackGoal(this,0.8D, false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 0.8D, Ingredient.of(ChangShengJueItems.BANANA.get()), false));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 0.6D));
         this.goalSelector.addGoal(3, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
@@ -83,8 +81,12 @@ public class MonkeyEntity extends Animal implements GeoEntity,NeutralMob{
                 Player player = (Player) entity;
                 ItemStack mainHandItem = player.getMainHandItem();
                 ItemStack offhandItem = player.getOffhandItem();
-                if (mainHandItem.is(ChangShengJueItems.BANANA.get()) && anInt >= 600 ||  offhandItem.is(ChangShengJueItems.BANANA.get()) && anInt >= 600) {
-                    return true;
+                if (mainHandItem.is(ChangShengJueItems.BANANA.get())|| offhandItem.is(ChangShengJueItems.BANANA.get())) {
+                    aggroTime++;
+                    if (aggroTime >= 60){
+                        this.startPersistentAngerTimer();
+                        return true;
+                    }
                 }else {
                     return false;
                 }
@@ -117,14 +119,6 @@ public class MonkeyEntity extends Animal implements GeoEntity,NeutralMob{
     @Override
     public void tick() {
         super.tick();
-        if (attackTick){
-            anInt++;
-            if (anInt >= 600){
-                this.startPersistentAngerTimer();
-            }
-        }else {
-            this.goalSelector.addGoal(2,new MonkeyAttackGoal(this,0.8D, false));
-        }
     }
 
     @Override
@@ -135,7 +129,7 @@ public class MonkeyEntity extends Animal implements GeoEntity,NeutralMob{
             itemStack.shrink(1);
             this.setRemainingPersistentAngerTime(0);
             this.stopRiding();
-            anInt = 0;
+            aggroTime = 0;
         }
         return super.mobInteract(player, hand);
     }
@@ -158,13 +152,16 @@ public class MonkeyEntity extends Animal implements GeoEntity,NeutralMob{
     }
 
     public boolean shouldFollow(LivingEntity entity) {
-        if (entity.getMainHandItem().is(ChangShengJueItems.BANANA.get()) || entity.getOffhandItem().is(ChangShengJueItems.BANANA.get())){
-            if (anInt >= 600){
-                this.doPlayerRide(Minecraft.getInstance().player);
+        if (entity instanceof Player){
+            Player player = (Player) entity;
+            if (entity.getMainHandItem().is(ChangShengJueItems.BANANA.get()) || entity.getOffhandItem().is(ChangShengJueItems.BANANA.get())){
+                if (this.getRemainingPersistentAngerTime() != 0){
+                    this.doPlayerRide(player);
+                }
+                attackTick = true;
+            }else {
+                attackTick = false;
             }
-            attackTick = true;
-        }else {
-            attackTick = false;
         }
         return entity.getMainHandItem().is(ChangShengJueItems.BANANA.get()) || entity.getOffhandItem().is(ChangShengJueItems.BANANA.get());
     }
@@ -205,13 +202,18 @@ public class MonkeyEntity extends Animal implements GeoEntity,NeutralMob{
 //    }
 
     protected void doPlayerRide(Player player) {
-//        if (!this.level.isClientSide) {
-            this.setYRot(player.getYRot());
-            this.setXRot(player.getXRot());
-            MonkeyEntity.this.startRiding(player);
-//        }
-    }
+        Entity entity = this; /* 获取你想检查的实体 */;
 
+        // 计算玩家和实体之间的距离
+        double distance = player.position().distanceTo(entity.position());
+
+        // 检查距离是否在两格范围内
+        if (distance <= 2.0D) {
+            // 实体在玩家两格范围内
+            // 在这里执行你的逻辑
+            this.startRiding(player);
+        }
+    }
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob ageableMob) {
@@ -244,8 +246,7 @@ public class MonkeyEntity extends Animal implements GeoEntity,NeutralMob{
 
     @Override
     public int getRemainingPersistentAngerTime() {
-        Integer i = this.entityData.get(DATA_REMAINING_ANGER_TIME);
-        return i;
+        return this.entityData.get(DATA_REMAINING_ANGER_TIME);
     }
 
     @Override
@@ -260,8 +261,8 @@ public class MonkeyEntity extends Animal implements GeoEntity,NeutralMob{
     }
 
     @Override
-    public void setPersistentAngerTarget(@Nullable UUID p_21672_) {
-        this.persistentAngerTarget = p_21672_;
+    public void setPersistentAngerTarget(@Nullable UUID uuid) {
+        this.persistentAngerTarget = uuid;
     }
 
     @Override

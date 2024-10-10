@@ -37,16 +37,16 @@ public class GrapeBlock extends CropBlock {
     public VoxelShape getOcclusionShape(BlockState blockState, BlockGetter p_60579_, BlockPos p_60580_) {
         return SHAPE_BY_AGE[blockState.getValue(this.getAgeProperty())];
     }
-
-    @Override
-    protected boolean mayPlaceOn(BlockState p_52302_, BlockGetter p_52303_, BlockPos p_52304_) {
-        return p_52302_.is(ChangShengJueBlocks.GRAPE_SHELF_BLOCK.get());
-    }
-
-    @Override
-    public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos) {
-        return (reader.getBlockState(pos.below(1)).is(ChangShengJueBlocks.GRAPE_SHELF_BLOCK.get()));
-    }
+//
+//    @Override
+//    protected boolean mayPlaceOn(BlockState p_52302_, BlockGetter p_52303_, BlockPos p_52304_) {
+//        return p_52302_.is(ChangShengJueBlocks.GRAPE_SHELF_BLOCK.get());
+//    }
+//
+//    @Override
+//    public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos) {
+//        return (reader.getBlockState(pos.below(1)).is(ChangShengJueBlocks.GRAPE_SHELF_BLOCK.get()));
+//    }
 
     @Override
     public int getMaxAge() {

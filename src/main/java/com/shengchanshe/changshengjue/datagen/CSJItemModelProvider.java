@@ -19,6 +19,7 @@ public class CSJItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         simpleItem(ChangShengJueItems.TONG_QIAN);
+        simpleItem(ChangShengJueItems.PAINTING_SCROLL);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item){

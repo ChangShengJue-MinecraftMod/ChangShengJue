@@ -64,12 +64,13 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.WINDOWS_DARK_OAK_BLOCK_2.get());
                 output.accept(ChangShengJueBlocks.WINDOWS_OAK_BLOCK_2.get());
                 output.accept(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_2.get());
-                output.accept(ChangShengJueBlocks.GRAPE_SHELF_BLOCK.get());
-                output.accept(ChangShengJueBlocks.PILLAR_BLOCK.get());
+//                output.accept(ChangShengJueBlocks.GRAPE_SHELF_BLOCK.get());
+//                output.accept(ChangShengJueBlocks.PILLAR_BLOCK.get());
                 output.accept(ChangShengJueItems.CAPSULE.get());
                 output.accept(ChangShengJueItems.RAW_AG.get());
                 output.accept(ChangShengJueItems.AG_INGOT.get());
                 output.accept(ChangShengJueItems.ZHU_TAI.get());
+                output.accept(ChangShengJueItems.PAINTING_SCROLL.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANGSHENGJUE_BLOCK_TAB = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_block_tab",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_block_tab")).icon(() ->
