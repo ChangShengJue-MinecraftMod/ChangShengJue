@@ -1,8 +1,10 @@
 {
-  "itemGroup.chang_sheng_jue_block_tab": "长生诀 建筑方块",
-  "itemGroup.chang_sheng_jue_decorative_block_tab": "长生诀 装饰性方块",
-  "itemGroup.chang_sheng_jue_sundry_tab": "长生诀 杂项",
-  "itemGroup.chang_sheng_jue_foods_tab": "长生诀 食物",
+  "itemGroup.chang_sheng_jue_building_block_tab": "长生决 建筑方块",
+  "itemGroup.chang_sheng_jue_natural_blocks_tab": "长生决 自然方块",
+  "itemGroup.chang_sheng_jue_functional_tab": "长生决 功能方块",
+  "itemGroup.chang_sheng_jue_ingredients_tab": "长生决 原材料",
+  "itemGroup.chang_sheng_jue_food_and_drink_tab": "长生决 食物与饮品",
+  "itemGroup.chang_sheng_jue_spawn_eggs_tab": "长生决 刷怪蛋",
 
   "item.chang_sheng_jue.pineapple_seeds": "菠萝种子",
   "item.chang_sheng_jue.pineapple": "菠萝",
@@ -342,5 +344,6 @@
   "item.chang_sheng_jue.painting_scroll": "画轴",
 
   "block.chang_sheng_jue.chang_sheng_jue_loom": "织布机",
-  "block.chang_sheng_jue.pottery_wheel": "陶轮"
+  "block.chang_sheng_jue.pottery_wheel": "陶轮",
+  "block.chang_sheng_jue.tool_table": "工具台"
 }

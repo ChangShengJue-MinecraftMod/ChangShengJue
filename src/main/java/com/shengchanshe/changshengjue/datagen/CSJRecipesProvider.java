@@ -6,6 +6,7 @@ import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
@@ -46,6 +47,11 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
         ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.TONG_QIAN.get()).requires(Tags.Items.INGOTS_COPPER)
                 .unlockedBy("tong_qian",has(Tags.Items.INGOTS_COPPER))
                 .save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.CAPSULE_JIAO_ZI.get()).requires(ChangShengJueItems.CAPSULE.get()).requires(Tags.Items.CROPS_WHEAT).requires(Items.PORKCHOP).requires(ChangShengJueItems.CI_PAN.get())
+                .unlockedBy("has_capsule",has(ChangShengJueItems.CAPSULE.get()))
+                .save(consumer);
+
 
         //烧炼配方
         //矿石

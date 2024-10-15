@@ -5,6 +5,7 @@ import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -24,6 +25,7 @@ public class  CSJBlockStateProvider extends BlockStateProvider {
 
         simpleBlock(ChangShengJueBlocks.KAOLIN_ORE.get());
         blockWithItem(ChangShengJueBlocks.KAOLIN_ORE);
+        horizontalBlock(ChangShengJueBlocks.TOOL_TABLE.get(), new ModelFile.UncheckedModelFile(modLoc("block/tool_table")));
     }
 
     public void blockWithItem(RegistryObject<Block> block){

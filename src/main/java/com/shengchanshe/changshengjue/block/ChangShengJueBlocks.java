@@ -658,13 +658,15 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> KAOLIN_ORE =registerBlock("kaolin_ore",
             ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F)),0);
 
-    //工作方块
+    //织布机
     public static final RegistryObject<Block> CHANG_SHENG_JUE_LOOM =registerBlock("chang_sheng_jue_loom",
             ()-> new ChangShengJueLoomBlock(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)),0);
-
+    //工作方块
     public static final RegistryObject<Block> POTTERY_WHEEL =registerBlock("pottery_wheel",
             ()-> new PotteryWheel(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)),0);
 
+    public static final RegistryObject<Block> TOOL_TABLE =registerBlock("tool_table",
+            ()-> new ToolTable(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)),0);
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name,Supplier<T> block){
         return BLOCKS.register(name,block);

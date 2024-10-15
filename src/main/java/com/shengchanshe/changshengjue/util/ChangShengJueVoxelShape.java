@@ -118,4 +118,13 @@ public class ChangShengJueVoxelShape {
             Block.box(10.25, 7.15, 4.5, 16.25, 12.15, 11.5),
             Block.box(-0.25, 0.25, 4.5, 15.75, 7.25, 11.5)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    //工具台
+    public static final VoxelShape CHANG_SHENG_JUE_TOOL_TABLE = Stream.of(
+            Block.box(0, 0, 0, 4, 11, 4),
+            Block.box(0, 0, 12, 4, 11, 16),
+            Block.box(12, 0, 0, 16, 11, 4),
+            Block.box(12, 0, 12, 16, 11, 16),
+            Block.box(0, 11, 0, 16, 15, 16),
+            Block.box(2, 15, 2, 14, 16, 14)
+            ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 }

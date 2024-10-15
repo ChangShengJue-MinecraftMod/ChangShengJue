@@ -1,4 +1,4 @@
-// 1.20.1	2024-10-14T11:47:30.1931978	Loot Tables
+// 1.20.1	2024-10-15T17:50:33.3997786	Loot Tables
 cce8c0b7d959719604bf5706a5e0b0a99876a5b4 data/chang_sheng_jue/loot_tables/blocks/ag_ore.json
 9dfcb27b62a46a4c58add40765b49c99ff5898fa data/chang_sheng_jue/loot_tables/blocks/attached_cantaloupe_stem.json
 63066feb307becad188bb317a4b3c962e2f53f68 data/chang_sheng_jue/loot_tables/blocks/bai_hua_fu_ti_block.json
@@ -118,6 +118,7 @@ ef266eae8cfffec5de6315f0f4fcd7c7def8431e data/chang_sheng_jue/loot_tables/blocks
 c8a63c4468b25ff84fbe720f883ac0017743271d data/chang_sheng_jue/loot_tables/blocks/tile_block_3.json
 7ff410a5e032d02b3379d31462e419dd002fa3b4 data/chang_sheng_jue/loot_tables/blocks/tile_block_4.json
 fffa5176a44529721be17bda57cf78c993ac7b3e data/chang_sheng_jue/loot_tables/blocks/tomato_block.json
+a15c424bfbdf504bc347ffcbc3f025afae5a70a4 data/chang_sheng_jue/loot_tables/blocks/tool_table.json
 44984c0892187f3f59b22e6cd65286950c3dcc43 data/chang_sheng_jue/loot_tables/blocks/tu_pei_block.json
 d0d9b2d0020e67baa417086627fba4ec99d21b61 data/chang_sheng_jue/loot_tables/blocks/tu_pei_slab.json
 f83cf3be4c94770f9498d254bde45b497f410944 data/chang_sheng_jue/loot_tables/blocks/tu_pei_stairs.json
