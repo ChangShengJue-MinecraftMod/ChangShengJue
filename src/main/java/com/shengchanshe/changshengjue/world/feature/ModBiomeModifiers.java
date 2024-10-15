@@ -38,6 +38,7 @@ public class ModBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_AG_ORE_MIDDLE = registerKey("add_ag_ore_middle");
     public static final ResourceKey<BiomeModifier> ADD_DEEPSLATE_AG_ORE = registerKey("add_deepslate_ag_ore");
 
+    public static final ResourceKey<BiomeModifier> ADD_KAOLIN_ORE = registerKey("add_kaolin_ore");
     //树生成
     public static final ResourceKey<BiomeModifier> ADD_TREE_MANGO = registerKey("add_tree_mango");
     public static final ResourceKey<BiomeModifier> ADD_TREE_BANANA = registerKey("add_tree_banana");
@@ -87,6 +88,12 @@ public class ModBiomeModifiers {
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.ORE_AG_SMALL)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_KAOLIN_ORE, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.KAOLIN_UPPER)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
 
         context.register(ADD_TREE_MANGO,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_SAVANNA),

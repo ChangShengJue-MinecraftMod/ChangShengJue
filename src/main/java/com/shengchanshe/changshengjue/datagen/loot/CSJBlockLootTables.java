@@ -82,6 +82,8 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get(),
                 (block -> createOreDrop(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get(), ChangShengJueItems.RAW_AG.get())));
 
+        this.dropSelf(ChangShengJueBlocks.KAOLIN_ORE.get());
+
         this.dropSelf(ChangShengJueBlocks.MANGO_LEAVES.get());
         //农作物
         LootItemCondition.Builder pineapple = LootItemBlockStatePropertyCondition
@@ -260,6 +262,11 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.WHITE_BRICKS_VERTICAL_WALLS.get());
         this.dropSelf(ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get());
         this.dropSelf(ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get());
+
+        //织布机
+        this.dropSelf(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get());
+        //陶轮
+        this.dropSelf(ChangShengJueBlocks.POTTERY_WHEEL.get());
     }
 
     public LootItemCondition.Builder cropDrop(Block blocks, int age) {

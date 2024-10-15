@@ -1,0 +1,12 @@
+{
+  "values": [
+    {
+      "id": "chang_sheng_jue:csj_farmer_pot",
+      "required": false
+    },
+    {
+      "id": "chang_sheng_jue:csj_potter_pot",
+      "required": false
+    }
+  ]
+}

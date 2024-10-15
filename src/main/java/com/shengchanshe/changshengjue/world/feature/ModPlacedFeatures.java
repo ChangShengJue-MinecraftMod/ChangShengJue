@@ -18,51 +18,13 @@ import net.minecraft.world.level.levelgen.placement.*;
 import java.util.List;
 
 public class ModPlacedFeatures {
-//    public static final PlacedFeature MANGO_PLACED = PlacementUtils.register("mango_placed",
-//            ModConfiguredFeatures.MANGO_FOREST_VEGETATION.placed(VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1))));
-//
-//    public static final PlacedFeature BANANA_PLACED = PlacementUtils.register("banana_placed",
-//            ModConfiguredFeatures.BANANA_FOREST_VEGETATION.placed(VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1))));
-//
-//    public static final PlacedFeature PEAR_PLACED = PlacementUtils.register("pear_placed",
-//            ModConfiguredFeatures.PEAR_FOREST_VEGETATION.placed(VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1))));
-//
-//    public static final PlacedFeature LICHEE_PLACED = PlacementUtils.register("lichee_placed",
-//            ModConfiguredFeatures.LICHEE_FOREST_VEGETATION.placed(VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1))));
-//
-//    public static final PlacedFeature DURIAN_PLACED = PlacementUtils.register("durian_placed",
-//            ModConfiguredFeatures.DURIAN_FOREST_VEGETATION.placed(VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1))));
-//
-//    public static final PlacedFeature GUIHUA_PLACED = PlacementUtils.register("guihua_placed",
-//            ModConfiguredFeatures.GUIHUA_FOREST_VEGETATION.placed(VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1))));
-//
-//    public static final PlacedFeature MEIHUA_PLACED = PlacementUtils.register("meihua_placed",
-//            ModConfiguredFeatures.MEIHUA_FOREST_VEGETATION.placed(VegetationPlacements.treePlacement(PlacementUtils.countExtra(1, 0.1F, 1))));
-//
-//    //花花草草
-//    public static final PlacedFeature MUGWORT_PLACED = PlacementUtils.register("mugwort_placed",
-//            ModConfiguredFeatures.MUGWORT_FOREST_VEGETATION.placed(RarityFilter.onAverageOnceEvery(7), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
-//    public static final PlacedFeature CUCKOO_FOREST_PLACED = PlacementUtils.register("cuckoo_forest_placed",
-//            ModConfiguredFeatures.CUCKOO_FOREST_VEGETATION.placed(RarityFilter.onAverageOnceEvery(7), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
-//    public static final PlacedFeature PORTULACA_OLERACEA_PLACED = PlacementUtils.register("portulaca_oleracea_placed",
-//            ModConfiguredFeatures.PORTULACA_OLERACEA_FOREST_VEGETATION.placed(RarityFilter.onAverageOnceEvery(7), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
-//    public static final PlacedFeature JASMINE_PLACED = PlacementUtils.register("jasmine_placed",
-//            ModConfiguredFeatures.JASMINE_FOREST_VEGETATION.placed(RarityFilter.onAverageOnceEvery(7), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
-//    public static final PlacedFeature KOCHIA_SCOPARIA_PLACED = PlacementUtils.register("kochia_scoparia_placed",
-//            ModConfiguredFeatures.KOCHIA_SCOPARIA_FOREST_VEGETATION.placed(RarityFilter.onAverageOnceEvery(7), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
-//    public static final PlacedFeature SHUI_XIAN_PLACED = PlacementUtils.register("shui_xian_placed",
-//            ModConfiguredFeatures.SHUI_XIAN_FOREST_VEGETATION.placed(RarityFilter.onAverageOnceEvery(7), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
-//    public static final PlacedFeature TAN_HUA_PLACED = PlacementUtils.register("tan_hua_placed",
-//            ModConfiguredFeatures.TAN_HUA_FOREST_VEGETATION.placed(RarityFilter.onAverageOnceEvery(16), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
-//    public static final PlacedFeature CAPSULE_PLACED = PlacementUtils.register("capsule_placed",
-//            ModConfiguredFeatures.CAPSULE_FOREST_VEGETATION.placed(RarityFilter.onAverageOnceEvery(7), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
-//
-//    public static final PlacedFeature CANTALOUPE_BLOCK_PLACED = PlacementUtils.register("cantaloupe_block_placed",
-//            ModConfiguredFeatures.CANTALOUPE_BLOCK_VEGETATION.placed(RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
     //矿石
     public static final ResourceKey<PlacedFeature> ORE_AG_UPPER = registerKey("ore_ag_upper");
     public static final ResourceKey<PlacedFeature> ORE_AG_MIDDLE = registerKey("ore_ag_middle");
     public static final ResourceKey<PlacedFeature> ORE_AG_SMALL =registerKey("ore_ag_small");
+
+    public static final ResourceKey<PlacedFeature> KAOLIN_UPPER = registerKey("kaolin_upper");
+
     //树木
     public static final ResourceKey<PlacedFeature> MANGO_TREE_PLACED_KEY =registerKey("mango_tree_placed_key");
     public static final ResourceKey<PlacedFeature> BANANA_TREE_PLACED_KEY =registerKey("banana_tree_placed_key");
@@ -92,6 +54,9 @@ public class ModPlacedFeatures {
                 ModOrePlacement.commonOrePlacement(10, HeightRangePlacement.triangle(VerticalAnchor.absolute(-24), VerticalAnchor.absolute(56))));
         register(context,ORE_AG_SMALL,configuredFeature.getOrThrow(ModConfiguredFeatures.AG_ORE_SMALL),
                 ModOrePlacement.commonOrePlacement(10, HeightRangePlacement.uniform(VerticalAnchor.bottom(), VerticalAnchor.absolute(72))));
+
+        register(context,KAOLIN_UPPER,configuredFeature.getOrThrow(ModConfiguredFeatures.KAOLIN_ORE),
+                ModOrePlacement.commonOrePlacement(90, HeightRangePlacement.triangle(VerticalAnchor.absolute(100), VerticalAnchor.absolute(200))));
 
         //树木
         register(context,MANGO_TREE_PLACED_KEY,configuredFeature.getOrThrow(ModConfiguredFeatures.MANGO_TREE),

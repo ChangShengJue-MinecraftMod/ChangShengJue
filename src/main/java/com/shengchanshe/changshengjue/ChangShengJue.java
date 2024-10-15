@@ -1,7 +1,7 @@
 package com.shengchanshe.changshengjue;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
-import com.shengchanshe.changshengjue.block.animated.ChangShengJueBlocksEntities;
+import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.changshengjue.creativemodetab.ChangShengJueCreativeModeTab;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
@@ -10,11 +10,12 @@ import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import com.shengchanshe.changshengjue.util.ClientSetup;
 //import com.shengchanshe.changshengjue.world.structures.Registration;
 //import com.shengchanshe.changshengjue.world.structures.Structures;
+import com.shengchanshe.changshengjue.world.structures.CSJStructurePieceTypes;
+import com.shengchanshe.changshengjue.world.structures.CSJStructureType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -47,7 +48,8 @@ public class ChangShengJue {
         ChangShengJueSound.register(eventBus);
         ChangShengJueVillagers.register(eventBus);
         ChangShengJueCreativeModeTab.register(eventBus);
-
+        CSJStructureType.register(eventBus);
+        CSJStructurePieceTypes.register(eventBus);
 //        Registration.init();
 
         GeckoLib.initialize();

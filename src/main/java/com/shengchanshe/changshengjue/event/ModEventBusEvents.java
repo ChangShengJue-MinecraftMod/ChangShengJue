@@ -27,7 +27,6 @@ public class ModEventBusEvents {
         event.put(ChangShengJueEntity.HIND_ENTITY.get(), AbstractDeer.setAttributes());
         event.put(ChangShengJueEntity.TIGER_ENTITY.get(), TigerEntity.setAttributes());
         event.put(ChangShengJueEntity.CROC_ENTITY.get(), CrocEntity.setAttributes());
-        event.put(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER.get(), ChangShengJueVillagerEntity.setAttributes());
         event.put(ChangShengJueEntity.CHANG_SHENG_JUE_HUNTER.get(), ChangShengJueHunterEntity.setAttributes());
         event.put(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER_CHIEF.get(), ChangShengJueVillagerChiefEntity.setAttributes());
     }

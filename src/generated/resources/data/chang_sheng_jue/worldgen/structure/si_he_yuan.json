@@ -1,0 +1,7 @@
+{
+  "type": "chang_sheng_jue:si_he_yuan",
+  "biomes": "#forge:is_plains",
+  "spawn_overrides": {},
+  "step": "surface_structures",
+  "terrain_adaptation": "beard_thin"
+}

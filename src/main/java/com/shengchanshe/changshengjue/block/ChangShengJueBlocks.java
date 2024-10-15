@@ -2,10 +2,12 @@ package com.shengchanshe.changshengjue.block;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.building.*;
+import com.shengchanshe.changshengjue.block.building.ChangShengJueLoomBlock;
 import com.shengchanshe.changshengjue.block.custom_cropper.*;
 import com.shengchanshe.changshengjue.block.tree_logs.LeavesBlocks;
 import com.shengchanshe.changshengjue.block.tree_logs.LogBlock;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.util.ChangShengJueVoxelShape;
 import com.shengchanshe.changshengjue.world.feature.tree.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -287,8 +289,8 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH, SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_N;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_E;
+                        case NORTH, SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E;
                     };
                 }
             }, 0);
@@ -298,10 +300,10 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH -> ModVoxelShape.CYLINDER_TILE_BLOCK_N_1;
-                        case SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_S_1;
-                        case EAST -> ModVoxelShape.CYLINDER_TILE_BLOCK_E_1;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_W_1;
+                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_1;
+                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_1;
+                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_1;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_1;
                     };
                 }
             }, 0);
@@ -313,10 +315,10 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH -> ModVoxelShape.CYLINDER_TILE_BLOCK_N_3;
-                        case SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_S_3;
-                        case EAST -> ModVoxelShape.CYLINDER_TILE_BLOCK_E_3;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_W_3;
+                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_3;
+                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_3;
+                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_3;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_3;
                     };
                 }
             }, 0);
@@ -326,8 +328,8 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH, SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_N;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_E;
+                        case NORTH, SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E;
                     };
                 }
             }, 0);
@@ -337,10 +339,10 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH -> ModVoxelShape.CYLINDER_TILE_BLOCK_N_1;
-                        case SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_S_1;
-                        case EAST -> ModVoxelShape.CYLINDER_TILE_BLOCK_E_1;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_W_1;
+                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_1;
+                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_1;
+                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_1;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_1;
                     };
                 }
             }, 0);
@@ -352,10 +354,10 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH -> ModVoxelShape.CYLINDER_TILE_BLOCK_N_3;
-                        case SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_S_3;
-                        case EAST -> ModVoxelShape.CYLINDER_TILE_BLOCK_E_3;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_W_3;
+                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_3;
+                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_3;
+                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_3;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_3;
                     };
                 }
             }, 0);
@@ -365,8 +367,8 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH, SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_N;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_E;
+                        case NORTH, SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E;
                     };
                 }
             }, 0);
@@ -376,10 +378,10 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH -> ModVoxelShape.CYLINDER_TILE_BLOCK_N_1;
-                        case SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_S_1;
-                        case EAST -> ModVoxelShape.CYLINDER_TILE_BLOCK_E_1;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_W_1;
+                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_1;
+                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_1;
+                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_1;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_1;
                     };
                 }
             }, 0);
@@ -391,10 +393,10 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH -> ModVoxelShape.CYLINDER_TILE_BLOCK_N_3;
-                        case SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_S_3;
-                        case EAST -> ModVoxelShape.CYLINDER_TILE_BLOCK_E_3;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_W_3;
+                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_3;
+                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_3;
+                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_3;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_3;
                     };
                 }
             }, 0);
@@ -404,8 +406,8 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH, SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_N;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_E;
+                        case NORTH, SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E;
                     };
                 }
             }, 0);
@@ -415,10 +417,10 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH -> ModVoxelShape.CYLINDER_TILE_BLOCK_N_1;
-                        case SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_S_1;
-                        case EAST -> ModVoxelShape.CYLINDER_TILE_BLOCK_E_1;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_W_1;
+                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_1;
+                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_1;
+                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_1;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_1;
                     };
                 }
             }, 0);
@@ -430,10 +432,10 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH -> ModVoxelShape.CYLINDER_TILE_BLOCK_N_3;
-                        case SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_S_3;
-                        case EAST -> ModVoxelShape.CYLINDER_TILE_BLOCK_E_3;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_W_3;
+                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_3;
+                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_3;
+                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_3;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_3;
                     };
                 }
             }, 0);
@@ -443,8 +445,8 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH, SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_N;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_E;
+                        case NORTH, SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E;
                     };
                 }
             }, 0);
@@ -454,10 +456,10 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH -> ModVoxelShape.CYLINDER_TILE_BLOCK_N_1;
-                        case SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_S_1;
-                        case EAST -> ModVoxelShape.CYLINDER_TILE_BLOCK_E_1;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_W_1;
+                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_1;
+                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_1;
+                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_1;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_1;
                     };
                 }
             }, 0);
@@ -469,10 +471,10 @@ public class ChangShengJueBlocks {
                 public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
                     Direction value = blockState.getValue(FACING);
                     return switch (value){
-                        case NORTH -> ModVoxelShape.CYLINDER_TILE_BLOCK_N_3;
-                        case SOUTH ->  ModVoxelShape.CYLINDER_TILE_BLOCK_S_3;
-                        case EAST -> ModVoxelShape.CYLINDER_TILE_BLOCK_E_3;
-                        default ->  ModVoxelShape.CYLINDER_TILE_BLOCK_W_3;
+                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_3;
+                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_3;
+                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_3;
+                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_3;
                     };
                 }
             }, 0);
@@ -647,21 +649,21 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> BLUE_STONE_VERTICAL_WALLS =registerBlock("blue_stone_vertical_walls",
             ()-> new VerticalWalls(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().sound(SoundType.STONE).strength(1.5F, 6.0F).noOcclusion()),0);
 
-    //葡萄架
-//    public static final RegistryObject<Block> GRAPE_SHELF_BLOCK =registerBlock("grape_shelf_block",
-//            ()-> new GrapeShelfBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1.0F, 6.0F).noOcclusion()),
-//            300);
-//
-//    public static final RegistryObject<Block> PILLAR_BLOCK =registerBlock("pillar_block",
-//            ()-> new PillarBlock(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1.0F, 6.0F).noOcclusion()),
-//            300);
-
     //矿石
     public static final RegistryObject<Block> AG_ORE =registerBlock("ag_ore",
-            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.0F, 3.0F)), 0);
+            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.0F, 6.0F)),0);
     public static final RegistryObject<Block> DEEPSLATE_AG_ORE =registerBlock("deepslate_ag_ore",
             ()-> new DropExperienceBlock(BlockBehaviour.Properties.copy(ChangShengJueBlocks.AG_ORE.get().defaultBlockState().getBlock()).mapColor(MapColor.DEEPSLATE).
-                    strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE)),0);
+                    strength(4.5F, 6.0F).sound(SoundType.DEEPSLATE)),0);
+    public static final RegistryObject<Block> KAOLIN_ORE =registerBlock("kaolin_ore",
+            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F)),0);
+
+    //工作方块
+    public static final RegistryObject<Block> CHANG_SHENG_JUE_LOOM =registerBlock("chang_sheng_jue_loom",
+            ()-> new ChangShengJueLoomBlock(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)),0);
+
+    public static final RegistryObject<Block> POTTERY_WHEEL =registerBlock("pottery_wheel",
+            ()-> new PotteryWheel(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)),0);
 
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name,Supplier<T> block){
@@ -684,6 +686,7 @@ public class ChangShengJueBlocks {
             }
         });
     }
+
     public static void register(IEventBus eventBus){
         BLOCKS.register(eventBus);
     }

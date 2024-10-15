@@ -27,6 +27,8 @@ public class DataGenerators {
 
         generator.addProvider(event.includeServer(), CSJLootTableProvider.create(packOutput));
 
+        generator.addProvider(event.includeServer(),new CSJPoiTypeTagsProvider(packOutput,lookupProvider,existingFileHelper));
+
 //            generator.addProvider(new CSJLootTableProvider(generator));
 //            BlockSta blockTags = new TutBlockTags(generator, event.getExistingFileHelper());
 //            generator.addProvider(blockTags);

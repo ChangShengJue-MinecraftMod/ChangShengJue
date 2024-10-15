@@ -16,15 +16,33 @@ import java.util.List;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class ModEvent {
+    private static int villagerLevel = 1;
+
     @SubscribeEvent
     public static void addCustomTrades(VillagerTradesEvent event) {
         if(event.getType() == ChangShengJueVillagers.CHANG_SHENG_JUE_FARMER.get()) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
             ItemStack stack = new ItemStack(ChangShengJueItems.PINEAPPLE_SEEDS.get(), 1);
-            int villagerLevel = 1;
 
             trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
                     new ItemStack(Items.EMERALD, 3),
+                    stack,4,12,0.09F));
+
+            trades.get(villagerLevel+1).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 6),
+                    stack,4,12,0.09F));
+        }
+
+        if(event.getType() == ChangShengJueVillagers.CHANG_SHENG_JUE_POTTER.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            ItemStack stack = new ItemStack(ChangShengJueItems.PINEAPPLE_SEEDS.get(), 1);
+
+            trades.get(villagerLevel).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 3),
+                    stack,4,12,0.09F));
+
+            trades.get(villagerLevel+1).add((trader, rand) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 6),
                     stack,4,12,0.09F));
         }
     }

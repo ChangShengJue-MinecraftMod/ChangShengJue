@@ -21,6 +21,9 @@ public class  CSJBlockStateProvider extends BlockStateProvider {
         simpleBlock(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get());
         blockWithItem(ChangShengJueBlocks.AG_ORE);
         blockWithItem(ChangShengJueBlocks.DEEPSLATE_AG_ORE);
+
+        simpleBlock(ChangShengJueBlocks.KAOLIN_ORE.get());
+        blockWithItem(ChangShengJueBlocks.KAOLIN_ORE);
     }
 
     public void blockWithItem(RegistryObject<Block> block){

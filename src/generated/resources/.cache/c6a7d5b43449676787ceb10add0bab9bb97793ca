@@ -1,7 +1,10 @@
-// 1.20.1	2024-09-02T16:57:22.9619988	Block States: chang_sheng_jue
+// 1.20.1	2024-10-14T09:32:41.2861967	Block States: chang_sheng_jue
 d2d524076462c21b5b747eb1bfa9b8fcb09b09ca assets/chang_sheng_jue/blockstates/ag_ore.json
 ae214a554ec909d2d6c177bb6072aaa11d6dba1b assets/chang_sheng_jue/blockstates/deepslate_ag_ore.json
+941b89ac843774514e81f7c54aa83ca41930e0aa assets/chang_sheng_jue/blockstates/kaolin_ore.json
 b48400ec70419ace822a9c1051dca23a6d182132 assets/chang_sheng_jue/models/block/ag_ore.json
 8ee5520db9e5cb358ccf541386abf17d76eec7cd assets/chang_sheng_jue/models/block/deepslate_ag_ore.json
+c05a739388b4fafbc13ae31f42b4176a952db87a assets/chang_sheng_jue/models/block/kaolin_ore.json
 1344c1b1817834f0bcbe9dfe776849934a9e19ef assets/chang_sheng_jue/models/item/ag_ore.json
 4369b3ce435decd564cc818d54d2d865d0e596c3 assets/chang_sheng_jue/models/item/deepslate_ag_ore.json
+7f0a752269697364becc488887dfe92342e3e256 assets/chang_sheng_jue/models/item/kaolin_ore.json

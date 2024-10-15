@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "chang_sheng_jue:ag_ore",
-    "chang_sheng_jue:deepslate_ag_ore"
+    "chang_sheng_jue:deepslate_ag_ore",
+    "chang_sheng_jue:kaolin_ore"
   ]
 }

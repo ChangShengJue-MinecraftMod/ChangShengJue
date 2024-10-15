@@ -17,6 +17,7 @@ import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.MangrovePropaguleBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -176,6 +177,7 @@ public class ModConfiguredFeatures {
     //矿石
     public static final ResourceKey<ConfiguredFeature<?, ?>> AG_ORE = registerKey("ag_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> AG_ORE_SMALL = registerKey("ag_ore_small");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> KAOLIN_ORE = registerKey("kaolin_ore");
     //树
     public static final ResourceKey<ConfiguredFeature<?, ?>> MANGO_TREE = registerKey("mango_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_TREE = registerKey("banana_tree");
@@ -199,15 +201,13 @@ public class ModConfiguredFeatures {
     public static void bootstrap(BootstapContext<ConfiguredFeature<?,?>> context){
         HolderGetter<Block> holdergetter = context.lookup(Registries.BLOCK);
         //定义矿石可替换的方块,TagMatchTest匹配特定标签的方块,BlockMatchTest匹配具体方块
-        RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
-        RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
-        RuleTest netherrackReplacables = new BlockMatchTest(Blocks.NETHERRACK);
-        RuleTest endReplaceables = new BlockMatchTest(Blocks.END_STONE);
+
         //定义在主世界中生成的矿石配置
-        List<OreConfiguration.TargetBlockState> overworldSapphireOres = List.of(OreConfiguration.target(stoneReplaceable, ChangShengJueBlocks.AG_ORE.get().defaultBlockState()),//在石头方块上生成矿石
-                OreConfiguration.target(deepslateReplaceables, ChangShengJueBlocks.DEEPSLATE_AG_ORE.get().defaultBlockState()));//在深板岩方块上生成矿石
+        List<OreConfiguration.TargetBlockState> overworldSapphireOres = overworldSapphireOres(ChangShengJueBlocks.AG_ORE.get().defaultBlockState(),ChangShengJueBlocks.DEEPSLATE_AG_ORE.get().defaultBlockState());//在深板岩方块上生成矿石
         register(context,AG_ORE,Feature.ORE,new OreConfiguration(overworldSapphireOres,9));
         register(context,AG_ORE_SMALL,Feature.ORE,new OreConfiguration(overworldSapphireOres,4));
+
+        register(context,KAOLIN_ORE,Feature.ORE,new OreConfiguration(overworldSapphireOres(ChangShengJueBlocks.KAOLIN_ORE.get().defaultBlockState(),null),9));
 
         register(context,MANGO_TREE,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ChangShengJueBlocks.MANGO_LOG.get()),
@@ -297,6 +297,15 @@ public class ModConfiguredFeatures {
                         BlockPredicate.allOf(
                                 BlockPredicate.ONLY_IN_AIR_PREDICATE,
                                 BlockPredicate.matchesBlocks(BlockPos.ZERO.below(), Blocks.SAND)))));
+    }
+
+    public static List<OreConfiguration.TargetBlockState> overworldSapphireOres(BlockState state,BlockState state1){
+        RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
+        RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+        RuleTest netherrackReplacables = new BlockMatchTest(Blocks.NETHERRACK);
+        RuleTest endReplaceables = new BlockMatchTest(Blocks.END_STONE);
+        return List.of(OreConfiguration.target(stoneReplaceable, state),//在石头方块上生成矿石
+                OreConfiguration.target(deepslateReplaceables, state));
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {

@@ -52,38 +52,9 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
         oreSmelting(consumer, SAPPHIRE_SMELTABLES, RecipeCategory.MISC, ChangShengJueItems.AG_INGOT.get(), 0.25f, SMELTING_TICK, "sapphire");
         oreBlasting(consumer, SAPPHIRE_SMELTABLES, RecipeCategory.MISC, ChangShengJueItems.AG_INGOT.get(), 0.25f, SMOKING_TICK, "sapphire");
 
-//        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ChangShengJueBlocks.AG_ORE.get()), MISC,ChangShengJueItems.AG_INGOT.get(),2,SMELTING_TICK)
-//                .unlockedBy("ag_ingot", has(ChangShengJueItems.AG_INGOT.get()))
-//                .save(consumer ,"ag_ingot_from_smelting_ag_ore");
-//        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get()),MISC,ChangShengJueItems.AG_INGOT.get(),2,SMELTING_TICK)
-//                .unlockedBy("ag_ingot", has(ChangShengJueItems.AG_INGOT.get()))
-//                .save(consumer,"ag_ingot_from_smelting_deepslate_ag_ore");
-//        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ChangShengJueItems.RAW_AG.get()),MISC,ChangShengJueItems.AG_INGOT.get(),2,SMELTING_TICK)
-//                .unlockedBy("ag_ingot", has(ChangShengJueItems.AG_INGOT.get()))
-//                .save(consumer,"ag_ingot_from_smelting_raw_ag");
-//
-//        SimpleCookingRecipeBuilder.generic(Ingredient.of(ChangShengJueBlocks.AG_ORE.get()),MISC,ChangShengJueItems.AG_INGOT.get(),2,SMOKING_TICK,RecipeSerializer.BLASTING_RECIPE)
-//                .unlockedBy("ag_ingot", has(ChangShengJueItems.AG_INGOT.get()))
-//                .save(consumer ,"ag_ingot_from_blasting_ag_ore");
-//        SimpleCookingRecipeBuilder.generic(Ingredient.of(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get()),MISC,ChangShengJueItems.AG_INGOT.get(),2,SMOKING_TICK,RecipeSerializer.BLASTING_RECIPE)
-//                .unlockedBy("ag_ingot", has(ChangShengJueItems.AG_INGOT.get()))
-//                .save(consumer,"ag_ingot_from_blasting_deepslate_ag_ore");
-//        SimpleCookingRecipeBuilder.generic(Ingredient.of(ChangShengJueItems.RAW_AG.get()),MISC,ChangShengJueItems.AG_INGOT.get(),2,SMOKING_TICK,RecipeSerializer.BLASTING_RECIPE)
-//                .unlockedBy("ag_ingot", has(ChangShengJueItems.AG_INGOT.get()))
-//                .save(consumer,"ag_ingot_from_blasting_raw_ag");
-
         // 食物
         foodCooking(Ingredient.of(ChangShengJueItems.CORN.get()),ChangShengJueItems.BAKED_CORN.get(),1,consumer,"baked_corn");
 
-//        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ChangShengJueItems.CORN.get()),ChangShengJueItems.BAKED_CORN.get(),2,SMELTING_TICK)
-//                .unlockedBy("baked_corn", InventoryChangeTrigger.TriggerInstance.hasItems(ChangShengJueItems.CORN.get()))
-//                .save(p_176532_);
-//        SimpleCookingRecipeBuilder.cooking(Ingredient.of(ChangShengJueItems.CORN.get()),ChangShengJueItems.BAKED_CORN.get(),2,SMOKING_TICK,RecipeSerializer.SMOKING_RECIPE)
-//                .unlockedBy("baked_corn", InventoryChangeTrigger.TriggerInstance.hasItems(ChangShengJueItems.CORN.get()))
-//                .save(p_176532_,"baked_corn_from_smoking");
-//        SimpleCookingRecipeBuilder.cooking(Ingredient.of(ChangShengJueItems.CORN.get()),ChangShengJueItems.BAKED_CORN.get(),2,CAMPFIRE_COOKING_TICK,RecipeSerializer.CAMPFIRE_COOKING_RECIPE)
-//                .unlockedBy("baked_corn", InventoryChangeTrigger.TriggerInstance.hasItems(ChangShengJueItems.CORN.get()))
-//                .save(p_176532_,"baked_corn_from_campfire_cooking");
 
     }
     protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTIme, String pGroup) {

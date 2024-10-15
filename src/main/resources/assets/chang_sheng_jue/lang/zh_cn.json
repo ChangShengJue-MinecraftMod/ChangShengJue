@@ -287,12 +287,8 @@
   "entity.chang_sheng_jue.tiger_entity": "老虎",
   "entity.chang_sheng_jue.croc_entity": "鳄鱼",
 
-  "entity.chang_sheng_jue.chang_sheng_jue_villager.none": "村民",
-  "entity.chang_sheng_jue.chang_sheng_jue_hunter.none": "猎人",
-  "entity.chang_sheng_jue.chang_sheng_jue_villager_chief.none": "村长",
-  "entity.chang_sheng_jue.chang_sheng_jue_villager.farmer": "农民",
-  "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_farmer": "农民",
   "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_farmer": "农民",
+  "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter": "窑功",
   "item.chang_sheng_jue.chang_sheng_jue_villager_egg": "村民刷怪蛋",
   "item.chang_sheng_jue.chang_sheng_jue_hunter_egg": "猎人村民刷怪蛋",
   "item.chang_sheng_jue.chang_sheng_jue_villager_chief_egg": "村长刷怪蛋",
@@ -339,9 +335,12 @@
   "block.chang_sheng_jue.deepslate_ag_ore": "深层银矿石",
   "item.chang_sheng_jue.raw_ag": "粗银",
   "item.chang_sheng_jue.ag_ingot": "银锭",
+  "block.chang_sheng_jue.kaolin_ore": "高岭土矿",
 
   "item.chang_sheng_jue.tong_qian": "铜钱",
 
-  "item.chang_sheng_jue.painting_scroll": "画轴"
+  "item.chang_sheng_jue.painting_scroll": "画轴",
 
+  "block.chang_sheng_jue.chang_sheng_jue_loom": "织布机",
+  "block.chang_sheng_jue.pottery_wheel": "陶轮"
 }
