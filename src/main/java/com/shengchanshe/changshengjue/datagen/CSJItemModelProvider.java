@@ -19,6 +19,9 @@ public class CSJItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         simpleItem(ChangShengJueItems.TONG_QIAN);
+        simpleItem(ChangShengJueItems.YI_GUAN_TONG_QIAN);
+        bullionsItem(ChangShengJueItems.SILVER_BULLIONS);
+        bullionsItem(ChangShengJueItems.GOLD_BULLIONS);
         simpleItem(ChangShengJueItems.PAINTING_SCROLL);
     }
 
@@ -31,6 +34,12 @@ public class CSJItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder handheldItem(RegistryObject<Item> item){
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/handheld")).texture("layer0",
+                new ResourceLocation(ChangShengJue.MOD_ID,"item/"+item.getId().getPath()));
+    }
+
+    private ItemModelBuilder bullionsItem(RegistryObject<Item> item){
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation(ChangShengJue.MOD_ID + ":item/bullions")).texture("layer0",
                 new ResourceLocation(ChangShengJue.MOD_ID,"item/"+item.getId().getPath()));
     }
 }

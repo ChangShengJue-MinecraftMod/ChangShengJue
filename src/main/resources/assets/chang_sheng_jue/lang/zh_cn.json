@@ -209,7 +209,7 @@
 
   "block.chang_sheng_jue.bitumen_floor_tiles_block": "沥青地砖",
   "block.chang_sheng_jue.blue_floor_tiles_block": "青石地砖",
-  "block.chang_sheng_jue.blue_floor_tiles_block_1": "青石地砖",
+  "block.chang_sheng_jue.black_floor_tiles_block": "黑石地砖",
 
   "block.chang_sheng_jue.huang_hua_li_log": "黄花梨原木",
   "block.chang_sheng_jue.stripped_huang_hua_li_log": "去皮黄花梨原木",
@@ -250,9 +250,6 @@
   "block.chang_sheng_jue.mei_ren_kao_oak_block": "橡木美人靠",
   "block.chang_sheng_jue.mei_ren_kao_spruce_block": "云杉木美人靠",
 
-  "block.chang_sheng_jue.grape_shelf_block": "葡萄架",
-  "block.chang_sheng_jue.pillar_block": "支柱",
-
   "item.chang_sheng_jue.butterfly_egg": "蝴蝶刷怪蛋",
   "item.chang_sheng_jue.monkey_egg": "金丝猴刷怪蛋",
   "item.chang_sheng_jue.dragonfly_egg": "蜻蜓刷怪蛋",
@@ -290,7 +287,9 @@
   "entity.chang_sheng_jue.croc_entity": "鳄鱼",
 
   "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_farmer": "农民",
-  "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter": "窑功",
+  "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter": "窑工",
+  "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter_1": "高级窑工",
+  "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_hunter": "猎人",
   "item.chang_sheng_jue.chang_sheng_jue_villager_egg": "村民刷怪蛋",
   "item.chang_sheng_jue.chang_sheng_jue_hunter_egg": "猎人村民刷怪蛋",
   "item.chang_sheng_jue.chang_sheng_jue_villager_chief_egg": "村长刷怪蛋",
@@ -340,6 +339,9 @@
   "block.chang_sheng_jue.kaolin_ore": "高岭土矿",
 
   "item.chang_sheng_jue.tong_qian": "铜钱",
+  "item.chang_sheng_jue.yi_guan_tong_qian": "一贯铜钱",
+  "item.chang_sheng_jue.silver_bullions": "银元宝",
+  "item.chang_sheng_jue.gold_bullions": "金元宝",
 
   "item.chang_sheng_jue.painting_scroll": "画轴",
 

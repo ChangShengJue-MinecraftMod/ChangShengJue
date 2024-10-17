@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.event;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.changshengjue.block.entity.render.PotteryWheelEntityRender;
+import com.shengchanshe.changshengjue.block.entity.render.ToolTableEntityRender;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.client.render.PeacockEggRender;
 import net.minecraftforge.api.distmarker.Dist;
@@ -19,5 +20,6 @@ public class ModEventClientBusEvents {
         event.registerEntityRenderer(ChangShengJueEntity.PEACOCK_EGG.get(), PeacockEggRender::new);
         //方块实体的渲染
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.POTTERY_WHEEL_ENTITY.get(), PotteryWheelEntityRender::new);
+        event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.TOOL_TABLE_ENTITY.get(), ToolTableEntityRender::new);
     }
 }

@@ -611,7 +611,7 @@ public class ChangShengJueBlocks {
             ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)), 0);
     public static final RegistryObject<Block> BLUE_FLOOR_TILES_BLOCK =registerBlock("blue_floor_tiles_block",
             ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)), 0);
-    public static final RegistryObject<Block> BLUE_FLOOR_TILES_BLOCK_1 =registerBlock("blue_floor_tiles_block_1",
+    public static final RegistryObject<Block> BLACK_FLOOR_TILES_BLOCK =registerBlock("black_floor_tiles_block",
             ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)), 0);
     //楼梯
     public static final RegistryObject<Block> HANG_TU_STAIRS =registerBlock("hang_tu_stairs",

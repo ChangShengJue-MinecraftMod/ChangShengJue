@@ -44,8 +44,8 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
 //                .unlockedBy(getHasName(ChangShengJueItems.TONG_QIAN.get()),has(Tags.Items.INGOTS_COPPER))
 //                .save(consumer);
         //无序合成
-        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.TONG_QIAN.get()).requires(Tags.Items.INGOTS_COPPER)
-                .unlockedBy("tong_qian",has(Tags.Items.INGOTS_COPPER))
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.YI_GUAN_TONG_QIAN.get()).requires(ChangShengJueItems.TONG_QIAN.get(),7)
+                .unlockedBy("has_tong_qian",has(ChangShengJueItems.TONG_QIAN.get()))
                 .save(consumer);
 
         ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.CAPSULE_JIAO_ZI.get()).requires(ChangShengJueItems.CAPSULE.get()).requires(Tags.Items.CROPS_WHEAT).requires(Items.PORKCHOP).requires(ChangShengJueItems.CI_PAN.get())

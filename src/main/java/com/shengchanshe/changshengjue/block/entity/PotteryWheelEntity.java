@@ -92,7 +92,7 @@ public class PotteryWheelEntity extends BlockEntity {
 //        boolean isShiftDown = Minecraft.getInstance().options.keyShift.isDown();
 
         for (int i = 0; i <  this.inventory.getSlots(); i++) {
-        ItemStack stackInSlot = this.inventory.getStackInSlot(i);
+            ItemStack stackInSlot = this.inventory.getStackInSlot(i);
             if(stackInSlot.isEmpty()){
                 this.inventory.setStackInSlot(i,itemStack.split(1));
                 setChanged();

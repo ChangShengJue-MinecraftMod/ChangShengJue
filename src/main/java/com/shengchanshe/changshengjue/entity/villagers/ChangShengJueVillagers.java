@@ -17,10 +17,12 @@ public class ChangShengJueVillagers {
     public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSION = DeferredRegister.create(ForgeRegistries.VILLAGER_PROFESSIONS,ChangShengJue.MOD_ID);
 
 
-    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_FARMER_POT = POT_TYPES.register("csj_farmer_pot",
+    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_FARMER_POT = POT_TYPES.register("chang_sheng_jue_farmer_pot",
             ()-> new PoiType(ImmutableSet.copyOf(ChangShengJueBlocks.BANANA_LOG.get().getStateDefinition().getPossibleStates()),1,1));
-    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_POTTER_POT = POT_TYPES.register("csj_potter_pot",
+    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_POTTER_POT = POT_TYPES.register("chang_sheng_jue_potter_pot",
             ()-> new PoiType(ImmutableSet.copyOf(ChangShengJueBlocks.POTTERY_WHEEL.get().getStateDefinition().getPossibleStates()),1,1));
+    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_HUNTER_POT = POT_TYPES.register("chang_sheng_jue_hunter_pot",
+            ()-> new PoiType(ImmutableSet.copyOf(ChangShengJueBlocks.TOOL_TABLE.get().getStateDefinition().getPossibleStates()),1,1));
 
     public static final RegistryObject<VillagerProfession> CHANG_SHENG_JUE_FARMER = VILLAGER_PROFESSION.register("chang_sheng_jue_farmer",
             ()-> new VillagerProfession("chang_sheng_jue_farmer",
@@ -31,6 +33,15 @@ public class ChangShengJueVillagers {
             ()-> new VillagerProfession("chang_sheng_jue_potter",
                     poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_POTTER_POT.get(), poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_POTTER_POT.get(),
                     ImmutableSet.of(),ImmutableSet.of(), SoundEvents.VILLAGER_WORK_WEAPONSMITH));
+    public static final RegistryObject<VillagerProfession> CHANG_SHENG_JUE_POTTER_1 = VILLAGER_PROFESSION.register("chang_sheng_jue_potter_1",
+            ()-> new VillagerProfession("chang_sheng_jue_potter_1",
+                    poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_HUNTER_POT.get(), poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_HUNTER_POT.get(),
+                    ImmutableSet.of(),ImmutableSet.of(), SoundEvents.VILLAGER_WORK_TOOLSMITH));
+
+    public static final RegistryObject<VillagerProfession> CHANG_SHENG_JUE_HUNTER = VILLAGER_PROFESSION.register("chang_sheng_jue_hunter",
+            ()-> new VillagerProfession("chang_sheng_jue_hunter",
+                    poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_HUNTER_POT.get(), poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_HUNTER_POT.get(),
+                    ImmutableSet.of(),ImmutableSet.of(), SoundEvents.VILLAGER_WORK_TOOLSMITH));
 
     public static void register(IEventBus eventBus){
         POT_TYPES.register(eventBus);

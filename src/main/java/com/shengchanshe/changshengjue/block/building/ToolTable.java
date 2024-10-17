@@ -1,7 +1,7 @@
 package com.shengchanshe.changshengjue.block.building;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
-import com.shengchanshe.changshengjue.block.entity.PotteryWheelEntity;
+import com.shengchanshe.changshengjue.block.entity.ToolTableEntity;
 import com.shengchanshe.changshengjue.util.ChangShengJueVoxelShape;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -38,11 +38,14 @@ public class ToolTable extends BaseEntityBlock {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         ItemStack mainHandItem = pPlayer.getMainHandItem();
         ItemStack offhandItem = pPlayer.getOffhandItem();
-        if (mainHandItem.getItem() == Items.CLAY_BALL || offhandItem.getItem() == Items.CLAY_BALL){
-            if (blockEntity instanceof PotteryWheelEntity potteryWheelEntity){
-                if (!pLevel.isClientSide && potteryWheelEntity.addItem(pPlayer.getAbilities().instabuild ? pPlayer.getMainHandItem().copy() : pPlayer.getMainHandItem())){
+        if (blockEntity instanceof ToolTableEntity entity) {
+            if (mainHandItem.getItem() == Items.BOW || offhandItem.getItem() == Items.BOW) {
+                if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? pPlayer.getMainHandItem().copy() : pPlayer.getMainHandItem())) {
                     return InteractionResult.SUCCESS;
                 }
+            } else {
+                ((ToolTableEntity) blockEntity).drops(pPlayer);
+                return InteractionResult.SUCCESS;
             }
             return InteractionResult.CONSUME;
         }
@@ -54,8 +57,8 @@ public class ToolTable extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-            if (blockentity instanceof PotteryWheelEntity) {
-                ((PotteryWheelEntity) blockentity).drops();
+            if (blockentity instanceof ToolTableEntity) {
+                ((ToolTableEntity) blockentity).drops();
             }
             super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
         }
@@ -67,7 +70,7 @@ public class ToolTable extends BaseEntityBlock {
         if (pLevel.isClientSide){
             return null;
         }
-        return createTickerHelper(pBlockEntityType, ChangShengJueBlocksEntities.POTTERY_WHEEL_ENTITY.get(),((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1,pPos,pState1)));
+        return createTickerHelper(pBlockEntityType, ChangShengJueBlocksEntities.TOOL_TABLE_ENTITY.get(),((pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1,pPos,pState1)));
     }
 
     @Override
@@ -83,7 +86,7 @@ public class ToolTable extends BaseEntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new PotteryWheelEntity(pPos,pState);
+        return new ToolTableEntity(pPos,pState);
     }
 
     @Nullable

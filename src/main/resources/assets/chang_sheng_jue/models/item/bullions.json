@@ -1,0 +1,87 @@
+{
+	"credit": "Made with Blockbench",
+	"elements": [
+		{
+			"from": [7, 7.5, 7],
+			"to": [9, 8.75, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 7.5, 8]},
+			"faces": {
+				"north": {"uv": [16, 7, 11, 10], "texture": "#layer0"},
+				"east": {"uv": [11, 7, 16, 10], "texture": "#layer0"},
+				"south": {"uv": [11, 7, 16, 10], "texture": "#layer0"},
+				"west": {"uv": [11, 7, 16, 10], "texture": "#layer0"},
+				"up": {"uv": [5, 16, 0, 11], "texture": "#layer0"},
+				"down": {"uv": [10, 11, 5, 16], "texture": "#layer0"}
+			}
+		},
+		{
+			"from": [7.05, 7.5, 9],
+			"to": [8.95, 8.4, 10.415],
+			"rotation": {"angle": -45, "axis": "x", "origin": [8, 7.5, 9]},
+			"faces": {
+				"north": {"uv": [4, 2, 6, 3], "texture": "#layer0"},
+				"east": {"uv": [12, 7, 16, 10], "texture": "#layer0"},
+				"south": {"uv": [11, 1, 16, 4], "texture": "#layer0"},
+				"west": {"uv": [12, 7, 16, 10], "texture": "#layer0"},
+				"up": {"uv": [16, 8, 12, 5], "texture": "#layer0"},
+				"down": {"uv": [16, 13, 11, 16], "texture": "#layer0"}
+			}
+		},
+		{
+			"from": [7.05, 7.5, 5.585],
+			"to": [8.95, 8.4, 7],
+			"rotation": {"angle": 45, "axis": "x", "origin": [8, 7.5, 7]},
+			"faces": {
+				"north": {"uv": [16, 1, 11, 4], "texture": "#layer0"},
+				"east": {"uv": [16, 7, 12, 10], "texture": "#layer0"},
+				"south": {"uv": [6, 2, 4, 3], "texture": "#layer0"},
+				"west": {"uv": [16, 7, 12, 10], "texture": "#layer0"},
+				"up": {"uv": [16, 5, 12, 8], "texture": "#layer0"},
+				"down": {"uv": [16, 16, 11, 13], "texture": "#layer0"}
+			}
+		},
+		{
+			"from": [7.25, 8.5, 7.25],
+			"to": [8.75, 9.25, 8.75],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8.5, 8]},
+			"faces": {
+				"north": {"uv": [4, 5, 7, 7], "texture": "#layer0"},
+				"east": {"uv": [4, 5, 7, 7], "texture": "#layer0"},
+				"south": {"uv": [4, 5, 7, 7], "texture": "#layer0"},
+				"west": {"uv": [4, 5, 7, 7], "texture": "#layer0"},
+				"up": {"uv": [11, 3, 8, 0], "texture": "#layer0"},
+				"down": {"uv": [4, 2, 2, 4], "texture": "#layer0"}
+			}
+		}
+	],
+	"display": {
+		"ground": {
+			"translation": [0, -3.25, 0]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"translation": [0, -1.5, 0],
+			"scale": [3, 3, 3]
+		},
+		"fixed": {
+			"rotation": [0, 90, 0],
+			"translation": [0, -1, 0],
+			"scale": [3, 3, 3]
+		}
+	},
+	"groups": [
+		{
+			"name": "yuanbao",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [
+				{
+					"name": "group",
+					"origin": [8, 8, 8],
+					"color": 0,
+					"children": [0, 1, 2, 3]
+				}
+			]
+		}
+	]
+}

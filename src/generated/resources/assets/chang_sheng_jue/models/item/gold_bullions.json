@@ -1,0 +1,6 @@
+{
+  "parent": "chang_sheng_jue:item/bullions",
+  "textures": {
+    "layer0": "chang_sheng_jue:item/gold_bullions"
+  }
+}

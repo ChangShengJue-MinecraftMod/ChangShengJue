@@ -130,7 +130,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.BLUE_STONE_BRICKS.get());
                 output.accept(ChangShengJueBlocks.BITUMEN_FLOOR_TILES_BLOCK.get());
                 output.accept(ChangShengJueBlocks.BLUE_FLOOR_TILES_BLOCK.get());
-                output.accept(ChangShengJueBlocks.BLUE_FLOOR_TILES_BLOCK_1.get());
+                output.accept(ChangShengJueBlocks.BLACK_FLOOR_TILES_BLOCK.get());
                 output.accept(ChangShengJueBlocks.HANG_TU_STAIRS.get());
                 output.accept(ChangShengJueBlocks.TU_PEI_STAIRS.get());
                 output.accept(ChangShengJueBlocks.WHITE_BRICKS_STAIRS.get());
@@ -239,6 +239,9 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.TIGER_SKIN.get());
                 output.accept(ChangShengJueItems.CROC_SKIN.get());
                 output.accept(ChangShengJueItems.TONG_QIAN.get());
+                output.accept(ChangShengJueItems.YI_GUAN_TONG_QIAN.get());
+                output.accept(ChangShengJueItems.SILVER_BULLIONS.get());
+                output.accept(ChangShengJueItems.GOLD_BULLIONS.get());
                 output.accept(ChangShengJueItems.DURIAN.get());
             }).build());
 

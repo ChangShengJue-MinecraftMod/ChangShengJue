@@ -212,6 +212,12 @@ public class ChangShengJueItems {
 
     public static final RegistryObject<Item> TONG_QIAN = ITEMS.register("tong_qian",
             ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> YI_GUAN_TONG_QIAN = ITEMS.register("yi_guan_tong_qian",
+            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SILVER_BULLIONS = ITEMS.register("silver_bullions",
+            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> GOLD_BULLIONS = ITEMS.register("gold_bullions",
+            ()-> new Item(new Item.Properties()));
 
     //矿石
     public static final RegistryObject<Item> RAW_AG = ITEMS.register("raw_ag",
