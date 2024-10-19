@@ -64,7 +64,6 @@ public class ChangShengJueEntity {
                             .sized(0.8f,1.4f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"female_peacock_entity").toString()));
 
-
     public static final RegistryObject<EntityType<StagEntity>> STAG_ENTITY =
             ENTITY_TYPES.register("stag_entity",
                     () -> EntityType.Builder.of(StagEntity::new, MobCategory.CREATURE)
@@ -91,26 +90,13 @@ public class ChangShengJueEntity {
 
     public static final RegistryObject<EntityType<ChangShengJueVillagerEntity>> CHANG_SHENG_JUE_VILLAGER =
             ENTITY_TYPES.register("chang_sheng_jue_villager",
-                    () -> EntityType.Builder.<ChangShengJueVillagerEntity>of(ChangShengJueVillagerEntity::new, MobCategory.MISC)
+                    () -> EntityType.Builder.of(ChangShengJueVillagerEntity::new, MobCategory.MISC)
                             .sized(0.6F, 1.95F)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"chang_sheng_jue_villager").toString()));
-
-    public static final RegistryObject<EntityType<ChangShengJueHunterEntity>> CHANG_SHENG_JUE_HUNTER =
-            ENTITY_TYPES.register("chang_sheng_jue_hunter",
-                    () -> EntityType.Builder.of(ChangShengJueHunterEntity::new, MobCategory.MISC)
-                            .sized(0.6F, 1.95F)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"chang_sheng_jue_hunter").toString()));
-
-    public static final RegistryObject<EntityType<ChangShengJueVillagerChiefEntity>> CHANG_SHENG_JUE_VILLAGER_CHIEF =
-            ENTITY_TYPES.register("chang_sheng_jue_villager_chief",
-                    () -> EntityType.Builder.of(ChangShengJueVillagerChiefEntity::new, MobCategory.MISC)
-                            .sized(0.6F, 1.95F)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"chang_sheng_jue_villager_chief").toString()));
 
     public static final RegistryObject<EntityType<PeacockEgg>> PEACOCK_EGG = ENTITY_TYPES.register("peacock_egg",
             () -> EntityType.Builder.<PeacockEgg>of(PeacockEgg::new, MobCategory.MISC).sized(0.25F, 0.25F)
                     .setTrackingRange(4).updateInterval(10).build("peacock_egg"));
-
 
     public static void register(IEventBus eventBus){
         ENTITY_TYPES.register(eventBus);

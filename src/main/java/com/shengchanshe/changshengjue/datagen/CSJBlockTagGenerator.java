@@ -113,6 +113,7 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get())
                 .add(ChangShengJueBlocks.POTTERY_WHEEL.get())
                 .add(ChangShengJueBlocks.TOOL_TABLE.get())
+                .add(ChangShengJueBlocks.DESK.get())
                 .addTag(CSJTags.Blocks.WINDOWS).addTag(CSJTags.Blocks.MEI_REN_KAO);
         this.tag(BlockTags.MINEABLE_WITH_HOE);
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).addTag(CSJTags.Blocks.TILE)

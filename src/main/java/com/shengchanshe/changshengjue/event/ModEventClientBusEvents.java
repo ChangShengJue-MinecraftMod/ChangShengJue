@@ -22,4 +22,9 @@ public class ModEventClientBusEvents {
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.POTTERY_WHEEL_ENTITY.get(), PotteryWheelEntityRender::new);
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.TOOL_TABLE_ENTITY.get(), ToolTableEntityRender::new);
     }
+
+    @SubscribeEvent
+    public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
+//        event.registerLayerDefinition(ChangShengJueModelLayers.CHANG_SHENG_JUE_VILLAGER_LAYER, LayerDefinition.create(VillagerModel.createBodyModel(),64, 128));
+    }
 }

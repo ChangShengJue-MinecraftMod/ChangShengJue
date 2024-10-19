@@ -1,4 +1,4 @@
-// 1.20.1	2024-10-17T12:14:36.2437905	Loot Tables
+// 1.20.1	2024-10-17T18:29:33.4667724	Loot Tables
 cce8c0b7d959719604bf5706a5e0b0a99876a5b4 data/chang_sheng_jue/loot_tables/blocks/ag_ore.json
 9dfcb27b62a46a4c58add40765b49c99ff5898fa data/chang_sheng_jue/loot_tables/blocks/attached_cantaloupe_stem.json
 63066feb307becad188bb317a4b3c962e2f53f68 data/chang_sheng_jue/loot_tables/blocks/bai_hua_fu_ti_block.json
@@ -48,6 +48,7 @@ ea36e4786bf070f5b5e9c990fd461cbcacd27d29 data/chang_sheng_jue/loot_tables/blocks
 3dc304ace01e714eab4def3f2c0be3dbfc107be7 data/chang_sheng_jue/loot_tables/blocks/cylinder_tile_red_block_2.json
 7b9b999ff4f7511a02e72a9d818103823aafdf59 data/chang_sheng_jue/loot_tables/blocks/cylinder_tile_red_block_3.json
 d3e701c19d612b26eff1b6ab3791777859bb7997 data/chang_sheng_jue/loot_tables/blocks/deepslate_ag_ore.json
+73cc9051a05ac39a4177877a7b0326ea1c4eb0be data/chang_sheng_jue/loot_tables/blocks/desk.json
 8c9a146d049f2f700702efbcc1c60b11303a2159 data/chang_sheng_jue/loot_tables/blocks/door_acacia_block.json
 a8d9cefa6ec3aaa679a0fc62c96405c8a841bbc4 data/chang_sheng_jue/loot_tables/blocks/door_birch_block.json
 646e1e39348665a45fb4c0ca22dce04547e4757a data/chang_sheng_jue/loot_tables/blocks/door_dark_oak_block.json

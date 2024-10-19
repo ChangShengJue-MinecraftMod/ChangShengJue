@@ -23,6 +23,7 @@ public class CSJPoiTypeTagsProvider extends PoiTypeTagsProvider {
         tag(PoiTypeTags.ACQUIRABLE_JOB_SITE)
                 .addOptional(new ResourceLocation(ChangShengJue.MOD_ID, "chang_sheng_jue_farmer_pot"))
                 .addOptional(new ResourceLocation(ChangShengJue.MOD_ID, "chang_sheng_jue_potter_pot"))
-                .addOptional(new ResourceLocation(ChangShengJue.MOD_ID, "chang_sheng_jue_hunter_pot"));
+                .addOptional(new ResourceLocation(ChangShengJue.MOD_ID, "chang_sheng_jue_hunter_pot"))
+                .addOptional(new ResourceLocation(ChangShengJue.MOD_ID, "chang_sheng_jue_chief_pot"));
     }
 }

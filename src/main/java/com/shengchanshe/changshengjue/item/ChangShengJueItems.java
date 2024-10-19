@@ -169,17 +169,9 @@ public class ChangShengJueItems {
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CROC_ENTITY,0x808000,0x006400,
                     new Item.Properties()));
 
-
     public static final RegistryObject<Item> CHANG_SHENG_JUE_VILLAGER_EGG = ITEMS.register("chang_sheng_jue_villager_egg",
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER,0x808000,0x006400,
                     new Item.Properties()));
-    public static final RegistryObject<Item> CHANG_SHENG_JUE_HUNTER_EGG = ITEMS.register("chang_sheng_jue_hunter_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHANG_SHENG_JUE_HUNTER,0x808000,0x006400,
-                    new Item.Properties()));
-    public static final RegistryObject<Item> CHANG_SHENG_JUE_VILLAGER_CHIEF_EGG = ITEMS.register("chang_sheng_jue_villager_chief_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER_CHIEF,0x808000,0x006400,
-                    new Item.Properties()));
-
 
     public static final RegistryObject<Item> ZHU_TAI = ITEMS.register("zhu_tai",
             ()-> new StandingAndWallBlockItem(ChangShengJueBlocks.ZHU_TAI_BLOCK.get(),ChangShengJueBlocks.WALL_ZHU_TAI_BLOCK.get(), (new Item.Properties()), Direction.DOWN));

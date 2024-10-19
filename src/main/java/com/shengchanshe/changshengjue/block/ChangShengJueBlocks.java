@@ -668,6 +668,9 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> TOOL_TABLE =registerBlock("tool_table",
             ()-> new ToolTable(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)),0);
 
+    public static final RegistryObject<Block> DESK =registerBlock("desk",
+            ()-> new Desk(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)),0);
+
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name,Supplier<T> block){
         return BLOCKS.register(name,block);
     }

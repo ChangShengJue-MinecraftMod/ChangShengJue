@@ -11,6 +11,10 @@
     {
       "id": "chang_sheng_jue:chang_sheng_jue_hunter_pot",
       "required": false
+    },
+    {
+      "id": "chang_sheng_jue:chang_sheng_jue_chief_pot",
+      "required": false
     }
   ]
 }

@@ -288,10 +288,32 @@
 
   "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_farmer": "农民",
   "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter": "窑工",
+  "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter_1": "高级窑工",
   "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_hunter": "猎人",
+  "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_chief": "村长",
+
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_farmer":"农民",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_potter": "窑工",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_potter_1": "高级窑工",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_hunter": "猎人",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_chief": "村长",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.villager": "Villager",
+
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.armorer":"Armorer",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.butcher":"Butcher",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.cleric": "Cleric",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.farmer": "Farmer",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.fisherman": "Fisherman",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.fletcher": "Fletcher",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.leatherworker": "Leatherworker",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.librarian": "Librarian",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.mason": "Mason",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.nitwit": "Nitwit",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.shepherd": "Shepherd",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.toolsmith": "Toolsmith",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.weaponsmith": "Weaponsmith",
+
   "item.chang_sheng_jue.chang_sheng_jue_villager_egg": "村民刷怪蛋",
-  "item.chang_sheng_jue.chang_sheng_jue_hunter_egg": "猎人村民刷怪蛋",
-  "item.chang_sheng_jue.chang_sheng_jue_villager_chief_egg": "村长刷怪蛋",
 
   "sounds.chang_sheng_jue.cicada_sound": "蝉 : 鸣叫",
   "sounds.chang_sheng_jue.cicada_hurt": "蝉 : 受伤",
@@ -346,5 +368,6 @@
 
   "block.chang_sheng_jue.chang_sheng_jue_loom": "织布机",
   "block.chang_sheng_jue.pottery_wheel": "陶轮",
-  "block.chang_sheng_jue.tool_table": "工具台"
+  "block.chang_sheng_jue.tool_table": "工具台",
+  "block.chang_sheng_jue.desk": "案台"
 }

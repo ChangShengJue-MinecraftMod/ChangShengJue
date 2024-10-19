@@ -26,6 +26,7 @@ public class  CSJBlockStateProvider extends BlockStateProvider {
         simpleBlock(ChangShengJueBlocks.KAOLIN_ORE.get());
         blockWithItem(ChangShengJueBlocks.KAOLIN_ORE);
         horizontalBlock(ChangShengJueBlocks.TOOL_TABLE.get(), new ModelFile.UncheckedModelFile(modLoc("block/tool_table")));
+        horizontalBlock(ChangShengJueBlocks.DESK.get(), new ModelFile.UncheckedModelFile(modLoc("block/desk")));
     }
 
     public void blockWithItem(RegistryObject<Block> block){

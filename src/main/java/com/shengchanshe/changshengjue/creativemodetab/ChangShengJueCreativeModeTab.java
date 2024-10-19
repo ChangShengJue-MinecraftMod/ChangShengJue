@@ -178,6 +178,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get());
                 output.accept(ChangShengJueBlocks.POTTERY_WHEEL.get());
                 output.accept(ChangShengJueBlocks.TOOL_TABLE.get());
+                output.accept(ChangShengJueBlocks.DESK.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_FOOD_AND_DRINK_TAB = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_food_and_drink_tab",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_food_and_drink_tab")).icon(() ->
@@ -260,8 +261,6 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.TIGER_EGG.get());
                 output.accept(ChangShengJueItems.CROC_EGG.get());
                 output.accept(ChangShengJueItems.CHANG_SHENG_JUE_VILLAGER_EGG.get());
-                output.accept(ChangShengJueItems.CHANG_SHENG_JUE_HUNTER_EGG.get());
-                output.accept(ChangShengJueItems.CHANG_SHENG_JUE_VILLAGER_CHIEF_EGG.get());
             }).build());
 
     public static void register(IEventBus eventBus){

@@ -1,14 +1,12 @@
 package com.shengchanshe.changshengjue.util;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
-import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
-import com.shengchanshe.changshengjue.block.entity.render.PotteryWheelEntityRender;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.client.render.*;
+import com.shengchanshe.changshengjue.entity.villagers.render.ChangShengJueVillagerRender;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class ClientSetup {
@@ -125,7 +123,8 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MEI_REN_KAO_SPRUCE_BLOCK.get(), RenderType.cutout());
 
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.POTTERY_WHEEL.get(), RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.POTTERY_WHEEL.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DESK.get(), RenderType.cutout());
 
         EntityRenderers.register(ChangShengJueEntity.BUTTERFLY_ENTITY.get(), ButterflyRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.MONKEY_ENTITY.get(), MonkeyRenderer::new);
@@ -138,7 +137,6 @@ public class ClientSetup {
         EntityRenderers.register(ChangShengJueEntity.HIND_ENTITY.get(), HindRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.TIGER_ENTITY.get(), TigerRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.CROC_ENTITY.get(), CrocRenderer::new);
-        EntityRenderers.register(ChangShengJueEntity.CHANG_SHENG_JUE_HUNTER.get(), HunterRenderer::new);
-        EntityRenderers.register(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER_CHIEF.get(), VillagerChiefRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER.get(), ChangShengJueVillagerRender::new);
     }
 }
