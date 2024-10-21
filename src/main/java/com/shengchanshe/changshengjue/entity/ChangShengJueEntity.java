@@ -7,8 +7,6 @@ import com.shengchanshe.changshengjue.entity.custom.deer.StagEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.FemalePeacockEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.MalePeacockEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.PeacockEgg;
-import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueHunterEntity;
-import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerChiefEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;

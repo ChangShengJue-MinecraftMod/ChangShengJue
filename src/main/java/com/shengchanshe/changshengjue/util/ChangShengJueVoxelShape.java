@@ -198,4 +198,30 @@ public class ChangShengJueVoxelShape {
             Block.box(1.292893218813452, 16.300000000000004, 1.878679656440358, 11.292893218813452, 16.300000000000004, 9.878679656440358)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
+
+    //猪食槽
+    public static final VoxelShape CHANG_SHENG_JUE_PIG_TROUGH_NORTH = Stream.of(
+            Block.box(0, 0, 1, 16, 1, 15),
+            Block.box(0, 1, 1, 16, 7, 3),
+            Block.box(0, 1, 13, 16, 7, 15),
+            Block.box(14, 1, 3, 16, 7, 13)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape CHANG_SHENG_JUE_PIG_TROUGH_EAST = Stream.of(
+            Block.box(1, 0, 0, 15, 1, 16),
+            Block.box(13, 1, 0, 15, 7, 16),
+            Block.box(1, 1, 0, 3, 7, 16),
+            Block.box(3, 1, 14, 13, 7, 16)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape CHANG_SHENG_JUE_PIG_TROUGH_SOUTH = Stream.of(
+            Block.box(0, 0, 1, 16, 1, 15),
+            Block.box(0, 1, 13, 16, 7, 15),
+            Block.box(0, 1, 1, 16, 7, 3),
+            Block.box(0, 1, 3, 2, 7, 13)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape CHANG_SHENG_JUE_PIG_TROUGH_WEST = Stream.of(
+            Block.box(1, 0, 0, 15, 1, 16),
+            Block.box(1, 1, 0, 3, 7, 16),
+            Block.box(13, 1, 0, 15, 7, 16),
+            Block.box(3, 1, 0, 13, 7, 2)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 }

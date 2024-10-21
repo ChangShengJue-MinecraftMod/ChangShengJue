@@ -268,6 +268,8 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.TOOL_TABLE.get());
         //案台
         this.dropSelf(ChangShengJueBlocks.DESK.get());
+        //猪食槽
+        this.dropSelf(ChangShengJueBlocks.PIG_TROUGH.get());
     }
 
     public LootItemCondition.Builder cropDrop(Block blocks, int age) {

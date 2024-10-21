@@ -671,6 +671,9 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> DESK =registerBlock("desk",
             ()-> new Desk(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)),0);
 
+    public static final RegistryObject<Block> PIG_TROUGH =registerBlock("pig_trough",
+            ()-> new PigTrough(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(0.6F).sound(SoundType.WOOD).ignitedByLava()),0);
+
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name,Supplier<T> block){
         return BLOCKS.register(name,block);
     }

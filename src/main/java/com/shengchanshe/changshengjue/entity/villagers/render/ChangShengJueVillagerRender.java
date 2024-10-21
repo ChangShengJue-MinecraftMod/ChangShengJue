@@ -1,18 +1,17 @@
 package com.shengchanshe.changshengjue.entity.villagers.render;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerEntity;
 import net.minecraft.client.model.VillagerModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.VillagerRenderer;
 import net.minecraft.client.renderer.entity.layers.CrossedArmsItemLayer;
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
-import net.minecraft.client.renderer.entity.layers.VillagerProfessionLayer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.npc.Villager;
 
-public class ChangShengJueVillagerRender extends MobRenderer<Villager, VillagerModel<Villager>> {
+public class ChangShengJueVillagerRender extends MobRenderer<ChangShengJueVillagerEntity, VillagerModel<ChangShengJueVillagerEntity>> {
     private static final ResourceLocation VILLAGER_BASE_SKIN = new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/villager/chang_sheng_jue_villager.png");
 
     public ChangShengJueVillagerRender(EntityRendererProvider.Context pRoot) {
@@ -23,7 +22,19 @@ public class ChangShengJueVillagerRender extends MobRenderer<Villager, VillagerM
     }
 
     @Override
-    public ResourceLocation getTextureLocation(Villager entity) {
+    public ResourceLocation getTextureLocation(ChangShengJueVillagerEntity entity) {
         return VILLAGER_BASE_SKIN;
+    }
+
+    protected void scale(ChangShengJueVillagerEntity pLivingEntity, PoseStack pPoseStack, float pPartialTickTime) {
+        float f = 0.9375F;
+        if (pLivingEntity.isBaby()) {
+            f *= 0.5F;
+            this.shadowRadius = 0.25F;
+        } else {
+            this.shadowRadius = 0.5F;
+        }
+
+        pPoseStack.scale(f, f, f);
     }
 }

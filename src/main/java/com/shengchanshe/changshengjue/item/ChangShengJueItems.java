@@ -7,6 +7,7 @@ import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.foods.ChangShengJueFoods;
 import com.shengchanshe.changshengjue.item.foods.DurianItem;
 import com.shengchanshe.changshengjue.item.items.PeacockEggItem;
+import com.shengchanshe.changshengjue.item.items.PigTroughItem;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;

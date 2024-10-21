@@ -18,7 +18,7 @@ public class ChangShengJueVillagers {
 
 
     public static final RegistryObject<PoiType> CHANG_SHENG_JUE_FARMER_POT = POT_TYPES.register("chang_sheng_jue_farmer_pot",
-            ()-> new PoiType(ImmutableSet.copyOf(ChangShengJueBlocks.BANANA_LOG.get().getStateDefinition().getPossibleStates()),1,1));
+            ()-> new PoiType(ImmutableSet.copyOf(ChangShengJueBlocks.PIG_TROUGH.get().getStateDefinition().getPossibleStates()),1,1));
     public static final RegistryObject<PoiType> CHANG_SHENG_JUE_POTTER_POT = POT_TYPES.register("chang_sheng_jue_potter_pot",
             ()-> new PoiType(ImmutableSet.copyOf(ChangShengJueBlocks.POTTERY_WHEEL.get().getStateDefinition().getPossibleStates()),1,1));
     public static final RegistryObject<PoiType> CHANG_SHENG_JUE_HUNTER_POT = POT_TYPES.register("chang_sheng_jue_hunter_pot",

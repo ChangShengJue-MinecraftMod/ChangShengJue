@@ -1,4 +1,4 @@
-// 1.20.1	2024-10-17T18:29:33.4667724	Loot Tables
+// 1.20.1	2024-10-19T17:54:41.5700432	Loot Tables
 cce8c0b7d959719604bf5706a5e0b0a99876a5b4 data/chang_sheng_jue/loot_tables/blocks/ag_ore.json
 9dfcb27b62a46a4c58add40765b49c99ff5898fa data/chang_sheng_jue/loot_tables/blocks/attached_cantaloupe_stem.json
 63066feb307becad188bb317a4b3c962e2f53f68 data/chang_sheng_jue/loot_tables/blocks/bai_hua_fu_ti_block.json
@@ -100,6 +100,7 @@ b7b622722ae9bb94ade67f892aece1dd95e037dd data/chang_sheng_jue/loot_tables/blocks
 618f018b8dd9bc27a844784e4b6711e35cf6f9c0 data/chang_sheng_jue/loot_tables/blocks/pear_leaves.json
 373196a5e7415ee1e21c18de4a35f2f6984f77cb data/chang_sheng_jue/loot_tables/blocks/pear_log.json
 f61336d754a7b7ae0bdb9912a84213c7f6c5cdd9 data/chang_sheng_jue/loot_tables/blocks/pear_sapling.json
+1df5f689560b3bb730171fc9d1b43467f026f605 data/chang_sheng_jue/loot_tables/blocks/pig_trough.json
 ff9921c10f6ef39e98ff4882775bbe5ef87f6b18 data/chang_sheng_jue/loot_tables/blocks/pineapple_block.json
 a833261a9f38ad8c6b158396e0637c59ecbd146b data/chang_sheng_jue/loot_tables/blocks/portulaca_oleracea_block.json
 cdb14b0afbff8ba28c0232245710567d4bd851cf data/chang_sheng_jue/loot_tables/blocks/pottery_wheel.json

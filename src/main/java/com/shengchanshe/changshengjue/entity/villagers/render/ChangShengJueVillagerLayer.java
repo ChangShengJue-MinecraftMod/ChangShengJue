@@ -28,6 +28,7 @@ import net.minecraft.world.entity.npc.VillagerType;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.Set;
 
 public class ChangShengJueVillagerLayer<T extends LivingEntity & VillagerDataHolder, M extends EntityModel<T> & VillagerHeadModel> extends RenderLayer<T, M> {
     private static final Int2ObjectMap<ResourceLocation> LEVEL_LOCATIONS = Util.make(new Int2ObjectOpenHashMap<>(), (p_117657_) -> {
@@ -72,9 +73,6 @@ public class ChangShengJueVillagerLayer<T extends LivingEntity & VillagerDataHol
     }
 
     private ResourceLocation getResourceLocation(String pFolder, ResourceLocation pLocation) {
-        if ("minecraft".equals(pLocation.getNamespace())) {
-            return pLocation.withPath((p_247944_) -> "textures/entity/" + this.path + "/" + pFolder + "/" + p_247944_ + ".png");
-        }
         String path = pLocation.getPath();
         // 假设 `ChangShengJue.MOD_ID` 是你的模组ID，`this.path` 是一个类字段，表示额外的路径信息
         String newPath = ChangShengJue.MOD_ID + ":textures/entity/" + this.path + "/" + pFolder + "/" + path + ".png";

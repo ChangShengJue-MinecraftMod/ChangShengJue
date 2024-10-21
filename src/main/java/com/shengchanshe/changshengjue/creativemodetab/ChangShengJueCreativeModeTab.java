@@ -179,6 +179,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.POTTERY_WHEEL.get());
                 output.accept(ChangShengJueBlocks.TOOL_TABLE.get());
                 output.accept(ChangShengJueBlocks.DESK.get());
+                output.accept(ChangShengJueBlocks.PIG_TROUGH.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_FOOD_AND_DRINK_TAB = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_food_and_drink_tab",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_food_and_drink_tab")).icon(() ->
