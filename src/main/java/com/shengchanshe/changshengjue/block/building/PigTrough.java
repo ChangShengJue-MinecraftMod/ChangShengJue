@@ -57,12 +57,11 @@ public class PigTrough extends Block implements WorldlyContainerHolder {
 
     @Override
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-        // 检查四个水平方向是否有阻挡
-        for (Direction direction : Direction.Plane.HORIZONTAL) {
-            BlockPos adjacentPos = pPos.relative(direction);
-            if (!pLevel.getBlockState(adjacentPos).isAir()) {
-                return false; // 如果任一方向被阻挡，返回false，阻止方块放置
-            }
+        Direction facing = pState.getValue(FACING);
+        Direction rightDirection = rightOf(facing);
+        BlockPos pos2 = pPos.relative(rightDirection); // 获取右侧的位置
+        if (!pLevel.getBlockState(pos2).isAir()) {
+            return false; // 如果被阻挡，返回false，阻止方块放置
         }
         return true; // 如果没有阻挡，允许放置
     }
@@ -85,6 +84,7 @@ public class PigTrough extends Block implements WorldlyContainerHolder {
         }
         return InteractionResult.PASS;
     }
+
     private void updateAdjacentTrough(Level world, BlockPos pos, BlockState state) {
         Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
         Direction rightDirection = rightOf(facing);
@@ -97,6 +97,7 @@ public class PigTrough extends Block implements WorldlyContainerHolder {
             }
         }
     }
+
     @Override
     public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean isMoving) {
         if (!world.isClientSide) {
@@ -124,11 +125,6 @@ public class PigTrough extends Block implements WorldlyContainerHolder {
                 world.setBlock(pos2, Blocks.AIR.defaultBlockState(), 3); // 3 表示立即更新并重新计算光照
             }
         }
-    }
-
-    @Override
-    public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL;
     }
 
     @Override

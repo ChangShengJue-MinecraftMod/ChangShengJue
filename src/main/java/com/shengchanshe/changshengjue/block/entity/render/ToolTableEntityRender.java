@@ -41,6 +41,5 @@ public class ToolTableEntityRender implements BlockEntityRenderer<ToolTableEntit
             }
             pPoseStack.popPose();
         }
-
     }
 }

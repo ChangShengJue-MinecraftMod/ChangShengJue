@@ -1,0 +1,125 @@
+{
+  "variants": {
+    "facing=east,variant=default,half=lower,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_left",
+      "y": 90
+    },
+    "facing=east,variant=default,half=upper,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_left",
+      "y": 90
+    },
+    "facing=east,variant=default,half=lower,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_right",
+      "y": 90
+    },
+    "facing=east,variant=default,half=upper,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_right",
+      "y": 90
+    },
+    "facing=north,variant=default,half=lower,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_left"
+    },
+    "facing=north,variant=default,half=upper,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_left"
+    },
+    "facing=north,variant=default,half=lower,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_right"
+    },
+    "facing=north,variant=default,half=upper,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_right"
+    },
+    "facing=south,variant=default,half=lower,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_left",
+      "y": 180
+    },
+    "facing=south,variant=default,half=upper,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_left",
+      "y": 180
+    },
+    "facing=south,variant=default,half=lower,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_right",
+      "y": 180
+    },
+    "facing=south,variant=default,half=upper,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_right",
+      "y": 180
+    },
+    "facing=west,variant=default,half=lower,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_left",
+      "y": 270
+    },
+    "facing=west,variant=default,half=upper,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_left",
+      "y": 270
+    },
+    "facing=west,variant=default,half=lower,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_right",
+      "y": 270
+    },
+    "facing=west,variant=default,half=upper,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_right",
+      "y": 270
+    },
+
+    "facing=east,variant=variant_1,half=lower,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_left",
+      "y": 90
+    },
+    "facing=east,variant=variant_1,half=upper,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_left",
+      "y": 90
+    },
+    "facing=east,variant=variant_1,half=lower,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_right",
+      "y": 90
+    },
+    "facing=east,variant=variant_1,half=upper,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_right",
+      "y": 90
+    },
+    "facing=north,variant=variant_1,half=lower,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_left"
+    },
+    "facing=north,variant=variant_1,half=upper,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_left"
+    },
+    "facing=north,variant=variant_1,half=lower,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_right"
+    },
+    "facing=north,variant=variant_1,half=upper,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_right"
+    },
+    "facing=south,variant=variant_1,half=lower,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_left",
+      "y": 180
+    },
+    "facing=south,variant=variant_1,half=upper,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_left",
+      "y": 180
+    },
+    "facing=south,variant=variant_1,half=lower,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_right",
+      "y": 180
+    },
+    "facing=south,variant=variant_1,half=upper,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_right",
+      "y": 180
+    },
+    "facing=west,variant=variant_1,half=lower,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_left",
+      "y": 270
+    },
+    "facing=west,variant=variant_1,half=upper,right=false": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_left",
+      "y": 270
+    },
+    "facing=west,variant=variant_1,half=lower,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_lower_right",
+      "y": 270
+    },
+    "facing=west,variant=variant_1,half=upper,right=true": {
+      "model": "chang_sheng_jue:block/big_painting_scroll_default_upper_right",
+      "y": 270
+    }
+  }
+}

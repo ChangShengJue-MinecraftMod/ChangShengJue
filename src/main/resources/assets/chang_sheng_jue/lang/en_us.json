@@ -364,7 +364,10 @@
   "item.chang_sheng_jue.silver_bullions": "银元宝",
   "item.chang_sheng_jue.gold_bullions": "金元宝",
 
-  "item.chang_sheng_jue.painting_scroll": "画轴",
+  "block.chang_sheng_jue.painting_scroll": "画轴(1x1)",
+  "block.chang_sheng_jue.high_painting_scroll": "画轴(1x2)",
+  "block.chang_sheng_jue.width_painting_scroll": "画轴(2x1)",
+  "block.chang_sheng_jue.big_painting_scroll": "画轴(2x2)",
 
   "block.chang_sheng_jue.chang_sheng_jue_loom": "织布机",
   "block.chang_sheng_jue.pottery_wheel": "陶轮",

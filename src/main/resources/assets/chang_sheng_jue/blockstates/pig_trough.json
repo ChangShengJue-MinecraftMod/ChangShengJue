@@ -1,13 +1,13 @@
 {
   "multipart": [
-    {
-      "when": {
-        "facing": "north"
+      {
+        "when": {
+          "facing": "north"
+        },
+        "apply": {
+          "model": "chang_sheng_jue:block/pig_trough"
+        }
       },
-      "apply": {
-        "model": "chang_sheng_jue:block/pig_trough"
-      }
-    },
     {
       "when": {
         "facing": "east"

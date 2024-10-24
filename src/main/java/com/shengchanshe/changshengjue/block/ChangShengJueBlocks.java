@@ -4,6 +4,10 @@ import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.building.*;
 import com.shengchanshe.changshengjue.block.building.ChangShengJueLoomBlock;
 import com.shengchanshe.changshengjue.block.custom_cropper.*;
+import com.shengchanshe.changshengjue.block.painting.BigPaintingScroll;
+import com.shengchanshe.changshengjue.block.painting.HighPaintingScroll;
+import com.shengchanshe.changshengjue.block.painting.PaintingScroll;
+import com.shengchanshe.changshengjue.block.painting.WidthPaintingScroll;
 import com.shengchanshe.changshengjue.block.tree_logs.LeavesBlocks;
 import com.shengchanshe.changshengjue.block.tree_logs.LogBlock;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
@@ -673,6 +677,20 @@ public class ChangShengJueBlocks {
 
     public static final RegistryObject<Block> PIG_TROUGH =registerBlock("pig_trough",
             ()-> new PigTrough(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(0.6F).sound(SoundType.WOOD).ignitedByLava()),0);
+
+    //画轴
+    public static final RegistryObject<Block> PAINTING_SCROLL =registerBlock("painting_scroll",
+            ()-> new PaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY)),0);
+
+    public static final RegistryObject<Block> HIGH_PAINTING_SCROLL =registerBlock("high_painting_scroll",
+            ()-> new HighPaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY)),0);
+
+    public static final RegistryObject<Block> WIDTH_PAINTING_SCROLL =registerBlock("width_painting_scroll",
+            ()-> new WidthPaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY)),0);
+
+    public static final RegistryObject<Block> BIG_PAINTING_SCROLL =registerBlock("big_painting_scroll",
+            ()-> new BigPaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY)),0);
+
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name,Supplier<T> block){
         return BLOCKS.register(name,block);

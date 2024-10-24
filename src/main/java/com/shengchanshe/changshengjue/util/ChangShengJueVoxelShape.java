@@ -224,4 +224,63 @@ public class ChangShengJueVoxelShape {
             Block.box(13, 1, 0, 15, 7, 16),
             Block.box(3, 1, 0, 13, 7, 2)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+
+    //字画(小)
+    public static final VoxelShape PAINTING_SCROLL_NORTH = Stream.of(
+        Block.box(0, 0, 14, 16, 2, 16),
+        Block.box(0, 14, 14, 16, 16, 16),
+        Block.box(1, 2, 15, 15, 14, 16)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape PAINTING_SCROLL_EAST = Stream.of(
+        Block.box(-1.7763568394002505e-15, 0, -1.7763568394002505e-15, 1.9999999999999982, 2, 16),
+        Block.box(-1.7763568394002505e-15, 14, -1.7763568394002505e-15, 1.9999999999999982, 16, 16),
+        Block.box(-1.7763568394002505e-15, 2, 1, 0.9999999999999982, 14, 15)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape PAINTING_SCROLL_SOUTH = Stream.of(
+        Block.box(0, 0, -3.552713678800501e-15, 16, 2, 1.9999999999999964),
+        Block.box(0, 14, -3.552713678800501e-15, 16, 16, 1.9999999999999964),
+        Block.box(0.9999999999999982, 2, -3.552713678800501e-15, 14.999999999999998, 14, 0.9999999999999964)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape PAINTING_SCROLL_WEST = Stream.of(
+        Block.box(14.000000000000002, 0, 0, 16, 2, 15.999999999999998),
+        Block.box(14.000000000000002, 14, 0, 16, 16, 15.999999999999998),
+        Block.box(15.000000000000002, 2, 0.9999999999999964, 16, 14, 14.999999999999996)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    //字画(高)
+    public static final VoxelShape HIGH_PAINTING_SCROLL_NORTH_LOWER = Shapes.join(
+            Block.box(0, 0, 14, 16, 2, 16), Block.box(1, 2, 15, 15, 16, 16), BooleanOp.OR);
+    public static final VoxelShape HIGH_PAINTING_SCROLL_EAST_LOWER = Shapes.join(
+            Block.box(0, 0, 0, 2, 2, 16), Block.box(0, 2, 1, 1, 16, 15), BooleanOp.OR);
+    public static final VoxelShape HIGH_PAINTING_SCROLL_SOUTH_LOWER = Shapes.join(
+            Block.box(0, 0, 0, 16, 2, 2), Block.box(1, 2, 0, 15, 16, 1), BooleanOp.OR);
+    public static final VoxelShape HIGH_PAINTING_SCROLL_WEST_LOWER = Shapes.join(
+            Block.box(14, 0, 0, 16, 2, 16), Block.box(15, 2, 1, 16, 16, 15), BooleanOp.OR);
+
+    public static final VoxelShape HIGH_PAINTING_SCROLL_NORTH_UPPER = Shapes.join(
+            Block.box(0, 14, 14, 16, 16, 16), Block.box(1, 0, 15, 15, 14, 16), BooleanOp.OR);
+    public static final VoxelShape HIGH_PAINTING_SCROLL_EAST_UPPER = Shapes.join(
+            Block.box(0, 14, 0, 2, 16, 16), Block.box(0, 0, 1, 1, 14, 15), BooleanOp.OR);
+    public static final VoxelShape HIGH_PAINTING_SCROLL_SOUTH_UPPER = Shapes.join(
+            Block.box(0, 14, 0, 16, 16, 2), Block.box(1, 0, 0, 15, 14, 1), BooleanOp.OR);
+    public static final VoxelShape HIGH_PAINTING_SCROLL_WEST_UPPER = Shapes.join(
+            Block.box(14, 14, 0, 16, 16, 16), Block.box(15, 0, 1, 16, 14, 15), BooleanOp.OR);
+
+    //字画(横)
+    public static final VoxelShape WIDTH_PAINTING_SCROLL_SOUTH_RIGHT = Shapes.join(
+            Block.box(0, 0, 14, 2, 16, 16), Block.box(2, 1, 15, 16, 15, 16),BooleanOp.OR);
+    public static final VoxelShape WIDTH_PAINTING_SCROLL_WEST_RIGHT = Shapes.join(
+            Block.box(0, 0, 0, 2, 16, 2), Block.box(0, 1, 2, 1, 15, 16), BooleanOp.OR);
+    public static final VoxelShape WIDTH_PAINTING_SCROLL_EAST_RIGHT = Shapes.join(
+            Block.box(14, 0, 0, 16, 16, 2), Block.box(0, 1, 0, 14, 15, 1), BooleanOp.OR);
+    public static final VoxelShape WIDTH_PAINTING_SCROLL_NORTH_RIGHT = Shapes.join(
+            Block.box(14, 0, 14, 16, 16, 16), Block.box(15, 1, 0, 16, 15, 14), BooleanOp.OR);
+
+    public static final VoxelShape WIDTH_PAINTING_SCROLL_NORTH_LEFT = Shapes.join(
+            Block.box(14, 0, 14, 16, 16, 16), Block.box(0, 1, 15, 14, 15, 16), BooleanOp.OR);
+    public static final VoxelShape WIDTH_PAINTING_SCROLL_EAST_LEFT = Shapes.join(
+            Block.box(0, 0, 14, 2, 16, 16), Block.box(0, 1, 0, 1, 15, 14), BooleanOp.OR);
+    public static final VoxelShape WIDTH_PAINTING_SCROLL_SOUTH_LEFT = Shapes.join(
+            Block.box(0, 0, 0, 2, 16, 2), Block.box(2, 1, 0, 16, 15, 1), BooleanOp.OR);
+    public static final VoxelShape WIDTH_PAINTING_SCROLL_WEST_LEFT = Shapes.join(
+            Block.box(14, 0, 0, 16, 16, 2), Block.box(15, 1, 2, 16, 15, 16), BooleanOp.OR);
 }

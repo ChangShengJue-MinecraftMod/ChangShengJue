@@ -1,6 +1,5 @@
 package com.shengchanshe.changshengjue.world.structures.structure;
 
-
 import com.mojang.serialization.Codec;
 import com.shengchanshe.changshengjue.world.structures.CSJStructureType;
 import com.shengchanshe.changshengjue.world.structures.piece.CSJStructurePieces;

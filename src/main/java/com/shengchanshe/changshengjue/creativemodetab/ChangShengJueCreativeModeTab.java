@@ -174,7 +174,10 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get());
                 output.accept(ChangShengJueBlocks.YUN_SHAN_FU_TI_BLOCK.get());
                 output.accept(ChangShengJueItems.ZHU_TAI.get());
-                output.accept(ChangShengJueItems.PAINTING_SCROLL.get());
+                output.accept(ChangShengJueBlocks.PAINTING_SCROLL.get());
+                output.accept(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get());
+                output.accept(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get());
+                output.accept(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get());
                 output.accept(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get());
                 output.accept(ChangShengJueBlocks.POTTERY_WHEEL.get());
                 output.accept(ChangShengJueBlocks.TOOL_TABLE.get());
@@ -249,7 +252,7 @@ public class ChangShengJueCreativeModeTab {
 
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_SPAWN_EGGS_TAB = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_spawn_eggs_tab",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_spawn_eggs_tab")).icon(() ->
-                    new ItemStack(ChangShengJueItems.GU_SUI.get())).displayItems((parameters,output)->{
+                    new ItemStack(ChangShengJueItems.MONKEY_EGG.get())).displayItems((parameters,output)->{
                 output.accept(ChangShengJueItems.BUTTERFLY_EGG.get());
                 output.accept(ChangShengJueItems.MONKEY_EGG.get());
                 output.accept(ChangShengJueItems.DRAGONFLY_EGG.get());

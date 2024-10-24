@@ -7,7 +7,6 @@ import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.foods.ChangShengJueFoods;
 import com.shengchanshe.changshengjue.item.foods.DurianItem;
 import com.shengchanshe.changshengjue.item.items.PeacockEggItem;
-import com.shengchanshe.changshengjue.item.items.PigTroughItem;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
@@ -171,7 +170,7 @@ public class ChangShengJueItems {
                     new Item.Properties()));
 
     public static final RegistryObject<Item> CHANG_SHENG_JUE_VILLAGER_EGG = ITEMS.register("chang_sheng_jue_villager_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER,0x808000,0x006400,
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER,0x808034,0x076401,
                     new Item.Properties()));
 
     public static final RegistryObject<Item> ZHU_TAI = ITEMS.register("zhu_tai",
@@ -219,7 +218,7 @@ public class ChangShengJueItems {
             ()-> new Item((new Item.Properties())));
 
     //画
-    public static final RegistryObject<Item> PAINTING_SCROLL  = ITEMS.register("painting_scroll",()-> new HangingEntityItem(EntityType.PAINTING, new Item.Properties()));
+//    public static final RegistryObject<Item> PAINTING_SCROLL = ITEMS.register("painting_scroll",()-> new HangingEntityItem(EntityType.PAINTING, new Item.Properties()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

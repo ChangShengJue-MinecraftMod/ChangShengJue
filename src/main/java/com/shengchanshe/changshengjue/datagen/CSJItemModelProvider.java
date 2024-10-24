@@ -22,7 +22,6 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.YI_GUAN_TONG_QIAN);
         bullionsItem(ChangShengJueItems.SILVER_BULLIONS);
         bullionsItem(ChangShengJueItems.GOLD_BULLIONS);
-        simpleItem(ChangShengJueItems.PAINTING_SCROLL);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item){
