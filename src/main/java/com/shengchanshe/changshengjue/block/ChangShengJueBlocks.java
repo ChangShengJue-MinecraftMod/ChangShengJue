@@ -2,14 +2,15 @@ package com.shengchanshe.changshengjue.block;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.building.*;
-import com.shengchanshe.changshengjue.block.building.ChangShengJueLoomBlock;
-import com.shengchanshe.changshengjue.block.custom_cropper.*;
+import com.shengchanshe.changshengjue.block.cropper.*;
 import com.shengchanshe.changshengjue.block.painting.BigPaintingScroll;
 import com.shengchanshe.changshengjue.block.painting.HighPaintingScroll;
 import com.shengchanshe.changshengjue.block.painting.PaintingScroll;
 import com.shengchanshe.changshengjue.block.painting.WidthPaintingScroll;
 import com.shengchanshe.changshengjue.block.tree_logs.LeavesBlocks;
 import com.shengchanshe.changshengjue.block.tree_logs.LogBlock;
+import com.shengchanshe.changshengjue.block.decoration.PoplarDefoliation;
+import com.shengchanshe.changshengjue.block.tree_logs.PoplarLeaves;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.util.ChangShengJueVoxelShape;
 import com.shengchanshe.changshengjue.world.feature.tree.*;
@@ -174,6 +175,16 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> ZI_TAN_WOOD =registerBlock("zi_tan_wood",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)),300);
 
+    public static final RegistryObject<Block> POPLAR_LOG =registerBlock("poplar_log",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)),300);
+    public static final RegistryObject<Block> POPLAR_LEAVES =registerBlock("poplar_leaves",
+            ()-> new PoplarLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)),0);
+    public static final RegistryObject<Block> POPLAR_SAPLING =registerBlock("poplar_sapling",
+            ()-> new SaplingBlock(new PoplarTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)),100);
+    public static final RegistryObject<Block> POPLAR_DEFOLIATION =registerBlock("poplar_defoliation",
+            ()-> new PoplarDefoliation(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable()
+                    .noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY)),100);
+
     //花花草草
     public static final RegistryObject<Block> MUGWORT_BLOCK =registerBlock("mugwort_block",
             ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()){
@@ -235,6 +246,28 @@ public class ChangShengJueBlocks {
 
     public static final RegistryObject<Block> CAPSULE_BLOCK =registerBlockWithoutBlockItem("capsule_block",
             ()-> new CapsuleBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
+
+    public static final RegistryObject<Block> STIPA_GRANDIS =registerBlock("stipa_grandis",
+            ()-> new TallGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS)),0);
+
+    public static final RegistryObject<Block> SOLIDAGO =registerBlock("solidago",
+            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()),0);
+    public static final RegistryObject<Block> GEUM_TRIFLORUM =registerBlock("geum_triflorum",
+            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()),0);
+    public static final RegistryObject<Block> PURPLE_DANDELION =registerBlock("purple_dandelion",
+            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()),0);
+
+    public static final RegistryObject<Block> TALL_STIPA_GRANDIS =registerBlock("tall_stipa_grandis",
+            ()-> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.TALL_GRASS)),0);
+    public static final RegistryObject<Block> TALL_STIPA_GRANDIS_VARIANT =registerBlock("tall_stipa_grandis_variant",
+            ()-> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.TALL_GRASS)),0);
+    public static final RegistryObject<Block> RED_KNOTWEED =registerBlock("red_knotweed",
+            ()-> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.SUNFLOWER)),0);
+    public static final RegistryObject<Block> PURPLE_RED_KNOTWEED =registerBlock("purple_red_knotweed",
+            ()-> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.SUNFLOWER)),0);
+    public static final RegistryObject<Block> RAPE_FLOWERS =registerBlock("rape_flowers",
+            ()-> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.SUNFLOWER)),0);
+
     //建筑
     public static final RegistryObject<Block> ZHU_TAI_BLOCK =registerBlock("zhu_tai_block",
             ()-> new ZhuTaiBlock(BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel((p_50755_) -> 15).sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY), ParticleTypes.FLAME));

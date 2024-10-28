@@ -14,6 +14,7 @@ public class CSJTags {
         public static final TagKey<Block> JI_CHI_MU_LOG = tag("ji_chi_mu_log");
         public static final TagKey<Block> HUANG_HUA_LI_LOG = tag("huang_hua_li_log");
         public static final TagKey<Block> ZI_TAN_LOG = tag("zi_tan_log");
+        public static final TagKey<Block> POPLAR_LOG = tag("poplar_log");
         public static final TagKey<Block> LOG = tag("log");
         public static final TagKey<Block> MEI_REN_KAO = tag("mei_ren_kao");
         public static final TagKey<Block> TILE = tag("tile");

@@ -111,6 +111,23 @@
   "block.chang_sheng_jue.mei_hua_sapling": "梅花树苗",
   "item.chang_sheng_jue.mei_hua": "梅花",
 
+  "block.chang_sheng_jue.huang_hua_li_log": "黄花梨原木",
+  "block.chang_sheng_jue.stripped_huang_hua_li_log": "去皮黄花梨原木",
+  "block.chang_sheng_jue.huang_hua_li_wood": "黄花梨木板",
+
+  "block.chang_sheng_jue.ji_chi_mu_log": "鸡翅木原木",
+  "block.chang_sheng_jue.ji_chi_mu_stripped_log": "去皮鸡翅木原木",
+  "block.chang_sheng_jue.ji_chi_mu_wood": "鸡翅木木板",
+
+  "block.chang_sheng_jue.zi_tan_log": "紫檀原木",
+  "block.chang_sheng_jue.zi_tan_stripped_log": "去皮紫檀原木",
+  "block.chang_sheng_jue.zi_tan_wood": "紫檀木板",
+
+  "block.chang_sheng_jue.poplar_log": "白杨原木",
+  "block.chang_sheng_jue.poplar_leaves": "白杨树叶",
+  "block.chang_sheng_jue.poplar_sapling": "白杨树苗",
+  "block.chang_sheng_jue.poplar_defoliation": "白杨落叶",
+
   "block.chang_sheng_jue.mugwort_block": "艾蒿",
   "block.chang_sheng_jue.mugwort_block_1": "艾蒿",
   "block.chang_sheng_jue.potted_mugwort_block": "艾蒿",
@@ -132,6 +149,17 @@
   "block.chang_sheng_jue.shui_xian_block": "水仙花",
 
   "block.chang_sheng_jue.tan_hua_block": "昙花",
+
+  "block.chang_sheng_jue.stipa_grandis": "大针茅",
+  "block.chang_sheng_jue.tall_stipa_grandis": "高大的大针茅",
+  "block.chang_sheng_jue.tall_stipa_grandis_variant": "高大的异种大针茅",
+
+  "block.chang_sheng_jue.solidago": "秋麒麟",
+  "block.chang_sheng_jue.geum_triflorum": "三花路边青",
+  "block.chang_sheng_jue.purple_dandelion": "紫色蒲公英",
+  "block.chang_sheng_jue.red_knotweed": "红蓼",
+  "block.chang_sheng_jue.purple_red_knotweed": "红蓼异种",
+  "block.chang_sheng_jue.rape_flowers": "油菜花",
 
   "block.chang_sheng_jue.zhu_tai_block": "烛台",
   "block.chang_sheng_jue.hang_tu_block": "夯土",
@@ -210,18 +238,6 @@
   "block.chang_sheng_jue.bitumen_floor_tiles_block": "沥青地砖",
   "block.chang_sheng_jue.blue_floor_tiles_block": "青石地砖",
   "block.chang_sheng_jue.black_floor_tiles_block": "黑石地砖",
-
-  "block.chang_sheng_jue.huang_hua_li_log": "黄花梨原木",
-  "block.chang_sheng_jue.stripped_huang_hua_li_log": "去皮黄花梨原木",
-  "block.chang_sheng_jue.huang_hua_li_wood": "黄花梨木板",
-
-  "block.chang_sheng_jue.ji_chi_mu_log": "鸡翅木原木",
-  "block.chang_sheng_jue.ji_chi_mu_stripped_log": "去皮鸡翅木原木",
-  "block.chang_sheng_jue.ji_chi_mu_wood": "鸡翅木木板",
-
-  "block.chang_sheng_jue.zi_tan_log": "紫檀原木",
-  "block.chang_sheng_jue.zi_tan_stripped_log": "去皮紫檀原木",
-  "block.chang_sheng_jue.zi_tan_wood": "紫檀木板",
 
   "block.chang_sheng_jue.windows_birch_block": "白桦木窗户",
   "block.chang_sheng_jue.windows_birch_block_1": "白桦木窗户",
@@ -374,5 +390,7 @@
   "block.chang_sheng_jue.pottery_wheel": "陶轮",
   "block.chang_sheng_jue.tool_table": "工具台",
   "block.chang_sheng_jue.desk": "案台",
-  "block.chang_sheng_jue.pig_trough": "猪食槽"
+  "block.chang_sheng_jue.pig_trough": "猪食槽",
+
+  "biome.chang_sheng_jue.chang_shen_jue_prairie": "牧然草原"
 }

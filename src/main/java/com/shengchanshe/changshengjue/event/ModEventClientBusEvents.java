@@ -6,8 +6,12 @@ import com.shengchanshe.changshengjue.block.entity.render.PotteryWheelEntityRend
 import com.shengchanshe.changshengjue.block.entity.render.ToolTableEntityRender;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.client.render.PeacockEggRender;
+import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
+import com.shengchanshe.changshengjue.particle.custom.PoplarDefoliationParticle;
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -26,5 +30,13 @@ public class ModEventClientBusEvents {
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
 //        event.registerLayerDefinition(ChangShengJueModelLayers.CHANG_SHENG_JUE_VILLAGER_LAYER, LayerDefinition.create(VillagerModel.createBodyModel(),64, 128));
+    }
+
+
+    @SubscribeEvent
+    public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
+//        event.registerSpecial(ChangShengJueParticles.POPLAR_DEFOLIATION_PARTICLE.get(),PoplarDefoliationParticle.Provider::new);
+        Minecraft.getInstance().particleEngine.register(ChangShengJueParticles.POPLAR_DEFOLIATION_PARTICLE.get(),
+                PoplarDefoliationParticle.Provider::new);
     }
 }

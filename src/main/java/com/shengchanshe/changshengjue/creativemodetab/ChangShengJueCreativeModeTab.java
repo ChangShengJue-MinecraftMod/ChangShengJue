@@ -33,6 +33,9 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.GUI_HUA_SAPLING.get());
                 output.accept(ChangShengJueBlocks.MEI_HUA_LEAVES.get());
                 output.accept(ChangShengJueBlocks.MEI_HUA_SAPLING.get());
+                output.accept(ChangShengJueBlocks.POPLAR_LEAVES.get());
+                output.accept(ChangShengJueBlocks.POPLAR_SAPLING.get());
+                output.accept(ChangShengJueBlocks.POPLAR_DEFOLIATION.get());
                 output.accept(ChangShengJueBlocks.MUGWORT_BLOCK.get());
                 output.accept(ChangShengJueBlocks.CUCKOO_BLOCK.get());
                 output.accept(ChangShengJueBlocks.PORTULACA_OLERACEA_BLOCK.get());
@@ -40,11 +43,19 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.KOCHIA_SCOPARIA_BLOCK.get());
                 output.accept(ChangShengJueBlocks.SHUI_XIAN_BLOCK.get());
                 output.accept(ChangShengJueBlocks.TAN_HUA_BLOCK.get());
+                output.accept(ChangShengJueBlocks.STIPA_GRANDIS.get());
+                output.accept(ChangShengJueBlocks.TALL_STIPA_GRANDIS.get());
+                output.accept(ChangShengJueBlocks.TALL_STIPA_GRANDIS_VARIANT.get());
+                output.accept(ChangShengJueBlocks.RED_KNOTWEED.get());
+                output.accept(ChangShengJueBlocks.PURPLE_RED_KNOTWEED.get());
+                output.accept(ChangShengJueBlocks.RAPE_FLOWERS.get());
+                output.accept(ChangShengJueBlocks.SOLIDAGO.get());
+                output.accept(ChangShengJueBlocks.GEUM_TRIFLORUM.get());
+                output.accept(ChangShengJueBlocks.PURPLE_DANDELION.get());
 //                output.accept(ChangShengJueBlocks.GRAPE_SHELF_BLOCK.get());
 //                output.accept(ChangShengJueBlocks.PILLAR_BLOCK.get());
                 output.accept(ChangShengJueItems.CAPSULE.get());
-                output.accept(ChangShengJueItems.RAW_AG.get());
-                output.accept(ChangShengJueItems.AG_INGOT.get());
+
                 output.accept(ChangShengJueItems.PINEAPPLE_SEEDS.get());
                 output.accept(ChangShengJueItems.TOMATO_SEEDS.get());
                 output.accept(ChangShengJueItems.GU_SEEDS.get());
@@ -84,6 +95,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.ZI_TAN_LOG.get());
                 output.accept(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get());
                 output.accept(ChangShengJueBlocks.ZI_TAN_WOOD.get());
+                output.accept(ChangShengJueBlocks.POPLAR_LOG.get());
                 output.accept(ChangShengJueBlocks.HANG_TU_BLOCK.get());
                 output.accept(ChangShengJueBlocks.TU_PEI_BLOCK.get());
                 output.accept(ChangShengJueBlocks.STONE_LAMPS_BASE_BLOCK.get());
@@ -248,6 +260,8 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.SILVER_BULLIONS.get());
                 output.accept(ChangShengJueItems.GOLD_BULLIONS.get());
                 output.accept(ChangShengJueItems.DURIAN.get());
+                output.accept(ChangShengJueItems.RAW_AG.get());
+                output.accept(ChangShengJueItems.AG_INGOT.get());
             }).build());
 
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_SPAWN_EGGS_TAB = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_spawn_eggs_tab",()-> CreativeModeTab.builder()

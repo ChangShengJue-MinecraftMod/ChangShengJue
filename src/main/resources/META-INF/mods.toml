@@ -20,3 +20,10 @@ description='''${mod_description}'''
     versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
+
+[[dependencies.chang_sheng_jue]]
+modId="terrablender"
+mandatory=true
+versionRange="${terrablender_version_range}"
+ordering="NONE"
+side="BOTH"

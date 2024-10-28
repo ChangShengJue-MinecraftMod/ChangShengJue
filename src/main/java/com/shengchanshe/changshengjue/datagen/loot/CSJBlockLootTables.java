@@ -1,13 +1,16 @@
 package com.shengchanshe.changshengjue.datagen.loot;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
-import com.shengchanshe.changshengjue.block.custom_cropper.CornBlock;
+import com.shengchanshe.changshengjue.block.cropper.CornBlock;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.IntRange;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
@@ -73,6 +76,11 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.ZI_TAN_LOG.get());
         this.dropSelf(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get());
         this.dropSelf(ChangShengJueBlocks.ZI_TAN_WOOD.get());
+
+        this.dropSelf(ChangShengJueBlocks.POPLAR_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.POPLAR_SAPLING.get());
+        this.add(ChangShengJueBlocks.POPLAR_DEFOLIATION.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.POPLAR_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ChangShengJueBlocks.POPLAR_LEAVES.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.POPLAR_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
         this.add(ChangShengJueBlocks.AG_ORE.get(),
                 (block -> createOreDrop(ChangShengJueBlocks.AG_ORE.get(), ChangShengJueItems.RAW_AG.get())));
@@ -152,7 +160,6 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(ChangShengJueBlocks.CANTALOUPE_STEM.get(), (p_249349_) -> this.createStemDrops(p_249349_, ChangShengJueItems.CANTALOUPE_SEEDS.get()));
         this.add(ChangShengJueBlocks.ATTACHED_CANTALOUPE_STEM.get(), (p_249349_) -> this.createAttachedStemDrops(p_249349_, ChangShengJueItems.CANTALOUPE_SEEDS.get()));
 
-
         //花花草草
         this.dropSelf(ChangShengJueBlocks.MUGWORT_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.CUCKOO_BLOCK.get());
@@ -164,6 +171,18 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.CAPSULE_BLOCK.get());
         LootItemCondition.Builder capsule = cropDrop(ChangShengJueBlocks.CAPSULE_BLOCK.get(), 7);
         this.add(ChangShengJueBlocks.CAPSULE_BLOCK.get(), createCropDrops(ChangShengJueBlocks.CAPSULE_BLOCK.get(), ChangShengJueItems.CAPSULE.get(), ChangShengJueItems.CAPSULE.get(), capsule));
+
+        this.add(ChangShengJueBlocks.STIPA_GRANDIS.get(), (block) -> this.createGrassDrops(block));
+        this.add(ChangShengJueBlocks.TALL_STIPA_GRANDIS.get(), (block) -> this.createDoublePlantWithSeedDrops(block, ChangShengJueBlocks.STIPA_GRANDIS.get()));
+        this.add(ChangShengJueBlocks.TALL_STIPA_GRANDIS_VARIANT.get(), (block) -> this.createDoublePlantWithSeedDrops(block, ChangShengJueBlocks.STIPA_GRANDIS.get()));
+
+        this.add(ChangShengJueBlocks.RED_KNOTWEED.get(), (block) -> this.createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
+        this.add(ChangShengJueBlocks.PURPLE_RED_KNOTWEED.get(), (block) -> this.createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
+        this.add(ChangShengJueBlocks.RAPE_FLOWERS.get(), (block) -> this.createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
+
+        this.dropSelf(ChangShengJueBlocks.SOLIDAGO.get());
+        this.dropSelf(ChangShengJueBlocks.GEUM_TRIFLORUM.get());
+        this.dropSelf(ChangShengJueBlocks.PURPLE_DANDELION.get());
 
         //建筑
         this.dropSelf(ChangShengJueBlocks.ZHU_TAI_BLOCK.get());

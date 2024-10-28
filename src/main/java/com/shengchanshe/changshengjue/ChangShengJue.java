@@ -6,10 +6,13 @@ import com.shengchanshe.changshengjue.creativemodetab.ChangShengJueCreativeModeT
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import com.shengchanshe.changshengjue.util.ClientSetup;
-//import com.shengchanshe.changshengjue.world.structures.Registration;
-//import com.shengchanshe.changshengjue.world.structures.Structures;
+import com.shengchanshe.changshengjue.world.biome.CSJTerrablender;
+import com.shengchanshe.changshengjue.world.biome.surface.CSJSurFaceRules;
+import com.shengchanshe.changshengjue.world.feature.CSJFoliagePlacers;
+import com.shengchanshe.changshengjue.world.feature.CSJTrunkPlacerTypes;
 import com.shengchanshe.changshengjue.world.structures.CSJStructurePieceTypes;
 import com.shengchanshe.changshengjue.world.structures.CSJStructureType;
 import net.minecraft.world.entity.SpawnPlacements;
@@ -24,6 +27,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import software.bernie.geckolib.GeckoLib;
+import terrablender.api.SurfaceRuleManager;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(ChangShengJue.MOD_ID)
@@ -35,7 +39,6 @@ public class ChangShengJue {
 
     public ChangShengJue() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        IEventBus forgeBus = MinecraftForge.EVENT_BUS;
         eventBus.addListener(this::clientSetup);
         eventBus.addListener(this::setup);
 //        forgeBus.addListener(EventPriority.NORMAL, Structures::addDimensionalSpacing);
@@ -48,8 +51,12 @@ public class ChangShengJue {
         ChangShengJueSound.register(eventBus);
         ChangShengJueVillagers.register(eventBus);
         ChangShengJueCreativeModeTab.register(eventBus);
+        ChangShengJueParticles.register(eventBus);
         CSJStructureType.register(eventBus);
         CSJStructurePieceTypes.register(eventBus);
+        CSJTerrablender.registerBiomes();
+        CSJFoliagePlacers.register(eventBus);
+        CSJTrunkPlacerTypes.register(eventBus);
 //        Registration.init();
 
         GeckoLib.initialize();
@@ -75,6 +82,8 @@ public class ChangShengJue {
             SpawnPlacements.register(ChangShengJueEntity.HIND_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
             SpawnPlacements.register(ChangShengJueEntity.TIGER_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
             SpawnPlacements.register(ChangShengJueEntity.CROC_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD,MOD_ID, CSJSurFaceRules.makeRules());
 
         });
     }

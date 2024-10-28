@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "chang_sheng_jue:block/red_knotweed_bottom"
+    },
+    "half=upper": {
+      "model": "chang_sheng_jue:block/red_knotweed_top"
+    }
+  }
+}

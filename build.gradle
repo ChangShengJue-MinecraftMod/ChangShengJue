@@ -12,7 +12,7 @@ plugins {
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
-version = '1.20.1-0.1.5'
+version = '1.20.1-0.1.7'
 group = 'com.shengchanshe.changshengjue'
 
 base {
@@ -141,6 +141,7 @@ dependencies {
 
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.4.9')
 
+    implementation fg.deobf("com.github.glitchfiend:TerraBlender-forge:${minecraft_version}-${terrablender_version}")
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
@@ -168,6 +169,7 @@ tasks.named('processResources', ProcessResources).configure {
             loader_version_range: loader_version_range,
             mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
             mod_authors: mod_authors, mod_description: mod_description,
+            terrablender_version_range: terrablender_version_range
     ]
     inputs.properties replaceProperties
 

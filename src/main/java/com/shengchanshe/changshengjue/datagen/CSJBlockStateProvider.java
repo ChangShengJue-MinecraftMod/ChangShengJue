@@ -4,6 +4,7 @@ import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -25,6 +26,10 @@ public class  CSJBlockStateProvider extends BlockStateProvider {
 
         simpleBlock(ChangShengJueBlocks.KAOLIN_ORE.get());
         blockWithItem(ChangShengJueBlocks.KAOLIN_ORE);
+
+        simpleBlock(ChangShengJueBlocks.POPLAR_LEAVES.get());
+        blockWithItem(ChangShengJueBlocks.POPLAR_LEAVES);
+
         horizontalBlock(ChangShengJueBlocks.TOOL_TABLE.get(), new ModelFile.UncheckedModelFile(modLoc("block/tool_table")));
         horizontalBlock(ChangShengJueBlocks.DESK.get(), new ModelFile.UncheckedModelFile(modLoc("block/desk")));
     }

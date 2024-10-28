@@ -30,14 +30,13 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class PigTrough extends Block implements WorldlyContainerHolder {
+public class PigTrough extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 8);
     private VoxelShape AABB = Shapes.empty();
     public PigTrough(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(LEVEL, 0));
-        this.registerDefaultState(this.stateDefinition.any().setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(LEVEL, 0).setValue(FACING, Direction.NORTH));
     }
 
     public Direction rightOf(Direction facing) {
@@ -86,7 +85,7 @@ public class PigTrough extends Block implements WorldlyContainerHolder {
     }
 
     private void updateAdjacentTrough(Level world, BlockPos pos, BlockState state) {
-        Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+        Direction facing = state.getValue(FACING);
         Direction rightDirection = rightOf(facing);
         BlockPos pos2 = pos.relative(rightDirection); // 获取右侧的位置
         BlockState rightState = world.getBlockState(pos2);
@@ -101,13 +100,13 @@ public class PigTrough extends Block implements WorldlyContainerHolder {
     @Override
     public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean isMoving) {
         if (!world.isClientSide) {
-            Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+            Direction facing = state.getValue(FACING);
             Direction rightDirection = rightOf(facing);
             BlockPos pos2 = pos.relative(rightDirection); // 获取右侧的位置
             // 检查目标位置是否已经有合适的方块，避免递归放置
             if (world.isEmptyBlock(pos2)) { // 只有当目标位置为空时才放置新方块
                 // 根据需要调整状态
-                BlockState newState = this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, facing.getOpposite());
+                BlockState newState = this.defaultBlockState().setValue(FACING, facing.getOpposite());
                 world.setBlockAndUpdate(pos2, newState);
             }
         }
@@ -116,7 +115,7 @@ public class PigTrough extends Block implements WorldlyContainerHolder {
     @Override
     public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
         if (state.getBlock() != newState.getBlock()) {
-            Direction facing = state.getValue(BlockStateProperties.HORIZONTAL_FACING);
+            Direction facing = state.getValue(FACING);
             Direction rightDirection = rightOf(facing);
             BlockPos pos2 = pos.relative(rightDirection);
             BlockState stateAtPos2 = world.getBlockState(pos2);
@@ -140,13 +139,12 @@ public class PigTrough extends Block implements WorldlyContainerHolder {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(BlockStateProperties.HORIZONTAL_FACING, pContext.getHorizontalDirection().getOpposite());
+        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(BlockStateProperties.HORIZONTAL_FACING);
-        pBuilder.add(LEVEL);
+        pBuilder.add(FACING,LEVEL);
     }
 
     @Override
@@ -158,8 +156,4 @@ public class PigTrough extends Block implements WorldlyContainerHolder {
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 
-    @Override
-    public WorldlyContainer getContainer(BlockState pState, LevelAccessor pLevel, BlockPos pPos) {
-        return null;
-    }
 }

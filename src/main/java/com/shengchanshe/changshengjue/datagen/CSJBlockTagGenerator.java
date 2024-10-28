@@ -40,6 +40,8 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.ZI_TAN_LOG.get())
                 .add(ChangShengJueBlocks.ZI_TAN_WOOD.get())
                 .add(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get());
+        this.tag(CSJTags.Blocks.POPLAR_LOG)
+                .add(ChangShengJueBlocks.POPLAR_LOG.get());
         this.tag(CSJTags.Blocks.LOG)
                 .add(ChangShengJueBlocks.MANGO_LOG.get())
                 .add(ChangShengJueBlocks.GUI_HUA_LOG.get())
@@ -153,7 +155,24 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
 
         //树
         this.tag(BlockTags.LOGS).addTag(CSJTags.Blocks.LOG);
-        this.tag(BlockTags.LOGS_THAT_BURN).addTags(CSJTags.Blocks.LOG).addTag(CSJTags.Blocks.HUANG_HUA_LI_LOG).addTags(CSJTags.Blocks.JI_CHI_MU_LOG).addTags(CSJTags.Blocks.ZI_TAN_LOG);
+        this.tag(BlockTags.LOGS_THAT_BURN).addTags(CSJTags.Blocks.LOG).addTag(CSJTags.Blocks.HUANG_HUA_LI_LOG).addTags(CSJTags.Blocks.JI_CHI_MU_LOG).addTags(CSJTags.Blocks.ZI_TAN_LOG).addTags(CSJTags.Blocks.POPLAR_LOG);
+
+        //花
+        this.tag(BlockTags.FLOWERS)
+                .add(ChangShengJueBlocks.MUGWORT_BLOCK.get())
+                .add(ChangShengJueBlocks.CUCKOO_BLOCK.get())
+                .add(ChangShengJueBlocks.PORTULACA_OLERACEA_BLOCK.get())
+                .add(ChangShengJueBlocks.JASMINE_BLOCK.get())
+                .add(ChangShengJueBlocks.KOCHIA_SCOPARIA_BLOCK.get())
+                .add(ChangShengJueBlocks.SHUI_XIAN_BLOCK.get())
+                .add(ChangShengJueBlocks.TAN_HUA_BLOCK.get())
+                .add(ChangShengJueBlocks.CAPSULE_BLOCK.get())
+                .add(ChangShengJueBlocks.SOLIDAGO.get())
+                .add(ChangShengJueBlocks.GEUM_TRIFLORUM.get())
+                .add(ChangShengJueBlocks.PURPLE_DANDELION.get())
+                .add(ChangShengJueBlocks.RED_KNOTWEED.get())
+                .add(ChangShengJueBlocks.PURPLE_RED_KNOTWEED.get())
+                .add(ChangShengJueBlocks.RAPE_FLOWERS.get());
 
         //Forge矿石标签
         this.tag(Tags.Blocks.ORES).add(ChangShengJueBlocks.AG_ORE.get()).add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get()).add(ChangShengJueBlocks.KAOLIN_ORE.get());
