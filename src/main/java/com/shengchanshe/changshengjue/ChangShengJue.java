@@ -17,6 +17,8 @@ import com.shengchanshe.changshengjue.world.structures.CSJStructurePieceTypes;
 import com.shengchanshe.changshengjue.world.structures.CSJStructureType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -65,12 +67,28 @@ public class ChangShengJue {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(()->{
-//            Structures.setupStructures();
-//            Structures.registerConfiguredStructures();
-//            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.MUGWORT_BLOCK.getId(), ChangShengJueBlocks.POTTED_MUGWORT_BLOCK);
-//            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.CUCKOO_BLOCK.getId(), ChangShengJueBlocks.POTTED_CUCKOO_BLOCK);
-//            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.PORTULACA_OLERACEA_BLOCK.getId(), ChangShengJueBlocks.POTTED_PORTULACA_OLERACEA_BLOCK);
-//            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.JASMINE_BLOCK.getId(), ChangShengJueBlocks.POTTED_JASMINE_BLOCK);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.MUGWORT_BLOCK.getId(), ChangShengJueBlocks.POTTED_MUGWORT_BLOCK);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.CUCKOO_BLOCK.getId(), ChangShengJueBlocks.POTTED_CUCKOO_BLOCK);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.PORTULACA_OLERACEA_BLOCK.getId(), ChangShengJueBlocks.POTTED_PORTULACA_OLERACEA_BLOCK);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.JASMINE_BLOCK.getId(), ChangShengJueBlocks.POTTED_JASMINE_BLOCK);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.KOCHIA_SCOPARIA_BLOCK.getId(), ChangShengJueBlocks.POTTED_KOCHIA_SCOPARIA_BLOCK);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.SHUI_XIAN_BLOCK.getId(), ChangShengJueBlocks.POTTED_SHUI_XIAN_BLOCK);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.TAN_HUA_BLOCK.getId(), ChangShengJueBlocks.POTTED_TAN_HUA_BLOCK);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.SOLIDAGO.getId(), ChangShengJueBlocks.POTTED_SOLIDAGO);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.GEUM_TRIFLORUM.getId(), ChangShengJueBlocks.POTTED_GEUM_TRIFLORUM);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.PURPLE_DANDELION.getId(), ChangShengJueBlocks.POTTED_PURPLE_DANDELION);
+
+//            ((BlueAndWhitePorcelainFlowerPots) ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get()).addPlant(ChangShengJueBlocks.MUGWORT_BLOCK.getId(), ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_POTTED_MUGWORT_BLOCK);
+//            ((BlueAndWhitePorcelainFlowerPots) ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get()).addPlant(ChangShengJueBlocks.CUCKOO_BLOCK.getId(), ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_POTTED_CUCKOO_BLOCK);
+//            ((BlueAndWhitePorcelainFlowerPots) ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get()).addPlant(ChangShengJueBlocks.PORTULACA_OLERACEA_BLOCK.getId(), ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_POTTED_PORTULACA_OLERACEA_BLOCK);
+//            ((BlueAndWhitePorcelainFlowerPots) ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get()).addPlant(ChangShengJueBlocks.JASMINE_BLOCK.getId(), ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_POTTED_JASMINE_BLOCK);
+//            ((BlueAndWhitePorcelainFlowerPots) ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get()).addPlant(ChangShengJueBlocks.KOCHIA_SCOPARIA_BLOCK.getId(), ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_POTTED_KOCHIA_SCOPARIA_BLOCK);
+//            ((BlueAndWhitePorcelainFlowerPots) ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get()).addPlant(ChangShengJueBlocks.SHUI_XIAN_BLOCK.getId(), ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_POTTED_SHUI_XIAN_BLOCK);
+//            ((BlueAndWhitePorcelainFlowerPots) ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get()).addPlant(ChangShengJueBlocks.TAN_HUA_BLOCK.getId(), ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_POTTED_TAN_HUA_BLOCK);
+//            ((BlueAndWhitePorcelainFlowerPots) ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get()).addPlant(ChangShengJueBlocks.SOLIDAGO.getId(), ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_POTTED_SOLIDAGO);
+//            ((BlueAndWhitePorcelainFlowerPots) ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get()).addPlant(ChangShengJueBlocks.GEUM_TRIFLORUM.getId(), ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_POTTED_GEUM_TRIFLORUM);
+//            ((BlueAndWhitePorcelainFlowerPots) ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get()).addPlant(ChangShengJueBlocks.PURPLE_DANDELION.getId(), ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_POTTED_PURPLE_DANDELION);
+
             SpawnPlacements.register(ChangShengJueEntity.BUTTERFLY_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
             SpawnPlacements.register(ChangShengJueEntity.MONKEY_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
             SpawnPlacements.register(ChangShengJueEntity.DRAGONFLY_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);

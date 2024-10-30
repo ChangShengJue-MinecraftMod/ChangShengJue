@@ -1,11 +1,8 @@
 package com.shengchanshe.changshengjue.world.biome.surface;
 
-import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.world.biome.CSJBiomes;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.Noises;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 
 public class CSJSurFaceRules {

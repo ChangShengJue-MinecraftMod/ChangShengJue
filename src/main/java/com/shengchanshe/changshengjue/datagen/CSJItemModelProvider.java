@@ -2,9 +2,11 @@ package com.shengchanshe.changshengjue.datagen;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.item.combat.*;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tiers;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -20,6 +22,9 @@ public class CSJItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         simpleItem(ChangShengJueItems.TONG_QIAN);
         simpleItem(ChangShengJueItems.YI_GUAN_TONG_QIAN);
+        handheldItem(ChangShengJueItems.BRONZE_SWORD);
+        handheldItem(ChangShengJueItems.HAN_JIAN);
+        handheldItem(ChangShengJueItems.KITCHEN_KNIFE);
         bullionsItem(ChangShengJueItems.SILVER_BULLIONS);
         bullionsItem(ChangShengJueItems.GOLD_BULLIONS);
     }

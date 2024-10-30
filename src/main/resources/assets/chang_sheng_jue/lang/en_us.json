@@ -1,10 +1,11 @@
 {
-  "itemGroup.chang_sheng_jue_building_block_tab": "长生决 建筑方块",
-  "itemGroup.chang_sheng_jue_natural_blocks_tab": "长生决 自然方块",
-  "itemGroup.chang_sheng_jue_functional_tab": "长生决 功能方块",
-  "itemGroup.chang_sheng_jue_ingredients_tab": "长生决 原材料",
-  "itemGroup.chang_sheng_jue_food_and_drink_tab": "长生决 食物与饮品",
-  "itemGroup.chang_sheng_jue_spawn_eggs_tab": "长生决 刷怪蛋",
+  "itemGroup.chang_sheng_jue_building_block": "长生决 建筑方块",
+  "itemGroup.chang_sheng_jue_natural_blocks": "长生决 自然方块",
+  "itemGroup.chang_sheng_jue_functional": "长生决 功能方块",
+  "itemGroup.chang_sheng_jue_ingredients": "长生决 原材料",
+  "itemGroup.chang_sheng_jue_food_and_drink": "长生决 食物与饮品",
+  "itemGroup.cahng_sheng_jue_combat": "长生决 战斗用品",
+  "itemGroup.chang_sheng_jue_spawn_eggs": "长生决 刷怪蛋",
 
   "item.chang_sheng_jue.pineapple_seeds": "菠萝种子",
   "item.chang_sheng_jue.pineapple": "菠萝",
@@ -70,6 +71,15 @@
   "item.chang_sheng_jue.mi_fan": "米饭",
   "item.chang_sheng_jue.gui_hua_tang_ou": "桂花糖藕",
   "item.chang_sheng_jue.ba_bao_zhou": "八宝粥",
+
+  "item.chang_sheng_jue.bronze_sword": "青铜剑",
+  "item.chang_sheng_jue.han_jian": "汉剑",
+  "item.chang_sheng_jue.heng_dao": "横刀",
+  "item.chang_sheng_jue.large_knife": "大刀",
+  "item.chang_sheng_jue.red_tasselled_spear": "红缨枪",
+  "item.chang_sheng_jue.soft_sword": "软剑",
+  "item.chang_sheng_jue.pan_hua_gun": "盘花棍 ",
+  "item.chang_sheng_jue.kitchen_knife": "菜刀",
 
   "block.chang_sheng_jue.mango_log": "芒果原木",
   "block.chang_sheng_jue.mango_leaves": "芒果树叶",
@@ -145,18 +155,24 @@
   "block.chang_sheng_jue.potted_jasmine_block": "茉莉花",
 
   "block.chang_sheng_jue.kochia_scoparia_block": "地肤草",
+  "block.chang_sheng_jue.potted_kochia_scoparia_block": "地肤草",
 
   "block.chang_sheng_jue.shui_xian_block": "水仙花",
+  "block.chang_sheng_jue.potted_kochia_scoparia_block": "水仙花",
 
   "block.chang_sheng_jue.tan_hua_block": "昙花",
+  "block.chang_sheng_jue.potted_tan_hua_block": "昙花",
 
   "block.chang_sheng_jue.stipa_grandis": "大针茅",
   "block.chang_sheng_jue.tall_stipa_grandis": "高大的大针茅",
   "block.chang_sheng_jue.tall_stipa_grandis_variant": "高大的异种大针茅",
 
   "block.chang_sheng_jue.solidago": "秋麒麟",
+  "block.chang_sheng_jue.potted_solidago": "秋麒麟",
   "block.chang_sheng_jue.geum_triflorum": "三花路边青",
+  "block.chang_sheng_jue.potted_geum_triflorum": "三花路边青",
   "block.chang_sheng_jue.purple_dandelion": "紫色蒲公英",
+  "block.chang_sheng_jue.potted_purple_dandelion": "紫色蒲公英",
   "block.chang_sheng_jue.red_knotweed": "红蓼",
   "block.chang_sheng_jue.purple_red_knotweed": "红蓼异种",
   "block.chang_sheng_jue.rape_flowers": "油菜花",
@@ -296,6 +312,7 @@
   "entity.chang_sheng_jue.cicada_entity": "蝉",
   "entity.chang_sheng_jue.crane_entity": "鹤",
   "entity.chang_sheng_jue.male_peacock_entity": "孔雀",
+  "entity.chang_sheng_jue.female_peacock_entity": "孔雀",
   "entity.chang_sheng_jue.stag_entity": "鹿",
   "entity.chang_sheng_jue.hind_entity": "鹿",
   "entity.chang_sheng_jue.tiger_entity": "老虎",

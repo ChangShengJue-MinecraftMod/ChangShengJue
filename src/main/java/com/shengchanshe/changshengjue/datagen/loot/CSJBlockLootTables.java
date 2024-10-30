@@ -8,7 +8,6 @@ import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.IntRange;
@@ -183,6 +182,19 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.SOLIDAGO.get());
         this.dropSelf(ChangShengJueBlocks.GEUM_TRIFLORUM.get());
         this.dropSelf(ChangShengJueBlocks.PURPLE_DANDELION.get());
+
+        //花盆和盆栽花
+        this.dropSelf(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get());
+        this.add(ChangShengJueBlocks.POTTED_MUGWORT_BLOCK.get(),createPotFlowerItemTable(ChangShengJueBlocks.MUGWORT_BLOCK.get()));
+        this.add(ChangShengJueBlocks.POTTED_CUCKOO_BLOCK.get(),createPotFlowerItemTable(ChangShengJueBlocks.CUCKOO_BLOCK.get()));
+        this.add(ChangShengJueBlocks.POTTED_PORTULACA_OLERACEA_BLOCK.get(),createPotFlowerItemTable(ChangShengJueBlocks.PORTULACA_OLERACEA_BLOCK.get()));
+        this.add(ChangShengJueBlocks.POTTED_JASMINE_BLOCK.get(),createPotFlowerItemTable(ChangShengJueBlocks.JASMINE_BLOCK.get()));
+        this.add(ChangShengJueBlocks.POTTED_KOCHIA_SCOPARIA_BLOCK.get(),createPotFlowerItemTable(ChangShengJueBlocks.KOCHIA_SCOPARIA_BLOCK.get()));
+        this.add(ChangShengJueBlocks.POTTED_SHUI_XIAN_BLOCK.get(),createPotFlowerItemTable(ChangShengJueBlocks.SHUI_XIAN_BLOCK.get()));
+        this.add(ChangShengJueBlocks.POTTED_TAN_HUA_BLOCK.get(),createPotFlowerItemTable(ChangShengJueBlocks.TAN_HUA_BLOCK.get()));
+        this.add(ChangShengJueBlocks.POTTED_SOLIDAGO.get(),createPotFlowerItemTable(ChangShengJueBlocks.SOLIDAGO.get()));
+        this.add(ChangShengJueBlocks.POTTED_GEUM_TRIFLORUM.get(),createPotFlowerItemTable(ChangShengJueBlocks.GEUM_TRIFLORUM.get()));
+        this.add(ChangShengJueBlocks.POTTED_PURPLE_DANDELION.get(),createPotFlowerItemTable(ChangShengJueBlocks.PURPLE_DANDELION.get()));
 
         //建筑
         this.dropSelf(ChangShengJueBlocks.ZHU_TAI_BLOCK.get());

@@ -42,7 +42,7 @@ public class PoplarDefoliationParticle extends TextureSheetParticle {
     public void tick() {
         super.tick();
         fadeOut();
-//         计算当前生命周期的进度
+        // 计算当前生命周期的进度
         float lifeProgress = (float)this.age / (float)this.lifetime;
 
         // 根据生命周期进度插值计算颜色
@@ -50,7 +50,7 @@ public class PoplarDefoliationParticle extends TextureSheetParticle {
         float green = this.gCol + lifeProgress * (endGreen - this.gCol);
         float blue = this.bCol + lifeProgress * (endBlue - this.bCol);
 
-//         设置当前颜色
+        // 设置当前颜色
         this.setColor(red, green, blue);
 
         this.xd = 0.05;

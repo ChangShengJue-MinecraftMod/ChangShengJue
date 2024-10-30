@@ -2,8 +2,7 @@
   "credit": "Made with Blockbench",
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "chang_sheng_jue:block/jasmine_block",
-    "particle": "chang_sheng_jue:block/jasmine_block"
+    "cross": "chang_sheng_jue:block/jasmine_block"
   },
   "elements": [
     {
@@ -12,9 +11,9 @@
       "shade": false,
       "rotation": {"angle": 45, "axis": "y", "origin": [8, 0, 8]},
       "faces": {
-        "north": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+        "north": {"uv": [0, 0, 15, 16], "texture": "#cross"},
         "east": {"uv": [0, 0, 0, 8], "texture": "#cross"},
-        "south": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+        "south": {"uv": [0, 0, 15, 16], "texture": "#cross"},
         "west": {"uv": [0, 0, 0, 8], "texture": "#cross"},
         "up": {"uv": [8, 0, 0, 0], "texture": "#cross"},
         "down": {"uv": [8, 0, 0, 0], "texture": "#cross"}
@@ -26,9 +25,9 @@
       "shade": false,
       "rotation": {"angle": -45, "axis": "y", "origin": [8, 0, 8]},
       "faces": {
-        "north": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+        "north": {"uv": [0, 0, 15, 16], "texture": "#cross"},
         "east": {"uv": [0, 0, 0, 8], "texture": "#cross"},
-        "south": {"uv": [0, 0, 16, 16], "texture": "#cross"},
+        "south": {"uv": [0, 0, 15, 16], "texture": "#cross"},
         "west": {"uv": [0, 0, 0, 8], "texture": "#cross"},
         "up": {"uv": [8, 0, 0, 0], "texture": "#cross"},
         "down": {"uv": [8, 0, 0, 0], "texture": "#cross"}

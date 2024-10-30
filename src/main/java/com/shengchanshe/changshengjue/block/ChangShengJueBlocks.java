@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.block;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.building.*;
 import com.shengchanshe.changshengjue.block.cropper.*;
+import com.shengchanshe.changshengjue.block.decoration.BlueAndWhitePorcelainFlowerPots;
 import com.shengchanshe.changshengjue.block.painting.BigPaintingScroll;
 import com.shengchanshe.changshengjue.block.painting.HighPaintingScroll;
 import com.shengchanshe.changshengjue.block.painting.PaintingScroll;
@@ -21,6 +22,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -47,6 +49,8 @@ import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
+
+import static net.minecraft.world.level.block.Blocks.AIR;
 
 public class ChangShengJueBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ChangShengJue.MOD_ID);
@@ -184,10 +188,13 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> POPLAR_DEFOLIATION =registerBlock("poplar_defoliation",
             ()-> new PoplarDefoliation(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable()
                     .noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY)),100);
-
-    //花花草草
+    //花盆和花花草草
+    public static final RegistryObject<Block> BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS = registerBlock("blue_and_white_porcelain_flower_pots",
+            ()-> new BlueAndWhitePorcelainFlowerPots(BlockBehaviour.Properties.of().noOcclusion().instabreak().pushReaction(PushReaction.DESTROY)),0);
+    //艾蒿
     public static final RegistryObject<Block> MUGWORT_BLOCK =registerBlock("mugwort_block",
-            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()){
+            ()-> new FlowerBlock(()-> MobEffects.LEVITATION,8,
+                    BlockBehaviour.Properties.copy(Blocks.DANDELION)){
                 protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
                 @Override
                 public VoxelShape getShape(BlockState p_53517_, BlockGetter p_53518_, BlockPos p_53519_, CollisionContext p_53520_) {
@@ -195,17 +202,17 @@ public class ChangShengJueBlocks {
                     return SHAPE.move(vec3.x, vec3.y, vec3.z);
                 }
             },0);
-//    public static final RegistryObject<Block> POTTED_MUGWORT_BLOCK =registerBlockWithoutBlockItem("potted_mugwort_block",
-//            ()-> new FlowerPotBlock(null,ChangShengJueBlocks.MUGWORT_BLOCK,BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    public static final RegistryObject<Block> POTTED_MUGWORT_BLOCK =registerBlockWithoutBlockItem("potted_mugwort_block",
+            ()-> new FlowerPotBlock(()->(FlowerPotBlock) Blocks.FLOWER_POT,ChangShengJueBlocks.MUGWORT_BLOCK,BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
 
+    //杜鹃
     public static final RegistryObject<Block> CUCKOO_BLOCK =registerBlock("cuckoo_block",
-            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()),0);
-//    public static final RegistryObject<Block> POTTED_CUCKOO_BLOCK =registerBlockWithoutBlockItem("potted_cuckoo_block",
-//            ()-> new FlowerPotBlock(null,ChangShengJueBlocks.CUCKOO_BLOCK,BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
-
-
+            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION)),0);
+    public static final RegistryObject<Block> POTTED_CUCKOO_BLOCK =registerBlockWithoutBlockItem("potted_cuckoo_block",
+            ()-> new FlowerPotBlock(()->(FlowerPotBlock) Blocks.FLOWER_POT,ChangShengJueBlocks.CUCKOO_BLOCK,BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    //马齿苋
     public static final RegistryObject<Block> PORTULACA_OLERACEA_BLOCK =registerBlock("portulaca_oleracea_block",
-            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()){
+            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION)){
                 protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D);
                 @Override
                 public VoxelShape getShape(BlockState p_53517_, BlockGetter p_53518_, BlockPos p_53519_, CollisionContext p_53520_) {
@@ -213,16 +220,17 @@ public class ChangShengJueBlocks {
                     return SHAPE.move(vec3.x, vec3.y, vec3.z);
                 }
             },0);
-//    public static final RegistryObject<Block> POTTED_PORTULACA_OLERACEA_BLOCK =registerBlockWithoutBlockItem("potted_portulaca_oleracea_block",
-//            ()-> new FlowerPotBlock(null,ChangShengJueBlocks.PORTULACA_OLERACEA_BLOCK,BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
-
+    public static final RegistryObject<Block> POTTED_PORTULACA_OLERACEA_BLOCK =registerBlockWithoutBlockItem("potted_portulaca_oleracea_block",
+            ()-> new FlowerPotBlock(()->(FlowerPotBlock) Blocks.FLOWER_POT,ChangShengJueBlocks.PORTULACA_OLERACEA_BLOCK,BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    //茉莉花
     public static final RegistryObject<Block> JASMINE_BLOCK =registerBlock("jasmine_block",
-            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()),0);
-//    public static final RegistryObject<Block> POTTED_JASMINE_BLOCK = registerBlockWithoutBlockItem("potted_jasmine_block",
-//            ()-> new FlowerPotBlock(null,ChangShengJueBlocks.JASMINE_BLOCK,BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION)),0);
+    public static final RegistryObject<Block> POTTED_JASMINE_BLOCK = registerBlockWithoutBlockItem("potted_jasmine_block",
+            ()-> new FlowerPotBlock(()->(FlowerPotBlock) Blocks.FLOWER_POT,ChangShengJueBlocks.JASMINE_BLOCK,BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
 
+    //地肤草
     public static final RegistryObject<Block> KOCHIA_SCOPARIA_BLOCK =registerBlock("kochia_scoparia_block",
-            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()){
+            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION)){
                 protected static final VoxelShape SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
                 @Override
                 public VoxelShape getShape(BlockState p_53517_, BlockGetter p_53518_, BlockPos p_53519_, CollisionContext p_53520_) {
@@ -230,9 +238,12 @@ public class ChangShengJueBlocks {
                     return SHAPE.move(vec3.x, vec3.y, vec3.z);
                 }
             },0);
+    public static final RegistryObject<Block> POTTED_KOCHIA_SCOPARIA_BLOCK = registerBlockWithoutBlockItem("potted_kochia_scoparia_block",
+            ()-> new FlowerPotBlock(()->(FlowerPotBlock) Blocks.FLOWER_POT,ChangShengJueBlocks.KOCHIA_SCOPARIA_BLOCK,BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
 
+    //水仙
     public static final RegistryObject<Block> SHUI_XIAN_BLOCK =registerBlock("shui_xian_block",
-            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()){
+            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION)){
                 protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
                 @Override
                 public VoxelShape getShape(BlockState p_53517_, BlockGetter p_53518_, BlockPos p_53519_, CollisionContext p_53520_) {
@@ -240,33 +251,46 @@ public class ChangShengJueBlocks {
                     return SHAPE.move(vec3.x, vec3.y, vec3.z);
                 }
             },0);
-
+    public static final RegistryObject<Block> POTTED_SHUI_XIAN_BLOCK = registerBlockWithoutBlockItem("potted_shui_xian_block",
+            ()-> new FlowerPotBlock(()->(FlowerPotBlock) Blocks.FLOWER_POT,ChangShengJueBlocks.SHUI_XIAN_BLOCK,BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    //昙花
     public static final RegistryObject<Block> TAN_HUA_BLOCK =registerBlock("tan_hua_block",
-            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()),0);
-
-    public static final RegistryObject<Block> CAPSULE_BLOCK =registerBlockWithoutBlockItem("capsule_block",
-            ()-> new CapsuleBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
-
-    public static final RegistryObject<Block> STIPA_GRANDIS =registerBlock("stipa_grandis",
-            ()-> new TallGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS)),0);
-
+            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION)),0);
+    public static final RegistryObject<Block> POTTED_TAN_HUA_BLOCK = registerBlockWithoutBlockItem("potted_tan_hua_block",
+            ()-> new FlowerPotBlock(()->(FlowerPotBlock) Blocks.FLOWER_POT,ChangShengJueBlocks.TAN_HUA_BLOCK,BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    //秋麒麟
     public static final RegistryObject<Block> SOLIDAGO =registerBlock("solidago",
-            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()),0);
+            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION)),0);
+    public static final RegistryObject<Block> POTTED_SOLIDAGO = registerBlockWithoutBlockItem("potted_solidago",
+            ()-> new FlowerPotBlock(()->(FlowerPotBlock) Blocks.FLOWER_POT,ChangShengJueBlocks.SOLIDAGO,BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    //三花路边青
     public static final RegistryObject<Block> GEUM_TRIFLORUM =registerBlock("geum_triflorum",
-            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()),0);
+            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION)),0);
+    public static final RegistryObject<Block> POTTED_GEUM_TRIFLORUM = registerBlockWithoutBlockItem("potted_geum_triflorum",
+            ()-> new FlowerPotBlock(()->(FlowerPotBlock) Blocks.FLOWER_POT,ChangShengJueBlocks.GEUM_TRIFLORUM,BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    //紫色蒲公英
     public static final RegistryObject<Block> PURPLE_DANDELION =registerBlock("purple_dandelion",
-            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()),0);
-
-    public static final RegistryObject<Block> TALL_STIPA_GRANDIS =registerBlock("tall_stipa_grandis",
-            ()-> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.TALL_GRASS)),0);
-    public static final RegistryObject<Block> TALL_STIPA_GRANDIS_VARIANT =registerBlock("tall_stipa_grandis_variant",
-            ()-> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.TALL_GRASS)),0);
+            ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION)),0);
+    public static final RegistryObject<Block> POTTED_PURPLE_DANDELION = registerBlockWithoutBlockItem("potted_purple_dandelion",
+            ()-> new FlowerPotBlock(()->(FlowerPotBlock) Blocks.FLOWER_POT,ChangShengJueBlocks.PURPLE_DANDELION,BlockBehaviour.Properties.copy(Blocks.POTTED_DANDELION).noOcclusion()));
+    //红蓼
     public static final RegistryObject<Block> RED_KNOTWEED =registerBlock("red_knotweed",
             ()-> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.SUNFLOWER)),0);
     public static final RegistryObject<Block> PURPLE_RED_KNOTWEED =registerBlock("purple_red_knotweed",
             ()-> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.SUNFLOWER)),0);
+    //油菜花
     public static final RegistryObject<Block> RAPE_FLOWERS =registerBlock("rape_flowers",
             ()-> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.SUNFLOWER)),0);
+    //荠菜
+    public static final RegistryObject<Block> CAPSULE_BLOCK =registerBlockWithoutBlockItem("capsule_block",
+            ()-> new CapsuleBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
+    //大针茅
+    public static final RegistryObject<Block> STIPA_GRANDIS =registerBlock("stipa_grandis",
+            ()-> new TallGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS)),0);
+    public static final RegistryObject<Block> TALL_STIPA_GRANDIS =registerBlock("tall_stipa_grandis",
+            ()-> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.TALL_GRASS)),0);
+    public static final RegistryObject<Block> TALL_STIPA_GRANDIS_VARIANT =registerBlock("tall_stipa_grandis_variant",
+            ()-> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.TALL_GRASS)),0);
 
     //建筑
     public static final RegistryObject<Block> ZHU_TAI_BLOCK =registerBlock("zhu_tai_block",

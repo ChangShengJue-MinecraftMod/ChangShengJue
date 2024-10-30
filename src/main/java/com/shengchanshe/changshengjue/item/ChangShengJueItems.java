@@ -2,15 +2,14 @@ package com.shengchanshe.changshengjue.item;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
-import com.shengchanshe.changshengjue.creativemodetab.ChangShengJueCreativeModeTab;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
+import com.shengchanshe.changshengjue.item.combat.BronzeSword;
+import com.shengchanshe.changshengjue.item.combat.*;
 import com.shengchanshe.changshengjue.item.foods.ChangShengJueFoods;
 import com.shengchanshe.changshengjue.item.foods.DurianItem;
 import com.shengchanshe.changshengjue.item.items.PeacockEggItem;
 import net.minecraft.core.Direction;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -217,8 +216,24 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> AG_INGOT = ITEMS.register("ag_ingot",
             ()-> new Item((new Item.Properties())));
 
-    //画
-//    public static final RegistryObject<Item> PAINTING_SCROLL = ITEMS.register("painting_scroll",()-> new HangingEntityItem(EntityType.PAINTING, new Item.Properties()));
+    //战斗
+    public static final RegistryObject<Item> BRONZE_SWORD = ITEMS.register("bronze_sword",
+            ()-> new BronzeSword(Tiers.IRON, 3, -2.4F, new Item.Properties()));
+    public static final RegistryObject<Item> HAN_JIAN = ITEMS.register("han_jian",
+            ()-> new HanJian(Tiers.IRON, 3, -2.4F, new Item.Properties()));
+    public static final RegistryObject<Item> HENG_DAO = ITEMS.register("heng_dao",
+            ()-> new HengDao(Tiers.IRON, 3, -2.4F, new Item.Properties()));
+    public static final RegistryObject<Item> LARGE_KNIFE = ITEMS.register("large_knife",
+            ()-> new LargeKnife(Tiers.IRON, 3, -2.4F, new Item.Properties()));
+    public static final RegistryObject<Item> RED_TASSELLED_SPEAR = ITEMS.register("red_tasselled_spear",
+            ()-> new RedTasselledSpear(Tiers.IRON, 3, -2.4F, new Item.Properties()));
+    public static final RegistryObject<Item> SOFT_SWORD = ITEMS.register("soft_sword",
+            ()-> new SoftSword(Tiers.IRON, 3, -2.4F, new Item.Properties()));
+    public static final RegistryObject<Item> PAN_HUA_GUN = ITEMS.register("pan_hua_gun",
+            ()-> new PanHuaGun(Tiers.IRON, 3, -2.4F, new Item.Properties()));
+    public static final RegistryObject<Item> KITCHEN_KNIFE = ITEMS.register("kitchen_knife",
+            ()-> new BronzeSword(Tiers.IRON, 3, -2.4F, new Item.Properties()));
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

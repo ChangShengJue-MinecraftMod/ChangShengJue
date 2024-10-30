@@ -3,10 +3,13 @@ package com.shengchanshe.changshengjue.creativemodetab;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.item.combat.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tiers;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -15,8 +18,8 @@ public class ChangShengJueCreativeModeTab {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB_DEFERRED_REGISTER = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ChangShengJue.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_NATURAL_BLOCKS_TAB = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_natural_blocks_tab",()-> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.chang_sheng_jue_natural_blocks_tab")).icon(() ->
+    public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_NATURAL_BLOCKS = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_natural_blocks",()-> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.chang_sheng_jue_natural_blocks")).icon(() ->
             new ItemStack(ChangShengJueBlocks.TAN_HUA_BLOCK.get())).displayItems((parameters,output)->{
                 output.accept(ChangShengJueBlocks.CANTALOUPE_BLOCK.get());
                 output.accept(ChangShengJueBlocks.MANGO_LEAVES.get());
@@ -72,12 +75,14 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.SOYBEAN.get());
                 output.accept(ChangShengJueItems.REDBEAN.get());
 
+                output.accept(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get());
+
                 output.accept(ChangShengJueBlocks.AG_ORE.get());
                 output.accept(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get());
                 output.accept(ChangShengJueBlocks.KAOLIN_ORE.get());
             }).build());
-    public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_BUILDING_BLOCK_TAB = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_building_block_tab",()-> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.chang_sheng_jue_building_block_tab")).icon(() ->
+    public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_BUILDING_BLOCK = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_building_block",()-> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.chang_sheng_jue_building_block")).icon(() ->
                     new ItemStack(ChangShengJueBlocks.MANGO_LOG.get())).displayItems((parameters,output)->{
                 output.accept(ChangShengJueBlocks.MANGO_LOG.get());
                 output.accept(ChangShengJueBlocks.BANANA_LOG.get());
@@ -177,8 +182,8 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_2.get());
 
             }).build());
-    public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_FUNCTIONAL_TAB = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_functional_tab",()-> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.chang_sheng_jue_functional_tab")).icon(() ->
+    public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_FUNCTIONAL = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_functional",()-> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.chang_sheng_jue_functional")).icon(() ->
                     new ItemStack(ChangShengJueBlocks.TOOL_TABLE.get())).displayItems((parameters,output)->{
                 output.accept(ChangShengJueBlocks.STONE_LAMPS_BLOCK.get());
                 output.accept(ChangShengJueBlocks.YELLOW_STONE_LION_BLOCK.get());
@@ -196,8 +201,8 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.DESK.get());
                 output.accept(ChangShengJueBlocks.PIG_TROUGH.get());
             }).build());
-    public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_FOOD_AND_DRINK_TAB = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_food_and_drink_tab",()-> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.chang_sheng_jue_food_and_drink_tab")).icon(() ->
+    public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_FOOD_AND_DRINK = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_food_and_drink",()-> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.chang_sheng_jue_food_and_drink")).icon(() ->
                     new ItemStack(ChangShengJueItems.PINEAPPLE.get())).displayItems((parameters,output)->{
                 output.accept(ChangShengJueItems.PINEAPPLE.get());
                 output.accept(ChangShengJueItems.TOMATO.get());
@@ -235,8 +240,8 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.CI_WAN.get());
             }).build());
 
-    public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_INGREDIENTS_TAB = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_ingredients_tab",()-> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.chang_sheng_jue_ingredients_tab")).icon(() ->
+    public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_INGREDIENTS = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_ingredients",()-> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.chang_sheng_jue_ingredients")).icon(() ->
                     new ItemStack(ChangShengJueItems.GU_SUI.get())).displayItems((parameters,output)->{
                 output.accept(ChangShengJueItems.SOYBEAN.get());
                 output.accept(ChangShengJueItems.REDBEAN.get());
@@ -263,9 +268,20 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.RAW_AG.get());
                 output.accept(ChangShengJueItems.AG_INGOT.get());
             }).build());
-
-    public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_SPAWN_EGGS_TAB = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_spawn_eggs_tab",()-> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.chang_sheng_jue_spawn_eggs_tab")).icon(() ->
+    public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_COMBAT = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("cahng_sheng_jue_combat",()-> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.cahng_sheng_jue_combat")).icon(() ->
+                    new ItemStack(ChangShengJueItems.BRONZE_SWORD.get())).displayItems((parameters,output)->{
+                output.accept(ChangShengJueItems.BRONZE_SWORD.get());
+                output.accept(ChangShengJueItems.HAN_JIAN.get());
+                output.accept(ChangShengJueItems.HENG_DAO.get());
+                output.accept(ChangShengJueItems.LARGE_KNIFE.get());
+                output.accept(ChangShengJueItems.RED_TASSELLED_SPEAR.get());
+                output.accept(ChangShengJueItems.SOFT_SWORD.get());
+                output.accept(ChangShengJueItems.PAN_HUA_GUN.get());
+                output.accept(ChangShengJueItems.KITCHEN_KNIFE.get());
+            }).build());
+    public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_SPAWN_EGGS = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_spawn_eggs",()-> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.chang_sheng_jue_spawn_eggs")).icon(() ->
                     new ItemStack(ChangShengJueItems.MONKEY_EGG.get())).displayItems((parameters,output)->{
                 output.accept(ChangShengJueItems.BUTTERFLY_EGG.get());
                 output.accept(ChangShengJueItems.MONKEY_EGG.get());

@@ -265,12 +265,11 @@ public class CSJConfiguredFeatures {
 
         register(context,POPLAR_TREE,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ChangShengJueBlocks.POPLAR_LOG.get()),
-                new PoplarTrunkPlacer(16, 4, 0),
+                new StraightTrunkPlacer(16, 4, 0),
                 BlockStateProvider.simple(ChangShengJueBlocks.POPLAR_LEAVES.get()),
-                new PoplarFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0), 15),
+                new PoplarFoliagePlacer(UniformInt.of(2, 3), UniformInt.of(0, 0),9),
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 //        SimpleWeightedRandomList.Builder<BlockState> builder = SimpleWeightedRandomList.builder();
-//
 //                builder.add(Blocks.PINK_PETALS.defaultBlockState(), 1);
 //        FeatureUtils.register(context, FLOWER_CHERRY, Feature.FLOWER,
 //                new RandomPatchConfiguration(96, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(builder)))));
@@ -307,6 +306,7 @@ public class CSJConfiguredFeatures {
                         new SimpleBlockConfiguration(BlockStateProvider.simple(ChangShengJueBlocks.RAPE_FLOWERS.get())))));
 
         register(context,STIPA_GRANDIS,Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(ChangShengJueBlocks.STIPA_GRANDIS.get()), 50));
+
         register(context,TALL_STIPA_GRANDIS,Feature.RANDOM_PATCH, grassPatch(new WeightedStateProvider(
                 SimpleWeightedRandomList.<BlockState>builder().add(ChangShengJueBlocks.TALL_STIPA_GRANDIS.get().defaultBlockState(), 7)
                         .add(ChangShengJueBlocks.TALL_STIPA_GRANDIS_VARIANT.get().defaultBlockState(), 2)

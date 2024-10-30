@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.event;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
+import com.shengchanshe.changshengjue.block.entity.render.BlueAndWhitePorcelainFlowerPotsEntityRender;
 import com.shengchanshe.changshengjue.block.entity.render.PotteryWheelEntityRender;
 import com.shengchanshe.changshengjue.block.entity.render.ToolTableEntityRender;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
@@ -25,6 +26,7 @@ public class ModEventClientBusEvents {
         //方块实体的渲染
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.POTTERY_WHEEL_ENTITY.get(), PotteryWheelEntityRender::new);
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.TOOL_TABLE_ENTITY.get(), ToolTableEntityRender::new);
+        event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS_ENTITY.get(), BlueAndWhitePorcelainFlowerPotsEntityRender::new);
     }
 
     @SubscribeEvent

@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.block;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.block.entity.BlueAndWhitePorcelainFlowerPotsEntity;
 import com.shengchanshe.changshengjue.block.entity.PotteryWheelEntity;
 import com.shengchanshe.changshengjue.block.entity.ToolTableEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -18,6 +19,11 @@ public class ChangShengJueBlocksEntities {
 
     public static final RegistryObject<BlockEntityType<ToolTableEntity>> TOOL_TABLE_ENTITY =
             BLOCK_ENTITYES.register("tool_table_entity",()-> BlockEntityType.Builder.of(ToolTableEntity::new, ChangShengJueBlocks.TOOL_TABLE.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<BlueAndWhitePorcelainFlowerPotsEntity>> BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS_ENTITY =
+            BLOCK_ENTITYES.register("blue_and_white_porcelain_flower_pots_entity",
+                    ()-> BlockEntityType.Builder.of(BlueAndWhitePorcelainFlowerPotsEntity::new, ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get()).build(null));
+
 
     public static void register(IEventBus eventBus){
         BLOCK_ENTITYES.register(eventBus);

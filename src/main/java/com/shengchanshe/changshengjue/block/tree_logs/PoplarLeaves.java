@@ -39,7 +39,7 @@ public class PoplarLeaves extends LeavesBlock {
         super.tick(pState, pLevel, pPos, pRandom);
         if (!pLevel.isClientSide()) {
             // 假设每次随机更新有10%的机会生成落叶
-            if (pRandom.nextInt(10) >= 6) {
+            if (pRandom.nextInt(10) == 0) {
                 BlockPos groundPos = findGroundPosition(pLevel, pPos);
                 if (groundPos != null) {
                     BlockPos leafPos = groundPos.above();
@@ -63,6 +63,7 @@ public class PoplarLeaves extends LeavesBlock {
         BlockPos pos = start.below();
         while (pos.getY() > pLevel.getMinBuildHeight()) {
             BlockState state = pLevel.getBlockState(pos);
+
             if (!state.is(Blocks.AIR)) {
                 return pos;
             }

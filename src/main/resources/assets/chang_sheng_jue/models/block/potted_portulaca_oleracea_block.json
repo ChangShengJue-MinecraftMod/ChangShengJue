@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/flower_pot_cross",
-  "textures": {
-    "plant":  "chang_sheng_jue:block/portulaca_oleracea_block"
-  }
-}
