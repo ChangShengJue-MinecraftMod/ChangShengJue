@@ -68,13 +68,13 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
 
         this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get());
         this.dropSelf(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get());
-        this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_LOG.get());
         this.dropSelf(ChangShengJueBlocks.STRIPPED_JI_CHI_MU_LOG.get());
-        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.ZI_TAN_LOG.get());
         this.dropSelf(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get());
-        this.dropSelf(ChangShengJueBlocks.ZI_TAN_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.ZI_TAN_PLANKS.get());
 
         this.dropSelf(ChangShengJueBlocks.POPLAR_LOG.get());
         this.dropSelf(ChangShengJueBlocks.POPLAR_SAPLING.get());

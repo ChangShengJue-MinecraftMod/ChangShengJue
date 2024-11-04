@@ -234,6 +234,10 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> KITCHEN_KNIFE = ITEMS.register("kitchen_knife",
             ()-> new BronzeSword(Tiers.IRON, 3, -2.4F, new Item.Properties()));
 
+    //蚕丝
+//    public static final RegistryObject<Item> KITCHEN_KNIFE = ITEMS.register("kitchen_knife",
+//            ()-> new BronzeSword(Tiers.IRON, 3, -2.4F, new Item.Properties()));
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

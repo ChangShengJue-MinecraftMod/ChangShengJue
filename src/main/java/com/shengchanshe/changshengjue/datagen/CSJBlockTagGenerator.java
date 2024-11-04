@@ -30,15 +30,15 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(CSJTags.Blocks.JI_CHI_MU_LOG)
                 .add(ChangShengJueBlocks.JI_CHI_MU_LOG.get())
-                .add(ChangShengJueBlocks.JI_CHI_MU_WOOD.get())
+                .add(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get())
                 .add(ChangShengJueBlocks.STRIPPED_JI_CHI_MU_LOG.get());
         this.tag(CSJTags.Blocks.HUANG_HUA_LI_LOG)
                 .add(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get())
-                .add(ChangShengJueBlocks.HUANG_HUA_LI_WOOD.get())
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get())
                 .add(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get());
         this.tag(CSJTags.Blocks.ZI_TAN_LOG)
                 .add(ChangShengJueBlocks.ZI_TAN_LOG.get())
-                .add(ChangShengJueBlocks.ZI_TAN_WOOD.get())
+                .add(ChangShengJueBlocks.ZI_TAN_PLANKS.get())
                 .add(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get());
         this.tag(CSJTags.Blocks.POPLAR_LOG)
                 .add(ChangShengJueBlocks.POPLAR_LOG.get());

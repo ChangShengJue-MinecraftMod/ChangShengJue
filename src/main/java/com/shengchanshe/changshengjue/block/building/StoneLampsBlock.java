@@ -13,10 +13,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Random;
 
-public class StoneLampsBlock extends TorchBlock {
+public class StoneLampsBlock extends Block {
     protected static final VoxelShape AABB = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
-    public StoneLampsBlock(Properties p_57491_, ParticleOptions p_57492_) {
-        super(p_57491_, p_57492_);
+    protected final ParticleOptions flameParticle;
+    public StoneLampsBlock(Properties properties, ParticleOptions particleOptions) {
+        super(properties);
+        this.flameParticle = particleOptions;
     }
 
     @Override

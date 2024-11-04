@@ -93,13 +93,13 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.MEI_HUA_LOG.get());
                 output.accept(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get());
                 output.accept(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get());
-                output.accept(ChangShengJueBlocks.HUANG_HUA_LI_WOOD.get());
+                output.accept(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get());
                 output.accept(ChangShengJueBlocks.JI_CHI_MU_LOG.get());
                 output.accept(ChangShengJueBlocks.STRIPPED_JI_CHI_MU_LOG.get());
-                output.accept(ChangShengJueBlocks.JI_CHI_MU_WOOD.get());
+                output.accept(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get());
                 output.accept(ChangShengJueBlocks.ZI_TAN_LOG.get());
                 output.accept(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get());
-                output.accept(ChangShengJueBlocks.ZI_TAN_WOOD.get());
+                output.accept(ChangShengJueBlocks.ZI_TAN_PLANKS.get());
                 output.accept(ChangShengJueBlocks.POPLAR_LOG.get());
                 output.accept(ChangShengJueBlocks.HANG_TU_BLOCK.get());
                 output.accept(ChangShengJueBlocks.TU_PEI_BLOCK.get());

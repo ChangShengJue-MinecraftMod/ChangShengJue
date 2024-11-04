@@ -8,6 +8,7 @@ import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.common.Tags;
@@ -150,8 +151,8 @@ public class CSJBiomeModifiers {
 //                GenerationStep.Decoration.VEGETAL_DECORATION));
         //哈密瓜
         context.register(ADD_CANTALOUPE_BLOCK,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-                biomes.getOrThrow(Tags.Biomes.IS_SANDY),
-                HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.CANTALOUPE_BLOCK_PLACED_KEY)),
+                biomes.getOrThrow(BiomeTags.IS_JUNGLE),
+                        HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.CANTALOUPE_BLOCK_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
 //        context.register(ADD_BUTTERFLY_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),

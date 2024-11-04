@@ -322,7 +322,7 @@ public class CSJConfiguredFeatures {
                         new SimpleBlockConfiguration(BlockStateProvider.simple(ChangShengJueBlocks.CANTALOUPE_BLOCK.get())),
                         BlockPredicate.allOf(
                                 BlockPredicate.ONLY_IN_AIR_PREDICATE,
-                                BlockPredicate.matchesBlocks(BlockPos.ZERO.below(), Blocks.SAND)))));
+                                BlockPredicate.matchesBlocks(BlockPos.ZERO.below(), Blocks.GRASS_BLOCK)))));
     }
 
     public static List<OreConfiguration.TargetBlockState> overworldSapphireOres(BlockState state,BlockState state1){

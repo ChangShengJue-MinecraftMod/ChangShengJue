@@ -2,6 +2,6 @@
   "parent": "minecraft:block/flower_pot_cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "plant": "chang_sheng_jue:block/geum_triflorum"
+    "plant": "chang_sheng_jue:block/shui_xian_block"
   }
 }

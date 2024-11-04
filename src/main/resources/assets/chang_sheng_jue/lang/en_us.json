@@ -123,20 +123,22 @@
 
   "block.chang_sheng_jue.huang_hua_li_log": "黄花梨原木",
   "block.chang_sheng_jue.stripped_huang_hua_li_log": "去皮黄花梨原木",
-  "block.chang_sheng_jue.huang_hua_li_wood": "黄花梨木板",
+  "block.chang_sheng_jue.huang_hua_li_planks": "黄花梨木板",
 
   "block.chang_sheng_jue.ji_chi_mu_log": "鸡翅木原木",
   "block.chang_sheng_jue.ji_chi_mu_stripped_log": "去皮鸡翅木原木",
-  "block.chang_sheng_jue.ji_chi_mu_wood": "鸡翅木木板",
+  "block.chang_sheng_jue.ji_chi_mu_planks": "鸡翅木木板",
 
   "block.chang_sheng_jue.zi_tan_log": "紫檀原木",
   "block.chang_sheng_jue.zi_tan_stripped_log": "去皮紫檀原木",
-  "block.chang_sheng_jue.zi_tan_wood": "紫檀木板",
+  "block.chang_sheng_jue.zi_tan_planks": "紫檀木板",
 
   "block.chang_sheng_jue.poplar_log": "白杨原木",
   "block.chang_sheng_jue.poplar_leaves": "白杨树叶",
   "block.chang_sheng_jue.poplar_sapling": "白杨树苗",
   "block.chang_sheng_jue.poplar_defoliation": "白杨落叶",
+
+  "block.chang_sheng_jue.blue_and_white_porcelain_flower_pots": "青花瓷花盆",
 
   "block.chang_sheng_jue.mugwort_block": "艾蒿",
   "block.chang_sheng_jue.mugwort_block_1": "艾蒿",
@@ -329,6 +331,8 @@
   "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_potter_1": "高级窑工",
   "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_hunter": "猎人",
   "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_chief": "村长",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.none": "Villager",
+
   "entity.chang_sheng_jue.chang_sheng_jue_villager.villager": "Villager",
 
   "entity.chang_sheng_jue.chang_sheng_jue_villager.armorer":"Armorer",
@@ -405,7 +409,7 @@
   "block.chang_sheng_jue.pottery_wheel": "陶轮",
   "block.chang_sheng_jue.tool_table": "工具台",
   "block.chang_sheng_jue.desk": "案台",
-  "block.chang_sheng_jue.pig_trough": "猪食槽",
+  "block.chang_sheng_jue.pig_trough": "牲畜食槽",
 
   "biome.chang_sheng_jue.chang_shen_jue_prairie": "静思草原"
 }
