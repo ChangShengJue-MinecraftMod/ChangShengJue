@@ -138,6 +138,10 @@
   "block.chang_sheng_jue.poplar_sapling": "白杨树苗",
   "block.chang_sheng_jue.poplar_defoliation": "白杨落叶",
 
+  "item.chang_sheng_jue.mulberry": "桑葚",
+
+  "item.chang_sheng_jue.silk": "蚕丝",
+
   "block.chang_sheng_jue.blue_and_white_porcelain_flower_pots": "青花瓷花盆",
 
   "block.chang_sheng_jue.mugwort_block": "艾蒿",
@@ -325,14 +329,17 @@
   "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter_1": "高级窑工",
   "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_hunter": "猎人",
   "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_chief": "村长",
+  "entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_seamstress": "缝工",
+
 
   "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_farmer":"农民",
   "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_potter": "窑工",
   "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_potter_1": "高级窑工",
   "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_hunter": "猎人",
   "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_chief": "村长",
-  "entity.chang_sheng_jue.chang_sheng_jue_villager.none": "Villager",
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_seamstress": "缝工",
 
+  "entity.chang_sheng_jue.chang_sheng_jue_villager.none": "Villager",
   "entity.chang_sheng_jue.chang_sheng_jue_villager.villager": "Villager",
 
   "entity.chang_sheng_jue.chang_sheng_jue_villager.armorer":"Armorer",

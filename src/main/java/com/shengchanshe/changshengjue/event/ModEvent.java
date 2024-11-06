@@ -521,5 +521,108 @@ public class ModEvent {
             });
 
         }
+
+        if(event.getType() == ChangShengJueVillagers.CHANG_SHENG_JUE_SEAMSTRESS.get()) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            ItemStack[] stack1 = new ItemStack[]{new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 6),
+                    new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 6)};
+            ItemStack[] stack2 = new ItemStack[]{new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4),
+                    new ItemStack(ChangShengJueItems.ZHU_TAI.get(), 2)};
+            ItemStack[] stack3 = new ItemStack[]{new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4),
+                    new ItemStack(Items.EMERALD, 1)};
+            ItemStack[] stack4 = new ItemStack[]{new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4)};
+            ItemStack[] stack5 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.PAINTING_SCROLL.get(), 1),
+                    new ItemStack(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(), 1),
+                    new ItemStack(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(), 1),
+                    new ItemStack(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get(), 1)};
+
+            // 存储第一个交易的索引
+            final int[] firstIndex = new int[1];
+            // 添加两个不重复的交易
+            trades.get(1).add((trader, rand) -> {
+                firstIndex[0] = rand.nextInt(stack1.length);
+                ItemStack firstStack = stack1[firstIndex[0]];
+                if (firstStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
+                    return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 1),firstStack ,16,1,0.05F);
+                }else{
+                    return new MerchantOffer(new ItemStack(ChangShengJueItems.GOLD_BULLIONS.get(), 1), firstStack,16,1,0.05F);
+                }
+            });
+            trades.get(1).add((trader, rand) -> {
+                int secondIndex;
+                do {
+                    secondIndex = rand.nextInt(stack1.length);
+                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+                ItemStack secondStack = stack1[secondIndex];
+                if (secondStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
+                    return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 1),secondStack ,16,1,0.05F);
+                }else{
+                    return new MerchantOffer(new ItemStack(ChangShengJueItems.GOLD_BULLIONS.get(), 1), secondStack,16,1,0.05F);
+                }
+            });
+
+            trades.get(2).add((trader, rand) -> {
+                firstIndex[0] = rand.nextInt(stack2.length);
+                ItemStack firstStack = stack2[firstIndex[0]];
+                if (firstStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
+                    return new MerchantOffer(new ItemStack(Items.DIAMOND,1), firstStack,16,5,0.05F);
+                }else{
+                    return new MerchantOffer(stack2[firstIndex[0]],firstStack ,12,5,0.05F);
+                }
+            });
+            trades.get(2).add((trader, rand) -> {
+                int secondIndex;
+                do {
+                    secondIndex = rand.nextInt(stack2.length);
+                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+                ItemStack secondStack = stack2[secondIndex];
+                if (secondStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
+                    return new MerchantOffer(new ItemStack(Items.DIAMOND), secondStack,16,5,0.05F);
+                }else{
+                    return new MerchantOffer(stack2[firstIndex[0]],secondStack ,12,5,0.05F);
+                }
+            });
+
+            trades.get(3).add((trader, rand) -> {
+                firstIndex[0] = rand.nextInt(stack3.length);
+                ItemStack firstStack = stack3[firstIndex[0]];
+                if (firstStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
+                    return new MerchantOffer(new ItemStack(Items.COMPASS,1), firstStack,16,5,0.05F);
+                }else{
+                    return new MerchantOffer(stack2[firstIndex[0]],firstStack ,12,5,0.05F);
+                }
+            });
+            trades.get(3).add((trader, rand) -> {
+                int secondIndex;
+                do {
+                    secondIndex = rand.nextInt(stack3.length);
+                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+                ItemStack secondStack = stack3[secondIndex];
+                if (secondStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
+                    return new MerchantOffer(new ItemStack(Items.COMPASS,1), secondStack,16,20,0.05F);
+                }else{
+                    return new MerchantOffer(stack2[firstIndex[0]],secondStack ,12,10,0.05F);
+                }
+            });
+            trades.get(4).add((trader, rand) -> {
+                firstIndex[0] = rand.nextInt(stack4.length);
+                ItemStack firstStack = stack4[firstIndex[0]];
+                return new MerchantOffer(new ItemStack(Items.WRITABLE_BOOK, 1),firstStack,16,30,0.05F);
+            });
+            trades.get(5).add((trader, rand) -> {
+                firstIndex[0] = rand.nextInt(stack5.length);
+                ItemStack firstStack = stack5[firstIndex[0]];
+                return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 1), firstStack,12,30,0.05F);
+            });
+            trades.get(5).add((trader, rand) -> {
+                int secondIndex;
+                do {
+                    secondIndex = rand.nextInt(stack5.length);
+                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+                ItemStack secondStack = stack5[secondIndex];
+                return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 1), secondStack,12,30,0.05F);
+            });
+
+        }
     }
 }

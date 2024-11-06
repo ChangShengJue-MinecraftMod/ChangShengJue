@@ -24,6 +24,7 @@ public class CSJPoiTypeTagsProvider extends PoiTypeTagsProvider {
                 .addOptional(new ResourceLocation(ChangShengJue.MOD_ID, "chang_sheng_jue_farmer_pot"))
                 .addOptional(new ResourceLocation(ChangShengJue.MOD_ID, "chang_sheng_jue_potter_pot"))
                 .addOptional(new ResourceLocation(ChangShengJue.MOD_ID, "chang_sheng_jue_hunter_pot"))
-                .addOptional(new ResourceLocation(ChangShengJue.MOD_ID, "chang_sheng_jue_chief_pot"));
+                .addOptional(new ResourceLocation(ChangShengJue.MOD_ID, "chang_sheng_jue_chief_pot"))
+                .addOptional(new ResourceLocation(ChangShengJue.MOD_ID, "chang_sheng_jue_seamstress_pot"));
     }
 }

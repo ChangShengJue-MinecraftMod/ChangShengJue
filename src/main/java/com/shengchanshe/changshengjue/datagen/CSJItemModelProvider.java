@@ -22,6 +22,9 @@ public class CSJItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         simpleItem(ChangShengJueItems.TONG_QIAN);
         simpleItem(ChangShengJueItems.YI_GUAN_TONG_QIAN);
+        simpleItem(ChangShengJueItems.SILK);
+        simpleItem(ChangShengJueItems.MULBERRY);
+
         handheldItem(ChangShengJueItems.BRONZE_SWORD);
         handheldItem(ChangShengJueItems.HAN_JIAN);
         handheldItem(ChangShengJueItems.KITCHEN_KNIFE);

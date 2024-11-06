@@ -18,6 +18,7 @@ public class ChangShengJueFoods {
     public static final FoodProperties LICHEE = (new FoodProperties.Builder()).nutrition(4).saturationMod(2.4F).build();
     public static final FoodProperties GRAPE = (new FoodProperties.Builder()).nutrition(4).saturationMod(2.4F).build();
     public static final FoodProperties OPEN_DURIAN = (new FoodProperties.Builder()).nutrition(6).saturationMod(3.6F).build();
+    public static final FoodProperties MULBERRY = (new FoodProperties.Builder()).nutrition(3).saturationMod(1.8F).build();
 
     public static final FoodProperties CAPSULE_JIAO_ZI = (new FoodProperties.Builder()).nutrition(7).saturationMod(8.4F).meat().build();
     public static final FoodProperties ZHENG_CAI = (new FoodProperties.Builder()).nutrition(5).saturationMod(6.0F).meat().build();

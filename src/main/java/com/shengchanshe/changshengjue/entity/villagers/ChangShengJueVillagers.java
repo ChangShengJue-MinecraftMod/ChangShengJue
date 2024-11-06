@@ -26,6 +26,9 @@ public class ChangShengJueVillagers {
     public static final RegistryObject<PoiType> CHANG_SHENG_JUE_CHIEF_POT = POT_TYPES.register("chang_sheng_jue_chief_pot",
             ()-> new PoiType(ImmutableSet.copyOf(ChangShengJueBlocks.DESK.get().getStateDefinition().getPossibleStates()),1,1));
 
+    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_SEAMSTRESS_POT = POT_TYPES.register("chang_sheng_jue_seamstress_pot",
+            ()-> new PoiType(ImmutableSet.copyOf(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get().getStateDefinition().getPossibleStates()),1,1));
+
     public static final RegistryObject<VillagerProfession> CHANG_SHENG_JUE_FARMER = VILLAGER_PROFESSION.register("chang_sheng_jue_farmer",
             ()-> new VillagerProfession("chang_sheng_jue_farmer",
                     poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_FARMER_POT.get(), poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_FARMER_POT.get(),
@@ -48,6 +51,11 @@ public class ChangShengJueVillagers {
     public static final RegistryObject<VillagerProfession> CHANG_SHENG_JUE_CHIEF = VILLAGER_PROFESSION.register("chang_sheng_jue_chief",
             ()-> new VillagerProfession("chang_sheng_jue_chief",
                     poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_CHIEF_POT.get(), poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_CHIEF_POT.get(),
+                    ImmutableSet.of(),ImmutableSet.of(), SoundEvents.VILLAGER_WORK_CARTOGRAPHER));
+
+    public static final RegistryObject<VillagerProfession> CHANG_SHENG_JUE_SEAMSTRESS = VILLAGER_PROFESSION.register("chang_sheng_jue_seamstress",
+            ()-> new VillagerProfession("chang_sheng_jue_seamstress",
+                    poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_SEAMSTRESS_POT.get(), poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_SEAMSTRESS_POT.get(),
                     ImmutableSet.of(),ImmutableSet.of(), SoundEvents.VILLAGER_WORK_CARTOGRAPHER));
 
     public static void register(IEventBus eventBus){

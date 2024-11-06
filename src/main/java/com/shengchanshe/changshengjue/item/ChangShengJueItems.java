@@ -210,6 +210,14 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> GOLD_BULLIONS = ITEMS.register("gold_bullions",
             ()-> new Item(new Item.Properties()));
 
+    //蚕丝
+    public static final RegistryObject<Item> SILK = ITEMS.register("silk",
+            ()-> new Item(new Item.Properties()));
+
+    //桑葚
+    public static final RegistryObject<Item> MULBERRY = ITEMS.register("mulberry",
+            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.MULBERRY)));
+
     //矿石
     public static final RegistryObject<Item> RAW_AG = ITEMS.register("raw_ag",
             ()-> new Item((new Item.Properties())));
