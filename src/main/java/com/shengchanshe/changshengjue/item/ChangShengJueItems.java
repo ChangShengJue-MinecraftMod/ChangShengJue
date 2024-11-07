@@ -46,6 +46,12 @@ public class ChangShengJueItems {
             ()-> new ItemNameBlockItem(ChangShengJueBlocks.CANTALOUPE_STEM.get(), new Item.Properties()));
     public static final RegistryObject<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds",
             ()-> new ItemNameBlockItem(ChangShengJueBlocks.GRAPE_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> RICE_SEEDS = ITEMS.register("rice_seeds",
+            ()-> new ItemNameBlockItem(ChangShengJueBlocks.RICE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> BILUOCHUN_TEA_SEEDS = ITEMS.register("biluochun_tea_seeds",
+            ()-> new ItemNameBlockItem(ChangShengJueBlocks.BILUOCHUN_TEA.get(), new Item.Properties()));
+    public static final RegistryObject<Item> LONG_JING_TEA_SEEDS = ITEMS.register("long_jing_tea_seeds",
+            ()-> new ItemNameBlockItem(ChangShengJueBlocks.LONG_JING_TEA.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> PINEAPPLE = ITEMS.register("pineapple",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.PINEAPPLE)));
@@ -95,7 +101,12 @@ public class ChangShengJueItems {
             ()-> new DurianItem(new Item.Properties()));
     public static final RegistryObject<Item> OPEN_DURIAN = ITEMS.register("durian_open",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.OPEN_DURIAN)));
-
+    public static final RegistryObject<Item> RICE = ITEMS.register("rice",
+            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> BILUOCHUN_TEA = ITEMS.register("biluochun_tea",
+            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LONG_JING_TEA = ITEMS.register("long_jing_tea",
+            ()-> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> PEANUT = ITEMS.register("peanut",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.PEANUT)));

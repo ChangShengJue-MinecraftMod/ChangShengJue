@@ -74,6 +74,9 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.GRAPE_SEEDS.get());
                 output.accept(ChangShengJueItems.SOYBEAN.get());
                 output.accept(ChangShengJueItems.REDBEAN.get());
+                output.accept(ChangShengJueItems.RICE_SEEDS.get());
+                output.accept(ChangShengJueItems.BILUOCHUN_TEA_SEEDS.get());
+                output.accept(ChangShengJueItems.LONG_JING_TEA_SEEDS.get());
 
                 output.accept(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get());
 
@@ -180,7 +183,6 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.WINDOWS_DARK_OAK_BLOCK_2.get());
                 output.accept(ChangShengJueBlocks.WINDOWS_OAK_BLOCK_2.get());
                 output.accept(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_2.get());
-
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_FUNCTIONAL = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_functional",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_functional")).icon(() ->
@@ -217,8 +219,11 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.LICHEE.get());
                 output.accept(ChangShengJueItems.GRAPE.get());
                 output.accept(ChangShengJueItems.OPEN_DURIAN.get());
+                output.accept(ChangShengJueItems.RICE.get());
                 output.accept(ChangShengJueItems.PEANUT.get());
                 output.accept(ChangShengJueItems.BRINJAL.get());
+                output.accept(ChangShengJueItems.BILUOCHUN_TEA.get());
+                output.accept(ChangShengJueItems.LONG_JING_TEA.get());
                 output.accept(ChangShengJueItems.CAPSULE_JIAO_ZI.get());
                 output.accept(ChangShengJueItems.ZHENG_CAI.get());
                 output.accept(ChangShengJueItems.PORTULACA_OLERACEA_CAKE.get());

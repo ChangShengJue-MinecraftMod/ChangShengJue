@@ -4,13 +4,13 @@ import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.building.*;
 import com.shengchanshe.changshengjue.block.cropper.*;
 import com.shengchanshe.changshengjue.block.decoration.BlueAndWhitePorcelainFlowerPots;
+import com.shengchanshe.changshengjue.block.decoration.PoplarDefoliation;
 import com.shengchanshe.changshengjue.block.painting.BigPaintingScroll;
 import com.shengchanshe.changshengjue.block.painting.HighPaintingScroll;
 import com.shengchanshe.changshengjue.block.painting.PaintingScroll;
 import com.shengchanshe.changshengjue.block.painting.WidthPaintingScroll;
 import com.shengchanshe.changshengjue.block.tree_logs.LeavesBlocks;
 import com.shengchanshe.changshengjue.block.tree_logs.LogBlock;
-import com.shengchanshe.changshengjue.block.decoration.PoplarDefoliation;
 import com.shengchanshe.changshengjue.block.tree_logs.PoplarLeaves;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.util.ChangShengJueVoxelShape;
@@ -22,12 +22,9 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.flag.FeatureFlag;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -46,11 +43,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
-
-import static net.minecraft.world.level.block.Blocks.AIR;
 
 public class ChangShengJueBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ChangShengJue.MOD_ID);
@@ -81,6 +75,16 @@ public class ChangShengJueBlocks {
             ()-> new BrinjalBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
     public static final RegistryObject<Block> GRAPE_BLOCK =registerBlockWithoutBlockItem("grape_block",
             ()-> new GrapeBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
+
+    //水稻
+    public static final RegistryObject<Block> RICE =registerBlockWithoutBlockItem("rice",
+            ()-> new RiceBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
+    //碧螺春
+    public static final RegistryObject<Block> BILUOCHUN_TEA =registerBlockWithoutBlockItem("biluochun_tea",
+            ()-> new BiluochunTeaBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
+    //龙井
+    public static final RegistryObject<Block> LONG_JING_TEA =registerBlockWithoutBlockItem("long_jing_tea",
+            ()-> new LongJingTeaBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
 
     //哈密瓜
     public static final RegistryObject<Block> CANTALOUPE_BLOCK = registerBlock("cantaloupe_block",

@@ -1,17 +1,19 @@
 package com.shengchanshe.changshengjue.datagen.loot;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
-import com.shengchanshe.changshengjue.block.cropper.CornBlock;
+import com.shengchanshe.changshengjue.block.cropper.*;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.IntRange;
 import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.LimitCount;
@@ -92,37 +94,37 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         //农作物
         LootItemCondition.Builder pineapple = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ChangShengJueBlocks.PINEAPPLE_BLOCK.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 7));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PineappleBlock.AGE, 7));
         this.add(ChangShengJueBlocks.PINEAPPLE_BLOCK.get(), createCropDrops(ChangShengJueBlocks.PINEAPPLE_BLOCK.get(), ChangShengJueItems.PINEAPPLE.get(), ChangShengJueItems.PINEAPPLE_SEEDS.get(), pineapple));
         LootItemCondition.Builder soybean = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ChangShengJueBlocks.SOYBEAN_BLOCK.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 7));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SoyBeanBlock.AGE, 7));
         this.add(ChangShengJueBlocks.SOYBEAN_BLOCK.get(), createCropDrops(ChangShengJueBlocks.SOYBEAN_BLOCK.get(), ChangShengJueItems.SOYBEAN.get(), ChangShengJueItems.SOYBEAN.get(), soybean));
         LootItemCondition.Builder tomato = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ChangShengJueBlocks.TOMATO_BLOCK.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 7));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(TomatoBlock.AGE, 7));
         this.add(ChangShengJueBlocks.TOMATO_BLOCK.get(), createCropDrops(ChangShengJueBlocks.TOMATO_BLOCK.get(), ChangShengJueItems.TOMATO.get(), ChangShengJueItems.TOMATO_SEEDS.get(), tomato));
         LootItemCondition.Builder GuZi = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ChangShengJueBlocks.GU_ZI_BLOCK.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 7));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(GuZiBlock.AGE, 7));
         this.add(ChangShengJueBlocks.GU_ZI_BLOCK.get(), createCropDrops(ChangShengJueBlocks.GU_ZI_BLOCK.get(), ChangShengJueItems.GU_SUI.get(), ChangShengJueItems.GU_SEEDS.get(), GuZi));
         LootItemCondition.Builder sorghum = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ChangShengJueBlocks.SORGHUM_BLOCK.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 6))
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SorghumBlock.AGE, 6))
                 .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(ChangShengJueBlocks.SORGHUM_BLOCK.get())
-                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 7)));
+                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SorghumBlock.AGE, 7)));
         this.add(ChangShengJueBlocks.SORGHUM_BLOCK.get(), createCropDrops(ChangShengJueBlocks.SORGHUM_BLOCK.get(), ChangShengJueItems.SORGHUM.get(), ChangShengJueItems.SORGHUM_SEEDS.get(), sorghum));
         LootItemCondition.Builder redbean = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ChangShengJueBlocks.REDBEAN_BLOCK.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 7));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RedBeanBlock.AGE, 7));
         this.add(ChangShengJueBlocks.REDBEAN_BLOCK.get(), createCropDrops(ChangShengJueBlocks.REDBEAN_BLOCK.get(), ChangShengJueItems.REDBEAN.get(), ChangShengJueItems.SORGHUM_SEEDS.get(), redbean));
         LootItemCondition.Builder cotton = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ChangShengJueBlocks.COTTON_BLOCK.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 7));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CottonBlock.AGE, 7));
         this.add(ChangShengJueBlocks.COTTON_BLOCK.get(), createCropDrops(ChangShengJueBlocks.COTTON_BLOCK.get(), ChangShengJueItems.COTTON.get(), ChangShengJueItems.COTTON_SEEDS.get(), cotton));
         LootItemCondition.Builder stickyrice = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ChangShengJueBlocks.STICKYRICE_BLOCK.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 7));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(StickyRiceBlock.AGE, 7));
         this.add(ChangShengJueBlocks.STICKYRICE_BLOCK.get(), createCropDrops(ChangShengJueBlocks.STICKYRICE_BLOCK.get(), ChangShengJueItems.STICKYRICE.get(), ChangShengJueItems.STICKYRICE_SEEDS.get(), stickyrice));
         LootItemCondition.Builder corn = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ChangShengJueBlocks.CORN_BLOCK.get())
@@ -132,24 +134,46 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(ChangShengJueBlocks.CORN_BLOCK.get(), createCropDrops(ChangShengJueBlocks.CORN_BLOCK.get(), ChangShengJueItems.CORN.get(), ChangShengJueItems.CORN_SEEDS.get(), corn));
         LootItemCondition.Builder jalapenos = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ChangShengJueBlocks.JALAPENOS_BLOCK.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 7));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(JalapenosBlock.AGE, 7));
         this.add(ChangShengJueBlocks.JALAPENOS_BLOCK.get(), createCropDrops(ChangShengJueBlocks.JALAPENOS_BLOCK.get(), ChangShengJueItems.JALAPENOS.get(), ChangShengJueItems.JALAPENOS_SEEDS.get(), jalapenos));
         LootItemCondition.Builder peanut = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ChangShengJueBlocks.PEANUT_BLOCK.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 7));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(PeanutBlock.AGE, 7));
         this.add(ChangShengJueBlocks.PEANUT_BLOCK.get(), createCropDrops(ChangShengJueBlocks.PEANUT_BLOCK.get(), ChangShengJueItems.PEANUT.get(), ChangShengJueItems.PEANUT_SEEDS.get(), peanut));
         LootItemCondition.Builder brinjal = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ChangShengJueBlocks.BRINJAL_BLOCK.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 7));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BrinjalBlock.AGE, 7));
         this.add(ChangShengJueBlocks.BRINJAL_BLOCK.get(), createCropDrops(ChangShengJueBlocks.BRINJAL_BLOCK.get(), ChangShengJueItems.BRINJAL.get(), ChangShengJueItems.BRINJAL_SEEDS.get(), brinjal));
         LootItemCondition.Builder grape = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ChangShengJueBlocks.GRAPE_BLOCK.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 7));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(GrapeBlock.AGE, 7));
         this.add(ChangShengJueBlocks.GRAPE_BLOCK.get(), createCropDrops(ChangShengJueBlocks.GRAPE_BLOCK.get(), ChangShengJueItems.GRAPE.get(), ChangShengJueItems.GRAPE_SEEDS.get(), grape));
         LootItemCondition.Builder lotus = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(ChangShengJueBlocks.LOTUS_BLOCK.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 7));
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(LotusBlock.AGE, 7));
         this.add(ChangShengJueBlocks.LOTUS_BLOCK.get(), createCropDrops(ChangShengJueBlocks.LOTUS_BLOCK.get(), ChangShengJueItems.LOTUS.get(), ChangShengJueItems.LOTUS_SEEDS.get(), lotus));
+
+        LootItemCondition.Builder rice = LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(ChangShengJueBlocks.RICE.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RiceBlock.AGE, 6))
+                .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(ChangShengJueBlocks.RICE.get())
+                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RiceBlock.AGE, 7)));
+        this.add(ChangShengJueBlocks.RICE.get(), this.createCropDrops(ChangShengJueBlocks.RICE.get(),ChangShengJueItems.RICE.get(),ChangShengJueItems.RICE_SEEDS.get(),rice));
+
+        LootItemCondition.Builder biluochunTea = LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(ChangShengJueBlocks.BILUOCHUN_TEA.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RiceBlock.AGE, 6))
+                .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(ChangShengJueBlocks.BILUOCHUN_TEA.get())
+                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RiceBlock.AGE, 7)));
+        this.add(ChangShengJueBlocks.BILUOCHUN_TEA.get(), this.createCropDrops(ChangShengJueBlocks.BILUOCHUN_TEA.get(),ChangShengJueItems.BILUOCHUN_TEA.get(),ChangShengJueItems.BILUOCHUN_TEA_SEEDS.get(),biluochunTea));
+
+        LootItemCondition.Builder longJingTea = LootItemBlockStatePropertyCondition
+                .hasBlockStateProperties(ChangShengJueBlocks.LONG_JING_TEA.get())
+                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RiceBlock.AGE, 6))
+                .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(ChangShengJueBlocks.LONG_JING_TEA.get())
+                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(RiceBlock.AGE, 7)));
+        this.add(ChangShengJueBlocks.LONG_JING_TEA.get(), this.createCropDrops(ChangShengJueBlocks.LONG_JING_TEA.get(),ChangShengJueItems.LONG_JING_TEA.get(),ChangShengJueItems.LONG_JING_TEA_SEEDS.get(),longJingTea));
+
 
         //哈密瓜和哈密瓜藤
         this.add(ChangShengJueBlocks.CANTALOUPE_BLOCK.get(), createSilkTouchDispatchTable(ChangShengJueBlocks.GRAPE_BLOCK.get(),
@@ -309,6 +333,12 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get());
         //画轴(大)
         this.dropSelf(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get());
+    }
+
+    protected LootTable.Builder createCropDrops(Block pCropBlock, Item pGrownCropItem, Item pSeedsItem, LootItemCondition.Builder pDropGrownCropCondition) {
+        return this.applyExplosionDecay(pCropBlock, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(pGrownCropItem)
+                .when(pDropGrownCropCondition).otherwise(LootItem.lootTableItem(pSeedsItem)))).withPool(LootPool.lootPool().when(pDropGrownCropCondition)
+                .add(LootItem.lootTableItem(pSeedsItem).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 1)))));
     }
 
     public LootItemCondition.Builder cropDrop(Block blocks, int age) {

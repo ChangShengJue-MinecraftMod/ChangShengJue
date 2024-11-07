@@ -14,8 +14,7 @@
         "projection": "terrain_matching",
         "element_type": "minecraft:legacy_single_pool_element",
         "processors": "minecraft:empty",
-        "location": "chang_sheng_jue:pit_yard/streets/pit_yard_streets",
-        "liquid_settings": "ignore_waterlogging"
+        "location": "chang_sheng_jue:pit_yard/streets/pit_yard_streets"
       }
     },
     {
@@ -24,8 +23,7 @@
         "projection": "terrain_matching",
         "element_type": "minecraft:legacy_single_pool_element",
         "processors": "minecraft:empty",
-        "location": "chang_sheng_jue:pit_yard/streets/pit_yard_streets_2",
-        "liquid_settings": "ignore_waterlogging"
+        "location": "chang_sheng_jue:pit_yard/streets/pit_yard_streets_2"
       }
     }
   ]
