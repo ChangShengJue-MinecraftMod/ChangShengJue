@@ -62,6 +62,9 @@
   "item.chang_sheng_jue.long_jing_tea_seeds": "龙井种子",
   "item.chang_sheng_jue.long_jing_tea": "龙井",
 
+  "item.chang_sheng_jue.hordeum_seeds": "大麦种子",
+  "item.chang_sheng_jue.hordeum": "大麦",
+
   "item.chang_sheng_jue.ci_pan": "瓷盘",
   "item.chang_sheng_jue.ci_wan": "瓷碗",
 
@@ -146,6 +149,11 @@
   "block.chang_sheng_jue.poplar_leaves": "白杨树叶",
   "block.chang_sheng_jue.poplar_sapling": "白杨树苗",
   "block.chang_sheng_jue.poplar_defoliation": "白杨落叶",
+
+  "block.chang_sheng_jue.mulberry_log": "桑树原木",
+  "block.chang_sheng_jue.stripped_mulberry_log": "去皮桑树原木",
+  "block.chang_sheng_jue.mulberry_leaves": "桑树树叶",
+  "block.chang_sheng_jue.mulberry_sapling": "桑树树苗",
 
   "item.chang_sheng_jue.mulberry": "桑葚",
 

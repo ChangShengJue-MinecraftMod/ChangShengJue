@@ -32,6 +32,7 @@ public class CSJBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_TREE_DURIAN = registerKey("add_tree_durian");
     public static final ResourceKey<BiomeModifier> ADD_TREE_GUIHUA = registerKey("add_tree_guihua");
     public static final ResourceKey<BiomeModifier> ADD_TREE_MEIHUA = registerKey("add_tree_meihua");
+    public static final ResourceKey<BiomeModifier> ADD_TREE_MULBERRY = registerKey("add_tree_mulberry");
 
     //花花草草
     public static final ResourceKey<BiomeModifier> ADD_MUGWORT = registerKey("add_mugwort");
@@ -43,6 +44,8 @@ public class CSJBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_TAN_HUA = registerKey("add_tan_hua");
     public static final ResourceKey<BiomeModifier> ADD_CAPSULE = registerKey("add_capsule");
 //    public static final ResourceKey<BiomeModifier> ADD_STIPA_GRANDIS = registerKey("add_stipa_grandis");
+    //野生大麦
+    public static final ResourceKey<BiomeModifier> ADD_WILDLIFE_HORDEUM = registerKey("add_wildlife_hordeum");
     //哈密瓜
     public static final ResourceKey<BiomeModifier> ADD_CANTALOUPE_BLOCK = registerKey("add_cantaloupe_block");
     //生物
@@ -111,6 +114,11 @@ public class CSJBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.MEIHUA_TREE_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
+        context.register(ADD_TREE_MULBERRY,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_SAVANNA),
+                HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.MULBERRY_TREE_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
         //花花草草
         context.register(ADD_MUGWORT,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
@@ -145,16 +153,18 @@ public class CSJBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.CAPSULE_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
 
-//        context.register(ADD_STIPA_GRANDIS,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-//                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
-//                HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.STIPA_GRANDIS_PLACED_KEY)),
-//                GenerationStep.Decoration.VEGETAL_DECORATION));
+        //野生大麦
+        context.register(ADD_WILDLIFE_HORDEUM,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.WILDLIFE_HORDEUM_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
         //哈密瓜
         context.register(ADD_CANTALOUPE_BLOCK,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_JUNGLE),
                         HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.CANTALOUPE_BLOCK_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
-
+        //生物
 //        context.register(ADD_BUTTERFLY_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
 //                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.BUTTERFLY_ENTITY.get(),
 //                        100, 1, 2))));

@@ -1,5 +1,6 @@
 package com.shengchanshe.changshengjue.item;
 
+import ca.weblite.objc.Proxy;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
@@ -52,6 +53,8 @@ public class ChangShengJueItems {
             ()-> new ItemNameBlockItem(ChangShengJueBlocks.BILUOCHUN_TEA.get(), new Item.Properties()));
     public static final RegistryObject<Item> LONG_JING_TEA_SEEDS = ITEMS.register("long_jing_tea_seeds",
             ()-> new ItemNameBlockItem(ChangShengJueBlocks.LONG_JING_TEA.get(), new Item.Properties()));
+    public static final RegistryObject<Item> HORDEUM_SEEDS = ITEMS.register("hordeum_seeds",
+            ()-> new ItemNameBlockItem(ChangShengJueBlocks.HORDEUM.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> PINEAPPLE = ITEMS.register("pineapple",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.PINEAPPLE)));
@@ -106,6 +109,8 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> BILUOCHUN_TEA = ITEMS.register("biluochun_tea",
             ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> LONG_JING_TEA = ITEMS.register("long_jing_tea",
+            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> HORDEUM = ITEMS.register("hordeum",
             ()-> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> PEANUT = ITEMS.register("peanut",

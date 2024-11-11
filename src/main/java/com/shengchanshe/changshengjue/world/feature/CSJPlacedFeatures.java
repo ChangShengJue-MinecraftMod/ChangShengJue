@@ -32,6 +32,7 @@ public class CSJPlacedFeatures {
     public static final ResourceKey<PlacedFeature> GUIHUA_TREE_PLACED_KEY =registerKey("guihua_tree_placed_key");
     public static final ResourceKey<PlacedFeature> MEIHUA_TREE_PLACED_KEY =registerKey("meihua_tree_placed_key");
     public static final ResourceKey<PlacedFeature> POPLAR_TREE_PLACED_KEY =registerKey("poplar_tree_placed_key");
+    public static final ResourceKey<PlacedFeature> MULBERRY_TREE_PLACED_KEY =registerKey("mulberry_tree_placed_key");
     //花花草草
     public static final ResourceKey<PlacedFeature> MUGWORT_PLACED_KEY =registerKey("mugwort_placed_key");
     public static final ResourceKey<PlacedFeature> CUCKOO_PLACED_KEY =registerKey("cuckoo_placed_key");
@@ -44,6 +45,9 @@ public class CSJPlacedFeatures {
     public static final ResourceKey<PlacedFeature> STIPA_GRANDIS_PLACED_KEY = registerKey("stipa_grandis_placed_key");
     public static final ResourceKey<PlacedFeature> TALL_STIPA_GRANDIS_PLACED_KEY = registerKey("tall_stipa_grandis_placed_key");
     public static final ResourceKey<PlacedFeature> RAPE_FLOWERS_PLACED_KEY = registerKey("rape_flowers_placed_key");
+
+    //野生大麦
+    public static final ResourceKey<PlacedFeature> WILDLIFE_HORDEUM_PLACED_KEY =registerKey("wildlife_hordeum_placed_key");
     //哈密瓜
     public static final ResourceKey<PlacedFeature> CANTALOUPE_BLOCK_PLACED_KEY = registerKey("cantaloupe_block_placed_key");
 
@@ -90,6 +94,10 @@ public class CSJPlacedFeatures {
                 //                                                            10%的概率尝试1+1次  90%的概率尝试1次
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(1,0.1F,1),
                         ChangShengJueBlocks.POPLAR_SAPLING.get()));
+
+        register(context,MULBERRY_TREE_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.MULBERRY_TREE),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(1,0.1F,1),
+                        ChangShengJueBlocks.MULBERRY_SAPLING.get()));
         //花花草草
         register(context,MUGWORT_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.MUGWORT),
                 List.of(RarityFilter.onAverageOnceEvery(16),//生成几率,值越小生成的越多
@@ -135,6 +143,10 @@ public class CSJPlacedFeatures {
                 List.of(RarityFilter.onAverageOnceEvery(16),
                         InSquarePlacement.spread(),PlacementUtils.HEIGHTMAP,BiomeFilter.biome()));
 
+        //野生大麦
+        register(context,WILDLIFE_HORDEUM_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.WILDLIFE_HORDEUM),
+                List.of(RarityFilter.onAverageOnceEvery(3),//生成几率,值越小生成的越多
+                        InSquarePlacement.spread(),PlacementUtils.HEIGHTMAP,BiomeFilter.biome()));
         //哈密瓜
         register(context,CANTALOUPE_BLOCK_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.CANTALOUPE_BLOCK),
                 List.of(RarityFilter.onAverageOnceEvery(16),

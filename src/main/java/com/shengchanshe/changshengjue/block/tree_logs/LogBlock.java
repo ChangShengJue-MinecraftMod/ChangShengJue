@@ -43,6 +43,9 @@ public class LogBlock extends RotatedPillarBlock {
             if (state.is(ChangShengJueBlocks.ZI_TAN_LOG.get())){
                 return ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get().defaultBlockState().setValue(AXIS,state.getValue(AXIS));
             }
+            if (state.is(ChangShengJueBlocks.MULBERRY_LOG.get())){
+                return ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get().defaultBlockState().setValue(AXIS,state.getValue(AXIS));
+            }
         }
         return super.getToolModifiedState(state, context, toolAction, simulate);
     }

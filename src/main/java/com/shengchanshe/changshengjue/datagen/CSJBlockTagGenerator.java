@@ -42,6 +42,9 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get());
         this.tag(CSJTags.Blocks.POPLAR_LOG)
                 .add(ChangShengJueBlocks.POPLAR_LOG.get());
+        this.tag(CSJTags.Blocks.MULBERRY_LOG)
+                .add(ChangShengJueBlocks.MULBERRY_LOG.get())
+                .add(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get());
         this.tag(CSJTags.Blocks.LOG)
                 .add(ChangShengJueBlocks.MANGO_LOG.get())
                 .add(ChangShengJueBlocks.GUI_HUA_LOG.get())
@@ -155,7 +158,8 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
 
         //树
         this.tag(BlockTags.LOGS).addTag(CSJTags.Blocks.LOG);
-        this.tag(BlockTags.LOGS_THAT_BURN).addTags(CSJTags.Blocks.LOG).addTag(CSJTags.Blocks.HUANG_HUA_LI_LOG).addTags(CSJTags.Blocks.JI_CHI_MU_LOG).addTags(CSJTags.Blocks.ZI_TAN_LOG).addTags(CSJTags.Blocks.POPLAR_LOG);
+        this.tag(BlockTags.LOGS_THAT_BURN).addTags(CSJTags.Blocks.LOG).addTag(CSJTags.Blocks.HUANG_HUA_LI_LOG)
+                .addTags(CSJTags.Blocks.JI_CHI_MU_LOG).addTags(CSJTags.Blocks.ZI_TAN_LOG).addTags(CSJTags.Blocks.POPLAR_LOG).addTags(CSJTags.Blocks.MULBERRY_LOG);
 
         //花
         this.tag(BlockTags.FLOWERS)
@@ -187,5 +191,16 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get());
         //门
         this.tag(BlockTags.WOODEN_DOORS).addTag(CSJTags.Blocks.DOORS);
+        //树叶
+        this.tag(BlockTags.LEAVES)
+                .add(ChangShengJueBlocks.MULBERRY_LEAVES.get())
+                .add(ChangShengJueBlocks.POPLAR_LEAVES.get())
+                .add(ChangShengJueBlocks.LICHEE_LEAVES.get())
+                .add(ChangShengJueBlocks.MANGO_LEAVES.get())
+                .add(ChangShengJueBlocks.DURIAN_LEAVES.get())
+                .add(ChangShengJueBlocks.BANANA_LEAVES.get())
+                .add(ChangShengJueBlocks.PEAR_LEAVES.get())
+                .add(ChangShengJueBlocks.MEI_HUA_LEAVES.get())
+                .add(ChangShengJueBlocks.GUI_HUA_LEAVES.get());
     }
 }

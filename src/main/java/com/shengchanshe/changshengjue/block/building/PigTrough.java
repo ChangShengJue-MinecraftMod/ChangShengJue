@@ -3,11 +3,15 @@ package com.shengchanshe.changshengjue.block.building;
 import com.shengchanshe.changshengjue.util.ChangShengJueVoxelShape;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.WorldlyContainerHolder;
+import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -24,11 +28,14 @@ import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class PigTrough extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -77,6 +84,7 @@ public class PigTrough extends Block {
                         itemStack.shrink(1);
                     }
                     updateAdjacentTrough(world, pos, state);
+
                 }
             }
             return InteractionResult.SUCCESS;
@@ -93,6 +101,49 @@ public class PigTrough extends Block {
             int rightLevel = rightState.getValue(LEVEL);
             if (rightLevel < 8) {
                 world.setBlock(pos2, rightState.setValue(LEVEL, rightLevel + 1), 3);
+            }
+        }
+    }
+
+    private void updateReduceAdjacentTrough(Level world, BlockPos pos, BlockState state) {
+        Direction facing = state.getValue(FACING);
+        Direction rightDirection = rightOf(facing);
+        BlockPos pos2 = pos.relative(rightDirection); // 获取右侧的位置
+        BlockState rightState = world.getBlockState(pos2);
+        if (rightState.getBlock() == this) { // 检查是否是同类型的猪食槽
+            int rightLevel = rightState.getValue(LEVEL);
+            if (rightLevel >= state.getValue(LEVEL)) {
+                world.setBlock(pos2, rightState.setValue(LEVEL, rightLevel - 1), 3);
+            }
+        }
+    }
+
+    @Override
+    public boolean isRandomlyTicking(BlockState state) {
+        Integer value = state.getValue(LEVEL);
+        if (value >= 1){
+            return true;
+        }
+        return super.isRandomlyTicking(state);
+    }
+
+    @Override
+    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
+        int level = pState.getValue(LEVEL);
+         if (level >= 1) {
+             accelerateGrowth(pLevel,pPos,level,pState);
+         }
+        super.randomTick(pState, pLevel, pPos, pRandom);
+    }
+
+    private void accelerateGrowth(Level world, BlockPos pos, int level,BlockState state) {
+        int range = 3; // 检查的范围
+        List<Animal> list = world.getEntitiesOfClass(Animal.class, new AABB(pos).inflate(range));
+        for (Animal entity : list) {
+            world.setBlock(pos, state.setValue(LEVEL, level - 1), 3); // 消耗等级
+            updateReduceAdjacentTrough(world,pos,state);
+            if (entity.isBaby()) {
+                entity.ageUp((int) ((-entity.getAge() / 20) * 0.1 * level), true); // 根据等级加速生长
             }
         }
     }

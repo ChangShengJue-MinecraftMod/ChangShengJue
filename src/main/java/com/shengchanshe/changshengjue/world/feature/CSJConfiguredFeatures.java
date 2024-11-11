@@ -180,6 +180,7 @@ public class CSJConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> GUIHUA_TREE = registerKey("guihua_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> MEIHUA_TREE = registerKey("meihua_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> POPLAR_TREE = registerKey("poplar_tree");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MULBERRY_TREE = registerKey("mulberry_tree");
     //花花草草
     public static final ResourceKey<ConfiguredFeature<?, ?>> MUGWORT = registerKey("mugwort");
     public static final ResourceKey<ConfiguredFeature<?,?>> CUCKOO = registerKey("cuckoo");
@@ -193,6 +194,8 @@ public class CSJConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?,?>> TALL_STIPA_GRANDIS = registerKey("tall_stipa_grandis");
     public static final ResourceKey<ConfiguredFeature<?,?>> RAPE_FLOWERS = registerKey("rape_flowers");
 
+    //野生大麦
+    public static final ResourceKey<ConfiguredFeature<?,?>> WILDLIFE_HORDEUM = registerKey("wildlife_hordeum");
     //哈密瓜
     public static final ResourceKey<ConfiguredFeature<?,?>> CANTALOUPE_BLOCK = registerKey("cantaloupe_block");
 
@@ -209,7 +212,7 @@ public class CSJConfiguredFeatures {
 
         register(context,MANGO_TREE,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ChangShengJueBlocks.MANGO_LOG.get()),
-                new StraightTrunkPlacer(3, 2, 1),
+                new StraightTrunkPlacer(5, 2, 1),
 
                 BlockStateProvider.simple(ChangShengJueBlocks.MANGO_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
@@ -230,35 +233,35 @@ public class CSJConfiguredFeatures {
 
         register(context,PEAR_TREE,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ChangShengJueBlocks.PEAR_LOG.get()),
-                new StraightTrunkPlacer(3, 2, 1),
+                new StraightTrunkPlacer(5, 2, 1),
                 BlockStateProvider.simple(ChangShengJueBlocks.PEAR_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 
         register(context,LICHEE_TREE,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ChangShengJueBlocks.LICHEE_LOG.get()),
-                new StraightTrunkPlacer(3, 2, 1),
+                new StraightTrunkPlacer(5, 2, 1),
                 BlockStateProvider.simple(ChangShengJueBlocks.LICHEE_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 
         register(context,DURIAN_TREE,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ChangShengJueBlocks.DURIAN_LOG.get()),
-                new StraightTrunkPlacer(3, 2, 1),
+                new StraightTrunkPlacer(5, 2, 1),
                 BlockStateProvider.simple(ChangShengJueBlocks.DURIAN_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 
         register(context,GUIHUA_TREE,Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ChangShengJueBlocks.GUI_HUA_LOG.get()),
-                new StraightTrunkPlacer(3, 2, 1),
+                new StraightTrunkPlacer(5, 2, 1),
                 BlockStateProvider.simple(ChangShengJueBlocks.GUI_HUA_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 
         register(context,MEIHUA_TREE,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ChangShengJueBlocks.MEI_HUA_LOG.get()),
-                new StraightTrunkPlacer(3, 2, 1),
+                new StraightTrunkPlacer(5, 2, 1),
                 BlockStateProvider.simple(ChangShengJueBlocks.MEI_HUA_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
@@ -268,6 +271,13 @@ public class CSJConfiguredFeatures {
                 new StraightTrunkPlacer(16, 4, 0),
                 BlockStateProvider.simple(ChangShengJueBlocks.POPLAR_LEAVES.get()),
                 new PoplarFoliagePlacer(UniformInt.of(2, 3), UniformInt.of(0, 0),9),
+                new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
+
+        register(context,MULBERRY_TREE,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(ChangShengJueBlocks.MULBERRY_LOG.get()),
+                new StraightTrunkPlacer(5, 2, 1),
+                BlockStateProvider.simple(ChangShengJueBlocks.MULBERRY_LEAVES.get()),
+                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 //        SimpleWeightedRandomList.Builder<BlockState> builder = SimpleWeightedRandomList.builder();
 //                builder.add(Blocks.PINK_PETALS.defaultBlockState(), 1);
@@ -315,6 +325,9 @@ public class CSJConfiguredFeatures {
                         .add(ChangShengJueBlocks.PURPLE_RED_KNOTWEED.get().defaultBlockState(),1)
                         .add(ChangShengJueBlocks.GEUM_TRIFLORUM.get().defaultBlockState(),1)
                         .add(ChangShengJueBlocks.PURPLE_DANDELION.get().defaultBlockState(),1)), 16));
+
+        //野生大麦
+        register(context,WILDLIFE_HORDEUM,Feature.RANDOM_PATCH, grassPatch(BlockStateProvider.simple(ChangShengJueBlocks.WILDLIFE_HORDEUM.get()), 25));
 
         //哈密瓜
         register(context,CANTALOUPE_BLOCK,Feature.RANDOM_PATCH,

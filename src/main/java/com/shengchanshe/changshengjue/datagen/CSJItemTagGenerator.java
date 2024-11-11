@@ -46,6 +46,9 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(Item.byBlock(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get()));
         this.tag(CSJTags.Items.POPLAR_LOG)
                 .add(Item.byBlock(ChangShengJueBlocks.POPLAR_LOG.get()));
+        this.tag(CSJTags.Items.MULBERRY_LOG)
+                .add(Item.byBlock(ChangShengJueBlocks.MULBERRY_LOG.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get()));
         this.tag(CSJTags.Items.LOG)
                 .add(Item.byBlock(ChangShengJueBlocks.MANGO_LOG.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.GUI_HUA_LOG.get()))

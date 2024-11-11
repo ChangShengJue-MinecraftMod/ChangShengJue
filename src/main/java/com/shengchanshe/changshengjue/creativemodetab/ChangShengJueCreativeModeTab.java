@@ -39,6 +39,9 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.POPLAR_LEAVES.get());
                 output.accept(ChangShengJueBlocks.POPLAR_SAPLING.get());
                 output.accept(ChangShengJueBlocks.POPLAR_DEFOLIATION.get());
+                output.accept(ChangShengJueBlocks.MULBERRY_LEAVES.get());
+                output.accept(ChangShengJueBlocks.MULBERRY_SAPLING.get());
+
                 output.accept(ChangShengJueBlocks.MUGWORT_BLOCK.get());
                 output.accept(ChangShengJueBlocks.CUCKOO_BLOCK.get());
                 output.accept(ChangShengJueBlocks.PORTULACA_OLERACEA_BLOCK.get());
@@ -51,6 +54,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.TALL_STIPA_GRANDIS_VARIANT.get());
                 output.accept(ChangShengJueBlocks.RED_KNOTWEED.get());
                 output.accept(ChangShengJueBlocks.PURPLE_RED_KNOTWEED.get());
+                output.accept(ChangShengJueBlocks.WILDLIFE_HORDEUM.get());
                 output.accept(ChangShengJueBlocks.RAPE_FLOWERS.get());
                 output.accept(ChangShengJueBlocks.SOLIDAGO.get());
                 output.accept(ChangShengJueBlocks.GEUM_TRIFLORUM.get());
@@ -77,6 +81,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.RICE_SEEDS.get());
                 output.accept(ChangShengJueItems.BILUOCHUN_TEA_SEEDS.get());
                 output.accept(ChangShengJueItems.LONG_JING_TEA_SEEDS.get());
+                output.accept(ChangShengJueItems.HORDEUM_SEEDS.get());
 
                 output.accept(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get());
 
@@ -104,6 +109,9 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get());
                 output.accept(ChangShengJueBlocks.ZI_TAN_PLANKS.get());
                 output.accept(ChangShengJueBlocks.POPLAR_LOG.get());
+                output.accept(ChangShengJueBlocks.MULBERRY_LOG.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get());
+
                 output.accept(ChangShengJueBlocks.HANG_TU_BLOCK.get());
                 output.accept(ChangShengJueBlocks.TU_PEI_BLOCK.get());
                 output.accept(ChangShengJueBlocks.STONE_LAMPS_BASE_BLOCK.get());
@@ -224,6 +232,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.BRINJAL.get());
                 output.accept(ChangShengJueItems.BILUOCHUN_TEA.get());
                 output.accept(ChangShengJueItems.LONG_JING_TEA.get());
+                output.accept(ChangShengJueItems.HORDEUM.get());
                 output.accept(ChangShengJueItems.CAPSULE_JIAO_ZI.get());
                 output.accept(ChangShengJueItems.ZHENG_CAI.get());
                 output.accept(ChangShengJueItems.PORTULACA_OLERACEA_CAKE.get());

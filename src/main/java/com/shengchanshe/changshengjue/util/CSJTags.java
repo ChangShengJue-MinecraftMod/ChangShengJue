@@ -15,6 +15,7 @@ public class CSJTags {
         public static final TagKey<Block> HUANG_HUA_LI_LOG = tag("huang_hua_li_log");
         public static final TagKey<Block> ZI_TAN_LOG = tag("zi_tan_log");
         public static final TagKey<Block> POPLAR_LOG = tag("poplar_log");
+        public static final TagKey<Block> MULBERRY_LOG = tag("mulberry_log");
         public static final TagKey<Block> LOG = tag("log");
         public static final TagKey<Block> MEI_REN_KAO = tag("mei_ren_kao");
         public static final TagKey<Block> TILE = tag("tile");
@@ -30,6 +31,7 @@ public class CSJTags {
         public static final TagKey<Item> HUANG_HUA_LI_LOG = tag("huang_hua_li_log");
         public static final TagKey<Item> ZI_TAN_LOG = tag("zi_tan_log");
         public static final TagKey<Item> POPLAR_LOG = tag("poplar_log");
+        public static final TagKey<Item> MULBERRY_LOG = tag("mulberry_log");
         public static final TagKey<Item> LOG = tag("log");
         public static final TagKey<Item> MEI_REN_KAO = tag("mei_ren_kao");
         public static final TagKey<Item> TILE = tag("tile");
