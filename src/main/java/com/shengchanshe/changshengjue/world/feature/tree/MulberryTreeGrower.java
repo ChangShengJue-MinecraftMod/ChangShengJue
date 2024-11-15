@@ -8,11 +8,6 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.Nullable;
 
 public class MulberryTreeGrower extends AbstractTreeGrower {
-//    @Nullable
-//    @Override
-//    protected ConfiguredFeature<?, ?> getConfiguredFeature(Random p_60014_, boolean p_60015_) {
-//        return ModConfiguredFeatures.PEAR_TREE;
-//    }
     @Nullable
     @Override
     protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource randomSource, boolean b) {

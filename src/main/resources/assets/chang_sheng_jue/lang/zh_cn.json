@@ -63,10 +63,17 @@
   "item.chang_sheng_jue.long_jing_tea": "龙井",
 
   "item.chang_sheng_jue.hordeum_seeds": "大麦种子",
+  "block.chang_sheng_jue.wildlife_hordeum": "野生大麦",
   "item.chang_sheng_jue.hordeum": "大麦",
+
+  "item.chang_sheng_jue.mulberry_juice": "桑葚汁",
+  "item.chang_sheng_jue.apple_juice": "苹果汁",
+  "item.chang_sheng_jue.hot_pear_soup": "热梨汤",
+  "item.chang_sheng_jue.grape_juice": "葡萄汁",
 
   "item.chang_sheng_jue.ci_pan": "瓷盘",
   "item.chang_sheng_jue.ci_wan": "瓷碗",
+  "item.chang_sheng_jue.ci_bei": "瓷杯",
 
   "item.chang_sheng_jue.capsule_jiao_zi": "荠菜饺子",
   "item.chang_sheng_jue.zheng_cai": "蒸菜",
@@ -155,7 +162,8 @@
   "block.chang_sheng_jue.mulberry_leaves": "桑树树叶",
   "block.chang_sheng_jue.mulberry_sapling": "桑树树苗",
   "item.chang_sheng_jue.mulberry": "桑葚",
-  "item.chang_sheng_jue.silk": "蚕丝",
+  "item.chang_sheng_jue.natural_silk": "蚕丝",
+  "item.chang_sheng_jue.silk": "丝绸",
 
   "block.chang_sheng_jue.blue_and_white_porcelain_flower_pots": "青花瓷花盆",
 
@@ -197,6 +205,11 @@
   "block.chang_sheng_jue.red_knotweed": "红蓼",
   "block.chang_sheng_jue.purple_red_knotweed": "红蓼异种",
   "block.chang_sheng_jue.rape_flowers": "油菜花",
+
+  "item.chang_sheng_jue.quicklime": "生石灰",
+  "item.chang_sheng_jue.lime_slurry_barrels": "石灰浆桶",
+  "item.chang_sheng_jue.warm_lime_slurry_barrels": "暖色石灰浆桶",
+  "item.chang_sheng_jue.cool_lime_slurry_barrels": "冷色石灰浆桶",
 
   "block.chang_sheng_jue.zhu_tai_block": "烛台",
   "block.chang_sheng_jue.hang_tu_block": "夯土",
@@ -411,16 +424,33 @@
   "sounds.chang_sheng_jue.peacock_hurt" : "孔雀 : 受伤",
   "sounds.chang_sheng_jue.peacock_death" : "孔雀 : 死亡",
 
-  "block.chang_sheng_jue.ag_ore": "银矿石",
-  "block.chang_sheng_jue.deepslate_ag_ore": "深层银矿石",
   "item.chang_sheng_jue.raw_ag": "粗银",
   "item.chang_sheng_jue.ag_ingot": "银锭",
+  "block.chang_sheng_jue.ag_ore": "银矿石",
+  "block.chang_sheng_jue.deepslate_ag_ore": "深层银矿石",
   "block.chang_sheng_jue.kaolin_ore": "高岭土矿",
+  "block.chang_sheng_jue.limestone": "石灰岩",
+  "block.chang_sheng_jue.syderolife_ore": "陶土矿",
+
+  "item.chang_sheng_jue.black_bricks": "黑砖",
+  "item.chang_sheng_jue.white_bricks_item": "白砖",
+  "item.chang_sheng_jue.gold_bricks": "金砖",
 
   "item.chang_sheng_jue.tong_qian": "铜钱",
   "item.chang_sheng_jue.yi_guan_tong_qian": "一贯铜钱",
   "item.chang_sheng_jue.silver_bullions": "银元宝",
   "item.chang_sheng_jue.gold_bullions": "金元宝",
+
+  "item.chang_sheng_jue.crucible": "坩埚",
+  "item.chang_sheng_jue.crucible_crushed_copper": "坩埚(碎铜块)",
+  "item.chang_sheng_jue.crucible_crushed_silver": "坩埚(碎银块)",
+  "item.chang_sheng_jue.crucible_crushed_gold": "坩埚(碎金块)",
+  "item.chang_sheng_jue.crucible_liquid_copper": "坩埚(铜液)",
+  "item.chang_sheng_jue.crucible_liquid_silver": "坩埚(银液)",
+  "item.chang_sheng_jue.crucible_liquid_gold": "坩埚(金液)",
+
+  "block.chang_sheng_jue.casting_molds": "铜钱模具",
+  "block.chang_sheng_jue.bullions_casting_molds": "元宝模具",
 
   "block.chang_sheng_jue.painting_scroll": "画轴(1x1)",
   "block.chang_sheng_jue.high_painting_scroll": "画轴(1x2)",
@@ -432,6 +462,8 @@
   "block.chang_sheng_jue.tool_table": "工具台",
   "block.chang_sheng_jue.desk": "案台",
   "block.chang_sheng_jue.pig_trough": "牲畜食槽",
+
+  "block.chang_sheng_jue.plaque_standing": "牌匾",
 
   "biome.chang_sheng_jue.chang_shen_jue_prairie": "慕然草原"
 }

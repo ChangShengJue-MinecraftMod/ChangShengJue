@@ -20,6 +20,7 @@ public class CSJTags {
         public static final TagKey<Block> MEI_REN_KAO = tag("mei_ren_kao");
         public static final TagKey<Block> TILE = tag("tile");
         public static final TagKey<Block> WINDOWS = tag("windows");
+        public static final TagKey<Block> BRICKS = tag("bricks");
 
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(ChangShengJue.MOD_ID, name));

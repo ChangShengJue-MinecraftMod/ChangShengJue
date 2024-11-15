@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:kochia_scoparia_block"
+    },
+    {
+      "tag": "forge:crops/wheat"
+    },
+    {
+      "item": "chang_sheng_jue:ci_pan"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:zheng_cai"
+  }
+}

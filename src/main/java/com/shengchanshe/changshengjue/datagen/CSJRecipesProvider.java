@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.datagen;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.util.CSJTags;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
@@ -22,7 +24,7 @@ import static net.minecraft.data.recipes.RecipeCategory.MISC;
 
 //合成表
 public class CSJRecipesProvider extends RecipeProvider implements IConditionBuilder {
-    private static final List<ItemLike> SAPPHIRE_SMELTABLES = List.of(ChangShengJueBlocks.AG_ORE.get(),
+    private static final List<ItemLike> AG_SMELTABLES = List.of(ChangShengJueBlocks.AG_ORE.get(),
             ChangShengJueBlocks.DEEPSLATE_AG_ORE.get(), ChangShengJueItems.RAW_AG.get());
     private static final int SMELTING_TICK = 200;
     private static final int SMOKING_TICK = 100;
@@ -34,31 +36,189 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
-        //有序合成
-//        ShapedRecipeBuilder.shaped(MISC,ChangShengJueItems.TONG_QIAN.get())
-//                .pattern("mxm")
-//                .pattern("x#x")
-//                .pattern("#x#")
-//                .define('x', Tags.Items.GEMS_DIAMOND)
-//                .group("chang_sheng_jue_sundry_tab")
-//                .unlockedBy(getHasName(ChangShengJueItems.TONG_QIAN.get()),has(Tags.Items.INGOTS_COPPER))
-//                .save(consumer);
         //无序合成
         ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.YI_GUAN_TONG_QIAN.get()).requires(ChangShengJueItems.TONG_QIAN.get(),7)
                 .unlockedBy("has_tong_qian",has(ChangShengJueItems.TONG_QIAN.get()))
                 .save(consumer);
 
-        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.CAPSULE_JIAO_ZI.get()).requires(ChangShengJueItems.CAPSULE.get()).requires(Tags.Items.CROPS_WHEAT).requires(Items.PORKCHOP).requires(ChangShengJueItems.CI_PAN.get())
-                .unlockedBy("has_capsule",has(ChangShengJueItems.CAPSULE.get()))
-                .save(consumer);
+        //原木
+        planksFromLog(consumer, ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get(), CSJTags.Items.HUANG_HUA_LI_LOG, 4);
+        planksFromLog(consumer, ChangShengJueBlocks.JI_CHI_MU_PLANKS.get(), CSJTags.Items.JI_CHI_MU_LOG, 4);
+        planksFromLog(consumer, ChangShengJueBlocks.ZI_TAN_PLANKS.get(), CSJTags.Items.ZI_TAN_LOG, 4);
 
+        //建筑方块
+        ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.HANG_TU_BLOCK.get(),6).requires(Blocks.DIRT,9).unlockedBy("has_dirt",has(Blocks.DIRT)).save(consumer);
+        stairBuilder(ChangShengJueBlocks.HANG_TU_STAIRS.get(), Ingredient.of(ChangShengJueBlocks.HANG_TU_BLOCK.get())).unlockedBy("has_hang_tu_block", has(ChangShengJueBlocks.HANG_TU_BLOCK.get())).save(consumer);
+        slabBuilder(RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.HANG_TU_SLAB.get(), Ingredient.of(ChangShengJueBlocks.HANG_TU_BLOCK.get())).unlockedBy("has_hang_tu_block", has(ChangShengJueBlocks.HANG_TU_BLOCK.get())).save(consumer);
+        wall(consumer,RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.HANG_TU_WALL.get(),ChangShengJueBlocks.HANG_TU_BLOCK.get());
 
+        stairBuilder(ChangShengJueBlocks.TU_PEI_STAIRS.get(), Ingredient.of(Blocks.DIRT)).unlockedBy("has_dirt", has(Blocks.DIRT)).save(consumer);
+        slabBuilder(RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.TU_PEI_SLAB.get(),
+                Ingredient.of(Blocks.DIRT)).unlockedBy("has_dirt", has(Blocks.DIRT)).save(consumer);
+        wall(consumer,RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.TU_PEI_WALL.get(),Blocks.DIRT);
+        //石灰浆
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.LIME_SLURRY_BARRELS.get()).requires(ChangShengJueItems.QUICKLIME.get()).requires(Items.WATER_BUCKET)
+                .unlockedBy("has_water_bucket",has(Items.WATER_BUCKET)).save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.COOL_LIME_SLURRY_BARRELS.get()).requires(ChangShengJueItems.LIME_SLURRY_BARRELS.get()).requires(Items.LIGHT_BLUE_DYE)
+                .unlockedBy("has_lime_slurry_barrels",has(ChangShengJueItems.LIME_SLURRY_BARRELS.get())).save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.WARM_LIME_SLURRY_BARRELS.get()).requires(ChangShengJueItems.LIME_SLURRY_BARRELS.get()).requires(Items.YELLOW_DYE)
+                .unlockedBy("has_lime_slurry_barrels",has(ChangShengJueItems.LIME_SLURRY_BARRELS.get())).save(consumer);
+        //黑砖
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.BLACK_STONE_BRICKS.get()).define('#', ChangShengJueItems.BLACK_BRICKS.get())
+                .pattern("##").pattern("##").unlockedBy("has_bricks", has(ChangShengJueItems.BLACK_BRICKS.get())).save(consumer,"black_stone_bricks_shaped");
+
+        ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.BLACK_STONE_BRICKS.get(),9)
+                .requires(ChangShengJueBlocks.BLACK_STONE_FINE_BRICKS.get(),9).unlockedBy("has_bricks",has(ChangShengJueBlocks.BLACK_STONE_FINE_BRICKS.get())).save(consumer,"black_stone_bricks_shapeless");
+
+        ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.BLACK_STONE_FINE_BRICKS.get(),9)
+                .requires(ChangShengJueBlocks.BLACK_STONE_BRICKS.get(),9).unlockedBy("has_bricks",has(ChangShengJueBlocks.BLACK_STONE_BRICKS.get())).save(consumer);
+
+        stairBuilder(ChangShengJueBlocks.BLACK_STONE_BRICKS_STAIRS.get(), Ingredient.of(ChangShengJueBlocks.BLACK_STONE_BRICKS.get(),ChangShengJueBlocks.BLACK_STONE_FINE_BRICKS.get()))
+                .unlockedBy("has_bricks", has(ChangShengJueBlocks.BLACK_STONE_BRICKS.get())).save(consumer);
+
+        slabBuilder(RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.BLACK_STONE_BRICKS_SLAB.get(),
+                Ingredient.of(ChangShengJueBlocks.BLACK_STONE_BRICKS.get(),ChangShengJueBlocks.BLACK_STONE_FINE_BRICKS.get())).unlockedBy("has_dirt", has(ChangShengJueBlocks.BLACK_STONE_BRICKS.get())).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get(),6)
+                .define('#', Ingredient.of(ChangShengJueBlocks.BLACK_STONE_BRICKS.get(),ChangShengJueBlocks.BLACK_STONE_FINE_BRICKS.get()))
+                .pattern("#").pattern("#").pattern("#").unlockedBy("has_bricks", has(ChangShengJueBlocks.BLACK_STONE_BRICKS.get())).save(consumer);
+        //白砖
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WHITE_BRICKS.get()).define('#', ChangShengJueItems.WHITE_BRICKS_ITEM.get())
+                .pattern("##").pattern("##").unlockedBy("has_bricks", has(ChangShengJueItems.WHITE_BRICKS_ITEM.get())).save(consumer,"white_stone_bricks_shaped");
+
+        ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.WHITE_BRICKS.get(),9)
+                .requires(ChangShengJueBlocks.WHITE_FINE_BRICKS.get(),9).unlockedBy("has_bricks",has(ChangShengJueBlocks.WHITE_FINE_BRICKS.get())).save(consumer,"white_bricks_shapeless");
+
+        ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.WHITE_FINE_BRICKS.get(),9)
+                .requires(ChangShengJueBlocks.WHITE_BRICKS.get(),9).unlockedBy("has_bricks",has(ChangShengJueBlocks.WHITE_BRICKS.get())).save(consumer);
+
+        stairBuilder(ChangShengJueBlocks.WHITE_BRICKS_STAIRS.get(), Ingredient.of(ChangShengJueBlocks.WHITE_BRICKS.get(),ChangShengJueBlocks.WHITE_FINE_BRICKS.get()))
+                .unlockedBy("has_bricks", has(ChangShengJueBlocks.WHITE_BRICKS.get())).save(consumer);
+
+        slabBuilder(RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.WHITE_BRICKS_SLAB.get(),
+                Ingredient.of(ChangShengJueBlocks.WHITE_BRICKS.get(),ChangShengJueBlocks.WHITE_FINE_BRICKS.get())).unlockedBy("has_dirt", has(ChangShengJueBlocks.WHITE_BRICKS.get())).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WHITE_BRICKS_VERTICAL_WALLS.get(),6)
+                .define('#', Ingredient.of(ChangShengJueBlocks.WHITE_BRICKS.get(),ChangShengJueBlocks.WHITE_FINE_BRICKS.get()))
+                .pattern("#").pattern("#").pattern("#").unlockedBy("has_bricks", has(ChangShengJueBlocks.WHITE_BRICKS.get())).save(consumer);
+        //金砖
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.GOLD_BRICKS.get()).requires(ChangShengJueItems.WHITE_BRICKS_ITEM.get()).requires(Items.YELLOW_DYE)
+                .unlockedBy("has_white_bricks_item",has(ChangShengJueItems.WHITE_BRICKS_ITEM.get())).save(consumer);
+
+        //坩埚
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.CRUCIBLE_CRUSHED_COPPER.get()).requires(ChangShengJueItems.CRUCIBLE.get()).requires(Ingredient.of(Tags.Items.INGOTS_COPPER),8)
+                .unlockedBy("has_crucible",has(ChangShengJueItems.CRUCIBLE.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.CRUCIBLE_CRUSHED_SILVER.get()).requires(ChangShengJueItems.CRUCIBLE.get()).requires(ChangShengJueItems.AG_INGOT.get(),8)
+                .unlockedBy("has_crucible",has(ChangShengJueItems.CRUCIBLE.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.CRUCIBLE_CRUSHED_GOLD.get()).requires(ChangShengJueItems.CRUCIBLE.get()).requires(Ingredient.of(Tags.Items.INGOTS_GOLD),8)
+                .unlockedBy("has_crucible",has(ChangShengJueItems.CRUCIBLE.get())).save(consumer);
+
+        //模具
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.CASTING_MOLDS.get(),1)
+                .define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
+                .define('X', Ingredient.of(Tags.Items.SAND))
+                .pattern("#X#")
+                .pattern("XXX")
+                .pattern("#X#")
+                .unlockedBy("has_sand", has(Tags.Items.SAND)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get(),1)
+                .define('#', Ingredient.of(Tags.Items.GEMS_DIAMOND))
+                .define('X', Ingredient.of(Tags.Items.SAND))
+                .pattern("#X#")
+                .pattern("XXX")
+                .pattern("#X#")
+                .unlockedBy("has_sand", has(Tags.Items.SAND)).save(consumer);
         //烧炼配方
         //矿石
-        oreSmelting(consumer, SAPPHIRE_SMELTABLES, RecipeCategory.MISC, ChangShengJueItems.AG_INGOT.get(), 0.25f, SMELTING_TICK, "sapphire");
-        oreBlasting(consumer, SAPPHIRE_SMELTABLES, RecipeCategory.MISC, ChangShengJueItems.AG_INGOT.get(), 0.25f, SMOKING_TICK, "sapphire");
+        oreSmelting(consumer, AG_SMELTABLES, RecipeCategory.MISC, ChangShengJueItems.AG_INGOT.get(), 0.25f, SMELTING_TICK, "sapphire");
+        oreBlasting(consumer, AG_SMELTABLES, RecipeCategory.MISC, ChangShengJueItems.AG_INGOT.get(), 0.25f, SMOKING_TICK, "sapphire");
+
+        oreSmelting(consumer,List.of(ChangShengJueBlocks.KAOLIN_ORE.get()), RecipeCategory.MISC, ChangShengJueItems.WHITE_BRICKS_ITEM.get(), 0.25f, SMELTING_TICK, "sapphire");
+        oreBlasting(consumer,List.of(ChangShengJueBlocks.KAOLIN_ORE.get()), RecipeCategory.MISC, ChangShengJueItems.WHITE_BRICKS_ITEM.get(), 0.25f, SMOKING_TICK, "sapphire");
+
+        oreSmelting(consumer,List.of(ChangShengJueBlocks.LIMESTONE.get()), RecipeCategory.MISC, ChangShengJueItems.QUICKLIME.get(), 0.25f, SMELTING_TICK, "sapphire");
+        oreBlasting(consumer,List.of(ChangShengJueBlocks.LIMESTONE.get()), RecipeCategory.MISC, ChangShengJueItems.QUICKLIME.get(), 0.25f, SMOKING_TICK, "sapphire");
+
+        oreSmelting(consumer,List.of(ChangShengJueBlocks.SYDEROLIFE_ORE.get()), RecipeCategory.MISC, ChangShengJueItems.BLACK_BRICKS.get(), 0.25f, SMELTING_TICK, "sapphire");
+        oreBlasting(consumer,List.of(ChangShengJueBlocks.SYDEROLIFE_ORE.get()), RecipeCategory.MISC, ChangShengJueItems.BLACK_BRICKS.get(), 0.25f, SMOKING_TICK, "sapphire");
+        //坩埚
+        oreSmelting(consumer,List.of(ChangShengJueItems.CRUCIBLE_CRUSHED_COPPER.get()), RecipeCategory.MISC, ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get(), 0.25f, 300, "sapphire");
+        oreSmelting(consumer,List.of(ChangShengJueItems.CRUCIBLE_CRUSHED_SILVER.get()), RecipeCategory.MISC, ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get(), 0.25f, 300, "sapphire");
+        oreSmelting(consumer,List.of(ChangShengJueItems.CRUCIBLE_CRUSHED_GOLD.get()), RecipeCategory.MISC, ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get(), 0.25f, 300, "sapphire");
 
         // 食物
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.CAPSULE_JIAO_ZI.get()).requires(ChangShengJueItems.CAPSULE.get()).requires(Tags.Items.CROPS_WHEAT).requires(Items.PORKCHOP).requires(ChangShengJueItems.CI_PAN.get())
+                .unlockedBy("has_plates",has(ChangShengJueItems.CI_PAN.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.ZHENG_CAI.get()).requires(ChangShengJueBlocks.KOCHIA_SCOPARIA_BLOCK.get()).requires(Tags.Items.CROPS_WHEAT).requires(ChangShengJueItems.CI_PAN.get())
+                .unlockedBy("has_plates",has(ChangShengJueItems.CI_PAN.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.PORTULACA_OLERACEA_CAKE.get()).requires(ChangShengJueBlocks.PORTULACA_OLERACEA_BLOCK.get()).requires(Tags.Items.CROPS_WHEAT)
+                .unlockedBy("has_portulaca_oleracea_block",has(ChangShengJueBlocks.PORTULACA_OLERACEA_BLOCK.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.QING_TUAN.get())
+                .requires(ChangShengJueItems.STICKYRICE_1.get()).requires(ChangShengJueBlocks.MUGWORT_BLOCK.get())
+                .requires(ChangShengJueItems.REDBEAN.get()).requires(ChangShengJueItems.CI_WAN.get())
+                .unlockedBy("has_bowls",has(ChangShengJueItems.CI_WAN.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.TOMATO_EGG.get()).requires(ChangShengJueItems.TOMATO.get()).requires(Tags.Items.EGGS).requires(ChangShengJueItems.CI_PAN.get())
+                .unlockedBy("has_plates",has(ChangShengJueItems.CI_PAN.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.GU_LAO_ROU.get()).requires(ChangShengJueItems.PINEAPPLE.get()).requires(Items.PORKCHOP).requires(ChangShengJueItems.CI_PAN.get())
+                .unlockedBy("has_plates",has(ChangShengJueItems.CI_PAN.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.MEAT_FOAM_BRINJAL.get()).requires(ChangShengJueItems.BRINJAL.get(),2)
+                .requires(Items.PORKCHOP).requires(ChangShengJueItems.CI_PAN.get())
+                .unlockedBy("has_plates",has(ChangShengJueItems.CI_PAN.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.SORGHUM_CAKE.get()).requires(ChangShengJueItems.SORGHUM.get(),3)
+                .unlockedBy("has_sorghum",has(ChangShengJueItems.SORGHUM.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.STINKY_TOFU.get()).requires(ChangShengJueItems.SOYBEAN.get(),3).requires(ChangShengJueItems.CI_PAN.get())
+                .unlockedBy("has_plates",has(ChangShengJueItems.CI_PAN.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.ZHU_DU_JI.get())
+                .requires(ChangShengJueItems.JALAPENOS.get()).requires(Items.PORKCHOP)
+                .requires(Items.CHICKEN).requires(ChangShengJueItems.CI_WAN.get())
+                .unlockedBy("has_bowls",has(ChangShengJueItems.CI_WAN.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.XIAO_MI_FAN.get())
+                .requires(ChangShengJueItems.GU_SUI.get(),3)
+                .unlockedBy("has_bowls",has(ChangShengJueItems.CI_WAN.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.MI_FAN.get())
+                .requires(ChangShengJueItems.RICE.get(),3)
+                .unlockedBy("has_bowls",has(ChangShengJueItems.CI_WAN.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.GUI_HUA_TANG_OU.get()).requires(ChangShengJueItems.GUI_HUA.get()).requires(ChangShengJueItems.LOTUS_ROOT.get()).requires(ChangShengJueItems.CI_PAN.get())
+                .unlockedBy("has_plates",has(ChangShengJueItems.CI_PAN.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.BA_BAO_ZHOU.get())
+                .requires(ChangShengJueItems.PEANUT.get()).requires(ChangShengJueItems.LOTUS_SEEDS.get()).requires(ChangShengJueItems.REDBEAN.get())
+                .requires(ChangShengJueItems.RICE.get()).requires(ChangShengJueItems.GU_SUI.get()).requires(ChangShengJueItems.GRAPE.get())
+                .requires(ChangShengJueItems.SOYBEAN.get()).requires(ChangShengJueItems.CORN.get()).requires(ChangShengJueItems.CI_WAN.get())
+                .unlockedBy("has_bowls",has(ChangShengJueItems.CI_WAN.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.MULBERRY_JUICE.get())
+                .requires(ChangShengJueItems.MULBERRY.get(),3).requires(ChangShengJueItems.CI_BEI.get())
+                .unlockedBy("has_cups",has(ChangShengJueItems.CI_BEI.get()))
+                .save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.APPLE_JUICE.get())
+                .requires(Items.APPLE,2).requires(ChangShengJueItems.CI_BEI.get())
+                .unlockedBy("has_cups",has(ChangShengJueItems.CI_BEI.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.HOT_PEAR_SOUP.get())
+                .requires(ChangShengJueItems.PEAR.get(),2).requires(ChangShengJueItems.CI_WAN.get())
+                .unlockedBy("has_bowls",has(ChangShengJueItems.CI_WAN.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.GRAPE_JUICE.get())
+                .requires(ChangShengJueItems.GRAPE.get(),3).requires(ChangShengJueItems.CI_BEI.get())
+                .unlockedBy("has_cups",has(ChangShengJueItems.CI_BEI.get()))
+                .save(consumer);
+
         foodCooking(Ingredient.of(ChangShengJueItems.CORN.get()),ChangShengJueItems.BAKED_CORN.get(),1,consumer,"baked_corn");
 
 

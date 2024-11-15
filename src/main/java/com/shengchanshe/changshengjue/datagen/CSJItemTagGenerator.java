@@ -34,15 +34,12 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
 
         this.tag(CSJTags.Items.JI_CHI_MU_LOG)
                 .add(Item.byBlock(ChangShengJueBlocks.JI_CHI_MU_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.STRIPPED_JI_CHI_MU_LOG.get()));
         this.tag(CSJTags.Items.HUANG_HUA_LI_LOG)
                 .add(Item.byBlock(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get()));
         this.tag(CSJTags.Items.ZI_TAN_LOG)
                 .add(Item.byBlock(ChangShengJueBlocks.ZI_TAN_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.ZI_TAN_PLANKS.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get()));
         this.tag(CSJTags.Items.POPLAR_LOG)
                 .add(Item.byBlock(ChangShengJueBlocks.POPLAR_LOG.get()));

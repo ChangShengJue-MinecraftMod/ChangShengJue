@@ -39,26 +39,30 @@ public class MulberryLeaves extends LeavesBlock {
         return state.getValue(DISTANCE) == 7;
     }
 
-//    @Override
-//    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-//        if (pState.getValue(STATE) == State.FRUITS){
-//            pLevel.setBlockAndUpdate(pPos, pState.setValue(STATE, State.LEAVES));
-//            return InteractionResult.SUCCESS;
-//        }
-//        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
-//    }
-
     @Override
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
         if (!pState.getValue(PERSISTENT) && !decaying(pState)) {
             if (pLevel.getRawBrightness(pPos, 0) >= 9) {
                 State value = pState.getValue(STATE);
                 if (value == State.LEAVES) {
-                    boolean grow = pRandom.nextDouble() < 0.1;
-                    if (ForgeHooks.onCropsGrowPre(pLevel, pPos, pState, grow)) {
-                        pLevel.setBlockAndUpdate(pPos, pState.setValue(STATE, State.FRUITS));
-                        ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
-                        return;
+                    // 检查周围是否有 FRUITS 状态的方块
+                    boolean hasFruitsNearby = false;
+                    for (Direction direction : Direction.values()) {
+                        BlockPos neighborPos = pPos.relative(direction);
+                        BlockState neighborState = pLevel.getBlockState(neighborPos);
+                        if (neighborState.getBlock() == pState.getBlock() && neighborState.getValue(STATE) == State.FRUITS) {
+                            hasFruitsNearby = true;
+                            break;
+                        }
+                    }
+
+                    // 如果有 FRUITS 状态的方块，则有 10% 的概率感染
+                    if (hasFruitsNearby && pRandom.nextDouble() < 0.1) {
+                        if (ForgeHooks.onCropsGrowPre(pLevel, pPos, pState, true)) {
+                            pLevel.setBlockAndUpdate(pPos, pState.setValue(STATE, State.FRUITS));
+                            ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
+                            return;
+                        }
                     }
                 }
             }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:stickyrice_1"
+    },
+    {
+      "item": "chang_sheng_jue:mugwort_block"
+    },
+    {
+      "item": "chang_sheng_jue:redbean"
+    },
+    {
+      "item": "chang_sheng_jue:ci_wan"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:qing_tuan"
+  }
+}

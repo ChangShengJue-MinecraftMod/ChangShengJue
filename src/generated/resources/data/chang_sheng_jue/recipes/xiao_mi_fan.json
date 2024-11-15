@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:gu_sui"
+    },
+    {
+      "item": "chang_sheng_jue:gu_sui"
+    },
+    {
+      "item": "chang_sheng_jue:gu_sui"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:xiao_mi_fan"
+  }
+}

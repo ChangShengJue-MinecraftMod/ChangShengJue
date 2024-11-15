@@ -26,6 +26,10 @@
     "chang_sheng_jue:black_floor_tiles_block",
     "chang_sheng_jue:ag_ore",
     "chang_sheng_jue:deepslate_ag_ore",
-    "chang_sheng_jue:kaolin_ore"
+    "chang_sheng_jue:kaolin_ore",
+    "chang_sheng_jue:limestone",
+    "chang_sheng_jue:bullions_casting_molds",
+    "chang_sheng_jue:casting_molds",
+    "chang_sheng_jue:syderolife_ore"
   ]
 }

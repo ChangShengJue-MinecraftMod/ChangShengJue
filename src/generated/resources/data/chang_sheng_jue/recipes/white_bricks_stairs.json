@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": [
+      {
+        "item": "chang_sheng_jue:white_bricks"
+      },
+      {
+        "item": "chang_sheng_jue:white_fine_bricks"
+      }
+    ]
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "item": "chang_sheng_jue:white_bricks_stairs"
+  },
+  "show_notification": true
+}

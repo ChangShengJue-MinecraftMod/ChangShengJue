@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "chang_sheng_jue:ji_chi_mu_log"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "chang_sheng_jue:ji_chi_mu_planks"
+  }
+}

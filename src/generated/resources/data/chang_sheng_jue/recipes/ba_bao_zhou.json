@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:peanut"
+    },
+    {
+      "item": "chang_sheng_jue:lotus_seeds"
+    },
+    {
+      "item": "chang_sheng_jue:redbean"
+    },
+    {
+      "item": "chang_sheng_jue:rice"
+    },
+    {
+      "item": "chang_sheng_jue:gu_sui"
+    },
+    {
+      "item": "chang_sheng_jue:grape"
+    },
+    {
+      "item": "chang_sheng_jue:soybean"
+    },
+    {
+      "item": "chang_sheng_jue:corn"
+    },
+    {
+      "item": "chang_sheng_jue:ci_wan"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:ba_bao_zhou"
+  }
+}

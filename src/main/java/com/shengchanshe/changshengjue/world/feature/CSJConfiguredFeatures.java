@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.world.feature;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
+import com.shengchanshe.changshengjue.block.tree_logs.MulberryLeaves;
 import com.shengchanshe.changshengjue.world.feature.tree.custom.PoplarFoliagePlacer;
 import com.shengchanshe.changshengjue.world.feature.tree.custom.PoplarTrunkPlacer;
 import net.minecraft.core.BlockPos;
@@ -25,9 +26,11 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.RandomSpreadFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.SpruceFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.BendingTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
@@ -35,6 +38,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
 import java.util.List;
+import java.util.Random;
 
 
 public class CSJConfiguredFeatures {
@@ -171,6 +175,10 @@ public class CSJConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> AG_ORE = registerKey("ag_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> AG_ORE_SMALL = registerKey("ag_ore_small");
     public static final ResourceKey<ConfiguredFeature<?, ?>> KAOLIN_ORE = registerKey("kaolin_ore");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> LIMESTONE = registerKey("limestone");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SYDEROLIFE_ORE = registerKey("syderolife_ore");
     //树
     public static final ResourceKey<ConfiguredFeature<?, ?>> MANGO_TREE = registerKey("mango_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_TREE = registerKey("banana_tree");
@@ -202,13 +210,16 @@ public class CSJConfiguredFeatures {
     public static void bootstrap(BootstapContext<ConfiguredFeature<?,?>> context){
         HolderGetter<Block> holdergetter = context.lookup(Registries.BLOCK);
         //定义矿石可替换的方块,TagMatchTest匹配特定标签的方块,BlockMatchTest匹配具体方块
-
+        RuleTest ruletest = new TagMatchTest(BlockTags.BASE_STONE_OVERWORLD);
         //定义在主世界中生成的矿石配置
         List<OreConfiguration.TargetBlockState> overworldSapphireOres = overworldSapphireOres(ChangShengJueBlocks.AG_ORE.get().defaultBlockState(),ChangShengJueBlocks.DEEPSLATE_AG_ORE.get().defaultBlockState());//在深板岩方块上生成矿石
         register(context,AG_ORE,Feature.ORE,new OreConfiguration(overworldSapphireOres,9));
         register(context,AG_ORE_SMALL,Feature.ORE,new OreConfiguration(overworldSapphireOres,4));
 
         register(context,KAOLIN_ORE,Feature.ORE,new OreConfiguration(overworldSapphireOres(ChangShengJueBlocks.KAOLIN_ORE.get().defaultBlockState(),null),9));
+        register(context,LIMESTONE, Feature.ORE, new OreConfiguration(ruletest, ChangShengJueBlocks.LIMESTONE.get().defaultBlockState(), 64));
+        register(context,SYDEROLIFE_ORE, Feature.ORE, new OreConfiguration(ruletest, ChangShengJueBlocks.SYDEROLIFE_ORE.get().defaultBlockState(), 64));
+
 
         register(context,MANGO_TREE,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ChangShengJueBlocks.MANGO_LOG.get()),
@@ -272,17 +283,23 @@ public class CSJConfiguredFeatures {
                 BlockStateProvider.simple(ChangShengJueBlocks.POPLAR_LEAVES.get()),
                 new PoplarFoliagePlacer(UniformInt.of(2, 3), UniformInt.of(0, 0),9),
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
-
+        BlockState blockState;
+        if (new Random().nextInt() <= 0.1){
+            blockState = ChangShengJueBlocks.MULBERRY_LEAVES.get().defaultBlockState();
+            blockState.setValue(MulberryLeaves.STATE,MulberryLeaves.State.FRUITS);
+        }else {
+            blockState = ChangShengJueBlocks.MULBERRY_LEAVES.get().defaultBlockState();
+            blockState.setValue(MulberryLeaves.STATE,MulberryLeaves.State.LEAVES);
+        }
         register(context,MULBERRY_TREE,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ChangShengJueBlocks.MULBERRY_LOG.get()),
                 new StraightTrunkPlacer(5, 2, 1),
-                BlockStateProvider.simple(ChangShengJueBlocks.MULBERRY_LEAVES.get()),
+                new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder()
+                        .add(ChangShengJueBlocks.MULBERRY_LEAVES.get().defaultBlockState().setValue(MulberryLeaves.STATE, MulberryLeaves.State.LEAVES), 99)
+                        .add(ChangShengJueBlocks.MULBERRY_LEAVES.get().defaultBlockState().setValue(MulberryLeaves.STATE, MulberryLeaves.State.FRUITS), 1)),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
-//        SimpleWeightedRandomList.Builder<BlockState> builder = SimpleWeightedRandomList.builder();
-//                builder.add(Blocks.PINK_PETALS.defaultBlockState(), 1);
-//        FeatureUtils.register(context, FLOWER_CHERRY, Feature.FLOWER,
-//                new RandomPatchConfiguration(96, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(builder)))));
+
         //花花草草
         register(context,MUGWORT,Feature.FLOWER,
                 new RandomPatchConfiguration(16,4,2,//生成次数,xz轴的扩散范围,y轴的扩散范围

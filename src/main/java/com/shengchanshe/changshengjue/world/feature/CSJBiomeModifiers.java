@@ -5,6 +5,7 @@ import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
@@ -25,6 +26,12 @@ public class CSJBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_DEEPSLATE_AG_ORE = registerKey("add_deepslate_ag_ore");
 
     public static final ResourceKey<BiomeModifier> ADD_KAOLIN_ORE = registerKey("add_kaolin_ore");
+
+    public static final ResourceKey<BiomeModifier> ADD_LIMESTONE_UPPER  = registerKey("add_limestone_upper");
+    public static final ResourceKey<BiomeModifier> ADD_LIMESTONE_LOWER = registerKey("add_limestone_lower");
+
+    public static final ResourceKey<BiomeModifier> ADD_SYDEROLIFE_ORE_UPPER  = registerKey("add_syderolife_ore_upper");
+    public static final ResourceKey<BiomeModifier> ADD_SYDEROLIFE_ORE_LOWER = registerKey("add_syderolife_ore_lower");
     //树生成
     public static final ResourceKey<BiomeModifier> ADD_TREE_MANGO = registerKey("add_tree_mango");
     public static final ResourceKey<BiomeModifier> ADD_TREE_BANANA = registerKey("add_tree_banana");
@@ -84,6 +91,23 @@ public class CSJBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.KAOLIN_UPPER)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
+        context.register(ADD_LIMESTONE_UPPER, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.ORE_LIMESTONE_UPPER)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+        context.register(ADD_LIMESTONE_LOWER, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.ORE_LIMESTONE_LOWER)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_SYDEROLIFE_ORE_UPPER, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.ORE_SYDEROLIFE_ORE_UPPER)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+        context.register(ADD_SYDEROLIFE_ORE_LOWER, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.ORE_SYDEROLIFE_ORE_LOWER)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
 
         context.register(ADD_TREE_MANGO,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_SAVANNA),

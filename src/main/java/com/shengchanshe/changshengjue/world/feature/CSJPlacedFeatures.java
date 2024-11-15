@@ -24,6 +24,12 @@ public class CSJPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> KAOLIN_UPPER = registerKey("kaolin_upper");
 
+    public static final ResourceKey<PlacedFeature> ORE_LIMESTONE_UPPER = registerKey("ore_limestone_upper");
+    public static final ResourceKey<PlacedFeature> ORE_LIMESTONE_LOWER = registerKey("ore_limestone_lower");
+
+    public static final ResourceKey<PlacedFeature> ORE_SYDEROLIFE_ORE_UPPER = registerKey("ore_syderolife_ore_upper");
+    public static final ResourceKey<PlacedFeature> ORE_SYDEROLIFE_ORE_LOWER = registerKey("ore_syderolife_ore_lower");
+
     //树木
     public static final ResourceKey<PlacedFeature> MANGO_TREE_PLACED_KEY =registerKey("mango_tree_placed_key");
     public static final ResourceKey<PlacedFeature> BANANA_TREE_PLACED_KEY =registerKey("banana_tree_placed_key");
@@ -64,6 +70,16 @@ public class CSJPlacedFeatures {
 
         register(context,KAOLIN_UPPER,configuredFeature.getOrThrow(CSJConfiguredFeatures.KAOLIN_ORE),
                 CSJOrePlacement.commonOrePlacement(90, HeightRangePlacement.triangle(VerticalAnchor.absolute(100), VerticalAnchor.absolute(200))));
+
+        register(context, ORE_LIMESTONE_UPPER, configuredFeature.getOrThrow(CSJConfiguredFeatures.LIMESTONE),
+                CSJOrePlacement.commonOrePlacement(6, HeightRangePlacement.uniform(VerticalAnchor.absolute(64), VerticalAnchor.absolute(128))));
+        register(context, ORE_LIMESTONE_LOWER, configuredFeature.getOrThrow(CSJConfiguredFeatures.LIMESTONE),
+                CSJOrePlacement.commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(60))));
+
+        register(context, ORE_SYDEROLIFE_ORE_UPPER, configuredFeature.getOrThrow(CSJConfiguredFeatures.SYDEROLIFE_ORE),
+                CSJOrePlacement.commonOrePlacement(6, HeightRangePlacement.uniform(VerticalAnchor.absolute(64), VerticalAnchor.absolute(128))));
+        register(context, ORE_SYDEROLIFE_ORE_LOWER, configuredFeature.getOrThrow(CSJConfiguredFeatures.SYDEROLIFE_ORE),
+                CSJOrePlacement.commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(60))));
 
         //树木
         register(context,MANGO_TREE_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.MANGO_TREE),

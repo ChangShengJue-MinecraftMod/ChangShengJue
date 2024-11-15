@@ -4,15 +4,15 @@ import net.minecraft.world.food.FoodProperties;
 
 public class ChangShengJueFoods {
     public static final FoodProperties CORN = (new FoodProperties.Builder()).nutrition(3).saturationMod(3.6F).build();
-    public static final FoodProperties PINEAPPLE = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.3F).build();//.fast可以吃的更快
-    public static final FoodProperties TOMATO = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).build();
+    public static final FoodProperties PINEAPPLE = (new FoodProperties.Builder()).nutrition(4).saturationMod(2.4F).build();//.fast可以吃的更快
+    public static final FoodProperties TOMATO = (new FoodProperties.Builder()).nutrition(3).saturationMod(1.8F).build();
     public static final FoodProperties MANGO = (new FoodProperties.Builder()).nutrition(3).saturationMod(1.8F).build();
     public static final FoodProperties GUI_HUA = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
-    public static final FoodProperties CANTALOUPE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.5F).build();
+    public static final FoodProperties CANTALOUPE = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.5F).build();
     public static final FoodProperties BANANA = (new FoodProperties.Builder()).nutrition(4).saturationMod(3.2F).build();
     public static final FoodProperties VENISON = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).meat().build();
     public static final FoodProperties COOKED_VENISON = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).meat().build();
-    public static final FoodProperties PEANUT = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).meat().build();
+    public static final FoodProperties PEANUT = (new FoodProperties.Builder()).nutrition(3).saturationMod(1.8F).meat().build();
     public static final FoodProperties BRINJAL = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.1F).meat().build();
     public static final FoodProperties PEAR = (new FoodProperties.Builder()).nutrition(4).saturationMod(2.4F).build();
     public static final FoodProperties LICHEE = (new FoodProperties.Builder()).nutrition(4).saturationMod(2.4F).build();
@@ -35,4 +35,9 @@ public class ChangShengJueFoods {
     public static final FoodProperties MI_FAN = (new FoodProperties.Builder()).nutrition(5).saturationMod(6.0F).meat().build();
     public static final FoodProperties GUI_HUA_TANG_OU = (new FoodProperties.Builder()).nutrition(5).saturationMod(6F).meat().build();
     public static final FoodProperties BA_BAO_ZHOU = (new FoodProperties.Builder()).nutrition(10).saturationMod(12.0F).meat().build();
+
+    public static final FoodProperties MULBERRY_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(4.8F).build();
+    public static final FoodProperties APPLE_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(4.8F).build();
+    public static final FoodProperties HOT_PEAR_SOUP = (new FoodProperties.Builder()).nutrition(8).saturationMod(5.2F).build();
+    public static final FoodProperties GRAPE_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(4.8F).build();
 }

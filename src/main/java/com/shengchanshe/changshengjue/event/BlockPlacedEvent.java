@@ -26,27 +26,4 @@ public class BlockPlacedEvent {
             world.setBlock(new BlockPos(x, y, z), Blocks.AIR.defaultBlockState(), 3);
         }
     }
-
-    @SubscribeEvent
-    public void onBlockPlace(BlockEvent.EntityPlaceEvent event) {
-        BlockPos pos = event.getPos();
-        Level world = (Level) event.getLevel();
-        // 检查四个水平方向是否有阻挡
-        for (Direction direction : Direction.Plane.HORIZONTAL) {
-            BlockPos adjacentPos = pos.relative(direction);
-            if (!world.getBlockState(adjacentPos).isAir()) {
-                event.setCanceled(true); // 取消事件，阻止方块放置
-                break;
-            }
-        }
-    }
-
-
-//    @SubscribeEvent
-//    public static void entityAttackEvent(TickEvent.PlayerTickEvent event){
-//        Player player = event.player;
-//        if (player.getMainHandItem().is(ChangShengJueItems.BANANA.get())){
-//        }
-//    }
-
 }

@@ -16,23 +16,11 @@
               "type": "minecraft:item",
               "conditions": [
                 {
-                  "condition": "minecraft:any_of",
-                  "terms": [
-                    {
-                      "block": "chang_sheng_jue:corn_block",
-                      "condition": "minecraft:block_state_property",
-                      "properties": {
-                        "age": "6"
-                      }
-                    },
-                    {
-                      "block": "chang_sheng_jue:corn_block",
-                      "condition": "minecraft:block_state_property",
-                      "properties": {
-                        "age": "7"
-                      }
-                    }
-                  ]
+                  "block": "chang_sheng_jue:corn_block",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "age": "7"
+                  }
                 }
               ],
               "name": "chang_sheng_jue:corn"
@@ -50,23 +38,11 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "condition": "minecraft:any_of",
-          "terms": [
-            {
-              "block": "chang_sheng_jue:corn_block",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "age": "6"
-              }
-            },
-            {
-              "block": "chang_sheng_jue:corn_block",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "age": "7"
-              }
-            }
-          ]
+          "block": "chang_sheng_jue:corn_block",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "7"
+          }
         }
       ],
       "entries": [

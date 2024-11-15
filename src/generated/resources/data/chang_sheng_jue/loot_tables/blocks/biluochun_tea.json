@@ -16,23 +16,22 @@
               "type": "minecraft:item",
               "conditions": [
                 {
-                  "condition": "minecraft:any_of",
-                  "terms": [
-                    {
-                      "block": "chang_sheng_jue:biluochun_tea",
-                      "condition": "minecraft:block_state_property",
-                      "properties": {
-                        "age": "6"
-                      }
-                    },
-                    {
-                      "block": "chang_sheng_jue:biluochun_tea",
-                      "condition": "minecraft:block_state_property",
-                      "properties": {
-                        "age": "7"
-                      }
-                    }
-                  ]
+                  "block": "chang_sheng_jue:biluochun_tea",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "age": "7"
+                  }
+                }
+              ],
+              "functions": [
+                {
+                  "add": false,
+                  "count": {
+                    "type": "minecraft:uniform",
+                    "max": 4.0,
+                    "min": 1.0
+                  },
+                  "function": "minecraft:set_count"
                 }
               ],
               "name": "chang_sheng_jue:biluochun_tea"
@@ -50,23 +49,11 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "condition": "minecraft:any_of",
-          "terms": [
-            {
-              "block": "chang_sheng_jue:biluochun_tea",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "age": "6"
-              }
-            },
-            {
-              "block": "chang_sheng_jue:biluochun_tea",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "age": "7"
-              }
-            }
-          ]
+          "block": "chang_sheng_jue:biluochun_tea",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "7"
+          }
         }
       ],
       "entries": [
@@ -74,13 +61,13 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "enchantment": "minecraft:fortune",
-              "formula": "minecraft:binomial_with_bonus_count",
-              "function": "minecraft:apply_bonus",
-              "parameters": {
-                "extra": 3,
-                "probability": 0.5714286
-              }
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
             }
           ],
           "name": "chang_sheng_jue:biluochun_tea_seeds"

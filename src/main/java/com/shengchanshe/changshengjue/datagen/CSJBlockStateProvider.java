@@ -35,6 +35,12 @@ public class CSJBlockStateProvider extends BlockStateProvider {
         simpleBlock(ChangShengJueBlocks.KAOLIN_ORE.get());
         blockWithItem(ChangShengJueBlocks.KAOLIN_ORE);
 
+        simpleBlock(ChangShengJueBlocks.LIMESTONE.get());
+        blockWithItem(ChangShengJueBlocks.LIMESTONE);
+
+        simpleBlock(ChangShengJueBlocks.SYDEROLIFE_ORE.get());
+        blockWithItem(ChangShengJueBlocks.SYDEROLIFE_ORE);
+
         simpleBlock(ChangShengJueBlocks.POPLAR_LEAVES.get());
         blockWithItem(ChangShengJueBlocks.POPLAR_LEAVES);
 

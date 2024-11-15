@@ -3,13 +3,10 @@ package com.shengchanshe.changshengjue.creativemodetab;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import com.shengchanshe.changshengjue.item.combat.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tiers;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -88,6 +85,8 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.AG_ORE.get());
                 output.accept(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get());
                 output.accept(ChangShengJueBlocks.KAOLIN_ORE.get());
+                output.accept(ChangShengJueBlocks.LIMESTONE.get());
+                output.accept(ChangShengJueBlocks.SYDEROLIFE_ORE.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_BUILDING_BLOCK = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_building_block",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_building_block")).icon(() ->
@@ -210,6 +209,9 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.TOOL_TABLE.get());
                 output.accept(ChangShengJueBlocks.DESK.get());
                 output.accept(ChangShengJueBlocks.PIG_TROUGH.get());
+                output.accept(ChangShengJueItems.PLAQUE.get());
+                output.accept(ChangShengJueBlocks.CASTING_MOLDS.get());
+                output.accept(ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_FOOD_AND_DRINK = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_food_and_drink",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_food_and_drink")).icon(() ->
@@ -230,28 +232,32 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.RICE.get());
                 output.accept(ChangShengJueItems.PEANUT.get());
                 output.accept(ChangShengJueItems.BRINJAL.get());
-                output.accept(ChangShengJueItems.BILUOCHUN_TEA.get());
-                output.accept(ChangShengJueItems.LONG_JING_TEA.get());
-                output.accept(ChangShengJueItems.HORDEUM.get());
+                output.accept(ChangShengJueItems.MULBERRY.get());
+                output.accept(ChangShengJueItems.PORTULACA_OLERACEA_CAKE.get());
+                output.accept(ChangShengJueItems.BAKED_CORN.get());
+                output.accept(ChangShengJueItems.SORGHUM_CAKE.get());
+
                 output.accept(ChangShengJueItems.CAPSULE_JIAO_ZI.get());
                 output.accept(ChangShengJueItems.ZHENG_CAI.get());
-                output.accept(ChangShengJueItems.PORTULACA_OLERACEA_CAKE.get());
                 output.accept(ChangShengJueItems.QING_TUAN.get());
-                output.accept(ChangShengJueItems.BAKED_CORN.get());
                 output.accept(ChangShengJueItems.TOMATO_EGG.get());
                 output.accept(ChangShengJueItems.GU_LAO_ROU.get());
                 output.accept(ChangShengJueItems.MEAT_FOAM_BRINJAL.get());
-                output.accept(ChangShengJueItems.SORGHUM_CAKE.get());
                 output.accept(ChangShengJueItems.STINKY_TOFU.get());
                 output.accept(ChangShengJueItems.ZHU_DU_JI.get());
                 output.accept(ChangShengJueItems.XIAO_MI_FAN.get());
                 output.accept(ChangShengJueItems.MI_FAN.get());
                 output.accept(ChangShengJueItems.GUI_HUA_TANG_OU.get());
                 output.accept(ChangShengJueItems.BA_BAO_ZHOU.get());
+                output.accept(ChangShengJueItems.MULBERRY_JUICE.get());
+                output.accept(ChangShengJueItems.APPLE_JUICE.get());
+                output.accept(ChangShengJueItems.HOT_PEAR_SOUP.get());
+                output.accept(ChangShengJueItems.GRAPE_JUICE.get());
                 output.accept(ChangShengJueItems.VENISON.get());
                 output.accept(ChangShengJueItems.COOKED_VENISON.get());
                 output.accept(ChangShengJueItems.CI_PAN.get());
                 output.accept(ChangShengJueItems.CI_WAN.get());
+                output.accept(ChangShengJueItems.CI_BEI.get());
             }).build());
 
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_INGREDIENTS = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_ingredients",()-> CreativeModeTab.builder()
@@ -281,6 +287,28 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.DURIAN.get());
                 output.accept(ChangShengJueItems.RAW_AG.get());
                 output.accept(ChangShengJueItems.AG_INGOT.get());
+                output.accept(ChangShengJueItems.BLACK_BRICKS.get());
+                output.accept(ChangShengJueItems.WHITE_BRICKS_ITEM.get());
+                output.accept(ChangShengJueItems.GOLD_BRICKS.get());
+                output.accept(ChangShengJueItems.SILK.get());
+                output.accept(ChangShengJueItems.NATURAL_SILK.get());
+                output.accept(ChangShengJueItems.BILUOCHUN_TEA.get());
+                output.accept(ChangShengJueItems.LONG_JING_TEA.get());
+                output.accept(ChangShengJueItems.HORDEUM.get());
+
+                output.accept(ChangShengJueItems.QUICKLIME.get());
+                output.accept(ChangShengJueItems.LIME_SLURRY_BARRELS.get());
+                output.accept(ChangShengJueItems.WARM_LIME_SLURRY_BARRELS.get());
+                output.accept(ChangShengJueItems.COOL_LIME_SLURRY_BARRELS.get());
+
+                output.accept(ChangShengJueItems.CRUCIBLE.get());
+                output.accept(ChangShengJueItems.CRUCIBLE_CRUSHED_COPPER.get());
+                output.accept(ChangShengJueItems.CRUCIBLE_CRUSHED_SILVER.get());
+                output.accept(ChangShengJueItems.CRUCIBLE_CRUSHED_GOLD.get());
+                output.accept(ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get());
+                output.accept(ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get());
+                output.accept(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get());
+
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_COMBAT = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("cahng_sheng_jue_combat",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.cahng_sheng_jue_combat")).icon(() ->

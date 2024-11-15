@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 300,
+  "experience": 0.25,
+  "group": "sapphire",
+  "ingredient": {
+    "item": "chang_sheng_jue:crucible_crushed_copper"
+  },
+  "result": "chang_sheng_jue:crucible_liquid_copper"
+}

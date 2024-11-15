@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_plates": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "chang_sheng_jue:ci_pan"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "chang_sheng_jue:meat_foam_brinjal"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_plates",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "chang_sheng_jue:meat_foam_brinjal"
+    ]
+  },
+  "sends_telemetry_event": false
+}

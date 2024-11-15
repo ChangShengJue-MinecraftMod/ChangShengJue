@@ -6,6 +6,9 @@ import com.shengchanshe.changshengjue.util.CSJTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -30,15 +33,12 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
 
         this.tag(CSJTags.Blocks.JI_CHI_MU_LOG)
                 .add(ChangShengJueBlocks.JI_CHI_MU_LOG.get())
-                .add(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get())
                 .add(ChangShengJueBlocks.STRIPPED_JI_CHI_MU_LOG.get());
         this.tag(CSJTags.Blocks.HUANG_HUA_LI_LOG)
                 .add(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get())
-                .add(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get())
                 .add(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get());
         this.tag(CSJTags.Blocks.ZI_TAN_LOG)
                 .add(ChangShengJueBlocks.ZI_TAN_LOG.get())
-                .add(ChangShengJueBlocks.ZI_TAN_PLANKS.get())
                 .add(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get());
         this.tag(CSJTags.Blocks.POPLAR_LOG)
                 .add(ChangShengJueBlocks.POPLAR_LOG.get());
@@ -108,6 +108,31 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK.get())
                 .add(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_1.get())
                 .add(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_2.get());
+        //砖
+        this.tag(CSJTags.Blocks.BRICKS)
+                .add(ChangShengJueBlocks.WHITE_FINE_BRICKS.get())
+                .add(ChangShengJueBlocks.WHITE_BRICKS.get())
+                .add(ChangShengJueBlocks.WINDOWS_BIRCH_BLOCK_2.get())
+                .add(ChangShengJueBlocks.BLACK_STONE_BRICKS.get())
+                .add(ChangShengJueBlocks.BLACK_STONE_FINE_BRICKS.get())
+                .add(ChangShengJueBlocks.BLUE_STONE_BRICKS.get())
+                .add(ChangShengJueBlocks.BLUE_STONE_FINE_BRICKS.get())
+                .add(Blocks.STONE_BRICKS)
+                .add(Blocks.CRACKED_STONE_BRICKS)
+                .add(Blocks.CHISELED_STONE_BRICKS)
+                .add(Blocks.PRISMARINE_BRICKS)
+                .add(Blocks.POLISHED_BLACKSTONE_BRICKS)
+                .add(Blocks.END_STONE_BRICKS)
+                .add(Blocks.MOSSY_STONE_BRICKS)
+                .add(Blocks.DEEPSLATE_BRICKS)
+                .add(Blocks.CRACKED_DEEPSLATE_BRICKS)
+                .add(Blocks.BRICKS)
+                .add(Blocks.NETHER_BRICKS)
+                .add(Blocks.CRACKED_NETHER_BRICKS)
+                .add(Blocks.CHISELED_NETHER_BRICKS)
+                .add(Blocks.RED_NETHER_BRICKS)
+                .add(Blocks.MOSSY_STONE_BRICKS)
+                .add(Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS);
         //原版工具
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get())
@@ -147,7 +172,12 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.BLACK_FLOOR_TILES_BLOCK.get())
                 .add(ChangShengJueBlocks.AG_ORE.get())
                 .add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get())
-                .add(ChangShengJueBlocks.KAOLIN_ORE.get());
+                .add(ChangShengJueBlocks.KAOLIN_ORE.get())
+                .add(ChangShengJueBlocks.LIMESTONE.get())
+                .add(ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get())
+                .add(ChangShengJueBlocks.CASTING_MOLDS.get())
+                .add(ChangShengJueBlocks.SYDEROLIFE_ORE.get());
+
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ChangShengJueBlocks.HANG_TU_BLOCK.get())
                 .add(ChangShengJueBlocks.TU_PEI_BLOCK.get())
@@ -160,6 +190,11 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
         this.tag(BlockTags.LOGS).addTag(CSJTags.Blocks.LOG);
         this.tag(BlockTags.LOGS_THAT_BURN).addTags(CSJTags.Blocks.LOG).addTag(CSJTags.Blocks.HUANG_HUA_LI_LOG)
                 .addTags(CSJTags.Blocks.JI_CHI_MU_LOG).addTags(CSJTags.Blocks.ZI_TAN_LOG).addTags(CSJTags.Blocks.POPLAR_LOG).addTags(CSJTags.Blocks.MULBERRY_LOG);
+
+        this.tag(BlockTags.PLANKS)
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get())
+                .add(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get())
+                .add(ChangShengJueBlocks.ZI_TAN_PLANKS.get());
 
         //花
         this.tag(BlockTags.FLOWERS)
@@ -179,7 +214,8 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.RAPE_FLOWERS.get());
 
         //Forge矿石标签
-        this.tag(Tags.Blocks.ORES).add(ChangShengJueBlocks.AG_ORE.get()).add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get()).add(ChangShengJueBlocks.KAOLIN_ORE.get());
+        this.tag(Tags.Blocks.ORES).add(ChangShengJueBlocks.AG_ORE.get()).add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get())
+                .add(ChangShengJueBlocks.KAOLIN_ORE.get()).add(ChangShengJueBlocks.LIMESTONE.get()).add(ChangShengJueBlocks.SYDEROLIFE_ORE.get());
         //工具等级
         this.tag(BlockTags.NEEDS_IRON_TOOL).add(ChangShengJueBlocks.AG_ORE.get()).add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get());
 

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:sorghum"
+    },
+    {
+      "item": "chang_sheng_jue:sorghum"
+    },
+    {
+      "item": "chang_sheng_jue:sorghum"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:sorghum_cake"
+  }
+}

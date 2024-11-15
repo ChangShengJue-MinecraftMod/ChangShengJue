@@ -3,11 +3,9 @@ package com.shengchanshe.changshengjue.datagen;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import com.shengchanshe.changshengjue.item.combat.*;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -24,6 +22,7 @@ public class CSJItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         simpleItem(ChangShengJueItems.TONG_QIAN);
         simpleItem(ChangShengJueItems.YI_GUAN_TONG_QIAN);
+        simpleItem(ChangShengJueItems.NATURAL_SILK);
         simpleItem(ChangShengJueItems.SILK);
         simpleItem(ChangShengJueItems.MULBERRY);
         simpleItem(ChangShengJueItems.RICE);
@@ -32,8 +31,32 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.LONG_JING_TEA);
         simpleItem(ChangShengJueItems.LONG_JING_TEA_SEEDS);
 
+        simpleItem(ChangShengJueItems.MULBERRY_JUICE);
+        simpleItem(ChangShengJueItems.APPLE_JUICE);
+        simpleItem(ChangShengJueItems.HOT_PEAR_SOUP);
+        simpleItem(ChangShengJueItems.GRAPE_JUICE);
+
         simpleItem(ChangShengJueItems.HORDEUM);
         simpleItem(ChangShengJueItems.HORDEUM_SEEDS);
+
+        simpleItem(ChangShengJueItems.CI_BEI);
+
+        simpleItem(ChangShengJueItems.QUICKLIME);
+        simpleItem(ChangShengJueItems.LIME_SLURRY_BARRELS);
+        simpleItem(ChangShengJueItems.WARM_LIME_SLURRY_BARRELS);
+        simpleItem(ChangShengJueItems.COOL_LIME_SLURRY_BARRELS);
+
+        simpleItem(ChangShengJueItems.BLACK_BRICKS);
+        simpleItem(ChangShengJueItems.WHITE_BRICKS_ITEM);
+        simpleItem(ChangShengJueItems.GOLD_BRICKS);
+
+        simpleItem(ChangShengJueItems.CRUCIBLE);
+        simpleItem(ChangShengJueItems.CRUCIBLE_CRUSHED_COPPER);
+        simpleItem(ChangShengJueItems.CRUCIBLE_CRUSHED_SILVER);
+        simpleItem(ChangShengJueItems.CRUCIBLE_CRUSHED_GOLD);
+        simpleItem(ChangShengJueItems.CRUCIBLE_LIQUID_COPPER);
+        simpleItem(ChangShengJueItems.CRUCIBLE_LIQUID_SILVER);
+        simpleItem(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD);
 
         handheldItem(ChangShengJueItems.BRONZE_SWORD);
         handheldItem(ChangShengJueItems.HAN_JIAN);

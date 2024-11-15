@@ -32,7 +32,7 @@ public class FruitLeaves extends LeavesBlock implements BonemealableBlock {
     public boolean isRandomlyTicking(BlockState state) {
         if (state.getValue(PERSISTENT)) {return false;}
         if (state.getValue(STATE) != State.FRUITS) {return true;}
-        if (state.getValue(DISTANCE) == 4){return true;}
+        if (state.getValue(DISTANCE) == 1){return true;}
         return state.getValue(DISTANCE) == 7;
     }
 
@@ -60,7 +60,7 @@ public class FruitLeaves extends LeavesBlock implements BonemealableBlock {
             if (pLevel.getRawBrightness(pPos, 0) >= 9) {
                 State value = pState.getValue(STATE);
                 if (value == State.LEAVES) {
-                    boolean grow = pRandom.nextDouble() < 0.3;
+                    boolean grow = pRandom.nextDouble() < 0.1;
                     if (ForgeHooks.onCropsGrowPre(pLevel, pPos, pState, grow)) {
                         pLevel.setBlockAndUpdate(pPos, pState.setValue(STATE, State.FRUITS));
                         ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);

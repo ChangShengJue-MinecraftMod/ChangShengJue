@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:brinjal"
+    },
+    {
+      "item": "chang_sheng_jue:brinjal"
+    },
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "item": "chang_sheng_jue:ci_pan"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:meat_foam_brinjal"
+  }
+}

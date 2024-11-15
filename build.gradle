@@ -12,7 +12,7 @@ plugins {
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
-version = 'forge-1.20.1-0.1.13'
+version = 'forge-1.20.1-0.1.19'
 group = 'com.shengchanshe.changshengjue'
 
 base {

@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_capsule": {
+    "has_plates": {
       "conditions": {
         "items": [
           {
             "items": [
-              "chang_sheng_jue:capsule"
+              "chang_sheng_jue:ci_pan"
             ]
           }
         ]
@@ -22,7 +22,7 @@
   },
   "requirements": [
     [
-      "has_capsule",
+      "has_plates",
       "has_the_recipe"
     ]
   ],

@@ -15,16 +15,33 @@
       "radius": 2
     },
     "foliage_provider": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "chang_sheng_jue:mulberry_leaves",
-        "Properties": {
-          "type": "leaves",
-          "distance": "7",
-          "persistent": "false",
-          "waterlogged": "false"
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "data": {
+            "Name": "chang_sheng_jue:mulberry_leaves",
+            "Properties": {
+              "type": "leaves",
+              "distance": "7",
+              "persistent": "false",
+              "waterlogged": "false"
+            }
+          },
+          "weight": 99
+        },
+        {
+          "data": {
+            "Name": "chang_sheng_jue:mulberry_leaves",
+            "Properties": {
+              "type": "fruits",
+              "distance": "7",
+              "persistent": "false",
+              "waterlogged": "false"
+            }
+          },
+          "weight": 1
         }
-      }
+      ]
     },
     "force_dirt": false,
     "ignore_vines": true,

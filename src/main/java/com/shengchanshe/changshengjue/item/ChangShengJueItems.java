@@ -1,16 +1,17 @@
 package com.shengchanshe.changshengjue.item;
 
-import ca.weblite.objc.Proxy;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.combat.BronzeSword;
 import com.shengchanshe.changshengjue.item.combat.*;
-import com.shengchanshe.changshengjue.item.foods.ChangShengJueFoods;
-import com.shengchanshe.changshengjue.item.foods.DurianItem;
+import com.shengchanshe.changshengjue.item.foods.*;
+import com.shengchanshe.changshengjue.item.items.Crucible;
+import com.shengchanshe.changshengjue.item.items.LimeSlurryBarrels;
 import com.shengchanshe.changshengjue.item.items.PeacockEggItem;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -119,37 +120,46 @@ public class ChangShengJueItems {
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.BRINJAL)));
 
     public static final RegistryObject<Item> CAPSULE_JIAO_ZI = ITEMS.register("capsule_jiao_zi",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.CAPSULE_JIAO_ZI)));
+            ()-> new PorcelainPlatesFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.CAPSULE_JIAO_ZI)));
     public static final RegistryObject<Item> ZHENG_CAI = ITEMS.register("zheng_cai",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.ZHENG_CAI)));
+            ()-> new PorcelainPlatesFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.ZHENG_CAI)));
     public static final RegistryObject<Item> PORTULACA_OLERACEA_CAKE = ITEMS.register("portulaca_oleracea_cake",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.PORTULACA_OLERACEA_CAKE)));
     public static final RegistryObject<Item> QING_TUAN = ITEMS.register("qing_tuan",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.QING_TUAN)));
+            ()-> new PorcelainBowlsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.QING_TUAN)));
     public static final RegistryObject<Item> BAKED_CORN = ITEMS.register("baked_corn",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.BAKED_CORN)));
     public static final RegistryObject<Item> TOMATO_EGG = ITEMS.register("tomato_egg",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.TOMATO_EGG)));
+            ()-> new PorcelainPlatesFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.TOMATO_EGG)));
     public static final RegistryObject<Item> GU_LAO_ROU = ITEMS.register("gu_lao_rou",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.GU_LAO_ROU)));
+            ()-> new PorcelainPlatesFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.GU_LAO_ROU)));
     public static final RegistryObject<Item> MEAT_FOAM_BRINJAL = ITEMS.register("meat_foam_brinjal",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.MEAT_FOAM_BRINJAL)));
+            ()-> new PorcelainPlatesFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.MEAT_FOAM_BRINJAL)));
     public static final RegistryObject<Item> SORGHUM_CAKE = ITEMS.register("sorghum_cake",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.SORGHUM_CAKE)));
     public static final RegistryObject<Item> STINKY_TOFU = ITEMS.register("stinky_tofu",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.STINKY_TOFU)));
+            ()-> new PorcelainPlatesFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.STINKY_TOFU)));
     public static final RegistryObject<Item> ZHU_DU_JI = ITEMS.register("zhu_du_ji",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.ZHU_DU_JI)));
+            ()-> new PorcelainBowlsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.ZHU_DU_JI)));
     public static final RegistryObject<Item> XIAO_MI_FAN = ITEMS.register("xiao_mi_fan",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.XIAO_MI_FAN)));
+            ()-> new PorcelainBowlsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.XIAO_MI_FAN)));
     public static final RegistryObject<Item> MI_FAN = ITEMS.register("mi_fan",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.MI_FAN)));
+            ()-> new PorcelainBowlsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.MI_FAN)));
     public static final RegistryObject<Item> GUI_HUA_TANG_OU = ITEMS.register("gui_hua_tang_ou",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.GUI_HUA_TANG_OU)));
+            ()-> new PorcelainPlatesFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.GUI_HUA_TANG_OU)));
     public static final RegistryObject<Item> BA_BAO_ZHOU = ITEMS.register("ba_bao_zhou",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.BA_BAO_ZHOU)));
+            ()-> new PorcelainBowlsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.BA_BAO_ZHOU)));
 
+    public static final RegistryObject<Item> MULBERRY_JUICE = ITEMS.register("mulberry_juice",
+            ()-> new PorcelainCupsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.MULBERRY_JUICE)));
+    public static final RegistryObject<Item> APPLE_JUICE = ITEMS.register("apple_juice",
+            ()-> new PorcelainCupsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.APPLE_JUICE)));
+    public static final RegistryObject<Item> HOT_PEAR_SOUP = ITEMS.register("hot_pear_soup",
+            ()-> new PorcelainCupsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.HOT_PEAR_SOUP)));
+    public static final RegistryObject<Item> GRAPE_JUICE = ITEMS.register("grape_juice",
+            ()-> new PorcelainCupsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.GRAPE_JUICE)));
 
+    //刷怪蛋
     public static final RegistryObject<Item> BUTTERFLY_EGG = ITEMS.register("butterfly_egg",
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.BUTTERFLY_ENTITY,0xADFF2F,0x000000,
                     new Item.Properties()));
@@ -185,7 +195,7 @@ public class ChangShengJueItems {
                     new Item.Properties()));
 
     public static final RegistryObject<Item> CHANG_SHENG_JUE_VILLAGER_EGG = ITEMS.register("chang_sheng_jue_villager_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER,0x808034,0x076401,
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER,5651507,12422002,
                     new Item.Properties()));
 
     public static final RegistryObject<Item> ZHU_TAI = ITEMS.register("zhu_tai",
@@ -216,6 +226,8 @@ public class ChangShengJueItems {
             ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CI_WAN = ITEMS.register("ci_wan",
             ()-> new BowlFoodItem(new Item.Properties()));
+    public static final RegistryObject<Item> CI_BEI = ITEMS.register("ci_bei",
+            ()-> new BowlFoodItem(new Item.Properties()));
 
     public static final RegistryObject<Item> TONG_QIAN = ITEMS.register("tong_qian",
             ()-> new Item(new Item.Properties()));
@@ -226,7 +238,17 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> GOLD_BULLIONS = ITEMS.register("gold_bullions",
             ()-> new Item(new Item.Properties()));
 
+    //石灰
+    public static final RegistryObject<Item> QUICKLIME = ITEMS.register("quicklime",
+            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LIME_SLURRY_BARRELS = ITEMS.register("lime_slurry_barrels", ()-> new LimeSlurryBarrels());
+    public static final RegistryObject<Item> WARM_LIME_SLURRY_BARRELS = ITEMS.register("warm_lime_slurry_barrels", ()-> new LimeSlurryBarrels());
+    public static final RegistryObject<Item> COOL_LIME_SLURRY_BARRELS = ITEMS.register("cool_lime_slurry_barrels", ()-> new LimeSlurryBarrels());
+
     //蚕丝
+    public static final RegistryObject<Item> NATURAL_SILK = ITEMS.register("natural_silk",
+            ()-> new Item(new Item.Properties()));
+
     public static final RegistryObject<Item> SILK = ITEMS.register("silk",
             ()-> new Item(new Item.Properties()));
 
@@ -238,6 +260,13 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> RAW_AG = ITEMS.register("raw_ag",
             ()-> new Item((new Item.Properties())));
     public static final RegistryObject<Item> AG_INGOT = ITEMS.register("ag_ingot",
+            ()-> new Item((new Item.Properties())));
+    //砖
+    public static final RegistryObject<Item> BLACK_BRICKS = ITEMS.register("black_bricks",
+            ()-> new Item((new Item.Properties())));
+    public static final RegistryObject<Item> WHITE_BRICKS_ITEM = ITEMS.register("white_bricks_item",
+            ()-> new Item((new Item.Properties())));
+    public static final RegistryObject<Item> GOLD_BRICKS = ITEMS.register("gold_bricks",
             ()-> new Item((new Item.Properties())));
 
     //战斗
@@ -258,10 +287,17 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> KITCHEN_KNIFE = ITEMS.register("kitchen_knife",
             ()-> new BronzeSword(Tiers.IRON, 3, -2.4F, new Item.Properties()));
 
-    //蚕丝
-//    public static final RegistryObject<Item> KITCHEN_KNIFE = ITEMS.register("kitchen_knife",
-//            ()-> new BronzeSword(Tiers.IRON, 3, -2.4F, new Item.Properties()));
+    //浇铸
+    public static final RegistryObject<Item> CRUCIBLE = ITEMS.register("crucible", ()-> new Crucible());
+    public static final RegistryObject<Item> CRUCIBLE_CRUSHED_COPPER = ITEMS.register("crucible_crushed_copper", ()-> new Crucible());
+    public static final RegistryObject<Item> CRUCIBLE_CRUSHED_SILVER = ITEMS.register("crucible_crushed_silver", ()-> new Crucible());
+    public static final RegistryObject<Item> CRUCIBLE_CRUSHED_GOLD = ITEMS.register("crucible_crushed_gold", ()-> new Crucible());
+    public static final RegistryObject<Item> CRUCIBLE_LIQUID_COPPER = ITEMS.register("crucible_liquid_copper", ()-> new Crucible());
+    public static final RegistryObject<Item> CRUCIBLE_LIQUID_SILVER = ITEMS.register("crucible_liquid_silver", ()-> new Crucible());
+    public static final RegistryObject<Item> CRUCIBLE_LIQUID_GOLD = ITEMS.register("crucible_liquid_gold", ()-> new Crucible());
 
+    public static final RegistryObject<Item> PLAQUE = ITEMS.register("plaque",
+            () -> new SignItem(new Item.Properties().stacksTo(16), ChangShengJueBlocks.PLAQUE_STANDING.get(), ChangShengJueBlocks.PLAQUE.get()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

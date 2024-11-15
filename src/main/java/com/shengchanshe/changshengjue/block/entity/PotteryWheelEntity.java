@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class PotteryWheelEntity extends BlockEntity {
-    private ItemStackHandler inventory = new ItemStackHandler(2){
+    private ItemStackHandler inventory = new ItemStackHandler(3){
         @Override
         protected int getStackLimit(int slot, @NotNull ItemStack stack) {
             return 1;
@@ -125,7 +125,7 @@ public class PotteryWheelEntity extends BlockEntity {
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
-        this.inventory.deserializeNBT(pTag.getCompound("Inventory"));
+        this.inventory.deserializeNBT(pTag.getCompound("PotteryWheelInventory"));
         progress = pTag.getInt("PotteryProgress");
     }
 
@@ -137,7 +137,7 @@ public class PotteryWheelEntity extends BlockEntity {
 
     private CompoundTag writeItems(CompoundTag compoundTag){
         super.saveAdditional(compoundTag);
-        compoundTag.put("Inventory",this.inventory.serializeNBT());
+        compoundTag.put("PotteryWheelInventory",this.inventory.serializeNBT());
         compoundTag.putInt("PotteryProgress",progress);
         return compoundTag;
     }
@@ -163,7 +163,7 @@ public class PotteryWheelEntity extends BlockEntity {
         float z = 0.02f;
         Vec3[] offset = new Vec3[]{
                 new Vec3(x,y,z),new Vec3(-x,y,-z),
-                new Vec3(x,-y,z), new Vec3(-x,-y,-z)
+                new Vec3(x,y,z + 0.02)
         };
         return offset[i];
     }
@@ -186,10 +186,10 @@ public class PotteryWheelEntity extends BlockEntity {
         }
     }
 
-    public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
+    public void tick() {
         if (hasRecipe()){
             increaseCraftingProgress();
-            setChanged(pLevel,pPos,pState);
+            this.setChanged();
             if (hasProgressFinished()){
                 craftItem();
                 resrtProgress();
@@ -205,12 +205,21 @@ public class PotteryWheelEntity extends BlockEntity {
 
     private void craftItem() {
         ItemStack stack;
-        if (!this.inventory.getStackInSlot(0).isEmpty() && !this.inventory.getStackInSlot(1).isEmpty()){
+        if (!this.inventory.getStackInSlot(0).isEmpty() && !this.inventory.getStackInSlot(1).isEmpty() && !this.inventory.getStackInSlot(2).isEmpty()){
             stack = new ItemStack(ChangShengJueItems.CI_WAN.get(),1);
-            this.inventory.extractItem(INPUT_SLOT,2,false);
-        }else {
+            for (int i = 0; i < this.inventory.getSlots(); i++) {
+                this.inventory.extractItem(i,1,false);
+            }
+        }else if (!this.inventory.getStackInSlot(0).isEmpty() && !this.inventory.getStackInSlot(1).isEmpty()){
             stack = new ItemStack(ChangShengJueItems.CI_PAN.get(),1);
-            this.inventory.extractItem(INPUT_SLOT,1,false);
+            for (int i = 0; i < this.inventory.getSlots(); i++) {
+                this.inventory.extractItem(i,1,false);
+            }
+        }else {
+            stack = new ItemStack(ChangShengJueItems.CI_BEI.get(),1);
+            for (int i = 0; i < this.inventory.getSlots(); i++) {
+                this.inventory.extractItem(i,1,false);
+            }
         }
         Containers.dropItemStack(this.level, this.getBlockPos().getX(),  this.getBlockPos().getY(),  this.getBlockPos().getZ(), stack);
         this.inventory.setStackInSlot(OUTPUT_SLOT,new ItemStack(stack.getItem(),this.inventory.getStackInSlot(OUTPUT_SLOT).getCount() + stack.getCount()));

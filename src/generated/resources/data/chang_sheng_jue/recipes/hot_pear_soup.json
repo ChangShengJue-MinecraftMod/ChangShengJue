@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:pear"
+    },
+    {
+      "item": "chang_sheng_jue:pear"
+    },
+    {
+      "item": "chang_sheng_jue:ci_wan"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:hot_pear_soup"
+  }
+}

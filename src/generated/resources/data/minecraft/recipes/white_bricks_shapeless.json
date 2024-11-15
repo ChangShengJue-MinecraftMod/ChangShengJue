@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:white_fine_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:white_fine_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:white_fine_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:white_fine_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:white_fine_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:white_fine_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:white_fine_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:white_fine_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:white_fine_bricks"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "chang_sheng_jue:white_bricks"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bowls": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "chang_sheng_jue:ci_wan"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "chang_sheng_jue:zhu_du_ji"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_bowls",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "chang_sheng_jue:zhu_du_ji"
+    ]
+  },
+  "sends_telemetry_event": false
+}
