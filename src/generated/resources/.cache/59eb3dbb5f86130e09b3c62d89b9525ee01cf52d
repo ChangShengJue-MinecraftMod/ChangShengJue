@@ -1,7 +1,8 @@
-// 1.20.1	2024-11-15T15:10:51.8225918	Loot Tables
+// 1.20.1	2024-11-16T13:11:35.1733943	Loot Tables
 cce8c0b7d959719604bf5706a5e0b0a99876a5b4 data/chang_sheng_jue/loot_tables/blocks/ag_ore.json
 9dfcb27b62a46a4c58add40765b49c99ff5898fa data/chang_sheng_jue/loot_tables/blocks/attached_cantaloupe_stem.json
 63066feb307becad188bb317a4b3c962e2f53f68 data/chang_sheng_jue/loot_tables/blocks/bai_hua_fu_ti_block.json
+68f39ba655a0dd30ec257052637d69eac1965eca data/chang_sheng_jue/loot_tables/blocks/banana_fruit.json
 32cb2341c8481397aba28c4e5af5c628b93a019b data/chang_sheng_jue/loot_tables/blocks/banana_leaves.json
 0b6929c872c40087fee38c38a767e2981d7e1909 data/chang_sheng_jue/loot_tables/blocks/banana_log.json
 c90d39f84270205fbe8a7a58edf083d2a81fc43e data/chang_sheng_jue/loot_tables/blocks/banana_sapling.json
@@ -152,7 +153,7 @@ e3c4825139d55bcd3754ab1c4e6e36d593e72623 data/chang_sheng_jue/loot_tables/blocks
 74d01899db314765530a9ae4ba5ea9d146cc3745 data/chang_sheng_jue/loot_tables/blocks/stripped_huang_hua_li_log.json
 b33d104c987d1eb1d3048009e63e1eac5c4c94eb data/chang_sheng_jue/loot_tables/blocks/stripped_mulberry_log.json
 a44662c93d3963aae799b5ba8abcfc3f1206b318 data/chang_sheng_jue/loot_tables/blocks/syderolife_ore.json
-5bdaa755a595d441e01385a5a28797a1f0175a47 data/chang_sheng_jue/loot_tables/blocks/tall_stipa_grandis.json
+2516af5931487639f9459a3e1ddaded0c4930f66 data/chang_sheng_jue/loot_tables/blocks/tall_stipa_grandis.json
 8c5a255800d69e0a250ac6e5757bd6cd822e3df0 data/chang_sheng_jue/loot_tables/blocks/tall_stipa_grandis_variant.json
 69e41a5a350367e294ff580f734036cf94132c6a data/chang_sheng_jue/loot_tables/blocks/tan_hua_block.json
 33afb7fa4ce1ce1ddf10ded3d5636f7d7dd4ff7b data/chang_sheng_jue/loot_tables/blocks/tile_block.json

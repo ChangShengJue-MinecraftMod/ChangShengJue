@@ -1,18 +1,66 @@
 {
   "variants": {
-    "facing=east": {
+    "facing=east,right=false,left=false,middle=false": {
       "model": "chang_sheng_jue:block/plaque",
       "y": 90
     },
-    "facing=north": {
+    "facing=north,right=false,left=false,middle=false": {
       "model": "chang_sheng_jue:block/plaque"
     },
-    "facing=south": {
+    "facing=south,right=false,left=false,middle=false": {
       "model": "chang_sheng_jue:block/plaque",
       "y": 180
     },
-    "facing=west": {
+    "facing=west,right=false,left=false,middle=false": {
       "model": "chang_sheng_jue:block/plaque",
+      "y": 270
+    },
+
+    "facing=east,middle=true": {
+      "model": "chang_sheng_jue:block/plaque_middle",
+      "y": 90
+    },
+    "facing=north,middle=true": {
+      "model": "chang_sheng_jue:block/plaque_middle"
+    },
+    "facing=south,middle=true": {
+      "model": "chang_sheng_jue:block/plaque_middle",
+      "y": 180
+    },
+    "facing=west,middle=true": {
+      "model": "chang_sheng_jue:block/plaque_middle",
+      "y": 270
+    },
+
+    "facing=east,right=true,left=false,middle=false": {
+      "model": "chang_sheng_jue:block/plaque_right",
+      "y": 90
+    },
+    "facing=north,right=true,left=false,middle=false": {
+      "model": "chang_sheng_jue:block/plaque_right"
+    },
+    "facing=south,right=true,left=false,middle=false": {
+      "model": "chang_sheng_jue:block/plaque_right",
+      "y": 180
+    },
+    "facing=west,right=true,left=false,middle=false": {
+      "model": "chang_sheng_jue:block/plaque_right",
+      "y": 270
+    },
+
+    "facing=east,right=false,left=true,middle=false": {
+      "model": "chang_sheng_jue:block/plaque_left",
+      "y": 90
+    },
+    "facing=north,right=false,left=true,middle=false": {
+      "model": "chang_sheng_jue:block/plaque_left"
+    },
+    "facing=south,right=false,left=true,middle=false": {
+      "model": "chang_sheng_jue:block/plaque_left",
+      "y": 180
+    },
+    "facing=west,right=false,left=true,middle=false": {
+      "model": "chang_sheng_jue:block/plaque_left",
       "y": 270
     }
   }

@@ -1,4 +1,4 @@
-// 1.20.1	2024-11-14T16:13:07.7772285	Item Models: chang_sheng_jue
+// 1.20.1	2024-11-16T13:11:35.1758552	Item Models: chang_sheng_jue
 2df294cae9bca0cd36d0385cefc4256022666d7f assets/chang_sheng_jue/models/item/apple_juice.json
 8b1c0d88759c7a327397e22b018cefe5d86e400f assets/chang_sheng_jue/models/item/biluochun_tea.json
 64a902b916a215dc381706f43b9327a8c6070472 assets/chang_sheng_jue/models/item/biluochun_tea_seeds.json
@@ -28,10 +28,12 @@ b7b4a175227ab30b41d13e5b376421ca0c16e8ee assets/chang_sheng_jue/models/item/mulb
 c8e761357507656db28a05ec920fc59dc610d2fa assets/chang_sheng_jue/models/item/mulberry_juice.json
 5a14ec1e5713488c95a3257c91d8993f08203d96 assets/chang_sheng_jue/models/item/mulberry_sapling.json
 53520ee7061e89d47b18b08069da86f6d9ce83c0 assets/chang_sheng_jue/models/item/natural_silk.json
+62d25c92cd6004420743b9e95d5c1ef8a074338a assets/chang_sheng_jue/models/item/paint_brush.json
 3ad09bc1cc51dda57a6440173a02ab8f4341e306 assets/chang_sheng_jue/models/item/quicklime.json
 44ed7fc026e14f4f36561bb21b7e75bf6c829520 assets/chang_sheng_jue/models/item/rice.json
 9307c7b9d9d3fbcc201577dfe240fcf8cf4071fb assets/chang_sheng_jue/models/item/silk.json
 a9d54622dffc1873cb049f24753d99deb56857dc assets/chang_sheng_jue/models/item/silver_bullions.json
+c6a88404ca17dc79123304ab8834de7d88fab0e3 assets/chang_sheng_jue/models/item/thatch.json
 2b483a8edc1ec98a30b0e713ede15d21eab9ae2c assets/chang_sheng_jue/models/item/tong_qian.json
 dad65960b56692b528fdee9ec137f3685650abd5 assets/chang_sheng_jue/models/item/warm_lime_slurry_barrels.json
 41e572fe690fb3e1541da5428d60910b7589d901 assets/chang_sheng_jue/models/item/white_bricks_item.json

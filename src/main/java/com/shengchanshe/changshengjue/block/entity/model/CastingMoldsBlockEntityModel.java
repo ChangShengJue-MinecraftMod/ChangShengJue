@@ -18,7 +18,7 @@ public class CastingMoldsBlockEntityModel extends GeoModel<CastingMoldsBlockEnti
         ItemStackHandler inventroy = entity.getInventory();
         if (!inventroy.getStackInSlot(0).isEmpty() && inventroy.getStackInSlot(1).isEmpty()){
             return new ResourceLocation(ChangShengJue.MOD_ID,"textures/block/casting_molds_1.png");
-        }else if (!inventroy.getStackInSlot(0).isEmpty() && !inventroy.getStackInSlot(1).isEmpty()){
+        }else if (inventroy.getStackInSlot(0).isEmpty() && !inventroy.getStackInSlot(1).isEmpty()){
             return new ResourceLocation(ChangShengJue.MOD_ID,"textures/block/casting_molds_2.png");
         }else {
             return new ResourceLocation(ChangShengJue.MOD_ID,"textures/block/casting_molds.png");

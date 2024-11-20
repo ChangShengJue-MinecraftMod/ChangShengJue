@@ -7,6 +7,8 @@ import com.shengchanshe.changshengjue.util.CSJTags;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -130,6 +132,170 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("XXX")
                 .pattern("#X#")
                 .unlockedBy("has_sand", has(Tags.Items.SAND)).save(consumer);
+
+        //刷子
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueItems.PAINT_BRUSH.get(),1)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.WHITE_WOOL))
+                .pattern("X")
+                .pattern("#")
+                .unlockedBy("has_sand", has(Items.STICK)).save(consumer);
+        //烛台
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueItems.ZHU_TAI.get(),1)
+                .define('#', Ingredient.of(Tags.Items.STRING))
+                .define('X', Ingredient.of(Items.HONEYCOMB))
+                .define('&',  Ingredient.of(Tags.Items.INGOTS_IRON))
+                .pattern("#")
+                .pattern("X")
+                .pattern("&")
+                .unlockedBy("has_string", has(Items.STRING)).save(consumer);
+        //美人靠
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.MEI_REN_KAO_OAK_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.OAK_PLANKS))
+                .pattern("###")
+                .pattern("XXX")
+                .unlockedBy("has_sand", has(Items.STICK)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.MEI_REN_KAO_ACACIA_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.ACACIA_PLANKS))
+                .pattern("###")
+                .pattern("XXX")
+                .unlockedBy("has_sand", has(Items.STICK)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.MEI_REN_KAO_DARK_OAK_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.DARK_OAK_PLANKS))
+                .pattern("###")
+                .pattern("XXX")
+                .unlockedBy("has_sand", has(Items.STICK)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.MEI_REN_KAO_SPRUCE_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.SPRUCE_PLANKS))
+                .pattern("###")
+                .pattern("XXX")
+                .unlockedBy("has_sand", has(Items.STICK)).save(consumer);
+
+        //扶梯
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get(),1)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.BIRCH_PLANKS))
+                .pattern("X#X")
+                .pattern("X#X")
+                .pattern("X#X")
+                .unlockedBy("has_sand", has(Items.STICK)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.YUN_SHAN_FU_TI_BLOCK.get(),1)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.SPRUCE_PLANKS))
+                .pattern("X#X")
+                .pattern("X#X")
+                .pattern("X#X")
+                .unlockedBy("has_sand", has(Items.STICK)).save(consumer);
+        //门
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_OAK_BLOCK.get(),2)
+                .define('#', Ingredient.of(Items.OAK_PLANKS))
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_BIRCH_BLOCK.get(),2)
+                .define('#', Ingredient.of(Items.BIRCH_PLANKS))
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_DARK_OAK_BLOCK.get(),2)
+                .define('#', Ingredient.of(Items.DARK_OAK_PLANKS))
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_SPRUCE_BLOCK.get(),2)
+                .define('#', Ingredient.of(Items.SPRUCE_PLANKS))
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_ACACIA_BLOCK.get(),2)
+                .define('#', Ingredient.of(Items.ACACIA_PLANKS))
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        //窗户
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_OAK_BLOCK_2.get(),3)
+                .define('#', Ingredient.of(Items.OAK_PLANKS))
+                .pattern("# #")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_BIRCH_BLOCK_2.get(),3)
+                .define('#', Ingredient.of(Items.BIRCH_PLANKS))
+                .pattern("# #")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_DARK_OAK_BLOCK_2.get(),3)
+                .define('#', Ingredient.of(Items.DARK_OAK_PLANKS))
+                .pattern("# #")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_2.get(),3)
+                .define('#', Ingredient.of(Items.SPRUCE_PLANKS))
+                .pattern("# #")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_ACACIA_BLOCK_2.get(),3)
+                .define('#', Ingredient.of(Items.ACACIA_PLANKS))
+                .pattern("# #")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+        //窗户板
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_OAK_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.OAK_PLANKS))
+                .pattern("X#X")
+                .pattern("X X")
+                .unlockedBy("has_sand", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_BIRCH_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.BIRCH_PLANKS))
+                .pattern("X#X")
+                .pattern("X X")
+                .unlockedBy("has_sand", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_DARK_OAK_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.DARK_OAK_PLANKS))
+                .pattern("X#X")
+                .pattern("X X")
+                .unlockedBy("has_sand", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.SPRUCE_PLANKS))
+                .pattern("X#X")
+                .pattern("X X")
+                .unlockedBy("has_sand", has(ItemTags.PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_ACACIA_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.ACACIA_PLANKS))
+                .pattern("X#X")
+                .pattern("X X")
+                .unlockedBy("has_sand", has(ItemTags.PLANKS)).save(consumer);
+        //石灯
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.STONE_LAMPS_BASE_BLOCK.get(),1)
+                .define('#', Ingredient.of(Items.STONE))
+                .pattern("#")
+                .pattern("#")
+                .unlockedBy("has_planks", has(Items.STONE)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.STONE_LAMPS_BLOCK.get(),1)
+                .define('#', Ingredient.of(Items.STONE))
+                .define('X', Ingredient.of(ChangShengJueItems.ZHU_TAI.get()))
+                .pattern("X")
+                .pattern("#")
+                .unlockedBy("has_zhu_tai", has(Items.STONE)).save(consumer);
+
         //烧炼配方
         //矿石
         oreSmelting(consumer, AG_SMELTABLES, RecipeCategory.MISC, ChangShengJueItems.AG_INGOT.get(), 0.25f, SMELTING_TICK, "sapphire");

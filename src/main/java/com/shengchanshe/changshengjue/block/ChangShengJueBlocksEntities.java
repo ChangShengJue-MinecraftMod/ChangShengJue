@@ -27,8 +27,7 @@ public class ChangShengJueBlocksEntities {
                     ()-> BlockEntityType.Builder.of(ChangShengJueLoomBlockEntity::new, ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<PlaqueEntity>> PLAQUE_ENTITY =
-            BLOCK_ENTITYES.register("plaque_entity",
-                    ()-> BlockEntityType.Builder.of(PlaqueEntity::new, ChangShengJueBlocks.PLAQUE.get(),ChangShengJueBlocks.PLAQUE_STANDING.get()).build(null));
+            BLOCK_ENTITYES.register("plaque_entity", ()-> BlockEntityType.Builder.of(PlaqueEntity::new, ChangShengJueBlocks.PLAQUE.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<CastingMoldsBlockEntity>> CASTING_MOLDS_BLOCK_ENTITY =
             BLOCK_ENTITYES.register("casting_molds_block_entity",()-> BlockEntityType.Builder.of(CastingMoldsBlockEntity::new, ChangShengJueBlocks.CASTING_MOLDS.get()).build(null));

@@ -9,12 +9,8 @@ import com.shengchanshe.changshengjue.block.painting.BigPaintingScroll;
 import com.shengchanshe.changshengjue.block.painting.HighPaintingScroll;
 import com.shengchanshe.changshengjue.block.painting.PaintingScroll;
 import com.shengchanshe.changshengjue.block.painting.WidthPaintingScroll;
-import com.shengchanshe.changshengjue.block.tree_logs.LogBlock;
-import com.shengchanshe.changshengjue.block.tree_logs.FruitLeaves;
-import com.shengchanshe.changshengjue.block.tree_logs.MulberryLeaves;
-import com.shengchanshe.changshengjue.block.tree_logs.PoplarLeaves;
+import com.shengchanshe.changshengjue.block.tree_logs.*;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import com.shengchanshe.changshengjue.util.CSJWoodTypes;
 import com.shengchanshe.changshengjue.util.ChangShengJueVoxelShape;
 import com.shengchanshe.changshengjue.world.feature.tree.*;
 import net.minecraft.core.BlockPos;
@@ -120,6 +116,8 @@ public class ChangShengJueBlocks {
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
     public static final RegistryObject<Block> BANANA_LEAVES = registerBlock("banana_leaves",
             ()-> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
+    public static final RegistryObject<Block> BANANA_FRUIT = registerBlock("banana_fruit",
+            ()-> new BananaFruit(BlockBehaviour.Properties.copy(Blocks.MELON)));
     public static final RegistryObject<Block> BANANA_SAPLING = registerBlock("banana_sapling",
             ()-> new SaplingBlock(new BananaTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
@@ -776,11 +774,8 @@ public class ChangShengJueBlocks {
             ()-> new BigPaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY)));
 
     //牌匾
-    public static final RegistryObject<Block> PLAQUE = BLOCKS.register("plaque",
-            () -> new Plaque(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), CSJWoodTypes.PLAQUE));
-
-    public static final RegistryObject<Block> PLAQUE_STANDING = BLOCKS.register("plaque_standing",
-            () -> new PlaqueStanding(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN), CSJWoodTypes.PLAQUE));
+    public static final RegistryObject<Block> PLAQUE = registerBlock("plaque",
+            () -> new Plaque(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN)));
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name,Supplier<T> block){
         return BLOCKS.register(name,block);

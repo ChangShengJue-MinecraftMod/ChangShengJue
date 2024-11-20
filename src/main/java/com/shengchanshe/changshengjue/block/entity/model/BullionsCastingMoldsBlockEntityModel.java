@@ -19,7 +19,7 @@ public class BullionsCastingMoldsBlockEntityModel extends GeoModel<BullionsCasti
         ItemStackHandler inventroy = entity.getInventory();
         if (!inventroy.getStackInSlot(0).isEmpty() && inventroy.getStackInSlot(1).isEmpty()){
             return new ResourceLocation(ChangShengJue.MOD_ID,"textures/block/bullions_casting_molds_1.png");
-        }else if (!inventroy.getStackInSlot(0).isEmpty() && !inventroy.getStackInSlot(1).isEmpty()){
+        }else if (inventroy.getStackInSlot(0).isEmpty() && !inventroy.getStackInSlot(1).isEmpty()){
             if (inventroy.getStackInSlot(1).is(ChangShengJueItems.SILVER_BULLIONS.get())){
                 return new ResourceLocation(ChangShengJue.MOD_ID,"textures/block/bullions_casting_molds_silver.png");
             }else {

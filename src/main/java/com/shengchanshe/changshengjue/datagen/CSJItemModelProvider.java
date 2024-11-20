@@ -58,6 +58,10 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.CRUCIBLE_LIQUID_SILVER);
         simpleItem(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD);
 
+        simpleItem(ChangShengJueItems.PAINT_BRUSH);
+
+        simpleItem(ChangShengJueItems.THATCH);
+
         handheldItem(ChangShengJueItems.BRONZE_SWORD);
         handheldItem(ChangShengJueItems.HAN_JIAN);
         handheldItem(ChangShengJueItems.KITCHEN_KNIFE);

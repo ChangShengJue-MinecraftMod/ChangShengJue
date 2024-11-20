@@ -11,6 +11,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -54,17 +55,17 @@ public class CastingMolds extends BaseEntityBlock{
         if (mainHandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get() || offhandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get()){
             if (blockEntity instanceof CastingMoldsBlockEntity entity){
                 if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? pPlayer.getMainHandItem().copy() : pPlayer.getMainHandItem())){
+                    pPlayer.setItemInHand(InteractionHand.MAIN_HAND, ChangShengJueItems.CRUCIBLE.get().getDefaultInstance());
                     return InteractionResult.SUCCESS;
                 }
             }
-            return InteractionResult.CONSUME;
         }else {
             if (blockEntity instanceof CastingMoldsBlockEntity) {
                 ((CastingMoldsBlockEntity) blockEntity).drops();
                 return InteractionResult.SUCCESS;
             }
-            return InteractionResult.CONSUME;
         }
+        return InteractionResult.CONSUME;
     }
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {

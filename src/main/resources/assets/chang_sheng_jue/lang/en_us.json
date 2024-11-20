@@ -110,6 +110,7 @@
   "block.chang_sheng_jue.banana_log": "香蕉原木",
   "block.chang_sheng_jue.banana_leaves": "香蕉树叶",
   "block.chang_sheng_jue.banana_sapling": "香蕉树苗",
+  "block.chang_sheng_jue.banana_fruit": "香蕉",
   "item.chang_sheng_jue.banana": "香蕉",
 
   "block.chang_sheng_jue.pear_log": "梨树原木",
@@ -317,7 +318,7 @@
   "block.chang_sheng_jue.mei_ren_kao_spruce_block": "云杉木美人靠",
 
   "item.chang_sheng_jue.butterfly_egg": "蝴蝶刷怪蛋",
-  "item.chang_sheng_jue.monkey_egg": "金丝猴刷怪蛋",
+  "item.chang_sheng_jue.monkey_egg": "猴刷怪蛋",
   "item.chang_sheng_jue.dragonfly_egg": "蜻蜓刷怪蛋",
   "item.chang_sheng_jue.cicada_egg": "蝉刷怪蛋",
   "item.chang_sheng_jue.crane_egg": "鹤刷怪蛋",
@@ -342,7 +343,7 @@
   "item.chang_sheng_jue.croc_skin": "鳄鱼皮",
 
   "entity.chang_sheng_jue.butterfly_entity": "蝴蝶",
-  "entity.chang_sheng_jue.monkey_entity": "金丝猴",
+  "entity.chang_sheng_jue.monkey_entity": "猴",
   "entity.chang_sheng_jue.dragonfly_entity": "蜻蜓",
   "entity.chang_sheng_jue.cicada_entity": "蝉",
   "entity.chang_sheng_jue.crane_entity": "鹤",
@@ -366,6 +367,8 @@
   "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_hunter": "猎人",
   "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_chief": "村长",
   "entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_seamstress": "缝工",
+
+  "entity.chang_sheng_jue.chang_sheng_jue_villager": "村民",
 
   "entity.chang_sheng_jue.chang_sheng_jue_villager.none": "Villager",
   "entity.chang_sheng_jue.chang_sheng_jue_villager.villager": "Villager",
@@ -400,11 +403,11 @@
   "sounds.chang_sheng_jue.dragonfly_hurt": "蜻蜓 : 受伤",
   "sounds.chang_sheng_jue.dragonfly_death": "蜻蜓 : 死亡",
 
-  "sounds.chang_sheng_jue.monkey_sound" : "金丝猴 : 嚎叫",
-  "sounds.chang_sheng_jue.monkey_baby_sound" : "金丝猴 : 嚎叫",
-  "sounds.chang_sheng_jue.monkey_angry_sound" : "金丝猴 : 生气",
-  "sounds.chang_sheng_jue.monkey_hurt" : "金丝猴 : 受伤",
-  "sounds.chang_sheng_jue.monkey_death" : "金丝猴 : 死亡",
+  "sounds.chang_sheng_jue.monkey_sound" : "猴 : 嚎叫",
+  "sounds.chang_sheng_jue.monkey_baby_sound" : "猴 : 嚎叫",
+  "sounds.chang_sheng_jue.monkey_angry_sound" : "猴 : 生气",
+  "sounds.chang_sheng_jue.monkey_hurt" : "猴 : 受伤",
+  "sounds.chang_sheng_jue.monkey_death" : "猴 : 死亡",
 
   "sounds.chang_sheng_jue.tiger_sound" : "虎 : 咆哮",
   "sounds.chang_sheng_jue.tiger_sound_1" : "虎 : 咆哮",
@@ -432,6 +435,9 @@
   "block.chang_sheng_jue.limestone": "石灰岩",
   "block.chang_sheng_jue.syderolife_ore": "陶土矿",
 
+  "item.chang_sheng_jue.thatch": "茅草",
+
+  "item.chang_sheng_jue.paint_brush": "刷子",
   "item.chang_sheng_jue.black_bricks": "黑砖",
   "item.chang_sheng_jue.white_bricks_item": "白砖",
   "item.chang_sheng_jue.gold_bricks": "金砖",

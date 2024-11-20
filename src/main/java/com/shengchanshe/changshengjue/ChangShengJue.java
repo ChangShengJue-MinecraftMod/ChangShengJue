@@ -7,6 +7,8 @@ import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
+import com.shengchanshe.changshengjue.screen.ChangShengJueMenuTypes;
+import com.shengchanshe.changshengjue.screen.plaque.ModMessages;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import com.shengchanshe.changshengjue.util.ClientSetup;
 import com.shengchanshe.changshengjue.world.biome.CSJTerrablender;
@@ -41,8 +43,6 @@ public class ChangShengJue {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::clientSetup);
         eventBus.addListener(this::setup);
-//        forgeBus.addListener(EventPriority.NORMAL, Structures::addDimensionalSpacing);
-//        forgeBus.addListener(EventPriority.NORMAL, Structures::setupStructureSpawns);
 
         ChangShengJueItems.register(eventBus);
         ChangShengJueBlocks.register(eventBus);
@@ -52,12 +52,12 @@ public class ChangShengJue {
         ChangShengJueVillagers.register(eventBus);
         ChangShengJueCreativeModeTab.register(eventBus);
         ChangShengJueParticles.register(eventBus);
-//        CSJStructureType.register(eventBus);
-//        CSJStructurePieceTypes.register(eventBus);
+        ChangShengJueMenuTypes.register(eventBus);
         CSJTerrablender.registerBiomes();
         CSJFoliagePlacers.register(eventBus);
         CSJTrunkPlacerTypes.register(eventBus);
-//        Registration.init();
+
+        ModMessages.register();
 
         GeckoLib.initialize();
         MinecraftForge.EVENT_BUS.register(this);

@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.world.feature;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.world.feature.tree.custom.BananaFoliagePlacer;
 import com.shengchanshe.changshengjue.world.feature.tree.custom.PoplarDecorator;
 import com.shengchanshe.changshengjue.world.feature.tree.custom.PoplarFoliagePlacer;
 import net.minecraft.core.registries.Registries;
@@ -19,6 +20,10 @@ public class CSJFoliagePlacers {
 
     public static final RegistryObject<FoliagePlacerType<PoplarFoliagePlacer>> POPLAR_FOLIAGE_PLACER =
             FOLIAGE_PLACERS.register("poplar_foliage_placer", () -> new FoliagePlacerType<>(PoplarFoliagePlacer.CODEC));
+
+    public static final RegistryObject<FoliagePlacerType<BananaFoliagePlacer>> BANANA_FOLIAGE_PLACER =
+            FOLIAGE_PLACERS.register("banana_foliage_placer", () -> new FoliagePlacerType<>(BananaFoliagePlacer.CODEC));
+
 
 //    public static final RegistryObject<TreeDecoratorType<PoplarDecorator>> POPLAR_DECORATOR =
 //            TREE_DECORATOR.register("poplar_decorator", () -> new TreeDecoratorType<>(PoplarDecorator.CODEC));

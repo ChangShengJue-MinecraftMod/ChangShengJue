@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "minecraft:acacia_planks"
+    }
+  },
+  "pattern": [
+    "X#X",
+    "X X"
+  ],
+  "result": {
+    "count": 3,
+    "item": "chang_sheng_jue:windows_acacia_block"
+  },
+  "show_notification": true
+}

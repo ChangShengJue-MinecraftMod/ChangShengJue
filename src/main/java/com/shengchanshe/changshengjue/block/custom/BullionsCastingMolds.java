@@ -54,6 +54,7 @@ public class BullionsCastingMolds extends BaseEntityBlock {
         if (handItem(mainHandItem,offhandItem)){
             if (blockEntity instanceof BullionsCastingMoldsBlockEntity entity){
                 if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? pPlayer.getMainHandItem().copy() : pPlayer.getMainHandItem())){
+                    pPlayer.setItemInHand(InteractionHand.MAIN_HAND, ChangShengJueItems.CRUCIBLE.get().getDefaultInstance());
                     return InteractionResult.SUCCESS;
                 }
             }

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "tag": "forge:string"
+    },
+    "&": {
+      "tag": "forge:ingots/iron"
+    },
+    "X": {
+      "item": "minecraft:honeycomb"
+    }
+  },
+  "pattern": [
+    "#",
+    "X",
+    "&"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:zhu_tai"
+  },
+  "show_notification": true
+}

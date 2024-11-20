@@ -202,7 +202,6 @@ public class CastingMoldsBlockEntity extends BlockEntity implements GeoBlockEnti
             stack = new ItemStack(ChangShengJueItems.TONG_QIAN.get(),24);
             for (int i = 0; i < this.inventory.getSlots(); i++) {
                 this.inventory.extractItem(i,1,false);
-                this.inventory.setStackInSlot(INPUT_SLOT,new ItemStack(ChangShengJueItems.CRUCIBLE.get(),1));
             }
             this.open = true;
 //            Containers.dropItemStack(this.level, this.getBlockPos().getX(),  this.getBlockPos().getY(),  this.getBlockPos().getZ(), stack);
@@ -247,7 +246,7 @@ public class CastingMoldsBlockEntity extends BlockEntity implements GeoBlockEnti
         }else {
             if (this.inventory.getStackInSlot(0).isEmpty() && this.inventory.getStackInSlot(1).isEmpty()){
                 state.setAndContinue(RawAnimation.begin().thenPlay("idle2"));
-            }else if (!this.inventory.getStackInSlot(0).isEmpty() && !this.inventory.getStackInSlot(1).isEmpty()){
+            }else if (this.inventory.getStackInSlot(0).isEmpty() && !this.inventory.getStackInSlot(1).isEmpty()){
                 state.setAndContinue(RawAnimation.begin().thenPlay("idle1"));
             }
             return PlayState.CONTINUE;

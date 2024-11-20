@@ -22,35 +22,4 @@ public class LimeSlurryBarrels extends Item {
     public LimeSlurryBarrels() {
         super(new Item.Properties().stacksTo(1).durability(12));
     }
-
-    @Override
-    public InteractionResult useOn(UseOnContext pContext) {
-        Level level = pContext.getLevel();
-        BlockPos blockpos = pContext.getClickedPos();
-        BlockState blockstate = level.getBlockState(blockpos);
-
-        Player player = pContext.getPlayer();
-        if (player.getMainHandItem().is(this) && player.getOffhandItem().is(Items.BRUSH)){
-            if (blockstate.getBlock().defaultBlockState().is(CSJTags.Blocks.BRICKS)){
-                if (this == ChangShengJueItems.LIME_SLURRY_BARRELS.get()){
-                    level.setBlock(blockpos, ChangShengJueBlocks.WHITE_WALLS_BLOCK.get().defaultBlockState(),3);
-                    player.getMainHandItem().hurtAndBreak(6,player ,(player1) -> {
-                        player1.setItemInHand(InteractionHand.MAIN_HAND,Items.BUCKET.getDefaultInstance());
-                    });
-                }else if(this == ChangShengJueItems.WARM_LIME_SLURRY_BARRELS.get()) {
-                    level.setBlock(blockpos, ChangShengJueBlocks.WARM_WHITE_WALLS_BLOCK.get().defaultBlockState(),3);
-                    player.getMainHandItem().hurtAndBreak(6,player ,(player1) -> {
-                        player1.setItemInHand(InteractionHand.MAIN_HAND,Items.BUCKET.getDefaultInstance());
-                    });
-                }else {
-                    level.setBlock(blockpos, ChangShengJueBlocks.COOL_WHITE_WALLS_BLOCK.get().defaultBlockState(),3);
-                    player.getMainHandItem().hurtAndBreak(6,player ,(player1) -> {
-                        player1.setItemInHand(InteractionHand.MAIN_HAND,Items.BUCKET.getDefaultInstance());
-                    });
-                }
-                return InteractionResult.SUCCESS;
-            }
-        }
-        return super.useOn(pContext);
-    }
 }

@@ -8,6 +8,7 @@ import com.shengchanshe.changshengjue.item.combat.*;
 import com.shengchanshe.changshengjue.item.foods.*;
 import com.shengchanshe.changshengjue.item.items.Crucible;
 import com.shengchanshe.changshengjue.item.items.LimeSlurryBarrels;
+import com.shengchanshe.changshengjue.item.items.PaintBrush;
 import com.shengchanshe.changshengjue.item.items.PeacockEggItem;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.*;
@@ -245,6 +246,9 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> WARM_LIME_SLURRY_BARRELS = ITEMS.register("warm_lime_slurry_barrels", ()-> new LimeSlurryBarrels());
     public static final RegistryObject<Item> COOL_LIME_SLURRY_BARRELS = ITEMS.register("cool_lime_slurry_barrels", ()-> new LimeSlurryBarrels());
 
+    //刷子
+    public static final RegistryObject<Item> PAINT_BRUSH = ITEMS.register("paint_brush", ()-> new PaintBrush());
+
     //蚕丝
     public static final RegistryObject<Item> NATURAL_SILK = ITEMS.register("natural_silk",
             ()-> new Item(new Item.Properties()));
@@ -255,6 +259,10 @@ public class ChangShengJueItems {
     //桑葚
     public static final RegistryObject<Item> MULBERRY = ITEMS.register("mulberry",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.MULBERRY)));
+
+    //茅草
+    public static final RegistryObject<Item> THATCH = ITEMS.register("thatch",
+            ()-> new Item(new Item.Properties()));
 
     //矿石
     public static final RegistryObject<Item> RAW_AG = ITEMS.register("raw_ag",
@@ -295,9 +303,6 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> CRUCIBLE_LIQUID_COPPER = ITEMS.register("crucible_liquid_copper", ()-> new Crucible());
     public static final RegistryObject<Item> CRUCIBLE_LIQUID_SILVER = ITEMS.register("crucible_liquid_silver", ()-> new Crucible());
     public static final RegistryObject<Item> CRUCIBLE_LIQUID_GOLD = ITEMS.register("crucible_liquid_gold", ()-> new Crucible());
-
-    public static final RegistryObject<Item> PLAQUE = ITEMS.register("plaque",
-            () -> new SignItem(new Item.Properties().stacksTo(16), ChangShengJueBlocks.PLAQUE_STANDING.get(), ChangShengJueBlocks.PLAQUE.get()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

@@ -1,4 +1,4 @@
-// 1.20.1	2024-11-13T17:41:26.5038689	Registries
+// 1.20.1	2024-11-17T12:26:42.4963515	Registries
 e98ae7f4cc338373999b07174d3229a6f8290f00 data/chang_sheng_jue/forge/biome_modifier/add_ag_ore.json
 e5dd4a006a559eb28b9bb7f525153a351fed648b data/chang_sheng_jue/forge/biome_modifier/add_ag_ore_middle.json
 c4c03dcad45643093ea2cc409c8bed73ec9225c8 data/chang_sheng_jue/forge/biome_modifier/add_cantaloupe_block.json
@@ -32,7 +32,7 @@ c3de33bf5091bae01e569641cf18f75c131f61d3 data/chang_sheng_jue/forge/biome_modifi
 2e1ddebcc5de5ff92f83b289441b95bbb6479a90 data/chang_sheng_jue/worldgen/biome/chang_shen_jue_prairie.json
 bd4670bf4106cb841791843f164645de0978c5dc data/chang_sheng_jue/worldgen/configured_feature/ag_ore.json
 bf3d7dfacb0f99c33773b92d0a1caa5868f0187f data/chang_sheng_jue/worldgen/configured_feature/ag_ore_small.json
-fc11e38501d171b251038b27fd6703b466c40625 data/chang_sheng_jue/worldgen/configured_feature/banana_tree.json
+c582f4fe8f1c02adaf5606463ba9b30b9e6209ea data/chang_sheng_jue/worldgen/configured_feature/banana_tree.json
 b69bb3380e6818c44bb5e8fb2c49fe6aeb5e63ef data/chang_sheng_jue/worldgen/configured_feature/cantaloupe_block.json
 c119b1e9cde09554a39803d73d5dbded84ddb8c7 data/chang_sheng_jue/worldgen/configured_feature/capsule.json
 fe3a81d6eac2e08bcd766ee8425070eb40bcf0d4 data/chang_sheng_jue/worldgen/configured_feature/cuckoo.json

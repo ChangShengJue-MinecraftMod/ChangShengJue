@@ -50,6 +50,8 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.BANANA_LOG.get());
         this.dropSelf(ChangShengJueBlocks.BANANA_SAPLING.get());
         this.add(ChangShengJueBlocks.BANANA_LEAVES.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.BANANA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ChangShengJueBlocks.BANANA_FRUIT.get(), (createSilkTouchDispatchTable(ChangShengJueBlocks.BANANA_FRUIT.get(),
+                LootItem.lootTableItem(ChangShengJueItems.BANANA.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 7.0F))))));
         //梨
         this.dropSelf(ChangShengJueBlocks.PEAR_LOG.get());
         this.dropSelf(ChangShengJueBlocks.PEAR_SAPLING.get());
@@ -96,8 +98,6 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get());
         this.dropSelf(ChangShengJueBlocks.MULBERRY_SAPLING.get());
         this.createMulberryLeavesDrops(ChangShengJueBlocks.MULBERRY_LEAVES.get(),ChangShengJueItems.MULBERRY.get(),ChangShengJueBlocks.MULBERRY_SAPLING.get(),ChangShengJueItems.NATURAL_SILK.get());
-
-
         //矿石
         this.add(ChangShengJueBlocks.AG_ORE.get(),
                 (block -> createOreDrop(ChangShengJueBlocks.AG_ORE.get(), ChangShengJueItems.RAW_AG.get())));
@@ -210,7 +210,7 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(ChangShengJueBlocks.CAPSULE_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.CAPSULE_BLOCK.get(), ChangShengJueItems.CAPSULE.get(), ChangShengJueItems.CAPSULE.get(), capsule));
 
         this.add(ChangShengJueBlocks.STIPA_GRANDIS.get(), (block) -> this.createGrassDrops(block));
-        this.add(ChangShengJueBlocks.TALL_STIPA_GRANDIS.get(), (block) -> this.createDoublePlantWithSeedDrops(block, ChangShengJueBlocks.STIPA_GRANDIS.get()));
+        this.add(ChangShengJueBlocks.TALL_STIPA_GRANDIS.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ChangShengJueItems.THATCH.get()));
         this.add(ChangShengJueBlocks.TALL_STIPA_GRANDIS_VARIANT.get(), (block) -> this.createDoublePlantWithSeedDrops(block, ChangShengJueBlocks.STIPA_GRANDIS.get()));
 
         this.add(ChangShengJueBlocks.RED_KNOTWEED.get(), (block) -> this.createSinglePropConditionTable(block, DoublePlantBlock.HALF, DoubleBlockHalf.LOWER));
@@ -240,7 +240,7 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.TU_PEI_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.STONE_LAMPS_BASE_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.STONE_LAMPS_BLOCK.get());
-        this.add(ChangShengJueBlocks.STONE_LAMPS_LIANG_BLOCK.get(), (p_251015_) -> this.createSingleItemTableWithSilkTouch(p_251015_, ChangShengJueBlocks.STONE_LAMPS_BLOCK.get()));
+        this.add(ChangShengJueBlocks.STONE_LAMPS_LIANG_BLOCK.get(), (block) -> this.createSingleItemTableWithSilkTouch(block, ChangShengJueBlocks.STONE_LAMPS_BLOCK.get()));
         this.dropSelf(ChangShengJueBlocks.YELLOW_STONE_LION_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get());
@@ -350,7 +350,6 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
 
         //牌匾
         this.dropSelf(ChangShengJueBlocks.PLAQUE.get());
-        this.dropSelf(ChangShengJueBlocks.PLAQUE_STANDING.get());
 
         //模具
         this.dropSelf(ChangShengJueBlocks.CASTING_MOLDS.get());
