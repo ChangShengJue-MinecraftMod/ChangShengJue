@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "chang_sheng_jue:silk"
+    },
+    "X": {
+      "item": "minecraft:black_dye"
+    }
+  },
+  "pattern": [
+    "#X#",
+    "# #"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:male_taoist_robes_helmet"
+  },
+  "show_notification": true
+}

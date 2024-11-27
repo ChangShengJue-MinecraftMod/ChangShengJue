@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "chang_sheng_jue:item/blue_cotton_armor_helmet"
+  }
+}

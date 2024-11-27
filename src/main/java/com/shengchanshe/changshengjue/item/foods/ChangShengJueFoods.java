@@ -40,4 +40,12 @@ public class ChangShengJueFoods {
     public static final FoodProperties APPLE_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(4.8F).build();
     public static final FoodProperties HOT_PEAR_SOUP = (new FoodProperties.Builder()).nutrition(8).saturationMod(5.2F).build();
     public static final FoodProperties GRAPE_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(4.8F).build();
+
+    //茶
+    public static final FoodProperties BILUOCHUN_TEA = (new FoodProperties.Builder()).nutrition(3).saturationMod(2.0F).build();
+    public static final FoodProperties LONG_JING_TEA = (new FoodProperties.Builder()).nutrition(3).saturationMod(2.0F).build();
+    //酒水
+    public static final FoodProperties FEN_JIU = (new FoodProperties.Builder()).nutrition(4).saturationMod(2.6F).build();
+    public static final FoodProperties WHEAT_NUGGETS_TRIBUTE_WINE = (new FoodProperties.Builder()).nutrition(4).saturationMod(2.6F).build();
+    public static final FoodProperties SHI_LI_XIANG = (new FoodProperties.Builder()).nutrition(4).saturationMod(2.6F).build();
 }

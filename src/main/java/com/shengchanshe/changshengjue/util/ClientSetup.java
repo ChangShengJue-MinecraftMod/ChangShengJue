@@ -3,6 +3,8 @@ package com.shengchanshe.changshengjue.util;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.client.render.*;
+import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntityRender;
+import com.shengchanshe.changshengjue.entity.client.render.combat.FeiDaoEntityRender;
 import com.shengchanshe.changshengjue.entity.villagers.render.ChangShengJueVillagerRender;
 import com.shengchanshe.changshengjue.screen.ChangShengJueMenuTypes;
 import com.shengchanshe.changshengjue.screen.plaque.PlaqueScreen;
@@ -156,5 +158,9 @@ public class ClientSetup {
         EntityRenderers.register(ChangShengJueEntity.TIGER_ENTITY.get(), TigerRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.CROC_ENTITY.get(), CrocRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER.get(), ChangShengJueVillagerRender::new);
+
+        EntityRenderers.register(ChangShengJueEntity.FEI_DAO_ENTITY.get(), FeiDaoEntityRender::new);
+
+        EntityRenderers.register(ChangShengJueEntity.DUGU_NINE_SOWRDS_ENTITY.get(), DuguNineSwordsEntityRender::new);
     }
 }

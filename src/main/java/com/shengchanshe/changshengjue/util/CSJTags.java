@@ -37,6 +37,9 @@ public class CSJTags {
         public static final TagKey<Item> MEI_REN_KAO = tag("mei_ren_kao");
         public static final TagKey<Item> TILE = tag("tile");
         public static final TagKey<Item> WINDOWS = tag("windows");
+        public static final TagKey<Item> MJ_BOOK = tag("mj_book");
+        public static final TagKey<Item> ARTIFACT = tag("artifact");
+
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(ChangShengJue.MOD_ID, name));

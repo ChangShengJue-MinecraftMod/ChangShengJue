@@ -5,6 +5,8 @@ import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.changshengjue.block.entity.render.*;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.client.render.PeacockEggRender;
+import com.shengchanshe.changshengjue.entity.client.render.combat.FeiDaoEntityRender;
+import com.shengchanshe.changshengjue.entity.client.model.combat.FeiDaoModel;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import com.shengchanshe.changshengjue.particle.custom.PoplarDefoliationParticle;
 import net.minecraft.client.Minecraft;
@@ -22,6 +24,7 @@ public class CSJEventClientBusEvents {
     public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
         //投掷物的渲染
         event.registerEntityRenderer(ChangShengJueEntity.PEACOCK_EGG.get(), PeacockEggRender::new);
+        event.registerEntityRenderer(ChangShengJueEntity.FEI_DAO_ENTITY.get(), FeiDaoEntityRender::new);
         //方块实体的渲染
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.POTTERY_WHEEL_ENTITY.get(), PotteryWheelEntityRender::new);
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.TOOL_TABLE_ENTITY.get(), ToolTableEntityRender::new);
@@ -36,6 +39,7 @@ public class CSJEventClientBusEvents {
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
 //        event.registerLayerDefinition(ChangShengJueModelLayers.CHANG_SHENG_JUE_VILLAGER_LAYER, LayerDefinition.create(VillagerModel.createBodyModel(),64, 128));
+        event.registerLayerDefinition(FeiDaoModel.LAYER_LOCATION,FeiDaoModel::createBodyLayer);
     }
 
 

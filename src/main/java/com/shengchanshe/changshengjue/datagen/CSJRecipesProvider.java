@@ -295,6 +295,236 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("X")
                 .pattern("#")
                 .unlockedBy("has_zhu_tai", has(Items.STONE)).save(consumer);
+        //战斗用品
+        //青铜剑
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.BRONZE_SWORD.get(),1)
+                .define('#', Ingredient.of(Tags.Items.INGOTS_COPPER))
+                .define('X', Ingredient.of(Items.STICK))
+                .pattern("#")
+                .pattern("#")
+                .pattern("X")
+                .unlockedBy("has_ingots_copper", has(Tags.Items.INGOTS_COPPER)).save(consumer);
+        //汉剑
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.HAN_JIAN.get(),1)
+                .define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
+                .pattern("#")
+                .pattern("#")
+                .pattern("#")
+                .unlockedBy("has_ingots_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
+        //软剑
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.SOFT_SWORD.get(),1)
+                .define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
+                .define('X', Ingredient.of(Tags.Items.STRING))
+                .pattern("# ")
+                .pattern("# ")
+                .pattern("#X")
+                .unlockedBy("has_ingots_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
+        //横刀
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.HENG_DAO.get(),1)
+                .define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
+                .define('X', Ingredient.of(Tags.Items.INGOTS_GOLD))
+                .pattern("#")
+                .pattern("#")
+                .pattern("X")
+                .unlockedBy("has_ingots_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
+        //大刀
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.LARGE_KNIFE.get(),1)
+                .define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
+                .define('X', Ingredient.of(Tags.Items.INGOTS_GOLD))
+                .pattern("##")
+                .pattern("# ")
+                .pattern("X ")
+                .unlockedBy("has_ingots_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
+        //红缨枪
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.RED_TASSELLED_SPEAR.get(),1)
+                .define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
+                .define('X', Ingredient.of(Items.RED_WOOL))
+                .define('$', Ingredient.of(Items.STICK))
+                .pattern("#")
+                .pattern("X")
+                .pattern("$")
+                .unlockedBy("has_ingots_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
+        //飞刀
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.FEI_DAO.get()).requires(Ingredient.of(Tags.Items.INGOTS_IRON),1)
+                .unlockedBy("has_iron",has(ChangShengJueItems.FEI_DAO.get())).save(consumer);
+        //盘花棍
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.PAN_HUA_GUN.get(),1)
+                .define('#', Ingredient.of(Tags.Items.INGOTS_GOLD))
+                .define('X', Ingredient.of(ItemTags.LOGS_THAT_BURN))
+                .pattern("#")
+                .pattern("X")
+                .pattern("#")
+                .unlockedBy("has_ingots_gold", has(Tags.Items.INGOTS_GOLD)).save(consumer);
+        //菜刀
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.KITCHEN_KNIFE.get(),1)
+                .define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
+                .define('X', Ingredient.of(Items.STICK))
+                .pattern("#")
+                .pattern("X")
+                .unlockedBy("has_ingots_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
+        //蓝边绵甲
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.BLUE_COTTON_ARMOR_HELMET.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('X', Ingredient.of(ChangShengJueItems.PEACOCK_FEATHERS.get()))
+                .define('$', Ingredient.of(ChangShengJueItems.COTTON.get()))
+                .pattern("#X#")
+                .pattern("$ $")
+                .unlockedBy("has_cotton", has(ChangShengJueItems.COTTON.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.BLUE_COTTON_ARMOR_CHESTPLATE.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('X', Ingredient.of(Items.BLUE_DYE))
+                .define('$', Ingredient.of(ChangShengJueItems.COTTON.get()))
+                .pattern("# #")
+                .pattern("$X$")
+                .pattern("$$$")
+                .unlockedBy("has_cotton", has(ChangShengJueItems.COTTON.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.BLUE_COTTON_ARMOR_LEGGINGS.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('X', Ingredient.of(Items.BLUE_DYE))
+                .define('$', Ingredient.of(ChangShengJueItems.COTTON.get()))
+                .pattern("#X#")
+                .pattern("$ $")
+                .pattern("$ $")
+                .unlockedBy("has_cotton", has(ChangShengJueItems.COTTON.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.COTTON_ARMOR_BOOTS.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('$', Ingredient.of(ChangShengJueItems.COTTON.get()))
+                .pattern("# #")
+                .pattern("$ $")
+                .unlockedBy("has_cotton", has(ChangShengJueItems.COTTON.get())).save(consumer);
+        //红边棉甲
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.RED_COTTON_ARMOR_HELMET.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('X', Ingredient.of(ChangShengJueItems.WHITE_PEACOCK_FEATHERS.get()))
+                .define('$', Ingredient.of(ChangShengJueItems.COTTON.get()))
+                .pattern("#X#")
+                .pattern("$ $")
+                .unlockedBy("has_cotton", has(ChangShengJueItems.COTTON.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.RED_COTTON_ARMOR_CHESTPLATE.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('X', Ingredient.of(Items.RED_DYE))
+                .define('$', Ingredient.of(ChangShengJueItems.COTTON.get()))
+                .pattern("# #")
+                .pattern("$X$")
+                .pattern("$$$")
+                .unlockedBy("has_cotton", has(ChangShengJueItems.COTTON.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.RED_COTTON_ARMOR_LEGGINGS.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('X', Ingredient.of(Items.RED_DYE))
+                .define('$', Ingredient.of(ChangShengJueItems.COTTON.get()))
+                .pattern("#X#")
+                .pattern("$ $")
+                .pattern("$ $")
+                .unlockedBy("has_cotton", has(ChangShengJueItems.COTTON.get())).save(consumer);
+        //道袍
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.MALE_TAOIST_ROBES_HELMET.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .define('X', Ingredient.of(Items.BLACK_DYE))
+                .pattern("#X#")
+                .pattern("# #")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.MALE_TAOIST_ROBES_CHESTPLATE.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .pattern("# #")
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.MALE_TAOIST_ROBES_LEGGINGS.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.MALE_TAOIST_ROBES_BOOTS.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .define('$', Ingredient.of(ItemTags.PLANKS))
+                .pattern("# #")
+                .pattern("$ $")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.FEMALE_TAOIST_ROBES_HELMET.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .define('X', Ingredient.of(Tags.Items.INGOTS_GOLD))
+                .pattern("#X#")
+                .pattern("# #")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.FEMALE_TAOIST_ROBES_CHESTPLATE.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .define('X', Ingredient.of(Items.MAGENTA_DYE))
+                .pattern("# #")
+                .pattern("#X#")
+                .pattern("###")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.FEMALE_TAOIST_ROBES_LEGGINGS.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .define('X', Ingredient.of(Items.MAGENTA_DYE))
+                .pattern("#X#")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.FEMALE_TAOIST_ROBES_BOOTS.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+
+        //婚服
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.CHINESE_WEDDING_DRESS_HELMET.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .define('X', Ingredient.of(Items.BLACK_DYE))
+                .define('$', Ingredient.of(Tags.Items.INGOTS_GOLD))
+                .pattern("###")
+                .pattern("$ X")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.CHINESE_WEDDING_DRESS_CHESTPLATE.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .define('X', Ingredient.of(Items.YELLOW_DYE))
+                .define('$', Ingredient.of(Items.RED_DYE))
+                .pattern("# #")
+                .pattern("#X#")
+                .pattern("#$#")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.CHINESE_WEDDING_DRESS_LEGGINGS.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .define('X', Ingredient.of(Items.RED_DYE))
+                .pattern("#X#")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.CHINESE_WEDDING_DRESS_BOOTS.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .define('X', Ingredient.of(Items.BLACK_DYE))
+                .pattern("# #")
+                .pattern("X X")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+        //嫁妆
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.RED_DRESS_HELMET.get(),1)
+                .define('#', Ingredient.of(Tags.Items.GEMS_LAPIS))
+                .define('X', Ingredient.of(Tags.Items.INGOTS_GOLD))
+                .pattern("XXX")
+                .pattern("# #")
+                .unlockedBy("has_gold", has(Tags.Items.INGOTS_GOLD)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.RED_DRESS_CHESTPLATE.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .define('X', Ingredient.of(Items.RED_DYE))
+                .pattern("# #")
+                .pattern("#X#")
+                .pattern("###")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.RED_DRESS_LEGGINGS.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .define('X', Ingredient.of(Items.RED_DYE))
+                .define('$', Ingredient.of(Items.YELLOW_DYE))
+                .pattern("X#$")
+                .pattern("# #")
+                .pattern("# #")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.RED_DRESS_BOOTS.get(),1)
+                .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .define('X', Ingredient.of(Items.RED_DYE))
+                .pattern("# #")
+                .pattern("X X")
+                .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
 
         //烧炼配方
         //矿石

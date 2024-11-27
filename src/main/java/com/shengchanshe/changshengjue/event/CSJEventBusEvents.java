@@ -1,12 +1,20 @@
 package com.shengchanshe.changshengjue.event;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.capability.MartialArtsCapability;
+import com.shengchanshe.changshengjue.capability.MartialArtsCapabilityProvider;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.custom.*;
 import com.shengchanshe.changshengjue.entity.custom.deer.AbstractDeer;
 import com.shengchanshe.changshengjue.entity.custom.peacock.AbstractPeacockEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerEntity;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -27,4 +35,5 @@ public class CSJEventBusEvents {
         event.put(ChangShengJueEntity.CROC_ENTITY.get(), CrocEntity.setAttributes());
         event.put(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER.get(), ChangShengJueVillagerEntity.setAttributes());
     }
+
 }

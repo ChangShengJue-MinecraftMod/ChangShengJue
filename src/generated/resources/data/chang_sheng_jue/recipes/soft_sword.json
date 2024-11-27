@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/iron"
+    },
+    "X": {
+      "tag": "forge:string"
+    }
+  },
+  "pattern": [
+    "# ",
+    "# ",
+    "#X"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:soft_sword"
+  },
+  "show_notification": true
+}

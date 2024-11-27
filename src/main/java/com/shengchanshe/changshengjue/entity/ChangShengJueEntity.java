@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.entity;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntity;
 import com.shengchanshe.changshengjue.entity.custom.*;
 import com.shengchanshe.changshengjue.entity.custom.deer.HindEntity;
 import com.shengchanshe.changshengjue.entity.custom.deer.StagEntity;
@@ -8,6 +9,7 @@ import com.shengchanshe.changshengjue.entity.custom.peacock.FemalePeacockEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.MalePeacockEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.PeacockEgg;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerEntity;
+import com.shengchanshe.changshengjue.entity.combat.feidao.FeiDaoEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -92,9 +94,19 @@ public class ChangShengJueEntity {
                             .sized(0.6F, 1.95F)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"chang_sheng_jue_villager").toString()));
 
+    public static final RegistryObject<EntityType<DuguNineSwordsEntity>> DUGU_NINE_SOWRDS_ENTITY =
+            ENTITY_TYPES.register("dugu_nine_sowrds_entity",
+                    () -> EntityType.Builder.of(DuguNineSwordsEntity::new, MobCategory.MISC)
+                            .sized(5f, 1f)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"dugu_nine_sowrds_entity").toString()));
+
     public static final RegistryObject<EntityType<PeacockEgg>> PEACOCK_EGG = ENTITY_TYPES.register("peacock_egg",
             () -> EntityType.Builder.<PeacockEgg>of(PeacockEgg::new, MobCategory.MISC).sized(0.25F, 0.25F)
                     .setTrackingRange(4).updateInterval(10).build("peacock_egg"));
+
+    public static final RegistryObject<EntityType<FeiDaoEntity>> FEI_DAO_ENTITY = ENTITY_TYPES.register("fei_dao_entity",
+            () -> EntityType.Builder.<FeiDaoEntity>of(FeiDaoEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
+                    .setTrackingRange(4).updateInterval(10).build("fei_dao_entity"));
 
     public static void register(IEventBus eventBus){
         ENTITY_TYPES.register(eventBus);

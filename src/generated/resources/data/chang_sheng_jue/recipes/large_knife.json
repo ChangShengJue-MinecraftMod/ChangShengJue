@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/iron"
+    },
+    "X": {
+      "tag": "forge:ingots/gold"
+    }
+  },
+  "pattern": [
+    "##",
+    "# ",
+    "X "
+  ],
+  "result": {
+    "item": "chang_sheng_jue:large_knife"
+  },
+  "show_notification": true
+}

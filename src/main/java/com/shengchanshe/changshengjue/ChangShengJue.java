@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.changshengjue.creativemodetab.ChangShengJueCreativeModeTab;
+import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
@@ -53,6 +54,7 @@ public class ChangShengJue {
         ChangShengJueCreativeModeTab.register(eventBus);
         ChangShengJueParticles.register(eventBus);
         ChangShengJueMenuTypes.register(eventBus);
+        ChangShengJueEffects.register(eventBus);
         CSJTerrablender.registerBiomes();
         CSJFoliagePlacers.register(eventBus);
         CSJTrunkPlacerTypes.register(eventBus);

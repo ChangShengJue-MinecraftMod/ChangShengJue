@@ -7,12 +7,9 @@ import com.shengchanshe.changshengjue.util.CSJTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -55,6 +52,32 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(Item.byBlock(ChangShengJueBlocks.LICHEE_LOG.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.DURIAN_LOG.get()));
 
+        this.tag(CSJTags.Items.MJ_BOOK)
+                .add(ChangShengJueItems.IMMORTAL_MIRACLE.get())
+                .add(ChangShengJueItems.HERCULES.get())
+                .add(ChangShengJueItems.DUGU_NINE_SWORDS.get())
+                .add(ChangShengJueItems.GAO_MARKSMANSHIP.get())
+                .add(ChangShengJueItems.GE_SHAN_DA_NIU.get())
+                .add(ChangShengJueItems.TURTLE_BREATH_WORK.get())
+                .add(ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get())
+                .add(ChangShengJueItems.GOLDEN_BELL_JAR.get())
+                .add(ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get())
+                .add(ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get())
+                .add(ChangShengJueItems.PAODING.get())
+                .add(ChangShengJueItems.SHAOLIN_STICK_METHOD.get())
+                .add(ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get())
+                .add(ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get())
+                .add(ChangShengJueItems.WU_GANG_CUT_GUI.get())
+                .add(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get())
+                .add(ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get())
+                .add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get());
+
+        this.tag(CSJTags.Items.ARTIFACT)
+                .add(ChangShengJueItems.BEAT_DOG_STICK.get())
+                .add(ChangShengJueItems.YI_TINA_JIAN.get())
+                .add(ChangShengJueItems.TU_LONG_DAO.get())
+                .add(ChangShengJueItems.BA_WANG_QIANG.get());
+
         this.tag(ItemTags.SWORDS)
                 .add(ChangShengJueItems.BRONZE_SWORD.get())
                 .add(ChangShengJueItems.HAN_JIAN.get())
@@ -63,7 +86,11 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(ChangShengJueItems.RED_TASSELLED_SPEAR.get())
                 .add(ChangShengJueItems.SOFT_SWORD.get())
                 .add(ChangShengJueItems.PAN_HUA_GUN.get())
-                .add(ChangShengJueItems.KITCHEN_KNIFE.get());
+                .add(ChangShengJueItems.KITCHEN_KNIFE.get())
+                .add(ChangShengJueItems.BEAT_DOG_STICK.get())
+                .add(ChangShengJueItems.YI_TINA_JIAN.get())
+                .add(ChangShengJueItems.TU_LONG_DAO.get())
+                .add(ChangShengJueItems.BA_WANG_QIANG.get());
 
         this.tag(ItemTags.FLOWERS)
                 .add(Item.byBlock(ChangShengJueBlocks.MUGWORT_BLOCK.get()))

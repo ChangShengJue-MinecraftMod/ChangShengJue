@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "chang_sheng_jue:item/pan_hua_gun_item"
+  }
+}

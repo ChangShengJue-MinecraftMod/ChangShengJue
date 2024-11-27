@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "chang_sheng_jue:silk"
+    },
+    "$": {
+      "item": "minecraft:yellow_dye"
+    },
+    "X": {
+      "item": "minecraft:red_dye"
+    }
+  },
+  "pattern": [
+    "X#$",
+    "# #",
+    "# #"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:red_dress_leggings"
+  },
+  "show_notification": true
+}

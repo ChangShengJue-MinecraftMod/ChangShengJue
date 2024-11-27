@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "chang_sheng_jue:silk"
+    },
+    "$": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "# #",
+    "$ $"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:male_taoist_robes_boots"
+  },
+  "show_notification": true
+}

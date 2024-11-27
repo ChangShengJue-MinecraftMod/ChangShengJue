@@ -257,6 +257,11 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.GRAPE_JUICE.get());
                 output.accept(ChangShengJueItems.VENISON.get());
                 output.accept(ChangShengJueItems.COOKED_VENISON.get());
+                output.accept(ChangShengJueItems.BILUOCHUN_TEAS.get());
+                output.accept(ChangShengJueItems.LONG_JING_TEAS.get());
+                output.accept(ChangShengJueItems.FEN_JIU.get());
+                output.accept(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get());
+                output.accept(ChangShengJueItems.SHI_LI_XIANG.get());
                 output.accept(ChangShengJueItems.CI_PAN.get());
                 output.accept(ChangShengJueItems.CI_WAN.get());
                 output.accept(ChangShengJueItems.CI_BEI.get());
@@ -278,6 +283,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.JALAPENOS.get());
                 output.accept(ChangShengJueItems.CRANE_FEATHERS.get());
                 output.accept(ChangShengJueItems.PEACOCK_FEATHERS.get());
+                output.accept(ChangShengJueItems.WHITE_PEACOCK_FEATHERS.get());
                 output.accept(ChangShengJueItems.PEACOCK_EGGS.get());
                 output.accept(ChangShengJueItems.DEERSKIN.get());
                 output.accept(ChangShengJueItems.ANTLER.get());
@@ -305,10 +311,33 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.LIME_SLURRY_BARRELS.get());
                 output.accept(ChangShengJueItems.WARM_LIME_SLURRY_BARRELS.get());
                 output.accept(ChangShengJueItems.COOL_LIME_SLURRY_BARRELS.get());
+
+                output.accept(ChangShengJueItems.IMMORTAL_MIRACLE.get());
+                output.accept(ChangShengJueItems.HERCULES.get());
+                output.accept(ChangShengJueItems.DUGU_NINE_SWORDS.get());
+                output.accept(ChangShengJueItems.GAO_MARKSMANSHIP.get());
+                output.accept(ChangShengJueItems.GE_SHAN_DA_NIU.get());
+                output.accept(ChangShengJueItems.TURTLE_BREATH_WORK.get());
+                output.accept(ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get());
+                output.accept(ChangShengJueItems.GOLDEN_BELL_JAR.get());
+                output.accept(ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get());
+                output.accept(ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get());
+                output.accept(ChangShengJueItems.PAODING.get());
+                output.accept(ChangShengJueItems.SHAOLIN_STICK_METHOD.get());
+                output.accept(ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get());
+                output.accept(ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get());
+                output.accept(ChangShengJueItems.WU_GANG_CUT_GUI.get());
+                output.accept(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get());
+                output.accept(ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get());
+                output.accept(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_COMBAT = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("cahng_sheng_jue_combat",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.cahng_sheng_jue_combat")).icon(() ->
                     new ItemStack(ChangShengJueItems.BRONZE_SWORD.get())).displayItems((parameters,output)->{
+                output.accept(ChangShengJueItems.BEAT_DOG_STICK.get());
+                output.accept(ChangShengJueItems.YI_TINA_JIAN.get());
+                output.accept(ChangShengJueItems.TU_LONG_DAO.get());
+                output.accept(ChangShengJueItems.BA_WANG_QIANG.get());
                 output.accept(ChangShengJueItems.BRONZE_SWORD.get());
                 output.accept(ChangShengJueItems.HAN_JIAN.get());
                 output.accept(ChangShengJueItems.HENG_DAO.get());
@@ -317,6 +346,30 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.SOFT_SWORD.get());
                 output.accept(ChangShengJueItems.PAN_HUA_GUN.get());
                 output.accept(ChangShengJueItems.KITCHEN_KNIFE.get());
+                output.accept(ChangShengJueItems.FEI_DAO.get());
+                output.accept(ChangShengJueItems.BLUE_COTTON_ARMOR_HELMET.get());
+                output.accept(ChangShengJueItems.BLUE_COTTON_ARMOR_CHESTPLATE.get());
+                output.accept(ChangShengJueItems.BLUE_COTTON_ARMOR_LEGGINGS.get());
+                output.accept(ChangShengJueItems.RED_COTTON_ARMOR_HELMET.get());
+                output.accept(ChangShengJueItems.RED_COTTON_ARMOR_CHESTPLATE.get());
+                output.accept(ChangShengJueItems.RED_COTTON_ARMOR_LEGGINGS.get());
+                output.accept(ChangShengJueItems.COTTON_ARMOR_BOOTS.get());
+                output.accept(ChangShengJueItems.FEMALE_TAOIST_ROBES_HELMET.get());
+                output.accept(ChangShengJueItems.FEMALE_TAOIST_ROBES_CHESTPLATE.get());
+                output.accept(ChangShengJueItems.FEMALE_TAOIST_ROBES_LEGGINGS.get());
+                output.accept(ChangShengJueItems.FEMALE_TAOIST_ROBES_BOOTS.get());
+                output.accept(ChangShengJueItems.MALE_TAOIST_ROBES_HELMET.get());
+                output.accept(ChangShengJueItems.MALE_TAOIST_ROBES_CHESTPLATE.get());
+                output.accept(ChangShengJueItems.MALE_TAOIST_ROBES_LEGGINGS.get());
+                output.accept(ChangShengJueItems.MALE_TAOIST_ROBES_BOOTS.get());
+                output.accept(ChangShengJueItems.CHINESE_WEDDING_DRESS_HELMET.get());
+                output.accept(ChangShengJueItems.CHINESE_WEDDING_DRESS_CHESTPLATE.get());
+                output.accept(ChangShengJueItems.CHINESE_WEDDING_DRESS_LEGGINGS.get());
+                output.accept(ChangShengJueItems.CHINESE_WEDDING_DRESS_BOOTS.get());
+                output.accept(ChangShengJueItems.RED_DRESS_HELMET.get());
+                output.accept(ChangShengJueItems.RED_DRESS_CHESTPLATE.get());
+                output.accept(ChangShengJueItems.RED_DRESS_LEGGINGS.get());
+                output.accept(ChangShengJueItems.RED_DRESS_BOOTS.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_SPAWN_EGGS = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_spawn_eggs",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_spawn_eggs")).icon(() ->

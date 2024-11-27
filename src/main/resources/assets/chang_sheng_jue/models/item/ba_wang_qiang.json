@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "chang_sheng_jue:item/ba_wang_qiang_model"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "chang_sheng_jue:item/ba_wang_qiang_show"
+    },
+    "ground": {
+      "parent": "chang_sheng_jue:item/ba_wang_qiang_show"
+    },
+    "fixed": {
+      "parent": "chang_sheng_jue:item/ba_wang_qiang_show"
+    }
+  }
+}

@@ -1,4 +1,4 @@
-// 1.20.1	2024-11-16T13:11:35.1733943	Loot Tables
+// 1.20.1	2024-11-21T09:50:09.9249279	Loot Tables
 cce8c0b7d959719604bf5706a5e0b0a99876a5b4 data/chang_sheng_jue/loot_tables/blocks/ag_ore.json
 9dfcb27b62a46a4c58add40765b49c99ff5898fa data/chang_sheng_jue/loot_tables/blocks/attached_cantaloupe_stem.json
 63066feb307becad188bb317a4b3c962e2f53f68 data/chang_sheng_jue/loot_tables/blocks/bai_hua_fu_ti_block.json
@@ -118,7 +118,6 @@ f61336d754a7b7ae0bdb9912a84213c7f6c5cdd9 data/chang_sheng_jue/loot_tables/blocks
 1df5f689560b3bb730171fc9d1b43467f026f605 data/chang_sheng_jue/loot_tables/blocks/pig_trough.json
 e2130e0b727edcfa15e2ed76b3d16fe978416268 data/chang_sheng_jue/loot_tables/blocks/pineapple_block.json
 c3ba7429f1bac158ff6ac5a1d3d056a3a191dde9 data/chang_sheng_jue/loot_tables/blocks/plaque.json
-c8d041bd44dd44d44f671880ec69269fd333aa6d data/chang_sheng_jue/loot_tables/blocks/plaque_standing.json
 d9eeaadcacfddc0165a52c4763d3d285dcbb871a data/chang_sheng_jue/loot_tables/blocks/poplar_defoliation.json
 dbb33c5344c2d5504eac3e6df137e3c2c3625f28 data/chang_sheng_jue/loot_tables/blocks/poplar_leaves.json
 91a7471a6899d7c5d71f579a9c71cab6977dda63 data/chang_sheng_jue/loot_tables/blocks/poplar_log.json

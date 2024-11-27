@@ -1,0 +1,113 @@
+{
+  "credit": "Made with Blockbench",
+  "parent": "builtin/entity",
+  "display": {
+    "thirdperson_righthand": {
+      "translation": [
+        0,
+        -19,
+        1.5
+      ],
+      "scale": [
+        1,
+        1.5,
+        1
+      ]
+    },
+    "thirdperson_lefthand": {
+      "translation": [
+        0,
+        -19,
+        1.5
+      ],
+      "scale": [
+        1,
+        1.5,
+        1
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        -26,
+        0,
+        0
+      ],
+      "translation": [
+        4,
+        -4,
+        0
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ]
+    },
+    "firstperson_lefthand": {
+      "rotation": [
+        -26,
+        0,
+        0
+      ],
+      "translation": [
+        4,
+        -4,
+        0
+      ],
+      "scale": [
+        0.8,
+        0.8,
+        0.8
+      ]
+    },
+    "ground": {
+      "translation": [
+        0,
+        -1.5,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "gui": {
+      "rotation": [
+        0,
+        0,
+        45
+      ],
+      "translation": [
+        7.75,
+        -7.75,
+        0
+      ],
+      "scale": [
+        0.6,
+        0.6,
+        0.6
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        0,
+        45
+      ],
+      "translation": [
+        8.5,
+        -8.5,
+        0
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ]
+    }
+  },
+  "textures": {
+    "particle": "chang_sheng_jue:item/red_tasselled_spear"
+  }
+}
