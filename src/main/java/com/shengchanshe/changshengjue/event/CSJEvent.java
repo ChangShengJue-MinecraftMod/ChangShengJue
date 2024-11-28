@@ -6,9 +6,12 @@ import com.shengchanshe.changshengjue.capability.MartialArtsCapability;
 import com.shengchanshe.changshengjue.capability.MartialArtsCapabilityProvider;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.DuguNineSwordsPacket;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerProfession;
@@ -19,6 +22,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
@@ -649,4 +653,16 @@ public class CSJEvent {
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event){
         event.register(MartialArtsCapability.class);
     }
+
+    @SubscribeEvent
+    public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {
+        if(!event.getLevel().isClientSide()) {
+            if(event.getEntity() instanceof ServerPlayer player) {
+                player.getCapability(MartialArtsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
+                    ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),duguNineSword.isDuguNineSwordsComprehend()), player);
+                });
+            }
+        }
+    }
+
 }

@@ -9,7 +9,7 @@ import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import com.shengchanshe.changshengjue.screen.ChangShengJueMenuTypes;
-import com.shengchanshe.changshengjue.screen.plaque.ModMessages;
+import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import com.shengchanshe.changshengjue.util.ClientSetup;
 import com.shengchanshe.changshengjue.world.biome.CSJTerrablender;
@@ -59,7 +59,7 @@ public class ChangShengJue {
         CSJFoliagePlacers.register(eventBus);
         CSJTrunkPlacerTypes.register(eventBus);
 
-        ModMessages.register();
+        ChangShengJueMessages.register();
 
         GeckoLib.initialize();
         MinecraftForge.EVENT_BUS.register(this);

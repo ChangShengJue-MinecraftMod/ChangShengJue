@@ -7,6 +7,10 @@ public class MartialArtsCapability {
     private boolean duguNineSwordsComprehend = false;
     private int duguNineSwordsUseCount = 0;
 
+    public boolean isDuguNineSwordsComprehend() {
+        return duguNineSwordsComprehend;
+    }
+
     public int getDuguNineSwordsLevel() {
         return duguNineSwordsLevel;
     }
@@ -53,5 +57,4 @@ public class MartialArtsCapability {
         duguNineSwordsUseCount = nbt.getInt("duguNineSwordsUseCount");
         duguNineSwordsComprehend = nbt.getBoolean("DuguNineSwordsComprehend");
     }
-
 }

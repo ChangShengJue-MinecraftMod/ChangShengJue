@@ -6,6 +6,11 @@ import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.DuguNineSwordsPacket;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -24,7 +29,10 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.LazyOptional;
+
+import java.awt.*;
 
 public class Sword extends SwordItem {
     public Sword(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
@@ -37,9 +45,10 @@ public class Sword extends SwordItem {
             player.getCapability(MartialArtsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                 if (duguNineSword.duguNineSwordsComprehend() && duguNineSword.getDuguNineSwordsLevel() == 0) {
                     float probability = player.getRandom().nextFloat();
-                    float defaultProbability = 0.2F;
+                    float defaultProbability = 0.02F;
                     if (probability < defaultProbability) {
                         duguNineSword.addDuguNineSwordsLevel();
+                        ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),duguNineSword.isDuguNineSwordsComprehend()), (ServerPlayer) player);
                     }
                 }
             });
@@ -80,7 +89,7 @@ public class Sword extends SwordItem {
                         float damage;
                         float probability = player.getRandom().nextFloat();
                         float defaultProbability = 0.15F;
-                        if (martialArtsLevel != 2) {
+                        if (martialArtsLevel < 2) {
                             damage = (this.getDamage() + 2) * 1.4F;
                             if (probability < defaultProbability) {
                                 if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
@@ -98,6 +107,7 @@ public class Sword extends SwordItem {
                         if (entity.hurt(player.damageSources().playerAttack(player), damage)) {//造成伤害
                             if (duguNineSword.getDuguNineSwordsUseCount() <= 100){
                                 duguNineSword.addDuguNineSwordsUseCount();
+                                ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),duguNineSword.isDuguNineSwordsComprehend()), (ServerPlayer) player);
                             }
                             EnchantmentHelper.doPostDamageEffects(player, entity);//应用附魔
                         }

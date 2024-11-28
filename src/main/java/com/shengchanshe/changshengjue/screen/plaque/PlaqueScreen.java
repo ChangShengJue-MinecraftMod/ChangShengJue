@@ -2,7 +2,7 @@ package com.shengchanshe.changshengjue.screen.plaque;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
-import com.shengchanshe.changshengjue.block.entity.PlaqueEntity;
+import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
 
 public class PlaqueScreen extends AbstractContainerScreen<PlaqueMenu> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/plaque_gui.png");
@@ -41,7 +40,7 @@ public class PlaqueScreen extends AbstractContainerScreen<PlaqueMenu> {
         this.addRenderableWidget(this.textBox); // 添加到渲染列表
         button_empty = Button.builder(Component.translatable("写下"), e -> {
             String text = this.textBox.getValue();
-            ModMessages.sendToServer(new UpdatePlaqueTextPacket(this.menu.getBlockPos(), text));
+            ChangShengJueMessages.sendToServer(new UpdatePlaqueTextPacket(this.menu.getBlockPos(), text));
         }).bounds(centerX - 15, centerY + 90, imageWidth, 20).build();
         this.addRenderableWidget(button_empty);
     }

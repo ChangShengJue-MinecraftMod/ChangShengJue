@@ -1,9 +1,11 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
-import com.shengchanshe.changshengjue.capability.MartialArtsCapability;
 import com.shengchanshe.changshengjue.capability.MartialArtsCapabilityProvider;
+import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.DuguNineSwordsPacket;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -22,15 +24,18 @@ public class DuguNineSwordsBook extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        ItemStack itemInHand = pPlayer.getItemInHand(pUsedHand);
-        pPlayer.getCapability(MartialArtsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
-            if (!duguNineSword.duguNineSwordsComprehend()){
-                duguNineSword.setDuguNineSwordsComprehend(true);
-                if (!pPlayer.getAbilities().instabuild) {
-                    itemInHand.shrink(1);
+        if (!pLevel.isClientSide){
+            ItemStack itemInHand = pPlayer.getItemInHand(pUsedHand);
+            pPlayer.getCapability(MartialArtsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
+                if (!duguNineSword.duguNineSwordsComprehend()){
+                    duguNineSword.setDuguNineSwordsComprehend(true);
+                    if (!pPlayer.getAbilities().instabuild) {
+                        itemInHand.shrink(1);
+                    }
+                    ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),duguNineSword.isDuguNineSwordsComprehend()), (ServerPlayer) pPlayer);
                 }
-            }
-        });
+            });
+        }
         return InteractionResultHolder.consume(pPlayer.getItemInHand(pUsedHand));
     }
 
