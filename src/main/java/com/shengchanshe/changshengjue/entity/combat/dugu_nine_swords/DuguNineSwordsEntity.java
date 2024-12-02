@@ -13,8 +13,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class DuguNineSwordsEntity extends Projectile implements GeoEntity {
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+public class DuguNineSwordsEntity extends Projectile {
     public DuguNineSwordsEntity(EntityType<? extends Projectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.noPhysics = true;
@@ -30,7 +29,7 @@ public class DuguNineSwordsEntity extends Projectile implements GeoEntity {
         if (!firstTick) {
             firstTick = true;
         }
-        if (tickCount >= 20 * 0.27){
+        if (tickCount >= 9){
             discard();
         }
     }
@@ -48,16 +47,5 @@ public class DuguNineSwordsEntity extends Projectile implements GeoEntity {
     @Override
     public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
-    }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(((new AnimationController(this, "attack",0, (state) ->
-                state.setAndContinue(DefaultAnimations.ATTACK_SWING)))));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
     }
 }

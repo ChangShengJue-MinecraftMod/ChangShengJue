@@ -11,7 +11,7 @@ import net.minecraft.world.level.Level;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TuLongDao extends knife {
+public class TuLongDao extends Knife {
     public TuLongDao() {
         super(Tiers.IRON, 5, -2.4F, new Properties().durability(4000).fireResistant());
     }

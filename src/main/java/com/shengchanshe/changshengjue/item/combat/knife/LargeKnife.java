@@ -12,7 +12,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
 
-public class LargeKnife extends knife implements GeoItem {
+public class LargeKnife extends Knife implements GeoItem {
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public LargeKnife() {
         super(Tiers.IRON, 4, -2.4F, new Item.Properties().durability(1500));

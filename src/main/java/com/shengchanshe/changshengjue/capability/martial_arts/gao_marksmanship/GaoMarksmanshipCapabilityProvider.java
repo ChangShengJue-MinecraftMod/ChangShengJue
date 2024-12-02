@@ -1,4 +1,4 @@
-package com.shengchanshe.changshengjue.capability;
+package com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -11,23 +11,23 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class MartialArtsCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-    public static Capability<MartialArtsCapability> MARTIAL_ARTS_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
+public class GaoMarksmanshipCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
+    public static Capability<GaoMarksmanshipCapability> GAO_MARKSMANSHIP_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
 
-    private MartialArtsCapability martialArtsCapability = null;
+    private GaoMarksmanshipCapability gaoMarksmanshipCapability = null;
 
-    private final LazyOptional<MartialArtsCapability> optional = LazyOptional.of(this::createMartialArtsCapability);
+    private final LazyOptional<GaoMarksmanshipCapability> optional = LazyOptional.of(this::createMartialArtsCapability);
 
-    private MartialArtsCapability createMartialArtsCapability() {
-        if (this.martialArtsCapability == null){
-            this.martialArtsCapability = new MartialArtsCapability();
+    private GaoMarksmanshipCapability createMartialArtsCapability() {
+        if (this.gaoMarksmanshipCapability == null){
+            this.gaoMarksmanshipCapability = new GaoMarksmanshipCapability();
         }
-        return this.martialArtsCapability;
+        return this.gaoMarksmanshipCapability;
     }
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == MARTIAL_ARTS_CAPABILITY){
+        if (cap == GAO_MARKSMANSHIP_CAPABILITY){
             return optional.cast();
         }
         return LazyOptional.empty();

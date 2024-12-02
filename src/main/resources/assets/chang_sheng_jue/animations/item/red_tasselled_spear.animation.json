@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"attack": {
+		"attack.swing": {
 			"animation_length": 0.5,
 			"bones": {
 				"all": {
@@ -11,7 +11,7 @@
 							"easing": "linear"
 						},
 						"0.1667": {
-							"vector": [442.5, 0, 0],
+							"vector": [365, 0, 0],
 							"easing": "linear"
 						}
 					},
@@ -21,19 +21,19 @@
 							"easing": "linear"
 						},
 						"0.2": {
-							"vector": [0, 1, -9],
+							"vector": [0, 9, -1],
 							"easing": "linear"
 						},
 						"0.2333": {
-							"vector": [0, 1, -10],
+							"vector": [0, -10, 1],
 							"easing": "linear"
 						},
 						"0.3": {
-							"vector": [0, 2, -16],
+							"vector": [0, 16, -2],
 							"easing": "linear"
 						},
 						"0.5": {
-							"vector": [0, 2, -16],
+							"vector": [0, 16, -2],
 							"easing": "linear"
 						}
 					},
@@ -44,22 +44,6 @@
 						},
 						"0.0667": {
 							"vector": [1, 1.5, 1],
-							"easing": "linear"
-						}
-					}
-				},
-				"bone": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 0, 0],
-							"easing": "linear"
-						},
-						"0.1667": {
-							"vector": [397.5, 0, 0],
-							"easing": "linear"
-						},
-						"0.5": {
-							"vector": [347.5, 0, 0],
 							"easing": "linear"
 						}
 					}
@@ -178,41 +162,11 @@
 				"all": {
 					"scale": {
 						"0.0": {
-							"vector": [1, 1, 1],
-							"easing": "linear"
-						},
-						"0.25": {
-							"vector": [1, 1, 1],
-							"easing": "linear"
-						}
-					}
-				},
-				"bone": {
-					"rotation": {
-						"0.0": {
-							"vector": [0, 0, 0],
+							"vector": [1, 1.5, 1],
 							"easing": "linear"
 						},
 						"0.5": {
-							"vector": [-7.49294, -0.32621, -2.47864],
-							"easing": "linear"
-						},
-						"1.0": {
-							"vector": [0, 0, 0],
-							"easing": "linear"
-						}
-					},
-					"position": {
-						"0.0": {
-							"vector": [0, 0, 0],
-							"easing": "linear"
-						},
-						"0.5": {
-							"vector": [0, 0, 0.1],
-							"easing": "linear"
-						},
-						"1.0": {
-							"vector": [0, 0, 0],
+							"vector": [1, 1.5, 1],
 							"easing": "linear"
 						}
 					}

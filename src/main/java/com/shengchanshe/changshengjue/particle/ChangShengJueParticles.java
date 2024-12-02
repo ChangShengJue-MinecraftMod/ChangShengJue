@@ -15,6 +15,9 @@ public class ChangShengJueParticles {
     public static final RegistryObject<SimpleParticleType> POPLAR_DEFOLIATION_PARTICLE =
             PARTICLE_TYPES.register("poplar_defoliation_particle", () -> new SimpleParticleType(true));
 
+    public static final RegistryObject<SimpleParticleType> COMPREHEND_PARTICLE =
+            PARTICLE_TYPES.register("comprehend_particle", () -> new SimpleParticleType(true));
+
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);
     }

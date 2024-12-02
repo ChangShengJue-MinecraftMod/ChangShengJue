@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.entity;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntity;
+import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntity;
 import com.shengchanshe.changshengjue.entity.custom.*;
 import com.shengchanshe.changshengjue.entity.custom.deer.HindEntity;
 import com.shengchanshe.changshengjue.entity.custom.deer.StagEntity;
@@ -94,11 +95,18 @@ public class ChangShengJueEntity {
                             .sized(0.6F, 1.95F)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"chang_sheng_jue_villager").toString()));
 
+    //独孤九剑
     public static final RegistryObject<EntityType<DuguNineSwordsEntity>> DUGU_NINE_SOWRDS_ENTITY =
             ENTITY_TYPES.register("dugu_nine_sowrds_entity",
                     () -> EntityType.Builder.of(DuguNineSwordsEntity::new, MobCategory.MISC)
                             .sized(5f, 1f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"dugu_nine_sowrds_entity").toString()));
+    //金乌刀法
+    public static final RegistryObject<EntityType<GoldenBlackKnifeMethodEntity>> GOLDEN_BLACK_KNIFE_METHOD_ENTITY =
+            ENTITY_TYPES.register("golden_black_knife_method_entity",
+                    () -> EntityType.Builder.of(GoldenBlackKnifeMethodEntity::new, MobCategory.MISC)
+                            .sized(5f, 1f)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"golden_black_knife_method_entity").toString()));
 
     public static final RegistryObject<EntityType<PeacockEgg>> PEACOCK_EGG = ENTITY_TYPES.register("peacock_egg",
             () -> EntityType.Builder.<PeacockEgg>of(PeacockEgg::new, MobCategory.MISC).sized(0.25F, 0.25F)

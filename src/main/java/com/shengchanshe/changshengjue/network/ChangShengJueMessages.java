@@ -1,7 +1,7 @@
 package com.shengchanshe.changshengjue.network;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
-import com.shengchanshe.changshengjue.network.packet.DuguNineSwordsPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.screen.plaque.UpdatePlaqueTextPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -32,11 +32,35 @@ public class ChangShengJueMessages {
                 .encoder(UpdatePlaqueTextPacket::toBytes)
                 .consumerMainThread(UpdatePlaqueTextPacket::handle)
                 .add();
-
+        //独孤九剑
         net.messageBuilder(DuguNineSwordsPacket.class, id())
                 .decoder(DuguNineSwordsPacket::new)
                 .encoder(DuguNineSwordsPacket::toBytes)
                 .consumerMainThread(DuguNineSwordsPacket::handle)
+                .add();
+        //金乌刀法
+        net.messageBuilder(GoldenBlackKnifeMethodPacket.class, id())
+                .decoder(GoldenBlackKnifeMethodPacket::new)
+                .encoder(GoldenBlackKnifeMethodPacket::toBytes)
+                .consumerMainThread(GoldenBlackKnifeMethodPacket::handle)
+                .add();
+        //玄女剑法
+        net.messageBuilder(XuannuSwordsmanshipPacket.class, id())
+                .decoder(XuannuSwordsmanshipPacket::new)
+                .encoder(XuannuSwordsmanshipPacket::toBytes)
+                .consumerMainThread(XuannuSwordsmanshipPacket::handle)
+                .add();
+        //高家枪法
+        net.messageBuilder(GaoMarksmanshipPacket.class, id())
+                .decoder(GaoMarksmanshipPacket::new)
+                .encoder(GaoMarksmanshipPacket::toBytes)
+                .consumerMainThread(GaoMarksmanshipPacket::handle)
+                .add();
+        //少林棍法
+        net.messageBuilder(ShaolinStickMethodPacket.class, id())
+                .decoder(ShaolinStickMethodPacket::new)
+                .encoder(ShaolinStickMethodPacket::toBytes)
+                .consumerMainThread(ShaolinStickMethodPacket::handle)
                 .add();
     }
 

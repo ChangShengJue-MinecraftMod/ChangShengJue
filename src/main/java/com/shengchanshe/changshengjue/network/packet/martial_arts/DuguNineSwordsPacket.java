@@ -1,6 +1,6 @@
-package com.shengchanshe.changshengjue.network.packet;
+package com.shengchanshe.changshengjue.network.packet.martial_arts;
 
-import com.shengchanshe.changshengjue.cilent.hud.dugu_nine_swords.DuguNineSwordsClientData;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.dugu_nine_swords.DuguNineSwordsClientData;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 

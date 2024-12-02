@@ -5,13 +5,16 @@ import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.client.render.*;
 import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntityRender;
 import com.shengchanshe.changshengjue.entity.client.render.combat.FeiDaoEntityRender;
+import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntityRender;
 import com.shengchanshe.changshengjue.entity.villagers.render.ChangShengJueVillagerRender;
+import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.screen.ChangShengJueMenuTypes;
 import com.shengchanshe.changshengjue.screen.plaque.PlaqueScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 public class ClientSetup {
@@ -162,5 +165,6 @@ public class ClientSetup {
         EntityRenderers.register(ChangShengJueEntity.FEI_DAO_ENTITY.get(), FeiDaoEntityRender::new);
 
         EntityRenderers.register(ChangShengJueEntity.DUGU_NINE_SOWRDS_ENTITY.get(), DuguNineSwordsEntityRender::new);
+        EntityRenderers.register(ChangShengJueEntity.GOLDEN_BLACK_KNIFE_METHOD_ENTITY.get(), GoldenBlackKnifeMethodEntityRender::new);
     }
 }

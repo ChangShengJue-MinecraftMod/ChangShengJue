@@ -22,26 +22,26 @@
     },
     "firstperson_righthand": {
       "rotation": [
-        -25,
+        -75,
         0,
         0
       ],
       "translation": [
         3,
-        -8,
-        0
+        -2.5,
+        8.5
       ]
     },
     "firstperson_lefthand": {
       "rotation": [
-        -25,
+        -75,
         0,
         0
       ],
       "translation": [
         3,
-        -8,
-        0
+        -2.5,
+        8.5
       ]
     },
     "ground": {

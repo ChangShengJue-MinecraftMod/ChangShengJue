@@ -1,4 +1,4 @@
-package com.shengchanshe.changshengjue.cilent.hud.dugu_nine_swords;
+package com.shengchanshe.changshengjue.cilent.hud.martial_arts.dugu_nine_swords;
 
 public class DuguNineSwordsClientData {
     // 玩家的技能等级和是否学习了技能

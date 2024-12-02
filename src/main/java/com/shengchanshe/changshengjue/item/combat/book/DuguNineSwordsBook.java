@@ -1,8 +1,8 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
-import com.shengchanshe.changshengjue.capability.MartialArtsCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapabilityProvider;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
-import com.shengchanshe.changshengjue.network.packet.DuguNineSwordsPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.DuguNineSwordsPacket;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -26,7 +26,7 @@ public class DuguNineSwordsBook extends Item {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (!pLevel.isClientSide){
             ItemStack itemInHand = pPlayer.getItemInHand(pUsedHand);
-            pPlayer.getCapability(MartialArtsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
+            pPlayer.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                 if (!duguNineSword.duguNineSwordsComprehend()){
                     duguNineSword.setDuguNineSwordsComprehend(true);
                     if (!pPlayer.getAbilities().instabuild) {

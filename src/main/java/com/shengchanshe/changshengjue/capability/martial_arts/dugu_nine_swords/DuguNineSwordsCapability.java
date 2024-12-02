@@ -1,8 +1,8 @@
-package com.shengchanshe.changshengjue.capability;
+package com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords;
 
 import net.minecraft.nbt.CompoundTag;
 
-public class MartialArtsCapability {
+public class DuguNineSwordsCapability {
     private int duguNineSwordsLevel = 0;
     private boolean duguNineSwordsComprehend = false;
     private int duguNineSwordsUseCount = 0;
@@ -38,7 +38,7 @@ public class MartialArtsCapability {
         this.duguNineSwordsUseCount++;
     }
 
-    public void copyDuguNineSwords(MartialArtsCapability capability){
+    public void copyDuguNineSwords(DuguNineSwordsCapability capability){
         this.duguNineSwordsLevel = capability.duguNineSwordsLevel;
         this.duguNineSwordsComprehend = capability.duguNineSwordsComprehend;
         this.duguNineSwordsUseCount = capability.duguNineSwordsUseCount;
