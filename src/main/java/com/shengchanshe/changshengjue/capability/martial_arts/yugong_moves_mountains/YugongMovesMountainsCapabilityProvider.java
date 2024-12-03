@@ -1,4 +1,4 @@
-package com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace;
+package com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -11,23 +11,23 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class TreadTheSnowWithoutTraceCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-    public static Capability<TreadTheSnowWithoutTraceCapability> TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
+public class YugongMovesMountainsCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
+    public static Capability<YugongMovesMountainsCapability> YUGONG_MOVES_MOUNTAINS_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
 
-    private TreadTheSnowWithoutTraceCapability treadTheSnowWithoutTraceCapability = null;
+    private YugongMovesMountainsCapability yugongMovesMountainsCapability = null;
 
-    private final LazyOptional<TreadTheSnowWithoutTraceCapability> optional = LazyOptional.of(this::createMartialArtsCapability);
+    private final LazyOptional<YugongMovesMountainsCapability> optional = LazyOptional.of(this::createMartialArtsCapability);
 
-    private TreadTheSnowWithoutTraceCapability createMartialArtsCapability() {
-        if (this.treadTheSnowWithoutTraceCapability == null){
-            this.treadTheSnowWithoutTraceCapability = new TreadTheSnowWithoutTraceCapability();
+    private YugongMovesMountainsCapability createMartialArtsCapability() {
+        if (this.yugongMovesMountainsCapability == null){
+            this.yugongMovesMountainsCapability = new YugongMovesMountainsCapability();
         }
-        return this.treadTheSnowWithoutTraceCapability;
+        return this.yugongMovesMountainsCapability;
     }
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY){
+        if (cap == YUGONG_MOVES_MOUNTAINS_CAPABILITY){
             return optional.cast();
         }
         return LazyOptional.empty();

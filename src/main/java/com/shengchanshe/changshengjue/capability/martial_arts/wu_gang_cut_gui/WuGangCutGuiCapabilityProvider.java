@@ -1,4 +1,4 @@
-package com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace;
+package com.shengchanshe.changshengjue.capability.martial_arts.wu_gang_cut_gui;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -11,23 +11,23 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class TreadTheSnowWithoutTraceCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-    public static Capability<TreadTheSnowWithoutTraceCapability> TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
+public class WuGangCutGuiCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
+    public static Capability<WuGangCutGuiCapability> WU_GANG_CUT_GUI_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
 
-    private TreadTheSnowWithoutTraceCapability treadTheSnowWithoutTraceCapability = null;
+    private WuGangCutGuiCapability wuGangCutGuiCapability = null;
 
-    private final LazyOptional<TreadTheSnowWithoutTraceCapability> optional = LazyOptional.of(this::createMartialArtsCapability);
+    private final LazyOptional<WuGangCutGuiCapability> optional = LazyOptional.of(this::createMartialArtsCapability);
 
-    private TreadTheSnowWithoutTraceCapability createMartialArtsCapability() {
-        if (this.treadTheSnowWithoutTraceCapability == null){
-            this.treadTheSnowWithoutTraceCapability = new TreadTheSnowWithoutTraceCapability();
+    private WuGangCutGuiCapability createMartialArtsCapability() {
+        if (this.wuGangCutGuiCapability == null){
+            this.wuGangCutGuiCapability = new WuGangCutGuiCapability();
         }
-        return this.treadTheSnowWithoutTraceCapability;
+        return this.wuGangCutGuiCapability;
     }
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY){
+        if (cap == WU_GANG_CUT_GUI_CAPABILITY){
             return optional.cast();
         }
         return LazyOptional.empty();

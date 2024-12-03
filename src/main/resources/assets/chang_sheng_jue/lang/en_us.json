@@ -159,9 +159,11 @@
   "tooltip.chang_sheng_jue.tread_the_snow_without_trace.tooltip": "来去无影无踪，逍遥自在。",
   "item.chang_sheng_jue.relentless_throwing_knives": "无情飞刀",
   "item.chang_sheng_jue.wu_gang_cut_gui": "吴刚伐桂",
+  "tooltip.chang_sheng_jue.wu_gang_cut_gui.tooltip": "何意杀人技，不如快人心。",
   "item.chang_sheng_jue.xuannu_swordsmanship": "玄女剑法",
   "tooltip.chang_sheng_jue.xuannu_swordsmanship.tooltip": "以巧借力，以柔克刚。",
   "item.chang_sheng_jue.yugong_moves_mountains": "愚公移山",
+  "tooltip.chang_sheng_jue.yugong_moves_mountains.tooltip": "生生不息，直至山平。",
   "item.chang_sheng_jue.zhang_men_xin_xue": "张门心学",
 
   "block.chang_sheng_jue.mango_log": "芒果原木",
@@ -540,5 +542,5 @@
   "effect.chang_sheng_jue.dizzy_effect": "眩晕",
   "effect.chang_sheng_jue.airborne_effect": "挑飞",
 
-  "biome.chang_sheng_jue.chang_shen_jue_prairie": "静思草原",
+  "biome.chang_sheng_jue.chang_shen_jue_prairie": "静思草原"
 }

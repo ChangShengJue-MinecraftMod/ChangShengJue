@@ -19,6 +19,9 @@ public class Stakes extends Item {
             StakesEntity stakesEntity =new StakesEntity(ChangShengJueEntity.STAKES.get(), level);
             stakesEntity.moveTo(pContext.getClickedPos().above(1).getCenter());
             level.addFreshEntity(stakesEntity);
+            if (!pContext.getPlayer().getAbilities().instabuild) {
+                pContext.getItemInHand().shrink(1);
+            }
         }
         return super.useOn(pContext);
     }

@@ -12,30 +12,38 @@ import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_meth
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapability;
+import com.shengchanshe.changshengjue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceClientData;
+import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapability;
+import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
+import com.shengchanshe.changshengjue.event.martial_arts.TreadTheSnowWithoutTraceEvent;
+import com.shengchanshe.changshengjue.event.martial_arts.WuGangCutGuiEvent;
+import com.shengchanshe.changshengjue.event.martial_arts.YugongMovesMountainsEvent;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.AirItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
@@ -43,6 +51,7 @@ import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -673,17 +682,36 @@ public class CSJEvent {
                 event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"shaolin_stick_method_properties"),new ShaolinStickMethodCapabilityProvider());
             }
             //踏雪无痕
-            if (!event.getObject().getCapability(TreadTheSnowWithoutTraceCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"shaolin_stick_method_capability_properties"),new TreadTheSnowWithoutTraceCapabilityProvider());
+            if (!event.getObject().getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"tread_the_snow_without_trace_properties"),new TreadTheSnowWithoutTraceCapabilityProvider());
+            }
+            //吴刚伐桂
+            if (!event.getObject().getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"wu_gang_cut_gui_properties"),new WuGangCutGuiCapabilityProvider());
+            }
+            //吴刚伐桂
+            if (!event.getObject().getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"yugong_moves_mountains_properties"),new YugongMovesMountainsCapabilityProvider());
             }
         }
     }
+
+    @SubscribeEvent
+    public static void blockBlockBreakEvent(BlockEvent.BreakEvent event){
+        WuGangCutGuiEvent.handleBlockBreakEvent(event);
+        YugongMovesMountainsEvent.handleBlockBreakEvent(event);
+    }
+    @SubscribeEvent
+    public static void onInteract(PlayerInteractEvent event) {
+        WuGangCutGuiEvent.onInteract(event);
+    }
+
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
         if (!player.level().isClientSide){
             //踏雪无痕
-             player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
+             player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
                  if (treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent() > 0) {
                      treadTheSnowWithoutTrace.setTreadTheSnowWithoutTraceUseCooldownPercent();
                      ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTracePacket(treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
@@ -720,6 +748,14 @@ public class CSJEvent {
 //            }
     }
 
+    //生物受伤事件
+    @SubscribeEvent
+    public static void onEntityHurt(LivingDamageEvent event){
+        TreadTheSnowWithoutTraceEvent.onEntityHurt(event);
+        WuGangCutGuiEvent.onEntityHurt(event);
+        YugongMovesMountainsEvent.onEntityHurt(event);
+    }
+
     //玩家克隆事件,用于玩家死亡重生时或者从末地回到主世界时克隆旧玩家的属性到新玩家
     @SubscribeEvent
     public static void onPlayerCloned(PlayerEvent.Clone event){
@@ -741,8 +777,14 @@ public class CSJEvent {
         oldPlayer.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(newStore-> newStore.copyShaolinStickMethod(oldStore)));
         //踏雪无痕
-        oldPlayer.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(TreadTheSnowWithoutTraceCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY_CAPABILITY).ifPresent(newStore-> newStore.copyTreadTheSnowWithoutTrace(oldStore)));
+        oldPlayer.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(newStore-> newStore.copyTreadTheSnowWithoutTrace(oldStore)));
+        //吴刚伐桂
+        oldPlayer.getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(newStore-> newStore.copyWuGangCutGui(oldStore)));
+        //愚公移山
+        oldPlayer.getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).ifPresent(newStore-> newStore.copyYugongMovesMountains(oldStore)));
         event.getOriginal().invalidateCaps();
     }
 
@@ -755,6 +797,8 @@ public class CSJEvent {
         event.register(GaoMarksmanshipCapability.class);
         event.register(ShaolinStickMethodCapability.class);
         event.register(TreadTheSnowWithoutTraceCapability.class);
+        event.register(WuGangCutGuiCapability.class);
+        event.register(YugongMovesMountainsCapability.class);
     }
 
     @SubscribeEvent
@@ -777,7 +821,7 @@ public class CSJEvent {
                 player.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(shaolinStickMethod -> {
                     ChangShengJueMessages.sendToPlayer(new ShaolinStickMethodPacket(shaolinStickMethod.getShaolinStickMethodLevel(),shaolinStickMethod.isShaolinStickMethodComprehend()), player);
                 });
-                player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
+                player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
                     ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTracePacket(
                             treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
                             treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend(),
