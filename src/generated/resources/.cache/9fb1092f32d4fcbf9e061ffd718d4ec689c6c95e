@@ -1,4 +1,4 @@
-// 1.20.1	2024-11-25T17:46:29.4345495	Recipes
+// 1.20.1	2024-12-03T12:16:57.3874163	Recipes
 9f867c66f96f683772541b6c8fee692df7865812 data/chang_sheng_jue/advancements/recipes/building_blocks/bai_hua_fu_ti_block.json
 77749bba0b3430c89f95d350d3f3e15abe9bb5b0 data/chang_sheng_jue/advancements/recipes/building_blocks/black_stone_bricks_slab.json
 b7de7b82f7882aa54b3a203549dee3ada44a2ce9 data/chang_sheng_jue/advancements/recipes/building_blocks/black_stone_bricks_stairs.json
@@ -72,6 +72,7 @@ e9fe817e5c34779ae91e1e446a0c82196ed9ffd3 data/chang_sheng_jue/advancements/recip
 3f3d439b000c693b407f612677da3eddf1c8e940 data/chang_sheng_jue/advancements/recipes/combat/red_dress_leggings.json
 fce825ec0ec1278c7468b6fece8f982b2ee66d7e data/chang_sheng_jue/advancements/recipes/combat/red_tasselled_spear.json
 9225ed597ec93e81e24b53f5259f27435730d487 data/chang_sheng_jue/advancements/recipes/combat/soft_sword.json
+e8d0d7e0d1078d8b89205a13926b0fb2fcc721bd data/chang_sheng_jue/advancements/recipes/decorations/stakes.json
 cf683f29fc1f19127234fd4ccd9cf8cc65c8f48a data/chang_sheng_jue/advancements/recipes/food/baked_corn.json
 4484f51c184e24f3652bc603422a2eac1a06bdd9 data/chang_sheng_jue/advancements/recipes/food/baked_corn_from_campfire_cooking.json
 8fd29df0c79bdd5efe52fdd0de86443ee7c6c345 data/chang_sheng_jue/advancements/recipes/food/baked_corn_from_smoking.json
@@ -182,6 +183,7 @@ cf5b8b6a0660e7c5f988abd5ecbcf75b67269ba6 data/chang_sheng_jue/recipes/red_dress_
 0e66137ff912f44f7e6f706d6005af2eeeb9a0c4 data/chang_sheng_jue/recipes/red_tasselled_spear.json
 25f134cc95a775cbd2cd7d5d7effba1437dca0ab data/chang_sheng_jue/recipes/soft_sword.json
 1713443aa0204d54789d1146011ef82f127f2429 data/chang_sheng_jue/recipes/sorghum_cake.json
+52e3b119bf9235d13ee3155f046eea03249f1c07 data/chang_sheng_jue/recipes/stakes.json
 9774f98d7fec81e9057a4434dacb4d0abd6b3ea8 data/chang_sheng_jue/recipes/stinky_tofu.json
 ecbefa28e77d03b6e7bf58c2679e7fc81dbac1c2 data/chang_sheng_jue/recipes/stone_lamps_base_block.json
 1549536afef7576e19239b38e88b15a1851d0f79 data/chang_sheng_jue/recipes/stone_lamps_block.json

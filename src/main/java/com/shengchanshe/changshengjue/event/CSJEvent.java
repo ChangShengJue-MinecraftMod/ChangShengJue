@@ -10,14 +10,20 @@ import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapability;
+import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceClientData;
+import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -25,13 +31,16 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.AirItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
@@ -663,13 +672,26 @@ public class CSJEvent {
             if (!event.getObject().getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).isPresent()){
                 event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"shaolin_stick_method_properties"),new ShaolinStickMethodCapabilityProvider());
             }
+            //踏雪无痕
+            if (!event.getObject().getCapability(TreadTheSnowWithoutTraceCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"shaolin_stick_method_capability_properties"),new TreadTheSnowWithoutTraceCapabilityProvider());
+            }
         }
     }
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-//        Player player = event.player;
-//        if (player.level().isClientSide){
-////            // 我们把玩家脚下的location作为是原点O
+        Player player = event.player;
+        if (!player.level().isClientSide){
+            //踏雪无痕
+             player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
+                 if (treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent() > 0) {
+                     treadTheSnowWithoutTrace.setTreadTheSnowWithoutTraceUseCooldownPercent();
+                     ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTracePacket(treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
+                             treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend(), treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent()), (ServerPlayer) player);
+                 }
+             });
+        }
+//            // 我们把玩家脚下的location作为是原点O
 //            for (double i = 0; i < 180; i += 180 / 6) {
 //                // 依然要做角度与弧度的转换
 //                double radians = Math.toRadians(i);
@@ -696,7 +718,6 @@ public class CSJEvent {
 //                double d5 = player.level().random.nextFloat() * (float)k;
 //                player.level().addParticle(ChangShengJueParticles.COMPREHEND_PARTICLE.get(), d0, d1, d2, d3, d4, d5);
 //            }
-//        }
     }
 
     //玩家克隆事件,用于玩家死亡重生时或者从末地回到主世界时克隆旧玩家的属性到新玩家
@@ -719,6 +740,9 @@ public class CSJEvent {
         //少林棍法
         oldPlayer.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(newStore-> newStore.copyShaolinStickMethod(oldStore)));
+        //踏雪无痕
+        oldPlayer.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(TreadTheSnowWithoutTraceCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY_CAPABILITY).ifPresent(newStore-> newStore.copyTreadTheSnowWithoutTrace(oldStore)));
         event.getOriginal().invalidateCaps();
     }
 
@@ -730,6 +754,7 @@ public class CSJEvent {
         event.register(XuannuSwordsmanshipCapability.class);
         event.register(GaoMarksmanshipCapability.class);
         event.register(ShaolinStickMethodCapability.class);
+        event.register(TreadTheSnowWithoutTraceCapability.class);
     }
 
     @SubscribeEvent
@@ -751,6 +776,12 @@ public class CSJEvent {
                 });
                 player.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(shaolinStickMethod -> {
                     ChangShengJueMessages.sendToPlayer(new ShaolinStickMethodPacket(shaolinStickMethod.getShaolinStickMethodLevel(),shaolinStickMethod.isShaolinStickMethodComprehend()), player);
+                });
+                player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
+                    ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTracePacket(
+                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
+                            treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend(),
+                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent()), player);
                 });
             }
         }

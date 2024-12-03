@@ -110,6 +110,8 @@
   "item.chang_sheng_jue.tu_long_dao": "屠龙刀",
   "item.chang_sheng_jue.ba_wang_qiang": "霸王枪",
 
+  "item.chang_sheng_jue.stakes": "练功木桩",
+
   "item.chang_sheng_jue.blue_cotton_armor_helmet": "蓝边棉甲头盔",
   "item.chang_sheng_jue.blue_cotton_armor_chestplate": "蓝边棉甲胸甲",
   "item.chang_sheng_jue.blue_cotton_armor_leggings": "蓝边棉甲护腿",
@@ -153,6 +155,7 @@
   "item.chang_sheng_jue.shaolin_stick_method": "少林棍法",
   "tooltip.chang_sheng_jue.shaolin_stick_method.tooltip": "天下武功出少林，一棍定乾坤。",
   "item.chang_sheng_jue.tread_the_snow_without_trace": "踏雪无痕",
+  "tooltip.chang_sheng_jue.tread_the_snow_without_trace.tooltip": "来去无影无踪，逍遥自在。",
   "item.chang_sheng_jue.relentless_throwing_knives": "无情飞刀",
   "item.chang_sheng_jue.wu_gang_cut_gui": "吴刚伐桂",
   "item.chang_sheng_jue.xuannu_swordsmanship": "玄女剑法",

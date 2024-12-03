@@ -525,6 +525,15 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("# #")
                 .pattern("X X")
                 .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
+        //练功木桩
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ChangShengJueItems.STAKES.get(),1)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(ItemTags.PLANKS))
+                .define('$', Ingredient.of(Tags.Items.COBBLESTONE))
+                .pattern("#")
+                .pattern("X")
+                .pattern("$")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
 
         //烧炼配方
         //矿石

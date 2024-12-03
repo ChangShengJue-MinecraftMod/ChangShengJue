@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.util;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.client.render.*;
+import com.shengchanshe.changshengjue.entity.client.render.combat.stakes.StakesRender;
 import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntityRender;
 import com.shengchanshe.changshengjue.entity.client.render.combat.FeiDaoEntityRender;
 import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntityRender;
@@ -166,5 +167,6 @@ public class ClientSetup {
 
         EntityRenderers.register(ChangShengJueEntity.DUGU_NINE_SOWRDS_ENTITY.get(), DuguNineSwordsEntityRender::new);
         EntityRenderers.register(ChangShengJueEntity.GOLDEN_BLACK_KNIFE_METHOD_ENTITY.get(), GoldenBlackKnifeMethodEntityRender::new);
+        EntityRenderers.register(ChangShengJueEntity.STAKES.get(), StakesRender::new);
     }
 }

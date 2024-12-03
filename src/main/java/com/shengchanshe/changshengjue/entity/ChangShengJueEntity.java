@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.entity;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntity;
 import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntity;
+import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.entity.custom.*;
 import com.shengchanshe.changshengjue.entity.custom.deer.HindEntity;
 import com.shengchanshe.changshengjue.entity.custom.deer.StagEntity;
@@ -108,6 +109,13 @@ public class ChangShengJueEntity {
                             .sized(5f, 1f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"golden_black_knife_method_entity").toString()));
 
+    //练功木桩
+    public static final RegistryObject<EntityType<StakesEntity>> STAKES =
+            ENTITY_TYPES.register("stakes",
+                    () -> EntityType.Builder.of(StakesEntity::new, MobCategory.MISC)
+                            .sized(0.6F, 1.95F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"stakes").toString()));
+
     public static final RegistryObject<EntityType<PeacockEgg>> PEACOCK_EGG = ENTITY_TYPES.register("peacock_egg",
             () -> EntityType.Builder.<PeacockEgg>of(PeacockEgg::new, MobCategory.MISC).sized(0.25F, 0.25F)
                     .setTrackingRange(4).updateInterval(10).build("peacock_egg"));
@@ -115,6 +123,8 @@ public class ChangShengJueEntity {
     public static final RegistryObject<EntityType<FeiDaoEntity>> FEI_DAO_ENTITY = ENTITY_TYPES.register("fei_dao_entity",
             () -> EntityType.Builder.<FeiDaoEntity>of(FeiDaoEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
                     .setTrackingRange(4).updateInterval(10).build("fei_dao_entity"));
+
+
 
     public static void register(IEventBus eventBus){
         ENTITY_TYPES.register(eventBus);

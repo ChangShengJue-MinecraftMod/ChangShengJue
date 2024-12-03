@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.event;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
+import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.entity.custom.*;
 import com.shengchanshe.changshengjue.entity.custom.deer.AbstractDeer;
 import com.shengchanshe.changshengjue.entity.custom.peacock.AbstractPeacockEntity;
@@ -26,6 +27,8 @@ public class CSJEventBusEvents {
         event.put(ChangShengJueEntity.TIGER_ENTITY.get(), TigerEntity.setAttributes());
         event.put(ChangShengJueEntity.CROC_ENTITY.get(), CrocEntity.setAttributes());
         event.put(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER.get(), ChangShengJueVillagerEntity.setAttributes());
+
+        event.put(ChangShengJueEntity.STAKES.get(), StakesEntity.setAttributes());
     }
 
 }

@@ -1,4 +1,4 @@
-package com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method;
+package com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -11,23 +11,23 @@ import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ShaolinStickMethodCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-    public static Capability<ShaolinStickMethodCapability> SHAOLIN_STICK_METHOD_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
+public class TreadTheSnowWithoutTraceCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
+    public static Capability<TreadTheSnowWithoutTraceCapability> SHAOLIN_STICK_METHOD_CAPABILITY_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
 
-    private ShaolinStickMethodCapability shaolinStickMethodCapability = null;
+    private TreadTheSnowWithoutTraceCapability treadTheSnowWithoutTraceCapability = null;
 
-    private final LazyOptional<ShaolinStickMethodCapability> optional = LazyOptional.of(this::createMartialArtsCapability);
+    private final LazyOptional<TreadTheSnowWithoutTraceCapability> optional = LazyOptional.of(this::createMartialArtsCapability);
 
-    private ShaolinStickMethodCapability createMartialArtsCapability() {
-        if (this.shaolinStickMethodCapability == null){
-            this.shaolinStickMethodCapability = new ShaolinStickMethodCapability();
+    private TreadTheSnowWithoutTraceCapability createMartialArtsCapability() {
+        if (this.treadTheSnowWithoutTraceCapability == null){
+            this.treadTheSnowWithoutTraceCapability = new TreadTheSnowWithoutTraceCapability();
         }
-        return this.shaolinStickMethodCapability;
+        return this.treadTheSnowWithoutTraceCapability;
     }
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == SHAOLIN_STICK_METHOD_CAPABILITY){
+        if (cap == SHAOLIN_STICK_METHOD_CAPABILITY_CAPABILITY){
             return optional.cast();
         }
         return LazyOptional.empty();

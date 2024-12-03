@@ -35,11 +35,10 @@ public class PanHuaGun extends Clubbed implements GeoItem {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (!pLevel.isClientSide) {
             ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
-            if (itemstack.getItem() instanceof Lance) {
+            if (itemstack.getItem() == this) {
                 if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
                     pPlayer.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(shaolinStickMethod -> {
-                        if (shaolinStickMethod.getShaolinStickMethodComprehend()) {
-                            pPlayer.startUsingItem(pUsedHand);
+                        if (shaolinStickMethod.getShaolinStickMethodLevel() >= 1) {
                             triggerAnim(pPlayer, GeoItem.getOrAssignId(pPlayer.getItemInHand(pUsedHand), (ServerLevel) pLevel), "Attack", "attack");
                         }
                     });

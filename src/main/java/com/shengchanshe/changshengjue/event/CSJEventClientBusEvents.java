@@ -7,11 +7,13 @@ import com.shengchanshe.changshengjue.cilent.hud.martial_arts.dugu_nine_swords.D
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.gao_marksmanship.GaoMarksmanshipHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.shaolin_stick_method.ShaolinStickMethodHudOverlay;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipHudOverlay;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
+import com.shengchanshe.changshengjue.entity.client.model.combat.FeiDaoModel;
+import com.shengchanshe.changshengjue.entity.client.model.combat.stakes.StakesModel;
 import com.shengchanshe.changshengjue.entity.client.render.PeacockEggRender;
 import com.shengchanshe.changshengjue.entity.client.render.combat.FeiDaoEntityRender;
-import com.shengchanshe.changshengjue.entity.client.model.combat.FeiDaoModel;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import com.shengchanshe.changshengjue.particle.custom.PoplarDefoliationParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendParticle;
@@ -55,6 +57,7 @@ public class CSJEventClientBusEvents {
         event.registerAboveAll("xuannu_swordsmanship_hud", XuannuSwordsmanshipHudOverlay.HUD_XUANNU_SWORDSMANSHIP);
         event.registerAboveAll("gao_marksmanship_hud", GaoMarksmanshipHudOverlay.HUD_GAO_MARKSMANSHIP);
         event.registerAboveAll("shaolin_stick_method_hud", ShaolinStickMethodHudOverlay.HUD_SHAOLIN_STICK_METHOD);
+        event.registerAboveAll("tread_the_snow_without_trace_hud", TreadTheSnowWithoutTraceHudOverlay.HUD_TREAD_THE_SNOW_WITHOUT_TRACE);
     }
 
     @SubscribeEvent
@@ -68,4 +71,10 @@ public class CSJEventClientBusEvents {
 
 //        event.registerSpriteSet(ChangShengJueParticles.COMPREHEND_PARTICLE.get(), ComprehendParticle.Provider::new);
     }
+
+    @SubscribeEvent
+    public static void registerEntityLayers(EntityRenderersEvent.RegisterLayerDefinitions evt) {
+        evt.registerLayerDefinition(StakesModel.LAYER_LOCATION, StakesModel::createBodyLayer);
+    }
+
 }

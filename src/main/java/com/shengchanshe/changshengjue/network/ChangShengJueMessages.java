@@ -2,6 +2,8 @@ package com.shengchanshe.changshengjue.network;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket2;
 import com.shengchanshe.changshengjue.screen.plaque.UpdatePlaqueTextPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -61,6 +63,17 @@ public class ChangShengJueMessages {
                 .decoder(ShaolinStickMethodPacket::new)
                 .encoder(ShaolinStickMethodPacket::toBytes)
                 .consumerMainThread(ShaolinStickMethodPacket::handle)
+                .add();
+        //踏雪无痕
+        net.messageBuilder(TreadTheSnowWithoutTracePacket.class, id())
+                .decoder(TreadTheSnowWithoutTracePacket::new)
+                .encoder(TreadTheSnowWithoutTracePacket::toBytes)
+                .consumerMainThread(TreadTheSnowWithoutTracePacket::handle)
+                .add();
+        net.messageBuilder(TreadTheSnowWithoutTracePacket2.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(TreadTheSnowWithoutTracePacket2::new)
+                .encoder(TreadTheSnowWithoutTracePacket2::toBytes)
+                .consumerMainThread(TreadTheSnowWithoutTracePacket2::handle)
                 .add();
     }
 

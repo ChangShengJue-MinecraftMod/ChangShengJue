@@ -19,6 +19,7 @@ import com.shengchanshe.changshengjue.item.combat.knife.LargeKnife;
 import com.shengchanshe.changshengjue.item.combat.knife.TuLongDao;
 import com.shengchanshe.changshengjue.item.combat.lance.BaWangQiang;
 import com.shengchanshe.changshengjue.item.combat.lance.RedTasselledSpear;
+import com.shengchanshe.changshengjue.item.combat.stakes.Stakes;
 import com.shengchanshe.changshengjue.item.combat.sword.BronzeSword;
 import com.shengchanshe.changshengjue.item.combat.sword.HanJian;
 import com.shengchanshe.changshengjue.item.combat.sword.SoftSword;
@@ -446,6 +447,8 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> ZHANG_MEN_XIN_XUE = ITEMS.register("zhang_men_xin_xue",
             ()-> new ZhangMenXinxue());
 
+    //练功木桩
+    public static final RegistryObject<Item> STAKES = ITEMS.register("stakes", ()-> new Stakes());
 
     //浇铸
     public static final RegistryObject<Item> CRUCIBLE = ITEMS.register("crucible", ()-> new Crucible());
