@@ -12,6 +12,8 @@ import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCap
 import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapability;
+import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapability;
@@ -20,26 +22,18 @@ import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmansh
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
-import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
-import com.shengchanshe.changshengjue.event.martial_arts.PaodingEvent;
-import com.shengchanshe.changshengjue.event.martial_arts.TreadTheSnowWithoutTraceEvent;
-import com.shengchanshe.changshengjue.event.martial_arts.WuGangCutGuiEvent;
-import com.shengchanshe.changshengjue.event.martial_arts.YugongMovesMountainsEvent;
+import com.shengchanshe.changshengjue.event.martial_arts.*;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -47,8 +41,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
@@ -676,17 +668,10 @@ public class CSJEvent {
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        Player player = event.player;
-        if (!player.level().isClientSide){
-            //踏雪无痕
-            player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
-                if (treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent() > 0) {
-                    treadTheSnowWithoutTrace.setTreadTheSnowWithoutTraceUseCooldownPercent();
-                    ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTracePacket(treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
-                            treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend(), treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent()), (ServerPlayer) player);
-                }
-            });
-        }
+        //踏雪无痕
+        TreadTheSnowWithoutTraceEvent.onPlayerTick(event);
+        //葵花点穴手
+        SunflowerPointCavemanEvent.onPlayerTick(event);
 //            // 我们把玩家脚下的location作为是原点O
 //            for (double i = 0; i < 180; i += 180 / 6) {
 //                // 依然要做角度与弧度的转换
@@ -723,11 +708,18 @@ public class CSJEvent {
         WuGangCutGuiEvent.onEntityHurt(event);
         YugongMovesMountainsEvent.onEntityHurt(event);
         PaodingEvent.onEntityHurt(event);
+        SunflowerPointCavemanEvent.onEntityHurt(event);
     }
-
+    //生物死亡事件
     @SubscribeEvent
     public static void onEntityDeath(LivingDeathEvent event){
         PaodingEvent.onEntityDeath(event);
+    }
+
+    //生物交互事件
+    @SubscribeEvent
+    public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){
+        SunflowerPointCavemanEvent.onPlayerEntityInteract(event);
     }
 
     //能力给予事件,给生物添加能力
@@ -768,7 +760,11 @@ public class CSJEvent {
             }
             //庖丁解牛
             if (!event.getObject().getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"paoding__properties"),new PaodingCapabilityProvider());
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"paoding_properties"),new PaodingCapabilityProvider());
+            }
+            //葵花点穴手
+            if (!event.getObject().getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"sunflower_point_caveman_properties"),new SunflowerPointCavemanCapabilityProvider());
             }
         }
     }
@@ -805,6 +801,9 @@ public class CSJEvent {
         //庖丁解牛
         oldPlayer.getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).ifPresent(newStore-> newStore.copyPaoding(oldStore)));
+        //葵花点穴手
+        oldPlayer.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(newStore-> newStore.copySunflowerPointCaveman(oldStore)));
         event.getOriginal().invalidateCaps();
     }
 
@@ -820,6 +819,7 @@ public class CSJEvent {
         event.register(WuGangCutGuiCapability.class);
         event.register(YugongMovesMountainsCapability.class);
         event.register(PaodingCapability.class);
+        event.register(SunflowerPointCavemanCapability.class);
     }
 
     @SubscribeEvent
@@ -847,6 +847,13 @@ public class CSJEvent {
                             treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
                             treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend(),
                             treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent()), player);
+                });
+                player.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
+                    ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
+                            sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
+                            sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
+                            sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
+                            sunflowerPointCaveman.isSunflowerPointCavemanOff()), player);
                 });
             }
         }

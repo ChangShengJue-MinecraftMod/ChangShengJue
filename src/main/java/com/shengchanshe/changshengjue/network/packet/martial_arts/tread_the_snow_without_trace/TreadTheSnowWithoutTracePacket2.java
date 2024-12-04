@@ -26,8 +26,10 @@ public class TreadTheSnowWithoutTracePacket2 {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
             player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(treadTheSnowWithoutTrace->{
-                treadTheSnowWithoutTrace.setTreadTheSnowWithoutTraceUseCooldownPercent(200);
-                treadTheSnowWithoutTrace.addTreadTheSnowWithoutTraceUseCount();
+                treadTheSnowWithoutTrace.setTreadTheSnowWithoutTraceUseCooldownPercent(100);
+                if (treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCount() <= 100){
+                    treadTheSnowWithoutTrace.addTreadTheSnowWithoutTraceUseCount();
+                }
                 ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTracePacket(treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
                         treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend(),
                         treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent()),player);

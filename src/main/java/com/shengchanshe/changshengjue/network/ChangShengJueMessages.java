@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.network;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket2;
 import com.shengchanshe.changshengjue.screen.plaque.UpdatePlaqueTextPacket;
@@ -74,6 +75,12 @@ public class ChangShengJueMessages {
                 .decoder(TreadTheSnowWithoutTracePacket2::new)
                 .encoder(TreadTheSnowWithoutTracePacket2::toBytes)
                 .consumerMainThread(TreadTheSnowWithoutTracePacket2::handle)
+                .add();
+        //葵花点穴手
+        net.messageBuilder(SunflowerPointCavemanPacket.class, id())
+                .decoder(SunflowerPointCavemanPacket::new)
+                .encoder(SunflowerPointCavemanPacket::toBytes)
+                .consumerMainThread(SunflowerPointCavemanPacket::handle)
                 .add();
     }
 

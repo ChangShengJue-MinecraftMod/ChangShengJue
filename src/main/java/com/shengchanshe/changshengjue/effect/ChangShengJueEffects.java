@@ -12,11 +12,13 @@ import java.util.function.Supplier;
 public class ChangShengJueEffects {
     public static final DeferredRegister<MobEffect> MOD_EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT, ChangShengJue.MOD_ID);
 
-    public static final Supplier<MobEffect> BLEED_EFFECT = register("bleed_effect", ()->new BleedEffect());
+    public static final Supplier<MobEffect> BLEED_EFFECT = register("bleed_effect", BleedEffect::new);
 
-    public static final Supplier<MobEffect> DIZZY_EFFECT = register("dizzy_effect", ()->new DizzyEffect());
+    public static final Supplier<MobEffect> DIZZY_EFFECT = register("dizzy_effect", DizzyEffect::new);
 
-    public static final Supplier<MobEffect> AIRBORNE_EFFECT = register("airborne_effect", ()->new AirBorneEffect());
+    public static final Supplier<MobEffect> AIRBORNE_EFFECT = register("airborne_effect", AirBorneEffect::new);
+
+    public static final Supplier<MobEffect> FIXATION_EFFECT = register("fixation_effect", DizzyEffect::new);
 
     public static RegistryObject<MobEffect> register(String name, Supplier<MobEffect> effect){
         return MOD_EFFECTS.register(name, effect);
