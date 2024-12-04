@@ -1,4 +1,4 @@
-package com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman;
+package com.shengchanshe.changshengjue.network.packet.martial_arts;
 
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_caveman.SunflowerPointCavemanClientData;
 import net.minecraft.network.FriendlyByteBuf;

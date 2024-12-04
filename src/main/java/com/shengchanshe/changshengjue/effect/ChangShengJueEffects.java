@@ -20,6 +20,8 @@ public class ChangShengJueEffects {
 
     public static final Supplier<MobEffect> FIXATION_EFFECT = register("fixation_effect", DizzyEffect::new);
 
+    public static final Supplier<MobEffect> GOLDEN_BELL_JAR_EFFECT = register("golden_bell_jar_effect", GoldenBellJarEffect::new);
+
     public static RegistryObject<MobEffect> register(String name, Supplier<MobEffect> effect){
         return MOD_EFFECTS.register(name, effect);
     }

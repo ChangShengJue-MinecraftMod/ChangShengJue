@@ -149,6 +149,7 @@
   "item.chang_sheng_jue.golden_black_knife_method": "金乌刀法",
   "tooltip.chang_sheng_jue.golden_black_knife_method.tooltip" : "任你千变万化，我只一刀破去!",
   "item.chang_sheng_jue.golden_bell_jar": "金钟罩",
+  "tooltip.chang_sheng_jue.golden_bell_jar.tooltip":"刀枪不入，浑然一金钟。",
   "item.chang_sheng_jue.sunflower_point_caveman": "葵花点穴手",
   "tooltip.chang_sheng_jue.sunflower_point_caveman.tooltip": "指如疾风，势如闪电。",
   "item.chang_sheng_jue.wheat_nugget_encyclopedia": "麦块百科",
@@ -543,6 +544,7 @@
   "effect.chang_sheng_jue.dizzy_effect": "眩晕",
   "effect.chang_sheng_jue.airborne_effect": "挑飞",
   "effect.chang_sheng_jue.fixation_effect": "定身",
+  "effect.chang_sheng_jue.golden_bell_jar_effect": "金钟罩",
 
   "biome.chang_sheng_jue.chang_shen_jue_prairie": "慕然草原"
 }

@@ -1,10 +1,11 @@
 package com.shengchanshe.changshengjue.event.martial_arts;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_caveman.SunflowerPointCavemanClientData;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.SunflowerPointCavemanPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -22,7 +23,7 @@ public class SunflowerPointCavemanEvent {
             Player player = event.player;
             if (!player.level().isClientSide) {
                 player.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
-                    if (sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent() > 0) {
+                    if (sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent() > 0 && sunflowerPointCaveman.isSunflowerPointCavemanOff()) {
                         sunflowerPointCaveman.setSunflowerPointCavemanUseCooldownPercent();
                         ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
                                 sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
@@ -51,6 +52,11 @@ public class SunflowerPointCavemanEvent {
                             if (probability < defaultProbability) {
                                 sunflowerPointCaveman.addSunflowerPointCavemanLevel();
                             }
+                            ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
+                                    sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
+                                    sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
+                                    sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
+                                    sunflowerPointCaveman.isSunflowerPointCavemanOff()), (ServerPlayer) directEntity);
                         }
                     });
                 }
@@ -59,44 +65,58 @@ public class SunflowerPointCavemanEvent {
     }
 
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){
+        Player player = event.getEntity();
         if (!event.getLevel().isClientSide){
-            Player player = event.getEntity();
             player.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
                 if (sunflowerPointCaveman.isSunflowerPointCavemanComprehend() && sunflowerPointCaveman.isSunflowerPointCavemanOff() && sunflowerPointCaveman.getSunflowerPointCavemanLevel() > 0){
-                    if (player.getMainHandItem().isEmpty()){
-                        if (player.getFoodData().getFoodLevel() > 8){
-                            float health;
-                            Entity entity = event.getTarget();
-                            if (sunflowerPointCaveman.getSunflowerPointCavemanLevel() < 2){
-                                health = 25;
-                                if (entity instanceof LivingEntity livingEntity){
-                                    if (livingEntity.getHealth() < health){
-                                        livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 25, 1, false, false), player);
-                                        sunflowerPointCaveman.addSunflowerPointCavemanUseCount();
+                    if (sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent()<=0){
+                        if (player.getMainHandItem().isEmpty()){
+                            if (player.getFoodData().getFoodLevel() > 8){
+                                float health;
+                                Entity entity = event.getTarget();
+                                if (sunflowerPointCaveman.getSunflowerPointCavemanLevel() < 2){
+                                    health = 25;
+                                    if (entity instanceof LivingEntity livingEntity){
+                                        if (livingEntity.getHealth() < health){
+                                            livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 25, 1, false, false), player);
+                                            sunflowerPointCaveman.addSunflowerPointCavemanUseCount();
+                                        }
+                                    }
+                                }else {
+                                    health = 200;
+                                    if (entity instanceof LivingEntity livingEntity){
+                                        if (livingEntity.getHealth() < health){
+                                            livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 30, 1, false, false), player);
+                                            sunflowerPointCaveman.addSunflowerPointCavemanUseCount();
+                                        }
                                     }
                                 }
-                            }else {
-                                health = 200;
-                                if (entity instanceof LivingEntity livingEntity){
-                                    if (livingEntity.getHealth() < health){
-                                        livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 30, 1, false, false), player);
-                                        sunflowerPointCaveman.addSunflowerPointCavemanUseCount();
-                                    }
+                                sunflowerPointCaveman.setSunflowerPointCavemanUseCooldownPercent(!player.getAbilities().instabuild ? 180 : 0);
+                                ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
+                                        sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
+                                        sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
+                                        sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
+                                        sunflowerPointCaveman.isSunflowerPointCavemanOff()), (ServerPlayer) player);
+                                if (!player.getAbilities().instabuild){
+                                    player.getFoodData().eat(-3, -2);//消耗饱食度
                                 }
-                            }
-                            sunflowerPointCaveman.setSunflowerPointCavemanUseCooldownPercent(180);
-                            ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
-                                    sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
-                                    sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
-                                    sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
-                                    sunflowerPointCaveman.isSunflowerPointCavemanOff()), (ServerPlayer) player);
-                            if (!player.getAbilities().instabuild){
-                                player.getFoodData().eat(-3, -2);//消耗饱食度
                             }
                         }
                     }
                 }
             });
+        }else{
+            boolean sunflowerPointCavemanComprehend = SunflowerPointCavemanClientData.isSunflowerPointCavemanComprehend();
+            boolean sunflowerPointCavemanOff = SunflowerPointCavemanClientData.isSunflowerPointCavemanOff();
+            if (sunflowerPointCavemanComprehend && sunflowerPointCavemanOff){
+                if (SunflowerPointCavemanClientData.getSunflowerPointCavemanLevel() >= 1){
+                    if (SunflowerPointCavemanClientData.getSunflowerPointCavemanUseCooldownPercent()<=0) {
+                        if (player.getFoodData().getFoodLevel() > 8){
+                            player.swing(player.getUsedItemHand());
+                        }
+                    }
+                }
+            }
         }
     }
 

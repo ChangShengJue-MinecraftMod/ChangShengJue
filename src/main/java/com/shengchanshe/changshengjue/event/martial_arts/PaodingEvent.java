@@ -26,7 +26,7 @@ public class PaodingEvent {
         Level level = event.getEntity().level();
         if (!level.isClientSide){
             if (event.getSource().getDirectEntity() instanceof Player directEntity){
-                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().getItem() instanceof AirItem){
+                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
                     if (!directEntity.isShiftKeyDown()){
                         event.setAmount(0);
                     }

@@ -1,8 +1,10 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
+import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.SunflowerPointCavemanPacket;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,10 +27,19 @@ public class SunflowerPointCaveman extends Item {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (!pLevel.isClientSide){
             pPlayer.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
+                pPlayer.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
+                    if (goldenBellJar.isGoldenBellJarOff() && !sunflowerPointCaveman.isSunflowerPointCavemanOff()){
+                        goldenBellJar.setGoldenBellJarOff(false);
+                        sunflowerPointCaveman.setSunflowerPointCavemanOff(true);
+                        ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
+                                goldenBellJar.getGoldenBellJarLevel(),
+                                goldenBellJar.isGoldenBellJarComprehend(),
+                                goldenBellJar.getGoldenBellJarUseCooldownPercent(),
+                                goldenBellJar.isGoldenBellJarOff()), (ServerPlayer) pPlayer);
+                    }
+                });
                 if (!sunflowerPointCaveman.isSunflowerPointCavemanComprehend()){
                     sunflowerPointCaveman.setSunflowerPointCavemanComprehend(true);
-                    sunflowerPointCaveman.setSunflowerPointCavemanOff(true);
-                }else if (sunflowerPointCaveman.isSunflowerPointCavemanComprehend() && !sunflowerPointCaveman.isSunflowerPointCavemanOff()){
                     sunflowerPointCaveman.setSunflowerPointCavemanOff(true);
                 }
                 ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(

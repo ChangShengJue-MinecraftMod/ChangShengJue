@@ -5,6 +5,7 @@ import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.changshengjue.block.entity.render.*;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.dugu_nine_swords.DuguNineSwordsHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.gao_marksmanship.GaoMarksmanshipHudOverlay;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_bell_jar.GoldenBellJarHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.shaolin_stick_method.ShaolinStickMethodHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_caveman.SunflowerPointCavemanHudOverlay;
@@ -60,6 +61,7 @@ public class CSJEventClientBusEvents {
         event.registerAboveAll("shaolin_stick_method_hud", ShaolinStickMethodHudOverlay.HUD_SHAOLIN_STICK_METHOD);
         event.registerAboveAll("tread_the_snow_without_trace_hud", TreadTheSnowWithoutTraceHudOverlay.HUD_TREAD_THE_SNOW_WITHOUT_TRACE);
         event.registerAboveAll("sunflower_point_caveman_hud", SunflowerPointCavemanHudOverlay.HUD_SUNFLOWER_POINT_CAVEMAN);
+        event.registerAboveAll("golden_bell_jar_hud", GoldenBellJarHudOverlay.HUD_GOLDEN_BELL_JAR);
     }
 
     @SubscribeEvent

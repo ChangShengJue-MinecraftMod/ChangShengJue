@@ -45,7 +45,8 @@ public class SunflowerPointCavemanHudOverlay {
     // 通过lammbd表达式实现。
     public static final IGuiOverlay HUD_SUNFLOWER_POINT_CAVEMAN = (gui, guiGraphics, partialTick, screenWidth, screenHeight) -> {
         boolean sunflowerPointCavemanComprehend = SunflowerPointCavemanClientData.isSunflowerPointCavemanComprehend();
-        if (sunflowerPointCavemanComprehend){
+        boolean sunflowerPointCavemanOff = SunflowerPointCavemanClientData.isSunflowerPointCavemanOff();
+        if (sunflowerPointCavemanComprehend && sunflowerPointCavemanOff){
             int getSunflowerPointCavemanLevel = SunflowerPointCavemanClientData.getSunflowerPointCavemanLevel();
             // 通过宽高获得绘制的x，y
             int x = 5;
@@ -71,8 +72,8 @@ public class SunflowerPointCavemanHudOverlay {
                     }
                 }else{
                     float v = ((frameTime() / 20) / 9);
+                    int v1 = (int) (16 * v + 1);//计算技能剩余冷却时间
                     if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图并渲染技能剩余冷却时间
-                        int v1 = (int) (16 * v + 1);//计算技能剩余冷却时间
                         if (getSunflowerPointCavemanLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
                             CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN,x,y);
                             CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
@@ -85,6 +86,15 @@ public class SunflowerPointCavemanHudOverlay {
                         //以文字形式绘制剩余冷却时间
                         guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(v * 9)).toString(),x + 1, y + 25, ChatFormatting.AQUA.getColor());
                     }else {
+                        if (getSunflowerPointCavemanLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
+                            CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN,x,y);
+                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+                            guiGraphics.blit(SUNFLOWER_POINT_CAVEMAN, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
+                        } else {
+                            CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN_1,x,y);
+                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+                            guiGraphics.blit(SUNFLOWER_POINT_CAVEMAN_1, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
+                        }
                         CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
                         guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(v * 9)).toString(),x + 1,y + 25, ChatFormatting.AQUA.getColor());
                     }

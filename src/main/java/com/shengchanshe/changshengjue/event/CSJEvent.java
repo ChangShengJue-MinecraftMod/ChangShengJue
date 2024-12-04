@@ -6,6 +6,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.D
 import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCapability;
@@ -27,7 +28,8 @@ import com.shengchanshe.changshengjue.event.martial_arts.*;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.SunflowerPointCavemanPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.nbt.CompoundTag;
@@ -672,6 +674,8 @@ public class CSJEvent {
         TreadTheSnowWithoutTraceEvent.onPlayerTick(event);
         //葵花点穴手
         SunflowerPointCavemanEvent.onPlayerTick(event);
+        //金钟罩
+        GoldenBellJarEvent.onPlayerTick(event);
 //            // 我们把玩家脚下的location作为是原点O
 //            for (double i = 0; i < 180; i += 180 / 6) {
 //                // 依然要做角度与弧度的转换
@@ -709,17 +713,27 @@ public class CSJEvent {
         YugongMovesMountainsEvent.onEntityHurt(event);
         PaodingEvent.onEntityHurt(event);
         SunflowerPointCavemanEvent.onEntityHurt(event);
+        GoldenBellJarEvent.onEntityHurt(event);
     }
     //生物死亡事件
     @SubscribeEvent
     public static void onEntityDeath(LivingDeathEvent event){
         PaodingEvent.onEntityDeath(event);
     }
-
     //生物交互事件
     @SubscribeEvent
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){
         SunflowerPointCavemanEvent.onPlayerEntityInteract(event);
+        GoldenBellJarEvent.onPlayerEntityInteract(event);
+    }
+    //玩家右键空气事件
+    @SubscribeEvent
+    public static void onPlayerRightClick(PlayerInteractEvent.RightClickEmpty event){
+        GoldenBellJarEvent.onPlayerRightClick(event);
+    }
+    @SubscribeEvent
+    public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+        GoldenBellJarEvent.onPlayerRightClickBlock(event);
     }
 
     //能力给予事件,给生物添加能力
@@ -766,6 +780,10 @@ public class CSJEvent {
             if (!event.getObject().getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).isPresent()){
                 event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"sunflower_point_caveman_properties"),new SunflowerPointCavemanCapabilityProvider());
             }
+            //金钟罩
+            if (!event.getObject().getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"golden_bell_jar_properties"),new GoldenBellJarCapabilityProvider());
+            }
         }
     }
 
@@ -804,6 +822,9 @@ public class CSJEvent {
         //葵花点穴手
         oldPlayer.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(newStore-> newStore.copySunflowerPointCaveman(oldStore)));
+        //金钟罩
+        oldPlayer.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(newStore-> newStore.copyGoldenBellJar(oldStore)));
         event.getOriginal().invalidateCaps();
     }
 
@@ -820,6 +841,7 @@ public class CSJEvent {
         event.register(YugongMovesMountainsCapability.class);
         event.register(PaodingCapability.class);
         event.register(SunflowerPointCavemanCapability.class);
+        event.register(GoldenBellJarCapabilityProvider.class);
     }
 
     @SubscribeEvent
@@ -854,6 +876,13 @@ public class CSJEvent {
                             sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
                             sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
                             sunflowerPointCaveman.isSunflowerPointCavemanOff()), player);
+                });
+                player.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
+                    ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
+                            goldenBellJar.getGoldenBellJarLevel(),
+                            goldenBellJar.isGoldenBellJarComprehend(),
+                            goldenBellJar.getGoldenBellJarUseCooldownPercent(),
+                            goldenBellJar.isGoldenBellJarOff()), player);
                 });
             }
         }
