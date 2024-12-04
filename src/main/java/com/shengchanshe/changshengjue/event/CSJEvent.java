@@ -8,6 +8,8 @@ import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.G
 import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCapability;
+import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapability;
@@ -20,6 +22,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mount
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
+import com.shengchanshe.changshengjue.event.martial_arts.PaodingEvent;
 import com.shengchanshe.changshengjue.event.martial_arts.TreadTheSnowWithoutTraceEvent;
 import com.shengchanshe.changshengjue.event.martial_arts.WuGangCutGuiEvent;
 import com.shengchanshe.changshengjue.event.martial_arts.YugongMovesMountainsEvent;
@@ -35,6 +38,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -49,6 +54,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
@@ -657,44 +663,6 @@ public class CSJEvent {
         }
     }
 
-    //能力给予事件,给生物添加能力
-    @SubscribeEvent
-    public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event){
-        if (event.getObject() instanceof Player){//判断生物为玩家,只给玩家添加这些能力
-            //独孤九剑
-            if (!event.getObject().getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"dugu_nine_swords_properties"),new DuguNineSwordsCapabilityProvider());
-            }
-            //金乌刀法
-            if (!event.getObject().getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"golden_black_knife_method_properties"),new GoldenBlackKnifeMethodCapabilityProvider());
-            }
-            //玄女剑法
-            if (!event.getObject().getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"xuannu_swordsmanship_properties"),new XuannuSwordsmanshipCapabilityProvider());
-            }
-            //高家枪法
-            if (!event.getObject().getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"gao_marksmanship_properties"),new GaoMarksmanshipCapabilityProvider());
-            }
-            //少林棍法
-            if (!event.getObject().getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"shaolin_stick_method_properties"),new ShaolinStickMethodCapabilityProvider());
-            }
-            //踏雪无痕
-            if (!event.getObject().getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"tread_the_snow_without_trace_properties"),new TreadTheSnowWithoutTraceCapabilityProvider());
-            }
-            //吴刚伐桂
-            if (!event.getObject().getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"wu_gang_cut_gui_properties"),new WuGangCutGuiCapabilityProvider());
-            }
-            //吴刚伐桂
-            if (!event.getObject().getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"yugong_moves_mountains_properties"),new YugongMovesMountainsCapabilityProvider());
-            }
-        }
-    }
 
     @SubscribeEvent
     public static void blockBlockBreakEvent(BlockEvent.BreakEvent event){
@@ -711,13 +679,13 @@ public class CSJEvent {
         Player player = event.player;
         if (!player.level().isClientSide){
             //踏雪无痕
-             player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
-                 if (treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent() > 0) {
-                     treadTheSnowWithoutTrace.setTreadTheSnowWithoutTraceUseCooldownPercent();
-                     ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTracePacket(treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
-                             treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend(), treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent()), (ServerPlayer) player);
-                 }
-             });
+            player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
+                if (treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent() > 0) {
+                    treadTheSnowWithoutTrace.setTreadTheSnowWithoutTraceUseCooldownPercent();
+                    ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTracePacket(treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
+                            treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend(), treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent()), (ServerPlayer) player);
+                }
+            });
         }
 //            // 我们把玩家脚下的location作为是原点O
 //            for (double i = 0; i < 180; i += 180 / 6) {
@@ -754,6 +722,55 @@ public class CSJEvent {
         TreadTheSnowWithoutTraceEvent.onEntityHurt(event);
         WuGangCutGuiEvent.onEntityHurt(event);
         YugongMovesMountainsEvent.onEntityHurt(event);
+        PaodingEvent.onEntityHurt(event);
+    }
+
+    @SubscribeEvent
+    public static void onEntityDeath(LivingDeathEvent event){
+        PaodingEvent.onEntityDeath(event);
+    }
+
+    //能力给予事件,给生物添加能力
+    @SubscribeEvent
+    public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event){
+        if (event.getObject() instanceof Player){//判断生物为玩家,只给玩家添加这些能力
+            //独孤九剑
+            if (!event.getObject().getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"dugu_nine_swords_properties"),new DuguNineSwordsCapabilityProvider());
+            }
+            //金乌刀法
+            if (!event.getObject().getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"golden_black_knife_method_properties"),new GoldenBlackKnifeMethodCapabilityProvider());
+            }
+            //玄女剑法
+            if (!event.getObject().getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"xuannu_swordsmanship_properties"),new XuannuSwordsmanshipCapabilityProvider());
+            }
+            //高家枪法
+            if (!event.getObject().getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"gao_marksmanship_properties"),new GaoMarksmanshipCapabilityProvider());
+            }
+            //少林棍法
+            if (!event.getObject().getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"shaolin_stick_method_properties"),new ShaolinStickMethodCapabilityProvider());
+            }
+            //踏雪无痕
+            if (!event.getObject().getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"tread_the_snow_without_trace_properties"),new TreadTheSnowWithoutTraceCapabilityProvider());
+            }
+            //吴刚伐桂
+            if (!event.getObject().getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"wu_gang_cut_gui_properties"),new WuGangCutGuiCapabilityProvider());
+            }
+            //吴刚伐桂
+            if (!event.getObject().getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"yugong_moves_mountains_properties"),new YugongMovesMountainsCapabilityProvider());
+            }
+            //庖丁解牛
+            if (!event.getObject().getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"paoding__properties"),new PaodingCapabilityProvider());
+            }
+        }
     }
 
     //玩家克隆事件,用于玩家死亡重生时或者从末地回到主世界时克隆旧玩家的属性到新玩家
@@ -785,6 +802,9 @@ public class CSJEvent {
         //愚公移山
         oldPlayer.getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).ifPresent(newStore-> newStore.copyYugongMovesMountains(oldStore)));
+        //庖丁解牛
+        oldPlayer.getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).ifPresent(newStore-> newStore.copyPaoding(oldStore)));
         event.getOriginal().invalidateCaps();
     }
 
@@ -799,6 +819,7 @@ public class CSJEvent {
         event.register(TreadTheSnowWithoutTraceCapability.class);
         event.register(WuGangCutGuiCapability.class);
         event.register(YugongMovesMountainsCapability.class);
+        event.register(PaodingCapability.class);
     }
 
     @SubscribeEvent
