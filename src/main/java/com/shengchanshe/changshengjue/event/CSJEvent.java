@@ -23,6 +23,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmansh
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.event.martial_arts.*;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
@@ -37,6 +38,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.VillagerData;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
@@ -51,6 +53,7 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.entity.player.TradeWithVillagerEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -81,6 +84,8 @@ public class CSJEvent {
                 villagerData.putBoolean("HasCheckedProfessionChange", true);
             }
         }
+
+        ZhangMenXinxueEvent.onVillagerInteract(event);
     }
 
     @SubscribeEvent
@@ -657,6 +662,11 @@ public class CSJEvent {
         }
     }
 
+    //村民交易事件
+    @SubscribeEvent
+    public static void onTradeEvent(TradeWithVillagerEvent event) {
+        ZhangMenXinxueEvent.onTradeEvent(event);
+    }
 
     @SubscribeEvent
     public static void blockBlockBreakEvent(BlockEvent.BreakEvent event){
@@ -784,6 +794,10 @@ public class CSJEvent {
             if (!event.getObject().getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).isPresent()){
                 event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"golden_bell_jar_properties"),new GoldenBellJarCapabilityProvider());
             }
+            //张门心学
+            if (!event.getObject().getCapability(ZhangMenXinxueCapabilityProvider.ZHANG_MEN_XIN_XUE_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"zhang_men_xin_xue_properties"),new ZhangMenXinxueCapabilityProvider());
+            }
         }
     }
 
@@ -825,6 +839,9 @@ public class CSJEvent {
         //金钟罩
         oldPlayer.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(newStore-> newStore.copyGoldenBellJar(oldStore)));
+        //张门心学
+        oldPlayer.getCapability(ZhangMenXinxueCapabilityProvider.ZHANG_MEN_XIN_XUE_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(ZhangMenXinxueCapabilityProvider.ZHANG_MEN_XIN_XUE_CAPABILITY).ifPresent(newStore-> newStore.copyZhangMenXinxue(oldStore)));
         event.getOriginal().invalidateCaps();
     }
 
@@ -842,6 +859,7 @@ public class CSJEvent {
         event.register(PaodingCapability.class);
         event.register(SunflowerPointCavemanCapability.class);
         event.register(GoldenBellJarCapabilityProvider.class);
+        event.register(ZhangMenXinxueCapabilityProvider.class);
     }
 
     @SubscribeEvent

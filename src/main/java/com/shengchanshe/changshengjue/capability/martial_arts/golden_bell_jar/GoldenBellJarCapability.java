@@ -27,10 +27,10 @@ public class GoldenBellJarCapability {
     }
 
     public void addGoldenBellJarUseCount(int goldenBellJarUseCount){
+        this.goldenBellJarUseCount = this.goldenBellJarUseCount + goldenBellJarUseCount;
         if (this.goldenBellJarUseCount>=100){
             this.addGoldenBellJarLevel();
         }
-        this.goldenBellJarUseCount =  this.goldenBellJarUseCount + goldenBellJarUseCount;
     }
 
     public int getGoldenBellJarUseCooldownPercent() {

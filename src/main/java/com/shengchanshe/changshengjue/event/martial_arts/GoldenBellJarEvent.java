@@ -48,7 +48,7 @@ public class GoldenBellJarEvent {
                     directEntity.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
                         if (goldenBellJar.isGoldenBellJarComprehend() && goldenBellJar.isGoldenBellJarOff() && goldenBellJar.getGoldenBellJarLevel() == 0) {
                             float probability = directEntity.getRandom().nextFloat();
-                            float defaultProbability = !directEntity.getAbilities().instabuild ? 1.0F : 0.01F;
+                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
                             if (probability < defaultProbability) {
                                 goldenBellJar.addGoldenBellJarLevel();
                                 ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
@@ -79,7 +79,9 @@ public class GoldenBellJarEvent {
                             } else {
                                 player.addEffect(new MobEffectInstance(ChangShengJueEffects.GOLDEN_BELL_JAR_EFFECT.get(), 120, 1, false, false), player);
                             }
-                            goldenBellJar.addGoldenBellJarUseCount(!player.getAbilities().instabuild ? 100 : 1);
+                            if (goldenBellJar.getGoldenBellJarUseCount() <= 100){
+                                goldenBellJar.addGoldenBellJarUseCount(!player.getAbilities().instabuild ? 1 : 100);
+                            }
                             goldenBellJar.setGoldenBellJarUseCooldownPercent(!player.getAbilities().instabuild ? 160 : 0);
                             ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
                                     goldenBellJar.getGoldenBellJarLevel(),
