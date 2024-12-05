@@ -32,7 +32,10 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
+import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -45,6 +48,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
@@ -61,6 +66,8 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 import java.util.Random;
+
+import static com.ibm.icu.impl.ValidIdentifiers.Datatype.x;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJEvent {
@@ -680,40 +687,15 @@ public class CSJEvent {
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        ComprehendEvent.onPlayerTick(event);
         //踏雪无痕
         TreadTheSnowWithoutTraceEvent.onPlayerTick(event);
         //葵花点穴手
         SunflowerPointCavemanEvent.onPlayerTick(event);
         //金钟罩
         GoldenBellJarEvent.onPlayerTick(event);
-//            // 我们把玩家脚下的location作为是原点O
-//            for (double i = 0; i < 180; i += 180 / 6) {
-//                // 依然要做角度与弧度的转换
-//                double radians = Math.toRadians(i);
-//                // 计算出来的半径
-//                double radius = Math.sin(radians);
-//                double y = Math.cos(radians);
-//                for (double j = 0; j < 360; j += 180 / 6) {
-//                    // 依然需要做角度转弧度的操作
-//                    double radiansCircle = Math.toRadians(j);
-//                    double x = Math.cos(radiansCircle) * radius;
-//                    double z = Math.sin(radiansCircle) * radius;
-//                    player.level().addParticle(ChangShengJueParticles.COMPREHEND_PARTICLE.get(), player.getX() + x, player.getY() + y + 1, player.getZ() + z, x, y ,z);
-//                }
-//            }
-
-//            for(int i = 0; i < 3; ++i) {
-//                int j = player.level().random.nextInt(2) * 2 - 1;
-//                int k = player.level().random.nextInt(2) * 2 - 1;
-//                double d0 = player.getX() + 0.15D * (double)j;
-//                double d1 = (float)player.getY() + player.level().random.nextFloat();
-//                double d2 = player.getZ() + 0.15D * (double)k;
-//                double d3 = player.level().random.nextFloat() * (float)j;
-//                double d4 = ((double)player.level().random.nextFloat() - 0.5D) * 0.125D;
-//                double d5 = player.level().random.nextFloat() * (float)k;
-//                player.level().addParticle(ChangShengJueParticles.COMPREHEND_PARTICLE.get(), d0, d1, d2, d3, d4, d5);
-//            }
     }
+
 
     //生物受伤事件
     @SubscribeEvent

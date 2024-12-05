@@ -51,6 +51,7 @@ public class GoldenBellJarEvent {
                             float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
                             if (probability < defaultProbability) {
                                 goldenBellJar.addGoldenBellJarLevel();
+                                GoldenBellJarClientData.setGoldenBellJarTopped(true);
                                 ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
                                         goldenBellJar.getGoldenBellJarLevel(),
                                         goldenBellJar.isGoldenBellJarComprehend(),

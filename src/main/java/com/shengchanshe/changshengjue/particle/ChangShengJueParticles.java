@@ -17,6 +17,9 @@ public class ChangShengJueParticles {
 
     public static final RegistryObject<SimpleParticleType> COMPREHEND_PARTICLE =
             PARTICLE_TYPES.register("comprehend_particle", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> COMPREHEND_PARTICLE_2 =
+            PARTICLE_TYPES.register("comprehend_particle_2", () -> new SimpleParticleType(true));
+
 
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);

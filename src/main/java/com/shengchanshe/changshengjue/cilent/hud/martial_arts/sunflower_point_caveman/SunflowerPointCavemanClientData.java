@@ -1,12 +1,12 @@
 package com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_caveman;
 
-
 public class SunflowerPointCavemanClientData {
     // 玩家的技能等级和是否学习了技能
     private static int sunflowerPointCavemanLevel;
     private static boolean sunflowerPointCavemanComprehend;
     private static int sunflowerPointCavemanUseCooldownPercent;
     private static boolean sunflowerPointCavemanOff;
+    private static boolean sunflowerPointCavemanTopped;
 
     //获取技能等级
     public static int getSunflowerPointCavemanLevel() {
@@ -39,5 +39,12 @@ public class SunflowerPointCavemanClientData {
 
     public static void setSunflowerPointCavemanOff(boolean sunflowerPointCavemanOff) {
         SunflowerPointCavemanClientData.sunflowerPointCavemanOff = sunflowerPointCavemanOff;
+    }
+    public static boolean isSunflowerPointCavemanTopped() {
+        return sunflowerPointCavemanTopped;
+    }
+
+    public static void setSunflowerPointCavemanTopped(boolean sunflowerPointCavemanTopped) {
+        SunflowerPointCavemanClientData.sunflowerPointCavemanTopped = sunflowerPointCavemanTopped;
     }
 }

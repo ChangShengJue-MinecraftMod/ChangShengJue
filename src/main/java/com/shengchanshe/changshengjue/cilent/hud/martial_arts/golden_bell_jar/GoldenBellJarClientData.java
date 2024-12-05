@@ -7,6 +7,7 @@ public class GoldenBellJarClientData {
     private static boolean goldenBellJarComprehend;
     private static int goldenBellJarUseCooldownPercent;
     private static boolean goldenBellJarOff;
+    private static boolean goldenBellJarTopped;
 
     //获取技能等级
     public static int getGoldenBellJarLevel() {
@@ -39,5 +40,13 @@ public class GoldenBellJarClientData {
 
     public static void setGoldenBellJarOff(boolean goldenBellJarOff) {
         GoldenBellJarClientData.goldenBellJarOff = goldenBellJarOff;
+    }
+
+    public static boolean isGoldenBellJarTopped() {
+        return goldenBellJarTopped;
+    }
+
+    public static void setGoldenBellJarTopped(boolean goldenBellJarTopped) {
+        GoldenBellJarClientData.goldenBellJarTopped = goldenBellJarTopped;
     }
 }

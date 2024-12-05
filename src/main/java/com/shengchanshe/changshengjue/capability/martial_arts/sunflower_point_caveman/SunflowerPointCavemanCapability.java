@@ -26,11 +26,11 @@ public class SunflowerPointCavemanCapability {
         this.sunflowerPointCavemanComprehend = sunflowerPointCavemanComprehend;
     }
 
-    public void addSunflowerPointCavemanUseCount(){
+    public void addSunflowerPointCavemanUseCount(int sunflowerPointCavemanUseCount){
+        this.sunflowerPointCavemanUseCount = this.sunflowerPointCavemanUseCount + sunflowerPointCavemanUseCount;
         if (this.sunflowerPointCavemanUseCount>=100){
             this.addSunflowerPointCavemanLevel();
         }
-        this.sunflowerPointCavemanUseCount++;
     }
 
     public int getSunflowerPointCavemanUseCooldownPercent() {

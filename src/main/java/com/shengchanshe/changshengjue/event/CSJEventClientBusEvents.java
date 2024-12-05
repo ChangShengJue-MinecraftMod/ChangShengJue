@@ -19,6 +19,7 @@ import com.shengchanshe.changshengjue.entity.client.render.combat.FeiDaoEntityRe
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import com.shengchanshe.changshengjue.particle.custom.PoplarDefoliationParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendParticle;
+import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendParticle2;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraftforge.api.distmarker.Dist;
@@ -72,6 +73,9 @@ public class CSJEventClientBusEvents {
 
         Minecraft.getInstance().particleEngine.register(ChangShengJueParticles.COMPREHEND_PARTICLE.get(),
                 ComprehendParticle.Provider::new);
+
+        Minecraft.getInstance().particleEngine.register(ChangShengJueParticles.COMPREHEND_PARTICLE_2.get(),
+                ComprehendParticle2.Provider::new);
 
 //        event.registerSpriteSet(ChangShengJueParticles.COMPREHEND_PARTICLE.get(), ComprehendParticle.Provider::new);
     }

@@ -48,9 +48,10 @@ public class SunflowerPointCavemanEvent {
                     directEntity.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
                         if (sunflowerPointCaveman.isSunflowerPointCavemanComprehend() && sunflowerPointCaveman.isSunflowerPointCavemanOff() && sunflowerPointCaveman.getSunflowerPointCavemanLevel() == 0) {
                             float probability = directEntity.getRandom().nextFloat();
-                            float defaultProbability = 0.01F;
+                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
                             if (probability < defaultProbability) {
                                 sunflowerPointCaveman.addSunflowerPointCavemanLevel();
+                                SunflowerPointCavemanClientData.setSunflowerPointCavemanTopped(true);
                             }
                             ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
                                     sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
@@ -79,7 +80,7 @@ public class SunflowerPointCavemanEvent {
                                     if (entity instanceof LivingEntity livingEntity){
                                         if (livingEntity.getHealth() < health){
                                             livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 25, 1, false, false), player);
-                                            sunflowerPointCaveman.addSunflowerPointCavemanUseCount();
+                                            sunflowerPointCaveman.addSunflowerPointCavemanUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                         }
                                     }
                                 }else {
@@ -87,11 +88,14 @@ public class SunflowerPointCavemanEvent {
                                     if (entity instanceof LivingEntity livingEntity){
                                         if (livingEntity.getHealth() < health){
                                             livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 30, 1, false, false), player);
-                                            sunflowerPointCaveman.addSunflowerPointCavemanUseCount();
+                                            sunflowerPointCaveman.addSunflowerPointCavemanUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                         }
                                     }
                                 }
                                 sunflowerPointCaveman.setSunflowerPointCavemanUseCooldownPercent(!player.getAbilities().instabuild ? 180 : 0);
+                                if (sunflowerPointCaveman.getSunflowerPointCavemanUseCount() <= 100){
+                                    sunflowerPointCaveman.addSunflowerPointCavemanUseCount(!player.getAbilities().instabuild ? 1 : 100);
+                                }
                                 ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
                                         sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
                                         sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
