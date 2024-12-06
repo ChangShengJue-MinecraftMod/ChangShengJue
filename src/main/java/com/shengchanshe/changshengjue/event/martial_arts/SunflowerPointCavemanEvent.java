@@ -6,6 +6,8 @@ import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.SunflowerPointCavemanPacket;
+import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
+import com.shengchanshe.changshengjue.util.particle.DachengParticle;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
@@ -21,6 +23,7 @@ public class SunflowerPointCavemanEvent {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
             Player player = event.player;
+            Level level = player.level();
             if (!player.level().isClientSide) {
                 player.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
                     if (sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent() > 0 && sunflowerPointCaveman.isSunflowerPointCavemanOff()) {
@@ -29,9 +32,43 @@ public class SunflowerPointCavemanEvent {
                                 sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
                                 sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
                                 sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
-                                sunflowerPointCaveman.isSunflowerPointCavemanOff()), (ServerPlayer) player);
+                                sunflowerPointCaveman.isSunflowerPointCavemanOff(),
+                                sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
+                                sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
+                                sunflowerPointCaveman.isSunflowerPointCavemanParticle()), (ServerPlayer) player);
+                    }
+                    if (sunflowerPointCaveman.isSunflowerPointCavemanParticle()){
+                        if (sunflowerPointCaveman.getSunflowerPointCavemanLevel() == 1){
+                            sunflowerPointCaveman.setSunflowerPointCavemanToppedTick();
+                            ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
+                                    sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
+                                    sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
+                                    sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
+                                    sunflowerPointCaveman.isSunflowerPointCavemanOff(),
+                                    sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
+                                    sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
+                                    sunflowerPointCaveman.isSunflowerPointCavemanParticle()), (ServerPlayer) player);
+                        }else if (sunflowerPointCaveman.getSunflowerPointCavemanLevel() == 2){
+                            sunflowerPointCaveman.setSunflowerPointCavemanDachengTick();
+                            ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
+                                    sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
+                                    sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
+                                    sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
+                                    sunflowerPointCaveman.isSunflowerPointCavemanOff(),
+                                    sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
+                                    sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
+                                    sunflowerPointCaveman.isSunflowerPointCavemanParticle()), (ServerPlayer) player);
+                        }
                     }
                 });
+            }
+            if (player.level().isClientSide){
+                if (SunflowerPointCavemanClientData.isSunflowerPointCavemanParticle()) {
+                    ComprehendParticle.ComprehendParticle(player, level, SunflowerPointCavemanClientData.getSunflowerPointCavemanToppedTick());
+                }
+                if (SunflowerPointCavemanClientData.isSunflowerPointCavemanParticle()) {
+                    DachengParticle.DachengParticle(player, level, SunflowerPointCavemanClientData.getSunflowerPointCavemanDachengTick());
+                }
             }
         }
     }
@@ -51,13 +88,16 @@ public class SunflowerPointCavemanEvent {
                             float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
                             if (probability < defaultProbability) {
                                 sunflowerPointCaveman.addSunflowerPointCavemanLevel();
-                                SunflowerPointCavemanClientData.setSunflowerPointCavemanTopped(true);
+                                sunflowerPointCaveman.setSunflowerPointCavemanParticle(true);
                             }
                             ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
                                     sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
                                     sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
                                     sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
-                                    sunflowerPointCaveman.isSunflowerPointCavemanOff()), (ServerPlayer) directEntity);
+                                    sunflowerPointCaveman.isSunflowerPointCavemanOff(),
+                                    sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
+                                    sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
+                                    sunflowerPointCaveman.isSunflowerPointCavemanParticle()), (ServerPlayer) directEntity);
                         }
                     });
                 }
@@ -95,12 +135,16 @@ public class SunflowerPointCavemanEvent {
                                 sunflowerPointCaveman.setSunflowerPointCavemanUseCooldownPercent(!player.getAbilities().instabuild ? 180 : 0);
                                 if (sunflowerPointCaveman.getSunflowerPointCavemanUseCount() <= 100){
                                     sunflowerPointCaveman.addSunflowerPointCavemanUseCount(!player.getAbilities().instabuild ? 1 : 100);
+                                    sunflowerPointCaveman.setSunflowerPointCavemanParticle(true);
                                 }
                                 ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
                                         sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
                                         sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
                                         sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
-                                        sunflowerPointCaveman.isSunflowerPointCavemanOff()), (ServerPlayer) player);
+                                        sunflowerPointCaveman.isSunflowerPointCavemanOff(),
+                                        sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
+                                        sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
+                                        sunflowerPointCaveman.isSunflowerPointCavemanParticle()), (ServerPlayer) player);
                                 if (!player.getAbilities().instabuild){
                                     player.getFoodData().eat(-3, -2);//消耗饱食度
                                 }

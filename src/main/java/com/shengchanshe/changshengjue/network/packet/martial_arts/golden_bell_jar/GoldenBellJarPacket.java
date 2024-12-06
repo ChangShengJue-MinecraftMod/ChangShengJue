@@ -11,13 +11,19 @@ public class GoldenBellJarPacket {
     private final boolean goldenBellJarComprehend;
     private int goldenBellJarUseCooldownPercent;
     private boolean goldenBellJarOff;//技能是否启用
+    private int goldenBellJarToppedTick;//技能领悟特效计时
+    private int goldenBellJarDachengTick;//技能领悟特效计时
+    private boolean goldenBellJarParticle;//技能特效显示
 
-
-    public GoldenBellJarPacket(int goldenBellJarLevel, boolean goldenBellJarComprehend, int goldenBellJarUseCooldownPercent, boolean goldenBellJarOff){
+    public GoldenBellJarPacket(int goldenBellJarLevel, boolean goldenBellJarComprehend, int goldenBellJarUseCooldownPercent, boolean goldenBellJarOff,
+                               int goldenBellJarToppedTick, int goldenBellJarDachengTick, boolean goldenBellJarParticle){
         this.goldenBellJarLevel = goldenBellJarLevel;
         this.goldenBellJarComprehend = goldenBellJarComprehend;
         this.goldenBellJarUseCooldownPercent = goldenBellJarUseCooldownPercent;
         this.goldenBellJarOff = goldenBellJarOff;
+        this.goldenBellJarToppedTick = goldenBellJarToppedTick;
+        this.goldenBellJarDachengTick = goldenBellJarDachengTick;
+        this.goldenBellJarParticle = goldenBellJarParticle;
     }
 
     public GoldenBellJarPacket(FriendlyByteBuf buf){
@@ -25,6 +31,9 @@ public class GoldenBellJarPacket {
         this.goldenBellJarComprehend = buf.readBoolean();
         this.goldenBellJarUseCooldownPercent = buf.readInt();
         this.goldenBellJarOff = buf.readBoolean();
+        this.goldenBellJarToppedTick = buf.readInt();
+        this.goldenBellJarDachengTick = buf.readInt();
+        this.goldenBellJarParticle = buf.readBoolean();
     }
 
     public void toBytes(FriendlyByteBuf buf){
@@ -32,6 +41,9 @@ public class GoldenBellJarPacket {
         buf.writeBoolean(goldenBellJarComprehend);
         buf.writeInt(goldenBellJarUseCooldownPercent);
         buf.writeBoolean(goldenBellJarOff);
+        buf.writeInt(goldenBellJarToppedTick);
+        buf.writeInt(goldenBellJarDachengTick);
+        buf.writeBoolean(goldenBellJarParticle);
     }
 
     // 客户端处理
@@ -42,6 +54,9 @@ public class GoldenBellJarPacket {
             GoldenBellJarClientData.setGoldenBellJarComprehend(goldenBellJarComprehend);
             GoldenBellJarClientData.setGoldenBellJarUseCooldownPercent(goldenBellJarUseCooldownPercent);
             GoldenBellJarClientData.setGoldenBellJarOff(goldenBellJarOff);
+            GoldenBellJarClientData.setGoldenBellJarToppedTick(goldenBellJarToppedTick);
+            GoldenBellJarClientData.setGoldenBellJarDachengTick(goldenBellJarDachengTick);
+            GoldenBellJarClientData.setGoldenBellJarParticle(goldenBellJarParticle);
         });
         return true;
     }

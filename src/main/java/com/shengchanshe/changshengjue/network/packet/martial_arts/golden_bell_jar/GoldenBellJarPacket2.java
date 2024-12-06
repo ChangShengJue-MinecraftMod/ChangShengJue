@@ -26,7 +26,6 @@ public class GoldenBellJarPacket2 {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             ServerPlayer player = context.getSender();
-            ServerLevel level = player.serverLevel();
             player.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
                 if (goldenBellJar.isGoldenBellJarComprehend() && goldenBellJar.isGoldenBellJarOff() && goldenBellJar.getGoldenBellJarLevel() > 0){
                     if (goldenBellJar.getGoldenBellJarUseCooldownPercent() <= 0){
@@ -45,11 +44,12 @@ public class GoldenBellJarPacket2 {
                                     goldenBellJar.getGoldenBellJarLevel(),
                                     goldenBellJar.isGoldenBellJarComprehend(),
                                     goldenBellJar.getGoldenBellJarUseCooldownPercent(),
-                                    goldenBellJar.isGoldenBellJarOff()), player);
+                                    goldenBellJar.isGoldenBellJarOff(),
+                                    goldenBellJar.getGoldenBellJarToppedTick(),
+                                    goldenBellJar.getGoldenBellJarDachengTick(),
+                                    goldenBellJar.isGoldenBellJarParticle()), player);
                         }
                     }
-//                    if (player.getMainHandItem().isEmpty()){
-//                    }
                 }
             });
         });

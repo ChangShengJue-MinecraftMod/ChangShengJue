@@ -6,7 +6,9 @@ public class SunflowerPointCavemanClientData {
     private static boolean sunflowerPointCavemanComprehend;
     private static int sunflowerPointCavemanUseCooldownPercent;
     private static boolean sunflowerPointCavemanOff;
-    private static boolean sunflowerPointCavemanTopped;
+    private static int sunflowerPointCavemanToppedTick;//技能领悟特效计时
+    private static int sunflowerPointCavemanDachengTick;//技能大成特效计时
+    private static boolean sunflowerPointCavemanParticle;//技能特效显示
 
     //获取技能等级
     public static int getSunflowerPointCavemanLevel() {
@@ -40,11 +42,28 @@ public class SunflowerPointCavemanClientData {
     public static void setSunflowerPointCavemanOff(boolean sunflowerPointCavemanOff) {
         SunflowerPointCavemanClientData.sunflowerPointCavemanOff = sunflowerPointCavemanOff;
     }
-    public static boolean isSunflowerPointCavemanTopped() {
-        return sunflowerPointCavemanTopped;
+
+    public static int getSunflowerPointCavemanToppedTick() {
+        return sunflowerPointCavemanToppedTick;
     }
 
-    public static void setSunflowerPointCavemanTopped(boolean sunflowerPointCavemanTopped) {
-        SunflowerPointCavemanClientData.sunflowerPointCavemanTopped = sunflowerPointCavemanTopped;
+    public static void setSunflowerPointCavemanToppedTick(int sunflowerPointCavemanToppedTick) {
+        SunflowerPointCavemanClientData.sunflowerPointCavemanToppedTick = sunflowerPointCavemanToppedTick;
+    }
+
+    public static int getSunflowerPointCavemanDachengTick() {
+        return sunflowerPointCavemanDachengTick;
+    }
+
+    public static void setSunflowerPointCavemanDachengTick(int sunflowerPointCavemanDachengTick) {
+        SunflowerPointCavemanClientData.sunflowerPointCavemanDachengTick = sunflowerPointCavemanDachengTick;
+    }
+
+    public static boolean isSunflowerPointCavemanParticle() {
+        return sunflowerPointCavemanParticle;
+    }
+
+    public static void setSunflowerPointCavemanParticle(boolean sunflowerPointCavemanParticle) {
+        SunflowerPointCavemanClientData.sunflowerPointCavemanParticle = sunflowerPointCavemanParticle;
     }
 }

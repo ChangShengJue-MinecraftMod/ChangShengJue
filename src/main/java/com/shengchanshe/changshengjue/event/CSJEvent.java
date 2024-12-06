@@ -29,27 +29,20 @@ import com.shengchanshe.changshengjue.event.martial_arts.*;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
-import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.Villager;
-import net.minecraft.world.entity.npc.VillagerData;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
@@ -66,8 +59,6 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 import java.util.Random;
-
-import static com.ibm.icu.impl.ValidIdentifiers.Datatype.x;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJEvent {
@@ -684,10 +675,8 @@ public class CSJEvent {
     public static void onInteract(PlayerInteractEvent event) {
         WuGangCutGuiEvent.onInteract(event);
     }
-
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        ComprehendEvent.onPlayerTick(event);
         //踏雪无痕
         TreadTheSnowWithoutTraceEvent.onPlayerTick(event);
         //葵花点穴手
@@ -875,14 +864,20 @@ public class CSJEvent {
                             sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
                             sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
                             sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
-                            sunflowerPointCaveman.isSunflowerPointCavemanOff()), player);
+                            sunflowerPointCaveman.isSunflowerPointCavemanOff(),
+                            sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
+                            sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
+                            sunflowerPointCaveman.isSunflowerPointCavemanParticle()), player);
                 });
                 player.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
                     ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
                             goldenBellJar.getGoldenBellJarLevel(),
                             goldenBellJar.isGoldenBellJarComprehend(),
                             goldenBellJar.getGoldenBellJarUseCooldownPercent(),
-                            goldenBellJar.isGoldenBellJarOff()), player);
+                            goldenBellJar.isGoldenBellJarOff(),
+                            goldenBellJar.getGoldenBellJarToppedTick(),
+                            goldenBellJar.getGoldenBellJarDachengTick(),
+                            goldenBellJar.isGoldenBellJarParticle()), player);
                 });
             }
         }

@@ -35,7 +35,10 @@ public class GoldenBellJar extends Item {
                                 sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
                                 sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
                                 sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
-                                sunflowerPointCaveman.isSunflowerPointCavemanOff()), (ServerPlayer) pPlayer);
+                                sunflowerPointCaveman.isSunflowerPointCavemanOff(),
+                                sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
+                                sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
+                                sunflowerPointCaveman.isSunflowerPointCavemanParticle()), (ServerPlayer) pPlayer);
                     }
                 });
                 if (!goldenBellJar.isGoldenBellJarComprehend()){
@@ -46,7 +49,10 @@ public class GoldenBellJar extends Item {
                         goldenBellJar.getGoldenBellJarLevel(),
                         goldenBellJar.isGoldenBellJarComprehend(),
                         goldenBellJar.getGoldenBellJarUseCooldownPercent(),
-                        goldenBellJar.isGoldenBellJarOff()), (ServerPlayer) pPlayer);
+                        goldenBellJar.isGoldenBellJarOff(),
+                        goldenBellJar.getGoldenBellJarToppedTick(),
+                        goldenBellJar.getGoldenBellJarDachengTick(),
+                        goldenBellJar.isGoldenBellJarParticle()), (ServerPlayer) pPlayer);
             });
         }
         return InteractionResultHolder.consume(pPlayer.getItemInHand(pUsedHand));

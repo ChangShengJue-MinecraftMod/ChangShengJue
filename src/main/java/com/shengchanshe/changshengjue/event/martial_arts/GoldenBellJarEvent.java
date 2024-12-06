@@ -2,12 +2,13 @@ package com.shengchanshe.changshengjue.event.martial_arts;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_bell_jar.GoldenBellJarClientData;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_caveman.SunflowerPointCavemanClientData;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket2;
+import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
+import com.shengchanshe.changshengjue.util.particle.DachengParticle;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
@@ -21,6 +22,7 @@ public class GoldenBellJarEvent {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
             Player player = event.player;
+            Level level = player.level();
             if (!player.level().isClientSide) {
                 player.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
                     if (goldenBellJar.getGoldenBellJarUseCooldownPercent() > 0 && goldenBellJar.isGoldenBellJarOff()) {
@@ -29,9 +31,43 @@ public class GoldenBellJarEvent {
                                 goldenBellJar.getGoldenBellJarLevel(),
                                 goldenBellJar.isGoldenBellJarComprehend(),
                                 goldenBellJar.getGoldenBellJarUseCooldownPercent(),
-                                goldenBellJar.isGoldenBellJarOff()), (ServerPlayer) player);
+                                goldenBellJar.isGoldenBellJarOff(),
+                                goldenBellJar.getGoldenBellJarToppedTick(),
+                                goldenBellJar.getGoldenBellJarDachengTick(),
+                                goldenBellJar.isGoldenBellJarParticle()), (ServerPlayer) player);
+                    }
+                    if (goldenBellJar.isGoldenBellJarParticle()){
+                        if (goldenBellJar.getGoldenBellJarLevel() == 1){
+                            goldenBellJar.setGoldenBellJarToppedTick();
+                            ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
+                                    goldenBellJar.getGoldenBellJarLevel(),
+                                    goldenBellJar.isGoldenBellJarComprehend(),
+                                    goldenBellJar.getGoldenBellJarUseCooldownPercent(),
+                                    goldenBellJar.isGoldenBellJarOff(),
+                                    goldenBellJar.getGoldenBellJarToppedTick(),
+                                    goldenBellJar.getGoldenBellJarDachengTick(),
+                                    goldenBellJar.isGoldenBellJarParticle()), (ServerPlayer) player);
+                        }else if (goldenBellJar.getGoldenBellJarLevel() == 2){
+                            goldenBellJar.setGoldenBellJarDachengTick();
+                            ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
+                                    goldenBellJar.getGoldenBellJarLevel(),
+                                    goldenBellJar.isGoldenBellJarComprehend(),
+                                    goldenBellJar.getGoldenBellJarUseCooldownPercent(),
+                                    goldenBellJar.isGoldenBellJarOff(),
+                                    goldenBellJar.getGoldenBellJarToppedTick(),
+                                    goldenBellJar.getGoldenBellJarDachengTick(),
+                                    goldenBellJar.isGoldenBellJarParticle()), (ServerPlayer) player);
+                        }
                     }
                 });
+            }
+            if (player.level().isClientSide){
+                if (GoldenBellJarClientData.isGoldenBellJarParticle()) {
+                    ComprehendParticle.ComprehendParticle(player, level, GoldenBellJarClientData.getGoldenBellJarToppedTick());
+                }
+                if (GoldenBellJarClientData.isGoldenBellJarParticle()) {
+                    DachengParticle.DachengParticle(player, level, GoldenBellJarClientData.getGoldenBellJarDachengTick());
+                }
             }
         }
     }
@@ -51,12 +87,15 @@ public class GoldenBellJarEvent {
                             float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
                             if (probability < defaultProbability) {
                                 goldenBellJar.addGoldenBellJarLevel();
-                                GoldenBellJarClientData.setGoldenBellJarTopped(true);
+                                goldenBellJar.setGoldenBellJarParticle(true);
                                 ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
                                         goldenBellJar.getGoldenBellJarLevel(),
                                         goldenBellJar.isGoldenBellJarComprehend(),
                                         goldenBellJar.getGoldenBellJarUseCooldownPercent(),
-                                        goldenBellJar.isGoldenBellJarOff()), (ServerPlayer) directEntity);
+                                        goldenBellJar.isGoldenBellJarOff(),
+                                        goldenBellJar.getGoldenBellJarToppedTick(),
+                                        goldenBellJar.getGoldenBellJarDachengTick(),
+                                        goldenBellJar.isGoldenBellJarParticle()), (ServerPlayer) directEntity);
                             }
                         }
                     });
@@ -82,13 +121,17 @@ public class GoldenBellJarEvent {
                             }
                             if (goldenBellJar.getGoldenBellJarUseCount() <= 100){
                                 goldenBellJar.addGoldenBellJarUseCount(!player.getAbilities().instabuild ? 1 : 100);
+                                goldenBellJar.setGoldenBellJarParticle(true);
                             }
                             goldenBellJar.setGoldenBellJarUseCooldownPercent(!player.getAbilities().instabuild ? 160 : 0);
                             ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
                                     goldenBellJar.getGoldenBellJarLevel(),
                                     goldenBellJar.isGoldenBellJarComprehend(),
                                     goldenBellJar.getGoldenBellJarUseCooldownPercent(),
-                                    goldenBellJar.isGoldenBellJarOff()), (ServerPlayer) player);
+                                    goldenBellJar.isGoldenBellJarOff(),
+                                    goldenBellJar.getGoldenBellJarToppedTick(),
+                                    goldenBellJar.getGoldenBellJarDachengTick(),
+                                    goldenBellJar.isGoldenBellJarParticle()), (ServerPlayer) player);
                         }
                     }
                 }

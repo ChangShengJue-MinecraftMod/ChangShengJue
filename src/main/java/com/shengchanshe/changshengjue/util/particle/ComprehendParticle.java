@@ -1,47 +1,17 @@
-package com.shengchanshe.changshengjue.event.martial_arts;
+package com.shengchanshe.changshengjue.util.particle;
 
-import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapabilityProvider;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_bell_jar.GoldenBellJarClientData;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_caveman.SunflowerPointCavemanClientData;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceClientData;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.TickEvent;
 
 import java.util.Random;
 
-public class ComprehendEvent {
-    public static int tick;
-    public static int maxtick = 60;
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        Player player = event.player;
-        Level level = player.level();
-        if (event.phase == TickEvent.Phase.END) {
-            if (GoldenBellJarClientData.getGoldenBellJarLevel() == 1 && GoldenBellJarClientData.isGoldenBellJarTopped()){
-                ComprehendParticle(player, level);
-                if (tick == maxtick){
-                    GoldenBellJarClientData.setGoldenBellJarTopped(false);
-                    tick = 0;
-                }
-            }
-            if (SunflowerPointCavemanClientData.getSunflowerPointCavemanLevel() == 1 && SunflowerPointCavemanClientData.isSunflowerPointCavemanTopped()){
-                ComprehendParticle(player, level);
-                if (tick == maxtick){
-                    SunflowerPointCavemanClientData.setSunflowerPointCavemanTopped(false);
-                    tick = 0;
-                }
-            }
-        }
-    }
+public class ComprehendParticle {
 
-    public static void ComprehendParticle(Player player,Level level){
-        if (tick < 60){
-            tick++;
-        }
-        if (tick >= 0 && tick <= 10){
-            int numParticles = 60;  // 可以根据需要调整数量
+    public static void ComprehendParticle(Player player,Level level,int tick){
+        if (tick > 0 && tick <= 20){
+            int numParticles = 3;  // 可以根据需要调整数量
             Random random = new Random();
 
             for (int i = 0; i < numParticles; ++i) {
@@ -73,9 +43,9 @@ public class ComprehendEvent {
                 level.addParticle(ChangShengJueParticles.COMPREHEND_PARTICLE.get(), particleX, particleY, particleZ, -speedX, -speedY, -speedZ);
             }
         }
-        if (tick >= 25 && tick < 60){
-            double radius = 0.2;
-            for (int i = 0; i < 16; i++) {
+        if (tick > 40 && tick < 80){
+            double radius = 0.3;
+            for (int i = 0; i < 2; i++) {
                 // 在球体上随机生成一个点
                 double phi = Math.random() * Math.PI * 2;
                 double costheta = Math.random() * 2 - 1;
@@ -91,7 +61,7 @@ public class ComprehendEvent {
                 double speedZ = dz * speedFactor;
 
                 // 生成粒子并设置速度
-                level.addParticle(ChangShengJueParticles.COMPREHEND_PARTICLE_2.get(), player.getX() + dx, player.getY() + dy, player.getZ() + dz, speedX, speedY, speedZ);
+                level.addParticle(ChangShengJueParticles.COMPREHEND_PARTICLE_2.get(), player.getX() + dx, player.getY() + 0.3 + dy, player.getZ() + dz, speedX, speedY, speedZ);
             }
         }
     }
