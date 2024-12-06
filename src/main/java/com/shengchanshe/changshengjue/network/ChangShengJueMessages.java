@@ -90,10 +90,16 @@ public class ChangShengJueMessages {
                 .encoder(GoldenBellJarPacket::toBytes)
                 .consumerMainThread(GoldenBellJarPacket::handle)
                 .add();
-        net.messageBuilder(GoldenBellJarPacket2.class, id())
+        net.messageBuilder(GoldenBellJarPacket2.class, id(),NetworkDirection.PLAY_TO_SERVER)
                 .decoder(GoldenBellJarPacket2::new)
                 .encoder(GoldenBellJarPacket2::toBytes)
                 .consumerMainThread(GoldenBellJarPacket2::handle)
+                .add();
+        //不死神功
+        net.messageBuilder(ImmortalMiraclePacket.class, id())
+                .decoder(ImmortalMiraclePacket::new)
+                .encoder(ImmortalMiraclePacket::toBytes)
+                .consumerMainThread(ImmortalMiraclePacket::handle)
                 .add();
     }
 

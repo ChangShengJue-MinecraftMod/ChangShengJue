@@ -1,8 +1,10 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.ImmortalMiraclePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.SunflowerPointCavemanPacket;
 import net.minecraft.ChatFormatting;
@@ -39,6 +41,21 @@ public class SunflowerPointCaveman extends Item {
                                 goldenBellJar.getGoldenBellJarToppedTick(),
                                 goldenBellJar.getGoldenBellJarDachengTick(),
                                 goldenBellJar.isGoldenBellJarParticle()), (ServerPlayer) pPlayer);
+                    }
+                });
+                pPlayer.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
+                    if (immortalMiracle.isImmortalMiracleOff() && !sunflowerPointCaveman.isSunflowerPointCavemanOff()){
+                        immortalMiracle.setImmortalMiracleOff(false);
+                        sunflowerPointCaveman.setSunflowerPointCavemanOff(true);
+                        ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
+                                immortalMiracle.getImmortalMiracleLevel(),
+                                immortalMiracle.isImmortalMiracleComprehend(),
+                                immortalMiracle.getImmortalMiracleUseCooldownPercent(),
+                                immortalMiracle.isImmortalMiracleOff(),
+                                immortalMiracle.getImmortalMiracleToppedTick(),
+                                immortalMiracle.getImmortalMiracleDachengTick(),
+                                immortalMiracle.isImmortalMiracleParticle(),
+                                immortalMiracle.getImmortalMiracleUseCooldownPercentMax()), (ServerPlayer) pPlayer);
                     }
                 });
                 if (!sunflowerPointCaveman.isSunflowerPointCavemanComprehend()){

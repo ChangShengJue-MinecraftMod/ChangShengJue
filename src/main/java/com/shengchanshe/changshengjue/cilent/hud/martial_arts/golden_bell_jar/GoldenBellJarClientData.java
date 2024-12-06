@@ -6,8 +6,6 @@ public class GoldenBellJarClientData {
     private static boolean goldenBellJarComprehend;
     private static int goldenBellJarUseCooldownPercent;
     private static boolean goldenBellJarOff;
-    private static boolean goldenBellJarTopped;
-    private static boolean goldenBellJarDacheng;
     private static int goldenBellJarToppedTick;//技能领悟特效计时
     private static int goldenBellJarDachengTick;//技能大成特效计时
     private static boolean goldenBellJarParticle;//技能特效显示
@@ -45,20 +43,6 @@ public class GoldenBellJarClientData {
         GoldenBellJarClientData.goldenBellJarOff = goldenBellJarOff;
     }
 
-    public static boolean isGoldenBellJarTopped() {
-        return goldenBellJarTopped;
-    }
-
-    public static void setGoldenBellJarTopped(boolean goldenBellJarTopped) {
-        GoldenBellJarClientData.goldenBellJarTopped = goldenBellJarTopped;
-    }
-    public static boolean isGoldenBellJarDacheng() {
-        return goldenBellJarDacheng;
-    }
-
-    public static void setGoldenBellJarDacheng(boolean goldenBellJarDacheng) {
-        GoldenBellJarClientData.goldenBellJarDacheng = goldenBellJarDacheng;
-    }
 
     public static int getGoldenBellJarToppedTick() {
         return goldenBellJarToppedTick;

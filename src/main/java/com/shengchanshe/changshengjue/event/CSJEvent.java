@@ -9,6 +9,8 @@ import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.G
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapability;
+import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapability;
@@ -683,6 +685,8 @@ public class CSJEvent {
         SunflowerPointCavemanEvent.onPlayerTick(event);
         //金钟罩
         GoldenBellJarEvent.onPlayerTick(event);
+        //不死神功
+        ImmortalMiracleEvent.onPlayerTick(event);
     }
 
 
@@ -695,6 +699,7 @@ public class CSJEvent {
         PaodingEvent.onEntityHurt(event);
         SunflowerPointCavemanEvent.onEntityHurt(event);
         GoldenBellJarEvent.onEntityHurt(event);
+        ImmortalMiracleEvent.onEntityHurt(event);
     }
     //生物死亡事件
     @SubscribeEvent
@@ -769,6 +774,10 @@ public class CSJEvent {
             if (!event.getObject().getCapability(ZhangMenXinxueCapabilityProvider.ZHANG_MEN_XIN_XUE_CAPABILITY).isPresent()){
                 event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"zhang_men_xin_xue_properties"),new ZhangMenXinxueCapabilityProvider());
             }
+            //不死神功
+            if (!event.getObject().getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"immortal_miracle_properties"),new ImmortalMiracleCapabilityProvider());
+            }
         }
     }
 
@@ -813,6 +822,9 @@ public class CSJEvent {
         //张门心学
         oldPlayer.getCapability(ZhangMenXinxueCapabilityProvider.ZHANG_MEN_XIN_XUE_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(ZhangMenXinxueCapabilityProvider.ZHANG_MEN_XIN_XUE_CAPABILITY).ifPresent(newStore-> newStore.copyZhangMenXinxue(oldStore)));
+        //不死神功
+        oldPlayer.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(newStore-> newStore.copyImmortalMiracle(oldStore)));
         event.getOriginal().invalidateCaps();
     }
 
@@ -831,6 +843,7 @@ public class CSJEvent {
         event.register(SunflowerPointCavemanCapability.class);
         event.register(GoldenBellJarCapabilityProvider.class);
         event.register(ZhangMenXinxueCapabilityProvider.class);
+        event.register(ImmortalMiracleCapabilityProvider.class);
     }
 
     @SubscribeEvent
@@ -878,6 +891,17 @@ public class CSJEvent {
                             goldenBellJar.getGoldenBellJarToppedTick(),
                             goldenBellJar.getGoldenBellJarDachengTick(),
                             goldenBellJar.isGoldenBellJarParticle()), player);
+                });
+                player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
+                    ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
+                            immortalMiracle.getImmortalMiracleLevel(),
+                            immortalMiracle.isImmortalMiracleComprehend(),
+                            immortalMiracle.getImmortalMiracleUseCooldownPercent(),
+                            immortalMiracle.isImmortalMiracleOff(),
+                            immortalMiracle.getImmortalMiracleToppedTick(),
+                            immortalMiracle.getImmortalMiracleDachengTick(),
+                            immortalMiracle.isImmortalMiracleParticle(),
+                            immortalMiracle.getImmortalMiracleUseCooldownPercentMax()), player);
                 });
             }
         }
