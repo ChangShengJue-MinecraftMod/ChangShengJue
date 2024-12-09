@@ -1,9 +1,11 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
+import com.shengchanshe.changshengjue.capability.martial_arts.ge_shan_da_niu.GeShanDaNiuCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ImmortalMiraclePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.SunflowerPointCavemanPacket;
@@ -56,6 +58,21 @@ public class GoldenBellJar extends Item {
                                 immortalMiracle.getImmortalMiracleDachengTick(),
                                 immortalMiracle.isImmortalMiracleParticle(),
                                 immortalMiracle.getImmortalMiracleUseCooldownPercentMax()), (ServerPlayer) pPlayer);
+                    }
+                });
+                pPlayer.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
+                    if (geShanDaNiu.isGeShanDaNiuOff() && !goldenBellJar.isGoldenBellJarOff()){
+                        geShanDaNiu.setGeShanDaNiuOff(false);
+                        goldenBellJar.setGoldenBellJarOff(true);
+                        ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
+                                geShanDaNiu.getGeShanDaNiuLevel(),
+                                geShanDaNiu.isGeShanDaNiuComprehend(),
+                                geShanDaNiu.getGeShanDaNiuUseCooldownPercent(),
+                                geShanDaNiu.isGeShanDaNiuOff(),
+                                geShanDaNiu.getGeShanDaNiuToppedTick(),
+                                geShanDaNiu.getGeShanDaNiuDachengTick(),
+                                geShanDaNiu.isGeShanDaNiuParticle(),
+                                geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax()), (ServerPlayer) pPlayer);
                     }
                 });
                 if (!goldenBellJar.isGoldenBellJarComprehend()){

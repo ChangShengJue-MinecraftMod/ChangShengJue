@@ -1,9 +1,11 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
+import com.shengchanshe.changshengjue.capability.martial_arts.ge_shan_da_niu.GeShanDaNiuCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ImmortalMiraclePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
@@ -55,6 +57,21 @@ public class ImmortalMiracle extends Item {
                                 goldenBellJar.getGoldenBellJarToppedTick(),
                                 goldenBellJar.getGoldenBellJarDachengTick(),
                                 goldenBellJar.isGoldenBellJarParticle()), (ServerPlayer) pPlayer);
+                    }
+                });
+                pPlayer.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
+                    if (geShanDaNiu.isGeShanDaNiuOff() && !immortalMiracle.isImmortalMiracleOff()){
+                        geShanDaNiu.setGeShanDaNiuOff(false);
+                        immortalMiracle.setImmortalMiracleOff(true);
+                        ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
+                                geShanDaNiu.getGeShanDaNiuLevel(),
+                                geShanDaNiu.isGeShanDaNiuComprehend(),
+                                geShanDaNiu.getGeShanDaNiuUseCooldownPercent(),
+                                geShanDaNiu.isGeShanDaNiuOff(),
+                                geShanDaNiu.getGeShanDaNiuToppedTick(),
+                                geShanDaNiu.getGeShanDaNiuDachengTick(),
+                                geShanDaNiu.isGeShanDaNiuParticle(),
+                                geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax()), (ServerPlayer) pPlayer);
                     }
                 });
                 if (!immortalMiracle.isImmortalMiracleComprehend()){

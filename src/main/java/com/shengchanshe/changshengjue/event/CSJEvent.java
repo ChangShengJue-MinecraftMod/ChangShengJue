@@ -6,10 +6,10 @@ import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.D
 import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.ge_shan_da_niu.GeShanDaNiuCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapabilityProvider;
-import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCapabilityProvider;
@@ -31,6 +31,7 @@ import com.shengchanshe.changshengjue.event.martial_arts.*;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -687,8 +688,9 @@ public class CSJEvent {
         GoldenBellJarEvent.onPlayerTick(event);
         //不死神功
         ImmortalMiracleEvent.onPlayerTick(event);
+        //隔山打牛
+        GeShanDaNiuEvent.onPlayerTick(event);
     }
-
 
     //生物受伤事件
     @SubscribeEvent
@@ -700,6 +702,7 @@ public class CSJEvent {
         SunflowerPointCavemanEvent.onEntityHurt(event);
         GoldenBellJarEvent.onEntityHurt(event);
         ImmortalMiracleEvent.onEntityHurt(event);
+        GeShanDaNiuEvent.onEntityHurt(event);
     }
     //生物死亡事件
     @SubscribeEvent
@@ -711,15 +714,18 @@ public class CSJEvent {
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){
         SunflowerPointCavemanEvent.onPlayerEntityInteract(event);
         GoldenBellJarEvent.onPlayerEntityInteract(event);
+        GeShanDaNiuEvent.onPlayerEntityInteract(event);
     }
     //玩家右键空气事件
     @SubscribeEvent
     public static void onPlayerRightClick(PlayerInteractEvent.RightClickEmpty event){
         GoldenBellJarEvent.onPlayerRightClick(event);
+        GeShanDaNiuEvent.onPlayerRightClick(event);
     }
     @SubscribeEvent
     public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         GoldenBellJarEvent.onPlayerRightClickBlock(event);
+        GeShanDaNiuEvent.onPlayerRightClickBlock(event);
     }
 
     //能力给予事件,给生物添加能力
@@ -778,6 +784,10 @@ public class CSJEvent {
             if (!event.getObject().getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).isPresent()){
                 event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"immortal_miracle_properties"),new ImmortalMiracleCapabilityProvider());
             }
+            //隔山打牛
+            if (!event.getObject().getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"ge_shan_da_niu_properties"),new GeShanDaNiuCapabilityProvider());
+            }
         }
     }
 
@@ -825,6 +835,9 @@ public class CSJEvent {
         //不死神功
         oldPlayer.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(newStore-> newStore.copyImmortalMiracle(oldStore)));
+        //隔山打牛
+        oldPlayer.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(newStore-> newStore.copyGeShanDaNiu(oldStore)));
         event.getOriginal().invalidateCaps();
     }
 
@@ -844,6 +857,7 @@ public class CSJEvent {
         event.register(GoldenBellJarCapabilityProvider.class);
         event.register(ZhangMenXinxueCapabilityProvider.class);
         event.register(ImmortalMiracleCapabilityProvider.class);
+        event.register(GeShanDaNiuCapabilityProvider.class);
     }
 
     @SubscribeEvent
@@ -902,6 +916,17 @@ public class CSJEvent {
                             immortalMiracle.getImmortalMiracleDachengTick(),
                             immortalMiracle.isImmortalMiracleParticle(),
                             immortalMiracle.getImmortalMiracleUseCooldownPercentMax()), player);
+                });
+                player.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
+                    ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
+                            geShanDaNiu.getGeShanDaNiuLevel(),
+                            geShanDaNiu.isGeShanDaNiuComprehend(),
+                            geShanDaNiu.getGeShanDaNiuUseCooldownPercent(),
+                            geShanDaNiu.isGeShanDaNiuOff(),
+                            geShanDaNiu.getGeShanDaNiuToppedTick(),
+                            geShanDaNiu.getGeShanDaNiuDachengTick(),
+                            geShanDaNiu.isGeShanDaNiuParticle(),
+                            geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax()), player);
                 });
             }
         }

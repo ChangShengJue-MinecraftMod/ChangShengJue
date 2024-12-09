@@ -3,7 +3,7 @@ package com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle;
 import net.minecraft.nbt.CompoundTag;
 
 public class ImmortalMiracleCapability {
-    private int immortalMiracleLevel = 0;//技能dengji
+    private int immortalMiracleLevel = 0;//技能等级
     private boolean immortalMiracleComprehend = false;//是否领悟
     private int immortalMiracleUseCount = 0;//使用次数
     private int immortalMiracleUseCooldownPercent = 0;//技能冷却

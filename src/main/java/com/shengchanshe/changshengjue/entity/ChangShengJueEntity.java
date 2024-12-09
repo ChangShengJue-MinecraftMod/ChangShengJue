@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.entity;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntity;
+import com.shengchanshe.changshengjue.entity.combat.ge_shan_da_niu.GeShanDaNiuEntity;
 import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntity;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.entity.custom.*;
@@ -108,6 +109,12 @@ public class ChangShengJueEntity {
                     () -> EntityType.Builder.of(GoldenBlackKnifeMethodEntity::new, MobCategory.MISC)
                             .sized(5f, 1f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"golden_black_knife_method_entity").toString()));
+    //隔山打牛
+    public static final RegistryObject<EntityType<GeShanDaNiuEntity>> GE_SHAN_DA_NIU =
+            ENTITY_TYPES.register("ge_shan_da_niu",
+                    () -> EntityType.Builder.of(GeShanDaNiuEntity::new, MobCategory.MISC)
+                            .sized(5f, 1f)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"ge_shan_da_niu").toString()));
 
     //练功木桩
     public static final RegistryObject<EntityType<StakesEntity>> STAKES =
