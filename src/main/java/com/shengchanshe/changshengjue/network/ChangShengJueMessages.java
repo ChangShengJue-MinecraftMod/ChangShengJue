@@ -114,6 +114,12 @@ public class ChangShengJueMessages {
                 .encoder(GeShanDaNiuPacket2::toBytes)
                 .consumerMainThread(GeShanDaNiuPacket2::handle)
                 .add();
+        //麦块百科
+        net.messageBuilder(WheatNuggetEncyclopediaPacket.class, id())
+                .decoder(WheatNuggetEncyclopediaPacket::new)
+                .encoder(WheatNuggetEncyclopediaPacket::toBytes)
+                .consumerMainThread(WheatNuggetEncyclopediaPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message) {

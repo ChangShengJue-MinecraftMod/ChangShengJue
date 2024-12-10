@@ -19,6 +19,8 @@ import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_ca
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.wheat_nugget_encyclopedia.WheatNuggetEncyclopediaCapability;
+import com.shengchanshe.changshengjue.capability.martial_arts.wheat_nugget_encyclopedia.WheatNuggetEncyclopediaCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapability;
@@ -690,6 +692,8 @@ public class CSJEvent {
         ImmortalMiracleEvent.onPlayerTick(event);
         //隔山打牛
         GeShanDaNiuEvent.onPlayerTick(event);
+        //麦块百科
+        WheatNuggetEncyclopediaEvent.onPlayerTick(event);
     }
 
     //生物受伤事件
@@ -788,6 +792,10 @@ public class CSJEvent {
             if (!event.getObject().getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).isPresent()){
                 event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"ge_shan_da_niu_properties"),new GeShanDaNiuCapabilityProvider());
             }
+            //麦块百科
+            if (!event.getObject().getCapability(WheatNuggetEncyclopediaCapabilityProvider.WHEAT_NUGGET_ENCYCLOPEDIA_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"wheat_nugget_encyclopedia_properties"),new WheatNuggetEncyclopediaCapabilityProvider());
+            }
         }
     }
 
@@ -838,6 +846,9 @@ public class CSJEvent {
         //隔山打牛
         oldPlayer.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(newStore-> newStore.copyGeShanDaNiu(oldStore)));
+        //麦块百科
+        oldPlayer.getCapability(WheatNuggetEncyclopediaCapabilityProvider.WHEAT_NUGGET_ENCYCLOPEDIA_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(WheatNuggetEncyclopediaCapabilityProvider.WHEAT_NUGGET_ENCYCLOPEDIA_CAPABILITY).ifPresent(newStore-> newStore.copyWheatNuggetEncyclopedia(oldStore)));
         event.getOriginal().invalidateCaps();
     }
 
@@ -858,6 +869,7 @@ public class CSJEvent {
         event.register(ZhangMenXinxueCapabilityProvider.class);
         event.register(ImmortalMiracleCapabilityProvider.class);
         event.register(GeShanDaNiuCapabilityProvider.class);
+        event.register(WheatNuggetEncyclopediaCapabilityProvider.class);
     }
 
     @SubscribeEvent
@@ -931,5 +943,4 @@ public class CSJEvent {
             }
         }
     }
-
 }
