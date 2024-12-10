@@ -4,10 +4,12 @@ import com.shengchanshe.changshengjue.capability.martial_arts.ge_shan_da_niu.GeS
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ImmortalMiraclePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.SunflowerPointCavemanPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -72,6 +74,20 @@ public class GeShanDaNiu extends Item {
                                 immortalMiracle.getImmortalMiracleDachengTick(),
                                 immortalMiracle.isImmortalMiracleParticle(),
                                 immortalMiracle.getImmortalMiracleUseCooldownPercentMax()), (ServerPlayer) pPlayer);
+                    }
+                });
+                pPlayer.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
+                    if (turtleBreathWork.isTurtleBreathWorkOff() && !geShanDaNiu.isGeShanDaNiuOff()){
+                        turtleBreathWork.setTurtleBreathWorkOff(false);
+                        geShanDaNiu.setGeShanDaNiuOff(true);
+                        ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
+                                turtleBreathWork.getTurtleBreathWorkLevel(),
+                                turtleBreathWork.isTurtleBreathWorkComprehend(),
+                                turtleBreathWork.getTurtleBreathWorkUseCooldownPercent(),
+                                turtleBreathWork.isTurtleBreathWorkOff(),
+                                turtleBreathWork.getTurtleBreathWorkToppedTick(),
+                                turtleBreathWork.getTurtleBreathWorkDachengTick(),
+                                turtleBreathWork.isTurtleBreathWorkParticle()), (ServerPlayer) pPlayer);
                     }
                 });
                 if (!geShanDaNiu.isGeShanDaNiuComprehend()){

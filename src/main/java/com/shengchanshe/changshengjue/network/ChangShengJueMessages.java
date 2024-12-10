@@ -9,6 +9,8 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_ja
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket2;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket2;
 import com.shengchanshe.changshengjue.screen.plaque.UpdatePlaqueTextPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -119,6 +121,17 @@ public class ChangShengJueMessages {
                 .decoder(WheatNuggetEncyclopediaPacket::new)
                 .encoder(WheatNuggetEncyclopediaPacket::toBytes)
                 .consumerMainThread(WheatNuggetEncyclopediaPacket::handle)
+                .add();
+        //龟息功
+        net.messageBuilder(TurtleBreathWorkPacket.class, id())
+                .decoder(TurtleBreathWorkPacket::new)
+                .encoder(TurtleBreathWorkPacket::toBytes)
+                .consumerMainThread(TurtleBreathWorkPacket::handle)
+                .add();
+        net.messageBuilder(TurtleBreathWorkPacket2.class, id(),NetworkDirection.PLAY_TO_SERVER)
+                .decoder(TurtleBreathWorkPacket2::new)
+                .encoder(TurtleBreathWorkPacket2::toBytes)
+                .consumerMainThread(TurtleBreathWorkPacket2::handle)
                 .add();
     }
 

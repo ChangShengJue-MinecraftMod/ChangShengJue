@@ -65,7 +65,7 @@ public class SoftSword extends Sword implements GeoItem {
             if (itemstack.getItem() == ChangShengJueItems.SOFT_SWORD.get()) {
                 if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
                     pPlayer.getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(xuannuSwordsmanship -> {
-                        if (xuannuSwordsmanship.xuannuSwordsmanshipComprehend()) {
+                        if (xuannuSwordsmanship.xuannuSwordsmanshipComprehend() && xuannuSwordsmanship.getXuannuSwordsmanshipLevel() >= 1) {
                             this.onXuannuSwordsmanship(pLevel, xuannuSwordsmanship.getXuannuSwordsmanshipLevel(), pPlayer, xuannuSwordsmanship);
                             triggerAnim(pPlayer, GeoItem.getOrAssignId(pPlayer.getItemInHand(pUsedHand), (ServerLevel) pLevel), "Attack", "attack");
                         }
@@ -73,7 +73,7 @@ public class SoftSword extends Sword implements GeoItem {
                 }
             }
         }
-        return super.use(pLevel, pPlayer, pUsedHand);
+        return InteractionResultHolder.consume(pPlayer.getItemInHand(pUsedHand));
     }
     private void onXuannuSwordsmanship(Level pLevel, int martialArtsLevel, LivingEntity pEntity, XuannuSwordsmanshipCapability xuannuSwordsmanship) {
         float radius = 4.0f;//攻击半径

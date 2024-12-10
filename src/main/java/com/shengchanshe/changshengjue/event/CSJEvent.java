@@ -19,7 +19,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_ca
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapabilityProvider;
-import com.shengchanshe.changshengjue.capability.martial_arts.wheat_nugget_encyclopedia.WheatNuggetEncyclopediaCapability;
+import com.shengchanshe.changshengjue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.wheat_nugget_encyclopedia.WheatNuggetEncyclopediaCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapabilityProvider;
@@ -36,6 +36,7 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -54,6 +55,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.TradeWithVillagerEvent;
@@ -694,8 +696,13 @@ public class CSJEvent {
         GeShanDaNiuEvent.onPlayerTick(event);
         //麦块百科
         WheatNuggetEncyclopediaEvent.onPlayerTick(event);
+        //龟息功
+        TurtleBreathWorkEvent.onPlayerTick(event);
     }
-
+    //生物攻击事件
+    @SubscribeEvent
+    public static void onEntityAttack(LivingEvent.LivingTickEvent event){
+    }
     //生物受伤事件
     @SubscribeEvent
     public static void onEntityHurt(LivingDamageEvent event){
@@ -707,6 +714,7 @@ public class CSJEvent {
         GoldenBellJarEvent.onEntityHurt(event);
         ImmortalMiracleEvent.onEntityHurt(event);
         GeShanDaNiuEvent.onEntityHurt(event);
+        TurtleBreathWorkEvent.onEntityHurt(event);
     }
     //生物死亡事件
     @SubscribeEvent
@@ -719,17 +727,20 @@ public class CSJEvent {
         SunflowerPointCavemanEvent.onPlayerEntityInteract(event);
         GoldenBellJarEvent.onPlayerEntityInteract(event);
         GeShanDaNiuEvent.onPlayerEntityInteract(event);
+        TurtleBreathWorkEvent.onPlayerEntityInteract(event);
     }
     //玩家右键空气事件
     @SubscribeEvent
     public static void onPlayerRightClick(PlayerInteractEvent.RightClickEmpty event){
         GoldenBellJarEvent.onPlayerRightClick(event);
         GeShanDaNiuEvent.onPlayerRightClick(event);
+        TurtleBreathWorkEvent.onPlayerRightClick(event);
     }
     @SubscribeEvent
     public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
         GoldenBellJarEvent.onPlayerRightClickBlock(event);
         GeShanDaNiuEvent.onPlayerRightClickBlock(event);
+        TurtleBreathWorkEvent.onPlayerRightClickBlock(event);
     }
 
     //能力给予事件,给生物添加能力
@@ -796,6 +807,10 @@ public class CSJEvent {
             if (!event.getObject().getCapability(WheatNuggetEncyclopediaCapabilityProvider.WHEAT_NUGGET_ENCYCLOPEDIA_CAPABILITY).isPresent()){
                 event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"wheat_nugget_encyclopedia_properties"),new WheatNuggetEncyclopediaCapabilityProvider());
             }
+            //龟息功
+            if (!event.getObject().getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"turtle_breath_work_properties"),new TurtleBreathWorkCapabilityProvider());
+            }
         }
     }
 
@@ -849,6 +864,9 @@ public class CSJEvent {
         //麦块百科
         oldPlayer.getCapability(WheatNuggetEncyclopediaCapabilityProvider.WHEAT_NUGGET_ENCYCLOPEDIA_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(WheatNuggetEncyclopediaCapabilityProvider.WHEAT_NUGGET_ENCYCLOPEDIA_CAPABILITY).ifPresent(newStore-> newStore.copyWheatNuggetEncyclopedia(oldStore)));
+        //龟息功
+        oldPlayer.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(newStore-> newStore.copyTurtleBreathWork(oldStore)));
         event.getOriginal().invalidateCaps();
     }
 
@@ -870,6 +888,7 @@ public class CSJEvent {
         event.register(ImmortalMiracleCapabilityProvider.class);
         event.register(GeShanDaNiuCapabilityProvider.class);
         event.register(WheatNuggetEncyclopediaCapabilityProvider.class);
+        event.register(TurtleBreathWorkCapabilityProvider.class);
     }
 
     @SubscribeEvent
@@ -939,6 +958,16 @@ public class CSJEvent {
                             geShanDaNiu.getGeShanDaNiuDachengTick(),
                             geShanDaNiu.isGeShanDaNiuParticle(),
                             geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax()), player);
+                });
+                player.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
+                    ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
+                            turtleBreathWork.getTurtleBreathWorkLevel(),
+                            turtleBreathWork.isTurtleBreathWorkComprehend(),
+                            turtleBreathWork.getTurtleBreathWorkUseCooldownPercent(),
+                            turtleBreathWork.isTurtleBreathWorkOff(),
+                            turtleBreathWork.getTurtleBreathWorkToppedTick(),
+                            turtleBreathWork.getTurtleBreathWorkDachengTick(),
+                            turtleBreathWork.isTurtleBreathWorkParticle()), player);
                 });
             }
         }

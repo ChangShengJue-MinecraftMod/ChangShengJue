@@ -13,6 +13,7 @@ import com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle.I
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.shaolin_stick_method.ShaolinStickMethodHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_caveman.SunflowerPointCavemanHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceHudOverlay;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.turtle_breath_work.TurtleBreathWorkHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipHudOverlay;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.client.model.combat.FeiDaoModel;
@@ -69,6 +70,7 @@ public class CSJEventClientBusEvents {
         event.registerAboveAll("golden_bell_jar_hud", GoldenBellJarHudOverlay.HUD_GOLDEN_BELL_JAR);
         event.registerAboveAll("immortal_miracle_hud", ImmortalMiracleHudOverlay.HUD_IMMORTAL_MIRACLE);
         event.registerAboveAll("ge_shan_da_niu_hud", GeShanDaNiuHudOverlay.HUD_GE_SHAN_DA_NIU);
+        event.registerAboveAll("turtle_breath_work_hud", TurtleBreathWorkHudOverlay.HUD_TURTLE_BREATH_WORK);
     }
 
     @SubscribeEvent
