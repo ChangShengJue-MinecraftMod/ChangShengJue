@@ -5,21 +5,21 @@ import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.changshengjue.block.entity.render.*;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.dugu_nine_swords.DuguNineSwordsHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.gao_marksmanship.GaoMarksmanshipHudOverlay;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_bell_jar.GoldenBellJarHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle.ImmortalMiracleHudOverlay;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.relentless_throwing_knives.RelentlessThrowingKnivesHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.shaolin_stick_method.ShaolinStickMethodHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_caveman.SunflowerPointCavemanHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.turtle_breath_work.TurtleBreathWorkHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipHudOverlay;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
-import com.shengchanshe.changshengjue.entity.client.model.combat.FeiDaoModel;
+import com.shengchanshe.changshengjue.entity.client.model.combat.throwingknives.ThrowingKnivesEntityModel;
 import com.shengchanshe.changshengjue.entity.client.model.combat.stakes.StakesModel;
 import com.shengchanshe.changshengjue.entity.client.render.PeacockEggRender;
-import com.shengchanshe.changshengjue.entity.client.render.combat.FeiDaoEntityRender;
+import com.shengchanshe.changshengjue.entity.client.render.combat.throwingknives.ThrowingKnivesEntityEntityRender;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import com.shengchanshe.changshengjue.particle.custom.PoplarDefoliationParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendParticle;
@@ -41,7 +41,7 @@ public class CSJEventClientBusEvents {
     public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
         //投掷物的渲染
         event.registerEntityRenderer(ChangShengJueEntity.PEACOCK_EGG.get(), PeacockEggRender::new);
-        event.registerEntityRenderer(ChangShengJueEntity.FEI_DAO_ENTITY.get(), FeiDaoEntityRender::new);
+        event.registerEntityRenderer(ChangShengJueEntity.THROWING_KNIVES_ENTITY.get(), ThrowingKnivesEntityEntityRender::new);
         //方块实体的渲染
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.POTTERY_WHEEL_ENTITY.get(), PotteryWheelEntityRender::new);
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.TOOL_TABLE_ENTITY.get(), ToolTableEntityRender::new);
@@ -55,7 +55,7 @@ public class CSJEventClientBusEvents {
 
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        event.registerLayerDefinition(FeiDaoModel.LAYER_LOCATION,FeiDaoModel::createBodyLayer);
+        event.registerLayerDefinition(ThrowingKnivesEntityModel.LAYER_LOCATION, ThrowingKnivesEntityModel::createBodyLayer);
     }
 
     @SubscribeEvent
@@ -71,6 +71,7 @@ public class CSJEventClientBusEvents {
         event.registerAboveAll("immortal_miracle_hud", ImmortalMiracleHudOverlay.HUD_IMMORTAL_MIRACLE);
         event.registerAboveAll("ge_shan_da_niu_hud", GeShanDaNiuHudOverlay.HUD_GE_SHAN_DA_NIU);
         event.registerAboveAll("turtle_breath_work_hud", TurtleBreathWorkHudOverlay.HUD_TURTLE_BREATH_WORK);
+        event.registerAboveAll("relentless_throwing_knives_hud", RelentlessThrowingKnivesHudOverlay.HUD_RELENTLESS_THROWING_KNIVES);
     }
 
     @SubscribeEvent

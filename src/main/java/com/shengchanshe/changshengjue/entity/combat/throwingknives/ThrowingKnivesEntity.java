@@ -1,7 +1,10 @@
-package com.shengchanshe.changshengjue.entity.combat.feidao;
+package com.shengchanshe.changshengjue.entity.combat.throwingknives;
 
+import com.shengchanshe.changshengjue.capability.martial_arts.relentless_throwing_knives.RelentlessThrowingKnivesCapabilityProvider;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.RelentlessThrowingKnivesPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -16,6 +19,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -23,18 +27,18 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
-public class FeiDaoEntity extends AbstractArrow {
-    private static final EntityDataAccessor<Byte> ID_LOYALTY = SynchedEntityData.defineId(FeiDaoEntity.class, EntityDataSerializers.BYTE);
-    private static final EntityDataAccessor<Boolean> ID_FOIL = SynchedEntityData.defineId(FeiDaoEntity.class, EntityDataSerializers.BOOLEAN);
-    private ItemStack feiDaoItem = new ItemStack(ChangShengJueItems.FEI_DAO.get());
+public class ThrowingKnivesEntity extends AbstractArrow {
+    private static final EntityDataAccessor<Byte> ID_LOYALTY = SynchedEntityData.defineId(ThrowingKnivesEntity.class, EntityDataSerializers.BYTE);
+    private static final EntityDataAccessor<Boolean> ID_FOIL = SynchedEntityData.defineId(ThrowingKnivesEntity.class, EntityDataSerializers.BOOLEAN);
+    private ItemStack throwingKnivesItem = new ItemStack(ChangShengJueItems.THROWING_KNIVES.get());
     private boolean dealtDamage;
     public int clientSideReturnTridentTickCount;
-    public FeiDaoEntity(EntityType<? extends FeiDaoEntity> pEntityType, Level pLevel) {
+    public ThrowingKnivesEntity(EntityType<? extends ThrowingKnivesEntity> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
-    public FeiDaoEntity(Level pLevel, LivingEntity pShooter, ItemStack pStack) {
-        super(ChangShengJueEntity.FEI_DAO_ENTITY.get(), pShooter, pLevel);
-        this.feiDaoItem = pStack.copy();
+    public ThrowingKnivesEntity(Level pLevel, LivingEntity pShooter, ItemStack pStack) {
+        super(ChangShengJueEntity.THROWING_KNIVES_ENTITY.get(), pShooter, pLevel);
+        this.throwingKnivesItem = pStack.copy();
         this.entityData.set(ID_LOYALTY, (byte) EnchantmentHelper.getLoyalty(pStack));
         this.entityData.set(ID_FOIL, pStack.hasFoil());
     }
@@ -79,33 +83,59 @@ public class FeiDaoEntity extends AbstractArrow {
         super.tick();
     }
 
+    @Override
     protected void onHitEntity(EntityHitResult pResult) {
         Entity entity = pResult.getEntity();
-        float f = 7.0F;
+        final float[] f = {7.0F};
         if (entity instanceof LivingEntity livingentity) {
-            f += EnchantmentHelper.getDamageBonus(this.feiDaoItem, livingentity.getMobType());
+            f[0] += EnchantmentHelper.getDamageBonus(this.throwingKnivesItem, livingentity.getMobType());
         }
 
         Entity entity1 = this.getOwner();
         DamageSource damagesource = this.damageSources().trident(this, entity1 == null ? this : entity1);
+        if (entity1 != null && !entity1.level().isClientSide && entity1 instanceof Player player){
+            entity1.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(relentlessThrowingKnives -> {
+                if (relentlessThrowingKnives.getRelentlessThrowingKnivesLevel() > 0){
+                    if (relentlessThrowingKnives.getRelentlessThrowingKnivesUseCooldownPercent() <= 0){
+                        if (player.getFoodData().getFoodLevel() > 8){
+                            if (!player.getAbilities().instabuild){
+                                player.getFoodData().eat(-3, -2);// 消耗饱食度
+                            }
+                            f[0] = relentlessThrowingKnives.getRelentlessThrowingKnivesLevel() <= 1 ? f[0] * 1.25F: f[0] * 1.5F;
+                            relentlessThrowingKnives.setRelentlessThrowingKnivesUseCooldownPercent(!player.getAbilities().instabuild ? 160 : 0);
+                            if (relentlessThrowingKnives.isRelentlessThrowingKnivesComprehend() && relentlessThrowingKnives.getRelentlessThrowingKnivesLevel() == 1){
+                                if (relentlessThrowingKnives.getRelentlessThrowingKnivesUseCount() <= 100){
+                                    relentlessThrowingKnives.addRelentlessThrowingKnivesUseCount(!player.getAbilities().instabuild ? 1 : 100);
+                                    relentlessThrowingKnives.setRelentlessThrowingKnivesParticle(true);
+                                }
+                            }
+                            ChangShengJueMessages.sendToPlayer(new RelentlessThrowingKnivesPacket(relentlessThrowingKnives.getRelentlessThrowingKnivesLevel(),
+                                    relentlessThrowingKnives.isRelentlessThrowingKnivesComprehend(),
+                                    relentlessThrowingKnives.getRelentlessThrowingKnivesUseCooldownPercent(),
+                                    relentlessThrowingKnives.getRelentlessThrowingKnivesToppedTick(),
+                                    relentlessThrowingKnives.getRelentlessThrowingKnivesDachengTick(),
+                                    relentlessThrowingKnives.isRelentlessThrowingKnivesParticle()), (ServerPlayer) entity1);
+                        }
+                    }
+                }
+            });
+        }
         this.dealtDamage = true;
         SoundEvent soundevent = SoundEvents.TRIDENT_HIT;
-        if (entity.hurt(damagesource, f)) {
+        if (entity.hurt(damagesource, f[0])) {
             if (entity.getType() == EntityType.ENDERMAN) {
                 return;
             }
 
-            if (entity instanceof LivingEntity) {
-                LivingEntity livingentity1 = (LivingEntity)entity;
+            if (entity instanceof LivingEntity livingentity1) {
                 if (entity1 instanceof LivingEntity) {
                     EnchantmentHelper.doPostHurtEffects(livingentity1, entity1);
-                    EnchantmentHelper.doPostDamageEffects((LivingEntity)entity1, livingentity1);
+                    EnchantmentHelper.doPostDamageEffects((LivingEntity) entity1, livingentity1);
                 }
 
                 this.doPostHurtEffects(livingentity1);
             }
         }
-
         this.setDeltaMovement(this.getDeltaMovement().multiply(-0.01D, -0.1D, -0.01D));
         float f1 = 1.0F;
         if (this.level() instanceof ServerLevel && this.level().isThundering() && this.isChanneling()) {
@@ -126,7 +156,7 @@ public class FeiDaoEntity extends AbstractArrow {
     }
 
     public boolean isChanneling() {
-        return EnchantmentHelper.hasChanneling(this.feiDaoItem);
+        return EnchantmentHelper.hasChanneling(this.throwingKnivesItem);
     }
 
 
@@ -144,22 +174,22 @@ public class FeiDaoEntity extends AbstractArrow {
 
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
-        if (pCompound.contains("FeiDao", 10)) {
-            this.feiDaoItem = ItemStack.of(pCompound.getCompound("FeiDao"));
+        if (pCompound.contains("ThrowingKnives", 10)) {
+            this.throwingKnivesItem = ItemStack.of(pCompound.getCompound("ThrowingKnives"));
         }
 
         this.dealtDamage = pCompound.getBoolean("DealtDamage");
-        this.entityData.set(ID_LOYALTY, (byte)EnchantmentHelper.getLoyalty(this.feiDaoItem));
+        this.entityData.set(ID_LOYALTY, (byte)EnchantmentHelper.getLoyalty(this.throwingKnivesItem));
     }
 
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
-        pCompound.put("FeiDao", this.feiDaoItem.save(new CompoundTag()));
+        pCompound.put("ThrowingKnives", this.throwingKnivesItem.save(new CompoundTag()));
         pCompound.putBoolean("DealtDamage", this.dealtDamage);
     }
 
     @Override
     protected ItemStack getPickupItem() {
-        return this.feiDaoItem.copy();
+        return this.throwingKnivesItem.copy();
     }
 }

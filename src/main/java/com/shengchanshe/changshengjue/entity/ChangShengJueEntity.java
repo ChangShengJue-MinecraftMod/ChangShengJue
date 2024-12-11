@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.entity;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntity;
+import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntity;
 import com.shengchanshe.changshengjue.entity.combat.ge_shan_da_niu.GeShanDaNiuEntity;
 import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntity;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
@@ -12,7 +13,6 @@ import com.shengchanshe.changshengjue.entity.custom.peacock.FemalePeacockEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.MalePeacockEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.PeacockEgg;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerEntity;
-import com.shengchanshe.changshengjue.entity.combat.feidao.FeiDaoEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -127,9 +127,9 @@ public class ChangShengJueEntity {
             () -> EntityType.Builder.<PeacockEgg>of(PeacockEgg::new, MobCategory.MISC).sized(0.25F, 0.25F)
                     .setTrackingRange(4).updateInterval(10).build("peacock_egg"));
 
-    public static final RegistryObject<EntityType<FeiDaoEntity>> FEI_DAO_ENTITY = ENTITY_TYPES.register("fei_dao_entity",
-            () -> EntityType.Builder.<FeiDaoEntity>of(FeiDaoEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
-                    .setTrackingRange(4).updateInterval(10).build("fei_dao_entity"));
+    public static final RegistryObject<EntityType<ThrowingKnivesEntity>> THROWING_KNIVES_ENTITY = ENTITY_TYPES.register("throwing_knives_entity",
+            () -> EntityType.Builder.<ThrowingKnivesEntity>of(ThrowingKnivesEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
+                    .setTrackingRange(4).updateInterval(10).build("throwing_knives_entity"));
 
 
 

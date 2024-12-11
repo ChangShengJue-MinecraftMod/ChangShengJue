@@ -7,7 +7,6 @@ import com.shengchanshe.changshengjue.util.CSJTags;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -345,8 +344,14 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("$")
                 .unlockedBy("has_ingots_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
         //飞刀
-        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.FEI_DAO.get()).requires(Ingredient.of(Tags.Items.INGOTS_IRON),1)
-                .unlockedBy("has_iron",has(ChangShengJueItems.FEI_DAO.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.THROWING_KNIVES.get()).requires(Ingredient.of(Tags.Items.INGOTS_IRON),1)
+                .unlockedBy("has_iron",has(Tags.Items.INGOTS_IRON)).save(consumer);
+        //三把飞刀
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.THREE_THROWING_KNIVES.get()).requires(Ingredient.of(ChangShengJueItems.THROWING_KNIVES.get()),3)
+                .unlockedBy("has_throwing_knives",has(ChangShengJueItems.THROWING_KNIVES.get())).save(consumer);
+        //七把飞刀
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.SEVEN_THROWING_KNIVES.get()).requires(Ingredient.of(ChangShengJueItems.THROWING_KNIVES.get()),7)
+                .unlockedBy("has_throwing_knives",has(ChangShengJueItems.THROWING_KNIVES.get())).save(consumer);
         //盘花棍
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.PAN_HUA_GUN.get(),1)
                 .define('#', Ingredient.of(Tags.Items.INGOTS_GOLD))

@@ -13,6 +13,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife
 import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.relentless_throwing_knives.RelentlessThrowingKnivesCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapability;
@@ -28,6 +29,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmansh
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.relentless_throwing_knives.RelentlessThrowingKnivesClientData;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.event.martial_arts.*;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
@@ -698,6 +700,8 @@ public class CSJEvent {
         WheatNuggetEncyclopediaEvent.onPlayerTick(event);
         //龟息功
         TurtleBreathWorkEvent.onPlayerTick(event);
+        //无情飞刀
+        RelentlessThrowingKnivesEvent.onPlayerTick(event);
     }
     //生物攻击事件
     @SubscribeEvent
@@ -811,6 +815,10 @@ public class CSJEvent {
             if (!event.getObject().getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).isPresent()){
                 event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"turtle_breath_work_properties"),new TurtleBreathWorkCapabilityProvider());
             }
+            //无情飞刀
+            if (!event.getObject().getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"relentless_throwing_knives_properties"),new RelentlessThrowingKnivesCapabilityProvider());
+            }
         }
     }
 
@@ -867,6 +875,10 @@ public class CSJEvent {
         //龟息功
         oldPlayer.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(newStore-> newStore.copyTurtleBreathWork(oldStore)));
+        //无情飞刀
+        oldPlayer.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(newStore-> newStore.copyRelentlessThrowingKnives(oldStore)));
+
         event.getOriginal().invalidateCaps();
     }
 
@@ -889,6 +901,7 @@ public class CSJEvent {
         event.register(GeShanDaNiuCapabilityProvider.class);
         event.register(WheatNuggetEncyclopediaCapabilityProvider.class);
         event.register(TurtleBreathWorkCapabilityProvider.class);
+        event.register(RelentlessThrowingKnivesCapabilityProvider.class);
     }
 
     @SubscribeEvent
@@ -968,6 +981,15 @@ public class CSJEvent {
                             turtleBreathWork.getTurtleBreathWorkToppedTick(),
                             turtleBreathWork.getTurtleBreathWorkDachengTick(),
                             turtleBreathWork.isTurtleBreathWorkParticle()), player);
+                });
+                player.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(relentlessThrowingKnives -> {
+                    ChangShengJueMessages.sendToPlayer(new RelentlessThrowingKnivesPacket(
+                            relentlessThrowingKnives.getRelentlessThrowingKnivesLevel(),
+                            relentlessThrowingKnives.isRelentlessThrowingKnivesComprehend(),
+                            relentlessThrowingKnives.getRelentlessThrowingKnivesUseCooldownPercent(),
+                            relentlessThrowingKnives.getRelentlessThrowingKnivesToppedTick(),
+                            relentlessThrowingKnives.getRelentlessThrowingKnivesDachengTick(),
+                            relentlessThrowingKnives.isRelentlessThrowingKnivesParticle()), player);
                 });
             }
         }

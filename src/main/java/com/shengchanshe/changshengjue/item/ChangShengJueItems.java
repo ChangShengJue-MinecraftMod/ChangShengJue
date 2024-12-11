@@ -12,7 +12,6 @@ import com.shengchanshe.changshengjue.item.combat.armor.wedding.RedDress;
 import com.shengchanshe.changshengjue.item.combat.book.*;
 import com.shengchanshe.changshengjue.item.combat.clubbed.BeatDogStick;
 import com.shengchanshe.changshengjue.item.combat.clubbed.PanHuaGun;
-import com.shengchanshe.changshengjue.item.combat.feidao.FeiDao;
 import com.shengchanshe.changshengjue.item.combat.knife.HengDao;
 import com.shengchanshe.changshengjue.item.combat.knife.KitchenKnife;
 import com.shengchanshe.changshengjue.item.combat.knife.LargeKnife;
@@ -24,6 +23,9 @@ import com.shengchanshe.changshengjue.item.combat.sword.BronzeSword;
 import com.shengchanshe.changshengjue.item.combat.sword.HanJian;
 import com.shengchanshe.changshengjue.item.combat.sword.SoftSword;
 import com.shengchanshe.changshengjue.item.combat.sword.YiTianJian;
+import com.shengchanshe.changshengjue.item.combat.throwingknives.SevenThrowingKnives;
+import com.shengchanshe.changshengjue.item.combat.throwingknives.ThreeThrowingKnives;
+import com.shengchanshe.changshengjue.item.combat.throwingknives.ThrowingKnives;
 import com.shengchanshe.changshengjue.item.combat.tiers.ChangShengJueArmorMaterials;
 import com.shengchanshe.changshengjue.item.foods.*;
 import com.shengchanshe.changshengjue.item.items.Crucible;
@@ -326,8 +328,12 @@ public class ChangShengJueItems {
             ()-> new PanHuaGun());
     public static final RegistryObject<Item> KITCHEN_KNIFE = ITEMS.register("kitchen_knife",
             ()-> new KitchenKnife());
-    public static final RegistryObject<Item> FEI_DAO = ITEMS.register("fei_dao",
-            ()-> new FeiDao());
+    public static final RegistryObject<Item> THROWING_KNIVES = ITEMS.register("throwing_knives",
+            ()-> new ThrowingKnives());
+    public static final RegistryObject<Item> THREE_THROWING_KNIVES = ITEMS.register("three_throwing_knives",
+            ()-> new ThreeThrowingKnives());
+    public static final RegistryObject<Item> SEVEN_THROWING_KNIVES = ITEMS.register("seven_throwing_knives",
+            ()-> new SevenThrowingKnives());
     //蓝边棉甲
     public static final RegistryObject<Item> BLUE_COTTON_ARMOR_HELMET = ITEMS.register("blue_cotton_armor_helmet",
             ()-> new BlueCottonArmor(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.HELMET,new Item.Properties()));

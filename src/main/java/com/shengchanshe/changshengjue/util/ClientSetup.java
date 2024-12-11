@@ -6,7 +6,7 @@ import com.shengchanshe.changshengjue.entity.client.render.*;
 import com.shengchanshe.changshengjue.entity.client.render.combat.ge_shan_da_niu.GeShanDaNiuRender;
 import com.shengchanshe.changshengjue.entity.client.render.combat.stakes.StakesRender;
 import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntityRender;
-import com.shengchanshe.changshengjue.entity.client.render.combat.FeiDaoEntityRender;
+import com.shengchanshe.changshengjue.entity.client.render.combat.throwingknives.ThrowingKnivesEntityEntityRender;
 import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntityRender;
 import com.shengchanshe.changshengjue.entity.villagers.render.ChangShengJueVillagerRender;
 import com.shengchanshe.changshengjue.screen.ChangShengJueMenuTypes;
@@ -162,7 +162,7 @@ public class ClientSetup {
         EntityRenderers.register(ChangShengJueEntity.CROC_ENTITY.get(), CrocRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER.get(), ChangShengJueVillagerRender::new);
 
-        EntityRenderers.register(ChangShengJueEntity.FEI_DAO_ENTITY.get(), FeiDaoEntityRender::new);
+        EntityRenderers.register(ChangShengJueEntity.THROWING_KNIVES_ENTITY.get(), ThrowingKnivesEntityEntityRender::new);
         EntityRenderers.register(ChangShengJueEntity.GE_SHAN_DA_NIU.get(), GeShanDaNiuRender::new);
 
         EntityRenderers.register(ChangShengJueEntity.DUGU_NINE_SOWRDS_ENTITY.get(), DuguNineSwordsEntityRender::new);

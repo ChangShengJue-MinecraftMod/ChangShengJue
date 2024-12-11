@@ -133,6 +133,12 @@ public class ChangShengJueMessages {
                 .encoder(TurtleBreathWorkPacket2::toBytes)
                 .consumerMainThread(TurtleBreathWorkPacket2::handle)
                 .add();
+        //无情飞刀
+        net.messageBuilder(RelentlessThrowingKnivesPacket.class, id())
+                .decoder(RelentlessThrowingKnivesPacket::new)
+                .encoder(RelentlessThrowingKnivesPacket::toBytes)
+                .consumerMainThread(RelentlessThrowingKnivesPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message) {

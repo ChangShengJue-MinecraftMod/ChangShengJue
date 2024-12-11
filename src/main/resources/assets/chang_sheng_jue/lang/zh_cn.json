@@ -104,7 +104,9 @@
   "item.chang_sheng_jue.soft_sword": "软剑",
   "item.chang_sheng_jue.pan_hua_gun": "盘花棍",
   "item.chang_sheng_jue.kitchen_knife": "菜刀",
-  "item.chang_sheng_jue.fei_dao": "飞刀",
+  "item.chang_sheng_jue.throwing_knives": "飞刀",
+  "item.chang_sheng_jue.three_throwing_knives": "飞刀",
+  "item.chang_sheng_jue.seven_throwing_knives": "飞刀",
   "item.chang_sheng_jue.beat_dog_stick": "打狗棒",
   "item.chang_sheng_jue.yi_tina_jian": "倚天剑",
   "item.chang_sheng_jue.tu_long_dao": "屠龙刀",
@@ -164,6 +166,7 @@
   "item.chang_sheng_jue.tread_the_snow_without_trace": "踏雪无痕",
   "tooltip.chang_sheng_jue.tread_the_snow_without_trace.tooltip": "来去无影无踪，逍遥自在。",
   "item.chang_sheng_jue.relentless_throwing_knives": "无情飞刀",
+  "tooltip.chang_sheng_jue.relentless_throwing_knives.tooltip": "无情飞刀人有情义，人有情义飞刀无情。",
   "item.chang_sheng_jue.wu_gang_cut_gui": "吴刚伐桂",
   "tooltip.chang_sheng_jue.wu_gang_cut_gui.tooltip": "何意杀人技，不如快人心。",
   "item.chang_sheng_jue.xuannu_swordsmanship": "玄女剑法",
@@ -261,7 +264,7 @@
   "block.chang_sheng_jue.potted_kochia_scoparia_block": "地肤草",
 
   "block.chang_sheng_jue.shui_xian_block": "水仙花",
-  "block.chang_sheng_jue.potted_kochia_scoparia_block": "水仙花",
+  "block.chang_sheng_jue.potted_shui_xian_block": "水仙花",
 
   "block.chang_sheng_jue.tan_hua_block": "昙花",
   "block.chang_sheng_jue.potted_tan_hua_block": "昙花",

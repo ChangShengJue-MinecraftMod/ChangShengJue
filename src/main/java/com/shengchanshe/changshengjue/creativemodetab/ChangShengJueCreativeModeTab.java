@@ -347,7 +347,9 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.SOFT_SWORD.get());
                 output.accept(ChangShengJueItems.PAN_HUA_GUN.get());
                 output.accept(ChangShengJueItems.KITCHEN_KNIFE.get());
-                output.accept(ChangShengJueItems.FEI_DAO.get());
+                output.accept(ChangShengJueItems.THROWING_KNIVES.get());
+                output.accept(ChangShengJueItems.THREE_THROWING_KNIVES.get());
+                output.accept(ChangShengJueItems.SEVEN_THROWING_KNIVES.get());
                 output.accept(ChangShengJueItems.BLUE_COTTON_ARMOR_HELMET.get());
                 output.accept(ChangShengJueItems.BLUE_COTTON_ARMOR_CHESTPLATE.get());
                 output.accept(ChangShengJueItems.BLUE_COTTON_ARMOR_LEGGINGS.get());
