@@ -4,10 +4,10 @@ public class GoldenBellJarClientData {
     // 玩家的技能等级和是否学习了技能
     private static int goldenBellJarLevel;
     private static boolean goldenBellJarComprehend;
-    private static int goldenBellJarUseCooldownPercent;
+    private static float goldenBellJarUseCooldownPercent;
     private static boolean goldenBellJarOff;
-    private static int goldenBellJarToppedTick;//技能领悟特效计时
-    private static int goldenBellJarDachengTick;//技能大成特效计时
+    private static float goldenBellJarToppedTick;//技能领悟特效计时
+    private static float goldenBellJarDachengTick;//技能大成特效计时
     private static boolean goldenBellJarParticle;//技能特效显示
 
     //获取技能等级
@@ -19,11 +19,11 @@ public class GoldenBellJarClientData {
         GoldenBellJarClientData.goldenBellJarLevel = goldenBellJarLevel;
     }
 
-    public static int getGoldenBellJarUseCooldownPercent() {
+    public static float getGoldenBellJarUseCooldownPercent() {
         return goldenBellJarUseCooldownPercent;
     }
 
-    public static void setGoldenBellJarUseCooldownPercent(int goldenBellJarComprehend) {
+    public static void setGoldenBellJarUseCooldownPercent(float goldenBellJarComprehend) {
         GoldenBellJarClientData.goldenBellJarUseCooldownPercent = goldenBellJarComprehend;
     }
 
@@ -44,19 +44,19 @@ public class GoldenBellJarClientData {
     }
 
 
-    public static int getGoldenBellJarToppedTick() {
+    public static float getGoldenBellJarToppedTick() {
         return goldenBellJarToppedTick;
     }
 
-    public static void setGoldenBellJarToppedTick(int goldenBellJarToppedTick) {
+    public static void setGoldenBellJarToppedTick(float goldenBellJarToppedTick) {
         GoldenBellJarClientData.goldenBellJarToppedTick = goldenBellJarToppedTick;
     }
 
-    public static int getGoldenBellJarDachengTick() {
+    public static float getGoldenBellJarDachengTick() {
         return goldenBellJarDachengTick;
     }
 
-    public static void setGoldenBellJarDachengTick(int goldenBellJarDachengTick) {
+    public static void setGoldenBellJarDachengTick(float goldenBellJarDachengTick) {
         GoldenBellJarClientData.goldenBellJarDachengTick = goldenBellJarDachengTick;
     }
 

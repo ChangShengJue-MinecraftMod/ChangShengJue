@@ -6,12 +6,12 @@ public class ImmortalMiracleCapability {
     private int immortalMiracleLevel = 0;//技能等级
     private boolean immortalMiracleComprehend = false;//是否领悟
     private int immortalMiracleUseCount = 0;//使用次数
-    private int immortalMiracleUseCooldownPercent = 0;//技能冷却
+    private float immortalMiracleUseCooldownPercent = 0;//技能冷却
     private boolean immortalMiracleOff = false;//技能是否启用
-    private int immortalMiracleToppedTick = 0;//技能领悟特效计时
-    private int immortalMiracleDachengTick = 0;//技能领悟特效计时
+    private float immortalMiracleToppedTick = 0;//技能领悟特效计时
+    private float immortalMiracleDachengTick = 0;//技能领悟特效计时
     private boolean immortalMiracleParticle = false;//技能特效显示
-    private int immortalMiracleUseCooldownPercentMax = 1600;//技能总冷却时间
+    private float immortalMiracleUseCooldownPercentMax = 1600;//技能总冷却时间
 
 
     public int getImmortalMiracleLevel() {
@@ -38,20 +38,20 @@ public class ImmortalMiracleCapability {
         }
     }
 
-    public int getImmortalMiracleUseCooldownPercent() {
+    public float getImmortalMiracleUseCooldownPercent() {
         return immortalMiracleUseCooldownPercent;
     }
-    public int setImmortalMiracleUseCooldownPercent() {
+    public float setImmortalMiracleUseCooldownPercent() {
         return this.immortalMiracleUseCooldownPercent--;
     }
-    public void setImmortalMiracleUseCooldownPercent(int immortalMiracleUseCooldownPercent) {
+    public void setImmortalMiracleUseCooldownPercent(float immortalMiracleUseCooldownPercent) {
         this.immortalMiracleUseCooldownPercent = immortalMiracleUseCooldownPercent;
     }
 
-    public int getImmortalMiracleUseCooldownPercentMax() {
+    public float getImmortalMiracleUseCooldownPercentMax() {
         return immortalMiracleUseCooldownPercentMax;
     }
-    public int setImmortalMiracleUseCooldownPercentMax(int immortalMiracleUseCooldownPercentMax) {
+    public float setImmortalMiracleUseCooldownPercentMax(float immortalMiracleUseCooldownPercentMax) {
         return this.immortalMiracleUseCooldownPercentMax = immortalMiracleUseCooldownPercentMax;
     }
 
@@ -62,25 +62,25 @@ public class ImmortalMiracleCapability {
         return this.immortalMiracleOff;
     }
 
-    public int getImmortalMiracleToppedTick() {
+    public float getImmortalMiracleToppedTick() {
         if (this.immortalMiracleParticle && this.immortalMiracleToppedTick >= 80){
             this.immortalMiracleToppedTick = 0;
             this.immortalMiracleParticle = false;
         }
         return immortalMiracleToppedTick;
     }
-    public int setImmortalMiracleToppedTick() {
+    public float setImmortalMiracleToppedTick() {
         return this.immortalMiracleToppedTick++;
     }
 
-    public int getImmortalMiracleDachengTick() {
+    public float getImmortalMiracleDachengTick() {
         if (this.immortalMiracleParticle && this.immortalMiracleDachengTick >= 30){
             this.immortalMiracleDachengTick = 0;
             this.immortalMiracleParticle = false;
         }
         return immortalMiracleDachengTick;
     }
-    public int setImmortalMiracleDachengTick() {
+    public float setImmortalMiracleDachengTick() {
         return this.immortalMiracleDachengTick++;
     }
 
@@ -108,24 +108,24 @@ public class ImmortalMiracleCapability {
         nbt.putInt("ImmortalMiracleLevel", immortalMiracleLevel);
         nbt.putInt("ImmortalMiracleUseCount", immortalMiracleUseCount);
         nbt.putBoolean("ImmortalMiracleComprehend",immortalMiracleComprehend);
-        nbt.putInt("ImmortalMiracleUseCooldownPercent",immortalMiracleUseCooldownPercent);
+        nbt.putFloat("ImmortalMiracleUseCooldownPercent",immortalMiracleUseCooldownPercent);
         nbt.putBoolean("ImmortalMiracleOff",immortalMiracleOff);
-        nbt.putInt("ImmortalMiracleToppedTick",immortalMiracleToppedTick);
-        nbt.putInt("ImmortalMiracleDachengTick",immortalMiracleDachengTick);
+        nbt.putFloat("ImmortalMiracleToppedTick",immortalMiracleToppedTick);
+        nbt.putFloat("ImmortalMiracleDachengTick",immortalMiracleDachengTick);
         nbt.putBoolean("ImmortalMiracleParticle",immortalMiracleParticle);
-        nbt.putInt("ImmortalMiracleUseCooldownPercentMax",immortalMiracleUseCooldownPercentMax);
+        nbt.putFloat("ImmortalMiracleUseCooldownPercentMax",immortalMiracleUseCooldownPercentMax);
     }
 
     // 从 NBT 数据中加载能力
     public void loadNBTData(CompoundTag nbt) {
         immortalMiracleLevel = nbt.getInt("ImmortalMiracleLevel");
         immortalMiracleUseCount = nbt.getInt("ImmortalMiracleUseCount");
-        immortalMiracleUseCooldownPercent = nbt.getInt("ImmortalMiracleUseCooldownPercent");
+        immortalMiracleUseCooldownPercent = nbt.getFloat("ImmortalMiracleUseCooldownPercent");
         immortalMiracleComprehend = nbt.getBoolean("ImmortalMiracleComprehend");
         immortalMiracleOff = nbt.getBoolean("ImmortalMiracleOff");
-        immortalMiracleToppedTick = nbt.getInt("ImmortalMiracleToppedTick");
-        immortalMiracleDachengTick = nbt.getInt("ImmortalMiracleDachengTick");
+        immortalMiracleToppedTick = nbt.getFloat("ImmortalMiracleToppedTick");
+        immortalMiracleDachengTick = nbt.getFloat("ImmortalMiracleDachengTick");
         immortalMiracleParticle = nbt.getBoolean("ImmortalMiracleParticle");
-        immortalMiracleUseCooldownPercentMax = nbt.getInt("ImmortalMiracleUseCooldownPercentMax");
+        immortalMiracleUseCooldownPercentMax = nbt.getFloat("ImmortalMiracleUseCooldownPercentMax");
     }
 }

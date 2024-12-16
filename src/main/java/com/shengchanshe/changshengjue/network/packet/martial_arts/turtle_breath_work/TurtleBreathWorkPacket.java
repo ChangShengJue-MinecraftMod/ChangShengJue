@@ -9,14 +9,14 @@ import java.util.function.Supplier;
 public class TurtleBreathWorkPacket {
     private final int turtleBreathWorkLevel;
     private final boolean turtleBreathWorkComprehend;
-    private int turtleBreathWorkUseCooldownPercent;
+    private float turtleBreathWorkUseCooldownPercent;
     private boolean turtleBreathWorkOff;//技能是否启用
-    private int turtleBreathWorkToppedTick;//技能领悟特效计时
-    private int turtleBreathWorkDachengTick;//技能领悟特效计时
+    private float turtleBreathWorkToppedTick;//技能领悟特效计时
+    private float turtleBreathWorkDachengTick;//技能领悟特效计时
     private boolean turtleBreathWorkParticle;//技能特效显示
 
-    public TurtleBreathWorkPacket(int turtleBreathWorkLevel, boolean turtleBreathWorkComprehend, int turtleBreathWorkUseCooldownPercent, boolean turtleBreathWorkOff,
-                                  int turtleBreathWorkToppedTick, int turtleBreathWorkDachengTick, boolean turtleBreathWorkParticle){
+    public TurtleBreathWorkPacket(int turtleBreathWorkLevel, boolean turtleBreathWorkComprehend, float turtleBreathWorkUseCooldownPercent, boolean turtleBreathWorkOff,
+                                  float turtleBreathWorkToppedTick, float turtleBreathWorkDachengTick, boolean turtleBreathWorkParticle){
         this.turtleBreathWorkLevel = turtleBreathWorkLevel;
         this.turtleBreathWorkComprehend = turtleBreathWorkComprehend;
         this.turtleBreathWorkUseCooldownPercent = turtleBreathWorkUseCooldownPercent;
@@ -29,21 +29,21 @@ public class TurtleBreathWorkPacket {
     public TurtleBreathWorkPacket(FriendlyByteBuf buf){
         this.turtleBreathWorkLevel = buf.readInt();
         this.turtleBreathWorkComprehend = buf.readBoolean();
-        this.turtleBreathWorkUseCooldownPercent = buf.readInt();
+        this.turtleBreathWorkUseCooldownPercent = buf.readFloat();
         this.turtleBreathWorkOff = buf.readBoolean();
 
-        this.turtleBreathWorkToppedTick = buf.readInt();
-        this.turtleBreathWorkDachengTick = buf.readInt();
+        this.turtleBreathWorkToppedTick = buf.readFloat();
+        this.turtleBreathWorkDachengTick = buf.readFloat();
         this.turtleBreathWorkParticle = buf.readBoolean();
     }
 
     public void toBytes(FriendlyByteBuf buf){
         buf.writeInt(turtleBreathWorkLevel);
         buf.writeBoolean(turtleBreathWorkComprehend);
-        buf.writeInt(turtleBreathWorkUseCooldownPercent);
+        buf.writeFloat(turtleBreathWorkUseCooldownPercent);
         buf.writeBoolean(turtleBreathWorkOff);
-        buf.writeInt(turtleBreathWorkToppedTick);
-        buf.writeInt(turtleBreathWorkDachengTick);
+        buf.writeFloat(turtleBreathWorkToppedTick);
+        buf.writeFloat(turtleBreathWorkDachengTick);
         buf.writeBoolean(turtleBreathWorkParticle);
     }
 

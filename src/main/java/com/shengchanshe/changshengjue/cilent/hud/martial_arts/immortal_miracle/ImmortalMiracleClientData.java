@@ -4,12 +4,12 @@ public class ImmortalMiracleClientData {
     // 玩家的技能等级和是否学习了技能
     private static int immortalMiracleLevel;
     private static boolean immortalMiracleComprehend;
-    private static int immortalMiracleUseCooldownPercent;
+    private static float immortalMiracleUseCooldownPercent;
     private static boolean immortalMiracleOff;
-    private static int immortalMiracleToppedTick;//技能领悟特效计时
-    private static int immortalMiracleDachengTick;//技能大成特效计时
+    private static float immortalMiracleToppedTick;//技能领悟特效计时
+    private static float immortalMiracleDachengTick;//技能大成特效计时
     private static boolean immortalMiracleParticle;//技能特效显示
-    private static int immortalMiracleUseCooldownPercentMax;//技能总冷却时间
+    private static float immortalMiracleUseCooldownPercentMax;//技能总冷却时间
 
     //获取技能等级
     public static int getImmortalMiracleLevel() {
@@ -20,11 +20,11 @@ public class ImmortalMiracleClientData {
         ImmortalMiracleClientData.immortalMiracleLevel = immortalMiracleLevel;
     }
 
-    public static int getImmortalMiracleUseCooldownPercent() {
+    public static float getImmortalMiracleUseCooldownPercent() {
         return immortalMiracleUseCooldownPercent;
     }
 
-    public static void setImmortalMiracleUseCooldownPercent(int immortalMiracleComprehend) {
+    public static void setImmortalMiracleUseCooldownPercent(float immortalMiracleComprehend) {
         ImmortalMiracleClientData.immortalMiracleUseCooldownPercent = immortalMiracleComprehend;
     }
 
@@ -44,19 +44,19 @@ public class ImmortalMiracleClientData {
         ImmortalMiracleClientData.immortalMiracleOff = immortalMiracleOff;
     }
 
-    public static int getImmortalMiracleToppedTick() {
+    public static float getImmortalMiracleToppedTick() {
         return immortalMiracleToppedTick;
     }
 
-    public static void setImmortalMiracleToppedTick(int immortalMiracleToppedTick) {
+    public static void setImmortalMiracleToppedTick(float immortalMiracleToppedTick) {
         ImmortalMiracleClientData.immortalMiracleToppedTick = immortalMiracleToppedTick;
     }
 
-    public static int getImmortalMiracleDachengTick() {
+    public static float getImmortalMiracleDachengTick() {
         return immortalMiracleDachengTick;
     }
 
-    public static void setImmortalMiracleDachengTick(int immortalMiracleDachengTick) {
+    public static void setImmortalMiracleDachengTick(float immortalMiracleDachengTick) {
         ImmortalMiracleClientData.immortalMiracleDachengTick = immortalMiracleDachengTick;
     }
 
@@ -68,11 +68,11 @@ public class ImmortalMiracleClientData {
         ImmortalMiracleClientData.immortalMiracleParticle = immortalMiracleParticle;
     }
 
-    public static int getImmortalMiracleUseCooldownPercentMax() {
+    public static float getImmortalMiracleUseCooldownPercentMax() {
         return immortalMiracleUseCooldownPercentMax;
     }
 
-    public static void setImmortalMiracleUseCooldownPercentMax(int immortalMiracleUseCooldownPercentMax) {
+    public static void setImmortalMiracleUseCooldownPercentMax(float immortalMiracleUseCooldownPercentMax) {
         ImmortalMiracleClientData.immortalMiracleUseCooldownPercentMax = immortalMiracleUseCooldownPercentMax;
     }
 }

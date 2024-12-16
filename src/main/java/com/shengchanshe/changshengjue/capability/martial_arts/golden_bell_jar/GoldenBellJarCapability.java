@@ -6,10 +6,10 @@ public class GoldenBellJarCapability {
     private int goldenBellJarLevel = 0;//技能dengji
     private boolean goldenBellJarComprehend = false;//是否领悟
     private int goldenBellJarUseCount = 0;//使用次数
-    private int goldenBellJarUseCooldownPercent = 0;//技能冷却
+    private float goldenBellJarUseCooldownPercent = 0;//技能冷却
     private boolean goldenBellJarOff = false;//技能是否启用
-    private int goldenBellJarToppedTick = 0;//技能领悟特效计时
-    private int goldenBellJarDachengTick = 0;//技能领悟特效计时
+    private float goldenBellJarToppedTick = 0;//技能领悟特效计时
+    private float goldenBellJarDachengTick = 0;//技能领悟特效计时
     private boolean goldenBellJarParticle = false;//技能特效显示
 
     public int getGoldenBellJarLevel() {
@@ -36,13 +36,13 @@ public class GoldenBellJarCapability {
         }
     }
 
-    public int getGoldenBellJarUseCooldownPercent() {
+    public float getGoldenBellJarUseCooldownPercent() {
         return goldenBellJarUseCooldownPercent;
     }
-    public int setGoldenBellJarUseCooldownPercent() {
+    public float setGoldenBellJarUseCooldownPercent() {
         return this.goldenBellJarUseCooldownPercent--;
     }
-    public void setGoldenBellJarUseCooldownPercent(int goldenBellJarUseCooldownPercent) {
+    public void setGoldenBellJarUseCooldownPercent(float goldenBellJarUseCooldownPercent) {
         this.goldenBellJarUseCooldownPercent = goldenBellJarUseCooldownPercent;
     }
 
@@ -53,25 +53,25 @@ public class GoldenBellJarCapability {
         return this.goldenBellJarOff;
     }
 
-    public int getGoldenBellJarToppedTick() {
+    public float getGoldenBellJarToppedTick() {
         if (this.goldenBellJarParticle && this.goldenBellJarToppedTick >= 80){
             this.goldenBellJarToppedTick = 0;
             this.goldenBellJarParticle = false;
         }
         return goldenBellJarToppedTick;
     }
-    public int setGoldenBellJarToppedTick() {
+    public float setGoldenBellJarToppedTick() {
         return this.goldenBellJarToppedTick++;
     }
 
-    public int getGoldenBellJarDachengTick() {
+    public float getGoldenBellJarDachengTick() {
         if (this.goldenBellJarParticle && this.goldenBellJarDachengTick >= 30){
             this.goldenBellJarDachengTick = 0;
             this.goldenBellJarParticle = false;
         }
         return goldenBellJarDachengTick;
     }
-    public int setGoldenBellJarDachengTick() {
+    public float setGoldenBellJarDachengTick() {
         return this.goldenBellJarDachengTick++;
     }
 
@@ -99,10 +99,10 @@ public class GoldenBellJarCapability {
         nbt.putInt("GoldenBellJarLevel", goldenBellJarLevel);
         nbt.putInt("GoldenBellJarUseCount", goldenBellJarUseCount);
         nbt.putBoolean("GoldenBellJarComprehend",goldenBellJarComprehend);
-        nbt.putInt("GoldenBellJarUseCooldownPercent",goldenBellJarUseCooldownPercent);
+        nbt.putFloat("GoldenBellJarUseCooldownPercent",goldenBellJarUseCooldownPercent);
         nbt.putBoolean("GoldenBellJarOff",goldenBellJarOff);
-        nbt.putInt("GoldenBellJarToppedTick",goldenBellJarToppedTick);
-        nbt.putInt("GoldenBellJarDachengTick",goldenBellJarDachengTick);
+        nbt.putFloat("GoldenBellJarToppedTick",goldenBellJarToppedTick);
+        nbt.putFloat("GoldenBellJarDachengTick",goldenBellJarDachengTick);
         nbt.putBoolean("GoldenBellJarParticle",goldenBellJarParticle);
     }
 
@@ -110,11 +110,11 @@ public class GoldenBellJarCapability {
     public void loadNBTData(CompoundTag nbt) {
         goldenBellJarLevel = nbt.getInt("GoldenBellJarLevel");
         goldenBellJarUseCount = nbt.getInt("GoldenBellJarUseCount");
-        goldenBellJarUseCooldownPercent = nbt.getInt("GoldenBellJarUseCooldownPercent");
+        goldenBellJarUseCooldownPercent = nbt.getFloat("GoldenBellJarUseCooldownPercent");
         goldenBellJarComprehend = nbt.getBoolean("GoldenBellJarComprehend");
         goldenBellJarOff = nbt.getBoolean("GoldenBellJarOff");
-        goldenBellJarToppedTick = nbt.getInt("GoldenBellJarToppedTick");
-        goldenBellJarDachengTick = nbt.getInt("GoldenBellJarDachengTick");
+        goldenBellJarToppedTick = nbt.getFloat("GoldenBellJarToppedTick");
+        goldenBellJarDachengTick = nbt.getFloat("GoldenBellJarDachengTick");
         goldenBellJarParticle = nbt.getBoolean("GoldenBellJarParticle");
     }
 }

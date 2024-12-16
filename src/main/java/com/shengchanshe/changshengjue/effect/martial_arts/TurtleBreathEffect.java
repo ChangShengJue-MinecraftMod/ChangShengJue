@@ -1,25 +1,18 @@
-package com.shengchanshe.changshengjue.effect;
+package com.shengchanshe.changshengjue.effect.martial_arts;
 
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.GoalSelector;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
-import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.player.Player;
-
-import java.util.Iterator;
 
 public class TurtleBreathEffect extends MobEffect {
     private int turtleBreath;
 
-    protected TurtleBreathEffect() {
+    public TurtleBreathEffect() {
         // 第二个参数是颜色
         super(MobEffectCategory.BENEFICIAL, 0x000000);
     }

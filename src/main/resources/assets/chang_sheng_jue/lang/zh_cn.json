@@ -554,6 +554,11 @@
   "effect.chang_sheng_jue.fixation_effect": "定身",
   "effect.chang_sheng_jue.golden_bell_jar_effect": "金钟罩",
   "effect.chang_sheng_jue.turtle_breath_effect": "龟息",
+  "effect.chang_sheng_jue.biluochun_teas": "碧螺春",
+  "effect.chang_sheng_jue.long_jing_teas": "龙井",
+  "effect.chang_sheng_jue.fen_jiu": "汾酒",
+  "effect.chang_sheng_jue.wheat_nuggets_tribute_wine": "麦块贡酒",
+  "effect.chang_sheng_jue.shi_li_xiang": "十里香",
 
   "biome.chang_sheng_jue.chang_shen_jue_prairie": "慕然草原"
 }

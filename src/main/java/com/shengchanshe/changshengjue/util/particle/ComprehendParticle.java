@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class ComprehendParticle {
 
-    public static void ComprehendParticle(Player player,Level level,int tick){
+    public static void ComprehendParticle(Player player,Level level,float tick){
         if (tick > 0 && tick <= 20){
             int numParticles = 3;  // 可以根据需要调整数量
             Random random = new Random();

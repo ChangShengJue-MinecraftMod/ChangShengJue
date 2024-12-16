@@ -9,14 +9,14 @@ import java.util.function.Supplier;
 public class GoldenBellJarPacket {
     private final int goldenBellJarLevel;
     private final boolean goldenBellJarComprehend;
-    private int goldenBellJarUseCooldownPercent;
+    private float goldenBellJarUseCooldownPercent;
     private boolean goldenBellJarOff;//技能是否启用
-    private int goldenBellJarToppedTick;//技能领悟特效计时
-    private int goldenBellJarDachengTick;//技能领悟特效计时
+    private float goldenBellJarToppedTick;//技能领悟特效计时
+    private float goldenBellJarDachengTick;//技能领悟特效计时
     private boolean goldenBellJarParticle;//技能特效显示
 
-    public GoldenBellJarPacket(int goldenBellJarLevel, boolean goldenBellJarComprehend, int goldenBellJarUseCooldownPercent, boolean goldenBellJarOff,
-                               int goldenBellJarToppedTick, int goldenBellJarDachengTick, boolean goldenBellJarParticle){
+    public GoldenBellJarPacket(int goldenBellJarLevel, boolean goldenBellJarComprehend, float goldenBellJarUseCooldownPercent, boolean goldenBellJarOff,
+                               float goldenBellJarToppedTick, float goldenBellJarDachengTick, boolean goldenBellJarParticle){
         this.goldenBellJarLevel = goldenBellJarLevel;
         this.goldenBellJarComprehend = goldenBellJarComprehend;
         this.goldenBellJarUseCooldownPercent = goldenBellJarUseCooldownPercent;
@@ -29,20 +29,20 @@ public class GoldenBellJarPacket {
     public GoldenBellJarPacket(FriendlyByteBuf buf){
         this.goldenBellJarLevel = buf.readInt();
         this.goldenBellJarComprehend = buf.readBoolean();
-        this.goldenBellJarUseCooldownPercent = buf.readInt();
+        this.goldenBellJarUseCooldownPercent = buf.readFloat();
         this.goldenBellJarOff = buf.readBoolean();
-        this.goldenBellJarToppedTick = buf.readInt();
-        this.goldenBellJarDachengTick = buf.readInt();
+        this.goldenBellJarToppedTick = buf.readFloat();
+        this.goldenBellJarDachengTick = buf.readFloat();
         this.goldenBellJarParticle = buf.readBoolean();
     }
 
     public void toBytes(FriendlyByteBuf buf){
         buf.writeInt(goldenBellJarLevel);
         buf.writeBoolean(goldenBellJarComprehend);
-        buf.writeInt(goldenBellJarUseCooldownPercent);
+        buf.writeFloat(goldenBellJarUseCooldownPercent);
         buf.writeBoolean(goldenBellJarOff);
-        buf.writeInt(goldenBellJarToppedTick);
-        buf.writeInt(goldenBellJarDachengTick);
+        buf.writeFloat(goldenBellJarToppedTick);
+        buf.writeFloat(goldenBellJarDachengTick);
         buf.writeBoolean(goldenBellJarParticle);
     }
 

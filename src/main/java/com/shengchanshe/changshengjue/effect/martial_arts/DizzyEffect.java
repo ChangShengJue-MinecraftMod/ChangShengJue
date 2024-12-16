@@ -1,5 +1,6 @@
-package com.shengchanshe.changshengjue.effect;
+package com.shengchanshe.changshengjue.effect.martial_arts;
 
+import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
@@ -10,7 +11,7 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.common.ForgeMod;
 
 public class DizzyEffect extends MobEffect {
-    protected DizzyEffect() {
+    public DizzyEffect() {
         super(MobEffectCategory.HARMFUL, 00000000);
         this.addAttributeModifier(Attributes.MOVEMENT_SPEED, "ED1ED20F-766A-286D-BE69-C61A93AFC5A8",-1.0, AttributeModifier.Operation.MULTIPLY_TOTAL);
         this.addAttributeModifier(Attributes.ATTACK_DAMAGE, "E322D6CB-4C6F-9E12-FB4F-74D1DF6B86BA",-1.0, AttributeModifier.Operation.MULTIPLY_TOTAL);

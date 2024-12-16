@@ -1,5 +1,6 @@
-package com.shengchanshe.changshengjue.effect;
+package com.shengchanshe.changshengjue.effect.martial_arts;
 
+import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
@@ -7,7 +8,7 @@ import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 
 public class BleedEffect extends MobEffect {
-    protected BleedEffect() {
+    public BleedEffect() {
         // 第二个参数是颜色
         super(MobEffectCategory.HARMFUL, 00000000);
     }

@@ -1,10 +1,12 @@
 package com.shengchanshe.changshengjue.event.martial_arts;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.turtle_breath_work.TurtleBreathWorkClientData;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket2;
 import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
@@ -113,16 +115,30 @@ public class TurtleBreathWorkEvent {
                 if (turtleBreathWork.isTurtleBreathWorkComprehend() && turtleBreathWork.isTurtleBreathWorkOff() && turtleBreathWork.getTurtleBreathWorkLevel() > 0) {
                     if (turtleBreathWork.getTurtleBreathWorkUseCooldownPercent() <= 0) {
                         if (player.getFoodData().getFoodLevel() > 8) {
-                            if (!player.getAbilities().instabuild) {
-                                player.getFoodData().eat(-4, -2);//消耗饱食度
+                            if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())){
+                                if (!player.getAbilities().instabuild) {
+                                    player.getFoodData().eat((int) -(4 - (4 * 0.25)), (float) -(2 - (2 * 0.25)));//消耗饱食度
+                                }
+                                turtleBreathWork.setTurtleBreathWorkUseCooldownPercent(!player.getAbilities().instabuild ? 900 - (900 * 0.15F) : 0);
+                            }else if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())){
+                                if (!player.getAbilities().instabuild) {
+                                    player.getFoodData().eat((int) -(4 - (4 * 0.15)), (float) -(2 - (2 * 0.15)));//消耗饱食度
+                                }
+                                turtleBreathWork.setTurtleBreathWorkUseCooldownPercent(!player.getAbilities().instabuild ? 900 - (900 * 0.25F) : 0);
+                            }else {
+                                if (!player.getAbilities().instabuild) {
+                                    player.getFoodData().eat(-4, -2);//消耗饱食度
+                                }
+                                turtleBreathWork.setTurtleBreathWorkUseCooldownPercent(!player.getAbilities().instabuild ? 900 : 0);
                             }
                             player.addEffect(new MobEffectInstance(ChangShengJueEffects.TURTLE_BREATH_EFFECT.get(), 300, 0, false, true), player);
                             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING,-1, turtleBreathWork.getTurtleBreathWorkLevel() <= 1 ? 1 : 2));
                             if (turtleBreathWork.getTurtleBreathWorkUseCount() <= 100){
                                 turtleBreathWork.addTurtleBreathWorkUseCount(!player.getAbilities().instabuild ? 1 : 100);
-                                turtleBreathWork.setTurtleBreathWorkParticle(true);
+                                if (turtleBreathWork.getTurtleBreathWorkUseCount() >= 100){
+                                    turtleBreathWork.setTurtleBreathWorkParticle(true);
+                                }
                             }
-                            turtleBreathWork.setTurtleBreathWorkUseCooldownPercent(!player.getAbilities().instabuild ? 900 : 0);
                             ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
                                     turtleBreathWork.getTurtleBreathWorkLevel(),
                                     turtleBreathWork.isTurtleBreathWorkComprehend(),
@@ -150,14 +166,17 @@ public class TurtleBreathWorkEvent {
         }
     }
 
-    public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-        ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2());
+    public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
         Player player = event.getEntity();
-        boolean turtleBreathWorkComprehend = TurtleBreathWorkClientData.isTurtleBreathWorkComprehend();
-        boolean turtleBreathWorkOff = TurtleBreathWorkClientData.isTurtleBreathWorkOff();
-        if (turtleBreathWorkComprehend && turtleBreathWorkOff){
-            if (TurtleBreathWorkClientData.getTurtleBreathWorkLevel() >= 1){
-                if (TurtleBreathWorkClientData.getTurtleBreathWorkUseCooldownPercent()<=0) {
+        if (!player.isUsingItem()){
+            return;
+        }
+        ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2());
+        boolean geShanDaNiuComprehend = GeShanDaNiuClientData.isGeShanDaNiuComprehend();
+        boolean geShanDaNiuOff = GeShanDaNiuClientData.isGeShanDaNiuOff();
+        if (geShanDaNiuComprehend && geShanDaNiuOff){
+            if (GeShanDaNiuClientData.getGeShanDaNiuLevel() >= 1){
+                if (GeShanDaNiuClientData.getGeShanDaNiuUseCooldownPercent()<=0) {
                     if (player.getFoodData().getFoodLevel() > 8){
                         player.swing(player.getUsedItemHand());
                     }
@@ -167,8 +186,8 @@ public class TurtleBreathWorkEvent {
     }
 
     public static void onPlayerRightClick(PlayerInteractEvent.RightClickEmpty event) {
-        ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2());
         Player player = event.getEntity();
+        ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2());
         boolean turtleBreathWorkComprehend = TurtleBreathWorkClientData.isTurtleBreathWorkComprehend();
         boolean turtleBreathWorkOff = TurtleBreathWorkClientData.isTurtleBreathWorkOff();
         if (turtleBreathWorkComprehend && turtleBreathWorkOff){

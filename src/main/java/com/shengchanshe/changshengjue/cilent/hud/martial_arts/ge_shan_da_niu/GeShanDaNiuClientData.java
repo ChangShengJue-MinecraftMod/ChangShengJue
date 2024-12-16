@@ -4,12 +4,12 @@ public class GeShanDaNiuClientData {
     // 玩家的技能等级和是否学习了技能
     private static int geShanDaNiuLevel;
     private static boolean geShanDaNiuComprehend;
-    private static int geShanDaNiuUseCooldownPercent;
+    private static float geShanDaNiuUseCooldownPercent;
     private static boolean geShanDaNiuOff;
-    private static int geShanDaNiuToppedTick;//技能领悟特效计时
-    private static int geShanDaNiuDachengTick;//技能大成特效计时
+    private static float geShanDaNiuToppedTick;//技能领悟特效计时
+    private static float geShanDaNiuDachengTick;//技能大成特效计时
     private static boolean geShanDaNiuParticle;//技能特效显示
-    private static int geShanDaNiuUseCooldownPercentMax;//技能总冷却时间
+    private static float geShanDaNiuUseCooldownPercentMax;//技能总冷却时间
 
     //获取技能等级
     public static int getGeShanDaNiuLevel() {
@@ -20,11 +20,11 @@ public class GeShanDaNiuClientData {
         GeShanDaNiuClientData.geShanDaNiuLevel = geShanDaNiuLevel;
     }
 
-    public static int getGeShanDaNiuUseCooldownPercent() {
+    public static float getGeShanDaNiuUseCooldownPercent() {
         return geShanDaNiuUseCooldownPercent;
     }
 
-    public static void setGeShanDaNiuUseCooldownPercent(int geShanDaNiuComprehend) {
+    public static void setGeShanDaNiuUseCooldownPercent(float geShanDaNiuComprehend) {
         GeShanDaNiuClientData.geShanDaNiuUseCooldownPercent = geShanDaNiuComprehend;
     }
 
@@ -44,19 +44,19 @@ public class GeShanDaNiuClientData {
         GeShanDaNiuClientData.geShanDaNiuOff = geShanDaNiuOff;
     }
 
-    public static int getGeShanDaNiuToppedTick() {
+    public static float getGeShanDaNiuToppedTick() {
         return geShanDaNiuToppedTick;
     }
 
-    public static void setGeShanDaNiuToppedTick(int geShanDaNiuToppedTick) {
+    public static void setGeShanDaNiuToppedTick(float geShanDaNiuToppedTick) {
         GeShanDaNiuClientData.geShanDaNiuToppedTick = geShanDaNiuToppedTick;
     }
 
-    public static int getGeShanDaNiuDachengTick() {
+    public static float getGeShanDaNiuDachengTick() {
         return geShanDaNiuDachengTick;
     }
 
-    public static void setGeShanDaNiuDachengTick(int geShanDaNiuDachengTick) {
+    public static void setGeShanDaNiuDachengTick(float geShanDaNiuDachengTick) {
         GeShanDaNiuClientData.geShanDaNiuDachengTick = geShanDaNiuDachengTick;
     }
 
@@ -68,11 +68,11 @@ public class GeShanDaNiuClientData {
         GeShanDaNiuClientData.geShanDaNiuParticle = geShanDaNiuParticle;
     }
 
-    public static int getGeShanDaNiuUseCooldownPercentMax() {
+    public static float getGeShanDaNiuUseCooldownPercentMax() {
         return geShanDaNiuUseCooldownPercentMax;
     }
 
-    public static void setGeShanDaNiuUseCooldownPercentMax(int geShanDaNiuUseCooldownPercentMax) {
+    public static void setGeShanDaNiuUseCooldownPercentMax(float geShanDaNiuUseCooldownPercentMax) {
         GeShanDaNiuClientData.geShanDaNiuUseCooldownPercentMax = geShanDaNiuUseCooldownPercentMax;
     }
 }

@@ -9,12 +9,10 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.ImmortalMiracl
 import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
 import com.shengchanshe.changshengjue.util.particle.DachengParticle;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class ImmortalMiracleEvent {
 
@@ -100,19 +98,36 @@ public class ImmortalMiracleEvent {
                     if (immortalMiracle.isImmortalMiracleComprehend() && immortalMiracle.isImmortalMiracleOff() && immortalMiracle.getImmortalMiracleLevel() > 0) {
                         if (immortalMiracle.getImmortalMiracleUseCooldownPercent() <= 0) {
                             if (player.getFoodData().getFoodLevel() > 8) {
-                                if (!player.getAbilities().instabuild) {
-                                    player.getFoodData().eat(-5, -3);//消耗饱食度
+                                float cooldownMax1 = 1600 - (15 * 20);
+                                float cooldownMax2 = 1600 - (30 * 20);
+                                if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())){
+                                    if (!player.getAbilities().instabuild) {
+                                        player.getFoodData().eat((int) -(5 - (5 * 0.25)), (float) -(2 - (2 * 0.25)));//消耗饱食度
+                                    }
+                                    immortalMiracle.setImmortalMiracleUseCooldownPercentMax((float) (immortalMiracle.getImmortalMiracleLevel() == 1 ? cooldownMax1 - (cooldownMax1 * 0.15) : cooldownMax2 - (cooldownMax2 * 0.15)));
+                                }else if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())){
+                                    if (!player.getAbilities().instabuild) {
+                                        player.getFoodData().eat((int) -(5 - (5 * 0.15)), (float) -(2 - (2 * 0.15)));//消耗饱食度
+                                    }
+                                    immortalMiracle.setImmortalMiracleUseCooldownPercentMax((float) (immortalMiracle.getImmortalMiracleLevel() == 1 ? cooldownMax1 - (cooldownMax1 * 0.25) : cooldownMax2 - (cooldownMax2 * 0.25)));
+                                }else {
+                                    if (!player.getAbilities().instabuild) {
+                                        player.getFoodData().eat(-5, -3);//消耗饱食度
+                                    }
+                                    immortalMiracle.setImmortalMiracleUseCooldownPercentMax(immortalMiracle.getImmortalMiracleLevel() == 1 ? cooldownMax1 : cooldownMax2);
                                 }
+                                immortalMiracle.setImmortalMiracleUseCooldownPercent(!player.getAbilities().instabuild ? immortalMiracle.getImmortalMiracleUseCooldownPercentMax() : 0);
                                 float health = event.getEntity().getHealth();
                                 float amount = event.getAmount();
                                 if (amount >= health){
                                     event.setAmount(0);
                                     if (immortalMiracle.getImmortalMiracleUseCount() <= 100){
                                         immortalMiracle.addImmortalMiracleUseCount(!player.getAbilities().instabuild ? 1 : 100);
-                                        immortalMiracle.setImmortalMiracleParticle(true);
+                                        if (immortalMiracle.getImmortalMiracleUseCount() >= 100){
+                                            immortalMiracle.setImmortalMiracleParticle(true);
+                                        }
                                     }
-                                    immortalMiracle.setImmortalMiracleUseCooldownPercentMax(immortalMiracle.getImmortalMiracleLevel() == 1 ? 1600 - (15 * 20) : 1600 - (30 * 20));
-                                    immortalMiracle.setImmortalMiracleUseCooldownPercent(immortalMiracle.getImmortalMiracleUseCooldownPercentMax());
+
                                     ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
                                             immortalMiracle.getImmortalMiracleLevel(),
                                             immortalMiracle.isImmortalMiracleComprehend(),

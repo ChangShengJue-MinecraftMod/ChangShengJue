@@ -1,10 +1,12 @@
 package com.shengchanshe.changshengjue.event.martial_arts;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_bell_jar.GoldenBellJarClientData;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket2;
 import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
@@ -111,8 +113,21 @@ public class GoldenBellJarEvent {
                 if (goldenBellJar.isGoldenBellJarComprehend() && goldenBellJar.isGoldenBellJarOff() && goldenBellJar.getGoldenBellJarLevel() > 0) {
                     if (goldenBellJar.getGoldenBellJarUseCooldownPercent() <= 0) {
                         if (player.getFoodData().getFoodLevel() > 8) {
-                            if (!player.getAbilities().instabuild) {
-                                player.getFoodData().eat(-3, -2);//消耗饱食度
+                            if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())){
+                                if (!player.getAbilities().instabuild) {
+                                    player.getFoodData().eat((int) -(3 - (3 * 0.25)), (float) -(2 - (2 * 0.25)));//消耗饱食度
+                                }
+                                goldenBellJar.setGoldenBellJarUseCooldownPercent(!player.getAbilities().instabuild ? 160 - (160 * 0.15F) : 0);
+                            }else if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())){
+                                if (!player.getAbilities().instabuild) {
+                                    player.getFoodData().eat((int) -(3 - (3 * 0.15)), (float) -(2 - (2 * 0.15)));//消耗饱食度
+                                }
+                                goldenBellJar.setGoldenBellJarUseCooldownPercent(!player.getAbilities().instabuild ? 160 - (160 * 0.25F) : 0);
+                            }else {
+                                if (!player.getAbilities().instabuild) {
+                                    player.getFoodData().eat(-3, -2);//消耗饱食度
+                                }
+                                goldenBellJar.setGoldenBellJarUseCooldownPercent(!player.getAbilities().instabuild ? 160 : 0);
                             }
                             if (goldenBellJar.getGoldenBellJarLevel() < 2) {
                                 player.addEffect(new MobEffectInstance(ChangShengJueEffects.GOLDEN_BELL_JAR_EFFECT.get(), 120, 0, false, false), player);
@@ -121,9 +136,10 @@ public class GoldenBellJarEvent {
                             }
                             if (goldenBellJar.getGoldenBellJarUseCount() <= 100){
                                 goldenBellJar.addGoldenBellJarUseCount(!player.getAbilities().instabuild ? 1 : 100);
-                                goldenBellJar.setGoldenBellJarParticle(true);
+                                if (goldenBellJar.getGoldenBellJarUseCount() >= 100){
+                                    goldenBellJar.setGoldenBellJarParticle(true);
+                                }
                             }
-                            goldenBellJar.setGoldenBellJarUseCooldownPercent(!player.getAbilities().instabuild ? 160 : 0);
                             ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
                                     goldenBellJar.getGoldenBellJarLevel(),
                                     goldenBellJar.isGoldenBellJarComprehend(),
@@ -151,14 +167,17 @@ public class GoldenBellJarEvent {
         }
     }
 
-    public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-        ChangShengJueMessages.sendToServer(new GoldenBellJarPacket2());
+    public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
         Player player = event.getEntity();
-        boolean goldenBellJarComprehend = GoldenBellJarClientData.isGoldenBellJarComprehend();
-        boolean goldenBellJarOff = GoldenBellJarClientData.isGoldenBellJarOff();
-        if (goldenBellJarComprehend && goldenBellJarOff){
-            if (GoldenBellJarClientData.getGoldenBellJarLevel() >= 1){
-                if (GoldenBellJarClientData.getGoldenBellJarUseCooldownPercent()<=0) {
+        if (!player.isUsingItem()){
+            return;
+        }
+        ChangShengJueMessages.sendToServer(new GoldenBellJarPacket2());
+        boolean geShanDaNiuComprehend = GeShanDaNiuClientData.isGeShanDaNiuComprehend();
+        boolean geShanDaNiuOff = GeShanDaNiuClientData.isGeShanDaNiuOff();
+        if (geShanDaNiuComprehend && geShanDaNiuOff){
+            if (GeShanDaNiuClientData.getGeShanDaNiuLevel() >= 1){
+                if (GeShanDaNiuClientData.getGeShanDaNiuUseCooldownPercent()<=0) {
                     if (player.getFoodData().getFoodLevel() > 8){
                         player.swing(player.getUsedItemHand());
                     }
@@ -168,8 +187,8 @@ public class GoldenBellJarEvent {
     }
 
     public static void onPlayerRightClick(PlayerInteractEvent.RightClickEmpty event) {
-        ChangShengJueMessages.sendToServer(new GoldenBellJarPacket2());
         Player player = event.getEntity();
+        ChangShengJueMessages.sendToServer(new GoldenBellJarPacket2());
         boolean goldenBellJarComprehend = GoldenBellJarClientData.isGoldenBellJarComprehend();
         boolean goldenBellJarOff = GoldenBellJarClientData.isGoldenBellJarOff();
         if (goldenBellJarComprehend && goldenBellJarOff){

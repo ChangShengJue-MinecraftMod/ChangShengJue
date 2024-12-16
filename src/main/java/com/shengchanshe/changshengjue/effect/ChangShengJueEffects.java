@@ -1,9 +1,14 @@
 package com.shengchanshe.changshengjue.effect;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.effect.food_effect.teas.*;
+import com.shengchanshe.changshengjue.effect.food_effect.wine.Drunken;
+import com.shengchanshe.changshengjue.effect.food_effect.wine.FenJiu;
+import com.shengchanshe.changshengjue.effect.food_effect.wine.ShiLiXiang;
+import com.shengchanshe.changshengjue.effect.food_effect.wine.WheatNuggetsTributeWine;
+import com.shengchanshe.changshengjue.effect.martial_arts.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -24,6 +29,13 @@ public class ChangShengJueEffects {
     public static final Supplier<MobEffect> GOLDEN_BELL_JAR_EFFECT = register("golden_bell_jar_effect", GoldenBellJarEffect::new);
 
     public static final Supplier<MobEffect> TURTLE_BREATH_EFFECT = register("turtle_breath_effect", TurtleBreathEffect::new);
+
+    public static final Supplier<MobEffect> BILUOCHUN_TEAS = register("biluochun_teas", BiluochunTeas::new);
+    public static final Supplier<MobEffect> LONG_JING_TEAS = register("long_jing_teas", LongJingTeas::new);
+    public static final Supplier<MobEffect> FEN_JIU = register("fen_jiu", FenJiu::new);
+    public static final Supplier<MobEffect> WHEAT_NUGGETS_TRIBUTE_WINE = register("wheat_nuggets_tribute_wine", WheatNuggetsTributeWine::new);
+    public static final Supplier<MobEffect> SHI_LI_XIANG = register("shi_li_xiang", ShiLiXiang::new);
+    public static final Supplier<MobEffect> DRUNKEN = register("drunken", Drunken::new);
 
     public static RegistryObject<MobEffect> register(String name, Supplier<MobEffect> effect){
         return MOD_EFFECTS.register(name, effect);

@@ -6,10 +6,10 @@ public class TurtleBreathWorkCapability {
     private int turtleBreathWorkLevel = 0;//技能等级
     private boolean turtleBreathWorkComprehend = false;//是否领悟
     private int turtleBreathWorkUseCount = 0;//使用次数
-    private int turtleBreathWorkUseCooldownPercent = 0;//技能冷却
+    private float turtleBreathWorkUseCooldownPercent = 0;//技能冷却
     private boolean turtleBreathWorkOff = false;//技能是否启用
-    private int turtleBreathWorkToppedTick = 0;//技能领悟特效计时
-    private int turtleBreathWorkDachengTick = 0;//技能领悟特效计时
+    private float turtleBreathWorkToppedTick = 0;//技能领悟特效计时
+    private float turtleBreathWorkDachengTick = 0;//技能领悟特效计时
     private boolean turtleBreathWorkParticle = false;//技能特效显示
 
     public int getTurtleBreathWorkLevel() {
@@ -36,13 +36,13 @@ public class TurtleBreathWorkCapability {
         }
     }
 
-    public int getTurtleBreathWorkUseCooldownPercent() {
+    public float getTurtleBreathWorkUseCooldownPercent() {
         return turtleBreathWorkUseCooldownPercent;
     }
-    public int setTurtleBreathWorkUseCooldownPercent() {
+    public float setTurtleBreathWorkUseCooldownPercent() {
         return this.turtleBreathWorkUseCooldownPercent--;
     }
-    public void setTurtleBreathWorkUseCooldownPercent(int turtleBreathWorkUseCooldownPercent) {
+    public void setTurtleBreathWorkUseCooldownPercent(float turtleBreathWorkUseCooldownPercent) {
         this.turtleBreathWorkUseCooldownPercent = turtleBreathWorkUseCooldownPercent;
     }
 
@@ -53,25 +53,25 @@ public class TurtleBreathWorkCapability {
         return this.turtleBreathWorkOff;
     }
 
-    public int getTurtleBreathWorkToppedTick() {
+    public float getTurtleBreathWorkToppedTick() {
         if (this.turtleBreathWorkParticle && this.turtleBreathWorkToppedTick >= 80){
             this.turtleBreathWorkToppedTick = 0;
             this.turtleBreathWorkParticle = false;
         }
         return turtleBreathWorkToppedTick;
     }
-    public int setTurtleBreathWorkToppedTick() {
+    public float setTurtleBreathWorkToppedTick() {
         return this.turtleBreathWorkToppedTick++;
     }
 
-    public int getTurtleBreathWorkDachengTick() {
+    public float getTurtleBreathWorkDachengTick() {
         if (this.turtleBreathWorkParticle && this.turtleBreathWorkDachengTick >= 30){
             this.turtleBreathWorkDachengTick = 0;
             this.turtleBreathWorkParticle = false;
         }
         return turtleBreathWorkDachengTick;
     }
-    public int setTurtleBreathWorkDachengTick() {
+    public float setTurtleBreathWorkDachengTick() {
         return this.turtleBreathWorkDachengTick++;
     }
 
@@ -98,10 +98,10 @@ public class TurtleBreathWorkCapability {
         nbt.putInt("TurtleBreathWorkLevel", turtleBreathWorkLevel);
         nbt.putInt("TurtleBreathWorkUseCount", turtleBreathWorkUseCount);
         nbt.putBoolean("TurtleBreathWorkComprehend",turtleBreathWorkComprehend);
-        nbt.putInt("TurtleBreathWorkUseCooldownPercent",turtleBreathWorkUseCooldownPercent);
+        nbt.putFloat("TurtleBreathWorkUseCooldownPercent",turtleBreathWorkUseCooldownPercent);
         nbt.putBoolean("TurtleBreathWorkOff",turtleBreathWorkOff);
-        nbt.putInt("TurtleBreathWorkToppedTick",turtleBreathWorkToppedTick);
-        nbt.putInt("TurtleBreathWorkDachengTick",turtleBreathWorkDachengTick);
+        nbt.putFloat("TurtleBreathWorkToppedTick",turtleBreathWorkToppedTick);
+        nbt.putFloat("TurtleBreathWorkDachengTick",turtleBreathWorkDachengTick);
         nbt.putBoolean("TurtleBreathWorkParticle",turtleBreathWorkParticle);
     }
 
@@ -109,11 +109,11 @@ public class TurtleBreathWorkCapability {
     public void loadNBTData(CompoundTag nbt) {
         turtleBreathWorkLevel = nbt.getInt("TurtleBreathWorkLevel");
         turtleBreathWorkUseCount = nbt.getInt("TurtleBreathWorkUseCount");
-        turtleBreathWorkUseCooldownPercent = nbt.getInt("TurtleBreathWorkUseCooldownPercent");
+        turtleBreathWorkUseCooldownPercent = nbt.getFloat("TurtleBreathWorkUseCooldownPercent");
         turtleBreathWorkComprehend = nbt.getBoolean("TurtleBreathWorkComprehend");
         turtleBreathWorkOff = nbt.getBoolean("TurtleBreathWorkOff");
-        turtleBreathWorkToppedTick = nbt.getInt("TurtleBreathWorkToppedTick");
-        turtleBreathWorkDachengTick = nbt.getInt("TurtleBreathWorkDachengTick");
+        turtleBreathWorkToppedTick = nbt.getFloat("TurtleBreathWorkToppedTick");
+        turtleBreathWorkDachengTick = nbt.getFloat("TurtleBreathWorkDachengTick");
         turtleBreathWorkParticle = nbt.getBoolean("TurtleBreathWorkParticle");
     }
 }

@@ -186,11 +186,11 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> LONG_JING_TEAS = ITEMS.register("long_jing_teas",
             ()-> new PorcelainCupsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.LONG_JING_TEA)));
     public static final RegistryObject<Item> FEN_JIU = ITEMS.register("fen_jiu",
-            ()-> new Item(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.FEN_JIU)));
+            ()-> new Wine(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.FEN_JIU)));
     public static final RegistryObject<Item> WHEAT_NUGGETS_TRIBUTE_WINE = ITEMS.register("wheat_nuggets_tribute_wine",
-            ()-> new Item(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.WHEAT_NUGGETS_TRIBUTE_WINE)));
+            ()-> new Wine(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.WHEAT_NUGGETS_TRIBUTE_WINE)));
     public static final RegistryObject<Item> SHI_LI_XIANG = ITEMS.register("shi_li_xiang",
-            ()-> new Item(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.SHI_LI_XIANG)));
+            ()-> new Wine(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.SHI_LI_XIANG)));
 
     //刷怪蛋
     public static final RegistryObject<Item> BUTTERFLY_EGG = ITEMS.register("butterfly_egg",

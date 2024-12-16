@@ -5,7 +5,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 public class DachengParticle {
-    public static void DachengParticle(Player player,Level level, int tick){
+    public static void DachengParticle(Player player,Level level, float tick){
         if (tick > 0 && tick <= 2){
             onDachengParticle(player,level);
         }else if (tick >= 15 && tick <= 17){

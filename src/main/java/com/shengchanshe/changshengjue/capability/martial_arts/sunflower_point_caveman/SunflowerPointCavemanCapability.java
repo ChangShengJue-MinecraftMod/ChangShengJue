@@ -6,10 +6,10 @@ public class SunflowerPointCavemanCapability {
     private int sunflowerPointCavemanLevel = 0;//技能等级
     private boolean sunflowerPointCavemanComprehend = false;//是否领悟
     private int sunflowerPointCavemanUseCount = 0;//使用次数
-    private int sunflowerPointCavemanUseCooldownPercent = 0;//技能冷却
+    private float sunflowerPointCavemanUseCooldownPercent = 0;//技能冷却
     private boolean sunflowerPointCavemanOff = false;//技能是否启用
-    private int sunflowerPointCavemanToppedTick = 0;//技能领悟特效计时
-    private int sunflowerPointCavemanDachengTick = 0;//技能领悟特效计时
+    private float sunflowerPointCavemanToppedTick = 0;//技能领悟特效计时
+    private float sunflowerPointCavemanDachengTick = 0;//技能领悟特效计时
     private boolean sunflowerPointCavemanParticle = false;//技能特效显示
 
     public int getSunflowerPointCavemanLevel() {
@@ -31,18 +31,18 @@ public class SunflowerPointCavemanCapability {
 
     public void addSunflowerPointCavemanUseCount(int sunflowerPointCavemanUseCount){
         this.sunflowerPointCavemanUseCount = this.sunflowerPointCavemanUseCount + sunflowerPointCavemanUseCount;
-        if (this.sunflowerPointCavemanUseCount>=100){
+        if (this.sunflowerPointCavemanUseCount >= 100){
             this.addSunflowerPointCavemanLevel();
         }
     }
 
-    public int getSunflowerPointCavemanUseCooldownPercent() {
+    public float getSunflowerPointCavemanUseCooldownPercent() {
         return sunflowerPointCavemanUseCooldownPercent;
     }
-    public int setSunflowerPointCavemanUseCooldownPercent() {
+    public float setSunflowerPointCavemanUseCooldownPercent() {
         return this.sunflowerPointCavemanUseCooldownPercent--;
     }
-    public void setSunflowerPointCavemanUseCooldownPercent(int sunflowerPointCavemanUseCooldownPercent) {
+    public void setSunflowerPointCavemanUseCooldownPercent(float sunflowerPointCavemanUseCooldownPercent) {
         this.sunflowerPointCavemanUseCooldownPercent = sunflowerPointCavemanUseCooldownPercent;
     }
 
@@ -53,25 +53,25 @@ public class SunflowerPointCavemanCapability {
         return this.sunflowerPointCavemanOff;
     }
 
-    public int getSunflowerPointCavemanToppedTick() {
+    public float getSunflowerPointCavemanToppedTick() {
         if (this.sunflowerPointCavemanParticle && this.sunflowerPointCavemanToppedTick >= 80){
             this.sunflowerPointCavemanToppedTick = 0;
             this.sunflowerPointCavemanParticle = false;
         }
         return sunflowerPointCavemanToppedTick;
     }
-    public int setSunflowerPointCavemanToppedTick() {
+    public float setSunflowerPointCavemanToppedTick() {
         return this.sunflowerPointCavemanToppedTick++;
     }
 
-    public int getSunflowerPointCavemanDachengTick() {
+    public float getSunflowerPointCavemanDachengTick() {
         if (this.sunflowerPointCavemanParticle && this.sunflowerPointCavemanDachengTick >= 30){
             this.sunflowerPointCavemanDachengTick = 0;
             this.sunflowerPointCavemanParticle = false;
         }
         return sunflowerPointCavemanDachengTick;
     }
-    public int setSunflowerPointCavemanDachengTick() {
+    public float setSunflowerPointCavemanDachengTick() {
         return this.sunflowerPointCavemanDachengTick++;
     }
 
@@ -98,10 +98,10 @@ public class SunflowerPointCavemanCapability {
         nbt.putInt("SunflowerPointCavemanLevel", sunflowerPointCavemanLevel);
         nbt.putInt("SunflowerPointCavemanUseCount", sunflowerPointCavemanUseCount);
         nbt.putBoolean("SunflowerPointCavemanComprehend",sunflowerPointCavemanComprehend);
-        nbt.putInt("SunflowerPointCavemanUseCooldownPercent",sunflowerPointCavemanUseCooldownPercent);
+        nbt.putFloat("SunflowerPointCavemanUseCooldownPercent",sunflowerPointCavemanUseCooldownPercent);
         nbt.putBoolean("SunflowerPointCavemanOff",sunflowerPointCavemanOff);
-        nbt.putInt("SunflowerPointCavemanToppedTick",sunflowerPointCavemanToppedTick);
-        nbt.putInt("SunflowerPointCavemanDachengTick",sunflowerPointCavemanDachengTick);
+        nbt.putFloat("SunflowerPointCavemanToppedTick",sunflowerPointCavemanToppedTick);
+        nbt.putFloat("SunflowerPointCavemanDachengTick",sunflowerPointCavemanDachengTick);
         nbt.putBoolean("SunflowerPointCavemanParticle",sunflowerPointCavemanParticle);
     }
 
@@ -109,11 +109,11 @@ public class SunflowerPointCavemanCapability {
     public void loadNBTData(CompoundTag nbt) {
         sunflowerPointCavemanLevel = nbt.getInt("SunflowerPointCavemanLevel");
         sunflowerPointCavemanUseCount = nbt.getInt("SunflowerPointCavemanUseCount");
-        sunflowerPointCavemanUseCooldownPercent = nbt.getInt("SunflowerPointCavemanUseCooldownPercent");
+        sunflowerPointCavemanUseCooldownPercent = nbt.getFloat("SunflowerPointCavemanUseCooldownPercent");
         sunflowerPointCavemanComprehend = nbt.getBoolean("SunflowerPointCavemanComprehend");
         sunflowerPointCavemanOff = nbt.getBoolean("SunflowerPointCavemanOff");
-        sunflowerPointCavemanToppedTick = nbt.getInt("SunflowerPointCavemanToppedTick");
-        sunflowerPointCavemanDachengTick = nbt.getInt("SunflowerPointCavemanDachengTick");
+        sunflowerPointCavemanToppedTick = nbt.getFloat("SunflowerPointCavemanToppedTick");
+        sunflowerPointCavemanDachengTick = nbt.getFloat("SunflowerPointCavemanDachengTick");
         sunflowerPointCavemanParticle = nbt.getBoolean("SunflowerPointCavemanParticle");
     }
 }

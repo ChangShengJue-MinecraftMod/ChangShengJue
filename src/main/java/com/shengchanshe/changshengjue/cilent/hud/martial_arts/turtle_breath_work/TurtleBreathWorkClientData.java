@@ -4,10 +4,10 @@ public class TurtleBreathWorkClientData {
     // 玩家的技能等级和是否学习了技能
     private static int turtleBreathWorkLevel;
     private static boolean turtleBreathWorkComprehend;
-    private static int turtleBreathWorkUseCooldownPercent;
+    private static float turtleBreathWorkUseCooldownPercent;
     private static boolean turtleBreathWorkOff;
-    private static int turtleBreathWorkToppedTick;//技能领悟特效计时
-    private static int turtleBreathWorkDachengTick;//技能大成特效计时
+    private static float turtleBreathWorkToppedTick;//技能领悟特效计时
+    private static float turtleBreathWorkDachengTick;//技能大成特效计时
     private static boolean turtleBreathWorkParticle;//技能特效显示
 
     //获取技能等级
@@ -19,11 +19,11 @@ public class TurtleBreathWorkClientData {
         TurtleBreathWorkClientData.turtleBreathWorkLevel = turtleBreathWorkLevel;
     }
 
-    public static int getTurtleBreathWorkUseCooldownPercent() {
+    public static float getTurtleBreathWorkUseCooldownPercent() {
         return turtleBreathWorkUseCooldownPercent;
     }
 
-    public static void setTurtleBreathWorkUseCooldownPercent(int turtleBreathWorkComprehend) {
+    public static void setTurtleBreathWorkUseCooldownPercent(float turtleBreathWorkComprehend) {
         TurtleBreathWorkClientData.turtleBreathWorkUseCooldownPercent = turtleBreathWorkComprehend;
     }
 
@@ -43,19 +43,19 @@ public class TurtleBreathWorkClientData {
         TurtleBreathWorkClientData.turtleBreathWorkOff = turtleBreathWorkOff;
     }
 
-    public static int getTurtleBreathWorkToppedTick() {
+    public static float getTurtleBreathWorkToppedTick() {
         return turtleBreathWorkToppedTick;
     }
 
-    public static void setTurtleBreathWorkToppedTick(int turtleBreathWorkToppedTick) {
+    public static void setTurtleBreathWorkToppedTick(float turtleBreathWorkToppedTick) {
         TurtleBreathWorkClientData.turtleBreathWorkToppedTick = turtleBreathWorkToppedTick;
     }
 
-    public static int getTurtleBreathWorkDachengTick() {
+    public static float getTurtleBreathWorkDachengTick() {
         return turtleBreathWorkDachengTick;
     }
 
-    public static void setTurtleBreathWorkDachengTick(int turtleBreathWorkDachengTick) {
+    public static void setTurtleBreathWorkDachengTick(float turtleBreathWorkDachengTick) {
         TurtleBreathWorkClientData.turtleBreathWorkDachengTick = turtleBreathWorkDachengTick;
     }
 

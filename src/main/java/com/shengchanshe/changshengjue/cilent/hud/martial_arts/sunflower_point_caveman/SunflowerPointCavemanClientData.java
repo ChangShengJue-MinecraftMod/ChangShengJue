@@ -4,10 +4,10 @@ public class SunflowerPointCavemanClientData {
     // 玩家的技能等级和是否学习了技能
     private static int sunflowerPointCavemanLevel;
     private static boolean sunflowerPointCavemanComprehend;
-    private static int sunflowerPointCavemanUseCooldownPercent;
+    private static float sunflowerPointCavemanUseCooldownPercent;
     private static boolean sunflowerPointCavemanOff;
-    private static int sunflowerPointCavemanToppedTick;//技能领悟特效计时
-    private static int sunflowerPointCavemanDachengTick;//技能大成特效计时
+    private static float sunflowerPointCavemanToppedTick;//技能领悟特效计时
+    private static float sunflowerPointCavemanDachengTick;//技能大成特效计时
     private static boolean sunflowerPointCavemanParticle;//技能特效显示
 
     //获取技能等级
@@ -19,11 +19,11 @@ public class SunflowerPointCavemanClientData {
         SunflowerPointCavemanClientData.sunflowerPointCavemanLevel = sunflowerPointCavemanLevel;
     }
 
-    public static int getSunflowerPointCavemanUseCooldownPercent() {
+    public static float getSunflowerPointCavemanUseCooldownPercent() {
         return sunflowerPointCavemanUseCooldownPercent;
     }
 
-    public static void setSunflowerPointCavemanUseCooldownPercent(int sunflowerPointCavemanComprehend) {
+    public static void setSunflowerPointCavemanUseCooldownPercent(float sunflowerPointCavemanComprehend) {
         SunflowerPointCavemanClientData.sunflowerPointCavemanUseCooldownPercent = sunflowerPointCavemanComprehend;
     }
 
@@ -43,19 +43,19 @@ public class SunflowerPointCavemanClientData {
         SunflowerPointCavemanClientData.sunflowerPointCavemanOff = sunflowerPointCavemanOff;
     }
 
-    public static int getSunflowerPointCavemanToppedTick() {
+    public static float getSunflowerPointCavemanToppedTick() {
         return sunflowerPointCavemanToppedTick;
     }
 
-    public static void setSunflowerPointCavemanToppedTick(int sunflowerPointCavemanToppedTick) {
+    public static void setSunflowerPointCavemanToppedTick(float sunflowerPointCavemanToppedTick) {
         SunflowerPointCavemanClientData.sunflowerPointCavemanToppedTick = sunflowerPointCavemanToppedTick;
     }
 
-    public static int getSunflowerPointCavemanDachengTick() {
+    public static float getSunflowerPointCavemanDachengTick() {
         return sunflowerPointCavemanDachengTick;
     }
 
-    public static void setSunflowerPointCavemanDachengTick(int sunflowerPointCavemanDachengTick) {
+    public static void setSunflowerPointCavemanDachengTick(float sunflowerPointCavemanDachengTick) {
         SunflowerPointCavemanClientData.sunflowerPointCavemanDachengTick = sunflowerPointCavemanDachengTick;
     }
 

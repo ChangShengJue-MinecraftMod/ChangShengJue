@@ -9,15 +9,15 @@ import java.util.function.Supplier;
 public class ImmortalMiraclePacket {
     private final int immortalMiracleLevel;
     private final boolean immortalMiracleComprehend;
-    private int immortalMiracleUseCooldownPercent;
+    private float immortalMiracleUseCooldownPercent;
     private boolean immortalMiracleOff;//技能是否启用
-    private int immortalMiracleToppedTick;//技能领悟特效计时
-    private int immortalMiracleDachengTick;//技能大成特效计时
+    private float immortalMiracleToppedTick;//技能领悟特效计时
+    private float immortalMiracleDachengTick;//技能大成特效计时
     private boolean immortalMiracleParticle;//技能特效显示
-    private int immortalMiracleUseCooldownPercentMax;
+    private float immortalMiracleUseCooldownPercentMax;
 
-    public ImmortalMiraclePacket(int immortalMiracleLevel, boolean immortalMiracleComprehend, int immortalMiracleUseCooldownPercent, boolean immortalMiracleOff,
-                                 int immortalMiracleToppedTick, int immortalMiracleDachengTick, boolean immortalMiracleParticle,int immortalMiracleUseCooldownPercentMax){
+    public ImmortalMiraclePacket(int immortalMiracleLevel, boolean immortalMiracleComprehend, float immortalMiracleUseCooldownPercent, boolean immortalMiracleOff,
+                                 float immortalMiracleToppedTick, float immortalMiracleDachengTick, boolean immortalMiracleParticle,float immortalMiracleUseCooldownPercentMax){
         this.immortalMiracleLevel = immortalMiracleLevel;
         this.immortalMiracleComprehend = immortalMiracleComprehend;
         this.immortalMiracleUseCooldownPercent = immortalMiracleUseCooldownPercent;
@@ -31,23 +31,23 @@ public class ImmortalMiraclePacket {
     public ImmortalMiraclePacket(FriendlyByteBuf buf){
         this.immortalMiracleLevel = buf.readInt();
         this.immortalMiracleComprehend = buf.readBoolean();
-        this.immortalMiracleUseCooldownPercent = buf.readInt();
+        this.immortalMiracleUseCooldownPercent = buf.readFloat();
         this.immortalMiracleOff = buf.readBoolean();
-        this.immortalMiracleToppedTick = buf.readInt();
-        this.immortalMiracleDachengTick = buf.readInt();
+        this.immortalMiracleToppedTick = buf.readFloat();
+        this.immortalMiracleDachengTick = buf.readFloat();
         this.immortalMiracleParticle = buf.readBoolean();
-        this.immortalMiracleUseCooldownPercentMax = buf.readInt();
+        this.immortalMiracleUseCooldownPercentMax = buf.readFloat();
     }
 
     public void toBytes(FriendlyByteBuf buf){
         buf.writeInt(immortalMiracleLevel);
         buf.writeBoolean(immortalMiracleComprehend);
-        buf.writeInt(immortalMiracleUseCooldownPercent);
+        buf.writeFloat(immortalMiracleUseCooldownPercent);
         buf.writeBoolean(immortalMiracleOff);
-        buf.writeInt(immortalMiracleToppedTick);
-        buf.writeInt(immortalMiracleDachengTick);
+        buf.writeFloat(immortalMiracleToppedTick);
+        buf.writeFloat(immortalMiracleDachengTick);
         buf.writeBoolean(immortalMiracleParticle);
-        buf.writeInt(immortalMiracleUseCooldownPercentMax);
+        buf.writeFloat(immortalMiracleUseCooldownPercentMax);
     }
 
     // 客户端处理

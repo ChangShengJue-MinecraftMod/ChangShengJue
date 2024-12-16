@@ -11,6 +11,7 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_ja
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -46,12 +47,32 @@ public class GeShanDaNiuPacket2 {
                 if (geShanDaNiu.isGeShanDaNiuComprehend() && geShanDaNiu.isGeShanDaNiuOff() && geShanDaNiu.getGeShanDaNiuLevel() > 0) {
                     if (geShanDaNiu.getGeShanDaNiuUseCooldownPercent() <= 0) {
                         if (player.getFoodData().getFoodLevel() > 8) {
-                            if (!player.getAbilities().instabuild) {
-                                player.getFoodData().eat(-4, -2);//消耗饱食度
-                            }
                             if (geShanDaNiu.getGeShanDaNiuLevel() >= 1) {
                                 ItemStack itemstack = player.getMainHandItem();//获取玩家手中物品
-                                geShanDaNiu.setGeShanDaNiuUseCooldownPercent(!player.getAbilities().instabuild ? geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax() : 0);
+                                if (player.hasEffect(ChangShengJueEffects.FEN_JIU.get())){
+                                    if (!player.getAbilities().instabuild) {
+                                        player.getFoodData().eat((int) -(4 - (4 * 0.25)), (float) -(2 - (2 * 0.25)));//消耗饱食度
+                                    }
+                                    geShanDaNiu.setGeShanDaNiuUseCooldownPercent(!player.getAbilities().instabuild ?
+                                            geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax() - (geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax() * 0.15F) : 0);
+                                }else if (player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get())){
+                                    if (!player.getAbilities().instabuild) {
+                                        player.getFoodData().eat((int) -(4-(4 * 0.2)), (float) -(2 - (2 * 0.2)));//消耗饱食度
+                                    }
+                                    geShanDaNiu.setGeShanDaNiuUseCooldownPercent(!player.getAbilities().instabuild ?
+                                            geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax() - (geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax() * 0.2F) : 0);
+                                }else if (player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get())){
+                                    if (!player.getAbilities().instabuild) {
+                                        player.getFoodData().eat((int) -(4- (4 * 0.15)), (float) -(2 - (2 * 0.15)));//消耗饱食度
+                                    }
+                                    geShanDaNiu.setGeShanDaNiuUseCooldownPercent(!player.getAbilities().instabuild ?
+                                            geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax() - (geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax() * 0.25F) : 0);
+                                }else {
+                                    if (!player.getAbilities().instabuild) {
+                                        player.getFoodData().eat(-(4), (float) -(2));//消耗饱食度
+                                    }
+                                    geShanDaNiu.setGeShanDaNiuUseCooldownPercent(!player.getAbilities().instabuild ? geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax() : 0);
+                                }
                                 itemstack.hurtAndBreak(1, player, (player1) -> {//消耗耐久
                                     player1.broadcastBreakEvent(player.getUsedItemHand());
                                 });
@@ -79,16 +100,18 @@ public class GeShanDaNiuPacket2 {
                                                 EnchantmentHelper.doPostDamageEffects(player, entity);//应用附魔
                                                 if (geShanDaNiu.getGeShanDaNiuUseCount() < 100) {
                                                     geShanDaNiu.addGeShanDaNiuUseCount(!player.getAbilities().instabuild ? 1 : 100);
-                                                    geShanDaNiu.setGeShanDaNiuParticle(true);
+                                                    if (geShanDaNiu.getGeShanDaNiuUseCount() >= 100){
+                                                        geShanDaNiu.setGeShanDaNiuParticle(true);
+                                                    }
                                                 }
                                             }
                                         }
-                                        GeShanDaNiuEntity geShanDaNiuEntity = new GeShanDaNiuEntity(ChangShengJueEntity.GE_SHAN_DA_NIU.get(), level);
-                                        geShanDaNiuEntity.moveTo(hitLocation);
-                                        geShanDaNiuEntity.setYRot(player.getYRot());
-                                        geShanDaNiuEntity.setXRot(player.getXRot());
-                                        level.addFreshEntity(geShanDaNiuEntity);
                                     }
+                                    GeShanDaNiuEntity geShanDaNiuEntity = new GeShanDaNiuEntity(ChangShengJueEntity.GE_SHAN_DA_NIU.get(), level);
+                                    geShanDaNiuEntity.moveTo(hitLocation);
+                                    geShanDaNiuEntity.setYRot(player.getYRot());
+                                    geShanDaNiuEntity.setXRot(player.getXRot());
+                                    level.addFreshEntity(geShanDaNiuEntity);
                                 }
                                 ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
                                         geShanDaNiu.getGeShanDaNiuLevel(),
@@ -98,7 +121,7 @@ public class GeShanDaNiuPacket2 {
                                         geShanDaNiu.getGeShanDaNiuToppedTick(),
                                         geShanDaNiu.getGeShanDaNiuDachengTick(),
                                         geShanDaNiu.isGeShanDaNiuParticle(),
-                                        geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax()), player);
+                                        geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax()), (ServerPlayer) player);
                             }
                         }
                     }

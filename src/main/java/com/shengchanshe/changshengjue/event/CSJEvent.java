@@ -740,11 +740,18 @@ public class CSJEvent {
         GeShanDaNiuEvent.onPlayerRightClick(event);
         TurtleBreathWorkEvent.onPlayerRightClick(event);
     }
+//    @SubscribeEvent
+//    public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+//        GoldenBellJarEvent.onPlayerRightClickBlock(event);
+//        GeShanDaNiuEvent.onPlayerRightClickBlock(event);
+//        TurtleBreathWorkEvent.onPlayerRightClickBlock(event);
+//    }
+
     @SubscribeEvent
-    public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-        GoldenBellJarEvent.onPlayerRightClickBlock(event);
-        GeShanDaNiuEvent.onPlayerRightClickBlock(event);
-        TurtleBreathWorkEvent.onPlayerRightClickBlock(event);
+    public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
+        GoldenBellJarEvent.onPlayerRightClickItem(event);
+        GeShanDaNiuEvent.onPlayerRightClickItem(event);
+        TurtleBreathWorkEvent.onPlayerRightClickItem(event);
     }
 
     //能力给予事件,给生物添加能力

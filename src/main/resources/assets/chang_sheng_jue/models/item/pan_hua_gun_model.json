@@ -8,26 +8,26 @@
   "display": {
     "thirdperson_righthand": {
       "rotation": [
-        -60,
-        6,
-        -8
+        47.5,
+        0,
+        0
       ],
       "translation": [
-        -3.25,
-        -10.5,
-        17.25
+        0,
+        -10,
+        -9.25
       ]
     },
     "thirdperson_lefthand": {
       "rotation": [
-        -60,
-        6,
-        -8
+        47.5,
+        0,
+        0
       ],
       "translation": [
-        -3.25,
-        -10.5,
-        17.25
+        0,
+        -10,
+        -9.25
       ]
     },
     "firstperson_righthand": {

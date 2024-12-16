@@ -9,15 +9,15 @@ import java.util.function.Supplier;
 public class GeShanDaNiuPacket {
     private final int geShanDaNiuLevel;
     private final boolean geShanDaNiuComprehend;
-    private int geShanDaNiuUseCooldownPercent;
+    private float geShanDaNiuUseCooldownPercent;
     private boolean geShanDaNiuOff;//技能是否启用
-    private int geShanDaNiuToppedTick;//技能领悟特效计时
-    private int geShanDaNiuDachengTick;//技能大成特效计时
+    private float geShanDaNiuToppedTick;//技能领悟特效计时
+    private float geShanDaNiuDachengTick;//技能大成特效计时
     private boolean geShanDaNiuParticle;//技能特效显示
-    private int geShanDaNiuUseCooldownPercentMax;
+    private float geShanDaNiuUseCooldownPercentMax;
 
-    public GeShanDaNiuPacket(int geShanDaNiuLevel, boolean geShanDaNiuComprehend, int geShanDaNiuUseCooldownPercent, boolean geShanDaNiuOff,
-                             int geShanDaNiuToppedTick, int geShanDaNiuDachengTick, boolean geShanDaNiuParticle, int geShanDaNiuUseCooldownPercentMax){
+    public GeShanDaNiuPacket(int geShanDaNiuLevel, boolean geShanDaNiuComprehend, float geShanDaNiuUseCooldownPercent, boolean geShanDaNiuOff,
+                             float geShanDaNiuToppedTick, float geShanDaNiuDachengTick, boolean geShanDaNiuParticle, float geShanDaNiuUseCooldownPercentMax){
         this.geShanDaNiuLevel = geShanDaNiuLevel;
         this.geShanDaNiuComprehend = geShanDaNiuComprehend;
         this.geShanDaNiuUseCooldownPercent = geShanDaNiuUseCooldownPercent;
@@ -31,23 +31,23 @@ public class GeShanDaNiuPacket {
     public GeShanDaNiuPacket(FriendlyByteBuf buf){
         this.geShanDaNiuLevel = buf.readInt();
         this.geShanDaNiuComprehend = buf.readBoolean();
-        this.geShanDaNiuUseCooldownPercent = buf.readInt();
+        this.geShanDaNiuUseCooldownPercent = buf.readFloat();
         this.geShanDaNiuOff = buf.readBoolean();
-        this.geShanDaNiuToppedTick = buf.readInt();
-        this.geShanDaNiuDachengTick = buf.readInt();
+        this.geShanDaNiuToppedTick = buf.readFloat();
+        this.geShanDaNiuDachengTick = buf.readFloat();
         this.geShanDaNiuParticle = buf.readBoolean();
-        this.geShanDaNiuUseCooldownPercentMax = buf.readInt();
+        this.geShanDaNiuUseCooldownPercentMax = buf.readFloat();
     }
 
     public void toBytes(FriendlyByteBuf buf){
         buf.writeInt(geShanDaNiuLevel);
         buf.writeBoolean(geShanDaNiuComprehend);
-        buf.writeInt(geShanDaNiuUseCooldownPercent);
+        buf.writeFloat(geShanDaNiuUseCooldownPercent);
         buf.writeBoolean(geShanDaNiuOff);
-        buf.writeInt(geShanDaNiuToppedTick);
-        buf.writeInt(geShanDaNiuDachengTick);
+        buf.writeFloat(geShanDaNiuToppedTick);
+        buf.writeFloat(geShanDaNiuDachengTick);
         buf.writeBoolean(geShanDaNiuParticle);
-        buf.writeInt(geShanDaNiuUseCooldownPercentMax);
+        buf.writeFloat(geShanDaNiuUseCooldownPercentMax);
     }
 
     // 客户端处理

@@ -6,12 +6,12 @@ public class GeShanDaNiuCapability {
     private int geShanDaNiuLevel = 0;//技能等级
     private boolean geShanDaNiuComprehend = false;//是否领悟
     private int geShanDaNiuUseCount = 0;//使用次数
-    private int geShanDaNiuUseCooldownPercent = 0;//技能冷却
+    private float geShanDaNiuUseCooldownPercent = 0;//技能冷却
     private boolean geShanDaNiuOff = false;//技能是否启用
-    private int geShanDaNiuToppedTick = 0;//技能领悟特效计时
-    private int geShanDaNiuDachengTick = 0;//技能领悟特效计时
+    private float geShanDaNiuToppedTick = 0;//技能领悟特效计时
+    private float geShanDaNiuDachengTick = 0;//技能领悟特效计时
     private boolean geShanDaNiuParticle = false;//技能特效显示
-    private int geShanDaNiuUseCooldownPercentMax = 200;//技能总冷却时间
+    private float geShanDaNiuUseCooldownPercentMax = 200;//技能总冷却时间
 
     public int getGeShanDaNiuLevel() {
         return geShanDaNiuLevel;
@@ -37,20 +37,20 @@ public class GeShanDaNiuCapability {
         }
     }
 
-    public int getGeShanDaNiuUseCooldownPercent() {
+    public float getGeShanDaNiuUseCooldownPercent() {
         return geShanDaNiuUseCooldownPercent;
     }
-    public int setGeShanDaNiuUseCooldownPercent() {
+    public float setGeShanDaNiuUseCooldownPercent() {
         return this.geShanDaNiuUseCooldownPercent--;
     }
-    public void setGeShanDaNiuUseCooldownPercent(int geShanDaNiuUseCooldownPercent) {
+    public void setGeShanDaNiuUseCooldownPercent(float geShanDaNiuUseCooldownPercent) {
         this.geShanDaNiuUseCooldownPercent = geShanDaNiuUseCooldownPercent;
     }
 
-    public int getGeShanDaNiuUseCooldownPercentMax() {
+    public float getGeShanDaNiuUseCooldownPercentMax() {
         return geShanDaNiuUseCooldownPercentMax;
     }
-    public int setGeShanDaNiuUseCooldownPercentMax(int geShanDaNiuUseCooldownPercentMax) {
+    public float setGeShanDaNiuUseCooldownPercentMax(float geShanDaNiuUseCooldownPercentMax) {
         return this.geShanDaNiuUseCooldownPercentMax = geShanDaNiuUseCooldownPercentMax;
     }
 
@@ -61,25 +61,25 @@ public class GeShanDaNiuCapability {
         return this.geShanDaNiuOff;
     }
 
-    public int getGeShanDaNiuToppedTick() {
+    public float getGeShanDaNiuToppedTick() {
         if (this.geShanDaNiuParticle && this.geShanDaNiuToppedTick >= 80){
             this.geShanDaNiuToppedTick = 0;
             this.geShanDaNiuParticle = false;
         }
         return geShanDaNiuToppedTick;
     }
-    public int setGeShanDaNiuToppedTick() {
+    public float setGeShanDaNiuToppedTick() {
         return this.geShanDaNiuToppedTick++;
     }
 
-    public int getGeShanDaNiuDachengTick() {
+    public float getGeShanDaNiuDachengTick() {
         if (this.geShanDaNiuParticle && this.geShanDaNiuDachengTick >= 30){
             this.geShanDaNiuDachengTick = 0;
             this.geShanDaNiuParticle = false;
         }
         return geShanDaNiuDachengTick;
     }
-    public int setGeShanDaNiuDachengTick() {
+    public float setGeShanDaNiuDachengTick() {
         return this.geShanDaNiuDachengTick++;
     }
 
@@ -107,24 +107,24 @@ public class GeShanDaNiuCapability {
         nbt.putInt("GeShanDaNiuLevel", geShanDaNiuLevel);
         nbt.putInt("GeShanDaNiuUseCount", geShanDaNiuUseCount);
         nbt.putBoolean("GeShanDaNiuComprehend",geShanDaNiuComprehend);
-        nbt.putInt("GeShanDaNiuUseCooldownPercent",geShanDaNiuUseCooldownPercent);
+        nbt.putFloat("GeShanDaNiuUseCooldownPercent",geShanDaNiuUseCooldownPercent);
         nbt.putBoolean("GeShanDaNiuOff",geShanDaNiuOff);
-        nbt.putInt("GeShanDaNiuToppedTick",geShanDaNiuToppedTick);
-        nbt.putInt("GeShanDaNiuDachengTick",geShanDaNiuDachengTick);
+        nbt.putFloat("GeShanDaNiuToppedTick",geShanDaNiuToppedTick);
+        nbt.putFloat("GeShanDaNiuDachengTick",geShanDaNiuDachengTick);
         nbt.putBoolean("GeShanDaNiuParticle",geShanDaNiuParticle);
-        nbt.putInt("GeShanDaNiuUseCooldownPercentMax",geShanDaNiuUseCooldownPercentMax);
+        nbt.putFloat("GeShanDaNiuUseCooldownPercentMax",geShanDaNiuUseCooldownPercentMax);
     }
 
     // 从 NBT 数据中加载能力
     public void loadNBTData(CompoundTag nbt) {
         geShanDaNiuLevel = nbt.getInt("GeShanDaNiuLevel");
         geShanDaNiuUseCount = nbt.getInt("GeShanDaNiuUseCount");
-        geShanDaNiuUseCooldownPercent = nbt.getInt("GeShanDaNiuUseCooldownPercent");
+        geShanDaNiuUseCooldownPercent = nbt.getFloat("GeShanDaNiuUseCooldownPercent");
         geShanDaNiuComprehend = nbt.getBoolean("GeShanDaNiuComprehend");
         geShanDaNiuOff = nbt.getBoolean("GeShanDaNiuOff");
-        geShanDaNiuToppedTick = nbt.getInt("GeShanDaNiuToppedTick");
-        geShanDaNiuDachengTick = nbt.getInt("GeShanDaNiuDachengTick");
+        geShanDaNiuToppedTick = nbt.getFloat("GeShanDaNiuToppedTick");
+        geShanDaNiuDachengTick = nbt.getFloat("GeShanDaNiuDachengTick");
         geShanDaNiuParticle = nbt.getBoolean("GeShanDaNiuParticle");
-        geShanDaNiuUseCooldownPercentMax = nbt.getInt("GeShanDaNiuUseCooldownPercentMax");
+        geShanDaNiuUseCooldownPercentMax = nbt.getFloat("GeShanDaNiuUseCooldownPercentMax");
     }
 }
