@@ -84,6 +84,7 @@ public class DizzyEffect extends MobEffect {
             }
         }
     }
+    @Override
     public void addAttributeModifiers(LivingEntity entity, AttributeMap map, int i) {
         if (!entity.level().isClientSide) {
             MobEffectInstance instance = entity.getEffect(ChangShengJueEffects.FIXATION_EFFECT.get());

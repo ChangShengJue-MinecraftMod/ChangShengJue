@@ -67,6 +67,9 @@ public class EffectEntityPacket {
                     case 0:
                         mobEffect = ChangShengJueEffects.FIXATION_EFFECT.get();
                         break;
+                    case 1:
+                        mobEffect = ChangShengJueEffects.GOLDEN_BELL_JAR_EFFECT.get();
+                        break;
                 }
                 if (mobEffect != null) {
                     if (message.remove) {

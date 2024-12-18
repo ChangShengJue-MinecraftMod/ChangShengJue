@@ -38,6 +38,9 @@ public class ChangShengJueParticles {
     public static final RegistryObject<SimpleParticleType> WU_GANG_CUT_GUI_PARTICLE_1 =
             PARTICLE_TYPES.register("wu_gang_cut_gui_particle_1", () -> new SimpleParticleType(false));
 
+    public static final RegistryObject<SimpleParticleType> GOLDEN_BELL_JAR_PARTICLE =
+            PARTICLE_TYPES.register("golden_bell_jar_particle", () -> new SimpleParticleType(false));
+
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);
     }

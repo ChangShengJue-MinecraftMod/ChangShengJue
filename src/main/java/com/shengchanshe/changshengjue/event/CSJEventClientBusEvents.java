@@ -25,6 +25,7 @@ import com.shengchanshe.changshengjue.particle.custom.PoplarDefoliationParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendParticle2;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.DachengParticle;
+import com.shengchanshe.changshengjue.particle.custom.martial_arts.golden_bell_jar.GoldenBellJarParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.immortal_miracle.ImmortalMiracleParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.sunflower_point_caveman.SunflowerPointCavemanParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.sunflower_point_caveman.SunflowerPointCavemanParticle1;
@@ -95,6 +96,8 @@ public class CSJEventClientBusEvents {
 
         event.registerSpriteSet(ChangShengJueParticles.WU_GANG_CUT_GUI_PARTICLE.get(), WuGangCutGuiParticle.Provider::new);
         event.registerSpriteSet(ChangShengJueParticles.WU_GANG_CUT_GUI_PARTICLE_1.get(), WuGangCutGuiParticle1.Provider::new);
+
+        event.registerSpriteSet(ChangShengJueParticles.GOLDEN_BELL_JAR_PARTICLE.get(), GoldenBellJarParticle.Provider::new);
 
 //        event.registerSpriteSet(ChangShengJueParticles.COMPREHEND_PARTICLE.get(), ComprehendParticle.Provider::new);
     }
