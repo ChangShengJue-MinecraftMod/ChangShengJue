@@ -1,7 +1,11 @@
 package com.shengchanshe.changshengjue.event.martial_arts;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapabilityProvider;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.wu_gang_cut_gui.WuGangCutGuiClientData;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
+import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.wu_gang_cut_gui.WuGangCutGuiPacket;
+import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.BlockTags;
@@ -9,22 +13,64 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.AirItem;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class WuGangCutGuiEvent {
+
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase == TickEvent.Phase.END) {
+            Player player = event.player;
+            if (player.level().isClientSide) {
+                BlockPos dropPos = WuGangCutGuiClientData.getDropPos();
+                if (WuGangCutGuiClientData.getDropPos() != null && WuGangCutGuiClientData.getParticleTick() <= 20 && WuGangCutGuiClientData.getParticleTick() > 0){
+                    if (WuGangCutGuiClientData.getParticleTick() > 18) {
+                        // 粒子生成在玩家脚下
+                        double particleX = dropPos.getX() + 0.5;
+                        double particleY = dropPos.getY();  // 粒子生成在玩家脚下
+                        double particleZ = dropPos.getZ() + 0.5;
+
+                        // 生成粒子并设置速度为0
+                        player.level().addParticle(ChangShengJueParticles.WU_GANG_CUT_GUI_PARTICLE_1.get(), particleX, particleY, particleZ, 0, 0, 0);
+                    }
+                    double radius = 0.5;
+                    int numberOfPoints = 2; // 生成数量
+                    for (int i = 0; i < numberOfPoints; i++) {
+                        // 随机生成一个点
+                        double phi = Math.random() * Math.PI * 2; // 随机生成方位角
+                        double costheta = Math.random() * 2 - 1; // 随机生成余弦值
+                        double theta = Math.acos(costheta); // 计算天顶角
+                        double dx = radius * Math.sin(theta) * Math.cos(phi); // 计算X坐标
+                        double dy = radius * Math.sin(theta) * Math.sin(phi); // 计算Y坐标
+                        double dz = radius * Math.cos(theta); // 计算Z坐标
+
+                        double speedFactor = 0.1;
+                        // 计算粒子的速度向量，向外飞出
+                        double speedX = dx * speedFactor;
+                        double speedY = dy * speedFactor;
+                        double speedZ = dz * speedFactor;
+
+                        // 生成粒子并设置速度
+                        player.level().addParticle(ChangShengJueParticles.WU_GANG_CUT_GUI_PARTICLE.get(), dropPos.getX() + dx + 0.5, dropPos.getY() + 0.1 + dy, dropPos.getZ() + dz + 0.5, speedX, speedY, speedZ);
+                    }
+                    WuGangCutGuiClientData.setParticleTick(WuGangCutGuiClientData.getParticleTick());
+                }
+            }
+        }
+    }
+
     public static void onEntityHurt(LivingDamageEvent event){
         Level level = event.getEntity().level();
         if (!level.isClientSide){
@@ -36,7 +82,7 @@ public class WuGangCutGuiEvent {
                     directEntity.getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(wuGangCutGui -> {
                         if (wuGangCutGui.isWuGangCutGuiComprehend() && wuGangCutGui.getWuGangCutGuiLevel() == 0) {
                             float probability = directEntity.getRandom().nextFloat();
-                            float defaultProbability = 0.01F;
+                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
                             if (probability < defaultProbability) {
                                 wuGangCutGui.addWuGangCutGuiLevel();
                             }
@@ -51,7 +97,6 @@ public class WuGangCutGuiEvent {
         Player player = event.getPlayer();
         Level level = player.getCommandSenderWorld();
         if (!level.isClientSide) {
-            if (!player.getAbilities().instabuild) {
                 player.getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(wuGangCutGuiCapability -> {
                     if (wuGangCutGuiCapability.isWuGangCutGuiComprehend() && wuGangCutGuiCapability.getWuGangCutGuiLevel() >= 1) {
                         BlockPos startPos = event.getPos();
@@ -69,11 +114,11 @@ public class WuGangCutGuiEvent {
                                 if (wuGangCutGuiCapability.getWuGangCutGuiUseCount() <= 1000) {
                                     wuGangCutGuiCapability.addWuGangCutGuiUseCount();
                                 }
+                                ChangShengJueMessages.sendToServer(new WuGangCutGuiPacket(dropPos,20));
                             }
                         }
                     }
                 });
-            }
         }
     }
     public static void onInteract(PlayerInteractEvent event) {
@@ -118,8 +163,7 @@ public class WuGangCutGuiEvent {
 
     private static Iterable<BlockPos> getAdjacentPositions(BlockPos pos) {
         return Set.of(
-                pos.above(), pos.below(),
-                pos.north(), pos.south(),
+                pos.above(), pos.north(), pos.south(),
                 pos.east(), pos.west()
         );
     }

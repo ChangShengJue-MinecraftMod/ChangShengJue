@@ -25,7 +25,12 @@ import com.shengchanshe.changshengjue.particle.custom.PoplarDefoliationParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendParticle2;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.DachengParticle;
-import net.minecraft.client.Minecraft;
+import com.shengchanshe.changshengjue.particle.custom.martial_arts.immortal_miracle.ImmortalMiracleParticle;
+import com.shengchanshe.changshengjue.particle.custom.martial_arts.sunflower_point_caveman.SunflowerPointCavemanParticle;
+import com.shengchanshe.changshengjue.particle.custom.martial_arts.sunflower_point_caveman.SunflowerPointCavemanParticle1;
+import com.shengchanshe.changshengjue.particle.custom.martial_arts.sunflower_point_caveman.SunflowerPointCavemanParticle2;
+import com.shengchanshe.changshengjue.particle.custom.martial_arts.wu_gang_cut_gui.WuGangCutGuiParticle;
+import com.shengchanshe.changshengjue.particle.custom.martial_arts.wu_gang_cut_gui.WuGangCutGuiParticle1;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -76,18 +81,20 @@ public class CSJEventClientBusEvents {
 
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
-//        event.registerSprite(ChangShengJueParticles.POPLAR_DEFOLIATION_PARTICLE.get(),PoplarDefoliationParticle.Provider::new);
-        Minecraft.getInstance().particleEngine.register(ChangShengJueParticles.POPLAR_DEFOLIATION_PARTICLE.get(),
-                PoplarDefoliationParticle.Provider::new);
 
-        Minecraft.getInstance().particleEngine.register(ChangShengJueParticles.COMPREHEND_PARTICLE.get(),
-                ComprehendParticle.Provider::new);
+//        event.registerSpecial(ChangShengJueParticles.SUNFLOWER_POINT_CAVEMAN.get(), new SunflowerPointCavemanParticle.Provider());
+        event.registerSpriteSet(ChangShengJueParticles.POPLAR_DEFOLIATION_PARTICLE.get(), PoplarDefoliationParticle.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.COMPREHEND_PARTICLE.get(), ComprehendParticle.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.COMPREHEND_PARTICLE_2.get(), ComprehendParticle2.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.DACHENG_PARTICLE.get(), DachengParticle.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.IMMORTAL_MIRACLE_PARTICLE.get(), ImmortalMiracleParticle.Provider::new);
 
-        Minecraft.getInstance().particleEngine.register(ChangShengJueParticles.COMPREHEND_PARTICLE_2.get(),
-                ComprehendParticle2.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.SUNFLOWER_POINT_CAVEMAN_PARTICLE.get(), SunflowerPointCavemanParticle.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.SUNFLOWER_POINT_CAVEMAN_PARTICLE_1.get(), SunflowerPointCavemanParticle1.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.SUNFLOWER_POINT_CAVEMAN_PARTICLE_2.get(), SunflowerPointCavemanParticle2.Provider::new);
 
-        Minecraft.getInstance().particleEngine.register(ChangShengJueParticles.DACHENG_PARTICLE.get(),
-                DachengParticle.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.WU_GANG_CUT_GUI_PARTICLE.get(), WuGangCutGuiParticle.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.WU_GANG_CUT_GUI_PARTICLE_1.get(), WuGangCutGuiParticle1.Provider::new);
 
 //        event.registerSpriteSet(ChangShengJueParticles.COMPREHEND_PARTICLE.get(), ComprehendParticle.Provider::new);
     }

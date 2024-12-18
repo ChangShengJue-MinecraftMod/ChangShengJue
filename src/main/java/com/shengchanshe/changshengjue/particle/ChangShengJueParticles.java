@@ -23,6 +23,21 @@ public class ChangShengJueParticles {
     public static final RegistryObject<SimpleParticleType> DACHENG_PARTICLE =
             PARTICLE_TYPES.register("dacheng_particle", () -> new SimpleParticleType(true));
 
+    public static final RegistryObject<SimpleParticleType> IMMORTAL_MIRACLE_PARTICLE =
+            PARTICLE_TYPES.register("immortal_miracle_particle", () -> new SimpleParticleType(true));
+
+    public static final RegistryObject<SimpleParticleType> SUNFLOWER_POINT_CAVEMAN_PARTICLE =
+            PARTICLE_TYPES.register("sunflower_point_caveman_particle", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> SUNFLOWER_POINT_CAVEMAN_PARTICLE_1 =
+            PARTICLE_TYPES.register("sunflower_point_caveman_particle_1", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> SUNFLOWER_POINT_CAVEMAN_PARTICLE_2 =
+            PARTICLE_TYPES.register("sunflower_point_caveman_particle_2", () -> new SimpleParticleType(false));
+
+    public static final RegistryObject<SimpleParticleType> WU_GANG_CUT_GUI_PARTICLE =
+            PARTICLE_TYPES.register("wu_gang_cut_gui_particle", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> WU_GANG_CUT_GUI_PARTICLE_1 =
+            PARTICLE_TYPES.register("wu_gang_cut_gui_particle_1", () -> new SimpleParticleType(false));
+
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);
     }

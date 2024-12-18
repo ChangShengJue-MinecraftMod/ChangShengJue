@@ -39,6 +39,7 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
+import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -702,6 +703,8 @@ public class CSJEvent {
         TurtleBreathWorkEvent.onPlayerTick(event);
         //无情飞刀
         RelentlessThrowingKnivesEvent.onPlayerTick(event);
+        //吴刚伐桂
+        WuGangCutGuiEvent.onPlayerTick(event);
     }
     //生物攻击事件
     @SubscribeEvent

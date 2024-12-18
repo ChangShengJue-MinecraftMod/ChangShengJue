@@ -5,7 +5,9 @@ import com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_ca
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.effect.EffectEntityPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.SunflowerPointCavemanPacket;
+import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
 import com.shengchanshe.changshengjue.util.particle.DachengParticle;
 import net.minecraft.server.level.ServerPlayer;
@@ -28,6 +30,7 @@ public class SunflowerPointCavemanEvent {
                 player.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
                     if (sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent() > 0 && sunflowerPointCaveman.isSunflowerPointCavemanOff()) {
                         sunflowerPointCaveman.setSunflowerPointCavemanUseCooldownPercent();
+
                         ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
                                 sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
                                 sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
@@ -107,6 +110,7 @@ public class SunflowerPointCavemanEvent {
 
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){
         Player player = event.getEntity();
+        Entity entity = event.getTarget();
         if (!event.getLevel().isClientSide){
             player.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
                 if (sunflowerPointCaveman.isSunflowerPointCavemanComprehend() && sunflowerPointCaveman.isSunflowerPointCavemanOff() && sunflowerPointCaveman.getSunflowerPointCavemanLevel() > 0){
@@ -114,12 +118,13 @@ public class SunflowerPointCavemanEvent {
                         if (player.getMainHandItem().isEmpty()){
                             if (player.getFoodData().getFoodLevel() > 8){
                                 float health;
-                                Entity entity = event.getTarget();
                                 if (sunflowerPointCaveman.getSunflowerPointCavemanLevel() < 2){
                                     health = 25;
                                     if (entity instanceof LivingEntity livingEntity){
                                         if (livingEntity.getHealth() < health){
                                             livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 25, 1, false, false), player);
+                                            MobEffectInstance effectInstance = new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 25, 0, false, false);
+                                            ChangShengJueMessages.sendMSGToAll(new EffectEntityPacket(livingEntity.getId(),player.getId(),0,effectInstance.getDuration()));
                                         }
                                     }
                                 }else {
@@ -127,6 +132,8 @@ public class SunflowerPointCavemanEvent {
                                     if (entity instanceof LivingEntity livingEntity){
                                         if (livingEntity.getHealth() < health){
                                             livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 30, 1, false, false), player);
+                                            MobEffectInstance effectInstance = new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 30, 0, false, false);
+                                            ChangShengJueMessages.sendMSGToAll(new EffectEntityPacket(livingEntity.getId(),player.getId(),0,effectInstance.getDuration()));
                                         }
                                     }
                                 }
@@ -170,7 +177,7 @@ public class SunflowerPointCavemanEvent {
                     }
                 }
             });
-        }else{
+        }else if (player.level().isClientSide){
             boolean sunflowerPointCavemanComprehend = SunflowerPointCavemanClientData.isSunflowerPointCavemanComprehend();
             boolean sunflowerPointCavemanOff = SunflowerPointCavemanClientData.isSunflowerPointCavemanOff();
             if (sunflowerPointCavemanComprehend && sunflowerPointCavemanOff){
