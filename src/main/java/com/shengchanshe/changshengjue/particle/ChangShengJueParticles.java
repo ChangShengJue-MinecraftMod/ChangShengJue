@@ -41,6 +41,9 @@ public class ChangShengJueParticles {
     public static final RegistryObject<SimpleParticleType> GOLDEN_BELL_JAR_PARTICLE =
             PARTICLE_TYPES.register("golden_bell_jar_particle", () -> new SimpleParticleType(false));
 
+    public static final RegistryObject<SimpleParticleType> TREAD_THE_SNOW_WITHOUT_TRACE_PARTICLE =
+            PARTICLE_TYPES.register("tread_the_snow_without_trace_particle", () -> new SimpleParticleType(false));
+
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);
     }

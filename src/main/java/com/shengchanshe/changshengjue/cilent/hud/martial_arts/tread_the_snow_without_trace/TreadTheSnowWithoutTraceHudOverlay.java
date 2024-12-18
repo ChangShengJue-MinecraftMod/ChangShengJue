@@ -51,15 +51,15 @@ public class TreadTheSnowWithoutTraceHudOverlay {
             if (getTreadTheSnowWithoutTraceLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
                 if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图
                     if (getTreadTheSnowWithoutTraceLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
-                        CSJDisplayHud.displayHudPermanent(guiGraphics, TREAD_THE_SNOW_WITHOUT_TRACE, x, y);
+                        CSJDisplayHud.displayHud(guiGraphics, TREAD_THE_SNOW_WITHOUT_TRACE, x, y);
                     } else {
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,TREAD_THE_SNOW_WITHOUT_TRACE_1,x,y);
+                        CSJDisplayHud.displayHud(guiGraphics,TREAD_THE_SNOW_WITHOUT_TRACE_1,x,y);
                     }
                 }else {
-                    CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+                    CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
                 }
             }else {
-                CSJDisplayHud.displayHudPermanent(guiGraphics,TREAD_THE_SNOW_WITHOUT_TRACE_2,x,y);
+                CSJDisplayHud.displayHud(guiGraphics,TREAD_THE_SNOW_WITHOUT_TRACE_2,x,y);
             }
         }
         if (frameTime() > 0){
@@ -67,27 +67,27 @@ public class TreadTheSnowWithoutTraceHudOverlay {
                 float v = ((frameTime() / 20) / 5);
                 int v1 = (int) (16 * v + 1);//计算技能剩余冷却时间
                 if (getTreadTheSnowWithoutTraceLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
-                    CSJDisplayHud.displayHudPermanent(guiGraphics,TREAD_THE_SNOW_WITHOUT_TRACE,x,y);
-                    CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                    guiGraphics.blit(TREAD_THE_SNOW_WITHOUT_TRACE, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
+                    CSJDisplayHud.displayHud(guiGraphics,TREAD_THE_SNOW_WITHOUT_TRACE,x,y);
+                    CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+                    guiGraphics.blit(TREAD_THE_SNOW_WITHOUT_TRACE, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
                 } else {
-                    CSJDisplayHud.displayHudPermanent(guiGraphics,TREAD_THE_SNOW_WITHOUT_TRACE_1,x,y);
-                    CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                    guiGraphics.blit(TREAD_THE_SNOW_WITHOUT_TRACE_1, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
+                    CSJDisplayHud.displayHud(guiGraphics,TREAD_THE_SNOW_WITHOUT_TRACE_1,x,y);
+                    CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+                    guiGraphics.blit(TREAD_THE_SNOW_WITHOUT_TRACE_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
                 }
                 //以文字形式绘制剩余冷却时间
-                guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(v * 5)).toString(),x + 1, y + 25, ChatFormatting.AQUA.getColor());
+                guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(v * 5)).toString(),x + 1, y + 4, ChatFormatting.AQUA.getColor());
             }else {
                 if (getTreadTheSnowWithoutTraceLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
-                    CSJDisplayHud.displayHudPermanent(guiGraphics,TREAD_THE_SNOW_WITHOUT_TRACE,x,y);
-                    CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                    guiGraphics.blit(TREAD_THE_SNOW_WITHOUT_TRACE, x, y + 20, 0, 0, 0,16, 16, 16, 16);
+                    CSJDisplayHud.displayHud(guiGraphics,TREAD_THE_SNOW_WITHOUT_TRACE,x,y);
+                    CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+                    guiGraphics.blit(TREAD_THE_SNOW_WITHOUT_TRACE, x, y, 0, 0, 0,16, 16, 16, 16);
                 } else {
-                    CSJDisplayHud.displayHudPermanent(guiGraphics,TREAD_THE_SNOW_WITHOUT_TRACE_1,x,y);
-                    CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                    guiGraphics.blit(TREAD_THE_SNOW_WITHOUT_TRACE_1, x, y + 20, 0, 0, 0,16, 16, 16, 16);
+                    CSJDisplayHud.displayHud(guiGraphics,TREAD_THE_SNOW_WITHOUT_TRACE_1,x,y);
+                    CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+                    guiGraphics.blit(TREAD_THE_SNOW_WITHOUT_TRACE_1, x, y, 0, 0, 0,16, 16, 16, 16);
                 }
-                CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
             }
         }
     };
