@@ -1,9 +1,8 @@
 package com.shengchanshe.changshengjue.item.combat.lance;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapabilityProvider;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.gao_marksmanship.GaoMarksmanshipClientData;
 import com.shengchanshe.changshengjue.item.render.combat.lance.BaWangQiangRender;
-import com.shengchanshe.changshengjue.item.render.combat.lance.RedTasselledSpearRender;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
@@ -24,6 +23,7 @@ import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.ClientUtils;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.HashMap;
@@ -82,7 +82,12 @@ public class BaWangQiang extends Lance implements GeoItem {
         controllerRegistrar.add(((new AnimationController(this, "idle",0, (state) ->
                 state.setAndContinue(DefaultAnimations.IDLE)))));
         controllerRegistrar.add(new AnimationController<>(this, "Attack", 0, state -> PlayState.CONTINUE)
-                .triggerableAnim("attack", DefaultAnimations.ATTACK_SWING));
+                .triggerableAnim("attack", DefaultAnimations.ATTACK_SWING).setSoundKeyframeHandler((state) -> {
+                    Player player = ClientUtils.getClientPlayer();
+                    if (player != null) {
+                        player.playSound(ChangShengJueSound.GAO_MARKSMANSHIP_SOUND.get(), 1.0F, 1.0F);
+                    }
+                }));
     }
 
     @Override

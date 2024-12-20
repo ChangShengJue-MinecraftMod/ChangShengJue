@@ -56,7 +56,8 @@
 			"bones": {
 				"bone": {
 					"rotation": {
-						"vector": [8, 0, 0]
+						"vector": [10, 0, 0],
+						"easing": "linear"
 					},
 					"position": {
 						"0.1667": {
@@ -68,7 +69,7 @@
 							"easing": "linear"
 						},
 						"0.4": {
-							"vector": [0, 16, 0],
+							"vector": [0, 3, 0],
 							"easing": "easeOutCirc"
 						}
 					}
@@ -231,7 +232,8 @@
 				},
 				"bone9": {
 					"rotation": {
-						"vector": [10, 0, 0]
+						"vector": [11, 0, 0],
+						"easing": "linear"
 					},
 					"position": {
 						"0.2": {
@@ -243,7 +245,7 @@
 							"easing": "linear"
 						},
 						"0.4667": {
-							"vector": [0, 20, 0],
+							"vector": [0, 3, 0],
 							"easing": "easeOutCirc"
 						}
 					},
@@ -277,6 +279,11 @@
 							"easing": "linear"
 						}
 					}
+				}
+			},
+			"sound_effects": {
+				"0.0333": {
+					"effect": ".mp3"
 				}
 			}
 		}

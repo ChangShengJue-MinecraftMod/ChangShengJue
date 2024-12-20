@@ -4,6 +4,7 @@ import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.effect.EffectEntityPacket;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -14,6 +15,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
+
+import java.util.Objects;
 
 public class GoldenBellJarEffect extends MobEffect {
     public GoldenBellJarEffect() {
@@ -26,16 +29,17 @@ public class GoldenBellJarEffect extends MobEffect {
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
         super.applyEffectTick(pLivingEntity, pAmplifier);
         if (this == ChangShengJueEffects.GOLDEN_BELL_JAR_EFFECT.get() && pLivingEntity.level().isClientSide) {
-//            if (pLivingEntity.getEffect(ChangShengJueEffects.GOLDEN_BELL_JAR_EFFECT.get()).getDuration() % 5 == 0){
-//                pLivingEntity.level().addParticle(ChangShengJueParticles.GOLDEN_BELL_JAR_PARTICLE.get(), pLivingEntity.getRandomX(1.0D), pLivingEntity.getRandomY(), pLivingEntity.getRandomZ(1.0D),
-//                        0, 0, 0);
-            // 粒子的初始位置
-            double x = pLivingEntity.getX() + (Math.random() - 0.5);
-            double y = pLivingEntity.getY() + 0.7 + (Math.random() - 0.5);
-            double z = pLivingEntity.getZ() + (Math.random() - 0.5);
+            if (Objects.requireNonNull(pLivingEntity.getEffect(this)).getDuration() % 60 == 0){
+                pLivingEntity.playSound(ChangShengJueSound.GOLDEN_BELLJAR_SOUND.get(), 1.0F, 1.0F);
+            }
+            if (Objects.requireNonNull(pLivingEntity.getEffect(this)).getDuration() % 5 == 0){
+                // 粒子的初始位置
+                double x = pLivingEntity.getX() + (Math.random() - 0.5);
+                double y = pLivingEntity.getY() + 0.6 + (Math.random() - 0.5);
+                double z = pLivingEntity.getZ() + (Math.random() - 0.5);
 
-            pLivingEntity.level().addParticle(ChangShengJueParticles.GOLDEN_BELL_JAR_PARTICLE.get(), x, y, z, 0, 0, 0);
-//            }
+                pLivingEntity.level().addParticle(ChangShengJueParticles.GOLDEN_BELL_JAR_PARTICLE.get(), x, y, z, 0, 0, 0);
+            }
         }
     }
 

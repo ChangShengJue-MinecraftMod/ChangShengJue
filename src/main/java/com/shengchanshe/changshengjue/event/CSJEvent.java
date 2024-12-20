@@ -710,6 +710,18 @@ public class CSJEvent {
         RelentlessThrowingKnivesEvent.onPlayerTick(event);
         //吴刚伐桂
         WuGangCutGuiEvent.onPlayerTick(event);
+        //独孤九剑
+        DuguNineSwordsEvent.onPlayerTick(event);
+        //高家枪法
+        GaoMarksmanshipEvent.onPlayerTick(event);
+        //金乌刀法
+        GoldenBlackKnifeMethodEvent.onPlayerTick(event);
+        //庖丁解牛
+        PaodingEvent.onPlayerTick(event);
+        //少林棍法
+        ShaolinStickMethodEvent.onPlayerTick(event);
+        //玄女剑法
+        XuannuSwordsmanshipEvent.onPlayerTick(event);
     }
     //生物攻击事件
     @SubscribeEvent
@@ -925,25 +937,47 @@ public class CSJEvent {
         if(!event.getLevel().isClientSide()) {
             if(event.getEntity() instanceof ServerPlayer player) {
                 player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
-                    ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),duguNineSword.isDuguNineSwordsComprehend()), player);
+                    ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),
+                            duguNineSword.isDuguNineSwordsComprehend(),
+                            duguNineSword.getDuguNineSwordsToppedTick(),
+                            duguNineSword.getDuguNineSwordsDachengTick(),
+                            duguNineSword.isDuguNineSwordsParticle()), player);
                 });
                 player.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
-                    ChangShengJueMessages.sendToPlayer(new GoldenBlackKnifeMethodPacket(goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel(),goldenBlackKnifeMethod.isGoldenBlackKnifeMethodComprehend()), player);
+                    ChangShengJueMessages.sendToPlayer(new GoldenBlackKnifeMethodPacket(goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel(),
+                            goldenBlackKnifeMethod.isGoldenBlackKnifeMethodComprehend(),
+                            goldenBlackKnifeMethod.getGoldenBlackKnifeMethodToppedTick(),
+                            goldenBlackKnifeMethod.getGoldenBlackKnifeMethodDachengTick(),
+                            goldenBlackKnifeMethod.isGoldenBlackKnifeMethodParticle()), player);
                 });
                 player.getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(xuannuSwordsmanship -> {
-                    ChangShengJueMessages.sendToPlayer(new XuannuSwordsmanshipPacket(xuannuSwordsmanship.getXuannuSwordsmanshipLevel(),xuannuSwordsmanship.isXuannuSwordsmanshipComprehend()), player);
+                    ChangShengJueMessages.sendToPlayer(new XuannuSwordsmanshipPacket(xuannuSwordsmanship.getXuannuSwordsmanshipLevel(),xuannuSwordsmanship.isXuannuSwordsmanshipComprehend(),
+                            xuannuSwordsmanship.getXuannuSwordsmanshipToppedTick(),
+                            xuannuSwordsmanship.getXuannuSwordsmanshipDachengTick(),
+                            xuannuSwordsmanship.isXuannuSwordsmanshipParticle()), player);
                 });
                 player.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
-                    ChangShengJueMessages.sendToPlayer(new GaoMarksmanshipPacket(gaoMarksmanship.getGaoMarksmanshipLevel(),gaoMarksmanship.isGaoMarksmanshipComprehend()), player);
+                    ChangShengJueMessages.sendToPlayer(new GaoMarksmanshipPacket(gaoMarksmanship.getGaoMarksmanshipLevel(),
+                            gaoMarksmanship.isGaoMarksmanshipComprehend(),
+                            gaoMarksmanship.getGaoMarksmanshipToppedTick(),
+                            gaoMarksmanship.getGaoMarksmanshipDachengTick(),
+                            gaoMarksmanship.isGaoMarksmanshipParticle()), player);
                 });
                 player.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(shaolinStickMethod -> {
-                    ChangShengJueMessages.sendToPlayer(new ShaolinStickMethodPacket(shaolinStickMethod.getShaolinStickMethodLevel(),shaolinStickMethod.isShaolinStickMethodComprehend()), player);
+                    ChangShengJueMessages.sendToPlayer(new ShaolinStickMethodPacket(shaolinStickMethod.getShaolinStickMethodLevel(),
+                            shaolinStickMethod.isShaolinStickMethodComprehend(),
+                            shaolinStickMethod.getShaolinStickMethodToppedTick(),
+                            shaolinStickMethod.getShaolinStickMethodDachengTick(),
+                            shaolinStickMethod.isShaolinStickMethodParticle()), player);
                 });
                 player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
                     ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTracePacket(
                             treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
                             treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend(),
-                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent()), player);
+                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent(),
+                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceToppedTick(),
+                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceDachengTick(),
+                            treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceParticle()), player);
                 });
                 player.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
                     ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(

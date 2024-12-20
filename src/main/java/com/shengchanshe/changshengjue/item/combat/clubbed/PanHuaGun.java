@@ -3,8 +3,10 @@ package com.shengchanshe.changshengjue.item.combat.clubbed;
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapabilityProvider;
 import com.shengchanshe.changshengjue.item.combat.lance.Lance;
 import com.shengchanshe.changshengjue.item.render.combat.clubbed.PanHuaGunRender;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -20,6 +22,7 @@ import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.ClientUtils;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
@@ -66,7 +69,12 @@ public class PanHuaGun extends Clubbed implements GeoItem {
         controllerRegistrar.add(((new AnimationController(this, "idle",0, (state) ->
                 state.setAndContinue(DefaultAnimations.IDLE)))));
         controllerRegistrar.add(new AnimationController<>(this, "Attack", 0, state -> PlayState.CONTINUE)
-                .triggerableAnim("attack", DefaultAnimations.ATTACK_SWING));
+                .triggerableAnim("attack", DefaultAnimations.ATTACK_SWING).setSoundKeyframeHandler((state) -> {
+                    Player player = ClientUtils.getClientPlayer();
+                    if (player != null) {
+                        player.playSound(ChangShengJueSound.SHAOLIN_STICK_METHOD_SOUND.get(), 1.0F, 1.0F);
+                    }
+                }));
     }
 
     @Override

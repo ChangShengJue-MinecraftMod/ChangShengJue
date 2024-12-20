@@ -32,7 +32,11 @@ public class GoldenBlackKnifeMethod extends Item {
                     if (!pPlayer.getAbilities().instabuild) {
                         itemInHand.shrink(1);
                     }
-                    ChangShengJueMessages.sendToPlayer(new GoldenBlackKnifeMethodPacket(goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel(),goldenBlackKnifeMethod.isGoldenBlackKnifeMethodComprehend()), (ServerPlayer) pPlayer);
+                    ChangShengJueMessages.sendToPlayer(new GoldenBlackKnifeMethodPacket(goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel(),
+                            goldenBlackKnifeMethod.isGoldenBlackKnifeMethodComprehend(),
+                            goldenBlackKnifeMethod.getGoldenBlackKnifeMethodToppedTick(),
+                            goldenBlackKnifeMethod.getGoldenBlackKnifeMethodDachengTick(),
+                            goldenBlackKnifeMethod.isGoldenBlackKnifeMethodParticle()), (ServerPlayer) pPlayer);
                 }
             });
         }

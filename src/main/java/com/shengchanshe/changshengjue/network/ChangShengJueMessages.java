@@ -13,6 +13,7 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.wu_gang_cut_gui.WuGangCutGuiPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.wu_gang_cut_gui.WuGangCutGuiPacket1;
 import com.shengchanshe.changshengjue.screen.plaque.UpdatePlaqueTextPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -152,6 +153,17 @@ public class ChangShengJueMessages {
                 .decoder(WuGangCutGuiPacket::new)
                 .encoder(WuGangCutGuiPacket::toBytes)
                 .consumerMainThread(WuGangCutGuiPacket::handle)
+                .add();
+        net.messageBuilder(WuGangCutGuiPacket1.class, id())
+                .decoder(WuGangCutGuiPacket1::new)
+                .encoder(WuGangCutGuiPacket1::toBytes)
+                .consumerMainThread(WuGangCutGuiPacket1::handle)
+                .add();
+        //庖丁解牛
+        net.messageBuilder(PaodingPacket.class, id())
+                .decoder(PaodingPacket::new)
+                .encoder(PaodingPacket::toBytes)
+                .consumerMainThread(PaodingPacket::handle)
                 .add();
     }
 

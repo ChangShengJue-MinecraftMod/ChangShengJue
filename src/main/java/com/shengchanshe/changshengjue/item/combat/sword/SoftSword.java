@@ -7,9 +7,11 @@ import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.item.render.combat.sword.SoftSwordRender;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.XuannuSwordsmanshipPacket;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -30,8 +32,8 @@ import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.ClientUtils;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
@@ -48,10 +50,16 @@ public class SoftSword extends Sword implements GeoItem {
             player.getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(xuannuSwordsmanship -> {
                 if (xuannuSwordsmanship.xuannuSwordsmanshipComprehend() && xuannuSwordsmanship.getXuannuSwordsmanshipLevel() == 0) {
                     float probability = player.getRandom().nextFloat();
-                    float defaultProbability = 0.02F;
+                    float defaultProbability = !player.getAbilities().instabuild ? 0.02F : 1.0F;
                     if (probability < defaultProbability) {
                         xuannuSwordsmanship.addXuannuSwordsmanshipLevel();
-                        ChangShengJueMessages.sendToPlayer(new XuannuSwordsmanshipPacket(xuannuSwordsmanship.getXuannuSwordsmanshipLevel(),xuannuSwordsmanship.isXuannuSwordsmanshipComprehend()), (ServerPlayer) player);
+                        xuannuSwordsmanship.setXuannuSwordsmanshipParticle(true);
+                        player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
+                                ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                        ChangShengJueMessages.sendToPlayer(new XuannuSwordsmanshipPacket(xuannuSwordsmanship.getXuannuSwordsmanshipLevel(),xuannuSwordsmanship.isXuannuSwordsmanshipComprehend(),
+                                xuannuSwordsmanship.getXuannuSwordsmanshipToppedTick(),
+                                xuannuSwordsmanship.getXuannuSwordsmanshipDachengTick(),
+                                xuannuSwordsmanship.isXuannuSwordsmanshipParticle()), (ServerPlayer) player);
                     }
                 }
             });
@@ -107,10 +115,18 @@ public class SoftSword extends Sword implements GeoItem {
                         }
                         if (entity.hurt(player.damageSources().playerAttack(player), damage)) {//造成伤害
                             if (xuannuSwordsmanship.getXuannuSwordsmanshipUseCount() <= 100){
-                                xuannuSwordsmanship.addXuannuSwordsmanshipUseCount();
-                                ChangShengJueMessages.sendToPlayer(new XuannuSwordsmanshipPacket(xuannuSwordsmanship.getXuannuSwordsmanshipLevel(),xuannuSwordsmanship.isXuannuSwordsmanshipComprehend()), (ServerPlayer) player);
+                                xuannuSwordsmanship.addXuannuSwordsmanshipUseCount(!player.getAbilities().instabuild ? 1 : 100);
+                                if (xuannuSwordsmanship.getXuannuSwordsmanshipUseCount() >= 100){
+                                    xuannuSwordsmanship.setXuannuSwordsmanshipParticle(true);
+                                    player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
+                                            ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                }
+                                ChangShengJueMessages.sendToPlayer(new XuannuSwordsmanshipPacket(xuannuSwordsmanship.getXuannuSwordsmanshipLevel(),xuannuSwordsmanship.isXuannuSwordsmanshipComprehend(),
+                                        xuannuSwordsmanship.getXuannuSwordsmanshipToppedTick(),
+                                        xuannuSwordsmanship.getXuannuSwordsmanshipDachengTick(),
+                                        xuannuSwordsmanship.isXuannuSwordsmanshipParticle()), (ServerPlayer) player);
                             }
-                            EnchantmentHelper.doPostDamageEffects(player, entity);//应用附魔
+                            EnchantmentHelper.doPostDamageEffects(player, entity);// 应用附魔
                         }
                     }
                 }
@@ -121,10 +137,6 @@ public class SoftSword extends Sword implements GeoItem {
                 itemstack.hurtAndBreak(1, player, (player1) -> {//消耗耐久
                     player1.broadcastBreakEvent(player.getUsedItemHand());
                 });
-//                XuannuSwordsmanshipEntity xuannuSwordsmanshipsEntity = new XuannuSwordsmanshipEntity(ChangShengJueEntity.DUGU_NINE_SOWRDS_ENTITY.get(), pLevel);
-//                xuannuSwordsmanshipsEntity.moveTo(hitLocation);
-//                xuannuSwordsmanshipsEntity.setYRot(player.getYRot());
-//                pLevel.addFreshEntity(xuannuSwordsmanshipsEntity);
             }
         }
     }
@@ -148,7 +160,12 @@ public class SoftSword extends Sword implements GeoItem {
         controllerRegistrar.add(((new AnimationController(this, "idle",0, (state) ->
                 state.setAndContinue(DefaultAnimations.IDLE)))));
         controllerRegistrar.add(new AnimationController<>(this, "Attack", 0, state -> PlayState.CONTINUE)
-                .triggerableAnim("attack", DefaultAnimations.ATTACK_SWING));
+                .triggerableAnim("attack", DefaultAnimations.ATTACK_SWING).setSoundKeyframeHandler((state) -> {
+                    Player player = ClientUtils.getClientPlayer();
+                    if (player != null) {
+                        player.playSound(ChangShengJueSound.XUANNU_SWORDSMANSHIP_SOUND.get(), 1.0F, 1.0F);
+                    }
+                }));
     }
 
     @Override

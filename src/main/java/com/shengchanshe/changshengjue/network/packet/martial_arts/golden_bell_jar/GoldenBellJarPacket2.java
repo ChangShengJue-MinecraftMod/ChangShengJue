@@ -3,9 +3,11 @@ package com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_j
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -26,6 +28,7 @@ public class GoldenBellJarPacket2 {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             ServerPlayer player = context.getSender();
+            ServerLevel level = player.serverLevel();
             player.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
                 if (goldenBellJar.isGoldenBellJarComprehend() && goldenBellJar.isGoldenBellJarOff() && goldenBellJar.getGoldenBellJarLevel() > 0) {
                     if (goldenBellJar.getGoldenBellJarUseCooldownPercent() <= 0) {
@@ -51,10 +54,12 @@ public class GoldenBellJarPacket2 {
                             } else {
                                 player.addEffect(new MobEffectInstance(ChangShengJueEffects.GOLDEN_BELL_JAR_EFFECT.get(), 120, 1, false, false), player);
                             }
-                            if (goldenBellJar.getGoldenBellJarUseCount() <= 100) {
+                            if (goldenBellJar.getGoldenBellJarUseCount() < 100) {
                                 goldenBellJar.addGoldenBellJarUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (goldenBellJar.getGoldenBellJarUseCount() >= 100){
                                     goldenBellJar.setGoldenBellJarParticle(true);
+                                    level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                            ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                 }
                             }
 

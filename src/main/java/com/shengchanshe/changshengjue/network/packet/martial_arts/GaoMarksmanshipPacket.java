@@ -9,20 +9,32 @@ import java.util.function.Supplier;
 public class GaoMarksmanshipPacket {
     private final int gaoMarksmanshipLevel;
     private final boolean gaoMarksmanshipComprehend;
+    private float gaoMarksmanshipToppedTick;//技能领悟特效计时
+    private float gaoMarksmanshipDachengTick;//技能领悟特效计时
+    private boolean gaoMarksmanshipParticle;//技能特效显示
 
-    public GaoMarksmanshipPacket(int gaoMarksmanshipLevel, boolean gaoMarksmanshipComprehend){
+    public GaoMarksmanshipPacket(int gaoMarksmanshipLevel, boolean gaoMarksmanshipComprehend, float gaoMarksmanshipToppedTick, float gaoMarksmanshipDachengTick, boolean gaoMarksmanshipParticle){
         this.gaoMarksmanshipLevel = gaoMarksmanshipLevel;
         this.gaoMarksmanshipComprehend = gaoMarksmanshipComprehend;
+        this.gaoMarksmanshipToppedTick = gaoMarksmanshipToppedTick;
+        this.gaoMarksmanshipDachengTick = gaoMarksmanshipDachengTick;
+        this.gaoMarksmanshipParticle = gaoMarksmanshipParticle;
     }
 
     public GaoMarksmanshipPacket(FriendlyByteBuf buf){
         this.gaoMarksmanshipLevel = buf.readInt();
         this.gaoMarksmanshipComprehend = buf.readBoolean();
+        this.gaoMarksmanshipToppedTick = buf.readFloat();
+        this.gaoMarksmanshipDachengTick = buf.readFloat();
+        this.gaoMarksmanshipParticle = buf.readBoolean();
     }
 
     public void toBytes(FriendlyByteBuf buf){
         buf.writeInt(gaoMarksmanshipLevel);
         buf.writeBoolean(gaoMarksmanshipComprehend);
+        buf.writeFloat(gaoMarksmanshipToppedTick);
+        buf.writeFloat(gaoMarksmanshipDachengTick);
+        buf.writeBoolean(gaoMarksmanshipParticle);
     }
 
     // 客户端处理
@@ -31,6 +43,10 @@ public class GaoMarksmanshipPacket {
         context.enqueueWork(() -> {
             GaoMarksmanshipClientData.setGaoMarksmanshipLevel(gaoMarksmanshipLevel);
             GaoMarksmanshipClientData.setGaoMarksmanshipComprehend(gaoMarksmanshipComprehend);
+
+            GaoMarksmanshipClientData.setGaoMarksmanshipToppedTick(gaoMarksmanshipToppedTick);
+            GaoMarksmanshipClientData.setGaoMarksmanshipDachengTick(gaoMarksmanshipDachengTick);
+            GaoMarksmanshipClientData.setGaoMarksmanshipParticle(gaoMarksmanshipParticle);
         });
         return true;
     }

@@ -8,7 +8,9 @@ import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.Go
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.GoldenBlackKnifeMethodPacket;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
@@ -37,10 +39,17 @@ public class Knife extends SwordItem {
             pPlayer.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
                 if (goldenBlackKnifeMethod.goldenBlackKnifeMethodComprehend() && goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel() == 0) {
                     float probability = pPlayer.getRandom().nextFloat();
-                    float defaultProbability = 0.02F;
+                    float defaultProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
                     if (probability < defaultProbability) {
                         goldenBlackKnifeMethod.addGoldenBlackKnifeMethodLevel();
-                        ChangShengJueMessages.sendToPlayer(new GoldenBlackKnifeMethodPacket(goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel(),goldenBlackKnifeMethod.isGoldenBlackKnifeMethodComprehend()), (ServerPlayer) pPlayer);
+                        goldenBlackKnifeMethod.setGoldenBlackKnifeMethodParticle(true);
+                        pPlayer.level().playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(),
+                                ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                        ChangShengJueMessages.sendToPlayer(new GoldenBlackKnifeMethodPacket(goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel(),
+                                goldenBlackKnifeMethod.isGoldenBlackKnifeMethodComprehend(),
+                                goldenBlackKnifeMethod.getGoldenBlackKnifeMethodToppedTick(),
+                                goldenBlackKnifeMethod.getGoldenBlackKnifeMethodDachengTick(),
+                                goldenBlackKnifeMethod.isGoldenBlackKnifeMethodParticle()), (ServerPlayer) pPlayer);
                     }
                 }
             });
@@ -49,23 +58,23 @@ public class Knife extends SwordItem {
     }
 
     @SubscribeEvent
-    public void onKnifeAttack(LivingDamageEvent event){
+    public void onKnifeAttack(LivingDamageEvent event) {
         Level level = event.getEntity().level();
-        if (!level.isClientSide){
-            if (event.getSource().getDirectEntity() instanceof Player directEntity){
+        if (!level.isClientSide) {
+            if (event.getSource().getDirectEntity() instanceof Player directEntity) {
                 directEntity.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
                     int goldenBlackKnifeMethodLevel = goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel();
-                    if (goldenBlackKnifeMethodLevel != 0){
-                        if (directEntity.getMainHandItem().getItem() == this){
+                    if (goldenBlackKnifeMethodLevel != 0) {
+                        if (directEntity.getMainHandItem().getItem() == this) {
                             float probability = directEntity.getRandom().nextFloat();
                             float defaultProbability = 0.15F;
-                            if(goldenBlackKnifeMethodLevel < 2){
-                                if (probability < defaultProbability){
+                            if (goldenBlackKnifeMethodLevel < 2) {
+                                if (probability < defaultProbability) {
                                     float amount = event.getAmount();
                                     event.setAmount((float) (amount * 1.15));
                                 }
-                            }else {
-                                if (probability < defaultProbability * 1.2){
+                            } else {
+                                if (probability < defaultProbability * 1.2) {
                                     float amount = event.getAmount();
                                     event.setAmount((float) (amount * 1.15));
                                 }
@@ -79,32 +88,32 @@ public class Knife extends SwordItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        if (!pLevel.isClientSide) {
-            ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
-            if (itemstack.getItem() instanceof Knife && itemstack.getItem() != ChangShengJueItems.SOFT_SWORD.get()) {
-                if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
+        ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
+        if (itemstack.getItem() instanceof Knife) {
+            if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
+                if (!pLevel.isClientSide) {
                     pPlayer.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
                         if (goldenBlackKnifeMethod.goldenBlackKnifeMethodComprehend()) {
-                            this.onDuguNineSwords(pLevel, pPlayer,goldenBlackKnifeMethod);
+                            this.onGoldenBlackKnifeMethod(pLevel, pPlayer, goldenBlackKnifeMethod);
                         }
                     });
-                    if (GoldenBlackKnifeMethodClientData.getGoldenBlackKnifeMethodLevel() >= 1){
-                        return InteractionResultHolder.success(pPlayer.getMainHandItem());
-                    }
+                }
+                if (GoldenBlackKnifeMethodClientData.getGoldenBlackKnifeMethodLevel() >= 1) {
+                    return InteractionResultHolder.success(pPlayer.getMainHandItem());
                 }
             }
         }
         return super.use(pLevel, pPlayer, pUsedHand);
     }
 
-    private void onDuguNineSwords(Level pLevel, LivingEntity pEntity, GoldenBlackKnifeMethodCapability goldenBlackKnifeMethodCapability) {
+    private void onGoldenBlackKnifeMethod(Level pLevel, LivingEntity pEntity, GoldenBlackKnifeMethodCapability goldenBlackKnifeMethod) {
         float radius = 4.0f;//攻击半径
         float distance = 4.0F;//攻击距离
         Vec3 forward = pEntity.getForward();//获取实体的前方方向
         Vec3 hitLocation = pEntity.position().add(0, pEntity.getBbHeight() * 0.3f, 0).add(forward.scale(distance));//获取实体高度的面向,计算攻击和实体生成的位置
         var entities = pLevel.getEntities(pEntity, AABB.ofSize(hitLocation, radius * 2, radius, radius * 2));//创建包围盒
         if (pEntity instanceof Player player) {
-            if (goldenBlackKnifeMethodCapability.getGoldenBlackKnifeMethodLevel() != 0) {
+            if (goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel() > 0) {
                 ItemStack itemstack = player.getMainHandItem();//获取玩家手中物品
                 GoldenBlackKnifeMethodEntity goldenBlackKnifeMethodEntity = new GoldenBlackKnifeMethodEntity(ChangShengJueEntity.GOLDEN_BLACK_KNIFE_METHOD_ENTITY.get(), pLevel);
                 goldenBlackKnifeMethodEntity.moveTo(hitLocation);
@@ -114,17 +123,27 @@ public class Knife extends SwordItem {
                     //检查生物是否可以交互,是否在给定的平方距离内,检查生物是否是LivingEntity,检查生物是否还活着
                     if (player.isPickable() && player.distanceToSqr(entity) < radius * radius && entity instanceof LivingEntity && entity.isAlive()) {
                         float damage1 = this.getDamage();
-                        float damage = goldenBlackKnifeMethodCapability.getGoldenBlackKnifeMethodLevel() < 2 ? (damage1 + 2) * 1.3F : (damage1 + 2) * 1.6F ;
+                        float damage = goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel() < 2 ? (damage1 + 2) * 1.3F : (damage1 + 2) * 1.6F;
                         if (entity.hurt(player.damageSources().playerAttack(player), damage)) {//造成伤害
-                            if (goldenBlackKnifeMethodCapability.getGoldenBlackKnifeMethodUseCount() <= 100) {
-                                goldenBlackKnifeMethodCapability.addGoldenBlackKnifeMethodUseCount();
-                                ChangShengJueMessages.sendToPlayer(new GoldenBlackKnifeMethodPacket(goldenBlackKnifeMethodCapability.getGoldenBlackKnifeMethodLevel(),
-                                        goldenBlackKnifeMethodCapability.isGoldenBlackKnifeMethodComprehend()), (ServerPlayer) player);
+                            if (goldenBlackKnifeMethod.getGoldenBlackKnifeMethodUseCount() < 100) {
+                                goldenBlackKnifeMethod.addGoldenBlackKnifeMethodUseCount(!player.getAbilities().instabuild ? 1 : 100);
+                                if (goldenBlackKnifeMethod.getGoldenBlackKnifeMethodUseCount() >= 100){
+                                    goldenBlackKnifeMethod.setGoldenBlackKnifeMethodParticle(true);
+                                    player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
+                                            ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                }
+                                ChangShengJueMessages.sendToPlayer(new GoldenBlackKnifeMethodPacket(goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel(),
+                                        goldenBlackKnifeMethod.isGoldenBlackKnifeMethodComprehend(),
+                                        goldenBlackKnifeMethod.getGoldenBlackKnifeMethodToppedTick(),
+                                        goldenBlackKnifeMethod.getGoldenBlackKnifeMethodDachengTick(),
+                                        goldenBlackKnifeMethod.isGoldenBlackKnifeMethodParticle()), (ServerPlayer) player);
                             }
                             EnchantmentHelper.doPostDamageEffects(player, entity);//应用附魔
                         }
                     }
                 }
+                pLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
+                        ChangShengJueSound.GOLDEN_BLACK_KNIFE_METHOD_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                 if (!player.getAbilities().instabuild) {
                     player.getFoodData().eat(-3, -2);//消耗饱食度
                     player.getCooldowns().addCooldown(itemstack.getItem(), 140);//添加使用冷却

@@ -85,11 +85,11 @@ public class DuguNineSwordsHudOverlay {
                             if (duguNineSwordsLevel < 2) {
                                 CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS,x,y);
                                 CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(DUGU_NINE_SWORDS, x, y, 90, 0, 0,16, -v1 + 16, 16, 16);
+                                guiGraphics.blit(DUGU_NINE_SWORDS, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
                             } else {
                                 CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS_1,x,y);
                                 CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(DUGU_NINE_SWORDS_1, x, y, 90, 0, 0,16, -v1 + 16, 16, 16);
+                                guiGraphics.blit(DUGU_NINE_SWORDS_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
                             }
                             guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(frameTime() * 5)).toString(),x + 1, y + 5, ChatFormatting.AQUA.getColor());
                         }else {

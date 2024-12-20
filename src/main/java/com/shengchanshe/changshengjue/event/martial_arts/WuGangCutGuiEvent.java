@@ -5,9 +5,15 @@ import com.shengchanshe.changshengjue.cilent.hud.martial_arts.wu_gang_cut_gui.Wu
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.wu_gang_cut_gui.WuGangCutGuiPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.wu_gang_cut_gui.WuGangCutGuiPacket1;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
+import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
+import com.shengchanshe.changshengjue.util.particle.DachengParticle;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -25,7 +31,6 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.BlockEvent;
 
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 
 public class WuGangCutGuiEvent {
@@ -33,6 +38,25 @@ public class WuGangCutGuiEvent {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
             Player player = event.player;
+            if (!player.level().isClientSide) {
+                player.getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(wuGangCutGui -> {
+                    if (wuGangCutGui.isWuGangCutGuiParticle()){
+                        if (wuGangCutGui.getWuGangCutGuiLevel() == 1){
+                            wuGangCutGui.setWuGangCutGuiToppedTick();
+                            ChangShengJueMessages.sendToPlayer(new WuGangCutGuiPacket1(
+                                    wuGangCutGui.getWuGangCutGuiToppedTick(),
+                                    wuGangCutGui.getWuGangCutGuiDachengTick(),
+                                    wuGangCutGui.isWuGangCutGuiParticle()), (ServerPlayer) player);
+                        }else if (wuGangCutGui.getWuGangCutGuiLevel() == 2){
+                            wuGangCutGui.setWuGangCutGuiDachengTick();
+                            ChangShengJueMessages.sendToPlayer(new WuGangCutGuiPacket1(
+                                    wuGangCutGui.getWuGangCutGuiToppedTick(),
+                                    wuGangCutGui.getWuGangCutGuiDachengTick(),
+                                    wuGangCutGui.isWuGangCutGuiParticle()), (ServerPlayer) player);
+                        }
+                    }
+                });
+            }
             if (player.level().isClientSide) {
                 BlockPos dropPos = WuGangCutGuiClientData.getDropPos();
                 if (WuGangCutGuiClientData.getDropPos() != null && WuGangCutGuiClientData.getParticleTick() <= 20 && WuGangCutGuiClientData.getParticleTick() > 0){
@@ -67,6 +91,12 @@ public class WuGangCutGuiEvent {
                     }
                     WuGangCutGuiClientData.setParticleTick(WuGangCutGuiClientData.getParticleTick());
                 }
+                if (WuGangCutGuiClientData.isWuGangCutGuiParticle()) {
+                    ComprehendParticle.ComprehendParticle(player, player.level(), WuGangCutGuiClientData.getWuGangCutGuiToppedTick());
+                }
+                if (WuGangCutGuiClientData.isWuGangCutGuiParticle()) {
+                    DachengParticle.DachengParticle(player, player.level(), WuGangCutGuiClientData.getWuGangCutGuiDachengTick());
+                }
             }
         }
     }
@@ -85,6 +115,9 @@ public class WuGangCutGuiEvent {
                             float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
                             if (probability < defaultProbability) {
                                 wuGangCutGui.addWuGangCutGuiLevel();
+                                wuGangCutGui.setWuGangCutGuiParticle(true);
+                                level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                             }
                         }
                     });
@@ -97,28 +130,35 @@ public class WuGangCutGuiEvent {
         Player player = event.getPlayer();
         Level level = player.getCommandSenderWorld();
         if (!level.isClientSide) {
-                player.getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(wuGangCutGuiCapability -> {
-                    if (wuGangCutGuiCapability.isWuGangCutGuiComprehend() && wuGangCutGuiCapability.getWuGangCutGuiLevel() >= 1) {
-                        BlockPos startPos = event.getPos();
-                        BlockState blockState = level.getBlockState(startPos);
-                        ItemStack mainHandItem = player.getMainHandItem();
-                        if (mainHandItem.getItem() instanceof AxeItem) {
-                            // 判断是否是木头
-                            if (isLog(blockState)) {
-                                // 存储已处理的方块
-                                Set<BlockPos> visited = new HashSet<>();
-                                // 记录第一个破坏的位置
-                                BlockPos dropPos = startPos;
-                                // 执行连锁砍树
-                                chopTree((ServerLevel) level, startPos, visited, dropPos, mainHandItem, player);
-                                if (wuGangCutGuiCapability.getWuGangCutGuiUseCount() <= 1000) {
-                                    wuGangCutGuiCapability.addWuGangCutGuiUseCount();
+            player.getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(wuGangCutGui -> {
+                if (wuGangCutGui.isWuGangCutGuiComprehend() && wuGangCutGui.getWuGangCutGuiLevel() >= 1) {
+                    BlockPos startPos = event.getPos();
+                    BlockState blockState = level.getBlockState(startPos);
+                    ItemStack mainHandItem = player.getMainHandItem();
+                    if (mainHandItem.getItem() instanceof AxeItem) {
+                        // 判断是否是木头
+                        if (isLog(blockState)) {
+                            // 存储已处理的方块
+                            Set<BlockPos> visited = new HashSet<>();
+                            // 记录第一个破坏的位置
+                            BlockPos dropPos = startPos;
+                            // 执行连锁砍树
+                            chopTree((ServerLevel) level, startPos, visited, dropPos, mainHandItem, player);
+                            level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                    ChangShengJueSound.WU_GANG_CUT_GUI_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                            if (wuGangCutGui.getWuGangCutGuiUseCount() < 1000) {
+                                wuGangCutGui.addWuGangCutGuiUseCount(!player.getAbilities().instabuild ? 1 : 1000);
+                                if (wuGangCutGui.getWuGangCutGuiUseCount() >= 1000){
+                                    level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                            ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                    wuGangCutGui.setWuGangCutGuiParticle(true);
                                 }
-                                ChangShengJueMessages.sendToServer(new WuGangCutGuiPacket(dropPos,20));
                             }
+                            ChangShengJueMessages.sendToServer(new WuGangCutGuiPacket(dropPos,20));
                         }
                     }
-                });
+                }
+            });
         }
     }
     public static void onInteract(PlayerInteractEvent event) {

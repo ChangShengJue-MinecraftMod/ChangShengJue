@@ -83,11 +83,11 @@ public class GoldenBlackKnifeMethodHudOverlay {
                             if (getGoldenBlackKnifeMethodLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
                                 CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD,x,y);
                                 CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(GOLDEN_BLACK_KNIFE_METHOD, x, y, 90, 0, 0,16, -v1 + 16, 16, 16);
+                                guiGraphics.blit(GOLDEN_BLACK_KNIFE_METHOD, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
                             } else {
                                 CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD_1,x,y);
                                 CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(GOLDEN_BLACK_KNIFE_METHOD_1, x, y, 90, 0, 0,16, -v1 + 16, 16, 16);
+                                guiGraphics.blit(GOLDEN_BLACK_KNIFE_METHOD_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
                             }
                             //以文字形式绘制剩余冷却时间
                             guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(frameTime() * 7)).toString(),x + 1, y + 5, ChatFormatting.AQUA.getColor());

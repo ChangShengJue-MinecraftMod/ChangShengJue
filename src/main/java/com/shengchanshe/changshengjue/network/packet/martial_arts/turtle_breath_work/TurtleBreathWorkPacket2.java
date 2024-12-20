@@ -3,9 +3,11 @@ package com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath
 import com.shengchanshe.changshengjue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraftforge.network.NetworkEvent;
@@ -50,10 +52,12 @@ public class TurtleBreathWorkPacket2 {
                             }
                             player.addEffect(new MobEffectInstance(ChangShengJueEffects.TURTLE_BREATH_EFFECT.get(), 300, 0, false, true), player);
                             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING,-1, turtleBreathWork.getTurtleBreathWorkLevel() <= 1 ? 1 : 2));
-                            if (turtleBreathWork.getTurtleBreathWorkUseCount() <= 100){
+                            if (turtleBreathWork.getTurtleBreathWorkUseCount() < 100){
                                 turtleBreathWork.addTurtleBreathWorkUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (turtleBreathWork.getTurtleBreathWorkUseCount() >= 100){
                                     turtleBreathWork.setTurtleBreathWorkParticle(true);
+                                    level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                            ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                 }
                             }
                             ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
@@ -63,7 +67,7 @@ public class TurtleBreathWorkPacket2 {
                                     turtleBreathWork.isTurtleBreathWorkOff(),
                                     turtleBreathWork.getTurtleBreathWorkToppedTick(),
                                     turtleBreathWork.getTurtleBreathWorkDachengTick(),
-                                    turtleBreathWork.isTurtleBreathWorkParticle()), (ServerPlayer) player);
+                                    turtleBreathWork.isTurtleBreathWorkParticle()), player);
                         }
                     }
                 }

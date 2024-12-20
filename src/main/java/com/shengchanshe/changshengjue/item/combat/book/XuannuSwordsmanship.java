@@ -32,7 +32,10 @@ public class XuannuSwordsmanship extends Item {
                     if (!pPlayer.getAbilities().instabuild) {
                         itemInHand.shrink(1);
                     }
-                    ChangShengJueMessages.sendToPlayer(new XuannuSwordsmanshipPacket(xuannuSwordsmanship.getXuannuSwordsmanshipLevel(),xuannuSwordsmanship.isXuannuSwordsmanshipComprehend()), (ServerPlayer) pPlayer);
+                    ChangShengJueMessages.sendToPlayer(new XuannuSwordsmanshipPacket(xuannuSwordsmanship.getXuannuSwordsmanshipLevel(),xuannuSwordsmanship.isXuannuSwordsmanshipComprehend(),
+                            xuannuSwordsmanship.getXuannuSwordsmanshipToppedTick(),
+                            xuannuSwordsmanship.getXuannuSwordsmanshipDachengTick(),
+                            xuannuSwordsmanship.isXuannuSwordsmanshipParticle()), (ServerPlayer) pPlayer);
                 }
             });
         }

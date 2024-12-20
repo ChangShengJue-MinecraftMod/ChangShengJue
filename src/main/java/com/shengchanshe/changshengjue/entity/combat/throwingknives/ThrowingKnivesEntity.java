@@ -5,6 +5,7 @@ import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.RelentlessThrowingKnivesPacket;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -14,6 +15,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -104,9 +106,13 @@ public class ThrowingKnivesEntity extends AbstractArrow {
                             f[0] = relentlessThrowingKnives.getRelentlessThrowingKnivesLevel() <= 1 ? f[0] * 1.25F: f[0] * 1.5F;
                             relentlessThrowingKnives.setRelentlessThrowingKnivesUseCooldownPercent(!player.getAbilities().instabuild ? 160 : 0);
                             if (relentlessThrowingKnives.isRelentlessThrowingKnivesComprehend() && relentlessThrowingKnives.getRelentlessThrowingKnivesLevel() == 1){
-                                if (relentlessThrowingKnives.getRelentlessThrowingKnivesUseCount() <= 100){
+                                if (relentlessThrowingKnives.getRelentlessThrowingKnivesUseCount() < 100){
                                     relentlessThrowingKnives.addRelentlessThrowingKnivesUseCount(!player.getAbilities().instabuild ? 1 : 100);
-                                    relentlessThrowingKnives.setRelentlessThrowingKnivesParticle(true);
+                                    if (relentlessThrowingKnives.getRelentlessThrowingKnivesUseCount() >= 100){
+                                        this.getOwner().level().playSound(null, player.getX(), player.getY(), player.getZ(),
+                                                ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                        relentlessThrowingKnives.setRelentlessThrowingKnivesParticle(true);
+                                    }
                                 }
                             }
                             ChangShengJueMessages.sendToPlayer(new RelentlessThrowingKnivesPacket(relentlessThrowingKnives.getRelentlessThrowingKnivesLevel(),

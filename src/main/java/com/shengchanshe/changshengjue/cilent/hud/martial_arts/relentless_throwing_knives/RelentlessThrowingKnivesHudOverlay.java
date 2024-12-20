@@ -78,11 +78,11 @@ public class RelentlessThrowingKnivesHudOverlay {
                         if (getRelentlessThrowingKnivesLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
                             CSJDisplayHud.displayHud(guiGraphics,RELENTLESS_THROWING_KNIVES,x,y);
                             CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                            guiGraphics.blit(RELENTLESS_THROWING_KNIVES, x, y, 90, 0, 0,16, -v1 + 16, 16, 16);
+                            guiGraphics.blit(RELENTLESS_THROWING_KNIVES, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
                         } else {
                             CSJDisplayHud.displayHud(guiGraphics,RELENTLESS_THROWING_KNIVES_1,x,y);
                             CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                            guiGraphics.blit(RELENTLESS_THROWING_KNIVES_1, x, y, 90, 0, 0,16, -v1 + 16, 16, 16);
+                            guiGraphics.blit(RELENTLESS_THROWING_KNIVES_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
                         }
                         if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图并渲染技能剩余冷却时间
                             //以文字形式绘制剩余冷却时间

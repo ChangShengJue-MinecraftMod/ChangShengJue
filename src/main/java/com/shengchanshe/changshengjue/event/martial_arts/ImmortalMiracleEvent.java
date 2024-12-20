@@ -7,9 +7,11 @@ import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ImmortalMiraclePacket;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
 import com.shengchanshe.changshengjue.util.particle.DachengParticle;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
@@ -62,6 +64,9 @@ public class ImmortalMiracleEvent {
                 }
                 if (ImmortalMiracleClientData.getImmortalMiracleUseCooldownPercent() < ImmortalMiracleClientData.getImmortalMiracleUseCooldownPercentMax()
                         && ImmortalMiracleClientData.getImmortalMiracleUseCooldownPercent() >= ImmortalMiracleClientData.getImmortalMiracleUseCooldownPercentMax() - 40){
+                    if (ImmortalMiracleClientData.getImmortalMiracleUseCooldownPercent() >= ImmortalMiracleClientData.getImmortalMiracleUseCooldownPercentMax() - 1){
+                        player.playSound(ChangShengJueSound.IMMORTAL_MIRACLE_SOUND.get(), 1.0F, 1.0F);
+                    }
                     double radius = 0.4;  // 设置球体的半径
                     int particleCount = 3;  // 控制粒子的数量
 
@@ -107,6 +112,8 @@ public class ImmortalMiracleEvent {
                             float probability = directEntity.getRandom().nextFloat();
                             float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
                             if (probability < defaultProbability) {
+                                level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                 immortalMiracle.addImmortalMiracleLevel();
                                 immortalMiracle.setImmortalMiracleParticle(true);
                                 ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
@@ -151,10 +158,14 @@ public class ImmortalMiracleEvent {
                                 float amount = event.getAmount();
                                 if (amount >= health){
                                     event.setAmount(0);
-                                    if (immortalMiracle.getImmortalMiracleUseCount() <= 100){
+//                                    level.playSound(null, player.getX(), player.getY(), player.getZ(),
+//                                            ChangShengJueSound.IMMORTAL_MIRACLE_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                    if (immortalMiracle.getImmortalMiracleUseCount() < 100){
                                         immortalMiracle.addImmortalMiracleUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                         if (immortalMiracle.getImmortalMiracleUseCount() >= 100){
                                             immortalMiracle.setImmortalMiracleParticle(true);
+                                            level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                                    ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                         }
                                     }
                                     ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
@@ -174,5 +185,4 @@ public class ImmortalMiracleEvent {
             }
         }
     }
-
 }

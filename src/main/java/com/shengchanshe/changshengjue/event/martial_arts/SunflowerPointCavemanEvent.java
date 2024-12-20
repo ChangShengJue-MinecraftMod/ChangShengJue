@@ -8,9 +8,11 @@ import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.effect.EffectEntityPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
 import com.shengchanshe.changshengjue.util.particle.DachengParticle;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -30,7 +32,6 @@ public class SunflowerPointCavemanEvent {
                 player.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
                     if (sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent() > 0 && sunflowerPointCaveman.isSunflowerPointCavemanOff()) {
                         sunflowerPointCaveman.setSunflowerPointCavemanUseCooldownPercent();
-
                         ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
                                 sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
                                 sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
@@ -90,6 +91,8 @@ public class SunflowerPointCavemanEvent {
                             float probability = directEntity.getRandom().nextFloat();
                             float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
                             if (probability < defaultProbability) {
+                                level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                 sunflowerPointCaveman.addSunflowerPointCavemanLevel();
                                 sunflowerPointCaveman.setSunflowerPointCavemanParticle(true);
                             }
@@ -111,6 +114,7 @@ public class SunflowerPointCavemanEvent {
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){
         Player player = event.getEntity();
         Entity entity = event.getTarget();
+        Level level = event.getLevel();
         if (!event.getLevel().isClientSide){
             player.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
                 if (sunflowerPointCaveman.isSunflowerPointCavemanComprehend() && sunflowerPointCaveman.isSunflowerPointCavemanOff() && sunflowerPointCaveman.getSunflowerPointCavemanLevel() > 0){
@@ -122,6 +126,8 @@ public class SunflowerPointCavemanEvent {
                                     health = 25;
                                     if (entity instanceof LivingEntity livingEntity){
                                         if (livingEntity.getHealth() < health){
+                                            event.getLevel().playSound(null, player.getX(), player.getY(), player.getZ(),
+                                                    ChangShengJueSound.SUNFLOWER_POINT_CAVEMAN_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                             livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 25, 1, false, false), player);
                                             MobEffectInstance effectInstance = new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 25, 0, false, false);
                                             ChangShengJueMessages.sendMSGToAll(new EffectEntityPacket(livingEntity.getId(),player.getId(),0,effectInstance.getDuration()));
@@ -131,6 +137,8 @@ public class SunflowerPointCavemanEvent {
                                     health = 200;
                                     if (entity instanceof LivingEntity livingEntity){
                                         if (livingEntity.getHealth() < health){
+                                            event.getLevel().playSound(null, player.getX(), player.getY(), player.getZ(),
+                                                    ChangShengJueSound.SUNFLOWER_POINT_CAVEMAN_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                             livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 30, 1, false, false), player);
                                             MobEffectInstance effectInstance = new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 30, 0, false, false);
                                             ChangShengJueMessages.sendMSGToAll(new EffectEntityPacket(livingEntity.getId(),player.getId(),0,effectInstance.getDuration()));
@@ -161,17 +169,19 @@ public class SunflowerPointCavemanEvent {
                                 if (sunflowerPointCaveman.getSunflowerPointCavemanUseCount() < 100){
                                     sunflowerPointCaveman.addSunflowerPointCavemanUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                     if (sunflowerPointCaveman.getSunflowerPointCavemanUseCount() >= 100){
+                                        level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                                ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                         sunflowerPointCaveman.setSunflowerPointCavemanParticle(true);
                                     }
+                                    ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
+                                            sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
+                                            sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
+                                            sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
+                                            sunflowerPointCaveman.isSunflowerPointCavemanOff(),
+                                            sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
+                                            sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
+                                            sunflowerPointCaveman.isSunflowerPointCavemanParticle()), (ServerPlayer) player);
                                 }
-                                ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
-                                        sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
-                                        sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
-                                        sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
-                                        sunflowerPointCaveman.isSunflowerPointCavemanOff(),
-                                        sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
-                                        sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
-                                        sunflowerPointCaveman.isSunflowerPointCavemanParticle()), (ServerPlayer) player);
                             }
                         }
                     }
@@ -183,8 +193,11 @@ public class SunflowerPointCavemanEvent {
             if (sunflowerPointCavemanComprehend && sunflowerPointCavemanOff){
                 if (SunflowerPointCavemanClientData.getSunflowerPointCavemanLevel() >= 1){
                     if (SunflowerPointCavemanClientData.getSunflowerPointCavemanUseCooldownPercent()<=0) {
-                        if (player.getFoodData().getFoodLevel() > 8){
-                            player.swing(player.getUsedItemHand());
+                        if (player.getMainHandItem().isEmpty()) {
+                            if (player.getFoodData().getFoodLevel() > 8) {
+//                                player.playSound(ChangShengJueSound.SUNFLOWER_POINT_CAVEMAN_SOUND.get(), 1.0F, 1.0F);
+                                player.swing(player.getUsedItemHand());
+                            }
                         }
                     }
                 }

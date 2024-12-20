@@ -6,6 +6,9 @@ public class ShaolinStickMethodCapability {
     private int shaolinStickMethodLevel = 0;
     private boolean shaolinStickMethodComprehend = false;
     private int shaolinStickMethodUseCount = 0;
+    private float shaolinStickMethodToppedTick = 0;//技能领悟特效计时
+    private float shaolinStickMethodDachengTick = 0;//技能领悟特效计时
+    private boolean shaolinStickMethodParticle = false;//技能特效显示
 
     public boolean isShaolinStickMethodComprehend() {
         return shaolinStickMethodComprehend;
@@ -31,17 +34,49 @@ public class ShaolinStickMethodCapability {
         return this.shaolinStickMethodComprehend;
     }
 
-    public void addShaolinStickMethodUseCount(){
+    public void addShaolinStickMethodUseCount(int shaolinStickMethodUseCount){
+        this.shaolinStickMethodUseCount = this.shaolinStickMethodUseCount + shaolinStickMethodUseCount;
         if (this.shaolinStickMethodUseCount>=100){
             this.addShaolinStickMethodLevel();
         }
-        this.shaolinStickMethodUseCount++;
+    }
+
+    public float getShaolinStickMethodToppedTick() {
+        if (this.shaolinStickMethodParticle && this.shaolinStickMethodToppedTick >= 80){
+            this.shaolinStickMethodToppedTick = 0;
+            this.shaolinStickMethodParticle = false;
+        }
+        return shaolinStickMethodToppedTick;
+    }
+    public float setShaolinStickMethodToppedTick() {
+        return this.shaolinStickMethodToppedTick++;
+    }
+
+    public float getShaolinStickMethodDachengTick() {
+        if (this.shaolinStickMethodParticle && this.shaolinStickMethodDachengTick >= 30){
+            this.shaolinStickMethodDachengTick = 0;
+            this.shaolinStickMethodParticle = false;
+        }
+        return shaolinStickMethodDachengTick;
+    }
+    public float setShaolinStickMethodDachengTick() {
+        return this.shaolinStickMethodDachengTick++;
+    }
+
+    public void setShaolinStickMethodParticle(boolean shaolinStickMethodParticle) {
+        this.shaolinStickMethodParticle = shaolinStickMethodParticle;
+    }
+    public boolean isShaolinStickMethodParticle(){
+        return this.shaolinStickMethodParticle;
     }
 
     public void copyShaolinStickMethod(ShaolinStickMethodCapability capability){
         this.shaolinStickMethodLevel = capability.shaolinStickMethodLevel;
         this.shaolinStickMethodComprehend = capability.shaolinStickMethodComprehend;
         this.shaolinStickMethodUseCount = capability.shaolinStickMethodUseCount;
+        this.shaolinStickMethodToppedTick = capability.shaolinStickMethodToppedTick;
+        this.shaolinStickMethodDachengTick = capability.shaolinStickMethodDachengTick;
+        this.shaolinStickMethodParticle = capability.shaolinStickMethodParticle;
     }
 
     // 将能力保存到 NBT 数据中
@@ -49,6 +84,9 @@ public class ShaolinStickMethodCapability {
         nbt.putInt("ShaolinStickMethodLevel", shaolinStickMethodLevel);
         nbt.putInt("ShaolinStickMethodUseCount", shaolinStickMethodUseCount);
         nbt.putBoolean("ShaolinStickMethodComprehend",shaolinStickMethodComprehend);
+        nbt.putFloat("ShaolinStickMethodToppedTick",shaolinStickMethodToppedTick);
+        nbt.putFloat("ShaolinStickMethodDachengTick",shaolinStickMethodDachengTick);
+        nbt.putBoolean("ShaolinStickMethodParticle",shaolinStickMethodParticle);
     }
 
     // 从 NBT 数据中加载能力
@@ -56,5 +94,8 @@ public class ShaolinStickMethodCapability {
         shaolinStickMethodLevel = nbt.getInt("ShaolinStickMethodLevel");
         shaolinStickMethodUseCount = nbt.getInt("ShaolinStickMethodUseCount");
         shaolinStickMethodComprehend = nbt.getBoolean("ShaolinStickMethodComprehend");
+        shaolinStickMethodToppedTick = nbt.getFloat("ShaolinStickMethodToppedTick");
+        shaolinStickMethodDachengTick = nbt.getFloat("ShaolinStickMethodDachengTick");
+        shaolinStickMethodParticle = nbt.getBoolean("ShaolinStickMethodParticle");
     }
 }

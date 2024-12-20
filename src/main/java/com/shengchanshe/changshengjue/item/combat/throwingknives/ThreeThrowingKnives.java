@@ -5,7 +5,9 @@ import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnive
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.RelentlessThrowingKnivesPacket;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -26,14 +28,6 @@ public class ThreeThrowingKnives extends SwordItem {
 //        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.EGG_THROW, SoundSource.PLAYERS, 0.5F, 0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F));
         if (!pLevel.isClientSide) {
             player.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(relentlessThrowingKnives -> {
-                if (relentlessThrowingKnives.isRelentlessThrowingKnivesComprehend() && relentlessThrowingKnives.getRelentlessThrowingKnivesLevel() <= 0){
-                    float probability = player.getRandom().nextFloat();
-                    float defaultProbability = !player.getAbilities().instabuild ? 0.02F : 1.0F;
-                    if (probability < defaultProbability) {
-                        relentlessThrowingKnives.addRelentlessThrowingKnivesLevel();
-                    }
-                    relentlessThrowingKnives.setRelentlessThrowingKnivesToppedTick();
-                }
                 if (relentlessThrowingKnives.getRelentlessThrowingKnivesLevel() >= 1){
                     player.awardStat(Stats.ITEM_USED.get(this));
                     itemstack.hurtAndBreak(1, player, (player1) -> {
@@ -51,16 +45,17 @@ public class ThreeThrowingKnives extends SwordItem {
                         feiDaoEntity.shootFromRotation(player, player.getXRot(), angle, 0.0F, 1.5F, 1.0F);
                         pLevel.addFreshEntity(feiDaoEntity);
                     }
-                }
-                if (!player.getAbilities().instabuild) {
-                    player.getInventory().removeItem(itemstack);
+                    if (!player.getAbilities().instabuild) {
+                        player.getInventory().removeItem(itemstack);
+                    }
+                    pLevel.playSound(null, player.getX(), player.getY(), player.getZ(), ChangShengJueSound.THREE_THROWING_KNIVES_SOUND.get(), SoundSource.PLAYERS, 0.5F, 0.4F / (pLevel.getRandom().nextFloat() * 0.4F + 0.8F));
                 }
                 ChangShengJueMessages.sendToPlayer(new RelentlessThrowingKnivesPacket(relentlessThrowingKnives.getRelentlessThrowingKnivesLevel(),
-                        relentlessThrowingKnives.isRelentlessThrowingKnivesComprehend(),
-                        relentlessThrowingKnives.getRelentlessThrowingKnivesUseCooldownPercent(),
-                        relentlessThrowingKnives.getRelentlessThrowingKnivesToppedTick(),
-                        relentlessThrowingKnives.getRelentlessThrowingKnivesDachengTick(),
-                        relentlessThrowingKnives.isRelentlessThrowingKnivesParticle()), (ServerPlayer) player);
+                    relentlessThrowingKnives.isRelentlessThrowingKnivesComprehend(),
+                    relentlessThrowingKnives.getRelentlessThrowingKnivesUseCooldownPercent(),
+                    relentlessThrowingKnives.getRelentlessThrowingKnivesToppedTick(),
+                    relentlessThrowingKnives.getRelentlessThrowingKnivesDachengTick(),
+                    relentlessThrowingKnives.isRelentlessThrowingKnivesParticle()), (ServerPlayer) player);
             });
         }
 

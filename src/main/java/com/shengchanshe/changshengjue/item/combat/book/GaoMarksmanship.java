@@ -32,7 +32,11 @@ public class GaoMarksmanship extends Item {
                     if (!pPlayer.getAbilities().instabuild) {
                         itemInHand.shrink(1);
                     }
-                    ChangShengJueMessages.sendToPlayer(new GaoMarksmanshipPacket(gaoMarksmanship.getGaoMarksmanshipLevel(),gaoMarksmanship.isGaoMarksmanshipComprehend()), (ServerPlayer) pPlayer);
+                    ChangShengJueMessages.sendToPlayer(new GaoMarksmanshipPacket(gaoMarksmanship.getGaoMarksmanshipLevel(),
+                            gaoMarksmanship.isGaoMarksmanshipComprehend(),
+                            gaoMarksmanship.getGaoMarksmanshipToppedTick(),
+                            gaoMarksmanship.getGaoMarksmanshipDachengTick(),
+                            gaoMarksmanship.isGaoMarksmanshipParticle()), (ServerPlayer) pPlayer);
                 }
             });
         }

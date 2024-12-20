@@ -7,6 +7,10 @@ public class TreadTheSnowWithoutTraceClientData {
     private static int treadTheSnowWithoutTraceUseCooldownPercent;
     private static int jumpCount;
 
+    private static float treadTheSnowWithoutTraceToppedTick;//技能领悟特效计时
+    private static float treadTheSnowWithoutTraceDachengTick;//技能大成特效计时
+    private static boolean treadTheSnowWithoutTraceParticle;//技能特效显示
+
     //获取技能等级
     public static int getTreadTheSnowWithoutTraceLevel() {
         return treadTheSnowWithoutTraceLevel;
@@ -41,5 +45,29 @@ public class TreadTheSnowWithoutTraceClientData {
     }
     public static void setjumpCount(int jumpCount) {
         TreadTheSnowWithoutTraceClientData.jumpCount = jumpCount;
+    }
+
+    public static float getTreadTheSnowWithoutTraceToppedTick() {
+        return treadTheSnowWithoutTraceToppedTick;
+    }
+
+    public static void setTreadTheSnowWithoutTraceToppedTick(float treadTheSnowWithoutTraceToppedTick) {
+        TreadTheSnowWithoutTraceClientData.treadTheSnowWithoutTraceToppedTick = treadTheSnowWithoutTraceToppedTick;
+    }
+
+    public static float getTreadTheSnowWithoutTraceDachengTick() {
+        return treadTheSnowWithoutTraceDachengTick;
+    }
+
+    public static void setTreadTheSnowWithoutTraceDachengTick(float treadTheSnowWithoutTraceDachengTick) {
+        TreadTheSnowWithoutTraceClientData.treadTheSnowWithoutTraceDachengTick = treadTheSnowWithoutTraceDachengTick;
+    }
+
+    public static boolean isTreadTheSnowWithoutTraceParticle() {
+        return treadTheSnowWithoutTraceParticle;
+    }
+
+    public static void setTreadTheSnowWithoutTraceParticle(boolean treadTheSnowWithoutTraceParticle) {
+        TreadTheSnowWithoutTraceClientData.treadTheSnowWithoutTraceParticle = treadTheSnowWithoutTraceParticle;
     }
 }

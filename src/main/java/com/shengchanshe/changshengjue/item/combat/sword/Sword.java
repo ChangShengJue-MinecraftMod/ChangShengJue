@@ -9,7 +9,9 @@ import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwo
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.DuguNineSwordsPacket;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -39,10 +41,17 @@ public class Sword extends SwordItem {
             player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                 if (duguNineSword.duguNineSwordsComprehend() && duguNineSword.getDuguNineSwordsLevel() == 0) {
                     float probability = player.getRandom().nextFloat();
-                    float defaultProbability = 0.02F;
+                    float defaultProbability = !player.getAbilities().instabuild ? 0.02F : 1.0F;
                     if (probability < defaultProbability) {
                         duguNineSword.addDuguNineSwordsLevel();
-                        ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),duguNineSword.isDuguNineSwordsComprehend()), (ServerPlayer) player);
+                        duguNineSword.setDuguNineSwordsParticle(true);
+                        player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
+                                ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                        ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket( duguNineSword.getDuguNineSwordsLevel(),
+                                duguNineSword.isDuguNineSwordsComprehend(),
+                                duguNineSword.getDuguNineSwordsToppedTick(),
+                                duguNineSword.getDuguNineSwordsDachengTick(),
+                                duguNineSword.isDuguNineSwordsParticle()), (ServerPlayer) player);
                     }
                 }
             });
@@ -52,16 +61,16 @@ public class Sword extends SwordItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        if (!pLevel.isClientSide) {
+        if (pPlayer.getFoodData().getFoodLevel() > 8) {
             ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
             if (itemstack.getItem() instanceof Sword && itemstack.getItem() != ChangShengJueItems.SOFT_SWORD.get()) {
-                if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
+                if (!pLevel.isClientSide) {
                     pPlayer.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                         if (duguNineSword.duguNineSwordsComprehend()) {
                             this.onDuguNineSwords(pLevel, duguNineSword.getDuguNineSwordsLevel(), pPlayer, duguNineSword);
                         }
                     });
-                    if (DuguNineSwordsClientData.getDuguNineSwordsLevel()>=1){
+                    if (DuguNineSwordsClientData.getDuguNineSwordsLevel() >= 1) {
                         return InteractionResultHolder.success(pPlayer.getMainHandItem());
                     }
                 }
@@ -101,15 +110,26 @@ public class Sword extends SwordItem {
                             }
                         }
                         if (entity.hurt(player.damageSources().playerAttack(player), damage)) {//造成伤害
-                            if (duguNineSword.getDuguNineSwordsUseCount() <= 100){
-                                duguNineSword.addDuguNineSwordsUseCount();
-                                ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),duguNineSword.isDuguNineSwordsComprehend()), (ServerPlayer) player);
+                            if (duguNineSword.getDuguNineSwordsUseCount() < 100) {
+                                duguNineSword.addDuguNineSwordsUseCount(!player.getAbilities().instabuild ? 1 : 100);
+                                if (duguNineSword.getDuguNineSwordsUseCount() >= 100){
+                                    duguNineSword.setDuguNineSwordsParticle(true);
+                                    player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
+                                            ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                }
+                                ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket( duguNineSword.getDuguNineSwordsLevel(),
+                                        duguNineSword.isDuguNineSwordsComprehend(),
+                                        duguNineSword.getDuguNineSwordsToppedTick(),
+                                        duguNineSword.getDuguNineSwordsDachengTick(),
+                                        duguNineSword.isDuguNineSwordsParticle()), (ServerPlayer) player);
                             }
                             EnchantmentHelper.doPostDamageEffects(player, entity);//应用附魔
                         }
                     }
                 }
-                if (!player.getAbilities().instabuild){
+                pLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
+                        ChangShengJueSound.DUGU_NINE_SWORDS_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                if (!player.getAbilities().instabuild) {
                     player.getFoodData().eat(-3, -2);//消耗饱食度
                     player.getCooldowns().addCooldown(itemstack.getItem(), 100);//添加使用冷却
                 }

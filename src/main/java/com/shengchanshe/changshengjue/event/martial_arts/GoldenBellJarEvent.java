@@ -9,9 +9,11 @@ import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket2;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
 import com.shengchanshe.changshengjue.util.particle.DachengParticle;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -88,6 +90,8 @@ public class GoldenBellJarEvent {
                             float probability = directEntity.getRandom().nextFloat();
                             float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
                             if (probability < defaultProbability) {
+                                level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                 goldenBellJar.addGoldenBellJarLevel();
                                 goldenBellJar.setGoldenBellJarParticle(true);
                                 ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
@@ -138,6 +142,8 @@ public class GoldenBellJarEvent {
                                 goldenBellJar.addGoldenBellJarUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (goldenBellJar.getGoldenBellJarUseCount() >= 100){
                                     goldenBellJar.setGoldenBellJarParticle(true);
+                                    event.getLevel().playSound(null, player.getX(), player.getY(), player.getZ(),
+                                            ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                 }
                             }
                             ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(

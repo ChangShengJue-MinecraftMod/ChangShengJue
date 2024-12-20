@@ -5,7 +5,9 @@ import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.G
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.GaoMarksmanshipPacket;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -28,16 +30,24 @@ public class Lance extends SwordItem {
         super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
         MinecraftForge.EVENT_BUS.register(this);
     }
+
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player pPlayer, Entity entity) {
         if (!pPlayer.level().isClientSide) {
             pPlayer.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
                 if (gaoMarksmanship.gaoMarksmanshipComprehend() && gaoMarksmanship.getGaoMarksmanshipLevel() == 0) {
                     float probability = pPlayer.getRandom().nextFloat();
-                    float defaultProbability = 0.02F;
+                    float defaultProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
                     if (probability < defaultProbability) {
                         gaoMarksmanship.addGaoMarksmanshipLevel();
-                        ChangShengJueMessages.sendToPlayer(new GaoMarksmanshipPacket(gaoMarksmanship.getGaoMarksmanshipLevel(),gaoMarksmanship.isGaoMarksmanshipComprehend()), (ServerPlayer) pPlayer);
+                        gaoMarksmanship.setGaoMarksmanshipParticle(true);
+                        pPlayer.level().playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(),
+                                ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                        ChangShengJueMessages.sendToPlayer(new GaoMarksmanshipPacket(gaoMarksmanship.getGaoMarksmanshipLevel(),
+                                gaoMarksmanship.isGaoMarksmanshipComprehend(),
+                                gaoMarksmanship.getGaoMarksmanshipToppedTick(),
+                                gaoMarksmanship.getGaoMarksmanshipDachengTick(),
+                                gaoMarksmanship.isGaoMarksmanshipParticle()), (ServerPlayer) pPlayer);
                     }
                 }
             });
@@ -46,23 +56,23 @@ public class Lance extends SwordItem {
     }
 
     @SubscribeEvent
-    public void onKnifeAttack(LivingDamageEvent event){
+    public void onKnifeAttack(LivingDamageEvent event) {
         Level level = event.getEntity().level();
-        if (!level.isClientSide){
-            if (event.getSource().getDirectEntity() instanceof Player directEntity){
+        if (!level.isClientSide) {
+            if (event.getSource().getDirectEntity() instanceof Player directEntity) {
                 LivingEntity entity = event.getEntity();
                 directEntity.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
                     int gaoMarksmanshipLevel = gaoMarksmanship.getGaoMarksmanshipLevel();
-                    if (gaoMarksmanshipLevel != 0){
-                        if (directEntity.getMainHandItem().getItem() == this){
+                    if (gaoMarksmanshipLevel != 0) {
+                        if (directEntity.getMainHandItem().getItem() == this) {
                             float probability = directEntity.getRandom().nextFloat();
                             float defaultProbability = 0.15F;
-                            if(gaoMarksmanshipLevel < 2){
-                                if (probability < defaultProbability){
+                            if (gaoMarksmanshipLevel < 2) {
+                                if (probability < defaultProbability) {
                                     entity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 14, 1, false, false), directEntity);
                                 }
-                            }else {
-                                if (probability < defaultProbability * 1.2){
+                            } else {
+                                if (probability < defaultProbability * 1.2) {
                                     entity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 14, 1, false, false), directEntity);
                                 }
                             }
@@ -75,13 +85,13 @@ public class Lance extends SwordItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        if (!pLevel.isClientSide) {
-            ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
-            if (itemstack.getItem() == this) {
-                if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
+        ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
+        if (itemstack.getItem() == this) {
+            if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
+                if (!pLevel.isClientSide) {
                     pPlayer.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
                         if (gaoMarksmanship.gaoMarksmanshipComprehend()) {
-                            this.onGaoMarksmanship(pLevel, pPlayer,gaoMarksmanship);
+                            this.onGaoMarksmanship(pLevel, pPlayer, gaoMarksmanship);
                         }
                     });
                 }
@@ -90,14 +100,14 @@ public class Lance extends SwordItem {
         return super.use(pLevel, pPlayer, pUsedHand);
     }
 
-    private void onGaoMarksmanship(Level pLevel, LivingEntity pEntity, GaoMarksmanshipCapability gaoMarksmanshipCapability) {
+    private void onGaoMarksmanship(Level pLevel, LivingEntity pEntity, GaoMarksmanshipCapability gaoMarksmanship) {
         float radius = 5.0f;//攻击半径
         float distance = 5.0F;//攻击距离
         Vec3 forward = pEntity.getForward();//获取实体的前方方向
         Vec3 hitLocation = pEntity.position().add(0, pEntity.getBbHeight() * 0.3F, 0).add(forward.scale(distance));//获取实体高度的面向,计算攻击和实体生成的位置
         var entities = pLevel.getEntities(pEntity, AABB.ofSize(hitLocation, radius, radius, radius));//创建包围盒
         if (pEntity instanceof Player player) {
-            if (gaoMarksmanshipCapability.getGaoMarksmanshipLevel() != 0) {
+            if (gaoMarksmanship.getGaoMarksmanshipLevel() != 0) {
                 ItemStack itemstack = player.getMainHandItem();//获取玩家手中物品
                 for (Entity entity : entities) {//遍历包围盒中的实体
                     //检查生物是否可以交互,是否在给定的平方距离内,检查生物是否是LivingEntity,检查生物是否还活着
@@ -105,7 +115,7 @@ public class Lance extends SwordItem {
                         float damage;
                         float probability = player.getRandom().nextFloat();
                         float defaultProbability = 0.15F;
-                        if (gaoMarksmanshipCapability.getGaoMarksmanshipLevel() < 2 ) {
+                        if (gaoMarksmanship.getGaoMarksmanshipLevel() < 2) {
                             damage = (this.getDamage() + 2) * 1.6F;
                             if (probability < defaultProbability) {
                                 ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 14, 1, false, false), player);
@@ -117,10 +127,18 @@ public class Lance extends SwordItem {
                             }
                         }
                         if (entity.hurt(player.damageSources().playerAttack(player), damage)) {//造成伤害
-                            if (gaoMarksmanshipCapability.getGaoMarksmanshipUseCount() <= 100) {
-                                gaoMarksmanshipCapability.addGaoMarksmanshipUseCount();
-                                ChangShengJueMessages.sendToPlayer(new GaoMarksmanshipPacket(gaoMarksmanshipCapability.getGaoMarksmanshipLevel(),
-                                        gaoMarksmanshipCapability.isGaoMarksmanshipComprehend()), (ServerPlayer) player);
+                            if (gaoMarksmanship.getGaoMarksmanshipUseCount() < 100) {
+                                gaoMarksmanship.addGaoMarksmanshipUseCount(!player.getAbilities().instabuild ? 1 : 100);
+                                if (gaoMarksmanship.getGaoMarksmanshipUseCount() >= 100){
+                                    gaoMarksmanship.setGaoMarksmanshipParticle(true);
+                                    player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
+                                            ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                }
+                                ChangShengJueMessages.sendToPlayer(new GaoMarksmanshipPacket(gaoMarksmanship.getGaoMarksmanshipLevel(),
+                                        gaoMarksmanship.isGaoMarksmanshipComprehend(),
+                                        gaoMarksmanship.getGaoMarksmanshipToppedTick(),
+                                        gaoMarksmanship.getGaoMarksmanshipDachengTick(),
+                                        gaoMarksmanship.isGaoMarksmanshipParticle()), (ServerPlayer) player);
                             }
                             EnchantmentHelper.doPostDamageEffects(player, entity);//应用附魔
                         }

@@ -48,7 +48,7 @@ public class TreadTheSnowWithoutTraceHudOverlay {
             //设置绘制的信息
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            if (getTreadTheSnowWithoutTraceLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
+            if (getTreadTheSnowWithoutTraceLevel > 0) {//获取技能等级,为零则绘制不可使用的技能贴图
                 if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图
                     if (getTreadTheSnowWithoutTraceLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
                         CSJDisplayHud.displayHud(guiGraphics, TREAD_THE_SNOW_WITHOUT_TRACE, x, y);

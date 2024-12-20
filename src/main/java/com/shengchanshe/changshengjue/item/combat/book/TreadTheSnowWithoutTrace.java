@@ -36,7 +36,10 @@ public class TreadTheSnowWithoutTrace extends Item {
                     ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTracePacket(
                             treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
                             treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend(),
-                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent()), (ServerPlayer) pPlayer);
+                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent(),
+                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceToppedTick(),
+                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceDachengTick(),
+                            treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceParticle()), (ServerPlayer) pPlayer);
                 }
             });
         }

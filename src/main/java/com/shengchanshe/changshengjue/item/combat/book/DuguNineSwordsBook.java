@@ -32,7 +32,11 @@ public class DuguNineSwordsBook extends Item {
                     if (!pPlayer.getAbilities().instabuild) {
                         itemInHand.shrink(1);
                     }
-                    ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),duguNineSword.isDuguNineSwordsComprehend()), (ServerPlayer) pPlayer);
+                    ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),
+                            duguNineSword.isDuguNineSwordsComprehend(),
+                            duguNineSword.getDuguNineSwordsToppedTick(),
+                            duguNineSword.getDuguNineSwordsDachengTick(),
+                            duguNineSword.isDuguNineSwordsParticle()), (ServerPlayer) pPlayer);
                 }
             });
         }

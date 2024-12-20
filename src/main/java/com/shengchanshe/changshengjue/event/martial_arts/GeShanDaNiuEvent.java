@@ -10,9 +10,11 @@ import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket2;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
 import com.shengchanshe.changshengjue.util.particle.DachengParticle;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -106,6 +108,8 @@ public class GeShanDaNiuEvent {
                             float probability = directEntity.getRandom().nextFloat();
                             float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
                             if (probability < defaultProbability) {
+                                level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                 geShanDaNiu.addGeShanDaNiuLevel();
                                 geShanDaNiu.setGeShanDaNiuParticle(true);
                                 ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
@@ -188,6 +192,8 @@ public class GeShanDaNiuEvent {
                                                     geShanDaNiu.addGeShanDaNiuUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                                     if (geShanDaNiu.getGeShanDaNiuUseCount() >= 100){
                                                         geShanDaNiu.setGeShanDaNiuParticle(true);
+                                                        level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                                                ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                                     }
                                                 }
                                             }

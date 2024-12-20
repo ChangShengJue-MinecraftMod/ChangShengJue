@@ -32,7 +32,11 @@ public class ShaolinStickMethod extends Item {
                     if (!pPlayer.getAbilities().instabuild) {
                         itemInHand.shrink(1);
                     }
-                    ChangShengJueMessages.sendToPlayer(new ShaolinStickMethodPacket(shaolinStickMethod.getShaolinStickMethodLevel(),shaolinStickMethod.isShaolinStickMethodComprehend()), (ServerPlayer) pPlayer);
+                    ChangShengJueMessages.sendToPlayer(new ShaolinStickMethodPacket(shaolinStickMethod.getShaolinStickMethodLevel(),
+                            shaolinStickMethod.isShaolinStickMethodComprehend(),
+                            shaolinStickMethod.getShaolinStickMethodToppedTick(),
+                            shaolinStickMethod.getShaolinStickMethodDachengTick(),
+                            shaolinStickMethod.isShaolinStickMethodParticle()), (ServerPlayer) pPlayer);
                 }
             });
         }

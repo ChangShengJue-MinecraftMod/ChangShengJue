@@ -9,9 +9,11 @@ import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket2;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
 import com.shengchanshe.changshengjue.util.particle.DachengParticle;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
@@ -90,6 +92,8 @@ public class TurtleBreathWorkEvent {
                             float probability = directEntity.getRandom().nextFloat();
                             float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
                             if (probability < defaultProbability) {
+                                level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                 turtleBreathWork.addTurtleBreathWorkLevel();
                                 turtleBreathWork.setTurtleBreathWorkParticle(true);
                             }
@@ -133,10 +137,12 @@ public class TurtleBreathWorkEvent {
                             }
                             player.addEffect(new MobEffectInstance(ChangShengJueEffects.TURTLE_BREATH_EFFECT.get(), 300, 0, false, true), player);
                             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING,-1, turtleBreathWork.getTurtleBreathWorkLevel() <= 1 ? 1 : 2));
-                            if (turtleBreathWork.getTurtleBreathWorkUseCount() <= 100){
+                            if (turtleBreathWork.getTurtleBreathWorkUseCount() < 100){
                                 turtleBreathWork.addTurtleBreathWorkUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (turtleBreathWork.getTurtleBreathWorkUseCount() >= 100){
                                     turtleBreathWork.setTurtleBreathWorkParticle(true);
+                                    event.getLevel().playSound(null, player.getX(), player.getY(), player.getZ(),
+                                            ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                 }
                             }
                             ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(

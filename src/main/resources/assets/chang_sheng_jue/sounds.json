@@ -2,182 +2,285 @@
   "cicada_sound": {
     "subtitle": "sounds.chang_sheng_jue.cicada_sound",
     "sounds": [
-      "chang_sheng_jue:cicada"
+      "chang_sheng_jue:entity/cicada"
     ]
   },
   "cicada_hurt": {
     "subtitle": "sounds.chang_sheng_jue.cicada_hurt",
     "sounds": [
-      "chang_sheng_jue:cicada_hurt"
+      "chang_sheng_jue:entity/cicada_hurt"
     ]
   },
   "crane_sound": {
     "subtitle": "sounds.chang_sheng_jue.crane_sound",
     "sounds": [
-      "chang_sheng_jue:crane_sound"
+      "chang_sheng_jue:entity/crane_sound"
     ]
   },
   "crane_hurt": {
     "subtitle": "sounds.chang_sheng_jue.crane_hurt",
     "sounds": [
-      "chang_sheng_jue:crane_hurt"
+      "chang_sheng_jue:entity/crane_hurt"
     ]
   },
   "crane_death": {
     "subtitle": "sounds.chang_sheng_jue.crane_death",
     "sounds": [
-      "chang_sheng_jue:crane_death"
+      "chang_sheng_jue:entity/crane_death"
     ]
   },
   "croc_sound": {
     "subtitle": "sounds.chang_sheng_jue.croc_sound",
     "sounds": [
-      "chang_sheng_jue:croc_sound"
+      "chang_sheng_jue:entity/croc_sound"
     ]
   },
   "croc_hurt": {
     "subtitle": "sounds.chang_sheng_jue.croc_hurt",
     "sounds": [
-      "chang_sheng_jue:croc_hurt"
+      "chang_sheng_jue:entity/croc_hurt"
     ]
   },
   "croc_death": {
     "subtitle": "sounds.chang_sheng_jue.croc_death",
     "sounds": [
-      "chang_sheng_jue:croc_death"
+      "chang_sheng_jue:entity/croc_death"
     ]
   },
   "dragonfly_hurt": {
     "subtitle": "sounds.chang_sheng_jue.dragonfly_hurt",
     "sounds": [
-      "chang_sheng_jue:dragonfly_hurt"
+      "chang_sheng_jue:entity/dragonfly_hurt"
     ]
   },
   "dragonfly_death": {
     "subtitle": "sounds.chang_sheng_jue.dragonfly_death",
     "sounds": [
-      "chang_sheng_jue:dragonfly_death"
+      "chang_sheng_jue:entity/dragonfly_death"
     ]
   },
   "monkey_sound": {
     "subtitle": "sounds.chang_sheng_jue.monkey_sound",
     "sounds": [
-      "chang_sheng_jue:monkey_sound"
+      "chang_sheng_jue:entity/monkey_sound"
     ]
   },
   "monkey_baby_sound": {
     "subtitle": "sounds.chang_sheng_jue.monkey_baby_sound",
     "sounds": [
-      "chang_sheng_jue:monkey_baby_sound"
+      "chang_sheng_jue:entity/monkey_baby_sound"
     ]
   },
   "monkey_angry_sound": {
     "subtitle": "sounds.chang_sheng_jue.monkey_angry_sound",
     "sounds": [
-      "chang_sheng_jue:monkey_angry_sound"
+      "chang_sheng_jue:entity/monkey_angry_sound"
     ]
   },
   "monkey_hurt": {
     "subtitle": "sounds.chang_sheng_jue.monkey_hurt",
     "sounds": [
-      "chang_sheng_jue:monkey_hurt"
+      "chang_sheng_jue:entity/monkey_hurt"
     ]
   },
   "monkey_death": {
     "subtitle": "sounds.chang_sheng_jue.monkey_death",
     "sounds": [
-      "chang_sheng_jue:monkey_death"
+      "chang_sheng_jue:entity/monkey_death"
     ]
   },
   "tiger_sound": {
     "subtitle": "sounds.chang_sheng_jue.tiger_sound",
     "sounds": [
-      "chang_sheng_jue:tiger_sound"
+      "chang_sheng_jue:entity/tiger_sound"
     ]
   },
   "tiger_sound_1": {
     "subtitle": "sounds.chang_sheng_jue.tiger_sound_1",
     "sounds": [
-      "chang_sheng_jue:tiger_sound_1"
+      "chang_sheng_jue:entity/tiger_sound_1"
     ]
   },
   "tiger_hurt": {
     "subtitle": "sounds.chang_sheng_jue.tiger_hurt",
     "sounds": [
-      "chang_sheng_jue:tiger_hurt"
+      "chang_sheng_jue:entity/tiger_hurt"
     ]
   },
   "tiger_death": {
     "subtitle": "sounds.chang_sheng_jue.tiger_death",
     "sounds": [
-      "chang_sheng_jue:tiger_death"
+      "chang_sheng_jue:entity/tiger_death"
     ]
   },
 
   "deer_sound": {
     "subtitle": "sounds.chang_sheng_jue.deer_sound",
     "sounds": [
-      "chang_sheng_jue:deer_sound"
+      "chang_sheng_jue:entity/deer_sound"
     ]
   },
   "deer_sound_1": {
     "subtitle": "sounds.chang_sheng_jue.deer_sound_1",
     "sounds": [
-      "chang_sheng_jue:deer_sound_1"
+      "chang_sheng_jue:entity/deer_sound_1"
     ]
   },
   "deer_sound_2": {
     "subtitle": "sounds.chang_sheng_jue.deer_sound_2",
     "sounds": [
-      "chang_sheng_jue:deer_sound_2"
+      "chang_sheng_jue:entity/deer_sound_2"
     ]
   },
   "deer_sound_3": {
     "subtitle": "sounds.chang_sheng_jue.deer_sound_3",
     "sounds": [
-      "chang_sheng_jue:deer_sound_3"
+      "chang_sheng_jue:entity/deer_sound_3"
     ]
   },
   "deer_sound_4": {
     "subtitle": "sounds.chang_sheng_jue.deer_sound_4",
     "sounds": [
-      "chang_sheng_jue:deer_sound_4"
+      "chang_sheng_jue:entity/deer_sound_4"
     ]
   },
   "deer_sound_5": {
     "subtitle": "sounds.chang_sheng_jue.deer_sound_5",
     "sounds": [
-      "chang_sheng_jue:deer_sound_5"
+      "chang_sheng_jue:entity/deer_sound_5"
     ]
   },
   "deer_hurt": {
     "subtitle": "sounds.chang_sheng_jue.deer_hurt",
     "sounds": [
-      "chang_sheng_jue:deer_hurt"
+      "chang_sheng_jue:entity/deer_hurt"
     ]
   },
   "deer_death": {
     "subtitle": "sounds.chang_sheng_jue.deer_death",
     "sounds": [
-      "chang_sheng_jue:deer_death"
+      "chang_sheng_jue:entity/deer_death"
     ]
   },
   "peacock_sound": {
     "subtitle": "sounds.chang_sheng_jue.peacock_sound",
     "sounds": [
-      "chang_sheng_jue:peacock_sound"
+      "chang_sheng_jue:entity/peacock_sound"
     ]
   },
   "peacock_hurt": {
     "subtitle": "sounds.chang_sheng_jue.peacock_hurt",
     "sounds": [
-      "chang_sheng_jue:peacock_hurt"
+      "chang_sheng_jue:entity/peacock_hurt"
     ]
   },
   "peacock_death": {
     "subtitle": "sounds.chang_sheng_jue.peacock_death",
     "sounds": [
-      "chang_sheng_jue:peacock_death"
+      "chang_sheng_jue:entity/peacock_death"
+    ]
+  },
+
+  "ge_shan_da_niu_sound": {
+    "subtitle": "sounds.chang_sheng_jue.ge_shan_da_niu_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/ge_shan_da_niu_sound"
+    ]
+  },
+  "dugu_nine_swords_sound": {
+    "subtitle": "sounds.chang_sheng_jue.dugu_nine_swords_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/dugu_nine_swords_sound"
+    ]
+  },
+  "immortal_miracle_sound": {
+    "subtitle": "sounds.chang_sheng_jue.immortal_miracle_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/immortal_miracle_sound"
+    ]
+  },
+  "gao_marksmanship_sound": {
+    "subtitle": "sounds.chang_sheng_jue.gao_marksmanship_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/gao_marksmanship_sound"
+    ]
+  },
+  "turtle_breath_work_sound": {
+    "subtitle": "sounds.chang_sheng_jue.turtle_breath_work_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/turtle_breath_work_sound"
+    ]
+  },
+  "golden_black_knife_method_sound": {
+    "subtitle": "sounds.chang_sheng_jue.golden_black_knife_method_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/golden_black_knife_method_sound"
+    ]
+  },
+  "sunflower_point_caveman_sound": {
+    "subtitle": "sounds.chang_sheng_jue.sunflower_point_caveman_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/sunflower_point_caveman_sound"
+    ]
+  },
+  "shaolin_stick_method_sound": {
+    "subtitle": "sounds.chang_sheng_jue.shaolin_stick_method_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/shaolin_stick_method_sound"
+    ]
+  },
+  "tread_the_snow_without_trace_sound": {
+    "subtitle": "sounds.chang_sheng_jue.tread_the_snow_without_trace_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/tread_the_snow_without_trace_sound"
+    ]
+  },
+  "throwing_knives_sound": {
+    "subtitle": "sounds.chang_sheng_jue.throwing_knives_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/throwing_knives_sound"
+    ]
+  },
+  "three_throwing_knives_sound": {
+    "subtitle": "sounds.chang_sheng_jue.three_throwing_knives_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/three_throwing_knives_sound"
+    ]
+  },
+  "seven_throwing_knives_sound": {
+    "subtitle": "sounds.chang_sheng_jue.seven_throwing_knives_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/seven_throwing_knives_sound"
+    ]
+  },
+  "wu_gang_cut_gui_sound": {
+    "subtitle": "sounds.chang_sheng_jue.wu_gang_cut_gui_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/wu_gang_cut_gui_sound"
+    ]
+  },
+  "xuannu_swordsmanship_sound": {
+    "subtitle": "sounds.chang_sheng_jue.xuannu_swordsmanship_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/xuannu_swordsmanship_sound"
+    ]
+  },
+  "golden_belljar_sound": {
+    "subtitle": "sounds.chang_sheng_jue.golden_belljar_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/golden_belljar_sound"
+    ]
+  },
+  "comprehend_sound": {
+    "subtitle": "sounds.chang_sheng_jue.comprehend_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/comprehend_sound"
+    ]
+  },
+  "dacheng_sound": {
+    "subtitle": "sounds.chang_sheng_jue.dacheng_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/dacheng_sound"
     ]
   }
 }

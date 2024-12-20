@@ -1,5 +1,7 @@
 package com.shengchanshe.changshengjue.effect.martial_arts;
 
+import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -8,6 +10,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.ai.goal.WrappedGoal;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+
+import java.util.Objects;
 
 public class TurtleBreathEffect extends MobEffect {
     private int turtleBreath;
@@ -39,6 +43,9 @@ public class TurtleBreathEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
+        if (Objects.requireNonNull(pLivingEntity.getEffect(this)).getDuration() % 40 == 0){
+            pLivingEntity.playSound(ChangShengJueSound.TURTLE_BREATH_WORK_SOUND.get(), 1.0F, 1.0F);
+        }
         var selector = TargetingConditions.forCombat().ignoreLineOfSight().selector(e -> (((Mob) e).getTarget() == pLivingEntity));
         pLivingEntity.level().getNearbyEntities(Mob.class, selector, pLivingEntity, pLivingEntity.getBoundingBox().inflate(20D))
                 .forEach(entityTargetingCaster -> {
