@@ -188,6 +188,8 @@
   "sounds.chang_sheng_jue.throwing_knives_sound" : "飞刀 : 飞出",
   "sounds.chang_sheng_jue.three_throwing_knives_sound" : "飞刀 : 飞出",
   "sounds.chang_sheng_jue.seven_throwing_knives_sound" : "飞刀 : 飞出",
+  "sounds.chang_sheng_jue.throwing_knives_hit" : "飞刀 : 命中",
+  "sounds.chang_sheng_jue.throwing_knives_hit_ground" : "飞刀 : 命中",
   "sounds.chang_sheng_jue.wu_gang_cut_gui_sound" : "武功 : 吴刚伐桂",
   "sounds.chang_sheng_jue.xuannu_swordsmanship_sound" : "武功 : 玄女剑法",
   "sounds.chang_sheng_jue.golden_belljar_sound" : "武功 : 金钟罩",

@@ -5,6 +5,7 @@ import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.RelentlessThrowingKnivesPacket;
+import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -28,6 +29,8 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.Random;
 
 public class ThrowingKnivesEntity extends AbstractArrow {
     private static final EntityDataAccessor<Byte> ID_LOYALTY = SynchedEntityData.defineId(ThrowingKnivesEntity.class, EntityDataSerializers.BYTE);
@@ -81,6 +84,29 @@ public class ThrowingKnivesEntity extends AbstractArrow {
                 ++this.clientSideReturnTridentTickCount;
             }
         }
+        if (this.level().isClientSide && !this.inGround){
+            int numParticles = 1;  // 可以根据需要调整数量
+            Random random = new Random();
+
+            for (int j = 0; j < numParticles; ++j) {
+                // 使用球坐标系生成球形范围内的粒子位置
+                double radius = 0.1;
+                double theta = random.nextDouble() * 2 * Math.PI;  // 0 到 2π 之间的随机角度
+                double phi = random.nextDouble() * Math.PI;  // 0 到 π 之间的随机角度
+
+                // 球坐标转换为笛卡尔坐标
+                double offsetX = radius * Math.sin(phi) * Math.cos(theta);
+                double offsetY = radius * Math.sin(phi) * Math.sin(theta);
+                double offsetZ = radius * Math.cos(phi);
+
+                double particleX = this.getX() + offsetX;
+                double particleY = this.getY() + offsetY;  // 生成在玩家的高度
+                double particleZ = this.getZ() + offsetZ;
+
+                // 生成粒子并设置速度
+                this.level().addParticle(ChangShengJueParticles.THROWING_KNIVES_PARTICLE.get(), particleX, particleY, particleZ, 0, 0, 0);
+            }
+        }
 
         super.tick();
     }
@@ -127,7 +153,7 @@ public class ThrowingKnivesEntity extends AbstractArrow {
             });
         }
         this.dealtDamage = true;
-        SoundEvent soundevent = SoundEvents.TRIDENT_HIT;
+        SoundEvent soundevent = ChangShengJueSound.THROWING_KNIVES_HIT.get();
         if (entity.hurt(damagesource, f[0])) {
             if (entity.getType() == EntityType.ENDERMAN) {
                 return;
@@ -165,6 +191,10 @@ public class ThrowingKnivesEntity extends AbstractArrow {
         return EnchantmentHelper.hasChanneling(this.throwingKnivesItem);
     }
 
+    @Override
+    protected SoundEvent getDefaultHitGroundSoundEvent() {
+        return ChangShengJueSound.THROWING_KNIVES_HIT_GROUND.get();
+    }
 
     private boolean isAcceptibleReturnOwner() {
         Entity entity = this.getOwner();

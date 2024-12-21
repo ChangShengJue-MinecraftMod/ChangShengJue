@@ -42,7 +42,7 @@ public class SevenThrowingKnives extends SwordItem {
                         // 计算这个投掷物的发射角度
                         float angle = player.getYRot() + (i - (float) numKnives / 2) * angleStep;
 
-                        feiDaoEntity.shootFromRotation(player, player.getXRot(), angle, 0.0F, 1.5F, 1.0F);
+                        feiDaoEntity.shootFromRotation(player, player.getXRot(), angle, 0.0F, 2.5F, 1.0F);
                         pLevel.addFreshEntity(feiDaoEntity);
                     }
                     if (!player.getAbilities().instabuild) {

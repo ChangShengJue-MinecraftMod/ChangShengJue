@@ -282,5 +282,17 @@
     "sounds": [
       "chang_sheng_jue:martial_arts/dacheng_sound"
     ]
+  },
+  "throwing_knives_hit": {
+    "subtitle": "sounds.chang_sheng_jue.throwing_knives_hit",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/throwing_knives_hit"
+    ]
+  },
+  "throwing_knives_hit_ground": {
+    "subtitle": "sounds.chang_sheng_jue.throwing_knives_hit_ground",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/throwing_knives_hit_ground"
+    ]
   }
 }

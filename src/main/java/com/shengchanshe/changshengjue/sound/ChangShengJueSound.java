@@ -72,6 +72,8 @@ public class ChangShengJueSound {
     public static final RegistryObject<SoundEvent> THROWING_KNIVES_SOUND = registerSoundEvent("throwing_knives_sound");
     public static final RegistryObject<SoundEvent> THREE_THROWING_KNIVES_SOUND = registerSoundEvent("three_throwing_knives_sound");
     public static final RegistryObject<SoundEvent> SEVEN_THROWING_KNIVES_SOUND = registerSoundEvent("seven_throwing_knives_sound");
+    public static final RegistryObject<SoundEvent> THROWING_KNIVES_HIT = registerSoundEvent("throwing_knives_hit");
+    public static final RegistryObject<SoundEvent> THROWING_KNIVES_HIT_GROUND = registerSoundEvent("throwing_knives_hit_ground");
     //吴刚伐桂
     public static final RegistryObject<SoundEvent> WU_GANG_CUT_GUI_SOUND = registerSoundEvent("wu_gang_cut_gui_sound");
     //玄女剑法

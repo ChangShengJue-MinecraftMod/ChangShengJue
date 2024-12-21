@@ -33,7 +33,7 @@ public class ThrowingKnives extends SwordItem {
                 pPlayer1.broadcastBreakEvent(pPlayer.getUsedItemHand());
             });
             ThrowingKnivesEntity feiDaoEntity = new ThrowingKnivesEntity(pLevel, pPlayer, itemstack);
-            feiDaoEntity.shootFromRotation(pPlayer, pPlayer.getXRot(), pPlayer.getYRot(), 0.0F, 1.5F, 1.0F);
+            feiDaoEntity.shootFromRotation(pPlayer, pPlayer.getXRot(), pPlayer.getYRot(), 0.0F, 2.5F, 1.0F);
             pLevel.addFreshEntity(feiDaoEntity);
             pPlayer.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(relentlessThrowingKnives -> {
                 if (relentlessThrowingKnives.isRelentlessThrowingKnivesComprehend() && relentlessThrowingKnives.getRelentlessThrowingKnivesLevel() <= 0){
