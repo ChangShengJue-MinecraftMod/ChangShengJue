@@ -1,0 +1,120 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"misc.idle": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"qianbai": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [-5, 0, 0],
+							"easing": "linear"
+						},
+						"1.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"houbai": {
+					"rotation": {
+						"0.0": {
+							"vector": [0.67, 0, 0],
+							"easing": "linear"
+						},
+						"0.1333": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.6333": {
+							"vector": [2.5, 0, 0],
+							"easing": "linear"
+						},
+						"1.0": {
+							"vector": [0.67, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"yaodai": {
+					"rotation": {
+						"0.0": {
+							"vector": [-14.73, 0, 0],
+							"easing": "linear"
+						},
+						"0.2333": {
+							"vector": [-12.61, 0, 0],
+							"easing": "linear"
+						},
+						"0.6": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"1.0": {
+							"vector": [-14.73, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"yaodai2": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [-12.5, 0, 0],
+							"easing": "linear"
+						},
+						"1.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"bone6": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [5, 0, 0],
+							"easing": "linear"
+						},
+						"1.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"bone8": {
+					"rotation": {
+						"0.0": {
+							"vector": [1.33, 0, 0],
+							"easing": "linear"
+						},
+						"0.1333": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.6333": {
+							"vector": [5, 0, 0],
+							"easing": "linear"
+						},
+						"1.0": {
+							"vector": [1.33, 0, 0],
+							"easing": "linear"
+						}
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

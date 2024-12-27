@@ -9,15 +9,51 @@ import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwo
 import com.shengchanshe.changshengjue.entity.client.render.combat.throwingknives.ThrowingKnivesEntityEntityRender;
 import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntityRender;
 import com.shengchanshe.changshengjue.entity.villagers.render.ChangShengJueVillagerRender;
+import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.item.combat.armor.DyeableChineseWeddingDressItem;
+import com.shengchanshe.changshengjue.item.combat.armor.DyeableItem;
 import com.shengchanshe.changshengjue.screen.ChangShengJueMenuTypes;
 import com.shengchanshe.changshengjue.screen.plaque.PlaqueScreen;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Supplier;
+
 public class ClientSetup {
+    // 假设你有一个包含所有需要注册颜色渲染器的物品的集合
+    static List<Supplier<? extends Item>> cottonArmorItems = Arrays.asList(
+            ChangShengJueItems.COTTON_ARMOR_FEATHER_HELMET,
+            ChangShengJueItems.COTTON_ARMOR_WHITE_FEATHER_HELMET,
+            ChangShengJueItems.COTTON_ARMOR_CHESTPLATE,
+            ChangShengJueItems.COTTON_ARMOR_LEGGINGS,
+            ChangShengJueItems.COTTON_ARMOR_BOOTS,
+
+            ChangShengJueItems.FEMALE_TAOIST_ROBES_HELMET,
+            ChangShengJueItems.FEMALE_TAOIST_ROBES_CHESTPLATE,
+            ChangShengJueItems.MALE_TAOIST_ROBES_HELMET,
+            ChangShengJueItems.MALE_TAOIST_ROBES_CHESTPLATE,
+            ChangShengJueItems.TAOIST_ROBES_BOOTS,
+
+            ChangShengJueItems.SILK_LEGGINGS,
+
+            ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_HELMET,
+            ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_CHESTPLATE,
+            ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_HELMET,
+            ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_CHESTPLATE,
+            ChangShengJueItems.CHINESE_WEDDING_DRESS_BOOTS,
+
+            ChangShengJueItems.FLYING_FISH_ROBE_HELMET_1,
+            ChangShengJueItems.FLYING_FISH_ROBE_CHESTPLATE,
+            ChangShengJueItems.FLYING_FISH_ROBE_BOOTS
+    );
     public static void clientSetup(final FMLClientSetupEvent event){
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.PINEAPPLE_BLOCK.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SOYBEAN_BLOCK.get(), RenderType.cutout());
@@ -146,6 +182,23 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.POTTERY_WHEEL.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DESK.get(), RenderType.cutout());
+
+        ItemColors itemColors = Minecraft.getInstance().getItemColors();
+        // 为每个物品注册颜色渲染器
+        for (Supplier<? extends Item> itemSupplier : cottonArmorItems) {
+            itemColors.register((stack, color) -> {
+                if (color == 1 && stack.getItem() instanceof DyeableItem dyeable) {
+                    // color == 1 表示这是覆盖层
+                    return dyeable.hasCustomColor(stack) ? dyeable.getColor(stack) : dyeable == ChangShengJueItems.MALE_TAOIST_ROBES_HELMET.get() ? 0x000000 : 0xFFFFFF;
+                }else if (color == 1 && stack.getItem() instanceof DyeableChineseWeddingDressItem dyeable){
+                    // color == 1 表示这是覆盖层
+                    return dyeable.hasCustomColor(stack) ? dyeable.getColor(stack) : 0xC81717;
+                }else {
+                    return 0xFFFFFF;
+                }
+            }, itemSupplier.get());
+        }
+
 
         MenuScreens.register(ChangShengJueMenuTypes.PLAQUE_MENU.get(), PlaqueScreen::new);
 

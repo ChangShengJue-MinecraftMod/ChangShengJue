@@ -20,9 +20,16 @@ public class YiTianJian extends Sword {
     @Override
     public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
         super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
-        Map<Enchantment, Integer> enchantments = new HashMap<>();
-        enchantments.put(Enchantments.MENDING, 1);
-        enchantments.put(Enchantments.SHARPNESS, 1);
+        // 获取物品当前的所有附魔
+        Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(pStack);
+        // 如果物品没有 MENDING 附魔，就添加 MENDING 1级
+        if (!enchantments.containsKey(Enchantments.MENDING)) {
+            enchantments.put(Enchantments.MENDING, 1);
+        }
+        if (!enchantments.containsKey(Enchantments.SHARPNESS)){
+            enchantments.put(Enchantments.SHARPNESS, 5);
+        }
+        // 将附魔设置回物品
         EnchantmentHelper.setEnchantments(enchantments, pStack);
     }
 }

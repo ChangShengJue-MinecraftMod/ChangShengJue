@@ -90,31 +90,46 @@ public class CSJItemModelProvider extends ItemModelProvider {
 
         //护甲
         //棉甲
-        simpleItem(ChangShengJueItems.BLUE_COTTON_ARMOR_HELMET);
-        simpleItem(ChangShengJueItems.BLUE_COTTON_ARMOR_CHESTPLATE);
-        simpleItem(ChangShengJueItems.BLUE_COTTON_ARMOR_LEGGINGS);
-        simpleItem(ChangShengJueItems.COTTON_ARMOR_BOOTS);
-        simpleItem(ChangShengJueItems.RED_COTTON_ARMOR_HELMET);
-        simpleItem(ChangShengJueItems.RED_COTTON_ARMOR_CHESTPLATE);
-        simpleItem(ChangShengJueItems.RED_COTTON_ARMOR_LEGGINGS);
+        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_FEATHER_HELMET);
+        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_WHITE_FEATHER_HELMET);
+        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_LEGGINGS);
+        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_BOOTS);
         //道袍
         simpleItem(ChangShengJueItems.FEMALE_TAOIST_ROBES_HELMET);
-        simpleItem(ChangShengJueItems.FEMALE_TAOIST_ROBES_CHESTPLATE);
-        simpleItem(ChangShengJueItems.FEMALE_TAOIST_ROBES_LEGGINGS);
-        simpleItem(ChangShengJueItems.FEMALE_TAOIST_ROBES_BOOTS);
-        simpleItem(ChangShengJueItems.MALE_TAOIST_ROBES_HELMET);
-        simpleItem(ChangShengJueItems.MALE_TAOIST_ROBES_CHESTPLATE);
-        simpleItem(ChangShengJueItems.MALE_TAOIST_ROBES_LEGGINGS);
-        simpleItem(ChangShengJueItems.MALE_TAOIST_ROBES_BOOTS);
+        simpleArmorItem(ChangShengJueItems.MALE_TAOIST_ROBES_HELMET);
+        simpleArmorItem(ChangShengJueItems.FEMALE_TAOIST_ROBES_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.MALE_TAOIST_ROBES_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.TAOIST_ROBES_BOOTS);
+        //丝绸裤裤
+        simpleArmorItem(ChangShengJueItems.SILK_LEGGINGS);
         //婚服
-        simpleItem(ChangShengJueItems.CHINESE_WEDDING_DRESS_HELMET);
-        simpleItem(ChangShengJueItems.CHINESE_WEDDING_DRESS_CHESTPLATE);
-        simpleItem(ChangShengJueItems.CHINESE_WEDDING_DRESS_LEGGINGS);
-        simpleItem(ChangShengJueItems.CHINESE_WEDDING_DRESS_BOOTS);
-        simpleItem(ChangShengJueItems.RED_DRESS_HELMET);
-        simpleItem(ChangShengJueItems.RED_DRESS_CHESTPLATE);
-        simpleItem(ChangShengJueItems.RED_DRESS_LEGGINGS);
-        simpleItem(ChangShengJueItems.RED_DRESS_BOOTS);
+        simpleArmorItem(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_HELMET);
+        simpleItem(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_HELMET);
+        simpleArmorItem(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.CHINESE_WEDDING_DRESS_BOOTS);
+        //山文甲
+        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_HELMET);
+        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_CHESTPLATE);
+        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_LEGGINGS);
+        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_BOOTS);
+        //飞鱼服
+        simpleItem(ChangShengJueItems.FLYING_FISH_ROBE_HELMET_0);
+        simpleArmorItem(ChangShengJueItems.FLYING_FISH_ROBE_HELMET_1);
+        simpleArmorItem(ChangShengJueItems.FLYING_FISH_ROBE_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.FLYING_FISH_ROBE_BOOTS);
+        //行者套
+        simpleItem(ChangShengJueItems.WALKER_SET_HELMET_0);
+        simpleItem(ChangShengJueItems.WALKER_SET_HELMET_1);
+        simpleItem(ChangShengJueItems.WALKER_SET_CHESTPLATE);
+        simpleItem(ChangShengJueItems.WALKER_SET_LEGGINGS);
+        simpleItem(ChangShengJueItems.WALKER_SET_BOOTS);
+        //齐天大圣套
+        simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_HELMET);
+        simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_CHESTPLATE);
+        simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_LEGGINGS);
+        simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_BOOTS);
         //武器
         handheldItem(ChangShengJueItems.BRONZE_SWORD);
         handheldItem(ChangShengJueItems.HAN_JIAN);
@@ -124,6 +139,9 @@ public class CSJItemModelProvider extends ItemModelProvider {
         handheldItem(ChangShengJueItems.THROWING_KNIVES);
         handheldItem(ChangShengJueItems.THREE_THROWING_KNIVES);
         handheldItem(ChangShengJueItems.SEVEN_THROWING_KNIVES);
+        //工具
+        handheldItem(ChangShengJueItems.KAISHAN_PICKAXE);
+        handheldItem(ChangShengJueItems.XUANHUA_AXE);
 
         bullionsItem(ChangShengJueItems.SILVER_BULLIONS);
         bullionsItem(ChangShengJueItems.GOLD_BULLIONS);
@@ -140,6 +158,11 @@ public class CSJItemModelProvider extends ItemModelProvider {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(ChangShengJue.MOD_ID,"item/"+item.getId().getPath()));
+    }
+    private ItemModelBuilder simpleArmorItem(RegistryObject<Item> item){
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0", new ResourceLocation(ChangShengJue.MOD_ID,"item/"+item.getId().getPath()))
+                .texture("layer1", new ResourceLocation(ChangShengJue.MOD_ID,"item/"+item.getId().getPath()+"_overlay"));
     }
 
     private ItemModelBuilder handheldItem(RegistryObject<Item> item){

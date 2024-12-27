@@ -1,6 +1,6 @@
 package com.shengchanshe.changshengjue.item.combat.sword;
 
-import com.shengchanshe.changshengjue.item.combat.tiers.ChangShengJueTiers;
+import com.shengchanshe.changshengjue.item.tiers.ChangShengJueTiers;
 import net.minecraft.world.item.Item;
 
 public class BronzeSword extends Sword {

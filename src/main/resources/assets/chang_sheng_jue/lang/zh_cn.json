@@ -4,7 +4,8 @@
   "itemGroup.chang_sheng_jue_functional": "长生决 功能方块",
   "itemGroup.chang_sheng_jue_ingredients": "长生决 原材料",
   "itemGroup.chang_sheng_jue_food_and_drink": "长生决 食物与饮品",
-  "itemGroup.cahng_sheng_jue_combat": "长生决 战斗用品",
+  "itemGroup.chang_sheng_jue_combat": "长生决 战斗用品",
+  "itemGroup.chang_sheng_jue_tool": "长生决 工具与实用物品",
   "itemGroup.chang_sheng_jue_spawn_eggs": "长生决 刷怪蛋",
 
   "item.chang_sheng_jue.pineapple_seeds": "菠萝种子",
@@ -96,6 +97,9 @@
   "item.chang_sheng_jue.wheat_nuggets_tribute_wine": "麦块贡酒",
   "item.chang_sheng_jue.shi_li_xiang": "十里香",
 
+  "item.chang_sheng_jue.kaishan_pickaxe": "开山镐",
+  "item.chang_sheng_jue.xuanhua_axe": "萱花斧",
+
   "item.chang_sheng_jue.bronze_sword": "青铜剑",
   "item.chang_sheng_jue.han_jian": "汉剑",
   "item.chang_sheng_jue.heng_dao": "横刀",
@@ -114,31 +118,46 @@
 
   "item.chang_sheng_jue.stakes": "练功木桩",
 
-  "item.chang_sheng_jue.blue_cotton_armor_helmet": "蓝边棉甲头盔",
-  "item.chang_sheng_jue.blue_cotton_armor_chestplate": "蓝边棉甲胸甲",
-  "item.chang_sheng_jue.blue_cotton_armor_leggings": "蓝边棉甲护腿",
+  "item.chang_sheng_jue.cotton_armor_feather_helmet": "羽翎棉甲头盔",
+  "item.chang_sheng_jue.cotton_armor_white_feather_helmet": "白色羽翎棉甲头盔",
+  "item.chang_sheng_jue.cotton_armor_chestplate": "棉甲胸甲",
+  "item.chang_sheng_jue.cotton_armor_leggings": "棉甲护腿",
   "item.chang_sheng_jue.cotton_armor_boots": "棉甲靴子",
-  "item.chang_sheng_jue.red_cotton_armor_helmet": "红边棉甲头盔",
-  "item.chang_sheng_jue.red_cotton_armor_chestplate": "红边棉甲胸甲",
-  "item.chang_sheng_jue.red_cotton_armor_leggings": "红边棉甲护腿",
 
   "item.chang_sheng_jue.female_taoist_robes_helmet": "道袍头冠",
   "item.chang_sheng_jue.female_taoist_robes_chestplate": "道袍衣裳",
-  "item.chang_sheng_jue.female_taoist_robes_leggings": "道袍下裳",
-  "item.chang_sheng_jue.female_taoist_robes_boots": "道袍鞋子",
   "item.chang_sheng_jue.male_taoist_robes_helmet": "道袍头冠",
   "item.chang_sheng_jue.male_taoist_robes_chestplate": "道袍衣裳",
-  "item.chang_sheng_jue.male_taoist_robes_leggings": "道袍下裳",
-  "item.chang_sheng_jue.male_taoist_robes_boots": "道袍鞋子",
+  "item.chang_sheng_jue.taoist_robes_boots": "道袍鞋子",
 
-  "item.chang_sheng_jue.chinese_wedding_dress_helmet": "婚服头冠",
-  "item.chang_sheng_jue.chinese_wedding_dress_chestplate": "婚服衣裳",
-  "item.chang_sheng_jue.chinese_wedding_dress_leggings": "婚服下裳",
+  "item.chang_sheng_jue.silk_leggings": "丝绸下裳",
+
+  "item.chang_sheng_jue.male_chinese_wedding_dress_helmet": "婚服头冠",
+  "item.chang_sheng_jue.male_chinese_wedding_dress_chestplate": "婚服衣裳",
+  "item.chang_sheng_jue.female_chinese_wedding_dress_helmet": "嫁衣头冠",
+  "item.chang_sheng_jue.female_chinese_wedding_dress_chestplate": "嫁衣衣裳",
   "item.chang_sheng_jue.chinese_wedding_dress_boots": "婚服鞋子",
-  "item.chang_sheng_jue.red_dress_helmet": "嫁衣头冠",
-  "item.chang_sheng_jue.red_dress_chestplate": "嫁衣衣裳",
-  "item.chang_sheng_jue.red_dress_leggings": "嫁衣下裳",
-  "item.chang_sheng_jue.red_dress_boots": "嫁衣鞋子",
+
+  "item.chang_sheng_jue.mountain_pattern_armor_helmet": "山文甲头盔",
+  "item.chang_sheng_jue.mountain_pattern_armor_chestplate": "山文甲胸甲",
+  "item.chang_sheng_jue.mountain_pattern_armor_leggings": "山文甲护腿",
+  "item.chang_sheng_jue.mountain_pattern_armor_boots": "山文甲靴子",
+
+  "item.chang_sheng_jue.flying_fish_robe_helmet_0": "飞鱼服头盔",
+  "item.chang_sheng_jue.flying_fish_robe_helmet_1": "飞鱼服帽子",
+  "item.chang_sheng_jue.flying_fish_robe_chestplate": "飞鱼服胸甲",
+  "item.chang_sheng_jue.flying_fish_robe_boots": "飞鱼服靴子",
+
+  "item.chang_sheng_jue.walker_set_helmet_0": "行者头箍",
+  "item.chang_sheng_jue.walker_set_helmet_1": "行者头链",
+  "item.chang_sheng_jue.walker_set_chestplate": "行者胸甲",
+  "item.chang_sheng_jue.walker_set_leggings": "行者护腿",
+  "item.chang_sheng_jue.walker_set_boots": "行者靴子",
+
+  "item.chang_sheng_jue.qi_tian_da_sheng_helmet": "凤翅紫金冠",
+  "item.chang_sheng_jue.qi_tian_da_sheng_chestplate": "锁子黄金甲",
+  "item.chang_sheng_jue.qi_tian_da_sheng_leggings": "虎皮下裳",
+  "item.chang_sheng_jue.qi_tian_da_sheng_boots": "藕丝步云履",
 
   "item.chang_sheng_jue.immortal_miracle": "不死神功",
   "tooltip.chang_sheng_jue.immortal_miracle.tooltip" : "不死不灭，岂是幻梦?",
@@ -579,6 +598,7 @@
   "effect.chang_sheng_jue.fen_jiu": "汾酒",
   "effect.chang_sheng_jue.wheat_nuggets_tribute_wine": "麦块贡酒",
   "effect.chang_sheng_jue.shi_li_xiang": "十里香",
+  "effect.chang_sheng_jue.drunken": "醉酒",
 
   "biome.chang_sheng_jue.chang_shen_jue_prairie": "慕然草原"
 }

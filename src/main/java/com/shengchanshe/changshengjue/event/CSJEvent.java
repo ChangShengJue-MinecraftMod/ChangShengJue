@@ -683,8 +683,8 @@ public class CSJEvent {
 
     @SubscribeEvent
     public static void blockBlockBreakEvent(BlockEvent.BreakEvent event){
-        WuGangCutGuiEvent.handleBlockBreakEvent(event);
-        YugongMovesMountainsEvent.handleBlockBreakEvent(event);
+//        WuGangCutGuiEvent.handleBlockBreakEvent(event);
+//        YugongMovesMountainsEvent.handleBlockBreakEvent(event);
     }
     @SubscribeEvent
     public static void onInteract(PlayerInteractEvent event) {

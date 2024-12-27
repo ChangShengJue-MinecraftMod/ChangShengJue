@@ -165,6 +165,12 @@ public class ChangShengJueMessages {
                 .encoder(PaodingPacket::toBytes)
                 .consumerMainThread(PaodingPacket::handle)
                 .add();
+        //愚公移山
+        net.messageBuilder(YugongMovesMountainsPacket.class, id())
+                .decoder(YugongMovesMountainsPacket::new)
+                .encoder(YugongMovesMountainsPacket::toBytes)
+                .consumerMainThread(YugongMovesMountainsPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message) {

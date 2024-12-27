@@ -4,14 +4,11 @@
   "key": {
     "#": {
       "item": "chang_sheng_jue:silk"
-    },
-    "X": {
-      "item": "minecraft:magenta_dye"
     }
   },
   "pattern": [
     "# #",
-    "#X#",
+    "###",
     "###"
   ],
   "result": {

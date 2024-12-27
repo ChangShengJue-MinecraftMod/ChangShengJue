@@ -158,30 +158,24 @@ public class TreadTheSnowWithoutTraceEvent {
                 if (!mc.player.getAbilities().instabuild) {
                     if (TreadTheSnowWithoutTraceClientData.isTreadTheSnowWithoutTraceComprehend()) {
                         if (TreadTheSnowWithoutTraceClientData.getTreadTheSnowWithoutTraceLevel() == 1) {
-                            if (mc.player.getFoodData().getFoodLevel() > 8) {// 检查玩家饱食度是否大于8
-                                if (TreadTheSnowWithoutTraceClientData.getjumpCount() <= 1) {
-                                    if (TreadTheSnowWithoutTraceClientData.getTreadTheSnowWithoutTraceUseCooldownPercent() <= 0) {
-                                        TreadTheSnowWithoutTraceClientData.setjumpCount();
-                                        mc.player.jumpFromGround();
-                                        if (TreadTheSnowWithoutTraceClientData.getjumpCount() == 2) {
-                                            mc.player.playSound(ChangShengJueSound.TREAD_THE_SNOW_WITHOUT_TRACE_SOUND.get(), 1.0F, 1.0F);
-                                            mc.player.getFoodData().eat(-2, -1);//消耗饱食度
-                                            ChangShengJueMessages.sendToServer(new TreadTheSnowWithoutTracePacket2());
-                                        }
+                            if (TreadTheSnowWithoutTraceClientData.getjumpCount() <= 1) {
+                                if (TreadTheSnowWithoutTraceClientData.getTreadTheSnowWithoutTraceUseCooldownPercent() <= 0) {
+                                    TreadTheSnowWithoutTraceClientData.setjumpCount();
+                                    mc.player.jumpFromGround();
+                                    if (TreadTheSnowWithoutTraceClientData.getjumpCount() == 2) {
+                                        mc.player.playSound(ChangShengJueSound.TREAD_THE_SNOW_WITHOUT_TRACE_SOUND.get(), 1.0F, 1.0F);
+                                        ChangShengJueMessages.sendToServer(new TreadTheSnowWithoutTracePacket2());
                                     }
                                 }
                             }
                         } else if (TreadTheSnowWithoutTraceClientData.getTreadTheSnowWithoutTraceLevel() == 2) {
-                            if (mc.player.getFoodData().getFoodLevel() > 8) {// 检查玩家饱食度是否大于8
-                                if (TreadTheSnowWithoutTraceClientData.getjumpCount() <= 2) {
-                                    if (TreadTheSnowWithoutTraceClientData.getTreadTheSnowWithoutTraceUseCooldownPercent() <= 0) {
-                                        TreadTheSnowWithoutTraceClientData.setjumpCount();
-                                        mc.player.jumpFromGround();
-                                        if (TreadTheSnowWithoutTraceClientData.getjumpCount() == 3) {
-                                            mc.player.playSound(ChangShengJueSound.TREAD_THE_SNOW_WITHOUT_TRACE_SOUND.get(), 1.0F, 1.0F);
-                                            mc.player.getFoodData().eat(-2, -1);//消耗饱食度
-                                            ChangShengJueMessages.sendToServer(new TreadTheSnowWithoutTracePacket2());
-                                        }
+                            if (TreadTheSnowWithoutTraceClientData.getjumpCount() <= 2) {
+                                if (TreadTheSnowWithoutTraceClientData.getTreadTheSnowWithoutTraceUseCooldownPercent() <= 0) {
+                                    TreadTheSnowWithoutTraceClientData.setjumpCount();
+                                    mc.player.jumpFromGround();
+                                    if (TreadTheSnowWithoutTraceClientData.getjumpCount() == 3) {
+                                        mc.player.playSound(ChangShengJueSound.TREAD_THE_SNOW_WITHOUT_TRACE_SOUND.get(), 1.0F, 1.0F);
+                                        ChangShengJueMessages.sendToServer(new TreadTheSnowWithoutTracePacket2());
                                     }
                                 }
                             }

@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "chang_sheng_jue:item/red_dress_leggings"
-  }
-}

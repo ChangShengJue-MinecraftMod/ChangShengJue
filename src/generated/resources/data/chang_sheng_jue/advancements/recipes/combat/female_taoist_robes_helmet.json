@@ -1,13 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_silk": {
+    "has_iron": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "chang_sheng_jue:silk"
-            ]
+            "tag": "forge:ingots/iron"
           }
         ]
       },
@@ -22,7 +20,7 @@
   },
   "requirements": [
     [
-      "has_silk",
+      "has_iron",
       "has_the_recipe"
     ]
   ],

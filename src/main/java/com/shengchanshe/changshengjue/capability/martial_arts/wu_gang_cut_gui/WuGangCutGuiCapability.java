@@ -1,12 +1,12 @@
 package com.shengchanshe.changshengjue.capability.martial_arts.wu_gang_cut_gui;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 
 public class WuGangCutGuiCapability {
     private int wuGangCutGuiLevel = 0;
     private boolean wuGangCutGuiComprehend = false;
     private int wuGangCutGuiUseCount = 0;
+    private int wuGangCutGuiMaxDamage = 0;
     private float wuGangCutGuiToppedTick = 0;//技能领悟特效计时
     private float wuGangCutGuiDachengTick = 0;//技能领悟特效计时
     private boolean wuGangCutGuiParticle = false;//技能特效显示
@@ -25,6 +25,14 @@ public class WuGangCutGuiCapability {
 
     public void addWuGangCutGuiLevel(){
         this.wuGangCutGuiLevel = this.wuGangCutGuiUseCount >= 1000 ? 2 : 1;
+    }
+
+    public int getWuGangCutGuiMaxDamage() {
+        return wuGangCutGuiMaxDamage;
+    }
+
+    public void setWuGangCutGuiMaxDamage(int wuGangCutGuiMaxDamage) {
+        this.wuGangCutGuiMaxDamage = wuGangCutGuiMaxDamage;
     }
 
     public void setWuGangCutGuiComprehend(boolean wuGangCutGuiComprehend) {
@@ -71,6 +79,7 @@ public class WuGangCutGuiCapability {
         this.wuGangCutGuiLevel = capability.wuGangCutGuiLevel;
         this.wuGangCutGuiComprehend = capability.wuGangCutGuiComprehend;
         this.wuGangCutGuiUseCount = capability.wuGangCutGuiUseCount;
+        this.wuGangCutGuiMaxDamage = capability.wuGangCutGuiMaxDamage;
         this.wuGangCutGuiToppedTick = capability.wuGangCutGuiToppedTick;
         this.wuGangCutGuiDachengTick = capability.wuGangCutGuiDachengTick;
         this.wuGangCutGuiParticle = capability.wuGangCutGuiParticle;
@@ -80,6 +89,7 @@ public class WuGangCutGuiCapability {
     public void saveNBTData(CompoundTag nbt) {
         nbt.putInt("WuGangCutGuiLevel", wuGangCutGuiLevel);
         nbt.putInt("WuGangCutGuiUseCount", wuGangCutGuiUseCount);
+        nbt.putInt("WuGangCutGuiMaxDamage", wuGangCutGuiMaxDamage);
         nbt.putBoolean("WuGangCutGuiComprehend",wuGangCutGuiComprehend);
         nbt.putFloat("WuGangCutGuiToppedTick",wuGangCutGuiToppedTick);
         nbt.putFloat("WuGangCutGuiDachengTick",wuGangCutGuiDachengTick);
@@ -90,6 +100,7 @@ public class WuGangCutGuiCapability {
     public void loadNBTData(CompoundTag nbt) {
         wuGangCutGuiLevel = nbt.getInt("WuGangCutGuiLevel");
         wuGangCutGuiUseCount = nbt.getInt("WuGangCutGuiUseCount");
+        wuGangCutGuiMaxDamage = nbt.getInt("WuGangCutGuiMaxDamage");
         wuGangCutGuiComprehend = nbt.getBoolean("WuGangCutGuiComprehend");
         wuGangCutGuiToppedTick = nbt.getFloat("WuGangCutGuiToppedTick");
         wuGangCutGuiDachengTick = nbt.getFloat("WuGangCutGuiDachengTick");

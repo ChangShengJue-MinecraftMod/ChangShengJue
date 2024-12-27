@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "chang_sheng_jue:item/male_taoist_robes_helmet"
+    "layer0": "chang_sheng_jue:item/male_taoist_robes_helmet",
+    "layer1": "chang_sheng_jue:item/male_taoist_robes_helmet_overlay"
   }
 }

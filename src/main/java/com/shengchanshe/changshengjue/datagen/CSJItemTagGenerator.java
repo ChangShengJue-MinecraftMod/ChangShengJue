@@ -92,6 +92,12 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(ChangShengJueItems.TU_LONG_DAO.get())
                 .add(ChangShengJueItems.BA_WANG_QIANG.get());
 
+        this.tag(ItemTags.AXES)
+                .add(ChangShengJueItems.XUANHUA_AXE.get());
+
+        this.tag(ItemTags.PICKAXES)
+                .add(ChangShengJueItems.KAISHAN_PICKAXE.get());
+
         this.tag(ItemTags.FLOWERS)
                 .add(Item.byBlock(ChangShengJueBlocks.MUGWORT_BLOCK.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.CUCKOO_BLOCK.get()))

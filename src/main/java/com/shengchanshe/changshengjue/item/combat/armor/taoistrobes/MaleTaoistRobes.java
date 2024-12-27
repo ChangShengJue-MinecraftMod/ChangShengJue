@@ -1,6 +1,5 @@
 package com.shengchanshe.changshengjue.item.combat.armor.taoistrobes;
 
-import com.shengchanshe.changshengjue.item.render.combat.armor.cotton.RedCottonArmorRender;
 import com.shengchanshe.changshengjue.item.render.combat.armor.taoistrobes.MaleTaoistRobesRender;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -10,8 +9,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
@@ -41,7 +42,10 @@ public class MaleTaoistRobes extends TaoistRobes implements GeoItem {
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {}
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(((new AnimationController<>(this, 0, (state) ->
+                state.setAndContinue(DefaultAnimations.IDLE)))));
+    }
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {

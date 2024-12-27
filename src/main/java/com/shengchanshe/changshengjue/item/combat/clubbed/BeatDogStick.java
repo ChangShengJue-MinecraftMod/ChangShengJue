@@ -72,15 +72,22 @@ public class BeatDogStick extends Clubbed implements GeoItem {
     @Override
     public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
         super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
-        Map<Enchantment, Integer> enchantments = new HashMap<>();
-        enchantments.put(Enchantments.MENDING, 1);
-        enchantments.put(Enchantments.KNOCKBACK, 1);
+        // 获取物品当前的所有附魔
+        Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(pStack);
+        // 如果物品没有 MENDING 附魔，就添加 MENDING 1级
+        if (!enchantments.containsKey(Enchantments.MENDING)) {
+            enchantments.put(Enchantments.MENDING, 1);
+        }
+        if (!enchantments.containsKey(Enchantments.KNOCKBACK)){
+            enchantments.put(Enchantments.KNOCKBACK, 2);
+        }
+        // 将附魔设置回物品
         EnchantmentHelper.setEnchantments(enchantments, pStack);
     }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(((new AnimationController(this, "idle",0, (state) ->
+        controllerRegistrar.add(((new AnimationController<>(this, "idle",0, (state) ->
                 state.setAndContinue(DefaultAnimations.IDLE)))));
         controllerRegistrar.add(new AnimationController<>(this, "Attack", 0, state -> PlayState.CONTINUE)
                 .triggerableAnim("attack", DefaultAnimations.ATTACK_SWING).setSoundKeyframeHandler((state) -> {

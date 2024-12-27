@@ -45,10 +45,10 @@ public class ChangShengJueFoods {
     public static final FoodProperties GRAPE_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(4.8F).build();
 
     //茶
-    public static final FoodProperties BILUOCHUN_TEA = (new FoodProperties.Builder()).nutrition(3).saturationMod(2.0F).effect(new MobEffectInstance(ChangShengJueEffects.BILUOCHUN_TEAS.get(), 360, 0), 1.0F).alwaysEat().build();
-    public static final FoodProperties LONG_JING_TEA = (new FoodProperties.Builder()).nutrition(3).saturationMod(2.0F).effect(new MobEffectInstance(ChangShengJueEffects.LONG_JING_TEAS.get(), 360, 0), 1.0F).alwaysEat().build();
+    public static final FoodProperties BILUOCHUN_TEA = (new FoodProperties.Builder()).nutrition(1).saturationMod(1.0F).effect(new MobEffectInstance(ChangShengJueEffects.BILUOCHUN_TEAS.get(), 1200, 0), 1.0F).alwaysEat().build();
+    public static final FoodProperties LONG_JING_TEA = (new FoodProperties.Builder()).nutrition(1).saturationMod(1.0F).effect(new MobEffectInstance(ChangShengJueEffects.LONG_JING_TEAS.get(), 1200, 0), 1.0F).alwaysEat().build();
     //酒水
-    public static final FoodProperties FEN_JIU = (new FoodProperties.Builder()).nutrition(4).saturationMod(2.6F).alwaysEat().build();
-    public static final FoodProperties WHEAT_NUGGETS_TRIBUTE_WINE = (new FoodProperties.Builder()).nutrition(4).saturationMod(2.6F).alwaysEat().build();
-    public static final FoodProperties SHI_LI_XIANG = (new FoodProperties.Builder()).nutrition(4).saturationMod(2.6F).alwaysEat().build();
+    public static final FoodProperties FEN_JIU = (new FoodProperties.Builder()).nutrition(1).saturationMod(1.0F).alwaysEat().build();
+    public static final FoodProperties WHEAT_NUGGETS_TRIBUTE_WINE = (new FoodProperties.Builder()).nutrition(1).saturationMod(1.0F).alwaysEat().build();
+    public static final FoodProperties SHI_LI_XIANG = (new FoodProperties.Builder()).nutrition(1).saturationMod(1.0F).alwaysEat().build();
 }

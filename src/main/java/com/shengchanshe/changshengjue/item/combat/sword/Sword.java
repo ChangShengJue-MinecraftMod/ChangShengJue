@@ -53,6 +53,35 @@ public class Sword extends SwordItem {
                                 duguNineSword.getDuguNineSwordsDachengTick(),
                                 duguNineSword.isDuguNineSwordsParticle()), (ServerPlayer) player);
                     }
+                }else {
+                    if (duguNineSword.getDuguNineSwordsLevel() > 0) {
+                        if (entity instanceof LivingEntity livingEntity){
+                            float probability = player.getRandom().nextFloat();
+                            float defaultProbability = 0.15F;
+                            if (duguNineSword.getDuguNineSwordsLevel() < 2) {
+                                if (probability < defaultProbability) {
+                                    if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
+                                        livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
+                                    }
+                                }
+                            } else {
+                                if (probability < (defaultProbability * 1.2F)) {
+                                    if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
+                                        livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
+                                    }
+                                }
+                            }
+                            if (player.getMainHandItem().canDisableShield(livingEntity.getUseItem(), livingEntity, player)) {
+                                if (probability < 0.5) {
+                                    // 强制打破目标玩家的防御状态（禁用盾牌防御）
+                                    player.getCooldowns().addCooldown(player.getUseItem().getItem(), 100);
+                                    player.stopUsingItem();
+                                    livingEntity.stopUsingItem();
+                                    player.level().broadcastEntityEvent(player, (byte) 30);
+                                }
+                            }
+                        }
+                    }
                 }
             });
         }
@@ -88,6 +117,11 @@ public class Sword extends SwordItem {
         if (pEntity instanceof Player player) {
             if (martialArtsLevel != 0) {
                 ItemStack itemstack = player.getMainHandItem();//获取玩家手中物品
+                if (!player.getAbilities().instabuild) {
+                    int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
+                    player.getFoodData().eat(-foodLevel, -1);//消耗饱食度
+                    player.getCooldowns().addCooldown(itemstack.getItem(), player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) ? 125 : 140);//添加使用冷却
+                }
                 for (Entity entity : entities) {//遍历包围盒中的实体
                     //检查生物是否可以交互,是否在给定的平方距离内,检查生物是否是LivingEntity,检查生物是否还活着
                     if (player.isPickable() && player.distanceToSqr(entity) < radius * radius && entity instanceof LivingEntity && entity.isAlive()) {
@@ -129,9 +163,11 @@ public class Sword extends SwordItem {
                 }
                 pLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
                         ChangShengJueSound.DUGU_NINE_SWORDS_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                if (!player.getAbilities().instabuild) {
-                    player.getFoodData().eat(-3, -2);//消耗饱食度
-                    player.getCooldowns().addCooldown(itemstack.getItem(), 100);//添加使用冷却
+                if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())){
+                    player.setHealth(player.getHealth() + 1);
+                }
+                if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())){
+                    player.getFoodData().eat(1,0);
                 }
                 itemstack.hurtAndBreak(1, player, (player1) -> {//消耗耐久
                     player1.broadcastBreakEvent(player.getUsedItemHand());

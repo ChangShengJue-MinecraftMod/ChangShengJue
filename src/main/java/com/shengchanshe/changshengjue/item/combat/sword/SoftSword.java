@@ -88,10 +88,15 @@ public class SoftSword extends Sword implements GeoItem {
         float distance = 4.0F;//攻击距离
         Vec3 forward = pEntity.getForward();//获取实体的前方方向
         Vec3 hitLocation = pEntity.position().add(0, pEntity.getBbHeight() * 0.3f, 0).add(forward.scale(distance));//获取实体高度的面向,计算攻击和实体生成的位置
-        var entities = pLevel.getEntities(pEntity, AABB.ofSize(hitLocation, radius, radius, radius));//创建包围盒
+        var entities = pLevel.getEntities(pEntity, AABB.ofSize(hitLocation, radius * 2, radius, radius * 2));//创建包围盒
         if (pEntity instanceof Player player) {
             if (martialArtsLevel != 0) {
                 ItemStack itemstack = player.getMainHandItem();//获取玩家手中物品
+                if (!player.getAbilities().instabuild) {
+                    int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
+                    player.getFoodData().eat(-foodLevel, -1);//消耗饱食度
+                    player.getCooldowns().addCooldown(itemstack.getItem(), player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) ? 125 : 140);//添加使用冷却
+                }
                 for (Entity entity : entities) {//遍历包围盒中的实体
                     //检查生物是否可以交互,是否在给定的平方距离内,检查生物是否是LivingEntity,检查生物是否还活着
                     if (player.isPickable() && player.distanceToSqr(entity) < radius * radius && entity instanceof LivingEntity && entity.isAlive()) {
@@ -130,9 +135,11 @@ public class SoftSword extends Sword implements GeoItem {
                         }
                     }
                 }
-                if (!player.getAbilities().instabuild){
-                    player.getFoodData().eat(-3, -2);//消耗饱食度
-                    player.getCooldowns().addCooldown(itemstack.getItem(), 80);//添加使用冷却
+                if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())){
+                    player.setHealth(player.getHealth() + 1);
+                }
+                if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())){
+                    player.getFoodData().eat(1,0);
                 }
                 itemstack.hurtAndBreak(1, player, (player1) -> {//消耗耐久
                     player1.broadcastBreakEvent(player.getUsedItemHand());

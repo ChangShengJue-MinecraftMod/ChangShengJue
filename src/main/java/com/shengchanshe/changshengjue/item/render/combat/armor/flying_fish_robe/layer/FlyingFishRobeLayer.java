@@ -1,0 +1,45 @@
+package com.shengchanshe.changshengjue.item.render.combat.armor.flying_fish_robe.layer;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.item.combat.armor.flying_fish_robe.FlyingFishRobe;
+import com.shengchanshe.changshengjue.item.render.combat.armor.flying_fish_robe.FlyingFishRobeRender;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import software.bernie.geckolib.cache.object.BakedGeoModel;
+import software.bernie.geckolib.renderer.GeoRenderer;
+import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
+
+public class FlyingFishRobeLayer extends GeoRenderLayer<FlyingFishRobe> {
+    public FlyingFishRobeLayer(GeoRenderer<FlyingFishRobe> entityRendererIn) {
+        super(entityRendererIn);
+    }
+
+    private static final ResourceLocation TEXTURE = new ResourceLocation(ChangShengJue.MOD_ID, "textures/item/armor/flying_fish_robe_layer.png");
+    private static final ResourceLocation TEXTURE_2 = new ResourceLocation(ChangShengJue.MOD_ID, "textures/item/armor/flying_fish_robe_layer_2.png");
+
+    public void render(PoseStack poseStack, FlyingFishRobe animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
+        // 获取当前的 ItemStack
+        ItemStack currentStack = ((FlyingFishRobeRender) this.getRenderer()).getCurrentStack();
+        RenderType armorRenderType = RenderType.armorCutoutNoCull(TEXTURE);
+        if (currentStack.is(ChangShengJueItems.FLYING_FISH_ROBE_HELMET_1.get())){
+            armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_2);
+        }
+        // 从物品堆中获取颜色
+        int color = ((FlyingFishRobeRender) this.getRenderer()).getArmorColor(currentStack);
+
+        // 将颜色分解为 RGBA
+        float red = (color >> 16 & 255) / 255.0f;
+        float green = (color >> 8 & 255) / 255.0f;
+        float blue = (color & 255) / 255.0f;
+
+        this.getRenderer().reRender(this.getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, armorRenderType,
+                bufferSource.getBuffer(armorRenderType), partialTick, packedLight, OverlayTexture.NO_OVERLAY, red, green, blue, 1.0F);
+    }
+
+}

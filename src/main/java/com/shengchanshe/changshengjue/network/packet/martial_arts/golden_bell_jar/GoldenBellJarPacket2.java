@@ -33,28 +33,26 @@ public class GoldenBellJarPacket2 {
                 if (goldenBellJar.isGoldenBellJarComprehend() && goldenBellJar.isGoldenBellJarOff() && goldenBellJar.getGoldenBellJarLevel() > 0) {
                     if (goldenBellJar.getGoldenBellJarUseCooldownPercent() <= 0) {
                         if (player.getFoodData().getFoodLevel() > 8) {
-                            if (player.hasEffect(ChangShengJueEffects.FEN_JIU.get())) {
-                                if (!player.getAbilities().instabuild) {
-                                    player.getFoodData().eat((int) -(3 - (3 * 0.25)), (float) -(2 - (2 * 0.25)));//消耗饱食度
-                                }
-                                goldenBellJar.setGoldenBellJarUseCooldownPercent(!player.getAbilities().instabuild ? 160 - (160 * 0.15F) : 0);
-                            } else if (player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get())) {
-                                if (!player.getAbilities().instabuild) {
-                                    player.getFoodData().eat((int) -(3 - (3 * 0.15)), (float) -(2 - (2 * 0.15)));//消耗饱食度
-                                }
-                                goldenBellJar.setGoldenBellJarUseCooldownPercent(!player.getAbilities().instabuild ? 160 - (160 * 0.25F) : 0);
-                            } else {
-                                if (!player.getAbilities().instabuild) {
-                                    player.getFoodData().eat(-3, -2);//消耗饱食度
-                                }
+                            if (!player.getAbilities().instabuild) {
+                                int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
+                                player.getFoodData().eat(-foodLevel, -1);//消耗饱食度
+                            }
+                            if (player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get())){
+                                goldenBellJar.setGoldenBellJarUseCooldownPercent(!player.getAbilities().instabuild ? 145 : 0);
+                            }else {
                                 goldenBellJar.setGoldenBellJarUseCooldownPercent(!player.getAbilities().instabuild ? 160 : 0);
                             }
-                            if (goldenBellJar.getGoldenBellJarLevel() < 2) {
-                                player.addEffect(new MobEffectInstance(ChangShengJueEffects.GOLDEN_BELL_JAR_EFFECT.get(), 120, 0, false, false), player);
-                            } else {
-                                player.addEffect(new MobEffectInstance(ChangShengJueEffects.GOLDEN_BELL_JAR_EFFECT.get(), 120, 1, false, false), player);
+                            player.addEffect(new MobEffectInstance(ChangShengJueEffects.GOLDEN_BELL_JAR_EFFECT.get(), 120, goldenBellJar.getGoldenBellJarLevel() < 2 ? 0 : 1, false, false), player);
+                            if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())){
+                                player.getFoodData().eat(1,0);
                             }
-                            if (goldenBellJar.getGoldenBellJarUseCount() < 100) {
+                            if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())){
+//                                if (!player.getAbilities().instabuild) {
+//                                    player.getFoodData().eat((int) -(3 - (3 * 0.25)), (float) -(2 - (2 * 0.25)));//消耗饱食度
+//                                }
+                                player.setHealth(player.getHealth() + 1);
+                            }
+                            if (goldenBellJar.getGoldenBellJarUseCount() <= 100){
                                 goldenBellJar.addGoldenBellJarUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (goldenBellJar.getGoldenBellJarUseCount() >= 100){
                                     goldenBellJar.setGoldenBellJarParticle(true);
@@ -62,7 +60,6 @@ public class GoldenBellJarPacket2 {
                                             ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                 }
                             }
-
                             ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
                                     goldenBellJar.getGoldenBellJarLevel(),
                                     goldenBellJar.isGoldenBellJarComprehend(),
@@ -70,7 +67,7 @@ public class GoldenBellJarPacket2 {
                                     goldenBellJar.isGoldenBellJarOff(),
                                     goldenBellJar.getGoldenBellJarToppedTick(),
                                     goldenBellJar.getGoldenBellJarDachengTick(),
-                                    goldenBellJar.isGoldenBellJarParticle()), player);
+                                    goldenBellJar.isGoldenBellJarParticle()), (ServerPlayer) player);
                         }
                     }
                 }

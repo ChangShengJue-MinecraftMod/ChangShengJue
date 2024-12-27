@@ -6,7 +6,7 @@
       "item": "chang_sheng_jue:silk"
     },
     "X": {
-      "item": "minecraft:black_dye"
+      "tag": "forge:ingots/gold"
     }
   },
   "pattern": [

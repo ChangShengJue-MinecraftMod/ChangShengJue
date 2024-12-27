@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "#": {
-      "item": "chang_sheng_jue:silk"
+      "tag": "forge:ingots/iron"
     },
     "X": {
       "tag": "forge:ingots/gold"
@@ -11,7 +11,7 @@
   },
   "pattern": [
     "#X#",
-    "# #"
+    "X X"
   ],
   "result": {
     "item": "chang_sheng_jue:female_taoist_robes_helmet"
