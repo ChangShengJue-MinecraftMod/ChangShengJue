@@ -35,10 +35,12 @@ import com.shengchanshe.changshengjue.particle.custom.martial_arts.throwingknive
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.wu_gang_cut_gui.WuGangCutGuiParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.wu_gang_cut_gui.WuGangCutGuiParticle1;
+import com.shengchanshe.changshengjue.util.KeyBinding;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -114,6 +116,11 @@ public class CSJEventClientBusEvents {
     @SubscribeEvent
     public static void registerEntityLayers(EntityRenderersEvent.RegisterLayerDefinitions evt) {
         evt.registerLayerDefinition(StakesModel.LAYER_LOCATION, StakesModel::createBodyLayer);
+    }
+
+    @SubscribeEvent
+    public static void registerKey(RegisterKeyMappingsEvent event){
+        KeyBinding.registerKey(event);
     }
 
 }

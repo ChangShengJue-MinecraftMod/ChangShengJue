@@ -1,5 +1,6 @@
-package com.shengchanshe.changshengjue.network.packet.martial_arts;
+package com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle;
 
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle.ImmortalMiracleClientData;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
@@ -15,9 +16,14 @@ public class ImmortalMiraclePacket {
     private float immortalMiracleDachengTick;//技能大成特效计时
     private boolean immortalMiracleParticle;//技能特效显示
     private float immortalMiracleUseCooldownPercentMax;
+    // 技能状态
+    private boolean skillZActive;
+    private boolean skillXActive;
+    private boolean skillCActive;
 
     public ImmortalMiraclePacket(int immortalMiracleLevel, boolean immortalMiracleComprehend, float immortalMiracleUseCooldownPercent, boolean immortalMiracleOff,
-                                 float immortalMiracleToppedTick, float immortalMiracleDachengTick, boolean immortalMiracleParticle,float immortalMiracleUseCooldownPercentMax){
+                                 float immortalMiracleToppedTick, float immortalMiracleDachengTick, boolean immortalMiracleParticle,float immortalMiracleUseCooldownPercentMax,
+                                 boolean skillZActive,boolean skillXActive,boolean skillCActive){
         this.immortalMiracleLevel = immortalMiracleLevel;
         this.immortalMiracleComprehend = immortalMiracleComprehend;
         this.immortalMiracleUseCooldownPercent = immortalMiracleUseCooldownPercent;
@@ -26,6 +32,9 @@ public class ImmortalMiraclePacket {
         this.immortalMiracleDachengTick = immortalMiracleDachengTick;
         this.immortalMiracleParticle = immortalMiracleParticle;
         this.immortalMiracleUseCooldownPercentMax = immortalMiracleUseCooldownPercentMax;
+        this.skillZActive = skillZActive;
+        this.skillXActive = skillXActive;
+        this.skillCActive = skillCActive;
     }
 
     public ImmortalMiraclePacket(FriendlyByteBuf buf){
@@ -37,6 +46,9 @@ public class ImmortalMiraclePacket {
         this.immortalMiracleDachengTick = buf.readFloat();
         this.immortalMiracleParticle = buf.readBoolean();
         this.immortalMiracleUseCooldownPercentMax = buf.readFloat();
+        this.skillZActive = buf.readBoolean();
+        this.skillXActive = buf.readBoolean();
+        this.skillCActive = buf.readBoolean();
     }
 
     public void toBytes(FriendlyByteBuf buf){
@@ -48,6 +60,9 @@ public class ImmortalMiraclePacket {
         buf.writeFloat(immortalMiracleDachengTick);
         buf.writeBoolean(immortalMiracleParticle);
         buf.writeFloat(immortalMiracleUseCooldownPercentMax);
+        buf.writeBoolean(skillZActive);
+        buf.writeBoolean(skillXActive);
+        buf.writeBoolean(skillCActive);
     }
 
     // 客户端处理
@@ -62,6 +77,9 @@ public class ImmortalMiraclePacket {
             ImmortalMiracleClientData.setImmortalMiracleDachengTick(immortalMiracleDachengTick);
             ImmortalMiracleClientData.setImmortalMiracleParticle(immortalMiracleParticle);
             ImmortalMiracleClientData.setImmortalMiracleUseCooldownPercentMax(immortalMiracleUseCooldownPercentMax);
+            ImmortalMiracleClientData.setSkillZActive(skillZActive);
+            ImmortalMiracleClientData.setSkillXActive(skillXActive);
+            ImmortalMiracleClientData.setSkillCActive(skillCActive);
         });
         return true;
     }

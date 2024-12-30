@@ -11,6 +11,10 @@ public class SunflowerPointCavemanCapability {
     private float sunflowerPointCavemanToppedTick = 0;//技能领悟特效计时
     private float sunflowerPointCavemanDachengTick = 0;//技能领悟特效计时
     private boolean sunflowerPointCavemanParticle = false;//技能特效显示
+    // 技能状态
+    private boolean skillZActive = false;
+    private boolean skillXActive = false;
+    private boolean skillCActive = false;
 
     public int getSunflowerPointCavemanLevel() {
         return sunflowerPointCavemanLevel;
@@ -81,7 +85,29 @@ public class SunflowerPointCavemanCapability {
     public boolean isSunflowerPointCavemanParticle(){
         return this.sunflowerPointCavemanParticle;
     }
+    public boolean isSkillZActive() {
+        return skillZActive;
+    }
 
+    public void setSkillZActive(boolean skillZActive) {
+        this.skillZActive = skillZActive;
+    }
+
+    public boolean isSkillXActive() {
+        return skillXActive;
+    }
+
+    public void setSkillXActive(boolean skillXActive) {
+        this.skillXActive = skillXActive;
+    }
+
+    public boolean isSkillCActive() {
+        return skillCActive;
+    }
+
+    public void setSkillCActive(boolean skillCActive) {
+        this.skillCActive = skillCActive;
+    }
     public void copySunflowerPointCaveman(SunflowerPointCavemanCapability capability){
         this.sunflowerPointCavemanLevel = capability.sunflowerPointCavemanLevel;
         this.sunflowerPointCavemanComprehend = capability.sunflowerPointCavemanComprehend;
@@ -91,6 +117,9 @@ public class SunflowerPointCavemanCapability {
         this.sunflowerPointCavemanToppedTick = capability.sunflowerPointCavemanToppedTick;
         this.sunflowerPointCavemanDachengTick = capability.sunflowerPointCavemanDachengTick;
         this.sunflowerPointCavemanParticle = capability.sunflowerPointCavemanParticle;
+        this.skillZActive = capability.skillZActive;
+        this.skillXActive = capability.skillXActive;
+        this.skillCActive = capability.skillCActive;
     }
 
     // 将能力保存到 NBT 数据中
@@ -103,6 +132,9 @@ public class SunflowerPointCavemanCapability {
         nbt.putFloat("SunflowerPointCavemanToppedTick",sunflowerPointCavemanToppedTick);
         nbt.putFloat("SunflowerPointCavemanDachengTick",sunflowerPointCavemanDachengTick);
         nbt.putBoolean("SunflowerPointCavemanParticle",sunflowerPointCavemanParticle);
+        nbt.putBoolean("SkillZActive", skillZActive);
+        nbt.putBoolean("SkillXActive", skillXActive);
+        nbt.putBoolean("SkillCActive", skillCActive);
     }
 
     // 从 NBT 数据中加载能力
@@ -115,5 +147,8 @@ public class SunflowerPointCavemanCapability {
         sunflowerPointCavemanToppedTick = nbt.getFloat("SunflowerPointCavemanToppedTick");
         sunflowerPointCavemanDachengTick = nbt.getFloat("SunflowerPointCavemanDachengTick");
         sunflowerPointCavemanParticle = nbt.getBoolean("SunflowerPointCavemanParticle");
+        skillZActive = nbt.getBoolean("SkillZActive");
+        skillXActive = nbt.getBoolean("SkillXActive");
+        skillCActive = nbt.getBoolean("SkillCActive");
     }
 }

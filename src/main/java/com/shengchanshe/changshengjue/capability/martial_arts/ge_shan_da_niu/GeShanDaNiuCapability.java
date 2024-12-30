@@ -7,11 +7,14 @@ public class GeShanDaNiuCapability {
     private boolean geShanDaNiuComprehend = false;//是否领悟
     private int geShanDaNiuUseCount = 0;//使用次数
     private float geShanDaNiuUseCooldownPercent = 0;//技能冷却
-    private boolean geShanDaNiuOff = false;//技能是否启用
     private float geShanDaNiuToppedTick = 0;//技能领悟特效计时
     private float geShanDaNiuDachengTick = 0;//技能领悟特效计时
     private boolean geShanDaNiuParticle = false;//技能特效显示
     private float geShanDaNiuUseCooldownPercentMax = 200;//技能总冷却时间
+    // 技能状态
+    private boolean skillZActive = false;
+    private boolean skillXActive = false;
+    private boolean skillCActive = false;
 
     public int getGeShanDaNiuLevel() {
         return geShanDaNiuLevel;
@@ -54,12 +57,6 @@ public class GeShanDaNiuCapability {
         return this.geShanDaNiuUseCooldownPercentMax = geShanDaNiuUseCooldownPercentMax;
     }
 
-    public void setGeShanDaNiuOff(boolean geShanDaNiuOff) {
-        this.geShanDaNiuOff = geShanDaNiuOff;
-    }
-    public boolean isGeShanDaNiuOff(){
-        return this.geShanDaNiuOff;
-    }
 
     public float getGeShanDaNiuToppedTick() {
         if (this.geShanDaNiuParticle && this.geShanDaNiuToppedTick >= 80){
@@ -90,29 +87,55 @@ public class GeShanDaNiuCapability {
         return this.geShanDaNiuParticle;
     }
 
+    public boolean isSkillZActive() {
+        return skillZActive;
+    }
+
+    public void setSkillZActive(boolean skillZActive) {
+        this.skillZActive = skillZActive;
+    }
+
+    public boolean isSkillXActive() {
+        return skillXActive;
+    }
+
+    public void setSkillXActive(boolean skillXActive) {
+        this.skillXActive = skillXActive;
+    }
+
+    public boolean isSkillCActive() {
+        return skillCActive;
+    }
+
+    public void setSkillCActive(boolean skillCActive) {
+        this.skillCActive = skillCActive;
+    }
     public void copyGeShanDaNiu(GeShanDaNiuCapability capability){
         this.geShanDaNiuLevel = capability.geShanDaNiuLevel;
         this.geShanDaNiuComprehend = capability.geShanDaNiuComprehend;
         this.geShanDaNiuUseCount = capability.geShanDaNiuUseCount;
         this.geShanDaNiuUseCooldownPercent = capability.geShanDaNiuUseCooldownPercent;
-        this.geShanDaNiuOff = capability.geShanDaNiuOff;
         this.geShanDaNiuToppedTick = capability.geShanDaNiuToppedTick;
         this.geShanDaNiuDachengTick = capability.geShanDaNiuDachengTick;
         this.geShanDaNiuParticle = capability.geShanDaNiuParticle;
         this.geShanDaNiuUseCooldownPercentMax = capability.geShanDaNiuUseCooldownPercentMax;
+        this.skillZActive = capability.skillZActive;
+        this.skillXActive = capability.skillXActive;
+        this.skillCActive = capability.skillCActive;
     }
-
     // 将能力保存到 NBT 数据中
     public void saveNBTData(CompoundTag nbt) {
         nbt.putInt("GeShanDaNiuLevel", geShanDaNiuLevel);
         nbt.putInt("GeShanDaNiuUseCount", geShanDaNiuUseCount);
         nbt.putBoolean("GeShanDaNiuComprehend",geShanDaNiuComprehend);
         nbt.putFloat("GeShanDaNiuUseCooldownPercent",geShanDaNiuUseCooldownPercent);
-        nbt.putBoolean("GeShanDaNiuOff",geShanDaNiuOff);
         nbt.putFloat("GeShanDaNiuToppedTick",geShanDaNiuToppedTick);
         nbt.putFloat("GeShanDaNiuDachengTick",geShanDaNiuDachengTick);
         nbt.putBoolean("GeShanDaNiuParticle",geShanDaNiuParticle);
         nbt.putFloat("GeShanDaNiuUseCooldownPercentMax",geShanDaNiuUseCooldownPercentMax);
+        nbt.putBoolean("SkillZActive", skillZActive);
+        nbt.putBoolean("SkillXActive", skillXActive);
+        nbt.putBoolean("SkillCActive", skillCActive);
     }
 
     // 从 NBT 数据中加载能力
@@ -121,10 +144,12 @@ public class GeShanDaNiuCapability {
         geShanDaNiuUseCount = nbt.getInt("GeShanDaNiuUseCount");
         geShanDaNiuUseCooldownPercent = nbt.getFloat("GeShanDaNiuUseCooldownPercent");
         geShanDaNiuComprehend = nbt.getBoolean("GeShanDaNiuComprehend");
-        geShanDaNiuOff = nbt.getBoolean("GeShanDaNiuOff");
         geShanDaNiuToppedTick = nbt.getFloat("GeShanDaNiuToppedTick");
         geShanDaNiuDachengTick = nbt.getFloat("GeShanDaNiuDachengTick");
         geShanDaNiuParticle = nbt.getBoolean("GeShanDaNiuParticle");
         geShanDaNiuUseCooldownPercentMax = nbt.getFloat("GeShanDaNiuUseCooldownPercentMax");
+        skillZActive = nbt.getBoolean("SkillZActive");
+        skillXActive = nbt.getBoolean("SkillXActive");
+        skillCActive = nbt.getBoolean("SkillCActive");
     }
 }

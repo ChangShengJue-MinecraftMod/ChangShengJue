@@ -1,5 +1,7 @@
 package com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle;
 
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
+
 public class ImmortalMiracleClientData {
     // 玩家的技能等级和是否学习了技能
     private static int immortalMiracleLevel;
@@ -10,7 +12,10 @@ public class ImmortalMiracleClientData {
     private static float immortalMiracleDachengTick;//技能大成特效计时
     private static boolean immortalMiracleParticle;//技能特效显示
     private static float immortalMiracleUseCooldownPercentMax;//技能总冷却时间
-
+    // 技能状态
+    private static boolean skillZActive;
+    private static boolean skillXActive;
+    private static boolean skillCActive;
     //获取技能等级
     public static int getImmortalMiracleLevel() {
         return immortalMiracleLevel;
@@ -74,5 +79,28 @@ public class ImmortalMiracleClientData {
 
     public static void setImmortalMiracleUseCooldownPercentMax(float immortalMiracleUseCooldownPercentMax) {
         ImmortalMiracleClientData.immortalMiracleUseCooldownPercentMax = immortalMiracleUseCooldownPercentMax;
+    }
+    public static boolean isSkillZActive() {
+        return skillZActive;
+    }
+
+    public static void setSkillZActive(boolean skillZActive) {
+        ImmortalMiracleClientData.skillZActive = skillZActive;
+    }
+
+    public static boolean isSkillXActive() {
+        return skillXActive;
+    }
+
+    public static void setSkillXActive(boolean skillXActive) {
+        ImmortalMiracleClientData.skillXActive = skillXActive;
+    }
+
+    public static boolean isSkillCActive() {
+        return skillCActive;
+    }
+
+    public static void setSkillCActive(boolean skillCActive) {
+        ImmortalMiracleClientData.skillCActive = skillCActive;
     }
 }

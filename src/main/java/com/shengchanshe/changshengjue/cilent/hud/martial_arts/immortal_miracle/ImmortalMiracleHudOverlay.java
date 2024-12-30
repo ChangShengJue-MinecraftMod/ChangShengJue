@@ -3,8 +3,6 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle.ImmortalMiracleClientData;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -52,55 +50,64 @@ public class ImmortalMiracleHudOverlay {
             //设置绘制的信息
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            if (getImmortalMiracleLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
-                if (frameTime() <= 0){ //获取技能剩余冷却时间,小于等于0则绘制技能贴图否则绘制冷却中的技能贴图
-                    if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图
-                        if (getImmortalMiracleLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
-                            CSJDisplayHud.displayHudPermanent(guiGraphics, IMMORTAL_MIRACLE, x, y);
-                        } else {
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,IMMORTAL_MIRACLE_1,x,y);
-                        }
-                    }else {
-                        if (getImmortalMiracleLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
-                            CSJDisplayHud.displayHudPermanent(guiGraphics, IMMORTAL_MIRACLE, x, y);
-                        } else {
-                            CSJDisplayHud.displayHudPermanent(guiGraphics, IMMORTAL_MIRACLE_1,x,y);
-                        }
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                    }
-                }else{
-                    float frameTimeMax = frameTimeMax() / 20;
-                    float frameTime = ((frameTime() / 20) / frameTimeMax);
-                    int v1 = (int) (16 * frameTime + 1);//计算技能剩余冷却时间
-                    if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图并渲染技能剩余冷却时间
-                        if (getImmortalMiracleLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,IMMORTAL_MIRACLE,x,y);
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                            guiGraphics.blit(IMMORTAL_MIRACLE, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
-                        } else {
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,IMMORTAL_MIRACLE_1,x,y);
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                            guiGraphics.blit(IMMORTAL_MIRACLE_1, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
-                        }
-                        //以文字形式绘制剩余冷却时间
-                        guiGraphics.drawString(gui.getFont(),new Formatter().format("%.0f",(frameTime * frameTimeMax)).toString(),x + 2, y + 25, ChatFormatting.AQUA.getColor());
-                    }else {
-                        if (getImmortalMiracleLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,IMMORTAL_MIRACLE,x,y);
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                            guiGraphics.blit(IMMORTAL_MIRACLE, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
-                        } else {
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,IMMORTAL_MIRACLE_1,x,y);
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                            guiGraphics.blit(IMMORTAL_MIRACLE_1, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
-                        }
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                        guiGraphics.drawString(gui.getFont(),new Formatter().format("%.0f",(frameTime * frameTimeMax)).toString(),x + 2,y + 25, ChatFormatting.AQUA.getColor());
-                    }
-                }
-            }else {
-                CSJDisplayHud.displayHudPermanent(guiGraphics,IMMORTAL_MIRACLE_2,x,y);
+            if (ImmortalMiracleClientData.isSkillZActive()){
+                CSJDisplayHud.displayHudPermanent(getImmortalMiracleLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,IMMORTAL_MIRACLE,IMMORTAL_MIRACLE_1,IMMORTAL_MIRACLE_2,COOLING,gui.getFont(),x,y - 20);
             }
+            if (ImmortalMiracleClientData.isSkillXActive()){
+                CSJDisplayHud.displayHudPermanent(getImmortalMiracleLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,IMMORTAL_MIRACLE,IMMORTAL_MIRACLE_1,IMMORTAL_MIRACLE_2,COOLING,gui.getFont(),x,y);
+            }
+            if (ImmortalMiracleClientData.isSkillCActive()){
+                CSJDisplayHud.displayHudPermanent(getImmortalMiracleLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,IMMORTAL_MIRACLE,IMMORTAL_MIRACLE_1,IMMORTAL_MIRACLE_2,COOLING,gui.getFont(),x,y + 20);
+            }
+//            if (getImmortalMiracleLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
+//                if (frameTime() <= 0){ //获取技能剩余冷却时间,小于等于0则绘制技能贴图否则绘制冷却中的技能贴图
+//                    if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图
+//                        if (getImmortalMiracleLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics, IMMORTAL_MIRACLE, x, y);
+//                        } else {
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,IMMORTAL_MIRACLE_1,x,y);
+//                        }
+//                    }else {
+//                        if (getImmortalMiracleLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics, IMMORTAL_MIRACLE, x, y);
+//                        } else {
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics, IMMORTAL_MIRACLE_1,x,y);
+//                        }
+//                        CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+//                    }
+//                }else{
+//                    float frameTimeMax = frameTimeMax() / 20;
+//                    float frameTime = ((frameTime() / 20) / frameTimeMax);
+//                    int v1 = (int) (16 * frameTime + 1);//计算技能剩余冷却时间
+//                    if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图并渲染技能剩余冷却时间
+//                        if (getImmortalMiracleLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,IMMORTAL_MIRACLE,x,y);
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+//                            guiGraphics.blit(IMMORTAL_MIRACLE, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                        } else {
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,IMMORTAL_MIRACLE_1,x,y);
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+//                            guiGraphics.blit(IMMORTAL_MIRACLE_1, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                        }
+//                        //以文字形式绘制剩余冷却时间
+//                        guiGraphics.drawString(gui.getFont(),new Formatter().format("%.0f",(frameTime * frameTimeMax)).toString(),x + 2, y + 25, ChatFormatting.AQUA.getColor());
+//                    }else {
+//                        if (getImmortalMiracleLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,IMMORTAL_MIRACLE,x,y);
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+//                            guiGraphics.blit(IMMORTAL_MIRACLE, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                        } else {
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,IMMORTAL_MIRACLE_1,x,y);
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+//                            guiGraphics.blit(IMMORTAL_MIRACLE_1, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                        }
+//                        CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+//                        guiGraphics.drawString(gui.getFont(),new Formatter().format("%.0f",(frameTime * frameTimeMax)).toString(),x + 2,y + 25, ChatFormatting.AQUA.getColor());
+//                    }
+//                }
+//            }else {
+//                CSJDisplayHud.displayHudPermanent(guiGraphics,IMMORTAL_MIRACLE_2,x,y);
+//            }
         }
     };
 }

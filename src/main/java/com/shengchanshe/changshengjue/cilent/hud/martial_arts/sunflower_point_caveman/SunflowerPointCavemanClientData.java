@@ -1,5 +1,4 @@
 package com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_caveman;
-
 public class SunflowerPointCavemanClientData {
     // 玩家的技能等级和是否学习了技能
     private static int sunflowerPointCavemanLevel;
@@ -9,7 +8,10 @@ public class SunflowerPointCavemanClientData {
     private static float sunflowerPointCavemanToppedTick;//技能领悟特效计时
     private static float sunflowerPointCavemanDachengTick;//技能大成特效计时
     private static boolean sunflowerPointCavemanParticle;//技能特效显示
-
+    // 技能状态
+    private static boolean skillZActive;
+    private static boolean skillXActive;
+    private static boolean skillCActive;
     //获取技能等级
     public static int getSunflowerPointCavemanLevel() {
         return sunflowerPointCavemanLevel;
@@ -66,4 +68,28 @@ public class SunflowerPointCavemanClientData {
     public static void setSunflowerPointCavemanParticle(boolean sunflowerPointCavemanParticle) {
         SunflowerPointCavemanClientData.sunflowerPointCavemanParticle = sunflowerPointCavemanParticle;
     }
+    public static boolean isSkillZActive() {
+        return skillZActive;
+    }
+
+    public static void setSkillZActive(boolean skillZActive) {
+        SunflowerPointCavemanClientData.skillZActive = skillZActive;
+    }
+
+    public static boolean isSkillXActive() {
+        return skillXActive;
+    }
+
+    public static void setSkillXActive(boolean skillXActive) {
+        SunflowerPointCavemanClientData.skillXActive = skillXActive;
+    }
+
+    public static boolean isSkillCActive() {
+        return skillCActive;
+    }
+
+    public static void setSkillCActive(boolean skillCActive) {
+        SunflowerPointCavemanClientData.skillCActive = skillCActive;
+    }
+
 }

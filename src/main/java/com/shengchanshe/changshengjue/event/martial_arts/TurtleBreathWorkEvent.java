@@ -1,12 +1,10 @@
 package com.shengchanshe.changshengjue.event.martial_arts;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.turtle_breath_work.TurtleBreathWorkClientData;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket2;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
@@ -178,11 +176,11 @@ public class TurtleBreathWorkEvent {
             return;
         }
         ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2());
-        boolean geShanDaNiuComprehend = GeShanDaNiuClientData.isGeShanDaNiuComprehend();
-        boolean geShanDaNiuOff = GeShanDaNiuClientData.isGeShanDaNiuOff();
+        boolean geShanDaNiuComprehend = TurtleBreathWorkClientData.isTurtleBreathWorkComprehend();
+        boolean geShanDaNiuOff = TurtleBreathWorkClientData.isTurtleBreathWorkOff();
         if (geShanDaNiuComprehend && geShanDaNiuOff){
-            if (GeShanDaNiuClientData.getGeShanDaNiuLevel() >= 1){
-                if (GeShanDaNiuClientData.getGeShanDaNiuUseCooldownPercent()<=0) {
+            if (TurtleBreathWorkClientData.getTurtleBreathWorkLevel() >= 1){
+                if (TurtleBreathWorkClientData.getTurtleBreathWorkUseCooldownPercent()<=0) {
                     if (player.getFoodData().getFoodLevel() > 8){
                         player.swing(player.getUsedItemHand());
                     }

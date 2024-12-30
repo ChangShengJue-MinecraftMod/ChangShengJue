@@ -29,7 +29,6 @@ import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmansh
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.relentless_throwing_knives.RelentlessThrowingKnivesClientData;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.event.martial_arts.*;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
@@ -37,15 +36,13 @@ import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
-import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.core.particles.DustColorTransitionOptions;
-import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.Villager;
@@ -55,7 +52,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
@@ -70,7 +66,6 @@ import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.joml.Vector3f;
 
 import java.util.List;
 import java.util.Random;
@@ -749,15 +744,13 @@ public class CSJEvent {
     @SubscribeEvent
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){
         SunflowerPointCavemanEvent.onPlayerEntityInteract(event);
-        GoldenBellJarEvent.onPlayerEntityInteract(event);
-        GeShanDaNiuEvent.onPlayerEntityInteract(event);
+//        GoldenBellJarEvent.onPlayerEntityInteract(event);
         TurtleBreathWorkEvent.onPlayerEntityInteract(event);
     }
     //玩家右键空气事件
     @SubscribeEvent
     public static void onPlayerRightClick(PlayerInteractEvent.RightClickEmpty event){
-        GoldenBellJarEvent.onPlayerRightClick(event);
-        GeShanDaNiuEvent.onPlayerRightClick(event);
+//        GoldenBellJarEvent.onPlayerRightClick(event);
         TurtleBreathWorkEvent.onPlayerRightClick(event);
     }
 //    @SubscribeEvent
@@ -769,8 +762,7 @@ public class CSJEvent {
 
     @SubscribeEvent
     public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
-        GoldenBellJarEvent.onPlayerRightClickItem(event);
-        GeShanDaNiuEvent.onPlayerRightClickItem(event);
+//        GoldenBellJarEvent.onPlayerRightClickItem(event);
         TurtleBreathWorkEvent.onPlayerRightClickItem(event);
     }
 
@@ -905,7 +897,6 @@ public class CSJEvent {
         //无情飞刀
         oldPlayer.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(newStore-> newStore.copyRelentlessThrowingKnives(oldStore)));
-
         event.getOriginal().invalidateCaps();
     }
 
@@ -987,7 +978,10 @@ public class CSJEvent {
                             sunflowerPointCaveman.isSunflowerPointCavemanOff(),
                             sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
                             sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
-                            sunflowerPointCaveman.isSunflowerPointCavemanParticle()), player);
+                            sunflowerPointCaveman.isSunflowerPointCavemanParticle(),
+                            sunflowerPointCaveman.isSkillZActive(),
+                            sunflowerPointCaveman.isSkillXActive(),
+                            sunflowerPointCaveman.isSkillCActive()), player);
                 });
                 player.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
                     ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
@@ -997,7 +991,10 @@ public class CSJEvent {
                             goldenBellJar.isGoldenBellJarOff(),
                             goldenBellJar.getGoldenBellJarToppedTick(),
                             goldenBellJar.getGoldenBellJarDachengTick(),
-                            goldenBellJar.isGoldenBellJarParticle()), player);
+                            goldenBellJar.isGoldenBellJarParticle(),
+                            goldenBellJar.isSkillZActive(),
+                            goldenBellJar.isSkillXActive(),
+                            goldenBellJar.isSkillCActive()), player);
                 });
                 player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
                     ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
@@ -1008,18 +1005,23 @@ public class CSJEvent {
                             immortalMiracle.getImmortalMiracleToppedTick(),
                             immortalMiracle.getImmortalMiracleDachengTick(),
                             immortalMiracle.isImmortalMiracleParticle(),
-                            immortalMiracle.getImmortalMiracleUseCooldownPercentMax()), player);
+                            immortalMiracle.getImmortalMiracleUseCooldownPercentMax(),
+                            immortalMiracle.isSkillZActive(),
+                            immortalMiracle.isSkillXActive(),
+                            immortalMiracle.isSkillCActive()), player);
                 });
                 player.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
                     ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
                             geShanDaNiu.getGeShanDaNiuLevel(),
                             geShanDaNiu.isGeShanDaNiuComprehend(),
                             geShanDaNiu.getGeShanDaNiuUseCooldownPercent(),
-                            geShanDaNiu.isGeShanDaNiuOff(),
                             geShanDaNiu.getGeShanDaNiuToppedTick(),
                             geShanDaNiu.getGeShanDaNiuDachengTick(),
                             geShanDaNiu.isGeShanDaNiuParticle(),
-                            geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax()), player);
+                            geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax(),
+                            geShanDaNiu.isSkillZActive(),
+                            geShanDaNiu.isSkillXActive(),
+                            geShanDaNiu.isSkillCActive()), player);
                 });
                 player.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
                     ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(

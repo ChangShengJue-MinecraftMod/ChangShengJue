@@ -153,6 +153,9 @@ public class TreadTheSnowWithoutTraceEvent {
         if (mc.player == null) {
             return;
         }
+//         检查游戏窗口是否处于活动状态和是否有 GUI 打开
+        if (mc.player == null || !mc.isWindowActive() || mc.screen != null) return;
+
         if (event.getAction() == InputConstants.PRESS) {
             if (event.getKey() == mc.options.keyJump.getKey().getValue()) {
                 if (!mc.player.getAbilities().instabuild) {

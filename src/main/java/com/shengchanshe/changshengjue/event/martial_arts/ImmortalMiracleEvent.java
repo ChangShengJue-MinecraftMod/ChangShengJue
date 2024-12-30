@@ -4,16 +4,21 @@ import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.I
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle.ImmortalMiracleClientData;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
+import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.ImmortalMiraclePacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket2;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
+import com.shengchanshe.changshengjue.util.KeyBinding;
 import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
 import com.shengchanshe.changshengjue.util.particle.DachengParticle;
+import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
@@ -25,8 +30,15 @@ public class ImmortalMiracleEvent {
             Level level = player.level();
             if (!player.level().isClientSide) {
                 player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
-                    if (immortalMiracle.getImmortalMiracleUseCooldownPercent() > 0 && immortalMiracle.isImmortalMiracleOff()) {
-                        immortalMiracle.setImmortalMiracleUseCooldownPercent();
+                    if(immortalMiracle.isImmortalMiracleOff()){
+                        if (immortalMiracle.getImmortalMiracleUseCooldownPercent() > 0) {
+                            if (immortalMiracle.isSkillXActive() || immortalMiracle.isSkillZActive() || immortalMiracle.isSkillCActive()) {
+                                immortalMiracle.setImmortalMiracleUseCooldownPercent();
+                            }
+                        }
+                        if (!immortalMiracle.isSkillZActive() && !immortalMiracle.isSkillXActive() && !immortalMiracle.isSkillCActive()){
+                            immortalMiracle.setImmortalMiracleOff(false);
+                        }
                         ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
                                 immortalMiracle.getImmortalMiracleLevel(),
                                 immortalMiracle.isImmortalMiracleComprehend(),
@@ -35,8 +47,12 @@ public class ImmortalMiracleEvent {
                                 immortalMiracle.getImmortalMiracleToppedTick(),
                                 immortalMiracle.getImmortalMiracleDachengTick(),
                                 immortalMiracle.isImmortalMiracleParticle(),
-                                immortalMiracle.getImmortalMiracleUseCooldownPercentMax()), (ServerPlayer) player);
+                                immortalMiracle.getImmortalMiracleUseCooldownPercentMax(),
+                                immortalMiracle.isSkillZActive(),
+                                immortalMiracle.isSkillXActive(),
+                                immortalMiracle.isSkillCActive()), (ServerPlayer) player);
                     }
+
                     if (immortalMiracle.isImmortalMiracleParticle()){
                         if (immortalMiracle.getImmortalMiracleLevel() == 1){
                             immortalMiracle.setImmortalMiracleToppedTick();
@@ -51,7 +67,10 @@ public class ImmortalMiracleEvent {
                                 immortalMiracle.getImmortalMiracleToppedTick(),
                                 immortalMiracle.getImmortalMiracleDachengTick(),
                                 immortalMiracle.isImmortalMiracleParticle(),
-                                immortalMiracle.getImmortalMiracleUseCooldownPercentMax()), (ServerPlayer) player);
+                                immortalMiracle.getImmortalMiracleUseCooldownPercentMax(),
+                                immortalMiracle.isSkillZActive(),
+                                immortalMiracle.isSkillXActive(),
+                                immortalMiracle.isSkillCActive()), (ServerPlayer) player);
                     }
                 });
             }
@@ -109,65 +128,14 @@ public class ImmortalMiracleEvent {
                     }
                     directEntity.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
                         if (immortalMiracle.isImmortalMiracleComprehend() && immortalMiracle.isImmortalMiracleOff() && immortalMiracle.getImmortalMiracleLevel() == 0) {
-                            float probability = directEntity.getRandom().nextFloat();
-                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
-                            if (probability < defaultProbability) {
-                                level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
-                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                immortalMiracle.addImmortalMiracleLevel();
-                                immortalMiracle.setImmortalMiracleParticle(true);
-                                ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
-                                        immortalMiracle.getImmortalMiracleLevel(),
-                                        immortalMiracle.isImmortalMiracleComprehend(),
-                                        immortalMiracle.getImmortalMiracleUseCooldownPercent(),
-                                        immortalMiracle.isImmortalMiracleOff(),
-                                        immortalMiracle.getImmortalMiracleToppedTick(),
-                                        immortalMiracle.getImmortalMiracleDachengTick(),
-                                        immortalMiracle.isImmortalMiracleParticle(),
-                                        immortalMiracle.getImmortalMiracleUseCooldownPercentMax()), (ServerPlayer) directEntity);
-                            }
-                        }
-                    });
-                }
-            }
-            if (event.getEntity() instanceof Player player){
-                player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
-                    if (immortalMiracle.isImmortalMiracleComprehend() && immortalMiracle.isImmortalMiracleOff() && immortalMiracle.getImmortalMiracleLevel() > 0) {
-                        if (immortalMiracle.getImmortalMiracleUseCooldownPercent() <= 0) {
-                            if (player.getFoodData().getFoodLevel() > 8) {
-                                float cooldownMax1 = 1600 - (15 * 20);
-                                float cooldownMax2 = 1600 - (30 * 20);
-                                if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())){
-                                    if (!player.getAbilities().instabuild) {
-                                        player.getFoodData().eat((int) -(5 - (5 * 0.25)), (float) -(2 - (2 * 0.25)));//消耗饱食度
-                                    }
-                                    immortalMiracle.setImmortalMiracleUseCooldownPercentMax((float) (immortalMiracle.getImmortalMiracleLevel() == 1 ? cooldownMax1 - (cooldownMax1 * 0.15) : cooldownMax2 - (cooldownMax2 * 0.15)));
-                                }else if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())){
-                                    if (!player.getAbilities().instabuild) {
-                                        player.getFoodData().eat((int) -(5 - (5 * 0.15)), (float) -(2 - (2 * 0.15)));//消耗饱食度
-                                    }
-                                    immortalMiracle.setImmortalMiracleUseCooldownPercentMax((float) (immortalMiracle.getImmortalMiracleLevel() == 1 ? cooldownMax1 - (cooldownMax1 * 0.25) : cooldownMax2 - (cooldownMax2 * 0.25)));
-                                }else {
-                                    if (!player.getAbilities().instabuild) {
-                                        player.getFoodData().eat(-5, -3);//消耗饱食度
-                                    }
-                                    immortalMiracle.setImmortalMiracleUseCooldownPercentMax(immortalMiracle.getImmortalMiracleLevel() == 1 ? cooldownMax1 : cooldownMax2);
-                                }
-                                immortalMiracle.setImmortalMiracleUseCooldownPercent(!player.getAbilities().instabuild ? immortalMiracle.getImmortalMiracleUseCooldownPercentMax() : 0);
-                                float health = event.getEntity().getHealth();
-                                float amount = event.getAmount();
-                                if (amount >= health){
-                                    event.setAmount(0);
-//                                    level.playSound(null, player.getX(), player.getY(), player.getZ(),
-//                                            ChangShengJueSound.IMMORTAL_MIRACLE_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                    if (immortalMiracle.getImmortalMiracleUseCount() < 100){
-                                        immortalMiracle.addImmortalMiracleUseCount(!player.getAbilities().instabuild ? 1 : 100);
-                                        if (immortalMiracle.getImmortalMiracleUseCount() >= 100){
-                                            immortalMiracle.setImmortalMiracleParticle(true);
-                                            level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                                                    ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                        }
-                                    }
+                            if (immortalMiracle.isSkillXActive() || immortalMiracle.isSkillZActive() || immortalMiracle.isSkillCActive()) {
+                                float probability = directEntity.getRandom().nextFloat();
+                                float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
+                                if (probability < defaultProbability) {
+                                    level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+                                            ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                    immortalMiracle.addImmortalMiracleLevel();
+                                    immortalMiracle.setImmortalMiracleParticle(true);
                                     ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
                                             immortalMiracle.getImmortalMiracleLevel(),
                                             immortalMiracle.isImmortalMiracleComprehend(),
@@ -176,7 +144,68 @@ public class ImmortalMiracleEvent {
                                             immortalMiracle.getImmortalMiracleToppedTick(),
                                             immortalMiracle.getImmortalMiracleDachengTick(),
                                             immortalMiracle.isImmortalMiracleParticle(),
-                                            immortalMiracle.getImmortalMiracleUseCooldownPercentMax()), (ServerPlayer) player);
+                                            immortalMiracle.getImmortalMiracleUseCooldownPercentMax(),
+                                            immortalMiracle.isSkillZActive(),
+                                            immortalMiracle.isSkillXActive(),
+                                            immortalMiracle.isSkillCActive()), (ServerPlayer) directEntity);
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+            if (event.getEntity() instanceof Player player){
+                player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
+                    if (immortalMiracle.isImmortalMiracleComprehend() && immortalMiracle.isImmortalMiracleOff() && immortalMiracle.getImmortalMiracleLevel() > 0) {
+                        if (immortalMiracle.isSkillXActive() || immortalMiracle.isSkillZActive() || immortalMiracle.isSkillCActive()){
+                            if (immortalMiracle.getImmortalMiracleUseCooldownPercent() <= 0) {
+                                if (player.getFoodData().getFoodLevel() > 8) {
+                                    float cooldownMax1 = 1600 - (15 * 20);
+                                    float cooldownMax2 = 1600 - (30 * 20);
+                                    if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())){
+                                        if (!player.getAbilities().instabuild) {
+                                            player.getFoodData().eat((int) -(5 - (5 * 0.25)), (float) -(2 - (2 * 0.25)));//消耗饱食度
+                                        }
+                                        immortalMiracle.setImmortalMiracleUseCooldownPercentMax((float) (immortalMiracle.getImmortalMiracleLevel() == 1 ? cooldownMax1 - (cooldownMax1 * 0.15) : cooldownMax2 - (cooldownMax2 * 0.15)));
+                                    }else if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())){
+                                        if (!player.getAbilities().instabuild) {
+                                            player.getFoodData().eat((int) -(5 - (5 * 0.15)), (float) -(2 - (2 * 0.15)));//消耗饱食度
+                                        }
+                                        immortalMiracle.setImmortalMiracleUseCooldownPercentMax((float) (immortalMiracle.getImmortalMiracleLevel() == 1 ? cooldownMax1 - (cooldownMax1 * 0.25) : cooldownMax2 - (cooldownMax2 * 0.25)));
+                                    }else {
+                                        if (!player.getAbilities().instabuild) {
+                                            player.getFoodData().eat(-5, -3);//消耗饱食度
+                                        }
+                                        immortalMiracle.setImmortalMiracleUseCooldownPercentMax(immortalMiracle.getImmortalMiracleLevel() == 1 ? cooldownMax1 : cooldownMax2);
+                                    }
+                                    immortalMiracle.setImmortalMiracleUseCooldownPercent(!player.getAbilities().instabuild ? immortalMiracle.getImmortalMiracleUseCooldownPercentMax() : 0);
+                                    float health = event.getEntity().getHealth();
+                                    float amount = event.getAmount();
+                                    if (amount >= health){
+                                        event.setAmount(0);
+//                                    level.playSound(null, player.getX(), player.getY(), player.getZ(),
+//                                            ChangShengJueSound.IMMORTAL_MIRACLE_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                        if (immortalMiracle.getImmortalMiracleUseCount() < 100){
+                                            immortalMiracle.addImmortalMiracleUseCount(!player.getAbilities().instabuild ? 1 : 100);
+                                            if (immortalMiracle.getImmortalMiracleUseCount() >= 100){
+                                                immortalMiracle.setImmortalMiracleParticle(true);
+                                                level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                                        ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                            }
+                                        }
+                                        ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
+                                                immortalMiracle.getImmortalMiracleLevel(),
+                                                immortalMiracle.isImmortalMiracleComprehend(),
+                                                immortalMiracle.getImmortalMiracleUseCooldownPercent(),
+                                                immortalMiracle.isImmortalMiracleOff(),
+                                                immortalMiracle.getImmortalMiracleToppedTick(),
+                                                immortalMiracle.getImmortalMiracleDachengTick(),
+                                                immortalMiracle.isImmortalMiracleParticle(),
+                                                immortalMiracle.getImmortalMiracleUseCooldownPercentMax(),
+                                                immortalMiracle.isSkillZActive(),
+                                                immortalMiracle.isSkillXActive(),
+                                                immortalMiracle.isSkillCActive()), (ServerPlayer) player);
+                                    }
                                 }
                             }
                         }

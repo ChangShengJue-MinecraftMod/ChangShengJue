@@ -5,11 +5,14 @@ public class GeShanDaNiuClientData {
     private static int geShanDaNiuLevel;
     private static boolean geShanDaNiuComprehend;
     private static float geShanDaNiuUseCooldownPercent;
-    private static boolean geShanDaNiuOff;
     private static float geShanDaNiuToppedTick;//技能领悟特效计时
     private static float geShanDaNiuDachengTick;//技能大成特效计时
     private static boolean geShanDaNiuParticle;//技能特效显示
     private static float geShanDaNiuUseCooldownPercentMax;//技能总冷却时间
+    // 技能状态
+    private static boolean skillZActive;
+    private static boolean skillXActive;
+    private static boolean skillCActive;
 
     //获取技能等级
     public static int getGeShanDaNiuLevel() {
@@ -34,14 +37,6 @@ public class GeShanDaNiuClientData {
 
     public static void setGeShanDaNiuComprehend(boolean geShanDaNiuComprehend) {
         GeShanDaNiuClientData.geShanDaNiuComprehend = geShanDaNiuComprehend;
-    }
-
-    public static boolean isGeShanDaNiuOff() {
-        return geShanDaNiuOff;
-    }
-
-    public static void setGeShanDaNiuOff(boolean geShanDaNiuOff) {
-        GeShanDaNiuClientData.geShanDaNiuOff = geShanDaNiuOff;
     }
 
     public static float getGeShanDaNiuToppedTick() {
@@ -74,5 +69,29 @@ public class GeShanDaNiuClientData {
 
     public static void setGeShanDaNiuUseCooldownPercentMax(float geShanDaNiuUseCooldownPercentMax) {
         GeShanDaNiuClientData.geShanDaNiuUseCooldownPercentMax = geShanDaNiuUseCooldownPercentMax;
+    }
+
+    public static boolean isSkillZActive() {
+        return skillZActive;
+    }
+
+    public static void setSkillZActive(boolean skillZActive) {
+        GeShanDaNiuClientData.skillZActive = skillZActive;
+    }
+
+    public static boolean isSkillXActive() {
+        return skillXActive;
+    }
+
+    public static void setSkillXActive(boolean skillXActive) {
+        GeShanDaNiuClientData.skillXActive = skillXActive;
+    }
+
+    public static boolean isSkillCActive() {
+        return skillCActive;
+    }
+
+    public static void setSkillCActive(boolean skillCActive) {
+        GeShanDaNiuClientData.skillCActive = skillCActive;
     }
 }

@@ -3,11 +3,14 @@ package com.shengchanshe.changshengjue.network;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.network.packet.effect.EffectEntityPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket2;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket2;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
@@ -92,6 +95,11 @@ public class ChangShengJueMessages {
                 .encoder(SunflowerPointCavemanPacket::toBytes)
                 .consumerMainThread(SunflowerPointCavemanPacket::handle)
                 .add();
+        net.messageBuilder(SunflowerPointCavemanPacket2.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(SunflowerPointCavemanPacket2::new)
+                .encoder(SunflowerPointCavemanPacket2::toBytes)
+                .consumerMainThread(SunflowerPointCavemanPacket2::handle)
+                .add();
         net.messageBuilder(EffectEntityPacket.class, id())
                 .decoder(EffectEntityPacket::new)
                 .encoder(EffectEntityPacket::toBytes)
@@ -108,11 +116,21 @@ public class ChangShengJueMessages {
                 .encoder(GoldenBellJarPacket2::toBytes)
                 .consumerMainThread(GoldenBellJarPacket2::handle)
                 .add();
+//        net.messageBuilder(GoldenBellJarPacketKey.class, id(),NetworkDirection.PLAY_TO_SERVER)
+//                .decoder(GoldenBellJarPacketKey::new)
+//                .encoder(GoldenBellJarPacketKey::toBytes)
+//                .consumerMainThread(GoldenBellJarPacketKey::handle)
+//                .add();
         //不死神功
         net.messageBuilder(ImmortalMiraclePacket.class, id())
                 .decoder(ImmortalMiraclePacket::new)
                 .encoder(ImmortalMiraclePacket::toBytes)
                 .consumerMainThread(ImmortalMiraclePacket::handle)
+                .add();
+        net.messageBuilder(ImmortalMiraclePacket2.class, id(),NetworkDirection.PLAY_TO_SERVER)
+                .decoder(ImmortalMiraclePacket2::new)
+                .encoder(ImmortalMiraclePacket2::toBytes)
+                .consumerMainThread(ImmortalMiraclePacket2::handle)
                 .add();
         //隔山打牛
         net.messageBuilder(GeShanDaNiuPacket.class, id())

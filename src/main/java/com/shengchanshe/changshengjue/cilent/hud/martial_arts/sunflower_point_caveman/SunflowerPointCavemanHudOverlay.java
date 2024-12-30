@@ -3,6 +3,8 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_c
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle.ImmortalMiracleClientData;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceClientData;
 import com.shengchanshe.changshengjue.item.combat.clubbed.Clubbed;
 import net.minecraft.ChatFormatting;
@@ -31,9 +33,12 @@ public class SunflowerPointCavemanHudOverlay {
 
     private static final Minecraft minecraft = Minecraft.getInstance();
 
-
     public static float frameTime() {
         return SunflowerPointCavemanClientData.getSunflowerPointCavemanUseCooldownPercent();
+    }
+
+    public static float frameTimeMax() {
+        return 8;
     }
 
     public static boolean playerCanOpened() {
@@ -45,8 +50,7 @@ public class SunflowerPointCavemanHudOverlay {
     // 通过lammbd表达式实现。
     public static final IGuiOverlay HUD_SUNFLOWER_POINT_CAVEMAN = (gui, guiGraphics, partialTick, screenWidth, screenHeight) -> {
         boolean sunflowerPointCavemanComprehend = SunflowerPointCavemanClientData.isSunflowerPointCavemanComprehend();
-        boolean sunflowerPointCavemanOff = SunflowerPointCavemanClientData.isSunflowerPointCavemanOff();
-        if (sunflowerPointCavemanComprehend && sunflowerPointCavemanOff){
+        if (sunflowerPointCavemanComprehend){
             int getSunflowerPointCavemanLevel = SunflowerPointCavemanClientData.getSunflowerPointCavemanLevel();
             // 通过宽高获得绘制的x，y
             int x = 5;
@@ -54,54 +58,63 @@ public class SunflowerPointCavemanHudOverlay {
             //设置绘制的信息
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            if (getSunflowerPointCavemanLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
-                if (frameTime() <= 0){ //获取技能剩余冷却时间,小于等于0则绘制技能贴图否则绘制冷却中的技能贴图
-                    if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图
-                        if (getSunflowerPointCavemanLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
-                            CSJDisplayHud.displayHudPermanent(guiGraphics, SUNFLOWER_POINT_CAVEMAN, x, y);
-                        } else {
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN_1,x,y);
-                        }
-                    }else {
-                        if (getSunflowerPointCavemanLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
-                            CSJDisplayHud.displayHudPermanent(guiGraphics, SUNFLOWER_POINT_CAVEMAN, x, y);
-                        } else {
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN_1,x,y);
-                        }
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                    }
-                }else{
-                    float v = ((frameTime() / 20) / 9);
-                    int v1 = (int) (16 * v + 1);//计算技能剩余冷却时间
-                    if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图并渲染技能剩余冷却时间
-                        if (getSunflowerPointCavemanLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN,x,y);
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                            guiGraphics.blit(SUNFLOWER_POINT_CAVEMAN, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
-                        } else {
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN_1,x,y);
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                            guiGraphics.blit(SUNFLOWER_POINT_CAVEMAN_1, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
-                        }
-                        //以文字形式绘制剩余冷却时间
-                        guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(v * 9)).toString(),x + 1, y + 25, ChatFormatting.AQUA.getColor());
-                    }else {
-                        if (getSunflowerPointCavemanLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN,x,y);
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                            guiGraphics.blit(SUNFLOWER_POINT_CAVEMAN, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
-                        } else {
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN_1,x,y);
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                            guiGraphics.blit(SUNFLOWER_POINT_CAVEMAN_1, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
-                        }
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
-                        guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(v * 9)).toString(),x + 1,y + 25, ChatFormatting.AQUA.getColor());
-                    }
-                }
-            }else {
-                CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN_2,x,y);
+            if (SunflowerPointCavemanClientData.isSkillZActive()){
+                CSJDisplayHud.displayHudPermanent(getSunflowerPointCavemanLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,SUNFLOWER_POINT_CAVEMAN,SUNFLOWER_POINT_CAVEMAN_1,SUNFLOWER_POINT_CAVEMAN_2,COOLING,gui.getFont(),x,y - 20);
             }
+            if (SunflowerPointCavemanClientData.isSkillXActive()){
+                CSJDisplayHud.displayHudPermanent(getSunflowerPointCavemanLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,SUNFLOWER_POINT_CAVEMAN,SUNFLOWER_POINT_CAVEMAN_1,SUNFLOWER_POINT_CAVEMAN_2,COOLING,gui.getFont(),x,y);
+            }
+            if (SunflowerPointCavemanClientData.isSkillCActive()){
+                CSJDisplayHud.displayHudPermanent(getSunflowerPointCavemanLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,SUNFLOWER_POINT_CAVEMAN,SUNFLOWER_POINT_CAVEMAN_1,SUNFLOWER_POINT_CAVEMAN_2,COOLING,gui.getFont(),x,y + 20);
+            }
+//            if (getSunflowerPointCavemanLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
+//                if (frameTime() <= 0){ //获取技能剩余冷却时间,小于等于0则绘制技能贴图否则绘制冷却中的技能贴图
+//                    if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图
+//                        if (getSunflowerPointCavemanLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics, SUNFLOWER_POINT_CAVEMAN, x, y);
+//                        } else {
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN_1,x,y);
+//                        }
+//                    }else {
+//                        if (getSunflowerPointCavemanLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics, SUNFLOWER_POINT_CAVEMAN, x, y);
+//                        } else {
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN_1,x,y);
+//                        }
+//                        CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+//                    }
+//                }else{
+//                    float v = ((frameTime() / 20) / 9);
+//                    int v1 = (int) (16 * v + 1);//计算技能剩余冷却时间
+//                    if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图并渲染技能剩余冷却时间
+//                        if (getSunflowerPointCavemanLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN,x,y);
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+//                            guiGraphics.blit(SUNFLOWER_POINT_CAVEMAN, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                        } else {
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN_1,x,y);
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+//                            guiGraphics.blit(SUNFLOWER_POINT_CAVEMAN_1, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                        }
+//                        //以文字形式绘制剩余冷却时间
+//                        guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(v * 9)).toString(),x + 1, y + 25, ChatFormatting.AQUA.getColor());
+//                    }else {
+//                        if (getSunflowerPointCavemanLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN,x,y);
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+//                            guiGraphics.blit(SUNFLOWER_POINT_CAVEMAN, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                        } else {
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN_1,x,y);
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+//                            guiGraphics.blit(SUNFLOWER_POINT_CAVEMAN_1, x, y + 20, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                        }
+//                        CSJDisplayHud.displayHudPermanent(guiGraphics,COOLING,x,y);
+//                        guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(v * 9)).toString(),x + 1,y + 25, ChatFormatting.AQUA.getColor());
+//                    }
+//                }
+//            }else {
+//                CSJDisplayHud.displayHudPermanent(guiGraphics,SUNFLOWER_POINT_CAVEMAN_2,x,y);
+//            }
         }
     };
 }

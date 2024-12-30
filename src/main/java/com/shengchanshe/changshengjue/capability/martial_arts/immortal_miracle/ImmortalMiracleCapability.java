@@ -12,7 +12,10 @@ public class ImmortalMiracleCapability {
     private float immortalMiracleDachengTick = 0;//技能领悟特效计时
     private boolean immortalMiracleParticle = false;//技能特效显示
     private float immortalMiracleUseCooldownPercentMax = 1600;//技能总冷却时间
-
+    // 技能状态
+    private boolean skillZActive = false;
+    private boolean skillXActive = false;
+    private boolean skillCActive = false;
 
     public int getImmortalMiracleLevel() {
         return immortalMiracleLevel;
@@ -91,6 +94,30 @@ public class ImmortalMiracleCapability {
         return this.immortalMiracleParticle;
     }
 
+    public boolean isSkillZActive() {
+        return skillZActive;
+    }
+
+    public void setSkillZActive(boolean skillZActive) {
+        this.skillZActive = skillZActive;
+    }
+
+    public boolean isSkillXActive() {
+        return skillXActive;
+    }
+
+    public void setSkillXActive(boolean skillXActive) {
+        this.skillXActive = skillXActive;
+    }
+
+    public boolean isSkillCActive() {
+        return skillCActive;
+    }
+
+    public void setSkillCActive(boolean skillCActive) {
+        this.skillCActive = skillCActive;
+    }
+
     public void copyImmortalMiracle(ImmortalMiracleCapability capability){
         this.immortalMiracleLevel = capability.immortalMiracleLevel;
         this.immortalMiracleComprehend = capability.immortalMiracleComprehend;
@@ -101,8 +128,10 @@ public class ImmortalMiracleCapability {
         this.immortalMiracleDachengTick = capability.immortalMiracleDachengTick;
         this.immortalMiracleParticle = capability.immortalMiracleParticle;
         this.immortalMiracleUseCooldownPercentMax = capability.immortalMiracleUseCooldownPercentMax;
+        this.skillZActive = capability.skillZActive;
+        this.skillXActive = capability.skillXActive;
+        this.skillCActive = capability.skillCActive;
     }
-
     // 将能力保存到 NBT 数据中
     public void saveNBTData(CompoundTag nbt) {
         nbt.putInt("ImmortalMiracleLevel", immortalMiracleLevel);
@@ -114,6 +143,9 @@ public class ImmortalMiracleCapability {
         nbt.putFloat("ImmortalMiracleDachengTick",immortalMiracleDachengTick);
         nbt.putBoolean("ImmortalMiracleParticle",immortalMiracleParticle);
         nbt.putFloat("ImmortalMiracleUseCooldownPercentMax",immortalMiracleUseCooldownPercentMax);
+        nbt.putBoolean("SkillZActive", skillZActive);
+        nbt.putBoolean("SkillXActive", skillXActive);
+        nbt.putBoolean("SkillCActive", skillCActive);
     }
 
     // 从 NBT 数据中加载能力
@@ -127,5 +159,8 @@ public class ImmortalMiracleCapability {
         immortalMiracleDachengTick = nbt.getFloat("ImmortalMiracleDachengTick");
         immortalMiracleParticle = nbt.getBoolean("ImmortalMiracleParticle");
         immortalMiracleUseCooldownPercentMax = nbt.getFloat("ImmortalMiracleUseCooldownPercentMax");
+        skillZActive = nbt.getBoolean("SkillZActive");
+        skillXActive = nbt.getBoolean("SkillXActive");
+        skillCActive = nbt.getBoolean("SkillCActive");
     }
 }

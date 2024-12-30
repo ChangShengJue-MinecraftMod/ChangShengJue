@@ -600,5 +600,11 @@
   "effect.chang_sheng_jue.shi_li_xiang": "十里香",
   "effect.chang_sheng_jue.drunken": "醉酒",
 
-  "biome.chang_sheng_jue.chang_shen_jue_prairie": "慕然草原"
+  "biome.chang_sheng_jue.chang_shen_jue_prairie": "慕然草原",
+
+  "key.chang_sheng_jue.category" : "长生诀",
+  "key.chang_sheng_jue.ability_1" : "技能1",
+  "key.chang_sheng_jue.ability_2" : "技能2",
+  "key.chang_sheng_jue.ability_3" : "技能3",
+  "ui.chang_sheng_jue.binding_prompts": "请在5秒内按下按键绑技能按键或切换技能按键"
 }
