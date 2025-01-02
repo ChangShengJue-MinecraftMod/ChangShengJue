@@ -1,4 +1,4 @@
-// 1.20.1	2024-12-26T17:40:39.0888004	Item Models: chang_sheng_jue
+// 1.20.1	2025-01-02T14:33:47.1117458	Item Models: chang_sheng_jue
 2df294cae9bca0cd36d0385cefc4256022666d7f assets/chang_sheng_jue/models/item/apple_juice.json
 8b1c0d88759c7a327397e22b018cefe5d86e400f assets/chang_sheng_jue/models/item/biluochun_tea.json
 a5e115b057a39c7b1aefb446a36c872ed713d283 assets/chang_sheng_jue/models/item/biluochun_teas.json
@@ -63,6 +63,7 @@ c8e761357507656db28a05ec920fc59dc610d2fa assets/chang_sheng_jue/models/item/mulb
 53520ee7061e89d47b18b08069da86f6d9ce83c0 assets/chang_sheng_jue/models/item/natural_silk.json
 62d25c92cd6004420743b9e95d5c1ef8a074338a assets/chang_sheng_jue/models/item/paint_brush.json
 195a1205ce8b43b50db563a2f75589c2ac6d0f53 assets/chang_sheng_jue/models/item/paoding.json
+51f1927f17f589865c6cb3fd5d1b01be14b2492f assets/chang_sheng_jue/models/item/qian_kun_da_nuo_yi.json
 fffe1023f2f3fbffc679833aa1a031580168c893 assets/chang_sheng_jue/models/item/qi_tian_da_sheng_boots.json
 fb689332bf51dc2a691760f37affbfcc37d5ec3c assets/chang_sheng_jue/models/item/qi_tian_da_sheng_chestplate.json
 8019a76f732e2d756485d734bc226fdb68c783de assets/chang_sheng_jue/models/item/qi_tian_da_sheng_helmet.json
@@ -79,6 +80,7 @@ a9d54622dffc1873cb049f24753d99deb56857dc assets/chang_sheng_jue/models/item/silv
 0849288dca2c5f1d1ee81cb63a5bde5bd69d1067 assets/chang_sheng_jue/models/item/sunflower_point_caveman.json
 d717aef6f282caaaf5ddf1e2598673751b203e43 assets/chang_sheng_jue/models/item/taoist_robes_boots.json
 c6a88404ca17dc79123304ab8834de7d88fab0e3 assets/chang_sheng_jue/models/item/thatch.json
+dc610b92bf2e6640d8e9c0148a809c579c821504 assets/chang_sheng_jue/models/item/the_classics_of_tendon_changing.json
 e1cb043dace10b0d1eb68a0436cc1b88167bc301 assets/chang_sheng_jue/models/item/three_throwing_knives.json
 47439e9a009cb1531cff2e4e5249e4e27e99898f assets/chang_sheng_jue/models/item/throwing_knives.json
 2b483a8edc1ec98a30b0e713ede15d21eab9ae2c assets/chang_sheng_jue/models/item/tong_qian.json

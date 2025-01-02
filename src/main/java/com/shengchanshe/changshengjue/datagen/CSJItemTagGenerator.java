@@ -70,7 +70,9 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(ChangShengJueItems.WU_GANG_CUT_GUI.get())
                 .add(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get())
                 .add(ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get())
-                .add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get());
+                .add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get())
+                .add(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get())
+                .add(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get());
 
         this.tag(CSJTags.Items.ARTIFACT)
                 .add(ChangShengJueItems.BEAT_DOG_STICK.get())

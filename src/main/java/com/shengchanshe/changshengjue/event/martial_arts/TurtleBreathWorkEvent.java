@@ -37,7 +37,10 @@ public class TurtleBreathWorkEvent {
                                 turtleBreathWork.isTurtleBreathWorkOff(),
                                 turtleBreathWork.getTurtleBreathWorkToppedTick(),
                                 turtleBreathWork.getTurtleBreathWorkDachengTick(),
-                                turtleBreathWork.isTurtleBreathWorkParticle()), (ServerPlayer) player);
+                                turtleBreathWork.isTurtleBreathWorkParticle(),
+                                turtleBreathWork.isSkillZActive(),
+                                turtleBreathWork.isSkillXActive(),
+                                turtleBreathWork.isSkillCActive()),(ServerPlayer) player);
                     }
                     if (turtleBreathWork.isTurtleBreathWorkParticle()){
                         if (turtleBreathWork.getTurtleBreathWorkLevel() == 1){
@@ -50,17 +53,23 @@ public class TurtleBreathWorkEvent {
                                     turtleBreathWork.isTurtleBreathWorkOff(),
                                     turtleBreathWork.getTurtleBreathWorkToppedTick(),
                                     turtleBreathWork.getTurtleBreathWorkDachengTick(),
-                                    turtleBreathWork.isTurtleBreathWorkParticle()), (ServerPlayer) player);
+                                    turtleBreathWork.isTurtleBreathWorkParticle(),
+                                    turtleBreathWork.isSkillZActive(),
+                                    turtleBreathWork.isSkillXActive(),
+                                    turtleBreathWork.isSkillCActive()),(ServerPlayer) player);
                         }else if (turtleBreathWork.getTurtleBreathWorkLevel() == 2){
                             turtleBreathWork.setTurtleBreathWorkDachengTick();
                             ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
-                                    turtleBreathWork.getTurtleBreathWorkLevel(),
+                                     turtleBreathWork.getTurtleBreathWorkLevel(),
                                     turtleBreathWork.isTurtleBreathWorkComprehend(),
                                     turtleBreathWork.getTurtleBreathWorkUseCooldownPercent(),
                                     turtleBreathWork.isTurtleBreathWorkOff(),
                                     turtleBreathWork.getTurtleBreathWorkToppedTick(),
                                     turtleBreathWork.getTurtleBreathWorkDachengTick(),
-                                    turtleBreathWork.isTurtleBreathWorkParticle()), (ServerPlayer) player);
+                                    turtleBreathWork.isTurtleBreathWorkParticle(),
+                                    turtleBreathWork.isSkillZActive(),
+                                    turtleBreathWork.isSkillXActive(),
+                                    turtleBreathWork.isSkillCActive()), (ServerPlayer) player);
                         }
                     }
                 });
@@ -102,104 +111,12 @@ public class TurtleBreathWorkEvent {
                                     turtleBreathWork.isTurtleBreathWorkOff(),
                                     turtleBreathWork.getTurtleBreathWorkToppedTick(),
                                     turtleBreathWork.getTurtleBreathWorkDachengTick(),
-                                    turtleBreathWork.isTurtleBreathWorkParticle()), (ServerPlayer) directEntity);
+                                    turtleBreathWork.isTurtleBreathWorkParticle(),
+                                    turtleBreathWork.isSkillZActive(),
+                                    turtleBreathWork.isSkillXActive(),
+                                    turtleBreathWork.isSkillCActive()), (ServerPlayer) directEntity);
                         }
                     });
-                }
-            }
-        }
-    }
-
-    public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event) {
-        Player player = event.getEntity();
-        if (!event.getLevel().isClientSide) {
-            player.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
-                if (turtleBreathWork.isTurtleBreathWorkComprehend() && turtleBreathWork.isTurtleBreathWorkOff() && turtleBreathWork.getTurtleBreathWorkLevel() > 0) {
-                    if (turtleBreathWork.getTurtleBreathWorkUseCooldownPercent() <= 0) {
-                        if (player.getFoodData().getFoodLevel() > 8) {
-                            if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())){
-                                if (!player.getAbilities().instabuild) {
-                                    player.getFoodData().eat((int) -(4 - (4 * 0.25)), (float) -(2 - (2 * 0.25)));//消耗饱食度
-                                }
-                                turtleBreathWork.setTurtleBreathWorkUseCooldownPercent(!player.getAbilities().instabuild ? 900 - (900 * 0.15F) : 0);
-                            }else if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())){
-                                if (!player.getAbilities().instabuild) {
-                                    player.getFoodData().eat((int) -(4 - (4 * 0.15)), (float) -(2 - (2 * 0.15)));//消耗饱食度
-                                }
-                                turtleBreathWork.setTurtleBreathWorkUseCooldownPercent(!player.getAbilities().instabuild ? 900 - (900 * 0.25F) : 0);
-                            }else {
-                                if (!player.getAbilities().instabuild) {
-                                    player.getFoodData().eat(-4, -2);//消耗饱食度
-                                }
-                                turtleBreathWork.setTurtleBreathWorkUseCooldownPercent(!player.getAbilities().instabuild ? 900 : 0);
-                            }
-                            player.addEffect(new MobEffectInstance(ChangShengJueEffects.TURTLE_BREATH_EFFECT.get(), 300, 0, false, true), player);
-                            player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING,-1, turtleBreathWork.getTurtleBreathWorkLevel() <= 1 ? 1 : 2));
-                            if (turtleBreathWork.getTurtleBreathWorkUseCount() < 100){
-                                turtleBreathWork.addTurtleBreathWorkUseCount(!player.getAbilities().instabuild ? 1 : 100);
-                                if (turtleBreathWork.getTurtleBreathWorkUseCount() >= 100){
-                                    turtleBreathWork.setTurtleBreathWorkParticle(true);
-                                    event.getLevel().playSound(null, player.getX(), player.getY(), player.getZ(),
-                                            ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                }
-                            }
-                            ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
-                                    turtleBreathWork.getTurtleBreathWorkLevel(),
-                                    turtleBreathWork.isTurtleBreathWorkComprehend(),
-                                    turtleBreathWork.getTurtleBreathWorkUseCooldownPercent(),
-                                    turtleBreathWork.isTurtleBreathWorkOff(),
-                                    turtleBreathWork.getTurtleBreathWorkToppedTick(),
-                                    turtleBreathWork.getTurtleBreathWorkDachengTick(),
-                                    turtleBreathWork.isTurtleBreathWorkParticle()), (ServerPlayer) player);
-                        }
-                    }
-                }
-            });
-        }else {
-            boolean turtleBreathWorkComprehend = TurtleBreathWorkClientData.isTurtleBreathWorkComprehend();
-            boolean turtleBreathWorkOff = TurtleBreathWorkClientData.isTurtleBreathWorkOff();
-            if (turtleBreathWorkComprehend && turtleBreathWorkOff){
-                if (TurtleBreathWorkClientData.getTurtleBreathWorkLevel() >= 1){
-                    if (TurtleBreathWorkClientData.getTurtleBreathWorkUseCooldownPercent()<=0) {
-                        if (player.getFoodData().getFoodLevel() > 8){
-                            player.swing(player.getUsedItemHand());
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
-        Player player = event.getEntity();
-        if (!player.isUsingItem()){
-            return;
-        }
-        ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2());
-        boolean geShanDaNiuComprehend = TurtleBreathWorkClientData.isTurtleBreathWorkComprehend();
-        boolean geShanDaNiuOff = TurtleBreathWorkClientData.isTurtleBreathWorkOff();
-        if (geShanDaNiuComprehend && geShanDaNiuOff){
-            if (TurtleBreathWorkClientData.getTurtleBreathWorkLevel() >= 1){
-                if (TurtleBreathWorkClientData.getTurtleBreathWorkUseCooldownPercent()<=0) {
-                    if (player.getFoodData().getFoodLevel() > 8){
-                        player.swing(player.getUsedItemHand());
-                    }
-                }
-            }
-        }
-    }
-
-    public static void onPlayerRightClick(PlayerInteractEvent.RightClickEmpty event) {
-        Player player = event.getEntity();
-        ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2());
-        boolean turtleBreathWorkComprehend = TurtleBreathWorkClientData.isTurtleBreathWorkComprehend();
-        boolean turtleBreathWorkOff = TurtleBreathWorkClientData.isTurtleBreathWorkOff();
-        if (turtleBreathWorkComprehend && turtleBreathWorkOff){
-            if (TurtleBreathWorkClientData.getTurtleBreathWorkLevel() >= 1){
-                if (TurtleBreathWorkClientData.getTurtleBreathWorkUseCooldownPercent()<=0) {
-                    if (player.getFoodData().getFoodLevel() > 8){
-                        player.swing(player.getUsedItemHand());
-                    }
                 }
             }
         }

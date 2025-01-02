@@ -281,12 +281,12 @@ public class ChangShengJueItems {
     //石灰
     public static final RegistryObject<Item> QUICKLIME = ITEMS.register("quicklime",
             ()-> new Item(new Item.Properties()));
-    public static final RegistryObject<Item> LIME_SLURRY_BARRELS = ITEMS.register("lime_slurry_barrels", ()-> new LimeSlurryBarrels());
-    public static final RegistryObject<Item> WARM_LIME_SLURRY_BARRELS = ITEMS.register("warm_lime_slurry_barrels", ()-> new LimeSlurryBarrels());
-    public static final RegistryObject<Item> COOL_LIME_SLURRY_BARRELS = ITEMS.register("cool_lime_slurry_barrels", ()-> new LimeSlurryBarrels());
+    public static final RegistryObject<Item> LIME_SLURRY_BARRELS = ITEMS.register("lime_slurry_barrels", LimeSlurryBarrels::new);
+    public static final RegistryObject<Item> WARM_LIME_SLURRY_BARRELS = ITEMS.register("warm_lime_slurry_barrels", LimeSlurryBarrels::new);
+    public static final RegistryObject<Item> COOL_LIME_SLURRY_BARRELS = ITEMS.register("cool_lime_slurry_barrels", LimeSlurryBarrels::new);
 
     //刷子
-    public static final RegistryObject<Item> PAINT_BRUSH = ITEMS.register("paint_brush", ()-> new PaintBrush());
+    public static final RegistryObject<Item> PAINT_BRUSH = ITEMS.register("paint_brush", PaintBrush::new);
 
     //蚕丝
     public static final RegistryObject<Item> NATURAL_SILK = ITEMS.register("natural_silk",
@@ -455,6 +455,10 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> YUGONG_MOVES_MOUNTAINS = ITEMS.register("yugong_moves_mountains", YugongMovesMountains::new);
     //张门心学
     public static final RegistryObject<Item> ZHANG_MEN_XIN_XUE = ITEMS.register("zhang_men_xin_xue", ZhangMenXinxue::new);
+    //易筋经
+    public static final RegistryObject<Item> THE_CLASSICS_OF_TENDON_CHANGING = ITEMS.register("the_classics_of_tendon_changing", TheClassicsOfTendonChanging::new);
+    //乾坤大挪移
+    public static final RegistryObject<Item> QIAN_KUN_DA_NUO_YI = ITEMS.register("qian_kun_da_nuo_yi", QianKunDaNuoYi::new);
 
     //练功木桩
     public static final RegistryObject<Item> STAKES = ITEMS.register("stakes", Stakes::new);

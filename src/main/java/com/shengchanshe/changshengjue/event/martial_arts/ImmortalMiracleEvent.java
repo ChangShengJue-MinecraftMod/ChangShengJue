@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.event.martial_arts;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle.ImmortalMiracleClientData;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
@@ -162,23 +163,31 @@ public class ImmortalMiracleEvent {
                                 if (player.getFoodData().getFoodLevel() > 8) {
                                     float cooldownMax1 = 1600 - (15 * 20);
                                     float cooldownMax2 = 1600 - (30 * 20);
-                                    if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())){
-                                        if (!player.getAbilities().instabuild) {
-                                            player.getFoodData().eat((int) -(5 - (5 * 0.25)), (float) -(2 - (2 * 0.25)));//消耗饱食度
+                                    if (!player.getAbilities().instabuild) {
+                                        if (immortalMiracle.getImmortalMiracleLevel() >= 1){
+                                            immortalMiracle.setImmortalMiracleUseCooldownPercentMax(cooldownMax1);
+                                        }else if (immortalMiracle.getImmortalMiracleLevel() > 1){
+                                            immortalMiracle.setImmortalMiracleUseCooldownPercentMax(cooldownMax2);
                                         }
-                                        immortalMiracle.setImmortalMiracleUseCooldownPercentMax((float) (immortalMiracle.getImmortalMiracleLevel() == 1 ? cooldownMax1 - (cooldownMax1 * 0.15) : cooldownMax2 - (cooldownMax2 * 0.15)));
-                                    }else if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())){
-                                        if (!player.getAbilities().instabuild) {
-                                            player.getFoodData().eat((int) -(5 - (5 * 0.15)), (float) -(2 - (2 * 0.15)));//消耗饱食度
-                                        }
-                                        immortalMiracle.setImmortalMiracleUseCooldownPercentMax((float) (immortalMiracle.getImmortalMiracleLevel() == 1 ? cooldownMax1 - (cooldownMax1 * 0.25) : cooldownMax2 - (cooldownMax2 * 0.25)));
-                                    }else {
-                                        if (!player.getAbilities().instabuild) {
-                                            player.getFoodData().eat(-5, -3);//消耗饱食度
-                                        }
-                                        immortalMiracle.setImmortalMiracleUseCooldownPercentMax(immortalMiracle.getImmortalMiracleLevel() == 1 ? cooldownMax1 : cooldownMax2);
+                                        player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
+                                            int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
+                                            if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() >= 1){
+                                                player.getFoodData().eat(-foodLevel + 1, -1);//消耗饱食度
+                                                if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 100){
+                                                    theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
+                                                }
+                                            }else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() > 1){
+                                                player.getFoodData().eat(-foodLevel + 2, -1);//消耗饱食度
+                                                if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 100){
+                                                    theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
+                                                }
+                                            }else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() < 1){
+                                                player.getFoodData().eat(-foodLevel, -1);//消耗饱食度
+                                            }
+                                        });
+                                        immortalMiracle.setImmortalMiracleUseCooldownPercent(player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) ?
+                                                immortalMiracle.getImmortalMiracleUseCooldownPercentMax() - 30 : immortalMiracle.getImmortalMiracleUseCooldownPercentMax());
                                     }
-                                    immortalMiracle.setImmortalMiracleUseCooldownPercent(!player.getAbilities().instabuild ? immortalMiracle.getImmortalMiracleUseCooldownPercentMax() : 0);
                                     float health = event.getEntity().getHealth();
                                     float amount = event.getAmount();
                                     if (amount >= health){

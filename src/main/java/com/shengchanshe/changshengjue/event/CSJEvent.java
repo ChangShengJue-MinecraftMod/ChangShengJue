@@ -10,14 +10,17 @@ import com.shengchanshe.changshengjue.capability.martial_arts.ge_shan_da_niu.GeS
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.hercules.HerculesCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.relentless_throwing_knives.RelentlessThrowingKnivesCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
@@ -36,7 +39,9 @@ import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.hercules.HerculesPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
@@ -717,11 +722,16 @@ public class CSJEvent {
         ShaolinStickMethodEvent.onPlayerTick(event);
         //玄女剑法
         XuannuSwordsmanshipEvent.onPlayerTick(event);
+        //易筋经
+        TheClassicsOfTendonChangingEvent.onPlayerTick(event);
+        //乾坤大挪移
+        QianKunDaNuoYiEvent.onPlayerTick(event);
+        //大力神功
+        HerculesEvent.onPlayerTick(event);
     }
     //生物攻击事件
     @SubscribeEvent
-    public static void onEntityAttack(LivingEvent.LivingTickEvent event){
-    }
+    public static void onEntityAttack(LivingEvent.LivingTickEvent event){}
     //生物受伤事件
     @SubscribeEvent
     public static void onEntityHurt(LivingDamageEvent event){
@@ -734,6 +744,9 @@ public class CSJEvent {
         ImmortalMiracleEvent.onEntityHurt(event);
         GeShanDaNiuEvent.onEntityHurt(event);
         TurtleBreathWorkEvent.onEntityHurt(event);
+        TheClassicsOfTendonChangingEvent.onEntityHurt(event);
+        QianKunDaNuoYiEvent.onEntityHurt(event);
+        HerculesEvent.onEntityHurt(event);
     }
     //生物死亡事件
     @SubscribeEvent
@@ -745,13 +758,13 @@ public class CSJEvent {
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){
         SunflowerPointCavemanEvent.onPlayerEntityInteract(event);
 //        GoldenBellJarEvent.onPlayerEntityInteract(event);
-        TurtleBreathWorkEvent.onPlayerEntityInteract(event);
+//        TurtleBreathWorkEvent.onPlayerEntityInteract(event);
     }
     //玩家右键空气事件
     @SubscribeEvent
     public static void onPlayerRightClick(PlayerInteractEvent.RightClickEmpty event){
 //        GoldenBellJarEvent.onPlayerRightClick(event);
-        TurtleBreathWorkEvent.onPlayerRightClick(event);
+//        TurtleBreathWorkEvent.onPlayerRightClick(event);
     }
 //    @SubscribeEvent
 //    public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
@@ -763,7 +776,7 @@ public class CSJEvent {
     @SubscribeEvent
     public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
 //        GoldenBellJarEvent.onPlayerRightClickItem(event);
-        TurtleBreathWorkEvent.onPlayerRightClickItem(event);
+//        TurtleBreathWorkEvent.onPlayerRightClickItem(event);
     }
 
     //能力给予事件,给生物添加能力
@@ -838,6 +851,18 @@ public class CSJEvent {
             if (!event.getObject().getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).isPresent()){
                 event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"relentless_throwing_knives_properties"),new RelentlessThrowingKnivesCapabilityProvider());
             }
+            //易筋经
+            if (!event.getObject().getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"the_classics_of_tendon_changing_properties"),new TheClassicsOfTendonChangingCapabilityProvider());
+            }
+            //乾坤大挪移
+            if (!event.getObject().getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"qian_kun_da_nuo_yi_properties"),new QianKunDaNuoYiCapabilityProvider());
+            }
+            //大力神功
+            if (!event.getObject().getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).isPresent()){
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"hercules_properties"),new HerculesCapabilityProvider());
+            }
         }
     }
 
@@ -897,6 +922,15 @@ public class CSJEvent {
         //无情飞刀
         oldPlayer.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(newStore-> newStore.copyRelentlessThrowingKnives(oldStore)));
+        //易筋经
+        oldPlayer.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(newStore-> newStore.copyTheClassicsOfTendonChanging(oldStore)));
+        //乾坤大挪移
+        oldPlayer.getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(newStore-> newStore.copyQianKunDaNuoYi(oldStore)));
+        //大力神功
+        oldPlayer.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(newStore-> newStore.copyHercules(oldStore)));
         event.getOriginal().invalidateCaps();
     }
 
@@ -920,6 +954,9 @@ public class CSJEvent {
         event.register(WheatNuggetEncyclopediaCapabilityProvider.class);
         event.register(TurtleBreathWorkCapabilityProvider.class);
         event.register(RelentlessThrowingKnivesCapabilityProvider.class);
+        event.register(TheClassicsOfTendonChangingCapabilityProvider.class);
+        event.register(QianKunDaNuoYiCapabilityProvider.class);
+        event.register(HerculesCapabilityProvider.class);
     }
 
     @SubscribeEvent
@@ -1031,7 +1068,10 @@ public class CSJEvent {
                             turtleBreathWork.isTurtleBreathWorkOff(),
                             turtleBreathWork.getTurtleBreathWorkToppedTick(),
                             turtleBreathWork.getTurtleBreathWorkDachengTick(),
-                            turtleBreathWork.isTurtleBreathWorkParticle()), player);
+                            turtleBreathWork.isTurtleBreathWorkParticle(),
+                            turtleBreathWork.isSkillZActive(),
+                            turtleBreathWork.isSkillXActive(),
+                            turtleBreathWork.isSkillCActive()), player);
                 });
                 player.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(relentlessThrowingKnives -> {
                     ChangShengJueMessages.sendToPlayer(new RelentlessThrowingKnivesPacket(
@@ -1041,6 +1081,31 @@ public class CSJEvent {
                             relentlessThrowingKnives.getRelentlessThrowingKnivesToppedTick(),
                             relentlessThrowingKnives.getRelentlessThrowingKnivesDachengTick(),
                             relentlessThrowingKnives.isRelentlessThrowingKnivesParticle()), player);
+                });
+                player.getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(qianKunDaNuoYi -> {
+                    ChangShengJueMessages.sendToPlayer(new QianKunDaNuoYiPacket(
+                            qianKunDaNuoYi.getQianKunDaNuoYiLevel(),
+                            qianKunDaNuoYi.isQianKunDaNuoYiComprehend(),
+                            qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownPercent(),
+                            qianKunDaNuoYi.isQianKunDaNuoYiOff(),
+                            qianKunDaNuoYi.getQianKunDaNuoYiToppedTick(),
+                            qianKunDaNuoYi.getQianKunDaNuoYiDachengTick(),
+                            qianKunDaNuoYi.isQianKunDaNuoYiParticle(),
+                            qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax(),
+                            qianKunDaNuoYi.isSkillZActive(),
+                            qianKunDaNuoYi.isSkillXActive(),
+                            qianKunDaNuoYi.isSkillCActive()), player);
+                });
+                player.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(hercules -> {
+                    ChangShengJueMessages.sendToPlayer(new HerculesPacket(
+                            hercules.getHerculesLevel(),
+                            hercules.isHerculesComprehend(),
+                            hercules.getHerculesToppedTick(),
+                            hercules.getHerculesDachengTick(),
+                            hercules.isHerculesParticle(),
+                            hercules.isSkillZActive(),
+                            hercules.isSkillXActive(),
+                            hercules.isSkillCActive()), player);
                 });
             }
         }

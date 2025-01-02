@@ -81,7 +81,8 @@ public class PaodingEvent {
                                 paoding.setPaodingParticle(true);
                                 directEntity.level().playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
                                         ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                ChangShengJueMessages.sendToPlayer(new PaodingPacket( paoding.getPaodingLevel(),
+                                ChangShengJueMessages.sendToPlayer(new PaodingPacket(
+                                        paoding.getPaodingLevel(),
                                         paoding.isPaodingComprehend(),
                                         paoding.getPaodingToppedTick(),
                                         paoding.getPaodingDachengTick(),

@@ -14,9 +14,13 @@ public class TurtleBreathWorkPacket {
     private float turtleBreathWorkToppedTick;//技能领悟特效计时
     private float turtleBreathWorkDachengTick;//技能领悟特效计时
     private boolean turtleBreathWorkParticle;//技能特效显示
-
+    // 技能状态
+    private boolean skillZActive;
+    private boolean skillXActive;
+    private boolean skillCActive;
     public TurtleBreathWorkPacket(int turtleBreathWorkLevel, boolean turtleBreathWorkComprehend, float turtleBreathWorkUseCooldownPercent, boolean turtleBreathWorkOff,
-                                  float turtleBreathWorkToppedTick, float turtleBreathWorkDachengTick, boolean turtleBreathWorkParticle){
+                                  float turtleBreathWorkToppedTick, float turtleBreathWorkDachengTick, boolean turtleBreathWorkParticle,
+                                  boolean skillZActive,boolean skillXActive,boolean skillCActive){
         this.turtleBreathWorkLevel = turtleBreathWorkLevel;
         this.turtleBreathWorkComprehend = turtleBreathWorkComprehend;
         this.turtleBreathWorkUseCooldownPercent = turtleBreathWorkUseCooldownPercent;
@@ -24,6 +28,9 @@ public class TurtleBreathWorkPacket {
         this.turtleBreathWorkToppedTick = turtleBreathWorkToppedTick;
         this.turtleBreathWorkDachengTick = turtleBreathWorkDachengTick;
         this.turtleBreathWorkParticle = turtleBreathWorkParticle;
+        this.skillZActive = skillZActive;
+        this.skillXActive = skillXActive;
+        this.skillCActive = skillCActive;
     }
 
     public TurtleBreathWorkPacket(FriendlyByteBuf buf){
@@ -35,6 +42,10 @@ public class TurtleBreathWorkPacket {
         this.turtleBreathWorkToppedTick = buf.readFloat();
         this.turtleBreathWorkDachengTick = buf.readFloat();
         this.turtleBreathWorkParticle = buf.readBoolean();
+
+        this.skillZActive = buf.readBoolean();
+        this.skillXActive = buf.readBoolean();
+        this.skillCActive = buf.readBoolean();
     }
 
     public void toBytes(FriendlyByteBuf buf){
@@ -45,6 +56,9 @@ public class TurtleBreathWorkPacket {
         buf.writeFloat(turtleBreathWorkToppedTick);
         buf.writeFloat(turtleBreathWorkDachengTick);
         buf.writeBoolean(turtleBreathWorkParticle);
+        buf.writeBoolean(skillZActive);
+        buf.writeBoolean(skillXActive);
+        buf.writeBoolean(skillCActive);
     }
 
     // 客户端处理
@@ -59,6 +73,9 @@ public class TurtleBreathWorkPacket {
             TurtleBreathWorkClientData.setTurtleBreathWorkToppedTick(turtleBreathWorkToppedTick);
             TurtleBreathWorkClientData.setTurtleBreathWorkDachengTick(turtleBreathWorkDachengTick);
             TurtleBreathWorkClientData.setTurtleBreathWorkParticle(turtleBreathWorkParticle);
+            TurtleBreathWorkClientData.setSkillZActive(skillZActive);
+            TurtleBreathWorkClientData.setSkillXActive(skillXActive);
+            TurtleBreathWorkClientData.setSkillCActive(skillCActive);
         });
         return true;
     }

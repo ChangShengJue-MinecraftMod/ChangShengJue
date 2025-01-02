@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.event.martial_arts;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_caveman.SunflowerPointCavemanClientData;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
@@ -137,6 +138,26 @@ public class SunflowerPointCavemanEvent {
                         if (sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent() <= 0) {
                             if (player.getMainHandItem().isEmpty()) {
                                 if (player.getFoodData().getFoodLevel() > 8) {
+                                    if (!player.getAbilities().instabuild) {
+                                        player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
+                                            int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
+                                            if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() >= 1){
+                                                player.getFoodData().eat(-foodLevel + 1, -1);//消耗饱食度
+                                                if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 100){
+                                                    theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
+                                                }
+                                            }else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() > 1){
+                                                player.getFoodData().eat(-foodLevel + 2, -1);//消耗饱食度
+                                                if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 100){
+                                                    theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
+                                                }
+                                            }else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() < 1){
+                                                player.getFoodData().eat(-foodLevel, -1);//消耗饱食度
+                                            }
+                                        });
+                                        sunflowerPointCaveman.setSunflowerPointCavemanUseCooldownPercent(player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) ?
+                                               180 - 30 : 180);
+                                    }
                                     float health;
                                     if (sunflowerPointCaveman.getSunflowerPointCavemanLevel() < 2) {
                                         health = 25;
@@ -161,26 +182,11 @@ public class SunflowerPointCavemanEvent {
                                             }
                                         }
                                     }
-                                    if (player.hasEffect(ChangShengJueEffects.FEN_JIU.get())) {
-                                        if (!player.getAbilities().instabuild) {
-                                            player.getFoodData().eat((int) -(3 - (3 * 0.25)), (float) -(2 - (2 * 0.25)));//消耗饱食度
-                                        }
-                                        sunflowerPointCaveman.setSunflowerPointCavemanUseCooldownPercent(!player.getAbilities().instabuild ? (180 - (180 * 0.15f)) : 0);
-                                    } else if (player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get())) {
-                                        if (!player.getAbilities().instabuild) {
-                                            player.getFoodData().eat((int) -(3 - (3 * 0.2)), (float) -(2 - (2 * 0.2)));//消耗饱食度
-                                        }
-                                        sunflowerPointCaveman.setSunflowerPointCavemanUseCooldownPercent(!player.getAbilities().instabuild ? (180 - (180 * 0.2f)) : 0);
-                                    } else if (player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get())) {
-                                        if (!player.getAbilities().instabuild) {
-                                            player.getFoodData().eat((int) -(3 - (3 * 0.15)), (float) -(2 - (2 * 0.15)));//消耗饱食度
-                                        }
-                                        sunflowerPointCaveman.setSunflowerPointCavemanUseCooldownPercent(!player.getAbilities().instabuild ? (180 - (180 * 0.25f)) : 0);
-                                    } else {
-                                        if (!player.getAbilities().instabuild) {
-                                            player.getFoodData().eat(-(3), (float) -(2));//消耗饱食度
-                                        }
-                                        sunflowerPointCaveman.setSunflowerPointCavemanUseCooldownPercent(!player.getAbilities().instabuild ? 180 : 0);
+                                    if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())){
+                                        player.setHealth(player.getHealth() + 1);
+                                    }
+                                    if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())){
+                                        player.getFoodData().eat(1,0);
                                     }
                                     if (sunflowerPointCaveman.getSunflowerPointCavemanUseCount() < 100) {
                                         sunflowerPointCaveman.addSunflowerPointCavemanUseCount(!player.getAbilities().instabuild ? 1 : 100);

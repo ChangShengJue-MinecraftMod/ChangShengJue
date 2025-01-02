@@ -1,10 +1,10 @@
-// 1.20.1	2024-12-24T15:18:53.6846963	Tags for minecraft:item mod id chang_sheng_jue
+// 1.20.1	2025-01-02T14:33:47.1117458	Tags for minecraft:item mod id chang_sheng_jue
 053c60963f1ba310289d3ab69792aed0b1ed0c01 data/chang_sheng_jue/tags/items/artifact.json
 07ecd0eb3ab21efc7faa1276d80bec0779c1300d data/chang_sheng_jue/tags/items/doors.json
 fc9adbc914d58ba011b7360db65ceafe041ec19c data/chang_sheng_jue/tags/items/huang_hua_li_log.json
 8398dd3b781973607469305269c05e6fde0edff1 data/chang_sheng_jue/tags/items/ji_chi_mu_log.json
 0aa1ba5e394b14527494021858f4bcf5206fa757 data/chang_sheng_jue/tags/items/log.json
-37cc6f20a8f884d1e6d7db3579db5a3ff8472288 data/chang_sheng_jue/tags/items/mj_book.json
+5bee270246b102c15bd7742bbcaf810044f0de15 data/chang_sheng_jue/tags/items/mj_book.json
 883c9e4be3b2c437119b125eb9a4d0563a1af0b7 data/chang_sheng_jue/tags/items/mulberry_log.json
 b4dd3ec7767810f42f59bffc631bfbf734c395b5 data/chang_sheng_jue/tags/items/poplar_log.json
 65a7d6449d0d549471a825e83180583866846a71 data/chang_sheng_jue/tags/items/zi_tan_log.json

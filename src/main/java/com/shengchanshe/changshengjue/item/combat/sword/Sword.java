@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.item.combat.sword;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.dugu_nine_swords.DuguNineSwordsClientData;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
@@ -118,8 +119,22 @@ public class Sword extends SwordItem {
             if (martialArtsLevel != 0) {
                 ItemStack itemstack = player.getMainHandItem();//获取玩家手中物品
                 if (!player.getAbilities().instabuild) {
-                    int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
-                    player.getFoodData().eat(-foodLevel, -1);//消耗饱食度
+                    player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
+                        int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
+                        if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() >= 1){
+                            player.getFoodData().eat(-foodLevel + 1, -1);//消耗饱食度
+                            if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 1000){
+                                theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
+                            }
+                        }else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() > 1){
+                            player.getFoodData().eat(-foodLevel + 2, -1);//消耗饱食度
+                            if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 1000){
+                                theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
+                            }
+                        }else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() < 1){
+                            player.getFoodData().eat(-foodLevel, -1);//消耗饱食度
+                        }
+                    });
                     player.getCooldowns().addCooldown(itemstack.getItem(), player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) ? 125 : 140);//添加使用冷却
                 }
                 for (Entity entity : entities) {//遍历包围盒中的实体

@@ -38,7 +38,7 @@ public class SunflowerPointCavemanHudOverlay {
     }
 
     public static float frameTimeMax() {
-        return 8;
+        return 180;
     }
 
     public static boolean playerCanOpened() {

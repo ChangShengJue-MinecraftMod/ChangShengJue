@@ -7,8 +7,12 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket2;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.hercules.HerculesPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.hercules.HerculesPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket2;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiPacket;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
@@ -188,6 +192,34 @@ public class ChangShengJueMessages {
                 .decoder(YugongMovesMountainsPacket::new)
                 .encoder(YugongMovesMountainsPacket::toBytes)
                 .consumerMainThread(YugongMovesMountainsPacket::handle)
+                .add();
+        //易筋经
+        net.messageBuilder(TheClassicsOfTendonChangingPacket.class, id())
+                .decoder(TheClassicsOfTendonChangingPacket::new)
+                .encoder(TheClassicsOfTendonChangingPacket::toBytes)
+                .consumerMainThread(TheClassicsOfTendonChangingPacket::handle)
+                .add();
+        //乾坤大挪移
+        net.messageBuilder(QianKunDaNuoYiPacket.class, id())
+                .decoder(QianKunDaNuoYiPacket::new)
+                .encoder(QianKunDaNuoYiPacket::toBytes)
+                .consumerMainThread(QianKunDaNuoYiPacket::handle)
+                .add();
+        net.messageBuilder(QianKunDaNuoYiPacket2.class, id(),NetworkDirection.PLAY_TO_SERVER)
+                .decoder(QianKunDaNuoYiPacket2::new)
+                .encoder(QianKunDaNuoYiPacket2::toBytes)
+                .consumerMainThread(QianKunDaNuoYiPacket2::handle)
+                .add();
+        //大力神功
+        net.messageBuilder(HerculesPacket.class, id())
+                .decoder(HerculesPacket::new)
+                .encoder(HerculesPacket::toBytes)
+                .consumerMainThread(HerculesPacket::handle)
+                .add();
+        net.messageBuilder(HerculesPacket2.class, id(),NetworkDirection.PLAY_TO_SERVER)
+                .decoder(HerculesPacket2::new)
+                .encoder(HerculesPacket2::toBytes)
+                .consumerMainThread(HerculesPacket2::handle)
                 .add();
     }
 

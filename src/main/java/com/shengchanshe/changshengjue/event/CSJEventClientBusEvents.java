@@ -8,7 +8,9 @@ import com.shengchanshe.changshengjue.cilent.hud.martial_arts.gao_marksmanship.G
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_bell_jar.GoldenBellJarHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodHudOverlay;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.hercules.HerculesHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle.ImmortalMiracleHudOverlay;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.relentless_throwing_knives.RelentlessThrowingKnivesHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.shaolin_stick_method.ShaolinStickMethodHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_caveman.SunflowerPointCavemanHudOverlay;
@@ -83,6 +85,8 @@ public class CSJEventClientBusEvents {
         event.registerAboveAll("ge_shan_da_niu_hud", GeShanDaNiuHudOverlay.HUD_GE_SHAN_DA_NIU);
         event.registerAboveAll("turtle_breath_work_hud", TurtleBreathWorkHudOverlay.HUD_TURTLE_BREATH_WORK);
         event.registerAboveAll("relentless_throwing_knives_hud", RelentlessThrowingKnivesHudOverlay.HUD_RELENTLESS_THROWING_KNIVES);
+        event.registerAboveAll("qian_kun_da_nuo_yi_hud", QianKunDaNuoYiHudOverlay.HUD_QIAN_KUN_DA_NUO_YI);
+        event.registerAboveAll("hercules_hud", HerculesHudOverlay.HUD_HERCULES);
     }
 
     @SubscribeEvent

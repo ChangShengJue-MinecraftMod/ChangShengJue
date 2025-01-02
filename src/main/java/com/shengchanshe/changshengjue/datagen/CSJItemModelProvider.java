@@ -87,6 +87,8 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.XUANNU_SWORDSMANSHIP);
         simpleItem(ChangShengJueItems.YUGONG_MOVES_MOUNTAINS);
         simpleItem(ChangShengJueItems.ZHANG_MEN_XIN_XUE);
+        simpleItem(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING);
+        simpleItem(ChangShengJueItems.QIAN_KUN_DA_NUO_YI);
 
         //护甲
         //棉甲

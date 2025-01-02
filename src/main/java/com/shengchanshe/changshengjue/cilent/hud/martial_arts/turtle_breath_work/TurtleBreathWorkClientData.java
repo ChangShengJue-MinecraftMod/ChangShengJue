@@ -1,5 +1,7 @@
 package com.shengchanshe.changshengjue.cilent.hud.martial_arts.turtle_breath_work;
 
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_caveman.SunflowerPointCavemanClientData;
+
 public class TurtleBreathWorkClientData {
     // 玩家的技能等级和是否学习了技能
     private static int turtleBreathWorkLevel;
@@ -9,7 +11,10 @@ public class TurtleBreathWorkClientData {
     private static float turtleBreathWorkToppedTick;//技能领悟特效计时
     private static float turtleBreathWorkDachengTick;//技能大成特效计时
     private static boolean turtleBreathWorkParticle;//技能特效显示
-
+    // 技能状态
+    private static boolean skillZActive;
+    private static boolean skillXActive;
+    private static boolean skillCActive;
     //获取技能等级
     public static int getTurtleBreathWorkLevel() {
         return turtleBreathWorkLevel;
@@ -65,5 +70,28 @@ public class TurtleBreathWorkClientData {
 
     public static void setTurtleBreathWorkParticle(boolean turtleBreathWorkParticle) {
         TurtleBreathWorkClientData.turtleBreathWorkParticle = turtleBreathWorkParticle;
+    }
+    public static boolean isSkillZActive() {
+        return skillZActive;
+    }
+
+    public static void setSkillZActive(boolean skillZActive) {
+        TurtleBreathWorkClientData.skillZActive = skillZActive;
+    }
+
+    public static boolean isSkillXActive() {
+        return skillXActive;
+    }
+
+    public static void setSkillXActive(boolean skillXActive) {
+        TurtleBreathWorkClientData.skillXActive = skillXActive;
+    }
+
+    public static boolean isSkillCActive() {
+        return skillCActive;
+    }
+
+    public static void setSkillCActive(boolean skillCActive) {
+        TurtleBreathWorkClientData.skillCActive = skillCActive;
     }
 }
