@@ -1,4 +1,4 @@
-// 1.20.1	2024-11-15T16:32:51.8381372	Tags for minecraft:block mod id chang_sheng_jue
+// 1.20.1	2025-01-03T09:52:31.5607409	Tags for minecraft:block mod id chang_sheng_jue
 c12c1ab3ac023304f352a1c9fcdb427fc93ecd91 data/chang_sheng_jue/tags/blocks/bricks.json
 07ecd0eb3ab21efc7faa1276d80bec0779c1300d data/chang_sheng_jue/tags/blocks/doors.json
 fc9adbc914d58ba011b7360db65ceafe041ec19c data/chang_sheng_jue/tags/blocks/huang_hua_li_log.json
@@ -6,6 +6,7 @@ fc9adbc914d58ba011b7360db65ceafe041ec19c data/chang_sheng_jue/tags/blocks/huang_
 0aa1ba5e394b14527494021858f4bcf5206fa757 data/chang_sheng_jue/tags/blocks/log.json
 75ee6e5e0ec732b9debc9b9439647e5c12839707 data/chang_sheng_jue/tags/blocks/mei_ren_kao.json
 883c9e4be3b2c437119b125eb9a4d0563a1af0b7 data/chang_sheng_jue/tags/blocks/mulberry_log.json
+3860ac154c185cc8795018c538abd2ac02b16fff data/chang_sheng_jue/tags/blocks/painting.json
 b4dd3ec7767810f42f59bffc631bfbf734c395b5 data/chang_sheng_jue/tags/blocks/poplar_log.json
 0623422bca47307a640d9e77df632944fae58dff data/chang_sheng_jue/tags/blocks/tile.json
 1e15caccf4f9838bf02db30aa14cd42cdca28eb1 data/chang_sheng_jue/tags/blocks/windows.json

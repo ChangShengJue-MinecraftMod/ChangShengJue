@@ -2,7 +2,7 @@ package com.shengchanshe.changshengjue.item.items;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import com.shengchanshe.changshengjue.util.CSJTags;
+import com.shengchanshe.changshengjue.tags.CSJTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;

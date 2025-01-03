@@ -3,7 +3,7 @@ package com.shengchanshe.changshengjue.datagen;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import com.shengchanshe.changshengjue.util.CSJTags;
+import com.shengchanshe.changshengjue.tags.CSJTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -73,6 +73,20 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get())
                 .add(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get())
                 .add(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get());
+
+        this.tag(CSJTags.Items.DRINKS)
+                .add(ChangShengJueItems.BILUOCHUN_TEAS.get())
+                .add(ChangShengJueItems.LONG_JING_TEAS.get())
+                .add(ChangShengJueItems.FEN_JIU.get())
+                .add(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get())
+                .add(ChangShengJueItems.SHI_LI_XIANG.get());
+
+        this.tag(CSJTags.Items.PAINTING)
+                .add(Item.byBlock(ChangShengJueBlocks.PAINTING_SCROLL.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get()));
+
 
         this.tag(CSJTags.Items.ARTIFACT)
                 .add(ChangShengJueItems.BEAT_DOG_STICK.get())

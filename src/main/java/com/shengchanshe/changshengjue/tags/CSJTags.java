@@ -1,4 +1,4 @@
-package com.shengchanshe.changshengjue.util;
+package com.shengchanshe.changshengjue.tags;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import net.minecraft.resources.ResourceLocation;
@@ -21,6 +21,7 @@ public class CSJTags {
         public static final TagKey<Block> TILE = tag("tile");
         public static final TagKey<Block> WINDOWS = tag("windows");
         public static final TagKey<Block> BRICKS = tag("bricks");
+        public static final TagKey<Block> PAINTING = tag("painting");
 
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(ChangShengJue.MOD_ID, name));
@@ -39,7 +40,8 @@ public class CSJTags {
         public static final TagKey<Item> WINDOWS = tag("windows");
         public static final TagKey<Item> MJ_BOOK = tag("mj_book");
         public static final TagKey<Item> ARTIFACT = tag("artifact");
-
+        public static final TagKey<Item> DRINKS = tag("drinks");
+        public static final TagKey<Item> PAINTING = tag("painting");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(ChangShengJue.MOD_ID, name));

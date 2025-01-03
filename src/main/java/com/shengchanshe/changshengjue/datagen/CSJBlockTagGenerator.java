@@ -2,12 +2,10 @@ package com.shengchanshe.changshengjue.datagen;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
-import com.shengchanshe.changshengjue.util.CSJTags;
+import com.shengchanshe.changshengjue.tags.CSJTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
@@ -108,6 +106,12 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK.get())
                 .add(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_1.get())
                 .add(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_2.get());
+
+        this.tag(CSJTags.Blocks.PAINTING)
+                .add(ChangShengJueBlocks.PAINTING_SCROLL.get())
+                .add(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get())
+                .add(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get())
+                .add(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get());
         //砖
         this.tag(CSJTags.Blocks.BRICKS)
                 .add(ChangShengJueBlocks.WHITE_FINE_BRICKS.get())

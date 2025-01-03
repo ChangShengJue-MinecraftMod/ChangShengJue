@@ -3,7 +3,7 @@ package com.shengchanshe.changshengjue.datagen;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import com.shengchanshe.changshengjue.util.CSJTags;
+import com.shengchanshe.changshengjue.tags.CSJTags;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
