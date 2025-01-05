@@ -1,5 +1,6 @@
 package com.shengchanshe.changshengjue.item.combat.knife;
 
+import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
@@ -7,15 +8,19 @@ import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_black_knife
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntity;
+import com.shengchanshe.changshengjue.entity.combat.tu_long_dao.TuLongDaoAttackEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.GoldenBlackKnifeMethodPacket;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -73,7 +78,14 @@ public class Knife extends SwordItem {
                     }
                 }
             });
+            if (pPlayer.getMainHandItem().is(ChangShengJueItems.TU_LONG_DAO.get())){
+                TuLongDaoAttackEntity tuLongDaoEntity = new TuLongDaoAttackEntity(ChangShengJueEntity.TU_LONG_DAO_ATTACK.get(), pPlayer.level());
+                tuLongDaoEntity.moveTo(entity.position().add(0, entity.getEyeHeight(), 0).add(entity.getForward().scale(0)));
+                tuLongDaoEntity.setYRot(pPlayer.getYRot());
+                pPlayer.level().addFreshEntity(tuLongDaoEntity);
+            }
         }
+
         return super.onLeftClickEntity(stack, pPlayer, entity);
     }
 
@@ -163,7 +175,10 @@ public class Knife extends SwordItem {
                     if (player.isPickable() && player.distanceToSqr(entity) < radius * radius && entity instanceof LivingEntity && entity.isAlive()) {
                         float damage1 = this.getDamage();
                         float damage = goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel() < 2 ? (damage1 + 2) * 1.3F : (damage1 + 2) * 1.6F;
-                        if (entity.hurt(player.damageSources().playerAttack(player), damage)) {//造成伤害
+                        if (entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
+                                .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player),
+                                player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
+
                             if (goldenBlackKnifeMethod.getGoldenBlackKnifeMethodUseCount() < 100) {
                                 goldenBlackKnifeMethod.addGoldenBlackKnifeMethodUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (goldenBlackKnifeMethod.getGoldenBlackKnifeMethodUseCount() >= 100){

@@ -67,24 +67,13 @@ public class BaWangQiang extends Lance implements GeoItem {
             }
         });
     }
-
     @Override
-    public void inventoryTick(ItemStack pStack, Level pLevel, Entity pEntity, int pSlotId, boolean pIsSelected) {
-        super.inventoryTick(pStack, pLevel, pEntity, pSlotId, pIsSelected);
-        // 获取物品当前的所有附魔
-        Map<Enchantment, Integer> enchantments = EnchantmentHelper.getEnchantments(pStack);
-        // 如果物品没有 MENDING 附魔，就添加 MENDING 1级
-        if (!enchantments.containsKey(Enchantments.MENDING)) {
-            enchantments.put(Enchantments.MENDING, 1);
-        }
-        // 如果物品没有 SWEEPING_EDGE 附魔，就添加 SWEEPING_EDGE 3级
-        if (!enchantments.containsKey(Enchantments.SWEEPING_EDGE)) {
-            enchantments.put(Enchantments.SWEEPING_EDGE, 3);
-        }
-        // 将附魔设置回物品
-        EnchantmentHelper.setEnchantments(enchantments, pStack);
+    public ItemStack getDefaultInstance() {
+        ItemStack stack = new ItemStack(this);
+        stack.enchant(Enchantments.MENDING, 1);
+        stack.enchant(Enchantments.SWEEPING_EDGE, 3);
+        return stack;
     }
-
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(((new AnimationController<>(this, "idle",0, (state) ->

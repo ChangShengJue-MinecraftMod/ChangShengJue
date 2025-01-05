@@ -1,14 +1,12 @@
-package com.shengchanshe.changshengjue.item.combat.armor.qi_tian_ta_sheng;
+package com.shengchanshe.changshengjue.item.combat.armor.qi_tian_da_sheng;
 
 import com.shengchanshe.changshengjue.item.render.combat.armor.qi_tian_ta_sheng.QiTianDaShengRender;
-import com.shengchanshe.changshengjue.item.render.combat.armor.walker_set.WalkerSetRender;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoItem;

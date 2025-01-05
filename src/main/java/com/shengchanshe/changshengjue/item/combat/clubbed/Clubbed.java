@@ -1,24 +1,28 @@
 package com.shengchanshe.changshengjue.item.combat.clubbed;
 
+import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodClientData;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.shaolin_stick_method.ShaolinStickMethodClientData;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
-import com.shengchanshe.changshengjue.item.combat.lance.Lance;
+import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
+import com.shengchanshe.changshengjue.entity.combat.beat_dog_stick.BeatDogStickAttackEntity;
+import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ShaolinStickMethodPacket;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
@@ -26,9 +30,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class Clubbed extends SwordItem {
     public Clubbed(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
@@ -81,6 +82,12 @@ public class Clubbed extends SwordItem {
                     }
                 }
             });
+            if (pPlayer.getMainHandItem().is(ChangShengJueItems.BEAT_DOG_STICK.get())){
+                BeatDogStickAttackEntity beatDogStickEntity = new BeatDogStickAttackEntity(ChangShengJueEntity.BEAT_DOG_STICK_ATTACK.get(), pPlayer.level());
+                beatDogStickEntity.moveTo(entity.position().add(0, entity.getEyeHeight(), 0).add(entity.getForward().scale(0)));
+                beatDogStickEntity.setYRot(pPlayer.getYRot());
+                pPlayer.level().addFreshEntity(beatDogStickEntity);
+            }
         }
         return super.onLeftClickEntity(stack, pPlayer, entity);
     }
@@ -161,7 +168,16 @@ public class Clubbed extends SwordItem {
                                 ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 14, 1, false, false), player);
                             }
                         }
-                        if (entity.hurt(player.damageSources().playerAttack(player), player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
+//                        if (new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
+//                                .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player)
+//                                .is(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts")))) {
+//                            entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).
+//                                    getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player), 1);
+//                        }
+
+                        if (entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
+                                .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player)
+                                , player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
                             if (shaolinStickMethod.getShaolinStickMethodUseCount() < 100) {
                                 shaolinStickMethod.addShaolinStickMethodUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (shaolinStickMethod.getShaolinStickMethodUseCount() >= 100) {

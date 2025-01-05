@@ -5,9 +5,14 @@ import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.client.render.*;
 import com.shengchanshe.changshengjue.entity.client.render.combat.ge_shan_da_niu.GeShanDaNiuRender;
 import com.shengchanshe.changshengjue.entity.client.render.combat.stakes.StakesRender;
+import com.shengchanshe.changshengjue.entity.combat.ba_wang_qiang.BaWangQiangAttackEntityRender;
+import com.shengchanshe.changshengjue.entity.combat.beat_dog_stick.BeatDogStickAttackEntityRender;
 import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntityRender;
 import com.shengchanshe.changshengjue.entity.client.render.combat.throwingknives.ThrowingKnivesEntityEntityRender;
 import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntityRender;
+import com.shengchanshe.changshengjue.entity.combat.tu_long_dao.TuLongDaoAttackEntityRender;
+import com.shengchanshe.changshengjue.entity.combat.yi_tian_jian.YiTianJianAttackEntity;
+import com.shengchanshe.changshengjue.entity.combat.yi_tian_jian.YiTianJianAttackEntityRender;
 import com.shengchanshe.changshengjue.entity.villagers.render.ChangShengJueVillagerRender;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.item.combat.armor.DyeableChineseWeddingDressItem;
@@ -220,6 +225,10 @@ public class ClientSetup {
 
         EntityRenderers.register(ChangShengJueEntity.DUGU_NINE_SOWRDS_ENTITY.get(), DuguNineSwordsEntityRender::new);
         EntityRenderers.register(ChangShengJueEntity.GOLDEN_BLACK_KNIFE_METHOD_ENTITY.get(), GoldenBlackKnifeMethodEntityRender::new);
+        EntityRenderers.register(ChangShengJueEntity.BEAT_DOG_STICK_ATTACK.get(), BeatDogStickAttackEntityRender::new);
+        EntityRenderers.register(ChangShengJueEntity.TU_LONG_DAO_ATTACK.get(), TuLongDaoAttackEntityRender::new);
+        EntityRenderers.register(ChangShengJueEntity.BA_WANG_QIANG_ATTACK.get(), BaWangQiangAttackEntityRender::new);
+        EntityRenderers.register(ChangShengJueEntity.YI_TIAN_JIAN_ATTACK.get(), YiTianJianAttackEntityRender::new);
         EntityRenderers.register(ChangShengJueEntity.STAKES.get(), StakesRender::new);
     }
 }

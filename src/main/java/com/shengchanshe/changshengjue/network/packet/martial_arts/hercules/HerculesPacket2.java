@@ -31,7 +31,7 @@ import java.util.function.Supplier;
 public class HerculesPacket2 {
 //    int key;
     String key;
-    private static final Component CONTAINER_TITLE = Component.translatable("container.enderchest");
+    private static final Component CONTAINER_TITLE = Component.translatable("container.hercules");
     public HerculesPacket2(String key) {
         this.key = key;
     }

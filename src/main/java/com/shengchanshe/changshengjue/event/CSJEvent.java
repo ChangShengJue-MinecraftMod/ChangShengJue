@@ -33,6 +33,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mount
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
+import com.shengchanshe.changshengjue.event.armor.ArmorEvent;
 import com.shengchanshe.changshengjue.event.martial_arts.*;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
@@ -747,6 +748,8 @@ public class CSJEvent {
         TheClassicsOfTendonChangingEvent.onEntityHurt(event);
         QianKunDaNuoYiEvent.onEntityHurt(event);
         HerculesEvent.onEntityHurt(event);
+
+        ArmorEvent.onArmorDamage(event);
     }
     //生物死亡事件
     @SubscribeEvent

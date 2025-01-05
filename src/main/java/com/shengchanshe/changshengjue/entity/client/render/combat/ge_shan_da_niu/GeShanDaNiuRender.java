@@ -12,7 +12,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 public class GeShanDaNiuRender extends GeoEntityRenderer<GeShanDaNiuEntity> {
     public GeShanDaNiuRender(EntityRendererProvider.Context renderManager) {
-        super(renderManager,new DefaultedEntityGeoModel(new ResourceLocation(ChangShengJue.MOD_ID,"ge_shan_da_niu")));
+        super(renderManager,new DefaultedEntityGeoModel<>(new ResourceLocation(ChangShengJue.MOD_ID,"ge_shan_da_niu")));
     }
 
     @Override

@@ -1,9 +1,7 @@
 package com.shengchanshe.changshengjue.item.render.combat.armor.qi_tian_ta_sheng;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
-import com.shengchanshe.changshengjue.item.combat.armor.qi_tian_ta_sheng.QiTianDaSheng;
-import com.shengchanshe.changshengjue.item.combat.armor.walker_set.WalkerSet;
-import com.shengchanshe.changshengjue.item.render.combat.armor.walker_set.layer.WalkerSetHelmetLayer;
+import com.shengchanshe.changshengjue.item.combat.armor.qi_tian_da_sheng.QiTianDaSheng;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.DefaultedItemGeoModel;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;

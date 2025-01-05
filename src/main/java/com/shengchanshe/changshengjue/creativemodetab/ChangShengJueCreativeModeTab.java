@@ -336,11 +336,11 @@ public class ChangShengJueCreativeModeTab {
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_COMBAT = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("cahng_sheng_jue_combat",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_combat")).icon(() ->
-                    new ItemStack(ChangShengJueItems.TU_LONG_DAO.get())).displayItems((parameters,output)->{
-                output.accept(ChangShengJueItems.BEAT_DOG_STICK.get());
-                output.accept(ChangShengJueItems.YI_TINA_JIAN.get());
-                output.accept(ChangShengJueItems.TU_LONG_DAO.get());
-                output.accept(ChangShengJueItems.BA_WANG_QIANG.get());
+                    ChangShengJueItems.TU_LONG_DAO.get().getDefaultInstance()).displayItems((parameters,output)->{
+                output.accept(ChangShengJueItems.BEAT_DOG_STICK.get().getDefaultInstance());
+                output.accept(ChangShengJueItems.YI_TINA_JIAN.get().getDefaultInstance());
+                output.accept(ChangShengJueItems.TU_LONG_DAO.get().getDefaultInstance());
+                output.accept(ChangShengJueItems.BA_WANG_QIANG.get().getDefaultInstance());
                 output.accept(ChangShengJueItems.BRONZE_SWORD.get());
                 output.accept(ChangShengJueItems.HAN_JIAN.get());
                 output.accept(ChangShengJueItems.HENG_DAO.get());

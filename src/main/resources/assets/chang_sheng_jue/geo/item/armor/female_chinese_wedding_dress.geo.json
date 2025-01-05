@@ -63,7 +63,24 @@
 					"pivot": [0, 24, 0],
 					"cubes": [
 						{"origin": [-4, 12, -2], "size": [8, 12, 4], "inflate": 0.3, "uv": [3, 25]},
-						{"origin": [-4, 12, -2], "size": [8, 12, 4], "inflate": 0.5, "uv": [32, 25]}
+						{"origin": [-4, 12, -2], "size": [8, 12, 4], "inflate": 0.5, "uv": [32, 25]},
+						{"origin": [-4, 15, -2], "size": [8, 9, 4], "inflate": 0.7, "uv": [36, 78]}
+					]
+				},
+				{
+					"name": "bone13",
+					"parent": "bone2",
+					"pivot": [0, 14.3, -2.75],
+					"cubes": [
+						{"origin": [-4, 3.6, -2], "size": [8, 10, 0], "inflate": 0.7, "pivot": [0, 14.3, -2.75], "rotation": [-7.5, 0, 0], "uv": [40, 92]}
+					]
+				},
+				{
+					"name": "bone14",
+					"parent": "bone2",
+					"pivot": [0, 14.3, 2.75],
+					"cubes": [
+						{"origin": [-4, 4.6, 2], "size": [8, 9, 0], "inflate": 0.7, "pivot": [0, 14.3, 2.75], "rotation": [7.5, 0, 0], "uv": [57, 93]}
 					]
 				},
 				{

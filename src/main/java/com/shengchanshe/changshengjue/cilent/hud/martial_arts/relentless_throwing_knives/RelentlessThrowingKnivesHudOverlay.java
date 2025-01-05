@@ -58,39 +58,53 @@ public class RelentlessThrowingKnivesHudOverlay {
                 int getRelentlessThrowingKnivesLevel = RelentlessThrowingKnivesClientData.getRelentlessThrowingKnivesLevel();
                 // 通过宽高获得绘制的x，y
                 int x = 5;
-                int y = screenHeight / 2;
+                int y = (screenHeight / 2) - 40;
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
                 if (getRelentlessThrowingKnivesLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
                     if (frameTime() <= 0){ //获取技能剩余冷却时间,小于等于0则绘制技能贴图否则绘制冷却中的技能贴图
-                        if (getRelentlessThrowingKnivesLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
-                            CSJDisplayHud.displayHud(guiGraphics, RELENTLESS_THROWING_KNIVES, x, y);
-                        } else {
-                            CSJDisplayHud.displayHud(guiGraphics,RELENTLESS_THROWING_KNIVES_1,x,y);
-                        }
-                        if (!playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图
+                        if (playerCanOpened()) {
+                            if (getRelentlessThrowingKnivesLevel < 2) {
+                                CSJDisplayHud.displayHud(guiGraphics, RELENTLESS_THROWING_KNIVES, x, y);
+                            } else {
+                                CSJDisplayHud.displayHud(guiGraphics,RELENTLESS_THROWING_KNIVES_1,x,y);
+                            }
+                        }else {
+                            if (getRelentlessThrowingKnivesLevel < 2) {
+                                CSJDisplayHud.displayHud(guiGraphics, RELENTLESS_THROWING_KNIVES, x, y);
+                            } else {
+                                CSJDisplayHud.displayHud(guiGraphics,RELENTLESS_THROWING_KNIVES_1,x,y);
+                            }
                             CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
                         }
                     }else{
-                        float v = ((frameTime() / 20) / 8);
-                        int v1 = (int) (16 * v + 1);//计算技能剩余冷却时间
-                        if (getRelentlessThrowingKnivesLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
-                            CSJDisplayHud.displayHud(guiGraphics,RELENTLESS_THROWING_KNIVES,x,y);
-                            CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                            guiGraphics.blit(RELENTLESS_THROWING_KNIVES, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
-                        } else {
-                            CSJDisplayHud.displayHud(guiGraphics,RELENTLESS_THROWING_KNIVES_1,x,y);
-                            CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                            guiGraphics.blit(RELENTLESS_THROWING_KNIVES_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
-                        }
-                        if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图并渲染技能剩余冷却时间
-                            //以文字形式绘制剩余冷却时间
-                            guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(v * 8)).toString(),x + 1, y + 5, ChatFormatting.AQUA.getColor());
+                        float frameTimeMax_ = 8 / 20F;
+                        float frameTime_ = ((frameTime() / 20.0F) / frameTimeMax_);
+                        int v1 = (int) (16 * frameTime_ + 1);//计算技能剩余冷却时间
+                        if (playerCanOpened()) {
+                            if (getRelentlessThrowingKnivesLevel < 2) {
+                                CSJDisplayHud.displayHud(guiGraphics,RELENTLESS_THROWING_KNIVES,x,y);
+                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+                                guiGraphics.blit(RELENTLESS_THROWING_KNIVES, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+                            } else {
+                                CSJDisplayHud.displayHud(guiGraphics,RELENTLESS_THROWING_KNIVES_1,x,y);
+                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+                                guiGraphics.blit(RELENTLESS_THROWING_KNIVES_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+                            }
+                            guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(frameTime_ * frameTimeMax_)).toString(),x + 1, y + 5, ChatFormatting.AQUA.getColor());
                         }else {
-
+                            if (getRelentlessThrowingKnivesLevel < 2) {
+                                CSJDisplayHud.displayHud(guiGraphics,RELENTLESS_THROWING_KNIVES,x,y);
+                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+                                guiGraphics.blit(RELENTLESS_THROWING_KNIVES, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+                            } else {
+                                CSJDisplayHud.displayHud(guiGraphics,RELENTLESS_THROWING_KNIVES_1,x,y);
+                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+                                guiGraphics.blit(RELENTLESS_THROWING_KNIVES_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+                            }
                             CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                            guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(v * 8)).toString(),x + 1, y + 5, ChatFormatting.AQUA.getColor());
+                            guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(frameTime_ * frameTimeMax_)).toString(),x + 1, y + 5, ChatFormatting.AQUA.getColor());
                         }
                     }
                 }else {

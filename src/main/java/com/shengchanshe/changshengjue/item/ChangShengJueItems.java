@@ -6,7 +6,7 @@ import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.combat.armor.cotton.CottonArmor;
 import com.shengchanshe.changshengjue.item.combat.armor.flying_fish_robe.FlyingFishRobe;
 import com.shengchanshe.changshengjue.item.combat.armor.mountain_pattern_armor.MountainPatternArmor;
-import com.shengchanshe.changshengjue.item.combat.armor.qi_tian_ta_sheng.QiTianDaSheng;
+import com.shengchanshe.changshengjue.item.combat.armor.qi_tian_da_sheng.QiTianDaSheng;
 import com.shengchanshe.changshengjue.item.combat.armor.taoistrobes.FemaleTaoistRobes;
 import com.shengchanshe.changshengjue.item.combat.armor.taoistrobes.MaleTaoistRobes;
 import com.shengchanshe.changshengjue.item.combat.armor.walker_set.WalkerSet;
@@ -279,8 +279,7 @@ public class ChangShengJueItems {
             ()-> new Item(new Item.Properties()));
 
     //石灰
-    public static final RegistryObject<Item> QUICKLIME = ITEMS.register("quicklime",
-            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> QUICKLIME = ITEMS.register("quicklime", ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> LIME_SLURRY_BARRELS = ITEMS.register("lime_slurry_barrels", LimeSlurryBarrels::new);
     public static final RegistryObject<Item> WARM_LIME_SLURRY_BARRELS = ITEMS.register("warm_lime_slurry_barrels", LimeSlurryBarrels::new);
     public static final RegistryObject<Item> COOL_LIME_SLURRY_BARRELS = ITEMS.register("cool_lime_slurry_barrels", LimeSlurryBarrels::new);

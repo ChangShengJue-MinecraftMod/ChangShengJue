@@ -1,5 +1,6 @@
 package com.shengchanshe.changshengjue.item.combat.sword;
 
+import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
@@ -7,14 +8,19 @@ import com.shengchanshe.changshengjue.cilent.hud.martial_arts.dugu_nine_swords.D
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntity;
+import com.shengchanshe.changshengjue.entity.combat.yi_tian_jian.YiTianJianAttackEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.DuguNineSwordsPacket;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -85,6 +91,12 @@ public class Sword extends SwordItem {
                     }
                 }
             });
+            if (player.getMainHandItem().is(ChangShengJueItems.YI_TINA_JIAN.get())){
+                YiTianJianAttackEntity yiTianJianAttackEntity = new YiTianJianAttackEntity(ChangShengJueEntity.YI_TIAN_JIAN_ATTACK.get(), player.level());
+                yiTianJianAttackEntity.moveTo(entity.position().add(0, entity.getEyeHeight(), 0).add(entity.getForward().scale(0)));
+                yiTianJianAttackEntity.setYRot(player.getYRot());
+                player.level().addFreshEntity(yiTianJianAttackEntity);
+            }
         }
         return super.onLeftClickEntity(stack, player, entity);
     }
@@ -158,7 +170,9 @@ public class Sword extends SwordItem {
                                 }
                             }
                         }
-                        if (entity.hurt(player.damageSources().playerAttack(player), damage)) {//造成伤害
+                        if (entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
+                                        .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player),
+                                player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
                             if (duguNineSword.getDuguNineSwordsUseCount() < 100) {
                                 duguNineSword.addDuguNineSwordsUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (duguNineSword.getDuguNineSwordsUseCount() >= 100){

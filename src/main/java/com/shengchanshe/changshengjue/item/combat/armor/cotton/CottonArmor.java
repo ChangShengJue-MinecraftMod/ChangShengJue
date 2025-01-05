@@ -1,9 +1,11 @@
 package com.shengchanshe.changshengjue.item.combat.armor.cotton;
 
+import com.shengchanshe.changshengjue.damage.CSJDamageTypes;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.item.combat.armor.DyeableItem;
 import com.shengchanshe.changshengjue.item.render.combat.armor.cotton.CottonArmorRender;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -39,42 +41,6 @@ public class CottonArmor extends ArmorItem implements DyeableItem, GeoItem {
     public int getColor(ItemStack pStack) {
         return DyeableItem.super.getColor(pStack) != -1 ? DyeableItem.super.getColor(pStack) : 0x0000FF;
     }
-    @SubscribeEvent
-    public void onCottonArmorDamage(LivingDamageEvent event){
-        Level level = event.getEntity().level();
-        if (!level.isClientSide){
-            LivingEntity entity = event.getEntity();
-            if (entity != null && itemBySlot(entity)){
-                if (event.getSource().is(DamageTypes.ON_FIRE)){
-                    float originalDamage = event.getAmount();
-                    float increasedDamage = originalDamage * 2f;
-                    if (increasedDamage % originalDamage == 2){
-                        event.setAmount(increasedDamage / 2);
-                    }else {
-                        event.setAmount(increasedDamage);
-                    }
-                }
-                if (event.getSource().getDirectEntity() instanceof AbstractArrow){
-                    float probability = entity.getRandom().nextFloat();
-                    if (probability < 0.05F) {
-                        event.setCanceled(true);
-                    }
-                }
-            }
-        }
-    }
-    public boolean itemBySlot(LivingEntity entity){
-        boolean cottonArmor0 = entity.getItemBySlot(EquipmentSlot.HEAD).is(ChangShengJueItems.COTTON_ARMOR_FEATHER_HELMET.get())
-                && entity.getItemBySlot(EquipmentSlot.CHEST).is(ChangShengJueItems.COTTON_ARMOR_CHESTPLATE.get())
-                && entity.getItemBySlot(EquipmentSlot.LEGS).is(ChangShengJueItems.COTTON_ARMOR_LEGGINGS.get())
-                && entity.getItemBySlot(EquipmentSlot.FEET).is(ChangShengJueItems.COTTON_ARMOR_BOOTS.get());
-        boolean cottonArmor1 = entity.getItemBySlot(EquipmentSlot.HEAD).is(ChangShengJueItems.COTTON_ARMOR_WHITE_FEATHER_HELMET.get())
-                && entity.getItemBySlot(EquipmentSlot.CHEST).is(ChangShengJueItems.COTTON_ARMOR_CHESTPLATE.get())
-                && entity.getItemBySlot(EquipmentSlot.LEGS).is(ChangShengJueItems.COTTON_ARMOR_LEGGINGS.get())
-                && entity.getItemBySlot(EquipmentSlot.FEET).is(ChangShengJueItems.COTTON_ARMOR_BOOTS.get());
-        return cottonArmor0 || cottonArmor1;
-    }
-
 
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
