@@ -14,5 +14,13 @@
     "fixed": {
       "parent": "chang_sheng_jue:item/red_tasselled_spear_show"
     }
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "throwing" : 1
+      },
+      "model": "chang_sheng_jue:item/red_tasselled_spear_throwing"
+    }
+  ]
 }

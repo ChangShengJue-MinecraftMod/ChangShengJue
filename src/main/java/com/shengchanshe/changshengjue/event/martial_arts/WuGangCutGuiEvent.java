@@ -102,30 +102,30 @@ public class WuGangCutGuiEvent {
         }
     }
 
-    public static void onEntityHurt(LivingDamageEvent event){
-        Level level = event.getEntity().level();
-        if (!level.isClientSide){
-            if (event.getSource().getDirectEntity() instanceof Player directEntity){
-                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
-                    if (!directEntity.isShiftKeyDown()){
-                        event.setAmount(0);
-                    }
-                    directEntity.getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(wuGangCutGui -> {
-                        if (wuGangCutGui.isWuGangCutGuiComprehend() && wuGangCutGui.getWuGangCutGuiLevel() == 0) {
-                            float probability = directEntity.getRandom().nextFloat();
-                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
-                            if (probability < defaultProbability) {
-                                wuGangCutGui.addWuGangCutGuiLevel();
-                                wuGangCutGui.setWuGangCutGuiParticle(true);
-                                level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
-                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                            }
-                        }
-                    });
-                }
-            }
-        }
-    }
+//    public static void onEntityHurt(LivingDamageEvent event){
+//        Level level = event.getEntity().level();
+//        if (!level.isClientSide){
+//            if (event.getSource().getDirectEntity() instanceof Player directEntity){
+//                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
+//                    if (!directEntity.isShiftKeyDown()){
+//                        event.setAmount(0);
+//                    }
+//                    directEntity.getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(wuGangCutGui -> {
+//                        if (wuGangCutGui.isWuGangCutGuiComprehend() && wuGangCutGui.getWuGangCutGuiLevel() == 0) {
+//                            float probability = directEntity.getRandom().nextFloat();
+//                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
+//                            if (probability < defaultProbability) {
+//                                wuGangCutGui.addWuGangCutGuiLevel();
+//                                wuGangCutGui.setWuGangCutGuiParticle(true);
+//                                level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+//                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        }
+//    }
 
     public static void onInteract(PlayerInteractEvent event) {
         Player player = event.getEntity();

@@ -117,37 +117,37 @@ public class TreadTheSnowWithoutTraceEvent {
         }
     }
 
-    //生物受伤事件
-    public static void onEntityHurt(LivingDamageEvent event) {
-        Level level = event.getEntity().level();
-        if (!level.isClientSide) {
-            if (event.getSource().getDirectEntity() instanceof Player directEntity) {
-                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()) {
-                    if (!directEntity.isShiftKeyDown()) {
-                        event.setAmount(0);
-                    }
-                    directEntity.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
-                        if (treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend() && treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel() == 0) {
-                            float probability = directEntity.getRandom().nextFloat();
-                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
-                            if (probability < defaultProbability) {
-                                treadTheSnowWithoutTrace.addTreadTheSnowWithoutTraceLevel();
-                                treadTheSnowWithoutTrace.setTreadTheSnowWithoutTraceParticle(true);
-                                level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
-                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTracePacket(treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
-                                        treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend(),
-                                        treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent(),
-                                        treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceToppedTick(),
-                                        treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceDachengTick(),
-                                        treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceParticle()), (ServerPlayer) directEntity);
-                            }
-                        }
-                    });
-                }
-            }
-        }
-    }
+//    //生物受伤事件
+//    public static void onEntityHurt(LivingDamageEvent event) {
+//        Level level = event.getEntity().level();
+//        if (!level.isClientSide) {
+//            if (event.getSource().getDirectEntity() instanceof Player directEntity) {
+//                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()) {
+//                    if (!directEntity.isShiftKeyDown()) {
+//                        event.setAmount(0);
+//                    }
+//                    directEntity.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
+//                        if (treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend() && treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel() == 0) {
+//                            float probability = directEntity.getRandom().nextFloat();
+//                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
+//                            if (probability < defaultProbability) {
+//                                treadTheSnowWithoutTrace.addTreadTheSnowWithoutTraceLevel();
+//                                treadTheSnowWithoutTrace.setTreadTheSnowWithoutTraceParticle(true);
+//                                level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+//                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+//                                ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTracePacket(treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
+//                                        treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend(),
+//                                        treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent(),
+//                                        treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceToppedTick(),
+//                                        treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceDachengTick(),
+//                                        treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceParticle()), (ServerPlayer) directEntity);
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        }
+//    }
 
     public static void onKey(InputEvent.Key event) {
         if (mc.player == null) {

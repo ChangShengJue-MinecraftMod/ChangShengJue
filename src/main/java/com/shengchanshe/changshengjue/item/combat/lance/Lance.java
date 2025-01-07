@@ -34,7 +34,6 @@ import net.minecraft.world.phys.Vec3;
 public class Lance extends SwordItem {
     public Lance(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
         super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
-//        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @Override
@@ -45,6 +44,11 @@ public class Lance extends SwordItem {
                 if (gaoMarksmanship.gaoMarksmanshipComprehend() && gaoMarksmanshipLevel == 0) {
                     float probability = pPlayer.getRandom().nextFloat();
                     float defaultProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
+                    if (entity instanceof LivingEntity livingEntity) {
+                        if (probability < 0.15F) {
+                            livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 14, 1, false, true), entity);
+                        }
+                    }
                     if (probability < defaultProbability) {
                         gaoMarksmanship.addGaoMarksmanshipLevel();
                         gaoMarksmanship.setGaoMarksmanshipParticle(true);
@@ -92,34 +96,6 @@ public class Lance extends SwordItem {
         }
         return super.onLeftClickEntity(stack, pPlayer, entity);
     }
-//
-//    @SubscribeEvent
-//    public void onKnifeAttack(LivingDamageEvent event) {
-//        Level level = event.getEntity().level();
-//        if (!level.isClientSide) {
-//            if (event.getSource().getDirectEntity() instanceof Player directEntity) {
-//                LivingEntity entity = event.getEntity();
-//                directEntity.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
-//                    int gaoMarksmanshipLevel = gaoMarksmanship.getGaoMarksmanshipLevel();
-//                    if (gaoMarksmanshipLevel != 0) {
-//                        if (directEntity.getMainHandItem().getItem() == this) {
-//                            float probability = directEntity.getRandom().nextFloat();
-//                            float defaultProbability = 0.15F;
-//                            if (gaoMarksmanshipLevel < 2) {
-//                                if (probability < defaultProbability) {
-//                                    entity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 14, 1, false, false), directEntity);
-//                                }
-//                            } else {
-//                                if (probability < defaultProbability * 1.2) {
-//                                    entity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 14, 1, false, false), directEntity);
-//                                }
-//                            }
-//                        }
-//                    }
-//                });
-//            }
-//        }
-//    }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
@@ -128,14 +104,24 @@ public class Lance extends SwordItem {
             if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
                 if (!pLevel.isClientSide) {
                     pPlayer.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
-                        if (gaoMarksmanship.gaoMarksmanshipComprehend()) {
+                        if (gaoMarksmanship.gaoMarksmanshipComprehend() && !pPlayer.isShiftKeyDown()) {
                             this.onGaoMarksmanship(pLevel, pPlayer, gaoMarksmanship);
                         }
                     });
                 }
             }
         }
-        return super.use(pLevel, pPlayer, pUsedHand);
+        ItemStack itemInHand = pPlayer.getItemInHand(pUsedHand);
+        if (itemInHand.getDamageValue() >= itemInHand.getMaxDamage() - 1) {
+            return InteractionResultHolder.fail(itemInHand);
+        } else if (EnchantmentHelper.getRiptide(itemInHand) > 0 && !pPlayer.isInWaterOrRain()) {
+            return InteractionResultHolder.fail(itemInHand);
+        } else {
+            if (pPlayer.isShiftKeyDown()){
+                pPlayer.startUsingItem(pUsedHand);
+            }
+            return InteractionResultHolder.consume(itemInHand);
+        }
     }
 
     private void onGaoMarksmanship(Level pLevel, LivingEntity pEntity, GaoMarksmanshipCapability gaoMarksmanship) {

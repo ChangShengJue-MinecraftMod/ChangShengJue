@@ -36,6 +36,7 @@ import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.event.armor.ArmorEvent;
 import com.shengchanshe.changshengjue.event.martial_arts.*;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.item.combat.book.*;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
@@ -736,18 +737,18 @@ public class CSJEvent {
     //生物受伤事件
     @SubscribeEvent
     public static void onEntityHurt(LivingDamageEvent event){
-        TreadTheSnowWithoutTraceEvent.onEntityHurt(event);
-        WuGangCutGuiEvent.onEntityHurt(event);
-        YugongMovesMountainsEvent.onEntityHurt(event);
-        PaodingEvent.onEntityHurt(event);
-        SunflowerPointCavemanEvent.onEntityHurt(event);
-        GoldenBellJarEvent.onEntityHurt(event);
+//        TreadTheSnowWithoutTraceEvent.onEntityHurt(event);
+//        WuGangCutGuiEvent.onEntityHurt(event);1
+//        YugongMovesMountainsEvent.onEntityHurt(event);1
+//        PaodingEvent.onEntityHurt(event);1
+//        SunflowerPointCavemanEvent.onEntityHurt(event);1
+//        GoldenBellJarEvent.onEntityHurt(event);1
         ImmortalMiracleEvent.onEntityHurt(event);
-        GeShanDaNiuEvent.onEntityHurt(event);
-        TurtleBreathWorkEvent.onEntityHurt(event);
-        TheClassicsOfTendonChangingEvent.onEntityHurt(event);
+//        GeShanDaNiuEvent.onEntityHurt(event);1
+//        TurtleBreathWorkEvent.onEntityHurt(event);1
+//        TheClassicsOfTendonChangingEvent.onEntityHurt(event);1
         QianKunDaNuoYiEvent.onEntityHurt(event);
-        HerculesEvent.onEntityHurt(event);
+//        HerculesEvent.onEntityHurt(event);1
 
         ArmorEvent.onArmorDamage(event);
     }

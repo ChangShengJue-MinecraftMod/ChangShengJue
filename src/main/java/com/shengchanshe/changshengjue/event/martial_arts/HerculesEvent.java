@@ -89,43 +89,43 @@ public class HerculesEvent {
         }
     }
     
-    //生物受伤事件
-    public static void onEntityHurt(LivingDamageEvent event){
-        Level level = event.getEntity().level();
-        if (!level.isClientSide){
-            if (event.getSource().getDirectEntity() instanceof Player directEntity){
-                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
-                    if (!directEntity.isShiftKeyDown()){
-                        event.setAmount(0);
-                    }
-                    directEntity.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(hercules -> {
-                        if (hercules.isHerculesComprehend() && hercules.getHerculesLevel() == 0) {
-                            if (hercules.isSkillZActive() || hercules.isSkillXActive() || hercules.isSkillCActive()) {
-                                float probability = directEntity.getRandom().nextFloat();
-                                float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
-                                if (probability < defaultProbability) {
-                                    hercules.addHerculesLevel();
-                                    hercules.setHerculesParticle(true);
-                                    if (directEntity instanceof ServerPlayer serverPlayer){
-                                        hercules.addHerculesUseCount(serverPlayer.getStats().getValue(Stats.CUSTOM.get(Stats.WALK_ONE_CM)));
-                                    }
-                                    directEntity.level().playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
-                                            ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                    ChangShengJueMessages.sendToPlayer(new HerculesPacket(
-                                            hercules.getHerculesLevel(),
-                                            hercules.isHerculesComprehend(),
-                                            hercules.getHerculesToppedTick(),
-                                            hercules.getHerculesDachengTick(),
-                                            hercules.isHerculesParticle(),
-                                            hercules.isSkillZActive(),
-                                            hercules.isSkillXActive(),
-                                            hercules.isSkillCActive()), (ServerPlayer) directEntity);
-                                }
-                            }
-                        }
-                    });
-                }
-            }
-        }
-    }
+//    //生物受伤事件
+//    public static void onEntityHurt(LivingDamageEvent event){
+//        Level level = event.getEntity().level();
+//        if (!level.isClientSide){
+//            if (event.getSource().getDirectEntity() instanceof Player directEntity){
+//                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
+//                    if (!directEntity.isShiftKeyDown()){
+//                        event.setAmount(0);
+//                    }
+//                    directEntity.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(hercules -> {
+//                        if (hercules.isHerculesComprehend() && hercules.getHerculesLevel() == 0) {
+//                            if (hercules.isSkillZActive() || hercules.isSkillXActive() || hercules.isSkillCActive()) {
+//                                float probability = directEntity.getRandom().nextFloat();
+//                                float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
+//                                if (probability < defaultProbability) {
+//                                    hercules.addHerculesLevel();
+//                                    hercules.setHerculesParticle(true);
+//                                    if (directEntity instanceof ServerPlayer serverPlayer){
+//                                        hercules.addHerculesUseCount(serverPlayer.getStats().getValue(Stats.CUSTOM.get(Stats.WALK_ONE_CM)));
+//                                    }
+//                                    directEntity.level().playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+//                                            ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+//                                    ChangShengJueMessages.sendToPlayer(new HerculesPacket(
+//                                            hercules.getHerculesLevel(),
+//                                            hercules.isHerculesComprehend(),
+//                                            hercules.getHerculesToppedTick(),
+//                                            hercules.getHerculesDachengTick(),
+//                                            hercules.isHerculesParticle(),
+//                                            hercules.isSkillZActive(),
+//                                            hercules.isSkillXActive(),
+//                                            hercules.isSkillCActive()), (ServerPlayer) directEntity);
+//                                }
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        }
+//    }
 }

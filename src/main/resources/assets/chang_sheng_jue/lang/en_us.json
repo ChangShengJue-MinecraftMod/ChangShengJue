@@ -162,6 +162,7 @@
   "item.chang_sheng_jue.immortal_miracle": "不死神功",
   "tooltip.chang_sheng_jue.immortal_miracle.tooltip" : "不死不灭，岂是幻梦?",
   "item.chang_sheng_jue.hercules": "大力神功",
+  "tooltip.chang_sheng_jue.hercules.tooltip": "以气御力，神力无穷。",
   "item.chang_sheng_jue.dugu_nine_swords": "独孤九剑",
   "tooltip.chang_sheng_jue.dugu_nine_swords.tooltip" : "天下剑法中的巅峰绝诣，其中包含森罗万象的诀窍。",
   "item.chang_sheng_jue.gao_marksmanship": "高家枪法",
@@ -331,7 +332,7 @@
   "item.chang_sheng_jue.warm_lime_slurry_barrels": "暖色石灰浆桶",
   "item.chang_sheng_jue.cool_lime_slurry_barrels": "冷色石灰浆桶",
 
-  "block.chang_sheng_jue.zhu_tai_block": "烛台",
+  "block.chang_sheng_jue.zhu_tai": "烛台",
   "block.chang_sheng_jue.hang_tu_block": "夯土",
   "block.chang_sheng_jue.hang_tu_stairs": "夯土楼梯",
   "block.chang_sheng_jue.hang_tu_slab": "夯土台阶",

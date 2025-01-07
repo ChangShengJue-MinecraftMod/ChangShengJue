@@ -55,35 +55,35 @@ public class TheClassicsOfTendonChangingEvent {
         }
     }
 
-    //生物受伤事件
-    public static void onEntityHurt(LivingDamageEvent event){
-        Level level = event.getEntity().level();
-        if (!level.isClientSide){
-            if (event.getSource().getDirectEntity() instanceof Player directEntity){
-                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
-                    if (!directEntity.isShiftKeyDown()){
-                        event.setAmount(0);
-                    }
-                    directEntity.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
-                        if (theClassicsOfTendonChanging.isTheClassicsOfTendonChangingComprehend() && theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() == 0) {
-                            float probability = directEntity.getRandom().nextFloat();
-                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
-                            if (probability < defaultProbability) {
-                                theClassicsOfTendonChanging.addTheClassicsOfTendonChangingLevel();
-                                theClassicsOfTendonChanging.setTheClassicsOfTendonChangingParticle(true);
-                                directEntity.level().playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
-                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                ChangShengJueMessages.sendToPlayer(new TheClassicsOfTendonChangingPacket( theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel(),
-                                        theClassicsOfTendonChanging.isTheClassicsOfTendonChangingComprehend(),
-                                        theClassicsOfTendonChanging.getTheClassicsOfTendonChangingToppedTick(),
-                                        theClassicsOfTendonChanging.getTheClassicsOfTendonChangingDachengTick(),
-                                        theClassicsOfTendonChanging.isTheClassicsOfTendonChangingParticle()), (ServerPlayer) directEntity);
-                            }
-                        }
-                    });
-                }
-            }
-        }
-    }
+//    //生物受伤事件
+//    public static void onEntityHurt(LivingDamageEvent event){
+//        Level level = event.getEntity().level();
+//        if (!level.isClientSide){
+//            if (event.getSource().getDirectEntity() instanceof Player directEntity){
+//                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
+//                    if (!directEntity.isShiftKeyDown()){
+//                        event.setAmount(0);
+//                    }
+//                    directEntity.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
+//                        if (theClassicsOfTendonChanging.isTheClassicsOfTendonChangingComprehend() && theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() == 0) {
+//                            float probability = directEntity.getRandom().nextFloat();
+//                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
+//                            if (probability < defaultProbability) {
+//                                theClassicsOfTendonChanging.addTheClassicsOfTendonChangingLevel();
+//                                theClassicsOfTendonChanging.setTheClassicsOfTendonChangingParticle(true);
+//                                directEntity.level().playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+//                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+//                                ChangShengJueMessages.sendToPlayer(new TheClassicsOfTendonChangingPacket( theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel(),
+//                                        theClassicsOfTendonChanging.isTheClassicsOfTendonChangingComprehend(),
+//                                        theClassicsOfTendonChanging.getTheClassicsOfTendonChangingToppedTick(),
+//                                        theClassicsOfTendonChanging.getTheClassicsOfTendonChangingDachengTick(),
+//                                        theClassicsOfTendonChanging.isTheClassicsOfTendonChangingParticle()), (ServerPlayer) directEntity);
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        }
+//    }
 
 }

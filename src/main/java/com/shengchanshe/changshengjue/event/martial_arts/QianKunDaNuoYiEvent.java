@@ -98,39 +98,6 @@ public class QianKunDaNuoYiEvent {
     public static void onEntityHurt(LivingDamageEvent event){
         Level level = event.getEntity().level();
         if (!level.isClientSide){
-            if (event.getSource().getDirectEntity() instanceof Player directEntity){
-                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
-                    if (!directEntity.isShiftKeyDown()){
-                        event.setAmount(0);
-                    }
-                    directEntity.getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(qianKunDaNuoYi -> {
-                        if (qianKunDaNuoYi.isQianKunDaNuoYiComprehend() && qianKunDaNuoYi.getQianKunDaNuoYiLevel() == 0) {
-                            if (qianKunDaNuoYi.isSkillZActive() || qianKunDaNuoYi.isSkillXActive() || qianKunDaNuoYi.isSkillCActive()){
-                                float probability = directEntity.getRandom().nextFloat();
-                                float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
-                                if (probability < defaultProbability) {
-                                    level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
-                                            ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                    qianKunDaNuoYi.addQianKunDaNuoYiLevel();
-                                    qianKunDaNuoYi.setQianKunDaNuoYiParticle(true);
-                                }
-                                ChangShengJueMessages.sendToPlayer(new QianKunDaNuoYiPacket(
-                                        qianKunDaNuoYi.getQianKunDaNuoYiLevel(),
-                                        qianKunDaNuoYi.isQianKunDaNuoYiComprehend(),
-                                        qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownPercent(),
-                                        qianKunDaNuoYi.isQianKunDaNuoYiOff(),
-                                        qianKunDaNuoYi.getQianKunDaNuoYiToppedTick(),
-                                        qianKunDaNuoYi.getQianKunDaNuoYiDachengTick(),
-                                        qianKunDaNuoYi.isQianKunDaNuoYiParticle(),
-                                        qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax(),
-                                        qianKunDaNuoYi.isSkillZActive(),
-                                        qianKunDaNuoYi.isSkillXActive(),
-                                        qianKunDaNuoYi.isSkillCActive()), (ServerPlayer) directEntity);
-                            }
-                        }
-                    });
-                }
-            }
             if (event.getEntity() != null && event.getSource().getEntity() != null){
                 event.getEntity().getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(qianKunDaNuoYi -> {
                     if(event.getEntity() instanceof Player player) {

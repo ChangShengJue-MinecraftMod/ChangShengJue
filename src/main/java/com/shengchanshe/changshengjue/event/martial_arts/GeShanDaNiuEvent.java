@@ -86,44 +86,44 @@ public class GeShanDaNiuEvent {
         }
     }
 
-    //生物受伤事件
-    public static void onEntityHurt(LivingDamageEvent event) {
-        Level level = event.getEntity().level();
-        if (!level.isClientSide) {
-            if (event.getSource().getDirectEntity() instanceof Player directEntity) {
-                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()) {
-                    if (!directEntity.isShiftKeyDown()) {
-                        event.setAmount(0);
-                    }
-                    directEntity.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
-                        if (geShanDaNiu.isGeShanDaNiuComprehend() && geShanDaNiu.getGeShanDaNiuLevel() == 0) {
-                            if (geShanDaNiu.isSkillZActive() || geShanDaNiu.isSkillXActive() || geShanDaNiu.isSkillCActive()){
-                                float probability = directEntity.getRandom().nextFloat();
-                                float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
-                                if (probability < defaultProbability) {
-                                    level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
-                                            ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                    geShanDaNiu.addGeShanDaNiuLevel();
-                                    geShanDaNiu.setGeShanDaNiuParticle(true);
-                                    ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
-                                            geShanDaNiu.getGeShanDaNiuLevel(),
-                                            geShanDaNiu.isGeShanDaNiuComprehend(),
-                                            geShanDaNiu.getGeShanDaNiuUseCooldownPercent(),
-                                            geShanDaNiu.getGeShanDaNiuToppedTick(),
-                                            geShanDaNiu.getGeShanDaNiuDachengTick(),
-                                            geShanDaNiu.isGeShanDaNiuParticle(),
-                                            geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax(),
-                                            geShanDaNiu.isSkillZActive(),
-                                            geShanDaNiu.isSkillXActive(),
-                                            geShanDaNiu.isSkillCActive()), (ServerPlayer) directEntity);
-                                }
-                            }
-                        }
-                    });
-                }
-            }
-        }
-    }
+//    //生物受伤事件
+//    public static void onEntityHurt(LivingDamageEvent event) {
+//        Level level = event.getEntity().level();
+//        if (!level.isClientSide) {
+//            if (event.getSource().getDirectEntity() instanceof Player directEntity) {
+//                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()) {
+//                    if (!directEntity.isShiftKeyDown()) {
+//                        event.setAmount(0);
+//                    }
+//                    directEntity.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
+//                        if (geShanDaNiu.isGeShanDaNiuComprehend() && geShanDaNiu.getGeShanDaNiuLevel() == 0) {
+//                            if (geShanDaNiu.isSkillZActive() || geShanDaNiu.isSkillXActive() || geShanDaNiu.isSkillCActive()){
+//                                float probability = directEntity.getRandom().nextFloat();
+//                                float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
+//                                if (probability < defaultProbability) {
+//                                    level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+//                                            ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+//                                    geShanDaNiu.addGeShanDaNiuLevel();
+//                                    geShanDaNiu.setGeShanDaNiuParticle(true);
+//                                    ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
+//                                            geShanDaNiu.getGeShanDaNiuLevel(),
+//                                            geShanDaNiu.isGeShanDaNiuComprehend(),
+//                                            geShanDaNiu.getGeShanDaNiuUseCooldownPercent(),
+//                                            geShanDaNiu.getGeShanDaNiuToppedTick(),
+//                                            geShanDaNiu.getGeShanDaNiuDachengTick(),
+//                                            geShanDaNiu.isGeShanDaNiuParticle(),
+//                                            geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax(),
+//                                            geShanDaNiu.isSkillZActive(),
+//                                            geShanDaNiu.isSkillXActive(),
+//                                            geShanDaNiu.isSkillCActive()), (ServerPlayer) directEntity);
+//                                }
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        }
+//    }
 
 //    public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event) {
 //        Player player = event.getEntity();

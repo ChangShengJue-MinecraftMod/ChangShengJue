@@ -1,17 +1,14 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
-import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
-import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -25,6 +22,37 @@ public class TurtleBreathWork extends Item {
     public TurtleBreathWork() {
         super(new Properties());
     }
+
+    public static void comprehend(Entity entity, Level level){
+        if (!level.isClientSide) {
+            if (entity instanceof Player player){
+                player.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
+                    if (turtleBreathWork.isTurtleBreathWorkComprehend() && turtleBreathWork.isTurtleBreathWorkOff() && turtleBreathWork.getTurtleBreathWorkLevel() == 0) {
+                        float probability = player.getRandom().nextFloat();
+                        float defaultProbability = !player.getAbilities().instabuild ? 0.01F : 1.0F;
+                        if (probability < defaultProbability) {
+                            level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                    ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                            turtleBreathWork.addTurtleBreathWorkLevel();
+                            turtleBreathWork.setTurtleBreathWorkParticle(true);
+                        }
+                        ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
+                                turtleBreathWork.getTurtleBreathWorkLevel(),
+                                turtleBreathWork.isTurtleBreathWorkComprehend(),
+                                turtleBreathWork.getTurtleBreathWorkUseCooldownPercent(),
+                                turtleBreathWork.isTurtleBreathWorkOff(),
+                                turtleBreathWork.getTurtleBreathWorkToppedTick(),
+                                turtleBreathWork.getTurtleBreathWorkDachengTick(),
+                                turtleBreathWork.isTurtleBreathWorkParticle(),
+                                turtleBreathWork.isSkillZActive(),
+                                turtleBreathWork.isSkillXActive(),
+                                turtleBreathWork.isSkillCActive()), (ServerPlayer) player);
+                    }
+                });
+            }
+        }
+    }
+
 //    @Override
 //    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
 //        if (!pLevel.isClientSide){

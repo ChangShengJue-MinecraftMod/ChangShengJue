@@ -16,6 +16,8 @@ import com.shengchanshe.changshengjue.world.biome.CSJTerrablender;
 import com.shengchanshe.changshengjue.world.biome.surface.CSJSurFaceRules;
 import com.shengchanshe.changshengjue.world.feature.CSJFoliagePlacers;
 import com.shengchanshe.changshengjue.world.feature.CSJTrunkPlacerTypes;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.block.Blocks;
@@ -91,6 +93,9 @@ public class ChangShengJue {
             SpawnPlacements.register(ChangShengJueEntity.CROC_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
 
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD,MOD_ID, CSJSurFaceRules.makeRules());
+
+            ItemProperties.register(ChangShengJueItems.BA_WANG_QIANG.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack ? 1.0F : 0.0F);
+            ItemProperties.register(ChangShengJueItems.RED_TASSELLED_SPEAR.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack ? 1.0F : 0.0F);
 
         });
     }

@@ -50,28 +50,28 @@ public class YugongMovesMountainsEvent {
             }
         }
     }
-    //生物受伤事件
-    public static void onEntityHurt(LivingDamageEvent event){
-        Level level = event.getEntity().level();
-        if (!level.isClientSide){
-            if (event.getSource().getDirectEntity() instanceof Player directEntity){
-                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
-                    if (!directEntity.isShiftKeyDown()){
-                        event.setAmount(0);
-                    }
-                    directEntity.getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).ifPresent(yugongMovesMountains -> {
-                        if (yugongMovesMountains.isYugongMovesMountainsComprehend() && yugongMovesMountains.getYugongMovesMountainsLevel() == 0) {
-                            float probability = directEntity.getRandom().nextFloat();
-                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
-                            if (probability < defaultProbability) {
-                                yugongMovesMountains.addYugongMovesMountainsLevel();
-                            }
-                        }
-                    });
-                }
-            }
-        }
-    }
+//    //生物受伤事件
+//    public static void onEntityHurt(LivingDamageEvent event){
+//        Level level = event.getEntity().level();
+//        if (!level.isClientSide){
+//            if (event.getSource().getDirectEntity() instanceof Player directEntity){
+//                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
+//                    if (!directEntity.isShiftKeyDown()){
+//                        event.setAmount(0);
+//                    }
+//                    directEntity.getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).ifPresent(yugongMovesMountains -> {
+//                        if (yugongMovesMountains.isYugongMovesMountainsComprehend() && yugongMovesMountains.getYugongMovesMountainsLevel() == 0) {
+//                            float probability = directEntity.getRandom().nextFloat();
+//                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
+//                            if (probability < defaultProbability) {
+//                                yugongMovesMountains.addYugongMovesMountainsLevel();
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        }
+//    }
 
 //    public static void handleBlockBreakEvent(BlockEvent.BreakEvent event) {
 //        Player player = event.getPlayer();

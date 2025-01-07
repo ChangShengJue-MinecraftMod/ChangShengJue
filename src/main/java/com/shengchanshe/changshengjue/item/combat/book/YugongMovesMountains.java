@@ -1,11 +1,15 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
+import com.shengchanshe.changshengjue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -32,6 +36,22 @@ public class YugongMovesMountains extends Item {
             });
         }
         return InteractionResultHolder.consume(pPlayer.getItemInHand(pUsedHand));
+    }
+
+    public static void comprehend(Entity entity, Level level){
+        if (!level.isClientSide) {
+            if (entity instanceof Player player){
+                player.getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).ifPresent(yugongMovesMountains -> {
+                    if (yugongMovesMountains.isYugongMovesMountainsComprehend() && yugongMovesMountains.getYugongMovesMountainsLevel() == 0) {
+                        float probability = player.getRandom().nextFloat();
+                        float defaultProbability = !player.getAbilities().instabuild ? 0.01F : 1.0F;
+                        if (probability < defaultProbability) {
+                            yugongMovesMountains.addYugongMovesMountainsLevel();
+                        }
+                    }
+                });
+            }
+        }
     }
 
     @Override

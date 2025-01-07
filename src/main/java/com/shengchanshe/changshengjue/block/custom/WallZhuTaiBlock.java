@@ -22,22 +22,23 @@ import java.util.Map;
 public class WallZhuTaiBlock extends WallTorchBlock{
     public static final DirectionProperty FACING;
     private static final Map<Direction, VoxelShape> AABBS;
-    public WallZhuTaiBlock(Properties p_57491_, ParticleOptions p_57492_) {
-        super(p_57491_, p_57492_);
+    public WallZhuTaiBlock(Properties properties, ParticleOptions particleOptions) {
+        super(properties, particleOptions);
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     @Override
-    public VoxelShape getShape(BlockState p_58152_, BlockGetter p_58153_, BlockPos p_58154_, CollisionContext p_58155_) {
-        return getShape(p_58152_);
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return getShape(pState);
     }
 
-    public static VoxelShape getShape(BlockState p_58157_) {
-        return AABBS.get(p_58157_.getValue(FACING));
+    public static VoxelShape getShape(BlockState state) {
+        return AABBS.get(state.getValue(FACING));
     }
 
     @Override
-    public BlockState updateShape(BlockState p_58143_, Direction p_58144_, BlockState p_58145_, LevelAccessor p_58146_, BlockPos p_58147_, BlockPos p_58148_) {
-        return p_58144_.getOpposite() == p_58143_.getValue(FACING) && !p_58143_.canSurvive(p_58146_, p_58147_) ? Blocks.AIR.defaultBlockState() : p_58143_;
+    public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
+        return pFacing.getOpposite() == pState.getValue(FACING) && !pState.canSurvive(pLevel, pCurrentPos) ? Blocks.AIR.defaultBlockState() : pState;
     }
 
     @Override
@@ -50,18 +51,18 @@ public class WallZhuTaiBlock extends WallTorchBlock{
     }
 
     @Override
-    public BlockState rotate(BlockState p_58140_, Rotation p_58141_) {
-        return p_58140_.setValue(FACING, p_58141_.rotate(p_58140_.getValue(FACING)));
+    public BlockState rotate(BlockState pState, Rotation pRotation) {
+        return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState p_58137_, Mirror p_58138_) {
-        return p_58137_.rotate(p_58138_.getRotation(p_58137_.getValue(FACING)));
+    public BlockState mirror(BlockState pState, Mirror pMirror) {
+        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 
     @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_58150_) {
-        p_58150_.add(FACING);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(FACING);
     }
 
     static {

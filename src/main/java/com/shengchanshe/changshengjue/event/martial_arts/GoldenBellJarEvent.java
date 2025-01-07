@@ -100,43 +100,43 @@ public class GoldenBellJarEvent {
     }
 
     //生物受伤事件
-    public static void onEntityHurt(LivingDamageEvent event) {
-        Level level = event.getEntity().level();
-        if (!level.isClientSide) {
-            if (event.getSource().getDirectEntity() instanceof Player directEntity) {
-                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()) {
-                    if (!directEntity.isShiftKeyDown()) {
-                        event.setAmount(0);
-                    }
-                    directEntity.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
-                        if (goldenBellJar.isGoldenBellJarComprehend() && goldenBellJar.getGoldenBellJarLevel() == 0) {
-                            if (goldenBellJar.isSkillZActive() || goldenBellJar.isSkillXActive() || goldenBellJar.isSkillCActive()) {
-                                float probability = directEntity.getRandom().nextFloat();
-                                float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
-                                if (probability < defaultProbability) {
-                                    level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
-                                            ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                    goldenBellJar.addGoldenBellJarLevel();
-                                    goldenBellJar.setGoldenBellJarParticle(true);
-                                    ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
-                                            goldenBellJar.getGoldenBellJarLevel(),
-                                            goldenBellJar.isGoldenBellJarComprehend(),
-                                            goldenBellJar.getGoldenBellJarUseCooldownPercent(),
-                                            goldenBellJar.isGoldenBellJarOff(),
-                                            goldenBellJar.getGoldenBellJarToppedTick(),
-                                            goldenBellJar.getGoldenBellJarDachengTick(),
-                                            goldenBellJar.isGoldenBellJarParticle(),
-                                            goldenBellJar.isSkillZActive(),
-                                            goldenBellJar.isSkillXActive(),
-                                            goldenBellJar.isSkillCActive()), (ServerPlayer) directEntity);
-                                }
-                            }
-                        }
-                    });
-                }
-            }
-        }
-    }
+//    public static void onEntityHurt(LivingDamageEvent event) {
+//        Level level = event.getEntity().level();
+//        if (!level.isClientSide) {
+//            if (event.getSource().getDirectEntity() instanceof Player directEntity) {
+//                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()) {
+//                    if (!directEntity.isShiftKeyDown()) {
+//                        event.setAmount(0);
+//                    }
+//                    directEntity.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
+//                        if (goldenBellJar.isGoldenBellJarComprehend() && goldenBellJar.getGoldenBellJarLevel() == 0) {
+//                            if (goldenBellJar.isSkillZActive() || goldenBellJar.isSkillXActive() || goldenBellJar.isSkillCActive()) {
+//                                float probability = directEntity.getRandom().nextFloat();
+//                                float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
+//                                if (probability < defaultProbability) {
+//                                    level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+//                                            ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+//                                    goldenBellJar.addGoldenBellJarLevel();
+//                                    goldenBellJar.setGoldenBellJarParticle(true);
+//                                    ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
+//                                            goldenBellJar.getGoldenBellJarLevel(),
+//                                            goldenBellJar.isGoldenBellJarComprehend(),
+//                                            goldenBellJar.getGoldenBellJarUseCooldownPercent(),
+//                                            goldenBellJar.isGoldenBellJarOff(),
+//                                            goldenBellJar.getGoldenBellJarToppedTick(),
+//                                            goldenBellJar.getGoldenBellJarDachengTick(),
+//                                            goldenBellJar.isGoldenBellJarParticle(),
+//                                            goldenBellJar.isSkillZActive(),
+//                                            goldenBellJar.isSkillXActive(),
+//                                            goldenBellJar.isSkillCActive()), (ServerPlayer) directEntity);
+//                                }
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        }
+//    }
 
 //    public static void onKey(InputEvent.Key event) {
 //        Minecraft minecraft = Minecraft.getInstance();

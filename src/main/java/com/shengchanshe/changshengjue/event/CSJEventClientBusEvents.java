@@ -18,10 +18,10 @@ import com.shengchanshe.changshengjue.cilent.hud.martial_arts.tread_the_snow_wit
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.turtle_breath_work.TurtleBreathWorkHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipHudOverlay;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
-import com.shengchanshe.changshengjue.entity.client.model.combat.throwingknives.ThrowingKnivesEntityModel;
-import com.shengchanshe.changshengjue.entity.client.model.combat.stakes.StakesModel;
+import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntityModel;
+import com.shengchanshe.changshengjue.entity.combat.stakes.StakesModel;
 import com.shengchanshe.changshengjue.entity.client.render.PeacockEggRender;
-import com.shengchanshe.changshengjue.entity.client.render.combat.throwingknives.ThrowingKnivesEntityEntityRender;
+import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntityRender;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import com.shengchanshe.changshengjue.particle.custom.PoplarDefoliationParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendParticle;
@@ -54,7 +54,7 @@ public class CSJEventClientBusEvents {
     public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
         //投掷物的渲染
         event.registerEntityRenderer(ChangShengJueEntity.PEACOCK_EGG.get(), PeacockEggRender::new);
-        event.registerEntityRenderer(ChangShengJueEntity.THROWING_KNIVES_ENTITY.get(), ThrowingKnivesEntityEntityRender::new);
+        event.registerEntityRenderer(ChangShengJueEntity.THROWING_KNIVES_ENTITY.get(), ThrowingKnivesEntityRender::new);
         //方块实体的渲染
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.POTTERY_WHEEL_ENTITY.get(), PotteryWheelEntityRender::new);
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.TOOL_TABLE_ENTITY.get(), ToolTableEntityRender::new);

@@ -235,7 +235,7 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(ChangShengJueBlocks.POTTED_PURPLE_DANDELION.get(),createPotFlowerItemTable(ChangShengJueBlocks.PURPLE_DANDELION.get()));
 
         //建筑
-        this.dropSelf(ChangShengJueBlocks.ZHU_TAI_BLOCK.get());
+        this.dropSelf(ChangShengJueBlocks.ZHU_TAI.get());
         this.dropSelf(ChangShengJueBlocks.HANG_TU_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.TU_PEI_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.STONE_LAMPS_BASE_BLOCK.get());

@@ -37,6 +37,7 @@ import com.shengchanshe.changshengjue.item.items.PaintBrush;
 import com.shengchanshe.changshengjue.item.items.PeacockEggItem;
 import com.shengchanshe.changshengjue.item.tool.KaishanPickaxe;
 import com.shengchanshe.changshengjue.item.tool.XuanhuaAxe;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -47,7 +48,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ChangShengJueItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ChangShengJue.MOD_ID);
-
 
     public static final RegistryObject<Item> PINEAPPLE_SEEDS = ITEMS.register("pineapple_seeds",
             ()-> new ItemNameBlockItem(ChangShengJueBlocks.PINEAPPLE_BLOCK.get(), new Item.Properties()));
@@ -237,7 +237,7 @@ public class ChangShengJueItems {
                     new Item.Properties()));
 
     public static final RegistryObject<Item> ZHU_TAI = ITEMS.register("zhu_tai",
-            ()-> new StandingAndWallBlockItem(ChangShengJueBlocks.ZHU_TAI_BLOCK.get(),ChangShengJueBlocks.WALL_ZHU_TAI_BLOCK.get(), (new Item.Properties()), Direction.DOWN));
+            ()-> new StandingAndWallBlockItem(ChangShengJueBlocks.ZHU_TAI.get(),ChangShengJueBlocks.WALL_ZHU_TAI.get(), new Item.Properties(), Direction.DOWN));
 
     public static final RegistryObject<Item> CRANE_FEATHERS = ITEMS.register("crane_feathers",
             ()-> new Item(new Item.Properties()));

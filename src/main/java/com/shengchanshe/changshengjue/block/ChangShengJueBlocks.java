@@ -23,6 +23,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -306,11 +307,11 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> WILDLIFE_HORDEUM = registerBlock("wildlife_hordeum",
             ()-> new TallGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS)));
     //建筑
-    public static final RegistryObject<Block> ZHU_TAI_BLOCK = registerBlock("zhu_tai_block",
+    public static final RegistryObject<Block> ZHU_TAI = registerBlockWithoutBlockItem("zhu_tai",
             ()-> new ZhuTaiBlock(BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel((p_50755_) -> 15).sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY), ParticleTypes.FLAME));
-    public static final RegistryObject<Block> WALL_ZHU_TAI_BLOCK = registerBlock("wall_zhu_tai_block",
+    public static final RegistryObject<Block> WALL_ZHU_TAI = registerBlockWithoutBlockItem("wall_zhu_tai",
             ()-> new WallZhuTaiBlock(BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel((p_50886_) -> 15).sound(SoundType.WOOD)
-                    .dropsLike(ZHU_TAI_BLOCK.get()).pushReaction(PushReaction.DESTROY), ParticleTypes.FLAME));
+                    .dropsLike(ZHU_TAI.get()).pushReaction(PushReaction.DESTROY), ParticleTypes.FLAME));
 
     public static final RegistryObject<Block> HANG_TU_BLOCK = registerBlock("hang_tu_block",
             ()-> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).strength(0.5F).sound(SoundType.GRAVEL)));
@@ -321,7 +322,7 @@ public class ChangShengJueBlocks {
             ()-> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.5F, 6.0F)){
                 protected static final VoxelShape AABB = Block.box(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
                 @Override
-                public VoxelShape getShape(BlockState p_57510_, BlockGetter p_57511_, BlockPos p_57512_, CollisionContext p_57513_) {
+                public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
                     return AABB;
                 }
             });

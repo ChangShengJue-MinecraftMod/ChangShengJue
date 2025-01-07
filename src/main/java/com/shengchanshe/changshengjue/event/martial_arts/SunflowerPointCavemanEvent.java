@@ -89,43 +89,43 @@ public class SunflowerPointCavemanEvent {
     }
 
     //生物受伤事件
-    public static void onEntityHurt(LivingDamageEvent event){
-        Level level = event.getEntity().level();
-        if (!level.isClientSide){
-            if (event.getSource().getDirectEntity() instanceof Player directEntity){
-                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
-                    if (!directEntity.isShiftKeyDown()){
-                        event.setAmount(0);
-                    }
-                    directEntity.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
-                        if (sunflowerPointCaveman.isSunflowerPointCavemanComprehend() && sunflowerPointCaveman.getSunflowerPointCavemanLevel() == 0) {
-                            if (sunflowerPointCaveman.isSkillZActive() || sunflowerPointCaveman.isSkillXActive() || sunflowerPointCaveman.isSkillCActive()){
-                                float probability = directEntity.getRandom().nextFloat();
-                                float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
-                                if (probability < defaultProbability) {
-                                    level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
-                                            ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                    sunflowerPointCaveman.addSunflowerPointCavemanLevel();
-                                    sunflowerPointCaveman.setSunflowerPointCavemanParticle(true);
-                                }
-                                ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
-                                        sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
-                                        sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
-                                        sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
-                                        sunflowerPointCaveman.isSunflowerPointCavemanOff(),
-                                        sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
-                                        sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
-                                        sunflowerPointCaveman.isSunflowerPointCavemanParticle(),
-                                        sunflowerPointCaveman.isSkillZActive(),
-                                        sunflowerPointCaveman.isSkillXActive(),
-                                        sunflowerPointCaveman.isSkillCActive()), (ServerPlayer) directEntity);
-                            }
-                        }
-                    });
-                }
-            }
-        }
-    }
+//    public static void onEntityHurt(LivingDamageEvent event){
+//        Level level = event.getEntity().level();
+//        if (!level.isClientSide){
+//            if (event.getSource().getDirectEntity() instanceof Player directEntity){
+//                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
+//                    if (!directEntity.isShiftKeyDown()){
+//                        event.setAmount(0);
+//                    }
+//                    directEntity.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
+//                        if (sunflowerPointCaveman.isSunflowerPointCavemanComprehend() && sunflowerPointCaveman.getSunflowerPointCavemanLevel() == 0) {
+//                            if (sunflowerPointCaveman.isSkillZActive() || sunflowerPointCaveman.isSkillXActive() || sunflowerPointCaveman.isSkillCActive()){
+//                                float probability = directEntity.getRandom().nextFloat();
+//                                float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
+//                                if (probability < defaultProbability) {
+//                                    level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+//                                            ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+//                                    sunflowerPointCaveman.addSunflowerPointCavemanLevel();
+//                                    sunflowerPointCaveman.setSunflowerPointCavemanParticle(true);
+//                                }
+//                                ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
+//                                        sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
+//                                        sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
+//                                        sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
+//                                        sunflowerPointCaveman.isSunflowerPointCavemanOff(),
+//                                        sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
+//                                        sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
+//                                        sunflowerPointCaveman.isSunflowerPointCavemanParticle(),
+//                                        sunflowerPointCaveman.isSkillZActive(),
+//                                        sunflowerPointCaveman.isSkillXActive(),
+//                                        sunflowerPointCaveman.isSkillCActive()), (ServerPlayer) directEntity);
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        }
+//    }
 
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){
         Player player = event.getEntity();

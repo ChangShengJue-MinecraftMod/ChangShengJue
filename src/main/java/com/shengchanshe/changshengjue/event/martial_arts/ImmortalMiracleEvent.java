@@ -122,39 +122,6 @@ public class ImmortalMiracleEvent {
     public static void onEntityHurt(LivingDamageEvent event) {
         Level level = event.getEntity().level();
         if (!level.isClientSide) {
-            if (event.getSource().getDirectEntity() instanceof Player directEntity) {
-                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()) {
-                    if (!directEntity.isShiftKeyDown()) {
-                        event.setAmount(0);
-                    }
-                    directEntity.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
-                        if (immortalMiracle.isImmortalMiracleComprehend() && immortalMiracle.isImmortalMiracleOff() && immortalMiracle.getImmortalMiracleLevel() == 0) {
-                            if (immortalMiracle.isSkillXActive() || immortalMiracle.isSkillZActive() || immortalMiracle.isSkillCActive()) {
-                                float probability = directEntity.getRandom().nextFloat();
-                                float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
-                                if (probability < defaultProbability) {
-                                    level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
-                                            ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                    immortalMiracle.addImmortalMiracleLevel();
-                                    immortalMiracle.setImmortalMiracleParticle(true);
-                                    ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
-                                            immortalMiracle.getImmortalMiracleLevel(),
-                                            immortalMiracle.isImmortalMiracleComprehend(),
-                                            immortalMiracle.getImmortalMiracleUseCooldownPercent(),
-                                            immortalMiracle.isImmortalMiracleOff(),
-                                            immortalMiracle.getImmortalMiracleToppedTick(),
-                                            immortalMiracle.getImmortalMiracleDachengTick(),
-                                            immortalMiracle.isImmortalMiracleParticle(),
-                                            immortalMiracle.getImmortalMiracleUseCooldownPercentMax(),
-                                            immortalMiracle.isSkillZActive(),
-                                            immortalMiracle.isSkillXActive(),
-                                            immortalMiracle.isSkillCActive()), (ServerPlayer) directEntity);
-                                }
-                            }
-                        }
-                    });
-                }
-            }
             if (event.getEntity() instanceof Player player){
                 player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
                     if (immortalMiracle.isImmortalMiracleComprehend() && immortalMiracle.isImmortalMiracleOff() && immortalMiracle.getImmortalMiracleLevel() > 0) {

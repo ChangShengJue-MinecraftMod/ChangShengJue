@@ -115,6 +115,18 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy("has_crucible",has(ChangShengJueItems.CRUCIBLE.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.CRUCIBLE_CRUSHED_GOLD.get()).requires(ChangShengJueItems.CRUCIBLE.get()).requires(Ingredient.of(Tags.Items.INGOTS_GOLD),8)
                 .unlockedBy("has_crucible",has(ChangShengJueItems.CRUCIBLE.get())).save(consumer);
+        ShapedRecipeBuilder.shaped(MISC, ChangShengJueItems.CRUCIBLE.get(),1)
+                .define('#', Ingredient.of(Tags.Items.INGOTS_IRON))
+                .pattern("# #")
+                .pattern("# #")
+                .pattern(" # ")
+                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
+
+        //哈密瓜
+        ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.CANTALOUPE_BLOCK.get(),1)
+                .requires(ChangShengJueItems.CANTALOUPE.get(),9).unlockedBy("has_cantaloupe",has(ChangShengJueItems.CANTALOUPE.get())).save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueItems.CANTALOUPE_SEEDS.get(),1)
+                .requires(ChangShengJueItems.CANTALOUPE.get(),1).unlockedBy("has_cantaloupe",has(ChangShengJueItems.CANTALOUPE.get())).save(consumer);
 
         //模具
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.CASTING_MOLDS.get(),1)

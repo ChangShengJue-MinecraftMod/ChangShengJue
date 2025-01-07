@@ -62,38 +62,38 @@ public class PaodingEvent {
             }
         }
     }
-    
-    //生物受伤事件
-    public static void onEntityHurt(LivingDamageEvent event){
-        Level level = event.getEntity().level();
-        if (!level.isClientSide){
-            if (event.getSource().getDirectEntity() instanceof Player directEntity){
-                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
-                    if (!directEntity.isShiftKeyDown()){
-                        event.setAmount(0);
-                    }
-                    directEntity.getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).ifPresent(paoding -> {
-                        if (paoding.isPaodingComprehend() && paoding.getPaodingLevel() == 0) {
-                            float probability = directEntity.getRandom().nextFloat();
-                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
-                            if (probability < defaultProbability) {
-                                paoding.addPaodingLevel();
-                                paoding.setPaodingParticle(true);
-                                directEntity.level().playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
-                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                ChangShengJueMessages.sendToPlayer(new PaodingPacket(
-                                        paoding.getPaodingLevel(),
-                                        paoding.isPaodingComprehend(),
-                                        paoding.getPaodingToppedTick(),
-                                        paoding.getPaodingDachengTick(),
-                                        paoding.isPaodingParticle()), (ServerPlayer) directEntity);
-                            }
-                        }
-                    });
-                }
-            }
-        }
-    }
+
+//    //生物受伤事件
+//    public static void onEntityHurt(LivingDamageEvent event){
+//        Level level = event.getEntity().level();
+//        if (!level.isClientSide){
+//            if (event.getSource().getDirectEntity() instanceof Player directEntity){
+//                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
+//                    if (!directEntity.isShiftKeyDown()){
+//                        event.setAmount(0);
+//                    }
+//                    directEntity.getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).ifPresent(paoding -> {
+//                        if (paoding.isPaodingComprehend() && paoding.getPaodingLevel() == 0) {
+//                            float probability = directEntity.getRandom().nextFloat();
+//                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
+//                            if (probability < defaultProbability) {
+//                                paoding.addPaodingLevel();
+//                                paoding.setPaodingParticle(true);
+//                                directEntity.level().playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+//                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+//                                ChangShengJueMessages.sendToPlayer(new PaodingPacket(
+//                                        paoding.getPaodingLevel(),
+//                                        paoding.isPaodingComprehend(),
+//                                        paoding.getPaodingToppedTick(),
+//                                        paoding.getPaodingDachengTick(),
+//                                        paoding.isPaodingParticle()), (ServerPlayer) directEntity);
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        }
+//    }
 
     public static void onEntityDeath(LivingDeathEvent event){
         Level level = event.getEntity().level();

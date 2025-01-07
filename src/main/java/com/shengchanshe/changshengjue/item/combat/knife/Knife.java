@@ -96,7 +96,7 @@ public class Knife extends SwordItem {
             if (event.getSource().getDirectEntity() instanceof Player directEntity) {
                 directEntity.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
                     int goldenBlackKnifeMethodLevel = goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel();
-                    if (goldenBlackKnifeMethodLevel > 0) {
+                    if (goldenBlackKnifeMethodLevel >= 0) {
                         if (directEntity.getMainHandItem().getItem() == this) {
                             float probability = directEntity.getRandom().nextFloat();
                             float defaultProbability = 0.15F;

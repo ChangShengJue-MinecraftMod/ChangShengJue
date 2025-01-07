@@ -85,40 +85,40 @@ public class TurtleBreathWorkEvent {
         }
     }
 
-    //生物受伤事件
-    public static void onEntityHurt(LivingDamageEvent event){
-        Level level = event.getEntity().level();
-        if (!level.isClientSide){
-            if (event.getSource().getDirectEntity() instanceof Player directEntity){
-                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
-                    if (!directEntity.isShiftKeyDown()){
-                        event.setAmount(0);
-                    }
-                    directEntity.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
-                        if (turtleBreathWork.isTurtleBreathWorkComprehend() && turtleBreathWork.isTurtleBreathWorkOff() && turtleBreathWork.getTurtleBreathWorkLevel() == 0) {
-                            float probability = directEntity.getRandom().nextFloat();
-                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
-                            if (probability < defaultProbability) {
-                                level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
-                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                turtleBreathWork.addTurtleBreathWorkLevel();
-                                turtleBreathWork.setTurtleBreathWorkParticle(true);
-                            }
-                            ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
-                                    turtleBreathWork.getTurtleBreathWorkLevel(),
-                                    turtleBreathWork.isTurtleBreathWorkComprehend(),
-                                    turtleBreathWork.getTurtleBreathWorkUseCooldownPercent(),
-                                    turtleBreathWork.isTurtleBreathWorkOff(),
-                                    turtleBreathWork.getTurtleBreathWorkToppedTick(),
-                                    turtleBreathWork.getTurtleBreathWorkDachengTick(),
-                                    turtleBreathWork.isTurtleBreathWorkParticle(),
-                                    turtleBreathWork.isSkillZActive(),
-                                    turtleBreathWork.isSkillXActive(),
-                                    turtleBreathWork.isSkillCActive()), (ServerPlayer) directEntity);
-                        }
-                    });
-                }
-            }
-        }
-    }
+//    //生物受伤事件
+//    public static void onEntityHurt(LivingDamageEvent event){
+//        Level level = event.getEntity().level();
+//        if (!level.isClientSide){
+//            if (event.getSource().getDirectEntity() instanceof Player directEntity){
+//                if (event.getEntity() instanceof StakesEntity && directEntity.getMainHandItem().isEmpty()){
+//                    if (!directEntity.isShiftKeyDown()){
+//                        event.setAmount(0);
+//                    }
+//                    directEntity.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
+//                        if (turtleBreathWork.isTurtleBreathWorkComprehend() && turtleBreathWork.isTurtleBreathWorkOff() && turtleBreathWork.getTurtleBreathWorkLevel() == 0) {
+//                            float probability = directEntity.getRandom().nextFloat();
+//                            float defaultProbability = !directEntity.getAbilities().instabuild ? 0.01F : 1.0F;
+//                            if (probability < defaultProbability) {
+//                                level.playSound(null, directEntity.getX(), directEntity.getY(), directEntity.getZ(),
+//                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+//                                turtleBreathWork.addTurtleBreathWorkLevel();
+//                                turtleBreathWork.setTurtleBreathWorkParticle(true);
+//                            }
+//                            ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
+//                                    turtleBreathWork.getTurtleBreathWorkLevel(),
+//                                    turtleBreathWork.isTurtleBreathWorkComprehend(),
+//                                    turtleBreathWork.getTurtleBreathWorkUseCooldownPercent(),
+//                                    turtleBreathWork.isTurtleBreathWorkOff(),
+//                                    turtleBreathWork.getTurtleBreathWorkToppedTick(),
+//                                    turtleBreathWork.getTurtleBreathWorkDachengTick(),
+//                                    turtleBreathWork.isTurtleBreathWorkParticle(),
+//                                    turtleBreathWork.isSkillZActive(),
+//                                    turtleBreathWork.isSkillXActive(),
+//                                    turtleBreathWork.isSkillCActive()), (ServerPlayer) directEntity);
+//                        }
+//                    });
+//                }
+//            }
+//        }
+//    }
 }

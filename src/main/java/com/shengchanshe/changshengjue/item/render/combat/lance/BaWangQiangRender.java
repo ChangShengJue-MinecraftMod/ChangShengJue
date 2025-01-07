@@ -9,6 +9,6 @@ import software.bernie.geckolib.renderer.GeoItemRenderer;
 
 public class BaWangQiangRender extends GeoItemRenderer<BaWangQiang> {
     public BaWangQiangRender() {
-        super(new DefaultedItemGeoModel(new ResourceLocation(ChangShengJue.MOD_ID,"ba_wang_qiang")));
+        super(new DefaultedItemGeoModel<>(new ResourceLocation(ChangShengJue.MOD_ID,"ba_wang_qiang")));
     }
 }

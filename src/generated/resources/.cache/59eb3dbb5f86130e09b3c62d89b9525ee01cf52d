@@ -1,4 +1,4 @@
-// 1.20.1	2024-11-21T09:50:09.9249279	Loot Tables
+// 1.20.1	2025-01-06T19:28:06.1628832	Loot Tables
 cce8c0b7d959719604bf5706a5e0b0a99876a5b4 data/chang_sheng_jue/loot_tables/blocks/ag_ore.json
 9dfcb27b62a46a4c58add40765b49c99ff5898fa data/chang_sheng_jue/loot_tables/blocks/attached_cantaloupe_stem.json
 63066feb307becad188bb317a4b3c962e2f53f68 data/chang_sheng_jue/loot_tables/blocks/bai_hua_fu_ti_block.json
@@ -192,7 +192,7 @@ fa0ebd616f733b3a3a551007be699363e31b1c8d data/chang_sheng_jue/loot_tables/blocks
 dee566ba26d11dc202282c96f14f0f25496fed6f data/chang_sheng_jue/loot_tables/blocks/windows_spruce_block_2.json
 6ba67c212ffc409040f03d2a7b3c1488f48ef94a data/chang_sheng_jue/loot_tables/blocks/yellow_stone_lion_block.json
 f377fd1bade3c33baf20bac17a21479286673b15 data/chang_sheng_jue/loot_tables/blocks/yun_shan_fu_ti_block.json
-f10f405e68ab85676559a9f9b2df4dba9198938a data/chang_sheng_jue/loot_tables/blocks/zhu_tai_block.json
+4fcfd61bfeac50cb2e5e1af7894cfe75df9b3a26 data/chang_sheng_jue/loot_tables/blocks/zhu_tai.json
 9905bc48d395651500473dcb6172912c0e9cb94f data/chang_sheng_jue/loot_tables/blocks/zi_tan_log.json
 1975ef70b0574c8dd641216d6de3185f29f7cefd data/chang_sheng_jue/loot_tables/blocks/zi_tan_planks.json
 96597270969f99687607fda6e01ea733332cf45e data/chang_sheng_jue/loot_tables/blocks/zi_tan_stripped_log.json

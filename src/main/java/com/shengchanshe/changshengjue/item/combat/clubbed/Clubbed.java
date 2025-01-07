@@ -45,6 +45,11 @@ public class Clubbed extends SwordItem {
                 if (shaolinStickMethod.getShaolinStickMethodComprehend() && shaolinStickMethodLevel == 0) {
                     float probability = pPlayer.getRandom().nextFloat();
                     float defaultProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
+                    if (entity instanceof LivingEntity livingEntity) {
+                        if (probability < 0.15F) {
+                            livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 10, 1, false, true), pPlayer);
+                        }
+                    }
                     if (probability < defaultProbability) {
                         shaolinStickMethod.addShaolinStickMethodLevel();
                         shaolinStickMethod.setShaolinStickMethodParticle(true);
