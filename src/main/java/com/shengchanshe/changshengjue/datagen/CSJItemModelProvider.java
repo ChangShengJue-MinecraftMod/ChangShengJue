@@ -132,6 +132,16 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_CHESTPLATE);
         simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_LEGGINGS);
         simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_BOOTS);
+        //大将军明光铠
+        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_HELMET);
+        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_CHESTPLATE);
+        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_LEGGINGS);
+        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_BOOTS);
+        //儒装
+        simpleItem(ChangShengJueItems.CONFUCIAN_COSTUMES_HELMET);
+        simpleItem(ChangShengJueItems.CONFUCIAN_COSTUMES_CHESTPLATE);
+        simpleItem(ChangShengJueItems.CONFUCIAN_COSTUMES_LEGGINGS);
+        simpleItem(ChangShengJueItems.CONFUCIAN_COSTUMES_BOOTS);
         //武器
         handheldItem(ChangShengJueItems.BRONZE_SWORD);
         handheldItem(ChangShengJueItems.HAN_JIAN);

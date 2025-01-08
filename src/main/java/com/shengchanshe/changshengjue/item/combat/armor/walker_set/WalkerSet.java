@@ -1,7 +1,5 @@
 package com.shengchanshe.changshengjue.item.combat.armor.walker_set;
 
-import com.shengchanshe.changshengjue.item.render.combat.armor.mountain_pattern_armor.MountainPatternArmorRender;
-import com.shengchanshe.changshengjue.item.render.combat.armor.walker_set.WalkerSetRender;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;

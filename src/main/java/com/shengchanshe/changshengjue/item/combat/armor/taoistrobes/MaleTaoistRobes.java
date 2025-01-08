@@ -1,6 +1,5 @@
 package com.shengchanshe.changshengjue.item.combat.armor.taoistrobes;
 
-import com.shengchanshe.changshengjue.item.render.combat.armor.taoistrobes.MaleTaoistRobesRender;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;

@@ -1,17 +1,12 @@
 package com.shengchanshe.changshengjue.item.combat.armor.flying_fish_robe;
 
 import com.shengchanshe.changshengjue.item.combat.armor.DyeableChineseWeddingDressItem;
-import com.shengchanshe.changshengjue.item.render.combat.armor.flying_fish_robe.FlyingFishRobeRender;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.MinecraftForge;
 import org.jetbrains.annotations.NotNull;

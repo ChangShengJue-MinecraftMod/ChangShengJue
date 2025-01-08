@@ -3,12 +3,14 @@ package com.shengchanshe.changshengjue.item;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
+import com.shengchanshe.changshengjue.item.combat.armor.confucian_costumes.ConfucianCostumes;
 import com.shengchanshe.changshengjue.item.combat.armor.cotton.CottonArmor;
 import com.shengchanshe.changshengjue.item.combat.armor.flying_fish_robe.FlyingFishRobe;
 import com.shengchanshe.changshengjue.item.combat.armor.mountain_pattern_armor.MountainPatternArmor;
 import com.shengchanshe.changshengjue.item.combat.armor.qi_tian_da_sheng.QiTianDaSheng;
 import com.shengchanshe.changshengjue.item.combat.armor.taoistrobes.FemaleTaoistRobes;
 import com.shengchanshe.changshengjue.item.combat.armor.taoistrobes.MaleTaoistRobes;
+import com.shengchanshe.changshengjue.item.combat.armor.the_great_general_mingguang_armor.TheGreatGeneralMingguangArmor;
 import com.shengchanshe.changshengjue.item.combat.armor.walker_set.WalkerSet;
 import com.shengchanshe.changshengjue.item.combat.armor.wedding.MaleChineseWeddingDress;
 import com.shengchanshe.changshengjue.item.combat.armor.wedding.FemaleChineseWeddingDress;
@@ -408,6 +410,25 @@ public class ChangShengJueItems {
             ()-> new QiTianDaSheng(ArmorMaterials.NETHERITE,ArmorItem.Type.LEGGINGS,new Item.Properties().fireResistant(),50));
     public static final RegistryObject<Item> QI_TIAN_DA_SHENG_BOOTS = ITEMS.register("qi_tian_da_sheng_boots",
             ()-> new QiTianDaSheng(ArmorMaterials.NETHERITE,ArmorItem.Type.BOOTS,new Item.Properties().fireResistant(),50));
+    //大将军明光铠
+    public static final RegistryObject<Item> THE_GREAT_GENERAL_MINGGUANG_ARMOR_HELMET = ITEMS.register("the_great_general_mingguang_armor_helmet",
+            ()-> new TheGreatGeneralMingguangArmor(ArmorMaterials.DIAMOND,ArmorItem.Type.HELMET,new Item.Properties(),40));
+    public static final RegistryObject<Item> THE_GREAT_GENERAL_MINGGUANG_ARMOR_CHESTPLATE = ITEMS.register("the_great_general_mingguang_armor_chestplate",
+            ()-> new TheGreatGeneralMingguangArmor(ArmorMaterials.DIAMOND,ArmorItem.Type.CHESTPLATE,new Item.Properties(),40));
+    public static final RegistryObject<Item> THE_GREAT_GENERAL_MINGGUANG_ARMOR_LEGGINGS = ITEMS.register("the_great_general_mingguang_armor_leggings",
+            ()-> new TheGreatGeneralMingguangArmor(ArmorMaterials.DIAMOND,ArmorItem.Type.LEGGINGS,new Item.Properties(),40));
+    public static final RegistryObject<Item> THE_GREAT_GENERAL_MINGGUANG_ARMOR_BOOTS = ITEMS.register("the_great_general_mingguang_armor_boots",
+            ()-> new TheGreatGeneralMingguangArmor(ArmorMaterials.DIAMOND,ArmorItem.Type.BOOTS,new Item.Properties(),40));
+    //儒装
+    public static final RegistryObject<Item> CONFUCIAN_COSTUMES_HELMET = ITEMS.register("confucian_costumes_helmet",
+            ()-> new ConfucianCostumes(ArmorMaterials.LEATHER,ArmorItem.Type.HELMET,new Item.Properties(),20));
+    public static final RegistryObject<Item> CONFUCIAN_COSTUMES_CHESTPLATE = ITEMS.register("confucian_costumes_chestplate",
+            ()-> new ConfucianCostumes(ArmorMaterials.LEATHER,ArmorItem.Type.CHESTPLATE,new Item.Properties(),20));
+    public static final RegistryObject<Item> CONFUCIAN_COSTUMES_LEGGINGS = ITEMS.register("confucian_costumes_leggings",
+            ()-> new ConfucianCostumes(ArmorMaterials.LEATHER,ArmorItem.Type.LEGGINGS,new Item.Properties(),20));
+    public static final RegistryObject<Item> CONFUCIAN_COSTUMES_BOOTS = ITEMS.register("confucian_costumes_boots",
+            ()-> new ConfucianCostumes(ArmorMaterials.LEATHER,ArmorItem.Type.BOOTS,new Item.Properties(),20));
+
     //打狗棒
     public static final RegistryObject<Item> BEAT_DOG_STICK = ITEMS.register("beat_dog_stick", BeatDogStick::new);
     //倚天剑

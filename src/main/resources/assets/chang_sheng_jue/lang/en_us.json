@@ -159,6 +159,16 @@
   "item.chang_sheng_jue.qi_tian_da_sheng_leggings": "虎皮下裳",
   "item.chang_sheng_jue.qi_tian_da_sheng_boots": "藕丝步云履",
 
+  "item.chang_sheng_jue.the_great_general_mingguang_armor_helmet": "大将军明光铠头盔",
+  "item.chang_sheng_jue.the_great_general_mingguang_armor_chestplate": "大将军明光铠胸甲",
+  "item.chang_sheng_jue.the_great_general_mingguang_armor_leggings": "大将军明光铠护腿",
+  "item.chang_sheng_jue.the_great_general_mingguang_armor_boots": "大将军明光铠靴子",
+
+  "item.chang_sheng_jue.confucian_costumes_helmet": "儒装头冠",
+  "item.chang_sheng_jue.confucian_costumes_chestplate": "儒装衣裳",
+  "item.chang_sheng_jue.confucian_costumes_leggings": "儒装下裳",
+  "item.chang_sheng_jue.confucian_costumes_boots": "儒装鞋子",
+
   "item.chang_sheng_jue.immortal_miracle": "不死神功",
   "tooltip.chang_sheng_jue.immortal_miracle.tooltip" : "不死不灭，岂是幻梦?",
   "item.chang_sheng_jue.hercules": "大力神功",

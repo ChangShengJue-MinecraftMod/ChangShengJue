@@ -389,6 +389,16 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.QI_TIAN_DA_SHENG_CHESTPLATE.get());
                 output.accept(ChangShengJueItems.QI_TIAN_DA_SHENG_LEGGINGS.get());
                 output.accept(ChangShengJueItems.QI_TIAN_DA_SHENG_BOOTS.get());
+
+                output.accept(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_HELMET.get());
+                output.accept(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_CHESTPLATE.get());
+                output.accept(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_LEGGINGS.get());
+                output.accept(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_BOOTS.get());
+
+                output.accept(ChangShengJueItems.CONFUCIAN_COSTUMES_HELMET.get());
+                output.accept(ChangShengJueItems.CONFUCIAN_COSTUMES_CHESTPLATE.get());
+                output.accept(ChangShengJueItems.CONFUCIAN_COSTUMES_LEGGINGS.get());
+                output.accept(ChangShengJueItems.CONFUCIAN_COSTUMES_BOOTS.get());
             }).build());
     //工具
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_TOOL = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_tool",()-> CreativeModeTab.builder()

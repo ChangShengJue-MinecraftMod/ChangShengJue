@@ -1,6 +1,5 @@
 package com.shengchanshe.changshengjue.item.combat.armor.qi_tian_da_sheng;
 
-import com.shengchanshe.changshengjue.item.render.combat.armor.qi_tian_ta_sheng.QiTianDaShengRender;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;

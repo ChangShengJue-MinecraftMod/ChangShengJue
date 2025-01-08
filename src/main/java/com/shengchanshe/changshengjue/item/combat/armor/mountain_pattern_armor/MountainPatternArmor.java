@@ -1,14 +1,11 @@
 package com.shengchanshe.changshengjue.item.combat.armor.mountain_pattern_armor;
 
-import com.shengchanshe.changshengjue.item.render.combat.armor.mountain_pattern_armor.MountainPatternArmorRender;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoItem;
@@ -37,12 +34,12 @@ public class MountainPatternArmor extends ArmorItem implements GeoItem {
         EquipmentSlot slot = this.getEquipmentSlot();
         return baseDurability[slot.getIndex()] * this.durabilityMultiplier;
     }
-
-    @Override
-    public boolean isRepairable(ItemStack stack) {
-        //禁用工作台修复
-        return false;
-    }
+//
+//    @Override
+//    public boolean isRepairable(ItemStack stack) {
+//        //禁用工作台修复
+//        return false;
+//    }
 
     @Override
     public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
