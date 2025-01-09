@@ -360,200 +360,59 @@ public class ChangShengJueBlocks {
 
     //筒瓦
     public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK = registerBlock("cylinder_tile_gre_block",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH, SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK_1 = registerBlock("cylinder_tile_gre_block_1",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_1;
-                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_1;
-                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_1;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_1;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK_2 = registerBlock("cylinder_tile_gre_block_2",
             ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK_3 = registerBlock("cylinder_tile_gre_block_3",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_3;
-                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_3;
-                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_3;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_3;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK_4 = registerBlock("cylinder_tile_gre_block_4",
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+
     public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK = registerBlock("cylinder_tile_red_block",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH, SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK_1 = registerBlock("cylinder_tile_red_block_1",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_1;
-                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_1;
-                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_1;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_1;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK_2 = registerBlock("cylinder_tile_red_block_2",
             ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK_3 = registerBlock("cylinder_tile_red_block_3",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_3;
-                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_3;
-                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_3;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_3;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK_4 = registerBlock("cylinder_tile_red_block_4",
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+
     public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK = registerBlock("cylinder_tile_black_block",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH, SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK_1 = registerBlock("cylinder_tile_black_block_1",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_1;
-                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_1;
-                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_1;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_1;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK_2 = registerBlock("cylinder_tile_black_block_2",
             ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK_3 = registerBlock("cylinder_tile_black_block_3",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_3;
-                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_3;
-                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_3;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_3;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK_4 = registerBlock("cylinder_tile_black_block_4",
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+
     public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK = registerBlock("cylinder_tile_golden_block",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH, SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK_1 = registerBlock("cylinder_tile_golden_block_1",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_1;
-                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_1;
-                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_1;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_1;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK_2 = registerBlock("cylinder_tile_golden_block_2",
             ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK_3 = registerBlock("cylinder_tile_golden_block_3",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_3;
-                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_3;
-                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_3;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_3;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK_4 = registerBlock("cylinder_tile_golden_block_4",
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+
     public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK = registerBlock("cylinder_tile_blue_block",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH, SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK_1 = registerBlock("cylinder_tile_blue_block_1",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_1;
-                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_1;
-                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_1;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_1;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK_2 = registerBlock("cylinder_tile_blue_block_2",
             ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK_3 = registerBlock("cylinder_tile_blue_block_3",
-            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()){
-                @Override
-                public VoxelShape getShape(BlockState blockState, BlockGetter reader, BlockPos pos, CollisionContext context) {
-                    Direction value = blockState.getValue(FACING);
-                    return switch (value){
-                        case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_3;
-                        case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_3;
-                        case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_3;
-                        default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_3;
-                    };
-                }
-            });
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK_4 = registerBlock("cylinder_tile_blue_block_4",
+            ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     //瓦片
     public static final RegistryObject<Block> GOLDEN_TILE_BLOCK = registerBlock("golden_tile_block",
             ()-> new CylinderTileBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));

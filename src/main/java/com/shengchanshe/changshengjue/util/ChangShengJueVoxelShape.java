@@ -1,5 +1,6 @@
 package com.shengchanshe.changshengjue.util;
 
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -64,7 +65,22 @@ public class ChangShengJueVoxelShape {
             Block.box(8.756985588965863, 11.139697469370066, 4, 11.756985588965863, 18.139697469370066, 12)
         ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
-
+    public static final VoxelShape CYLINDER_TILE_BLOCK_N_4 = Stream.of(
+            Block.box(0, 0, 0, 16, 8, 16),
+            Block.box(8, 8, 8, 16, 16, 16)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape CYLINDER_TILE_BLOCK_E_4 = Stream.of(
+            Block.box(0.11055322985034799, 0, 0.030428986436911387, 16.110553229850346, 8, 16.03042898643691),
+            Block.box(0.11055322985034799, 8, 8.030428986436911, 8.110553229850348, 16, 16.03042898643691)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape CYLINDER_TILE_BLOCK_S_4 = Stream.of(
+            Block.box(0.08012424341343838, 0, -0.10901778371274062, 16.080124243413437, 8, 15.890982216287256),
+            Block.box(0.08012424341343838, 8, -0.10901778371274062, 8.080124243413437, 16, 7.890982216287259)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape CYLINDER_TILE_BLOCK_W_4 = Stream.of(
+            Block.box(-0.030428986436907834, 0, -0.13944677014965023, 15.96957101356309, 8, 15.860553229850346),
+            Block.box(7.969571013563089, 8, -0.13944677014965023, 15.96957101356309, 16, 7.860553229850348)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     //织布机
     public static final VoxelShape CHANG_SHENG_JUE_LOOM_NORTH = Stream.of(
             Block.box(0, 0.01, 0, 16, 12.01, 16),

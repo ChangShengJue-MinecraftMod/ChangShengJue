@@ -1,6 +1,9 @@
 package com.shengchanshe.changshengjue.block.custom;
 
+import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
+import com.shengchanshe.changshengjue.util.ChangShengJueVoxelShape;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -35,7 +38,45 @@ public class CylinderTileBlock extends Block {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
-        return AABB;
+        Direction value = state.getValue(FACING);
+        if (state.is(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get()) || state.is(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get())
+                || state.is(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get()) || state.is(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get())
+                || state.is(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get())){
+            return switch (value){
+                case NORTH, SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N;
+                default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E;
+            };
+        }else if (state.is(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_1.get()) || state.is(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_1.get())
+                || state.is(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_1.get()) || state.is(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_1.get())
+                || state.is(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_1.get())){
+            return switch (value){
+                case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_1;
+                case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_1;
+                case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_1;
+                default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_1;
+            };
+        }else if (state.is(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_3.get()) || state.is(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_3.get())
+                || state.is(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_3.get()) || state.is(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_3.get())
+                || state.is(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_3.get())){
+            return switch (value){
+                case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_3;
+                case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_3;
+                case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_3;
+                default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_3;
+            };
+        }else if (state.is(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_4.get()) || state.is(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_4.get())
+                || state.is(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get()) || state.is(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get())
+                || state.is(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get())){
+            return switch (value){
+                case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_4;
+                case SOUTH ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_4;
+                case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_4;
+                default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_4;
+            };
+        }else {
+            return AABB;
+        }
+
     }
 
     @Override
