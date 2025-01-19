@@ -1,0 +1,241 @@
+{
+  "variants": {
+    "facing=east,east=false,north=false,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table"
+    },
+    "facing=north,east=false,north=false,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table"
+    },
+    "facing=south,east=false,north=false,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table"
+    },
+    "facing=west,east=false,north=false,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table"
+    },
+    "facing=east,east=true,north=false,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side",
+      "y": 180
+    },
+    "facing=north,east=true,north=false,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side",
+      "y": 180
+    },
+    "facing=south,east=true,north=false,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side",
+      "y": 180
+    },
+    "facing=west,east=true,north=false,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side",
+      "y": 180
+    },
+    "facing=east,east=false,north=true,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side",
+      "y": 90
+    },
+    "facing=north,east=false,north=true,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side",
+      "y": 90
+    },
+    "facing=south,east=false,north=true,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side",
+      "y": 90
+    },
+    "facing=west,east=false,north=true,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side",
+      "y": 90
+    },
+    "facing=east,east=false,north=false,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side",
+      "y": 270
+    },
+    "facing=north,east=false,north=false,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side",
+      "y": 270
+    },
+    "facing=south,east=false,north=false,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side",
+      "y": 270
+    },
+    "facing=west,east=false,north=false,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side",
+      "y": 270
+    },
+    "facing=east,east=false,north=false,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side"
+    },
+    "facing=north,east=false,north=false,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side"
+    },
+    "facing=south,east=false,north=false,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side"
+    },
+    "facing=west,east=false,north=false,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side"
+    },
+
+    "facing=east,east=true,north=false,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side1"
+    },
+    "facing=north,east=true,north=false,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side1"
+    },
+    "facing=south,east=true,north=false,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side1"
+    },
+    "facing=west,east=true,north=false,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side1"
+    },
+    "facing=east,east=false,north=true,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side1",
+      "y": 90
+    },
+    "facing=north,east=false,north=true,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side1",
+      "y": 90
+    },
+    "facing=south,east=false,north=true,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side1",
+      "y": 90
+    },
+    "facing=west,east=false,north=true,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side1",
+      "y": 90
+    },
+    "facing=east,east=true,north=true,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2",
+      "y": 90
+    },
+    "facing=north,east=true,north=true,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2",
+      "y": 90
+    },
+    "facing=south,east=true,north=true,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2",
+      "y": 90
+    },
+    "facing=west,east=true,north=true,south=false,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2",
+      "y": 90
+    },
+    "facing=east,east=true,north=false,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2",
+      "y": 180
+    },
+    "facing=north,east=true,north=false,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2",
+      "y": 180
+    },
+    "facing=south,east=true,north=false,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2",
+      "y": 180
+    },
+    "facing=west,east=true,north=false,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2",
+      "y": 180
+    },
+    "facing=east,east=false,north=true,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2"
+    },
+    "facing=north,east=false,north=true,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2"
+    },
+    "facing=south,east=false,north=true,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2"
+    },
+    "facing=west,east=false,north=true,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2"
+    },
+    "facing=east,east=false,north=false,south=true,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2",
+      "y": 270
+    },
+    "facing=north,east=false,north=false,south=true,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2",
+      "y": 270
+    },
+    "facing=south,east=false,north=false,south=true,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2",
+      "y": 270
+    },
+    "facing=west,east=false,north=false,south=true,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side2",
+      "y": 270
+    },
+    "facing=east,east=true,north=true,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3",
+      "y": 90
+    },
+    "facing=north,east=true,north=true,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3",
+      "y": 90
+    },
+    "facing=south,east=true,north=true,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3",
+      "y": 90
+    },
+    "facing=west,east=true,north=true,south=false,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3",
+      "y": 90
+    },
+    "facing=east,east=true,north=true,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3",
+      "y": 180
+    },
+    "facing=north,east=true,north=true,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3",
+      "y": 180
+    },
+    "facing=south,east=true,north=true,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3",
+      "y": 180
+    },
+    "facing=west,east=true,north=true,south=true,west=false,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3",
+      "y": 180
+    },
+    "facing=east,east=true,north=false,south=true,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3",
+      "y": 270
+    },
+    "facing=north,east=true,north=false,south=true,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3",
+      "y": 270
+    },
+    "facing=south,east=true,north=false,south=true,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3",
+      "y": 270
+    },
+    "facing=west,east=true,north=false,south=true,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3",
+      "y": 270
+    },
+    "facing=east,east=false,north=true,south=true,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3"
+    },
+    "facing=north,east=false,north=true,south=true,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3"
+    },
+    "facing=south,east=false,north=true,south=true,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3"
+    },
+    "facing=west,east=false,north=true,south=true,west=true,middle=false":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_side3"
+    },
+
+    "facing=east,east=true,north=true,south=true,west=true,middle=true":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_middle",
+      "y": 90
+    },
+    "facing=north,east=true,north=true,south=true,west=true,middle=true":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_middle"
+    },
+    "facing=south,east=true,north=true,south=true,west=true,middle=true":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_middle",
+      "y": 180
+    },
+    "facing=west,east=true,north=true,south=true,west=true,middle=true":{
+      "model": "chang_sheng_jue:block/ji_chi_mu_wine_table_middle",
+      "y": 270
+    }
+  }
+}

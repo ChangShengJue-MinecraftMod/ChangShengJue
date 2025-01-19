@@ -194,6 +194,44 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.POTTERY_WHEEL.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DESK.get(), RenderType.cutout());
 
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BIRCH_WINE_TABLE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CRIMSON_WINE_TABLE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.WARPED_WINE_TABLE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MANGROVE_WINE_TABLE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.HUANG_HUA_LI_WINE_TABLE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.JI_CHI_MU_WINE_TABLE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ACACIA_WINE_TABLE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DARK_OAK_WINE_TABLE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.OAK_WINE_TABLE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CHERRY_WINE_TABLE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SPRUCE_WINE_TABLE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ZI_TAN_WINE_TABLE.get(), RenderType.cutout());
+
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BIRCH_BOOK_DESK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CRIMSON_BOOK_DESK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.WARPED_BOOK_DESK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MANGROVE_BOOK_DESK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.HUANG_HUA_LI_BOOK_DESK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.JI_CHI_MU_BOOK_DESK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ACACIA_BOOK_DESK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DARK_OAK_BOOK_DESK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.OAK_BOOK_DESK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CHERRY_BOOK_DESK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SPRUCE_BOOK_DESK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ZI_TAN_BOOK_DESK.get(), RenderType.cutout());
+
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.HUANG_HUA_LI_TEAPOY.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.JI_CHI_MU_TEAPOY.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ZI_TAN_TEAPOY.get(), RenderType.cutout());
+
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.HUANG_HUA_LI_TAISHI_CHAIR.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.JI_CHI_MU_TAISHI_CHAIR.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ZI_TAN_TAISHI_CHAIR.get(), RenderType.cutout());
+
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.HUANG_HUA_LI_FIVE_SCREEN_THRONE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.JI_CHI_MU_FIVE_SCREEN_THRONE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get(), RenderType.cutout());
+
         ItemColors itemColors = Minecraft.getInstance().getItemColors();
         // 为每个物品注册颜色渲染器
         for (Supplier<? extends Item> itemSupplier : cottonArmorItems) {
@@ -209,7 +247,6 @@ public class ClientSetup {
                 }
             }, itemSupplier.get());
         }
-
 
         MenuScreens.register(ChangShengJueMenuTypes.PLAQUE_MENU.get(), PlaqueScreen::new);
 

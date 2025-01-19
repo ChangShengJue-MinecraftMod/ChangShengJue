@@ -1,13 +1,20 @@
-// 1.20.1	2025-01-09T13:10:58.0584027	Tags for minecraft:block mod id chang_sheng_jue
+// 1.20.1	2025-01-18T17:07:41.0526382	Tags for minecraft:block mod id chang_sheng_jue
+42a2cc6cfca934374e5dd82b0a0aae53b98d5f26 data/chang_sheng_jue/tags/blocks/bench.json
+12dda47839a5a1d3967b507d0fe9e9c67b78ddbb data/chang_sheng_jue/tags/blocks/book_desk.json
 c12c1ab3ac023304f352a1c9fcdb427fc93ecd91 data/chang_sheng_jue/tags/blocks/bricks.json
 07ecd0eb3ab21efc7faa1276d80bec0779c1300d data/chang_sheng_jue/tags/blocks/doors.json
+243e52cc7bf4c83db291eb355c320547aaab05a5 data/chang_sheng_jue/tags/blocks/drinking_table_and_chairs.json
+60d211ef09038a4b9cc8b308974e61e76fb19aee data/chang_sheng_jue/tags/blocks/five_screen_throne.json
 fc9adbc914d58ba011b7360db65ceafe041ec19c data/chang_sheng_jue/tags/blocks/huang_hua_li_log.json
 8398dd3b781973607469305269c05e6fde0edff1 data/chang_sheng_jue/tags/blocks/ji_chi_mu_log.json
 0aa1ba5e394b14527494021858f4bcf5206fa757 data/chang_sheng_jue/tags/blocks/log.json
+6275f05dd56b08504fc658fa9c86c0f3ced9c17c data/chang_sheng_jue/tags/blocks/low_desk.json
 75ee6e5e0ec732b9debc9b9439647e5c12839707 data/chang_sheng_jue/tags/blocks/mei_ren_kao.json
 883c9e4be3b2c437119b125eb9a4d0563a1af0b7 data/chang_sheng_jue/tags/blocks/mulberry_log.json
 3860ac154c185cc8795018c538abd2ac02b16fff data/chang_sheng_jue/tags/blocks/painting.json
 b4dd3ec7767810f42f59bffc631bfbf734c395b5 data/chang_sheng_jue/tags/blocks/poplar_log.json
+85060a96baa159f55c0adb8b9ed0ff90fdb1bdb6 data/chang_sheng_jue/tags/blocks/taishi_chair.json
+9ba36984d01192e31496079e32b3cb0f1ea84855 data/chang_sheng_jue/tags/blocks/teapoy.json
 06d1b0686c179d1d55b4f097c9755cd149ee7a12 data/chang_sheng_jue/tags/blocks/tile.json
 1e15caccf4f9838bf02db30aa14cd42cdca28eb1 data/chang_sheng_jue/tags/blocks/windows.json
 65a7d6449d0d549471a825e83180583866846a71 data/chang_sheng_jue/tags/blocks/zi_tan_log.json
@@ -16,7 +23,7 @@ a364f38405a98d2e8f8cbee6ddbdd66f446fdfc8 data/forge/tags/blocks/ores.json
 4caa46eb1244bb08b271dd7b5a62cf7d37d61862 data/minecraft/tags/blocks/leaves.json
 ff3f27392f0f5079b01c75bf6968fca3a5e01af0 data/minecraft/tags/blocks/logs.json
 1ec9772364d84a768c89b0a19a3d8ff401a86a49 data/minecraft/tags/blocks/logs_that_burn.json
-c074b6ca8c3136d32e407b4b9364df92461d45d1 data/minecraft/tags/blocks/mineable/axe.json
+1932aa9f363121b66a635d337a317e55833019b6 data/minecraft/tags/blocks/mineable/axe.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/mineable/hoe.json
 1209cf0c2a46c8b549ba9e326d4d71a8b521fe2a data/minecraft/tags/blocks/mineable/pickaxe.json
 67d2e76e7129049f92d956c69d9d7d577b86bcbc data/minecraft/tags/blocks/mineable/shovel.json

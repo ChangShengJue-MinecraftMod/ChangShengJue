@@ -18,8 +18,10 @@ import com.shengchanshe.changshengjue.entity.custom.deer.StagEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.FemalePeacockEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.MalePeacockEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.PeacockEgg;
+import com.shengchanshe.changshengjue.entity.decoration.seat.SeatEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerEntity;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -168,6 +170,13 @@ public class ChangShengJueEntity {
                             .sized(0.6F, 1.95F).clientTrackingRange(10)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"stakes").toString()));
 
+    //座位
+//    public static final RegistryObject<EntityType<SeatEntity>> SEAT = ENTITY_TYPES.register("seat",
+//            () -> EntityType.Builder.<SeatEntity>of(((type,level) -> new SeatEntity(level),MobCategory.MISC)).sized(0.0F,0.0F).setCustomClientFactory((spawnEntity, level) -> new SeatEntity(level)));
+
+    public static final RegistryObject<EntityType<SeatEntity>> SEAT = register("seat", EntityType.Builder.<SeatEntity>of((type, level) ->
+            new SeatEntity(level), MobCategory.MISC).sized(0.0F, 0.0F).setCustomClientFactory((spawnEntity, level) -> new SeatEntity(level)));
+
     public static final RegistryObject<EntityType<PeacockEgg>> PEACOCK_EGG = ENTITY_TYPES.register("peacock_egg",
             () -> EntityType.Builder.<PeacockEgg>of(PeacockEgg::new, MobCategory.MISC).sized(0.25F, 0.25F)
                     .clientTrackingRange(4).updateInterval(10).build("peacock_egg"));
@@ -175,6 +184,10 @@ public class ChangShengJueEntity {
     public static final RegistryObject<EntityType<ThrowingKnivesEntity>> THROWING_KNIVES_ENTITY = ENTITY_TYPES.register("throwing_knives_entity",
             () -> EntityType.Builder.<ThrowingKnivesEntity>of(ThrowingKnivesEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
                     .clientTrackingRange(4).updateInterval(20).build("throwing_knives_entity"));
+
+    private static <T extends Entity> RegistryObject<EntityType<T>> register(String name, EntityType.Builder<T> builder) {
+        return ENTITY_TYPES.register(name, () -> builder.build(name));
+    }
 
     public static void register(IEventBus eventBus){
         ENTITY_TYPES.register(eventBus);

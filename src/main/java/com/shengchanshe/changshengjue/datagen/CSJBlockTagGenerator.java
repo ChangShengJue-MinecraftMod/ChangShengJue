@@ -118,6 +118,78 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get())
                 .add(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get())
                 .add(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get());
+
+        this.tag(CSJTags.Blocks.BENCH)
+                .add(ChangShengJueBlocks.BIRCH_BENCH.get())
+                .add(ChangShengJueBlocks.CRIMSON_BENCH.get())
+                .add(ChangShengJueBlocks.WARPED_BENCH.get())
+                .add(ChangShengJueBlocks.MANGROVE_BENCH.get())
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_BENCH.get())
+                .add(ChangShengJueBlocks.JI_CHI_MU_BENCH.get())
+                .add(ChangShengJueBlocks.ACACIA_BENCH.get())
+                .add(ChangShengJueBlocks.DARK_OAK_BENCH.get())
+                .add(ChangShengJueBlocks.OAK_BENCH.get())
+                .add(ChangShengJueBlocks.CHERRY_BENCH.get())
+                .add(ChangShengJueBlocks.SPRUCE_BENCH.get())
+                .add(ChangShengJueBlocks.ZI_TAN_BENCH.get());
+
+        this.tag(CSJTags.Blocks.DRINKING_TABLE_AND_CHAIRS)
+                .add(ChangShengJueBlocks.BIRCH_DRINKING_TABLE_AND_CHAIRS.get())
+                .add(ChangShengJueBlocks.CRIMSON_DRINKING_TABLE_AND_CHAIRS.get())
+                .add(ChangShengJueBlocks.WARPED_DRINKING_TABLE_AND_CHAIRS.get())
+                .add(ChangShengJueBlocks.MANGROVE_DRINKING_TABLE_AND_CHAIRS.get())
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_DRINKING_TABLE_AND_CHAIRS.get())
+                .add(ChangShengJueBlocks.JI_CHI_MU_DRINKING_TABLE_AND_CHAIRS.get())
+                .add(ChangShengJueBlocks.ACACIA_DRINKING_TABLE_AND_CHAIRS.get())
+                .add(ChangShengJueBlocks.DARK_OAK_DRINKING_TABLE_AND_CHAIRS.get())
+                .add(ChangShengJueBlocks.OAK_DRINKING_TABLE_AND_CHAIRS.get())
+                .add(ChangShengJueBlocks.CHERRY_DRINKING_TABLE_AND_CHAIRS.get())
+                .add(ChangShengJueBlocks.SPRUCE_DRINKING_TABLE_AND_CHAIRS.get())
+                .add(ChangShengJueBlocks.ZI_TAN_DRINKING_TABLE_AND_CHAIRS.get());
+
+        this.tag(CSJTags.Blocks.BOOK_DESK)
+                .add(ChangShengJueBlocks.BIRCH_BOOK_DESK.get())
+                .add(ChangShengJueBlocks.CRIMSON_BOOK_DESK.get())
+                .add(ChangShengJueBlocks.WARPED_BOOK_DESK.get())
+                .add(ChangShengJueBlocks.MANGROVE_BOOK_DESK.get())
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_BOOK_DESK.get())
+                .add(ChangShengJueBlocks.JI_CHI_MU_BOOK_DESK.get())
+                .add(ChangShengJueBlocks.ACACIA_BOOK_DESK.get())
+                .add(ChangShengJueBlocks.DARK_OAK_BOOK_DESK.get())
+                .add(ChangShengJueBlocks.OAK_BOOK_DESK.get())
+                .add(ChangShengJueBlocks.CHERRY_BOOK_DESK.get())
+                .add(ChangShengJueBlocks.SPRUCE_BOOK_DESK.get())
+                .add(ChangShengJueBlocks.ZI_TAN_BOOK_DESK.get());
+
+        this.tag(CSJTags.Blocks.TEAPOY)
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_TEAPOY.get())
+                .add(ChangShengJueBlocks.JI_CHI_MU_TEAPOY.get())
+                .add(ChangShengJueBlocks.ZI_TAN_TEAPOY.get());
+
+        this.tag(CSJTags.Blocks.TAISHI_CHAIR)
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_TAISHI_CHAIR.get())
+                .add(ChangShengJueBlocks.JI_CHI_MU_TAISHI_CHAIR.get())
+                .add(ChangShengJueBlocks.ZI_TAN_TAISHI_CHAIR.get());
+
+        this.tag(CSJTags.Blocks.FIVE_SCREEN_THRONE)
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_FIVE_SCREEN_THRONE.get())
+                .add(ChangShengJueBlocks.JI_CHI_MU_FIVE_SCREEN_THRONE.get())
+                .add(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get());
+
+        this.tag(CSJTags.Blocks.LOW_DESK)
+                .add(ChangShengJueBlocks.BIRCH_LOW_DESK.get())
+                .add(ChangShengJueBlocks.CRIMSON_LOW_DESK.get())
+                .add(ChangShengJueBlocks.WARPED_LOW_DESK.get())
+                .add(ChangShengJueBlocks.MANGROVE_LOW_DESK.get())
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_LOW_DESK.get())
+                .add(ChangShengJueBlocks.JI_CHI_MU_LOW_DESK.get())
+                .add(ChangShengJueBlocks.ACACIA_LOW_DESK.get())
+                .add(ChangShengJueBlocks.DARK_OAK_LOW_DESK.get())
+                .add(ChangShengJueBlocks.OAK_LOW_DESK.get())
+                .add(ChangShengJueBlocks.CHERRY_LOW_DESK.get())
+                .add(ChangShengJueBlocks.SPRUCE_LOW_DESK.get())
+                .add(ChangShengJueBlocks.ZI_TAN_LOW_DESK.get());
+
         //砖
         this.tag(CSJTags.Blocks.BRICKS)
                 .add(ChangShengJueBlocks.WHITE_FINE_BRICKS.get())
@@ -154,7 +226,15 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.POTTERY_WHEEL.get())
                 .add(ChangShengJueBlocks.TOOL_TABLE.get())
                 .add(ChangShengJueBlocks.DESK.get())
-                .addTag(CSJTags.Blocks.WINDOWS).addTag(CSJTags.Blocks.MEI_REN_KAO);
+                .addTag(CSJTags.Blocks.WINDOWS)
+                .addTag(CSJTags.Blocks.MEI_REN_KAO)
+                .addTag(CSJTags.Blocks.BENCH)
+                .addTag(CSJTags.Blocks.DRINKING_TABLE_AND_CHAIRS)
+                .addTag(CSJTags.Blocks.BOOK_DESK)
+                .addTag(CSJTags.Blocks.TEAPOY)
+                .addTag(CSJTags.Blocks.TAISHI_CHAIR)
+                .addTag(CSJTags.Blocks.FIVE_SCREEN_THRONE)
+                .addTag(CSJTags.Blocks.LOW_DESK);
         this.tag(BlockTags.MINEABLE_WITH_HOE);
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).addTag(CSJTags.Blocks.TILE)
                 .add(ChangShengJueBlocks.WHITE_WALLS_BLOCK.get())

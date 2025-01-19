@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/wine_table_side1",
+  "textures": {
+    "1": "chang_sheng_jue:block/spruce_wine_table",
+    "particle": "chang_sheng_jue:block/spruce_wine_table"
+  }
+}

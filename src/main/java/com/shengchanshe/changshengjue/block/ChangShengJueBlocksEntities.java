@@ -1,7 +1,9 @@
 package com.shengchanshe.changshengjue.block;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.block.custom.shing_mun.entity.ShingMunLeftEntity;
 import com.shengchanshe.changshengjue.block.entity.*;
+import com.shengchanshe.changshengjue.block.entity.desk.Desk;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -35,6 +37,55 @@ public class ChangShengJueBlocksEntities {
     public static final RegistryObject<BlockEntityType<BullionsCastingMoldsBlockEntity>> BULLIONS_CASTING_MOLDS_BLOCK_ENTITY =
             BLOCK_ENTITYES.register("bullions_casting_molds_block_entity",()-> BlockEntityType.Builder.of(BullionsCastingMoldsBlockEntity::new, ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get()).build(null));
 
+    //大门
+    public static final RegistryObject<BlockEntityType<ShingMunLeftEntity>> SHING_MUN_LEFT_ENTITY =
+            BLOCK_ENTITYES.register("shing_mun_left_entity",()-> BlockEntityType.Builder.of(ShingMunLeftEntity::new, ChangShengJueBlocks.SHING_MUN_LEFT.get()).build(null));
+
+    //桌子
+    public static final RegistryObject<BlockEntityType<Desk>> DESK =
+            BLOCK_ENTITYES.register("desk",()-> BlockEntityType.Builder.of(Desk::new,
+                    ChangShengJueBlocks.BIRCH_WINE_TABLE.get(),
+                    ChangShengJueBlocks.CRIMSON_WINE_TABLE.get(),
+                    ChangShengJueBlocks.WARPED_WINE_TABLE.get(),
+                    ChangShengJueBlocks.MANGROVE_WINE_TABLE.get(),
+                    ChangShengJueBlocks.HUANG_HUA_LI_WINE_TABLE.get(),
+                    ChangShengJueBlocks.JI_CHI_MU_WINE_TABLE.get(),
+                    ChangShengJueBlocks.ACACIA_WINE_TABLE.get(),
+                    ChangShengJueBlocks.DARK_OAK_WINE_TABLE.get(),
+                    ChangShengJueBlocks.OAK_WINE_TABLE.get(),
+                    ChangShengJueBlocks.CHERRY_WINE_TABLE.get(),
+                    ChangShengJueBlocks.SPRUCE_WINE_TABLE.get(),
+                    ChangShengJueBlocks.ZI_TAN_WINE_TABLE.get(),
+
+                    ChangShengJueBlocks.BIRCH_BOOK_DESK.get(),
+                    ChangShengJueBlocks.CRIMSON_BOOK_DESK.get(),
+                    ChangShengJueBlocks.WARPED_BOOK_DESK.get(),
+                    ChangShengJueBlocks.MANGROVE_BOOK_DESK.get(),
+                    ChangShengJueBlocks.HUANG_HUA_LI_BOOK_DESK.get(),
+                    ChangShengJueBlocks.JI_CHI_MU_BOOK_DESK.get(),
+                    ChangShengJueBlocks.ACACIA_BOOK_DESK.get(),
+                    ChangShengJueBlocks.DARK_OAK_BOOK_DESK.get(),
+                    ChangShengJueBlocks.OAK_BOOK_DESK.get(),
+                    ChangShengJueBlocks.CHERRY_BOOK_DESK.get(),
+                    ChangShengJueBlocks.SPRUCE_BOOK_DESK.get(),
+                    ChangShengJueBlocks.ZI_TAN_BOOK_DESK.get(),
+
+                    ChangShengJueBlocks.HUANG_HUA_LI_TEAPOY.get(),
+                    ChangShengJueBlocks.JI_CHI_MU_TEAPOY.get(),
+                    ChangShengJueBlocks.ZI_TAN_TEAPOY.get(),
+                    ChangShengJueBlocks.BIRCH_LOW_DESK.get(),
+                    ChangShengJueBlocks.CRIMSON_LOW_DESK.get(),
+                    ChangShengJueBlocks.WARPED_LOW_DESK.get(),
+                    ChangShengJueBlocks.MANGROVE_LOW_DESK.get(),
+                    ChangShengJueBlocks.HUANG_HUA_LI_LOW_DESK.get(),
+                    ChangShengJueBlocks.JI_CHI_MU_LOW_DESK.get(),
+                    ChangShengJueBlocks.ACACIA_LOW_DESK.get(),
+                    ChangShengJueBlocks.DARK_OAK_LOW_DESK.get(),
+                    ChangShengJueBlocks.OAK_LOW_DESK.get(),
+                    ChangShengJueBlocks.CHERRY_LOW_DESK.get(),
+                    ChangShengJueBlocks.SPRUCE_LOW_DESK.get(),
+                    ChangShengJueBlocks.ZI_TAN_LOW_DESK.get()
+            ).build(null));
 
     public static void register(IEventBus eventBus){
         BLOCK_ENTITYES.register(eventBus);

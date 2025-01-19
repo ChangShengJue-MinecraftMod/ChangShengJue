@@ -1,8 +1,14 @@
 package com.shengchanshe.changshengjue.block;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
-import com.shengchanshe.changshengjue.block.custom.*;
 import com.shengchanshe.changshengjue.block.cropper.*;
+import com.shengchanshe.changshengjue.block.custom.*;
+import com.shengchanshe.changshengjue.block.custom.furniture.chair.*;
+import com.shengchanshe.changshengjue.block.custom.furniture.desk.BookDesk;
+import com.shengchanshe.changshengjue.block.custom.furniture.desk.LowDesk;
+import com.shengchanshe.changshengjue.block.custom.furniture.desk.Teapoy;
+import com.shengchanshe.changshengjue.block.custom.furniture.desk.WineTable;
+import com.shengchanshe.changshengjue.block.custom.shing_mun.ShingMunLeft;
 import com.shengchanshe.changshengjue.block.decoration.BlueAndWhitePorcelainFlowerPots;
 import com.shengchanshe.changshengjue.block.decoration.PoplarDefoliation;
 import com.shengchanshe.changshengjue.block.painting.BigPaintingScroll;
@@ -11,10 +17,8 @@ import com.shengchanshe.changshengjue.block.painting.PaintingScroll;
 import com.shengchanshe.changshengjue.block.painting.WidthPaintingScroll;
 import com.shengchanshe.changshengjue.block.tree_logs.*;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import com.shengchanshe.changshengjue.util.ChangShengJueVoxelShape;
 import com.shengchanshe.changshengjue.world.feature.tree.*;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -23,7 +27,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
@@ -613,6 +616,11 @@ public class ChangShengJueBlocks {
 
     public static final RegistryObject<Block> PIG_TROUGH = registerBlock("pig_trough",
             ()-> new PigTrough(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(0.6F).sound(SoundType.WOOD).ignitedByLava().noCollission()));
+
+    //大门
+    public static final RegistryObject<Block> SHING_MUN_LEFT = registerBlock("shing_mun_left",
+            ()-> new ShingMunLeft(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+
     //浇铸模具
     public static final RegistryObject<Block> CASTING_MOLDS = registerBlock("casting_molds",
             ()-> new CastingMolds(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.STONE)));
@@ -620,16 +628,167 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> BULLIONS_CASTING_MOLDS = registerBlock("bullions_casting_molds",
             ()-> new BullionsCastingMolds(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.STONE)));
 
+    //家具
+    //酒桌
+    public static final RegistryObject<Block> BIRCH_WINE_TABLE = registerBlock("birch_wine_table",
+            ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS)));
+    public static final RegistryObject<Block> CRIMSON_WINE_TABLE = registerBlock("crimson_wine_table",
+            ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS)));
+    public static final RegistryObject<Block> WARPED_WINE_TABLE = registerBlock("warped_wine_table",
+            ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> MANGROVE_WINE_TABLE = registerBlock("mangrove_wine_table",
+            ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS)));
+    public static final RegistryObject<Block> HUANG_HUA_LI_WINE_TABLE = registerBlock("huang_hua_li_wine_table",
+            ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS)));
+    public static final RegistryObject<Block> JI_CHI_MU_WINE_TABLE = registerBlock("ji_chi_mu_wine_table",
+            ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS)));
+    public static final RegistryObject<Block> ACACIA_WINE_TABLE = registerBlock("acacia_wine_table",
+            ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS)));
+    public static final RegistryObject<Block> DARK_OAK_WINE_TABLE = registerBlock("dark_oak_wine_table",
+            ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS)));
+    public static final RegistryObject<Block> OAK_WINE_TABLE = registerBlock("oak_wine_table",
+            ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> CHERRY_WINE_TABLE = registerBlock("cherry_wine_table",
+            ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS)));
+    public static final RegistryObject<Block> SPRUCE_WINE_TABLE = registerBlock("spruce_wine_table",
+            ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS)));
+    public static final RegistryObject<Block> ZI_TAN_WINE_TABLE = registerBlock("zi_tan_wine_table",
+            ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS)));
+    //酒桌椅
+    public static final RegistryObject<Block> BIRCH_DRINKING_TABLE_AND_CHAIRS = registerBlock("birch_drinking_table_and_chairs",
+            ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS)));
+    public static final RegistryObject<Block> CRIMSON_DRINKING_TABLE_AND_CHAIRS = registerBlock("crimson_drinking_table_and_chairs",
+            ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS)));
+    public static final RegistryObject<Block> WARPED_DRINKING_TABLE_AND_CHAIRS = registerBlock("warped_drinking_table_and_chairs",
+            ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> MANGROVE_DRINKING_TABLE_AND_CHAIRS = registerBlock("mangrove_drinking_table_and_chairs",
+            ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS)));
+    public static final RegistryObject<Block> HUANG_HUA_LI_DRINKING_TABLE_AND_CHAIRS = registerBlock("huang_hua_li_drinking_table_and_chairs",
+            ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS)));
+    public static final RegistryObject<Block> JI_CHI_MU_DRINKING_TABLE_AND_CHAIRS = registerBlock("ji_chi_mu_drinking_table_and_chairs",
+            ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS)));
+    public static final RegistryObject<Block> ACACIA_DRINKING_TABLE_AND_CHAIRS = registerBlock("acacia_drinking_table_and_chairs",
+            ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS)));
+    public static final RegistryObject<Block> DARK_OAK_DRINKING_TABLE_AND_CHAIRS = registerBlock("dark_oak_drinking_table_and_chairs",
+            ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS)));
+    public static final RegistryObject<Block> OAK_DRINKING_TABLE_AND_CHAIRS = registerBlock("oak_drinking_table_and_chairs",
+            ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> CHERRY_DRINKING_TABLE_AND_CHAIRS = registerBlock("cherry_drinking_table_and_chairs",
+            ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS)));
+    public static final RegistryObject<Block> SPRUCE_DRINKING_TABLE_AND_CHAIRS = registerBlock("spruce_drinking_table_and_chairs",
+            ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS)));
+    public static final RegistryObject<Block> ZI_TAN_DRINKING_TABLE_AND_CHAIRS = registerBlock("zi_tan_drinking_table_and_chairs",
+            ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS)));
+    //长凳
+    public static final RegistryObject<Block> BIRCH_BENCH = registerBlock("birch_bench",
+            ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS)));
+    public static final RegistryObject<Block> CRIMSON_BENCH = registerBlock("crimson_bench",
+            ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS)));
+    public static final RegistryObject<Block> WARPED_BENCH = registerBlock("warped_bench",
+            ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> MANGROVE_BENCH = registerBlock("mangrove_bench",
+            ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS)));
+    public static final RegistryObject<Block> HUANG_HUA_LI_BENCH = registerBlock("huang_hua_li_bench",
+            ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> JI_CHI_MU_BENCH = registerBlock("ji_chi_mu_bench",
+            ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> ACACIA_BENCH = registerBlock("acacia_bench",
+            ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS)));
+    public static final RegistryObject<Block> DARK_OAK_BENCH = registerBlock("dark_oak_bench",
+            ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS)));
+    public static final RegistryObject<Block> OAK_BENCH = registerBlock("oak_bench",
+            ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> CHERRY_BENCH = registerBlock("cherry_bench",
+            ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS)));
+    public static final RegistryObject<Block> SPRUCE_BENCH = registerBlock("spruce_bench",
+            ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS)));
+    public static final RegistryObject<Block> ZI_TAN_BENCH = registerBlock("zi_tan_bench",
+            ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    //书桌
+    public static final RegistryObject<Block> BIRCH_BOOK_DESK = registerBlock("birch_book_desk",
+            ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS)));
+    public static final RegistryObject<Block> CRIMSON_BOOK_DESK = registerBlock("crimson_book_desk",
+            ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS)));
+    public static final RegistryObject<Block> WARPED_BOOK_DESK = registerBlock("warped_book_desk",
+            ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> MANGROVE_BOOK_DESK = registerBlock("mangrove_book_desk",
+            ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS)));
+    public static final RegistryObject<Block> HUANG_HUA_LI_BOOK_DESK = registerBlock("huang_hua_li_book_desk",
+            ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> JI_CHI_MU_BOOK_DESK = registerBlock("ji_chi_mu_book_desk",
+            ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> ACACIA_BOOK_DESK = registerBlock("acacia_book_desk",
+            ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS)));
+    public static final RegistryObject<Block> DARK_OAK_BOOK_DESK = registerBlock("dark_oak_book_desk",
+            ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS)));
+    public static final RegistryObject<Block> OAK_BOOK_DESK = registerBlock("oak_book_desk",
+            ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> CHERRY_BOOK_DESK = registerBlock("cherry_book_desk",
+            ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS)));
+    public static final RegistryObject<Block> SPRUCE_BOOK_DESK = registerBlock("spruce_book_desk",
+            ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS)));
+    public static final RegistryObject<Block> ZI_TAN_BOOK_DESK = registerBlock("zi_tan_book_desk",
+            ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    //茶几
+    public static final RegistryObject<Block> HUANG_HUA_LI_TEAPOY = registerBlock("huang_hua_li_teapoy",
+            ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> JI_CHI_MU_TEAPOY = registerBlock("ji_chi_mu_teapoy",
+            ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> ZI_TAN_TEAPOY = registerBlock("zi_tan_teapoy",
+            ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+
+    //太师椅
+    public static final RegistryObject<Block> HUANG_HUA_LI_TAISHI_CHAIR = registerBlock("huang_hua_li_taishi_chair",
+            ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> JI_CHI_MU_TAISHI_CHAIR = registerBlock("ji_chi_mu_taishi_chair",
+            ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> ZI_TAN_TAISHI_CHAIR = registerBlock("zi_tan_taishi_chair",
+            ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+
+    //五围屏宝座
+    public static final RegistryObject<Block> HUANG_HUA_LI_FIVE_SCREEN_THRONE = registerBlock("huang_hua_li_five_screen_throne",
+            ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> JI_CHI_MU_FIVE_SCREEN_THRONE = registerBlock("ji_chi_mu_five_screen_throne",
+            ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> ZI_TAN_FIVE_SCREEN_THRONE = registerBlock("zi_tan_five_screen_throne",
+            ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    //席桌
+    public static final RegistryObject<Block> BIRCH_LOW_DESK = registerBlock("birch_low_desk",
+            ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS)));
+    public static final RegistryObject<Block> CRIMSON_LOW_DESK = registerBlock("crimson_low_desk",
+            ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS)));
+    public static final RegistryObject<Block> WARPED_LOW_DESK = registerBlock("warped_low_desk",
+            ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> MANGROVE_LOW_DESK = registerBlock("mangrove_low_desk",
+            ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS)));
+    public static final RegistryObject<Block> HUANG_HUA_LI_LOW_DESK = registerBlock("huang_hua_li_low_desk",
+            ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> JI_CHI_MU_LOW_DESK = registerBlock("ji_chi_mu_low_desk",
+            ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> ACACIA_LOW_DESK = registerBlock("acacia_low_desk",
+            ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS)));
+    public static final RegistryObject<Block> DARK_OAK_LOW_DESK = registerBlock("dark_oak_low_desk",
+            ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS)));
+    public static final RegistryObject<Block> OAK_LOW_DESK = registerBlock("oak_low_desk",
+            ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> CHERRY_LOW_DESK = registerBlock("cherry_low_desk",
+            ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS)));
+    public static final RegistryObject<Block> SPRUCE_LOW_DESK = registerBlock("spruce_low_desk",
+            ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS)));
+    public static final RegistryObject<Block> ZI_TAN_LOW_DESK = registerBlock("zi_tan_low_desk",
+            ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+
+    //蒲团
+    public static final RegistryObject<Block> ZAFU = registerBlock("zafu",
+            ()-> new Zafu(BlockBehaviour.Properties.copy(Blocks.HAY_BLOCK)));
+
     //画轴
     public static final RegistryObject<Block> PAINTING_SCROLL = registerBlock("painting_scroll",
             ()-> new PaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY)));
-
     public static final RegistryObject<Block> HIGH_PAINTING_SCROLL = registerBlock("high_painting_scroll",
             ()-> new HighPaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY)));
-
     public static final RegistryObject<Block> WIDTH_PAINTING_SCROLL = registerBlock("width_painting_scroll",
             ()-> new WidthPaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY)));
-
     public static final RegistryObject<Block> BIG_PAINTING_SCROLL = registerBlock("big_painting_scroll",
             ()-> new BigPaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY)));
 

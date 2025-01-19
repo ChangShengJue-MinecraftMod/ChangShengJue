@@ -353,12 +353,95 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         //画轴(大)
         this.dropSelf(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get());
 
+        //城门
+        this.dropSelf(ChangShengJueBlocks.SHING_MUN_LEFT.get());
         //牌匾
         this.dropSelf(ChangShengJueBlocks.PLAQUE.get());
 
         //模具
         this.dropSelf(ChangShengJueBlocks.CASTING_MOLDS.get());
         this.dropSelf(ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get());
+
+        //家具
+        //长凳
+        this.dropSelf(ChangShengJueBlocks.BIRCH_BENCH.get());
+        this.dropSelf(ChangShengJueBlocks.CRIMSON_BENCH.get());
+        this.dropSelf(ChangShengJueBlocks.WARPED_BENCH.get());
+        this.dropSelf(ChangShengJueBlocks.MANGROVE_BENCH.get());
+        this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_BENCH.get());
+        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_BENCH.get());
+        this.dropSelf(ChangShengJueBlocks.ACACIA_BENCH.get());
+        this.dropSelf(ChangShengJueBlocks.DARK_OAK_BENCH.get());
+        this.dropSelf(ChangShengJueBlocks.OAK_BENCH.get());
+        this.dropSelf(ChangShengJueBlocks.CHERRY_BENCH.get());
+        this.dropSelf(ChangShengJueBlocks.SPRUCE_BENCH.get());
+        this.dropSelf(ChangShengJueBlocks.ZI_TAN_BENCH.get());
+        //酒桌
+        this.dropSelf(ChangShengJueBlocks.BIRCH_WINE_TABLE.get());
+        this.dropSelf(ChangShengJueBlocks.CRIMSON_WINE_TABLE.get());
+        this.dropSelf(ChangShengJueBlocks.WARPED_WINE_TABLE.get());
+        this.dropSelf(ChangShengJueBlocks.MANGROVE_WINE_TABLE.get());
+        this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_WINE_TABLE.get());
+        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_WINE_TABLE.get());
+        this.dropSelf(ChangShengJueBlocks.ACACIA_WINE_TABLE.get());
+        this.dropSelf(ChangShengJueBlocks.DARK_OAK_WINE_TABLE.get());
+        this.dropSelf(ChangShengJueBlocks.OAK_WINE_TABLE.get());
+        this.dropSelf(ChangShengJueBlocks.CHERRY_WINE_TABLE.get());
+        this.dropSelf(ChangShengJueBlocks.SPRUCE_WINE_TABLE.get());
+        this.dropSelf(ChangShengJueBlocks.ZI_TAN_WINE_TABLE.get());
+        //酒桌椅
+        this.dropSelf(ChangShengJueBlocks.BIRCH_DRINKING_TABLE_AND_CHAIRS.get());
+        this.dropSelf(ChangShengJueBlocks.CRIMSON_DRINKING_TABLE_AND_CHAIRS.get());
+        this.dropSelf(ChangShengJueBlocks.WARPED_DRINKING_TABLE_AND_CHAIRS.get());
+        this.dropSelf(ChangShengJueBlocks.MANGROVE_DRINKING_TABLE_AND_CHAIRS.get());
+        this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_DRINKING_TABLE_AND_CHAIRS.get());
+        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_DRINKING_TABLE_AND_CHAIRS.get());
+        this.dropSelf(ChangShengJueBlocks.ACACIA_DRINKING_TABLE_AND_CHAIRS.get());
+        this.dropSelf(ChangShengJueBlocks.DARK_OAK_DRINKING_TABLE_AND_CHAIRS.get());
+        this.dropSelf(ChangShengJueBlocks.OAK_DRINKING_TABLE_AND_CHAIRS.get());
+        this.dropSelf(ChangShengJueBlocks.CHERRY_DRINKING_TABLE_AND_CHAIRS.get());
+        this.dropSelf(ChangShengJueBlocks.SPRUCE_DRINKING_TABLE_AND_CHAIRS.get());
+        this.dropSelf(ChangShengJueBlocks.ZI_TAN_DRINKING_TABLE_AND_CHAIRS.get());
+        //书桌
+        this.dropSelf(ChangShengJueBlocks.BIRCH_BOOK_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.CRIMSON_BOOK_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.WARPED_BOOK_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.MANGROVE_BOOK_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_BOOK_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_BOOK_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.ACACIA_BOOK_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.DARK_OAK_BOOK_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.OAK_BOOK_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.CHERRY_BOOK_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.SPRUCE_BOOK_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.ZI_TAN_BOOK_DESK.get());
+        //茶几
+        this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_TEAPOY.get());
+        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_TEAPOY.get());
+        this.dropSelf(ChangShengJueBlocks.ZI_TAN_TEAPOY.get());
+        //太师椅
+        this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_TAISHI_CHAIR.get());
+        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_TAISHI_CHAIR.get());
+        this.dropSelf(ChangShengJueBlocks.ZI_TAN_TAISHI_CHAIR.get());
+        //五围屏宝座
+        this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_FIVE_SCREEN_THRONE.get());
+        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_FIVE_SCREEN_THRONE.get());
+        this.dropSelf(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get());
+        //席桌
+        this.dropSelf(ChangShengJueBlocks.BIRCH_LOW_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.CRIMSON_LOW_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.WARPED_LOW_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.MANGROVE_LOW_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_LOW_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_LOW_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.ACACIA_LOW_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.DARK_OAK_LOW_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.OAK_LOW_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.CHERRY_LOW_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.SPRUCE_LOW_DESK.get());
+        this.dropSelf(ChangShengJueBlocks.ZI_TAN_LOW_DESK.get());
+        //蒲团
+        this.dropSelf(ChangShengJueBlocks.ZAFU.get());
     }
 
     public void createLeavesFruitsDrops(Block leavesBlock, Item fruitsItem,Block sapling){

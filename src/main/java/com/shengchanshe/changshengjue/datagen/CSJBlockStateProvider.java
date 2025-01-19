@@ -18,6 +18,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Function;
 
+import static com.shengchanshe.changshengjue.block.custom.furniture.desk.LowDesk.RIGHT;
+
 
 public class CSJBlockStateProvider extends BlockStateProvider {
 
@@ -54,7 +56,6 @@ public class CSJBlockStateProvider extends BlockStateProvider {
 
         makeCrop((CropBlock) ChangShengJueBlocks.HORDEUM.get(), "hordeum_stage", "hordeum_stage");
 
-
 //        simpleBlock(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get(),new ModelFile.UncheckedModelFile(modLoc("block/blue_and_white_porcelain_flower_pots")));
 //        simpleBlockItem(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get(),new ModelFile.UncheckedModelFile(modLoc("block/blue_and_white_porcelain_flower_pots")));
         //花盆和盆栽花
@@ -83,6 +84,33 @@ public class CSJBlockStateProvider extends BlockStateProvider {
 
         horizontalBlock(ChangShengJueBlocks.TOOL_TABLE.get(), new ModelFile.UncheckedModelFile(modLoc("block/tool_table")));
         horizontalBlock(ChangShengJueBlocks.DESK.get(), new ModelFile.UncheckedModelFile(modLoc("block/desk")));
+        //酒桌椅
+        horizontalBlock(ChangShengJueBlocks.BIRCH_DRINKING_TABLE_AND_CHAIRS.get(), new ModelFile.UncheckedModelFile(modLoc("block/birch_drinking_table_and_chairs")));
+        horizontalBlock(ChangShengJueBlocks.CRIMSON_DRINKING_TABLE_AND_CHAIRS.get(), new ModelFile.UncheckedModelFile(modLoc("block/crimson_drinking_table_and_chairs")));
+        horizontalBlock(ChangShengJueBlocks.WARPED_DRINKING_TABLE_AND_CHAIRS.get(), new ModelFile.UncheckedModelFile(modLoc("block/warped_drinking_table_and_chairs")));
+        horizontalBlock(ChangShengJueBlocks.MANGROVE_DRINKING_TABLE_AND_CHAIRS.get(), new ModelFile.UncheckedModelFile(modLoc("block/mangrove_drinking_table_and_chairs")));
+        horizontalBlock(ChangShengJueBlocks.HUANG_HUA_LI_DRINKING_TABLE_AND_CHAIRS.get(), new ModelFile.UncheckedModelFile(modLoc("block/huang_hua_li_drinking_table_and_chairs")));
+        horizontalBlock(ChangShengJueBlocks.JI_CHI_MU_DRINKING_TABLE_AND_CHAIRS.get(), new ModelFile.UncheckedModelFile(modLoc("block/ji_chi_mu_drinking_table_and_chairs")));
+        horizontalBlock(ChangShengJueBlocks.ACACIA_DRINKING_TABLE_AND_CHAIRS.get(), new ModelFile.UncheckedModelFile(modLoc("block/acacia_drinking_table_and_chairs")));
+        horizontalBlock(ChangShengJueBlocks.DARK_OAK_DRINKING_TABLE_AND_CHAIRS.get(), new ModelFile.UncheckedModelFile(modLoc("block/dark_oak_drinking_table_and_chairs")));
+        horizontalBlock(ChangShengJueBlocks.OAK_DRINKING_TABLE_AND_CHAIRS.get(), new ModelFile.UncheckedModelFile(modLoc("block/oak_drinking_table_and_chairs")));
+        horizontalBlock(ChangShengJueBlocks.CHERRY_DRINKING_TABLE_AND_CHAIRS.get(), new ModelFile.UncheckedModelFile(modLoc("block/cherry_drinking_table_and_chairs")));
+        horizontalBlock(ChangShengJueBlocks.SPRUCE_DRINKING_TABLE_AND_CHAIRS.get(), new ModelFile.UncheckedModelFile(modLoc("block/spruce_drinking_table_and_chairs")));
+        horizontalBlock(ChangShengJueBlocks.ZI_TAN_DRINKING_TABLE_AND_CHAIRS.get(), new ModelFile.UncheckedModelFile(modLoc("block/zi_tan_drinking_table_and_chairs")));
+        //茶几
+        horizontalBlock(ChangShengJueBlocks.HUANG_HUA_LI_TEAPOY.get(), new ModelFile.UncheckedModelFile(modLoc("block/huang_hua_li_teapoy")));
+        horizontalBlock(ChangShengJueBlocks.JI_CHI_MU_TEAPOY.get(), new ModelFile.UncheckedModelFile(modLoc("block/ji_chi_mu_teapoy")));
+        horizontalBlock(ChangShengJueBlocks.ZI_TAN_TEAPOY.get(), new ModelFile.UncheckedModelFile(modLoc("block/zi_tan_teapoy")));
+        //太师椅
+        horizontalBlock(ChangShengJueBlocks.HUANG_HUA_LI_TAISHI_CHAIR.get(), new ModelFile.UncheckedModelFile(modLoc("block/huang_hua_li_taishi_chair")));
+        horizontalBlock(ChangShengJueBlocks.JI_CHI_MU_TAISHI_CHAIR.get(), new ModelFile.UncheckedModelFile(modLoc("block/ji_chi_mu_taishi_chair")));
+        horizontalBlock(ChangShengJueBlocks.ZI_TAN_TAISHI_CHAIR.get(), new ModelFile.UncheckedModelFile(modLoc("block/zi_tan_taishi_chair")));
+        //五围屏宝座
+        horizontalBlock(ChangShengJueBlocks.HUANG_HUA_LI_FIVE_SCREEN_THRONE.get(), new ModelFile.UncheckedModelFile(modLoc("block/huang_hua_li_five_screen_throne")));
+        horizontalBlock(ChangShengJueBlocks.JI_CHI_MU_FIVE_SCREEN_THRONE.get(), new ModelFile.UncheckedModelFile(modLoc("block/ji_chi_mu_five_screen_throne")));
+        horizontalBlock(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get(), new ModelFile.UncheckedModelFile(modLoc("block/zi_tan_five_screen_throne")));
+        //蒲团
+        horizontalBlock(ChangShengJueBlocks.ZAFU.get(), new ModelFile.UncheckedModelFile(modLoc("block/zafu")));
     }
 
     public void makeCrop(CropBlock block, String modelName, String textureName) {

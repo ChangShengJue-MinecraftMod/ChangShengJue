@@ -19,7 +19,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -97,19 +96,6 @@ public class BigPaintingScroll extends HorizontalDirectionalBlock {
         }
     }
 
-    @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        Direction value = pState.getValue(FACING);
-
-        return switch (value){
-            case SOUTH -> this.AABB = Block.box(0, 0, 0, 16, 16, 2);
-            case WEST -> this.AABB = Block.box(14, 0, 0, 16, 16, 16);
-            case EAST -> this.AABB = Block.box(0, 0, 0, 2, 16, 16);
-            default -> this.AABB = Block.box(0, 0, 14, 16, 16, 16);
-        };
-    }
-
-
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
@@ -123,6 +109,18 @@ public class BigPaintingScroll extends HorizontalDirectionalBlock {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        Direction value = pState.getValue(FACING);
+
+        return switch (value){
+            case SOUTH -> this.AABB = Block.box(0, 0, 0, 16, 16, 2);
+            case WEST -> this.AABB = Block.box(14, 0, 0, 16, 16, 16);
+            case EAST -> this.AABB = Block.box(0, 0, 0, 2, 16, 16);
+            default -> this.AABB = Block.box(0, 0, 14, 16, 16, 16);
+        };
     }
 
     @Override

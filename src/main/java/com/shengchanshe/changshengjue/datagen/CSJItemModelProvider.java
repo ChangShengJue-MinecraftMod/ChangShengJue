@@ -159,7 +159,92 @@ public class CSJItemModelProvider extends ItemModelProvider {
         bullionsItem(ChangShengJueItems.GOLD_BULLIONS);
 
         saplingItem(ChangShengJueBlocks.MULBERRY_SAPLING);
+
+        parentItem(ChangShengJueBlocks.BIRCH_BENCH);
+        parentItem(ChangShengJueBlocks.CRIMSON_BENCH);
+        parentItem(ChangShengJueBlocks.WARPED_BENCH);
+        parentItem(ChangShengJueBlocks.MANGROVE_BENCH);
+        parentItem(ChangShengJueBlocks.HUANG_HUA_LI_BENCH);
+        parentItem(ChangShengJueBlocks.JI_CHI_MU_BENCH);
+        parentItem(ChangShengJueBlocks.ACACIA_BENCH);
+        parentItem(ChangShengJueBlocks.DARK_OAK_BENCH);
+        parentItem(ChangShengJueBlocks.OAK_BENCH);
+        parentItem(ChangShengJueBlocks.CHERRY_BENCH);
+        parentItem(ChangShengJueBlocks.SPRUCE_BENCH);
+        parentItem(ChangShengJueBlocks.ZI_TAN_BENCH);
+        //家具
+        parentItem(ChangShengJueBlocks.BIRCH_WINE_TABLE);
+        parentItem(ChangShengJueBlocks.CRIMSON_WINE_TABLE);
+        parentItem(ChangShengJueBlocks.WARPED_WINE_TABLE);
+        parentItem(ChangShengJueBlocks.MANGROVE_WINE_TABLE);
+        parentItem(ChangShengJueBlocks.HUANG_HUA_LI_WINE_TABLE);
+        parentItem(ChangShengJueBlocks.JI_CHI_MU_WINE_TABLE);
+        parentItem(ChangShengJueBlocks.ACACIA_WINE_TABLE);
+        parentItem(ChangShengJueBlocks.DARK_OAK_WINE_TABLE);
+        parentItem(ChangShengJueBlocks.OAK_WINE_TABLE);
+        parentItem(ChangShengJueBlocks.CHERRY_WINE_TABLE);
+        parentItem(ChangShengJueBlocks.SPRUCE_WINE_TABLE);
+        parentItem(ChangShengJueBlocks.ZI_TAN_WINE_TABLE);
+
+        parentItem(ChangShengJueBlocks.BIRCH_DRINKING_TABLE_AND_CHAIRS);
+        parentItem(ChangShengJueBlocks.CRIMSON_DRINKING_TABLE_AND_CHAIRS);
+        parentItem(ChangShengJueBlocks.WARPED_DRINKING_TABLE_AND_CHAIRS);
+        parentItem(ChangShengJueBlocks.MANGROVE_DRINKING_TABLE_AND_CHAIRS);
+        parentItem(ChangShengJueBlocks.HUANG_HUA_LI_DRINKING_TABLE_AND_CHAIRS);
+        parentItem(ChangShengJueBlocks.JI_CHI_MU_DRINKING_TABLE_AND_CHAIRS);
+        parentItem(ChangShengJueBlocks.ACACIA_DRINKING_TABLE_AND_CHAIRS);
+        parentItem(ChangShengJueBlocks.DARK_OAK_DRINKING_TABLE_AND_CHAIRS);
+        parentItem(ChangShengJueBlocks.OAK_DRINKING_TABLE_AND_CHAIRS);
+        parentItem(ChangShengJueBlocks.CHERRY_DRINKING_TABLE_AND_CHAIRS);
+        parentItem(ChangShengJueBlocks.SPRUCE_DRINKING_TABLE_AND_CHAIRS);
+        parentItem(ChangShengJueBlocks.ZI_TAN_DRINKING_TABLE_AND_CHAIRS);
+
+        parentItem(ChangShengJueBlocks.BIRCH_BOOK_DESK);
+        parentItem(ChangShengJueBlocks.CRIMSON_BOOK_DESK);
+        parentItem(ChangShengJueBlocks.WARPED_BOOK_DESK);
+        parentItem(ChangShengJueBlocks.MANGROVE_BOOK_DESK);
+        parentItem(ChangShengJueBlocks.HUANG_HUA_LI_BOOK_DESK);
+        parentItem(ChangShengJueBlocks.JI_CHI_MU_BOOK_DESK);
+        parentItem(ChangShengJueBlocks.ACACIA_BOOK_DESK);
+        parentItem(ChangShengJueBlocks.DARK_OAK_BOOK_DESK);
+        parentItem(ChangShengJueBlocks.OAK_BOOK_DESK);
+        parentItem(ChangShengJueBlocks.CHERRY_BOOK_DESK);
+        parentItem(ChangShengJueBlocks.SPRUCE_BOOK_DESK);
+        parentItem(ChangShengJueBlocks.ZI_TAN_BOOK_DESK);
+
+        parentItem(ChangShengJueBlocks.HUANG_HUA_LI_TEAPOY);
+        parentItem(ChangShengJueBlocks.JI_CHI_MU_TEAPOY);
+        parentItem(ChangShengJueBlocks.ZI_TAN_TEAPOY);
+
+        parentItem(ChangShengJueBlocks.HUANG_HUA_LI_TAISHI_CHAIR);
+        parentItem(ChangShengJueBlocks.JI_CHI_MU_TAISHI_CHAIR);
+        parentItem(ChangShengJueBlocks.ZI_TAN_TAISHI_CHAIR);
+
+        parentItem(ChangShengJueBlocks.HUANG_HUA_LI_FIVE_SCREEN_THRONE);
+        parentItem(ChangShengJueBlocks.JI_CHI_MU_FIVE_SCREEN_THRONE);
+        parentItem(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE);
+
+        parentItem(ChangShengJueBlocks.BIRCH_LOW_DESK);
+        parentItem(ChangShengJueBlocks.CRIMSON_LOW_DESK);
+        parentItem(ChangShengJueBlocks.WARPED_LOW_DESK);
+        parentItem(ChangShengJueBlocks.MANGROVE_LOW_DESK);
+        parentItem(ChangShengJueBlocks.HUANG_HUA_LI_LOW_DESK);
+        parentItem(ChangShengJueBlocks.JI_CHI_MU_LOW_DESK);
+        parentItem(ChangShengJueBlocks.ACACIA_LOW_DESK);
+        parentItem(ChangShengJueBlocks.DARK_OAK_LOW_DESK);
+        parentItem(ChangShengJueBlocks.OAK_LOW_DESK);
+        parentItem(ChangShengJueBlocks.CHERRY_LOW_DESK);
+        parentItem(ChangShengJueBlocks.SPRUCE_LOW_DESK);
+        parentItem(ChangShengJueBlocks.ZI_TAN_LOW_DESK);
+
+        parentItem(ChangShengJueBlocks.ZAFU);
     }
+
+    private ItemModelBuilder parentItem(RegistryObject<Block> item){
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation(ChangShengJue.MOD_ID,"block/"+item.getId().getPath()));
+    }
+
     private ItemModelBuilder saplingItem(RegistryObject<Block> item) {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
@@ -171,6 +256,7 @@ public class CSJItemModelProvider extends ItemModelProvider {
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(ChangShengJue.MOD_ID,"item/"+item.getId().getPath()));
     }
+
     private ItemModelBuilder simpleArmorItem(RegistryObject<Item> item){
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0", new ResourceLocation(ChangShengJue.MOD_ID,"item/"+item.getId().getPath()))

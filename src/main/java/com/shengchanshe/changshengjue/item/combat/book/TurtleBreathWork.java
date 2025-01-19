@@ -27,26 +27,28 @@ public class TurtleBreathWork extends Item {
         if (!level.isClientSide) {
             if (entity instanceof Player player){
                 player.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
-                    if (turtleBreathWork.isTurtleBreathWorkComprehend() && turtleBreathWork.isTurtleBreathWorkOff() && turtleBreathWork.getTurtleBreathWorkLevel() == 0) {
-                        float probability = player.getRandom().nextFloat();
-                        float defaultProbability = !player.getAbilities().instabuild ? 0.01F : 1.0F;
-                        if (probability < defaultProbability) {
-                            level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                                    ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                            turtleBreathWork.addTurtleBreathWorkLevel();
-                            turtleBreathWork.setTurtleBreathWorkParticle(true);
+                    if (turtleBreathWork.isTurtleBreathWorkComprehend() && turtleBreathWork.getTurtleBreathWorkLevel() == 0) {
+                        if (turtleBreathWork.isSkillZActive() || turtleBreathWork.isSkillXActive() || turtleBreathWork.isSkillCActive()){
+                            float probability = player.getRandom().nextFloat();
+                            float defaultProbability = !player.getAbilities().instabuild ? 0.01F : 1.0F;
+                            if (probability < defaultProbability) {
+                                level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                turtleBreathWork.addTurtleBreathWorkLevel();
+                                turtleBreathWork.setTurtleBreathWorkParticle(true);
+                            }
+                            ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
+                                    turtleBreathWork.getTurtleBreathWorkLevel(),
+                                    turtleBreathWork.isTurtleBreathWorkComprehend(),
+                                    turtleBreathWork.getTurtleBreathWorkUseCooldownPercent(),
+                                    turtleBreathWork.isTurtleBreathWorkOff(),
+                                    turtleBreathWork.getTurtleBreathWorkToppedTick(),
+                                    turtleBreathWork.getTurtleBreathWorkDachengTick(),
+                                    turtleBreathWork.isTurtleBreathWorkParticle(),
+                                    turtleBreathWork.isSkillZActive(),
+                                    turtleBreathWork.isSkillXActive(),
+                                    turtleBreathWork.isSkillCActive()), (ServerPlayer) player);
                         }
-                        ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
-                                turtleBreathWork.getTurtleBreathWorkLevel(),
-                                turtleBreathWork.isTurtleBreathWorkComprehend(),
-                                turtleBreathWork.getTurtleBreathWorkUseCooldownPercent(),
-                                turtleBreathWork.isTurtleBreathWorkOff(),
-                                turtleBreathWork.getTurtleBreathWorkToppedTick(),
-                                turtleBreathWork.getTurtleBreathWorkDachengTick(),
-                                turtleBreathWork.isTurtleBreathWorkParticle(),
-                                turtleBreathWork.isSkillZActive(),
-                                turtleBreathWork.isSkillXActive(),
-                                turtleBreathWork.isSkillCActive()), (ServerPlayer) player);
                     }
                 });
             }

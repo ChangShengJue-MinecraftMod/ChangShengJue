@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "right=false,facing=north": {
+      "model": "chang_sheng_jue:block/dark_oak_book_desk_left"
+    },
+    "right=true,facing=north": {
+      "model": "chang_sheng_jue:block/dark_oak_book_desk_right"
+    },
+    "right=false,facing=south": {
+      "model": "chang_sheng_jue:block/dark_oak_book_desk_left",
+      "y": 180
+    },
+    "right=true,facing=south": {
+      "model": "chang_sheng_jue:block/dark_oak_book_desk_right",
+      "y": 180
+    },
+    "right=false,facing=east": {
+      "model": "chang_sheng_jue:block/dark_oak_book_desk_left",
+      "y": 90
+    },
+    "right=true,facing=east": {
+      "model": "chang_sheng_jue:block/dark_oak_book_desk_right",
+      "y": 90
+    },
+    "right=false,facing=west": {
+      "model": "chang_sheng_jue:block/dark_oak_book_desk_left",
+      "y": 270
+    },
+    "right=true,facing=west": {
+      "model": "chang_sheng_jue:block/dark_oak_book_desk_right",
+      "y": 270
+    }
+  }
+}

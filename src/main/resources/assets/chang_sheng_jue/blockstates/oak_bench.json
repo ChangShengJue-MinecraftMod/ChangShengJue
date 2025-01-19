@@ -1,0 +1,67 @@
+{
+  "variants": {
+    "facing=east,right=false,left=false,middle=false": {
+      "model": "chang_sheng_jue:block/oak_bench"
+    },
+    "facing=north,right=false,left=false,middle=false": {
+      "model": "chang_sheng_jue:block/oak_bench",
+      "y": 90
+    },
+    "facing=south,right=false,left=false,middle=false": {
+      "model": "chang_sheng_jue:block/oak_bench",
+      "y": 270
+    },
+    "facing=west,right=false,left=false,middle=false": {
+      "model": "chang_sheng_jue:block/oak_bench",
+      "y": 180
+    },
+
+    "facing=east,right=true,left=true,middle=true": {
+      "model": "chang_sheng_jue:block/oak_bench_middle"
+    },
+    "facing=north,right=true,left=true,middle=true": {
+      "model": "chang_sheng_jue:block/oak_bench_middle",
+      "y": 90
+    },
+    "facing=south,right=true,left=true,middle=true": {
+      "model": "chang_sheng_jue:block/oak_bench_middle",
+      "y": 270
+    },
+    "facing=west,right=true,left=true,middle=true": {
+      "model": "chang_sheng_jue:block/oak_bench_middle",
+      "y": 180
+    },
+
+    "facing=east,right=true,left=false,middle=false": {
+      "model": "chang_sheng_jue:block/oak_bench_side"
+    },
+    "facing=north,right=true,left=false,middle=false": {
+      "model": "chang_sheng_jue:block/oak_bench_side",
+      "y": 270
+    },
+    "facing=south,right=true,left=false,middle=false": {
+      "model": "chang_sheng_jue:block/oak_bench_side",
+      "y": 90
+    },
+    "facing=west,right=true,left=false,middle=false": {
+      "model": "chang_sheng_jue:block/oak_bench_side",
+      "y": 180
+    },
+
+    "facing=east,right=false,left=true,middle=false": {
+      "model": "chang_sheng_jue:block/oak_bench_side",
+      "y": 180
+    },
+    "facing=north,right=false,left=true,middle=false": {
+      "model": "chang_sheng_jue:block/oak_bench_side",
+      "y": 90
+    },
+    "facing=south,right=false,left=true,middle=false": {
+      "model": "chang_sheng_jue:block/oak_bench_side",
+      "y": 270
+    },
+    "facing=west,right=false,left=true,middle=false": {
+      "model": "chang_sheng_jue:block/oak_bench_side"
+    }
+  }
+}

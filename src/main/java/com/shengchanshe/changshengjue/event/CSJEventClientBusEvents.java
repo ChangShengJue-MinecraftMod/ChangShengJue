@@ -2,6 +2,8 @@ package com.shengchanshe.changshengjue.event;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
+import com.shengchanshe.changshengjue.block.custom.shing_mun.entity.ShingMunLeftEntityRender;
+import com.shengchanshe.changshengjue.block.entity.desk.DeskRender;
 import com.shengchanshe.changshengjue.block.entity.render.*;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.dugu_nine_swords.DuguNineSwordsHudOverlay;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.gao_marksmanship.GaoMarksmanshipHudOverlay;
@@ -22,6 +24,7 @@ import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnive
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesModel;
 import com.shengchanshe.changshengjue.entity.client.render.PeacockEggRender;
 import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntityRender;
+import com.shengchanshe.changshengjue.entity.decoration.seat.SeatRender;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import com.shengchanshe.changshengjue.particle.custom.PoplarDefoliationParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendParticle;
@@ -63,7 +66,13 @@ public class CSJEventClientBusEvents {
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.CASTING_MOLDS_BLOCK_ENTITY.get(), (BlockEntityRendererProvider.Context context) -> new CastingMoldsBlockEntityRender());
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.BULLIONS_CASTING_MOLDS_BLOCK_ENTITY.get(), (BlockEntityRendererProvider.Context context) -> new BullionsCastingMoldsBlockEntityRender());
 
+        event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.DESK.get(), DeskRender::new);
+
+        event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.SHING_MUN_LEFT_ENTITY.get(), (BlockEntityRendererProvider.Context context) -> new ShingMunLeftEntityRender());
+
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.PLAQUE_ENTITY.get(), PlaqueEntityRender::new);
+
+        event.registerEntityRenderer(ChangShengJueEntity.SEAT.get(), SeatRender::new);
     }
 
     @SubscribeEvent

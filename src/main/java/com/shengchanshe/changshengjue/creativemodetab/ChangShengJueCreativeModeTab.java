@@ -193,6 +193,86 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_2.get());
                 output.accept(ChangShengJueBlocks.YELLOW_STONE_LION_BLOCK.get());
                 output.accept(ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get());
+                output.accept(ChangShengJueBlocks.SHING_MUN_LEFT.get());
+
+                output.accept(ChangShengJueBlocks.BIRCH_WINE_TABLE.get());
+                output.accept(ChangShengJueBlocks.CRIMSON_WINE_TABLE.get());
+                output.accept(ChangShengJueBlocks.WARPED_WINE_TABLE.get());
+                output.accept(ChangShengJueBlocks.MANGROVE_WINE_TABLE.get());
+                output.accept(ChangShengJueBlocks.HUANG_HUA_LI_WINE_TABLE.get());
+                output.accept(ChangShengJueBlocks.JI_CHI_MU_WINE_TABLE.get());
+                output.accept(ChangShengJueBlocks.ACACIA_WINE_TABLE.get());
+                output.accept(ChangShengJueBlocks.DARK_OAK_WINE_TABLE.get());
+                output.accept(ChangShengJueBlocks.OAK_WINE_TABLE.get());
+                output.accept(ChangShengJueBlocks.CHERRY_WINE_TABLE.get());
+                output.accept(ChangShengJueBlocks.SPRUCE_WINE_TABLE.get());
+                output.accept(ChangShengJueBlocks.ZI_TAN_WINE_TABLE.get());
+
+                output.accept(ChangShengJueBlocks.BIRCH_BENCH.get());
+                output.accept(ChangShengJueBlocks.CRIMSON_BENCH.get());
+                output.accept(ChangShengJueBlocks.WARPED_BENCH.get());
+                output.accept(ChangShengJueBlocks.MANGROVE_BENCH.get());
+                output.accept(ChangShengJueBlocks.HUANG_HUA_LI_BENCH.get());
+                output.accept(ChangShengJueBlocks.JI_CHI_MU_BENCH.get());
+                output.accept(ChangShengJueBlocks.ACACIA_BENCH.get());
+                output.accept(ChangShengJueBlocks.DARK_OAK_BENCH.get());
+                output.accept(ChangShengJueBlocks.OAK_BENCH.get());
+                output.accept(ChangShengJueBlocks.CHERRY_BENCH.get());
+                output.accept(ChangShengJueBlocks.SPRUCE_BENCH.get());
+                output.accept(ChangShengJueBlocks.ZI_TAN_BENCH.get());
+
+                output.accept(ChangShengJueBlocks.BIRCH_DRINKING_TABLE_AND_CHAIRS.get());
+                output.accept(ChangShengJueBlocks.CRIMSON_DRINKING_TABLE_AND_CHAIRS.get());
+                output.accept(ChangShengJueBlocks.WARPED_DRINKING_TABLE_AND_CHAIRS.get());
+                output.accept(ChangShengJueBlocks.MANGROVE_DRINKING_TABLE_AND_CHAIRS.get());
+                output.accept(ChangShengJueBlocks.HUANG_HUA_LI_DRINKING_TABLE_AND_CHAIRS.get());
+                output.accept(ChangShengJueBlocks.JI_CHI_MU_DRINKING_TABLE_AND_CHAIRS.get());
+                output.accept(ChangShengJueBlocks.ACACIA_DRINKING_TABLE_AND_CHAIRS.get());
+                output.accept(ChangShengJueBlocks.DARK_OAK_DRINKING_TABLE_AND_CHAIRS.get());
+                output.accept(ChangShengJueBlocks.OAK_DRINKING_TABLE_AND_CHAIRS.get());
+                output.accept(ChangShengJueBlocks.CHERRY_DRINKING_TABLE_AND_CHAIRS.get());
+                output.accept(ChangShengJueBlocks.SPRUCE_DRINKING_TABLE_AND_CHAIRS.get());
+                output.accept(ChangShengJueBlocks.ZI_TAN_DRINKING_TABLE_AND_CHAIRS.get());
+
+                output.accept(ChangShengJueBlocks.BIRCH_BOOK_DESK.get());
+                output.accept(ChangShengJueBlocks.CRIMSON_BOOK_DESK.get());
+                output.accept(ChangShengJueBlocks.WARPED_BOOK_DESK.get());
+                output.accept(ChangShengJueBlocks.MANGROVE_BOOK_DESK.get());
+                output.accept(ChangShengJueBlocks.HUANG_HUA_LI_BOOK_DESK.get());
+                output.accept(ChangShengJueBlocks.JI_CHI_MU_BOOK_DESK.get());
+                output.accept(ChangShengJueBlocks.ACACIA_BOOK_DESK.get());
+                output.accept(ChangShengJueBlocks.DARK_OAK_BOOK_DESK.get());
+                output.accept(ChangShengJueBlocks.OAK_BOOK_DESK.get());
+                output.accept(ChangShengJueBlocks.CHERRY_BOOK_DESK.get());
+                output.accept(ChangShengJueBlocks.SPRUCE_BOOK_DESK.get());
+                output.accept(ChangShengJueBlocks.ZI_TAN_BOOK_DESK.get());
+
+                output.accept(ChangShengJueBlocks.HUANG_HUA_LI_TEAPOY.get());
+                output.accept(ChangShengJueBlocks.JI_CHI_MU_TEAPOY.get());
+                output.accept(ChangShengJueBlocks.ZI_TAN_TEAPOY.get());
+
+                output.accept(ChangShengJueBlocks.HUANG_HUA_LI_TAISHI_CHAIR.get());
+                output.accept(ChangShengJueBlocks.JI_CHI_MU_TAISHI_CHAIR.get());
+                output.accept(ChangShengJueBlocks.ZI_TAN_TAISHI_CHAIR.get());
+
+                output.accept(ChangShengJueBlocks.HUANG_HUA_LI_FIVE_SCREEN_THRONE.get());
+                output.accept(ChangShengJueBlocks.JI_CHI_MU_FIVE_SCREEN_THRONE.get());
+                output.accept(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get());
+
+                output.accept(ChangShengJueBlocks.BIRCH_LOW_DESK.get());
+                output.accept(ChangShengJueBlocks.CRIMSON_LOW_DESK.get());
+                output.accept(ChangShengJueBlocks.WARPED_LOW_DESK.get());
+                output.accept(ChangShengJueBlocks.MANGROVE_LOW_DESK.get());
+                output.accept(ChangShengJueBlocks.HUANG_HUA_LI_LOW_DESK.get());
+                output.accept(ChangShengJueBlocks.JI_CHI_MU_LOW_DESK.get());
+                output.accept(ChangShengJueBlocks.ACACIA_LOW_DESK.get());
+                output.accept(ChangShengJueBlocks.DARK_OAK_LOW_DESK.get());
+                output.accept(ChangShengJueBlocks.OAK_LOW_DESK.get());
+                output.accept(ChangShengJueBlocks.CHERRY_LOW_DESK.get());
+                output.accept(ChangShengJueBlocks.SPRUCE_LOW_DESK.get());
+                output.accept(ChangShengJueBlocks.ZI_TAN_LOW_DESK.get());
+
+                output.accept(ChangShengJueBlocks.ZAFU.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_FUNCTIONAL = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_functional",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_functional")).icon(() ->

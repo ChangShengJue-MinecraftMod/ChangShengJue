@@ -1,0 +1,65 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [128, 128],
+	"textures": {
+		"1": "chang_sheng_jue:block/spruce_bench",
+		"particle": "chang_sheng_jue:block/spruce_bench"
+	},
+	"elements": [
+		{
+			"from": [5, 8, 0],
+			"to": [11, 10, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-2, 8, -6]},
+			"faces": {
+				"north": {"uv": [10.625, 10.625, 11.375, 10.875], "texture": "#1"},
+				"east": {"uv": [8.625, 10.625, 10.625, 10.875], "texture": "#1"},
+				"south": {"uv": [13.375, 10.625, 14.125, 10.875], "texture": "#1"},
+				"west": {"uv": [11.375, 10.625, 13.375, 10.875], "texture": "#1"},
+				"up": {"uv": [11.375, 10.625, 10.625, 8.625], "texture": "#1"},
+				"down": {"uv": [12.125, 8.625, 11.375, 10.625], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "changyi3",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [
+				{
+					"name": "left14",
+					"origin": [-1, 8.5, -3],
+					"rotation": [0, -180, 0],
+					"color": 0,
+					"children": [0]
+				},
+				{
+					"name": "left13",
+					"origin": [1, 8.5, 19],
+					"color": 0,
+					"children": []
+				}
+			]
+		},
+		{
+			"name": "changyi1",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [
+				{
+					"name": "left10",
+					"origin": [-1, 8.5, -19],
+					"rotation": [0, -180, 0],
+					"color": 0,
+					"children": []
+				},
+				{
+					"name": "left11",
+					"origin": [1, 8.5, 3],
+					"color": 0,
+					"children": []
+				}
+			]
+		}
+	]
+}

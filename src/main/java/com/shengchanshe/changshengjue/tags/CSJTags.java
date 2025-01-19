@@ -22,6 +22,13 @@ public class CSJTags {
         public static final TagKey<Block> WINDOWS = tag("windows");
         public static final TagKey<Block> BRICKS = tag("bricks");
         public static final TagKey<Block> PAINTING = tag("painting");
+        public static final TagKey<Block> BENCH  = tag("bench");
+        public static final TagKey<Block> DRINKING_TABLE_AND_CHAIRS  = tag("drinking_table_and_chairs");
+        public static final TagKey<Block> BOOK_DESK = tag("book_desk");
+        public static final TagKey<Block> TEAPOY = tag("teapoy");
+        public static final TagKey<Block> TAISHI_CHAIR = tag("taishi_chair");
+        public static final TagKey<Block> FIVE_SCREEN_THRONE = tag("five_screen_throne");
+        public static final TagKey<Block> LOW_DESK = tag("low_desk");
 
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(ChangShengJue.MOD_ID, name));

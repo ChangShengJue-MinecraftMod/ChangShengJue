@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/wine_table_middle",
+  "textures": {
+    "1": "chang_sheng_jue:block/mangrove_wine_table",
+    "particle": "chang_sheng_jue:block/mangrove_wine_table"
+  }
+}
