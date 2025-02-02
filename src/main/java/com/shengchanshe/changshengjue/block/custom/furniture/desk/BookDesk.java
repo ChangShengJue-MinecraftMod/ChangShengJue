@@ -43,7 +43,7 @@ public class BookDesk extends AbstractDesk {
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         Direction facing = pState.getValue(FACING);
         Direction rightDirection = rightOf(facing);
-        BlockPos pos2 = pPos.relative(rightDirection); // 获取右侧的位置
+        BlockPos pos2 = pPos.relative(rightDirection);
         if (!pLevel.getBlockState(pos2).canBeReplaced()) {
             return false; // 如果某个位置不可替换，返回 false
         }
@@ -57,7 +57,7 @@ public class BookDesk extends AbstractDesk {
             Direction rightDirection = rightOf(facing);
             BlockPos pos2 = pos.relative(rightDirection); // 获取右侧的位置
             // 检查目标位置是否已经有合适的方块，避免递归放置
-            if (world.isEmptyBlock(pos2) && !state.getValue(RIGHT)) { // 只有当目标位置为空时才放置新方块
+            if (world.isEmptyBlock(pos2) && !state.getValue(RIGHT)|| world.getBlockState(pos2).canBeReplaced() && !state.getValue(RIGHT)) { // 只有当目标位置为空时才放置新方块
                 // 根据需要调整状态
                 BlockState newState = this.defaultBlockState().setValue(RIGHT, true).setValue(FACING, facing);
                 world.setBlockAndUpdate(pos2, newState);

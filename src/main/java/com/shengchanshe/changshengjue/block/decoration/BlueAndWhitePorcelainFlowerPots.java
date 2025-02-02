@@ -63,14 +63,14 @@ public class BlueAndWhitePorcelainFlowerPots extends BaseEntityBlock {
         if (level == null){
             return;
         }
+        level.gameEvent(GameEvent.BLOCK_CHANGE, entity.getBlockPos(), GameEvent.Context.of(player, entity.getBlockState()));
+        entity.setPlant(slot, itemStack.copyWithCount(1));
         if (!itemStack.isEmpty()) {
             if (!player.getAbilities().instabuild){
                 itemStack.shrink(1);
             }
             level.playSound(null, entity.getBlockPos(), SoundEvents.CROP_PLANTED, SoundSource.BLOCKS, 1.0F, 1.2F);
         }
-        level.gameEvent(GameEvent.BLOCK_CHANGE, entity.getBlockPos(), GameEvent.Context.of(player, entity.getBlockState()));
-        entity.setPlant(slot, itemStack.copyWithCount(1));
         entity.setChanged();
     }
 
@@ -82,7 +82,7 @@ public class BlueAndWhitePorcelainFlowerPots extends BaseEntityBlock {
                 for (Slot slot : Slot.values()) {
                     ItemStack itemstack = ((BlueAndWhitePorcelainFlowerPotsEntity) blockentity).getPlant(slot).copyWithCount(1);
                     if (!itemstack.isEmpty()) {
-                        ItemEntity itementity = new ItemEntity(pLevel, (double) pPos.getX() + 0.5D, (double) (pPos.getY() + 1), (double) pPos.getZ() + 0.5D, itemstack);
+                        ItemEntity itementity = new ItemEntity(pLevel, (double) pPos.getX() + 0.5D, pPos.getY() + 1, (double) pPos.getZ() + 0.5D, itemstack);
                         itementity.setDefaultPickUpDelay();
                         pLevel.addFreshEntity(itementity);
                     }

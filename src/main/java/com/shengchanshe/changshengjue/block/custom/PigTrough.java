@@ -58,7 +58,7 @@ public class PigTrough extends Block {
         Direction facing = pState.getValue(FACING);
         Direction rightDirection = rightOf(facing);
         BlockPos pos2 = pPos.relative(rightDirection); // 获取右侧的位置
-        if (!pLevel.getBlockState(pos2).isAir()) {
+        if (!pLevel.getBlockState(pos2).canBeReplaced()) {
             return false; // 如果被阻挡，返回false，阻止方块放置
         }
         return true; // 如果没有阻挡，允许放置
@@ -140,14 +140,14 @@ public class PigTrough extends Block {
         }
     }
 
-    @Override
+     @Override
     public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean isMoving) {
         if (!world.isClientSide) {
             Direction facing = state.getValue(FACING);
             Direction rightDirection = rightOf(facing);
             BlockPos pos2 = pos.relative(rightDirection); // 获取右侧的位置
             // 检查目标位置是否已经有合适的方块，避免递归放置
-            if (world.isEmptyBlock(pos2)) { // 只有当目标位置为空时才放置新方块
+            if (world.isEmptyBlock(pos2) || world.getBlockState(pos2).canBeReplaced()) { // 只有当目标位置为空时才放置新方块
                 // 根据需要调整状态
                 BlockState newState = this.defaultBlockState().setValue(FACING, facing.getOpposite());
                 world.setBlockAndUpdate(pos2, newState);

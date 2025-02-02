@@ -1,13 +1,17 @@
 package com.shengchanshe.changshengjue.block.custom.furniture.desk;
 
+import com.shengchanshe.changshengjue.util.ChangShengJueVoxelShape;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class WineTable extends AbstractDesk {
     public static final BooleanProperty NORTH = BooleanProperty.create("north");
@@ -50,6 +54,37 @@ public class WineTable extends AbstractDesk {
         // 更新方块状态
         pLevel.setBlock(pPos, newState, 3); // 更新状态，标记为需要同步到客户端
     }
+
+    @Override
+    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return Block.box(0,1,0,16,16,16);
+    }
+//    @Override
+//    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+//        Direction facing = pState.getValue(FACING); // 获取朝向
+//        Boolean north = pState.getValue(NORTH); // 获取是否打开
+//        Boolean east = pState.getValue(EAST); // 获取是否打开
+//        Boolean south = pState.getValue(SOUTH); // 获取是否打开
+//        Boolean west = pState.getValue(WEST); // 获取是否打开
+//        Boolean middle = pState.getValue(MIDDLE);
+//
+//        boolean f = north && east && south && west && middle;
+//        boolean n = north && !east && !south && !west && !middle;
+//        boolean e = !north && east && !south && !west && !middle;
+//        boolean s = !north && !east && south && !west && !middle;
+//        boolean w = !north && !east && !south && west && !middle;
+//        boolean ns = north && !east && south && !west && !middle;
+//        boolean ew = !north && east && !south && west && !middle;
+////      根据是否打开选择碰撞箱的形状
+////      OPEN = false 时，保持原始碰撞箱
+//        return switch (facing) {
+//            case WEST -> w ? ChangShengJueVoxelShape.WINE_TABLE_WEST_SIDE : ChangShengJueVoxelShape.WINE_TABLE;
+//            case EAST -> e ? ChangShengJueVoxelShape.WINE_TABLE_EAST_SIDE : ChangShengJueVoxelShape.WINE_TABLE;
+//            case SOUTH -> s ? ChangShengJueVoxelShape.WINE_TABLE_SOUTH_SIDE : ChangShengJueVoxelShape.WINE_TABLE;
+//            default -> n ? ChangShengJueVoxelShape.WINE_TABLE_NORTH_SIDE : ChangShengJueVoxelShape.WINE_TABLE;
+//        };
+//    }
+
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {

@@ -26,7 +26,7 @@ public class FiveScreenThrone extends HorizontalDirectionalBlock {
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        return SeatEntity.useOn(pLevel, pPos, 0.3, pPlayer, pState.getValue(FACING));
+        return SeatEntity.useOn(pLevel, pPos, 0.5, pPlayer, pState.getValue(FACING));
     }
 
     @Override
