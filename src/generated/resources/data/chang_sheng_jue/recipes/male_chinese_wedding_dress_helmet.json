@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "chang_sheng_jue:silk"
+    },
+    "$": {
+      "tag": "forge:ingots/gold"
+    }
+  },
+  "pattern": [
+    "#$#",
+    "# #"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:male_chinese_wedding_dress_helmet"
+  },
+  "show_notification": true
+}

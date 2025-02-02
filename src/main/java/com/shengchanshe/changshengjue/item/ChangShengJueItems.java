@@ -2,14 +2,46 @@ package com.shengchanshe.changshengjue.item;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
-import com.shengchanshe.changshengjue.creativemodetab.ChangShengJueCreativeModeTab;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
-import com.shengchanshe.changshengjue.item.foods.ChangShengJueFoods;
-import com.shengchanshe.changshengjue.item.foods.DurianItem;
+import com.shengchanshe.changshengjue.item.combat.armor.confucian_costumes.ConfucianCostumes;
+import com.shengchanshe.changshengjue.item.combat.armor.cotton.CottonArmor;
+import com.shengchanshe.changshengjue.item.combat.armor.flying_fish_robe.FlyingFishRobe;
+import com.shengchanshe.changshengjue.item.combat.armor.mountain_pattern_armor.MountainPatternArmor;
+import com.shengchanshe.changshengjue.item.combat.armor.qi_tian_da_sheng.QiTianDaSheng;
+import com.shengchanshe.changshengjue.item.combat.armor.taoistrobes.FemaleTaoistRobes;
+import com.shengchanshe.changshengjue.item.combat.armor.taoistrobes.MaleTaoistRobes;
+import com.shengchanshe.changshengjue.item.combat.armor.the_great_general_mingguang_armor.TheGreatGeneralMingguangArmor;
+import com.shengchanshe.changshengjue.item.combat.armor.walker_set.WalkerSet;
+import com.shengchanshe.changshengjue.item.combat.armor.wedding.MaleChineseWeddingDress;
+import com.shengchanshe.changshengjue.item.combat.armor.wedding.FemaleChineseWeddingDress;
+import com.shengchanshe.changshengjue.item.combat.book.*;
+import com.shengchanshe.changshengjue.item.combat.clubbed.BeatDogStick;
+import com.shengchanshe.changshengjue.item.combat.clubbed.PanHuaGun;
+import com.shengchanshe.changshengjue.item.combat.knife.HengDao;
+import com.shengchanshe.changshengjue.item.combat.knife.KitchenKnife;
+import com.shengchanshe.changshengjue.item.combat.knife.LargeKnife;
+import com.shengchanshe.changshengjue.item.combat.knife.TuLongDao;
+import com.shengchanshe.changshengjue.item.combat.lance.BaWangQiang;
+import com.shengchanshe.changshengjue.item.combat.lance.RedTasselledSpear;
+import com.shengchanshe.changshengjue.item.combat.stakes.Stakes;
+import com.shengchanshe.changshengjue.item.combat.sword.BronzeSword;
+import com.shengchanshe.changshengjue.item.combat.sword.HanJian;
+import com.shengchanshe.changshengjue.item.combat.sword.SoftSword;
+import com.shengchanshe.changshengjue.item.combat.sword.YiTianJian;
+import com.shengchanshe.changshengjue.item.combat.throwingknives.SevenThrowingKnives;
+import com.shengchanshe.changshengjue.item.combat.throwingknives.ThreeThrowingKnives;
+import com.shengchanshe.changshengjue.item.combat.throwingknives.ThrowingKnives;
+import com.shengchanshe.changshengjue.item.tiers.ChangShengJueArmorMaterials;
+import com.shengchanshe.changshengjue.item.foods.*;
+import com.shengchanshe.changshengjue.item.items.Crucible;
+import com.shengchanshe.changshengjue.item.items.LimeSlurryBarrels;
+import com.shengchanshe.changshengjue.item.items.PaintBrush;
 import com.shengchanshe.changshengjue.item.items.PeacockEggItem;
+import com.shengchanshe.changshengjue.item.tool.KaishanPickaxe;
+import com.shengchanshe.changshengjue.item.tool.XuanhuaAxe;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,7 +50,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ChangShengJueItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ChangShengJue.MOD_ID);
-
 
     public static final RegistryObject<Item> PINEAPPLE_SEEDS = ITEMS.register("pineapple_seeds",
             ()-> new ItemNameBlockItem(ChangShengJueBlocks.PINEAPPLE_BLOCK.get(), new Item.Properties()));
@@ -46,6 +77,14 @@ public class ChangShengJueItems {
             ()-> new ItemNameBlockItem(ChangShengJueBlocks.CANTALOUPE_STEM.get(), new Item.Properties()));
     public static final RegistryObject<Item> GRAPE_SEEDS = ITEMS.register("grape_seeds",
             ()-> new ItemNameBlockItem(ChangShengJueBlocks.GRAPE_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<Item> RICE_SEEDS = ITEMS.register("rice_seeds",
+            ()-> new ItemNameBlockItem(ChangShengJueBlocks.RICE.get(), new Item.Properties()));
+    public static final RegistryObject<Item> BILUOCHUN_TEA_SEEDS = ITEMS.register("biluochun_tea_seeds",
+            ()-> new ItemNameBlockItem(ChangShengJueBlocks.BILUOCHUN_TEA.get(), new Item.Properties()));
+    public static final RegistryObject<Item> LONG_JING_TEA_SEEDS = ITEMS.register("long_jing_tea_seeds",
+            ()-> new ItemNameBlockItem(ChangShengJueBlocks.LONG_JING_TEA.get(), new Item.Properties()));
+    public static final RegistryObject<Item> HORDEUM_SEEDS = ITEMS.register("hordeum_seeds",
+            ()-> new ItemNameBlockItem(ChangShengJueBlocks.HORDEUM.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> PINEAPPLE = ITEMS.register("pineapple",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.PINEAPPLE)));
@@ -95,7 +134,14 @@ public class ChangShengJueItems {
             ()-> new DurianItem(new Item.Properties()));
     public static final RegistryObject<Item> OPEN_DURIAN = ITEMS.register("durian_open",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.OPEN_DURIAN)));
-
+    public static final RegistryObject<Item> RICE = ITEMS.register("rice",
+            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> BILUOCHUN_TEA = ITEMS.register("biluochun_tea",
+            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LONG_JING_TEA = ITEMS.register("long_jing_tea",
+            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> HORDEUM = ITEMS.register("hordeum",
+            ()-> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> PEANUT = ITEMS.register("peanut",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.PEANUT)));
@@ -103,37 +149,57 @@ public class ChangShengJueItems {
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.BRINJAL)));
 
     public static final RegistryObject<Item> CAPSULE_JIAO_ZI = ITEMS.register("capsule_jiao_zi",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.CAPSULE_JIAO_ZI)));
+            ()-> new PorcelainPlatesFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.CAPSULE_JIAO_ZI)));
     public static final RegistryObject<Item> ZHENG_CAI = ITEMS.register("zheng_cai",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.ZHENG_CAI)));
+            ()-> new PorcelainPlatesFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.ZHENG_CAI)));
     public static final RegistryObject<Item> PORTULACA_OLERACEA_CAKE = ITEMS.register("portulaca_oleracea_cake",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.PORTULACA_OLERACEA_CAKE)));
     public static final RegistryObject<Item> QING_TUAN = ITEMS.register("qing_tuan",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.QING_TUAN)));
+            ()-> new PorcelainBowlsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.QING_TUAN)));
     public static final RegistryObject<Item> BAKED_CORN = ITEMS.register("baked_corn",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.BAKED_CORN)));
     public static final RegistryObject<Item> TOMATO_EGG = ITEMS.register("tomato_egg",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.TOMATO_EGG)));
+            ()-> new PorcelainPlatesFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.TOMATO_EGG)));
     public static final RegistryObject<Item> GU_LAO_ROU = ITEMS.register("gu_lao_rou",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.GU_LAO_ROU)));
+            ()-> new PorcelainPlatesFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.GU_LAO_ROU)));
     public static final RegistryObject<Item> MEAT_FOAM_BRINJAL = ITEMS.register("meat_foam_brinjal",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.MEAT_FOAM_BRINJAL)));
+            ()-> new PorcelainPlatesFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.MEAT_FOAM_BRINJAL)));
     public static final RegistryObject<Item> SORGHUM_CAKE = ITEMS.register("sorghum_cake",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.SORGHUM_CAKE)));
     public static final RegistryObject<Item> STINKY_TOFU = ITEMS.register("stinky_tofu",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.STINKY_TOFU)));
+            ()-> new PorcelainPlatesFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.STINKY_TOFU)));
     public static final RegistryObject<Item> ZHU_DU_JI = ITEMS.register("zhu_du_ji",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.ZHU_DU_JI)));
+            ()-> new PorcelainBowlsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.ZHU_DU_JI)));
     public static final RegistryObject<Item> XIAO_MI_FAN = ITEMS.register("xiao_mi_fan",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.XIAO_MI_FAN)));
+            ()-> new PorcelainBowlsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.XIAO_MI_FAN)));
     public static final RegistryObject<Item> MI_FAN = ITEMS.register("mi_fan",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.MI_FAN)));
+            ()-> new PorcelainBowlsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.MI_FAN)));
     public static final RegistryObject<Item> GUI_HUA_TANG_OU = ITEMS.register("gui_hua_tang_ou",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.GUI_HUA_TANG_OU)));
+            ()-> new PorcelainPlatesFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.GUI_HUA_TANG_OU)));
     public static final RegistryObject<Item> BA_BAO_ZHOU = ITEMS.register("ba_bao_zhou",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.BA_BAO_ZHOU)));
+            ()-> new PorcelainBowlsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.BA_BAO_ZHOU)));
 
+    public static final RegistryObject<Item> MULBERRY_JUICE = ITEMS.register("mulberry_juice",
+            ()-> new PorcelainCupsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.MULBERRY_JUICE)));
+    public static final RegistryObject<Item> APPLE_JUICE = ITEMS.register("apple_juice",
+            ()-> new PorcelainCupsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.APPLE_JUICE)));
+    public static final RegistryObject<Item> HOT_PEAR_SOUP = ITEMS.register("hot_pear_soup",
+            ()-> new PorcelainCupsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.HOT_PEAR_SOUP)));
+    public static final RegistryObject<Item> GRAPE_JUICE = ITEMS.register("grape_juice",
+            ()-> new PorcelainCupsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.GRAPE_JUICE)));
 
+    public static final RegistryObject<Item> BILUOCHUN_TEAS = ITEMS.register("biluochun_teas",
+            ()-> new PorcelainCupsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.BILUOCHUN_TEA)));
+    public static final RegistryObject<Item> LONG_JING_TEAS = ITEMS.register("long_jing_teas",
+            ()-> new PorcelainCupsFoodItem(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.LONG_JING_TEA)));
+    public static final RegistryObject<Item> FEN_JIU = ITEMS.register("fen_jiu",
+            ()-> new Wine(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.FEN_JIU)));
+    public static final RegistryObject<Item> WHEAT_NUGGETS_TRIBUTE_WINE = ITEMS.register("wheat_nuggets_tribute_wine",
+            ()-> new Wine(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.WHEAT_NUGGETS_TRIBUTE_WINE)));
+    public static final RegistryObject<Item> SHI_LI_XIANG = ITEMS.register("shi_li_xiang",
+            ()-> new Wine(new Item.Properties().stacksTo(1).food(ChangShengJueFoods.SHI_LI_XIANG)));
+
+    //刷怪蛋
     public static final RegistryObject<Item> BUTTERFLY_EGG = ITEMS.register("butterfly_egg",
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.BUTTERFLY_ENTITY,0xADFF2F,0x000000,
                     new Item.Properties()));
@@ -168,24 +234,18 @@ public class ChangShengJueItems {
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CROC_ENTITY,0x808000,0x006400,
                     new Item.Properties()));
 
-
     public static final RegistryObject<Item> CHANG_SHENG_JUE_VILLAGER_EGG = ITEMS.register("chang_sheng_jue_villager_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER,0x808000,0x006400,
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER,5651507,12422002,
                     new Item.Properties()));
-    public static final RegistryObject<Item> CHANG_SHENG_JUE_HUNTER_EGG = ITEMS.register("chang_sheng_jue_hunter_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHANG_SHENG_JUE_HUNTER,0x808000,0x006400,
-                    new Item.Properties()));
-    public static final RegistryObject<Item> CHANG_SHENG_JUE_VILLAGER_CHIEF_EGG = ITEMS.register("chang_sheng_jue_villager_chief_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER_CHIEF,0x808000,0x006400,
-                    new Item.Properties()));
-
 
     public static final RegistryObject<Item> ZHU_TAI = ITEMS.register("zhu_tai",
-            ()-> new StandingAndWallBlockItem(ChangShengJueBlocks.ZHU_TAI_BLOCK.get(),ChangShengJueBlocks.WALL_ZHU_TAI_BLOCK.get(), (new Item.Properties()), Direction.DOWN));
+            ()-> new StandingAndWallBlockItem(ChangShengJueBlocks.ZHU_TAI.get(),ChangShengJueBlocks.WALL_ZHU_TAI.get(), new Item.Properties(), Direction.DOWN));
 
     public static final RegistryObject<Item> CRANE_FEATHERS = ITEMS.register("crane_feathers",
             ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> PEACOCK_FEATHERS = ITEMS.register("peacock_feathers",
+            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> WHITE_PEACOCK_FEATHERS = ITEMS.register("white_peacock_feathers",
             ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> PEACOCK_EGGS = ITEMS.register("peacock_eggs",
             ()-> new PeacockEggItem((new Item.Properties()).stacksTo(16)));
@@ -208,8 +268,40 @@ public class ChangShengJueItems {
             ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CI_WAN = ITEMS.register("ci_wan",
             ()-> new BowlFoodItem(new Item.Properties()));
+    public static final RegistryObject<Item> CI_BEI = ITEMS.register("ci_bei",
+            ()-> new BowlFoodItem(new Item.Properties()));
 
     public static final RegistryObject<Item> TONG_QIAN = ITEMS.register("tong_qian",
+            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> YI_GUAN_TONG_QIAN = ITEMS.register("yi_guan_tong_qian",
+            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SILVER_BULLIONS = ITEMS.register("silver_bullions",
+            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> GOLD_BULLIONS = ITEMS.register("gold_bullions",
+            ()-> new Item(new Item.Properties()));
+
+    //石灰
+    public static final RegistryObject<Item> QUICKLIME = ITEMS.register("quicklime", ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> LIME_SLURRY_BARRELS = ITEMS.register("lime_slurry_barrels", LimeSlurryBarrels::new);
+    public static final RegistryObject<Item> WARM_LIME_SLURRY_BARRELS = ITEMS.register("warm_lime_slurry_barrels", LimeSlurryBarrels::new);
+    public static final RegistryObject<Item> COOL_LIME_SLURRY_BARRELS = ITEMS.register("cool_lime_slurry_barrels", LimeSlurryBarrels::new);
+
+    //刷子
+    public static final RegistryObject<Item> PAINT_BRUSH = ITEMS.register("paint_brush", PaintBrush::new);
+
+    //蚕丝
+    public static final RegistryObject<Item> NATURAL_SILK = ITEMS.register("natural_silk",
+            ()-> new Item(new Item.Properties()));
+
+    public static final RegistryObject<Item> SILK = ITEMS.register("silk",
+            ()-> new Item(new Item.Properties()));
+
+    //桑葚
+    public static final RegistryObject<Item> MULBERRY = ITEMS.register("mulberry",
+            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.MULBERRY)));
+
+    //茅草
+    public static final RegistryObject<Item> THATCH = ITEMS.register("thatch",
             ()-> new Item(new Item.Properties()));
 
     //矿石
@@ -217,6 +309,188 @@ public class ChangShengJueItems {
             ()-> new Item((new Item.Properties())));
     public static final RegistryObject<Item> AG_INGOT = ITEMS.register("ag_ingot",
             ()-> new Item((new Item.Properties())));
+    //砖
+    public static final RegistryObject<Item> BLACK_BRICKS = ITEMS.register("black_bricks",
+            ()-> new Item((new Item.Properties())));
+    public static final RegistryObject<Item> WHITE_BRICKS_ITEM = ITEMS.register("white_bricks_item",
+            ()-> new Item((new Item.Properties())));
+    public static final RegistryObject<Item> GOLD_BRICKS = ITEMS.register("gold_bricks",
+            ()-> new Item((new Item.Properties())));
+
+    //工具
+    public static final RegistryObject<Item> KAISHAN_PICKAXE = ITEMS.register("kaishan_pickaxe", KaishanPickaxe::new);
+    public static final RegistryObject<Item> XUANHUA_AXE = ITEMS.register("xuanhua_axe", XuanhuaAxe::new);
+    //战斗
+    public static final RegistryObject<Item> BRONZE_SWORD = ITEMS.register("bronze_sword", BronzeSword::new);
+    public static final RegistryObject<Item> HAN_JIAN = ITEMS.register("han_jian", HanJian::new);
+    public static final RegistryObject<Item> HENG_DAO = ITEMS.register("heng_dao", HengDao::new);
+    public static final RegistryObject<Item> LARGE_KNIFE = ITEMS.register("large_knife", LargeKnife::new);
+    public static final RegistryObject<Item> RED_TASSELLED_SPEAR = ITEMS.register("red_tasselled_spear", RedTasselledSpear::new);
+    public static final RegistryObject<Item> SOFT_SWORD = ITEMS.register("soft_sword", SoftSword::new);
+    public static final RegistryObject<Item> PAN_HUA_GUN = ITEMS.register("pan_hua_gun", PanHuaGun::new);
+    public static final RegistryObject<Item> KITCHEN_KNIFE = ITEMS.register("kitchen_knife", KitchenKnife::new);
+    public static final RegistryObject<Item> THROWING_KNIVES = ITEMS.register("throwing_knives", ThrowingKnives::new);
+    public static final RegistryObject<Item> THREE_THROWING_KNIVES = ITEMS.register("three_throwing_knives", ThreeThrowingKnives::new);
+    public static final RegistryObject<Item> SEVEN_THROWING_KNIVES = ITEMS.register("seven_throwing_knives", SevenThrowingKnives::new);
+    //棉甲
+    public static final RegistryObject<Item> COTTON_ARMOR_FEATHER_HELMET = ITEMS.register("cotton_armor_feather_helmet",
+            ()-> new CottonArmor(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> COTTON_ARMOR_WHITE_FEATHER_HELMET = ITEMS.register("cotton_armor_white_feather_helmet",
+            ()-> new CottonArmor(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> COTTON_ARMOR_CHESTPLATE = ITEMS.register("cotton_armor_chestplate",
+            ()-> new CottonArmor(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    public static final RegistryObject<Item> COTTON_ARMOR_LEGGINGS = ITEMS.register("cotton_armor_leggings",
+            ()-> new CottonArmor(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.LEGGINGS,new Item.Properties()));
+    public static final RegistryObject<Item> COTTON_ARMOR_BOOTS = ITEMS.register("cotton_armor_boots",
+            ()-> new CottonArmor(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.BOOTS,new Item.Properties()));
+    //道袍
+    public static final RegistryObject<Item> FEMALE_TAOIST_ROBES_HELMET = ITEMS.register("female_taoist_robes_helmet",
+            ()-> new FemaleTaoistRobes(ChangShengJueArmorMaterials.SILK,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> FEMALE_TAOIST_ROBES_CHESTPLATE = ITEMS.register("female_taoist_robes_chestplate",
+            ()-> new FemaleTaoistRobes(ChangShengJueArmorMaterials.SILK,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    public static final RegistryObject<Item> MALE_TAOIST_ROBES_HELMET = ITEMS.register("male_taoist_robes_helmet",
+            ()-> new MaleTaoistRobes(ChangShengJueArmorMaterials.SILK,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> MALE_TAOIST_ROBES_CHESTPLATE = ITEMS.register("male_taoist_robes_chestplate",
+            ()-> new MaleTaoistRobes(ChangShengJueArmorMaterials.SILK,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    public static final RegistryObject<Item> TAOIST_ROBES_BOOTS = ITEMS.register("taoist_robes_boots",
+            ()-> new MaleTaoistRobes(ChangShengJueArmorMaterials.SILK,ArmorItem.Type.BOOTS,new Item.Properties()));
+    //丝绸裤裤
+    public static final RegistryObject<Item> SILK_LEGGINGS = ITEMS.register("silk_leggings",
+            ()-> new MaleTaoistRobes(ChangShengJueArmorMaterials.SILK,ArmorItem.Type.LEGGINGS,new Item.Properties()));
+    //婚服
+    public static final RegistryObject<Item> MALE_CHINESE_WEDDING_DRESS_HELMET = ITEMS.register("male_chinese_wedding_dress_helmet",
+            ()-> new MaleChineseWeddingDress(ChangShengJueArmorMaterials.SILK_1,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> MALE_CHINESE_WEDDING_DRESS_CHESTPLATE = ITEMS.register("male_chinese_wedding_dress_chestplate",
+            ()-> new MaleChineseWeddingDress(ChangShengJueArmorMaterials.SILK_1,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+
+    public static final RegistryObject<Item> FEMALE_CHINESE_WEDDING_DRESS_HELMET = ITEMS.register("female_chinese_wedding_dress_helmet",
+            ()-> new FemaleChineseWeddingDress(ChangShengJueArmorMaterials.SILK_1,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> FEMALE_CHINESE_WEDDING_DRESS_CHESTPLATE = ITEMS.register("female_chinese_wedding_dress_chestplate",
+            ()-> new FemaleChineseWeddingDress(ChangShengJueArmorMaterials.SILK_1,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+
+    public static final RegistryObject<Item> CHINESE_WEDDING_DRESS_BOOTS = ITEMS.register("chinese_wedding_dress_boots",
+            ()-> new MaleChineseWeddingDress(ChangShengJueArmorMaterials.SILK_1,ArmorItem.Type.BOOTS,new Item.Properties()));
+    //山文甲
+    public static final RegistryObject<Item> MOUNTAIN_PATTERN_ARMOR_HELMET = ITEMS.register("mountain_pattern_armor_helmet",
+            ()-> new MountainPatternArmor(ArmorMaterials.DIAMOND,ArmorItem.Type.HELMET,new Item.Properties(),40));
+    public static final RegistryObject<Item> MOUNTAIN_PATTERN_ARMOR_CHESTPLATE = ITEMS.register("mountain_pattern_armor_chestplate",
+            ()-> new MountainPatternArmor(ArmorMaterials.DIAMOND,ArmorItem.Type.CHESTPLATE,new Item.Properties(),40));
+    public static final RegistryObject<Item> MOUNTAIN_PATTERN_ARMOR_LEGGINGS = ITEMS.register("mountain_pattern_armor_leggings",
+            ()-> new MountainPatternArmor(ArmorMaterials.DIAMOND,ArmorItem.Type.LEGGINGS,new Item.Properties(),40));
+    public static final RegistryObject<Item> MOUNTAIN_PATTERN_ARMOR_BOOTS = ITEMS.register("mountain_pattern_armor_boots",
+            ()-> new MountainPatternArmor(ArmorMaterials.DIAMOND,ArmorItem.Type.BOOTS,new Item.Properties(),40));
+    //飞鱼服
+    public static final RegistryObject<Item> FLYING_FISH_ROBE_HELMET_0 = ITEMS.register("flying_fish_robe_helmet_0",
+            ()-> new FlyingFishRobe(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> FLYING_FISH_ROBE_HELMET_1 = ITEMS.register("flying_fish_robe_helmet_1",
+            ()-> new FlyingFishRobe(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> FLYING_FISH_ROBE_CHESTPLATE = ITEMS.register("flying_fish_robe_chestplate",
+            ()-> new FlyingFishRobe(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+//    public static final RegistryObject<Item> FLYING_FISH_ROBE_LEGGINGS = ITEMS.register("flying_fish_robe_leggings",
+//            ()-> new FlyingFishRobe(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.LEGGINGS,new Item.Properties()));
+    public static final RegistryObject<Item> FLYING_FISH_ROBE_BOOTS = ITEMS.register("flying_fish_robe_boots",
+            ()-> new FlyingFishRobe(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.BOOTS,new Item.Properties()));
+    //行者套
+    public static final RegistryObject<Item> WALKER_SET_HELMET_0 = ITEMS.register("walker_set_helmet_0",
+            ()-> new WalkerSet(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> WALKER_SET_HELMET_1 = ITEMS.register("walker_set_helmet_1",
+            ()-> new WalkerSet(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> WALKER_SET_CHESTPLATE = ITEMS.register("walker_set_chestplate",
+            ()-> new WalkerSet(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    public static final RegistryObject<Item> WALKER_SET_LEGGINGS = ITEMS.register("walker_set_leggings",
+            ()-> new WalkerSet(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.LEGGINGS,new Item.Properties()));
+    public static final RegistryObject<Item> WALKER_SET_BOOTS = ITEMS.register("walker_set_boots",
+            ()-> new WalkerSet(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.BOOTS,new Item.Properties()));
+    //齐天大圣套
+    public static final RegistryObject<Item> QI_TIAN_DA_SHENG_HELMET = ITEMS.register("qi_tian_da_sheng_helmet",
+            ()-> new QiTianDaSheng(ArmorMaterials.NETHERITE,ArmorItem.Type.HELMET,new Item.Properties().fireResistant(),50));
+    public static final RegistryObject<Item> QI_TIAN_DA_SHENG_CHESTPLATE = ITEMS.register("qi_tian_da_sheng_chestplate",
+            ()-> new QiTianDaSheng(ArmorMaterials.NETHERITE,ArmorItem.Type.CHESTPLATE,new Item.Properties().fireResistant(),50));
+    public static final RegistryObject<Item> QI_TIAN_DA_SHENG_LEGGINGS = ITEMS.register("qi_tian_da_sheng_leggings",
+            ()-> new QiTianDaSheng(ArmorMaterials.NETHERITE,ArmorItem.Type.LEGGINGS,new Item.Properties().fireResistant(),50));
+    public static final RegistryObject<Item> QI_TIAN_DA_SHENG_BOOTS = ITEMS.register("qi_tian_da_sheng_boots",
+            ()-> new QiTianDaSheng(ArmorMaterials.NETHERITE,ArmorItem.Type.BOOTS,new Item.Properties().fireResistant(),50));
+    //大将军明光铠
+    public static final RegistryObject<Item> THE_GREAT_GENERAL_MINGGUANG_ARMOR_HELMET = ITEMS.register("the_great_general_mingguang_armor_helmet",
+            ()-> new TheGreatGeneralMingguangArmor(ArmorMaterials.DIAMOND,ArmorItem.Type.HELMET,new Item.Properties(),40));
+    public static final RegistryObject<Item> THE_GREAT_GENERAL_MINGGUANG_ARMOR_CHESTPLATE = ITEMS.register("the_great_general_mingguang_armor_chestplate",
+            ()-> new TheGreatGeneralMingguangArmor(ArmorMaterials.DIAMOND,ArmorItem.Type.CHESTPLATE,new Item.Properties(),40));
+    public static final RegistryObject<Item> THE_GREAT_GENERAL_MINGGUANG_ARMOR_LEGGINGS = ITEMS.register("the_great_general_mingguang_armor_leggings",
+            ()-> new TheGreatGeneralMingguangArmor(ArmorMaterials.DIAMOND,ArmorItem.Type.LEGGINGS,new Item.Properties(),40));
+    public static final RegistryObject<Item> THE_GREAT_GENERAL_MINGGUANG_ARMOR_BOOTS = ITEMS.register("the_great_general_mingguang_armor_boots",
+            ()-> new TheGreatGeneralMingguangArmor(ArmorMaterials.DIAMOND,ArmorItem.Type.BOOTS,new Item.Properties(),40));
+    //儒装
+    public static final RegistryObject<Item> CONFUCIAN_COSTUMES_HELMET = ITEMS.register("confucian_costumes_helmet",
+            ()-> new ConfucianCostumes(ArmorMaterials.LEATHER,ArmorItem.Type.HELMET,new Item.Properties(),20));
+    public static final RegistryObject<Item> CONFUCIAN_COSTUMES_CHESTPLATE = ITEMS.register("confucian_costumes_chestplate",
+            ()-> new ConfucianCostumes(ArmorMaterials.LEATHER,ArmorItem.Type.CHESTPLATE,new Item.Properties(),20));
+    public static final RegistryObject<Item> CONFUCIAN_COSTUMES_LEGGINGS = ITEMS.register("confucian_costumes_leggings",
+            ()-> new ConfucianCostumes(ArmorMaterials.LEATHER,ArmorItem.Type.LEGGINGS,new Item.Properties(),20));
+    public static final RegistryObject<Item> CONFUCIAN_COSTUMES_BOOTS = ITEMS.register("confucian_costumes_boots",
+            ()-> new ConfucianCostumes(ArmorMaterials.LEATHER,ArmorItem.Type.BOOTS,new Item.Properties(),20));
+
+    //打狗棒
+    public static final RegistryObject<Item> BEAT_DOG_STICK = ITEMS.register("beat_dog_stick", BeatDogStick::new);
+    //倚天剑
+    public static final RegistryObject<Item> YI_TINA_JIAN = ITEMS.register("yi_tina_jian", YiTianJian::new);
+    //屠龙刀
+    public static final RegistryObject<Item> TU_LONG_DAO = ITEMS.register("tu_long_dao", TuLongDao::new);
+    //霸王枪
+    public static final RegistryObject<Item> BA_WANG_QIANG = ITEMS.register("ba_wang_qiang", BaWangQiang::new);
+
+    //武功秘籍
+    //不死神功
+    public static final RegistryObject<Item> IMMORTAL_MIRACLE = ITEMS.register("immortal_miracle", ImmortalMiracle::new);
+    //大力神功
+    public static final RegistryObject<Item> HERCULES = ITEMS.register("hercules", Hercules::new);
+    //独孤九剑
+    public static final RegistryObject<Item> DUGU_NINE_SWORDS = ITEMS.register("dugu_nine_swords", DuguNineSwordsBook::new);
+    //独孤九剑
+    public static final RegistryObject<Item> GAO_MARKSMANSHIP = ITEMS.register("gao_marksmanship", GaoMarksmanship::new);
+    //隔山打牛
+    public static final RegistryObject<Item> GE_SHAN_DA_NIU = ITEMS.register("ge_shan_da_niu", GeShanDaNiu::new);
+    //龟息功
+    public static final RegistryObject<Item> TURTLE_BREATH_WORK = ITEMS.register("turtle_breath_work", TurtleBreathWork::new);
+    //金乌刀法
+    public static final RegistryObject<Item> GOLDEN_BLACK_KNIFE_METHOD = ITEMS.register("golden_black_knife_method", GoldenBlackKnifeMethod::new);
+    //金钟罩
+    public static final RegistryObject<Item> GOLDEN_BELL_JAR = ITEMS.register("golden_bell_jar", GoldenBellJar::new);
+    //葵花点穴手
+    public static final RegistryObject<Item> SUNFLOWER_POINT_CAVEMAN = ITEMS.register("sunflower_point_caveman", SunflowerPointCaveman::new);
+    //麦块百科
+    public static final RegistryObject<Item> WHEAT_NUGGET_ENCYCLOPEDIA = ITEMS.register("wheat_nugget_encyclopedia", WheatNuggetEncyclopedia::new);
+    //庖丁解牛
+    public static final RegistryObject<Item> PAODING = ITEMS.register("paoding", Paoding::new);
+    //庖丁解牛
+    public static final RegistryObject<Item> SHAOLIN_STICK_METHOD = ITEMS.register("shaolin_stick_method", ShaolinStickMethod::new);
+    //踏雪无痕
+    public static final RegistryObject<Item> TREAD_THE_SNOW_WITHOUT_TRACE = ITEMS.register("tread_the_snow_without_trace", TreadTheSnowWithoutTrace::new);
+    //无情飞刀
+    public static final RegistryObject<Item> RELENTLESS_THROWING_KNIVES = ITEMS.register("relentless_throwing_knives", RelentlessThrowingKnives::new);
+    //吴刚伐桂
+    public static final RegistryObject<Item> WU_GANG_CUT_GUI = ITEMS.register("wu_gang_cut_gui", WuGangCutGui::new);
+    //玄女剑法
+    public static final RegistryObject<Item> XUANNU_SWORDSMANSHIP = ITEMS.register("xuannu_swordsmanship", XuannuSwordsmanship::new);
+    //愚公移山
+    public static final RegistryObject<Item> YUGONG_MOVES_MOUNTAINS = ITEMS.register("yugong_moves_mountains", YugongMovesMountains::new);
+    //张门心学
+    public static final RegistryObject<Item> ZHANG_MEN_XIN_XUE = ITEMS.register("zhang_men_xin_xue", ZhangMenXinxue::new);
+    //易筋经
+    public static final RegistryObject<Item> THE_CLASSICS_OF_TENDON_CHANGING = ITEMS.register("the_classics_of_tendon_changing", TheClassicsOfTendonChanging::new);
+    //乾坤大挪移
+    public static final RegistryObject<Item> QIAN_KUN_DA_NUO_YI = ITEMS.register("qian_kun_da_nuo_yi", QianKunDaNuoYi::new);
+
+    //练功木桩
+    public static final RegistryObject<Item> STAKES = ITEMS.register("stakes", Stakes::new);
+
+    //浇铸
+    public static final RegistryObject<Item> CRUCIBLE = ITEMS.register("crucible", Crucible::new);
+    public static final RegistryObject<Item> CRUCIBLE_CRUSHED_COPPER = ITEMS.register("crucible_crushed_copper", Crucible::new);
+    public static final RegistryObject<Item> CRUCIBLE_CRUSHED_SILVER = ITEMS.register("crucible_crushed_silver", Crucible::new);
+    public static final RegistryObject<Item> CRUCIBLE_CRUSHED_GOLD = ITEMS.register("crucible_crushed_gold", Crucible::new);
+    public static final RegistryObject<Item> CRUCIBLE_LIQUID_COPPER = ITEMS.register("crucible_liquid_copper", Crucible::new);
+    public static final RegistryObject<Item> CRUCIBLE_LIQUID_SILVER = ITEMS.register("crucible_liquid_silver", Crucible::new);
+    public static final RegistryObject<Item> CRUCIBLE_LIQUID_GOLD = ITEMS.register("crucible_liquid_gold", Crucible::new);
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

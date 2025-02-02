@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "chang_sheng_jue:item/chinese_wedding_dress_boots",
+    "layer1": "chang_sheng_jue:item/chinese_wedding_dress_boots_overlay"
+  }
+}

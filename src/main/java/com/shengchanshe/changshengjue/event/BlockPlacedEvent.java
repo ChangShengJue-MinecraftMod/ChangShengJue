@@ -3,6 +3,8 @@ package com.shengchanshe.changshengjue.event;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,12 +26,4 @@ public class BlockPlacedEvent {
             world.setBlock(new BlockPos(x, y, z), Blocks.AIR.defaultBlockState(), 3);
         }
     }
-
-//    @SubscribeEvent
-//    public static void entityAttackEvent(TickEvent.PlayerTickEvent event){
-//        Player player = event.player;
-//        if (player.getMainHandItem().is(ChangShengJueItems.BANANA.get())){
-//        }
-//    }
-
 }

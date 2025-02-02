@@ -23,9 +23,16 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new CSJWorldGenProvider(packOutput, lookupProvider));
 
         generator.addProvider(event.includeClient(), new CSJBlockStateProvider(packOutput,existingFileHelper));
+        generator.addProvider(event.includeClient(), new CSJBlockModelProvider(packOutput,existingFileHelper));
         generator.addProvider(event.includeClient(), new CSJItemModelProvider(packOutput,existingFileHelper));
 
-//        generator.addProvider(event.includeServer(), CSJLootTableProvider.create(packOutput));
+        generator.addProvider(event.includeServer(), CSJLootTableProvider.create(packOutput));
+
+        generator.addProvider(event.includeServer(),new CSJPoiTypeTagsProvider(packOutput,lookupProvider,existingFileHelper));
+
+        CSJBlockTagGenerator blockTagGenerator = generator.addProvider(event.includeServer(),
+                new CSJBlockTagGenerator(packOutput, lookupProvider, existingFileHelper));
+        generator.addProvider(event.includeServer(), new CSJItemTagGenerator(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper));
 
 //            generator.addProvider(new CSJLootTableProvider(generator));
 //            BlockSta blockTags = new TutBlockTags(generator, event.getExistingFileHelper());

@@ -1,0 +1,30 @@
+{
+  "name": "chang_sheng_jue:pit_yards/streets/pit_yard_street",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:empty_pool_element"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "projection": "terrain_matching",
+        "element_type": "minecraft:legacy_single_pool_element",
+        "processors": "minecraft:empty",
+        "location": "chang_sheng_jue:pit_yard/streets/pit_yard_streets"
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "projection": "terrain_matching",
+        "element_type": "minecraft:legacy_single_pool_element",
+        "processors": "minecraft:empty",
+        "location": "chang_sheng_jue:pit_yard/streets/pit_yard_streets_2"
+      }
+    }
+  ]
+}

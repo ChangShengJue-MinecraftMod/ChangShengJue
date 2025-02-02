@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "chang_sheng_jue:three_throwing_knives"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_throwing_knives": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "chang_sheng_jue:throwing_knives"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_throwing_knives",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "chang_sheng_jue:three_throwing_knives"
+    ]
+  },
+  "sends_telemetry_event": false
+}

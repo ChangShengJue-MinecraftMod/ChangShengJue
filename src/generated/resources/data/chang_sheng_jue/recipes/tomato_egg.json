@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:tomato"
+    },
+    {
+      "tag": "forge:eggs"
+    },
+    {
+      "item": "chang_sheng_jue:ci_pan"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:tomato_egg"
+  }
+}

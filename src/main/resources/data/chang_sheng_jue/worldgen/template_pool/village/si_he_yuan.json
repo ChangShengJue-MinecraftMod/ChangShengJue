@@ -1,0 +1,24 @@
+{
+  "name": "chang_sheng_jue:village/si_he_yuan",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 10,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty",
+        "location": "chang_sheng_jue:si_he_yuan/si_he_yuan"
+      }
+    },
+    {
+      "weight": 10,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty",
+        "location": "chang_sheng_jue:si_he_yuan/si_he_yuan_1"
+      }
+    }
+  ]
+}

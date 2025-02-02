@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/low_desk",
+  "textures": {
+    "1": "chang_sheng_jue:block/huang_hua_li_low_desk",
+    "particle": "chang_sheng_jue:block/huang_hua_li_low_desk"
+  }
+}

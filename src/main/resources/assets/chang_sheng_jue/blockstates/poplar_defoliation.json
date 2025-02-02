@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "chang_sheng_jue:block/poplar_defoliation"
+    },
+    "level=1": {
+      "model": "chang_sheng_jue:block/poplar_defoliation_1"
+    },
+    "level=2": {
+      "model": "chang_sheng_jue:block/poplar_defoliation_2"
+    }
+  }
+}

@@ -1,9 +1,11 @@
 package com.shengchanshe.changshengjue.datagen;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
-import com.shengchanshe.changshengjue.world.feature.ModBiomeModifiers;
-import com.shengchanshe.changshengjue.world.feature.ModConfiguredFeatures;
-import com.shengchanshe.changshengjue.world.feature.ModPlacedFeatures;
+import com.shengchanshe.changshengjue.damage.CSJDamageTypes;
+import com.shengchanshe.changshengjue.world.biome.CSJBiomes;
+import com.shengchanshe.changshengjue.world.feature.CSJBiomeModifiers;
+import com.shengchanshe.changshengjue.world.feature.CSJConfiguredFeatures;
+import com.shengchanshe.changshengjue.world.feature.CSJPlacedFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -16,9 +18,11 @@ import java.util.concurrent.CompletableFuture;
 
 public class CSJWorldGenProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
-            .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
-            .add(Registries.PLACED_FEATURE, ModPlacedFeatures::bootstrap)
-            .add(ForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootstrap);
+            .add(Registries.CONFIGURED_FEATURE, CSJConfiguredFeatures::bootstrap)
+            .add(Registries.PLACED_FEATURE, CSJPlacedFeatures::bootstrap)
+            .add(ForgeRegistries.Keys.BIOME_MODIFIERS, CSJBiomeModifiers::bootstrap)
+            .add(Registries.BIOME, CSJBiomes::boostrap)
+            .add(Registries.DAMAGE_TYPE, CSJDamageTypes::bootstrap);
 
     public CSJWorldGenProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, BUILDER, Set.of(ChangShengJue.MOD_ID));

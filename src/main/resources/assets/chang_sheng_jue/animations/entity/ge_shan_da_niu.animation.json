@@ -1,0 +1,215 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"misc.idle": {
+			"animation_length": 0.7,
+			"bones": {
+				"yuanhuan": {
+					"position": {
+						"0.2": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.3667": {
+							"vector": [0, 0, -1],
+							"easing": "linear"
+						}
+					},
+					"scale": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.1": {
+							"vector": [0.8, 0.8, 0],
+							"easing": "linear"
+						},
+						"0.2": {
+							"vector": [0.8, 0.8, 0.8],
+							"easing": "easeOutCirc"
+						},
+						"0.3667": {
+							"vector": [0.8, 0.8, 0],
+							"easing": "easeOutCirc"
+						},
+						"0.4": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"quan1": {
+					"rotation": {
+						"0.1": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.4333": {
+							"vector": [0, 0, 90],
+							"easing": "linear"
+						}
+					},
+					"position": {
+						"0.1": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.4333": {
+							"vector": [0, 0, -3],
+							"easing": "linear"
+						}
+					},
+					"scale": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.1": {
+							"vector": [1, 1, 0],
+							"easing": "linear"
+						},
+						"0.2": {
+							"vector": [1, 1, 1],
+							"easing": "easeOutCirc"
+						},
+						"0.4333": {
+							"vector": [1, 1, 0],
+							"easing": "easeOutCirc"
+						},
+						"0.4667": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"quan2": {
+					"rotation": {
+						"0.1667": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.5333": {
+							"vector": [0, 0, 90],
+							"easing": "linear"
+						}
+					},
+					"position": {
+						"0.1667": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.5333": {
+							"vector": [0, 0, -3],
+							"easing": "linear"
+						}
+					},
+					"scale": {
+						"0.0667": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.1667": {
+							"vector": [1, 1, 0],
+							"easing": "linear"
+						},
+						"0.2667": {
+							"vector": [1.5, 1.5, 1.5],
+							"easing": "easeOutCirc"
+						},
+						"0.5333": {
+							"vector": [1.5, 1.5, 0],
+							"easing": "easeOutCirc"
+						},
+						"0.5667": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"quan3": {
+					"rotation": {
+						"0.2333": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.6333": {
+							"vector": [0, 0, 90],
+							"easing": "linear"
+						}
+					},
+					"position": {
+						"0.2333": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.6333": {
+							"vector": [0, 0, -3],
+							"easing": "linear"
+						}
+					},
+					"scale": {
+						"0.1667": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.2333": {
+							"vector": [1, 1, 0],
+							"easing": "linear"
+						},
+						"0.3333": {
+							"vector": [2, 2, 2],
+							"easing": "easeOutCirc"
+						},
+						"0.6333": {
+							"vector": [2.5, 2.5, 0],
+							"easing": "easeOutCirc"
+						},
+						"0.6667": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"lizi": {
+					"position": {
+						"0.1667": {
+							"vector": [0, 0, -5],
+							"easing": "linear"
+						},
+						"0.3667": {
+							"vector": [0, 0, -53],
+							"easing": "linear"
+						}
+					}
+				},
+				"guangzhu": {
+					"scale": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.1": {
+							"vector": [1, 1, 0],
+							"easing": "linear"
+						},
+						"0.3": {
+							"vector": [1, 1, 25],
+							"easing": "easeOutCirc"
+						},
+						"0.3667": {
+							"vector": [0, 0, 25],
+							"easing": "easeOutExpo"
+						}
+					}
+				}
+			},
+			"sound_effects": {
+				"0.0333": {
+					"effect": ".mp3"
+				}
+			},
+			"particle_effects": {}
+		}
+	},
+	"geckolib_format_version": 2
+}

@@ -26,6 +26,9 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+import static net.minecraft.world.entity.MobSpawnType.CHUNK_GENERATION;
+import static net.minecraft.world.entity.MobSpawnType.NATURAL;
+
 public class MalePeacockEntity extends AbstractPeacockEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private int anInt = 0;
@@ -99,12 +102,12 @@ public class MalePeacockEntity extends AbstractPeacockEntity {
     /**
      * 变异
      * */
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_,
-                                        MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_,
-                                        @Nullable CompoundTag p_146750_) {
-        PeacockVariant variant = Util.getRandom(PeacockVariant.values(), this.random);
-        setVariant(variant);
-        return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pDataTag) {
+        if (pReason != CHUNK_GENERATION){
+            PeacockVariant variant = Util.getRandom(PeacockVariant.values(), this.random);
+            setVariant(variant);
+        }
+        return super.finalizeSpawn(pLevel, pDifficulty, pReason, pSpawnData, pDataTag);
     }
 
     public PeacockVariant getVariant() {

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "chang_sheng_jue:item/male_chinese_wedding_dress_chestplate",
+    "layer1": "chang_sheng_jue:item/male_chinese_wedding_dress_chestplate_overlay"
+  }
+}

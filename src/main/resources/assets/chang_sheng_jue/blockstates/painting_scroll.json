@@ -1,0 +1,79 @@
+{
+    "variants": {
+      "facing=east,variant=default": {
+        "model": "chang_sheng_jue:block/painting_scroll_default",
+        "y": 90
+      },
+      "facing=north,variant=default": {
+        "model": "chang_sheng_jue:block/painting_scroll_default"
+      },
+      "facing=south,variant=default": {
+        "model": "chang_sheng_jue:block/painting_scroll_default",
+        "y": 180
+      },
+      "facing=west,variant=default": {
+        "model": "chang_sheng_jue:block/painting_scroll_default",
+        "y": 270
+      },
+      "facing=east,variant=variant_1": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_1",
+        "y": 90
+      },
+      "facing=north,variant=variant_1": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_1"
+      },
+      "facing=south,variant=variant_1": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_1",
+        "y": 180
+      },
+      "facing=west,variant=variant_1": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_1",
+        "y": 270
+      },
+      "facing=east,variant=variant_2": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_2",
+        "y": 90
+      },
+      "facing=north,variant=variant_2": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_2"
+      },
+      "facing=south,variant=variant_2": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_2",
+        "y": 180
+      },
+      "facing=west,variant=variant_2": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_2",
+        "y": 270
+      },
+      "facing=east,variant=variant_3": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_3",
+        "y": 90
+      },
+      "facing=north,variant=variant_3": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_3"
+      },
+      "facing=south,variant=variant_3": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_3",
+        "y": 180
+      },
+      "facing=west,variant=variant_3": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_3",
+        "y": 270
+      },
+      "facing=east,variant=variant_4": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_4",
+        "y": 90
+      },
+      "facing=north,variant=variant_4": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_4"
+      },
+      "facing=south,variant=variant_4": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_4",
+        "y": 180
+      },
+      "facing=west,variant=variant_4": {
+        "model": "chang_sheng_jue:block/painting_scroll_variant_4",
+        "y": 270
+      }
+    }
+}

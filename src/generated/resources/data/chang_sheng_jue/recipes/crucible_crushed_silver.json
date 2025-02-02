@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:crucible"
+    },
+    {
+      "item": "chang_sheng_jue:ag_ingot"
+    },
+    {
+      "item": "chang_sheng_jue:ag_ingot"
+    },
+    {
+      "item": "chang_sheng_jue:ag_ingot"
+    },
+    {
+      "item": "chang_sheng_jue:ag_ingot"
+    },
+    {
+      "item": "chang_sheng_jue:ag_ingot"
+    },
+    {
+      "item": "chang_sheng_jue:ag_ingot"
+    },
+    {
+      "item": "chang_sheng_jue:ag_ingot"
+    },
+    {
+      "item": "chang_sheng_jue:ag_ingot"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:crucible_crushed_silver"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "chang_sheng_jue:yi_guan_tong_qian"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_tong_qian": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "chang_sheng_jue:tong_qian"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_tong_qian",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "chang_sheng_jue:yi_guan_tong_qian"
+    ]
+  },
+  "sends_telemetry_event": false
+}

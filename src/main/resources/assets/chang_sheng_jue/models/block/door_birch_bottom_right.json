@@ -1,0 +1,22 @@
+{
+	"parent": "minecraft:block/door_bottom_right",
+	"textures": {
+		"top": "chang_sheng_jue:block/door_birch_block",
+		"bottom": "chang_sheng_jue:block/door_birch_block"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [3, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 0, 8]},
+			"faces": {
+				"north": {"uv": [0, 8, 0.25, 12], "texture": "#bottom"},
+				"east": {"uv": [4, 8, 0, 12], "texture": "#bottom"},
+				"south": {"uv": [0, 8, 0.25, 12], "texture": "#bottom"},
+				"west": {"uv": [0, 8, 4, 12], "texture": "#bottom"},
+				"up": {"uv": [0, 0, 4, 0.25], "rotation": 270, "texture": "#bottom"},
+				"down": {"uv": [0, 11.75, 4, 12], "rotation": 90, "texture": "#bottom"}
+			}
+		}
+	]
+}

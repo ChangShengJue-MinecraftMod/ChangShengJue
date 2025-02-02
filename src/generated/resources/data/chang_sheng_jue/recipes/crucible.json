@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "pattern": [
+    "# #",
+    "# #",
+    " # "
+  ],
+  "result": {
+    "item": "chang_sheng_jue:crucible"
+  },
+  "show_notification": true
+}

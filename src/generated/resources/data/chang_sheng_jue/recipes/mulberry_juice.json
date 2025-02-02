@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:mulberry"
+    },
+    {
+      "item": "chang_sheng_jue:mulberry"
+    },
+    {
+      "item": "chang_sheng_jue:mulberry"
+    },
+    {
+      "item": "chang_sheng_jue:ci_bei"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:mulberry_juice"
+  }
+}

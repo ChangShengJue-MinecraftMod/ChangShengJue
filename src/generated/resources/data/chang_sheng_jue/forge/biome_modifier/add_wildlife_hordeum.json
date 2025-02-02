@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "chang_sheng_jue:wildlife_hordeum_placed_key",
+  "step": "vegetal_decoration"
+}

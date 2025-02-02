@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/cross",
+	"textures": {
+		"cross": "chang_sheng_jue:block/purple_dandelion"
+	}
+}

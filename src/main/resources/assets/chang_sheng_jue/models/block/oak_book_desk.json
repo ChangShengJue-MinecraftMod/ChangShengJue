@@ -1,0 +1,7 @@
+{
+  "parent" : "chang_sheng_jue:block/book_desk",
+  "textures": {
+    "1": "chang_sheng_jue:block/oak_book_desk",
+    "particle": "chang_sheng_jue:block/oak_book_desk"
+  }
+}

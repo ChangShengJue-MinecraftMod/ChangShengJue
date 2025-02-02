@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:cantaloupe"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:cantaloupe_seeds"
+  }
+}

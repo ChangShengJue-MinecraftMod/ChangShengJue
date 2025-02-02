@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:jalapenos"
+    },
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "item": "minecraft:chicken"
+    },
+    {
+      "item": "chang_sheng_jue:ci_wan"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:zhu_du_ji"
+  }
+}

@@ -19,6 +19,7 @@
       "state": {
         "Name": "chang_sheng_jue:lichee_leaves",
         "Properties": {
+          "type": "leaves",
           "distance": "7",
           "persistent": "false",
           "waterlogged": "false"
@@ -35,7 +36,7 @@
     },
     "trunk_placer": {
       "type": "minecraft:straight_trunk_placer",
-      "base_height": 3,
+      "base_height": 5,
       "height_rand_a": 2,
       "height_rand_b": 1
     },

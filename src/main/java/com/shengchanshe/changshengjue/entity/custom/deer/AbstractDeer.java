@@ -33,7 +33,7 @@ public abstract class AbstractDeer extends Animal implements GeoEntity {
     private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.OAK_LEAVES,Items.AZALEA_LEAVES,Items.DARK_OAK_LEAVES,Items.FLOWERING_AZALEA_LEAVES,Items.BIRCH_LEAVES,
             Items.SPRUCE_LEAVES,Items.JUNGLE_LEAVES,Items.AZALEA_LEAVES,
             ChangShengJueBlocks.MANGO_LEAVES.get(),ChangShengJueBlocks.GUI_HUA_LEAVES.get(),ChangShengJueBlocks.MEI_HUA_LEAVES.get(),ChangShengJueBlocks.BANANA_LEAVES.get(),
-            ChangShengJueBlocks.PEAR_LEAVES.get(),ChangShengJueBlocks.LICHEE_LEAVES.get(),ChangShengJueBlocks.DURIAN_LEAVES.get());
+            ChangShengJueBlocks.PEAR_LEAVES.get(),ChangShengJueBlocks.LICHEE_LEAVES.get(),ChangShengJueBlocks.DURIAN_LEAVES.get(),ChangShengJueBlocks.POPLAR_LEAVES.get(),ChangShengJueBlocks.MULBERRY_LEAVES.get());
     public Random random = new Random();
     private int eatAnimationTick;
     public AbstractDeer(EntityType<? extends AbstractDeer> p_27557_, Level p_27558_) {

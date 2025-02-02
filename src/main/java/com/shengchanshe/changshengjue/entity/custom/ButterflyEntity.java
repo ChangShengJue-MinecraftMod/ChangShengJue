@@ -45,8 +45,8 @@ public class ButterflyEntity extends Animal implements GeoEntity, FlyingAnimal {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(MalePeacockEntity.class, EntityDataSerializers.INT);
 
-    public ButterflyEntity(EntityType<? extends ButterflyEntity> p_27557_, Level p_27558_) {
-        super(p_27557_, p_27558_);
+    public ButterflyEntity(EntityType<? extends ButterflyEntity> entityType, Level level) {
+        super(entityType, level);
         this.moveControl = new FlyingMoveControl(this, 20, true);
     }
 

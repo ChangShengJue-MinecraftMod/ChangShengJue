@@ -1,0 +1,357 @@
+{
+  "multipart": [
+      {
+        "when": {
+          "facing": "north"
+        },
+        "apply": {
+          "model": "chang_sheng_jue:block/pig_trough"
+        }
+      },
+    {
+      "when": {
+        "facing": "east"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "level": "1"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents1"
+      }
+    },
+    {
+      "when": {
+        "facing": "east", "level": "1"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south", "level": "1"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents1",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west", "level": "1"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents1",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "west"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "level": "2"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents2"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "level": "2"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents2",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "level": "2"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents2",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "level": "2"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents2",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "level": "3"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents3"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "level": "3"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents3",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "level": "3"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents3",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "level": "3"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents3",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "level": "4"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents4"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "level": "4"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents4",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "level": "4"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents4",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "level": "4"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents4",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "level": "5"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents5"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "level": "5"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents5",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "level": "5"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents5",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "level": "5"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents5",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "level": "6"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents6"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "level": "6"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents6",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "level": "6"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents6",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "level": "6"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents6",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "level": "7"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents7"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "level": "7"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents7",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "level": "7"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents7",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "level": "7"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents7",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "facing": "north",
+        "level": "8"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents_ready"
+      }
+    },
+    {
+      "when": {
+        "facing": "east",
+        "level": "8"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents_ready",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "facing": "south",
+        "level": "8"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents_ready",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "facing": "west",
+        "level": "8"
+      },
+      "apply": {
+        "model": "chang_sheng_jue:block/pig_trough_contents_ready",
+        "y": 270
+      }
+    }
+  ]
+}

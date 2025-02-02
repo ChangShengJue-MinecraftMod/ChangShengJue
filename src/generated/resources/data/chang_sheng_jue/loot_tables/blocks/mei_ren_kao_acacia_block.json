@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "chang_sheng_jue:mei_ren_kao_acacia_block"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "chang_sheng_jue:blocks/mei_ren_kao_acacia_block"
+}

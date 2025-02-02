@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:rice"
+    },
+    {
+      "item": "chang_sheng_jue:rice"
+    },
+    {
+      "item": "chang_sheng_jue:rice"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:mi_fan"
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "variants": {
+    "right=false,facing=north,variant=default": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_default_left"
+    },
+    "right=true,facing=north,variant=default": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_default_right"
+    },
+    "right=false,facing=south,variant=default": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_default_left",
+      "y": 180
+    },
+    "right=true,facing=south,variant=default": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_default_right",
+      "y": 180
+    },
+    "right=false,facing=east,variant=default": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_default_left",
+      "y": 90
+    },
+    "right=true,facing=east,variant=default": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_default_right",
+      "y": 90
+    },
+    "right=false,facing=west,variant=default": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_default_left",
+      "y": 270
+    },
+    "right=true,facing=west,variant=default": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_default_right",
+      "y": 270
+    },
+    "right=false,facing=north,variant=variant_1": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_1_left"
+    },
+    "right=true,facing=north,variant=variant_1": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_1_right"
+    },
+    "right=false,facing=south,variant=variant_1": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_1_left",
+      "y": 180
+    },
+    "right=true,facing=south,variant=variant_1": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_1_right",
+      "y": 180
+    },
+    "right=false,facing=east,variant=variant_1": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_1_left",
+      "y": 90
+    },
+    "right=true,facing=east,variant=variant_1": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_1_right",
+      "y": 90
+    },
+    "right=false,facing=west,variant=variant_1": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_1_left",
+      "y": 270
+    },
+    "right=true,facing=west,variant=variant_1": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_1_right",
+      "y": 270
+    },
+    "right=false,facing=north,variant=variant_2": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_2_left"
+    },
+    "right=true,facing=north,variant=variant_2": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_2_right"
+    },
+    "right=false,facing=south,variant=variant_2": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_2_left",
+      "y": 180
+    },
+    "right=true,facing=south,variant=variant_2": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_2_right",
+      "y": 180
+    },
+    "right=false,facing=east,variant=variant_2": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_2_left",
+      "y": 90
+    },
+    "right=true,facing=east,variant=variant_2": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_2_right",
+      "y": 90
+    },
+    "right=false,facing=west,variant=variant_2": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_2_left",
+      "y": 270
+    },
+    "right=true,facing=west,variant=variant_2": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_2_right",
+      "y": 270
+    },
+    "right=false,facing=north,variant=variant_3": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_3_left"
+    },
+    "right=true,facing=north,variant=variant_3": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_3_right"
+    },
+    "right=false,facing=south,variant=variant_3": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_3_left",
+      "y": 180
+    },
+    "right=true,facing=south,variant=variant_3": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_3_right",
+      "y": 180
+    },
+    "right=false,facing=east,variant=variant_3": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_3_left",
+      "y": 90
+    },
+    "right=true,facing=east,variant=variant_3": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_3_right",
+      "y": 90
+    },
+    "right=false,facing=west,variant=variant_3": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_3_left",
+      "y": 270
+    },
+    "right=true,facing=west,variant=variant_3": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_3_right",
+      "y": 270
+    },
+    "right=false,facing=north,variant=variant_4": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_4_left"
+    },
+    "right=true,facing=north,variant=variant_4": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_4_right"
+    },
+    "right=false,facing=south,variant=variant_4": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_4_left",
+      "y": 180
+    },
+    "right=true,facing=south,variant=variant_4": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_4_right",
+      "y": 180
+    },
+    "right=false,facing=east,variant=variant_4": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_4_left",
+      "y": 90
+    },
+    "right=true,facing=east,variant=variant_4": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_4_right",
+      "y": 90
+    },
+    "right=false,facing=west,variant=variant_4": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_4_left",
+      "y": 270
+    },
+    "right=true,facing=west,variant=variant_4": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_4_right",
+      "y": 270
+    },
+    "right=false,facing=north,variant=variant_5": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_5_left"
+    },
+    "right=true,facing=north,variant=variant_5": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_5_right"
+    },
+    "right=false,facing=south,variant=variant_5": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_5_left",
+      "y": 180
+    },
+    "right=true,facing=south,variant=variant_5": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_5_right",
+      "y": 180
+    },
+    "right=false,facing=east,variant=variant_5": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_5_left",
+      "y": 90
+    },
+    "right=true,facing=east,variant=variant_5": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_5_right",
+      "y": 90
+    },
+    "right=false,facing=west,variant=variant_5": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_5_left",
+      "y": 270
+    },
+    "right=true,facing=west,variant=variant_5": {
+      "model": "chang_sheng_jue:block/width_painting_scroll_variant_5_right",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/tinted_cross",
+  "textures": {
+    "cross": "chang_sheng_jue:block/rape_flowers_top"
+  }
+}

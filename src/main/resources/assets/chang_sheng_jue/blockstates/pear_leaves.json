@@ -1,6 +1,9 @@
 {
   "variants": {
-    "": {
+    "type=fruits": {
+      "model": "chang_sheng_jue:block/pear_fruits"
+    },
+    "type=leaves": {
       "model": "chang_sheng_jue:block/pear_leaves"
     }
   }

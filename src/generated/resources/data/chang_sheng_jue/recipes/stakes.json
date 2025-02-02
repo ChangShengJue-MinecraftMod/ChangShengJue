@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "$": {
+      "tag": "forge:cobblestone"
+    },
+    "X": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "#",
+    "X",
+    "$"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:stakes"
+  },
+  "show_notification": true
+}

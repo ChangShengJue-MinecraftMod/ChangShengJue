@@ -1,0 +1,26 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "chang_sheng_jue:item/red_tasselled_spear_model"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "chang_sheng_jue:item/red_tasselled_spear_show"
+    },
+    "ground": {
+      "parent": "chang_sheng_jue:item/red_tasselled_spear_show"
+    },
+    "fixed": {
+      "parent": "chang_sheng_jue:item/red_tasselled_spear_show"
+    }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "throwing" : 1
+      },
+      "model": "chang_sheng_jue:item/red_tasselled_spear_throwing"
+    }
+  ]
+}

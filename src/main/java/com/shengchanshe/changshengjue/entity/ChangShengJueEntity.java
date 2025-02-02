@@ -1,16 +1,27 @@
 package com.shengchanshe.changshengjue.entity;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.entity.combat.lance.ThrownBaWangQiang;
+import com.shengchanshe.changshengjue.entity.combat.lance.BaWangQiangAttackEntity;
+import com.shengchanshe.changshengjue.entity.combat.beat_dog_stick.BeatDogStickAttackEntity;
+import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntity;
+import com.shengchanshe.changshengjue.entity.combat.lance.ThrownRedTasselledSpear;
+import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntity;
+import com.shengchanshe.changshengjue.entity.combat.ge_shan_da_niu.GeShanDaNiuEntity;
+import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntity;
+import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
+import com.shengchanshe.changshengjue.entity.combat.tu_long_dao.TuLongDaoAttackEntity;
+import com.shengchanshe.changshengjue.entity.combat.yi_tian_jian.YiTianJianAttackEntity;
 import com.shengchanshe.changshengjue.entity.custom.*;
 import com.shengchanshe.changshengjue.entity.custom.deer.HindEntity;
 import com.shengchanshe.changshengjue.entity.custom.deer.StagEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.FemalePeacockEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.MalePeacockEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.PeacockEgg;
-import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueHunterEntity;
-import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerChiefEntity;
+import com.shengchanshe.changshengjue.entity.decoration.seat.SeatEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerEntity;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -64,7 +75,6 @@ public class ChangShengJueEntity {
                             .sized(0.8f,1.4f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"female_peacock_entity").toString()));
 
-
     public static final RegistryObject<EntityType<StagEntity>> STAG_ENTITY =
             ENTITY_TYPES.register("stag_entity",
                     () -> EntityType.Builder.of(StagEntity::new, MobCategory.CREATURE)
@@ -91,26 +101,93 @@ public class ChangShengJueEntity {
 
     public static final RegistryObject<EntityType<ChangShengJueVillagerEntity>> CHANG_SHENG_JUE_VILLAGER =
             ENTITY_TYPES.register("chang_sheng_jue_villager",
-                    () -> EntityType.Builder.<ChangShengJueVillagerEntity>of(ChangShengJueVillagerEntity::new, MobCategory.MISC)
+                    () -> EntityType.Builder.of(ChangShengJueVillagerEntity::new, MobCategory.MISC)
                             .sized(0.6F, 1.95F)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"chang_sheng_jue_villager").toString()));
 
-    public static final RegistryObject<EntityType<ChangShengJueHunterEntity>> CHANG_SHENG_JUE_HUNTER =
-            ENTITY_TYPES.register("chang_sheng_jue_hunter",
-                    () -> EntityType.Builder.of(ChangShengJueHunterEntity::new, MobCategory.MISC)
-                            .sized(0.6F, 1.95F)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"chang_sheng_jue_hunter").toString()));
+    //独孤九剑
+    public static final RegistryObject<EntityType<DuguNineSwordsEntity>> DUGU_NINE_SOWRDS_ENTITY =
+            ENTITY_TYPES.register("dugu_nine_sowrds_entity",
+                    () -> EntityType.Builder.of(DuguNineSwordsEntity::new, MobCategory.MISC)
+                            .sized(5f, 1f)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"dugu_nine_sowrds_entity").toString()));
+    //金乌刀法
+    public static final RegistryObject<EntityType<GoldenBlackKnifeMethodEntity>> GOLDEN_BLACK_KNIFE_METHOD_ENTITY =
+            ENTITY_TYPES.register("golden_black_knife_method_entity",
+                    () -> EntityType.Builder.of(GoldenBlackKnifeMethodEntity::new, MobCategory.MISC)
+                            .sized(5f, 1f)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"golden_black_knife_method_entity").toString()));
+    //隔山打牛
+    public static final RegistryObject<EntityType<GeShanDaNiuEntity>> GE_SHAN_DA_NIU =
+            ENTITY_TYPES.register("ge_shan_da_niu",
+                    () -> EntityType.Builder.of(GeShanDaNiuEntity::new, MobCategory.MISC)
+                            .sized(5f, 1f)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"ge_shan_da_niu").toString()));
 
-    public static final RegistryObject<EntityType<ChangShengJueVillagerChiefEntity>> CHANG_SHENG_JUE_VILLAGER_CHIEF =
-            ENTITY_TYPES.register("chang_sheng_jue_villager_chief",
-                    () -> EntityType.Builder.of(ChangShengJueVillagerChiefEntity::new, MobCategory.MISC)
-                            .sized(0.6F, 1.95F)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"chang_sheng_jue_villager_chief").toString()));
+    //打狗棒Attack
+    public static final RegistryObject<EntityType<BeatDogStickAttackEntity>> BEAT_DOG_STICK_ATTACK =
+            ENTITY_TYPES.register("beat_dog_stick_attack",
+                    () -> EntityType.Builder.of(BeatDogStickAttackEntity::new, MobCategory.MISC)
+                            .sized(1.3f, 1.3f)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"beat_dog_stick_attack").toString()));
+    //屠龙刀Attack
+    public static final RegistryObject<EntityType<TuLongDaoAttackEntity>> TU_LONG_DAO_ATTACK =
+            ENTITY_TYPES.register("tu_long_dao_attack",
+                    () -> EntityType.Builder.of(TuLongDaoAttackEntity::new, MobCategory.MISC)
+                            .sized(1.3f, 1.3f)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"tu_long_dao_attack").toString()));
+
+    //霸王枪Attack
+    public static final RegistryObject<EntityType<BaWangQiangAttackEntity>> BA_WANG_QIANG_ATTACK =
+            ENTITY_TYPES.register("ba_wang_qiang_attack",
+                    () -> EntityType.Builder.of(BaWangQiangAttackEntity::new, MobCategory.MISC)
+                            .sized(1.3f, 1.3f)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"ba_wang_qiang_attack").toString()));
+    //霸王枪投掷
+    public static final RegistryObject<EntityType<ThrownBaWangQiang>> BA_WANG_QIANG =
+            ENTITY_TYPES.register("ba_wang_qiang",
+                    () -> EntityType.Builder.<ThrownBaWangQiang>of(ThrownBaWangQiang::new, MobCategory.MISC)
+                            .sized(0.5f, 0.5f).clientTrackingRange(4).updateInterval(20)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"ba_wang_qiang").toString()));
+    //红缨枪投掷
+    public static final RegistryObject<EntityType<ThrownRedTasselledSpear>> RED_TASSELLED_SPEAR =
+            ENTITY_TYPES.register("red_tasselled_spear",
+                    () -> EntityType.Builder.<ThrownRedTasselledSpear>of(ThrownRedTasselledSpear::new, MobCategory.MISC)
+                            .sized(0.5f, 0.5f).clientTrackingRange(4).updateInterval(20)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"red_tasselled_spear").toString()));
+
+    //倚天剑Attack
+    public static final RegistryObject<EntityType<YiTianJianAttackEntity>> YI_TIAN_JIAN_ATTACK =
+            ENTITY_TYPES.register("yi_tian_jian_attack",
+                    () -> EntityType.Builder.of(YiTianJianAttackEntity::new, MobCategory.MISC)
+                            .sized(1.3f, 1.3f)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"yi_tian_jian_attack").toString()));
+
+    //练功木桩
+    public static final RegistryObject<EntityType<StakesEntity>> STAKES =
+            ENTITY_TYPES.register("stakes",
+                    () -> EntityType.Builder.of(StakesEntity::new, MobCategory.MISC)
+                            .sized(0.6F, 1.95F).clientTrackingRange(10)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"stakes").toString()));
+
+    //座位
+//    public static final RegistryObject<EntityType<SeatEntity>> SEAT = ENTITY_TYPES.register("seat",
+//            () -> EntityType.Builder.<SeatEntity>of(((type,level) -> new SeatEntity(level),MobCategory.MISC)).sized(0.0F,0.0F).setCustomClientFactory((spawnEntity, level) -> new SeatEntity(level)));
+
+    public static final RegistryObject<EntityType<SeatEntity>> SEAT = register("seat", EntityType.Builder.<SeatEntity>of((type, level) ->
+            new SeatEntity(level), MobCategory.MISC).sized(0.0F, 0.0F).setCustomClientFactory((spawnEntity, level) -> new SeatEntity(level)));
 
     public static final RegistryObject<EntityType<PeacockEgg>> PEACOCK_EGG = ENTITY_TYPES.register("peacock_egg",
             () -> EntityType.Builder.<PeacockEgg>of(PeacockEgg::new, MobCategory.MISC).sized(0.25F, 0.25F)
-                    .setTrackingRange(4).updateInterval(10).build("peacock_egg"));
+                    .clientTrackingRange(4).updateInterval(10).build("peacock_egg"));
 
+    public static final RegistryObject<EntityType<ThrowingKnivesEntity>> THROWING_KNIVES_ENTITY = ENTITY_TYPES.register("throwing_knives_entity",
+            () -> EntityType.Builder.<ThrowingKnivesEntity>of(ThrowingKnivesEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
+                    .clientTrackingRange(4).updateInterval(20).build("throwing_knives_entity"));
+
+    private static <T extends Entity> RegistryObject<EntityType<T>> register(String name, EntityType.Builder<T> builder) {
+        return ENTITY_TYPES.register(name, () -> builder.build(name));
+    }
 
     public static void register(IEventBus eventBus){
         ENTITY_TYPES.register(eventBus);

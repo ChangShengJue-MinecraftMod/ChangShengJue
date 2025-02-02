@@ -1,0 +1,64 @@
+package com.shengchanshe.changshengjue.item.combat.book;
+
+import com.shengchanshe.changshengjue.capability.martial_arts.ge_shan_da_niu.GeShanDaNiuCapabilityProvider;
+import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
+
+public class GeShanDaNiu extends Item {
+    public GeShanDaNiu() {
+        super(new Properties());
+    }
+
+    public static void comprehend(Entity entity, Level level){
+        if (!level.isClientSide) {
+            if (entity instanceof Player player){
+                player.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
+                    if (geShanDaNiu.isGeShanDaNiuComprehend() && geShanDaNiu.getGeShanDaNiuLevel() == 0) {
+                        if (geShanDaNiu.isSkillZActive() || geShanDaNiu.isSkillXActive() || geShanDaNiu.isSkillCActive()) {
+                            float probability = player.getRandom().nextFloat();
+                            float defaultProbability = !player.getAbilities().instabuild ? 0.01F : 1.0F;
+                            if (probability < defaultProbability) {
+                                level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                        ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                geShanDaNiu.addGeShanDaNiuLevel();
+                                geShanDaNiu.setGeShanDaNiuParticle(true);
+                                ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
+                                        geShanDaNiu.getGeShanDaNiuLevel(),
+                                        geShanDaNiu.isGeShanDaNiuComprehend(),
+                                        geShanDaNiu.getGeShanDaNiuUseCooldownPercent(),
+                                        geShanDaNiu.getGeShanDaNiuToppedTick(),
+                                        geShanDaNiu.getGeShanDaNiuDachengTick(),
+                                        geShanDaNiu.isGeShanDaNiuParticle(),
+                                        geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax(),
+                                        geShanDaNiu.isSkillZActive(),
+                                        geShanDaNiu.isSkillXActive(),
+                                        geShanDaNiu.isSkillCActive()), (ServerPlayer) player);
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        pTooltipComponents.add(Component.translatable("tooltip.chang_sheng_jue.ge_shan_da_niu.tooltip").withStyle(ChatFormatting.GRAY));
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+    }
+}

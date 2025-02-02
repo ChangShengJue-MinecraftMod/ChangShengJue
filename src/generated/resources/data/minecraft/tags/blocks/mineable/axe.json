@@ -1,0 +1,22 @@
+{
+  "values": [
+    "chang_sheng_jue:bai_hua_fu_ti_block",
+    "chang_sheng_jue:yun_shan_fu_ti_block",
+    "chang_sheng_jue:cantaloupe_stem",
+    "chang_sheng_jue:attached_cantaloupe_stem",
+    "chang_sheng_jue:cantaloupe_block",
+    "chang_sheng_jue:chang_sheng_jue_loom",
+    "chang_sheng_jue:pottery_wheel",
+    "chang_sheng_jue:tool_table",
+    "chang_sheng_jue:desk",
+    "#chang_sheng_jue:windows",
+    "#chang_sheng_jue:mei_ren_kao",
+    "#chang_sheng_jue:bench",
+    "#chang_sheng_jue:drinking_table_and_chairs",
+    "#chang_sheng_jue:book_desk",
+    "#chang_sheng_jue:teapoy",
+    "#chang_sheng_jue:taishi_chair",
+    "#chang_sheng_jue:five_screen_throne",
+    "#chang_sheng_jue:low_desk"
+  ]
+}

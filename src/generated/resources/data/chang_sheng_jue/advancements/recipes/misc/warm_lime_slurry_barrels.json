@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_lime_slurry_barrels": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "chang_sheng_jue:lime_slurry_barrels"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "chang_sheng_jue:warm_lime_slurry_barrels"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_lime_slurry_barrels",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "chang_sheng_jue:warm_lime_slurry_barrels"
+    ]
+  },
+  "sends_telemetry_event": false
+}

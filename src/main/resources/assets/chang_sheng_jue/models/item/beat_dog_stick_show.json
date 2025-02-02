@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "chang_sheng_jue:item/beat_dog_stick_item"
+  }
+}

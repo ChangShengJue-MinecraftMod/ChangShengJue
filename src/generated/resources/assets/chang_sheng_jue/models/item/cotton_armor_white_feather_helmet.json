@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "chang_sheng_jue:item/cotton_armor_white_feather_helmet",
+    "layer1": "chang_sheng_jue:item/cotton_armor_white_feather_helmet_overlay"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:pineapple"
+    },
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "item": "chang_sheng_jue:ci_pan"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:gu_lao_rou"
+  }
+}

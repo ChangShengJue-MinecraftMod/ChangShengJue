@@ -1,0 +1,18 @@
+{
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "chang_sheng_jue:item/pan_hua_gun_model"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "chang_sheng_jue:item/pan_hua_gun_show"
+    },
+    "ground": {
+      "parent": "chang_sheng_jue:item/pan_hua_gun_show"
+    },
+    "fixed": {
+      "parent": "chang_sheng_jue:item/pan_hua_gun_show"
+    }
+  }
+}

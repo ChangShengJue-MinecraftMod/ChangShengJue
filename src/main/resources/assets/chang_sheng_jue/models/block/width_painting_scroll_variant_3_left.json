@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/width_painting_scroll_left",
+  "textures": {
+    "0": "chang_sheng_jue:block/width_painting_scroll_variant_3",
+    "particle": "chang_sheng_jue:block/width_painting_scroll_variant_3"
+  }
+}

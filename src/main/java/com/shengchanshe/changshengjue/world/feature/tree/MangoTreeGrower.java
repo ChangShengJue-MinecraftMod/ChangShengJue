@@ -1,6 +1,6 @@
 package com.shengchanshe.changshengjue.world.feature.tree;
 
-import com.shengchanshe.changshengjue.world.feature.ModConfiguredFeatures;
+import com.shengchanshe.changshengjue.world.feature.CSJConfiguredFeatures;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.grower.AbstractTreeGrower;
@@ -16,6 +16,6 @@ public class MangoTreeGrower extends AbstractTreeGrower {
     @Nullable
     @Override
     protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource randomSource, boolean b) {
-        return ModConfiguredFeatures.MANGO_TREE;
+        return CSJConfiguredFeatures.MANGO_TREE;
     }
 }
