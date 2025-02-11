@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "chang_sheng_jue.refmap.json",
   "mixins": [
-    "MixinFoodData"
+    "MixinFoodData",
+    "MixinAnimal"
   ],
   "client": [
   ],
