@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "chang_sheng_jue:huang_hua_li_planks"
+    },
+    "X": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " ##",
+    "X##",
+    "XX "
+  ],
+  "result": {
+    "item": "chang_sheng_jue:huang_hua_li_teapoy"
+  },
+  "show_notification": true
+}

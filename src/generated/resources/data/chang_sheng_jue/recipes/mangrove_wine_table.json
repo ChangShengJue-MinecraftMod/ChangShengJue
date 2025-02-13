@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:mangrove_planks"
+    },
+    "X": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "X##",
+    "X##",
+    " XX"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:mangrove_wine_table"
+  },
+  "show_notification": true
+}

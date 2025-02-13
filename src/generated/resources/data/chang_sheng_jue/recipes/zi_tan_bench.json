@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "chang_sheng_jue:zi_tan_planks"
+    },
+    "X": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "###",
+    "X X"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:zi_tan_bench"
+  },
+  "show_notification": true
+}
