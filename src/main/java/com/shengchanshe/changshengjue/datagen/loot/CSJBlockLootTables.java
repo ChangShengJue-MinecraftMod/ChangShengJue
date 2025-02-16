@@ -20,6 +20,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.LimitCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
@@ -45,7 +46,10 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         //芒果
         this.dropSelf(ChangShengJueBlocks.MANGO_LOG.get());
         this.dropSelf(ChangShengJueBlocks.MANGO_SAPLING.get());
-        this.createLeavesFruitsDrops(ChangShengJueBlocks.MANGO_LEAVES.get(),ChangShengJueItems.MANGO.get(),ChangShengJueBlocks.MANGO_SAPLING.get());
+//        this.createLeavesFruitsDrops(ChangShengJueBlocks.MANGO_LEAVES.get(),ChangShengJueItems.MANGO.get(),ChangShengJueBlocks.MANGO_SAPLING.get());
+        this.add(ChangShengJueBlocks.MANGO_LEAVES.get(),
+                (block) -> this.createLeavesDrops(block,ChangShengJueBlocks.MANGO_SAPLING.get(),ChangShengJueItems.MANGO.get(),NORMAL_LEAVES_SAPLING_CHANCES));
+
         //香蕉
         this.dropSelf(ChangShengJueBlocks.BANANA_LOG.get());
         this.dropSelf(ChangShengJueBlocks.BANANA_SAPLING.get());
@@ -55,15 +59,22 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         //梨
         this.dropSelf(ChangShengJueBlocks.PEAR_LOG.get());
         this.dropSelf(ChangShengJueBlocks.PEAR_SAPLING.get());
-        this.createLeavesFruitsDrops(ChangShengJueBlocks.PEAR_LEAVES.get(),ChangShengJueItems.PEAR.get(),ChangShengJueBlocks.PEAR_SAPLING.get());
+//        this.createLeavesFruitsDrops(ChangShengJueBlocks.PEAR_LEAVES.get(),ChangShengJueItems.PEAR.get(),ChangShengJueBlocks.PEAR_SAPLING.get());
+        this.add(ChangShengJueBlocks.PEAR_LEAVES.get(),
+                (block) -> this.createLeavesDrops(block,ChangShengJueBlocks.PEAR_SAPLING.get(),ChangShengJueItems.PEAR.get(),NORMAL_LEAVES_SAPLING_CHANCES));
+
         //荔枝
         this.dropSelf(ChangShengJueBlocks.LICHEE_LOG.get());
         this.dropSelf(ChangShengJueBlocks.LICHEE_SAPLING.get());
-        this.createLeavesFruitsDrops(ChangShengJueBlocks.LICHEE_LEAVES.get(),ChangShengJueItems.LICHEE.get(),ChangShengJueBlocks.LICHEE_SAPLING.get());
+//        this.createLeavesFruitsDrops(ChangShengJueBlocks.LICHEE_LEAVES.get(),ChangShengJueItems.LICHEE.get(),ChangShengJueBlocks.LICHEE_SAPLING.get());
+        this.add(ChangShengJueBlocks.LICHEE_LEAVES.get(),
+                (block) -> this.createLeavesDrops(block,ChangShengJueBlocks.LICHEE_SAPLING.get(),ChangShengJueItems.LICHEE.get(),NORMAL_LEAVES_SAPLING_CHANCES));
         //榴莲
         this.dropSelf(ChangShengJueBlocks.DURIAN_LOG.get());
         this.dropSelf(ChangShengJueBlocks.DURIAN_SAPLING.get());
-        this.createLeavesFruitsDrops(ChangShengJueBlocks.DURIAN_LEAVES.get(),ChangShengJueItems.DURIAN.get(),ChangShengJueBlocks.DURIAN_SAPLING.get());
+//        this.createLeavesFruitsDrops(ChangShengJueBlocks.DURIAN_LEAVES.get(),ChangShengJueItems.DURIAN.get(),ChangShengJueBlocks.DURIAN_SAPLING.get());
+        this.add(ChangShengJueBlocks.DURIAN_LEAVES.get(),
+                (block) -> this.createLeavesDrops(block,ChangShengJueBlocks.DURIAN_SAPLING.get(),ChangShengJueItems.DURIAN.get(),NORMAL_LEAVES_SAPLING_CHANCES));
 
         this.dropSelf(ChangShengJueBlocks.GUI_HUA_LOG.get());
         this.dropSelf(ChangShengJueBlocks.GUI_HUA_SAPLING.get());
@@ -299,11 +310,11 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.WINDOWS_OAK_BLOCK_1.get());
         this.dropSelf(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_1.get());
-        this.add(ChangShengJueBlocks.WINDOWS_BIRCH_BLOCK_2.get(), (door) -> this.createDoorTable(door));
-        this.add(ChangShengJueBlocks.WINDOWS_ACACIA_BLOCK_2.get(), (door) -> this.createDoorTable(door));
-        this.add(ChangShengJueBlocks.WINDOWS_DARK_OAK_BLOCK_2.get(), (door) -> this.createDoorTable(door));
-        this.add(ChangShengJueBlocks.WINDOWS_OAK_BLOCK_2.get(), (door) -> this.createDoorTable(door));
-        this.add(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_2.get(), (door) -> this.createDoorTable(door));
+        this.add(ChangShengJueBlocks.HIGH_BIRCH_WINDOWS.get(), (door) -> this.createDoorTable(door));
+        this.add(ChangShengJueBlocks.HIGH_ACACIA_WINDOWS.get(), (door) -> this.createDoorTable(door));
+        this.add(ChangShengJueBlocks.HIGH_DARK_OAK_WINDOWS.get(), (door) -> this.createDoorTable(door));
+        this.add(ChangShengJueBlocks.HIGH_OAK_WINDOWS.get(), (door) -> this.createDoorTable(door));
+        this.add(ChangShengJueBlocks.HIGH_SPRUCE_WINDOWS.get(), (door) -> this.createDoorTable(door));
         //方块
         this.dropSelf(ChangShengJueBlocks.HANG_TU_WALL.get());
         this.dropSelf(ChangShengJueBlocks.TU_PEI_WALL.get());
@@ -462,7 +473,13 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(leavesBlock, LootTable.lootTable().withPool(LootPool.lootPool().add(drops)
                 .when(ExplosionCondition.survivesExplosion())));
     }
-
+    //树苗掉落
+    public LootTable.Builder createLeavesDrops(Block pOakLeavesBlock, Block pSaplingBlock, Item fruitsItem, float... pChances) {
+        return this.createLeavesDrops(pOakLeavesBlock, pSaplingBlock, pChances)
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_NO_SHEARS_OR_SILK_TOUCH)
+                        .add(((LootPoolSingletonContainer.Builder<?>)this.applyExplosionCondition(pOakLeavesBlock, LootItem.lootTableItem(fruitsItem)))
+                                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
+    }
     public void createMulberryLeavesDrops(Block leavesBlock, Item fruitsItem,Block sapling,Item stateItem){
         var leaves = LootItem.lootTableItem(leavesBlock)
                 .when(MatchTool.toolMatches(ItemPredicate.Builder.item()

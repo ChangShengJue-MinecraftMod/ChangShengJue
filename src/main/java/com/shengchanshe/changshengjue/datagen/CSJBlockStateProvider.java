@@ -7,6 +7,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -17,8 +18,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Function;
-
-import static com.shengchanshe.changshengjue.block.custom.furniture.desk.LowDesk.RIGHT;
 
 
 public class CSJBlockStateProvider extends BlockStateProvider {
@@ -50,11 +49,24 @@ public class CSJBlockStateProvider extends BlockStateProvider {
         axisBlock(((RotatedPillarBlock)ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get()),
                 new ResourceLocation(ChangShengJue.MOD_ID, "block/stripped_mulberry_log_top"));
 
+
         blockItem(ChangShengJueBlocks.MULBERRY_LOG);
         blockItem(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG);
         saplingBlock(ChangShengJueBlocks.MULBERRY_SAPLING);
 
         makeCrop((CropBlock) ChangShengJueBlocks.HORDEUM.get(), "hordeum_stage", "hordeum_stage");
+        //芒果树叶
+        simpleBlock(ChangShengJueBlocks.MANGO_LEAVES.get());
+        blockWithItem(ChangShengJueBlocks.MANGO_LEAVES);
+        //梨树树叶
+        simpleBlock(ChangShengJueBlocks.PEAR_LEAVES.get());
+        blockWithItem(ChangShengJueBlocks.PEAR_LEAVES);
+        //荔枝树叶
+        simpleBlock(ChangShengJueBlocks.LICHEE_LEAVES.get());
+        blockWithItem(ChangShengJueBlocks.LICHEE_LEAVES);
+        //榴莲树叶
+        simpleBlock(ChangShengJueBlocks.DURIAN_LEAVES.get());
+        blockWithItem(ChangShengJueBlocks.DURIAN_LEAVES);
 
 //        simpleBlock(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get(),new ModelFile.UncheckedModelFile(modLoc("block/blue_and_white_porcelain_flower_pots")));
 //        simpleBlockItem(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get(),new ModelFile.UncheckedModelFile(modLoc("block/blue_and_white_porcelain_flower_pots")));
@@ -113,9 +125,9 @@ public class CSJBlockStateProvider extends BlockStateProvider {
         horizontalBlock(ChangShengJueBlocks.ZAFU.get(), new ModelFile.UncheckedModelFile(modLoc("block/zafu")));
     }
 
+
     public void makeCrop(CropBlock block, String modelName, String textureName) {
         Function<BlockState, ConfiguredModel[]> function = state -> cropStates(state, block, modelName, textureName);
-
         getVariantBuilder(block).forAllStates(function);
     }
 

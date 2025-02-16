@@ -10,6 +10,7 @@ import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 
@@ -143,6 +144,10 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(Item.byBlock(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.ZI_TAN_PLANKS.get()));
 
+
+        //Forge矿石物品标签
+        this.tag(Tags.Items.INGOTS).add(ChangShengJueItems.AG_INGOT.get());
+        this.tag(CSJTags.ForgeItems.INGOTS_SILVER).add(ChangShengJueItems.AG_INGOT.get().asItem());
 
     }
 }

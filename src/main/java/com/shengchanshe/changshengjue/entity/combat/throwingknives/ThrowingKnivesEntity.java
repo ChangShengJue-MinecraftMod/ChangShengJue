@@ -30,6 +30,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class ThrowingKnivesEntity extends AbstractArrow {
@@ -109,6 +110,11 @@ public class ThrowingKnivesEntity extends AbstractArrow {
         }
 
         super.tick();
+    }
+
+    @Nullable
+    protected EntityHitResult findHitEntity(Vec3 pStartVec, Vec3 pEndVec) {
+        return this.dealtDamage ? null : super.findHitEntity(pStartVec, pEndVec);
     }
 
     @Override
@@ -224,6 +230,21 @@ public class ThrowingKnivesEntity extends AbstractArrow {
         pCompound.putBoolean("DealtDamage", this.dealtDamage);
     }
 
+    public void tickDespawn() {
+        int $$0 = this.entityData.get(ID_LOYALTY);
+        if (this.pickup != Pickup.ALLOWED || $$0 <= 0) {
+            super.tickDespawn();
+        }
+
+    }
+
+    protected float getWaterInertia() {
+        return 0.99F;
+    }
+
+    public boolean shouldRender(double pX, double pY, double pZ) {
+        return true;
+    }
     @Override
     protected ItemStack getPickupItem() {
         return this.throwingKnivesItem.copy();

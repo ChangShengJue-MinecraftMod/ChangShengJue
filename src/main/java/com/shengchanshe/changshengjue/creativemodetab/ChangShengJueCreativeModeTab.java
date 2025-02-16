@@ -186,11 +186,11 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.WINDOWS_DARK_OAK_BLOCK.get());
                 output.accept(ChangShengJueBlocks.WINDOWS_OAK_BLOCK.get());
                 output.accept(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK.get());
-                output.accept(ChangShengJueBlocks.WINDOWS_BIRCH_BLOCK_2.get());
-                output.accept(ChangShengJueBlocks.WINDOWS_ACACIA_BLOCK_2.get());
-                output.accept(ChangShengJueBlocks.WINDOWS_DARK_OAK_BLOCK_2.get());
-                output.accept(ChangShengJueBlocks.WINDOWS_OAK_BLOCK_2.get());
-                output.accept(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_2.get());
+                output.accept(ChangShengJueBlocks.HIGH_BIRCH_WINDOWS.get());
+                output.accept(ChangShengJueBlocks.HIGH_ACACIA_WINDOWS.get());
+                output.accept(ChangShengJueBlocks.HIGH_DARK_OAK_WINDOWS.get());
+                output.accept(ChangShengJueBlocks.HIGH_OAK_WINDOWS.get());
+                output.accept(ChangShengJueBlocks.HIGH_SPRUCE_WINDOWS.get());
                 output.accept(ChangShengJueBlocks.YELLOW_STONE_LION_BLOCK.get());
                 output.accept(ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get());
                 output.accept(ChangShengJueBlocks.SHING_MUN_LEFT.get());

@@ -19,7 +19,6 @@
       "state": {
         "Name": "chang_sheng_jue:pear_leaves",
         "Properties": {
-          "type": "leaves",
           "distance": "7",
           "persistent": "false",
           "waterlogged": "false"

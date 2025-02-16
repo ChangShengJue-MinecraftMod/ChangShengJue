@@ -7,6 +7,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.Tags;
 
 public class CSJTags {
     public static class Blocks{
@@ -52,6 +53,14 @@ public class CSJTags {
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(ChangShengJue.MOD_ID, name));
+        }
+    }
+
+    public static class ForgeItems{
+        public static final TagKey<Item> INGOTS_SILVER = tag(Tags.Items.INGOTS.location().getPath() + "/silver");
+
+        private static TagKey<Item> tag(String name) {
+            return ItemTags.create(new ResourceLocation("forge", name));
         }
     }
 

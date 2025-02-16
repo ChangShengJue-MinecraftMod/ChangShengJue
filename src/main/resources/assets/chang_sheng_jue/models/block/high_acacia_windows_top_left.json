@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/high_windows_top_left",
+  "textures": {
+    "bottom": "chang_sheng_jue:block/door_acacia_block",
+    "top": "chang_sheng_jue:block/door_acacia_block"
+  }
+}
