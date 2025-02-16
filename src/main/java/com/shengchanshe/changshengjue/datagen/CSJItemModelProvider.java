@@ -238,7 +238,15 @@ public class CSJItemModelProvider extends ItemModelProvider {
         parentItem(ChangShengJueBlocks.ZI_TAN_LOW_DESK);
 
         parentItem(ChangShengJueBlocks.ZAFU);
+
+        //窗户
+        simpleItem(ChangShengJueBlocks.HIGH_BIRCH_WINDOWS,ChangShengJueBlocks.HIGH_BIRCH_WINDOWS.getId().getPath());
+        simpleItem(ChangShengJueBlocks.HIGH_ACACIA_WINDOWS,ChangShengJueBlocks.HIGH_ACACIA_WINDOWS.getId().getPath());
+        simpleItem(ChangShengJueBlocks.HIGH_DARK_OAK_WINDOWS,ChangShengJueBlocks.HIGH_DARK_OAK_WINDOWS.getId().getPath());
+        simpleItem(ChangShengJueBlocks.HIGH_OAK_WINDOWS,ChangShengJueBlocks.HIGH_OAK_WINDOWS.getId().getPath());
+        simpleItem(ChangShengJueBlocks.HIGH_SPRUCE_WINDOWS,ChangShengJueBlocks.HIGH_SPRUCE_WINDOWS.getId().getPath());
     }
+
 
     private ItemModelBuilder parentItem(RegistryObject<Block> item){
         return withExistingParent(item.getId().getPath(),
@@ -255,6 +263,13 @@ public class CSJItemModelProvider extends ItemModelProvider {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(ChangShengJue.MOD_ID,"item/"+item.getId().getPath()));
+    }
+
+    //自定义物品路径json
+    private ItemModelBuilder simpleItem(RegistryObject<Block> item,String path) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(ChangShengJue.MOD_ID,"item/"+path));
     }
 
     private ItemModelBuilder simpleArmorItem(RegistryObject<Item> item){

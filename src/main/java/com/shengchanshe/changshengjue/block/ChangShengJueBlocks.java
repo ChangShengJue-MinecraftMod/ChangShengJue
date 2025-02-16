@@ -9,6 +9,8 @@ import com.shengchanshe.changshengjue.block.custom.furniture.desk.LowDesk;
 import com.shengchanshe.changshengjue.block.custom.furniture.desk.Teapoy;
 import com.shengchanshe.changshengjue.block.custom.furniture.desk.WineTable;
 import com.shengchanshe.changshengjue.block.custom.shing_mun.ShingMunLeft;
+import com.shengchanshe.changshengjue.block.custom.window.HighWindows;
+import com.shengchanshe.changshengjue.block.custom.window.Windows;
 import com.shengchanshe.changshengjue.block.decoration.BlueAndWhitePorcelainFlowerPots;
 import com.shengchanshe.changshengjue.block.decoration.PoplarDefoliation;
 import com.shengchanshe.changshengjue.block.painting.BigPaintingScroll;
@@ -36,7 +38,6 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -112,7 +113,7 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> MANGO_LOG = registerBlock("mango_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
     public static final RegistryObject<Block> MANGO_LEAVES = registerBlock("mango_leaves",
-            ()-> new FruitLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
+            ()-> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> MANGO_SAPLING = registerBlock("mango_sapling",
             ()-> new SaplingBlock(new MangoTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
@@ -128,7 +129,7 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> PEAR_LOG = registerBlock("pear_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
     public static final RegistryObject<Block> PEAR_LEAVES = registerBlock("pear_leaves",
-            ()-> new FruitLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
+            ()-> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> PEAR_SAPLING = registerBlock("pear_sapling",
             ()-> new SaplingBlock(new PearTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
@@ -465,61 +466,36 @@ public class ChangShengJueBlocks {
 
     //窗户
     public static final RegistryObject<Block> WINDOWS_BIRCH_BLOCK = registerBlock("windows_birch_block",
-            ()-> new WindowBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_BIRCH_BLOCK_1 = registerBlock("windows_birch_block_1",
-            ()-> new WindowBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_ACACIA_BLOCK = registerBlock("windows_acacia_block",
-            ()-> new WindowBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_ACACIA_BLOCK_1 = registerBlock("windows_acacia_block_1",
-            ()-> new WindowBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_DARK_OAK_BLOCK = registerBlock("windows_dark_oak_block",
-            ()-> new WindowBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_DARK_OAK_BLOCK_1 = registerBlock("windows_dark_oak_block_1",
-            ()-> new WindowBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_OAK_BLOCK = registerBlock("windows_oak_block",
-            ()-> new WindowBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_OAK_BLOCK_1 = registerBlock("windows_oak_block_1",
-            ()-> new WindowBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_SPRUCE_BLOCK = registerBlock("windows_spruce_block",
-            ()-> new WindowBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_SPRUCE_BLOCK_1 = registerBlock("windows_spruce_block_1",
-            ()-> new WindowBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
 
-    public static final RegistryObject<Block> WINDOWS_BIRCH_BLOCK_2 = registerBlock("windows_birch_block_2",
-            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR), BlockSetType.BIRCH){
-                @Override
-                public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
-                    return true;
-                }
-            });
-    public static final RegistryObject<Block> WINDOWS_ACACIA_BLOCK_2 = registerBlock("windows_acacia_block_2",
-            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.ACACIA){
-                @Override
-                public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
-                    return true;
-                }
-            });
-    public static final RegistryObject<Block> WINDOWS_DARK_OAK_BLOCK_2 = registerBlock("windows_dark_oak_block_2",
-            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.DARK_OAK){
-                @Override
-                public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
-                    return true;
-                }
-            });
-    public static final RegistryObject<Block> WINDOWS_OAK_BLOCK_2 = registerBlock("windows_oak_block_2",
-            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.OAK){
-                @Override
-                public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
-                    return true;
-                }
-            });
-    public static final RegistryObject<Block> WINDOWS_SPRUCE_BLOCK_2 = registerBlock("windows_spruce_block_2",
-            ()-> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.SPRUCE){
-                @Override
-                public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
-                    return true;
-                }
-            });
+    public static final RegistryObject<Block> HIGH_BIRCH_WINDOWS = registerBlock("high_birch_windows",
+            ()-> new HighWindows(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR), BlockSetType.BIRCH));
+    public static final RegistryObject<Block> HIGH_ACACIA_WINDOWS = registerBlock("high_acacia_windows",
+            ()-> new HighWindows(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.ACACIA));
+    public static final RegistryObject<Block> HIGH_DARK_OAK_WINDOWS = registerBlock("high_dark_oak_windows",
+            ()-> new HighWindows(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.DARK_OAK));
+    public static final RegistryObject<Block> HIGH_OAK_WINDOWS = registerBlock("high_oak_windows",
+            ()-> new HighWindows(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.OAK));
+    public static final RegistryObject<Block> HIGH_SPRUCE_WINDOWS = registerBlock("high_spruce_windows",
+            ()-> new HighWindows(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.SPRUCE));
 
     //方块
     public static final RegistryObject<Block> HANG_TU_WALL = registerBlock("hang_tu_wall",
