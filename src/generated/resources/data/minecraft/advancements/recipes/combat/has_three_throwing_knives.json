@@ -3,16 +3,16 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "chang_sheng_jue:seven_throwing_knives"
+        "recipe": "minecraft:has_three_throwing_knives"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_throwing_knives": {
+    "has_three_throwing_knives": {
       "conditions": {
         "items": [
           {
             "items": [
-              "chang_sheng_jue:throwing_knives"
+              "chang_sheng_jue:three_throwing_knives"
             ]
           }
         ]
@@ -22,13 +22,13 @@
   },
   "requirements": [
     [
-      "has_throwing_knives",
+      "has_three_throwing_knives",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "chang_sheng_jue:seven_throwing_knives"
+      "minecraft:has_three_throwing_knives"
     ]
   },
   "sends_telemetry_event": false
