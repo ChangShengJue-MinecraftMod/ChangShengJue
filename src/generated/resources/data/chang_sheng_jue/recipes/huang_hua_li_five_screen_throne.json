@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "chang_sheng_jue:huang_hua_li_planks"
+    },
+    "X": {
+      "item": "minecraft:stick"
+    },
+    "Y": {
+      "item": "minecraft:hay_block"
+    }
+  },
+  "pattern": [
+    "###",
+    "#Y#",
+    "X X"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:huang_hua_li_five_screen_throne"
+  },
+  "show_notification": true
+}

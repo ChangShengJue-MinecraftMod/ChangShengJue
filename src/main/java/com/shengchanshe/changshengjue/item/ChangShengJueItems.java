@@ -445,7 +445,7 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> HERCULES = ITEMS.register("hercules", Hercules::new);
     //独孤九剑
     public static final RegistryObject<Item> DUGU_NINE_SWORDS = ITEMS.register("dugu_nine_swords", DuguNineSwordsBook::new);
-    //独孤九剑
+    //高家枪法
     public static final RegistryObject<Item> GAO_MARKSMANSHIP = ITEMS.register("gao_marksmanship", GaoMarksmanship::new);
     //隔山打牛
     public static final RegistryObject<Item> GE_SHAN_DA_NIU = ITEMS.register("ge_shan_da_niu", GeShanDaNiu::new);

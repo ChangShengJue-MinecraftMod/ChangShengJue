@@ -56,7 +56,7 @@ public class ChangShengJueSound {
     public static final RegistryObject<SoundEvent> DUGU_NINE_SWORDS_SOUND = registerSoundEvent("dugu_nine_swords_sound");
     //不死神功
     public static final RegistryObject<SoundEvent> IMMORTAL_MIRACLE_SOUND = registerSoundEvent("immortal_miracle_sound");
-    //高家枪法
+    //
     public static final RegistryObject<SoundEvent> GAO_MARKSMANSHIP_SOUND = registerSoundEvent("gao_marksmanship_sound");
     //龟息功
     public static final RegistryObject<SoundEvent> TURTLE_BREATH_WORK_SOUND = registerSoundEvent("turtle_breath_work_sound");
