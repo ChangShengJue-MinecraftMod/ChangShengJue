@@ -1,4 +1,4 @@
-// 1.20.1	2025-02-16T16:54:05.5820822	Item Models: chang_sheng_jue
+// 1.20.1	2025-02-21T14:27:31.8896961	Item Models: chang_sheng_jue
 699ea304f59ef7c3527896899187498f42f98343 assets/chang_sheng_jue/models/item/acacia_bench.json
 7e0aa720a11c379083904f12e4722cca0ff34a77 assets/chang_sheng_jue/models/item/acacia_book_desk.json
 14dd3578b6bde1cd826b8a63c206eee2fb2b9942 assets/chang_sheng_jue/models/item/acacia_drinking_table_and_chairs.json
@@ -133,6 +133,7 @@ afc607194da45597c0e46882be8f2df493db6159 assets/chang_sheng_jue/models/item/rele
 44ed7fc026e14f4f36561bb21b7e75bf6c829520 assets/chang_sheng_jue/models/item/rice.json
 b6ede8608ab652f23bb4084b5e6c6649b9b15c25 assets/chang_sheng_jue/models/item/seven_throwing_knives.json
 6627f5a2abdca3fceaeba064b55b296344b15a6d assets/chang_sheng_jue/models/item/shaolin_stick_method.json
+d1f7f15124c807320f2f9b43144c9a725a1cb6f4 assets/chang_sheng_jue/models/item/shing_mun_right.json
 322f93193735216ff4af450a98f347ad04f11962 assets/chang_sheng_jue/models/item/shi_li_xiang.json
 9307c7b9d9d3fbcc201577dfe240fcf8cf4071fb assets/chang_sheng_jue/models/item/silk.json
 dfc36f76789ecee773ee20652bdc00cf3351655c assets/chang_sheng_jue/models/item/silk_leggings.json

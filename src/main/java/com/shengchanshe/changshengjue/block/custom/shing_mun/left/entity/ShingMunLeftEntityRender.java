@@ -1,4 +1,4 @@
-package com.shengchanshe.changshengjue.block.custom.shing_mun.entity;
+package com.shengchanshe.changshengjue.block.custom.shing_mun.left.entity;
 
 import software.bernie.geckolib.renderer.GeoBlockRenderer;
 

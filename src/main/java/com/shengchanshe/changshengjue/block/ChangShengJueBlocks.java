@@ -8,7 +8,8 @@ import com.shengchanshe.changshengjue.block.custom.furniture.desk.BookDesk;
 import com.shengchanshe.changshengjue.block.custom.furniture.desk.LowDesk;
 import com.shengchanshe.changshengjue.block.custom.furniture.desk.Teapoy;
 import com.shengchanshe.changshengjue.block.custom.furniture.desk.WineTable;
-import com.shengchanshe.changshengjue.block.custom.shing_mun.ShingMunLeft;
+import com.shengchanshe.changshengjue.block.custom.shing_mun.left.ShingMunLeft;
+import com.shengchanshe.changshengjue.block.custom.shing_mun.right.ShingMunRight;
 import com.shengchanshe.changshengjue.block.custom.window.HighWindows;
 import com.shengchanshe.changshengjue.block.custom.window.Windows;
 import com.shengchanshe.changshengjue.block.decoration.BlueAndWhitePorcelainFlowerPots;
@@ -596,6 +597,9 @@ public class ChangShengJueBlocks {
     //大门
     public static final RegistryObject<Block> SHING_MUN_LEFT = registerBlock("shing_mun_left",
             ()-> new ShingMunLeft(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+
+    public static final RegistryObject<Block> SHING_MUN_RIGHT = registerBlock("shing_mun_right",
+            ()-> new ShingMunRight(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
 
     //浇铸模具
     public static final RegistryObject<Block> CASTING_MOLDS = registerBlock("casting_molds",

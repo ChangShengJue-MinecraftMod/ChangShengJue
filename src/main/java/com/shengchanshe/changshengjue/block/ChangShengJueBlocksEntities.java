@@ -1,7 +1,8 @@
 package com.shengchanshe.changshengjue.block;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
-import com.shengchanshe.changshengjue.block.custom.shing_mun.entity.ShingMunLeftEntity;
+import com.shengchanshe.changshengjue.block.custom.shing_mun.left.entity.ShingMunLeftEntity;
+import com.shengchanshe.changshengjue.block.custom.shing_mun.right.entity.ShingMunRightEntity;
 import com.shengchanshe.changshengjue.block.entity.*;
 import com.shengchanshe.changshengjue.block.entity.desk.Desk;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -40,6 +41,9 @@ public class ChangShengJueBlocksEntities {
     //大门
     public static final RegistryObject<BlockEntityType<ShingMunLeftEntity>> SHING_MUN_LEFT_ENTITY =
             BLOCK_ENTITYES.register("shing_mun_left_entity",()-> BlockEntityType.Builder.of(ShingMunLeftEntity::new, ChangShengJueBlocks.SHING_MUN_LEFT.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<ShingMunRightEntity>> SHING_MUN_RIGHT_ENTITY =
+            BLOCK_ENTITYES.register("shing_mun_right_entity",()-> BlockEntityType.Builder.of(ShingMunRightEntity::new, ChangShengJueBlocks.SHING_MUN_RIGHT.get()).build(null));
 
     //桌子
     public static final RegistryObject<BlockEntityType<Desk>> DESK =

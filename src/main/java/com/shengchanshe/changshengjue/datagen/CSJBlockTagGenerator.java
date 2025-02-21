@@ -226,6 +226,8 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.POTTERY_WHEEL.get())
                 .add(ChangShengJueBlocks.TOOL_TABLE.get())
                 .add(ChangShengJueBlocks.DESK.get())
+                .add(ChangShengJueBlocks.SHING_MUN_LEFT.get())
+                .add(ChangShengJueBlocks.SHING_MUN_RIGHT.get())
                 .addTag(CSJTags.Blocks.WINDOWS)
                 .addTag(CSJTags.Blocks.MEI_REN_KAO)
                 .addTag(CSJTags.Blocks.BENCH)
@@ -278,8 +280,13 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
 
         //树
         this.tag(BlockTags.LOGS).addTag(CSJTags.Blocks.LOG);
-        this.tag(BlockTags.LOGS_THAT_BURN).addTags(CSJTags.Blocks.LOG).addTag(CSJTags.Blocks.HUANG_HUA_LI_LOG)
-                .addTags(CSJTags.Blocks.JI_CHI_MU_LOG).addTags(CSJTags.Blocks.ZI_TAN_LOG).addTags(CSJTags.Blocks.POPLAR_LOG).addTags(CSJTags.Blocks.MULBERRY_LOG);
+        this.tag(BlockTags.LOGS_THAT_BURN)
+                .addTags(CSJTags.Blocks.LOG)
+                .addTag(CSJTags.Blocks.HUANG_HUA_LI_LOG)
+                .addTags(CSJTags.Blocks.JI_CHI_MU_LOG)
+                .addTags(CSJTags.Blocks.ZI_TAN_LOG)
+                .addTags(CSJTags.Blocks.POPLAR_LOG)
+                .addTags(CSJTags.Blocks.MULBERRY_LOG);
 
         this.tag(BlockTags.PLANKS)
                 .add(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get())

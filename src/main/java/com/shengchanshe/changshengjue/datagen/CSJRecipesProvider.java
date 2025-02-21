@@ -50,10 +50,13 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
         //建筑方块
         ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.HANG_TU_BLOCK.get(),6).requires(Blocks.DIRT,9).unlockedBy("has_dirt",has(Blocks.DIRT)).save(consumer);
         stairBuilder(ChangShengJueBlocks.HANG_TU_STAIRS.get(), Ingredient.of(ChangShengJueBlocks.HANG_TU_BLOCK.get())).unlockedBy("has_hang_tu_block", has(ChangShengJueBlocks.HANG_TU_BLOCK.get())).save(consumer);
-        slabBuilder(RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.HANG_TU_SLAB.get(), Ingredient.of(ChangShengJueBlocks.HANG_TU_BLOCK.get())).unlockedBy("has_hang_tu_block", has(ChangShengJueBlocks.HANG_TU_BLOCK.get())).save(consumer);
+        slabBuilder(RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.HANG_TU_SLAB.get(),
+                Ingredient.of(ChangShengJueBlocks.HANG_TU_BLOCK.get()))
+                .unlockedBy("has_hang_tu_block", has(ChangShengJueBlocks.HANG_TU_BLOCK.get())).save(consumer);
         wall(consumer,RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.HANG_TU_WALL.get(),ChangShengJueBlocks.HANG_TU_BLOCK.get());
 
         stairBuilder(ChangShengJueBlocks.TU_PEI_STAIRS.get(), Ingredient.of(Blocks.DIRT)).unlockedBy("has_dirt", has(Blocks.DIRT)).save(consumer);
+
         slabBuilder(RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.TU_PEI_SLAB.get(),
                 Ingredient.of(Blocks.DIRT)).unlockedBy("has_dirt", has(Blocks.DIRT)).save(consumer);
         wall(consumer,RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.TU_PEI_WALL.get(),Blocks.DIRT);
@@ -587,11 +590,17 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
         ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT,ChangShengJueItems.THROWING_KNIVES.get()).requires(Ingredient.of(Tags.Items.INGOTS_IRON),1)
                 .unlockedBy("has_iron",has(Tags.Items.INGOTS_IRON)).save(consumer);
         //三把飞刀
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT,ChangShengJueItems.THREE_THROWING_KNIVES.get()).requires(Ingredient.of(ChangShengJueItems.THROWING_KNIVES.get()),3)
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT,ChangShengJueItems.THREE_THROWING_KNIVES.get())
+                .requires(Ingredient.of(ChangShengJueItems.THROWING_KNIVES.get()),3)
                 .unlockedBy("has_throwing_knives",has(ChangShengJueItems.THROWING_KNIVES.get())).save(consumer);
         //七把飞刀
         ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT,ChangShengJueItems.SEVEN_THROWING_KNIVES.get()).requires(Ingredient.of(ChangShengJueItems.THROWING_KNIVES.get()),7)
-                .unlockedBy("has_throwing_knives",has(ChangShengJueItems.THROWING_KNIVES.get())).save(consumer);
+                .unlockedBy("has_throwing_knives",has(ChangShengJueItems.THROWING_KNIVES.get())).save(consumer,"has_throwing_knives");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT,ChangShengJueItems.SEVEN_THROWING_KNIVES.get())
+                .requires(Ingredient.of(ChangShengJueItems.THREE_THROWING_KNIVES.get()),2)
+                .requires(Ingredient.of(ChangShengJueItems.THROWING_KNIVES.get()),1)
+                .unlockedBy("has_three_throwing_knives",has(ChangShengJueItems.THREE_THROWING_KNIVES.get())).save(consumer,"has_three_throwing_knives");
         //盘花棍
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.PAN_HUA_GUN.get(),1)
                 .define('#', Ingredient.of(Tags.Items.INGOTS_GOLD))
@@ -724,6 +733,48 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("X")
                 .pattern("$")
                 .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
+
+        //画轴
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ChangShengJueBlocks.PAINTING_SCROLL.get(),1)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.PAPER))
+                .pattern("#")
+                .pattern("X")
+                .pattern("#")
+                .unlockedBy("has_planks", has(Items.PAPER)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(),1)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.PAPER))
+                .pattern("#X#")
+                .pattern("#X#")
+                .unlockedBy("has_planks", has(Items.PAPER)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(),1)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.PAPER))
+                .pattern("##")
+                .pattern("XX")
+                .pattern("##")
+                .unlockedBy("has_planks", has(Items.PAPER)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ChangShengJueBlocks.BIG_PAINTING_SCROLL.get(),1)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.PAPER))
+                .pattern("###")
+                .pattern("XXX")
+                .pattern("###")
+                .unlockedBy("has_planks", has(Items.PAPER)).save(consumer);
+
+        //牌匾
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ChangShengJueBlocks.PLAQUE.get(),1)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.PAPER))
+                .pattern("###")
+                .pattern("#X#")
+                .pattern("###")
+                .unlockedBy("has_planks", has(Items.PAPER)).save(consumer);
+
 
         //烧炼配方
         //矿石

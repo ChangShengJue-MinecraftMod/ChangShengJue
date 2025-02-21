@@ -1,4 +1,4 @@
-// 1.20.1	2025-02-16T16:54:05.5776838	Loot Tables
+// 1.20.1	2025-02-21T12:37:53.0758687	Loot Tables
 d516f4a29d40770cbbc430275a25288af1bb5af3 data/chang_sheng_jue/loot_tables/blocks/acacia_bench.json
 ad4cf4b39a7d51e5a89dc61dc94d61b791098ae1 data/chang_sheng_jue/loot_tables/blocks/acacia_book_desk.json
 9091a604cab86e4a5dea3fec989602338b84cc4e data/chang_sheng_jue/loot_tables/blocks/acacia_drinking_table_and_chairs.json
@@ -202,6 +202,7 @@ cdb14b0afbff8ba28c0232245710567d4bd851cf data/chang_sheng_jue/loot_tables/blocks
 2a392b2d6a0de3e490d70904c4978fd7b185c467 data/chang_sheng_jue/loot_tables/blocks/red_knotweed.json
 97f88925ba3054bbb9728d6a19df9395cbeb65a6 data/chang_sheng_jue/loot_tables/blocks/rice.json
 36538ec750f97e7b215f420f38c4b86330d7760b data/chang_sheng_jue/loot_tables/blocks/shing_mun_left.json
+a3f05880b281136e501eb85387106a6a46bc79c4 data/chang_sheng_jue/loot_tables/blocks/shing_mun_right.json
 ee4e69dc42358f20c302359fdcd91caa508ea9df data/chang_sheng_jue/loot_tables/blocks/shui_xian_block.json
 dd7d0a2df60e36d3f545403c8d1c39250b2ade4e data/chang_sheng_jue/loot_tables/blocks/solidago.json
 df3d24f95e57ac59022620b458da4d0ecf151503 data/chang_sheng_jue/loot_tables/blocks/sorghum_block.json
