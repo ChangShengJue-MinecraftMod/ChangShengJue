@@ -1,6 +1,6 @@
-package com.shengchanshe.changshengjue.block.custom.shing_mun;
+package com.shengchanshe.changshengjue.block.custom.shing_mun.left;
 
-import com.shengchanshe.changshengjue.block.custom.shing_mun.entity.ShingMunLeftEntity;
+import com.shengchanshe.changshengjue.block.custom.shing_mun.left.entity.ShingMunLeftEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -20,9 +20,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
@@ -64,39 +63,38 @@ public class ShingMunLeft extends BaseEntityBlock{
                 .setValue(EIGHT,false));
     }
 
-    public Direction rightOf(Direction facing) {
-        switch (facing) {
-            case NORTH:
-                return Direction.WEST;
-            case EAST:
-                return Direction.NORTH;
-            case SOUTH:
-                return Direction.EAST;
-            case WEST:
-                return Direction.SOUTH;
-            default:
-                return facing; // 如果不是水平方向，就返回原方向
-        }
-    }
-
     @Override
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         Direction facing = pState.getValue(FACING); // 获取方块当前朝向
-        Direction rightDirection = rightOf(facing); // 获取朝向的右侧方向
+        Direction rightDirection = facing.getCounterClockWise(); // 获取朝向的右侧方向
+        Direction backDirection = facing.getOpposite(); //获取朝向的后侧方向
 
-        // 检查 2x4x2 的所有位置是否为可替换方块
         for (int x = 0; x < 2; x++) {
             for (int y = 0; y < 4; y++) {
-                BlockPos targetPos = pPos.relative(rightDirection, x).above(y); // 获取目标位置
-                BlockState targetState = pLevel.getBlockState(targetPos);
+                for (int z = 0; z < 2; z++) {
+                    BlockPos targetPos = pPos.relative(rightDirection, x).relative(backDirection, z).above(y);
+                    BlockState targetState = pLevel.getBlockState(targetPos);
 
-                // 检查目标位置是否是可替换方块
-                if (!targetState.canBeReplaced()) {
-                    return false; // 如果某个位置不可替换，返回 false
+                    if (!targetState.canBeReplaced()) {
+                        return false;
+                    }
                 }
             }
         }
-        return true; // 如果所有位置都是可替换方块，返回 true
+
+        for (int x = -1; x < 3; x++) {
+            for (int y = -1; y < 5; y++) {
+                for (int z = -1; z < 3; z++) {
+                    BlockPos targetPos = pPos.relative(rightDirection, x).relative(backDirection, z).above(y);
+                    BlockState targetState = pLevel.getBlockState(targetPos);
+
+                    if (targetState.getBlock() instanceof ShingMunLeft) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
 //    @Override
@@ -104,7 +102,7 @@ public class ShingMunLeft extends BaseEntityBlock{
 //        if (!pLevel.isClientSide && pPlacer instanceof Player player) {
 //            // 获取当前方块朝向
 //            Direction facing = pState.getValue(FACING); // 方块的朝向
-//            Direction rightDirection = rightOf(facing); // 当前方块的右侧方向
+//            Direction rightDirection = facing.getCounterClockWise(); // 当前方块的右侧方向
 //
 //            // 获取玩家点击的位置信息
 //            HitResult hitResult = player.pick(5.0D, 0.0F, false); // 检测玩家的点击位置
@@ -180,7 +178,8 @@ public class ShingMunLeft extends BaseEntityBlock{
     public void setPlacedBy(Level pLevel, BlockPos pPos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
         if (!pLevel.isClientSide) {
             Direction facing = pState.getValue(FACING); // 获取当前方块的朝向
-            Direction rightDirection = rightOf(facing); // 计算右侧方向
+            // 获取当前面向方向的逆时针方向
+            Direction rightDirection = facing.getCounterClockWise();
 
             // 遍历 2x4x2 区域
             for (int x = 0; x < 2; x++) { // 宽度为 2
@@ -235,7 +234,7 @@ public class ShingMunLeft extends BaseEntityBlock{
      */
     private BlockPos findRootPosition(Level pLevel, BlockPos pPos, BlockState pState) {
         Direction facing = pState.getValue(FACING); // 当前结构的方向
-        Direction rightDirection = rightOf(facing); // 右侧方向
+        Direction rightDirection = facing.getCounterClockWise(); // 右侧方向
 
         // 从当前位置向下查找最低点
         BlockPos currentPos = pPos;
@@ -256,7 +255,7 @@ public class ShingMunLeft extends BaseEntityBlock{
      */
     private boolean isStructureIntact(Level pLevel, BlockPos rootPos, BlockState pState) {
         Direction facing = pState.getValue(FACING); // 当前结构的方向
-        Direction rightDirection = rightOf(facing); // 右侧方向
+        Direction rightDirection = facing.getCounterClockWise(); // 右侧方向
 
         // 遍历 2x4x2 的所有方块
         for (int x = 0; x < 2; x++) { // 宽度
@@ -279,7 +278,7 @@ public class ShingMunLeft extends BaseEntityBlock{
      */
     private void destroyEntireStructure(Level pLevel, BlockPos rootPos, BlockState pState) {
         Direction facing = pState.getValue(FACING);
-        Direction rightDirection = rightOf(facing);
+        Direction rightDirection = facing.getCounterClockWise();
 
         // 遍历 2x4x2 的所有方块并移除
         for (int x = 0; x < 2; x++) {
@@ -348,6 +347,7 @@ public class ShingMunLeft extends BaseEntityBlock{
         }
         return InteractionResult.SUCCESS;
     }
+
     /**
      * 同步切换周围相同类型方块的 open 状态。
      */
@@ -379,7 +379,6 @@ public class ShingMunLeft extends BaseEntityBlock{
         }
     }
 
-
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         Direction facing = pState.getValue(FACING); // 获取朝向
@@ -397,6 +396,14 @@ public class ShingMunLeft extends BaseEntityBlock{
     }
 
     @Override
+    public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
+        if (pState.getValue(OPEN)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(FACING,HALF,RIGHT,OPEN,REST,ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT);
     }
@@ -405,6 +412,7 @@ public class ShingMunLeft extends BaseEntityBlock{
     public RenderShape getRenderShape(BlockState state) {
         return RenderShape.ENTITYBLOCK_ANIMATED;
     }
+
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {

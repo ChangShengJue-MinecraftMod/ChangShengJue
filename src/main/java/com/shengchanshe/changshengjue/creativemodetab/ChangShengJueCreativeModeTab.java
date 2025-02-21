@@ -194,6 +194,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.YELLOW_STONE_LION_BLOCK.get());
                 output.accept(ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get());
                 output.accept(ChangShengJueBlocks.SHING_MUN_LEFT.get());
+                output.accept(ChangShengJueBlocks.SHING_MUN_RIGHT.get());
 
                 output.accept(ChangShengJueBlocks.BIRCH_WINE_TABLE.get());
                 output.accept(ChangShengJueBlocks.CRIMSON_WINE_TABLE.get());

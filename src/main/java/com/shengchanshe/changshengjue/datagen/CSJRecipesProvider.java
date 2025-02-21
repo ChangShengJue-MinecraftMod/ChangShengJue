@@ -734,6 +734,48 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("$")
                 .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
 
+        //画轴
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ChangShengJueBlocks.PAINTING_SCROLL.get(),1)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.PAPER))
+                .pattern("#")
+                .pattern("X")
+                .pattern("#")
+                .unlockedBy("has_planks", has(Items.PAPER)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(),1)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.PAPER))
+                .pattern("#X#")
+                .pattern("#X#")
+                .unlockedBy("has_planks", has(Items.PAPER)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(),1)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.PAPER))
+                .pattern("##")
+                .pattern("XX")
+                .pattern("##")
+                .unlockedBy("has_planks", has(Items.PAPER)).save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ChangShengJueBlocks.BIG_PAINTING_SCROLL.get(),1)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.PAPER))
+                .pattern("###")
+                .pattern("XXX")
+                .pattern("###")
+                .unlockedBy("has_planks", has(Items.PAPER)).save(consumer);
+
+        //牌匾
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ChangShengJueBlocks.PLAQUE.get(),1)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.PAPER))
+                .pattern("###")
+                .pattern("#X#")
+                .pattern("###")
+                .unlockedBy("has_planks", has(Items.PAPER)).save(consumer);
+
+
         //烧炼配方
         //矿石
         oreSmelting(consumer, AG_SMELTABLES, RecipeCategory.MISC, ChangShengJueItems.AG_INGOT.get(), 0.25f, SMELTING_TICK, "sapphire");

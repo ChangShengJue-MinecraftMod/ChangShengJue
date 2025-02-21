@@ -15,6 +15,15 @@
 							"vector": [0, -90, 0],
 							"easing": "easeOutSine"
 						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.0": {
+							"vector": [5, 0, 0],
+							"easing": "easeOutSine"
+						}
 					}
 				}
 			}
@@ -28,6 +37,16 @@
 						"0.0": {
 							"vector": [0, -90, 0],
 							"easing": "linear"
+						},
+						"2.0": {
+							"vector": [0, 0, 0],
+							"easing": "easeOutCubic"
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [5, 0, 0],
+							"easing": "easeOutSine"
 						},
 						"2.0": {
 							"vector": [0, 0, 0],

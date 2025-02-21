@@ -684,7 +684,8 @@
   "block.chang_sheng_jue.pig_trough": "牲畜食槽",
 
   "block.chang_sheng_jue.plaque": "牌匾",
-  "block.chang_sheng_jue.shing_mun_left": "城门",
+  "block.chang_sheng_jue.shing_mun_left": "城门(左)",
+  "block.chang_sheng_jue.shing_mun_right": "城门(右)",
 
   "effect.chang_sheng_jue.bleed_effect": "流血",
   "effect.chang_sheng_jue.dizzy_effect": "眩晕",
