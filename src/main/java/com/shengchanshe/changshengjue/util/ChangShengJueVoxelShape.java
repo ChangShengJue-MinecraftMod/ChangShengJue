@@ -9,36 +9,10 @@ import java.util.stream.Stream;
 
 public class ChangShengJueVoxelShape {
     //筒瓦
-    public static final VoxelShape CYLINDER_TILE_BOTTOM_NS = Shapes.join(Block.box(0, 0, 0, 16, 8, 16),
+    public static final VoxelShape CYLINDER_TILE_BLOCK_N = Shapes.join(Block.box(0, 0, 0, 16, 8, 16),
             Block.box(4, 8, 0, 12, 12, 16), BooleanOp.OR);
-    public static final VoxelShape CYLINDER_TILE_BOTTOM_EW = Shapes.join(Block.box(0, 0, 0, 16, 8, 16),
+    public static final VoxelShape CYLINDER_TILE_BLOCK_E = Shapes.join(Block.box(0, 0, 0, 16, 8, 16),
             Block.box(0, 8, 4, 16, 12, 12), BooleanOp.OR);
-    public static final VoxelShape CYLINDER_TILE_DOUBLE_NS = Stream.of(
-            Block.box(12, 4, 0, 16, 12, 16),
-            Block.box(0, 4, 0, 4, 12, 16),
-            Block.box(4, 8, 0, 12, 16, 16),
-            Block.box(12, 0, 0, 16, 4, 16),
-            Block.box(0, 0, 0, 4, 4, 16),
-            Block.box(4, 0, 0, 12, 8, 16)
-    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-    public static final VoxelShape CYLINDER_TILE_DOUBLE_EW =Stream.of(
-            Block.box(0, 4, 12, 16, 12, 16),
-            Block.box(0, 4, 0, 16, 12, 4),
-            Block.box(0, 8, 4, 16, 16, 12),
-            Block.box(0, 0, 12, 16, 4, 16),
-            Block.box(0, 0, 0, 16, 4, 4),
-            Block.box(0, 0, 4, 16, 8, 12)
-    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-    public static final VoxelShape CYLINDER_TILE_TOP_NS = Stream.of(
-            Block.box(12, 4, 0, 16, 12, 16),
-            Block.box(0, 4, 0, 4, 12, 16),
-            Block.box(4, 8, 0, 12, 16, 16)
-    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-    public static final VoxelShape CYLINDER_TILE_TOP_EW = Stream.of(
-            Block.box(0, 4, 12, 16, 12, 16),
-            Block.box(0, 4, 0, 16, 12, 4),
-            Block.box(0, 8, 4, 16, 16, 12)
-    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
     public static final VoxelShape CYLINDER_TILE_BLOCK_N_1 = Stream.of(
             Block.box(4, 0, 10, 12, 8, 16),
@@ -90,6 +64,22 @@ public class ChangShengJueVoxelShape {
             Block.box(8.756985588965863, 11.139697469370066, 4, 11.756985588965863, 18.139697469370066, 12)
         ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
+    public static final VoxelShape CYLINDER_TILE_BLOCK_N_4 = Stream.of(
+            Block.box(0, 0, 0, 16, 8, 16),
+            Block.box(8, 8, 8, 16, 16, 16)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape CYLINDER_TILE_BLOCK_E_4 = Stream.of(
+            Block.box(0.11055322985034799, 0, 0.030428986436911387, 16.110553229850346, 8, 16.03042898643691),
+            Block.box(0.11055322985034799, 8, 8.030428986436911, 8.110553229850348, 16, 16.03042898643691)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape CYLINDER_TILE_BLOCK_S_4 = Stream.of(
+            Block.box(0.08012424341343838, 0, -0.10901778371274062, 16.080124243413437, 8, 15.890982216287256),
+            Block.box(0.08012424341343838, 8, -0.10901778371274062, 8.080124243413437, 16, 7.890982216287259)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape CYLINDER_TILE_BLOCK_W_4 = Stream.of(
+            Block.box(-0.030428986436907834, 0, -0.13944677014965023, 15.96957101356309, 8, 15.860553229850346),
+            Block.box(7.969571013563089, 8, -0.13944677014965023, 15.96957101356309, 16, 7.860553229850348)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     //织布机
     public static final VoxelShape CHANG_SHENG_JUE_LOOM_NORTH = Stream.of(
             Block.box(0, 0.01, 0, 16, 12.01, 16),

@@ -1,4 +1,12 @@
-// 1.20.1	2025-02-22T10:07:39.1024533	Recipes
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+// 1.20.1	2025-02-21T12:37:53.0793355	Recipes
+=======
+// 1.20.1	2025-02-13T20:03:36.4172886	Recipes
+>>>>>>> Stashed changes
+=======
+// 1.20.1	2025-02-13T20:03:36.4172886	Recipes
+>>>>>>> Stashed changes
 8f8010379e458578bc3f02cdc4fb63984080a96d data/chang_sheng_jue/advancements/recipes/building_blocks/acacia_bench.json
 c479feb8a0764ef7fabe60f8416bc9c9b700573a data/chang_sheng_jue/advancements/recipes/building_blocks/acacia_drinking_table_and_chairs.json
 900ca00c566e2408e2072be496ab212f1bbb791e data/chang_sheng_jue/advancements/recipes/building_blocks/acacia_low_desk.json
@@ -33,11 +41,6 @@ db691135a04bce90737f9c6a03140f5bb1bb22c1 data/chang_sheng_jue/advancements/recip
 e6c45aa0210811b7ba6ad691d625f5c8ff7be517 data/chang_sheng_jue/advancements/recipes/building_blocks/hang_tu_slab.json
 13b14cbee8643c05aa294cfcb019abdc5bb9174b data/chang_sheng_jue/advancements/recipes/building_blocks/hang_tu_stairs.json
 e7e1866f53324bafb35257c2bb3343bb0f1bd5ee data/chang_sheng_jue/advancements/recipes/building_blocks/hang_tu_wall.json
-7bca378c3f8ffc3a6345401a3f4be0d50f450bc9 data/chang_sheng_jue/advancements/recipes/building_blocks/high_acacia_windows.json
-64a801fedf2dee1d376ee9662334567e8017b671 data/chang_sheng_jue/advancements/recipes/building_blocks/high_birch_windows.json
-f99bec15860c4fd21e25e3443d102c1ae3907c94 data/chang_sheng_jue/advancements/recipes/building_blocks/high_dark_oak_windows.json
-047dbf9943c9b5d9019bc385e853b0ac33ffea11 data/chang_sheng_jue/advancements/recipes/building_blocks/high_oak_windows.json
-5333a2eb5521c9d2efdf5ee295a998d1fa28c5c5 data/chang_sheng_jue/advancements/recipes/building_blocks/high_spruce_windows.json
 11025084792afb7b3e5b29273e48a659e939cb3a data/chang_sheng_jue/advancements/recipes/building_blocks/huang_hua_li_bench.json
 9df4bbfda050ec637652f2d8fc2dab961c12c328 data/chang_sheng_jue/advancements/recipes/building_blocks/huang_hua_li_drinking_table_and_chairs.json
 1a0222013c9f97e0fc78f2461fdf5c0aa2c88934 data/chang_sheng_jue/advancements/recipes/building_blocks/huang_hua_li_low_desk.json
@@ -83,10 +86,15 @@ dc446c8f936237dd9650ff425372cff15c316d3f data/chang_sheng_jue/advancements/recip
 986204712bf5c775fafadfe42614eed42237b972 data/chang_sheng_jue/advancements/recipes/building_blocks/white_bricks_stairs.json
 2cd4402ccc33a9c256c091d6ff90d0e9f6b0f790 data/chang_sheng_jue/advancements/recipes/building_blocks/white_bricks_vertical_walls.json
 266116bca03eeaa2bf27da33d498d646442482f4 data/chang_sheng_jue/advancements/recipes/building_blocks/windows_acacia_block.json
+20c6396273672960cf1c275f2353b118fa8e0c04 data/chang_sheng_jue/advancements/recipes/building_blocks/windows_acacia_block_2.json
 95dd2148804c782a16f29c0ff5d46ec2ff60af9b data/chang_sheng_jue/advancements/recipes/building_blocks/windows_birch_block.json
+256286ac462cdda15cc7f20436327e5fcc5f902a data/chang_sheng_jue/advancements/recipes/building_blocks/windows_birch_block_2.json
 68e92c771456e1dffd6c2c27ca096e13fc715709 data/chang_sheng_jue/advancements/recipes/building_blocks/windows_dark_oak_block.json
+3539a61cce6e4d842ac50e377437fe5568dbe817 data/chang_sheng_jue/advancements/recipes/building_blocks/windows_dark_oak_block_2.json
 c6d005e354cac902cbd6b09907101548e35898ec data/chang_sheng_jue/advancements/recipes/building_blocks/windows_oak_block.json
+4be296adab153b4ae2efb475a7fda9046e02aa0e data/chang_sheng_jue/advancements/recipes/building_blocks/windows_oak_block_2.json
 d7fe1c97f64601e071916b46073c72847a4bdc5d data/chang_sheng_jue/advancements/recipes/building_blocks/windows_spruce_block.json
+345c9ff9763469362b809c5f55b86c8a08d02c1c data/chang_sheng_jue/advancements/recipes/building_blocks/windows_spruce_block_2.json
 a919ca50c8e3e029ac926e05bd0a68ac50d8a4b4 data/chang_sheng_jue/advancements/recipes/building_blocks/yun_shan_fu_ti_block.json
 e531c7cd1c7b35f0229fefce4f4994e4d7d3d011 data/chang_sheng_jue/advancements/recipes/building_blocks/zhu_tai.json
 1760e74a9557201cc973e63d80bc068c2d499f6f data/chang_sheng_jue/advancements/recipes/building_blocks/zi_tan_bench.json
@@ -254,12 +262,18 @@ fbb08e904367d383ef27cdaf2bcf978660e19b69 data/chang_sheng_jue/recipes/hang_tu_sl
 0c16266cabb78c6ab41b74742175ea3167b2135b data/chang_sheng_jue/recipes/hang_tu_wall.json
 dcd698c21742dd94e61943961e968f8954aff239 data/chang_sheng_jue/recipes/han_jian.json
 6dc82104c85bac25d3c1dfb01e1a8a816f2d9ac2 data/chang_sheng_jue/recipes/heng_dao.json
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 d35bdf3c407367fc7d150d099875a1e988548011 data/chang_sheng_jue/recipes/high_acacia_windows.json
 63bb1a8a08013cbeb271a302eb2c17061d448048 data/chang_sheng_jue/recipes/high_birch_windows.json
 c9cec802f84c4571e5c7db76b2363e6e8fd509c9 data/chang_sheng_jue/recipes/high_dark_oak_windows.json
 456b694b81de203e8e40d934a9b81951c86dba57 data/chang_sheng_jue/recipes/high_oak_windows.json
 a3dc6256df0e4839a35605f75c160076ad4bffde data/chang_sheng_jue/recipes/high_painting_scroll.json
 728c5372c7ffe7cea06f3981c32f42b6fab43863 data/chang_sheng_jue/recipes/high_spruce_windows.json
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 2cafac0fc103dd423d54ac5ea56e4b829d800100 data/chang_sheng_jue/recipes/hot_pear_soup.json
 f5b2f14278ca4b814e3c0d7a8f7cbebf77499ba4 data/chang_sheng_jue/recipes/huang_hua_li_bench.json
 4f080e4278e3c0c1f32344f125a212c006284f06 data/chang_sheng_jue/recipes/huang_hua_li_book_desk.json
@@ -344,10 +358,15 @@ f5bf33e118ea0504ac0cda3c51aec72aa4ed1452 data/chang_sheng_jue/recipes/white_bric
 06fcd7eaa4443a4c01ea47afa5a210c92c6e9c6f data/chang_sheng_jue/recipes/white_fine_bricks.json
 69274d328f02ec6c2215a5d2e7313459fee03237 data/chang_sheng_jue/recipes/width_painting_scroll.json
 b8b590a116c0cdc03315483a469c0012b6aa3b24 data/chang_sheng_jue/recipes/windows_acacia_block.json
+03927e11a8b730acede1292b75703566f3a273f4 data/chang_sheng_jue/recipes/windows_acacia_block_2.json
 6178210449eb974cf10c1e5249c769ce83fbe39c data/chang_sheng_jue/recipes/windows_birch_block.json
+609d769447c608f04771bf904e327cf2c5f23134 data/chang_sheng_jue/recipes/windows_birch_block_2.json
 af49a575a60e4d6a967b65365e77438004a7b059 data/chang_sheng_jue/recipes/windows_dark_oak_block.json
+d3c65b089318c935aea0105d45062f851794e3e7 data/chang_sheng_jue/recipes/windows_dark_oak_block_2.json
 285f7af199e9c80ce3a27df56b25df2a6c32a8a0 data/chang_sheng_jue/recipes/windows_oak_block.json
+026a42ead1fec5b59f4f375ffb77632cc02a30a1 data/chang_sheng_jue/recipes/windows_oak_block_2.json
 7f9111b208f44a53eb258cf3b0f3c6f29f395225 data/chang_sheng_jue/recipes/windows_spruce_block.json
+27cb4c1f879c62fdf18460511eff5d63de0f4b36 data/chang_sheng_jue/recipes/windows_spruce_block_2.json
 d140298f90677e147622a3b3a259bcee12caab6a data/chang_sheng_jue/recipes/xiao_mi_fan.json
 2d2c8c7d98f905954017b8b8c7349c14094ef499 data/chang_sheng_jue/recipes/xuanhua_axe.json
 a99f76b62d756ed7c2be6e4bb009e3dc3a874e7f data/chang_sheng_jue/recipes/yi_guan_tong_qian.json

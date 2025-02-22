@@ -1,51 +1,18 @@
 {
   "variants": {
-    "facing=east,type=bottom": {
+    "facing=east": {
       "model": "chang_sheng_jue:block/cylinder_tile_blue_block",
       "y": 90
     },
-    "facing=east,type=double": {
-      "model": "chang_sheng_jue:block/cylinder_tile_blue_block_double",
-      "y": 90
-    },
-    "facing=east,type=top": {
-      "model": "chang_sheng_jue:block/cylinder_tile_blue_block_top",
-      "y": 90
-    },
-
-    "facing=north,type=bottom": {
+    "facing=north": {
       "model": "chang_sheng_jue:block/cylinder_tile_blue_block"
     },
-    "facing=north,type=double": {
-      "model": "chang_sheng_jue:block/cylinder_tile_blue_block_double"
-    },
-    "facing=north,type=top": {
-      "model": "chang_sheng_jue:block/cylinder_tile_blue_block_top"
-    },
-
-    "facing=south,type=bottom": {
+    "facing=south": {
       "model": "chang_sheng_jue:block/cylinder_tile_blue_block",
       "y": 180
     },
-    "facing=south,type=double": {
-      "model": "chang_sheng_jue:block/cylinder_tile_blue_block_double",
-      "y": 180
-    },
-    "facing=south,type=top": {
-      "model": "chang_sheng_jue:block/cylinder_tile_blue_block_top",
-      "y": 180
-    },
-
-    "facing=west,type=bottom": {
+    "facing=west": {
       "model": "chang_sheng_jue:block/cylinder_tile_blue_block",
-      "y": 270
-    },
-    "facing=west,type=double": {
-      "model": "chang_sheng_jue:block/cylinder_tile_blue_block_double",
-      "y": 270
-    },
-    "facing=west,type=top": {
-      "model": "chang_sheng_jue:block/cylinder_tile_blue_block_top",
       "y": 270
     }
   }
