@@ -457,10 +457,10 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
 
         //台阶
         this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(), block -> createSlabItemTable(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get()));
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(), block -> createSlabItemTable(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get()));
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(), block -> createSlabItemTable(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get()));
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(), block -> createSlabItemTable(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get()));
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(), block -> createSlabItemTable(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get()));
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(), block -> createSlabItemTable(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get()));
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(), block -> createSlabItemTable(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get()));
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get(), block -> createSlabItemTable(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get()));
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(), block -> createSlabItemTable(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get()));
     }
 
     public void createLeavesFruitsDrops(Block leavesBlock, Item fruitsItem,Block sapling){

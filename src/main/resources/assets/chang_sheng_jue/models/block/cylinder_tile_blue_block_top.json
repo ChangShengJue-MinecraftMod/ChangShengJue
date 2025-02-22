@@ -1,5 +1,5 @@
 {
-  "parent": "chang_sheng_jue:block/cylinder_tile",
+  "parent": "chang_sheng_jue:block/cylinder_tile_top",
   "textures": {
     "bottom": "chang_sheng_jue:block/cylinder_tile_blue_block",
     "side": "chang_sheng_jue:block/cylinder_tile_blue_block",
