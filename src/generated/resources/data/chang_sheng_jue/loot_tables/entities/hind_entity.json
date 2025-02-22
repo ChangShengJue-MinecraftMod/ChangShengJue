@@ -2,97 +2,104 @@
   "type": "minecraft:entity",
   "pools": [
     {
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
           "functions": [
             {
-              "function": "minecraft:set_count",
+              "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "min": 0.0,
-                "max": 2.0
+                "max": 2.0,
+                "min": 0.0
               },
-              "add": false
+              "function": "minecraft:set_count"
             },
             {
-              "function": "minecraft:looting_enchant",
               "count": {
                 "type": "minecraft:uniform",
-                "min": 0.0,
-                "max": 1.0
-              }
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:looting_enchant"
+            },
+            {
+              "function": "minecraft:explosion_decay"
             }
           ],
           "name": "chang_sheng_jue:deerskin"
         }
-      ]
+      ],
+      "name": "main_drops",
+      "rolls": 1.0
     },
     {
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
           "functions": [
             {
-              "function": "minecraft:set_count",
+              "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "min": 1.0,
-                "max": 3.0
+                "max": 3.0,
+                "min": 1.0
               },
-              "add": false
+              "function": "minecraft:set_count"
             },
             {
-              "function": "minecraft:furnace_smelt",
               "conditions": [
                 {
                   "condition": "minecraft:entity_properties",
+                  "entity": "this",
                   "predicate": {
                     "flags": {
                       "is_on_fire": true
                     }
-                  },
-                  "entity": "this"
+                  }
                 }
-              ]
+              ],
+              "function": "minecraft:furnace_smelt"
             },
             {
-              "function": "minecraft:looting_enchant",
               "count": {
                 "type": "minecraft:uniform",
-                "min": 0.0,
-                "max": 1.0
-              }
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:looting_enchant"
             }
           ],
           "name": "chang_sheng_jue:venison"
         }
-      ]
+      ],
+      "name": "main_drops",
+      "rolls": 1.0
     },
     {
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
           "functions": [
             {
-              "function": "minecraft:set_count",
+              "add": false,
               "count": {
                 "type": "minecraft:uniform",
-                "min": 0.0,
-                "max": 1.0
+                "max": 1.0,
+                "min": 0.0
               },
-              "add": false
+              "function": "minecraft:set_count"
             }
           ],
           "name": "chang_sheng_jue:deer_blood"
         }
-      ]
+      ],
+      "name": "simple_drops",
+      "rolls": 1.0
     }
-  ]
+  ],
+  "random_sequence": "chang_sheng_jue:entities/hind_entity"
 }

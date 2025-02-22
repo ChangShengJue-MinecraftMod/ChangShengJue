@@ -56,7 +56,7 @@ public class ChangShengJueEntity {
                     () -> EntityType.Builder.of(Dragonfly::new, MobCategory.CREATURE)
                             .sized(0.8f,0.4f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"dragonfly_entity").toString()));
-
+    // 蝉
     public static final RegistryObject<EntityType<Cicada>> CICADA_ENTITY =
             ENTITY_TYPES.register("cicada_entity",
                     () -> EntityType.Builder.of(Cicada::new, MobCategory.CREATURE)
