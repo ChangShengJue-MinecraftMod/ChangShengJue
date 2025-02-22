@@ -12,12 +12,18 @@ import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.Go
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.entity.combat.tu_long_dao.TuLongDaoAttackEntity;
 import com.shengchanshe.changshengjue.entity.combat.yi_tian_jian.YiTianJianAttackEntity;
-import com.shengchanshe.changshengjue.entity.custom.*;
-import com.shengchanshe.changshengjue.entity.custom.deer.HindEntity;
-import com.shengchanshe.changshengjue.entity.custom.deer.StagEntity;
-import com.shengchanshe.changshengjue.entity.custom.peacock.FemalePeacockEntity;
-import com.shengchanshe.changshengjue.entity.custom.peacock.MalePeacockEntity;
-import com.shengchanshe.changshengjue.entity.custom.peacock.PeacockEgg;
+import com.shengchanshe.changshengjue.entity.custom.butterfly.Butterfly;
+import com.shengchanshe.changshengjue.entity.custom.cicada.Cicada;
+import com.shengchanshe.changshengjue.entity.custom.crane.Crane;
+import com.shengchanshe.changshengjue.entity.custom.croc.Croc;
+import com.shengchanshe.changshengjue.entity.custom.deer.hind.Hind;
+import com.shengchanshe.changshengjue.entity.custom.deer.stag.Stag;
+import com.shengchanshe.changshengjue.entity.custom.dragonfly.Dragonfly;
+import com.shengchanshe.changshengjue.entity.custom.monkey.Monkey;
+import com.shengchanshe.changshengjue.entity.custom.peacock.female.FemalePeacock;
+import com.shengchanshe.changshengjue.entity.custom.peacock.male.MalePeacock;
+import com.shengchanshe.changshengjue.entity.custom.peacock.egg.PeacockEgg;
+import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
 import com.shengchanshe.changshengjue.entity.decoration.seat.SeatEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerEntity;
 import net.minecraft.resources.ResourceLocation;
@@ -33,69 +39,69 @@ public class ChangShengJueEntity {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, ChangShengJue.MOD_ID);
 
-    public static final RegistryObject<EntityType<ButterflyEntity>> BUTTERFLY_ENTITY =
+    public static final RegistryObject<EntityType<Butterfly>> BUTTERFLY_ENTITY =
             ENTITY_TYPES.register("butterfly_entity",
-                    () -> EntityType.Builder.of(ButterflyEntity::new, MobCategory.CREATURE)
+                    () -> EntityType.Builder.of(Butterfly::new, MobCategory.CREATURE)
                             .sized(0.8f,0.2f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"butterfly_entity").toString()));
 
-    public static final RegistryObject<EntityType<MonkeyEntity>> MONKEY_ENTITY =
+    public static final RegistryObject<EntityType<Monkey>> MONKEY_ENTITY =
             ENTITY_TYPES.register("monkey_entity",
-                    () -> EntityType.Builder.of(MonkeyEntity::new, MobCategory.CREATURE)
+                    () -> EntityType.Builder.of(Monkey::new, MobCategory.CREATURE)
                             .sized(1.0f,1.5f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"monkey_entity").toString()));
 
-    public static final RegistryObject<EntityType<DragonflyEntity>> DRAGONFLY_ENTITY =
+    public static final RegistryObject<EntityType<Dragonfly>> DRAGONFLY_ENTITY =
             ENTITY_TYPES.register("dragonfly_entity",
-                    () -> EntityType.Builder.of(DragonflyEntity::new, MobCategory.CREATURE)
+                    () -> EntityType.Builder.of(Dragonfly::new, MobCategory.CREATURE)
                             .sized(0.8f,0.4f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"dragonfly_entity").toString()));
 
-    public static final RegistryObject<EntityType<CicadaEntity>> CICADA_ENTITY =
+    public static final RegistryObject<EntityType<Cicada>> CICADA_ENTITY =
             ENTITY_TYPES.register("cicada_entity",
-                    () -> EntityType.Builder.of(CicadaEntity::new, MobCategory.CREATURE)
+                    () -> EntityType.Builder.of(Cicada::new, MobCategory.CREATURE)
                             .sized(0.6f,0.5f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"cicada_entity").toString()));
 
-    public static final RegistryObject<EntityType<CraneEntity>> CRANE_ENTITY =
+    public static final RegistryObject<EntityType<Crane>> CRANE_ENTITY =
             ENTITY_TYPES.register("crane_entity",
-                    () -> EntityType.Builder.of(CraneEntity::new, MobCategory.CREATURE)
+                    () -> EntityType.Builder.of(Crane::new, MobCategory.CREATURE)
                             .sized(1.0f,1.4f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"crane_entity").toString()));
 
-    public static final RegistryObject<EntityType<MalePeacockEntity>> MALE_PEACOCK_ENTITY =
+    public static final RegistryObject<EntityType<MalePeacock>> MALE_PEACOCK_ENTITY =
             ENTITY_TYPES.register("male_peacock_entity",
-                    () -> EntityType.Builder.of(MalePeacockEntity::new, MobCategory.CREATURE)
+                    () -> EntityType.Builder.of(MalePeacock::new, MobCategory.CREATURE)
                             .sized(0.8f,1.4f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"male_peacock_entity").toString()));
 
-    public static final RegistryObject<EntityType<FemalePeacockEntity>> FEMALE_PEACOCK_ENTITY =
+    public static final RegistryObject<EntityType<FemalePeacock>> FEMALE_PEACOCK_ENTITY =
             ENTITY_TYPES.register("female_peacock_entity",
-                    () -> EntityType.Builder.of(FemalePeacockEntity::new, MobCategory.CREATURE)
+                    () -> EntityType.Builder.of(FemalePeacock::new, MobCategory.CREATURE)
                             .sized(0.8f,1.4f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"female_peacock_entity").toString()));
 
-    public static final RegistryObject<EntityType<StagEntity>> STAG_ENTITY =
+    public static final RegistryObject<EntityType<Stag>> STAG_ENTITY =
             ENTITY_TYPES.register("stag_entity",
-                    () -> EntityType.Builder.of(StagEntity::new, MobCategory.CREATURE)
+                    () -> EntityType.Builder.of(Stag::new, MobCategory.CREATURE)
                             .sized(0.9F, 1.5F)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"stag_entity").toString()));
 
-    public static final RegistryObject<EntityType<HindEntity>> HIND_ENTITY =
+    public static final RegistryObject<EntityType<Hind>> HIND_ENTITY =
             ENTITY_TYPES.register("hind_entity",
-                    () -> EntityType.Builder.of(HindEntity::new, MobCategory.CREATURE)
+                    () -> EntityType.Builder.of(Hind::new, MobCategory.CREATURE)
                             .sized(0.9F, 1.4F)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"hind_entity").toString()));
 
-    public static final RegistryObject<EntityType<TigerEntity>> TIGER_ENTITY =
+    public static final RegistryObject<EntityType<Tiger>> TIGER_ENTITY =
             ENTITY_TYPES.register("tiger_entity",
-                    () -> EntityType.Builder.of(TigerEntity::new, MobCategory.CREATURE)
+                    () -> EntityType.Builder.of(Tiger::new, MobCategory.CREATURE)
                             .sized(1.0F, 1.4F)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"tiger_entity").toString()));
 
-    public static final RegistryObject<EntityType<CrocEntity>> CROC_ENTITY =
+    public static final RegistryObject<EntityType<Croc>> CROC_ENTITY =
             ENTITY_TYPES.register("croc_entity",
-                    () -> EntityType.Builder.of(CrocEntity::new, MobCategory.CREATURE)
+                    () -> EntityType.Builder.of(Croc::new, MobCategory.CREATURE)
                             .sized(1.15F, 0.75F)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"croc_entity").toString()));
 

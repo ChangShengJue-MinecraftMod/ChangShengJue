@@ -2,7 +2,11 @@ package com.shengchanshe.changshengjue.util;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
-import com.shengchanshe.changshengjue.entity.client.render.*;
+import com.shengchanshe.changshengjue.entity.custom.cicada.CicadaRenderer;
+import com.shengchanshe.changshengjue.entity.custom.crane.CraneRenderer;
+import com.shengchanshe.changshengjue.entity.custom.croc.CrocRenderer;
+import com.shengchanshe.changshengjue.entity.custom.dragonfly.DragonflyRenderer;
+import com.shengchanshe.changshengjue.entity.custom.monkey.MonkeyRenderer;
 import com.shengchanshe.changshengjue.entity.combat.lance.ThrownBaWangQiangRender;
 import com.shengchanshe.changshengjue.entity.combat.ge_shan_da_niu.GeShanDaNiuRender;
 import com.shengchanshe.changshengjue.entity.combat.lance.ThrownRedTasselledSpearRender;
@@ -14,6 +18,12 @@ import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnive
 import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntityRender;
 import com.shengchanshe.changshengjue.entity.combat.tu_long_dao.TuLongDaoAttackEntityRender;
 import com.shengchanshe.changshengjue.entity.combat.yi_tian_jian.YiTianJianAttackEntityRender;
+import com.shengchanshe.changshengjue.entity.custom.butterfly.ButterflyRenderer;
+import com.shengchanshe.changshengjue.entity.custom.deer.hind.HindRenderer;
+import com.shengchanshe.changshengjue.entity.custom.deer.stag.StagRenderer;
+import com.shengchanshe.changshengjue.entity.custom.peacock.female.FemalePeacockRenderer;
+import com.shengchanshe.changshengjue.entity.custom.peacock.male.MalePeacockRenderer;
+import com.shengchanshe.changshengjue.entity.custom.tiger.TigerRenderer;
 import com.shengchanshe.changshengjue.entity.villagers.render.ChangShengJueVillagerRender;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.item.combat.armor.DyeableChineseWeddingDressItem;
