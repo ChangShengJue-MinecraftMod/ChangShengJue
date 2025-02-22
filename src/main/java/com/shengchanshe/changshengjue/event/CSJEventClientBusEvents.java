@@ -23,7 +23,7 @@ import com.shengchanshe.changshengjue.cilent.hud.martial_arts.xuannu_swordsmansh
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntityModel;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesModel;
-import com.shengchanshe.changshengjue.entity.client.render.PeacockEggRender;
+import com.shengchanshe.changshengjue.entity.custom.peacock.egg.PeacockEggRender;
 import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntityRender;
 import com.shengchanshe.changshengjue.entity.decoration.seat.SeatRender;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
