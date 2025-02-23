@@ -31,7 +31,7 @@ import java.util.Random;
 public abstract class AbstractDeer extends Animal implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private EatBlockGoal eatBlockGoal;
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.OAK_LEAVES,Items.AZALEA_LEAVES,Items.DARK_OAK_LEAVES,Items.FLOWERING_AZALEA_LEAVES,Items.BIRCH_LEAVES,
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CARROT, Items.OAK_LEAVES,Items.AZALEA_LEAVES,Items.DARK_OAK_LEAVES,Items.FLOWERING_AZALEA_LEAVES,Items.BIRCH_LEAVES,
             Items.SPRUCE_LEAVES,Items.JUNGLE_LEAVES,Items.AZALEA_LEAVES,Items.WHEAT,
             ChangShengJueBlocks.MANGO_LEAVES.get(),ChangShengJueBlocks.GUI_HUA_LEAVES.get(),ChangShengJueBlocks.MEI_HUA_LEAVES.get(),ChangShengJueBlocks.BANANA_LEAVES.get(),
             ChangShengJueBlocks.PEAR_LEAVES.get(),ChangShengJueBlocks.LICHEE_LEAVES.get(),ChangShengJueBlocks.DURIAN_LEAVES.get(),ChangShengJueBlocks.POPLAR_LEAVES.get(),

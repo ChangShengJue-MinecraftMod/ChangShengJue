@@ -1,8 +1,11 @@
 package com.shengchanshe.changshengjue.entity.custom.peacock;
 
+import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
@@ -27,7 +30,7 @@ import javax.annotation.Nullable;
 public abstract class AbstractPeacockEntity extends Animal implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM);
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(ChangShengJueItems.CORN.get(), ChangShengJueItems.SORGHUM.get(), ChangShengJueItems.SOYBEAN.get());
     public AbstractPeacockEntity(EntityType<? extends AbstractPeacockEntity> p_27557_, Level p_27558_) {
         super(p_27557_, p_27558_);
     }
@@ -42,7 +45,7 @@ public abstract class AbstractPeacockEntity extends Animal implements GeoEntity 
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 0.6D));
         this.goalSelector.addGoal(2, new BreedGoal(this, 0.6D, AbstractPeacockEntity.class));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 0.7D, Ingredient.of(Items.RED_MUSHROOM, Items.BROWN_MUSHROOM), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 0.7D, FOOD_ITEMS, false));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 0.6D));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.6D));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -63,6 +66,30 @@ public abstract class AbstractPeacockEntity extends Animal implements GeoEntity 
     @Override
     public boolean isFood(ItemStack itemStack) {
         return FOOD_ITEMS.test(itemStack);
+    }
+
+    public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
+        ItemStack itemstack = pPlayer.getItemInHand(pHand);
+        if (this.isFood(itemstack)) {
+            int i = this.getAge();
+            if (!this.level().isClientSide && i == 0 && this.canFallInLove()) {
+                this.usePlayerItem(pPlayer, pHand, itemstack);
+                this.setInLove(pPlayer);
+                return InteractionResult.SUCCESS;
+            }
+
+            if (this.isBaby()) {
+                this.usePlayerItem(pPlayer, pHand, itemstack);
+                this.ageUp(getSpeedUpSecondsWhenFeeding(-i), true);
+                return InteractionResult.sidedSuccess(this.level().isClientSide);
+            }
+
+            if (this.level().isClientSide) {
+                return InteractionResult.CONSUME;
+            }
+        }
+
+        return super.mobInteract(pPlayer, pHand);
     }
 
     private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event){

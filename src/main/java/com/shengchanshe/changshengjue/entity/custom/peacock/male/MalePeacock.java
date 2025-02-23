@@ -4,6 +4,7 @@ import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.AbstractPeacockEntity;
 import com.shengchanshe.changshengjue.entity.custom.peacock.PeacockVariant;
 import com.shengchanshe.changshengjue.entity.custom.peacock.female.FemalePeacock;
+import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -15,7 +16,10 @@ import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -39,6 +43,12 @@ public class MalePeacock extends AbstractPeacockEntity {
 
     public MalePeacock(EntityType<? extends MalePeacock> p_27557_, Level p_27558_) {
         super(p_27557_, p_27558_);
+    }
+
+
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(2, new BreedGoal(this, 0.6D, FemalePeacock.class));
     }
 
     @Override

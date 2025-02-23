@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.goal.BreedGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -36,6 +37,12 @@ public class FemalePeacock extends AbstractPeacockEntity {
     protected float getStandingEyeHeight(Pose p_28251_, EntityDimensions p_28252_) {
         return this.isBaby() ? p_28252_.height * 0.85F : p_28252_.height * 0.92F;
     }
+
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(2, new BreedGoal(this, 0.6D, MalePeacock.class));
+    }
+
     public void aiStep() {
         super.aiStep();
         this.oFlap = this.flap;
