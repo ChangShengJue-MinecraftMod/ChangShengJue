@@ -194,19 +194,15 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
         if (this.isTame()) {
             Entity attacker = source.getEntity();
             if (attacker != null && attacker.getUUID().equals(this.getOwnerUUID())) {
-                // 清除驯服状态
                 this.setTame(false);
                 this.setOwnerUUID(null);
                 this.setOrderedToSit(false);
 
-                // 重置愤怒状态（可选）
                 this.setRemainingPersistentAngerTime(0);
                 this.setPersistentAngerTarget(null);
 
-                // 刷新AI目标
                 this.reassessTameGoals();
 
-                // 触发特效（可选）
                 this.spawnTamingParticles(false);
             }
         }
@@ -225,14 +221,12 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
         }
 
 
-        // 爱心粒子风暴
         this.level().addParticle(ParticleTypes.HEART,
                 this.getX() + this.random.nextDouble() * 0.5D,
                 this.getY() + 1.0D,
                 this.getZ() + this.random.nextDouble() * 0.5D,
                 0.0D, 0.0D, 0.0D);
 
-        // 金色星星粒子
         for(int i = 0; i < 15; ++i) {
             double d0 = this.random.nextGaussian() * 0.02D;
             double d1 = this.random.nextGaussian() * 0.02D;
@@ -244,14 +238,13 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
                     d0, d1, d2);
         }
 
-        // 触发闪光动画
         this.entityData.set(MONKEY_ATTACK, true);
     }
 
     @Override
     public void onSyncedDataUpdated(EntityDataAccessor<?> data) {
         if (DATA_FLAGS_ID.equals(data)) {
-            this.reassessTameGoals(); // 确保客户端同步驯服状态
+            this.reassessTameGoals(); 
         }
         super.onSyncedDataUpdated(data);
     }
