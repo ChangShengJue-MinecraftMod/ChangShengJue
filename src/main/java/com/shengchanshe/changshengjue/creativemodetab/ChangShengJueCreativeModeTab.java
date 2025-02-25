@@ -110,6 +110,11 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.HANG_TU_BLOCK.get());
                 output.accept(ChangShengJueBlocks.TU_PEI_BLOCK.get());
 
+                output.accept(ChangShengJueBlocks.GRE_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.RED_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get());
                 output.accept(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get());
                 output.accept(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get());
                 output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get());
@@ -135,6 +140,21 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get());
                 output.accept(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get());
                 output.accept(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get());
+                output.accept(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get());
+                output.accept(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_5.get());
+                output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_5.get());
+                output.accept(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_5.get());
+                output.accept(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_5.get());
+                output.accept(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_6.get());
+                output.accept(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_6.get());
+                output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_6.get());
+                output.accept(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_6.get());
+                output.accept(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_6.get());
+                output.accept(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7.get());
+                output.accept(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_7.get());
+                output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get());
+                output.accept(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get());
+                output.accept(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get());
                 output.accept(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get());
                 output.accept(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get());
                 output.accept(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_2.get());

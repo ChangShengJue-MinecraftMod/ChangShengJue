@@ -11,6 +11,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
@@ -59,13 +60,19 @@ public class SunflowerPointCavemanHudOverlay {
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             if (SunflowerPointCavemanClientData.isSkillZActive()){
-                CSJDisplayHud.displayHudPermanent(getSunflowerPointCavemanLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,SUNFLOWER_POINT_CAVEMAN,SUNFLOWER_POINT_CAVEMAN_1,SUNFLOWER_POINT_CAVEMAN_2,COOLING,gui.getFont(),x,y - 20);
+                CSJDisplayHud.displayHudPermanent(getSunflowerPointCavemanLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,SUNFLOWER_POINT_CAVEMAN,SUNFLOWER_POINT_CAVEMAN_1,SUNFLOWER_POINT_CAVEMAN_2,COOLING,gui.getFont(),x,y - 25);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.sunflower_point_caveman"),x, y - 25,ChatFormatting.YELLOW.getColor());
             }
             if (SunflowerPointCavemanClientData.isSkillXActive()){
                 CSJDisplayHud.displayHudPermanent(getSunflowerPointCavemanLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,SUNFLOWER_POINT_CAVEMAN,SUNFLOWER_POINT_CAVEMAN_1,SUNFLOWER_POINT_CAVEMAN_2,COOLING,gui.getFont(),x,y);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.sunflower_point_caveman"),x, y,ChatFormatting.YELLOW.getColor());
             }
             if (SunflowerPointCavemanClientData.isSkillCActive()){
-                CSJDisplayHud.displayHudPermanent(getSunflowerPointCavemanLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,SUNFLOWER_POINT_CAVEMAN,SUNFLOWER_POINT_CAVEMAN_1,SUNFLOWER_POINT_CAVEMAN_2,COOLING,gui.getFont(),x,y + 20);
+                CSJDisplayHud.displayHudPermanent(getSunflowerPointCavemanLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,SUNFLOWER_POINT_CAVEMAN,SUNFLOWER_POINT_CAVEMAN_1,SUNFLOWER_POINT_CAVEMAN_2,COOLING,gui.getFont(),x,y + 25);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.sunflower_point_caveman"),x, y + 25,ChatFormatting.YELLOW.getColor());
             }
 //            if (getSunflowerPointCavemanLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
 //                if (frameTime() <= 0){ //获取技能剩余冷却时间,小于等于0则绘制技能贴图否则绘制冷却中的技能贴图

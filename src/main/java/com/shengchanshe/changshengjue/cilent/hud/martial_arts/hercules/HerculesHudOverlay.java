@@ -3,8 +3,10 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.hercules;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
@@ -50,13 +52,19 @@ public class HerculesHudOverlay {
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             if (HerculesClientData.isSkillZActive()){
-                CSJDisplayHud.displayHudPermanent(getHerculesLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,HERCULES,HERCULES_1,HERCULES_2,COOLING,gui.getFont(),x,y - 20);
+                CSJDisplayHud.displayHudPermanent(getHerculesLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,HERCULES,HERCULES_1,HERCULES_2,COOLING,gui.getFont(),x,y - 25);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.hercules"),x, y - 25,ChatFormatting.YELLOW.getColor());
             }
             if (HerculesClientData.isSkillXActive()){
                 CSJDisplayHud.displayHudPermanent(getHerculesLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,HERCULES,HERCULES_1,HERCULES_2,COOLING,gui.getFont(),x,y);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.hercules"),x, y,ChatFormatting.YELLOW.getColor());
             }
             if (HerculesClientData.isSkillCActive()){
-                CSJDisplayHud.displayHudPermanent(getHerculesLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,HERCULES,HERCULES_1,HERCULES_2,COOLING,gui.getFont(),x,y + 20);
+                CSJDisplayHud.displayHudPermanent(getHerculesLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,HERCULES,HERCULES_1,HERCULES_2,COOLING,gui.getFont(),x,y + 25);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.hercules"),x, y + 25, ChatFormatting.YELLOW.getColor());
             }
         }
     };

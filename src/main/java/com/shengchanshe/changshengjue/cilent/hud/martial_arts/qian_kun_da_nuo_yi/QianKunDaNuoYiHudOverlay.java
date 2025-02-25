@@ -3,8 +3,10 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.qian_kun_da_nuo_y
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
@@ -50,13 +52,19 @@ public class QianKunDaNuoYiHudOverlay {
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             if (QianKunDaNuoYiClientData.isSkillZActive()){
-                CSJDisplayHud.displayHudPermanent(getQianKunDaNuoYiLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,QIAN_KUN_DA_NUO_YI,QIAN_KUN_DA_NUO_YI_1,QIAN_KUN_DA_NUO_YI_2,COOLING,gui.getFont(),x,y - 20);
+                CSJDisplayHud.displayHudPermanent(getQianKunDaNuoYiLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,QIAN_KUN_DA_NUO_YI,QIAN_KUN_DA_NUO_YI_1,QIAN_KUN_DA_NUO_YI_2,COOLING,gui.getFont(),x,y - 25);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.qian_kun_da_nuo_yi"),x, y - 25,ChatFormatting.YELLOW.getColor());
             }
             if (QianKunDaNuoYiClientData.isSkillXActive()){
                 CSJDisplayHud.displayHudPermanent(getQianKunDaNuoYiLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,QIAN_KUN_DA_NUO_YI,QIAN_KUN_DA_NUO_YI_1,QIAN_KUN_DA_NUO_YI_2,COOLING,gui.getFont(),x,y);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.qian_kun_da_nuo_yi"),x, y,ChatFormatting.YELLOW.getColor());
             }
             if (QianKunDaNuoYiClientData.isSkillCActive()){
-                CSJDisplayHud.displayHudPermanent(getQianKunDaNuoYiLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,QIAN_KUN_DA_NUO_YI,QIAN_KUN_DA_NUO_YI_1,QIAN_KUN_DA_NUO_YI_2,COOLING,gui.getFont(),x,y + 20);
+                CSJDisplayHud.displayHudPermanent(getQianKunDaNuoYiLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,QIAN_KUN_DA_NUO_YI,QIAN_KUN_DA_NUO_YI_1,QIAN_KUN_DA_NUO_YI_2,COOLING,gui.getFont(),x,y + 25);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.qian_kun_da_nuo_yi"),x, y + 25,ChatFormatting.YELLOW.getColor());
             }
         }
     };

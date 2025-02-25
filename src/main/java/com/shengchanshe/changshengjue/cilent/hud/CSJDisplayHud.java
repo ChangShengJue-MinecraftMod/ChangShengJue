@@ -44,6 +44,21 @@ public class CSJDisplayHud {
         guiGraphics.drawCenteredString(font,new Formatter().format((frameTime * frameTimeMax) > 10 ? "%.0f" : "%.1f",(frameTime * frameTimeMax)).toString(),x + 8,y + 4, ChatFormatting.AQUA.getColor());
 //        poseStack.popPose(); // 恢复矩阵状态
     }
+
+    public static void displayHudPermanent(GuiGraphics guiGraphics, Font font,String text, int x, int y,Integer color){
+    // 获取GuiGraphics的PoseStack对象，用于管理图形的变换
+        PoseStack poseStack = guiGraphics.pose();
+    // 保存当前的变换状态，以便之后可以恢复
+        poseStack.pushPose();
+    // 设置缩放比例，这里将图形缩放为原来的一半
+        float scale = 0.5f;
+        poseStack.scale(scale, scale, scale);
+    // 在指定位置绘制居中的字符串，颜色为传入的color
+        guiGraphics.drawCenteredString(font, text,x + 22, 2 * y + 36, color);
+    // 恢复之前的变换状态
+        poseStack.popPose();
+    }
+
     public static void displayHudPermanent(GuiGraphics guiGraphics, Font font, int x, int y ,String text){
         // 绘制文字
         guiGraphics.drawString(font,text,x + 8,y + 8, ChatFormatting.BLACK.getColor());

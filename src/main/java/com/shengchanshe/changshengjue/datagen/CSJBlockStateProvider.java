@@ -45,6 +45,19 @@ public class CSJBlockStateProvider extends BlockStateProvider {
         simpleBlock(ChangShengJueBlocks.POPLAR_LEAVES.get());
         blockWithItem(ChangShengJueBlocks.POPLAR_LEAVES);
 
+
+        //瓦
+        simpleBlock(ChangShengJueBlocks.GRE_CYLINDER_TILE.get());
+        blockWithItem(ChangShengJueBlocks.GRE_CYLINDER_TILE);
+        simpleBlock(ChangShengJueBlocks.RED_CYLINDER_TILE.get());
+        blockWithItem(ChangShengJueBlocks.RED_CYLINDER_TILE);
+        simpleBlock(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get());
+        blockWithItem(ChangShengJueBlocks.BLACK_CYLINDER_TILE);
+        simpleBlock(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get());
+        blockWithItem(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE);
+        simpleBlock(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get());
+        blockWithItem(ChangShengJueBlocks.BLUE_CYLINDER_TILE);
+
         logBlock((RotatedPillarBlock) ChangShengJueBlocks.MULBERRY_LOG.get());
         axisBlock(((RotatedPillarBlock)ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get()),
                 new ResourceLocation(ChangShengJue.MOD_ID, "block/stripped_mulberry_log_top"));

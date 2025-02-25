@@ -53,7 +53,7 @@ public class Cicada extends Animal implements GeoEntity, FlyingAnimal {
     protected void registerGoals(){
         this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new ParrotWanderGoal(this, 0.6D));
+        this.goalSelector.addGoal(1, new CicadaWanderGoal(this, 0.6D));
 
     }
     @Override
@@ -142,8 +142,8 @@ public class Cicada extends Animal implements GeoEntity, FlyingAnimal {
     @Override
     protected void checkFallDamage(double p_29370_, boolean p_29371_, BlockState p_29372_, BlockPos p_29373_) {
     }
-    static class ParrotWanderGoal extends WaterAvoidingRandomFlyingGoal {
-        public ParrotWanderGoal(PathfinderMob p_186224_, double p_186225_) {
+    static class CicadaWanderGoal extends WaterAvoidingRandomFlyingGoal {
+        public CicadaWanderGoal(PathfinderMob p_186224_, double p_186225_) {
             super(p_186224_, p_186225_);
         }
 

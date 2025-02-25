@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "chang_sheng_jue:block/cylinder_tile_blue_block_6",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "chang_sheng_jue:block/cylinder_tile_blue_block_6"
+    },
+    "facing=south": {
+      "model": "chang_sheng_jue:block/cylinder_tile_blue_block_6",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "chang_sheng_jue:block/cylinder_tile_blue_block_6",
+      "y": 270
+    }
+  }
+}

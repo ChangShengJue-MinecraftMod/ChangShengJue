@@ -249,8 +249,13 @@ public class CSJItemModelProvider extends ItemModelProvider {
 
         //城门
         simpleItem(ChangShengJueBlocks.SHING_MUN_RIGHT,ChangShengJueBlocks.SHING_MUN_RIGHT.getId().getPath());
-    }
 
+        parentItem(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7);
+        parentItem(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_7);
+        parentItem(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7);
+        parentItem(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7);
+        parentItem(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7);
+    }
 
     private ItemModelBuilder parentItem(RegistryObject<Block> item){
         return withExistingParent(item.getId().getPath(),

@@ -59,6 +59,12 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.MEI_REN_KAO_SPRUCE_BLOCK.get());
 
         this.tag(CSJTags.Blocks.TILE)
+                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.RED_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get())
+
                 .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get())
                 .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get())
                 .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get())
@@ -84,6 +90,24 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get())
                 .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get())
                 .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get())
+
+                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get())
+                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_5.get())
+                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_5.get())
+                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_5.get())
+                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_5.get())
+
+                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_6.get())
+                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_6.get())
+                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_6.get())
+                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_6.get())
+                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_6.get())
+
+                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7.get())
+                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_7.get())
+                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get())
+                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get())
+                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get())
 
                 .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get())
                 .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get())

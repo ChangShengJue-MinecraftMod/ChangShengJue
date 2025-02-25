@@ -6,6 +6,7 @@ import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
@@ -42,12 +43,13 @@ public class TreadTheSnowWithoutTraceHudOverlay {
         int getTreadTheSnowWithoutTraceLevel = TreadTheSnowWithoutTraceClientData.getTreadTheSnowWithoutTraceLevel();
         // 通过宽高获得绘制的x，y
         int x = 5;
-        int y = screenHeight / 2;
+        int y = (screenHeight / 2) - 50;
         boolean xuannuSwordsmanshipComprehend = TreadTheSnowWithoutTraceClientData.isTreadTheSnowWithoutTraceComprehend();
         if (xuannuSwordsmanshipComprehend && TreadTheSnowWithoutTraceClientData.getjumpCount() > 0){
             //设置绘制的信息
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(), ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.tread_the_snow_without_trace"),x, y,ChatFormatting.DARK_BLUE.getColor());
             if (getTreadTheSnowWithoutTraceLevel > 0) {//获取技能等级,为零则绘制不可使用的技能贴图
                 if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图
                     if (getTreadTheSnowWithoutTraceLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
@@ -77,6 +79,7 @@ public class TreadTheSnowWithoutTraceHudOverlay {
                 }
                 //以文字形式绘制剩余冷却时间
                 guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(v * 5)).toString(),x + 1, y + 4, ChatFormatting.AQUA.getColor());
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(), ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.tread_the_snow_without_trace"),x, y,ChatFormatting.DARK_BLUE.getColor());
             }else {
                 if (getTreadTheSnowWithoutTraceLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
                     CSJDisplayHud.displayHud(guiGraphics,TREAD_THE_SNOW_WITHOUT_TRACE,x,y);
@@ -87,6 +90,7 @@ public class TreadTheSnowWithoutTraceHudOverlay {
                     CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
                     guiGraphics.blit(TREAD_THE_SNOW_WITHOUT_TRACE_1, x, y, 0, 0, 0,16, 16, 16, 16);
                 }
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(), ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.tread_the_snow_without_trace"),x, y,ChatFormatting.DARK_BLUE.getColor());
                 CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
             }
         }

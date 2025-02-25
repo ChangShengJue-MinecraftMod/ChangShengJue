@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"walk": {
+		"move.walk": {
 			"loop": true,
 			"animation_length": 1,
 			"bones": {
@@ -229,7 +229,7 @@
 				}
 			}
 		},
-		"idle": {
+		"misc.rest": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 1.5,
 			"bones": {
@@ -306,7 +306,7 @@
 				}
 			}
 		},
-		"run": {
+		"move.run": {
 			"loop": true,
 			"animation_length": 1,
 			"bones": {
@@ -730,7 +730,7 @@
 				}
 			}
 		},
-		"fly": {
+		"move.fly": {
 			"loop": true,
 			"animation_length": 1,
 			"bones": {
@@ -1065,45 +1065,6 @@
 				"bone12": {
 					"rotation": {
 						"vector": [72.5, 0, 0]
-					}
-				}
-			}
-		},
-		"idle2": {
-			"loop": true,
-			"animation_length": 0.5,
-			"bones": {
-				"top": {
-					"rotation": {
-						"vector": [25, 0, 0]
-					}
-				},
-				"hand": {
-					"rotation": {
-						"vector": [114.0498, 41.70738, -9.04107]
-					}
-				},
-				"bone15": {
-					"rotation": {
-						"vector": [-120, 0, 0]
-					},
-					"position": {
-						"vector": [-0.1, 0, 0]
-					}
-				},
-				"bone2": {
-					"rotation": {
-						"vector": [0, -165, 0]
-					}
-				},
-				"right_leg": {
-					"rotation": {
-						"vector": [55, 0, 0]
-					}
-				},
-				"bone11": {
-					"rotation": {
-						"vector": [-145, 0, 0]
 					}
 				}
 			}

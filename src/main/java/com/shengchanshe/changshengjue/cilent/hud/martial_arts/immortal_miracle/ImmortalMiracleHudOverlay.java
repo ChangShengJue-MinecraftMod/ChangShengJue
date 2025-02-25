@@ -3,8 +3,10 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
@@ -51,13 +53,19 @@ public class ImmortalMiracleHudOverlay {
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             if (ImmortalMiracleClientData.isSkillZActive()){
-                CSJDisplayHud.displayHudPermanent(getImmortalMiracleLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,IMMORTAL_MIRACLE,IMMORTAL_MIRACLE_1,IMMORTAL_MIRACLE_2,COOLING,gui.getFont(),x,y - 20);
+                CSJDisplayHud.displayHudPermanent(getImmortalMiracleLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,IMMORTAL_MIRACLE,IMMORTAL_MIRACLE_1,IMMORTAL_MIRACLE_2,COOLING,gui.getFont(),x,y - 25);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.immortal_miracle"),x, y - 25,ChatFormatting.GOLD.getColor());
             }
             if (ImmortalMiracleClientData.isSkillXActive()){
                 CSJDisplayHud.displayHudPermanent(getImmortalMiracleLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,IMMORTAL_MIRACLE,IMMORTAL_MIRACLE_1,IMMORTAL_MIRACLE_2,COOLING,gui.getFont(),x,y);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.immortal_miracle"),x, y,ChatFormatting.GOLD.getColor());
             }
             if (ImmortalMiracleClientData.isSkillCActive()){
-                CSJDisplayHud.displayHudPermanent(getImmortalMiracleLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,IMMORTAL_MIRACLE,IMMORTAL_MIRACLE_1,IMMORTAL_MIRACLE_2,COOLING,gui.getFont(),x,y + 20);
+                CSJDisplayHud.displayHudPermanent(getImmortalMiracleLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,IMMORTAL_MIRACLE,IMMORTAL_MIRACLE_1,IMMORTAL_MIRACLE_2,COOLING,gui.getFont(),x,y + 25);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.immortal_miracle"),x, y + 25,ChatFormatting.GOLD.getColor());
             }
 //            if (getImmortalMiracleLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
 //                if (frameTime() <= 0){ //获取技能剩余冷却时间,小于等于0则绘制技能贴图否则绘制冷却中的技能贴图

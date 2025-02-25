@@ -9,6 +9,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
@@ -58,11 +59,12 @@ public class DuguNineSwordsHudOverlay {
     public static final IGuiOverlay HUD_DUGU_NINE_SWORDS = (gui, guiGraphics, partialTick, screenWidth, screenHeight) -> {
         if (shouldDisplayHud()) {
             boolean duguNineSwordsComprehend = DuguNineSwordsClientData.isDuguNineSwordsComprehend();
+            // 通过宽高获得绘制的x，y
+            int x = 5;
+            int y = (screenHeight / 2) - 50;
+            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.dugu_nine_swords"),x, y,ChatFormatting.AQUA.getColor());
             if (duguNineSwordsComprehend){
                 int duguNineSwordsLevel = DuguNineSwordsClientData.getDuguNineSwordsLevel();
-                // 通过宽高获得绘制的x，y
-                int x = 5;
-                int y = (screenHeight / 2) - 40;
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
