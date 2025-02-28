@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "cooked_croc": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "chang_sheng_jue:croc"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "chang_sheng_jue:cooked_croc_from_smoking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "cooked_croc",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "chang_sheng_jue:cooked_croc_from_smoking"
+    ]
+  },
+  "sends_telemetry_event": false
+}

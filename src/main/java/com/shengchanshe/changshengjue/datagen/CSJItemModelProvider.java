@@ -69,6 +69,13 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.FEN_JIU);
         simpleItem(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE);
         simpleItem(ChangShengJueItems.SHI_LI_XIANG);
+
+        //食物
+        simpleItem(ChangShengJueItems.PEACOCK);
+        simpleItem(ChangShengJueItems.COOKED_PEACOCK);
+        simpleItem(ChangShengJueItems.CROC);
+        simpleItem(ChangShengJueItems.COOKED_CROC);
+
         //武功秘籍
         simpleItem(ChangShengJueItems.IMMORTAL_MIRACLE);
         simpleItem(ChangShengJueItems.HERCULES);
@@ -255,17 +262,58 @@ public class CSJItemModelProvider extends ItemModelProvider {
         parentItem(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7);
         parentItem(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7);
         parentItem(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7);
+
+        parentItem(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8);
+        parentItem(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8);
+        parentItem(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8);
+        parentItem(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8);
+        parentItem(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8);
+
+        parentItem(ChangShengJueBlocks.GRE_ROOF_RIDGE);
+        parentItem(ChangShengJueBlocks.RED_ROOF_RIDGE);
+        parentItem(ChangShengJueBlocks.BLACK_ROOF_RIDGE);
+        parentItem(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE);
+        parentItem(ChangShengJueBlocks.BLUE_ROOF_RIDGE);
+
+        parentItem(ChangShengJueBlocks.GRE_DEMON_MASK);
+        parentItem(ChangShengJueBlocks.RED_DEMON_MASK);
+        parentItem(ChangShengJueBlocks.BLACK_DEMON_MASK);
+        parentItem(ChangShengJueBlocks.GOLDEN_DEMON_MASK);
+        parentItem(ChangShengJueBlocks.BLUE_DEMON_MASK);
+
+        parentItem(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION);
+        parentItem(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION);
+        parentItem(ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION);
+        parentItem(ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION);
+        parentItem(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION);
+
+        parentItem(ChangShengJueBlocks.GRE_CHARACTER_PLAQUE_PAVILION);
+        parentItem(ChangShengJueBlocks.RED_CHARACTER_PLAQUE_PAVILION);
+        parentItem(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION);
+        parentItem(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION);
+        parentItem(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION);
+
+        parentItem(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE,ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_top");
+        parentItem(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE,ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_top");
+        parentItem(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE,ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_top");
+        parentItem(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE,ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_top");
+        parentItem(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE,ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_top");
     }
 
-    private ItemModelBuilder parentItem(RegistryObject<Block> item){
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation(ChangShengJue.MOD_ID,"block/"+item.getId().getPath()));
+    private ItemModelBuilder parentItem(RegistryObject<Block> block){
+        return withExistingParent(block.getId().getPath(),
+                new ResourceLocation(ChangShengJue.MOD_ID,"block/"+block.getId().getPath()));
+    }
+    //多模型方块物品选择
+    private ItemModelBuilder parentItem(RegistryObject<Block> block,String path){
+        return withExistingParent(block.getId().getPath(),
+                new ResourceLocation(ChangShengJue.MOD_ID,"block/" + path));
     }
 
-    private ItemModelBuilder saplingItem(RegistryObject<Block> item) {
-        return withExistingParent(item.getId().getPath(),
+    private ItemModelBuilder saplingItem(RegistryObject<Block> block) {
+        return withExistingParent(block.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(ChangShengJue.MOD_ID,"block/" + item.getId().getPath()));
+                new ResourceLocation(ChangShengJue.MOD_ID,"block/" + block.getId().getPath()));
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item){

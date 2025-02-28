@@ -39,11 +39,17 @@ public class ChangShengJueFoods {
     public static final FoodProperties GUI_HUA_TANG_OU = (new FoodProperties.Builder()).nutrition(5).saturationMod(6F).meat().build();
     public static final FoodProperties BA_BAO_ZHOU = (new FoodProperties.Builder()).nutrition(10).saturationMod(12.0F).meat().build();
 
+    //孔雀肉
+    public static final FoodProperties PEACOCK = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).meat().build();
+    public static final FoodProperties COOKED_PEACOCK = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).meat().build();
+    //鳄鱼
+    public static final FoodProperties CROC = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).meat().build();
+    public static final FoodProperties COOKED_CROC = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.8F).meat().build();
+
     public static final FoodProperties MULBERRY_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(4.8F).build();
     public static final FoodProperties APPLE_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(4.8F).build();
     public static final FoodProperties HOT_PEAR_SOUP = (new FoodProperties.Builder()).nutrition(8).saturationMod(5.2F).build();
     public static final FoodProperties GRAPE_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(4.8F).build();
-
     //茶
     public static final FoodProperties BILUOCHUN_TEA = (new FoodProperties.Builder()).nutrition(1).saturationMod(1.0F).effect(new MobEffectInstance(ChangShengJueEffects.BILUOCHUN_TEAS.get(), 1200, 0), 1.0F).alwaysEat().build();
     public static final FoodProperties LONG_JING_TEA = (new FoodProperties.Builder()).nutrition(1).saturationMod(1.0F).effect(new MobEffectInstance(ChangShengJueEffects.LONG_JING_TEAS.get(), 1200, 0), 1.0F).alwaysEat().build();

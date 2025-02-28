@@ -259,6 +259,16 @@ public class ChangShengJueItems {
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.VENISON)));
     public static final RegistryObject<Item> COOKED_VENISON = ITEMS.register("cooked_venison",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.COOKED_VENISON)));
+
+    public static final RegistryObject<Item> PEACOCK = ITEMS.register("peacock",
+            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.PEACOCK)));
+    public static final RegistryObject<Item> COOKED_PEACOCK = ITEMS.register("cooked_peacock",
+            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.COOKED_PEACOCK)));
+    public static final RegistryObject<Item> CROC = ITEMS.register("croc",
+            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.CROC)));
+    public static final RegistryObject<Item> COOKED_CROC = ITEMS.register("cooked_croc",
+            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.COOKED_CROC)));
+
     public static final RegistryObject<Item> TIGER_SKIN = ITEMS.register("tiger_skin",
             ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CROC_SKIN = ITEMS.register("croc_skin",

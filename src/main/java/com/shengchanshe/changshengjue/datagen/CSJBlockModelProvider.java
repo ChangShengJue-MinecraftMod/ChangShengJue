@@ -149,14 +149,115 @@ public class CSJBlockModelProvider extends BlockModelProvider {
         parentSplicingMiddleBlock(ChangShengJueBlocks.CHERRY_WINE_TABLE,"wine_table");
         parentSplicingMiddleBlock(ChangShengJueBlocks.SPRUCE_WINE_TABLE,"wine_table");
         parentSplicingMiddleBlock(ChangShengJueBlocks.ZI_TAN_WINE_TABLE,"wine_table");
+
+        //屋脊
+        parentBlock(ChangShengJueBlocks.GRE_ROOF_RIDGE,"roof_ridge","gre_roof_ridge_demon_mask");
+        parentBlock(ChangShengJueBlocks.RED_ROOF_RIDGE,"roof_ridge","red_roof_ridge_demon_mask");
+        parentBlock(ChangShengJueBlocks.BLACK_ROOF_RIDGE,"roof_ridge","black_roof_ridge_demon_mask");
+        parentBlock(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE,"roof_ridge","golden_roof_ridge_demon_mask");
+        parentBlock(ChangShengJueBlocks.BLUE_ROOF_RIDGE,"roof_ridge","blue_roof_ridge_demon_mask");
+
+        parentBlock(ChangShengJueBlocks.GRE_DEMON_MASK,"demon_mask","gre_roof_ridge_demon_mask");
+        parentBlock(ChangShengJueBlocks.RED_DEMON_MASK,"demon_mask","red_roof_ridge_demon_mask");
+        parentBlock(ChangShengJueBlocks.BLACK_DEMON_MASK,"demon_mask","black_roof_ridge_demon_mask");
+        parentBlock(ChangShengJueBlocks.GOLDEN_DEMON_MASK,"demon_mask","golden_roof_ridge_demon_mask");
+        parentBlock(ChangShengJueBlocks.BLUE_DEMON_MASK,"demon_mask","blue_roof_ridge_demon_mask");
+
+        //脊刹
+        parentBottomBlock(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION,"ridge_finial_pavilion_bottom");
+        parentBottomBlock(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION,"ridge_finial_pavilion_bottom");
+        parentBottomBlock(ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION,"ridge_finial_pavilion_bottom");
+        parentBottomBlock(ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION,"ridge_finial_pavilion_bottom");
+        parentBottomBlock(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION,"ridge_finial_pavilion_bottom");
+
+        parentTopBlock(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION,"ridge_finial_pavilion_top");
+        parentTopBlock(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION,"ridge_finial_pavilion_top");
+        parentTopBlock(ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION,"ridge_finial_pavilion_top");
+        parentTopBlock(ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION,"ridge_finial_pavilion_top");
+        parentTopBlock(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION,"ridge_finial_pavilion_top");
+
+        parentBottomBlock(ChangShengJueBlocks.GRE_CHARACTER_PLAQUE_PAVILION,"character_plaque_pavilion_bottom");
+        parentBottomBlock(ChangShengJueBlocks.RED_CHARACTER_PLAQUE_PAVILION,"character_plaque_pavilion_bottom");
+        parentBottomBlock(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION,"character_plaque_pavilion_bottom");
+        parentBottomBlock(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION,"character_plaque_pavilion_bottom");
+        parentBottomBlock(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION,"character_plaque_pavilion_bottom");
+
+        parentTopBlock(ChangShengJueBlocks.GRE_CHARACTER_PLAQUE_PAVILION,"character_plaque_pavilion_top");
+        parentTopBlock(ChangShengJueBlocks.RED_CHARACTER_PLAQUE_PAVILION,"character_plaque_pavilion_top");
+        parentTopBlock(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION,"character_plaque_pavilion_top");
+        parentTopBlock(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION,"character_plaque_pavilion_top");
+        parentTopBlock(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION,"character_plaque_pavilion_top");
+
+        parentBottomBlock(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE,"gable_ridge_cylinder_tile_bottom","cylinder_tile_gre_block");
+        parentBottomBlock(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE,"gable_ridge_cylinder_tile_bottom","cylinder_tile_red_block");
+        parentBottomBlock(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE,"gable_ridge_cylinder_tile_bottom","cylinder_tile_black_block");
+        parentBottomBlock(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE,"gable_ridge_cylinder_tile_bottom","cylinder_tile_golden_block");
+        parentBottomBlock(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE,"gable_ridge_cylinder_tile_bottom","cylinder_tile_blue_block");
+
+        parentTopBlock(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE,"gable_ridge_cylinder_tile_top","cylinder_tile_gre_block");
+        parentTopBlock(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE,"gable_ridge_cylinder_tile_top","cylinder_tile_red_block");
+        parentTopBlock(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE,"gable_ridge_cylinder_tile_top","cylinder_tile_black_block");
+        parentTopBlock(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE,"gable_ridge_cylinder_tile_top","cylinder_tile_golden_block");
+        parentTopBlock(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE,"gable_ridge_cylinder_tile_top","cylinder_tile_blue_block");
+
+        parentBlock(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_bottom_left",
+                "gable_ridge_cylinder_tile_bottom_left","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_bottom_left",
+                "gable_ridge_cylinder_tile_bottom_left","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_bottom_left",
+                "gable_ridge_cylinder_tile_bottom_left","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_bottom_left",
+                "gable_ridge_cylinder_tile_bottom_left","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_bottom_left",
+                "gable_ridge_cylinder_tile_bottom_left","cylinder_tile_blue_block");
     }
 
+    //自定义方块模型
     private BlockModelBuilder parentBlock(RegistryObject<Block> block,String parent){
         return withExistingParent(block.getId().getPath(),
                 new ResourceLocation(ChangShengJue.MOD_ID,"block/" + parent))
                 .texture("1","block/"+block.getId().getPath())
                 .texture("particle","block/"+block.getId().getPath());
     }
+    //自定义两格方块模型
+    private BlockModelBuilder parentBottomBlock(RegistryObject<Block> block,String parent){
+        return withExistingParent(block.getId().getPath() + "_bottom",
+                new ResourceLocation(ChangShengJue.MOD_ID,"block/" + parent))
+                .texture("1","block/"+block.getId().getPath())
+                .texture("particle","block/"+block.getId().getPath());
+    }
+    private BlockModelBuilder parentTopBlock(RegistryObject<Block> block,String parent){
+        return withExistingParent(block.getId().getPath() + "_top",
+                new ResourceLocation(ChangShengJue.MOD_ID,"block/" + parent))
+                .texture("1","block/"+block.getId().getPath())
+                .texture("particle","block/"+block.getId().getPath());
+    }
+
+    //自定义方块模型贴图
+    private BlockModelBuilder parentBlock(RegistryObject<Block> block, String parent, String textures){
+        return withExistingParent(block.getId().getPath(),
+                new ResourceLocation(ChangShengJue.MOD_ID,"block/" + parent))
+                .texture("1","block/" + textures)
+                .texture("particle","block/"+ textures);
+    }
+    private BlockModelBuilder parentTopBlock(RegistryObject<Block> block, String parent, String textures){
+        return withExistingParent(block.getId().getPath() + "_top",
+                new ResourceLocation(ChangShengJue.MOD_ID,"block/" + parent))
+                .texture("1","block/" + textures)
+                .texture("particle","block/"+ textures);
+    }
+    private BlockModelBuilder parentBottomBlock(RegistryObject<Block> block, String parent, String textures){
+        return withExistingParent(block.getId().getPath() + "_bottom",
+                new ResourceLocation(ChangShengJue.MOD_ID,"block/" + parent))
+                .texture("1","block/" + textures)
+                .texture("particle","block/"+ textures);
+    }
+    private BlockModelBuilder parentBlock(String jsonName,String parent,String textures){
+        return withExistingParent(jsonName, new ResourceLocation(ChangShengJue.MOD_ID,"block/" + parent))
+                .texture("1","block/" + textures)
+                .texture("particle","block/"+ textures);
+    }
+
     //拼接方块模型
     private BlockModelBuilder parentSplicingBlock(RegistryObject<Block> block,String parent){
         return withExistingParent(block.getId().getPath(),
@@ -164,6 +265,7 @@ public class CSJBlockModelProvider extends BlockModelProvider {
                 .texture("1","block/"+block.getId().getPath())
                 .texture("particle","block/"+block.getId().getPath());
     }
+
     private BlockModelBuilder parentSplicingSideBlock(RegistryObject<Block> block,String parent){
         return withExistingParent(block.getId().getPath() + "_side",
                 new ResourceLocation(ChangShengJue.MOD_ID,"block/" + parent + "_side"))

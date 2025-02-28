@@ -12,17 +12,17 @@ import software.bernie.geckolib.model.data.EntityModelData;
 public class MonkeyModel extends GeoModel<Monkey> {
     @Override
     public ResourceLocation getModelResource(Monkey monkeyEntity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/monkey_entity.geo.json");
+        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/monkey/monkey_entity.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(Monkey monkeyEntity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/monkey_entity.png");
+        return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/monkey/monkey_entity.png");
     }
 
     @Override
     public ResourceLocation getAnimationResource(Monkey monkeyEntity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"animations/monkey_entity.animation.json");
+        return new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/monkey/monkey_entity.animation.json");
     }
 
     @Override

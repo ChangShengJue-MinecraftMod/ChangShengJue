@@ -1,5 +1,6 @@
 package com.shengchanshe.changshengjue.block.custom.shing_mun.right;
 
+import com.shengchanshe.changshengjue.block.custom.shing_mun.left.entity.ShingMunLeftEntity;
 import com.shengchanshe.changshengjue.block.custom.shing_mun.right.entity.ShingMunRightEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
@@ -70,7 +72,8 @@ public class ShingMunRight extends BaseEntityBlock {
         return this.defaultBlockState()
                 .setValue(FACING, playerFacing) // 设置朝向
                 .setValue(HALF, DoubleBlockHalf.LOWER) // 默认设置为 LOWER
-                .setValue(LEFT, false) // 默认设置为 Right 列
+                .setValue(LEFT, false)
+                .setValue(REST, false)
                 .setValue(OPEN, false)
                 .setValue(ONE, false)
                 .setValue(TWO,false)
@@ -137,6 +140,7 @@ public class ShingMunRight extends BaseEntityBlock {
                     BlockState newState = pState
                             .setValue(HALF, y < 2 ? DoubleBlockHalf.LOWER : DoubleBlockHalf.UPPER) // 设置上下半块
                             .setValue(LEFT, x == 1) // 设置是否为左半部分
+                            .setValue(REST,false)
                             .setValue(ONE, y == 0 && x == 0) // 设置第一个方块
                             .setValue(TWO,y == 0 && x == 1) // 设置第二个方块
                             .setValue(THREE, y == 1 && x == 0) // 设置第三个方块
@@ -214,7 +218,7 @@ public class ShingMunRight extends BaseEntityBlock {
                 }
 
                 // 递归调用以同步更远的方块
-                syncNeighborBlocks(level, neighborPos, newOpen, true,visited);
+                syncNeighborBlocks(level, neighborPos, newOpen, newRest,visited);
             }
         }
     }
@@ -327,6 +331,33 @@ public class ShingMunRight extends BaseEntityBlock {
                 }
             }
         }
+    }
+
+    @Override
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
+        BlockEntity blockEntity = level.getBlockEntity(currentPos);
+        // 检查当前方块是否有 RIGHT 属性为 true
+        if (state.getValue(LEFT)) {
+            if (blockEntity instanceof ShingMunRightEntity entity){
+                // 获取当前方块的朝向
+                Direction facing = state.getValue(FACING);
+                // 计算右侧位置
+                BlockPos rightPos = currentPos.relative(facing.getClockWise());
+                // 获取右侧方块状态
+                BlockState rightState = level.getBlockState(rightPos);
+                // 检查右侧方块是否为空气
+                if (rightState.isAir()) {
+                    // 如果是空气，将 REST 属性设置为 true
+                    entity.setRest(state.getValue(REST));
+                    return state.setValue(REST, true);
+                }else {
+                    entity.setRest(state.getValue(REST));
+                    return state.setValue(REST, false);
+                }
+            }
+        }
+        // 如果没有满足条件，返回原状态
+        return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
     }
 
     @Override

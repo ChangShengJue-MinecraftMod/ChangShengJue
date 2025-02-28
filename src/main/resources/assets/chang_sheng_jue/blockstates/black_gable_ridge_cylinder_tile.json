@@ -1,0 +1,67 @@
+{
+  "variants": {
+    "facing=east,half=bottom,left=false": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_bottom",
+      "y": 90
+    },
+    "facing=north,half=bottom,left=false": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_bottom"
+    },
+    "facing=south,half=bottom,left=false": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_bottom",
+      "y": 180
+    },
+    "facing=west,half=bottom,left=false": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_bottom",
+      "y": 270
+    },
+
+    "facing=east,half=top,left=false": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_top",
+      "y": 90
+    },
+    "facing=north,half=top,left=false": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_top"
+    },
+    "facing=south,half=top,left=false": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_top",
+      "y": 180
+    },
+    "facing=west,half=top,left=false": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_top",
+      "y": 270
+    },
+
+    "facing=east,half=bottom,left=true": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_bottom_left",
+      "y": 90
+    },
+    "facing=north,half=bottom,left=true": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_bottom_left"
+    },
+    "facing=south,half=bottom,left=true": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_bottom_left",
+      "y": 180
+    },
+    "facing=west,half=bottom,left=true": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_bottom_left",
+      "y": 270
+    },
+
+    "facing=east,half=top,left=true": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_top",
+      "y": 90
+    },
+    "facing=north,half=top,left=true": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_top"
+    },
+    "facing=south,half=top,left=true": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_top",
+      "y": 180
+    },
+    "facing=west,half=top,left=true": {
+      "model": "chang_sheng_jue:block/black_gable_ridge_cylinder_tile_top",
+      "y": 270
+    }
+  }
+}

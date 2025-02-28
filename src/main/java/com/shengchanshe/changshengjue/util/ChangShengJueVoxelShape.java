@@ -104,6 +104,31 @@ public class ChangShengJueVoxelShape {
             Block.box(15, 12, 12, 16, 16, 16)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
+    public static final VoxelShape CYLINDER_TILE_BLOCK_N_2_B = Stream.of(
+            Block.box(0, 0, 0, 16, 5, 16),
+            Block.box(0, 5, 8, 16, 12, 16),
+            Block.box(4, 4, 0, 12, 8, 8),
+            Block.box(4, 12, 8, 12, 16, 16)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape CYLINDER_TILE_BLOCK_E_2_B = Stream.of(
+            Block.box(0, 0, 0, 16, 5, 16),
+            Block.box(0, 5, 0, 8, 12, 16),
+            Block.box(8, 4, 4, 16, 8, 12),
+            Block.box(0, 12, 4, 8, 16, 12)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape CYLINDER_TILE_BLOCK_S_2_B = Stream.of(
+            Block.box(0, 0, 0, 16, 5, 16),
+            Block.box(0, 5, 0, 16, 12, 8),
+            Block.box(4, 4, 8, 12, 8, 16),
+            Block.box(4, 12, 0, 12, 16, 8)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape CYLINDER_TILE_BLOCK_W_2_B = Stream.of(
+            Block.box(0, 0, 0, 16, 5, 16),
+            Block.box(8, 5, 0, 16, 12, 16),
+            Block.box(0, 4, 4, 8, 8, 12),
+            Block.box(8, 12, 4, 16, 16, 12)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+
     public static final VoxelShape CYLINDER_TILE_BLOCK_N_3 = Stream.of(
             Block.box(2.9000000000000004, 3, 10, 13.1, 13, 16),
             Block.box(4, 13, 4, 12, 21, 7),
@@ -149,6 +174,85 @@ public class ChangShengJueVoxelShape {
             Block.box(15, 12, 0, 16, 16, 4),
             Block.box(15, 12, 12, 16, 16, 16)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+
+    //鸱吻
+    public static final VoxelShape DEMON_MASK_N = Stream.of(
+            Block.box(0, 0, 0, 16, 5, 16),
+            Block.box(4, 5, 0, 12, 13, 16),
+            Block.box(3, 5, 4, 13, 16, 18),
+            Block.box(4, 16, 7, 12, 21, 17),
+            Block.box(5, 21, 5, 11, 25, 16),
+            Block.box(6, 25, 0, 10, 27, 13),
+            Block.box(6, 27, 5, 10, 28, 11),
+            Block.box(6, 13, 1, 10, 15, 4),
+            Block.box(3, 10, 1, 13, 13, 4),
+            Block.box(3, 5, 2, 13, 7, 4)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape DEMON_MASK_E = Stream.of(
+            Block.box(0, 0, 0, 16, 5, 16),
+            Block.box(0, 5, 4, 16, 13, 12),
+            Block.box(-2, 5, 3, 12, 16, 13),
+            Block.box(-1, 16, 4, 9, 21, 12),
+            Block.box(0, 21, 5, 11, 25, 11),
+            Block.box(3, 25, 6, 16, 27, 10),
+            Block.box(5, 27, 6, 11, 28, 10),
+            Block.box(12, 13, 6, 15, 15, 10),
+            Block.box(12, 10, 3, 15, 13, 13),
+            Block.box(12, 5, 3, 14, 7, 13)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape DEMON_MASK_S = Stream.of(
+            Block.box(0, 0, 0, 16, 5, 16),
+            Block.box(4, 5, 0, 12, 13, 16),
+            Block.box(3, 5, -2, 13, 16, 12),
+            Block.box(4, 16, -1, 12, 21, 9),
+            Block.box(5, 21, 0, 11, 25, 11),
+            Block.box(6, 25, 3, 10, 27, 16),
+            Block.box(6, 27, 5, 10, 28, 11),
+            Block.box(6, 13, 12, 10, 15, 15),
+            Block.box(3, 10, 12, 13, 13, 15),
+            Block.box(3, 5, 12, 13, 7, 14)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape DEMON_MASK_W = Stream.of(
+            Block.box(0, 0, 0, 16, 5, 16),
+            Block.box(0, 5, 4, 16, 13, 12),
+            Block.box(4, 5, 3, 18, 16, 13),
+            Block.box(7, 16, 4, 17, 21, 12),
+            Block.box(5, 21, 5, 16, 25, 11),
+            Block.box(0, 25, 6, 13, 27, 10),
+            Block.box(5, 27, 6, 11, 28, 10),
+            Block.box(1, 13, 6, 4, 15, 10),
+            Block.box(1, 10, 3, 4, 13, 13),
+            Block.box(2, 5, 3, 4, 7, 13)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+
+    //脊刹
+    public static final VoxelShape RIDGE_FINIAL_PAVILION_BOTTOM_NS = Shapes.join(Block.box(0, 0, 0, 16, 5, 16), Stream.of(
+            Block.box(2, 5, 3, 14, 13, 13),
+            Block.box(-5, 12, 3, -3, 14, 13),
+            Block.box(-3, 5, 3, -2, 13, 13),
+            Block.box(-2, 5, 3, 2, 14, 13),
+            Block.box(14, 5, 3, 18, 14, 13),
+            Block.box(18, 5, 3, 19, 13, 13),
+            Block.box(19, 12, 3, 21, 14, 13),
+            Block.box(3, 13, 3, 13, 16, 13)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get(), BooleanOp.OR);
+
+    public static final VoxelShape RIDGE_FINIAL_PAVILION_BOTTOM_EW = Shapes.join(Block.box(0, 0, 0, 16, 5, 16), Stream.of(
+            Block.box(3, 5, 2, 13, 13, 14),
+            Block.box(3, 12, -5, 13, 14, -3),
+            Block.box(3, 5, -3, 13, 13, -2),
+            Block.box(3, 5, -2, 13, 14, 2),
+            Block.box(3, 5, 14, 13, 14, 18),
+            Block.box(3, 5, 18, 13, 13, 19),
+            Block.box(3, 12, 19, 13, 14, 21),
+            Block.box(3, 13, 3, 13, 16, 13)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get(), BooleanOp.OR);
+
+
+    public static final VoxelShape CYLINDER_TILE_BLOCK_NS_5_B = Shapes.join(Block.box(0, 0, 0, 16, 12, 16),
+            Block.box(4, 12, 0, 12, 16, 16), BooleanOp.OR);
+    public static final VoxelShape CYLINDER_TILE_BLOCK_EW_5_B = Shapes.join(Block.box(0, 0, 0, 16, 12, 16),
+            Block.box(0, 12, 4, 16, 16, 12), BooleanOp.OR);
 
     //织布机
     public static final VoxelShape CHANG_SHENG_JUE_LOOM_NORTH = Stream.of(

@@ -1,0 +1,8 @@
+{
+  "parent": "chang_sheng_jue:block/cylindertile/cylinder_tile_block_8_double",
+  "textures": {
+    "bottom": "chang_sheng_jue:block/cylinder_tile_blue_block_top",
+    "side": "chang_sheng_jue:block/cylinder_tile_blue_block_top",
+    "top": "chang_sheng_jue:block/cylinder_tile_blue_block_top"
+  }
+}

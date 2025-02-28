@@ -17,9 +17,9 @@ public class MonkeyRenderer extends GeoEntityRenderer<Monkey> {
     @Override
     public ResourceLocation getTextureLocation(Monkey instance) {
         if (instance.isBaby()){
-            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/monkey_entity.png");
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/monkey/monkey_entity.png");
         }
-        return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/monkey_entity.png");
+        return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/monkey/monkey_entity.png");
     }
 
     //获取渲染类型

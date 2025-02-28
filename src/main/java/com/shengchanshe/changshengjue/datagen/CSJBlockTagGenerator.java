@@ -109,6 +109,42 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get())
                 .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get())
 
+                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8.get())
+                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8.get())
+                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get())
+                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get())
+                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get())
+
+                .add(ChangShengJueBlocks.GRE_ROOF_RIDGE.get())
+                .add(ChangShengJueBlocks.RED_ROOF_RIDGE.get())
+                .add(ChangShengJueBlocks.BLACK_ROOF_RIDGE.get())
+                .add(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE.get())
+                .add(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get())
+
+                .add(ChangShengJueBlocks.GRE_DEMON_MASK.get())
+                .add(ChangShengJueBlocks.RED_DEMON_MASK.get())
+                .add(ChangShengJueBlocks.BLACK_DEMON_MASK.get())
+                .add(ChangShengJueBlocks.GOLDEN_DEMON_MASK.get())
+                .add(ChangShengJueBlocks.BLUE_DEMON_MASK.get())
+
+                .add(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION.get())
+                .add(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION.get())
+                .add(ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION.get())
+                .add(ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION.get())
+                .add(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION.get())
+
+                .add(ChangShengJueBlocks.GRE_CHARACTER_PLAQUE_PAVILION.get())
+                .add(ChangShengJueBlocks.RED_CHARACTER_PLAQUE_PAVILION.get())
+                .add(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION.get())
+                .add(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION.get())
+                .add(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION.get())
+
+                .add(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get())
+
                 .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get())
                 .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get())
                 .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_2.get())

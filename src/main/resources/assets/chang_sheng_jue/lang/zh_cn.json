@@ -72,6 +72,11 @@
   "item.chang_sheng_jue.hot_pear_soup": "热梨汤",
   "item.chang_sheng_jue.grape_juice": "葡萄汁",
 
+  "item.chang_sheng_jue.croc": "生鳄鱼肉",
+  "item.chang_sheng_jue.cooked_croc": "熟鳄鱼肉",
+  "item.chang_sheng_jue.peacock": "生孔雀肉",
+  "item.chang_sheng_jue.cooked_peacock": "熟孔雀肉",
+
   "item.chang_sheng_jue.ci_pan": "瓷盘",
   "item.chang_sheng_jue.ci_wan": "瓷碗",
   "item.chang_sheng_jue.ci_bei": "瓷杯",
@@ -436,6 +441,42 @@
   "block.chang_sheng_jue.cylinder_tile_red_block_7": "红色筒瓦飞檐",
   "block.chang_sheng_jue.cylinder_tile_black_block_7": "黑色筒瓦飞檐",
   "block.chang_sheng_jue.cylinder_tile_golden_block_7": "金色筒瓦飞檐",
+
+  "block.chang_sheng_jue.cylinder_tile_blue_block_8": "青色脊兽筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_gre_block_8": "灰色脊兽筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_red_block_8": "红色脊兽筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_black_block_8": "黑色脊兽筒瓦",
+  "block.chang_sheng_jue.cylinder_tile_golden_block_8": "金色脊兽筒瓦",
+
+  "block.chang_sheng_jue.blue_roof_ridge": "青色屋脊",
+  "block.chang_sheng_jue.gre_roof_ridge": "灰色屋脊",
+  "block.chang_sheng_jue.red_roof_ridge": "红色屋脊",
+  "block.chang_sheng_jue.black_roof_ridge": "黑色屋脊",
+  "block.chang_sheng_jue.golden_roof_ridge": "金色屋脊",
+
+  "block.chang_sheng_jue.blue_demon_mask": "青色鸱吻",
+  "block.chang_sheng_jue.gre_demon_mask": "灰色鸱吻",
+  "block.chang_sheng_jue.red_demon_mask": "红色鸱吻",
+  "block.chang_sheng_jue.black_demon_mask": "黑色鸱吻",
+  "block.chang_sheng_jue.golden_demon_mask": "金色鸱吻",
+
+  "block.chang_sheng_jue.blue_ridge_finial_pavilion": "青色脊刹",
+  "block.chang_sheng_jue.gre_ridge_finial_pavilion": "灰色脊刹",
+  "block.chang_sheng_jue.red_ridge_finial_pavilion": "红色脊刹",
+  "block.chang_sheng_jue.black_ridge_finial_pavilion": "黑色脊刹",
+  "block.chang_sheng_jue.golden_ridge_finial_pavilion": "金色脊刹",
+
+  "block.chang_sheng_jue.blue_character_plaque_pavilion": "青色脊刹",
+  "block.chang_sheng_jue.gre_character_plaque_pavilion": "灰色脊刹",
+  "block.chang_sheng_jue.red_character_plaque_pavilion": "红色脊刹",
+  "block.chang_sheng_jue.black_character_plaque_pavilion": "黑色脊刹",
+  "block.chang_sheng_jue.golden_character_plaque_pavilion": "金色脊刹",
+
+  "block.chang_sheng_jue.blue_gable_ridge_cylinder_tile": "青色垂脊筒瓦",
+  "block.chang_sheng_jue.gre_gable_ridge_cylinder_tile": "灰色垂脊筒瓦",
+  "block.chang_sheng_jue.red_gable_ridge_cylinder_tile": "红色垂脊筒瓦",
+  "block.chang_sheng_jue.black_gable_ridge_cylinder_tile": "黑色垂脊筒瓦",
+  "block.chang_sheng_jue.golden_gable_ridge_cylinder_tile": "金色垂脊筒瓦",
 
   "block.chang_sheng_jue.golden_tile_block": "金色瓦片",
   "block.chang_sheng_jue.golden_tile_block_1": "金色瓦片",

@@ -3,7 +3,9 @@ package com.shengchanshe.changshengjue.event.martial_arts;
 import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCapabilityProvider;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.paoding.PaodingClientData;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
+import com.shengchanshe.changshengjue.entity.custom.croc.Croc;
 import com.shengchanshe.changshengjue.entity.custom.deer.AbstractDeer;
+import com.shengchanshe.changshengjue.entity.custom.peacock.AbstractPeacockEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.PaodingPacket;
@@ -126,6 +128,12 @@ public class PaodingEvent {
                                     level.addFreshEntity(entityToSpawn);
                                 }else if (event.getEntity() instanceof AbstractDeer){
                                     ItemEntity entityToSpawn = new ItemEntity(level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), new ItemStack(ChangShengJueItems.VENISON.get()));
+                                    level.addFreshEntity(entityToSpawn);
+                                }else if (event.getEntity() instanceof AbstractPeacockEntity){
+                                    ItemEntity entityToSpawn = new ItemEntity(level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), new ItemStack(ChangShengJueItems.PEACOCK.get()));
+                                    level.addFreshEntity(entityToSpawn);
+                                }else if (event.getEntity() instanceof Croc){
+                                    ItemEntity entityToSpawn = new ItemEntity(level, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), new ItemStack(ChangShengJueItems.CROC.get()));
                                     level.addFreshEntity(entityToSpawn);
                                 }
                                 if (paoding.getPaodingUseCount() < 1000) {

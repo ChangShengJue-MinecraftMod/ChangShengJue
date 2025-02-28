@@ -13,6 +13,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.IntRange;
@@ -261,11 +262,6 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get());
         this.dropSelf(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get());
         this.dropSelf(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get());
-        this.dropSelf(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get());
-        this.dropSelf(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get());
-        this.dropSelf(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get());
-        this.dropSelf(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get());
-        this.dropSelf(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_1.get());
         this.dropSelf(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_1.get());
         this.dropSelf(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_1.get());
@@ -301,6 +297,36 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get());
         this.dropSelf(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get());
         this.dropSelf(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get());
+        //屋脊
+        this.dropSelf(ChangShengJueBlocks.GRE_ROOF_RIDGE.get());
+        this.dropSelf(ChangShengJueBlocks.RED_ROOF_RIDGE.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_ROOF_RIDGE.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get());
+        //鸱吻
+        this.dropSelf(ChangShengJueBlocks.GRE_DEMON_MASK.get());
+        this.dropSelf(ChangShengJueBlocks.RED_DEMON_MASK.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_DEMON_MASK.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_DEMON_MASK.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_DEMON_MASK.get());
+        //脊刹
+        this.dropSelf(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION.get());
+        this.dropSelf(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION.get());
+        this.dropSelf(ChangShengJueBlocks.GRE_CHARACTER_PLAQUE_PAVILION.get());
+        this.dropSelf(ChangShengJueBlocks.RED_CHARACTER_PLAQUE_PAVILION.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION.get());
+        //垂脊筒瓦
+        this.dropSelf(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get());
+
         this.dropSelf(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get());
         this.dropSelf(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_2.get());
@@ -311,11 +337,11 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.TILE_BLOCK_2.get());
         this.dropSelf(ChangShengJueBlocks.TILE_BLOCK_3.get());
         this.dropSelf(ChangShengJueBlocks.TILE_BLOCK_4.get());
-        this.add(ChangShengJueBlocks.DOOR_BIRCH_BLOCK.get(), (door) -> this.createDoorTable(door));
-        this.add(ChangShengJueBlocks.DOOR_ACACIA_BLOCK.get(), (door) -> this.createDoorTable(door));
-        this.add(ChangShengJueBlocks.DOOR_DARK_OAK_BLOCK.get(), (door) -> this.createDoorTable(door));
-        this.add(ChangShengJueBlocks.DOOR_OAK_BLOCK.get(), (door) -> this.createDoorTable(door));
-        this.add(ChangShengJueBlocks.DOOR_SPRUCE_BLOCK.get(), (door) -> this.createDoorTable(door));
+        this.add(ChangShengJueBlocks.DOOR_BIRCH_BLOCK.get(), this::createDoorTable);
+        this.add(ChangShengJueBlocks.DOOR_ACACIA_BLOCK.get(), this::createDoorTable);
+        this.add(ChangShengJueBlocks.DOOR_DARK_OAK_BLOCK.get(), this::createDoorTable);
+        this.add(ChangShengJueBlocks.DOOR_OAK_BLOCK.get(), this::createDoorTable);
+        this.add(ChangShengJueBlocks.DOOR_SPRUCE_BLOCK.get(), this::createDoorTable);
         this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_ACACIA_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_DARK_OAK_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_OAK_BLOCK.get());
@@ -486,6 +512,17 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
                 block -> createSlabItemTable(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get()));
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(),
                 block -> createSlabItemTable(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get()));
+
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8.get()));
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8.get()));
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get()));
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get()));
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get()));
     }
 
     public void createLeavesFruitsDrops(Block leavesBlock, Item fruitsItem,Block sapling){

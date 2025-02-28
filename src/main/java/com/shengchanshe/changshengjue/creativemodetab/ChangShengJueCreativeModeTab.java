@@ -155,6 +155,42 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get());
                 output.accept(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get());
                 output.accept(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get());
+                output.accept(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8.get());
+                output.accept(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8.get());
+                output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get());
+                output.accept(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get());
+                output.accept(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get());
+
+                output.accept(ChangShengJueBlocks.GRE_ROOF_RIDGE.get());
+                output.accept(ChangShengJueBlocks.RED_ROOF_RIDGE.get());
+                output.accept(ChangShengJueBlocks.BLACK_ROOF_RIDGE.get());
+                output.accept(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE.get());
+                output.accept(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get());
+
+                output.accept(ChangShengJueBlocks.GRE_DEMON_MASK.get());
+                output.accept(ChangShengJueBlocks.RED_DEMON_MASK.get());
+                output.accept(ChangShengJueBlocks.BLACK_DEMON_MASK.get());
+                output.accept(ChangShengJueBlocks.GOLDEN_DEMON_MASK.get());
+                output.accept(ChangShengJueBlocks.BLUE_DEMON_MASK.get());
+
+                output.accept(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION.get());
+                output.accept(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION.get());
+                output.accept(ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION.get());
+                output.accept(ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION.get());
+                output.accept(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION.get());
+
+                output.accept(ChangShengJueBlocks.GRE_CHARACTER_PLAQUE_PAVILION.get());
+                output.accept(ChangShengJueBlocks.RED_CHARACTER_PLAQUE_PAVILION.get());
+                output.accept(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION.get());
+                output.accept(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION.get());
+                output.accept(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION.get());
+
+                output.accept(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get());
+
                 output.accept(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get());
                 output.accept(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get());
                 output.accept(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_2.get());
@@ -329,6 +365,13 @@ public class ChangShengJueCreativeModeTab {
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_FOOD_AND_DRINK = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_food_and_drink",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_food_and_drink")).icon(() ->
                     new ItemStack(ChangShengJueItems.PINEAPPLE.get())).displayItems((parameters,output)->{
+                output.accept(ChangShengJueItems.VENISON.get());
+                output.accept(ChangShengJueItems.COOKED_VENISON.get());
+                output.accept(ChangShengJueItems.PEACOCK.get());
+                output.accept(ChangShengJueItems.COOKED_PEACOCK.get());
+                output.accept(ChangShengJueItems.CROC.get());
+                output.accept(ChangShengJueItems.COOKED_CROC.get());
+
                 output.accept(ChangShengJueItems.PINEAPPLE.get());
                 output.accept(ChangShengJueItems.TOMATO.get());
                 output.accept(ChangShengJueItems.CORN.get());
@@ -363,8 +406,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.APPLE_JUICE.get());
                 output.accept(ChangShengJueItems.HOT_PEAR_SOUP.get());
                 output.accept(ChangShengJueItems.GRAPE_JUICE.get());
-                output.accept(ChangShengJueItems.VENISON.get());
-                output.accept(ChangShengJueItems.COOKED_VENISON.get());
+
                 output.accept(ChangShengJueItems.BILUOCHUN_TEAS.get());
                 output.accept(ChangShengJueItems.LONG_JING_TEAS.get());
                 output.accept(ChangShengJueItems.FEN_JIU.get());

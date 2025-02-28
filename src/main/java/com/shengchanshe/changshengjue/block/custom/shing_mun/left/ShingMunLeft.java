@@ -11,6 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
@@ -190,6 +191,7 @@ public class ShingMunLeft extends BaseEntityBlock{
                     BlockState newState = pState
                             .setValue(HALF, y < 2 ? DoubleBlockHalf.LOWER : DoubleBlockHalf.UPPER) // 前两层为 LOWER，后两层为 UPPER
                             .setValue(RIGHT, x == 1)
+                            .setValue(REST,false)
                             .setValue(ONE, y == 0 && x == 0)
                             .setValue(TWO,y == 0 && x == 1)
                             .setValue(THREE, y == 1 && x == 0)
@@ -198,7 +200,6 @@ public class ShingMunLeft extends BaseEntityBlock{
                             .setValue(SIX,y == 2 && x == 1)
                             .setValue(SEVEN, y == 3 && x == 0)
                             .setValue(EIGHT,y == 3 && x == 1); // 第二列的方块标记为 RIGHT
-
                     // 直接替换目标位置的方块（包括可替换的方块）
                     pLevel.setBlockAndUpdate(targetPos, newState);
                 }
@@ -307,7 +308,8 @@ public class ShingMunLeft extends BaseEntityBlock{
         return this.defaultBlockState()
                 .setValue(FACING, playerFacing) // 设置朝向
                 .setValue(HALF, DoubleBlockHalf.LOWER) // 默认设置为 LOWER
-                .setValue(RIGHT, false) // 默认设置为 LEFT 列
+                .setValue(RIGHT, false)
+                .setValue(REST, false)
                 .setValue(OPEN, false)
                 .setValue(ONE, false)
                 .setValue(TWO,false)
@@ -318,6 +320,34 @@ public class ShingMunLeft extends BaseEntityBlock{
                 .setValue(SEVEN, false)
                 .setValue(EIGHT,false); // 默认关闭
     }
+
+    @Override
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
+        BlockEntity blockEntity = level.getBlockEntity(currentPos);
+        // 检查当前方块是否有 RIGHT 属性为 true
+        if (state.getValue(RIGHT)) {
+            if (blockEntity instanceof ShingMunLeftEntity entity){
+                // 获取当前方块的朝向
+                Direction facing = state.getValue(FACING);
+                // 计算右侧位置
+                BlockPos rightPos = currentPos.relative(facing.getCounterClockWise());
+                // 获取右侧方块状态
+                BlockState rightState = level.getBlockState(rightPos);
+                // 检查右侧方块是否为空气
+                if (rightState.isAir()) {
+                    // 如果是空气，将 REST 属性设置为 true
+                    entity.setRest(state.getValue(REST));
+                    return state.setValue(REST, true);
+                }else {
+                    entity.setRest(state.getValue(REST));
+                    return state.setValue(REST, false);
+                }
+            }
+        }
+        // 如果没有满足条件，返回原状态
+        return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
+    }
+
 
     @Override
     public void onNeighborChange(BlockState state, LevelReader level, BlockPos pos, BlockPos neighbor) {
@@ -341,9 +371,10 @@ public class ShingMunLeft extends BaseEntityBlock{
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof ShingMunLeftEntity entity) {
                 entity.setOpen(newOpen);
+                entity.setRest(state.getValue(REST));
             }
             // 同步切换周围相同类型的方块的 open 状态
-            syncNeighborBlocks(level, pos, newOpen,true, new HashSet<>());
+            syncNeighborBlocks(level, pos, newOpen,state.getValue(REST), new HashSet<>());
         }
         return InteractionResult.SUCCESS;
     }
@@ -374,7 +405,7 @@ public class ShingMunLeft extends BaseEntityBlock{
                 }
 
                 // 递归调用以同步更远的方块
-                syncNeighborBlocks(level, neighborPos, newOpen, true,visited);
+                syncNeighborBlocks(level, neighborPos, newOpen, newRest,visited);
             }
         }
     }

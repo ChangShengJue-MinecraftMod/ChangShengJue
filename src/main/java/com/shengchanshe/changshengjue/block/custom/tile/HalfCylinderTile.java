@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
@@ -21,10 +22,12 @@ import org.jetbrains.annotations.Nullable;
 
 public class HalfCylinderTile extends SlabBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final BooleanProperty BAFFLE = BooleanProperty.create("baffle");
 
     public HalfCylinderTile(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM)
+                .setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH).setValue(BAFFLE, false));
     }
 
     @Override
@@ -65,6 +68,18 @@ public class HalfCylinderTile extends SlabBlock {
     }
 
     @Override
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+        // 获取放置方块和触发事件的方块的状态
+        BlockState fromState = level.getBlockState(fromPos);
+
+        // 如果放置的方块和触发事件的方块是相同的
+        if (state.getBlock() == fromState.getBlock() && state.getValue(TYPE) == fromState.getValue(TYPE) && state.getValue(FACING) == fromState.getValue(FACING)) {
+            // 更改放置方块的BAFFLE属性
+            level.setBlock(fromPos, state.setValue(BAFFLE, true), 3);
+        }
+    }
+
+    @Override
     public BlockState rotate(BlockState blockState, Rotation rotation) {
         return blockState.setValue(FACING,rotation.rotate(blockState.getValue(FACING)));
     }
@@ -76,6 +91,6 @@ public class HalfCylinderTile extends SlabBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING,TYPE, WATERLOGGED);
+        builder.add(FACING,TYPE, WATERLOGGED,BAFFLE);
     }
 }

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "chang_sheng_jue:croc"
+  },
+  "result": "chang_sheng_jue:cooked_croc"
+}
