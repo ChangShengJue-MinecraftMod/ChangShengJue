@@ -32,6 +32,8 @@ import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmansh
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
+import com.shengchanshe.changshengjue.entity.custom.croc.Croc;
+import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.event.armor.ArmorEvent;
 import com.shengchanshe.changshengjue.event.martial_arts.*;
@@ -52,6 +54,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -65,6 +68,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -760,8 +764,32 @@ public class CSJEvent {
     //生物死亡事件
     @SubscribeEvent
     public static void onEntityDeath(LivingDeathEvent event){
+        //如果伤害来源为老虎
+        if (event.getSource().getEntity() instanceof Tiger tiger && event.getEntity() instanceof Animal) {
+            if (tiger.getFedTime() == 0 && !tiger.isTame())
+                tiger.setFedTime(3.3 * 60 * 20);
+        }
+        if (event.getSource().getEntity() instanceof Croc croc && event.getEntity() instanceof Animal) {
+            if (croc.getFedTime() == 0 && !croc.isTame())
+                croc.setFedTime(3.3 * 60 * 20);
+        }
         PaodingEvent.onEntityDeath(event);
     }
+
+    @SubscribeEvent
+    public static void onLivingDrops(LivingDropsEvent event) {
+        if (event.getSource().getEntity() instanceof Tiger tiger && event.getEntity() instanceof Animal){
+            if (tiger.getFedTime() == 0 && !tiger.isTame())
+                event.getDrops().clear();
+            //所有会掉落生肉的动物依次if，然后改掉落物，或者干脆直接掉落物改为骨头（吃得只剩骨头了)
+        }
+        if (event.getSource().getEntity() instanceof Croc croc && event.getEntity() instanceof Animal) {
+            if (croc.getFedTime() == 0 && !croc.isTame())
+                event.getDrops().clear();
+        }
+
+    }
+
     //生物交互事件
     @SubscribeEvent
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){

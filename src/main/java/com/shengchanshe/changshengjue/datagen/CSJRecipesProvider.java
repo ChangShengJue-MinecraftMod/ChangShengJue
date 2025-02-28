@@ -1051,30 +1051,35 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
 
         //皮革帽子
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.LEATHER_HELMET,1)
-                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get(), ChangShengJueItems.TIGER_SKIN.get(),ChangShengJueItems.CROC_SKIN.get()))
                 .pattern("###")
                 .pattern("# #")
                 .unlockedBy("has_leather", has(ChangShengJueItems.DEERSKIN.get())).save(consumer);
+
         //皮革胸甲
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.LEATHER_CHESTPLATE,1)
-                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get(), ChangShengJueItems.TIGER_SKIN.get(),ChangShengJueItems.CROC_SKIN.get()))
                 .pattern("# #")
                 .pattern("###")
                 .pattern("###")
                 .unlockedBy("has_leather", has(ChangShengJueItems.DEERSKIN.get())).save(consumer);
+
         //皮革护腿
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.LEATHER_LEGGINGS,1)
-                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get(), ChangShengJueItems.TIGER_SKIN.get(),ChangShengJueItems.CROC_SKIN.get()))
                 .pattern("###")
                 .pattern("# #")
                 .pattern("# #")
                 .unlockedBy("has_leather", has(ChangShengJueItems.DEERSKIN.get())).save(consumer);
+
+
         //皮革靴子
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.LEATHER_BOOTS,1)
-                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get(), ChangShengJueItems.TIGER_SKIN.get(),ChangShengJueItems.CROC_SKIN.get()))
                 .pattern("# #")
                 .pattern("# #")
                 .unlockedBy("has_leather", has(ChangShengJueItems.DEERSKIN.get())).save(consumer);
+
         //练功木桩
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ChangShengJueItems.STAKES.get(),1)
                 .define('#', Ingredient.of(Items.STICK))

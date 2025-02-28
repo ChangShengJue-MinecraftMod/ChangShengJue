@@ -202,8 +202,6 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
                 this.setPersistentAngerTarget(null);
 
                 this.reassessTameGoals();
-
-                this.spawnTamingParticles(false);
             }
         }
         return super.hurt(source, amount);

@@ -22,7 +22,11 @@ public class TigerRenderer extends GeoEntityRenderer<Tiger> {
     //获取渲染类型
     @Override
     public void render(Tiger entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        poseStack.scale(1.0F,1.0F,1.0F);//缩放实体大小
+        if (entity.isBaby()){
+            poseStack.scale(0.4F,0.4F,0.4F);
+        }else {
+            poseStack.scale(1.0F,1.0F,1.0F);//缩放实体大小
+        }
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
     }
 }
