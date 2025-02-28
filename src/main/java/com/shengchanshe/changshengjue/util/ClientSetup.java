@@ -203,6 +203,40 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get(), RenderType.cutout());
+
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GRE_ROOF_RIDGE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.RED_ROOF_RIDGE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLACK_ROOF_RIDGE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get(), RenderType.cutout());
+
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GRE_DEMON_MASK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.RED_DEMON_MASK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLACK_DEMON_MASK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GOLDEN_DEMON_MASK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLUE_DEMON_MASK.get(), RenderType.cutout());
+
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GRE_CHARACTER_PLAQUE_PAVILION.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.RED_CHARACTER_PLAQUE_PAVILION.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION.get(), RenderType.cutout());
+
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get(), RenderType.cutout());
 
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get(), RenderType.cutout());

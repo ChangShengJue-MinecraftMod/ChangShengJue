@@ -136,6 +136,19 @@ public class CSJBlockStateProvider extends BlockStateProvider {
         horizontalBlock(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get(), new ModelFile.UncheckedModelFile(modLoc("block/zi_tan_five_screen_throne")));
         //蒲团
         horizontalBlock(ChangShengJueBlocks.ZAFU.get(), new ModelFile.UncheckedModelFile(modLoc("block/zafu")));
+
+        //屋脊
+        horizontalBlock(ChangShengJueBlocks.GRE_ROOF_RIDGE.get(), new ModelFile.UncheckedModelFile(modLoc("block/gre_roof_ridge")));
+        horizontalBlock(ChangShengJueBlocks.RED_ROOF_RIDGE.get(), new ModelFile.UncheckedModelFile(modLoc("block/red_roof_ridge")));
+        horizontalBlock(ChangShengJueBlocks.BLACK_ROOF_RIDGE.get(), new ModelFile.UncheckedModelFile(modLoc("block/black_roof_ridge")));
+        horizontalBlock(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE.get(), new ModelFile.UncheckedModelFile(modLoc("block/golden_roof_ridge")));
+        horizontalBlock(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get(), new ModelFile.UncheckedModelFile(modLoc("block/blue_roof_ridge")));
+
+        horizontalBlock(ChangShengJueBlocks.GRE_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/gre_demon_mask")));
+        horizontalBlock(ChangShengJueBlocks.RED_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/red_demon_mask")));
+        horizontalBlock(ChangShengJueBlocks.BLACK_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/black_demon_mask")));
+        horizontalBlock(ChangShengJueBlocks.GOLDEN_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/golden_demon_mask")));
+        horizontalBlock(ChangShengJueBlocks.BLUE_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/blue_demon_mask")));
     }
 
 

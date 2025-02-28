@@ -23,15 +23,45 @@
                 "min": 0.0
               },
               "function": "minecraft:looting_enchant"
-            },
-            {
-              "function": "minecraft:explosion_decay"
             }
           ],
           "name": "chang_sheng_jue:peacock_feathers"
         }
       ],
-      "name": "main_drops",
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "conditions": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "flags": {
+                      "is_on_fire": true
+                    }
+                  }
+                }
+              ],
+              "function": "minecraft:furnace_smelt"
+            },
+            {
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:looting_enchant"
+            }
+          ],
+          "name": "chang_sheng_jue:peacock"
+        }
+      ],
       "rolls": 1.0
     }
   ],

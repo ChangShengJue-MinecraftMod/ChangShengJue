@@ -111,15 +111,80 @@ public class CSJEntityLootTables extends EntityLootSubProvider {
         );
 
         // 孔雀掉落
-        add(ChangShengJueEntity.MALE_PEACOCK_ENTITY.get(),
-                LootTable.lootTable()
-                        .withPool(createMainDropPool(ChangShengJueItems.PEACOCK_FEATHERS.get(), 0, 2))
+        this.add(ChangShengJueEntity.MALE_PEACOCK_ENTITY.get(),
+                LootTable.lootTable().withPool(
+                        LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.PEACOCK_FEATHERS.get())
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(ChangShengJueItems.PEACOCK.get())
+                                .apply(SmeltItemFunction.smelted()
+                                        .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
+                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                //                        .withPool(createMainDropPool(ChangShengJueItems.PEACOCK_FEATHERS.get(), 0, 2))
+//                        .withPool(LootPool.lootPool()
+//                                .name("main_drops")
+//                                .setRolls(ConstantValue.exactly(1))
+//                                .add(LootItem.lootTableItem(ChangShengJueItems.PEACOCK.get())
+//                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+//                                        .apply(SmeltItemFunction.smelted()
+//                                                .when(LootItemEntityPropertyCondition.hasProperties(
+//                                                        LootContext.EntityTarget.THIS,
+//                                                        EntityPredicate.Builder.entity()
+//                                                                .flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build())
+//                                                ))
+//                                        )
+//                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))
+//                                )
+//                        )
         );
+        // 雌孔雀
+        this.add(ChangShengJueEntity.FEMALE_PEACOCK_ENTITY.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.PEACOCK.get())
+                                        .apply(SmeltItemFunction.smelted().when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+        );
+
         // 鳄鱼掉落
-        add(ChangShengJueEntity.CROC_ENTITY.get(),
-                LootTable.lootTable()
-                        .withPool(createMainDropPool(ChangShengJueItems.CROC_SKIN.get(), 0, 2))
+        // 向当前对象添加一个战利品表配置，针对ChangShengJueEntity中的CROC_ENTITY实体
+        this.add(ChangShengJueEntity.CROC_ENTITY.get(),
+                // 创建一个新的战利品表
+                LootTable.lootTable().withPool(
+                        // 创建一个战利品池，该池固定掉落1次
+                        LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(
+                                // 向该池中添加一个战利品项，即ChangShengJueItems中的CROC_SKIN
+                                LootItem.lootTableItem(ChangShengJueItems.CROC_SKIN.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                        // 设置该战利品项的数量范围为0到2
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                        // 应用抢夺附魔效果，增加掉落数量，范围为0到1
+                        .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(ChangShengJueItems.CROC.get())
+                                // 向该池中添加另一个战利品项，即ChangShengJueItems中的CROC
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+                                // 设置该战利品项的数量范围为1到3
+                                .apply(SmeltItemFunction.smelted().when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
+                                // 当实体被火焰烧死时，应用熔炼效果                     应用抢夺附魔效果，增加掉落数量，范围为0到1
+                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+//                LootTable.lootTable()
+//                    .withPool(createMainDropPool(ChangShengJueItems.CROC_SKIN.get(), 0, 2))
+//                    .withPool(LootPool.lootPool()
+//                            .name("main_drops")
+//                            .setRolls(ConstantValue.exactly(1))
+//                            .add(LootItem.lootTableItem(ChangShengJueItems.CROC.get())
+//                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+//                                    .apply(SmeltItemFunction.smelted()
+//                                            .when(LootItemEntityPropertyCondition.hasProperties(
+//                                                    LootContext.EntityTarget.THIS,
+//                                                    EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build())
+//                                            ))
+//                                    )
+//                                    .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))
+//                            )
+//                    )
         );
+
         /*无掉落*/
         // 蝴蝶掉落
         add(ChangShengJueEntity.BUTTERFLY_ENTITY.get(), LootTable.lootTable());
@@ -128,8 +193,6 @@ public class CSJEntityLootTables extends EntityLootSubProvider {
         add(ChangShengJueEntity.MONKEY_ENTITY.get(), LootTable.lootTable());
         // 蝉掉落
         add(ChangShengJueEntity.CICADA_ENTITY.get(), LootTable.lootTable());
-        // 雌孔雀
-        add(ChangShengJueEntity.FEMALE_PEACOCK_ENTITY.get(), LootTable.lootTable());
     }
 
     //主要掉落：正常掉落方法，百分百触发掉落，最少min个最多max个
@@ -184,7 +247,6 @@ public class CSJEntityLootTables extends EntityLootSubProvider {
 //    }
     @Override
     protected Stream<EntityType<?>> getKnownEntityTypes() {
-        return ChangShengJueEntity.ENTITY_TYPES.getEntries().stream()
-                .map(RegistryObject::get);
+        return ChangShengJueEntity.ENTITY_TYPES.getEntries().stream().map(RegistryObject::get);
     }
 }

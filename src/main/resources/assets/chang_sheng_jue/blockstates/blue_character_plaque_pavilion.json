@@ -1,0 +1,32 @@
+{
+  "variants": {
+    "facing=east,half=lower": {
+      "model": "chang_sheng_jue:block/blue_character_plaque_pavilion_bottom"
+    },
+    "facing=east,half=upper": {
+      "model": "chang_sheng_jue:block/blue_character_plaque_pavilion_top"
+    },
+    "facing=north,half=lower": {
+      "model": "chang_sheng_jue:block/blue_character_plaque_pavilion_bottom",
+      "y": 90
+    },
+    "facing=north,half=upper": {
+      "model": "chang_sheng_jue:block/blue_character_plaque_pavilion_top",
+      "y": 90
+    },
+    "facing=south,half=lower": {
+      "model": "chang_sheng_jue:block/blue_character_plaque_pavilion_bottom",
+      "y": 90
+    },
+    "facing=south,half=upper": {
+      "model": "chang_sheng_jue:block/blue_character_plaque_pavilion_top",
+      "y": 90
+    },
+    "facing=west,half=lower": {
+      "model": "chang_sheng_jue:block/blue_character_plaque_pavilion_bottom"
+    },
+    "facing=west,half=upper": {
+      "model": "chang_sheng_jue:block/blue_character_plaque_pavilion_top"
+    }
+  }
+}
