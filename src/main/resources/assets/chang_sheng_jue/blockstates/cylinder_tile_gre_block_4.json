@@ -1,34 +1,18 @@
 {
   "variants": {
-    "facing=east,half=bottom": {
+    "facing=east": {
       "model": "chang_sheng_jue:block/cylinder_tile_gre_block_4",
       "y": 90
     },
-    "facing=north,half=bottom": {
+    "facing=north": {
       "model": "chang_sheng_jue:block/cylinder_tile_gre_block_4"
     },
-    "facing=south,half=bottom": {
+    "facing=south": {
       "model": "chang_sheng_jue:block/cylinder_tile_gre_block_4",
       "y": 180
     },
-    "facing=west,half=bottom": {
+    "facing=west": {
       "model": "chang_sheng_jue:block/cylinder_tile_gre_block_4",
-      "y": 270
-    },
-
-    "facing=east,half=top": {
-      "model": "chang_sheng_jue:block/cylinder_tile_gre_block_4_top",
-      "y": 90
-    },
-    "facing=north,half=top": {
-      "model": "chang_sheng_jue:block/cylinder_tile_gre_block_4_top"
-    },
-    "facing=south,half=top": {
-      "model": "chang_sheng_jue:block/cylinder_tile_gre_block_4_top",
-      "y": 180
-    },
-    "facing=west,half=top": {
-      "model": "chang_sheng_jue:block/cylinder_tile_gre_block_4_top",
       "y": 270
     }
   }

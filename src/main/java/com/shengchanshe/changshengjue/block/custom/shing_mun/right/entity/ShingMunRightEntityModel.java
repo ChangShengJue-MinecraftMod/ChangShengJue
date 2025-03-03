@@ -9,69 +9,68 @@ public class ShingMunRightEntityModel extends GeoModel<ShingMunRightEntity> {
     @Override
     public ResourceLocation getModelResource(ShingMunRightEntity entity) {
         if (entity.isLeft()){
-            if (entity.isRest()){
-                if (entity.isTwo()){
-                    if (entity.isOpen()){
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two_open_1.geo.json");
-                    }else {
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two_1.geo.json");
-                    }
-                }else if (entity.isFour()){
-                    if (entity.isOpen()){
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_four_open_1.geo.json");
-                    }else {
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_four_1.geo.json");
-                    }
-                }else if (entity.isSix()){
-                    if (entity.isOpen()){
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_six_open_1.geo.json");
-                    }else {
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_six_1.geo.json");
-                    }
-                }else if (entity.isEight()){
-                    if (entity.isOpen()){
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_eight_open_1.geo.json");
-                    }else {
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_eight_1.geo.json");
-                    }
-                }else{
-                    if (entity.isOpen()){
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two_open_1.geo.json");
-                    }else {
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two_1.geo.json");
-                    }
+//            if (entity.isRest()){
+//                if (entity.isTwo()){
+//                    if (entity.isOpen()){
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two_open_1.geo.json");
+//                    }else {
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two_1.geo.json");
+//                    }
+//                }else if (entity.isFour()){
+//                    if (entity.isOpen()){
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_four_open_1.geo.json");
+//                    }else {
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_four_1.geo.json");
+//                    }
+//                }else if (entity.isSix()){
+//                    if (entity.isOpen()){
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_six_open_1.geo.json");
+//                    }else {
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_six_1.geo.json");
+//                    }
+//                }else if (entity.isEight()){
+//                    if (entity.isOpen()){
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_eight_open_1.geo.json");
+//                    }else {
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_eight_1.geo.json");
+//                    }
+//                }else{
+//                    if (entity.isOpen()){
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two_open_1.geo.json");
+//                    }else {
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two_1.geo.json");
+//                    }
+//                }
+//            }
+            if (entity.isTwo()){
+                if (entity.isOpen()){
+                    return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two_open.geo.json");
+                }else {
+                    return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two.geo.json");
                 }
-            }else {
-                if (entity.isTwo()){
-                    if (entity.isOpen()){
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two_open.geo.json");
-                    }else {
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two.geo.json");
-                    }
-                }else if (entity.isFour()){
-                    if (entity.isOpen()){
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_four_open.geo.json");
-                    }else {
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_four.geo.json");
-                    }
-                }else if (entity.isSix()){
-                    if (entity.isOpen()){
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_six_open.geo.json");
-                    }else {
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_six.geo.json");
-                    }
-                }else if (entity.isEight()){
-                    if (entity.isOpen()){
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_eight_open.geo.json");
-                    }else {
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_eight.geo.json");
-                    }
-                }else{
-                    if (entity.isOpen()){
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two_open.geo.json");
-                    }else {
-                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two.geo.json");
-                    }
+            }else if (entity.isFour()){
+                if (entity.isOpen()){
+                    return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_four_open.geo.json");
+                }else {
+                    return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_four.geo.json");
+                }
+            }else if (entity.isSix()){
+                if (entity.isOpen()){
+                    return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_six_open.geo.json");
+                }else {
+                    return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_six.geo.json");
+                }
+            }else if (entity.isEight()){
+                if (entity.isOpen()){
+                    return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_eight_open.geo.json");
+                }else {
+                    return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_eight.geo.json");
+                }
+            }else{
+                if (entity.isOpen()){
+                    return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two_open.geo.json");
+                }else {
+                    return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_right/shing_mun_right_two.geo.json");
                 }
             }
         }else {
@@ -111,11 +110,7 @@ public class ShingMunRightEntityModel extends GeoModel<ShingMunRightEntity> {
 
     @Override
     public ResourceLocation getTextureResource(ShingMunRightEntity entity) {
-        if (!entity.isRest()) {
-            return new ResourceLocation(ChangShengJue.MOD_ID, "textures/block/shing_mun/shing_mun.png");
-        }else {
-            return new ResourceLocation(ChangShengJue.MOD_ID, "textures/block/shing_mun/shing_mun_1.png");
-        }
+        return new ResourceLocation(ChangShengJue.MOD_ID, "textures/block/shing_mun/shing_mun.png");
     }
 
     @Override

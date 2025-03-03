@@ -6,11 +6,8 @@ import com.shengchanshe.changshengjue.world.feature.CSJPlacedFeatures;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstapContext;
-import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.Musics;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
@@ -18,10 +15,10 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 
 public class CSJBiomes {
 
-    public static final ResourceKey<Biome> CHANG_SHEN_JUE_PRAIRIE = ResourceKey.create(Registries.BIOME,new ResourceLocation(ChangShengJue.MOD_ID,"chang_shen_jue_prairie"));
+    public static final ResourceKey<Biome> CHANG_SHENG_JUE_PRAIRIE = ResourceKey.create(Registries.BIOME,new ResourceLocation(ChangShengJue.MOD_ID,"chang_sheng_jue_prairie"));
 
     public static void boostrap(BootstapContext<Biome> context){
-        context.register(CHANG_SHEN_JUE_PRAIRIE,changShengJuePrairie(context));
+        context.register(CHANG_SHENG_JUE_PRAIRIE,changShengJuePrairie(context));
     }
 
     public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {

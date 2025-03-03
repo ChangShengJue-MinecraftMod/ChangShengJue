@@ -9,7 +9,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -256,6 +255,8 @@ public class CSJItemModelProvider extends ItemModelProvider {
 
         //城门
         simpleItem(ChangShengJueBlocks.SHING_MUN_RIGHT,ChangShengJueBlocks.SHING_MUN_RIGHT.getId().getPath());
+        simpleItem(ChangShengJueBlocks.BIG_SHING_MUN_LEFT,ChangShengJueBlocks.SHING_MUN_LEFT.getId().getPath());
+        simpleItem(ChangShengJueBlocks.BIG_SHING_MUN_RIGHT,ChangShengJueBlocks.SHING_MUN_RIGHT.getId().getPath());
 
         parentItem(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7);
         parentItem(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_7);
@@ -268,6 +269,24 @@ public class CSJItemModelProvider extends ItemModelProvider {
         parentItem(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8);
         parentItem(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8);
         parentItem(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8);
+
+        parentItem(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE);
+
+        parentItem(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE_1);
+        parentItem(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE_1);
+        parentItem(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE_1);
+        parentItem(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE_1);
+        parentItem(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE_1);
+
+        parentItem(ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.HANGING_BEAST_RED_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE);
 
         parentItem(ChangShengJueBlocks.GRE_ROOF_RIDGE);
         parentItem(ChangShengJueBlocks.RED_ROOF_RIDGE);

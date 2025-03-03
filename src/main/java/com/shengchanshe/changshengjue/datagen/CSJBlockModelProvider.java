@@ -156,13 +156,24 @@ public class CSJBlockModelProvider extends BlockModelProvider {
         parentBlock(ChangShengJueBlocks.BLACK_ROOF_RIDGE,"roof_ridge","black_roof_ridge_demon_mask");
         parentBlock(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE,"roof_ridge","golden_roof_ridge_demon_mask");
         parentBlock(ChangShengJueBlocks.BLUE_ROOF_RIDGE,"roof_ridge","blue_roof_ridge_demon_mask");
-
+        //鸱吻
         parentBlock(ChangShengJueBlocks.GRE_DEMON_MASK,"demon_mask","gre_roof_ridge_demon_mask");
         parentBlock(ChangShengJueBlocks.RED_DEMON_MASK,"demon_mask","red_roof_ridge_demon_mask");
         parentBlock(ChangShengJueBlocks.BLACK_DEMON_MASK,"demon_mask","black_roof_ridge_demon_mask");
         parentBlock(ChangShengJueBlocks.GOLDEN_DEMON_MASK,"demon_mask","golden_roof_ridge_demon_mask");
         parentBlock(ChangShengJueBlocks.BLUE_DEMON_MASK,"demon_mask","blue_roof_ridge_demon_mask");
-
+        //脊兽瓦
+        parentBlock(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE,"cylindertile/animals_cylinder_tile_block","animals_gre_roof_ridge");
+        parentBlock(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE,"cylindertile/animals_cylinder_tile_block","animals_red_roof_ridge");
+        parentBlock(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE,"cylindertile/animals_cylinder_tile_block","animals_black_roof_ridge");
+        parentBlock(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE,"cylindertile/animals_cylinder_tile_block","animals_golden_roof_ridge");
+        parentBlock(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE,"cylindertile/animals_cylinder_tile_block","animals_blue_roof_ridge");
+        //垂兽脊瓦
+        parentBlock(ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE,"cylindertile/hanging_beast_cylinder_tile_block","animals_gre_roof_ridge");
+        parentBlock(ChangShengJueBlocks.HANGING_BEAST_RED_RIDGE_TILE,"cylindertile/hanging_beast_cylinder_tile_block","animals_red_roof_ridge");
+        parentBlock(ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE,"cylindertile/hanging_beast_cylinder_tile_block","animals_black_roof_ridge");
+        parentBlock(ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE,"cylindertile/hanging_beast_cylinder_tile_block","animals_golden_roof_ridge");
+        parentBlock(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE,"cylindertile/hanging_beast_cylinder_tile_block","animals_blue_roof_ridge");
         //脊刹
         parentBottomBlock(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION,"ridge_finial_pavilion_bottom");
         parentBottomBlock(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION,"ridge_finial_pavilion_bottom");

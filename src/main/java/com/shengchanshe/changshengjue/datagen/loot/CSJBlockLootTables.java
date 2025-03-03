@@ -13,7 +13,6 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.IntRange;
@@ -297,6 +296,18 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get());
         this.dropSelf(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get());
         this.dropSelf(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get());
+        //脊兽脊瓦
+        this.dropSelf(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get());
+        //垂兽脊瓦
+        this.dropSelf(ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.HANGING_BEAST_RED_RIDGE_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get());
         //屋脊
         this.dropSelf(ChangShengJueBlocks.GRE_ROOF_RIDGE.get());
         this.dropSelf(ChangShengJueBlocks.RED_ROOF_RIDGE.get());
@@ -413,6 +424,8 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         //城门
         this.dropSelf(ChangShengJueBlocks.SHING_MUN_LEFT.get());
         this.dropSelf(ChangShengJueBlocks.SHING_MUN_RIGHT.get());
+        this.dropSelf(ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get());
+        this.dropSelf(ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get());
         //牌匾
         this.dropSelf(ChangShengJueBlocks.PLAQUE.get());
 
@@ -523,6 +536,19 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
                 block -> createSlabItemTable(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get()));
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get(),
                 block -> createSlabItemTable(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get()));
+
+        this.add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE_1.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE_1.get()));
+        this.add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE_1.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE_1.get()));
+        this.add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE_1.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE_1.get()));
+        this.add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE_1.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE_1.get()));
+        this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE_1.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE_1.get()));
+
+
     }
 
     public void createLeavesFruitsDrops(Block leavesBlock, Item fruitsItem,Block sapling){

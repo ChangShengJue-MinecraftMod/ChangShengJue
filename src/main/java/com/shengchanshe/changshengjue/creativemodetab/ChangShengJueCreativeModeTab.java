@@ -140,6 +140,11 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get());
                 output.accept(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get());
                 output.accept(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get());
+                output.accept(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE.get());
+                output.accept(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE.get());
+                output.accept(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE.get());
+                output.accept(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE.get());
+                output.accept(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get());
                 output.accept(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get());
                 output.accept(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_5.get());
                 output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_5.get());
@@ -150,6 +155,11 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_6.get());
                 output.accept(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_6.get());
                 output.accept(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_6.get());
+                output.accept(ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE.get());
+                output.accept(ChangShengJueBlocks.HANGING_BEAST_RED_RIDGE_TILE.get());
+                output.accept(ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE.get());
+                output.accept(ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE.get());
+                output.accept(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get());
                 output.accept(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7.get());
                 output.accept(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_7.get());
                 output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get());
@@ -160,6 +170,12 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get());
                 output.accept(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get());
                 output.accept(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get());
+
+                output.accept(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE_1.get());
+                output.accept(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE_1.get());
+                output.accept(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE_1.get());
+                output.accept(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE_1.get());
+                output.accept(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE_1.get());
 
                 output.accept(ChangShengJueBlocks.GRE_ROOF_RIDGE.get());
                 output.accept(ChangShengJueBlocks.RED_ROOF_RIDGE.get());
@@ -251,6 +267,8 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get());
                 output.accept(ChangShengJueBlocks.SHING_MUN_LEFT.get());
                 output.accept(ChangShengJueBlocks.SHING_MUN_RIGHT.get());
+                output.accept(ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get());
+                output.accept(ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get());
 
                 output.accept(ChangShengJueBlocks.BIRCH_WINE_TABLE.get());
                 output.accept(ChangShengJueBlocks.CRIMSON_WINE_TABLE.get());

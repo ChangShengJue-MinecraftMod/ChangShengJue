@@ -91,6 +91,12 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get())
                 .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get())
 
+                .add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE.get())
+                .add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE.get())
+                .add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE.get())
+                .add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE.get())
+                .add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get())
+
                 .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get())
                 .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_5.get())
                 .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_5.get())
@@ -103,6 +109,12 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_6.get())
                 .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_6.get())
 
+                .add(ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE.get())
+                .add(ChangShengJueBlocks.HANGING_BEAST_RED_RIDGE_TILE.get())
+                .add(ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE.get())
+                .add(ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE.get())
+                .add(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get())
+
                 .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7.get())
                 .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_7.get())
                 .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get())
@@ -114,6 +126,12 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get())
                 .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get())
                 .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get())
+
+                .add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE_1.get())
+                .add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE_1.get())
+                .add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE_1.get())
+                .add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE_1.get())
+                .add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE_1.get())
 
                 .add(ChangShengJueBlocks.GRE_ROOF_RIDGE.get())
                 .add(ChangShengJueBlocks.RED_ROOF_RIDGE.get())
@@ -288,6 +306,8 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.DESK.get())
                 .add(ChangShengJueBlocks.SHING_MUN_LEFT.get())
                 .add(ChangShengJueBlocks.SHING_MUN_RIGHT.get())
+                .add(ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get())
+                .add(ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get())
                 .addTag(CSJTags.Blocks.WINDOWS)
                 .addTag(CSJTags.Blocks.MEI_REN_KAO)
                 .addTag(CSJTags.Blocks.BENCH)

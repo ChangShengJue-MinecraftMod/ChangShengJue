@@ -5,7 +5,6 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.Climate;
 import terrablender.api.ParameterUtils;
 import terrablender.api.Region;
@@ -33,7 +32,7 @@ public class CSJOverworldRegion extends Region {
                     .erosion(ParameterUtils.Erosion.EROSION_0, ParameterUtils.Erosion.FULL_RANGE)//地形起伏
                     .depth(ParameterUtils.Depth.SURFACE)//生成深度
                     .weirdness(ParameterUtils.Weirdness.LOW_SLICE_VARIANT_ASCENDING, ParameterUtils.Weirdness.LOW_SLICE_NORMAL_DESCENDING)//地形形状和特征
-                    .build().forEach(point -> builder.add(point, CSJBiomes.CHANG_SHEN_JUE_PRAIRIE));
+                    .build().forEach(point -> builder.add(point, CSJBiomes.CHANG_SHENG_JUE_PRAIRIE));
 
             builder.build().forEach(mapper::accept);
 //        });

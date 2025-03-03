@@ -7,7 +7,6 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -143,12 +142,24 @@ public class CSJBlockStateProvider extends BlockStateProvider {
         horizontalBlock(ChangShengJueBlocks.BLACK_ROOF_RIDGE.get(), new ModelFile.UncheckedModelFile(modLoc("block/black_roof_ridge")));
         horizontalBlock(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE.get(), new ModelFile.UncheckedModelFile(modLoc("block/golden_roof_ridge")));
         horizontalBlock(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get(), new ModelFile.UncheckedModelFile(modLoc("block/blue_roof_ridge")));
-
+        //鸱吻
         horizontalBlock(ChangShengJueBlocks.GRE_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/gre_demon_mask")));
         horizontalBlock(ChangShengJueBlocks.RED_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/red_demon_mask")));
         horizontalBlock(ChangShengJueBlocks.BLACK_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/black_demon_mask")));
         horizontalBlock(ChangShengJueBlocks.GOLDEN_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/golden_demon_mask")));
         horizontalBlock(ChangShengJueBlocks.BLUE_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/blue_demon_mask")));
+        //脊兽脊瓦
+        horizontalBlock(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/animals_gre_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/animals_red_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/animals_black_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/animals_golden_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/animals_blue_ridge_tile")));
+        //垂兽脊瓦
+        horizontalBlock(ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/hanging_beast_gre_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.HANGING_BEAST_RED_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/hanging_beast_red_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/hanging_beast_black_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/hanging_beast_golden_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/hanging_beast_blue_ridge_tile")));
     }
 
 

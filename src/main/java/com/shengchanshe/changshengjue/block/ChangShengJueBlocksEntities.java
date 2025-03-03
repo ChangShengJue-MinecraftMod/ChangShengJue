@@ -1,6 +1,9 @@
 package com.shengchanshe.changshengjue.block;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.block.custom.shing_mun.bigleft.entity.BigShingMunLeftEntity;
+import com.shengchanshe.changshengjue.block.custom.shing_mun.bigright.BigShingMunRight;
+import com.shengchanshe.changshengjue.block.custom.shing_mun.bigright.entity.BigShingMunRightEntity;
 import com.shengchanshe.changshengjue.block.custom.shing_mun.left.entity.ShingMunLeftEntity;
 import com.shengchanshe.changshengjue.block.custom.shing_mun.right.entity.ShingMunRightEntity;
 import com.shengchanshe.changshengjue.block.entity.*;
@@ -44,6 +47,15 @@ public class ChangShengJueBlocksEntities {
 
     public static final RegistryObject<BlockEntityType<ShingMunRightEntity>> SHING_MUN_RIGHT_ENTITY =
             BLOCK_ENTITYES.register("shing_mun_right_entity",()-> BlockEntityType.Builder.of(ShingMunRightEntity::new, ChangShengJueBlocks.SHING_MUN_RIGHT.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<BigShingMunLeftEntity>> BIG_SHING_MUN_LEFT_ENTITY =
+            BLOCK_ENTITYES.register("big_shing_mun_left_entity", ()-> BlockEntityType.Builder.of(BigShingMunLeftEntity::new,
+                    ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<BigShingMunRightEntity>> BIG_SHING_MUN_RIGHT_ENTITY =
+            BLOCK_ENTITYES.register("big_shing_mun_right_entity", ()-> BlockEntityType.Builder.of(BigShingMunRightEntity::new,
+                    ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get()).build(null));
+
 
     //桌子
     public static final RegistryObject<BlockEntityType<Desk>> DESK =

@@ -24,7 +24,6 @@ public class ShingMunRightEntity extends BlockEntity implements GeoBlockEntity {
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private boolean open;
     private boolean left;
-    private boolean rest;
 
     private boolean one;
     private boolean two;
@@ -39,7 +38,6 @@ public class ShingMunRightEntity extends BlockEntity implements GeoBlockEntity {
         super(ChangShengJueBlocksEntities.SHING_MUN_RIGHT_ENTITY.get(), pPos, pBlockState);
         this.open = pBlockState.getValue(ShingMunRight.OPEN); // 初始化时从 BlockState 获取值
         this.left = pBlockState.getValue(ShingMunRight.LEFT); // 初始化时从 BlockState 获取值
-        this.rest = pBlockState.getValue(ShingMunRight.REST); // 初始化时从 BlockState 获取值
 
         this.one = pBlockState.getValue(ShingMunRight.ONE); // 初始化时从 BlockState 获取值
         this.two = pBlockState.getValue(ShingMunRight.TWO); // 初始化时从 BlockState 获取值
@@ -100,16 +98,11 @@ public class ShingMunRightEntity extends BlockEntity implements GeoBlockEntity {
         this.left = left;
     }
 
-    public void setRest(boolean rest) {
-        this.rest = rest;
-    }
-
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.putBoolean("Open", this.open);
         tag.putBoolean("Left", this.left);
-        tag.putBoolean("Rest", this.rest);
 
         tag.putBoolean("One", this.one);
         tag.putBoolean("Two", this.two);
@@ -126,7 +119,6 @@ public class ShingMunRightEntity extends BlockEntity implements GeoBlockEntity {
         super.load(tag);
         this.open = tag.getBoolean("Open");
         this.left = tag.getBoolean("Left");
-        this.rest = tag.getBoolean("Rest");
 
         this.one =  tag.getBoolean("One");
         this.two =  tag.getBoolean("Two");
@@ -143,7 +135,6 @@ public class ShingMunRightEntity extends BlockEntity implements GeoBlockEntity {
         super.handleUpdateTag(tag);
         this.open = tag.getBoolean("Open");
         this.left = tag.getBoolean("Left");
-        this.rest = tag.getBoolean("Rest");
 
         this.one =  tag.getBoolean("One");
         this.two =  tag.getBoolean("Two");
@@ -160,7 +151,6 @@ public class ShingMunRightEntity extends BlockEntity implements GeoBlockEntity {
         CompoundTag tag = super.getUpdateTag();
         tag.putBoolean("Open", this.open);
         tag.putBoolean("Left", this.left);
-        tag.putBoolean("Rest", this.rest);
 
         tag.putBoolean("One", this.one);
         tag.putBoolean("Two", this.two);
@@ -179,10 +169,6 @@ public class ShingMunRightEntity extends BlockEntity implements GeoBlockEntity {
 
     public boolean isLeft() {
         return left;
-    }
-
-    public boolean isRest() {
-        return rest;
     }
 
     @Override
