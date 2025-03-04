@@ -5,11 +5,9 @@ import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
-import net.minecraft.data.worldgen.placement.OrePlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraftforge.common.Tags;
@@ -193,10 +191,10 @@ public class CSJBiomeModifiers {
 //                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.BUTTERFLY_ENTITY.get(),
 //                        100, 1, 2))));
         context.register(ADD_MONKEY_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
-                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.MONKEY_ENTITY.get(),
+                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.MONKEY.get(),
                         40, 3, 6))));
         context.register(ADD_DRAGONFLY_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_RIVER),
-                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.MONKEY_ENTITY.get(),
+                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.MONKEY.get(),
                         200, 1, 1))));
         context.register(ADD_CICADA_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
                 List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.CICADA_ENTITY.get(),

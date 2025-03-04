@@ -44,7 +44,7 @@ public class Crane extends Animal implements GeoEntity, FlyingAnimal {
 
     public Crane(EntityType<? extends Crane> aSuper1, Level aSuper) {
         super(aSuper1, aSuper);
-        this.moveControl = new CraneFlyingMoveControl(this, 20, true);
+        this.moveControl = new CraneFlyingMoveControl(this, 10, true);
     }
 
     public static AttributeSupplier setAttributes(){

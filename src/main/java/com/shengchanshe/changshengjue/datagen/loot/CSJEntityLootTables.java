@@ -2,15 +2,12 @@ package com.shengchanshe.changshengjue.datagen.loot;
 
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import net.minecraft.advancements.critereon.DamageSourcePredicate;
 import net.minecraft.advancements.critereon.EntityFlagsPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.data.loot.EntityLootSubProvider;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -19,14 +16,12 @@ import net.minecraft.world.level.storage.loot.functions.ApplyExplosionDecay;
 import net.minecraft.world.level.storage.loot.functions.LootingEnchantFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SmeltItemFunction;
-import net.minecraft.world.level.storage.loot.predicates.DamageSourceCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 public class CSJEntityLootTables extends EntityLootSubProvider {
@@ -190,7 +185,7 @@ public class CSJEntityLootTables extends EntityLootSubProvider {
         add(ChangShengJueEntity.BUTTERFLY_ENTITY.get(), LootTable.lootTable());
         add(ChangShengJueEntity.DRAGONFLY_ENTITY.get(), LootTable.lootTable());
         // 金丝猴掉落
-        add(ChangShengJueEntity.MONKEY_ENTITY.get(), LootTable.lootTable());
+        add(ChangShengJueEntity.MONKEY.get(), LootTable.lootTable());
         // 蝉掉落
         add(ChangShengJueEntity.CICADA_ENTITY.get(), LootTable.lootTable());
     }

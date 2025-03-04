@@ -115,6 +115,11 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get());
                 output.accept(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get());
                 output.accept(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get());
+                output.accept(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get());
+                output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get());
+                output.accept(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get());
+                output.accept(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get());
                 output.accept(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get());
                 output.accept(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get());
                 output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get());

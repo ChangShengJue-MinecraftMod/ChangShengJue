@@ -549,6 +549,17 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
                 block -> createSlabItemTable(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE_1.get()));
 
 
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get()));
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get()));
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get()));
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get()));
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get()));
+
     }
 
     public void createLeavesFruitsDrops(Block leavesBlock, Item fruitsItem,Block sapling){

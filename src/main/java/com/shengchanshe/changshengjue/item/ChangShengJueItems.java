@@ -39,7 +39,6 @@ import com.shengchanshe.changshengjue.item.items.PaintBrush;
 import com.shengchanshe.changshengjue.item.items.PeacockEggItem;
 import com.shengchanshe.changshengjue.item.tool.KaishanPickaxe;
 import com.shengchanshe.changshengjue.item.tool.XuanhuaAxe;
-import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -204,7 +203,7 @@ public class ChangShengJueItems {
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.BUTTERFLY_ENTITY,0xADFF2F,0x000000,
                     new Item.Properties()));
     public static final RegistryObject<Item> MONKEY_EGG = ITEMS.register("monkey_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.MONKEY_ENTITY,0x785925,0x272625,
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.MONKEY,0x785925,0x272625,
                     new Item.Properties()));
     public static final RegistryObject<Item> DRAGONFLY_EGG = ITEMS.register("dragonfly_egg",
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.DRAGONFLY_ENTITY,0x228B22,0x008000,

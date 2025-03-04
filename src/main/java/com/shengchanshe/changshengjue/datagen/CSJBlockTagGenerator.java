@@ -65,6 +65,12 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get())
                 .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get())
 
+                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get())
+                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get())
+                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get())
+                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get())
+                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get())
+
                 .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get())
                 .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get())
                 .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get())
@@ -372,6 +378,13 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get())
                 .add(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get())
                 .add(ChangShengJueBlocks.ZI_TAN_PLANKS.get());
+        //台阶
+        this.tag(BlockTags.SLABS)
+                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get())
+                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get())
+                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get())
+                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get())
+                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get());
 
         //花
         this.tag(BlockTags.FLOWERS)

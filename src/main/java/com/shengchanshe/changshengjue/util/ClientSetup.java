@@ -163,6 +163,11 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(), RenderType.cutout());
@@ -330,7 +335,7 @@ public class ClientSetup {
         MenuScreens.register(ChangShengJueMenuTypes.PLAQUE_MENU.get(), PlaqueScreen::new);
 
         EntityRenderers.register(ChangShengJueEntity.BUTTERFLY_ENTITY.get(), ButterflyRenderer::new);
-        EntityRenderers.register(ChangShengJueEntity.MONKEY_ENTITY.get(), MonkeyRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.MONKEY.get(), MonkeyRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.DRAGONFLY_ENTITY.get(), DragonflyRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.CICADA_ENTITY.get(), CicadaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.CRANE_ENTITY.get(), CraneRenderer::new);
