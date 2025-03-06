@@ -85,8 +85,8 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.SORGHUM_CAKE.get(),"高粱饼");
         this.add(ChangShengJueItems.STINKY_TOFU.get(),"臭豆腐");
         this.add(ChangShengJueItems.ZHU_DU_JI.get(),"猪肚鸡");
-        this.add(ChangShengJueItems.XIAO_MI_FAN.get(),"小米饭");
-        this.add(ChangShengJueItems.MI_FAN.get(),"米饭");
+        this.add(ChangShengJueItems.XIAO_MI_FAN.get(),"小米饭团");
+        this.add(ChangShengJueItems.MI_FAN.get(),"饭团");
         this.add(ChangShengJueItems.GUI_HUA_TANG_OU.get(),"桂花糖藕");
         this.add(ChangShengJueItems.BA_BAO_ZHOU.get(),"八宝粥");
         this.add(ChangShengJueItems.BILUOCHUN_TEAS.get(),"碧螺春茶");
@@ -781,8 +781,13 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         //存储
         this.add("container.hercules", "大力神功");
 
+        /*信息*/
         //死亡信息
         this.add("death.attack.bleed", "%1$s失血过多。");
         this.add("death.attack.martial_arts", "%1$s被%2$s强大的武功杀死了。");
+        //普通信息
+        this.add("block.changshengjue.fen_jiu.no_wine","已经没有酒了！");
+        this.add("block.changshengjue.durian.noaxe","你没有斧子！");
+
     }
 }

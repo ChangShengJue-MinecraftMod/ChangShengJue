@@ -38,7 +38,6 @@ import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.event.armor.ArmorEvent;
 import com.shengchanshe.changshengjue.event.martial_arts.*;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import com.shengchanshe.changshengjue.item.combat.book.*;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
@@ -113,7 +112,7 @@ public class CSJEvent {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
             ItemStack stack = new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4);
             ItemStack[] stack1 = new ItemStack[]{new ItemStack(ChangShengJueItems.CORN.get(), 20), new ItemStack(ChangShengJueItems.TOMATO.get(), 22), new ItemStack(ChangShengJueItems.PEANUT.get(), 22), new ItemStack(ChangShengJueItems.MI_FAN.get(), 4),};
-            ItemStack[] stack2 = new ItemStack[]{new ItemStack(ChangShengJueItems.GRAPE.get(), 22), new ItemStack(ChangShengJueItems.ZHENG_CAI.get(), 4), new ItemStack(ChangShengJueItems.QING_TUAN.get(), 4),};
+            ItemStack[] stack2 = new ItemStack[]{new ItemStack(ChangShengJueItems.GRAPE.get(), 22), new ItemStack(ChangShengJueItems.ZHENG_CAI.get(), 4), new ItemStack(ChangShengJueItems.QING_TUAN.get(), 4) ,};
             ItemStack[] stack3 = new ItemStack[]{new ItemStack(ChangShengJueItems.GUI_HUA_TANG_OU.get(), 4), new ItemStack(ChangShengJueItems.ZHU_DU_JI.get(), 4),};
             ItemStack[] stack4 = new ItemStack[]{new ItemStack(Items.SUSPICIOUS_STEW, 1), new ItemStack(ChangShengJueItems.TOMATO_EGG.get(), 4),};
             ItemStack[] stack5 = new ItemStack[]{new ItemStack(ChangShengJueItems.MEAT_FOAM_BRINJAL.get(), 8), new ItemStack(ChangShengJueItems.BA_BAO_ZHOU.get(), 8),};
@@ -147,7 +146,7 @@ public class CSJEvent {
                 ItemStack firstStack = stack2[firstIndex[0]];
                 if (firstStack.is(ChangShengJueItems.ZHENG_CAI.get())){
                     return new MerchantOffer(stack,firstStack ,12,5,0.05F);
-                }else if (firstStack.is(ChangShengJueItems.QING_TUAN.get())){
+                }else if(firstStack.is(ChangShengJueItems.QING_TUAN.get())){
                     return new MerchantOffer(stack,firstStack ,16,5,0.05F);
                 }else{
                     return new MerchantOffer(firstStack, stack,12,5,0.05F);
@@ -161,7 +160,7 @@ public class CSJEvent {
                 ItemStack secondStack = stack2[secondIndex];
                 if (secondStack.is(ChangShengJueItems.ZHENG_CAI.get())){
                     return new MerchantOffer(stack,secondStack ,12,5,0.05F);
-                }else if (secondStack.is(ChangShengJueItems.QING_TUAN.get())){
+                }else if(secondStack.is(ChangShengJueItems.QING_TUAN.get())){
                     return new MerchantOffer(stack,secondStack ,16,5,0.05F);
                 }else{
                     return new MerchantOffer(secondStack, stack,12,5,0.05F);

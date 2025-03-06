@@ -68,6 +68,9 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.FEN_JIU);
         simpleItem(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE);
         simpleItem(ChangShengJueItems.SHI_LI_XIANG);
+        simpleItem(ChangShengJueItems.EMPTY_SHI_LI_XIANG);
+        simpleItem(ChangShengJueItems.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE);
+        simpleItem(ChangShengJueItems.EMPTY_FEN_JIU);
 
         //食物
         simpleItem(ChangShengJueItems.PEACOCK);

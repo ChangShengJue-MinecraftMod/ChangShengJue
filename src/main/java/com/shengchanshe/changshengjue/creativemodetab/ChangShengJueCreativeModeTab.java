@@ -409,27 +409,31 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.BAKED_CORN.get());
                 output.accept(ChangShengJueItems.SORGHUM_CAKE.get());
                 output.accept(ChangShengJueItems.CAPSULE_JIAO_ZI.get());
-                output.accept(ChangShengJueItems.ZHENG_CAI.get());
                 output.accept(ChangShengJueItems.QING_TUAN.get());
+                output.accept(ChangShengJueItems.XIAO_MI_FAN.get());
+                output.accept(ChangShengJueItems.MI_FAN.get());
+                output.accept(ChangShengJueItems.ZHENG_CAI.get());
                 output.accept(ChangShengJueItems.TOMATO_EGG.get());
                 output.accept(ChangShengJueItems.GU_LAO_ROU.get());
                 output.accept(ChangShengJueItems.MEAT_FOAM_BRINJAL.get());
                 output.accept(ChangShengJueItems.STINKY_TOFU.get());
-                output.accept(ChangShengJueItems.ZHU_DU_JI.get());
-                output.accept(ChangShengJueItems.XIAO_MI_FAN.get());
-                output.accept(ChangShengJueItems.MI_FAN.get());
                 output.accept(ChangShengJueItems.GUI_HUA_TANG_OU.get());
+
+                output.accept(ChangShengJueItems.HOT_PEAR_SOUP.get());
+                output.accept(ChangShengJueItems.ZHU_DU_JI.get());
                 output.accept(ChangShengJueItems.BA_BAO_ZHOU.get());
                 output.accept(ChangShengJueItems.MULBERRY_JUICE.get());
                 output.accept(ChangShengJueItems.APPLE_JUICE.get());
-                output.accept(ChangShengJueItems.HOT_PEAR_SOUP.get());
                 output.accept(ChangShengJueItems.GRAPE_JUICE.get());
 
                 output.accept(ChangShengJueItems.BILUOCHUN_TEAS.get());
                 output.accept(ChangShengJueItems.LONG_JING_TEAS.get());
                 output.accept(ChangShengJueItems.FEN_JIU.get());
+                output.accept(ChangShengJueItems.EMPTY_FEN_JIU.get());
                 output.accept(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get());
+                output.accept(ChangShengJueItems.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get());
                 output.accept(ChangShengJueItems.SHI_LI_XIANG.get());
+                output.accept(ChangShengJueItems.EMPTY_SHI_LI_XIANG.get());
                 output.accept(ChangShengJueItems.CI_PAN.get());
                 output.accept(ChangShengJueItems.CI_WAN.get());
                 output.accept(ChangShengJueItems.CI_BEI.get());

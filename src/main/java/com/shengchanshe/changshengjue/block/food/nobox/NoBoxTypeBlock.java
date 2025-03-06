@@ -1,0 +1,69 @@
+package com.shengchanshe.changshengjue.block.food.nobox;
+
+import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
+import com.shengchanshe.changshengjue.block.food.TypeBlock;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+
+public class NoBoxTypeBlock extends Block {
+    public static int nutrition = 0;
+    public static float saturationMod = 0.0F;
+    protected static final VoxelShape PLATE_SHAPE = Block.box(0D, 0D, 0D, 0D, 0D, 0D);
+
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return PLATE_SHAPE;
+    }
+
+    public NoBoxTypeBlock(Properties pProperties, int nutrition, float saturationMod) {
+        super(pProperties);
+        this.nutrition = nutrition;
+        this.saturationMod = saturationMod;
+    }
+
+
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (level.isClientSide) {
+            if (this.addFed(level, pos, state, player, hand, nutrition, saturationMod).consumesAction()) {
+                return InteractionResult.SUCCESS;
+            }
+        }
+        return this.addFed(level, pos, state, player, hand, nutrition, saturationMod);
+    }
+
+    protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
+        if (player.getFoodData().getFoodLevel() < 20 || player.isCreative()) {
+            player.getFoodData().eat(fed, fedpro);
+            level.destroyBlock(pos, false);
+            level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.PASS;
+    }
+
+    @Override
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+        return facing == Direction.DOWN && !stateIn.canSurvive(level, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, level, currentPos, facingPos);
+    }
+
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+        return level.getBlockState(pos.below()).isSolid();
+    }
+
+}

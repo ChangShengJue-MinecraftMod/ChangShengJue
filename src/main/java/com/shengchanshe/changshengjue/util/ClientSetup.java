@@ -311,6 +311,19 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.JI_CHI_MU_FIVE_SCREEN_THRONE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get(), RenderType.cutout());
 
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DURIAN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.OPEN_DURIAN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CORN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.STINKY_TOFU.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GUI_HUA_TANG_OU.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.EMPTY_FEN_JIU.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.EMPTY_SHI_LI_XIANG.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.FEN_JIU.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHI_LI_XIANG.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.WHEAT_NUGGETS_TRIBUTE_WINE.get(), RenderType.cutout());
+
+
         ItemColors itemColors = Minecraft.getInstance().getItemColors();
         // 为每个物品注册颜色渲染器
         for (Supplier<? extends Item> itemSupplier : cottonArmorItems) {

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "chang_sheng_jue:item/durian_open"
+    "layer0": "chang_sheng_jue:item/qing_tuan_wan"
   }
 }

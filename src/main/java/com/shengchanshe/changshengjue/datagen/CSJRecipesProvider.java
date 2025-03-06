@@ -2,20 +2,17 @@ package com.shengchanshe.changshengjue.datagen;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
-import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.tags.CSJTags;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CactusBlock;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
 
@@ -1156,8 +1153,7 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .requires(ChangShengJueItems.CAPSULE.get())
                 .requires(Tags.Items.CROPS_WHEAT)
                 .requires(Items.PORKCHOP)
-                .requires(ChangShengJueItems.CI_PAN.get())
-                .unlockedBy("has_plates",has(ChangShengJueItems.CI_PAN.get())).save(consumer);
+                .unlockedBy("has_plates",has(ChangShengJueItems.CAPSULE.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.ZHENG_CAI.get())
                 .requires(ChangShengJueBlocks.KOCHIA_SCOPARIA_BLOCK.get())
                 .requires(Tags.Items.CROPS_WHEAT)
@@ -1171,8 +1167,7 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .requires(ChangShengJueItems.STICKYRICE_1.get())
                 .requires(ChangShengJueBlocks.MUGWORT_BLOCK.get())
                 .requires(ChangShengJueItems.REDBEAN.get())
-                .requires(ChangShengJueItems.CI_WAN.get())
-                .unlockedBy("has_bowls",has(ChangShengJueItems.CI_WAN.get())).save(consumer);
+                .unlockedBy("has_bowls",has(ChangShengJueItems.STICKYRICE_1.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.TOMATO_EGG.get())
                 .requires(ChangShengJueItems.TOMATO.get())
                 .requires(Tags.Items.EGGS)
@@ -1201,10 +1196,10 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy("has_bowls",has(ChangShengJueItems.CI_WAN.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.XIAO_MI_FAN.get())
                 .requires(ChangShengJueItems.GU_SUI.get(),3)
-                .unlockedBy("has_bowls",has(ChangShengJueItems.CI_WAN.get())).save(consumer);
+                .unlockedBy("has_bowls",has(ChangShengJueItems.GU_SUI.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.MI_FAN.get())
                 .requires(ChangShengJueItems.RICE.get(),3)
-                .unlockedBy("has_bowls",has(ChangShengJueItems.CI_WAN.get())).save(consumer);
+                .unlockedBy("has_bowls",has(ChangShengJueItems.RICE.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.GUI_HUA_TANG_OU.get())
                 .requires(ChangShengJueItems.GUI_HUA.get())
                 .requires(ChangShengJueItems.LOTUS_ROOT.get())

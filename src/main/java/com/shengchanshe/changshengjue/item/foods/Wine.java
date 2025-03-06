@@ -2,18 +2,26 @@ package com.shengchanshe.changshengjue.item.foods;
 
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 
-public class Wine extends Item {
-    public Wine(Properties pProperties) {
-        super(pProperties);
+public class Wine extends BlockItem {
+
+    public Wine(Block pBlock, Properties pProperties) {
+        super(pBlock, pProperties);
     }
+
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
         if (!pLevel.isClientSide) {
             if (pEntityLiving.hasEffect(ChangShengJueEffects.FEN_JIU.get()) || pEntityLiving.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) || pEntityLiving.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get())){
@@ -44,6 +52,8 @@ public class Wine extends Item {
         ItemStack itemstack = super.finishUsingItem(pStack, pLevel, pEntityLiving);
         return pEntityLiving instanceof Player && ((Player)pEntityLiving).getAbilities().instabuild ? itemstack : new ItemStack(ChangShengJueItems.CI_BEI.get());
     }
+
+
     @Override
     public UseAnim getUseAnimation(ItemStack pStack) {
         return UseAnim.DRINK;

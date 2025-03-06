@@ -514,6 +514,160 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         //蒲团
         this.dropSelf(ChangShengJueBlocks.ZAFU.get());
 
+        //食物
+        this.dropSelf(ChangShengJueBlocks.CI_PAN.get());
+        this.dropSelf(ChangShengJueBlocks.CI_WAN.get());
+        this.dropSelf(ChangShengJueBlocks.CI_BEI.get());
+        this.dropSelf(ChangShengJueBlocks.CORN.get());
+        this.dropSelf(ChangShengJueBlocks.BAKED_CORN.get());
+        this.dropSelf(ChangShengJueBlocks.PEAR.get());
+        this.dropSelf(ChangShengJueBlocks.PINEAPPLE.get());
+        this.dropSelf(ChangShengJueBlocks.MANGO.get());
+        this.dropSelf(ChangShengJueBlocks.LICHEE.get());
+        this.dropSelf(ChangShengJueBlocks.BANANA.get());
+        this.dropSelf(ChangShengJueBlocks.GRAPE.get());
+        this.dropSelf(ChangShengJueBlocks.MULBERRY.get());
+        this.dropSelf(ChangShengJueBlocks.DURIAN.get());
+        this.dropSelf(ChangShengJueBlocks.OPEN_DURIAN.get());
+        /*容器食用*/
+        //盘
+        this.dropSelf(ChangShengJueBlocks.ZHENG_CAI.get());
+        this.dropSelf(ChangShengJueBlocks.TOMATO_EGG.get());
+        this.dropSelf(ChangShengJueBlocks.GU_LAO_ROU.get());
+        this.dropSelf(ChangShengJueBlocks.MEAT_FOAM_BRINJAL.get());
+        this.dropSelf(ChangShengJueBlocks.STINKY_TOFU.get());
+        this.dropSelf(ChangShengJueBlocks.GUI_HUA_TANG_OU.get());
+        //碗
+        this.dropSelf(ChangShengJueBlocks.HOT_PEAR_SOUP.get());
+        this.dropSelf(ChangShengJueBlocks.ZHU_DU_JI.get());
+        this.dropSelf(ChangShengJueBlocks.BA_BAO_ZHOU.get());
+        //杯
+        this.dropSelf(ChangShengJueBlocks.BILUOCHUN_TEAS.get());
+        this.dropSelf(ChangShengJueBlocks.LONG_JING_TEAS.get());
+        this.dropSelf(ChangShengJueBlocks.GRAPE_JUICE.get());
+        this.dropSelf(ChangShengJueBlocks.APPLE_JUICE.get());
+        this.dropSelf(ChangShengJueBlocks.MULBERRY_JUICE.get());
+        this.dropSelf(ChangShengJueBlocks.FEN_JIU.get());
+        this.dropSelf(ChangShengJueBlocks.SHI_LI_XIANG.get());
+        this.dropSelf(ChangShengJueBlocks.WHEAT_NUGGETS_TRIBUTE_WINE.get());
+        this.add(ChangShengJueBlocks.EMPTY_FEN_JIU.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_BEI.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+        this.add(ChangShengJueBlocks.EMPTY_SHI_LI_XIANG.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_BEI.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+        this.add(ChangShengJueBlocks.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_BEI.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+
+        /*直接食用*/
+        this.add(ChangShengJueBlocks.PORTULACA_OLERACEA_CAKE_PAN.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueItems.PORTULACA_OLERACEA_CAKE.get())))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_PAN.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+        this.add(ChangShengJueBlocks.PORTULACA_OLERACEA_CAKE_WAN.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueItems.PORTULACA_OLERACEA_CAKE.get())))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_WAN.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+        this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_PAN.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueItems.CAPSULE_JIAO_ZI.get())))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_PAN.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+        this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_WAN.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueItems.CAPSULE_JIAO_ZI.get())))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_WAN.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+        this.add(ChangShengJueBlocks.QING_TUAN_PAN.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueItems.QING_TUAN.get())))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_PAN.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+        this.add(ChangShengJueBlocks.QING_TUAN_WAN.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueItems.QING_TUAN.get())))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_WAN.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+        this.add(ChangShengJueBlocks.SORGHUM_CAKE_PAN.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueItems.SORGHUM_CAKE.get())))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_PAN.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+        this.add(ChangShengJueBlocks.SORGHUM_CAKE_WAN.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueItems.SORGHUM_CAKE.get())))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_WAN.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+        this.add(ChangShengJueBlocks.MI_FAN_PAN.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueItems.MI_FAN.get())))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_PAN.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+        this.add(ChangShengJueBlocks.MI_FAN_WAN.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueItems.MI_FAN.get())))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_WAN.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+        //xiao_mi_fan_pan
+        this.add(ChangShengJueBlocks.XIAO_MI_FAN_PAN.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueItems.XIAO_MI_FAN.get())))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_PAN.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+        this.add(ChangShengJueBlocks.XIAO_MI_FAN_WAN.get(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueItems.XIAO_MI_FAN.get())))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_WAN.get())))
+                        .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
+        );
+
         //台阶/瓦
         this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(),
                 block -> createSlabItemTable(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get()));
@@ -550,6 +704,8 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
 
 
     }
+
+
 
     public void createLeavesFruitsDrops(Block leavesBlock, Item fruitsItem,Block sapling){
         var leaves = LootItem.lootTableItem(leavesBlock)

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "types=0": {
+      "model": "chang_sheng_jue:block/ci_pan"
+    },
+    "types=1": {
+      "model": "chang_sheng_jue:block/zhu_du_ji"
+    },
+    "types=2": {
+      "model": "chang_sheng_jue:block/zhu_du_ji"
+    }
+  }
+}

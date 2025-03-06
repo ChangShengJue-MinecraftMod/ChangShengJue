@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "types=0": {
+      "model": "chang_sheng_jue:block/ci_bei"
+    },
+    "types=1": {
+      "model": "chang_sheng_jue:block/sorghum_cake_wan"
+    },
+    "types=2": {
+      "model": "chang_sheng_jue:block/sorghum_cake_wan"
+    }
+  }
+}

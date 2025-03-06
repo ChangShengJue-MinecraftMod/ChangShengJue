@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "types=0": {
+      "model": "chang_sheng_jue:block/empty_fen_jiu"
+    },
+    "types=1": {
+      "model": "chang_sheng_jue:block/fen_jiu"
+    },
+    "types=2": {
+      "model": "chang_sheng_jue:block/fen_jiu"
+    }
+  }
+}
