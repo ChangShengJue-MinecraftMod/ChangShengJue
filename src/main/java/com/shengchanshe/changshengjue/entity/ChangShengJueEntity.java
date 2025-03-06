@@ -45,11 +45,11 @@ public class ChangShengJueEntity {
                             .sized(0.8f,0.2f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"butterfly_entity").toString()));
 
-    public static final RegistryObject<EntityType<Monkey>> MONKEY_ENTITY =
-            ENTITY_TYPES.register("monkey_entity",
+    public static final RegistryObject<EntityType<Monkey>> MONKEY =
+            ENTITY_TYPES.register("monkey",
                     () -> EntityType.Builder.of(Monkey::new, MobCategory.CREATURE)
                             .sized(1.0f,1.5f)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"monkey_entity").toString()));
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"monkey").toString()));
 
     public static final RegistryObject<EntityType<Dragonfly>> DRAGONFLY_ENTITY =
             ENTITY_TYPES.register("dragonfly_entity",

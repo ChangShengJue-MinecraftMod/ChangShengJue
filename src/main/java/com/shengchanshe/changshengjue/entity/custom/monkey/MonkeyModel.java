@@ -12,17 +12,29 @@ import software.bernie.geckolib.model.data.EntityModelData;
 public class MonkeyModel extends GeoModel<Monkey> {
     @Override
     public ResourceLocation getModelResource(Monkey monkeyEntity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/monkey/monkey_entity.geo.json");
+        if (monkeyEntity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/monkey/monkey_baby.geo.json");
+        }else {
+            return new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/monkey/monkey.geo.json");
+        }
     }
 
     @Override
     public ResourceLocation getTextureResource(Monkey monkeyEntity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/monkey/monkey_entity.png");
+        if (monkeyEntity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/monkey/monkey_baby.png");
+        }else {
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/monkey/monkey.png");
+        }
     }
 
     @Override
     public ResourceLocation getAnimationResource(Monkey monkeyEntity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/monkey/monkey_entity.animation.json");
+        if (monkeyEntity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/monkey/monkey_baby.animation.json");
+        }else {
+            return new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/monkey/monkey.animation.json");
+        }
     }
 
     @Override

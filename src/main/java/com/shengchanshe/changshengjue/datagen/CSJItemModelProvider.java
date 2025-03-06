@@ -273,6 +273,12 @@ public class CSJItemModelProvider extends ItemModelProvider {
         parentItem(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8);
         parentItem(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8);
 
+        parentItem(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB);
+        parentItem(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB);
+        parentItem(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB);
+        parentItem(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB);
+        parentItem(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB);
+
         parentItem(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE);
         parentItem(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE);
         parentItem(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE);

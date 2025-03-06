@@ -17,9 +17,10 @@ public class MonkeyRenderer extends GeoEntityRenderer<Monkey> {
     @Override
     public ResourceLocation getTextureLocation(Monkey instance) {
         if (instance.isBaby()){
-            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/monkey/monkey_entity.png");
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/monkey/monkey_baby.png");
+        }else {
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/monkey/monkey.png");
         }
-        return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/monkey/monkey_entity.png");
     }
 
     //获取渲染类型
@@ -27,7 +28,7 @@ public class MonkeyRenderer extends GeoEntityRenderer<Monkey> {
     public void render(Monkey entity, float entityYaw, float partialTick,
                        PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
         if (entity.isBaby()){
-            poseStack.scale(0.4F,0.4F,0.4F);
+            poseStack.scale(0.65F,0.65F,0.65F);
         }else {
             poseStack.scale(1.0F,1.0F,1.0F);//缩放实体大小
         }

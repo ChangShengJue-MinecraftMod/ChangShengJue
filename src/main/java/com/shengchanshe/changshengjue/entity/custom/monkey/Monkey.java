@@ -1,13 +1,10 @@
 package com.shengchanshe.changshengjue.entity.custom.monkey;
 
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
-import com.shengchanshe.changshengjue.entity.custom.peacock.AbstractPeacockEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
-import net.minecraft.client.Minecraft;
-import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -24,23 +21,21 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.*;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import javax.annotation.Nullable;
 
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.ForgeEventFactory;
 import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.ClientUtils;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import software.bernie.geckolib.core.animation.*;
 
@@ -48,6 +43,7 @@ import java.util.UUID;
 
 public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    //随机动画计数
     private int performing = 0;
     protected int xpReward;
     @Nullable
@@ -74,10 +70,10 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
     protected void registerGoals(){
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 0.8D, Ingredient.of(ChangShengJueItems.BANANA.get()), false));
-        this.goalSelector.addGoal(4, new MeleeAttackGoal(this,0.8D, false));
-        this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 1.0, 10.0F, 2.0F, false));
-        this.goalSelector.addGoal(6, new FollowParentGoal(this, 1.0D));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 0.7D, Ingredient.of(ChangShengJueItems.BANANA.get()), false));
+        this.goalSelector.addGoal(4, new MeleeAttackGoal(this,0.7D, false));
+        this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 0.7, 10.0F, 2.0F, false));
+//        this.goalSelector.addGoal(6, new FollowParentGoal(this, 0.7D));
         this.goalSelector.addGoal(6, new BreedGoal(this, 0.6D));
         this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 0.6D));
         this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 8.0F));
@@ -85,7 +81,7 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)));
-        this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal(this, true));
+        this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, true));
         //        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, (entity) ->{
 //            if (entity instanceof Player){
 //                Player player = (Player) entity;
@@ -104,6 +100,11 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
 //            return false;
 //        }));
     }
+//
+//    @Override
+//    protected float getStandingEyeHeight(Pose pPose, EntityDimensions pSize) {
+//        return this.isBaby() ? 0.93F : 1.28F;
+//    }
 
     @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
@@ -131,23 +132,30 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
     }
 
     @Override
+// 重写父类的方法，用于处理玩家与该实体的交互
     public InteractionResult interactAt(Player pPlayer, Vec3 pVec, InteractionHand pHand) {
-        if (pPlayer.getItemInHand(pHand).isEmpty()) {
+    // 检查玩家手中的物品是否为空且该实体不是幼崽
+        if (pPlayer.getItemInHand(pHand).isEmpty() && !this.isBaby()) {
+        // 生成一个0到99之间的随机数
             int rand = random.nextInt(100);
+        // 检查交互的手是否是主手
             if (pHand == InteractionHand.MAIN_HAND) {
+            // 检查该实体是否已被驯服
                 if (this.isTame()) {
+                // 根据随机数设置不同的表演行为
                     if (rand < 30) {
-                        this.performing = 1;
+                        this.performing = 1; // 设置表演行为为1
                     } else if (rand < 60) {
-                        this.performing = 2;
+                        this.performing = 2; // 设置表演行为为2
                     } else if (rand < 90) {
-                        this.performing = 3;
+                        this.performing = 3; // 设置表演行为为3
                     } else {
-                        this.performing = 4;
+                        this.performing = 4; // 设置表演行为为4
                     }
                 }
             }
         }
+    // 调用父类的交互方法并返回结果
         return super.interactAt(pPlayer, pVec, pHand);
     }
 
@@ -236,6 +244,7 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
         return PlayState.CONTINUE;
     }
 
+    // 定义一个私有方法performingPredicate，用于根据performing的值设置动画状态
     private <E extends GeoAnimatable> PlayState performingPredicate(AnimationState<E> event){
         if (this.performing == 1) {
             event.setAnimation(RawAnimation.begin().thenPlay("play1"));
@@ -246,10 +255,6 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
         } else if (this.performing == 4) {
             event.setAnimation(RawAnimation.begin().thenPlay("play4"));
         }
-//        if (this.shouldFollow(Minecraft.getInstance().player)){
-//            event.getController().setAnimation(RawAnimation.begin().then("jump",Animation.LoopType.LOOP));
-//            return PlayState.CONTINUE;
-//        }
         return PlayState.CONTINUE;
     }
 
@@ -346,7 +351,7 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob ageableMob) {
-        return ChangShengJueEntity.MONKEY_ENTITY.get().create(level);
+        return ChangShengJueEntity.MONKEY.get().create(level);
     }
 
     @Override
@@ -356,9 +361,13 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController(this,"controller",0,this::predicate));
-        controllers.add(new AnimationController(this,"performing",0,this::performingPredicate));
-        controllers.add(new AnimationController(this,"attackController",0,this::attackPredicate));
+    // 注册动画控制器的方法，参数是一个控制器注册器对象
+    // 添加一个名为"controller"的动画控制器，使用predicate方法作为动画状态判断逻辑
+        controllers.add(new AnimationController<>(this,"controller",0,this::predicate));
+    // 添加一个名为"performing"的动画控制器，使用performingPredicate方法作为动画状态判断逻辑
+        controllers.add(new AnimationController<>(this,"performing",0,this::performingPredicate));
+    // 添加一个名为"attackController"的动画控制器，使用attackPredicate方法作为动画状态判断逻辑
+        controllers.add(new AnimationController<>(this,"attackController",0,this::attackPredicate));
     }
 
 

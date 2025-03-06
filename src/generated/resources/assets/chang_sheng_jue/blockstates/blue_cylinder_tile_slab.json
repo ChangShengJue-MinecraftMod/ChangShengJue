@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "chang_sheng_jue:block/blue_cylinder_tile_slab"
+    },
+    "type=double": {
+      "model": "chang_sheng_jue:block/cylinder_tile_blue"
+    },
+    "type=top": {
+      "model": "chang_sheng_jue:block/blue_cylinder_tile_slab_top"
+    }
+  }
+}

@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -160,6 +161,13 @@ public class CSJBlockStateProvider extends BlockStateProvider {
         horizontalBlock(ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/hanging_beast_black_ridge_tile")));
         horizontalBlock(ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/hanging_beast_golden_ridge_tile")));
         horizontalBlock(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/hanging_beast_blue_ridge_tile")));
+
+        //台阶
+        slabBlock((SlabBlock) ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(),blockTexture(ChangShengJueBlocks.GRE_CYLINDER_TILE.get()), blockTexture(ChangShengJueBlocks.GRE_CYLINDER_TILE.get()));
+        slabBlock((SlabBlock) ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get(),blockTexture(ChangShengJueBlocks.RED_CYLINDER_TILE.get()), blockTexture(ChangShengJueBlocks.RED_CYLINDER_TILE.get()));
+        slabBlock((SlabBlock) ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(),blockTexture(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get()), blockTexture(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get()));
+        slabBlock((SlabBlock) ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(),blockTexture(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get()), blockTexture(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get()));
+        slabBlock((SlabBlock) ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),blockTexture(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get()), blockTexture(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get()));
     }
 
 

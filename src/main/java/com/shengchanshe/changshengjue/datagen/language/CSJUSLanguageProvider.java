@@ -458,6 +458,12 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get(),"金色筒瓦块");
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get(),"青色筒瓦块");
 
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(),"灰色筒瓦台阶");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get(),"红色筒瓦台阶");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(),"黑色筒瓦台阶");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(),"金色筒瓦台阶");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),"青色筒瓦台阶");
+
         this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(),"黑色筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get(),"金色筒瓦");
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(),"青色筒瓦");
@@ -711,7 +717,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
 
         //实体生物
         this.add(ChangShengJueEntity.BUTTERFLY_ENTITY.get(), "蝴蝶");
-        this.add(ChangShengJueEntity.MONKEY_ENTITY.get(), "猴");
+        this.add(ChangShengJueEntity.MONKEY.get(), "猴");
         this.add(ChangShengJueEntity.DRAGONFLY_ENTITY.get(), "蜻蜓");
         this.add(ChangShengJueEntity.CICADA_ENTITY.get(), "蝉");
         this.add(ChangShengJueEntity.CRANE_ENTITY.get(), "鹤");

@@ -22,7 +22,7 @@ public class CSJEventBusEvents {
     @SubscribeEvent
     public static void entityAttributeEvent(EntityAttributeCreationEvent event){
         event.put(ChangShengJueEntity.BUTTERFLY_ENTITY.get(), Butterfly.setAttributes());
-        event.put(ChangShengJueEntity.MONKEY_ENTITY.get(), Monkey.setAttributes());
+        event.put(ChangShengJueEntity.MONKEY.get(), Monkey.setAttributes());
         event.put(ChangShengJueEntity.DRAGONFLY_ENTITY.get(), Dragonfly.setAttributes());
         event.put(ChangShengJueEntity.CICADA_ENTITY.get(), Cicada.setAttributes());
         event.put(ChangShengJueEntity.CRANE_ENTITY.get(), Crane.setAttributes());

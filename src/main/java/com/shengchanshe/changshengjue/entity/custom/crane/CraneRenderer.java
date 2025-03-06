@@ -16,18 +16,14 @@ public class CraneRenderer extends GeoEntityRenderer<Crane> {
     //获取纹理位置
     @Override
     public ResourceLocation getTextureLocation(Crane instance) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/crane_entity.png");
+        return instance.isBaby() ? new ResourceLocation(ChangShengJue.MOD_ID , "textures/entity/crane/crane_baby.png") : new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/crane/crane.png");
     }
 
     //获取渲染类型
     @Override
     public void render(Crane entity, float entityYaw, float partialTick,
                        PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        if (entity.isBaby()){
-            poseStack.scale(0.5F,0.5F,0.5F);
-        }else {
-            poseStack.scale(1.0F,1.0F,1.0F);//缩放实体大小
-        }
+        poseStack.scale(1.0F,1.0F,1.0F);//缩放实体大小
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
     }
 }
