@@ -49,7 +49,7 @@ public class DuguNineSwords implements KungFuCapability {
                     entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
                                     .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), livingEntity), damage);//造成伤害
                     EnchantmentHelper.doPostDamageEffects(livingEntity, entity);//应用附魔
-                    DuguNineSwordsEntity duguNineSwordsEntity = new DuguNineSwordsEntity(ChangShengJueEntity.DUGU_NINE_SOWRDS_ENTITY.get(), pLevel);
+                    DuguNineSwordsEntity duguNineSwordsEntity = new DuguNineSwordsEntity(ChangShengJueEntity.DUGU_NINE_SOWRDS.get(), pLevel);
                     duguNineSwordsEntity.moveTo(hitLocation);
                     duguNineSwordsEntity.setYRot(livingEntity.getYRot());
                     pLevel.addFreshEntity(duguNineSwordsEntity);

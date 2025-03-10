@@ -348,17 +348,17 @@ public class ClientSetup {
 
         MenuScreens.register(ChangShengJueMenuTypes.PLAQUE_MENU.get(), PlaqueScreen::new);
 
-        EntityRenderers.register(ChangShengJueEntity.BUTTERFLY_ENTITY.get(), ButterflyRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.BUTTERFLY.get(), ButterflyRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.MONKEY.get(), MonkeyRenderer::new);
-        EntityRenderers.register(ChangShengJueEntity.DRAGONFLY_ENTITY.get(), DragonflyRenderer::new);
-        EntityRenderers.register(ChangShengJueEntity.CICADA_ENTITY.get(), CicadaRenderer::new);
-        EntityRenderers.register(ChangShengJueEntity.CRANE_ENTITY.get(), CraneRenderer::new);
-        EntityRenderers.register(ChangShengJueEntity.MALE_PEACOCK_ENTITY.get(), MalePeacockRenderer::new);
-        EntityRenderers.register(ChangShengJueEntity.FEMALE_PEACOCK_ENTITY.get(), FemalePeacockRenderer::new);
-        EntityRenderers.register(ChangShengJueEntity.STAG_ENTITY.get(), StagRenderer::new);
-        EntityRenderers.register(ChangShengJueEntity.HIND_ENTITY.get(), HindRenderer::new);
-        EntityRenderers.register(ChangShengJueEntity.TIGER_ENTITY.get(), TigerRenderer::new);
-        EntityRenderers.register(ChangShengJueEntity.CROC_ENTITY.get(), CrocRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.DRAGONFLY.get(), DragonflyRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.CICADA.get(), CicadaRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.CRANE.get(), CraneRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.MALE_PEACOCK.get(), MalePeacockRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.FEMALE_PEACOCK.get(), FemalePeacockRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.STAG.get(), StagRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.HIND.get(), HindRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.TIGER.get(), TigerRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.CROC.get(), CrocRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER.get(), ChangShengJueVillagerRender::new);
 
         EntityRenderers.register(ChangShengJueEntity.THROWING_KNIVES_ENTITY.get(), ThrowingKnivesEntityRender::new);
@@ -367,8 +367,8 @@ public class ClientSetup {
         EntityRenderers.register(ChangShengJueEntity.BA_WANG_QIANG.get(), ThrownBaWangQiangRender::new);
         EntityRenderers.register(ChangShengJueEntity.RED_TASSELLED_SPEAR.get(), ThrownRedTasselledSpearRender::new);
 
-        EntityRenderers.register(ChangShengJueEntity.DUGU_NINE_SOWRDS_ENTITY.get(), DuguNineSwordsEntityRender::new);
-        EntityRenderers.register(ChangShengJueEntity.GOLDEN_BLACK_KNIFE_METHOD_ENTITY.get(), GoldenBlackKnifeMethodEntityRender::new);
+        EntityRenderers.register(ChangShengJueEntity.DUGU_NINE_SOWRDS.get(), DuguNineSwordsEntityRender::new);
+        EntityRenderers.register(ChangShengJueEntity.GOLDEN_BLACK_KNIFE_METHOD.get(), GoldenBlackKnifeMethodEntityRender::new);
         EntityRenderers.register(ChangShengJueEntity.BEAT_DOG_STICK_ATTACK.get(), BeatDogStickAttackEntityRender::new);
         EntityRenderers.register(ChangShengJueEntity.TU_LONG_DAO_ATTACK.get(), TuLongDaoAttackEntityRender::new);
         EntityRenderers.register(ChangShengJueEntity.BA_WANG_QIANG_ATTACK.get(), BaWangQiangAttackEntityRender::new);

@@ -97,13 +97,13 @@
     "axolotls": [],
     "creature": [
       {
-        "type": "chang_sheng_jue:butterfly_entity",
+        "type": "chang_sheng_jue:butterfly",
         "maxCount": 5,
         "minCount": 3,
         "weight": 2
       },
       {
-        "type": "chang_sheng_jue:stag_entity",
+        "type": "chang_sheng_jue:stag",
         "maxCount": 4,
         "minCount": 4,
         "weight": 8

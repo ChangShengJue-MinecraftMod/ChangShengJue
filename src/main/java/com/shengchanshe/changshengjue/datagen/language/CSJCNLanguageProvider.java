@@ -723,17 +723,17 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get(), "大城门(左)");
         this.add(ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get(), "大城门(右)");
         //实体生物
-        this.add(ChangShengJueEntity.BUTTERFLY_ENTITY.get(), "蝴蝶");
+        this.add(ChangShengJueEntity.BUTTERFLY.get(), "蝴蝶");
         this.add(ChangShengJueEntity.MONKEY.get(), "猴");
-        this.add(ChangShengJueEntity.DRAGONFLY_ENTITY.get(), "蜻蜓");
-        this.add(ChangShengJueEntity.CICADA_ENTITY.get(), "蝉");
-        this.add(ChangShengJueEntity.CRANE_ENTITY.get(), "鹤");
-        this.add(ChangShengJueEntity.MALE_PEACOCK_ENTITY.get(), "孔雀");
-        this.add(ChangShengJueEntity.FEMALE_PEACOCK_ENTITY.get(), "孔雀");
-        this.add(ChangShengJueEntity.STAG_ENTITY.get(), "鹿");
-        this.add(ChangShengJueEntity.HIND_ENTITY.get(), "鹿");
-        this.add(ChangShengJueEntity.TIGER_ENTITY.get(), "老虎");
-        this.add(ChangShengJueEntity.CROC_ENTITY.get(), "鳄鱼");
+        this.add(ChangShengJueEntity.DRAGONFLY.get(), "蜻蜓");
+        this.add(ChangShengJueEntity.CICADA.get(), "蝉");
+        this.add(ChangShengJueEntity.CRANE.get(), "鹤");
+        this.add(ChangShengJueEntity.MALE_PEACOCK.get(), "孔雀");
+        this.add(ChangShengJueEntity.FEMALE_PEACOCK.get(), "孔雀");
+        this.add(ChangShengJueEntity.STAG.get(), "鹿");
+        this.add(ChangShengJueEntity.HIND.get(), "鹿");
+        this.add(ChangShengJueEntity.TIGER.get(), "老虎");
+        this.add(ChangShengJueEntity.CROC.get(), "鳄鱼");
         this.add(ChangShengJueEntity.WARRIOR.get(), "武夫");
 
         this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_farmer", "农民");

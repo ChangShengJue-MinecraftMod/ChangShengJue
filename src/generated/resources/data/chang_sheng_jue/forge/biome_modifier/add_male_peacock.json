@@ -2,7 +2,7 @@
   "type": "forge:add_spawns",
   "biomes": "#forge:is_plains",
   "spawners": {
-    "type": "chang_sheng_jue:male_peacock_entity",
+    "type": "chang_sheng_jue:male_peacock",
     "maxCount": 2,
     "minCount": 1,
     "weight": 100

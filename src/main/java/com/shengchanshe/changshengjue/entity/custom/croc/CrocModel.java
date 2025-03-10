@@ -12,17 +12,25 @@ import software.bernie.geckolib.model.data.EntityModelData;
 public class CrocModel extends GeoModel<Croc> {
     @Override
     public ResourceLocation getModelResource(Croc entity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/croc_entity.geo.json");
+        if (entity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/croc/croc_baby.geo.json");
+        }else{
+            return new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/croc/croc.geo.json");
+        }
     }
 
     @Override
     public ResourceLocation getTextureResource(Croc entity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/croc_entity.png");
+        if (entity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/croc/croc_baby.png");
+        }else{
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/croc/croc.png");
+        }
     }
 
     @Override
     public ResourceLocation getAnimationResource(Croc entity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"animations/croc_entity.animation.json");
+        return new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/croc/croc.animation.json");
     }
     @Override
     public void setCustomAnimations(Croc animatable, long instanceId, AnimationState<Croc> animationState) {

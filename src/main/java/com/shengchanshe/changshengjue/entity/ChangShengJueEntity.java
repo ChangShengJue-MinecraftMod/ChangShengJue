@@ -40,11 +40,11 @@ public class ChangShengJueEntity {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, ChangShengJue.MOD_ID);
 
-    public static final RegistryObject<EntityType<Butterfly>> BUTTERFLY_ENTITY =
-            ENTITY_TYPES.register("butterfly_entity",
+    public static final RegistryObject<EntityType<Butterfly>> BUTTERFLY =
+            ENTITY_TYPES.register("butterfly",
                     () -> EntityType.Builder.of(Butterfly::new, MobCategory.CREATURE)
                             .sized(0.8f,0.2f)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"butterfly_entity").toString()));
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"butterfly").toString()));
 
     public static final RegistryObject<EntityType<Monkey>> MONKEY =
             ENTITY_TYPES.register("monkey",
@@ -52,59 +52,59 @@ public class ChangShengJueEntity {
                             .sized(1.0f,1.5f)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"monkey").toString()));
 
-    public static final RegistryObject<EntityType<Dragonfly>> DRAGONFLY_ENTITY =
-            ENTITY_TYPES.register("dragonfly_entity",
+    public static final RegistryObject<EntityType<Dragonfly>> DRAGONFLY =
+            ENTITY_TYPES.register("dragonfly",
                     () -> EntityType.Builder.of(Dragonfly::new, MobCategory.CREATURE)
                             .sized(0.8f,0.4f)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"dragonfly_entity").toString()));
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"dragonfly").toString()));
     // 蝉
-    public static final RegistryObject<EntityType<Cicada>> CICADA_ENTITY =
-            ENTITY_TYPES.register("cicada_entity",
+    public static final RegistryObject<EntityType<Cicada>> CICADA =
+            ENTITY_TYPES.register("cicada",
                     () -> EntityType.Builder.of(Cicada::new, MobCategory.CREATURE)
                             .sized(0.6f,0.5f)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"cicada_entity").toString()));
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"cicada").toString()));
 
-    public static final RegistryObject<EntityType<Crane>> CRANE_ENTITY =
-            ENTITY_TYPES.register("crane_entity",
+    public static final RegistryObject<EntityType<Crane>> CRANE =
+            ENTITY_TYPES.register("crane",
                     () -> EntityType.Builder.of(Crane::new, MobCategory.CREATURE)
                             .sized(1.0f,1.4f)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"crane_entity").toString()));
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"crane").toString()));
 
-    public static final RegistryObject<EntityType<MalePeacock>> MALE_PEACOCK_ENTITY =
-            ENTITY_TYPES.register("male_peacock_entity",
+    public static final RegistryObject<EntityType<MalePeacock>> MALE_PEACOCK =
+            ENTITY_TYPES.register("male_peacock",
                     () -> EntityType.Builder.of(MalePeacock::new, MobCategory.CREATURE)
                             .sized(0.8f,1.4f)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"male_peacock_entity").toString()));
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"male_peacock").toString()));
 
-    public static final RegistryObject<EntityType<FemalePeacock>> FEMALE_PEACOCK_ENTITY =
-            ENTITY_TYPES.register("female_peacock_entity",
+    public static final RegistryObject<EntityType<FemalePeacock>> FEMALE_PEACOCK =
+            ENTITY_TYPES.register("female_peacock",
                     () -> EntityType.Builder.of(FemalePeacock::new, MobCategory.CREATURE)
                             .sized(0.8f,1.4f)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"female_peacock_entity").toString()));
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"female_peacock").toString()));
 
-    public static final RegistryObject<EntityType<Stag>> STAG_ENTITY =
-            ENTITY_TYPES.register("stag_entity",
+    public static final RegistryObject<EntityType<Stag>> STAG =
+            ENTITY_TYPES.register("stag",
                     () -> EntityType.Builder.of(Stag::new, MobCategory.CREATURE)
                             .sized(0.9F, 1.5F)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"stag_entity").toString()));
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"stag").toString()));
 
-    public static final RegistryObject<EntityType<Hind>> HIND_ENTITY =
-            ENTITY_TYPES.register("hind_entity",
+    public static final RegistryObject<EntityType<Hind>> HIND =
+            ENTITY_TYPES.register("hind",
                     () -> EntityType.Builder.of(Hind::new, MobCategory.CREATURE)
                             .sized(0.9F, 1.4F)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"hind_entity").toString()));
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"hind").toString()));
 
-    public static final RegistryObject<EntityType<Tiger>> TIGER_ENTITY =
-            ENTITY_TYPES.register("tiger_entity",
+    public static final RegistryObject<EntityType<Tiger>> TIGER =
+            ENTITY_TYPES.register("tiger",
                     () -> EntityType.Builder.of(Tiger::new, MobCategory.CREATURE)
                             .sized(1.0F, 1.4F)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"tiger_entity").toString()));
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"tiger").toString()));
 
-    public static final RegistryObject<EntityType<Croc>> CROC_ENTITY =
-            ENTITY_TYPES.register("croc_entity",
+    public static final RegistryObject<EntityType<Croc>> CROC =
+            ENTITY_TYPES.register("croc",
                     () -> EntityType.Builder.of(Croc::new, MobCategory.CREATURE)
-                            .sized(1.15F, 0.75F)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"croc_entity").toString()));
+                            .sized(1.15F, 0.5F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"croc").toString()));
 
     public static final RegistryObject<EntityType<ChangShengJueVillagerEntity>> CHANG_SHENG_JUE_VILLAGER =
             ENTITY_TYPES.register("chang_sheng_jue_villager",
@@ -120,17 +120,17 @@ public class ChangShengJueEntity {
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"warrior").toString()));
 
     //独孤九剑
-    public static final RegistryObject<EntityType<DuguNineSwordsEntity>> DUGU_NINE_SOWRDS_ENTITY =
-            ENTITY_TYPES.register("dugu_nine_sowrds_entity",
+    public static final RegistryObject<EntityType<DuguNineSwordsEntity>> DUGU_NINE_SOWRDS =
+            ENTITY_TYPES.register("dugu_nine_sowrds",
                     () -> EntityType.Builder.of(DuguNineSwordsEntity::new, MobCategory.MISC)
                             .sized(5f, 1f)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"dugu_nine_sowrds_entity").toString()));
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"dugu_nine_sowrds").toString()));
     //金乌刀法
-    public static final RegistryObject<EntityType<GoldenBlackKnifeMethodEntity>> GOLDEN_BLACK_KNIFE_METHOD_ENTITY =
+    public static final RegistryObject<EntityType<GoldenBlackKnifeMethodEntity>> GOLDEN_BLACK_KNIFE_METHOD =
             ENTITY_TYPES.register("golden_black_knife_method_entity",
                     () -> EntityType.Builder.of(GoldenBlackKnifeMethodEntity::new, MobCategory.MISC)
                             .sized(5f, 1f)
-                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"golden_black_knife_method_entity").toString()));
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"golden_black_knife_method").toString()));
     //隔山打牛
     public static final RegistryObject<EntityType<GeShanDaNiuEntity>> GE_SHAN_DA_NIU =
             ENTITY_TYPES.register("ge_shan_da_niu",

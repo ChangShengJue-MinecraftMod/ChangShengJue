@@ -166,7 +166,7 @@ public class Knife extends SwordItem {
                     });
                     player.getCooldowns().addCooldown(itemstack.getItem(), player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) ? 125 : 140);//添加使用冷却
                 }
-                GoldenBlackKnifeMethodEntity goldenBlackKnifeMethodEntity = new GoldenBlackKnifeMethodEntity(ChangShengJueEntity.GOLDEN_BLACK_KNIFE_METHOD_ENTITY.get(), pLevel);
+                GoldenBlackKnifeMethodEntity goldenBlackKnifeMethodEntity = new GoldenBlackKnifeMethodEntity(ChangShengJueEntity.GOLDEN_BLACK_KNIFE_METHOD.get(), pLevel);
                 goldenBlackKnifeMethodEntity.moveTo(hitLocation);
                 goldenBlackKnifeMethodEntity.setYRot(player.getYRot());
                 pLevel.addFreshEntity(goldenBlackKnifeMethodEntity);

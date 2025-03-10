@@ -10,7 +10,7 @@ import com.shengchanshe.changshengjue.entity.custom.croc.Croc;
 import com.shengchanshe.changshengjue.entity.custom.deer.AbstractDeer;
 import com.shengchanshe.changshengjue.entity.custom.dragonfly.Dragonfly;
 import com.shengchanshe.changshengjue.entity.custom.monkey.Monkey;
-import com.shengchanshe.changshengjue.entity.custom.peacock.AbstractPeacockEntity;
+import com.shengchanshe.changshengjue.entity.custom.peacock.AbstractPeacock;
 import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerEntity;
 import com.shengchanshe.changshengjue.entity.villagers.warrior.Warrior;
@@ -22,17 +22,17 @@ import net.minecraftforge.fml.common.Mod;
 public class CSJEventBusEvents {
     @SubscribeEvent
     public static void entityAttributeEvent(EntityAttributeCreationEvent event){
-        event.put(ChangShengJueEntity.BUTTERFLY_ENTITY.get(), Butterfly.setAttributes());
+        event.put(ChangShengJueEntity.BUTTERFLY.get(), Butterfly.setAttributes());
         event.put(ChangShengJueEntity.MONKEY.get(), Monkey.setAttributes());
-        event.put(ChangShengJueEntity.DRAGONFLY_ENTITY.get(), Dragonfly.setAttributes());
-        event.put(ChangShengJueEntity.CICADA_ENTITY.get(), Cicada.setAttributes());
-        event.put(ChangShengJueEntity.CRANE_ENTITY.get(), Crane.setAttributes());
-        event.put(ChangShengJueEntity.MALE_PEACOCK_ENTITY.get(), AbstractPeacockEntity.setAttributes());
-        event.put(ChangShengJueEntity.FEMALE_PEACOCK_ENTITY.get(), AbstractPeacockEntity.setAttributes());
-        event.put(ChangShengJueEntity.STAG_ENTITY.get(), AbstractDeer.setAttributes());
-        event.put(ChangShengJueEntity.HIND_ENTITY.get(), AbstractDeer.setAttributes());
-        event.put(ChangShengJueEntity.TIGER_ENTITY.get(), Tiger.setAttributes());
-        event.put(ChangShengJueEntity.CROC_ENTITY.get(), Croc.setAttributes());
+        event.put(ChangShengJueEntity.DRAGONFLY.get(), Dragonfly.setAttributes());
+        event.put(ChangShengJueEntity.CICADA.get(), Cicada.setAttributes());
+        event.put(ChangShengJueEntity.CRANE.get(), Crane.setAttributes());
+        event.put(ChangShengJueEntity.MALE_PEACOCK.get(), AbstractPeacock.setAttributes());
+        event.put(ChangShengJueEntity.FEMALE_PEACOCK.get(), AbstractPeacock.setAttributes());
+        event.put(ChangShengJueEntity.STAG.get(), AbstractDeer.setAttributes());
+        event.put(ChangShengJueEntity.HIND.get(), AbstractDeer.setAttributes());
+        event.put(ChangShengJueEntity.TIGER.get(), Tiger.setAttributes());
+        event.put(ChangShengJueEntity.CROC.get(), Croc.setAttributes());
         event.put(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER.get(), ChangShengJueVillagerEntity.setAttributes());
 
         event.put(ChangShengJueEntity.WARRIOR.get(), Warrior.setAttributes());

@@ -99,29 +99,7 @@
       ],
       "name": "simple_drops",
       "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 2.0,
-                "min": 0.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "chang_sheng_jue:antler"
-        }
-      ],
-      "name": "simple_drops",
-      "rolls": 1.0
     }
   ],
-  "random_sequence": "chang_sheng_jue:entities/stag_entity"
+  "random_sequence": "chang_sheng_jue:entities/hind"
 }

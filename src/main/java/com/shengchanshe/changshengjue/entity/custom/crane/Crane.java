@@ -87,7 +87,7 @@ public class Crane extends Animal implements GeoEntity, FlyingAnimal {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mob) {
-        return ChangShengJueEntity.CRANE_ENTITY.get().create(level);
+        return ChangShengJueEntity.CRANE.get().create(level);
     }
 
     @Override

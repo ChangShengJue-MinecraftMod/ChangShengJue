@@ -43,7 +43,7 @@ public class GoldenBlackKnifeMethod implements KungFuCapability {
         Vec3 forward = pEntity.getForward();//获取实体的前方方向
         Vec3 hitLocation = pEntity.position().add(0, pEntity.getBbHeight() * 0.3f, 0).add(forward.scale(distance));//获取实体高度的面向,计算攻击和实体生成的位置
         var entities = pLevel.getEntities(pEntity, AABB.ofSize(hitLocation, radius * 2, radius, radius * 2));//创建包围盒
-        GoldenBlackKnifeMethodEntity goldenBlackKnifeMethodEntity = new GoldenBlackKnifeMethodEntity(ChangShengJueEntity.GOLDEN_BLACK_KNIFE_METHOD_ENTITY.get(), pLevel);
+        GoldenBlackKnifeMethodEntity goldenBlackKnifeMethodEntity = new GoldenBlackKnifeMethodEntity(ChangShengJueEntity.GOLDEN_BLACK_KNIFE_METHOD.get(), pLevel);
         goldenBlackKnifeMethodEntity.moveTo(hitLocation);
         goldenBlackKnifeMethodEntity.setYRot(pEntity.getYRot());
         pLevel.addFreshEntity(goldenBlackKnifeMethodEntity);

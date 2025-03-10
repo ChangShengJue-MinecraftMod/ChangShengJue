@@ -1,7 +1,7 @@
 package com.shengchanshe.changshengjue.entity.custom.peacock.egg;
 
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
-import com.shengchanshe.changshengjue.entity.custom.peacock.AbstractPeacockEntity;
+import com.shengchanshe.changshengjue.entity.custom.peacock.AbstractPeacock;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.core.particles.ItemParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
@@ -43,7 +43,7 @@ public class PeacockEgg extends ThrowableItemProjectile {
                 }
 
                 for(int j = 0; j < i; ++j) {
-                    AbstractPeacockEntity peacock = (new Random().nextInt(2)+1) > 1 ? ChangShengJueEntity.FEMALE_PEACOCK_ENTITY.get().create(this.level()) : ChangShengJueEntity.MALE_PEACOCK_ENTITY.get().create(this.level());
+                    AbstractPeacock peacock = (new Random().nextInt(2)+1) > 1 ? ChangShengJueEntity.FEMALE_PEACOCK.get().create(this.level()) : ChangShengJueEntity.MALE_PEACOCK.get().create(this.level());
                     peacock.setAge(-24000);
                     peacock.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
                     this.level().addFreshEntity(peacock);

@@ -15,7 +15,6 @@ import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib.animatable.GeoEntity;
@@ -27,11 +26,11 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 
-public abstract class AbstractPeacockEntity extends Animal implements GeoEntity {
+public abstract class AbstractPeacock extends Animal implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     private static final Ingredient FOOD_ITEMS = Ingredient.of(ChangShengJueItems.CORN.get(), ChangShengJueItems.SORGHUM.get(), ChangShengJueItems.SOYBEAN.get());
-    public AbstractPeacockEntity(EntityType<? extends AbstractPeacockEntity> p_27557_, Level p_27558_) {
+    public AbstractPeacock(EntityType<? extends AbstractPeacock> p_27557_, Level p_27558_) {
         super(p_27557_, p_27558_);
     }
 
@@ -44,7 +43,7 @@ public abstract class AbstractPeacockEntity extends Animal implements GeoEntity 
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 0.6D));
-        this.goalSelector.addGoal(2, new BreedGoal(this, 0.6D, AbstractPeacockEntity.class));
+        this.goalSelector.addGoal(2, new BreedGoal(this, 0.6D, AbstractPeacock.class));
         this.goalSelector.addGoal(3, new TemptGoal(this, 0.7D, FOOD_ITEMS, false));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 0.6D));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.6D));

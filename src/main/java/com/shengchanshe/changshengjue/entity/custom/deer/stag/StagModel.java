@@ -8,16 +8,28 @@ public class StagModel extends GeoModel<Stag> {
 
     @Override
     public ResourceLocation getModelResource(Stag entity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/stag_entity.geo.json");
+        if (entity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/deer/deer_baby.geo.json");
+        }else {
+            return new ResourceLocation(ChangShengJue.MOD_ID, "geo/entity/deer/stag.geo.json");
+        }
     }
 
     @Override
     public ResourceLocation getTextureResource(Stag entity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/stag_entity.png");
+        if (entity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/deer/deer_baby.png");
+        }else {
+            return new ResourceLocation(ChangShengJue.MOD_ID, "textures/entity/deer/stag.png");
+        }
     }
 
     @Override
     public ResourceLocation getAnimationResource(Stag entity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"animations/stag_entity.animation.json");
+        if (entity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/deer/deer_baby.animation.json");
+        }else {
+            return new ResourceLocation(ChangShengJue.MOD_ID, "animations/entity/deer/stag.animation.json");
+        }
     }
 }

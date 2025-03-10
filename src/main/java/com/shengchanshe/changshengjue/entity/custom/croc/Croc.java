@@ -213,7 +213,7 @@ public class Croc extends TamableAnimal implements GeoEntity {
     @Override
     public void tick() {
         super.tick();
-        if (!level().isClientSide && this.getTarget() != null){
+        if (!level().isClientSide && this.getTarget() != null && !this.isBaby()){
             if (this.distanceTo(this.getTarget()) < 2.0F){
                 if (!this.getTarget().isBlocking() && this.getTarget().isAlive() && this.getPassengers().isEmpty() && this.getTarget().getVehicle() != this){
                     doPlayerRide(this.getTarget());
@@ -222,6 +222,7 @@ public class Croc extends TamableAnimal implements GeoEntity {
         }
     }
 
+    @Override
     public void positionRider(Entity passenger,MoveFunction pCallback) {
         if (this.hasPassenger(passenger)) {
             float radius = 1.3F;
@@ -236,6 +237,7 @@ public class Croc extends TamableAnimal implements GeoEntity {
             }
         }
     }
+
     protected void doPlayerRide(Entity entity) {
         if (!this.level().isClientSide) {
             this.setYRot(entity.getYRot());
@@ -303,7 +305,7 @@ public class Croc extends TamableAnimal implements GeoEntity {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob ageableMob) {
-        return ChangShengJueEntity.CROC_ENTITY.get().create(level);
+        return ChangShengJueEntity.CROC.get().create(level);
     }
 
     @Override

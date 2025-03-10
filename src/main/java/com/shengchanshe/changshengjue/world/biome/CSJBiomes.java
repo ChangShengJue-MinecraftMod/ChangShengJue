@@ -33,8 +33,8 @@ public class CSJBiomes {
     public static Biome changShengJuePrairie(BootstapContext<Biome> context){
         MobSpawnSettings.Builder builder = new MobSpawnSettings.Builder();
         //在自定义群系中生成生物
-        builder.addSpawn(MobCategory.CREATURE,new MobSpawnSettings.SpawnerData(ChangShengJueEntity.BUTTERFLY_ENTITY.get(),2,3,5));
-        builder.addSpawn(MobCategory.CREATURE,new MobSpawnSettings.SpawnerData(ChangShengJueEntity.STAG_ENTITY.get(),8,4,4));
+        builder.addSpawn(MobCategory.CREATURE,new MobSpawnSettings.SpawnerData(ChangShengJueEntity.BUTTERFLY.get(),2,3,5));
+        builder.addSpawn(MobCategory.CREATURE,new MobSpawnSettings.SpawnerData(ChangShengJueEntity.STAG.get(),8,4,4));
 
         BiomeDefaultFeatures.plainsSpawns(builder);
 //        BiomeDefaultFeatures.commonSpawns(builder);

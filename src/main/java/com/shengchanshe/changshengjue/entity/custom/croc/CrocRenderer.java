@@ -16,17 +16,18 @@ public class CrocRenderer extends GeoEntityRenderer<Croc> {
 
     //获取纹理位置
     @Override
-    public ResourceLocation getTextureLocation(Croc instance) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/croc_entity.png");
+    public ResourceLocation getTextureLocation(Croc entity) {
+        if (entity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/croc/croc_baby.png");
+        }else{
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/croc/croc.png");
+        }
     }
 
     //获取渲染类型
     @Override
     public void render(Croc entity, float entityYaw, float partialTick,
                        PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        if (entity.isBaby()){
-            poseStack.scale(0.5F,0.5F,0.5F);//缩放实体大小
-        }
         super.render(entity, entityYaw, partialTick, poseStack, bufferSource, packedLight);
     }
 }

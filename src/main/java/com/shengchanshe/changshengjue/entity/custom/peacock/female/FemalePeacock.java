@@ -1,9 +1,11 @@
 package com.shengchanshe.changshengjue.entity.custom.peacock.female;
 
-import com.shengchanshe.changshengjue.entity.custom.peacock.AbstractPeacockEntity;
+import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
+import com.shengchanshe.changshengjue.entity.custom.peacock.AbstractPeacock;
 import com.shengchanshe.changshengjue.entity.custom.peacock.male.MalePeacock;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
@@ -12,8 +14,9 @@ import net.minecraft.world.entity.ai.goal.BreedGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
-public class FemalePeacock extends AbstractPeacockEntity {
+public class FemalePeacock extends AbstractPeacock {
     public float flap;
     public float flapSpeed;
     public float oFlapSpeed;
@@ -41,6 +44,12 @@ public class FemalePeacock extends AbstractPeacockEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(2, new BreedGoal(this, 0.6D, MalePeacock.class));
+    }
+
+    @Nullable
+    @Override
+    public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mob) {
+        return ChangShengJueEntity.FEMALE_PEACOCK.get().create(level);
     }
 
     public void aiStep() {
