@@ -159,8 +159,8 @@ public class ImmortalMiracleEvent {
                                     float amount = event.getAmount();
                                     if (amount >= health){
                                         event.setAmount(0);
-//                                    level.playSound(null, player.getX(), player.getY(), player.getZ(),
-//                                            ChangShengJueSound.IMMORTAL_MIRACLE_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                    level.playSound(player, player.getX(), player.getY(), player.getZ(),
+                                            ChangShengJueSound.IMMORTAL_MIRACLE_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                         if (immortalMiracle.getImmortalMiracleUseCount() < 100){
                                             immortalMiracle.addImmortalMiracleUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                             if (immortalMiracle.getImmortalMiracleUseCount() >= 100){

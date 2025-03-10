@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 // 1.20.1	2025-03-06T22:42:46.1186108	Item Models: chang_sheng_jue
+=======
+// 1.20.1	2025-03-04T09:51:03.2308383	Item Models: chang_sheng_jue
+>>>>>>> Stashed changes
 699ea304f59ef7c3527896899187498f42f98343 assets/chang_sheng_jue/models/item/acacia_bench.json
 7e0aa720a11c379083904f12e4722cca0ff34a77 assets/chang_sheng_jue/models/item/acacia_book_desk.json
 14dd3578b6bde1cd826b8a63c206eee2fb2b9942 assets/chang_sheng_jue/models/item/acacia_drinking_table_and_chairs.json
@@ -97,6 +101,7 @@ be3b7e2cb985c2f2f2e068fbe2c6da2746905b86 assets/chang_sheng_jue/models/item/flyi
 418f65bc720f3d348484497b6baa0e2d0ec59b64 assets/chang_sheng_jue/models/item/flying_fish_robe_chestplate.json
 7fa3b1f66ad2360469397955bb3232aff95c72a8 assets/chang_sheng_jue/models/item/flying_fish_robe_helmet_0.json
 2126dc8053927b4dfc2163dfc0b6331c80c111aa assets/chang_sheng_jue/models/item/flying_fish_robe_helmet_1.json
+fb667f01a205254ec63fec7199770f3950170b11 assets/chang_sheng_jue/models/item/gang_token.json
 a918a63826d2c7bf399334e194450f8c5f598514 assets/chang_sheng_jue/models/item/gao_marksmanship.json
 776057318e1c678b02f6de02d5fc357389b8e5b3 assets/chang_sheng_jue/models/item/ge_shan_da_niu.json
 be71c4b9eee6154cdf5fc28c47376da9a9d57f27 assets/chang_sheng_jue/models/item/golden_bell_jar.json

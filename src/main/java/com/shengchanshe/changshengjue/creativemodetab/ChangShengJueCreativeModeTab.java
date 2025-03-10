@@ -582,6 +582,7 @@ public class ChangShengJueCreativeModeTab {
                     new ItemStack(ChangShengJueItems.XUANHUA_AXE.get())).displayItems((parameters,output)->{
                 output.accept(ChangShengJueItems.XUANHUA_AXE.get());
                 output.accept(ChangShengJueItems.KAISHAN_PICKAXE.get());
+                output.accept(ChangShengJueItems.GANG_TOKEN.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_SPAWN_EGGS = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_spawn_eggs",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_spawn_eggs")).icon(() ->
@@ -598,6 +599,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.TIGER_EGG.get());
                 output.accept(ChangShengJueItems.CROC_EGG.get());
                 output.accept(ChangShengJueItems.CHANG_SHENG_JUE_VILLAGER_EGG.get());
+                output.accept(ChangShengJueItems.WARRIOR_EGG.get());
             }).build());
 
     public static void register(IEventBus eventBus){

@@ -13,6 +13,7 @@ import com.shengchanshe.changshengjue.entity.custom.monkey.Monkey;
 import com.shengchanshe.changshengjue.entity.custom.peacock.AbstractPeacockEntity;
 import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerEntity;
+import com.shengchanshe.changshengjue.entity.villagers.warrior.Warrior;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -33,6 +34,8 @@ public class CSJEventBusEvents {
         event.put(ChangShengJueEntity.TIGER_ENTITY.get(), Tiger.setAttributes());
         event.put(ChangShengJueEntity.CROC_ENTITY.get(), Croc.setAttributes());
         event.put(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER.get(), ChangShengJueVillagerEntity.setAttributes());
+
+        event.put(ChangShengJueEntity.WARRIOR.get(), Warrior.setAttributes());
 
         event.put(ChangShengJueEntity.STAKES.get(), StakesEntity.setAttributes());
     }

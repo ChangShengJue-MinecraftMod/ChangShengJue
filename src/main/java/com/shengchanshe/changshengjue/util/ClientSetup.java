@@ -25,6 +25,7 @@ import com.shengchanshe.changshengjue.entity.custom.peacock.female.FemalePeacock
 import com.shengchanshe.changshengjue.entity.custom.peacock.male.MalePeacockRenderer;
 import com.shengchanshe.changshengjue.entity.custom.tiger.TigerRenderer;
 import com.shengchanshe.changshengjue.entity.villagers.render.ChangShengJueVillagerRender;
+import com.shengchanshe.changshengjue.entity.villagers.warrior.WarriorRenderer;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.item.combat.armor.DyeableChineseWeddingDressItem;
 import com.shengchanshe.changshengjue.item.combat.armor.DyeableItem;
@@ -373,5 +374,7 @@ public class ClientSetup {
         EntityRenderers.register(ChangShengJueEntity.BA_WANG_QIANG_ATTACK.get(), BaWangQiangAttackEntityRender::new);
         EntityRenderers.register(ChangShengJueEntity.YI_TIAN_JIAN_ATTACK.get(), YiTianJianAttackEntityRender::new);
         EntityRenderers.register(ChangShengJueEntity.STAKES.get(), StakesRender::new);
+
+        EntityRenderers.register(ChangShengJueEntity.WARRIOR.get(), WarriorRenderer::new);
     }
 }

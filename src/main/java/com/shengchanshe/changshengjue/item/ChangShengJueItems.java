@@ -272,6 +272,8 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> CHANG_SHENG_JUE_VILLAGER_EGG = ITEMS.register("chang_sheng_jue_villager_egg",
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER,5651507,12422002,
                     new Item.Properties()));
+    public static final RegistryObject<Item> WARRIOR_EGG = ITEMS.register("warrior_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.WARRIOR,0x808001,0x006401, new Item.Properties()));
 
     public static final RegistryObject<Item> ZHU_TAI = ITEMS.register("zhu_tai",
             ()-> new StandingAndWallBlockItem(ChangShengJueBlocks.ZHU_TAI.get(),ChangShengJueBlocks.WALL_ZHU_TAI.get(), new Item.Properties(), Direction.DOWN));
@@ -337,11 +339,9 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> PAINT_BRUSH = ITEMS.register("paint_brush", PaintBrush::new);
 
     //蚕丝
-    public static final RegistryObject<Item> NATURAL_SILK = ITEMS.register("natural_silk",
-            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> NATURAL_SILK = ITEMS.register("natural_silk", ()-> new Item(new Item.Properties()));
 
-    public static final RegistryObject<Item> SILK = ITEMS.register("silk",
-            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SILK = ITEMS.register("silk", ()-> new Item(new Item.Properties()));
 
     //桑葚
     public static final RegistryObject<Item> MULBERRY = ITEMS.register("mulberry",
@@ -527,6 +527,9 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> THE_CLASSICS_OF_TENDON_CHANGING = ITEMS.register("the_classics_of_tendon_changing", TheClassicsOfTendonChanging::new);
     //乾坤大挪移
     public static final RegistryObject<Item> QIAN_KUN_DA_NUO_YI = ITEMS.register("qian_kun_da_nuo_yi", QianKunDaNuoYi::new);
+
+    //令牌
+    public static final RegistryObject<Item> GANG_TOKEN = ITEMS.register("gang_token", ()-> new Item(new Item.Properties()));
 
     //练功木桩
     public static final RegistryObject<Item> STAKES = ITEMS.register("stakes", Stakes::new);

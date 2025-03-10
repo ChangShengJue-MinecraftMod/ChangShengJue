@@ -313,8 +313,8 @@ public class Croc extends TamableAnimal implements GeoEntity {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController(this,"controller",0,this::predicate));
-        controllerRegistrar.add(new AnimationController(this,"attackController",0,this::attackPredicate));
+        controllerRegistrar.add(new AnimationController<>(this,"controller",0,this::predicate));
+        controllerRegistrar.add(new AnimationController<>(this,"attackController",0,this::attackPredicate));
     }
 
     private PlayState attackPredicate(AnimationState animationEvent) {

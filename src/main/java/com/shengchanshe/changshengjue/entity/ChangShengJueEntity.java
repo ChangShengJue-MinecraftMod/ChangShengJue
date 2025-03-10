@@ -26,6 +26,7 @@ import com.shengchanshe.changshengjue.entity.custom.peacock.egg.PeacockEgg;
 import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
 import com.shengchanshe.changshengjue.entity.decoration.seat.SeatEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerEntity;
+import com.shengchanshe.changshengjue.entity.villagers.warrior.Warrior;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -110,6 +111,13 @@ public class ChangShengJueEntity {
                     () -> EntityType.Builder.of(ChangShengJueVillagerEntity::new, MobCategory.MISC)
                             .sized(0.6F, 1.95F)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"chang_sheng_jue_villager").toString()));
+
+    //武夫
+    public static final RegistryObject<EntityType<Warrior>> WARRIOR =
+            ENTITY_TYPES.register("warrior",
+                    () -> EntityType.Builder.of(Warrior::new, MobCategory.MISC)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"warrior").toString()));
 
     //独孤九剑
     public static final RegistryObject<EntityType<DuguNineSwordsEntity>> DUGU_NINE_SOWRDS_ENTITY =
