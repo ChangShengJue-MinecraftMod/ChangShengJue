@@ -61,8 +61,8 @@ public class GaoMarksmanshipHudOverlay {
             // 通过宽高获得绘制的x，y
             int x = 5;
             int y = (screenHeight / 2) - 50;
-            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.gao_marksmanship"),x, y,ChatFormatting.RED.getColor());
             if (gaoMarksmanshipComprehend){
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.gao_marksmanship"),x, y,ChatFormatting.RED.getColor());
                 int getGaoMarksmanshipLevel = GaoMarksmanshipClientData.getGaoMarksmanshipLevel();
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);

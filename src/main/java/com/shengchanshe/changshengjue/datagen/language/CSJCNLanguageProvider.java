@@ -736,6 +736,8 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEntity.CROC.get(), "鳄鱼");
         this.add(ChangShengJueEntity.WARRIOR.get(), "武夫");
 
+        this.add(ChangShengJueEntity.STAKES.get(), "练功木桩");
+
         this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_farmer", "农民");
         this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter", "窑工");
         this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter_1", "高级窑工");

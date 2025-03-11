@@ -62,8 +62,8 @@ public class DuguNineSwordsHudOverlay {
             // 通过宽高获得绘制的x，y
             int x = 5;
             int y = (screenHeight / 2) - 50;
-            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.dugu_nine_swords"),x, y,ChatFormatting.AQUA.getColor());
             if (duguNineSwordsComprehend){
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.dugu_nine_swords"),x, y,ChatFormatting.AQUA.getColor());
                 int duguNineSwordsLevel = DuguNineSwordsClientData.getDuguNineSwordsLevel();
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);

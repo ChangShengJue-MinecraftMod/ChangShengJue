@@ -61,8 +61,8 @@ public class ShaolinStickMethodHudOverlay {
             // 通过宽高获得绘制的x，y
             int x = 5;
             int y = (screenHeight / 2) - 50;
-            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(), ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.shaolin_stick_method"),x, y,ChatFormatting.RED.getColor());
             if (xuannuSwordsmanshipComprehend){
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(), ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.shaolin_stick_method"),x, y,ChatFormatting.RED.getColor());
                 int getShaolinStickMethodLevel = ShaolinStickMethodClientData.getShaolinStickMethodLevel();
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);

@@ -42,7 +42,7 @@ public class Stakes extends Item {
             BlockPos clickedPos = placeContext.getClickedPos();
             ItemStack itemInHand = pContext.getItemInHand();
             Vec3 vec3 = Vec3.atBottomCenterOf(clickedPos);
-            AABB aabb = EntityType.ARMOR_STAND.getDimensions().makeBoundingBox(vec3.x(), vec3.y(), vec3.z());
+            AABB aabb = ChangShengJueEntity.STAKES.get().getDimensions().makeBoundingBox(vec3.x(), vec3.y(), vec3.z());
             if (pContextLevel.noCollision(null, aabb) && pContextLevel.getEntities(null, aabb).isEmpty()) {
                 if (pContextLevel instanceof ServerLevel) {
                     ServerLevel pContextLevel1 = (ServerLevel)pContextLevel;

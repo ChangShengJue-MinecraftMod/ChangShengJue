@@ -180,7 +180,7 @@ public class ChangShengJueEntity {
     //练功木桩
     public static final RegistryObject<EntityType<StakesEntity>> STAKES =
             ENTITY_TYPES.register("stakes",
-                    () -> EntityType.Builder.of(StakesEntity::new, MobCategory.MISC)
+                    () -> EntityType.Builder.<StakesEntity>of(StakesEntity::new, MobCategory.MISC)
                             .sized(0.6F, 1.95F).clientTrackingRange(10)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"stakes").toString()));
 
