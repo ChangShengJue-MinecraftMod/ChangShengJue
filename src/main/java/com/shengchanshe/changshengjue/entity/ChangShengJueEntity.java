@@ -116,7 +116,7 @@ public class ChangShengJueEntity {
     public static final RegistryObject<EntityType<Warrior>> WARRIOR =
             ENTITY_TYPES.register("warrior",
                     () -> EntityType.Builder.of(Warrior::new, MobCategory.MISC)
-                            .sized(1.0F, 2.2F)
+                            .sized(1.0F, 2.4F)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"warrior").toString()));
 
     //独孤九剑

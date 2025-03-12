@@ -88,6 +88,33 @@ public class CylinderTile extends Block {
                 || state.is(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get()) || state.is(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get())
                 || state.is(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get())){
             return Block.box(2, 0, 2, 15, 14, 15);
+        }else if (state.is(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get()) || state.is(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get())
+                || state.is(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get()) || state.is(ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get())
+                || state.is(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get())){
+            return switch (value){
+                case NORTH -> ChangShengJueVoxelShape.DOUBLE_GABLE_RIDGE_CYLINDER_TILE_N;
+                case SOUTH -> ChangShengJueVoxelShape.DOUBLE_GABLE_RIDGE_CYLINDER_TILE_S;
+                case EAST -> ChangShengJueVoxelShape.DOUBLE_GABLE_RIDGE_CYLINDER_TILE_E;
+                default ->  ChangShengJueVoxelShape.DOUBLE_GABLE_RIDGE_CYLINDER_TILE_W;
+            };
+        }else if (state.is(ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get()) || state.is(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get())
+                || state.is(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get()) || state.is(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get())
+                || state.is(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get())){
+            return switch (value){
+                case NORTH -> ChangShengJueVoxelShape.DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE_N;
+                case SOUTH -> ChangShengJueVoxelShape.DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE_S;
+                case EAST -> ChangShengJueVoxelShape.DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE_E;
+                default ->  ChangShengJueVoxelShape.DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE_W;
+            };
+        }else if (state.is(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get()) || state.is(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get())
+                || state.is(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get()) || state.is(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get())
+                || state.is(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get())){
+            return switch (value){
+                case NORTH -> ChangShengJueVoxelShape.SHORT_CYLINDER_TILE_N;
+                case SOUTH -> ChangShengJueVoxelShape.SHORT_CYLINDER_TILE_S;
+                case EAST -> ChangShengJueVoxelShape.SHORT_CYLINDER_TILE_E;
+                default ->  ChangShengJueVoxelShape.SHORT_CYLINDER_TILE_W;
+            };
         }else {
             return AABB;
         }

@@ -93,15 +93,6 @@ public class WarriorModel<T extends Warrior> extends HumanoidModel<T> {
 
         this.rightArm.setPos(-5.0F, -1.0F, 0.0F);
         this.leftArm.setPos(5.0F, -1.0F, 0.0F);
-
-        ItemStack $$4 = pEntity.getItemInHand(InteractionHand.MAIN_HAND);
-        if (!$$4.isEmpty() && pEntity.isAggressive()) {
-            if (pEntity.getMainHandItem().isEmpty()) {
-                AnimationUtils.animateZombieArms(this.leftArm, this.rightArm, true, this.attackTime, pAgeInTicks);
-            } else {
-                AnimationUtils.swingWeaponDown(this.rightArm, this.leftArm, pEntity, this.attackTime, pAgeInTicks);
-            }
-        }
     }
 
     @Override

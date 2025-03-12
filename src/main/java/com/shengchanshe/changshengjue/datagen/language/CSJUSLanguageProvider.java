@@ -491,11 +491,11 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_3.get(),"黑色小鸱吻");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_3.get(),"金色小鸱吻");
 
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get(),"青色双层脊瓦");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_4.get(),"灰色双层脊瓦");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_4.get(),"红色双层脊瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get(),"黑色双层脊瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get(),"金色双层脊瓦");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get(),"青色高脊瓦");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_4.get(),"灰色高脊瓦");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_4.get(),"红色高脊瓦");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get(),"黑色高脊瓦");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get(),"金色高脊瓦");
 
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_5.get(),"青色高筒瓦");
         this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get(),"灰色高筒瓦");
@@ -515,11 +515,11 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get(),"黑色飞檐筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get(),"金色飞檐筒瓦");
 
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get(),"青色脊兽筒瓦");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8.get(),"灰色脊兽筒瓦");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8.get(),"红色脊兽筒瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get(),"黑色脊兽筒瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get(),"金色脊兽筒瓦");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get(),"青色脊瓦");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8.get(),"灰色脊瓦");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8.get(),"红色脊瓦");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get(),"黑色脊瓦");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get(),"金色脊瓦");
 
         this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get(),"青色双层蹲兽脊瓦");
         this.add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE.get(),"灰色双层蹲兽脊瓦");
@@ -568,6 +568,24 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get(), "红色垂脊筒瓦");
         this.add(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.get(), "黑色垂脊筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get(), "金色垂脊筒瓦");
+
+        this.add(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "青色双层垂脊");
+        this.add(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "灰色双层垂脊");
+        this.add(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "红色双层垂脊");
+        this.add(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "黑色双层垂脊");
+        this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "金色双层垂脊");
+
+        this.add(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "青色双层垂兽垂脊");
+        this.add(ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "灰色双层垂兽垂脊");
+        this.add(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "红色双层垂兽垂脊");
+        this.add(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "黑色双层垂兽垂脊");
+        this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "金色双层垂兽垂脊");
+
+        this.add(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get(), "青色短筒瓦");
+        this.add(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get(), "灰色短筒瓦");
+        this.add(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get(), "红色短筒瓦");
+        this.add(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get(), "黑色短筒瓦");
+        this.add(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get(), "金色短筒瓦");
 
         this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get(), "金色瓦片");
         this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get(), "金色瓦片");

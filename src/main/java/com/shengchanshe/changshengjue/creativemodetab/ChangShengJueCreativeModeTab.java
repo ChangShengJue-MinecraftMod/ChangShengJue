@@ -120,6 +120,11 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get());
                 output.accept(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get());
                 output.accept(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get());
+                output.accept(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get());
                 output.accept(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get());
                 output.accept(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get());
                 output.accept(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get());
@@ -211,6 +216,18 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.get());
                 output.accept(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get());
                 output.accept(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get());
+
+                output.accept(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get());
+
+                output.accept(ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get());
+                output.accept(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get());
 
                 output.accept(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get());
                 output.accept(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get());

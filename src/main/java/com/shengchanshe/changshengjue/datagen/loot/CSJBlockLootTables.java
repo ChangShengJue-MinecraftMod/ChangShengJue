@@ -338,6 +338,24 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get());
         this.dropSelf(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get());
 
+        this.dropSelf(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get());
+
+        this.dropSelf(ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get());
+
+        this.dropSelf(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get());
+
         this.dropSelf(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get());
         this.dropSelf(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_2.get());

@@ -21,8 +21,10 @@ public class Drunken extends MobEffect {
     @Override
     public void removeAttributeModifiers(LivingEntity pLivingEntity, AttributeMap pAttributeMap, int pAmplifier) {
         super.removeAttributeModifiers(pLivingEntity, pAttributeMap, pAmplifier);
-        if (pLivingEntity.hasEffect(MobEffects.CONFUSION) || pLivingEntity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
+        if (pLivingEntity.hasEffect(MobEffects.CONFUSION)) {
             pLivingEntity.removeEffect(MobEffects.CONFUSION);
+        }
+        if(pLivingEntity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)){
             pLivingEntity.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
         }
     }

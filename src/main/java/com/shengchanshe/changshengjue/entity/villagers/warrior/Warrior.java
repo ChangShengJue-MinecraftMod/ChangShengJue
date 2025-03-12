@@ -1,18 +1,22 @@
 package com.shengchanshe.changshengjue.entity.villagers.warrior;
 
-import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntity;
-import com.shengchanshe.changshengjue.entity.villagers.warrior.kungfu.*;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.kungfu.externalkunfu.*;
+import com.shengchanshe.changshengjue.kungfu.externalkunfu.kungfu.*;
+import com.shengchanshe.changshengjue.kungfu.internalkungfu.InterfaceKungFuManager;
+import com.shengchanshe.changshengjue.kungfu.internalkungfu.InternalKungFuCapability;
+import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.GoldenBellJar;
+import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.ImmortalMiracle;
+import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.QianKunDaNuoYi;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -24,12 +28,9 @@ import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Creeper;
-import net.minecraft.world.entity.monster.Drowned;
 import net.minecraft.world.entity.monster.Enemy;
-import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.ThrownTrident;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -39,13 +40,11 @@ import net.minecraft.world.phys.AABB;
 import javax.annotation.Nullable;
 import java.util.*;
 
-public class Warrior extends AbstractGolem implements NeutralMob, RangedAttackMob {
-//    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private KungFuCapability kungFuCapability; // 武夫的武功能力
-    // 基础生命值设为100
-    private static final float BASE_HEALTH = 100.0F;
-    // 基础攻击力范围7.5至21.5
-    private static final float ATTACK_DAMAGE_MIN = 7.5F;
+public class Warrior extends AbstractGolem implements NeutralMob {
+    private static final List<ItemStack> SWORDS;
+    // 武夫的武功能力
+    private ExternalKungFuCapability externalKungFuCapability;
+    private InternalKungFuCapability internalKungFuCapability;
 
     private static final UniformInt PERSISTENT_ANGER_TIME;
     private int remainingPersistentAngerTime;
@@ -55,20 +54,18 @@ public class Warrior extends AbstractGolem implements NeutralMob, RangedAttackMo
     public Warrior(EntityType<? extends Warrior> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.setMaxUpStep(1.0F);
-        // 使用 KungFuManager 随机分配武功能力
-        this.kungFuCapability = new KungFuManager().getRandomKungFuCapability();
     }
 
     public static AttributeSupplier setAttributes(){
         return Animal.createMobAttributes()
-                .add(Attributes.MAX_HEALTH,BASE_HEALTH)
-                .add(Attributes.ATTACK_DAMAGE,ATTACK_DAMAGE_MIN)
+                .add(Attributes.MAX_HEALTH,100.0F)
+                .add(Attributes.ATTACK_DAMAGE,17F)
                 .add(Attributes.MOVEMENT_SPEED,0.5D).build();
     }
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(2, new Warrior.WarriorThrowingKnivesAttackGoal(this, 1.0, 40, 10.0F));
+//        this.goalSelector.addGoal(2, new Warrior.WarriorThrowingKnivesAttackGoal(this, 1.0, 40, 10.0F));
         this.goalSelector.addGoal(2, new Warrior.WarriorAttackGoal(this, 1.0, false));
         this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9, 32.0F));
         this.goalSelector.addGoal(2, new MoveBackToVillageGoal(this, 0.6, false));
@@ -86,65 +83,45 @@ public class Warrior extends AbstractGolem implements NeutralMob, RangedAttackMo
         return (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE);
     }
 
+    @Override
     public boolean doHurtTarget(Entity pEntity) {
-        if (this.kungFuCapability != null && !(this.kungFuCapability instanceof RelentlessThrowingKnives)) {
-            if (this.random.nextInt(100) <= 30) {
-                this.kungFuCapability.applyAttackEffect(this, pEntity);
-            }else {
-                this.level().broadcastEntityEvent(this, (byte)4);
-                float attackDamage = this.getAttackDamage();
-                float v = (int)attackDamage > 0 ? attackDamage / 2.0F + (float)this.random.nextInt((int)attackDamage) : attackDamage;
-                boolean hurt = pEntity.hurt(this.damageSources().mobAttack(this), v);
-                if (hurt) {
-                    double var10000;
-                    if (pEntity instanceof LivingEntity) {
-                        LivingEntity pEntity1 = (LivingEntity)pEntity;
-                        var10000 = pEntity1.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
-                    } else {
-                        var10000 = 0.0;
-                    }
-
-                    double $$5 = var10000;
-                    double $$6 = Math.max(0.0, 1.0 - $$5);
-                    pEntity.setDeltaMovement(pEntity.getDeltaMovement().add(0.0, 0.4000000059604645 * $$6, 0.0));
-                    this.doEnchantDamageEffects(this, pEntity);
-                }
-            }
-        }else {
+        // 检查武功是否在冷却中，以及是否有75%的概率使用武功
+        if (this.externalKungFuCapability != null && this.externalKungFuCapability.isExternalKungFuCooldownOver() && this.random.nextInt(100) < 75) {
+            this.externalKungFuCapability.applyAttackEffect(this, pEntity);
+            return true;
+        } else {
             this.level().broadcastEntityEvent(this, (byte)4);
             float attackDamage = this.getAttackDamage();
-            float $$2 = (int)attackDamage > 0 ? attackDamage / 2.0F + (float)this.random.nextInt((int)attackDamage) : attackDamage;
-            boolean hurt = pEntity.hurt(this.damageSources().mobAttack(this), $$2);
+            float v = (int)attackDamage > 0 ? attackDamage / 2.0F + (float)this.random.nextInt((int)attackDamage) : attackDamage;
+            boolean hurt = pEntity.hurt(this.damageSources().mobAttack(this), v);
             if (hurt) {
-                double var10000;
-                if (pEntity instanceof LivingEntity) {
-                    LivingEntity pEntity1 = (LivingEntity)pEntity;
-                    var10000 = pEntity1.getAttributeValue(Attributes.KNOCKBACK_RESISTANCE);
-                } else {
-                    var10000 = 0.0;
+                float f1 = (float)this.getAttributeValue(Attributes.ATTACK_KNOCKBACK);
+                if (f1 > 0.0F && pEntity instanceof LivingEntity) {
+                    ((LivingEntity)pEntity).knockback(f1 * 0.5F, Mth.sin(this.getYRot() * 0.017453292F), -Mth.cos(this.getYRot() * 0.017453292F));
+                    this.setDeltaMovement(this.getDeltaMovement().multiply(0.6, 1.0, 0.6));
                 }
 
-                double var100001 = var10000;
-                double max = Math.max(0.0, 1.0 - var100001);
-                pEntity.setDeltaMovement(pEntity.getDeltaMovement().add(0.0, 0.4000000059604645 * max, 0.0));
                 this.doEnchantDamageEffects(this, pEntity);
+                this.setLastHurtMob(pEntity);
             }
+
+            this.playSound(SoundEvents.IRON_GOLEM_ATTACK, 1.0F, 1.0F);
+            return hurt;
         }
-        return super.doHurtTarget(pEntity);
     }
 
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
-        if (this.random.nextInt(100) <= 30) {
-            if (this.kungFuCapability instanceof GoldenBellJar) {
-                this.kungFuCapability.applyAttackEffect(this, pSource.getEntity());
-            }else if (this.kungFuCapability instanceof ImmortalMiracle){
-                if (this.isDeadOrDying()) {
-                    this.setHealth(this.getMaxHealth());
-                    this.playSound( ChangShengJueSound.IMMORTAL_MIRACLE_SOUND.get(), this.getSoundVolume(), this.getVoicePitch());
+        if (this.internalKungFuCapability != null && this.internalKungFuCapability.isInternalKungFuCooldownOver()) {
+            if (this.internalKungFuCapability instanceof GoldenBellJar) {
+                this.internalKungFuCapability.applyAttackEffect(this, pSource.getEntity());
+            }else if (this.internalKungFuCapability instanceof ImmortalMiracle immortalMiracle){
+                if (pAmount > this.getHealth()) {
+                    pAmount = 0;
+                    immortalMiracle.applyHurtEffect(pSource,this);
                 }
-            }else if (this.kungFuCapability instanceof QianKunDaNuoYi){
-                ((QianKunDaNuoYi) this.kungFuCapability).applyHurtEffect(this, pSource,pAmount);
+            }else if (this.internalKungFuCapability instanceof QianKunDaNuoYi){
+                ((QianKunDaNuoYi) this.internalKungFuCapability).applyHurtEffect(this, pSource,pAmount);
             }
         }
 
@@ -152,53 +129,81 @@ public class Warrior extends AbstractGolem implements NeutralMob, RangedAttackMo
     }
 
     @Override
+    public void tick() {
+        super.tick();
+        if (this.level().isClientSide) return;
+        // 更新所有武功的冷却时间
+        if (this.externalKungFuCapability != null && !(this.externalKungFuCapability.isExternalKungFuCooldownOver())) {
+            this.externalKungFuCapability.updateExternalKungFuCooldown();
+        }
+        if (this.internalKungFuCapability != null && !(this.internalKungFuCapability.isInternalKungFuCooldownOver())) {
+            this.internalKungFuCapability.updateInternalKungFuCooldown();
+        }
+    }
+
+    @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
-        if (this.kungFuCapability != null){
-            pCompound.putString("KungFuType",this.kungFuCapability.getID());
+        if (this.externalKungFuCapability != null){
+            pCompound.putString("ExternalKungFuType",this.externalKungFuCapability.getExternalKungFuID());
+            this.externalKungFuCapability.saveNBTData(pCompound); // 保存武功的具体数据，包括冷却时间
+        }
+        if (this.internalKungFuCapability != null){
+            pCompound.putString("InternalKungFuFuType",this.internalKungFuCapability.getInternalKungFuID());
+            this.internalKungFuCapability.saveNBTData(pCompound); // 保存武功的具体数据，包括冷却时间
         }
     }
 
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
-        if (pCompound.contains("KungFuType")) {
-            String kungFuType = pCompound.getString("KungFuType");
-            this.kungFuCapability = KungFuManager.createKungFuCapabilityFromNBT(kungFuType);
+        if (pCompound.contains("ExternalKungFuType")) {
+            String kungFuType = pCompound.getString("ExternalKungFuType");
+            this.externalKungFuCapability = ExternalKungFuManager.createExternalKungFuCapabilityFromTag(kungFuType);
+            if (this.externalKungFuCapability != null) {
+                this.externalKungFuCapability.loadNBTData(pCompound); // 读取武功的具体数据，包括冷却时间
+            }
+        }
+        if (pCompound.contains("InternalKungFuFuType")) {
+            String kungFuType = pCompound.getString("InternalKungFuFuType");
+            this.internalKungFuCapability = InterfaceKungFuManager.createInterfaceKungFuCapabilityFromTag(kungFuType);
+            if (this.internalKungFuCapability != null) {
+                this.internalKungFuCapability.loadNBTData(pCompound); // 读取武功的具体数据，包括冷却时间
+            }
         }
     }
 
     @Override
     protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
         super.populateDefaultEquipmentSlots(pRandom, pDifficulty);
-        if (this.kungFuCapability instanceof DuguNineSwords) {
-            // 如果是独孤九剑，分配铁剑
-            this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ChangShengJueItems.HAN_JIAN.get()));
+        // 使用 KungFuManager 随机分配武功能力
+        this.externalKungFuCapability = new ExternalKungFuManager().getRandomExternalKungFuCapability(this);
+        this.internalKungFuCapability = new InterfaceKungFuManager().getRandomInterfaceKungFuCapability();
+        if (this.externalKungFuCapability instanceof DuguNineSwords) {
+            ItemStack randomSword = SWORDS.get(random.nextInt(SWORDS.size()));
+            this.setItemSlot(EquipmentSlot.MAINHAND, randomSword);
             this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ChangShengJueItems.DUGU_NINE_SWORDS.get()));
-        } else if (this.kungFuCapability instanceof GaoMarksmanship) {
-            // 如果是高射术，分配弓
+        } else if (this.externalKungFuCapability instanceof GaoMarksmanship) {
             this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ChangShengJueItems.RED_TASSELLED_SPEAR.get()));
             this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ChangShengJueItems.GAO_MARKSMANSHIP.get()));
-        }else if (this.kungFuCapability instanceof GoldenBlackKnifeMethod) {
+        }else if (this.externalKungFuCapability instanceof GoldenBlackKnifeMethod) {
             this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ChangShengJueItems.LARGE_KNIFE.get()));
             this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()));
-        }else if (this.kungFuCapability instanceof ShaolinStickMethod) {
+        }else if (this.externalKungFuCapability instanceof ShaolinStickMethod) {
             this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ChangShengJueItems.PAN_HUA_GUN.get()));
             this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ChangShengJueItems.SHAOLIN_STICK_METHOD.get()));
-        }else if (this.kungFuCapability instanceof XuannuSwordsmanship) {
+        }else if (this.externalKungFuCapability instanceof XuannuSwordsmanship) {
             this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ChangShengJueItems.SOFT_SWORD.get()));
             this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get()));
-        }else if (this.kungFuCapability instanceof RelentlessThrowingKnives) {
-            this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ChangShengJueItems.THROWING_KNIVES.get()));
-            this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()));
-        }else if (this.kungFuCapability instanceof GeShanDaNiu) {
+        }else if (this.externalKungFuCapability instanceof GeShanDaNiu) {
             this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ChangShengJueItems.GE_SHAN_DA_NIU.get()));
-        }else if (this.kungFuCapability instanceof GoldenBellJar) {
-            this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ChangShengJueItems.GOLDEN_BELL_JAR.get()));
-        }else if (this.kungFuCapability instanceof ImmortalMiracle) {
-            this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ChangShengJueItems.IMMORTAL_MIRACLE.get()));
-        }else if (this.kungFuCapability instanceof QianKunDaNuoYi) {
-            this.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()));
+        }
+        if (this.internalKungFuCapability instanceof GoldenBellJar) {
+            this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ChangShengJueItems.GOLDEN_BELL_JAR.get()));
+        }else if (this.internalKungFuCapability instanceof ImmortalMiracle) {
+            this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ChangShengJueItems.IMMORTAL_MIRACLE.get()));
+        }else if (this.internalKungFuCapability instanceof QianKunDaNuoYi) {
+            this.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()));
         }
     }
 
@@ -212,25 +217,6 @@ public class Warrior extends AbstractGolem implements NeutralMob, RangedAttackMo
         this.populateDefaultEquipmentEnchantments($$6, pDifficulty);
         return $$5;
     }
-
-//    private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event){
-//        if(event.isMoving()){
-//            event.setAndContinue(DefaultAnimations.RUN);
-//        }else {
-//            event.setAndContinue(DefaultAnimations.REST);
-//        }
-//        return PlayState.CONTINUE;
-//    }
-
-//    @Override
-//    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-//        controllerRegistrar.add(new AnimationController<>(this,"controller",0,this::predicate));
-//    }
-//
-//    @Override
-//    public AnimatableInstanceCache getAnimatableInstanceCache() {
-//        return this.cache;
-//    }
 
     @Override
     public int getRemainingPersistentAngerTime() {
@@ -260,44 +246,52 @@ public class Warrior extends AbstractGolem implements NeutralMob, RangedAttackMo
 
     static {
         PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
+        SWORDS = Arrays.asList(
+                new ItemStack(ChangShengJueItems.HAN_JIAN.get()),
+                new ItemStack(Items.DIAMOND_SWORD),
+                new ItemStack(Items.IRON_SWORD),
+                new ItemStack(Items.GOLDEN_SWORD),
+                new ItemStack(Items.STONE_SWORD),
+                new ItemStack(Items.WOODEN_SWORD)
+        );
     }
 
-    @Override
-    public void performRangedAttack(LivingEntity pTarget, float pDistanceFactor) {
-        ThrowingKnivesEntity $$2 = new ThrowingKnivesEntity(this.level(), this, new ItemStack(ChangShengJueItems.THROWING_KNIVES.get()));
-        double $$3 = pTarget.getX() - this.getX();
-        double $$4 = pTarget.getY(0.3333333333333333) - $$2.getY();
-        double $$5 = pTarget.getZ() - this.getZ();
-        double $$6 = Math.sqrt($$3 * $$3 + $$5 * $$5);
-        $$2.shoot($$3, $$4 + $$6 * 0.20000000298023224, $$5, 1.6F, (float)(14 - this.level().getDifficulty().getId() * 4));
-        this.playSound(SoundEvents.DROWNED_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-        this.level().addFreshEntity($$2);
-    }
+//    @Override
+//    public void performRangedAttack(LivingEntity pTarget, float pDistanceFactor) {
+//        ThrowingKnivesEntity $$2 = new ThrowingKnivesEntity(this.level(), this, new ItemStack(ChangShengJueItems.THROWING_KNIVES.get()));
+//        double $$3 = pTarget.getX() - this.getX();
+//        double $$4 = pTarget.getY(0.3333333333333333) - $$2.getY();
+//        double $$5 = pTarget.getZ() - this.getZ();
+//        double $$6 = Math.sqrt($$3 * $$3 + $$5 * $$5);
+//        $$2.shoot($$3, $$4 + $$6 * 0.20000000298023224, $$5, 1.6F, (float)(14 - this.level().getDifficulty().getId() * 4));
+//        this.playSound(SoundEvents.DROWNED_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+//        this.level().addFreshEntity($$2);
+//    }
 
-    private static class WarriorThrowingKnivesAttackGoal extends RangedAttackGoal {
-        private final Warrior warrior;
-
-        public WarriorThrowingKnivesAttackGoal(RangedAttackMob pRangedAttackMob, double pSpeedModifier, int pAttackInterval, float pAttackRadius) {
-            super(pRangedAttackMob, pSpeedModifier, pAttackInterval, pAttackRadius);
-            this.warrior = (Warrior)pRangedAttackMob;
-        }
-
-        public boolean canUse() {
-            return super.canUse() && this.warrior.getMainHandItem().is(ChangShengJueItems.THROWING_KNIVES.get());
-        }
-
-        public void start() {
-            super.start();
-            this.warrior.setAggressive(true);
-            this.warrior.startUsingItem(InteractionHand.MAIN_HAND);
-        }
-
-        public void stop() {
-            super.stop();
-            this.warrior.stopUsingItem();
-            this.warrior.setAggressive(false);
-        }
-    }
+//    private static class WarriorThrowingKnivesAttackGoal extends RangedAttackGoal {
+//        private final Warrior warrior;
+//
+//        public WarriorThrowingKnivesAttackGoal(RangedAttackMob pRangedAttackMob, double pSpeedModifier, int pAttackInterval, float pAttackRadius) {
+//            super(pRangedAttackMob, pSpeedModifier, pAttackInterval, pAttackRadius);
+//            this.warrior = (Warrior)pRangedAttackMob;
+//        }
+//
+//        public boolean canUse() {
+//            return super.canUse() && this.warrior.getMainHandItem().is(ChangShengJueItems.THROWING_KNIVES.get());
+//        }
+//
+//        public void start() {
+//            super.start();
+//            this.warrior.setAggressive(true);
+//            this.warrior.startUsingItem(InteractionHand.MAIN_HAND);
+//        }
+//
+//        public void stop() {
+//            super.stop();
+//            this.warrior.stopUsingItem();
+//            this.warrior.setAggressive(false);
+//        }
+//    }
 
     private static class WarriorAttackGoal extends MeleeAttackGoal {
         private final Warrior warrior;
