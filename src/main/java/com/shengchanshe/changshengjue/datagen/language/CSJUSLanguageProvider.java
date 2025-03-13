@@ -676,6 +676,24 @@ public class CSJUSLanguageProvider extends LanguageProvider {
 
         this.add(ChangShengJueBlocks.ZAFU.get(), "蒲团");
 
+        // 食物容器类方块
+        this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_PAN.get(), "饺子盘");
+        this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_WAN.get(), "饺子碗");
+        this.add(ChangShengJueBlocks.PORTULACA_OLERACEA_CAKE_PAN.get(), "马齿苋饼盘");
+        this.add(ChangShengJueBlocks.PORTULACA_OLERACEA_CAKE_WAN.get(), "马齿苋饼碗");
+        this.add(ChangShengJueBlocks.QING_TUAN_PAN.get(), "青团盘");
+        this.add(ChangShengJueBlocks.QING_TUAN_WAN.get(), "青团碗");
+        this.add(ChangShengJueBlocks.SORGHUM_CAKE_PAN.get(), "高粱饼盘");
+        this.add(ChangShengJueBlocks.SORGHUM_CAKE_WAN.get(), "高粱饼碗");
+        this.add(ChangShengJueBlocks.MI_FAN_PAN.get(), "米饭盘");
+        this.add(ChangShengJueBlocks.MI_FAN_WAN.get(), "米饭碗");
+        this.add(ChangShengJueBlocks.XIAO_MI_FAN_PAN.get(), "小米饭盘");
+        this.add(ChangShengJueBlocks.XIAO_MI_FAN_WAN.get(), "小米饭碗");
+
+
+        this.add(ChangShengJueBlocks.EMPTY_SHI_LI_XIANG.get(), "空十里香杯");
+        this.add(ChangShengJueBlocks.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get(), "空麦块贡酒杯");
+
         this.add(ChangShengJueBlocks.BIRCH_WINE_TABLE.get(), "白桦木酒桌");
         this.add(ChangShengJueBlocks.CRIMSON_WINE_TABLE.get(), "绯红木酒桌");
         this.add(ChangShengJueBlocks.WARPED_WINE_TABLE.get(), "诡异木酒桌");

@@ -553,19 +553,19 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(ChangShengJueBlocks.EMPTY_FEN_JIU.get(),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
-                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_BEI.get())))
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.EMPTY_FEN_JIU.get())))
                         .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
         );
         this.add(ChangShengJueBlocks.EMPTY_SHI_LI_XIANG.get(),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
-                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_BEI.get())))
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.EMPTY_FEN_JIU.get())))
                         .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
         );
         this.add(ChangShengJueBlocks.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get(),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
-                                .add(LootItem.lootTableItem(ChangShengJueBlocks.CI_BEI.get())))
+                                .add(LootItem.lootTableItem(ChangShengJueBlocks.EMPTY_FEN_JIU.get())))
                         .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
         );
 

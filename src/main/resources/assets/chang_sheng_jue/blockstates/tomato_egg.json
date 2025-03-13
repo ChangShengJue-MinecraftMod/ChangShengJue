@@ -1,13 +1,55 @@
 {
   "variants": {
-    "types=0": {
-      "model": "chang_sheng_jue:block/ci_pan"
-    },
-    "types=1": {
-      "model": "chang_sheng_jue:block/tomato_egg"
-    },
-    "types=2": {
-      "model": "chang_sheng_jue:block/tomato_egg"
-    }
+    "types=0": [
+      {
+        "model": "chang_sheng_jue:block/ci_pan"
+      }
+    ],
+    "types=1,facing=north": [
+      {
+        "model": "chang_sheng_jue:block/tomato_egg"
+      }
+    ],
+    "types=2,facing=north": [
+      {
+        "model": "chang_sheng_jue:block/tomato_egg"
+      }
+    ],
+    "types=1,facing=south": [
+      {
+        "model": "chang_sheng_jue:block/tomato_egg",
+        "y": 180
+      }
+    ],
+    "types=2,facing=south": [
+      {
+        "model": "chang_sheng_jue:block/tomato_egg",
+        "y": 180
+      }
+    ],
+    "types=1,facing=west": [
+      {
+        "model": "chang_sheng_jue:block/tomato_egg",
+        "y": 270
+      }
+    ],
+    "types=2,facing=west": [
+      {
+        "model": "chang_sheng_jue:block/tomato_egg",
+        "y": 270
+      }
+    ],
+    "types=1,facing=east": [
+      {
+        "model": "chang_sheng_jue:block/tomato_egg",
+        "y": 90
+      }
+    ],
+    "types=2,facing=east": [
+      {
+        "model": "chang_sheng_jue:block/tomato_egg",
+        "y": 90
+      }
+    ]
   }
 }

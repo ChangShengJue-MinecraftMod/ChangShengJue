@@ -1,7 +1,27 @@
 {
   "variants": {
-    "": {
-      "model": "chang_sheng_jue:block/corn"
-    }
+    "facing=east": [
+      {
+        "model": "chang_sheng_jue:block/corn",
+        "y": 180
+      }
+    ],
+    "facing=north": [
+      {
+        "model": "chang_sheng_jue:block/corn",
+        "y": 90
+      }
+    ],
+    "facing=south": [
+      {
+        "model": "chang_sheng_jue:block/corn",
+        "y": 270
+      }
+    ],
+    "facing=west": [
+      {
+        "model": "chang_sheng_jue:block/corn"
+      }
+    ]
   }
 }

@@ -92,11 +92,9 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.BILUOCHUN_TEAS.get(),"碧螺春茶");
         this.add(ChangShengJueItems.LONG_JING_TEAS.get(),"龙井茶");
         this.add(ChangShengJueItems.SHI_LI_XIANG.get(),"十里香");
-        this.add(ChangShengJueItems.EMPTY_SHI_LI_XIANG.get(),"十里香空瓶");
         this.add(ChangShengJueItems.FEN_JIU.get(),"汾酒");
-        this.add(ChangShengJueItems.EMPTY_FEN_JIU.get(),"汾酒空瓶");
+        this.add(ChangShengJueItems.EMPTY_FEN_JIU.get(),"空酒瓶");
         this.add(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get(),"麦块贡酒");
-        this.add(ChangShengJueItems.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get(),"麦块贡酒空瓶");
         this.add(ChangShengJueItems.MANGO.get(),"芒果");
         this.add(ChangShengJueItems.MEI_HUA.get(),"梅花");
         this.add(ChangShengJueItems.GUI_HUA.get(),"桂花");
@@ -370,6 +368,27 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get(),"去皮桑树原木");
         this.add(ChangShengJueBlocks.MULBERRY_LEAVES.get(),"桑树树叶");
         this.add(ChangShengJueBlocks.MULBERRY_SAPLING.get(),"桑树树苗");
+
+
+        // 食物容器类方块
+        this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_PAN.get(), "饺子盘");
+        this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_WAN.get(), "饺子碗");
+        this.add(ChangShengJueBlocks.PORTULACA_OLERACEA_CAKE_PAN.get(), "马齿苋饼盘");
+        this.add(ChangShengJueBlocks.PORTULACA_OLERACEA_CAKE_WAN.get(), "马齿苋饼碗");
+        this.add(ChangShengJueBlocks.QING_TUAN_PAN.get(), "青团盘");
+        this.add(ChangShengJueBlocks.QING_TUAN_WAN.get(), "青团碗");
+        this.add(ChangShengJueBlocks.SORGHUM_CAKE_PAN.get(), "高粱饼盘");
+        this.add(ChangShengJueBlocks.SORGHUM_CAKE_WAN.get(), "高粱饼碗");
+        this.add(ChangShengJueBlocks.MI_FAN_PAN.get(), "米饭盘");
+        this.add(ChangShengJueBlocks.MI_FAN_WAN.get(), "米饭碗");
+        this.add(ChangShengJueBlocks.XIAO_MI_FAN_PAN.get(), "小米饭盘");
+        this.add(ChangShengJueBlocks.XIAO_MI_FAN_WAN.get(), "小米饭碗");
+
+
+        this.add(ChangShengJueBlocks.EMPTY_SHI_LI_XIANG.get(), "空十里香杯");
+        this.add(ChangShengJueBlocks.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get(), "空麦块贡酒杯");
+
+
 
         this.add(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get(),"青花瓷花盆");
 

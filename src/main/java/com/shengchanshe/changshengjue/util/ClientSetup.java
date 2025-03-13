@@ -316,17 +316,78 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.JI_CHI_MU_FIVE_SCREEN_THRONE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get(), RenderType.cutout());
 
+// 食物方块透明渲染设置
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CI_PAN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CI_WAN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CI_BEI.get(), RenderType.cutout());
+
+// 玉米相关
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CORN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BAKED_CORN.get(), RenderType.cutout());
+
+// 水果类
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.PEAR.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.PINEAPPLE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MANGO.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LICHEE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BANANA.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GRAPE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MULBERRY.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DURIAN.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.OPEN_DURIAN.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CORN.get(), RenderType.cutout());
+
+// 饺子相关
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CAPSULE_JIAO_ZI_PAN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CAPSULE_JIAO_ZI_WAN.get(), RenderType.cutout());
+
+// 马齿苋饼
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.PORTULACA_OLERACEA_CAKE_PAN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.PORTULACA_OLERACEA_CAKE_WAN.get(), RenderType.cutout());
+
+// 青团
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.QING_TUAN_PAN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.QING_TUAN_WAN.get(), RenderType.cutout());
+
+// 高粱饼
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SORGHUM_CAKE_PAN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SORGHUM_CAKE_WAN.get(), RenderType.cutout());
+
+// 米饭
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MI_FAN_PAN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MI_FAN_WAN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.XIAO_MI_FAN_PAN.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.XIAO_MI_FAN_WAN.get(), RenderType.cutout());
+
+// 蒸菜类
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ZHENG_CAI.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.TOMATO_EGG.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GU_LAO_ROU.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MEAT_FOAM_BRINJAL.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.STINKY_TOFU.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GUI_HUA_TANG_OU.get(), RenderType.cutout());
+
+// 汤类
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.HOT_PEAR_SOUP.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ZHU_DU_JI.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BA_BAO_ZHOU.get(), RenderType.cutout());
+
+// 饮料类
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MULBERRY_JUICE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.APPLE_JUICE.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GRAPE_JUICE.get(), RenderType.cutout());
+
+// 茶类
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BILUOCHUN_TEAS.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_JING_TEAS.get(), RenderType.cutout());
+
+// 酒杯类
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.EMPTY_FEN_JIU.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.EMPTY_SHI_LI_XIANG.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.FEN_JIU.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHI_LI_XIANG.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.WHEAT_NUGGETS_TRIBUTE_WINE.get(), RenderType.cutout());
+
 
 
         ItemColors itemColors = Minecraft.getInstance().getItemColors();

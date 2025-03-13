@@ -20,7 +20,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class Durian extends NoBoxTypeBlock{
     public static int nutrition = 0;
     public static float saturationMod = 0.0F;
-    protected static final VoxelShape PLATE_SHAPE = Block.box(4D, 0.0D, 4D, 12D, 13D, 12D);
+    protected static final VoxelShape DURIAN_NORTH = Block.box(4D, 0.0D, 4D, 12D, 13D, 12D);
+    
 
     public Durian(Properties pProperties, int nutrition, float saturationMod) {
         super(pProperties, nutrition,saturationMod);
@@ -49,6 +50,6 @@ public class Durian extends NoBoxTypeBlock{
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return PLATE_SHAPE;
+        return DURIAN_NORTH;
     }
 }

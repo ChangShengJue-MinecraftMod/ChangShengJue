@@ -14,6 +14,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -46,28 +47,10 @@ public class WineBlock extends TypeBlock {
                     level.setBlock(pos, state.setValue(getTYPE(), 0), 3);
                     // 增加饥饿值
                     player.getFoodData().eat(fed, fedpro);
-                    if(state.getBlock() == ChangShengJueBlocks.FEN_JIU.get()) {
-                        level.setBlock(pos, ChangShengJueBlocks.EMPTY_FEN_JIU.get().defaultBlockState(), 3);
-                    }
-                    if(state.getBlock() == ChangShengJueBlocks.SHI_LI_XIANG.get()) {
-                        level.setBlock(pos, ChangShengJueBlocks.EMPTY_SHI_LI_XIANG.get().defaultBlockState(), 3);
-                    }
-                    if(state.getBlock() == ChangShengJueBlocks.WHEAT_NUGGETS_TRIBUTE_WINE.get()) {
-                        level.setBlock(pos, ChangShengJueBlocks.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get().defaultBlockState(), 3);
-                    }
                     level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);
                 }
             } else if (types == 0) {
                 player.displayClientMessage(Component.translatable("block.changshengjue.fen_jiu.no_wine"), true);
-                if(state.getBlock() == ChangShengJueBlocks.FEN_JIU.get()) {
-                    level.setBlock(pos, ChangShengJueBlocks.EMPTY_FEN_JIU.get().defaultBlockState(), 3);
-                }
-                if(state.getBlock() == ChangShengJueBlocks.SHI_LI_XIANG.get()) {
-                    level.setBlock(pos, ChangShengJueBlocks.EMPTY_SHI_LI_XIANG.get().defaultBlockState(), 3);
-                }
-                if(state.getBlock() == ChangShengJueBlocks.WHEAT_NUGGETS_TRIBUTE_WINE.get()) {
-                    level.setBlock(pos, ChangShengJueBlocks.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get().defaultBlockState(), 3);
-                }
                 return InteractionResult.SUCCESS;
             }
             if (!level.isClientSide) {
@@ -96,6 +79,15 @@ public class WineBlock extends TypeBlock {
                     }
                 }
             }
+            if(state.getBlock() == ChangShengJueBlocks.FEN_JIU.get()) {
+                level.setBlock(pos, ChangShengJueBlocks.EMPTY_FEN_JIU.get().defaultBlockState(), 3);
+            }
+            if(state.getBlock() == ChangShengJueBlocks.SHI_LI_XIANG.get()) {
+                level.setBlock(pos, ChangShengJueBlocks.EMPTY_SHI_LI_XIANG.get().defaultBlockState(), 3);
+            }
+            if(state.getBlock() == ChangShengJueBlocks.WHEAT_NUGGETS_TRIBUTE_WINE.get()) {
+                level.setBlock(pos, ChangShengJueBlocks.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get().defaultBlockState(), 3);
+            }
         }
         return InteractionResult.PASS;
     }
@@ -109,6 +101,11 @@ public class WineBlock extends TypeBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, TYPES);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
 }

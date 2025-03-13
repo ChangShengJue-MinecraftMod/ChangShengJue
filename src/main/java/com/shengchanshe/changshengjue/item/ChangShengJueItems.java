@@ -130,6 +130,7 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> PEAR = ITEMS.register("pear",
             ()-> new BlockItem(ChangShengJueBlocks.PEAR.get(),
                     new Item.Properties().food(ChangShengJueFoods.PEAR)));
+    // 定义一个名为LICHEE的静态常量，类型为RegistryObject<Item>
     public static final RegistryObject<Item> LICHEE = ITEMS.register("lichee",
             ()-> new BlockItem(ChangShengJueBlocks.LICHEE.get(),
                     new Item.Properties().food(ChangShengJueFoods.LICHEE)));
@@ -169,7 +170,7 @@ public class ChangShengJueItems {
 
     public static final RegistryObject<Item> ZHENG_CAI = ITEMS.register("zheng_cai",
             ()-> new BlockItem(ChangShengJueBlocks.ZHENG_CAI.get(),
-                    new Item.Properties().stacksTo(1).food(ChangShengJueFoods.ZHENG_CAI)));
+                    new Item.Properties().food(ChangShengJueFoods.ZHENG_CAI)));
     public static final RegistryObject<Item> BAKED_CORN = ITEMS.register("baked_corn",
             ()-> new BlockItem(ChangShengJueBlocks.BAKED_CORN.get(),
                     new Item.Properties().food(ChangShengJueFoods.BAKED_CORN)));
@@ -224,14 +225,8 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> SHI_LI_XIANG = ITEMS.register("shi_li_xiang",
             ()-> new Wine(ChangShengJueBlocks.SHI_LI_XIANG.get(),
                     new Item.Properties().stacksTo(1).food(ChangShengJueFoods.SHI_LI_XIANG)));
-    public static final RegistryObject<Item> EMPTY_SHI_LI_XIANG = ITEMS.register("empty_shi_li_xiang",
-            ()-> new Wine(ChangShengJueBlocks.EMPTY_SHI_LI_XIANG.get(),
-                    new Item.Properties().stacksTo(64)));
     public static final RegistryObject<Item> EMPTY_FEN_JIU = ITEMS.register("empty_fen_jiu",
             ()-> new Wine(ChangShengJueBlocks.EMPTY_FEN_JIU.get(),
-                    new Item.Properties().stacksTo(64)));
-    public static final RegistryObject<Item> EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE = ITEMS.register("empty_wheat_nuggets_tribute_wine",
-            ()-> new Wine(ChangShengJueBlocks.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get(),
                     new Item.Properties().stacksTo(64)));
 
     //刷怪蛋

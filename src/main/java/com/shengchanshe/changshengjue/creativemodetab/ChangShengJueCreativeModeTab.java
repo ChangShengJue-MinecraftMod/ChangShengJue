@@ -436,9 +436,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.FEN_JIU.get());
                 output.accept(ChangShengJueItems.EMPTY_FEN_JIU.get());
                 output.accept(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get());
-                output.accept(ChangShengJueItems.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get());
                 output.accept(ChangShengJueItems.SHI_LI_XIANG.get());
-                output.accept(ChangShengJueItems.EMPTY_SHI_LI_XIANG.get());
                 output.accept(ChangShengJueItems.CI_PAN.get());
                 output.accept(ChangShengJueItems.CI_WAN.get());
                 output.accept(ChangShengJueItems.CI_BEI.get());

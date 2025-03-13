@@ -49,6 +49,10 @@ public class TypeBlock extends Block {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(getTYPE(), getMaxTYPES()));
     }
 
+
+
+
+
     public IntegerProperty getTYPE() {
         return TYPES;
     }
@@ -71,8 +75,7 @@ public class TypeBlock extends Block {
         if (player.getItemInHand(hand).getItem() == item) {
             level.playSound(null, pos, SoundEvents.WOOD_BREAK, SoundSource.PLAYERS, 0.8F, 0.8F);
             level.setBlock(pos, block.defaultBlockState(), 3);
-            //删除一个
-            //如果玩家不是创造模式
+
             if (!player.isCreative()) {
                 player.getItemInHand(hand).shrink(1);
             }

@@ -1191,8 +1191,10 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .requires(ChangShengJueItems.CI_PAN.get())
                 .unlockedBy("has_plates",has(ChangShengJueItems.CI_PAN.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.ZHU_DU_JI.get())
-                .requires(ChangShengJueItems.JALAPENOS.get()).requires(Items.PORKCHOP)
-                .requires(Items.CHICKEN).requires(ChangShengJueItems.CI_WAN.get())
+                .requires(ChangShengJueItems.JALAPENOS.get())
+                .requires(Items.PORKCHOP)
+                .requires(Items.CHICKEN)
+                .requires(ChangShengJueItems.CI_WAN.get())
                 .unlockedBy("has_bowls",has(ChangShengJueItems.CI_WAN.get())).save(consumer);
         ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.XIAO_MI_FAN.get())
                 .requires(ChangShengJueItems.GU_SUI.get(),3)
