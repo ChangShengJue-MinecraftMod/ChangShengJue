@@ -42,7 +42,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import javax.annotation.Nullable;
 public class Butterfly extends Animal implements GeoEntity, FlyingAnimal {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(MalePeacock.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(Butterfly.class, EntityDataSerializers.INT);
 
     public Butterfly(EntityType<? extends Butterfly> entityType, Level level) {
         super(entityType, level);

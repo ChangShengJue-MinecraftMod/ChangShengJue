@@ -221,6 +221,25 @@ public class CSJBlockModelProvider extends BlockModelProvider {
                 "gable_ridge_cylinder_tile_bottom_left","cylinder_tile_golden_block");
         parentBlock(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_bottom_left",
                 "gable_ridge_cylinder_tile_bottom_left","cylinder_tile_blue_block");
+
+        parentBlock(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE,"double_gable_ridge_cylinder_tile","gre_double_gable_ridge_cylinder_tile");
+        parentBlock(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE,"double_gable_ridge_cylinder_tile","red_double_gable_ridge_cylinder_tile");
+        parentBlock(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE,"double_gable_ridge_cylinder_tile","black_double_gable_ridge_cylinder_tile");
+        parentBlock(ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE,"double_gable_ridge_cylinder_tile","golden_double_gable_ridge_cylinder_tile");
+        parentBlock(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE,"double_gable_ridge_cylinder_tile","blue_double_gable_ridge_cylinder_tile");
+
+        parentBlock(ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE,"double_hanging_beast_gable_ridge_cylinder_tile","gre_double_gable_ridge_cylinder_tile");
+        parentBlock(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE,"double_hanging_beast_gable_ridge_cylinder_tile","red_double_gable_ridge_cylinder_tile");
+        parentBlock(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE,"double_hanging_beast_gable_ridge_cylinder_tile","black_double_gable_ridge_cylinder_tile");
+        parentBlock(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE,"double_hanging_beast_gable_ridge_cylinder_tile","golden_double_gable_ridge_cylinder_tile");
+        parentBlock(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE,"double_hanging_beast_gable_ridge_cylinder_tile","blue_double_gable_ridge_cylinder_tile");
+
+        parentBlock(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE,"short_cylinder_tile","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE,"short_cylinder_tile","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE,"short_cylinder_tile","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE,"short_cylinder_tile","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE,"short_cylinder_tile","cylinder_tile_blue_block");
+
     }
 
     //自定义方块模型

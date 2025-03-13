@@ -27,6 +27,7 @@ public class DataGenerators {
         generator.addProvider(event.includeClient(), new CSJBlockStateProvider(packOutput,existingFileHelper));
         generator.addProvider(event.includeClient(), new CSJBlockModelProvider(packOutput,existingFileHelper));
         generator.addProvider(event.includeClient(), new CSJItemModelProvider(packOutput,existingFileHelper));
+        generator.addProvider(event.includeServer(), CSJLootTableProvider.create(packOutput));
         event.getGenerator().addProvider(
                 event.includeClient(),
                new CSJUSLanguageProvider(packOutput, ChangShengJue.MOD_ID, "en_us"));
@@ -34,7 +35,6 @@ public class DataGenerators {
                 event.includeClient(),
                 new CSJCNLanguageProvider(packOutput, ChangShengJue.MOD_ID, "zh_cn"));
 
-        generator.addProvider(event.includeServer(), CSJLootTableProvider.create(packOutput));
 
         generator.addProvider(event.includeServer(),new CSJPoiTypeTagsProvider(packOutput,lookupProvider,existingFileHelper));
 

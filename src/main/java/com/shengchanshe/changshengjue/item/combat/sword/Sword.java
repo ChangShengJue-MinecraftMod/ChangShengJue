@@ -208,7 +208,7 @@ public class Sword extends SwordItem {
                 itemstack.hurtAndBreak(1, player, (player1) -> {//消耗耐久
                     player1.broadcastBreakEvent(player.getUsedItemHand());
                 });
-                DuguNineSwordsEntity duguNineSwordsEntity = new DuguNineSwordsEntity(ChangShengJueEntity.DUGU_NINE_SOWRDS_ENTITY.get(), pLevel);
+                DuguNineSwordsEntity duguNineSwordsEntity = new DuguNineSwordsEntity(ChangShengJueEntity.DUGU_NINE_SOWRDS.get(), pLevel);
                 duguNineSwordsEntity.moveTo(hitLocation);
                 duguNineSwordsEntity.setYRot(player.getYRot());
                 pLevel.addFreshEntity(duguNineSwordsEntity);

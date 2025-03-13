@@ -169,6 +169,24 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get())
                 .add(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get())
 
+                .add(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get())
+
+                .add(ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get())
+
+                .add(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get())
+
                 .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get())
                 .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get())
                 .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_2.get())

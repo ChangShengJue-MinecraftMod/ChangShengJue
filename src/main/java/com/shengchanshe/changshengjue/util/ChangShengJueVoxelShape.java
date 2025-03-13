@@ -42,6 +42,37 @@ public class ChangShengJueVoxelShape {
             Block.box(0, 5, 0, 1, 8, 4)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
+    //短筒瓦
+    public static final VoxelShape SHORT_CYLINDER_TILE_N = Stream.of(
+            Block.box(12, 0, 8, 16, 5, 16),
+            Block.box(0, 0, 8, 4, 5, 16),
+            Block.box(4, 0, 8, 12, 8, 16),
+            Block.box(12, 5, 15, 16, 8, 16),
+            Block.box(0, 5, 15, 4, 8, 16)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape SHORT_CYLINDER_TILE_E = Stream.of(
+            Block.box(0, 0, 12, 8, 5, 16),
+            Block.box(0, 0, 0, 8, 5, 4),
+            Block.box(0, 0, 4, 8, 8, 12),
+            Block.box(0, 5, 12, 1, 8, 16),
+            Block.box(0, 5, 0, 1, 8, 4)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape SHORT_CYLINDER_TILE_S = Stream.of(
+            Block.box(0, 0, 0, 4, 5, 8),
+            Block.box(12, 0, 0, 16, 5, 8),
+            Block.box(4, 0, 0, 12, 8, 8),
+            Block.box(0, 5, 0, 4, 8, 1),
+            Block.box(12, 5, 0, 16, 8, 1)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape SHORT_CYLINDER_TILE_W = Stream.of(
+            Block.box(8, 0, 0, 16, 5, 4),
+            Block.box(8, 0, 12, 16, 5, 16),
+            Block.box(8, 0, 4, 16, 8, 12),
+            Block.box(15, 5, 0, 16, 8, 4),
+            Block.box(15, 5, 12, 16, 8, 16)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+
+
     public static final VoxelShape CYLINDER_TILE_BLOCK_N_1 = Stream.of(
             Block.box(4, 0, 10, 12, 8, 16),
             Block.box(10, -2.0394659486396307, 12.443111471168688, 13, 3.9605340513603693, 17.443111471168688),
@@ -223,6 +254,104 @@ public class ChangShengJueVoxelShape {
             Block.box(1, 13, 6, 4, 15, 10),
             Block.box(1, 10, 3, 4, 13, 13),
             Block.box(2, 5, 3, 4, 7, 13)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    //双层脊瓦
+    public static final VoxelShape DOUBLE_GABLE_RIDGE_CYLINDER_TILE_N = Stream.of(
+            Block.box(0, 0, 0, 16, 6, 16),
+            Block.box(0, 6, 8, 16, 12, 16),
+            Block.box(4, 6, 0, 12, 10, 8),
+            Block.box(4, 12, 8, 12, 18, 16),
+            Block.box(12, 12, 15, 16, 16, 16),
+            Block.box(0, 12, 15, 4, 16, 16)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape DOUBLE_GABLE_RIDGE_CYLINDER_TILE_E = Stream.of(
+            Block.box(0, 0, 0, 16, 6, 16),
+            Block.box(0, 6, 0, 8, 12, 16),
+            Block.box(8, 6, 4, 16, 10, 12),
+            Block.box(0, 12, 4, 8, 18, 12),
+            Block.box(0, 12, 12, 1, 16, 16),
+            Block.box(0, 12, 0, 1, 16, 4)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape DOUBLE_GABLE_RIDGE_CYLINDER_TILE_S = Stream.of(
+            Block.box(0, 0, 0, 16, 6, 16),
+            Block.box(0, 6, 0, 16, 12, 8),
+            Block.box(4, 6, 8, 12, 10, 16),
+            Block.box(4, 12, 0, 12, 18, 8),
+            Block.box(0, 12, 0, 4, 16, 1),
+            Block.box(12, 12, 0, 16, 16, 1)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape DOUBLE_GABLE_RIDGE_CYLINDER_TILE_W = Stream.of(
+            Block.box(0, 0, 0, 16, 6, 16),
+            Block.box(8, 6, 0, 16, 12, 16),
+            Block.box(0, 6, 4, 8, 10, 12),
+            Block.box(8, 12, 4, 16, 18, 12),
+            Block.box(15, 12, 0, 16, 16, 4),
+            Block.box(15, 12, 12, 16, 16, 16)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+
+    public static final VoxelShape DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE_N = Stream.of(
+            Block.box(0, 0, 0, 16, 6, 16),
+            Block.box(0, 6, 8, 16, 12, 16),
+            Block.box(4, 6, 0, 12, 10, 8),
+            Block.box(4, 12, 8, 12, 18, 16),
+            Block.box(12, 12, 15, 16, 16, 16),
+            Block.box(0, 12, 15, 4, 16, 16),
+            Block.box(5.1875, 9.5, 0.6625000000000001, 10.4375, 16.25, 8.9125),
+            Block.box(5.1875, 16.25, 2.1625, 10.4375, 20, 10.4125),
+            Block.box(5.1875, 20, 4.4125, 10.4375, 23, 11.9125),
+            Block.box(5.9375, 14.75, -3.0875000000000004, 9.6875, 19.25, 2.1625),
+            Block.box(6.3125, 15.5, -4.5875, 9.3125, 17.75, -3.0875000000000004),
+            Block.box(6.6875, 17.75, -3.8375000000000004, 8.9375, 18.5, -3.0875000000000004),
+            Block.box(9.3125, 19.25, -3.0875000000000004, 9.3125, 23, 0.6625000000000001),
+            Block.box(6.3125, 19.25, -3.0875000000000004, 6.3125, 23, 0.6625000000000001)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE_E = Stream.of(
+            Block.box(0, 0, 0, 16, 6, 16),
+            Block.box(0, 6, 0, 8, 12, 16),
+            Block.box(8, 6, 4, 16, 10, 12),
+            Block.box(0, 12, 4, 8, 18, 12),
+            Block.box(0, 12, 12, 1, 16, 16),
+            Block.box(0, 12, 0, 1, 16, 4),
+            Block.box(7.0875, 9.5, 5.1875, 15.3375, 16.25, 10.4375),
+            Block.box(5.5875, 16.25, 5.1875, 13.8375, 20, 10.4375),
+            Block.box(4.0875, 20, 5.1875, 11.5875, 23, 10.4375),
+            Block.box(13.8375, 14.75, 5.9375, 19.0875, 19.25, 9.6875),
+            Block.box(19.0875, 15.5, 6.3125, 20.5875, 17.75, 9.3125),
+            Block.box(19.0875, 17.75, 6.6875, 19.8375, 18.5, 8.9375),
+            Block.box(15.3375, 19.25, 9.3125, 19.0875, 23, 9.3125),
+            Block.box(15.3375, 19.25, 6.3125, 19.0875, 23, 6.3125)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE_S = Stream.of(
+            Block.box(0, 0, 0, 16, 6, 16),
+            Block.box(0, 6, 0, 16, 12, 8),
+            Block.box(4, 6, 8, 12, 10, 16),
+            Block.box(4, 12, 0, 12, 18, 8),
+            Block.box(0, 12, 0, 4, 16, 1),
+            Block.box(12, 12, 0, 16, 16, 1),
+            Block.box(5.5625, 9.5, 7.0875, 10.8125, 16.25, 15.3375),
+            Block.box(5.5625, 16.25, 5.5875, 10.8125, 20, 13.8375),
+            Block.box(5.5625, 20, 4.0875, 10.8125, 23, 11.5875),
+            Block.box(6.3125, 14.75, 13.8375, 10.0625, 19.25, 19.0875),
+            Block.box(6.6875, 15.5, 19.0875, 9.6875, 17.75, 20.5875),
+            Block.box(7.0625, 17.75, 19.0875, 9.3125, 18.5, 19.8375),
+            Block.box(6.6875, 19.25, 15.3375, 6.6875, 23, 19.0875),
+            Block.box(9.6875, 19.25, 15.3375, 9.6875, 23, 19.0875)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+    public static final VoxelShape DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE_W = Stream.of(
+            Block.box(0, 0, 0, 16, 6, 16),
+            Block.box(8, 6, 0, 16, 12, 16),
+            Block.box(0, 6, 4, 8, 10, 12),
+            Block.box(8, 12, 4, 16, 18, 12),
+            Block.box(15, 12, 0, 16, 16, 4),
+            Block.box(15, 12, 12, 16, 16, 16),
+            Block.box(0.6624999999999996, 9.5, 5.5625, 8.9125, 16.25, 10.8125),
+            Block.box(2.1624999999999996, 16.25, 5.5625, 10.4125, 20, 10.8125),
+            Block.box(4.4125, 20, 5.5625, 11.9125, 23, 10.8125),
+            Block.box(-3.0874999999999986, 14.75, 6.3125, 2.1624999999999996, 19.25, 10.0625),
+            Block.box(-4.587499999999999, 15.5, 6.6875, -3.0874999999999986, 17.75, 9.6875),
+            Block.box(-3.8374999999999986, 17.75, 7.0625, -3.0874999999999986, 18.5, 9.3125),
+            Block.box(-3.0874999999999986, 19.25, 6.6875, 0.6624999999999996, 23, 6.6875),
+            Block.box(-3.0874999999999986, 19.25, 9.6875, 0.6624999999999996, 23, 9.6875)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
     //脊刹

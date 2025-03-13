@@ -70,6 +70,9 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.SHI_LI_XIANG);
         simpleItem(ChangShengJueItems.EMPTY_FEN_JIU);
 
+        //令牌
+        simpleItem(ChangShengJueItems.GANG_TOKEN);
+
         //食物
         simpleItem(ChangShengJueItems.PEACOCK);
         simpleItem(ChangShengJueItems.COOKED_PEACOCK);
@@ -324,6 +327,24 @@ public class CSJItemModelProvider extends ItemModelProvider {
         parentItem(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE,ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_top");
         parentItem(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE,ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_top");
         parentItem(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE,ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_top");
+
+        parentItem(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE);
+
+        parentItem(ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE);
+
+        parentItem(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE);
     }
 
     private ItemModelBuilder parentItem(RegistryObject<Block> block){

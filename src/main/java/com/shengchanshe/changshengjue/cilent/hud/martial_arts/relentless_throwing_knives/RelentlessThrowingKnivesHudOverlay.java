@@ -58,8 +58,8 @@ public class RelentlessThrowingKnivesHudOverlay {
             // 通过宽高获得绘制的x，y
             int x = 5;
             int y = (screenHeight / 2) - 50;
-            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(), ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.relentless_throwing_knives"),x, y,ChatFormatting.BLUE.getColor());
             if (relentlessThrowingKnivesComprehend){
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(), ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.relentless_throwing_knives"),x, y,ChatFormatting.BLUE.getColor());
                 int getRelentlessThrowingKnivesLevel = RelentlessThrowingKnivesClientData.getRelentlessThrowingKnivesLevel();
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);

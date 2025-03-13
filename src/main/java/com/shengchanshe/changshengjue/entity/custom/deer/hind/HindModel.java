@@ -7,16 +7,29 @@ import software.bernie.geckolib.model.GeoModel;
 public class HindModel extends GeoModel<Hind> {
     @Override
     public ResourceLocation getModelResource(Hind entity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/hind_entity.geo.json");
+        if (entity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/deer/deer_baby.geo.json");
+        }else {
+            return new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/deer/hind.geo.json");
+        }
     }
 
     @Override
     public ResourceLocation getTextureResource(Hind entity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/hind_entity.png");
+        if (entity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/deer/deer_baby.png");
+        }else {
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/deer/hind.png");
+        }
     }
 
     @Override
     public ResourceLocation getAnimationResource(Hind entity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"animations/hind_entity.animation.json");
+        if (entity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/deer/deer_baby.animation.json");
+        }else {
+            return new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/deer/hind.animation.json");
+        }
     }
+
 }

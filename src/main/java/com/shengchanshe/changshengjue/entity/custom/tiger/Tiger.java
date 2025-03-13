@@ -74,9 +74,9 @@ public class Tiger extends TamableAnimal implements GeoEntity {
         this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false,
                 (entity) -> !isTame() && getHungryTime()==0));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Animal.class, 15, true, false,
-                (entity) -> !this.isTame() && this.getFedTime() == 0 && !(entity instanceof Tiger)));
+                (entity) -> !this.isTame() && this.getFedTime() == 0));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Mob.class, 15, true, false,
-                (entity) -> !this.isTame() && entity instanceof Enemy && !(entity instanceof Creeper) && !(entity instanceof Tiger)));
+                (entity) -> !this.isTame() && entity instanceof Enemy && !(entity instanceof Creeper)));
 
     }
 
@@ -257,7 +257,7 @@ public class Tiger extends TamableAnimal implements GeoEntity {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob ageableMob) {
-        return ChangShengJueEntity.TIGER_ENTITY.get().create(level);
+        return ChangShengJueEntity.TIGER.get().create(level);
     }
 
     @Override

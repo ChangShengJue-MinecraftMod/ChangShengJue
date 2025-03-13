@@ -80,17 +80,17 @@ public class ChangShengJue {
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.GEUM_TRIFLORUM.getId(), ChangShengJueBlocks.POTTED_GEUM_TRIFLORUM);
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.PURPLE_DANDELION.getId(), ChangShengJueBlocks.POTTED_PURPLE_DANDELION);
 
-            SpawnPlacements.register(ChangShengJueEntity.BUTTERFLY_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.BUTTERFLY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
             SpawnPlacements.register(ChangShengJueEntity.MONKEY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.DRAGONFLY_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.CICADA_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.CRANE_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.MALE_PEACOCK_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.FEMALE_PEACOCK_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.STAG_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.HIND_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.TIGER_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.CROC_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.DRAGONFLY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.CICADA.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.CRANE.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.MALE_PEACOCK.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.FEMALE_PEACOCK.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.STAG.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.HIND.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.TIGER.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.CROC.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
 
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD,MOD_ID, CSJSurFaceRules.makeRules());
 

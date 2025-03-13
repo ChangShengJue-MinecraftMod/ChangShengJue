@@ -54,17 +54,17 @@ public class CSJBiomeModifiers {
     //哈密瓜
     public static final ResourceKey<BiomeModifier> ADD_CANTALOUPE_BLOCK = registerKey("add_cantaloupe_block");
     //生物
-    public static final ResourceKey<BiomeModifier> ADD_BUTTERFLY_ENTITY = registerKey("add_butterfly_entity");
-    public static final ResourceKey<BiomeModifier> ADD_MONKEY_ENTITY = registerKey("add_monkey_entity");
-    public static final ResourceKey<BiomeModifier> ADD_DRAGONFLY_ENTITY = registerKey("add_dragonfly_entity");
-    public static final ResourceKey<BiomeModifier> ADD_CICADA_ENTITY = registerKey("add_cicada_entity");
-    public static final ResourceKey<BiomeModifier> ADD_CRANE_ENTITY = registerKey("add_crane_entity");
-    public static final ResourceKey<BiomeModifier> ADD_MALE_PEACOCK_ENTITY = registerKey("add_male_peacock_entity");
-    public static final ResourceKey<BiomeModifier> ADD_FEMALE_PEACOCK_ENTITY = registerKey("add_female_peacock_entity");
-    public static final ResourceKey<BiomeModifier> ADD_STAG_ENTITY = registerKey("add_stag_entity");
-    public static final ResourceKey<BiomeModifier> ADD_HIND_ENTITY = registerKey("add_hind_entity");
-    public static final ResourceKey<BiomeModifier> ADD_TIGER_ENTITY = registerKey("add_tiger_entity");
-    public static final ResourceKey<BiomeModifier> ADD_CROC_ENTITY = registerKey("add_croc_entity");
+    public static final ResourceKey<BiomeModifier> ADD_BUTTERFLY = registerKey("add_butterfly");
+    public static final ResourceKey<BiomeModifier> ADD_MONKEY = registerKey("add_monkey");
+    public static final ResourceKey<BiomeModifier> ADD_DRAGONFLY = registerKey("add_dragonfly");
+    public static final ResourceKey<BiomeModifier> ADD_CICADA = registerKey("add_cicada");
+    public static final ResourceKey<BiomeModifier> ADD_CRANE = registerKey("add_crane");
+    public static final ResourceKey<BiomeModifier> ADD_MALE_PEACOCK = registerKey("add_male_peacock");
+    public static final ResourceKey<BiomeModifier> ADD_FEMALE_PEACOCK = registerKey("add_female_peacock");
+    public static final ResourceKey<BiomeModifier> ADD_STAG = registerKey("add_stag");
+    public static final ResourceKey<BiomeModifier> ADD_HIND = registerKey("add_hind");
+    public static final ResourceKey<BiomeModifier> ADD_TIGER = registerKey("add_tiger");
+    public static final ResourceKey<BiomeModifier> ADD_CROC = registerKey("add_croc");
 
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         // 用于获取放置特性和生物群系的注册表引用
@@ -187,40 +187,40 @@ public class CSJBiomeModifiers {
                         HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.CANTALOUPE_BLOCK_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
         //生物
-//        context.register(ADD_BUTTERFLY_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
-//                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.BUTTERFLY_ENTITY.get(),
+//        context.register(ADD_BUTTERFLY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
+//                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.BUTTERFLY.get(),
 //                        100, 1, 2))));
-        context.register(ADD_MONKEY_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
+        context.register(ADD_MONKEY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
                 List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.MONKEY.get(),
                         40, 3, 6))));
-        context.register(ADD_DRAGONFLY_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_RIVER),
+        context.register(ADD_DRAGONFLY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_RIVER),
                 List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.MONKEY.get(),
                         200, 1, 1))));
-        context.register(ADD_CICADA_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
-                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.CICADA_ENTITY.get(),
+        context.register(ADD_CICADA,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
+                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.CICADA.get(),
                         200, 1, 1))));
-//        context.register(ADD_CRANE_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(Tags.Biomes.IS_SWAMP),
-//                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.CRANE_ENTITY.get(),
+//        context.register(ADD_CRANE,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(Tags.Biomes.IS_SWAMP),
+//                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.CRANE.get(),
 //                        100, 3, 6))));
-        context.register(ADD_MALE_PEACOCK_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
-                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.MALE_PEACOCK_ENTITY.get(),
+        context.register(ADD_MALE_PEACOCK,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
+                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.MALE_PEACOCK.get(),
                         100, 1, 2))));
-        context.register(ADD_FEMALE_PEACOCK_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
-                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.FEMALE_PEACOCK_ENTITY.get(),
+        context.register(ADD_FEMALE_PEACOCK,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
+                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.FEMALE_PEACOCK.get(),
                         100, 1, 2))));
 
-//        context.register(ADD_STAG_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
-//                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.STAG_ENTITY.get(),
+//        context.register(ADD_STAG,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
+//                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.STAG.get(),
 //                        40, 3, 6))));
-//        context.register(ADD_HIND_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
-//                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.HIND_ENTITY.get(),
+//        context.register(ADD_HIND,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
+//                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.HIND.get(),
 //                        40, 3, 6))));
 //
-//        context.register(ADD_TIGER_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_JUNGLE),
-//                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.TIGER_ENTITY.get(),
+//        context.register(ADD_TIGER,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_JUNGLE),
+//                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.TIGER.get(),
 //                        40, 3, 6))));
-//        context.register(ADD_CROC_ENTITY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(Tags.Biomes.IS_SWAMP),
-//                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.CROC_ENTITY.get(),
+//        context.register(ADD_CROC,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(Tags.Biomes.IS_SWAMP),
+//                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.CROC.get(),
 //                        40, 3, 6))));
 
     }

@@ -1,10 +1,9 @@
 package com.shengchanshe.changshengjue.entity.custom.peacock.male;
 
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
-import com.shengchanshe.changshengjue.entity.custom.peacock.AbstractPeacockEntity;
+import com.shengchanshe.changshengjue.entity.custom.peacock.AbstractPeacock;
 import com.shengchanshe.changshengjue.entity.custom.peacock.PeacockVariant;
 import com.shengchanshe.changshengjue.entity.custom.peacock.female.FemalePeacock;
-import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -18,8 +17,6 @@ import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -35,7 +32,7 @@ import java.util.Random;
 
 import static net.minecraft.world.entity.MobSpawnType.CHUNK_GENERATION;
 
-public class MalePeacock extends AbstractPeacockEntity {
+public class MalePeacock extends AbstractPeacock {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private int anInt = 0;
     private boolean aBoolean;
@@ -72,7 +69,7 @@ public class MalePeacock extends AbstractPeacockEntity {
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel level, AgeableMob mob) {
-        MalePeacock malePeacockEntity = ChangShengJueEntity.MALE_PEACOCK_ENTITY.get().create(level);
+        MalePeacock malePeacockEntity = ChangShengJueEntity.MALE_PEACOCK.get().create(level);
         PeacockVariant variant = Util.getRandom(PeacockVariant.values(),this.random);
         malePeacockEntity.setVariant(variant);
         return malePeacockEntity;

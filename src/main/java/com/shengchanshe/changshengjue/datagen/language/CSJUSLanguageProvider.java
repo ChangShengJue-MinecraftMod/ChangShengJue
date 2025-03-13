@@ -144,6 +144,8 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get(), "坩埚(银液)");
         this.add(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get(), "坩埚(金液)");
 
+        this.add(ChangShengJueItems.GANG_TOKEN.get(),"帮派令牌");
+
         //刷怪蛋
         this.add(ChangShengJueItems.BUTTERFLY_EGG.get(), "蝴蝶刷怪蛋");
         this.add(ChangShengJueItems.MONKEY_EGG.get(), "猴刷怪蛋");
@@ -157,6 +159,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.TIGER_EGG.get(), "虎刷怪蛋");
         this.add(ChangShengJueItems.CROC_EGG.get(), "鳄鱼刷怪蛋");
         this.add(ChangShengJueItems.CHANG_SHENG_JUE_VILLAGER_EGG.get(), "村民刷怪蛋");
+        this.add(ChangShengJueItems.WARRIOR_EGG.get(), "武夫刷怪蛋");
 
         //工具武器和盔甲物品
         this.add(ChangShengJueItems.KAISHAN_PICKAXE.get(),"开山镐");
@@ -264,56 +267,56 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".tooltip","激发潜力，牵引挪移，其中变化莫测，匪夷所思。");
 
         //声音
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".ge_shan_da_niu_sound","武功 : 隔山打牛");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".dugu_nine_swords_sound","武功 : 独孤九剑");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".immortal_miracle_sound","武功 : 不死神功");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".gao_marksmanship_sound","武功 : 高家枪法");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".turtle_breath_work_sound","武功 : 龟息功");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".golden_black_knife_method_sound","武功 : 金乌刀法");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".sunflower_point_caveman_sound","武功 : 葵花点穴手");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".shaolin_stick_method_sound","武功 : 少林棍法");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".tread_the_snow_without_trace_sound","武功 : 踏雪无痕");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".throwing_knives_sound","飞刀 : 飞出");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".three_throwing_knives_sound","飞刀 : 飞出");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".seven_throwing_knives_sound","飞刀 : 飞出");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".throwing_knives_hit","飞刀 : 命中");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".throwing_knives_hit_ground","飞刀 : 命中");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".wu_gang_cut_gui_sound","武功 : 吴刚伐桂");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".xuannu_swordsmanship_sound","武功 : 玄女剑法");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".golden_belljar_sound","武功 : 金钟罩");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".comprehend_sound","武功 : 领悟");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + ".dacheng_sound","武功 : 大成");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".ge_shan_da_niu_sound","武功 : 隔山打牛");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".dugu_nine_swords_sound","武功 : 独孤九剑");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".immortal_miracle_sound","武功 : 不死神功");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".gao_marksmanship_sound","武功 : 高家枪法");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".turtle_breath_work_sound","武功 : 龟息功");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".golden_black_knife_method_sound","武功 : 金乌刀法");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".sunflower_point_caveman_sound","武功 : 葵花点穴手");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".shaolin_stick_method_sound","武功 : 少林棍法");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".tread_the_snow_without_trace_sound","武功 : 踏雪无痕");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".throwing_knives_sound","飞刀 : 飞出");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".three_throwing_knives_sound","飞刀 : 飞出");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".seven_throwing_knives_sound","飞刀 : 飞出");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".throwing_knives_hit","飞刀 : 命中");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".throwing_knives_hit_ground","飞刀 : 命中");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".wu_gang_cut_gui_sound","武功 : 吴刚伐桂");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".xuannu_swordsmanship_sound","武功 : 玄女剑法");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".golden_belljar_sound","武功 : 金钟罩");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".comprehend_sound","武功 : 领悟");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".dacheng_sound","武功 : 大成");
 
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "cicada_sound", "蝉 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "cicada_hurt", "蝉 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "crane_sound", "鹤 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "crane_hurt", "鹤 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "crane_death", "鹤 : 死亡");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "croc_sound", "鳄鱼 : 咆哮");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "croc_hurt", "鳄鱼 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "croc_death", "鳄鱼 : 死亡");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "dragonfly_hurt", "蜻蜓 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "dragonfly_death", "蜻蜓 : 死亡");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "monkey_sound" , "猴 : 嚎叫");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "monkey_baby_sound" , "猴 : 嚎叫");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "monkey_angry_sound" , "猴 : 生气");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "monkey_hurt" , "猴 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "monkey_death" , "猴 : 死亡");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "tiger_sound" , "虎 : 咆哮");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "tiger_sound_1" , "虎 : 咆哮");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "tiger_hurt" , "虎 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "tiger_death" , "虎 : 死亡");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "deer_sound" , "鹿 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "deer_sound_1" , "鹿 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "deer_sound_2" , "鹿 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "deer_sound_3" , "鹿 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "deer_sound_4" , "鹿 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "deer_sound_5" , "鹿 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "deer_hurt" , "鹿 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "deer_death" , "鹿 : 死亡");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "peacock_sound" , "孔雀 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "peacock_hurt" , "孔雀 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID+"." + "peacock_death" , "孔雀 : 死亡");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".cicada_sound", "蝉 : 鸣叫");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".cicada_hurt", "蝉 : 受伤");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".crane_sound", "鹤 : 鸣叫");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".crane_hurt", "鹤 : 受伤");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".crane_death", "鹤 : 死亡");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".croc_sound", "鳄鱼 : 咆哮");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".croc_hurt", "鳄鱼 : 受伤");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".croc_death", "鳄鱼 : 死亡");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".dragonfly_hurt", "蜻蜓 : 受伤");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".dragonfly_death", "蜻蜓 : 死亡");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_sound" , "猴 : 嚎叫");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_baby_sound" , "猴 : 嚎叫");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_angry_sound" , "猴 : 生气");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_hurt" , "猴 : 受伤");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_death" , "猴 : 死亡");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_sound" , "虎 : 咆哮");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_sound_1" , "虎 : 咆哮");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_hurt" , "虎 : 受伤");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_death" , "虎 : 死亡");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound" , "鹿 : 鸣叫");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_1" , "鹿 : 鸣叫");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_2" , "鹿 : 鸣叫");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_3" , "鹿 : 鸣叫");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_4" , "鹿 : 鸣叫");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_5" , "鹿 : 鸣叫");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_hurt" , "鹿 : 受伤");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_death" , "鹿 : 死亡");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".peacock_sound" , "孔雀 : 鸣叫");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".peacock_hurt" , "孔雀 : 受伤");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".peacock_death" , "孔雀 : 死亡");
 
         //方块
         this.add(ChangShengJueItems.STAKES.get(),"练功木桩");
@@ -488,11 +491,11 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_3.get(),"黑色小鸱吻");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_3.get(),"金色小鸱吻");
 
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get(),"青色双层脊瓦");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_4.get(),"灰色双层脊瓦");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_4.get(),"红色双层脊瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get(),"黑色双层脊瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get(),"金色双层脊瓦");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get(),"青色高脊瓦");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_4.get(),"灰色高脊瓦");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_4.get(),"红色高脊瓦");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get(),"黑色高脊瓦");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get(),"金色高脊瓦");
 
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_5.get(),"青色高筒瓦");
         this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get(),"灰色高筒瓦");
@@ -512,11 +515,11 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get(),"黑色飞檐筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get(),"金色飞檐筒瓦");
 
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get(),"青色脊兽筒瓦");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8.get(),"灰色脊兽筒瓦");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8.get(),"红色脊兽筒瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get(),"黑色脊兽筒瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get(),"金色脊兽筒瓦");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get(),"青色脊瓦");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8.get(),"灰色脊瓦");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8.get(),"红色脊瓦");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get(),"黑色脊瓦");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get(),"金色脊瓦");
 
         this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get(),"青色双层蹲兽脊瓦");
         this.add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE.get(),"灰色双层蹲兽脊瓦");
@@ -565,6 +568,24 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get(), "红色垂脊筒瓦");
         this.add(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.get(), "黑色垂脊筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get(), "金色垂脊筒瓦");
+
+        this.add(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "青色双层垂脊");
+        this.add(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "灰色双层垂脊");
+        this.add(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "红色双层垂脊");
+        this.add(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "黑色双层垂脊");
+        this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "金色双层垂脊");
+
+        this.add(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "青色双层垂兽垂脊");
+        this.add(ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "灰色双层垂兽垂脊");
+        this.add(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "红色双层垂兽垂脊");
+        this.add(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "黑色双层垂兽垂脊");
+        this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "金色双层垂兽垂脊");
+
+        this.add(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get(), "青色短筒瓦");
+        this.add(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get(), "灰色短筒瓦");
+        this.add(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get(), "红色短筒瓦");
+        this.add(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get(), "黑色短筒瓦");
+        this.add(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get(), "金色短筒瓦");
 
         this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get(), "金色瓦片");
         this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get(), "金色瓦片");
@@ -734,17 +755,20 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get(), "大城门(右)");
 
         //实体生物
-        this.add(ChangShengJueEntity.BUTTERFLY_ENTITY.get(), "蝴蝶");
+        this.add(ChangShengJueEntity.BUTTERFLY.get(), "蝴蝶");
         this.add(ChangShengJueEntity.MONKEY.get(), "猴");
-        this.add(ChangShengJueEntity.DRAGONFLY_ENTITY.get(), "蜻蜓");
-        this.add(ChangShengJueEntity.CICADA_ENTITY.get(), "蝉");
-        this.add(ChangShengJueEntity.CRANE_ENTITY.get(), "鹤");
-        this.add(ChangShengJueEntity.MALE_PEACOCK_ENTITY.get(), "孔雀");
-        this.add(ChangShengJueEntity.FEMALE_PEACOCK_ENTITY.get(), "孔雀");
-        this.add(ChangShengJueEntity.STAG_ENTITY.get(), "鹿");
-        this.add(ChangShengJueEntity.HIND_ENTITY.get(), "鹿");
-        this.add(ChangShengJueEntity.TIGER_ENTITY.get(), "老虎");
-        this.add(ChangShengJueEntity.CROC_ENTITY.get(), "鳄鱼");
+        this.add(ChangShengJueEntity.DRAGONFLY.get(), "蜻蜓");
+        this.add(ChangShengJueEntity.CICADA.get(), "蝉");
+        this.add(ChangShengJueEntity.CRANE.get(), "鹤");
+        this.add(ChangShengJueEntity.MALE_PEACOCK.get(), "孔雀");
+        this.add(ChangShengJueEntity.FEMALE_PEACOCK.get(), "孔雀");
+        this.add(ChangShengJueEntity.STAG.get(), "鹿");
+        this.add(ChangShengJueEntity.HIND.get(), "鹿");
+        this.add(ChangShengJueEntity.TIGER.get(), "老虎");
+        this.add(ChangShengJueEntity.CROC.get(), "鳄鱼");
+        this.add(ChangShengJueEntity.WARRIOR.get(), "武夫");
+
+        this.add(ChangShengJueEntity.STAKES.get(), "练功木桩");
 
         // 村民职业
         this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_farmer", "农民");

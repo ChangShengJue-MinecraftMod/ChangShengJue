@@ -12,17 +12,25 @@ import software.bernie.geckolib.model.data.EntityModelData;
 public class TigerModel extends GeoModel<Tiger> {
     @Override
     public ResourceLocation getModelResource(Tiger entity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/tiger_entity.geo.json");
+        if (entity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/tiger/tiger_baby.geo.json");
+        }else {
+            return new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/tiger/tiger.geo.json");
+        }
     }
 
     @Override
     public ResourceLocation getTextureResource(Tiger entity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/tiger_entity.png");
+        if (entity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/tiger/tiger_baby.png");
+        }else {
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/tiger/tiger.png");
+        }
     }
 
     @Override
     public ResourceLocation getAnimationResource(Tiger entity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"animations/tiger_entity.animation.json");
+        return new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/tiger/tiger.animation.json");
     }
 
     //使生物头部转动
