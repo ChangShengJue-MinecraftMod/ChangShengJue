@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.network;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.network.packet.effect.EffectEntityPacket;
+import com.shengchanshe.changshengjue.network.packet.food.FoodPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket2;
@@ -220,6 +221,12 @@ public class ChangShengJueMessages {
                 .decoder(HerculesPacket2::new)
                 .encoder(HerculesPacket2::toBytes)
                 .consumerMainThread(HerculesPacket2::handle)
+                .add();
+        //Food
+        net.messageBuilder(FoodPacket.class, id())
+                .decoder(FoodPacket::new)
+                .encoder(FoodPacket::toBytes)
+                .consumerMainThread(FoodPacket::handle)
                 .add();
     }
 

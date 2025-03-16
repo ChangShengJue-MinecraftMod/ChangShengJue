@@ -353,7 +353,6 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GRAPE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MULBERRY.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DURIAN.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.OPEN_DURIAN.get(), RenderType.cutout());
 
 // 饺子相关
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CAPSULE_JIAO_ZI_PAN.get(), RenderType.cutout());

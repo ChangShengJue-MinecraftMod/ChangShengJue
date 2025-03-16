@@ -1,7 +1,10 @@
 package com.shengchanshe.changshengjue.block.food.ciwan;
 
+import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.block.food.TypeBlock;
+import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.food.FoodPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -10,25 +13,30 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 
 @SuppressWarnings("deprecation")
 public class WanTypeBlock extends TypeBlock {
-
 
     public WanTypeBlock(Properties properties, boolean hasLeftovers, int nutrition, float saturationMod) {
         super(properties, hasLeftovers, nutrition, saturationMod);
     }
 
-    protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        return super.use(state, level, pos, player, hand, hit);
+    }
+
+        protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
         int types = state.getValue(getTYPE());
 
         if (types > 0) {
             if (player.getFoodData().getFoodLevel() < 20 || player.isCreative()) {
                 level.setBlock(pos, state.setValue(getTYPE(), 0), 3);
                 // 增加饥饿值
-                player.getFoodData().eat(fed, fedpro);
+
                 level.setBlock(pos, ChangShengJueBlocks.CI_WAN.get().defaultBlockState(), 3);
                 level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);
+                ChangShengJueMessages.sendToServer(new FoodPacket(fed, fedpro));
             }
         } else if (types == 0) {
             level.playSound(null, pos, SoundEvents.WOOD_BREAK, SoundSource.PLAYERS, 0.8F, 0.8F);

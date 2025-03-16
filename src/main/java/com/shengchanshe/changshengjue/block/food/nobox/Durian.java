@@ -1,12 +1,14 @@
 package com.shengchanshe.changshengjue.block.food.nobox;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
+import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
@@ -32,18 +34,13 @@ public class Durian extends NoBoxTypeBlock{
         if(state.getBlock()==ChangShengJueBlocks.DURIAN.get()){
             if(itemstack.getItem() instanceof AxeItem){
                 itemstack.hurtAndBreak(1, player, (p) -> {p.broadcastBreakEvent(player.getUsedItemHand());});
-                level.setBlock(pos, ChangShengJueBlocks.OPEN_DURIAN.get().defaultBlockState(), 3);
+                level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ChangShengJueItems.OPEN_DURIAN.get())));
+                level.destroyBlock(pos, false);
                 level.playSound(null, pos, SoundEvents.AXE_STRIP, SoundSource.PLAYERS, 0.8F, 0.8F);
             }else{
                 player.displayClientMessage(Component.translatable("block.changshengjue.durian.noaxe"), true);
             }
             return InteractionResult.SUCCESS;
-        }else if(state.getBlock()==ChangShengJueBlocks.OPEN_DURIAN.get()) {
-            if (player.getFoodData().getFoodLevel() < 20 || player.isCreative()) {
-                player.getFoodData().eat(fed, fedpro);
-                level.destroyBlock(pos, false);
-                level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);
-            }
         }
         return InteractionResult.SUCCESS;
     }

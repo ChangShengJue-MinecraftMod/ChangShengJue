@@ -1021,9 +1021,6 @@ public class ChangShengJueBlocks {
     //榴莲
     public static final RegistryObject<Block> DURIAN = registerBlockWithoutBlockItem("durian",
             ()-> new Durian(BlockBehaviour.Properties.copy(Blocks.CAKE), 0, 0f));
-    //打开的榴莲
-    public static final RegistryObject<Block> OPEN_DURIAN = registerBlockWithoutBlockItem("open_durian",
-            ()-> new Durian(BlockBehaviour.Properties.copy(Blocks.CAKE), 5, 3.0f));
     /*直接食用*/
     //饺子
     public static final RegistryObject<Block> CAPSULE_JIAO_ZI_PAN = registerBlockWithoutBlockItem("capsule_jiao_zi_pan",

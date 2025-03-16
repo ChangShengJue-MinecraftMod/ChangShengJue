@@ -101,7 +101,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.PEAR.get(),"梨子");
         this.add(ChangShengJueItems.LICHEE.get(),"荔枝");
         this.add(ChangShengJueItems.DURIAN.get(),"榴莲");
-        this.add(ChangShengJueItems.OPEN_DURIAN.get(),"打开的榴莲");
+        this.add(ChangShengJueItems.OPEN_DURIAN.get(),"榴莲肉");
         this.add(ChangShengJueItems.MULBERRY.get(),"桑葚");
         this.add(ChangShengJueItems.NATURAL_SILK.get(),"蚕丝");
         this.add(ChangShengJueItems.SILK.get(),"丝绸");

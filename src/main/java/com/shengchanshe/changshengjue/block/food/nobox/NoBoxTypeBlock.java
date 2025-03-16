@@ -2,6 +2,8 @@ package com.shengchanshe.changshengjue.block.food.nobox;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.block.food.TypeBlock;
+import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.food.FoodPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -62,7 +64,7 @@ public class NoBoxTypeBlock extends Block {
 
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
         if (player.getFoodData().getFoodLevel() < 20 || player.isCreative()) {
-            player.getFoodData().eat(fed, fedpro);
+            ChangShengJueMessages.sendToServer(new FoodPacket(fed, fedpro));
             level.destroyBlock(pos, false);
             level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);
             return InteractionResult.SUCCESS;

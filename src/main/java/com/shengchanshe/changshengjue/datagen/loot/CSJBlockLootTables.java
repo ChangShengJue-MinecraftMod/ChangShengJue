@@ -546,7 +546,6 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.GRAPE.get());
         this.dropSelf(ChangShengJueBlocks.MULBERRY.get());
         this.dropSelf(ChangShengJueBlocks.DURIAN.get());
-        this.dropSelf(ChangShengJueBlocks.OPEN_DURIAN.get());
         /*容器食用*/
         //盘
         this.dropSelf(ChangShengJueBlocks.ZHENG_CAI.get());

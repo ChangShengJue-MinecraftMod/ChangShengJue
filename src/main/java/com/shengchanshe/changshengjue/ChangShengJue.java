@@ -42,6 +42,7 @@ public class ChangShengJue {
 
     public static final String MOD_ID = "chang_sheng_jue";
 
+
     public ChangShengJue() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.addListener(this::clientSetup);
