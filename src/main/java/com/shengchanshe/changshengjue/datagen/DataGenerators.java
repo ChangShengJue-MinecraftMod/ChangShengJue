@@ -42,6 +42,8 @@ public class DataGenerators {
                 new CSJBlockTagGenerator(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new CSJItemTagGenerator(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper));
 
+        generator.addProvider(event.includeServer(), new CSJEntityTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
+
 //            generator.addProvider(new CSJLootTableProvider(generator));
 //            BlockSta blockTags = new TutBlockTags(generator, event.getExistingFileHelper());
 //            generator.addProvider(blockTags);

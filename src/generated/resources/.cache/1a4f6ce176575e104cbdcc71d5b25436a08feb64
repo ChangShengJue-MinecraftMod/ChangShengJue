@@ -1,4 +1,4 @@
-// 1.20.1	2025-02-14T16:55:16.5050861	Tags for minecraft:item mod id chang_sheng_jue
+// 1.20.1	2025-03-13T08:19:26.7587242	Tags for minecraft:item mod id chang_sheng_jue
 053c60963f1ba310289d3ab69792aed0b1ed0c01 data/chang_sheng_jue/tags/items/artifact.json
 07ecd0eb3ab21efc7faa1276d80bec0779c1300d data/chang_sheng_jue/tags/items/doors.json
 747d8c02c0a6b84cbaaee8bde93d3002779f2da3 data/chang_sheng_jue/tags/items/drinks.json
@@ -9,6 +9,7 @@ fc9adbc914d58ba011b7360db65ceafe041ec19c data/chang_sheng_jue/tags/items/huang_h
 883c9e4be3b2c437119b125eb9a4d0563a1af0b7 data/chang_sheng_jue/tags/items/mulberry_log.json
 3860ac154c185cc8795018c538abd2ac02b16fff data/chang_sheng_jue/tags/items/painting.json
 b4dd3ec7767810f42f59bffc631bfbf734c395b5 data/chang_sheng_jue/tags/items/poplar_log.json
+bff6a6cdb5f41dcb77c1b780fcc964785324ac45 data/chang_sheng_jue/tags/items/wine.json
 65a7d6449d0d549471a825e83180583866846a71 data/chang_sheng_jue/tags/items/zi_tan_log.json
 382a541934bb51d39e074fe89724fb4a5d3131ea data/forge/tags/items/ingots.json
 382a541934bb51d39e074fe89724fb4a5d3131ea data/forge/tags/items/ingots/silver.json

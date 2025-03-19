@@ -1,10 +1,12 @@
 package com.shengchanshe.changshengjue.tags;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
@@ -50,9 +52,19 @@ public class CSJTags {
         public static final TagKey<Item> ARTIFACT = tag("artifact");
         public static final TagKey<Item> DRINKS = tag("drinks");
         public static final TagKey<Item> PAINTING = tag("painting");
+        public static final TagKey<Item> WINE = tag("wine");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(ChangShengJue.MOD_ID, name));
+        }
+    }
+
+    public static class EntityTypes {
+        public static final TagKey<EntityType<?>> WU_XIA_CREATURE = create("wu_xia_creature");
+
+
+        public static TagKey<EntityType<?>> create(String name) {
+            return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(ChangShengJue.MOD_ID, name));
         }
     }
 

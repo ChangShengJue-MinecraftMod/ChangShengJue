@@ -1,8 +1,6 @@
 package com.shengchanshe.changshengjue.kungfu.internalkungfu;
 
-import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.GoldenBellJar;
-import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.ImmortalMiracle;
-import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.QianKunDaNuoYi;
+import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +14,8 @@ public class InterfaceKungFuManager {
         kungFuCapabilities.put(InternalKungFu.GOLDEN_BELL_JAR, new GoldenBellJar());
         kungFuCapabilities.put(InternalKungFu.IMMORTAL_MIRACLE, new ImmortalMiracle());
         kungFuCapabilities.put(InternalKungFu.QIAN_KUN_DA_NUO_YI, new QianKunDaNuoYi());
+        kungFuCapabilities.put(InternalKungFu.TURTLE_BREATH_WORK, new TurtleBreathWork());
+        kungFuCapabilities.put(InternalKungFu.THE_CLASSICS_OF_TENDON_CHANGING, new TheClassicsOfTendonChanging());
     }
 
     public static InternalKungFuCapability createInterfaceKungFuCapabilityFromTag(String kungFuType) {
@@ -23,6 +23,8 @@ public class InterfaceKungFuManager {
             case "GoldenBellJar" -> new GoldenBellJar();
             case "ImmortalMiracle" -> new ImmortalMiracle();
             case "QianKunDaNuoYi" -> new QianKunDaNuoYi();
+            case "TurtleBreathWork" -> new TurtleBreathWork();
+            case "TheClassicsOfTendonChanging" -> new TheClassicsOfTendonChanging();
             default -> null;
         };
     }

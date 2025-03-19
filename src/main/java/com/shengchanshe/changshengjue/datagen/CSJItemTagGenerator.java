@@ -88,6 +88,10 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(Item.byBlock(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get()));
 
+        this.tag(CSJTags.Items.WINE)
+                .add(ChangShengJueItems.SHI_LI_XIANG.get())
+                .add(ChangShengJueItems.FEN_JIU.get())
+                .add(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get());
 
         this.tag(CSJTags.Items.ARTIFACT)
                 .add(ChangShengJueItems.BEAT_DOG_STICK.get())

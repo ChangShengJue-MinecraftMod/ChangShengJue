@@ -7,7 +7,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
 public class QianKunDaNuoYi implements InternalKungFuCapability {
-    private static final int COOLDOWN_TIME = 100; // 冷却时间，单位为tick（1秒=20tick）
+    private static final int INTERNAL_KUNGFU_COOLDOWN_TIME = 5 * 20; // 冷却时间，单位为tick（1秒=20tick）
     private int internalKungFuCooldown; // 当前冷却时间
 
     private String internalKungFuID = "QianKunDaNuoYi";
@@ -22,7 +22,7 @@ public class QianKunDaNuoYi implements InternalKungFuCapability {
     }
 
     @Override
-    public void applyAttackEffect(LivingEntity livingEntity, Entity target) {
+    public void applyAttackEffect(LivingEntity livingEntity) {
 
     }
 
@@ -40,7 +40,7 @@ public class QianKunDaNuoYi implements InternalKungFuCapability {
                 }
             }
         }
-        internalKungFuCooldown = COOLDOWN_TIME; // 设置冷却时间
+        internalKungFuCooldown = INTERNAL_KUNGFU_COOLDOWN_TIME; // 设置冷却时间
     }
 
     @Override
