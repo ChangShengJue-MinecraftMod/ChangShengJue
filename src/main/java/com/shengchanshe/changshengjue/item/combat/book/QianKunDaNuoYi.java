@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.item.combat.book;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiPacket;
@@ -51,6 +52,9 @@ public class QianKunDaNuoYi extends Item {
                                     qianKunDaNuoYi.isSkillZActive(),
                                     qianKunDaNuoYi.isSkillXActive(),
                                     qianKunDaNuoYi.isSkillCActive()), (ServerPlayer) player);
+                            if (player instanceof ServerPlayer serverPlayer) {
+                                CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                            }
                         }
                     }
                 });

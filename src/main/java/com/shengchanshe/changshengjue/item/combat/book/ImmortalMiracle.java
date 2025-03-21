@@ -4,6 +4,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.Go
 import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
@@ -56,6 +57,9 @@ public class ImmortalMiracle extends Item {
                                         immortalMiracle.isSkillZActive(),
                                         immortalMiracle.isSkillXActive(),
                                         immortalMiracle.isSkillCActive()), (ServerPlayer) player);
+                                if (player instanceof ServerPlayer serverPlayer) {
+                                    CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                                }
                             }
                         }
                     }

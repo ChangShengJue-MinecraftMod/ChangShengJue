@@ -6,11 +6,13 @@ import com.shengchanshe.changshengjue.datagen.language.CSJCNLanguageProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -42,6 +44,11 @@ public class DataGenerators {
                 new CSJBlockTagGenerator(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new CSJItemTagGenerator(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper));
 
+        generator.addProvider(event.includeServer(), new AdvancementProvider(packOutput, lookupProvider,
+                List.of(
+                        new CSJAdvanceProvider()
+                ))
+        );
 //            generator.addProvider(new CSJLootTableProvider(generator));
 //            BlockSta blockTags = new TutBlockTags(generator, event.getExistingFileHelper());
 //            generator.addProvider(blockTags);

@@ -1,0 +1,12 @@
+{
+  "name": "长生诀指导书",
+  "landing_text": "长生路漫漫，飞升又何年",
+  "version": 1,
+  "creative_tab": "chang_sheng_jue:chang_sheng_jue_tool",
+  "use_resource_pack": true,
+  "book_texture": "chang_sheng_jue:textures/gui/guideline.png",
+  "model": "chang_sheng_jue:guideline",
+  "categories": [
+    "csjpatchouli:test category"
+  ]
+}

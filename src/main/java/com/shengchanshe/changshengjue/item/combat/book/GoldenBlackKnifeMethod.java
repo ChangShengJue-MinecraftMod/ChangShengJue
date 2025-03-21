@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.GoldenBlackKnifeMethodPacket;
 import net.minecraft.ChatFormatting;
@@ -37,6 +38,9 @@ public class GoldenBlackKnifeMethod extends Item {
                             goldenBlackKnifeMethod.getGoldenBlackKnifeMethodToppedTick(),
                             goldenBlackKnifeMethod.getGoldenBlackKnifeMethodDachengTick(),
                             goldenBlackKnifeMethod.isGoldenBlackKnifeMethodParticle()), (ServerPlayer) pPlayer);
+                    if (pPlayer instanceof ServerPlayer serverPlayer) {
+                        CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                    }
                 }
             });
         }

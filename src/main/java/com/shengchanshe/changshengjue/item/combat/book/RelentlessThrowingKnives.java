@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.relentless_throwing_knives.RelentlessThrowingKnivesCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.RelentlessThrowingKnivesPacket;
 import net.minecraft.ChatFormatting;
@@ -34,6 +35,9 @@ public class RelentlessThrowingKnives extends Item {
                             relentlessThrowingKnives.getRelentlessThrowingKnivesToppedTick(),
                             relentlessThrowingKnives.getRelentlessThrowingKnivesDachengTick(),
                             relentlessThrowingKnives.isRelentlessThrowingKnivesParticle()), (ServerPlayer) pPlayer);
+                    if (pPlayer instanceof ServerPlayer serverPlayer) {
+                        CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                    }
                 }
             });
         }

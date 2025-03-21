@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.GaoMarksmanshipPacket;
 import net.minecraft.ChatFormatting;
@@ -37,6 +38,9 @@ public class GaoMarksmanship extends Item {
                             gaoMarksmanship.getGaoMarksmanshipToppedTick(),
                             gaoMarksmanship.getGaoMarksmanshipDachengTick(),
                             gaoMarksmanship.isGaoMarksmanshipParticle()), (ServerPlayer) pPlayer);
+                    if (pPlayer instanceof ServerPlayer serverPlayer) {
+                        CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                    }
                 }
             });
         }

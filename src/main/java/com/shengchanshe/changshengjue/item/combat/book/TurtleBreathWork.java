@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
@@ -48,6 +49,9 @@ public class TurtleBreathWork extends Item {
                                     turtleBreathWork.isSkillZActive(),
                                     turtleBreathWork.isSkillXActive(),
                                     turtleBreathWork.isSkillCActive()), (ServerPlayer) player);
+                            if (player instanceof ServerPlayer serverPlayer) {
+                                CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                            }
                         }
                     }
                 });

@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.ge_shan_da_niu.GeShanDaNiuCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
@@ -48,6 +49,9 @@ public class GeShanDaNiu extends Item {
                                         geShanDaNiu.isSkillZActive(),
                                         geShanDaNiu.isSkillXActive(),
                                         geShanDaNiu.isSkillCActive()), (ServerPlayer) player);
+                                if (player instanceof ServerPlayer serverPlayer) {
+                                    CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                                }
                             }
                         }
                     }

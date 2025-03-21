@@ -5,6 +5,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_te
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.item.render.combat.sword.SoftSwordRender;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
@@ -80,6 +81,10 @@ public class SoftSword extends Sword implements GeoItem {
                 if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
                     pPlayer.getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(xuannuSwordsmanship -> {
                         if (xuannuSwordsmanship.xuannuSwordsmanshipComprehend() && xuannuSwordsmanship.getXuannuSwordsmanshipLevel() >= 1) {
+                            if (pPlayer instanceof ServerPlayer serverPlayer) {
+                                CSJAdvanceInit.usewaigong.trigger(serverPlayer);
+                            }
+
                             this.onXuannuSwordsmanship(pLevel, xuannuSwordsmanship.getXuannuSwordsmanshipLevel(), pPlayer, xuannuSwordsmanship);
                             triggerAnim(pPlayer, GeoItem.getOrAssignId(pPlayer.getItemInHand(pUsedHand), (ServerLevel) pLevel), "Attack", "attack");
                         }

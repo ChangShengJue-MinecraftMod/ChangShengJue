@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.item.combat.book;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.TheClassicsOfTendonChangingPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
@@ -55,6 +56,9 @@ public class TheClassicsOfTendonChanging extends Item {
                                     theClassicsOfTendonChanging.getTheClassicsOfTendonChangingToppedTick(),
                                     theClassicsOfTendonChanging.getTheClassicsOfTendonChangingDachengTick(),
                                     theClassicsOfTendonChanging.isTheClassicsOfTendonChangingParticle()), (ServerPlayer) player);
+                            if (player instanceof ServerPlayer serverPlayer) {
+                                CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                            }
                         }
                     }
                 });

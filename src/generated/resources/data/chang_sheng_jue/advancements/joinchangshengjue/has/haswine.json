@@ -1,0 +1,32 @@
+{
+  "parent": "chang_sheng_jue:joinchangshengjue/has/hasmifan",
+  "criteria": {
+    "haswine": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:haswine"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "csj.cj.wine.context"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:shi_li_xiang"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "dark_purple",
+      "translate": "csj.cj.wine"
+    }
+  },
+  "requirements": [
+    [
+      "haswine"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

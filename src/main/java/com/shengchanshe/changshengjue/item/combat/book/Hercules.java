@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.item.combat.book;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.hercules.HerculesCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.hercules.HerculesPacket;
@@ -51,6 +52,9 @@ public class Hercules extends Item {
                                         hercules.isSkillZActive(),
                                         hercules.isSkillXActive(),
                                         hercules.isSkillCActive()), (ServerPlayer) player);
+                                if (player instanceof ServerPlayer serverPlayer) {
+                                    CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                                }
                             }
                         }
                     }

@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.item.combat.book;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.ge_shan_da_niu.GeShanDaNiuCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
@@ -76,6 +77,9 @@ public class GoldenBellJar extends Item {
                                         goldenBellJar.isSkillZActive(),
                                         goldenBellJar.isSkillXActive(),
                                         goldenBellJar.isSkillCActive()), (ServerPlayer) player);
+                                if (player instanceof ServerPlayer serverPlayer) {
+                                    CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                                }
                             }
                         }
                     }

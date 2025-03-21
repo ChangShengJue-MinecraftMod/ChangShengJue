@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ShaolinStickMethodPacket;
 import net.minecraft.ChatFormatting;
@@ -37,6 +38,9 @@ public class ShaolinStickMethod extends Item {
                             shaolinStickMethod.getShaolinStickMethodToppedTick(),
                             shaolinStickMethod.getShaolinStickMethodDachengTick(),
                             shaolinStickMethod.isShaolinStickMethodParticle()), (ServerPlayer) pPlayer);
+                    if (pPlayer instanceof ServerPlayer serverPlayer) {
+                        CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                    }
                 }
             });
         }

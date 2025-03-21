@@ -2,9 +2,11 @@ package com.shengchanshe.changshengjue.block.food.cipan;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.block.food.TypeBlock;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.food.FoodPacket;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -27,6 +29,7 @@ public class PanTypeBlock extends TypeBlock {
 
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
         int types = state.getValue(getTYPE());
+
 
         if (types > 0) {
             //如果玩家饥饿值满且物品等级不为0

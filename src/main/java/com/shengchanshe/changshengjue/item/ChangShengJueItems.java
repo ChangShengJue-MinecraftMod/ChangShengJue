@@ -502,7 +502,7 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> WHEAT_NUGGET_ENCYCLOPEDIA = ITEMS.register("wheat_nugget_encyclopedia", WheatNuggetEncyclopedia::new);
     //庖丁解牛
     public static final RegistryObject<Item> PAODING = ITEMS.register("paoding", Paoding::new);
-    //庖丁解牛
+    //少林棍法
     public static final RegistryObject<Item> SHAOLIN_STICK_METHOD = ITEMS.register("shaolin_stick_method", ShaolinStickMethod::new);
     //踏雪无痕
     public static final RegistryObject<Item> TREAD_THE_SNOW_WITHOUT_TRACE = ITEMS.register("tread_the_snow_without_trace", TreadTheSnowWithoutTrace::new);

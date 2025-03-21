@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.item.combat.book;
 import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiPacket;
@@ -54,6 +55,9 @@ public class SunflowerPointCaveman extends Item {
                                     sunflowerPointCaveman.isSkillZActive(),
                                     sunflowerPointCaveman.isSkillXActive(),
                                     sunflowerPointCaveman.isSkillCActive()), (ServerPlayer) player);
+                            if (player instanceof ServerPlayer serverPlayer) {
+                                CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                            }
                         }
                     }
                 });

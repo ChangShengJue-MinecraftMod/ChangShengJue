@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.DuguNineSwordsPacket;
 import net.minecraft.ChatFormatting;
@@ -37,6 +38,9 @@ public class DuguNineSwordsBook extends Item {
                             duguNineSword.getDuguNineSwordsToppedTick(),
                             duguNineSword.getDuguNineSwordsDachengTick(),
                             duguNineSword.isDuguNineSwordsParticle()), (ServerPlayer) pPlayer);
+                    if (pPlayer instanceof ServerPlayer serverPlayer) {
+                        CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                    }
                 }
             });
         }

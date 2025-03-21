@@ -1,0 +1,33 @@
+{
+  "parent": "chang_sheng_jue:joinchangshengjue/root",
+  "criteria": {
+    "hasbronzesword": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "csj.cj.hsbs.context"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:bronze_sword",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "green",
+      "translate": "csj.cj.hsbs"
+    }
+  },
+  "requirements": [
+    [
+      "hasbronzesword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

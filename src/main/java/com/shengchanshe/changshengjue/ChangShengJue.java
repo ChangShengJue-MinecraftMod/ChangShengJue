@@ -6,6 +6,7 @@ import com.shengchanshe.changshengjue.creativemodetab.ChangShengJueCreativeModeT
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
@@ -61,6 +62,8 @@ public class ChangShengJue {
         CSJTerrablender.registerBiomes();
         CSJFoliagePlacers.register(eventBus);
         CSJTrunkPlacerTypes.register(eventBus);
+
+        new CSJAdvanceInit();
 
         ChangShengJueMessages.register();
 

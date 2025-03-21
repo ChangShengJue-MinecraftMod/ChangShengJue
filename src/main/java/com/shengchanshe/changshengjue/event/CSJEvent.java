@@ -37,6 +37,7 @@ import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.event.armor.ArmorEvent;
 import com.shengchanshe.changshengjue.event.martial_arts.*;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
@@ -1000,6 +1001,9 @@ public class CSJEvent {
         //玩家进入世界时同步能力数据
         if(!event.getLevel().isClientSide()) {
             if(event.getEntity() instanceof ServerPlayer player) {
+
+                CSJAdvanceInit.michangsheng.trigger(player);
+
                 player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                     ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),
                             duguNineSword.isDuguNineSwordsComprehend(),

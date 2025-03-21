@@ -1,4 +1,4 @@
-// 1.20.1	2025-03-12T11:08:46.0163516	Item Models: chang_sheng_jue
+// 1.20.1	2025-03-16T18:10:25.2673116	Item Models: chang_sheng_jue
 699ea304f59ef7c3527896899187498f42f98343 assets/chang_sheng_jue/models/item/acacia_bench.json
 7e0aa720a11c379083904f12e4722cca0ff34a77 assets/chang_sheng_jue/models/item/acacia_book_desk.json
 14dd3578b6bde1cd826b8a63c206eee2fb2b9942 assets/chang_sheng_jue/models/item/acacia_drinking_table_and_chairs.json
@@ -94,8 +94,6 @@ a89e3e168a651e4f9244de0a1415a49d6416418a assets/chang_sheng_jue/models/item/dark
 f7ac951621aa1123966fae87f51e53ef96561384 assets/chang_sheng_jue/models/item/dark_oak_wine_table.json
 0c9b2e524eaebbbd4cec8e8c7124f41925fd9a06 assets/chang_sheng_jue/models/item/dugu_nine_swords.json
 2b4fbbe8d9a0f974c5574f4ed934e0737cfdf706 assets/chang_sheng_jue/models/item/empty_fen_jiu.json
-813717e7353c1644f5d447e91aefe0f0a8735c27 assets/chang_sheng_jue/models/item/empty_shi_li_xiang.json
-6af33e371b2cf4d4f8b7b69c2e94f1b3eedb2a2a assets/chang_sheng_jue/models/item/empty_wheat_nuggets_tribute_wine.json
 e766ec39ae6103d2710276879e97cab34532385e assets/chang_sheng_jue/models/item/female_chinese_wedding_dress_chestplate.json
 27f98fd47ad821d25cb5477704544c8a1cbde946 assets/chang_sheng_jue/models/item/female_chinese_wedding_dress_helmet.json
 685dc711d3bb7b55e32ba5dae18704234bac97be assets/chang_sheng_jue/models/item/female_taoist_robes_chestplate.json

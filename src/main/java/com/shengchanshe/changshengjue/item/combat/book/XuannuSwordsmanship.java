@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.XuannuSwordsmanshipPacket;
 import net.minecraft.ChatFormatting;
@@ -36,6 +37,9 @@ public class XuannuSwordsmanship extends Item {
                             xuannuSwordsmanship.getXuannuSwordsmanshipToppedTick(),
                             xuannuSwordsmanship.getXuannuSwordsmanshipDachengTick(),
                             xuannuSwordsmanship.isXuannuSwordsmanshipParticle()), (ServerPlayer) pPlayer);
+                    if (pPlayer instanceof ServerPlayer serverPlayer) {
+                        CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                    }
                 }
             });
         }

@@ -1,0 +1,32 @@
+{
+  "parent": "chang_sheng_jue:joinchangshengjue/has/hasmifan",
+  "criteria": {
+    "hasTea": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:hastea"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "csj.cj.ht.context"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:long_jing_teas"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "dark_purple",
+      "translate": "csj.cj.ht"
+    }
+  },
+  "requirements": [
+    [
+      "hasTea"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
