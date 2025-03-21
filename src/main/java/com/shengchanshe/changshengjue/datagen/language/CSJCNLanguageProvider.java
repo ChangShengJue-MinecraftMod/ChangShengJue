@@ -161,7 +161,22 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.CROC_EGG.get(), "鳄鱼刷怪蛋");
         this.add(ChangShengJueItems.CHANG_SHENG_JUE_VILLAGER_EGG.get(), "村民刷怪蛋");
         this.add(ChangShengJueItems.WARRIOR_EGG.get(), "武夫刷怪蛋");
-
+        this.add(ChangShengJueItems.MALE_INNKEEPER_EGG.get(), "酒馆男掌柜刷怪蛋");
+        this.add(ChangShengJueItems.FEMALE_INNKEEPER_EGG.get(), "酒馆女掌柜刷怪蛋");
+        this.add(ChangShengJueItems.CHALLENGER_EGG.get(), "挑战者刷怪蛋");
+        this.add(ChangShengJueItems.BLACKSMITH_EGG.get(), "铁匠刷怪蛋");
+        this.add(ChangShengJueItems.LANCE_GANG_LEADER_EGG.get(), "枪首领刷怪蛋");
+        this.add(ChangShengJueItems.KNIFE_GANG_LEADER_EGG.get(), "刀首领刷怪蛋");
+        this.add(ChangShengJueItems.SWORD_GANG_LEADER_EGG.get(), "剑首领刷怪蛋");
+        this.add(ChangShengJueItems.CLUBBED_GANG_LEADER_EGG.get(), "棍首领刷怪蛋");
+        this.add(ChangShengJueItems.BANDIT_EGG.get(), "强盗刷怪蛋");
+        this.add(ChangShengJueItems.VILLAIN_EGG.get(), "恶徒刷怪蛋");
+        this.add(ChangShengJueItems.ASSASSIN_EGG.get(), "杀手刷怪蛋");
+        this.add(ChangShengJueItems.PIGLIN_WU_XIA_EGG.get(), "功夫猪灵刷怪蛋");
+        this.add(ChangShengJueItems.WITCH_WU_XIA_EGG.get(), "功夫女巫刷怪蛋");
+        this.add(ChangShengJueItems.EVOKER_WU_XIA_EGG.get(), "功夫唤魔者刷怪蛋");
+        this.add(ChangShengJueItems.VINDICATOR_WU_XIA_EGG.get(), "功夫卫道士刷怪蛋");
+        this.add(ChangShengJueItems.PILLAGER_WU_XIA_EGG.get(), "功夫掠夺者刷怪蛋");
         //工具武器和盔甲物品
         this.add(ChangShengJueItems.KAISHAN_PICKAXE.get(),"开山镐");
         this.add(ChangShengJueItems.XUANHUA_AXE.get(),"萱花斧");
@@ -772,6 +787,22 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEntity.TIGER.get(), "老虎");
         this.add(ChangShengJueEntity.CROC.get(), "鳄鱼");
         this.add(ChangShengJueEntity.WARRIOR.get(), "武夫");
+        this.add(ChangShengJueEntity.MALE_INNKEEPER.get(), "酒馆男掌柜");
+        this.add(ChangShengJueEntity.FEMALE_INNKEEPER.get(), "酒馆女掌柜");
+        this.add(ChangShengJueEntity.CHALLENGER.get(), "挑战者");
+        this.add(ChangShengJueEntity.BLACKSMITH.get(), "铁匠");
+        this.add(ChangShengJueEntity.LANCE_GANG_LEADER.get(), "枪首领");
+        this.add(ChangShengJueEntity.KNIFE_GANG_LEADER.get(), "刀首领");
+        this.add(ChangShengJueEntity.SWORD_GANG_LEADER.get(), "剑首领");
+        this.add(ChangShengJueEntity.CLUBBED_GANG_LEADER.get(), "棍首领");
+        this.add(ChangShengJueEntity.BANDIT.get(), "强盗");
+        this.add(ChangShengJueEntity.VILLAIN.get(), "恶徒");
+        this.add(ChangShengJueEntity.ASSASSIN.get(), "帮派杀手");
+        this.add(ChangShengJueEntity.PIGLIN_WU_XIA.get(), "功夫猪灵");
+        this.add(ChangShengJueEntity.WITCH_WU_XIA.get(), "功夫女巫");
+        this.add(ChangShengJueEntity.EVOKER_WU_XIA.get(), "功夫唤魔者");
+        this.add(ChangShengJueEntity.VINDICATOR_WU_XIA.get(), "功夫卫道士");
+        this.add(ChangShengJueEntity.PILLAGER_WU_XIA.get(), "功夫掠夺者");
 
         this.add(ChangShengJueEntity.STAKES.get(), "练功木桩");
 

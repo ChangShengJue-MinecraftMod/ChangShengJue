@@ -1,15 +1,15 @@
 package com.shengchanshe.changshengjue.entity;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
-import com.shengchanshe.changshengjue.entity.combat.lance.ThrownBaWangQiang;
-import com.shengchanshe.changshengjue.entity.combat.lance.BaWangQiangAttackEntity;
 import com.shengchanshe.changshengjue.entity.combat.beat_dog_stick.BeatDogStickAttackEntity;
 import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntity;
-import com.shengchanshe.changshengjue.entity.combat.lance.ThrownRedTasselledSpear;
-import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntity;
 import com.shengchanshe.changshengjue.entity.combat.ge_shan_da_niu.GeShanDaNiuEntity;
 import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntity;
+import com.shengchanshe.changshengjue.entity.combat.lance.BaWangQiangAttackEntity;
+import com.shengchanshe.changshengjue.entity.combat.lance.ThrownBaWangQiang;
+import com.shengchanshe.changshengjue.entity.combat.lance.ThrownRedTasselledSpear;
 import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
+import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntity;
 import com.shengchanshe.changshengjue.entity.combat.tu_long_dao.TuLongDaoAttackEntity;
 import com.shengchanshe.changshengjue.entity.combat.yi_tian_jian.YiTianJianAttackEntity;
 import com.shengchanshe.changshengjue.entity.custom.butterfly.Butterfly;
@@ -20,10 +20,26 @@ import com.shengchanshe.changshengjue.entity.custom.deer.hind.Hind;
 import com.shengchanshe.changshengjue.entity.custom.deer.stag.Stag;
 import com.shengchanshe.changshengjue.entity.custom.dragonfly.Dragonfly;
 import com.shengchanshe.changshengjue.entity.custom.monkey.Monkey;
+import com.shengchanshe.changshengjue.entity.custom.peacock.egg.PeacockEgg;
 import com.shengchanshe.changshengjue.entity.custom.peacock.female.FemalePeacock;
 import com.shengchanshe.changshengjue.entity.custom.peacock.male.MalePeacock;
-import com.shengchanshe.changshengjue.entity.custom.peacock.egg.PeacockEgg;
 import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.assassin.Assassin;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.bandit.Bandit;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.blacksmith.Blacksmith;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.challenger.Challenger;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.evoker.EvokerWuXia;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeader;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.knife.KnifeGangLeader;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.lance.LanceGangLeader;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.sword.SwordGangLeader;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.innkeeper.female.FemaleInnkeeper;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.innkeeper.male.MaleInnkeeper;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.piglin.PiglinWuXia;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.pillager.PillagerWuXia;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.villain.Villain;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.vindicator.VindicatorWuXia;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.witch.WitchWuXia;
 import com.shengchanshe.changshengjue.entity.decoration.seat.SeatEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerEntity;
 import com.shengchanshe.changshengjue.entity.villagers.warrior.Warrior;
@@ -115,9 +131,105 @@ public class ChangShengJueEntity {
     //武夫
     public static final RegistryObject<EntityType<Warrior>> WARRIOR =
             ENTITY_TYPES.register("warrior",
-                    () -> EntityType.Builder.of(Warrior::new, MobCategory.MISC)
+                    () -> EntityType.Builder.of(Warrior::new, MobCategory.CREATURE)
                             .sized(1.0F, 2.4F)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"warrior").toString()));
+    //酒馆掌柜
+    public static final RegistryObject<EntityType<MaleInnkeeper>> MALE_INNKEEPER =
+            ENTITY_TYPES.register("male_innkeeper",
+                    () -> EntityType.Builder.of(MaleInnkeeper::new, MobCategory.CREATURE)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"male_innkeeper").toString()));
+
+    public static final RegistryObject<EntityType<FemaleInnkeeper>> FEMALE_INNKEEPER =
+            ENTITY_TYPES.register("female_innkeeper",
+                    () -> EntityType.Builder.of(FemaleInnkeeper::new, MobCategory.CREATURE)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"female_innkeeper").toString()));
+
+    public static final RegistryObject<EntityType<Challenger>> CHALLENGER =
+            ENTITY_TYPES.register("challenger",
+                    () -> EntityType.Builder.of(Challenger::new, MobCategory.CREATURE)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"challenger").toString()));
+
+    public static final RegistryObject<EntityType<Blacksmith>> BLACKSMITH =
+            ENTITY_TYPES.register("blacksmith",
+                    () -> EntityType.Builder.of(Blacksmith::new, MobCategory.CREATURE)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"blacksmith").toString()));
+
+    public static final RegistryObject<EntityType<LanceGangLeader>> LANCE_GANG_LEADER =
+            ENTITY_TYPES.register("lance_gang_leader",
+                    () -> EntityType.Builder.of(LanceGangLeader::new, MobCategory.CREATURE)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"lance_gang_leader").toString()));
+
+    public static final RegistryObject<EntityType<KnifeGangLeader>> KNIFE_GANG_LEADER =
+            ENTITY_TYPES.register("knife_gang_leader",
+                    () -> EntityType.Builder.of(KnifeGangLeader::new, MobCategory.CREATURE)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"knife_gang_leader").toString()));
+
+    public static final RegistryObject<EntityType<SwordGangLeader>> SWORD_GANG_LEADER =
+            ENTITY_TYPES.register("sword_gang_leader",
+                    () -> EntityType.Builder.of(SwordGangLeader::new, MobCategory.CREATURE)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"sword_gang_leader").toString()));
+
+    public static final RegistryObject<EntityType<ClubbedGangLeader>> CLUBBED_GANG_LEADER =
+            ENTITY_TYPES.register("clubbed_gang_leader",
+                    () -> EntityType.Builder.of(ClubbedGangLeader::new, MobCategory.CREATURE)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"clubbed_gang_leader").toString()));
+
+    public static final RegistryObject<EntityType<Bandit>> BANDIT =
+            ENTITY_TYPES.register("bandit",
+                    () -> EntityType.Builder.of(Bandit::new, MobCategory.MONSTER)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"bandit").toString()));
+
+    public static final RegistryObject<EntityType<Villain>> VILLAIN =
+            ENTITY_TYPES.register("villain",
+                    () -> EntityType.Builder.of(Villain::new, MobCategory.MONSTER)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"villain").toString()));
+
+    public static final RegistryObject<EntityType<Assassin>> ASSASSIN =
+            ENTITY_TYPES.register("assassin",
+                    () -> EntityType.Builder.of(Assassin::new, MobCategory.CREATURE)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"assassin").toString()));
+
+    public static final RegistryObject<EntityType<PiglinWuXia>> PIGLIN_WU_XIA =
+            ENTITY_TYPES.register("piglin_wu_xia",
+                    () -> EntityType.Builder.of(PiglinWuXia::new, MobCategory.MONSTER)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"piglin_wu_xia").toString()));
+
+    public static final RegistryObject<EntityType<WitchWuXia>> WITCH_WU_XIA =
+            ENTITY_TYPES.register("witch_wu_xia",
+                    () -> EntityType.Builder.of(WitchWuXia::new, MobCategory.CREATURE)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"witch_wu_xia").toString()));
+
+    public static final RegistryObject<EntityType<EvokerWuXia>> EVOKER_WU_XIA =
+            ENTITY_TYPES.register("evoker_wu_xia",
+                    () -> EntityType.Builder.of(EvokerWuXia::new, MobCategory.CREATURE)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"evoker_wu_xia").toString()));
+
+    public static final RegistryObject<EntityType<VindicatorWuXia>> VINDICATOR_WU_XIA =
+            ENTITY_TYPES.register("vindicator_wu_xia",
+                    () -> EntityType.Builder.of(VindicatorWuXia::new, MobCategory.CREATURE)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"vindicator_wu_xia").toString()));
+
+    public static final RegistryObject<EntityType<PillagerWuXia>> PILLAGER_WU_XIA =
+            ENTITY_TYPES.register("pillager_wu_xia",
+                    () -> EntityType.Builder.of(PillagerWuXia::new, MobCategory.CREATURE)
+                            .sized(1.0F, 2.2F)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID,"pillager_wu_xia").toString()));
 
     //独孤九剑
     public static final RegistryObject<EntityType<DuguNineSwordsEntity>> DUGU_NINE_SOWRDS =
@@ -181,7 +293,7 @@ public class ChangShengJueEntity {
     public static final RegistryObject<EntityType<StakesEntity>> STAKES =
             ENTITY_TYPES.register("stakes",
                     () -> EntityType.Builder.<StakesEntity>of(StakesEntity::new, MobCategory.MISC)
-                            .sized(0.6F, 1.95F).clientTrackingRange(10)
+                            .sized(0.6F, 1.65F).clientTrackingRange(10)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"stakes").toString()));
 
     //座位

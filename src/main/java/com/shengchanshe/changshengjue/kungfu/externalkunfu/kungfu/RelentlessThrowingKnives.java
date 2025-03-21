@@ -7,7 +7,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 
 public class RelentlessThrowingKnives implements ExternalKungFuCapability {
-    private static final int COOLDOWN_TIME = 100; // 冷却时间，单位为tick（1秒=20tick）
+    private static final int EXTERNAL_COOLDOWN_TIME = 8 * 20; // 冷却时间，单位为tick（1秒=20tick）
     private int externalKungFuCooldown; // 当前冷却时间
     private String externalKungFuID = "RelentlessThrowingKnives";
 
@@ -16,12 +16,12 @@ public class RelentlessThrowingKnives implements ExternalKungFuCapability {
     }
 
     @Override
-    public String getExternalKungFuID() {
+    public String getQingGongID() {
         return externalKungFuID;
     }
 
     @Override
-    public void applyAttackEffect(LivingEntity livingEntity, Entity target) {
+    public void applyAttackEffect(LivingEntity livingEntity,Entity target, int cooldown) {
     }
 
 //    @Override
@@ -37,7 +37,7 @@ public class RelentlessThrowingKnives implements ExternalKungFuCapability {
 
     @Override
     public void loadNBTData(CompoundTag compound) {
-        compound.putString("ExternalKungFuID", externalKungFuID);
+        externalKungFuID = compound.getString("ExternalKungFuID");
         externalKungFuCooldown = compound.getInt("ExternalKungFuCooldown");
     }
 

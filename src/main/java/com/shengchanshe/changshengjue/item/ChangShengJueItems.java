@@ -267,6 +267,39 @@ public class ChangShengJueItems {
                     new Item.Properties()));
     public static final RegistryObject<Item> WARRIOR_EGG = ITEMS.register("warrior_egg",
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.WARRIOR,0x808001,0x006401, new Item.Properties()));
+    //酒馆掌柜
+    public static final RegistryObject<Item> MALE_INNKEEPER_EGG = ITEMS.register("male_innkeeper_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.MALE_INNKEEPER,0x801001,0x026401, new Item.Properties()));
+    public static final RegistryObject<Item> FEMALE_INNKEEPER_EGG = ITEMS.register("female_innkeeper_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.FEMALE_INNKEEPER,0x801001,0x026401, new Item.Properties()));
+    public static final RegistryObject<Item> CHALLENGER_EGG = ITEMS.register("challenger_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHALLENGER,0x801001,0x026401, new Item.Properties()));
+    public static final RegistryObject<Item> BLACKSMITH_EGG = ITEMS.register("blacksmith_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.BLACKSMITH,0x801001,0x026401, new Item.Properties()));
+    public static final RegistryObject<Item> LANCE_GANG_LEADER_EGG = ITEMS.register("lance_gang_leader_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.LANCE_GANG_LEADER,0x801001,0x026401, new Item.Properties()));
+    public static final RegistryObject<Item> KNIFE_GANG_LEADER_EGG = ITEMS.register("knife_gang_leader_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.KNIFE_GANG_LEADER,0x801001,0x026401, new Item.Properties()));
+    public static final RegistryObject<Item> SWORD_GANG_LEADER_EGG = ITEMS.register("sword_gang_leader_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.SWORD_GANG_LEADER,0x801001,0x026401, new Item.Properties()));
+    public static final RegistryObject<Item> CLUBBED_GANG_LEADER_EGG = ITEMS.register("clubbed_gang_leader_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CLUBBED_GANG_LEADER,0x801001,0x026401, new Item.Properties()));
+    public static final RegistryObject<Item> BANDIT_EGG = ITEMS.register("bandit_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.BANDIT,0x801001,0x026401, new Item.Properties()));
+    public static final RegistryObject<Item> VILLAIN_EGG = ITEMS.register("villain_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.VILLAIN,0x801001,0x026401, new Item.Properties()));
+    public static final RegistryObject<Item> ASSASSIN_EGG = ITEMS.register("assassin_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.ASSASSIN,0x801001,0x026401, new Item.Properties()));
+    public static final RegistryObject<Item> PIGLIN_WU_XIA_EGG = ITEMS.register("piglin_wu_xia_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.PIGLIN_WU_XIA,10051392, 16380836, new Item.Properties()));
+    public static final RegistryObject<Item> WITCH_WU_XIA_EGG = ITEMS.register("witch_wu_xia_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.WITCH_WU_XIA,3407872, 5349438, new Item.Properties()));
+    public static final RegistryObject<Item> EVOKER_WU_XIA_EGG = ITEMS.register("evoker_wu_xia_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.EVOKER_WU_XIA,9804699, 1973274,  new Item.Properties()));
+    public static final RegistryObject<Item> VINDICATOR_WU_XIA_EGG = ITEMS.register("vindicator_wu_xia_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.VINDICATOR_WU_XIA,9804699, 2580065,  new Item.Properties()));
+    public static final RegistryObject<Item> PILLAGER_WU_XIA_EGG = ITEMS.register("pillager_wu_xia_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.PILLAGER_WU_XIA,5451574, 9804699,  new Item.Properties()));
 
     public static final RegistryObject<Item> ZHU_TAI = ITEMS.register("zhu_tai",
             ()-> new StandingAndWallBlockItem(ChangShengJueBlocks.ZHU_TAI.get(),ChangShengJueBlocks.WALL_ZHU_TAI.get(), new Item.Properties(), Direction.DOWN));

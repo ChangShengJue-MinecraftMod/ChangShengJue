@@ -615,6 +615,22 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.CROC_EGG.get());
                 output.accept(ChangShengJueItems.CHANG_SHENG_JUE_VILLAGER_EGG.get());
                 output.accept(ChangShengJueItems.WARRIOR_EGG.get());
+                output.accept(ChangShengJueItems.MALE_INNKEEPER_EGG.get());
+                output.accept(ChangShengJueItems.FEMALE_INNKEEPER_EGG.get());
+                output.accept(ChangShengJueItems.CHALLENGER_EGG.get());
+                output.accept(ChangShengJueItems.BLACKSMITH_EGG.get());
+                output.accept(ChangShengJueItems.LANCE_GANG_LEADER_EGG.get());
+                output.accept(ChangShengJueItems.KNIFE_GANG_LEADER_EGG.get());
+                output.accept(ChangShengJueItems.SWORD_GANG_LEADER_EGG.get());
+                output.accept(ChangShengJueItems.CLUBBED_GANG_LEADER_EGG.get());
+                output.accept(ChangShengJueItems.BANDIT_EGG.get());
+                output.accept(ChangShengJueItems.VILLAIN_EGG.get());
+                output.accept(ChangShengJueItems.ASSASSIN_EGG.get());
+                output.accept(ChangShengJueItems.PIGLIN_WU_XIA_EGG.get());
+                output.accept(ChangShengJueItems.WITCH_WU_XIA_EGG.get());
+                output.accept(ChangShengJueItems.EVOKER_WU_XIA_EGG.get());
+                output.accept(ChangShengJueItems.VINDICATOR_WU_XIA_EGG.get());
+                output.accept(ChangShengJueItems.PILLAGER_WU_XIA_EGG.get());
             }).build());
 
     public static void register(IEventBus eventBus){

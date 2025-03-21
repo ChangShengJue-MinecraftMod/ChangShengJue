@@ -8,6 +8,7 @@ import net.minecraft.data.loot.EntityLootSubProvider;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -17,7 +18,9 @@ import net.minecraft.world.level.storage.loot.functions.LootingEnchantFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SmeltItemFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceWithLootingCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
@@ -94,15 +97,15 @@ public class CSJEntityLootTables extends EntityLootSubProvider {
         // 孔雀掉落
         this.add(ChangShengJueEntity.MALE_PEACOCK.get(),
                 LootTable.lootTable().withPool(
-                        LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                                .add(LootItem.lootTableItem(ChangShengJueItems.PEACOCK_FEATHERS.get())
-                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                        .add(LootItem.lootTableItem(ChangShengJueItems.PEACOCK_FEATHERS.get())
+                                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                        .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.PEACOCK.get())
+                                        .apply(SmeltItemFunction.smelted()
+                                                .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
                                         .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
-                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(ChangShengJueItems.PEACOCK.get())
-                                .apply(SmeltItemFunction.smelted()
-                                        .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, ENTITY_ON_FIRE)))
-                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
                 //                        .withPool(createMainDropPool(ChangShengJueItems.PEACOCK_FEATHERS.get(), 0, 2))
 //                        .withPool(LootPool.lootPool()
 //                                .name("main_drops")
@@ -134,12 +137,12 @@ public class CSJEntityLootTables extends EntityLootSubProvider {
         this.add(ChangShengJueEntity.CROC.get(),
                 // 创建一个新的战利品表
                 LootTable.lootTable().withPool(
-                        // 创建一个战利品池，该池固定掉落1次
-                        LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(
-                                // 向该池中添加一个战利品项，即ChangShengJueItems中的CROC_SKIN
-                                LootItem.lootTableItem(ChangShengJueItems.CROC_SKIN.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
-                                        // 设置该战利品项的数量范围为0到2
-                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                                // 创建一个战利品池，该池固定掉落1次
+                                LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(
+                                        // 向该池中添加一个战利品项，即ChangShengJueItems中的CROC_SKIN
+                                        LootItem.lootTableItem(ChangShengJueItems.CROC_SKIN.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                                // 设置该战利品项的数量范围为0到2
+                                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
                         // 应用抢夺附魔效果，增加掉落数量，范围为0到1
                         .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(ChangShengJueItems.CROC.get())
                                 // 向该池中添加另一个战利品项，即ChangShengJueItems中的CROC
@@ -150,15 +153,155 @@ public class CSJEntityLootTables extends EntityLootSubProvider {
                                 .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
         );
 
-//        this.add(ChangShengJueEntity.WARRIOR.get(),
-//                LootTable.lootTable().withPool(
-//                        LootPool.lootPool().setRolls(ConstantValue.exactly(0.35F)).add(
-//                        LootItem.lootTableItem(ChangShengJueItems.GANG_TOKEN.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
-//                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1.0F, 2.0F)))))
-//                .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(0.25F)).add(
-//                        LootItem.lootTableItem(ChangShengJueItems.AG_INGOT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
-//                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1.0F, 2.0F)))))
-//        );
+        this.add(ChangShengJueEntity.WARRIOR.get(),
+                LootTable.lootTable().withPool(
+                                LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                        .add(LootItem.lootTableItem(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())
+                                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+                                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                        .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.FEN_JIU.get()))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.SHI_LI_XIANG.get()))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get())
+                                        .when(LootItemKilledByPlayerCondition.killedByPlayer())
+                                        .when(LootItemRandomChanceWithLootingCondition.randomChanceAndLootingBoost(0.5F, 0.01F))))
+        );
+
+        this.add(ChangShengJueEntity.MALE_INNKEEPER.get(),
+                LootTable.lootTable().withPool(
+                                LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                        .add(LootItem.lootTableItem(ChangShengJueItems.AG_INGOT.get())
+                                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+                                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+        );
+        this.add(ChangShengJueEntity.FEMALE_INNKEEPER.get(),
+                LootTable.lootTable().withPool(
+                        LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.AG_INGOT.get())
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+        );
+
+        this.add(ChangShengJueEntity.CHALLENGER.get(),
+                LootTable.lootTable().withPool(
+                        LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 6.0F)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+        );
+
+        this.add(ChangShengJueEntity.BLACKSMITH.get(),
+                LootTable.lootTable().withPool(
+                        LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.AG_INGOT.get())
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+        );
+
+        this.add(ChangShengJueEntity.LANCE_GANG_LEADER.get(),
+                LootTable.lootTable().withPool(
+                        LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(Items.GOLD_INGOT)
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 6.0F)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                        .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.GANG_TOKEN.get())
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 10.0F)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+        );
+        this.add(ChangShengJueEntity.KNIFE_GANG_LEADER.get(),
+                LootTable.lootTable().withPool(
+                                LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                        .add(LootItem.lootTableItem(Items.GOLD_INGOT)
+                                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 6.0F)))
+                                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                        .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.GANG_TOKEN.get())
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 10.0F)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+        );
+
+        this.add(ChangShengJueEntity.SWORD_GANG_LEADER.get(),
+                LootTable.lootTable().withPool(
+                                LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                        .add(LootItem.lootTableItem(Items.GOLD_INGOT)
+                                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 6.0F)))
+                                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                        .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.GANG_TOKEN.get())
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 10.0F)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+        );
+        this.add(ChangShengJueEntity.CLUBBED_GANG_LEADER.get(),
+                LootTable.lootTable().withPool(
+                                LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                        .add(LootItem.lootTableItem(Items.GOLD_INGOT)
+                                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 6.0F)))
+                                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                        .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.GANG_TOKEN.get())
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 10.0F)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+        );
+        this.add(ChangShengJueEntity.BANDIT.get(),
+                LootTable.lootTable().withPool(
+                                LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                        .add(LootItem.lootTableItem(ChangShengJueItems.AG_INGOT.get())
+                                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 6.0F)))
+                                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+        );
+
+        this.add(ChangShengJueEntity.VILLAIN.get(),
+                LootTable.lootTable().withPool(
+                        LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 6.0F)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+        );
+
+        this.add(ChangShengJueEntity.ASSASSIN.get(),
+                LootTable.lootTable().withPool(
+                        LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.AG_INGOT.get())
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+        );
+
+        this.add(ChangShengJueEntity.WITCH_WU_XIA.get(),
+                LootTable.lootTable().withPool(LootPool.lootPool().setRolls(UniformGenerator.between(1.0F, 3.0F))
+                        .add(LootItem.lootTableItem(Items.GLOWSTONE_DUST).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))
+                        .add(LootItem.lootTableItem(Items.SUGAR).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))
+                        .add(LootItem.lootTableItem(Items.REDSTONE).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))
+                        .add(LootItem.lootTableItem(Items.SPIDER_EYE).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))
+                        .add(LootItem.lootTableItem(Items.GLASS_BOTTLE).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))
+                        .add(LootItem.lootTableItem(Items.GUNPOWDER).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))
+                        .add(LootItem.lootTableItem(Items.STICK).setWeight(2).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+        );
+
+        this.add(ChangShengJueEntity.EVOKER_WU_XIA.get(),
+                LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(Items.TOTEM_OF_UNDYING))).withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(Items.EMERALD).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 1.0F)))
+                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))
+                        .when(LootItemKilledByPlayerCondition.killedByPlayer()))
+        );
+
+        this.add(ChangShengJueEntity.VINDICATOR_WU_XIA.get(),
+                LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(Items.EMERALD).apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 1.0F)))
+                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F))))
+                        .when(LootItemKilledByPlayerCondition.killedByPlayer()))
+        );
+
+        this.add(ChangShengJueEntity.PIGLIN_WU_XIA.get(), LootTable.lootTable());
+        this.add(ChangShengJueEntity.PILLAGER_WU_XIA.get(), LootTable.lootTable());
 
         /*无掉落*/
         // 蝴蝶掉落
@@ -190,7 +333,7 @@ public class CSJEntityLootTables extends EntityLootSubProvider {
                 .add(LootItem.lootTableItem(item)
                         .when(LootItemRandomChanceCondition.randomChance(baseChance))
                         .apply(LootingEnchantFunction.lootingMultiplier(
-                                UniformGenerator.between(0.0F, baseChance/2) // 抢夺效果递减
+                                UniformGenerator.between(0.0F, baseChance / 2) // 抢夺效果递减
                         ))
                 );
     }
@@ -205,7 +348,7 @@ public class CSJEntityLootTables extends EntityLootSubProvider {
                 );
     }
 
-//    private LootPool.Builder createFireDropPool(Item item, float min, float max) {
+    //    private LootPool.Builder createFireDropPool(Item item, float min, float max) {
 //        EntityPredicate.Builder predicate = EntityPredicate.Builder.entity()
 //                .flags(EntityFlagsPredicate.Builder.flags().setOnFire(true).build());
 //

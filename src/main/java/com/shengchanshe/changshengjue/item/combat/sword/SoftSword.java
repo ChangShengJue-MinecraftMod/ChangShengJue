@@ -7,6 +7,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmansh
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.item.combat.lance.Lance;
 import com.shengchanshe.changshengjue.item.render.combat.sword.SoftSwordRender;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.XuannuSwordsmanshipPacket;
@@ -171,6 +172,17 @@ public class SoftSword extends Sword implements GeoItem {
                 itemstack.hurtAndBreak(1, player, (player1) -> {//消耗耐久
                     player1.broadcastBreakEvent(player.getUsedItemHand());
                 });
+            }
+        }
+    }
+
+    @Override
+    public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
+        super.onUseTick(pLevel, pLivingEntity, pStack, pRemainingUseDuration);
+        if (!pLevel.isClientSide) {
+            ItemStack itemstack = pLivingEntity.getMainHandItem();//获取玩家手中物品
+            if (itemstack.getItem() == ChangShengJueItems.SOFT_SWORD.get()) {
+                triggerAnim(pLivingEntity, GeoItem.getOrAssignId(pLivingEntity.getItemInHand(pLivingEntity.getUsedItemHand()), (ServerLevel) pLevel), "Attack", "attack");
             }
         }
     }

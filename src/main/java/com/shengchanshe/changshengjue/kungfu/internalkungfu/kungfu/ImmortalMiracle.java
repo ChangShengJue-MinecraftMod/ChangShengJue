@@ -8,7 +8,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
 public class ImmortalMiracle implements InternalKungFuCapability {
-    private static final int COOLDOWN_TIME = 100; // 冷却时间，单位为tick（1秒=20tick）
+    private static final int INTERNAL_KUNGFU_COOLDOWN_TIME = 80 * 20; // 冷却时间，单位为tick（1秒=20tick）
     private int internalKungFuCooldown; // 当前冷却时间
     private String internalKungFuID = "ImmortalMiracle";
 
@@ -22,7 +22,7 @@ public class ImmortalMiracle implements InternalKungFuCapability {
     }
 
     @Override
-    public void applyAttackEffect(LivingEntity livingEntity, Entity target) {
+    public void applyAttackEffect(LivingEntity livingEntity) {
     }
 
     public boolean applyHurtEffect(DamageSource pSource,LivingEntity livingEntity){
@@ -33,7 +33,7 @@ public class ImmortalMiracle implements InternalKungFuCapability {
         livingEntity.setHealth(livingEntity.getMaxHealth());
         livingEntity.removeAllEffects();
         livingEntity.playSound(ChangShengJueSound.IMMORTAL_MIRACLE_SOUND.get(), 1.0F, livingEntity.isBaby() ? (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.5F : (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-        internalKungFuCooldown = COOLDOWN_TIME; // 设置冷却时间
+        internalKungFuCooldown = INTERNAL_KUNGFU_COOLDOWN_TIME; // 设置冷却时间
         return true;
     }
 

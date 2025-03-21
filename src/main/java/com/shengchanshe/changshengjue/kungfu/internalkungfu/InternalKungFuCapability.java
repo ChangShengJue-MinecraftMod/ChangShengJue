@@ -8,7 +8,7 @@ import net.minecraft.world.entity.LivingEntity;
 public interface InternalKungFuCapability {
     RandomSource random = RandomSource.create();
     String getInternalKungFuID();
-    void applyAttackEffect(LivingEntity livingEntity, Entity target);
+    void applyAttackEffect(LivingEntity livingEntity);
     // 其他武功相关的方法...
     void saveNBTData(CompoundTag compound);
     void loadNBTData(CompoundTag compound);

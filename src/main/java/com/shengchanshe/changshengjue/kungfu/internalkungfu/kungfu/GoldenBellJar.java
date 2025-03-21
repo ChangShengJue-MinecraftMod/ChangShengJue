@@ -4,11 +4,10 @@ import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.InternalKungFuCapability;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 
 public class GoldenBellJar implements InternalKungFuCapability {
-    private static final int COOLDOWN_TIME = 100; // 冷却时间，单位为tick（1秒=20tick）
+    private static final int INTERNAL_KUNGFU_COOLDOWN_TIME = 8 * 20; // 冷却时间，单位为tick（1秒=20tick）
     private int internalKungFuCooldown; // 当前冷却时间
     private String internalKungFuID = "GoldenBellJar";
 
@@ -22,13 +21,13 @@ public class GoldenBellJar implements InternalKungFuCapability {
     }
 
     @Override
-    public void applyAttackEffect(LivingEntity livingEntity, Entity target) {
+    public void applyAttackEffect(LivingEntity livingEntity) {
         if (internalKungFuCooldown > 0) {
             // 如果还在冷却中，直接返回
             return;
         }
         livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.GOLDEN_BELL_JAR_EFFECT.get(), 120, 1, false, false), livingEntity);
-        internalKungFuCooldown = COOLDOWN_TIME; // 设置冷却时间
+        internalKungFuCooldown = INTERNAL_KUNGFU_COOLDOWN_TIME; // 设置冷却时间
     }
 
     @Override

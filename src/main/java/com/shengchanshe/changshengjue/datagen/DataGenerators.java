@@ -43,7 +43,7 @@ public class DataGenerators {
         CSJBlockTagGenerator blockTagGenerator = generator.addProvider(event.includeServer(),
                 new CSJBlockTagGenerator(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new CSJItemTagGenerator(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper));
-
+        generator.addProvider(event.includeServer(), new CSJEntityTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new AdvancementProvider(packOutput, lookupProvider,
                 List.of(
                         new CSJAdvanceProvider()

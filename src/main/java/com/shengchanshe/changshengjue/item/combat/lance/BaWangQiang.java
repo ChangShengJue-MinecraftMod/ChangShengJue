@@ -141,6 +141,16 @@ public class BaWangQiang extends Lance implements GeoItem , Vanishable{
         return super.use(pLevel, pPlayer, pUsedHand);
     }
 
+    @Override
+    public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
+        super.onUseTick(pLevel, pLivingEntity, pStack, pRemainingUseDuration);
+        if (!pLevel.isClientSide) {
+            ItemStack itemstack = pLivingEntity.getMainHandItem();//获取玩家手中物品
+            if (itemstack.getItem() instanceof Lance) {
+                triggerAnim(pLivingEntity, GeoItem.getOrAssignId(pLivingEntity.getItemInHand(pLivingEntity.getUsedItemHand()), (ServerLevel) pLevel), "Attack", "attack");
+            }
+        }
+    }
 
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {

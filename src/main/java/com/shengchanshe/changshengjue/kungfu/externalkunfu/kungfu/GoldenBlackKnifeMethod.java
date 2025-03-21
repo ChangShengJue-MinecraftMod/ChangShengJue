@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.kungfu.externalkunfu.kungfu;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntity;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
 import com.shengchanshe.changshengjue.entity.villagers.warrior.Warrior;
 import com.shengchanshe.changshengjue.kungfu.externalkunfu.ExternalKungFuCapability;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
@@ -22,7 +23,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public class GoldenBlackKnifeMethod implements ExternalKungFuCapability {
-    private static final int COOLDOWN_TIME = 100; // 冷却时间，单位为tick（1秒=20tick）
+    private static final int EXTERNAL_COOLDOWN_TIME = 7 * 20; // 冷却时间，单位为tick（1秒=20tick）
     private int externalKungFuCooldown; // 当前冷却时间
     private String externalKungFuID = "GoldenBlackKnifeMethod";
 
@@ -31,13 +32,13 @@ public class GoldenBlackKnifeMethod implements ExternalKungFuCapability {
     }
 
     @Override
-    public String getExternalKungFuID() {
+    public String getQingGongID() {
         return externalKungFuID;
     }
 
     @Override
-    public void applyAttackEffect(LivingEntity livingEntity, Entity target) {
-        this.onGoldenBlackKnifeMethod(livingEntity.level(),livingEntity);
+    public void applyAttackEffect(LivingEntity livingEntity,Entity target, int cooldown) {
+        this.onGoldenBlackKnifeMethod(livingEntity.level(),livingEntity,cooldown);
     }
 
     @Override
@@ -48,7 +49,7 @@ public class GoldenBlackKnifeMethod implements ExternalKungFuCapability {
 
     @Override
     public void loadNBTData(CompoundTag compound) {
-        compound.putString("ExternalKungFuID", externalKungFuID);
+        externalKungFuID = compound.getString("ExternalKungFuID");
         externalKungFuCooldown = compound.getInt("ExternalKungFuCooldown");
     }
 
@@ -64,7 +65,7 @@ public class GoldenBlackKnifeMethod implements ExternalKungFuCapability {
         }
     }
 
-    private void onGoldenBlackKnifeMethod(Level pLevel, LivingEntity pEntity) {
+    private void onGoldenBlackKnifeMethod(Level pLevel, LivingEntity pEntity,int cooldown) {
         if (externalKungFuCooldown > 0) {
             // 如果还在冷却中，直接返回
             return;
@@ -81,7 +82,7 @@ public class GoldenBlackKnifeMethod implements ExternalKungFuCapability {
         for (Entity entity : entities) {//遍历包围盒中的实体
             //检查生物是否可以交互,是否在给定的平方距离内,检查生物是否是LivingEntity,检查生物是否还活着
             if (pEntity.isPickable() && pEntity.distanceToSqr(entity) < radius * radius && entity instanceof LivingEntity && entity.isAlive()) {
-                if (!(entity instanceof Villager) && !(entity instanceof Warrior)) {
+                if (!(entity instanceof Villager) && !(entity instanceof AbstractWuXia)) {
                     float damage = this.calculateDamage(pEntity);
                     if (entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
                             .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), pEntity), damage)) {//造成伤害
@@ -93,7 +94,7 @@ public class GoldenBlackKnifeMethod implements ExternalKungFuCapability {
         pLevel.playSound(null, pEntity.getX(), pEntity.getY(), pEntity.getZ(), ChangShengJueSound.GOLDEN_BLACK_KNIFE_METHOD_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
 
         // 使用武功后重置冷却时间
-        externalKungFuCooldown = COOLDOWN_TIME;
+        externalKungFuCooldown = EXTERNAL_COOLDOWN_TIME - cooldown;
     }
     private float calculateDamage(LivingEntity livingEntity) {
         double attackDamage = livingEntity.getAttributeValue(Attributes.ATTACK_DAMAGE);

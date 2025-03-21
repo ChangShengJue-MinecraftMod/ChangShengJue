@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.kungfu.externalkunfu.kungfu;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
 import com.shengchanshe.changshengjue.entity.villagers.warrior.Warrior;
 import com.shengchanshe.changshengjue.kungfu.externalkunfu.ExternalKungFuCapability;
 import net.minecraft.core.registries.Registries;
@@ -24,7 +25,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 public class XuannuSwordsmanship implements ExternalKungFuCapability {
-    private static final int COOLDOWN_TIME = 100; // 冷却时间，单位为tick（1秒=20tick）
+    private static final int EXTERNAL_COOLDOWN_TIME = 4 * 20; // 冷却时间，单位为tick（1秒=20tick）
     private int externalKungFuCooldown; // 当前冷却时间
     private String externalKungFuID = "XuannuSwordsmanship";
 
@@ -33,13 +34,13 @@ public class XuannuSwordsmanship implements ExternalKungFuCapability {
     }
 
     @Override
-    public String getExternalKungFuID() {
+    public String getQingGongID() {
         return externalKungFuID;
     }
 
     @Override
-    public void applyAttackEffect(LivingEntity livingEntity, Entity target) {
-        this.onXuannuSwordsmanship(livingEntity.level(),livingEntity);
+    public void applyAttackEffect(LivingEntity livingEntity,Entity target, int cooldown) {
+        this.onXuannuSwordsmanship(livingEntity.level(),livingEntity,cooldown);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class XuannuSwordsmanship implements ExternalKungFuCapability {
 
     @Override
     public void loadNBTData(CompoundTag compound) {
-        compound.putString("ExternalKungFuID", externalKungFuID);
+        externalKungFuID = compound.getString("ExternalKungFuID");
         externalKungFuCooldown = compound.getInt("ExternalKungFuCooldown");
     }
 
@@ -66,7 +67,7 @@ public class XuannuSwordsmanship implements ExternalKungFuCapability {
         }
     }
 
-    private void onXuannuSwordsmanship(Level pLevel, LivingEntity pEntity) {
+    private void onXuannuSwordsmanship(Level pLevel, LivingEntity pEntity,int cooldown) {
         if (externalKungFuCooldown > 0) {
             // 如果还在冷却中，直接返回
             return;
@@ -79,7 +80,7 @@ public class XuannuSwordsmanship implements ExternalKungFuCapability {
         for (Entity entity : entities) {//遍历包围盒中的实体
             //检查生物是否可以交互,是否在给定的平方距离内,检查生物是否是LivingEntity,检查生物是否还活着
             if (pEntity.isPickable() && pEntity.distanceToSqr(entity) < radius * radius && entity instanceof LivingEntity && entity.isAlive()) {
-                if (!(entity instanceof Villager) && !(entity instanceof Warrior)) {
+                if (!(entity instanceof Villager) && !(entity instanceof AbstractWuXia)) {
                     float damage = this.calculateDamage(pEntity);
                     float probability = pEntity.getRandom().nextFloat();
                     float defaultProbability = 0.15F;
@@ -95,7 +96,7 @@ public class XuannuSwordsmanship implements ExternalKungFuCapability {
                 }
             }
         }
-        externalKungFuCooldown = COOLDOWN_TIME; // 设置冷却时间
+        externalKungFuCooldown = EXTERNAL_COOLDOWN_TIME - cooldown; // 设置冷却时间
     }
     private float calculateDamage(LivingEntity livingEntity) {
         double attackDamage = livingEntity.getAttributeValue(Attributes.ATTACK_DAMAGE);
