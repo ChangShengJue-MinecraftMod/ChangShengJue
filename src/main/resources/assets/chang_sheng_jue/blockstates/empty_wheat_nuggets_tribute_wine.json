@@ -1,13 +1,52 @@
 {
   "variants": {
-    "types=0": {
-      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine"
+    "types=0,facing=north": {
+      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine",
+      "y": 0
     },
-    "types=1": {
-      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine"
+    "types=0,facing=east": {
+      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine",
+      "y": 90
     },
-    "types=2": {
-      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine"
+    "types=0,facing=south": {
+      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine",
+      "y": 180
+    },
+    "types=0,facing=west": {
+      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine",
+      "y": 270
+    },
+    "types=1,facing=north": {
+      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine",
+      "y": 0
+    },
+    "types=1,facing=east": {
+      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine",
+      "y": 90
+    },
+    "types=1,facing=south": {
+      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine",
+      "y": 180
+    },
+    "types=1,facing=west": {
+      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine",
+      "y": 270
+    },
+    "types=2,facing=north": {
+      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine",
+      "y": 0
+    },
+    "types=2,facing=east": {
+      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine",
+      "y": 90
+    },
+    "types=2,facing=south": {
+      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine",
+      "y": 180
+    },
+    "types=2,facing=west": {
+      "model": "chang_sheng_jue:block/empty_wheat_nuggets_tribute_wine",
+      "y": 270
     }
   }
 }

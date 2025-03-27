@@ -426,6 +426,8 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.POTTERY_WHEEL.get());
         //工具台
         this.dropSelf(ChangShengJueBlocks.TOOL_TABLE.get());
+        //武器架
+        this.dropSelf(ChangShengJueBlocks.WEAPON_RACK.get());
         //案台
         this.dropSelf(ChangShengJueBlocks.DESK.get());
         //猪食槽

@@ -22,7 +22,14 @@ public class ChangShengJueBlocksEntities {
         BLOCK_ENTITYES.register("pottery_wheel_entity",()-> BlockEntityType.Builder.of(PotteryWheelEntity::new, ChangShengJueBlocks.POTTERY_WHEEL.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<ToolTableEntity>> TOOL_TABLE_ENTITY =
-            BLOCK_ENTITYES.register("tool_table_entity",()-> BlockEntityType.Builder.of(ToolTableEntity::new, ChangShengJueBlocks.TOOL_TABLE.get()).build(null));
+            BLOCK_ENTITYES.register("tool_table_entity",
+                    ()-> BlockEntityType.Builder.of(ToolTableEntity::new,
+                            ChangShengJueBlocks.TOOL_TABLE.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<WeaponRackEntity>> WEAPON_RACK_ENTITY =
+            BLOCK_ENTITYES.register("weapon_rack_entity",
+                    () -> BlockEntityType.Builder.of(WeaponRackEntity::new,
+                            ChangShengJueBlocks.WEAPON_RACK.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<BlueAndWhitePorcelainFlowerPotsEntity>> BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS_ENTITY =
             BLOCK_ENTITYES.register("blue_and_white_porcelain_flower_pots_entity",

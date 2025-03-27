@@ -327,6 +327,7 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get())
                 .add(ChangShengJueBlocks.POTTERY_WHEEL.get())
                 .add(ChangShengJueBlocks.TOOL_TABLE.get())
+                .add(ChangShengJueBlocks.WEAPON_RACK.get())
                 .add(ChangShengJueBlocks.DESK.get())
                 .add(ChangShengJueBlocks.SHING_MUN_LEFT.get())
                 .add(ChangShengJueBlocks.SHING_MUN_RIGHT.get())

@@ -760,6 +760,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get(), "织布机");
         this.add(ChangShengJueBlocks.POTTERY_WHEEL.get(), "陶轮");
         this.add(ChangShengJueBlocks.TOOL_TABLE.get(), "工具台");
+        this.add(ChangShengJueBlocks.WEAPON_RACK.get(), "武器架");
         this.add(ChangShengJueBlocks.DESK.get(), "案台");
         this.add(ChangShengJueBlocks.PIG_TROUGH.get(), "牲畜食槽");
 

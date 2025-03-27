@@ -386,6 +386,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get());
                 output.accept(ChangShengJueBlocks.POTTERY_WHEEL.get());
                 output.accept(ChangShengJueBlocks.TOOL_TABLE.get());
+                output.accept(ChangShengJueBlocks.WEAPON_RACK.get());
                 output.accept(ChangShengJueBlocks.DESK.get());
                 output.accept(ChangShengJueBlocks.PIG_TROUGH.get());
                 output.accept(ChangShengJueBlocks.PLAQUE.get());
