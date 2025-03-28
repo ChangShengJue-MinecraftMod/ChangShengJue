@@ -16,6 +16,7 @@ import com.shengchanshe.changshengjue.entity.custom.wuxia.assassin.Assassin;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.bandit.Bandit;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.blacksmith.Blacksmith;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.challenger.Challenger;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.GangLeader;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeader;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.knife.KnifeGangLeader;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.lance.LanceGangLeader;
@@ -26,6 +27,7 @@ import com.shengchanshe.changshengjue.entity.custom.wuxia.piglin.PiglinWuXia;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.villain.Villain;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerEntity;
 import com.shengchanshe.changshengjue.entity.villagers.warrior.Warrior;
+import com.shengchanshe.changshengjue.entity.villagers.worker.KilnWorker;
 import net.minecraft.world.entity.monster.Evoker;
 import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.monster.Vindicator;
@@ -53,6 +55,7 @@ public class CSJEventBusEvents {
         event.put(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER.get(), ChangShengJueVillagerEntity.setAttributes());
 
         event.put(ChangShengJueEntity.WARRIOR.get(), Warrior.setAttributes());
+        event.put(ChangShengJueEntity.KILN_WORKER.get(), KilnWorker.setAttributes());
         event.put(ChangShengJueEntity.MALE_INNKEEPER.get(), MaleInnkeeper.setAttributes());
         event.put(ChangShengJueEntity.FEMALE_INNKEEPER.get(), FemaleInnkeeper.setAttributes());
         event.put(ChangShengJueEntity.CHALLENGER.get(), Challenger.setAttributes());
@@ -61,6 +64,7 @@ public class CSJEventBusEvents {
         event.put(ChangShengJueEntity.KNIFE_GANG_LEADER.get(), KnifeGangLeader.setAttributes());
         event.put(ChangShengJueEntity.SWORD_GANG_LEADER.get(), SwordGangLeader.setAttributes());
         event.put(ChangShengJueEntity.CLUBBED_GANG_LEADER.get(), ClubbedGangLeader.setAttributes());
+        event.put(ChangShengJueEntity.GANG_LEADER.get(), GangLeader.setAttributes());
         event.put(ChangShengJueEntity.BANDIT.get(), Bandit.setAttributes());
         event.put(ChangShengJueEntity.VILLAIN.get(), Villain.setAttributes());
         event.put(ChangShengJueEntity.ASSASSIN.get(), Assassin.setAttributes());

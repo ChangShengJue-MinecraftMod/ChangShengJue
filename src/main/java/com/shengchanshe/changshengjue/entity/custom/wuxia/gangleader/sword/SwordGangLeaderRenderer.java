@@ -1,9 +1,13 @@
 package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.sword;
 
+import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.GangleaderVariant;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.knife.KnifeGangLeader;
+import net.minecraft.Util;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -16,6 +20,7 @@ import software.bernie.geckolib.renderer.DynamicGeoEntityRenderer;
 import software.bernie.geckolib.renderer.layer.BlockAndItemGeoLayer;
 
 import javax.annotation.Nullable;
+import java.util.Map;
 
 public class SwordGangLeaderRenderer extends DynamicGeoEntityRenderer<SwordGangLeader> {
     private static final String LEFT_HAND = "bipedHandLeft";
@@ -28,7 +33,24 @@ public class SwordGangLeaderRenderer extends DynamicGeoEntityRenderer<SwordGangL
     private static final String RIGHT_SLEEVE = "armorBipedRightArm";
     private static final String LEFT_SLEEVE = "armorBipedLeftArm";
     private static final String HELMET = "armorBipedHead";
-    protected final ResourceLocation CAPE_TEXTURE = new ResourceLocation(ChangShengJue.MOD_ID, "textures/entity/gang_leader/sword_gang_leader.png");
+    public static final Map<GangleaderVariant,ResourceLocation> CAPE_TEXTURE =
+            Util.make(Maps.newEnumMap(GangleaderVariant.class),(map)->{
+                map.put(GangleaderVariant.TEXTURES_0,
+                        new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/gang_leader/knife_gang_leader.png"));
+                map.put(GangleaderVariant.TEXTURES_1,
+                        new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/gang_leader/lance_gang_leader.png"));
+                map.put(GangleaderVariant.TEXTURES_2,
+                        new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/gang_leader/sword_gang_leader.png"));
+            });
+    public static final Map<GangleaderVariant,ResourceLocation> CAPE_GEO =
+            Util.make(Maps.newEnumMap(GangleaderVariant.class),(map)->{
+                map.put(GangleaderVariant.TEXTURES_0,
+                        new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/gang_leader/knife_gang_leader.geo.json"));
+                map.put(GangleaderVariant.TEXTURES_1,
+                        new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/gang_leader/lance_gang_leader.geo.json"));
+                map.put(GangleaderVariant.TEXTURES_2,
+                        new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/gang_leader/sword_gang_leader.geo.json"));
+            });
     protected ItemStack mainHandItem;
     protected ItemStack offhandItem;
 
@@ -82,7 +104,7 @@ public class SwordGangLeaderRenderer extends DynamicGeoEntityRenderer<SwordGangL
 
     @Nullable
     protected ResourceLocation getTextureOverrideForBone(GeoBone bone, SwordGangLeader animatable, float partialTick) {
-        return "bipedCape".equals(bone.getName()) ? this.CAPE_TEXTURE : null;
+        return "bipedCape".equals(bone.getName()) ? CAPE_TEXTURE.get(animatable.getVariant()) : null;
     }
 
     public void preRender(PoseStack poseStack, SwordGangLeader animatable, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {

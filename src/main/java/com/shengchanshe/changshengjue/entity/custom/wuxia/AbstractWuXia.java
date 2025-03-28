@@ -29,8 +29,10 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
+import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 
@@ -40,7 +42,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class AbstractWuXia extends PathfinderMob implements NeutralMob {
+public class AbstractWuXia extends AbstractVillager implements NeutralMob {
     protected static final List<ItemStack> SWORDS;
     protected static final List<ItemStack> KNIFE;
     protected static final List<ItemStack> INTERNAL_KUNGFU;
@@ -88,6 +90,11 @@ public class AbstractWuXia extends PathfinderMob implements NeutralMob {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(ATTACKING, false);
+    }
+
+    @Override
+    protected void rewardTradeXp(MerchantOffer merchantOffer) {
+
     }
 
     @Override
@@ -181,6 +188,11 @@ public class AbstractWuXia extends PathfinderMob implements NeutralMob {
     }
 
     @Override
+    protected void updateTrades() {
+
+    }
+
+    @Override
     protected void updateSwingTime() {
         super.updateSwingTime();
     }
@@ -196,10 +208,6 @@ public class AbstractWuXia extends PathfinderMob implements NeutralMob {
     @Override
     protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
         super.populateDefaultEquipmentSlots(pRandom, pDifficulty);
-        if (this instanceof LanceGangLeader){return;}
-        if (this instanceof KnifeGangLeader){return;}
-        if (this instanceof SwordGangLeader){return;}
-        if (this instanceof ClubbedGangLeader){return;}
         // 使用 KungFuManager 随机分配武功能力
         this.externalKungFuCapability = new ExternalKungFuManager().getRandomExternalKungFuCapability(this);
         this.internalKungFuCapability = new InterfaceKungFuManager().getRandomInterfaceKungFuCapability();
@@ -278,6 +286,12 @@ public class AbstractWuXia extends PathfinderMob implements NeutralMob {
         this.populateDefaultEquipmentSlots($$6, pDifficulty);
         this.populateDefaultEquipmentEnchantments($$6, pDifficulty);
         return $$5;
+    }
+
+    @org.jetbrains.annotations.Nullable
+    @Override
+    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
+        return null;
     }
 
     @Override

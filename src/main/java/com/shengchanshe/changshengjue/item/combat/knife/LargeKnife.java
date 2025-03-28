@@ -1,6 +1,5 @@
 package com.shengchanshe.changshengjue.item.combat.knife;
 
-import com.shengchanshe.changshengjue.item.render.combat.knife.LargeKnifeRender;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tiers;

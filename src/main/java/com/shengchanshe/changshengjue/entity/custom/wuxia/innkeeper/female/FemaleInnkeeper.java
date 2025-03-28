@@ -1,7 +1,19 @@
 package com.shengchanshe.changshengjue.entity.custom.wuxia.innkeeper.female;
 
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.innkeeper.InnkeeperMenu;
 import com.shengchanshe.changshengjue.entity.custom.goal.WuXiaAttackGoal;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXiaMerchant;
+import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.item.combat.clubbed.Clubbed;
+import com.shengchanshe.changshengjue.item.combat.lance.Lance;
+import com.shengchanshe.changshengjue.item.combat.sword.SoftSword;
+import com.shengchanshe.changshengjue.world.village.WuXiaMerahantTrades;
+import net.minecraft.network.chat.Component;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -15,7 +27,11 @@ import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.constant.DefaultAnimations;
@@ -24,10 +40,13 @@ import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class FemaleInnkeeper extends AbstractWuXia implements GeoEntity {
+import java.util.OptionalInt;
+
+public class FemaleInnkeeper extends AbstractWuXiaMerchant implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public FemaleInnkeeper(EntityType<? extends AbstractWuXia> pEntityType, Level pLevel) {
@@ -57,16 +76,6 @@ public class FemaleInnkeeper extends AbstractWuXia implements GeoEntity {
     }
 
     @Override
-    public boolean causeFallDamage(float pFallDistance, float pMultiplier, DamageSource pSource) {
-        return false;
-    }
-
-    @Override
-    protected int decreaseAirSupply(int pAir) {
-        return pAir;
-    }
-
-    @Override
     public boolean doHurtTarget(Entity pEntity) {
         return super.doHurtTarget(pEntity);
     }
@@ -74,6 +83,62 @@ public class FemaleInnkeeper extends AbstractWuXia implements GeoEntity {
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
         return super.hurt(pSource, pAmount);
+    }
+
+    public void openTradingScreen(Player pPlayer, Component pDisplayName, int pLevel) {
+        OptionalInt optionalInt = pPlayer.openMenu(new SimpleMenuProvider((i, inventory, player) -> new InnkeeperMenu(i, inventory, this), pDisplayName));
+        if (optionalInt.isPresent()) {
+            MerchantOffers merchantOffers = this.getOffers();
+            if (!merchantOffers.isEmpty()) {
+                pPlayer.sendMerchantOffers(optionalInt.getAsInt(), merchantOffers, pLevel, this.getVillagerXp(), this.showProgressBar(), this.canRestock());
+            }
+        }
+    }
+
+    public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
+        ItemStack itemInHand = pPlayer.getItemInHand(pHand);
+        if (!itemInHand.is(ChangShengJueItems.FEMALE_INNKEEPER_EGG.get()) && this.isAlive() && !this.isTrading() && !this.isBaby()) {
+            if (pHand == InteractionHand.MAIN_HAND) {
+                pPlayer.awardStat(Stats.TALKED_TO_VILLAGER);
+            }
+
+            if (this.getOffers().isEmpty()) {
+                return InteractionResult.sidedSuccess(this.level().isClientSide);
+            } else {
+                if (!this.level().isClientSide) {
+                    this.startTrading(pPlayer);
+                }
+
+                return InteractionResult.sidedSuccess(this.level().isClientSide);
+            }
+        } else {
+            return super.mobInteract(pPlayer, pHand);
+        }
+    }
+
+    protected void updateTrades() {
+        // 获取交易列表1和2
+        VillagerTrades.ItemListing[] tradesList1 = WuXiaMerahantTrades.INNKEEPER_TRADES.get(1);
+        VillagerTrades.ItemListing[] tradesList2 = WuXiaMerahantTrades.INNKEEPER_TRADES.get(2);
+        // 获取交易列表3和4
+        VillagerTrades.ItemListing[] tradesList3 = WuXiaMerahantTrades.INNKEEPER_TRADES.get(3);
+        VillagerTrades.ItemListing[] tradesList4 = WuXiaMerahantTrades.INNKEEPER_TRADES.get(4);
+        if (tradesList1 != null && tradesList2 != null && tradesList3 != null && tradesList4 != null) {
+            MerchantOffers merchantOffers = this.getOffers();
+            // 添加交易列表1中的5个交易
+            this.addOffersFromItemListings(merchantOffers, tradesList1, 5);
+            // 随机添加交易列表2中的一个交易
+            int randomIndex2 = this.random.nextInt(tradesList2.length);
+            VillagerTrades.ItemListing trade2 = tradesList2[randomIndex2];
+            MerchantOffer offer2 = trade2.getOffer(this, this.random);
+            if (offer2 != null) {
+                merchantOffers.add(offer2);
+            }
+            // 添加交易列表3中的2个交易
+            this.addOffersFromItemListings(merchantOffers, tradesList3, 2);
+            // 添加交易列表4中的2个交易
+            this.addOffersFromItemListings(merchantOffers, tradesList4, 2);
+        }
     }
 
     private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event){
@@ -84,15 +149,40 @@ public class FemaleInnkeeper extends AbstractWuXia implements GeoEntity {
         event.setAnimation(DefaultAnimations.IDLE);
         return PlayState.CONTINUE;
     }
+    private PlayState attackPredicate(AnimationState animationEvent) {
+        if (this.isAttacking() && this.swinging){
+            ItemStack mainHandItem = this.getMainHandItem();
+            if (mainHandItem.getItem() instanceof Lance || mainHandItem.getItem() instanceof SoftSword) {
+                animationEvent.getController().forceAnimationReset();
+                animationEvent.setAndContinue(RawAnimation.begin().thenPlay("attack.right_hand_sword3_and_spear"));
+                this.setAttacking(false);
+                this.swinging = false;
+            }else if (mainHandItem.getItem() instanceof Clubbed){
+                animationEvent.getController().forceAnimationReset();
+                animationEvent.setAndContinue(RawAnimation.begin().thenPlay("attack.right_hand_knife2_and_sword2"));
+                this.setAttacking(false);
+                this.swinging = false;
+            }else {
+                int i = this.random.nextInt(2);
+                switch (i) {
+                    case 0 -> {
+                        animationEvent.getController().forceAnimationReset();
+                        animationEvent.setAndContinue(RawAnimation.begin().thenPlay("attack.right_hand_knife1_and_sword1"));
+                        this.setAttacking(false);
+                        this.swinging = false;
+                    }
+                    case 1 -> {
+                        animationEvent.getController().forceAnimationReset();
+                        animationEvent.setAndContinue(RawAnimation.begin().thenPlay("attack.right_hand_knife2_and_sword2"));
+                        this.setAttacking(false);
+                        this.swinging = false;
+                    }
+                }
 
-//    private PlayState attackPredicate(AnimationState animationEvent) {
-//        if (this.swinging && animationEvent.getController().getAnimationState().equals(AnimationController.State.STOPPED)){
-//            animationEvent.getController().forceAnimationReset();
-//            animationEvent.setAndContinue(RawAnimation.begin().thenPlay("attack"));
-//            this.swinging =false;
-//        }
-//        return PlayState.CONTINUE;
-//    }
+            }
+        }
+        return PlayState.CONTINUE;
+    }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
@@ -100,7 +190,7 @@ public class FemaleInnkeeper extends AbstractWuXia implements GeoEntity {
         // 添加一个名为"controller"的动画控制器，使用predicate方法作为动画状态判断逻辑
         controllers.add(new AnimationController<>(this,"controller",5,this::predicate));
         // 添加一个名为"attackController"的动画控制器，使用attackPredicate方法作为动画状态判断逻辑
-//        controllers.add(new AnimationController<>(this,"attackController",0,this::attackPredicate));
+        controllers.add(new AnimationController<>(this,"attackController",0,this::attackPredicate));
     }
 
     @Override

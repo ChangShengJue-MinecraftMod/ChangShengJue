@@ -1,6 +1,8 @@
 package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.knife;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.entity.custom.butterfly.Butterfly;
+import com.shengchanshe.changshengjue.entity.custom.butterfly.ButterflyRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import software.bernie.geckolib.constant.DataTickets;
@@ -12,6 +14,16 @@ import software.bernie.geckolib.model.data.EntityModelData;
 public class KnifeGangLeaderModel extends DefaultedEntityGeoModel<KnifeGangLeader> {
 	public KnifeGangLeaderModel() {
 		super(new ResourceLocation(ChangShengJue.MOD_ID, "gang_leader/knife_gang_leader"));
+	}
+
+	@Override
+	public ResourceLocation getModelResource(KnifeGangLeader animatable) {
+		return KnifeGangLeaderRenderer.CAPE_GEO.get(animatable.getVariant());
+	}
+
+	@Override
+	public ResourceLocation getTextureResource(KnifeGangLeader knifeGangLeader) {
+		return KnifeGangLeaderRenderer.CAPE_TEXTURE.get(knifeGangLeader.getVariant());
 	}
 
 	@Override

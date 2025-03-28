@@ -10,7 +10,7 @@ import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
-import com.shengchanshe.changshengjue.screen.ChangShengJueMenuTypes;
+import com.shengchanshe.changshengjue.cilent.gui.screens.ChangShengJueMenuTypes;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import com.shengchanshe.changshengjue.util.ClientSetup;
 import com.shengchanshe.changshengjue.world.biome.CSJTerrablender;

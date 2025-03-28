@@ -1,7 +1,10 @@
 package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.knife;
 
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingMenu;
 import com.shengchanshe.changshengjue.entity.custom.goal.WuXiaAttackGoal;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXiaMerchant;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.GangleaderVariant;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.kungfu.externalkunfu.ExternalKungFuCapability;
 import com.shengchanshe.changshengjue.kungfu.externalkunfu.ExternalKungFuManager;
@@ -11,11 +14,21 @@ import com.shengchanshe.changshengjue.kungfu.externalkunfu.kungfu.SunflowerPoint
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.InterfaceKungFuManager;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.InternalKungFuCapability;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.*;
+import com.shengchanshe.changshengjue.world.village.WuXiaMerahantTrades;
+import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -27,9 +40,13 @@ import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
@@ -41,14 +58,17 @@ import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.OptionalInt;
 
-public class KnifeGangLeader extends AbstractWuXia implements GeoEntity {
+public class KnifeGangLeader extends AbstractWuXiaMerchant implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private List<ExternalKungFuCapability> externalKungFuCapabilities;
     private InternalKungFuCapability internalKungFuCapability;
+    private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(KnifeGangLeader.class, EntityDataSerializers.INT);
 
     public KnifeGangLeader(EntityType<? extends AbstractWuXia> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -63,6 +83,13 @@ public class KnifeGangLeader extends AbstractWuXia implements GeoEntity {
     }
 
     @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(DATA_ID_TYPE_VARIANT,0);
+    }
+
+
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new WuXiaAttackGoal(this, 1.0F, true));
@@ -75,6 +102,56 @@ public class KnifeGangLeader extends AbstractWuXia implements GeoEntity {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, (livingEntity) -> livingEntity instanceof Enemy && !(livingEntity instanceof Creeper)));
         this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, false));
+    }
+
+    public void openTradingScreen(Player pPlayer, Component pDisplayName, int pLevel) {
+        OptionalInt present = pPlayer.openMenu(new SimpleMenuProvider((i, inventory, player) -> new GangleaderTradingMenu(i, inventory, this), pDisplayName));
+        if (present.isPresent()) {
+            MerchantOffers merchantOffers = this.getOffers();
+            if (!merchantOffers.isEmpty()) {
+                pPlayer.sendMerchantOffers(present.getAsInt(), merchantOffers, pLevel, this.getVillagerXp(), this.showProgressBar(), this.canRestock());
+            }
+        }
+    }
+
+    protected void updateTrades() {
+        // 获取交易列表1和2
+        VillagerTrades.ItemListing[] tradesList1 = WuXiaMerahantTrades.CLUBBED_AND_LANCE_GANG_LEADER_TRADES.get(1);
+        VillagerTrades.ItemListing[] tradesList2 = WuXiaMerahantTrades.CLUBBED_AND_LANCE_GANG_LEADER_TRADES.get(2);
+        if (tradesList1 != null && tradesList2 != null) {
+            MerchantOffers merchantOffers = this.getOffers();
+            // 添加交易列表1中的5个交易
+            this.addOffersFromItemListings(merchantOffers, tradesList1, 8);
+            // 随机添加交易列表2中的一个交易
+            this.addOffersFromItemListings(merchantOffers, tradesList2, 2);
+//            int randomIndex2 = this.random.nextInt(tradesList2.length);
+//            VillagerTrades.ItemListing trade2 = tradesList2[randomIndex2];
+//            MerchantOffer offer2 = trade2.getOffer(this, this.random);
+//            if (offer2 != null) {
+//                merchantOffers.add(offer2);
+//            }
+        }
+    }
+
+    public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
+        ItemStack itemInHand = pPlayer.getItemInHand(pHand);
+        if (!itemInHand.is(ChangShengJueItems.MALE_INNKEEPER_EGG.get()) && this.isAlive() && !this.isTrading() && !this.isBaby()) {
+            if (pHand == InteractionHand.MAIN_HAND) {
+                pPlayer.awardStat(Stats.TALKED_TO_VILLAGER);
+            }
+
+            if (this.getOffers().isEmpty()) {
+                return InteractionResult.sidedSuccess(this.level().isClientSide);
+            } else {
+                if (!this.level().isClientSide) {
+                    this.startTrading(pPlayer);
+                }
+
+                return InteractionResult.sidedSuccess(this.level().isClientSide);
+            }
+        } else {
+            return super.mobInteract(pPlayer, pHand);
+        }
     }
 
     @Override
@@ -166,7 +243,6 @@ public class KnifeGangLeader extends AbstractWuXia implements GeoEntity {
 
     @Override
     protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
-        super.populateDefaultEquipmentSlots(pRandom, pDifficulty);
         this.externalKungFuCapabilities = new ExternalKungFuManager().getRandomExternalKungFuCapabilities(this);
         this.internalKungFuCapability = new InterfaceKungFuManager().getRandomInterfaceKungFuCapability();
         if (this.externalKungFuCapabilities != null && this.internalKungFuCapability != null) {
@@ -248,6 +324,7 @@ public class KnifeGangLeader extends AbstractWuXia implements GeoEntity {
                 this.internalKungFuCapability.loadNBTData(pCompound);
             }
         }
+        this.entityData.set(DATA_ID_TYPE_VARIANT, pCompound.getInt("Variant"));
     }
 
     @Override
@@ -282,6 +359,7 @@ public class KnifeGangLeader extends AbstractWuXia implements GeoEntity {
         return PlayState.CONTINUE;
     }
 
+
     private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event){
         if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
             event.getController().setAnimation(DefaultAnimations.WALK);
@@ -301,4 +379,28 @@ public class KnifeGangLeader extends AbstractWuXia implements GeoEntity {
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
     }
+
+    /**
+     * 变异
+     * */
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_,
+                                        MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_,
+                                        @Nullable CompoundTag p_146750_) {
+        GangleaderVariant variant = Util.getRandom(GangleaderVariant.values(), this.random);
+        setVariant(variant);
+        return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
+    }
+
+    public GangleaderVariant getVariant() {
+        return GangleaderVariant.getById(this.getTypeVariant() & 255);
+    }
+
+    private int getTypeVariant() {
+        return this.entityData.get(DATA_ID_TYPE_VARIANT);
+    }
+
+    private void setVariant(GangleaderVariant variant) {
+        this.entityData.set(DATA_ID_TYPE_VARIANT, variant.getId() & 255);
+    }
+
 }

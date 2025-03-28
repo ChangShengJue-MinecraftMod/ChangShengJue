@@ -2,7 +2,6 @@ package com.shengchanshe.changshengjue.item.combat.lance;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapabilityProvider;
 import com.shengchanshe.changshengjue.entity.combat.lance.ThrownBaWangQiang;
-import com.shengchanshe.changshengjue.item.render.combat.lance.BaWangQiangRender;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;

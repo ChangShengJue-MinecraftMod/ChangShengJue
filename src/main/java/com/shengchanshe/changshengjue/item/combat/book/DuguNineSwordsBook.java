@@ -49,7 +49,9 @@ public class DuguNineSwordsBook extends Item {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-            pTooltipComponents.add(Component.translatable("tooltip.chang_sheng_jue.dugu_nine_swords.tooltip").withStyle(ChatFormatting.GRAY));
+        pTooltipComponents.add(Component.translatable("tooltip.chang_sheng_jue.dugu_nine_swords.tooltip").withStyle(ChatFormatting.GRAY));
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
+
+
 }

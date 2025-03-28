@@ -7,8 +7,6 @@ import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmansh
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import com.shengchanshe.changshengjue.item.combat.lance.Lance;
-import com.shengchanshe.changshengjue.item.render.combat.sword.SoftSwordRender;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.XuannuSwordsmanshipPacket;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;

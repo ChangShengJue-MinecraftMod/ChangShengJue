@@ -1,6 +1,6 @@
 {
   "type": "minecraft:jigsaw",
-  "biomes": "#chang_sheng_jue:has_structure/chang_sheng_jue_biome",
+  "biomes": "#forge:is_plains",
   "step": "surface_structures",
   "terrain_adaptation": "beard_thin",
   "exclusion_zone": {

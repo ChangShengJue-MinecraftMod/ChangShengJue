@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.kungfu.externalkunfu;
 
 import com.shengchanshe.changshengjue.entity.custom.wuxia.assassin.Assassin;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.GangLeader;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeader;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.knife.KnifeGangLeader;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.lance.LanceGangLeader;
@@ -80,8 +81,7 @@ public class ExternalKungFuManager {
         List<ExternalKungFu> availableKungFus = new ArrayList<>(Arrays.asList(ExternalKungFu.values()));
         List<ExternalKungFuCapability> externalKungFuCapabilities = new ArrayList<>();
 
-        // 如果实体不是牛，则从可用武功中移除RelentlessThrowingKnives
-        if (!(entity instanceof Assassin)) {
+        if (!(entity instanceof Assassin) && !(entity instanceof GangLeader)) {
             availableKungFus.remove(ExternalKungFu.RELENTLESS_THROWING_KNIVES);
         }
         //根据生物判断分配第一种外功
@@ -117,8 +117,26 @@ public class ExternalKungFuManager {
             availableKungFus.remove(ExternalKungFu.XUANNU_SWORDSMANSHIP);
         }
 
-        ExternalKungFu randomKungFu = availableKungFus.get(random.nextInt(availableKungFus.size()));
-        externalKungFuCapabilities.add(kungFuCapabilities.get(randomKungFu));
+        if (entity instanceof GangLeader){
+            availableKungFus.remove(ExternalKungFu.SHAOLIN_STICK_METHOD);
+            availableKungFus.remove(ExternalKungFu.DUGU_NINE_SWORDS);
+            availableKungFus.remove(ExternalKungFu.GAO_MARKSMANSHIP);
+            availableKungFus.remove(ExternalKungFu.GOLDEN_BLACK_KNIFE_METHOD);
+            availableKungFus.remove(ExternalKungFu.XUANNU_SWORDSMANSHIP);
+        }
+
+        if (entity instanceof GangLeader){
+            for (int i = 0; i < 2; i++) {
+                if (!availableKungFus.isEmpty()) {
+                    ExternalKungFu randomKungFu = availableKungFus.get(random.nextInt(availableKungFus.size()));
+                    externalKungFuCapabilities.add(kungFuCapabilities.get(randomKungFu));
+                    availableKungFus.remove(randomKungFu);
+                }
+            }
+        }else {
+            ExternalKungFu randomKungFu = availableKungFus.get(random.nextInt(availableKungFus.size()));
+            externalKungFuCapabilities.add(kungFuCapabilities.get(randomKungFu));
+        }
         return externalKungFuCapabilities;
     }
 
@@ -127,9 +145,14 @@ public class ExternalKungFuManager {
         Random random = new Random();
         List<ExternalKungFu> availableKungFus = new ArrayList<>(Arrays.asList(ExternalKungFu.values()));
 
-        // 如果实体不是牛，则从可用武功中移除RelentlessThrowingKnives
         if (!(entity instanceof Assassin)) {
             availableKungFus.remove(ExternalKungFu.RELENTLESS_THROWING_KNIVES);
+        }
+
+        if (entity instanceof Assassin){
+            availableKungFus.remove(ExternalKungFu.SHAOLIN_STICK_METHOD);
+            availableKungFus.remove(ExternalKungFu.GAO_MARKSMANSHIP);
+            availableKungFus.remove(ExternalKungFu.GOLDEN_BLACK_KNIFE_METHOD);
         }
 
         ExternalKungFu randomKungFu = availableKungFus.get(random.nextInt(availableKungFus.size()));

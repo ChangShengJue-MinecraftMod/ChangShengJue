@@ -186,7 +186,6 @@ public class Assassin extends AbstractWuXia implements GeoEntity , RangedAttackM
 
     @Override
     protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
-        super.populateDefaultEquipmentSlots(pRandom, pDifficulty);
         // 使用 KungFuManager 随机分配武功能力
         this.externalKungFuCapability = new ExternalKungFuManager().getRandomExternalKungFuCapability(this);
         this.internalKungFuCapability = new InterfaceKungFuManager().getRandomInterfaceKungFuCapability();
@@ -196,22 +195,6 @@ public class Assassin extends AbstractWuXia implements GeoEntity , RangedAttackM
                 this.setItemSlot(EquipmentSlot.MAINHAND, randomSword);
                 this.setItemSlot(EquipmentSlot.CHEST,
                         Objects.requireNonNull(this.getInternalKungFuItem(new ItemStack(ChangShengJueItems.DUGU_NINE_SWORDS.get()),
-                                INTERNAL_KUNGFU.get(0),INTERNAL_KUNGFU.get(1),INTERNAL_KUNGFU.get(2),INTERNAL_KUNGFU.get(3),INTERNAL_KUNGFU.get(4),new ItemStack(ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()))));
-            }else if (this.externalKungFuCapability instanceof GaoMarksmanship) {
-                this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ChangShengJueItems.RED_TASSELLED_SPEAR.get()));
-                this.setItemSlot(EquipmentSlot.CHEST,
-                        Objects.requireNonNull(this.getInternalKungFuItem(new ItemStack(ChangShengJueItems.GAO_MARKSMANSHIP.get()),
-                                INTERNAL_KUNGFU.get(0),INTERNAL_KUNGFU.get(1),INTERNAL_KUNGFU.get(2),INTERNAL_KUNGFU.get(3),INTERNAL_KUNGFU.get(4),new ItemStack(ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()))));
-            }else if (this.externalKungFuCapability instanceof GoldenBlackKnifeMethod){
-                ItemStack randomSword = KNIFE.get(random.nextInt(KNIFE.size()));
-                this.setItemSlot(EquipmentSlot.MAINHAND, randomSword);
-                this.setItemSlot(EquipmentSlot.CHEST,
-                        Objects.requireNonNull(this.getInternalKungFuItem(new ItemStack(ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()),
-                                INTERNAL_KUNGFU.get(0),INTERNAL_KUNGFU.get(1),INTERNAL_KUNGFU.get(2),INTERNAL_KUNGFU.get(3),INTERNAL_KUNGFU.get(4),new ItemStack(ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()))));
-            }else if (this.externalKungFuCapability instanceof ShaolinStickMethod) {
-                this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ChangShengJueItems.PAN_HUA_GUN.get()));
-                this.setItemSlot(EquipmentSlot.CHEST,
-                        Objects.requireNonNull(this.getInternalKungFuItem(new ItemStack(ChangShengJueItems.SHAOLIN_STICK_METHOD.get()),
                                 INTERNAL_KUNGFU.get(0),INTERNAL_KUNGFU.get(1),INTERNAL_KUNGFU.get(2),INTERNAL_KUNGFU.get(3),INTERNAL_KUNGFU.get(4),new ItemStack(ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()))));
             }else if (this.externalKungFuCapability instanceof XuannuSwordsmanship) {
                 this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ChangShengJueItems.SOFT_SWORD.get()));

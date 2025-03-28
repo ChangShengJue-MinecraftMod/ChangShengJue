@@ -84,28 +84,28 @@ import java.util.Random;
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJEvent {
 
-    @SubscribeEvent
-    public static void onVillagerInteract(PlayerInteractEvent.EntityInteractSpecific event) {
-        if (event.getTarget() instanceof Villager villager) {
-            CompoundTag villagerData = villager.getPersistentData();
-            // 检查是否已经尝试过职业变更
-            if (!villagerData.getBoolean("HasCheckedProfessionChange")) {
-                VillagerProfession profession = villager.getVillagerData().getProfession();
-                // 检查当前职业是否为ChangShengJue Hunter
-                if (profession == ChangShengJueVillagers.CHANG_SHENG_JUE_POTTER.get()) {
-                    Random random = new Random();
-                    if (random.nextInt(100) == 0) { // 1%的概率
-                        // 设置新职业为ChangShengJue Gatherer
-                        villager.setVillagerData(villager.getVillagerData().setProfession(ChangShengJueVillagers.CHANG_SHENG_JUE_POTTER_1.get()));
-                    }
-                }
-                // 标记已经进行过职业变更尝试
-                villagerData.putBoolean("HasCheckedProfessionChange", true);
-            }
-        }
-
-        ZhangMenXinxueEvent.onVillagerInteract(event);
-    }
+//    @SubscribeEvent
+//    public static void onVillagerInteract(PlayerInteractEvent.EntityInteractSpecific event) {
+//        if (event.getTarget() instanceof Villager villager) {
+//            CompoundTag villagerData = villager.getPersistentData();
+//            // 检查是否已经尝试过职业变更
+//            if (!villagerData.getBoolean("HasCheckedProfessionChange")) {
+//                VillagerProfession profession = villager.getVillagerData().getProfession();
+//                // 检查当前职业是否为ChangShengJue Hunter
+//                if (profession == ChangShengJueVillagers.CHANG_SHENG_JUE_POTTER.get()) {
+//                    Random random = new Random();
+//                    if (random.nextInt(100) == 0) { // 1%的概率
+//                        // 设置新职业为ChangShengJue Gatherer
+//                        villager.setVillagerData(villager.getVillagerData().setProfession(ChangShengJueVillagers.CHANG_SHENG_JUE_POTTER_1.get()));
+//                    }
+//                }
+//                // 标记已经进行过职业变更尝试
+//                villagerData.putBoolean("HasCheckedProfessionChange", true);
+//            }
+//        }
+//
+//        ZhangMenXinxueEvent.onVillagerInteract(event);
+//    }
 
     @SubscribeEvent
     public static void addCustomTrades(VillagerTradesEvent event) {
@@ -310,102 +310,102 @@ public class CSJEvent {
                 return new MerchantOffer(new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4), secondStack,32,30,0.05F);
             });
         }
-        if(event.getType() == ChangShengJueVillagers.CHANG_SHENG_JUE_POTTER_1.get()) {
-                Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
-                ItemStack stack = new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 2);
-                ItemStack[] stack1 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_1.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_2.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_3.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_4.get(), 32)};
-                ItemStack[] stack2 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_1.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_3.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get(), 32)};
-                ItemStack[] stack3 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_1.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_2.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_3.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get(), 32)};
-                ItemStack[] stack4 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.PAINTING_SCROLL.get(), 1),
-                        new ItemStack(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(), 1),
-                        new ItemStack(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(), 1),
-                        new ItemStack(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get(), 1),};
-                ItemStack[] stack5 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.PAINTING_SCROLL.get(), 1),
-                        new ItemStack(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(), 1),
-                        new ItemStack(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(), 1),
-                        new ItemStack(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get(), 1),
-                        new ItemStack(ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get(), 1)};
-                // 存储第一个交易的索引
-                final int[] firstIndex = new int[1];
-                // 添加两个不重复的交易
-                trades.get(1).add((trader, rand) -> {
-                    firstIndex[0] = rand.nextInt(stack1.length);
-                    ItemStack firstStack = stack1[firstIndex[0]];
-                    return new MerchantOffer(stack, firstStack,32,2,0.05F);
-                });
-                trades.get(1).add((trader, rand) -> {
-                    int secondIndex;
-                    do {
-                        secondIndex = rand.nextInt(stack1.length);
-                    } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
-                    ItemStack secondStack = stack1[secondIndex];
-                    return new MerchantOffer(stack, secondStack,32,2,0.05F);
-                });
-                trades.get(2).add((trader, rand) -> {
-                    firstIndex[0] = rand.nextInt(stack2.length);
-                    ItemStack firstStack = stack2[firstIndex[0]];
-                    return new MerchantOffer(stack,firstStack ,32,5,0.05F);
-                });
-                trades.get(2).add((trader, rand) -> {
-                    int secondIndex;
-                    do {
-                        secondIndex = rand.nextInt(stack2.length);
-                    } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
-                    ItemStack secondStack = stack2[secondIndex];
-                    return new MerchantOffer(stack,secondStack ,32,5,0.05F);
-                });
-                trades.get(3).add((trader, rand) -> {
-                    firstIndex[0] = rand.nextInt(stack3.length);
-                    ItemStack firstStack = stack3[firstIndex[0]];
-                    return new MerchantOffer(stack, firstStack,32,10,0.05F);
-                });
-                trades.get(3).add((trader, rand) -> {
-                    int secondIndex;
-                    do {
-                        secondIndex = rand.nextInt(stack3.length);
-                    } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
-                    ItemStack secondStack = stack3[secondIndex];
-                    return new MerchantOffer(stack, secondStack,32,10,0.05F);
-                });
-                trades.get(4).add((trader, rand) -> {
-                firstIndex[0] = rand.nextInt(stack4.length);
-                ItemStack firstStack = stack4[firstIndex[0]];
-                return new MerchantOffer(stack, firstStack,12,15,0.05F);
-            });
-                trades.get(4).add((trader, rand) -> {
-                int secondIndex;
-                do {
-                    secondIndex = rand.nextInt(stack4.length);
-                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
-                ItemStack secondStack = stack4[secondIndex];
-                return new MerchantOffer(stack, secondStack,12,15,0.05F);
-            });
-                trades.get(5).add((trader, rand) -> {
-                firstIndex[0] = rand.nextInt(stack5.length);
-                ItemStack firstStack = stack5[firstIndex[0]];
-                return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 1), firstStack,12,30,0.05F);
-            });
-                trades.get(5).add((trader, rand) -> {
-                int secondIndex;
-                do {
-                    secondIndex = rand.nextInt(stack5.length);
-                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
-                ItemStack secondStack = stack5[secondIndex];
-                return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 1), secondStack,12,30,0.05F);
-            });
-        }
+//        if(event.getType() == ChangShengJueVillagers.CHANG_SHENG_JUE_POTTER_1.get()) {
+//                Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+//                ItemStack stack = new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 2);
+//                ItemStack[] stack1 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_1.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_2.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_3.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_4.get(), 32)};
+//                ItemStack[] stack2 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_1.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_3.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get(), 32)};
+//                ItemStack[] stack3 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_1.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_2.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_3.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get(), 32)};
+//                ItemStack[] stack4 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.PAINTING_SCROLL.get(), 1),
+//                        new ItemStack(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(), 1),
+//                        new ItemStack(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(), 1),
+//                        new ItemStack(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get(), 1),};
+//                ItemStack[] stack5 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.PAINTING_SCROLL.get(), 1),
+//                        new ItemStack(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(), 1),
+//                        new ItemStack(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(), 1),
+//                        new ItemStack(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get(), 1),
+//                        new ItemStack(ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get(), 1)};
+//                // 存储第一个交易的索引
+//                final int[] firstIndex = new int[1];
+//                // 添加两个不重复的交易
+//                trades.get(1).add((trader, rand) -> {
+//                    firstIndex[0] = rand.nextInt(stack1.length);
+//                    ItemStack firstStack = stack1[firstIndex[0]];
+//                    return new MerchantOffer(stack, firstStack,32,2,0.05F);
+//                });
+//                trades.get(1).add((trader, rand) -> {
+//                    int secondIndex;
+//                    do {
+//                        secondIndex = rand.nextInt(stack1.length);
+//                    } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+//                    ItemStack secondStack = stack1[secondIndex];
+//                    return new MerchantOffer(stack, secondStack,32,2,0.05F);
+//                });
+//                trades.get(2).add((trader, rand) -> {
+//                    firstIndex[0] = rand.nextInt(stack2.length);
+//                    ItemStack firstStack = stack2[firstIndex[0]];
+//                    return new MerchantOffer(stack,firstStack ,32,5,0.05F);
+//                });
+//                trades.get(2).add((trader, rand) -> {
+//                    int secondIndex;
+//                    do {
+//                        secondIndex = rand.nextInt(stack2.length);
+//                    } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+//                    ItemStack secondStack = stack2[secondIndex];
+//                    return new MerchantOffer(stack,secondStack ,32,5,0.05F);
+//                });
+//                trades.get(3).add((trader, rand) -> {
+//                    firstIndex[0] = rand.nextInt(stack3.length);
+//                    ItemStack firstStack = stack3[firstIndex[0]];
+//                    return new MerchantOffer(stack, firstStack,32,10,0.05F);
+//                });
+//                trades.get(3).add((trader, rand) -> {
+//                    int secondIndex;
+//                    do {
+//                        secondIndex = rand.nextInt(stack3.length);
+//                    } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+//                    ItemStack secondStack = stack3[secondIndex];
+//                    return new MerchantOffer(stack, secondStack,32,10,0.05F);
+//                });
+//                trades.get(4).add((trader, rand) -> {
+//                firstIndex[0] = rand.nextInt(stack4.length);
+//                ItemStack firstStack = stack4[firstIndex[0]];
+//                return new MerchantOffer(stack, firstStack,12,15,0.05F);
+//            });
+//                trades.get(4).add((trader, rand) -> {
+//                int secondIndex;
+//                do {
+//                    secondIndex = rand.nextInt(stack4.length);
+//                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+//                ItemStack secondStack = stack4[secondIndex];
+//                return new MerchantOffer(stack, secondStack,12,15,0.05F);
+//            });
+//                trades.get(5).add((trader, rand) -> {
+//                firstIndex[0] = rand.nextInt(stack5.length);
+//                ItemStack firstStack = stack5[firstIndex[0]];
+//                return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 1), firstStack,12,30,0.05F);
+//            });
+//                trades.get(5).add((trader, rand) -> {
+//                int secondIndex;
+//                do {
+//                    secondIndex = rand.nextInt(stack5.length);
+//                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+//                ItemStack secondStack = stack5[secondIndex];
+//                return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 1), secondStack,12,30,0.05F);
+//            });
+//        }
         if(event.getType() == ChangShengJueVillagers.CHANG_SHENG_JUE_HUNTER.get()) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
             ItemStack stack = new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4);

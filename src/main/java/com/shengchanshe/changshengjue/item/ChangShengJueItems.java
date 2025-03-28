@@ -31,12 +31,9 @@ import com.shengchanshe.changshengjue.item.combat.sword.YiTianJian;
 import com.shengchanshe.changshengjue.item.combat.throwingknives.SevenThrowingKnives;
 import com.shengchanshe.changshengjue.item.combat.throwingknives.ThreeThrowingKnives;
 import com.shengchanshe.changshengjue.item.combat.throwingknives.ThrowingKnives;
+import com.shengchanshe.changshengjue.item.items.*;
 import com.shengchanshe.changshengjue.item.tiers.ChangShengJueArmorMaterials;
 import com.shengchanshe.changshengjue.item.foods.*;
-import com.shengchanshe.changshengjue.item.items.Crucible;
-import com.shengchanshe.changshengjue.item.items.LimeSlurryBarrels;
-import com.shengchanshe.changshengjue.item.items.PaintBrush;
-import com.shengchanshe.changshengjue.item.items.PeacockEggItem;
 import com.shengchanshe.changshengjue.item.tool.KaishanPickaxe;
 import com.shengchanshe.changshengjue.item.tool.XuanhuaAxe;
 import net.minecraft.core.Direction;
@@ -266,30 +263,35 @@ public class ChangShengJueItems {
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHANG_SHENG_JUE_VILLAGER,5651507,12422002,
                     new Item.Properties()));
     public static final RegistryObject<Item> WARRIOR_EGG = ITEMS.register("warrior_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.WARRIOR,0x808001,0x006401, new Item.Properties()));
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.WARRIOR,0x6a746c,0xb2a565, new Item.Properties()));
+
+    public static final RegistryObject<Item> KILN_WORKER_EGG = ITEMS.register("kiln_worker_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.KILN_WORKER,0x606357,0x456787, new Item.Properties()));
     //酒馆掌柜
     public static final RegistryObject<Item> MALE_INNKEEPER_EGG = ITEMS.register("male_innkeeper_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.MALE_INNKEEPER,0x801001,0x026401, new Item.Properties()));
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.MALE_INNKEEPER,0x636d48,0x4a4029, new Item.Properties()));
     public static final RegistryObject<Item> FEMALE_INNKEEPER_EGG = ITEMS.register("female_innkeeper_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.FEMALE_INNKEEPER,0x801001,0x026401, new Item.Properties()));
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.FEMALE_INNKEEPER,0xc37a4a,0xe3c77a, new Item.Properties()));
     public static final RegistryObject<Item> CHALLENGER_EGG = ITEMS.register("challenger_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHALLENGER,0x801001,0x026401, new Item.Properties()));
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHALLENGER,0xb2a58f,0x312116, new Item.Properties()));
     public static final RegistryObject<Item> BLACKSMITH_EGG = ITEMS.register("blacksmith_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.BLACKSMITH,0x801001,0x026401, new Item.Properties()));
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.BLACKSMITH,0x507281,0x875638, new Item.Properties()));
     public static final RegistryObject<Item> LANCE_GANG_LEADER_EGG = ITEMS.register("lance_gang_leader_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.LANCE_GANG_LEADER,0x801001,0x026401, new Item.Properties()));
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.LANCE_GANG_LEADER,0x233d43,0xc6c6c6, new Item.Properties()));
     public static final RegistryObject<Item> KNIFE_GANG_LEADER_EGG = ITEMS.register("knife_gang_leader_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.KNIFE_GANG_LEADER,0x801001,0x026401, new Item.Properties()));
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.KNIFE_GANG_LEADER,0x53452c,0x18150d, new Item.Properties()));
     public static final RegistryObject<Item> SWORD_GANG_LEADER_EGG = ITEMS.register("sword_gang_leader_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.SWORD_GANG_LEADER,0x801001,0x026401, new Item.Properties()));
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.SWORD_GANG_LEADER,0x501d1d,0x1d0a0a, new Item.Properties()));
     public static final RegistryObject<Item> CLUBBED_GANG_LEADER_EGG = ITEMS.register("clubbed_gang_leader_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CLUBBED_GANG_LEADER,0x801001,0x026401, new Item.Properties()));
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CLUBBED_GANG_LEADER,0x434463,0x0f0e1b, new Item.Properties()));
+    public static final RegistryObject<Item> GANG_LEADER_EGG = ITEMS.register("gang_leader_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.GANG_LEADER,0x431463,0x0f1e1b, new Item.Properties()));
     public static final RegistryObject<Item> BANDIT_EGG = ITEMS.register("bandit_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.BANDIT,0x801001,0x026401, new Item.Properties()));
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.BANDIT,0x405647,0xc49f76, new Item.Properties()));
     public static final RegistryObject<Item> VILLAIN_EGG = ITEMS.register("villain_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.VILLAIN,0x801001,0x026401, new Item.Properties()));
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.VILLAIN,0x405257,0x34423e, new Item.Properties()));
     public static final RegistryObject<Item> ASSASSIN_EGG = ITEMS.register("assassin_egg",
-            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.ASSASSIN,0x801001,0x026401, new Item.Properties()));
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.ASSASSIN,0x404040,0x404040, new Item.Properties()));
     public static final RegistryObject<Item> PIGLIN_WU_XIA_EGG = ITEMS.register("piglin_wu_xia_egg",
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.PIGLIN_WU_XIA,10051392, 16380836, new Item.Properties()));
     public static final RegistryObject<Item> WITCH_WU_XIA_EGG = ITEMS.register("witch_wu_xia_egg",
@@ -384,12 +386,10 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> AG_INGOT = ITEMS.register("ag_ingot",
             ()-> new Item((new Item.Properties())));
     //砖
-    public static final RegistryObject<Item> BLACK_BRICKS = ITEMS.register("black_bricks",
-            ()-> new Item((new Item.Properties())));
-    public static final RegistryObject<Item> WHITE_BRICKS_ITEM = ITEMS.register("white_bricks_item",
-            ()-> new Item((new Item.Properties())));
-    public static final RegistryObject<Item> GOLD_BRICKS = ITEMS.register("gold_bricks",
-            ()-> new Item((new Item.Properties())));
+    public static final RegistryObject<Item> BLACK_BRICKS = ITEMS.register("black_bricks", ()-> new Item((new Item.Properties())));
+    public static final RegistryObject<Item> WHITE_BRICKS_ITEM = ITEMS.register("white_bricks_item", ()-> new Item((new Item.Properties())));
+    public static final RegistryObject<Item> GOLD_BRICKS = ITEMS.register("gold_bricks", ()-> new Item((new Item.Properties())));
+
 
     //工具
     public static final RegistryObject<Item> KAISHAN_PICKAXE = ITEMS.register("kaishan_pickaxe", KaishanPickaxe::new);
@@ -568,6 +568,12 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> CRUCIBLE_LIQUID_COPPER = ITEMS.register("crucible_liquid_copper", Crucible::new);
     public static final RegistryObject<Item> CRUCIBLE_LIQUID_SILVER = ITEMS.register("crucible_liquid_silver", Crucible::new);
     public static final RegistryObject<Item> CRUCIBLE_LIQUID_GOLD = ITEMS.register("crucible_liquid_gold", Crucible::new);
+
+    //包裹
+    public static final RegistryObject<Item> COTTON_ARMOR_PARCEL = ITEMS.register("cotton_armor_parcel", Parcel::new);
+    public static final RegistryObject<Item> MOUNTAIN_PATTERN_ARMOR_PARCEL = ITEMS.register("mountain_pattern_armor_parcel", Parcel::new);
+    public static final RegistryObject<Item> THE_GREAT_GENERAL_MINGGUANG_ARMOR_PARCEL = ITEMS.register("the_great_general_mingguang_armor_parcel", Parcel::new);
+
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

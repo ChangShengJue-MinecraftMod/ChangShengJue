@@ -38,10 +38,11 @@ public class ChangShengJueVillagers {
             ()-> new VillagerProfession("chang_sheng_jue_potter",
                     poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_POTTER_POT.get(), poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_POTTER_POT.get(),
                     ImmutableSet.of(),ImmutableSet.of(), SoundEvents.VILLAGER_WORK_WEAPONSMITH));
-    public static final RegistryObject<VillagerProfession> CHANG_SHENG_JUE_POTTER_1 = VILLAGER_PROFESSION.register("chang_sheng_jue_potter_1",
-            ()-> new VillagerProfession("chang_sheng_jue_potter_1",
-                    poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_POTTER_POT.get(), poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_POTTER_POT.get(),
-                    ImmutableSet.of(),ImmutableSet.of(), SoundEvents.VILLAGER_WORK_TOOLSMITH));
+
+//    public static final RegistryObject<VillagerProfession> CHANG_SHENG_JUE_POTTER_1 = VILLAGER_PROFESSION.register("chang_sheng_jue_potter_1",
+//            ()-> new VillagerProfession("chang_sheng_jue_potter_1",
+//                    poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_POTTER_POT.get(), poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_POTTER_POT.get(),
+//                    ImmutableSet.of(),ImmutableSet.of(), SoundEvents.VILLAGER_WORK_TOOLSMITH));
 
     public static final RegistryObject<VillagerProfession> CHANG_SHENG_JUE_HUNTER = VILLAGER_PROFESSION.register("chang_sheng_jue_hunter",
             ()-> new VillagerProfession("chang_sheng_jue_hunter",

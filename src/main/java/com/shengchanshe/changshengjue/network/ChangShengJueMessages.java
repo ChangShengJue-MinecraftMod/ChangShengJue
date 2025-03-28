@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.network;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.network.packet.effect.EffectEntityPacket;
 import com.shengchanshe.changshengjue.network.packet.food.FoodPacket;
+import com.shengchanshe.changshengjue.network.packet.gui.KilnWorkerSetTradeTypePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket2;
@@ -22,7 +23,7 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.wu_gang_cut_gui.WuGangCutGuiPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.wu_gang_cut_gui.WuGangCutGuiPacket1;
-import com.shengchanshe.changshengjue.screen.plaque.UpdatePlaqueTextPacket;
+import com.shengchanshe.changshengjue.cilent.gui.screens.plaque.UpdatePlaqueTextPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -227,6 +228,12 @@ public class ChangShengJueMessages {
                 .decoder(FoodPacket::new)
                 .encoder(FoodPacket::toBytes)
                 .consumerMainThread(FoodPacket::handle)
+                .add();
+        //按钮切换交易类型
+        net.messageBuilder(KilnWorkerSetTradeTypePacket.class, id())
+                .decoder(KilnWorkerSetTradeTypePacket::decode)
+                .encoder(KilnWorkerSetTradeTypePacket::encode)
+                .consumerMainThread( KilnWorkerSetTradeTypePacket::handle)
                 .add();
     }
 

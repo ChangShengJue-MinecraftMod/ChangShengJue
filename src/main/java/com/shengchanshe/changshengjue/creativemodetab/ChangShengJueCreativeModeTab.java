@@ -599,6 +599,9 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.XUANHUA_AXE.get());
                 output.accept(ChangShengJueItems.KAISHAN_PICKAXE.get());
                 output.accept(ChangShengJueItems.GANG_TOKEN.get());
+                output.accept(ChangShengJueItems.COTTON_ARMOR_PARCEL.get());
+                output.accept(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_PARCEL.get());
+                output.accept(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_PARCEL.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_SPAWN_EGGS = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_spawn_eggs",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_spawn_eggs")).icon(() ->
@@ -616,6 +619,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.CROC_EGG.get());
                 output.accept(ChangShengJueItems.CHANG_SHENG_JUE_VILLAGER_EGG.get());
                 output.accept(ChangShengJueItems.WARRIOR_EGG.get());
+                output.accept(ChangShengJueItems.KILN_WORKER_EGG.get());
                 output.accept(ChangShengJueItems.MALE_INNKEEPER_EGG.get());
                 output.accept(ChangShengJueItems.FEMALE_INNKEEPER_EGG.get());
                 output.accept(ChangShengJueItems.CHALLENGER_EGG.get());
@@ -624,6 +628,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.KNIFE_GANG_LEADER_EGG.get());
                 output.accept(ChangShengJueItems.SWORD_GANG_LEADER_EGG.get());
                 output.accept(ChangShengJueItems.CLUBBED_GANG_LEADER_EGG.get());
+                output.accept(ChangShengJueItems.GANG_LEADER_EGG.get());
                 output.accept(ChangShengJueItems.BANDIT_EGG.get());
                 output.accept(ChangShengJueItems.VILLAIN_EGG.get());
                 output.accept(ChangShengJueItems.ASSASSIN_EGG.get());

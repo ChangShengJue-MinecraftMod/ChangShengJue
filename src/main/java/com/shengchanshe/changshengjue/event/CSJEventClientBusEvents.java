@@ -29,6 +29,7 @@ import com.shengchanshe.changshengjue.entity.custom.peacock.egg.PeacockEggRender
 import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntityRender;
 import com.shengchanshe.changshengjue.entity.decoration.seat.SeatRender;
 import com.shengchanshe.changshengjue.entity.villagers.warrior.WarriorModel;
+import com.shengchanshe.changshengjue.entity.villagers.worker.KilnWorkerModel;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import com.shengchanshe.changshengjue.particle.custom.PoplarDefoliationParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendParticle;
@@ -145,6 +146,7 @@ public class CSJEventClientBusEvents {
     public static void registerEntityLayers(EntityRenderersEvent.RegisterLayerDefinitions evt) {
         evt.registerLayerDefinition(StakesModel.LAYER_LOCATION, StakesModel::createBodyLayer);
         evt.registerLayerDefinition(WarriorModel.LAYER_LOCATION, WarriorModel::createBodyLayer);
+        evt.registerLayerDefinition(KilnWorkerModel.LAYER_LOCATION, KilnWorkerModel::createBodyLayer);
     }
 
     @SubscribeEvent

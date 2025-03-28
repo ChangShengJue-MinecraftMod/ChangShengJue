@@ -1,8 +1,10 @@
 package com.shengchanshe.changshengjue.util;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
-import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
-import com.shengchanshe.changshengjue.block.entity.render.WeaponRackRender;
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.blacksmith.BlacksmithScreen;
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingScreen;
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.innkeeper.InnkeeperScreen;
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.worker.KilnWorkerScreen;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.combat.beat_dog_stick.BeatDogStickAttackEntityRender;
 import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntityRender;
@@ -31,6 +33,7 @@ import com.shengchanshe.changshengjue.entity.custom.wuxia.bandit.BanditRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.blacksmith.BlacksmithRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.challenger.ChallengerRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.evoker.EvokerWuXiaRenderer;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.GangLeaderRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeaderRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.knife.KnifeGangLeaderRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.lance.LanceGangLeaderRenderer;
@@ -44,17 +47,17 @@ import com.shengchanshe.changshengjue.entity.custom.wuxia.vindicator.VindicatorW
 import com.shengchanshe.changshengjue.entity.custom.wuxia.witch.WitchWuXiaRenderer;
 import com.shengchanshe.changshengjue.entity.villagers.render.ChangShengJueVillagerRender;
 import com.shengchanshe.changshengjue.entity.villagers.warrior.WarriorRenderer;
+import com.shengchanshe.changshengjue.entity.villagers.worker.KilnWorkerRenderer;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.item.combat.armor.DyeableChineseWeddingDressItem;
 import com.shengchanshe.changshengjue.item.combat.armor.DyeableItem;
-import com.shengchanshe.changshengjue.screen.ChangShengJueMenuTypes;
-import com.shengchanshe.changshengjue.screen.plaque.PlaqueScreen;
+import com.shengchanshe.changshengjue.cilent.gui.screens.ChangShengJueMenuTypes;
+import com.shengchanshe.changshengjue.cilent.gui.screens.plaque.PlaqueScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -444,6 +447,10 @@ public class ClientSetup {
         }
 
         MenuScreens.register(ChangShengJueMenuTypes.PLAQUE_MENU.get(), PlaqueScreen::new);
+        MenuScreens.register(ChangShengJueMenuTypes.INNKEEPER_MENU.get(), InnkeeperScreen::new);
+        MenuScreens.register(ChangShengJueMenuTypes.BLACKSMITH_MENU.get(), BlacksmithScreen::new);
+        MenuScreens.register(ChangShengJueMenuTypes.KILNWORKER_MENU.get(), KilnWorkerScreen::new);
+        MenuScreens.register(ChangShengJueMenuTypes.GANGLEADER_MENU.get(), GangleaderTradingScreen::new);
 
         EntityRenderers.register(ChangShengJueEntity.BUTTERFLY.get(), ButterflyRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.MONKEY.get(), MonkeyRenderer::new);
@@ -473,6 +480,7 @@ public class ClientSetup {
         EntityRenderers.register(ChangShengJueEntity.STAKES.get(), StakesRender::new);
 
         EntityRenderers.register(ChangShengJueEntity.WARRIOR.get(), WarriorRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.KILN_WORKER.get(), KilnWorkerRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.MALE_INNKEEPER.get(), MaleInnkeeperRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.FEMALE_INNKEEPER.get(), FemaleInnkeeperRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.CHALLENGER.get(), ChallengerRenderer::new);
@@ -481,6 +489,7 @@ public class ClientSetup {
         EntityRenderers.register(ChangShengJueEntity.KNIFE_GANG_LEADER.get(), KnifeGangLeaderRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.SWORD_GANG_LEADER.get(), SwordGangLeaderRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.CLUBBED_GANG_LEADER.get(), ClubbedGangLeaderRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.GANG_LEADER.get(), GangLeaderRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.BANDIT.get(), BanditRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.VILLAIN.get(), VillainRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.ASSASSIN.get(), AssassinRenderer::new);

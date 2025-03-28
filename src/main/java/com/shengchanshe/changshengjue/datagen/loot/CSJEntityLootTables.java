@@ -243,6 +243,17 @@ public class CSJEntityLootTables extends EntityLootSubProvider {
                                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 10.0F)))
                                         .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
         );
+        this.add(ChangShengJueEntity.GANG_LEADER.get(),
+                LootTable.lootTable().withPool(
+                                LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                        .add(LootItem.lootTableItem(Items.GOLD_INGOT)
+                                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 6.0F)))
+                                                .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+                        .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
+                                .add(LootItem.lootTableItem(ChangShengJueItems.GANG_TOKEN.get())
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 10.0F)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))))
+        );
         this.add(ChangShengJueEntity.BANDIT.get(),
                 LootTable.lootTable().withPool(
                                 LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
@@ -302,6 +313,7 @@ public class CSJEntityLootTables extends EntityLootSubProvider {
 
         this.add(ChangShengJueEntity.PIGLIN_WU_XIA.get(), LootTable.lootTable());
         this.add(ChangShengJueEntity.PILLAGER_WU_XIA.get(), LootTable.lootTable());
+        this.add(ChangShengJueEntity.KILN_WORKER.get(), LootTable.lootTable());
 
         /*无掉落*/
         // 蝴蝶掉落
