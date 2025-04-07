@@ -37,8 +37,6 @@ public class Durian extends NoBoxTypeBlock{
                 level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ChangShengJueItems.OPEN_DURIAN.get())));
                 level.destroyBlock(pos, false);
                 level.playSound(null, pos, SoundEvents.AXE_STRIP, SoundSource.PLAYERS, 0.8F, 0.8F);
-            }else{
-                player.displayClientMessage(Component.translatable("block.changshengjue.durian.noaxe"), true);
             }
             return InteractionResult.SUCCESS;
         }

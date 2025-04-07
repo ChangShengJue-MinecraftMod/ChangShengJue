@@ -90,239 +90,239 @@ public class WeaponRack extends BaseEntityBlock {
     // 在类顶部定义所有方向的形状常量（单位：像素/16）
     // 北方向基准形状
     private static final VoxelShape SHAPE_NORTH_SINGLE = Stream.of(
-            Block.box(14, 0, 6, 16, 2, 8),
-            Block.box(14, 0, 14, 16, 16, 16),
-            Block.box(14, 13, 11, 16, 15, 14),
-            Block.box(0, 0, 14, 2, 16, 16),
-            Block.box(0, 0, 6, 2, 2, 8),
-            Block.box(14, 3, 6, 16, 6, 8),
-            Block.box(0, 3, 6, 2, 6, 8),
-            Block.box(14, 5, 7, 16, 8, 9),
-            Block.box(0, 5, 7, 2, 8, 9),
-            Block.box(14, 7, 8, 16, 10, 10),
-            Block.box(0, 7, 8, 2, 10, 10),
-            Block.box(14, 9, 9, 16, 12, 11),
-            Block.box(0, 9, 9, 2, 12, 11),
-            Block.box(14, 11, 10, 16, 14, 12),
-            Block.box(0, 11, 10, 2, 14, 12),
-            Block.box(0, 13, 11, 2, 15, 14),
-            Block.box(0, 2, 6, 16, 3, 14),
-            Block.box(2, 2, 14, 14, 3, 16),
-            Block.box(2, 14, 14, 14, 15, 16),
-            Block.box(2, 9, 9, 14, 10, 11)
+            Block.box(14, 0, 11, 16, 16, 13),
+            Block.box(14, 11, 7, 16, 14, 9),
+            Block.box(14, 9, 6, 16, 12, 8),
+            Block.box(14, 7, 5, 16, 10, 7),
+            Block.box(14, 5, 4, 16, 8, 6),
+            Block.box(14, 3, 3, 16, 6, 5),
+            Block.box(0, 11, 7, 2, 14, 9),
+            Block.box(0, 9, 6, 2, 12, 8),
+            Block.box(0, 7, 5, 2, 10, 7),
+            Block.box(0, 5, 4, 2, 8, 6),
+            Block.box(0, 3, 3, 2, 6, 5),
+            Block.box(14, 0, 3, 16, 2, 5),
+            Block.box(0, 2, 3, 16, 3, 11),
+            Block.box(14, 13, 8, 16, 15, 11),
+            Block.box(2, 2, 11, 14, 3, 13),
+            Block.box(2, 14, 11, 14, 15, 13),
+            Block.box(2, 7, 5, 14, 8, 7),
+            Block.box(0, 13, 8, 2, 15, 11),
+            Block.box(0, 0, 3, 2, 2, 5),
+            Block.box(0, 0, 11, 2, 16, 13)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();// 独立状态
     private static final VoxelShape SHAPE_NORTH_LEFT = Stream.of(
-            Block.box(14, 0, 6, 16, 2, 8),
-            Block.box(14, 0, 14, 16, 16, 16),
-            Block.box(14, 13, 11, 16, 15, 14),
-            Block.box(0, 9, 9, 14, 10, 11),
-            Block.box(0, 14, 14, 14, 15, 16),
-            Block.box(0, 2, 14, 14, 3, 16),
-            Block.box(0, 2, 6, 16, 3, 14),
-            Block.box(14, 3, 6, 16, 6, 8),
-            Block.box(14, 5, 7, 16, 8, 9),
-            Block.box(14, 9, 9, 16, 12, 11),
-            Block.box(14, 7, 8, 16, 10, 10),
-            Block.box(14, 11, 10, 16, 14, 12)
+            Block.box(14, 0, 3, 16, 2, 5),
+            Block.box(0, 7, 5, 14, 8, 7),
+            Block.box(14, 0, 11, 16, 16, 13),
+            Block.box(14, 13, 8, 16, 15, 11),
+            Block.box(0, 14, 11, 14, 15, 13),
+            Block.box(0, 2, 11, 14, 3, 13),
+            Block.box(0, 2, 3, 16, 3, 11),
+            Block.box(14, 3, 3, 16, 6, 5),
+            Block.box(14, 5, 4, 16, 8, 6),
+            Block.box(14, 9, 6, 16, 12, 8),
+            Block.box(14, 7, 5, 16, 10, 7),
+            Block.box(14, 11, 7, 16, 14, 9)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();// 左端
     private static final VoxelShape SHAPE_NORTH_RIGHT = Stream.of(
-            Block.box(0, 0, 14, 2, 16, 16),
-            Block.box(0, 0, 6, 2, 2, 8),
-            Block.box(0, 13, 11, 2, 15, 14),
-            Block.box(0, 2, 6, 16, 3, 14),
-            Block.box(2, 2, 14, 16, 3, 16),
-            Block.box(2, 14, 14, 16, 15, 16),
-            Block.box(2, 9, 9, 16, 10, 11),
-            Block.box(0, 3, 6, 2, 6, 8),
-            Block.box(0, 5, 7, 2, 8, 9),
-            Block.box(0, 9, 9, 2, 12, 11),
-            Block.box(0, 7, 8, 2, 10, 10),
-            Block.box(0, 11, 10, 2, 14, 12)
+            Block.box(0, 0, 11, 2, 16, 13),
+            Block.box(2, 7, 5, 16, 8, 7),
+            Block.box(0, 0, 3, 2, 2, 5),
+            Block.box(0, 13, 8, 2, 15, 11),
+            Block.box(0, 2, 3, 16, 3, 11),
+            Block.box(2, 2, 11, 16, 3, 13),
+            Block.box(2, 14, 11, 16, 15, 13),
+            Block.box(0, 3, 3, 2, 6, 5),
+            Block.box(0, 5, 4, 2, 8, 6),
+            Block.box(0, 9, 6, 2, 12, 8),
+            Block.box(0, 7, 5, 2, 10, 7),
+            Block.box(0, 11, 7, 2, 14, 9)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
             // 右端
     private static final VoxelShape SHAPE_NORTH_MIDDLE = Stream.of(
-            Block.box(0, 2, 6, 16, 3, 14),
-            Block.box(0, 2, 14, 16, 3, 16),
-            Block.box(0, 14, 14, 16, 15, 16),
-            Block.box(0, 9, 9, 16, 10, 11),
-            Block.box(6.5, 0, 10, 8.5, 2, 12)
+                    Block.box(0, 2, 3, 16, 3, 11),
+                    Block.box(0, 2, 11, 16, 3, 13),
+                    Block.box(0, 14, 11, 16, 15, 13),
+                    Block.box(7, 0, 7, 9, 2, 9),
+                    Block.box(0, 7, 5, 16, 8, 7)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();// 中间
 
     // 东方向形状（根据实际模型调整坐标）
     private static final VoxelShape SHAPE_EAST_SINGLE = Stream.of(
-            Block.box(8, 0, 14, 10, 2, 16),
-            Block.box(0, 0, 14, 2, 16, 16),
-            Block.box(2, 13, 14, 5, 15, 16),
-            Block.box(0, 0, 0, 2, 16, 2),
-            Block.box(8, 0, 0, 10, 2, 2),
-            Block.box(8, 3, 14, 10, 6, 16),
-            Block.box(8, 3, 0, 10, 6, 2),
-            Block.box(7, 5, 14, 9, 8, 16),
-            Block.box(7, 5, 0, 9, 8, 2),
-            Block.box(6, 7, 14, 8, 10, 16),
-            Block.box(6, 7, 0, 8, 10, 2),
-            Block.box(5, 9, 14, 7, 12, 16),
-            Block.box(5, 9, 0, 7, 12, 2),
-            Block.box(4, 11, 14, 6, 14, 16),
-            Block.box(4, 11, 0, 6, 14, 2),
-            Block.box(2, 13, 0, 5, 15, 2),
-            Block.box(2, 2, 0, 10, 3, 16),
-            Block.box(0, 2, 2, 2, 3, 14),
-            Block.box(0, 14, 2, 2, 15, 14),
-            Block.box(5, 9, 2, 7, 10, 14)
+            Block.box(3, 0, 14, 5, 16, 16),
+            Block.box(7, 11, 14, 9, 14, 16),
+            Block.box(8, 9, 14, 10, 12, 16),
+            Block.box(9, 7, 14, 11, 10, 16),
+            Block.box(10, 5, 14, 12, 8, 16),
+            Block.box(11, 3, 14, 13, 6, 16),
+            Block.box(7, 11, 0, 9, 14, 2),
+            Block.box(8, 9, 0, 10, 12, 2),
+            Block.box(9, 7, 0, 11, 10, 2),
+            Block.box(10, 5, 0, 12, 8, 2),
+            Block.box(11, 3, 0, 13, 6, 2),
+            Block.box(11, 0, 14, 13, 2, 16),
+            Block.box(5, 2, 0, 13, 3, 16),
+            Block.box(5, 13, 14, 8, 15, 16),
+            Block.box(3, 2, 2, 5, 3, 14),
+            Block.box(3, 14, 2, 5, 15, 14),
+            Block.box(9, 7, 2, 11, 8, 14),
+            Block.box(5, 13, 0, 8, 15, 2),
+            Block.box(11, 0, 0, 13, 2, 2),
+            Block.box(3, 0, 0, 5, 16, 2)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     private static final VoxelShape SHAPE_EAST_LEFT = Stream.of(
-            Block.box(8, 0, 14, 10, 2, 16),
-            Block.box(0, 0, 14, 2, 16, 16),
-            Block.box(2, 13, 14, 5, 15, 16),
-            Block.box(5, 9, 0, 7, 10, 14),
-            Block.box(0, 14, 0, 2, 15, 14),
-            Block.box(0, 2, 0, 2, 3, 14),
-            Block.box(2, 2, 0, 10, 3, 16),
-            Block.box(8, 3, 14, 10, 6, 16),
-            Block.box(7, 5, 14, 9, 8, 16),
-            Block.box(5, 9, 14, 7, 12, 16),
-            Block.box(6, 7, 14, 8, 10, 16),
-            Block.box(4, 11, 14, 6, 14, 16)
+            Block.box(11, 0, 14, 13, 2, 16),
+            Block.box(9, 7, 0, 11, 8, 14),
+            Block.box(3, 0, 14, 5, 16, 16),
+            Block.box(5, 13, 14, 8, 15, 16),
+            Block.box(3, 14, 0, 5, 15, 14),
+            Block.box(3, 2, 0, 5, 3, 14),
+            Block.box(5, 2, 0, 13, 3, 16),
+            Block.box(11, 3, 14, 13, 6, 16),
+            Block.box(10, 5, 14, 12, 8, 16),
+            Block.box(8, 9, 14, 10, 12, 16),
+            Block.box(9, 7, 14, 11, 10, 16),
+            Block.box(7, 11, 14, 9, 14, 16)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     private static final VoxelShape SHAPE_EAST_RIGHT = Stream.of(
-            Block.box(0, 0, 0, 2, 16, 2),
-            Block.box(8, 0, 0, 10, 2, 2),
-            Block.box(2, 13, 0, 5, 15, 2),
-            Block.box(2, 2, 0, 10, 3, 16),
-            Block.box(0, 2, 2, 2, 3, 16),
-            Block.box(0, 14, 2, 2, 15, 16),
-            Block.box(5, 9, 2, 7, 10, 16),
-            Block.box(8, 3, 0, 10, 6, 2),
-            Block.box(7, 5, 0, 9, 8, 2),
-            Block.box(5, 9, 0, 7, 12, 2),
-            Block.box(6, 7, 0, 8, 10, 2),
-            Block.box(4, 11, 0, 6, 14, 2)
+            Block.box(3, 0, 0, 5, 16, 2),
+            Block.box(9, 7, 2, 11, 8, 16),
+            Block.box(11, 0, 0, 13, 2, 2),
+            Block.box(5, 13, 0, 8, 15, 2),
+            Block.box(5, 2, 0, 13, 3, 16),
+            Block.box(3, 2, 2, 5, 3, 16),
+            Block.box(3, 14, 2, 5, 15, 16),
+            Block.box(11, 3, 0, 13, 6, 2),
+            Block.box(10, 5, 0, 12, 8, 2),
+            Block.box(8, 9, 0, 10, 12, 2),
+            Block.box(9, 7, 0, 11, 10, 2),
+            Block.box(7, 11, 0, 9, 14, 2)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     private static final VoxelShape SHAPE_EAST_MIDDLE = Stream.of(
-            Block.box(2, 2, 0, 10, 3, 16),
-            Block.box(0, 2, 0, 2, 3, 16),
-            Block.box(0, 14, 0, 2, 15, 16),
-            Block.box(5, 9, 0, 7, 10, 16),
-            Block.box(7.5, 0, 4, 9.5, 2, 6)
+            Block.box(5, 2, 0, 13, 3, 16),
+            Block.box(3, 2, 0, 5, 3, 16),
+            Block.box(3, 14, 0, 5, 15, 16),
+            Block.box(7, 0, 7, 9, 2, 9),
+            Block.box(9, 7, 0, 11, 8, 16)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
     // 南方向形状
     private static final VoxelShape SHAPE_SOUTH_SINGLE = Stream.of(
-            Block.box(0, 0, 8, 2, 2, 10),
-            Block.box(0, 0, 0, 2, 16, 2),
-            Block.box(0, 13, 2, 2, 15, 5),
-            Block.box(14, 0, 0, 16, 16, 2),
-            Block.box(14, 0, 8, 16, 2, 10),
-            Block.box(0, 3, 8, 2, 6, 10),
-            Block.box(14, 3, 8, 16, 6, 10),
-            Block.box(0, 5, 7, 2, 8, 9),
-            Block.box(14, 5, 7, 16, 8, 9),
-            Block.box(0, 7, 6, 2, 10, 8),
-            Block.box(14, 7, 6, 16, 10, 8),
-            Block.box(0, 9, 5, 2, 12, 7),
-            Block.box(14, 9, 5, 16, 12, 7),
-            Block.box(0, 11, 4, 2, 14, 6),
-            Block.box(14, 11, 4, 16, 14, 6),
-            Block.box(14, 13, 2, 16, 15, 5),
-            Block.box(0, 2, 2, 16, 3, 10),
-            Block.box(2, 2, 0, 14, 3, 2),
-            Block.box(2, 14, 0, 14, 15, 2),
-            Block.box(2, 9, 5, 14, 10, 7)
+            Block.box(0, 0, 3, 2, 16, 5),
+            Block.box(0, 11, 7, 2, 14, 9),
+            Block.box(0, 9, 8, 2, 12, 10),
+            Block.box(0, 7, 9, 2, 10, 11),
+            Block.box(0, 5, 10, 2, 8, 12),
+            Block.box(0, 3, 11, 2, 6, 13),
+            Block.box(14, 11, 7, 16, 14, 9),
+            Block.box(14, 9, 8, 16, 12, 10),
+            Block.box(14, 7, 9, 16, 10, 11),
+            Block.box(14, 5, 10, 16, 8, 12),
+            Block.box(14, 3, 11, 16, 6, 13),
+            Block.box(0, 0, 11, 2, 2, 13),
+            Block.box(0, 2, 5, 16, 3, 13),
+            Block.box(0, 13, 5, 2, 15, 8),
+            Block.box(2, 2, 3, 14, 3, 5),
+            Block.box(2, 14, 3, 14, 15, 5),
+            Block.box(2, 7, 9, 14, 8, 11),
+            Block.box(14, 13, 5, 16, 15, 8),
+            Block.box(14, 0, 11, 16, 2, 13),
+            Block.box(14, 0, 3, 16, 16, 5)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     private static final VoxelShape SHAPE_SOUTH_LEFT = Stream.of(
-            Block.box(0, 0, 8, 2, 2, 10),
-            Block.box(0, 0, 0, 2, 16, 2),
-            Block.box(0, 13, 2, 2, 15, 5),
-            Block.box(2, 9, 5, 16, 10, 7),
-            Block.box(2, 14, 0, 16, 15, 2),
-            Block.box(2, 2, 0, 16, 3, 2),
-            Block.box(0, 2, 2, 16, 3, 10),
-            Block.box(0, 3, 8, 2, 6, 10),
-            Block.box(0, 5, 7, 2, 8, 9),
-            Block.box(0, 9, 5, 2, 12, 7),
-            Block.box(0, 7, 6, 2, 10, 8),
-            Block.box(0, 11, 4, 2, 14, 6)
+            Block.box(0, 0, 11, 2, 2, 13),
+            Block.box(2, 7, 9, 16, 8, 11),
+            Block.box(0, 0, 3, 2, 16, 5),
+            Block.box(0, 13, 5, 2, 15, 8),
+            Block.box(2, 14, 3, 16, 15, 5),
+            Block.box(2, 2, 3, 16, 3, 5),
+            Block.box(0, 2, 5, 16, 3, 13),
+            Block.box(0, 3, 11, 2, 6, 13),
+            Block.box(0, 5, 10, 2, 8, 12),
+            Block.box(0, 9, 8, 2, 12, 10),
+            Block.box(0, 7, 9, 2, 10, 11),
+            Block.box(0, 11, 7, 2, 14, 9)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     private static final VoxelShape SHAPE_SOUTH_RIGHT = Stream.of(
-            Block.box(14, 0, 0, 16, 16, 2),
-            Block.box(14, 0, 8, 16, 2, 10),
-            Block.box(14, 13, 2, 16, 15, 5),
-            Block.box(0, 2, 2, 16, 3, 10),
-            Block.box(0, 2, 0, 14, 3, 2),
-            Block.box(0, 14, 0, 14, 15, 2),
-            Block.box(0, 9, 5, 14, 10, 7),
-            Block.box(14, 3, 8, 16, 6, 10),
-            Block.box(14, 5, 7, 16, 8, 9),
-            Block.box(14, 9, 5, 16, 12, 7),
-            Block.box(14, 7, 6, 16, 10, 8),
-            Block.box(14, 11, 4, 16, 14, 6)
+            Block.box(14, 0, 3, 16, 16, 5),
+            Block.box(0, 7, 9, 14, 8, 11),
+            Block.box(14, 0, 11, 16, 2, 13),
+            Block.box(14, 13, 5, 16, 15, 8),
+            Block.box(0, 2, 5, 16, 3, 13),
+            Block.box(0, 2, 3, 14, 3, 5),
+            Block.box(0, 14, 3, 14, 15, 5),
+            Block.box(14, 3, 11, 16, 6, 13),
+            Block.box(14, 5, 10, 16, 8, 12),
+            Block.box(14, 9, 8, 16, 12, 10),
+            Block.box(14, 7, 9, 16, 10, 11),
+            Block.box(14, 11, 7, 16, 14, 9)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     private static final VoxelShape SHAPE_SOUTH_MIDDLE = Stream.of(
-            Block.box(0, 2, 2, 16, 3, 10),
-            Block.box(0, 2, 0, 16, 3, 2),
-            Block.box(0, 14, 0, 16, 15, 2),
-            Block.box(0, 9, 5, 16, 10, 7),
-            Block.box(10, 0, 7.5, 12, 2, 9.5)
+            Block.box(0, 2, 5, 16, 3, 13),
+            Block.box(0, 2, 3, 16, 3, 5),
+            Block.box(0, 14, 3, 16, 15, 5),
+            Block.box(7, 0, 7, 9, 2, 9),
+            Block.box(0, 7, 9, 16, 8, 11)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
     // 西方向形状
     private static final VoxelShape SHAPE_WEST_SINGLE = Stream.of(
-            Block.box(6, 0, 0, 8, 2, 2),
-            Block.box(14, 0, 0, 16, 16, 2),
-            Block.box(11, 13, 0, 14, 15, 2),
-            Block.box(14, 0, 14, 16, 16, 16),
-            Block.box(6, 0, 14, 8, 2, 16),
-            Block.box(6, 3, 0, 8, 6, 2),
-            Block.box(6, 3, 14, 8, 6, 16),
-            Block.box(7, 5, 0, 9, 8, 2),
-            Block.box(7, 5, 14, 9, 8, 16),
-            Block.box(8, 7, 0, 10, 10, 2),
-            Block.box(8, 7, 14, 10, 10, 16),
-            Block.box(9, 9, 0, 11, 12, 2),
-            Block.box(9, 9, 14, 11, 12, 16),
-            Block.box(10, 11, 0, 12, 14, 2),
-            Block.box(10, 11, 14, 12, 14, 16),
-            Block.box(11, 13, 14, 14, 15, 16),
-            Block.box(6, 2, 0, 14, 3, 16),
-            Block.box(14, 2, 2, 16, 3, 14),
-            Block.box(14, 14, 2, 16, 15, 14),
-            Block.box(9, 9, 2, 11, 10, 14)
+            Block.box(11, 0, 0, 13, 16, 2),
+            Block.box(7, 11, 0, 9, 14, 2),
+            Block.box(6, 9, 0, 8, 12, 2),
+            Block.box(5, 7, 0, 7, 10, 2),
+            Block.box(4, 5, 0, 6, 8, 2),
+            Block.box(3, 3, 0, 5, 6, 2),
+            Block.box(7, 11, 14, 9, 14, 16),
+            Block.box(6, 9, 14, 8, 12, 16),
+            Block.box(5, 7, 14, 7, 10, 16),
+            Block.box(4, 5, 14, 6, 8, 16),
+            Block.box(3, 3, 14, 5, 6, 16),
+            Block.box(3, 0, 0, 5, 2, 2),
+            Block.box(3, 2, 0, 11, 3, 16),
+            Block.box(8, 13, 0, 11, 15, 2),
+            Block.box(11, 2, 2, 13, 3, 14),
+            Block.box(11, 14, 2, 13, 15, 14),
+            Block.box(5, 7, 2, 7, 8, 14),
+            Block.box(8, 13, 14, 11, 15, 16),
+            Block.box(3, 0, 14, 5, 2, 16),
+            Block.box(11, 0, 14, 13, 16, 16)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     private static final VoxelShape SHAPE_WEST_LEFT = Stream.of(
-            Block.box(6, 0, 0, 8, 2, 2),
-            Block.box(14, 0, 0, 16, 16, 2),
-            Block.box(11, 13, 0, 14, 15, 2),
-            Block.box(9, 9, 2, 11, 10, 16),
-            Block.box(14, 14, 2, 16, 15, 16),
-            Block.box(14, 2, 2, 16, 3, 16),
-            Block.box(6, 2, 0, 14, 3, 16),
-            Block.box(6, 3, 0, 8, 6, 2),
-            Block.box(7, 5, 0, 9, 8, 2),
-            Block.box(9, 9, 0, 11, 12, 2),
-            Block.box(8, 7, 0, 10, 10, 2),
-            Block.box(10, 11, 0, 12, 14, 2)
+            Block.box(3, 0, 0, 5, 2, 2),
+            Block.box(5, 7, 2, 7, 8, 16),
+            Block.box(11, 0, 0, 13, 16, 2),
+            Block.box(8, 13, 0, 11, 15, 2),
+            Block.box(11, 14, 2, 13, 15, 16),
+            Block.box(11, 2, 2, 13, 3, 16),
+            Block.box(3, 2, 0, 11, 3, 16),
+            Block.box(3, 3, 0, 5, 6, 2),
+            Block.box(4, 5, 0, 6, 8, 2),
+            Block.box(6, 9, 0, 8, 12, 2),
+            Block.box(5, 7, 0, 7, 10, 2),
+            Block.box(7, 11, 0, 9, 14, 2)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     private static final VoxelShape SHAPE_WEST_RIGHT = Stream.of(
-            Block.box(14, 0, 14, 16, 16, 16),
-            Block.box(6, 0, 14, 8, 2, 16),
-            Block.box(11, 13, 14, 14, 15, 16),
-            Block.box(6, 2, 0, 14, 3, 16),
-            Block.box(14, 2, 0, 16, 3, 14),
-            Block.box(14, 14, 0, 16, 15, 14),
-            Block.box(9, 9, 0, 11, 10, 14),
-            Block.box(6, 3, 14, 8, 6, 16),
-            Block.box(7, 5, 14, 9, 8, 16),
-            Block.box(9, 9, 14, 11, 12, 16),
-            Block.box(8, 7, 14, 10, 10, 16),
-            Block.box(10, 11, 14, 12, 14, 16)
+            Block.box(11, 0, 14, 13, 16, 16),
+            Block.box(5, 7, 0, 7, 8, 14),
+            Block.box(3, 0, 14, 5, 2, 16),
+            Block.box(8, 13, 14, 11, 15, 16),
+            Block.box(3, 2, 0, 11, 3, 16),
+            Block.box(11, 2, 0, 13, 3, 14),
+            Block.box(11, 14, 0, 13, 15, 14),
+            Block.box(3, 3, 14, 5, 6, 16),
+            Block.box(4, 5, 14, 6, 8, 16),
+            Block.box(6, 9, 14, 8, 12, 16),
+            Block.box(5, 7, 14, 7, 10, 16),
+            Block.box(7, 11, 14, 9, 14, 16)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     private static final VoxelShape SHAPE_WEST_MIDDLE = Stream.of(
-            Block.box(6, 2, 0, 14, 3, 16),
-            Block.box(14, 2, 0, 16, 3, 16),
-            Block.box(14, 14, 0, 16, 15, 16),
-            Block.box(9, 9, 0, 11, 10, 16),
-            Block.box(10, 0, 7.5, 12, 2, 9.5)
+            Block.box(3, 2, 0, 11, 3, 16),
+            Block.box(11, 2, 0, 13, 3, 16),
+            Block.box(11, 14, 0, 13, 15, 16),
+            Block.box(7, 0, 7, 9, 2, 9),
+            Block.box(5, 7, 0, 7, 8, 16)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
     @Override
@@ -437,14 +437,15 @@ public class WeaponRack extends BaseEntityBlock {
         return new WeaponRackEntity(blockPos, blockState);
     }
 
-    // 保留物品交互逻辑
-    private static final Set<Item> ALLOWED_WEAPONS = new HashSet<>(Arrays.asList(
-            Items.WOODEN_SWORD, Items.STONE_SWORD, Items.IRON_SWORD,
-            Items.DIAMOND_SWORD, Items.GOLDEN_SWORD, Items.NETHERITE_SWORD,
-            Items.WOODEN_AXE, Items.STONE_AXE, Items.IRON_AXE,
-            Items.DIAMOND_AXE, Items.GOLDEN_AXE, Items.NETHERITE_AXE,
-            Items.TRIDENT
-    ));
+    private boolean checkWeapon(Item item) {
+        return item.equals(Items.WOODEN_SWORD)
+                || item.equals(Items.STONE_SWORD)
+                || item.equals(Items.IRON_SWORD)
+                || item.equals(Items.DIAMOND_SWORD)
+                || item.equals(Items.GOLDEN_SWORD)
+                || item.equals(Items.NETHERITE_SWORD)
+                || item.equals(Items.TRIDENT);
+    }
 
     private boolean checkModWeapon(ItemStack item) {
         return item.getItem().equals(ChangShengJueItems.BEAT_DOG_STICK.get())
@@ -462,20 +463,22 @@ public class WeaponRack extends BaseEntityBlock {
                 || item.getItem().equals(ChangShengJueItems.KITCHEN_KNIFE.get())
                 ;
     }
-    public boolean checkWeapon(ItemStack itemstack) {
-        return ALLOWED_WEAPONS.contains(itemstack.getItem());
-    }
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         if (blockEntity instanceof WeaponRackEntity entity) {
             ItemStack item = pPlayer.getMainHandItem();
-            if (checkWeapon(item) || checkModWeapon(item)) {
+            if (checkWeapon(item.getItem())) {
                 if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? item.copy() : item)) {
                     return InteractionResult.SUCCESS;
                 }
-            } else {
+            }
+            if (checkModWeapon(item)) {
+                if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? item.copy() : item)) {
+                    return InteractionResult.SUCCESS;
+                }
+            }else {
                 entity.drops(pPlayer);
                 return InteractionResult.SUCCESS;
             }

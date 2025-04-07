@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.block.entity;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.changshengjue.block.custom.WeaponRack;
+import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -83,6 +84,9 @@ public class WeaponRackEntity extends BlockEntity {
         lazyOptional = LazyOptional.of(() -> inventory);
     }
 
+
+
+
     public boolean addItem(ItemStack itemStack) {
         ItemStack stackInSlot = this.inventory.getStackInSlot(0);
         if (stackInSlot.isEmpty()) {
@@ -94,11 +98,7 @@ public class WeaponRackEntity extends BlockEntity {
         }
         return false;
     }
-    private float scale = 0.8f;
 
-    public float getItemScale() {
-        return this.scale; // 0.5=50%大小，1.0=原始大小
-    }
     public void drops(){
         SimpleContainer simpleContainer = new SimpleContainer(inventory.getSlots());
         simpleContainer.setItem(INPUT_SLOT,inventory.getStackInSlot(INPUT_SLOT));

@@ -134,7 +134,7 @@ public class ChangShengJueItems {
             ()-> new BlockItem(ChangShengJueBlocks.GRAPE.get(),
                     new Item.Properties().food(ChangShengJueFoods.GRAPE)));
     public static final RegistryObject<Item> DURIAN = ITEMS.register("durian",
-            ()-> new BlockItem(ChangShengJueBlocks.DURIAN.get(),
+            ()-> new DurianBlockItem(ChangShengJueBlocks.DURIAN.get(),
                     new Item.Properties()));
     public static final RegistryObject<Item> OPEN_DURIAN = ITEMS.register("open_durian",
             ()-> new Item(new Item.Properties().food(ChangShengJueFoods.OPEN_DURIAN)));

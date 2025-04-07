@@ -4,20 +4,53 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.shengchanshe.changshengjue.block.custom.WeaponRack;
 import com.shengchanshe.changshengjue.block.entity.WeaponRackEntity;
+import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.item.combat.clubbed.BeatDogStick;
+import com.shengchanshe.changshengjue.item.combat.clubbed.BeatDogStickRender;
+import com.shengchanshe.changshengjue.item.combat.clubbed.PanHuaGun;
+import com.shengchanshe.changshengjue.item.combat.clubbed.PanHuaGunRender;
+import com.shengchanshe.changshengjue.item.combat.lance.BaWangQiang;
+import com.shengchanshe.changshengjue.item.combat.lance.BaWangQiangRender;
+import com.shengchanshe.changshengjue.item.combat.lance.RedTasselledSpear;
+import com.shengchanshe.changshengjue.item.combat.lance.RedTasselledSpearRender;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.Vec2;
-import net.minecraftforge.items.ItemStackHandler;
 
 public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
+
+
+    private boolean checkModWeapon(ItemStack item) {
+        return
+                item.getItem().equals(ChangShengJueItems.THREE_THROWING_KNIVES.get())
+                        || item.getItem().equals(ChangShengJueItems.YI_TINA_JIAN.get())
+                        || item.getItem().equals(ChangShengJueItems.TU_LONG_DAO.get())
+                        || item.getItem().equals(ChangShengJueItems.BRONZE_SWORD.get())
+                        || item.getItem().equals(ChangShengJueItems.HAN_JIAN.get())
+                        || item.getItem().equals(ChangShengJueItems.HENG_DAO.get())
+                        || item.getItem().equals(ChangShengJueItems.LARGE_KNIFE.get())
+                        || item.getItem().equals(ChangShengJueItems.SOFT_SWORD.get())
+                        || item.getItem().equals(ChangShengJueItems.KITCHEN_KNIFE.get())
+                ;
+    }
+    private boolean checkModWeaponqiang(ItemStack item) {
+        return
+                item.getItem().equals(ChangShengJueItems.BA_WANG_QIANG.get())
+                || item.getItem().equals(ChangShengJueItems.RED_TASSELLED_SPEAR.get())
+                ;
+    }
+    private boolean checkModWeapongun(ItemStack item) {
+        return
+                item.getItem().equals(ChangShengJueItems.PAN_HUA_GUN.get())
+                || item.getItem().equals(ChangShengJueItems.BEAT_DOG_STICK.get())
+                ;
+    }
+
     @Override
     public void render(WeaponRackEntity entity, float partialTick, PoseStack poseStack,
                        MultiBufferSource buffer, int packedLight, int packedOverlay) {
@@ -33,7 +66,7 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
 
             poseStack.pushPose();
 //            // 根据方块朝向调整旋转
-//            poseStack.translate(0.5, 0.5, 0.5);
+//            poseStack.translate(1.5,1.0, 0.3);
 //            poseStack.mulPose(Axis.YP.rotationDegrees(facing.toYRot()));
 //            poseStack.translate(-0.5, -0.5, -0.5);
 
@@ -41,45 +74,185 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
 //            poseStack.translate(centerX + 0.5, centerY / 16f, 0.45);
 
 
-            switch (facing) {
-                case NORTH -> {
-                    poseStack.translate(0.50, 0.65,0.75);
-                    poseStack.mulPose(Axis.YP.rotationDegrees(180));
-                }
-                case SOUTH -> {
-                    poseStack.translate(0.50, 0.65,0.25);
-                    poseStack.mulPose(Axis.YP.rotationDegrees(0));
-                }
-               case WEST -> {
-                   poseStack.translate(0.75, 0.65,0.5);
-                   poseStack.mulPose(Axis.YP.rotationDegrees(270));
+            if(checkModWeapon(itemStack)) {
 
-               }
-                case EAST -> {
-                    poseStack.translate(0.25, 0.65,0.5);
-                    poseStack.mulPose(Axis.YP.rotationDegrees(90));
+                switch (facing) {
+                    case NORTH -> {
+                        poseStack.translate(0.50, 0.85, 0.625);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+                    }
+                    case SOUTH -> {
+                        poseStack.translate(0.50, 0.85, 0.375);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+                    }
+                    case WEST -> {
+                        poseStack.translate(0.625, 0.85, 0.50);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(270));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+
+                    }
+                    case EAST -> {
+                        poseStack.translate(0.375, 0.85, 0.50);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(90));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+                    }
+                    default -> {
+                        poseStack.translate(0.0, 0.85, 0.15);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+                    }
                 }
-                default -> {
-                    poseStack.translate(0.0, 0.25,0.15);
-                    poseStack.mulPose(Axis.YP.rotationDegrees(0));
+
+                // 应用缩放
+                float scale = 1.0f;
+                poseStack.scale(scale, scale, scale);
+            } else if (checkModWeaponqiang(itemStack)) {
+                switch (facing) {
+                    case NORTH -> {
+                        poseStack.translate(0.15,1.4, 0.45);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(270));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(20));
+                    }
+                    case SOUTH -> {
+                        poseStack.translate(0.85 ,1.4, 0.55);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(90));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(20));
+                    }
+                    case WEST -> {
+                        poseStack.translate(1.15,1.15, 0.15);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-20));
+                    }
+                    case EAST -> {
+                        poseStack.translate(-0.15   ,1.15, 0.85);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-20));
+                    }
+                    default -> {
+                        poseStack.translate(0.0, 1.40, 0.15);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(90));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(20));
+                    }
                 }
+
+                // 应用缩放
+                float scale = 0.75f;
+                poseStack.scale(scale, scale, scale);
+            }else if (checkModWeapongun(itemStack)) {
+                switch (facing) {
+                    case NORTH -> {
+                        poseStack.translate(0.85,2.2, 0.72);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(0));
+                    }
+                    case SOUTH -> {
+                        poseStack.translate(0.15 ,2.2, 0.28);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(0));
+                    }
+                    case WEST -> {
+                        poseStack.translate(0.72,2.2, 0.15);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(270));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(0));
+                    }
+                    case EAST -> {
+                        poseStack.translate(0.28,2.2, 0.85);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(90));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(0));
+                    }
+                    default -> {
+                        poseStack.translate(0.0, 0.85, 0.15);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(0));
+                    }
+                }
+
+                // 应用缩放
+                float scale = 0.7f;
+                poseStack.scale(scale, scale, scale);
+            } else {
+                switch (facing) {
+                    case NORTH -> {
+                        poseStack.translate(0.50, 0.7, 0.595);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+                    }
+                    case SOUTH -> {
+                        poseStack.translate(0.50, 0.7, 0.505);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+                    }
+                    case WEST -> {
+                        poseStack.translate(0.595, 0.7, 0.5);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(270));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+
+                    }
+                    case EAST -> {
+                        poseStack.translate(0.505, 0.7, 0.5);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(90));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+                    }
+                    default -> {
+                        poseStack.translate(0.0, 0.7, 0.15);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+                    }
+                }
+
+                // 应用缩放
+                float scale = 0.8f;
+                poseStack.scale(scale, scale, scale);
             }
 
-            // 应用缩放
-            float scale = entity.getItemScale();
-            poseStack.scale(scale, scale, scale);
-
-            // 实际渲染
-            Minecraft.getInstance().getItemRenderer().renderStatic(
-                    itemStack,
-                    ItemDisplayContext.FIXED,
-                    packedLight,
-                    packedOverlay,
-                    poseStack,
-                    buffer,
-                    entity.getLevel(),
-                    (int) entity.getBlockPos().asLong()
-            );
+            // 自定义模型渲染
+            if (itemStack.getItem() instanceof BaWangQiang) {
+                BaWangQiangRender renderer = new BaWangQiangRender();
+                renderer.renderByItem(itemStack, ItemDisplayContext.FIXED, poseStack, buffer, packedLight, packedOverlay);
+            } else if (itemStack.getItem() instanceof RedTasselledSpear) {
+                RedTasselledSpearRender renderer = new RedTasselledSpearRender();
+                renderer.renderByItem(itemStack, ItemDisplayContext.FIXED, poseStack, buffer, packedLight, packedOverlay);
+            }else if (itemStack.getItem() instanceof BeatDogStick) {
+                BeatDogStickRender renderer = new BeatDogStickRender();
+                renderer.renderByItem(itemStack, ItemDisplayContext.FIXED, poseStack, buffer, packedLight, packedOverlay);
+            }else if (itemStack.getItem() instanceof PanHuaGun) {
+                PanHuaGunRender renderer = new PanHuaGunRender();
+                renderer.renderByItem(itemStack, ItemDisplayContext.FIXED, poseStack, buffer, packedLight, packedOverlay);
+            } else {
+                // 默认渲染逻辑
+                Minecraft.getInstance().getItemRenderer().renderStatic(
+                        itemStack,
+                        ItemDisplayContext.FIXED,
+                        packedLight,
+                        packedOverlay,
+                        poseStack,
+                        buffer,
+                        entity.getLevel(),
+                        (int) entity.getBlockPos().asLong()
+                );
+            }
 
             poseStack.popPose();
         }
