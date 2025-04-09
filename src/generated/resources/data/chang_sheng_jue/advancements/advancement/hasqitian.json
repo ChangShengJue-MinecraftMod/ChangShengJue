@@ -1,0 +1,33 @@
+{
+  "parent": "chang_sheng_jue:advancement/hasadvancedarrmor",
+  "criteria": {
+    "hasqitian": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:hasqitian"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "advancement.chang_sheng_jue.hasqitian.desc"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:qi_tian_da_sheng_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "gold",
+      "translate": "advancement.chang_sheng_jue.hasqitian"
+    }
+  },
+  "requirements": [
+    [
+      "hasqitian"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

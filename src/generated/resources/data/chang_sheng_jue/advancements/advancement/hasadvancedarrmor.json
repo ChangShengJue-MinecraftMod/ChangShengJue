@@ -1,0 +1,33 @@
+{
+  "parent": "chang_sheng_jue:advancement/hasarmor",
+  "criteria": {
+    "hasadvancedarrmor": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:hasadvancedarrmor"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "advancement.chang_sheng_jue.hasadvancedarrmor.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:the_great_general_mingguang_armor_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "green",
+      "translate": "advancement.chang_sheng_jue.hasadvancedarrmor"
+    }
+  },
+  "requirements": [
+    [
+      "hasadvancedarrmor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

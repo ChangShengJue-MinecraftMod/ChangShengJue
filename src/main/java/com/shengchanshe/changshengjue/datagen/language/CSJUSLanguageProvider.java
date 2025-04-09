@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.datagen.language;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
+import com.shengchanshe.changshengjue.datagen.CSJAdvanceProvider;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
@@ -284,6 +285,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".tooltip","江湖不是打打杀杀，那是人情世故!");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get()+".tooltip","武林中人梦寐以求的武学宝典。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".tooltip","激发潜力，牵引挪移，其中变化莫测，匪夷所思。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DURIAN.get()+".tooltip","请使用斧子劈开");
 
         //声音
         this.add("sounds."+ChangShengJue.MOD_ID + ".ge_shan_da_niu_sound","武功 : 隔山打牛");
@@ -873,7 +875,93 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("death.attack.martial_arts", "%1$s被%2$s强大的武功杀死了。");
         //普通信息
         this.add("block.changshengjue.fen_jiu.no_wine","已经没有酒了！");
-        this.add("block.changshengjue.durian.noaxe","你没有斧子！");
+
+        //进度
+        // 一级进度
+        this.add("advancement." + ChangShengJue.MOD_ID + ".begin", "长生诀");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".begin.desc", "开启长生之路");
+
+        // 二级进度
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasmifan", "人是铁饭是钢");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasmifan.desc", "在物品栏中获取米饭");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hassilverbullions", "银华熠熠");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hassilverbullions.desc", "在物品栏中获取银元宝");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbronzesword", "侠客行");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbronzesword.desc", "在物品栏中获取青铜剑");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".findchinesevillage", "新生活！");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".findchinesevillage.desc", "发现到任意的中式村庄");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".accessguildtask", "帮会？");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".accessguildtask.desc", "领取任意帮派任务");
+
+        // 三级进度
+        this.add("advancement." + ChangShengJue.MOD_ID + ".haslichee", "似是妃子笑");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".haslichee.desc", "在物品栏中获取荔枝");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hastomatoegg", "家常小炒");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hastomatoegg.desc", "在物品栏中获取番茄炒蛋");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hastea", "习习清风生");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hastea.desc", "在物品栏中获取任意的茶");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".haswine", "对酒当歌，人生几何？");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".haswine.desc", "在物品栏中获取任意的酒");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasgoldbullions", "金光闪闪");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasgoldbullions.desc", "在物品栏中获取金元宝");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".usewaigong", "趁手兵器");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".usewaigong.desc", "使用任意武器施展一次外功");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasarmor", "布衣侠客");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasarmor.desc", "在物品栏中获取盔甲值低于5的胸甲");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".learngongfa", "初学乍练");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".learngongfa.desc", "开始修炼任意的外功或内功");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".makechinaware", "做瓷器");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".makechinaware.desc", "使用陶轮制作瓷碗");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".finishtask", "善恶谁定？");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".finishtask.desc", "完成投名状或救命侠医、斋饭任务之一");
+
+        // 四级进度
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbabaozhu", "吉祥如意");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbabaozhu.desc", "在物品栏中获取八宝粥");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasguihuatangou", "甜蜜蜜");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasguihuatangou.desc", "在物品栏中获取桂花糖藕");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hassword", "绝世神兵");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hassword.desc", "在物品栏中获取四大神器的一种");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasadvancedarrmor", "将门之后");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasadvancedarrmor.desc", "在物品栏获取护甲值低于8的胸甲");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".mastergongfa", "融会贯通");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".mastergongfa.desc", "将任意一本外功或内功修炼至领悟");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".donefivetask", "有求必应");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".donefivetask.desc", "完成五次村长任务");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".agroupgangtoken", "扛把子");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".agroupgangtoken.desc", "在物品栏中获取64个帮派令牌");
+
+        //五级进度
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasqitian", "未竟");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasqitian.desc", "在物品栏中获取凤翅紫金冠、锁子黄金胸甲腿甲、藕丝步云履");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".gongfadone", "一代宗师");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".gongfadone.desc", "将任意一本外功或内功修炼至大成");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".donefinaltask", "隐世大侠");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".donefinaltask.desc", "完成人间正道是沧桑任务");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader", "头把交椅");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader.desc", "击败帮派首领");
 
     }
 }

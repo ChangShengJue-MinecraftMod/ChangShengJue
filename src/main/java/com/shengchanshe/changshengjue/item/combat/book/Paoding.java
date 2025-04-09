@@ -1,7 +1,6 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.paoding.PaodingCapabilityProvider;
-import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.PaodingPacket;
@@ -56,7 +55,7 @@ public class Paoding extends Item {
                                     paoding.getPaodingDachengTick(),
                                     paoding.isPaodingParticle()), (ServerPlayer) player);
                             if (player instanceof ServerPlayer serverPlayer) {
-                                CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                                CSJAdvanceInit.learngongfa.trigger(serverPlayer);
                             }
                         }
                     }

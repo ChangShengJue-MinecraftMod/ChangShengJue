@@ -39,7 +39,7 @@ public class GoldenBlackKnifeMethod extends Item {
                             goldenBlackKnifeMethod.getGoldenBlackKnifeMethodDachengTick(),
                             goldenBlackKnifeMethod.isGoldenBlackKnifeMethodParticle()), (ServerPlayer) pPlayer);
                     if (pPlayer instanceof ServerPlayer serverPlayer) {
-                        CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                        CSJAdvanceInit.learngongfa.trigger(serverPlayer);
                     }
                 }
             });

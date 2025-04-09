@@ -1,14 +1,10 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
-import com.shengchanshe.changshengjue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
-import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
-import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
@@ -17,9 +13,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -35,7 +28,7 @@ public class YugongMovesMountains extends Item {
                 if (!yugongMovesMountains.isYugongMovesMountainsComprehend()){
                     yugongMovesMountains.setYugongMovesMountainsComprehend(true);
                     if (pPlayer instanceof ServerPlayer serverPlayer) {
-                        CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                        CSJAdvanceInit.learngongfa.trigger(serverPlayer);
                     }
                 }
             });

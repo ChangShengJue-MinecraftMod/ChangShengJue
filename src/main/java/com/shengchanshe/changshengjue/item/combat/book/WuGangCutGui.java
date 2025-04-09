@@ -30,7 +30,7 @@ public class WuGangCutGui extends Item {
                 if (!wuGangCutGui.isWuGangCutGuiComprehend()){
                     wuGangCutGui.setWuGangCutGuiComprehend(true);
                     if (pPlayer instanceof ServerPlayer serverPlayer) {
-                        CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                        CSJAdvanceInit.learngongfa.trigger(serverPlayer);
                     }
                 }
             });

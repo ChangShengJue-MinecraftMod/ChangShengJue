@@ -1,19 +1,14 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
-import com.shengchanshe.changshengjue.capability.martial_arts.ge_shan_da_niu.GeShanDaNiuCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -78,7 +73,7 @@ public class GoldenBellJar extends Item {
                                         goldenBellJar.isSkillXActive(),
                                         goldenBellJar.isSkillCActive()), (ServerPlayer) player);
                                 if (player instanceof ServerPlayer serverPlayer) {
-                                    CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                                    CSJAdvanceInit.learngongfa.trigger(serverPlayer);
                                 }
                             }
                         }

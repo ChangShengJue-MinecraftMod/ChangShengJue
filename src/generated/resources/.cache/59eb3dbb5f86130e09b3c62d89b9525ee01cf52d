@@ -1,4 +1,4 @@
-// 1.20.1	2025-03-27T17:11:33.955853	Loot Tables
+// 1.20.1	2025-04-07T20:06:00.7202183	Loot Tables
 d516f4a29d40770cbbc430275a25288af1bb5af3 data/chang_sheng_jue/loot_tables/blocks/acacia_bench.json
 ad4cf4b39a7d51e5a89dc61dc94d61b791098ae1 data/chang_sheng_jue/loot_tables/blocks/acacia_book_desk.json
 9091a604cab86e4a5dea3fec989602338b84cc4e data/chang_sheng_jue/loot_tables/blocks/acacia_drinking_table_and_chairs.json
@@ -367,6 +367,7 @@ d88f2e3f9691d80284b92731e2f911a6c812ceba data/chang_sheng_jue/loot_tables/blocks
 1c0b2b1b6a997fef86fc6c6923cff9ed6dcd48ee data/chang_sheng_jue/loot_tables/blocks/warped_drinking_table_and_chairs.json
 67e5d6e25f0b3672e9b882151800225cd5fa9d74 data/chang_sheng_jue/loot_tables/blocks/warped_low_desk.json
 6c77db408d682a2902292efc36a332832d2735cb data/chang_sheng_jue/loot_tables/blocks/warped_wine_table.json
+596658c01474bb48d61da6754d8c361899a1e2fb data/chang_sheng_jue/loot_tables/blocks/weapon_rack.json
 6e2d047502b6ed56dd1a73c208069102ad769fcc data/chang_sheng_jue/loot_tables/blocks/wheat_nuggets_tribute_wine.json
 ca6e54ce0428f008fe1aba6260696ce4159d9220 data/chang_sheng_jue/loot_tables/blocks/white_bricks.json
 d88c1eea05e5bb4b488486cf3759122c4cf5dec5 data/chang_sheng_jue/loot_tables/blocks/white_bricks_slab.json

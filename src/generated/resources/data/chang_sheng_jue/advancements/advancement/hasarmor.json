@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:chang_sheng_jueadvancement",
+  "criteria": {
+    "hasarmor": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:hasarmor"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "advancement.chang_sheng_jue.hasarmor.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:confucian_costumes_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "green",
+      "translate": "advancement.chang_sheng_jue.hasarmor"
+    }
+  },
+  "requirements": [
+    [
+      "hasarmor"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

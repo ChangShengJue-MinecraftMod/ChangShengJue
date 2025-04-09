@@ -1,0 +1,32 @@
+{
+  "parent": "chang_sheng_jue:advancement/makechinaware",
+  "criteria": {
+    "donefivetask": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:donefivetask"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "advancement.chang_sheng_jue.donefivetask.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:immortal_miracle"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "green",
+      "translate": "advancement.chang_sheng_jue.donefivetask"
+    }
+  },
+  "requirements": [
+    [
+      "donefivetask"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

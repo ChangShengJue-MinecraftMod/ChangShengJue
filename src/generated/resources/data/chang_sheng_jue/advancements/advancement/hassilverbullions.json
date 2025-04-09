@@ -1,0 +1,32 @@
+{
+  "parent": "chang_sheng_jue:advancement/begin",
+  "criteria": {
+    "hassilverbullions": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:hassilverbullions"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "advancement.chang_sheng_jue.hassilverbullions.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:silver_bullions"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "green",
+      "translate": "advancement.chang_sheng_jue.hassilverbullions"
+    }
+  },
+  "requirements": [
+    [
+      "hassilverbullions"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

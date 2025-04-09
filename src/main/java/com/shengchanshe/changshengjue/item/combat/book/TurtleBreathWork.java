@@ -50,7 +50,7 @@ public class TurtleBreathWork extends Item {
                                     turtleBreathWork.isSkillXActive(),
                                     turtleBreathWork.isSkillCActive()), (ServerPlayer) player);
                             if (player instanceof ServerPlayer serverPlayer) {
-                                CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                                CSJAdvanceInit.learngongfa.trigger(serverPlayer);
                             }
                         }
                     }

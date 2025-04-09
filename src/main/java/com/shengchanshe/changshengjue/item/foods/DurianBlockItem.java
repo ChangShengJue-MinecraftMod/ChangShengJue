@@ -37,7 +37,7 @@ public class DurianBlockItem extends BlockItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level,
                                 List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip.changshengjue.durian"));
+        tooltip.add(Component.translatable("tooltip.chang_sheng_jue.durian.tooltip"));
         super.appendHoverText(stack, level, tooltip, flag);
     }
 }

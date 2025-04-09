@@ -39,7 +39,7 @@ public class GaoMarksmanship extends Item {
                             gaoMarksmanship.getGaoMarksmanshipDachengTick(),
                             gaoMarksmanship.isGaoMarksmanshipParticle()), (ServerPlayer) pPlayer);
                     if (pPlayer instanceof ServerPlayer serverPlayer) {
-                        CSJAdvanceInit.learnwaigong.trigger(serverPlayer);
+                        CSJAdvanceInit.learngongfa.trigger(serverPlayer);
                     }
                 }
             });
