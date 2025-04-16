@@ -56,7 +56,7 @@ public class ChangShengJueSound {
     public static final RegistryObject<SoundEvent> DUGU_NINE_SWORDS_SOUND = registerSoundEvent("dugu_nine_swords_sound");
     //不死神功
     public static final RegistryObject<SoundEvent> IMMORTAL_MIRACLE_SOUND = registerSoundEvent("immortal_miracle_sound");
-    //
+    //高家枪法
     public static final RegistryObject<SoundEvent> GAO_MARKSMANSHIP_SOUND = registerSoundEvent("gao_marksmanship_sound");
     //龟息功
     public static final RegistryObject<SoundEvent> TURTLE_BREATH_WORK_SOUND = registerSoundEvent("turtle_breath_work_sound");
@@ -80,6 +80,8 @@ public class ChangShengJueSound {
     public static final RegistryObject<SoundEvent> XUANNU_SWORDSMANSHIP_SOUND = registerSoundEvent("xuannu_swordsmanship_sound");
     //金钟罩
     public static final RegistryObject<SoundEvent> GOLDEN_BELLJAR_SOUND = registerSoundEvent("golden_belljar_sound");
+    //乾坤大挪移
+    public static final RegistryObject<SoundEvent> QIAN_KUN_DA_NUO_YI_SOUND = registerSoundEvent("qian_kun_da_nuo_yi_sound");
     //领悟
     public static final RegistryObject<SoundEvent> COMPREHEND_SOUND = registerSoundEvent("comprehend_sound");
     //大成

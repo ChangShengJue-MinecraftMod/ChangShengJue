@@ -1,0 +1,48 @@
+{
+  "questId": "78A28266-BF35-400E-8F99-6E9EBB52D4E9",
+  "questName": "quest.food.questName",
+  "questDescription": "quest.food.questDescription",
+  "type": "GATHER",
+  "repeatable": true,
+  "givesEffect": false,
+  "questRequirements": [
+    {
+      "item": "#chang_sheng_jue:foods",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 8.0,
+        "min": 4.0
+      }
+    },
+    {
+      "item": "#chang_sheng_jue:foods",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 8.0,
+        "min": 4.0
+      }
+    },
+    {
+      "item": "#chang_sheng_jue:wine",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 8.0,
+        "min": 4.0
+      }
+    }
+  ],
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:gang_token",
+      "count": 1
+    },
+    {
+      "item": "chang_sheng_jue:yi_guan_tong_qian",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 1.0
+      }
+    }
+  ]
+}

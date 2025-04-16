@@ -1,21 +1,23 @@
-package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader;
+package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other;
 
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingMenu;
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.QuestManager;
 import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntity;
 import com.shengchanshe.changshengjue.entity.custom.goal.WuXiaAttackGoal;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
-import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXiaMerchant;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.AbstractGangLeader;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.GangleaderVariant2;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.kungfu.externalkunfu.ExternalKungFuCapability;
 import com.shengchanshe.changshengjue.kungfu.externalkunfu.ExternalKungFuManager;
-import com.shengchanshe.changshengjue.kungfu.externalkunfu.kungfu.*;
+import com.shengchanshe.changshengjue.kungfu.externalkunfu.kungfu.GeShanDaNiu;
+import com.shengchanshe.changshengjue.kungfu.externalkunfu.kungfu.RelentlessThrowingKnives;
+import com.shengchanshe.changshengjue.kungfu.externalkunfu.kungfu.SunflowerPointCaveman;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.InterfaceKungFuManager;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.InternalKungFuCapability;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.*;
 import com.shengchanshe.changshengjue.world.village.WuXiaMerahantTrades;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -26,7 +28,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -60,9 +61,8 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.OptionalInt;
 
-public class GangLeader extends AbstractWuXiaMerchant implements GeoEntity , RangedAttackMob {
+public class GangLeader extends AbstractGangLeader implements GeoEntity , RangedAttackMob {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final EntityDataAccessor<Integer> DATA_ID_TYPE_VARIANT = SynchedEntityData.defineId(GangLeader.class, EntityDataSerializers.INT);
 
@@ -101,16 +101,6 @@ public class GangLeader extends AbstractWuXiaMerchant implements GeoEntity , Ran
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, (livingEntity) -> livingEntity instanceof Enemy && !(livingEntity instanceof Creeper)));
         this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, false));
-    }
-
-    public void openTradingScreen(Player pPlayer, Component pDisplayName, int pLevel) {
-        OptionalInt present = pPlayer.openMenu(new SimpleMenuProvider((i, inventory, player) -> new GangleaderTradingMenu(i, inventory, this), pDisplayName));
-        if (present.isPresent()) {
-            MerchantOffers merchantOffers = this.getOffers();
-            if (!merchantOffers.isEmpty()) {
-                pPlayer.sendMerchantOffers(present.getAsInt(), merchantOffers, pLevel, this.getVillagerXp(), this.showProgressBar(), this.canRestock());
-            }
-        }
     }
 
     protected void updateTrades() {
@@ -152,7 +142,6 @@ public class GangLeader extends AbstractWuXiaMerchant implements GeoEntity , Ran
             return super.mobInteract(pPlayer, pHand);
         }
     }
-
 
     @Override
     public void tick() {
@@ -238,12 +227,15 @@ public class GangLeader extends AbstractWuXiaMerchant implements GeoEntity , Ran
                 ((QianKunDaNuoYi) this.internalKungFuCapability).applyHurtEffect(this, pSource,pAmount);
             }
         }
-
+        if (pAmount > this.getHealth()) {
+            QuestManager.getInstance().removeNpcQuests(this.getUUID());
+        }
         return super.hurt(pSource, pAmount);
     }
 
     @Override
     protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
+        super.populateDefaultEquipmentSlots(pRandom, pDifficulty);
         this.externalKungFuCapabilities = new ExternalKungFuManager().getRandomExternalKungFuCapabilities(this);
         this.internalKungFuCapability = new InterfaceKungFuManager().getRandomInterfaceKungFuCapability();
         if (this.externalKungFuCapabilities != null && this.internalKungFuCapability != null) {
@@ -303,15 +295,17 @@ public class GangLeader extends AbstractWuXiaMerchant implements GeoEntity , Ran
         if (this.externalKungFuCapabilities != null){
             int index = 0;
             for (ExternalKungFuCapability externalKungFuCapability : this.externalKungFuCapabilities) {
-                pCompound.putString("ExternalKungFuFuID" + index,externalKungFuCapability.getQingGongID());
+                pCompound.putString("ExternalKungFuID" + index,externalKungFuCapability.getExternalKungFuID());
                 externalKungFuCapability.saveNBTData(pCompound);
                 index++;
             }
         }
         if (this.internalKungFuCapability != null){
-            pCompound.putString("InternalKungFuFuType",this.internalKungFuCapability.getInternalKungFuID());
+            pCompound.putString("InternalKungFuType",this.internalKungFuCapability.getInternalKungFuID());
             this.internalKungFuCapability.saveNBTData(pCompound);
         }
+
+        pCompound.putInt("Variant", this.getTypeVariant());
     }
 
     @Override
@@ -319,8 +313,8 @@ public class GangLeader extends AbstractWuXiaMerchant implements GeoEntity , Ran
         super.readAdditionalSaveData(pCompound);
         this.externalKungFuCapabilities = new ArrayList<>();
         int index = 0;
-        while (pCompound.contains("ExternalKungFuFuID" + index)) {
-            String externalKungFuId = pCompound.getString("ExternalKungFuFuID" + index);
+        while (pCompound.contains("ExternalKungFuID" + index)) {
+            String externalKungFuId = pCompound.getString("ExternalKungFuID" + index);
             List<ExternalKungFuCapability> externalKungFuCapabilities = ExternalKungFuManager.createExternalKungFuCapabilitiesFromTag(externalKungFuId);
             for (ExternalKungFuCapability externalKungFuCapability : externalKungFuCapabilities) {
                 externalKungFuCapability.loadNBTData(pCompound);
@@ -329,8 +323,8 @@ public class GangLeader extends AbstractWuXiaMerchant implements GeoEntity , Ran
             index++;
         }
 
-        if (pCompound.contains("InternalKungFuFuType")) {
-            String kungFuType = pCompound.getString("InternalKungFuFuType");
+        if (pCompound.contains("InternalKungFuType")) {
+            String kungFuType = pCompound.getString("InternalKungFuType");
             this.internalKungFuCapability = InterfaceKungFuManager.createInterfaceKungFuCapabilityFromTag(kungFuType);
             if (this.internalKungFuCapability != null) {
                 this.internalKungFuCapability.loadNBTData(pCompound);

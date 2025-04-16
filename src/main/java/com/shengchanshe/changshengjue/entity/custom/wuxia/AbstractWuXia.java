@@ -1,9 +1,6 @@
 package com.shengchanshe.changshengjue.entity.custom.wuxia;
 
-import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeader;
-import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.knife.KnifeGangLeader;
-import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.lance.LanceGangLeader;
-import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.sword.SwordGangLeader;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.AbstractGangLeader;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.kungfu.externalkunfu.ExternalKungFuCapability;
 import com.shengchanshe.changshengjue.kungfu.externalkunfu.ExternalKungFuManager;
@@ -11,9 +8,6 @@ import com.shengchanshe.changshengjue.kungfu.externalkunfu.kungfu.*;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.InterfaceKungFuManager;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.InternalKungFuCapability;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.*;
-import com.shengchanshe.changshengjue.kungfu.qinggong.QingGongCapability;
-import com.shengchanshe.changshengjue.kungfu.qinggong.QingGongManager;
-import com.shengchanshe.changshengjue.kungfu.qinggong.kungfu.TreadTheSnowWithoutTrace;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -150,16 +144,13 @@ public class AbstractWuXia extends AbstractVillager implements NeutralMob {
     @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
-        if (this instanceof LanceGangLeader){return;}
-        if (this instanceof KnifeGangLeader){return;}
-        if (this instanceof SwordGangLeader){return;}
-        if (this instanceof ClubbedGangLeader){return;}
+        if (this instanceof AbstractGangLeader){return;}
         if (this.externalKungFuCapability != null){
-            pCompound.putString("ExternalKungFuType",this.externalKungFuCapability.getQingGongID());
+            pCompound.putString("ExternalKungFuType",this.externalKungFuCapability.getExternalKungFuID());
             this.externalKungFuCapability.saveNBTData(pCompound); // 保存武功的具体数据，包括冷却时间
         }
         if (this.internalKungFuCapability != null){
-            pCompound.putString("InternalKungFuFuType",this.internalKungFuCapability.getInternalKungFuID());
+            pCompound.putString("InternalKungFuType",this.internalKungFuCapability.getInternalKungFuID());
             this.internalKungFuCapability.saveNBTData(pCompound); // 保存武功的具体数据，包括冷却时间
         }
     }
@@ -167,10 +158,7 @@ public class AbstractWuXia extends AbstractVillager implements NeutralMob {
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
-        if (this instanceof LanceGangLeader){return;}
-        if (this instanceof KnifeGangLeader){return;}
-        if (this instanceof SwordGangLeader){return;}
-        if (this instanceof ClubbedGangLeader){return;}
+        if (this instanceof AbstractGangLeader){return;}
         if (pCompound.contains("ExternalKungFuType")) {
             String kungFuType = pCompound.getString("ExternalKungFuType");
             this.externalKungFuCapability = ExternalKungFuManager.createExternalKungFuCapabilityFromTag(kungFuType);
@@ -178,8 +166,8 @@ public class AbstractWuXia extends AbstractVillager implements NeutralMob {
                 this.externalKungFuCapability.loadNBTData(pCompound); // 读取武功的具体数据，包括冷却时间
             }
         }
-        if (pCompound.contains("InternalKungFuFuType")) {
-            String kungFuType = pCompound.getString("InternalKungFuFuType");
+        if (pCompound.contains("InternalKungFuType")) {
+            String kungFuType = pCompound.getString("InternalKungFuType");
             this.internalKungFuCapability = InterfaceKungFuManager.createInterfaceKungFuCapabilityFromTag(kungFuType);
             if (this.internalKungFuCapability != null) {
                 this.internalKungFuCapability.loadNBTData(pCompound); // 读取武功的具体数据，包括冷却时间

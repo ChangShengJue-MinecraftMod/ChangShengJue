@@ -32,11 +32,14 @@ import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmansh
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.QuestLoader;
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.QuestManager;
 import com.shengchanshe.changshengjue.entity.custom.croc.Croc;
 import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.event.armor.ArmorEvent;
 import com.shengchanshe.changshengjue.event.martial_arts.*;
+import com.shengchanshe.changshengjue.event.quest.QuestEvent;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
@@ -49,70 +52,48 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.qian_kun_da_nu
 import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
-import com.shengchanshe.changshengjue.world.biome.CSJBiomes;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.ImageButton;
+import net.minecraft.client.gui.components.Tooltip;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.npc.Villager;
-import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
-import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingDropsEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.TradeWithVillagerEvent;
 import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.event.level.LevelEvent;
+import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
-import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJEvent {
 
-//    @SubscribeEvent
-//    public static void onVillagerInteract(PlayerInteractEvent.EntityInteractSpecific event) {
-//        if (event.getTarget() instanceof Villager villager) {
-//            CompoundTag villagerData = villager.getPersistentData();
-//            // 检查是否已经尝试过职业变更
-//            if (!villagerData.getBoolean("HasCheckedProfessionChange")) {
-//                VillagerProfession profession = villager.getVillagerData().getProfession();
-//                // 检查当前职业是否为ChangShengJue Hunter
-//                if (profession == ChangShengJueVillagers.CHANG_SHENG_JUE_POTTER.get()) {
-//                    Random random = new Random();
-//                    if (random.nextInt(100) == 0) { // 1%的概率
-//                        // 设置新职业为ChangShengJue Gatherer
-//                        villager.setVillagerData(villager.getVillagerData().setProfession(ChangShengJueVillagers.CHANG_SHENG_JUE_POTTER_1.get()));
-//                    }
-//                }
-//                // 标记已经进行过职业变更尝试
-//                villagerData.putBoolean("HasCheckedProfessionChange", true);
-//            }
-//        }
-//
-//        ZhangMenXinxueEvent.onVillagerInteract(event);
-//    }
+    @SubscribeEvent
+    public static void onVillagerInteract(PlayerInteractEvent.EntityInteractSpecific event) {
+        ZhangMenXinxueEvent.onVillagerInteract(event);
+    }
 
     @SubscribeEvent
     public static void addCustomTrades(VillagerTradesEvent event) {
@@ -701,9 +682,8 @@ public class CSJEvent {
 
     @SubscribeEvent
     public static void blockBlockBreakEvent(BlockEvent.BreakEvent event){
-//        WuGangCutGuiEvent.handleBlockBreakEvent(event);
-//        YugongMovesMountainsEvent.handleBlockBreakEvent(event);
     }
+
     @SubscribeEvent
     public static void onInteract(PlayerInteractEvent event) {
         WuGangCutGuiEvent.onInteract(event);
@@ -747,26 +727,25 @@ public class CSJEvent {
         //大力神功
         HerculesEvent.onPlayerTick(event);
     }
+
+    @SubscribeEvent
+    public static void onServerTick(TickEvent.ServerTickEvent event) {
+        QuestEvent.onServerTick(event);
+    }
+
     //生物攻击事件
     @SubscribeEvent
     public static void onEntityAttack(LivingEvent.LivingTickEvent event){}
+
     //生物受伤事件
     @SubscribeEvent
     public static void onEntityHurt(LivingDamageEvent event){
-//        TreadTheSnowWithoutTraceEvent.onEntityHurt(event);
-//        WuGangCutGuiEvent.onEntityHurt(event);1
-//        YugongMovesMountainsEvent.onEntityHurt(event);1
-//        PaodingEvent.onEntityHurt(event);1
-//        SunflowerPointCavemanEvent.onEntityHurt(event);1
-//        GoldenBellJarEvent.onEntityHurt(event);1
         ImmortalMiracleEvent.onEntityHurt(event);
-//        GeShanDaNiuEvent.onEntityHurt(event);1
-//        TurtleBreathWorkEvent.onEntityHurt(event);1
-//        TheClassicsOfTendonChangingEvent.onEntityHurt(event);1
         QianKunDaNuoYiEvent.onEntityHurt(event);
-//        HerculesEvent.onEntityHurt(event);1
 
         ArmorEvent.onArmorDamage(event);
+
+        QuestEvent.onEntityHurt(event);
     }
     //生物死亡事件
     @SubscribeEvent
@@ -781,6 +760,7 @@ public class CSJEvent {
                 croc.setFedTime(3.3 * 60 * 20);
         }
         PaodingEvent.onEntityDeath(event);
+        QuestEvent.onEntityDeath(event);
     }
 
     @SubscribeEvent
@@ -797,30 +777,25 @@ public class CSJEvent {
 
     }
 
+    //实体转换事件
+    @SubscribeEvent
+    public static void onLivingConversion(LivingConversionEvent.Post event) {
+        QuestEvent.onCureComplete(event);
+    }
+
     //生物交互事件
     @SubscribeEvent
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){
         SunflowerPointCavemanEvent.onPlayerEntityInteract(event);
-//        GoldenBellJarEvent.onPlayerEntityInteract(event);
-//        TurtleBreathWorkEvent.onPlayerEntityInteract(event);
+        QuestEvent.onGoldenAppleUse(event);
     }
     //玩家右键空气事件
     @SubscribeEvent
     public static void onPlayerRightClick(PlayerInteractEvent.RightClickEmpty event){
-//        GoldenBellJarEvent.onPlayerRightClick(event);
-//        TurtleBreathWorkEvent.onPlayerRightClick(event);
     }
-//    @SubscribeEvent
-//    public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-//        GoldenBellJarEvent.onPlayerRightClickBlock(event);
-//        GeShanDaNiuEvent.onPlayerRightClickBlock(event);
-//        TurtleBreathWorkEvent.onPlayerRightClickBlock(event);
-//    }
 
     @SubscribeEvent
     public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
-//        GoldenBellJarEvent.onPlayerRightClickItem(event);
-//        TurtleBreathWorkEvent.onPlayerRightClickItem(event);
     }
 
     //能力给予事件,给生物添加能力
@@ -1008,9 +983,7 @@ public class CSJEvent {
         //玩家进入世界时同步能力数据
         if(!event.getLevel().isClientSide()) {
             if(event.getEntity() instanceof ServerPlayer player) {
-
                 CSJAdvanceInit.michangsheng.trigger(player);
-
                 player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                     ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),
                             duguNineSword.isDuguNineSwordsComprehend(),
@@ -1157,11 +1130,21 @@ public class CSJEvent {
             }
         }
     }
-    //玩家进入村庄
-    private static void checkAndTriggerAchievement(ServerPlayer player) {
-        // 获取玩家当前位置
-        BlockPos playerPos = player.blockPosition();
+    @SubscribeEvent
+    public static void onServerStopping(ServerStoppingEvent event) {
+        QuestManager.getInstance().saveData();
+    }
 
-        // 检查玩家是否在沙漠村庄内
+    @SubscribeEvent
+    public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+        QuestManager.getInstance().saveData();
+    }
+
+    @SubscribeEvent
+    public static void onWorldLoad(LevelEvent.Load event) {
+        if (event.getLevel() instanceof ServerLevel) {
+            // 世界加载时初始化数据
+            QuestManager.getInstance().onWorldLoad();
+        }
     }
 }

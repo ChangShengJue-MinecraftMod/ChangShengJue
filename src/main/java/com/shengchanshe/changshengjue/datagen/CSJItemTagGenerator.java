@@ -93,6 +93,18 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(ChangShengJueItems.FEN_JIU.get())
                 .add(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get());
 
+        this.tag(CSJTags.Items.FOODS)
+                .add(ChangShengJueItems.VENISON.get(), ChangShengJueItems.COOKED_VENISON.get(), ChangShengJueItems.PEACOCK.get(), ChangShengJueItems.COOKED_PEACOCK.get(),
+                        ChangShengJueItems.CROC.get(),ChangShengJueItems.COOKED_CROC.get(), ChangShengJueItems.PINEAPPLE.get(), ChangShengJueItems.TOMATO.get(),
+                        ChangShengJueItems.CORN.get(),ChangShengJueItems.MANGO.get(), ChangShengJueItems.CANTALOUPE.get(), ChangShengJueItems.BANANA.get(),
+                        ChangShengJueItems.PEAR.get(),ChangShengJueItems.LICHEE.get(), ChangShengJueItems.GRAPE.get(), ChangShengJueItems.OPEN_DURIAN.get(),
+                        ChangShengJueItems.PEANUT.get(),ChangShengJueItems.BRINJAL.get(), ChangShengJueItems.MULBERRY.get(), ChangShengJueItems.PORTULACA_OLERACEA_CAKE.get(),
+                        ChangShengJueItems.BAKED_CORN.get(),ChangShengJueItems.SORGHUM_CAKE.get(), ChangShengJueItems.CAPSULE_JIAO_ZI.get(), ChangShengJueItems.QING_TUAN.get(),
+                        ChangShengJueItems.XIAO_MI_FAN.get(),ChangShengJueItems.MI_FAN.get(), ChangShengJueItems.ZHENG_CAI.get(), ChangShengJueItems.TOMATO_EGG.get(),
+                        ChangShengJueItems.GU_LAO_ROU.get(),ChangShengJueItems.MEAT_FOAM_BRINJAL.get(), ChangShengJueItems.STINKY_TOFU.get(), ChangShengJueItems.GUI_HUA_TANG_OU.get(),
+                        ChangShengJueItems.HOT_PEAR_SOUP.get(),ChangShengJueItems.ZHU_DU_JI.get(), ChangShengJueItems.BA_BAO_ZHOU.get()
+                );
+
         this.tag(CSJTags.Items.ARTIFACT)
                 .add(ChangShengJueItems.BEAT_DOG_STICK.get())
                 .add(ChangShengJueItems.YI_TINA_JIAN.get())

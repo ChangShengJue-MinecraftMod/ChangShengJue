@@ -151,11 +151,11 @@ public class AbstractWuXiaMonster extends Monster {
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
         if (this.externalKungFuCapability != null){
-            pCompound.putString("ExternalKungFuType",this.externalKungFuCapability.getQingGongID());
+            pCompound.putString("ExternalKungFuType",this.externalKungFuCapability.getExternalKungFuID());
             this.externalKungFuCapability.saveNBTData(pCompound); // 保存武功的具体数据，包括冷却时间
         }
         if (this.internalKungFuCapability != null){
-            pCompound.putString("InternalKungFuFuType",this.internalKungFuCapability.getInternalKungFuID());
+            pCompound.putString("InternalKungFuType",this.internalKungFuCapability.getInternalKungFuID());
             this.internalKungFuCapability.saveNBTData(pCompound); // 保存武功的具体数据，包括冷却时间
         }
     }
@@ -170,8 +170,8 @@ public class AbstractWuXiaMonster extends Monster {
                 this.externalKungFuCapability.loadNBTData(pCompound); // 读取武功的具体数据，包括冷却时间
             }
         }
-        if (pCompound.contains("InternalKungFuFuType")) {
-            String kungFuType = pCompound.getString("InternalKungFuFuType");
+        if (pCompound.contains("InternalKungFuType")) {
+            String kungFuType = pCompound.getString("InternalKungFuType");
             this.internalKungFuCapability = InterfaceKungFuManager.createInterfaceKungFuCapabilityFromTag(kungFuType);
             if (this.internalKungFuCapability != null) {
                 this.internalKungFuCapability.loadNBTData(pCompound); // 读取武功的具体数据，包括冷却时间

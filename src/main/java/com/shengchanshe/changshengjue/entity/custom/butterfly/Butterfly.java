@@ -61,6 +61,11 @@ public class Butterfly extends Animal implements GeoEntity, FlyingAnimal {
         this.entityData.set(DATA_ID_TYPE_VARIANT,tag.getInt("Variant"));
     }
 
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putInt("Variant", this.getTypeVariant());
+    }
 
     public static AttributeSupplier setAttributes(){
         return Animal.createMobAttributes()

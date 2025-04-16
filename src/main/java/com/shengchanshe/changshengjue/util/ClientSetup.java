@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.util;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.blacksmith.BlacksmithScreen;
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangQuestsScreen;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingScreen;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.innkeeper.InnkeeperScreen;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.worker.KilnWorkerScreen;
@@ -33,7 +34,7 @@ import com.shengchanshe.changshengjue.entity.custom.wuxia.bandit.BanditRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.blacksmith.BlacksmithRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.challenger.ChallengerRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.evoker.EvokerWuXiaRenderer;
-import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.GangLeaderRenderer;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other.GangLeaderRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeaderRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.knife.KnifeGangLeaderRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.lance.LanceGangLeaderRenderer;
@@ -45,6 +46,10 @@ import com.shengchanshe.changshengjue.entity.custom.wuxia.pillager.PillagerWuXia
 import com.shengchanshe.changshengjue.entity.custom.wuxia.villain.VillainRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.vindicator.VindicatorWuXiaRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.witch.WitchWuXiaRenderer;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.xia.clubbed.ClubbedMingXiaRenderer;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.xia.fist.FistMingXiaRenderer;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.xia.knife.KnifeMingXiaRenderer;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.xia.sword.SwordMingXiaRenderer;
 import com.shengchanshe.changshengjue.entity.villagers.render.ChangShengJueVillagerRender;
 import com.shengchanshe.changshengjue.entity.villagers.warrior.WarriorRenderer;
 import com.shengchanshe.changshengjue.entity.villagers.worker.KilnWorkerRenderer;
@@ -451,6 +456,7 @@ public class ClientSetup {
         MenuScreens.register(ChangShengJueMenuTypes.BLACKSMITH_MENU.get(), BlacksmithScreen::new);
         MenuScreens.register(ChangShengJueMenuTypes.KILNWORKER_MENU.get(), KilnWorkerScreen::new);
         MenuScreens.register(ChangShengJueMenuTypes.GANGLEADER_MENU.get(), GangleaderTradingScreen::new);
+        MenuScreens.register(ChangShengJueMenuTypes.GANG_QUESTS_MENU.get(), GangQuestsScreen::new);
 
         EntityRenderers.register(ChangShengJueEntity.BUTTERFLY.get(), ButterflyRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.MONKEY.get(), MonkeyRenderer::new);
@@ -498,5 +504,10 @@ public class ClientSetup {
         EntityRenderers.register(ChangShengJueEntity.EVOKER_WU_XIA.get(), EvokerWuXiaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.VINDICATOR_WU_XIA.get(), VindicatorWuXiaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.PILLAGER_WU_XIA.get(), PillagerWuXiaRenderer::new);
+
+        EntityRenderers.register(ChangShengJueEntity.CLUBBED_MING_XIA.get(), ClubbedMingXiaRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.SWORD_MING_XIA.get(), SwordMingXiaRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.KNIFE_MING_XIA.get(), KnifeMingXiaRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.FIST_MING_XIA.get(), FistMingXiaRenderer::new);
     }
 }

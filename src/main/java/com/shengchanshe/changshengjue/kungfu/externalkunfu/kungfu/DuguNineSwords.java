@@ -38,7 +38,7 @@ public class DuguNineSwords implements ExternalKungFuCapability {
     }
 
     @Override
-    public String getQingGongID() {
+    public String getExternalKungFuID() {
         return externalKungFuID;
     }
 

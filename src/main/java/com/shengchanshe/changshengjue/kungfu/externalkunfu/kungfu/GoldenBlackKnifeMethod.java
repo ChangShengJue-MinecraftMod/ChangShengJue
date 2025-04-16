@@ -32,7 +32,7 @@ public class GoldenBlackKnifeMethod implements ExternalKungFuCapability {
     }
 
     @Override
-    public String getQingGongID() {
+    public String getExternalKungFuID() {
         return externalKungFuID;
     }
 

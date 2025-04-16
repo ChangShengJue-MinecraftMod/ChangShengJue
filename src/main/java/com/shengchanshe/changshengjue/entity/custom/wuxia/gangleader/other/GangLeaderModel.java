@@ -1,4 +1,4 @@
-package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader;
+package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;

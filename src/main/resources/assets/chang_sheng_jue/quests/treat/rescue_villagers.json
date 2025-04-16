@@ -1,0 +1,23 @@
+{
+  "questId": "7dc9c671-ec29-4f3f-9467-5324fa026499",
+  "questName": "quest.treat.village.questName",
+  "questDescription": "quest.treat.village.questDescription",
+  "type": "TREAT",
+  "requiredKills": 1,
+  "repeatable": false,
+  "givesEffect": false,
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:gang_token",
+      "count": 1
+    },
+    {
+      "item": "chang_sheng_jue:silver_bullions",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 3.0,
+        "min": 1.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "questId": "85248ab7-ff1b-4d4d-8a05-92d5360e70eb",
+  "questName": "quest.raid.village.questName",
+  "questDescription": "quest.raid.village.questDescription",
+  "type": "RAID",
+  "requiredKills": 1,
+  "repeatable": false,
+  "givesEffect": false,
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:gang_token",
+      "count": 2
+    },
+    {
+      "item": "chang_sheng_jue:silver_bullions",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 4.0
+      }
+    }
+  ]
+}

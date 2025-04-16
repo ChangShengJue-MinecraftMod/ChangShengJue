@@ -18,12 +18,12 @@ public class LanceGangLeaderModel extends DefaultedEntityGeoModel<LanceGangLeade
 
 	@Override
 	public ResourceLocation getModelResource(LanceGangLeader animatable) {
-		return KnifeGangLeaderRenderer.CAPE_GEO.get(animatable.getVariant());
+		return LanceGangLeaderRenderer.CAPE_GEO.get(animatable.getVariant());
 	}
 
 	@Override
 	public ResourceLocation getTextureResource(LanceGangLeader knifeGangLeader) {
-		return KnifeGangLeaderRenderer.CAPE_TEXTURE.get(knifeGangLeader.getVariant());
+		return LanceGangLeaderRenderer.CAPE_TEXTURE.get(knifeGangLeader.getVariant());
 	}
 
 	@Override

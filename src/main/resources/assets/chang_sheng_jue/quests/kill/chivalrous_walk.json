@@ -1,0 +1,26 @@
+{
+  "questId": "2487A5CD-BE95-4BEE-AE6E-7705531BADAE",
+  "questName": "quest.kill.pillager.questName",
+  "questDescription": "quest.kill.pillager.questDescription",
+  "questRequirementsDescription": "quest.kill.pillager.questRequirementsDescription",
+  "type": "KILL",
+  "targetEntity": "#chang_sheng_jue:pillager",
+  "requiredKills": 1,
+  "repeatable": true,
+  "questGenerateTarget" : false,
+  "givesEffect": false,
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:gang_token",
+      "count": 2
+    },
+    {
+      "item": "chang_sheng_jue:yi_guan_tong_qian",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 4.0
+      }
+    }
+  ]
+}

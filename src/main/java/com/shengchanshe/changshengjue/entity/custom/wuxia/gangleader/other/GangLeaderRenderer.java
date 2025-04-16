@@ -1,10 +1,11 @@
-package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader;
+package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other;
 
 import com.google.common.collect.Maps;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.GangleaderVariant2;
 import net.minecraft.Util;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -34,35 +35,35 @@ public class GangLeaderRenderer extends DynamicGeoEntityRenderer<GangLeader> {
     public static final Map<GangleaderVariant2,ResourceLocation> CAPE_TEXTURE =
             Util.make(Maps.newEnumMap(GangleaderVariant2.class),(map)->{
                 map.put(GangleaderVariant2.TEXTURES_0,
-                        new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/gang_leader/knife_gang_leader.png"));
+                        new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/gang_leader/clubbed_gang_leader.png"));
                 map.put(GangleaderVariant2.TEXTURES_1,
                         new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/gang_leader/lance_gang_leader.png"));
                 map.put(GangleaderVariant2.TEXTURES_2,
                         new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/gang_leader/sword_gang_leader.png"));
                 map.put(GangleaderVariant2.TEXTURES_3,
-                        new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/gang_leader/clubbed_gang_leader.png"));
+                        new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/gang_leader/knife_gang_leader.png"));
             });
     public static final Map<GangleaderVariant2,ResourceLocation> CAPE_GEO =
             Util.make(Maps.newEnumMap(GangleaderVariant2.class),(map)->{
                 map.put(GangleaderVariant2.TEXTURES_0,
-                        new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/gang_leader/knife_gang_leader.geo.json"));
+                        new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/gang_leader/clubbed_gang_leader.geo.json"));
                 map.put(GangleaderVariant2.TEXTURES_1,
                         new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/gang_leader/lance_gang_leader.geo.json"));
                 map.put(GangleaderVariant2.TEXTURES_2,
                         new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/gang_leader/sword_gang_leader.geo.json"));
                 map.put(GangleaderVariant2.TEXTURES_3,
-                        new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/gang_leader/clubbed_gang_leader.geo.json"));
+                        new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/gang_leader/knife_gang_leader.geo.json"));
             });
     public static final Map<GangleaderVariant2,ResourceLocation> CAPE_ANIMATION =
             Util.make(Maps.newEnumMap(GangleaderVariant2.class),(map)->{
                 map.put(GangleaderVariant2.TEXTURES_0,
-                        new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/gang_leader/knife_gang_leader.animation.json"));
+                        new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/gang_leader/clubbed_gang_leader.animation.json"));
                 map.put(GangleaderVariant2.TEXTURES_1,
                         new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/gang_leader/lance_gang_leader.animation.json"));
                 map.put(GangleaderVariant2.TEXTURES_2,
                         new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/gang_leader/sword_gang_leader.animation.json"));
                 map.put(GangleaderVariant2.TEXTURES_3,
-                        new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/gang_leader/clubbed_gang_leader.animation.json"));
+                        new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/gang_leader/knife_gang_leader.animation.json"));
             });
     protected ItemStack mainHandItem;
     protected ItemStack offhandItem;

@@ -18,12 +18,12 @@ public class SwordGangLeaderModel extends DefaultedEntityGeoModel<SwordGangLeade
 
 	@Override
 	public ResourceLocation getModelResource(SwordGangLeader animatable) {
-		return KnifeGangLeaderRenderer.CAPE_GEO.get(animatable.getVariant());
+		return SwordGangLeaderRenderer.CAPE_GEO.get(animatable.getVariant());
 	}
 
 	@Override
 	public ResourceLocation getTextureResource(SwordGangLeader knifeGangLeader) {
-		return KnifeGangLeaderRenderer.CAPE_TEXTURE.get(knifeGangLeader.getVariant());
+		return SwordGangLeaderRenderer.CAPE_TEXTURE.get(knifeGangLeader.getVariant());
 	}
 
 	@Override

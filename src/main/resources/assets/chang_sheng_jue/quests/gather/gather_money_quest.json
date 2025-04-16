@@ -1,0 +1,24 @@
+{
+  "questId": "C07D5D01-2788-4F26-9C6B-0DD61455955F",
+  "questName": "quest.money.questName",
+  "questDescription": "quest.money.questDescription",
+  "type": "GATHER",
+  "repeatable": true,
+  "givesEffect": false,
+  "questRequirements": [
+    {
+      "item": "chang_sheng_jue:yi_guan_tong_qian",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 16.0,
+        "min": 8.0
+      }
+    }
+  ],
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:gang_token",
+      "count": 1
+    }
+  ]
+}
