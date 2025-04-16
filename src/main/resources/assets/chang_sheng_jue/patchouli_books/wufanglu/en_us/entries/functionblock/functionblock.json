@@ -1,0 +1,137 @@
+{
+  "name": "功能方块",
+  "category": "chang_sheng_jue:function",
+  "icon": "chang_sheng_jue:bullions_casting_molds",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:zhu_tai",
+      "text": "作用等同火把，照亮半径为12格"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:zhu_tai"
+    },
+    {
+      "title": "石灯",
+      "type": "patchouli:image",
+      "images": ["chang_sheng_jue:textures/gui/patchouli/functionblock/light.png"],
+      "text": "从左到右依次为：点燃的石灯 → 未点燃的石灯 →石灯底座,石灯的底座除装饰外无其他作用,石灯分为点燃和未燃两个状态,使用打火石进行点燃，用作光源，光照亮度等同于烛台"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:stone_lamps_block",
+      "recipe2": "chang_sheng_jue:stone_lamps_base_block"
+    },
+    {
+      "title": "牌匾",
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:plaque",
+      "text": "右键牌匾可以写入内容。侧面放置于方块上，作用同告示牌（可左右连接调整牌匾长度）。"
+    },
+    {
+      "title": "坩埚",
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:crucible",
+      "text": "是制作铜钱、元宝的重要道具可与8个铜/银/金合成为 坩埚（碎铜/银/金）"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:crucible_crushed_copper",
+      "recipe2": "chang_sheng_jue:crucible_crushed_silver"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:crucible_crushed_gold",
+      "text": "坩埚（碎铜/银/金）在熔炉中烧制可获得坩埚（铜/银/金液）"
+    },
+    {
+      "type": "patchouli:smelting",
+      "recipe": "minecraft:crucible_liquid_copper_from_smelting_crucible_crushed_copper",
+      "recipe2": "minecraft:crucible_liquid_silver_from_smelting_crucible_crushed_silver"
+    },
+    {
+      "type": "patchouli:smelting",
+      "recipe": "minecraft:crucible_liquid_gold_from_smelting_crucible_crushed_gold",
+      "text": "坩埚（铜/银/金液）可放入模具中制作：铜钱/金银元宝"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:casting_molds",
+      "text": "用于铸造铜钱，将模具右键放置在地面，手持坩埚（铜液）右键倒入，如右图"
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["chang_sheng_jue:textures/gui/patchouli/functionblock/casting_molds1.png"
+        , "chang_sheng_jue:textures/gui/patchouli/functionblock/casting_molds2.png"
+        , "chang_sheng_jue:textures/gui/patchouli/functionblock/casting_molds3.png"
+      ]
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:bullions_casting_molds",
+      "text": "用于铸造元宝，将模具右键放置在地面，手持坩埚（金/银液）右键倒入，如右图"
+    },
+    {
+      "type": "patchouli:image",
+      "images": ["chang_sheng_jue:textures/gui/patchouli/functionblock/bullions_casting_molds1.png"
+        , "chang_sheng_jue:textures/gui/patchouli/functionblock/bullions_casting_molds2.png"
+        , "chang_sheng_jue:textures/gui/patchouli/functionblock/bullions_casting_molds3.png"
+        , "chang_sheng_jue:textures/gui/patchouli/functionblock/bullions_casting_molds4.png"
+      ]
+    },
+    {
+      "title": "画轴",
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:painting_scroll",
+      "text": "分为（1x1、2x1、1x2、2x2）四种，作用同原版画，有多种图案。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:painting_scroll",
+      "recipe2": "chang_sheng_jue:high_painting_scroll"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:width_painting_scroll",
+      "recipe2": "chang_sheng_jue:big_painting_scroll"
+    },
+    {
+      "type": "patchouli:empty",
+      "draw_filler": true
+    },
+    {
+      "title": "刷子与石灰浆",
+      "type": "patchouli:image",
+      "images": ["chang_sheng_jue:textures/gui/patchouli/functionblock/brush.png"],
+      "text": "将任意石灰浆桶放副手，主手持刷子就可以将整块红砖刷成对应色系白墙。石灰浆桶使用12次后会变成空桶。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:paint_brush",
+      "recipe2": "chang_sheng_jue:lime_slurry_barrels"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:warm_lime_slurry_barrels",
+      "recipe2": "chang_sheng_jue:cool_lime_slurry_barrels"
+    },
+    {
+      "title": "青花瓷花盆",
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:blue_and_white_porcelain_flower_pots",
+      "text": "作用等同于原版花盆"
+    },
+    {
+      "Title": "扶梯",
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:yun_shan_fu_ti_block",
+      "text": "梯子有三格高，并且可以向上继续拼接增高。（当玩家处于方块边缘时向前一格放置扶梯会被压趴下）"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:yun_shan_fu_ti_block",
+      "recipe2": "chang_sheng_jue:ba_hua_fu_ti_block"
+    }
+  ]
+}

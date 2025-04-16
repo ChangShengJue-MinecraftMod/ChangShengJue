@@ -4,9 +4,11 @@
   "version": 1,
   "creative_tab": "chang_sheng_jue:chang_sheng_jue_tool",
   "use_resource_pack": true,
-  "book_texture": "chang_sheng_jue:textures/gui/guideline.png",
+  "book_texture": "chang_sheng_jue:textures/gui/patchouli/guideline.png",
+  "filler_texture": "chang_sheng_jue:textures/gui/patchouli/guideline_filler.png",
   "model": "chang_sheng_jue:guideline",
   "categories": [
-
-  ]
+    "chang_sheng_jue:villages"
+  ],
+  "images": ["chang_sheng_jue:textures/gui/patchouli/villages/guideline_filler.png"]
 }

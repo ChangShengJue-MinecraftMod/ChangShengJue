@@ -29,5 +29,8 @@
       "hassword"
     ]
   ],
+  "rewards": {
+    "experience": 1000
+  },
   "sends_telemetry_event": true
 }

@@ -80,10 +80,6 @@ public class SoftSword extends Sword implements GeoItem {
                 if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
                     pPlayer.getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(xuannuSwordsmanship -> {
                         if (xuannuSwordsmanship.xuannuSwordsmanshipComprehend() && xuannuSwordsmanship.getXuannuSwordsmanshipLevel() >= 1) {
-                            if (pPlayer instanceof ServerPlayer serverPlayer) {
-                                CSJAdvanceInit.usewaigong.trigger(serverPlayer);
-                            }
-
                             this.onXuannuSwordsmanship(pLevel, xuannuSwordsmanship.getXuannuSwordsmanshipLevel(), pPlayer, xuannuSwordsmanship);
                             triggerAnim(pPlayer, GeoItem.getOrAssignId(pPlayer.getItemInHand(pUsedHand), (ServerLevel) pLevel), "Attack", "attack");
                         }
@@ -105,7 +101,7 @@ public class SoftSword extends Sword implements GeoItem {
                 if (!player.getAbilities().instabuild) {
                     player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
                         int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
-                        if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() >= 1){
+                        if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() == 1){
                             player.getFoodData().eat(-foodLevel + 1, -1);//消耗饱食度
                             if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 1000){
                                 theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
@@ -146,6 +142,7 @@ public class SoftSword extends Sword implements GeoItem {
                                         .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player),
                                 player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
                             if (xuannuSwordsmanship.getXuannuSwordsmanshipUseCount() <= 100){
+
                                 xuannuSwordsmanship.addXuannuSwordsmanshipUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (xuannuSwordsmanship.getXuannuSwordsmanshipUseCount() >= 100){
                                     xuannuSwordsmanship.setXuannuSwordsmanshipParticle(true);

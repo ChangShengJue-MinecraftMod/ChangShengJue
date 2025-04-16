@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:chang_sheng_jueadvancement",
+  "parent": "minecraft:chang_sheng_jueadvancement/hasbronzesword",
   "criteria": {
     "usewaigong": {
       "conditions": {},
@@ -15,7 +15,8 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "chang_sheng_jue:immortal_miracle"
+      "item": "chang_sheng_jue:han_jian",
+      "nbt": "{Damage:0}"
     },
     "show_toast": true,
     "title": {

@@ -7,9 +7,14 @@ import com.shengchanshe.changshengjue.advancement.third.*;
 import com.shengchanshe.changshengjue.advancement.third.LearnGongFa;
 import com.shengchanshe.changshengjue.advancement.third.UseWaiGong;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.server.level.ServerPlayer;
 
 public class CSJAdvanceInit {
-    ///*CSJAdvanceInit.任务命名.trigger(player);*///
+    /*
+    if (player instanceof ServerPlayer serverPlayer) {
+        CSJAdvanceInit.makechinaware.trigger(serverPlayer);
+    }
+    */
     //一级
     public static final MiChangSheng michangsheng = CriteriaTriggers.register(new MiChangSheng());
     //二级

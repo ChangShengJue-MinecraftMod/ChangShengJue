@@ -11,13 +11,19 @@ import com.shengchanshe.changshengjue.advancement.third.UseWaiGong;
 import com.shengchanshe.changshengjue.advancement.third.LearnGongFa;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.world.CSJStructures;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
+import net.minecraft.advancements.RequirementsStrategy;
+import net.minecraft.advancements.critereon.LocationPredicate;
+import net.minecraft.advancements.critereon.PlayerTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
 
 import java.util.function.Consumer;
 
@@ -64,7 +70,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
                         ,(ResourceLocation)null
                         ,FrameType.TASK, true, true, false)
                 .addCriterion("hasbronzesword", HasBronzeSword.TriggerInstance.createInstance())
-                .save(consumer, ChangShengJue.MOD_ID+"advancement");
+                .save(consumer, ChangShengJue.MOD_ID+"advancement/hasbronzesword");
 
         //新生活！
         Advancement findchinesevillage = Advancement.Builder.advancement().parent(begin)
@@ -73,7 +79,17 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
                         , Component.translatable("advancement.chang_sheng_jue.findchinesevillage.desc").withStyle(ChatFormatting.GRAY)
                         , (ResourceLocation) null
                         , FrameType.TASK, true, true, false)
-                .addCriterion("findchinesevillage", FindChineseVillage.TriggerInstance.createInstance())
+                .addCriterion("findchinesevillage-pityard", PlayerTrigger.TriggerInstance.located(
+                        LocationPredicate.inStructure(CSJStructures.PIT_YARD)))
+                .addCriterion("findchinesevillage-sandstonecastle", PlayerTrigger.TriggerInstance.located(
+                        LocationPredicate.inStructure(CSJStructures.SANDSTONE_CASTLE)))
+                .addCriterion("findchinesevillage-siheyuan", PlayerTrigger.TriggerInstance.located(
+                        LocationPredicate.inStructure(CSJStructures.SI_HE_YUAN)))
+                .addCriterion("findchinesevillage-supaivillage", PlayerTrigger.TriggerInstance.located(
+                        LocationPredicate.inStructure(CSJStructures.SU_PAI_VILLAGE)))
+                .addCriterion("findchinesevillage-wanpaivillage/", PlayerTrigger.TriggerInstance.located(
+                        LocationPredicate.inStructure(CSJStructures.WAN_PAI_VILLAGE)))
+                .requirements(RequirementsStrategy.OR)
                 .save(consumer, ChangShengJue.MOD_ID + ":advancement/findchinesevillage");
 
         //帮会？
@@ -220,6 +236,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
                         , (ResourceLocation) null
                         , FrameType.CHALLENGE, true, true, false)
                 .addCriterion("hassword", HasSword.TriggerInstance.createInstance())
+                .rewards(net.minecraft.advancements.AdvancementRewards.Builder.experience(1000))
                 .save(consumer, ChangShengJue.MOD_ID + ":advancement/hassword");
 
         // 将门之后
@@ -272,6 +289,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
                         , (ResourceLocation) null
                         , FrameType.CHALLENGE, true, true, false)
                 .addCriterion("hasqitian", HasQiTian.TriggerInstance.createInstance())
+                .rewards(net.minecraft.advancements.AdvancementRewards.Builder.experience(1000))
                 .save(consumer, ChangShengJue.MOD_ID + ":advancement/hasqitian");
 
         //一代宗师
@@ -282,6 +300,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
                         , (ResourceLocation) null
                         , FrameType.CHALLENGE, true, true, false)
                 .addCriterion("gongfadone", GongFaDone.TriggerInstance.createInstance())
+                .rewards(net.minecraft.advancements.AdvancementRewards.Builder.experience(1000))
                 .save(consumer, ChangShengJue.MOD_ID + ":advancement/gongfadone");
 
         //隐世大侠
@@ -292,6 +311,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
                         , (ResourceLocation) null
                         , FrameType.CHALLENGE, true, true, false)
                 .addCriterion("donefinaltask", DoneFinalTask.TriggerInstance.createInstance())
+                .rewards(net.minecraft.advancements.AdvancementRewards.Builder.experience(1000))
                 .save(consumer, ChangShengJue.MOD_ID + ":advancement/donefinaltask");
 
         //头把交椅
@@ -302,6 +322,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
                         , (ResourceLocation) null
                         , FrameType.CHALLENGE, true, true, false)
                 .addCriterion("beatleader", BeatLeader.TriggerInstance.createInstance())
+                .rewards(net.minecraft.advancements.AdvancementRewards.Builder.experience(1000))
                 .save(consumer, ChangShengJue.MOD_ID + ":advancement/beatleader");
     }
 }

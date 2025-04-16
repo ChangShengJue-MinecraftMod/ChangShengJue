@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "pattern": [
+    "   ",
+    "###",
+    "###"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:pig_trough"
+  },
+  "show_notification": true
+}

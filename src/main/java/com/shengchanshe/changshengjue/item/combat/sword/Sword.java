@@ -117,9 +117,6 @@ public class Sword extends SwordItem {
                 if (!pLevel.isClientSide) {
                     pPlayer.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                         if (duguNineSword.duguNineSwordsComprehend()) {
-                            if (pPlayer instanceof ServerPlayer serverPlayer) {
-                                CSJAdvanceInit.usewaigong.trigger(serverPlayer);
-                            }
                             this.onDuguNineSwords(pLevel, duguNineSword.getDuguNineSwordsLevel(), pPlayer, duguNineSword);
                         }
                     });
@@ -144,7 +141,7 @@ public class Sword extends SwordItem {
                 if (!player.getAbilities().instabuild) {
                     player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
                         int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
-                        if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() >= 1){
+                        if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() == 1){
                             player.getFoodData().eat(-foodLevel + 1, -1);//消耗饱食度
                             if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 1000){
                                 theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);

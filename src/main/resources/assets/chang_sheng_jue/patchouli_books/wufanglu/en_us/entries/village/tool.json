@@ -1,0 +1,45 @@
+{
+  "name": "工具",
+  "category": "chang_sheng_jue:village",
+  "icon": "chang_sheng_jue:tool_table",
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:loom_recipe",
+      "text": "织布机合成配方"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "使用说明：主手持$(item)蚕丝$()右键织布机可织成$(item)丝绸$()$(br)产出比例：2蚕丝 → 1丝绸"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:pottery_wheel_recipe",
+      "text": "陶轮合成配方"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "交互功能：$(li)1个粘土 → 制造$(item)瓷杯$()$(li)2个粘土 → 制造$(item)瓷碗$()$(li)3个粘土 → 制造$(item)瓷盘$()"
+    },
+
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:tool_table_recipe",
+      "text": "工具台合成配方"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "维护功能：主手持$(item)弓$()右键工具台可快速修复工具耐久"
+    },
+
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:pig_trough_recipe",
+      "text": "牲畜食槽合成配方"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "加速生长：$(li)可放置$(item)小麦$()$(br)效果：提升附近动物20%生长速度"
+    }
+  ]
+}

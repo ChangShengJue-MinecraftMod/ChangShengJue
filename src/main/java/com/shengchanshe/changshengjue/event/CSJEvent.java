@@ -49,7 +49,10 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.qian_kun_da_nu
 import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
+import com.shengchanshe.changshengjue.world.biome.CSJBiomes;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -62,6 +65,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
@@ -1149,5 +1156,12 @@ public class CSJEvent {
                 });
             }
         }
+    }
+    //玩家进入村庄
+    private static void checkAndTriggerAchievement(ServerPlayer player) {
+        // 获取玩家当前位置
+        BlockPos playerPos = player.blockPosition();
+
+        // 检查玩家是否在沙漠村庄内
     }
 }

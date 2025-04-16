@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:chang_sheng_jueadvancement",
+  "parent": "minecraft:chang_sheng_jueadvancement/hasbronzesword",
   "criteria": {
     "hasarmor": {
       "conditions": {},

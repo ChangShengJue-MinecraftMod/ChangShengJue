@@ -1,0 +1,42 @@
+{
+  "name": "杂货",
+  "category": "chang_sheng_jue:xiake",
+  "icon": "chang_sheng_jue:stakes",
+  "pages": [
+    {
+      "title": "木桩",
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:stakes",
+      "text": "木桩合成表"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:stakes",
+      "text": "内功、轻功、外功(空手)类功法可以通过打击木桩练习领悟，每次打击领悟概率为15%。"
+    },
+    {
+      "title": "茶",
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:long_jing_teas",
+      "text": "喝茶可以让你更快恢复血量或饥饿度，详细效果可以看茶的描述。"
+    },
+    {
+      "title": "酒",
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:shi_li_xiang",
+      "text": "喝酒可以让你武功更快冷却、减少施展武功的饥饿度消耗、增加武功伤害等，详细效果可以看酒的描述。不要贪杯，喝多会醉~"
+    },
+    {
+      "title": "武器",
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:yi_tina_jian",
+      "text": "部分外功需要武器作为媒介进行施展，所以拥有对应武器很重要。自己可以制作武器，也可以在帮派使用帮派令牌兑换武器，完成帮派任务则可以解锁绝世兵器的兑换。"
+    },
+    {
+      "title": "装备",
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:confucian_costumes_chestplate",
+      "text": "武侠装备除了像原版装备可以给你提供盔甲值或盔甲韧性等外，还可以减少他人对你造成的外功伤害。装备可以自己制作也可以在新城的铁匠铺内使用货币兑换。大部分盔甲是支持颜色改变外观的，可以试试。"
+    }
+  ]
+}

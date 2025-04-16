@@ -1,0 +1,57 @@
+{
+  "name": "村庄",
+  "category": "chang_sheng_jue:village",
+  "icon": "chang_sheng_jue:chang_sheng_jue_loom",
+  "pages": [
+    {
+      "title": "四合院村庄",
+      "type": "patchouli:image",
+      "images": ["chang_sheng_jue:textures/gui/patchouli/villages/four_courtyard.png"],
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "常生成在草原群系，一个院子四面建有房屋，从四面将庭院合围在中间，故名四合院。其中常有作物：高粱、玉米、小麦、大豆、谷子。"
+    },
+    {
+      "title": "窑洞村庄",
+      "type": "patchouli:image",
+      "images": ["chang_sheng_jue:textures/gui/patchouli/villages/yaodong.png"],
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "常生成在高原群系，通过下挖泥土建造窑洞，冬暖夏凉，是一种特殊的建筑。其中常有作物：甘蔗、胡椒、芒果、菠萝。"
+    },
+    {
+      "title": "沙石堡",
+      "type": "patchouli:image",
+      "images": ["chang_sheng_jue:textures/gui/patchouli/villages/fortress.png"],
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "常生成在沙漠群系，用砂岩构筑的堡垒式村庄，储备充足、抗袭击，仿佛沙漠中的明珠。其中常有作物：棉花、番茄、葡萄、哈密瓜。"
+    },
+    {
+      "title": "苏式村庄",
+      "type": "patchouli:image",
+      "images": ["chang_sheng_jue:textures/gui/patchouli/villages/sushi.png"],
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "常生成在丛林群系，白墙黑瓦那朴素典雅的风格与脊角高翘的屋顶，是苏派建筑的艺术典范。其中常有作物：荔枝、香蕉、榴莲、水稻。"
+    },
+    {
+      "title": "徽式村庄",
+      "type": "patchouli:image",
+      "images": ["chang_sheng_jue:textures/gui/patchouli/villages/huishi.png"],
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "常生成在森林群系，徽州民居以白墙黛瓦、马头墙闻名。看那雕花门窗多精致！其中常有作物：莲藕、花生、茄子、梨子。"
+    }
+  ]
+}

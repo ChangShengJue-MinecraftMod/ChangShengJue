@@ -306,6 +306,59 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("X")
                 .pattern("#")
                 .unlockedBy("has_zhu_tai", has(Items.STONE)).save(consumer);
+        //功能方块
+        // 织布机
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get(), 1)
+                .define('#', Ingredient.of(ItemTags.PLANKS))
+                .define('X', Ingredient.of(ItemTags.WOODEN_SLABS))
+                .pattern("X X")
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS))
+                .save(consumer, new ResourceLocation(ChangShengJue.MOD_ID, "loom_recipe"));
+        // 陶轮
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChangShengJueBlocks.POTTERY_WHEEL.get(), 1)
+                .define('#', Ingredient.of(Items.COBBLESTONE))
+                .pattern(" # ")
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_planks",has(ItemTags.PLANKS))
+                .save(consumer, new ResourceLocation(ChangShengJue.MOD_ID, "pottery_wheel_recipe"));
+        //工具台
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChangShengJueBlocks.TOOL_TABLE.get(), 1)
+                .define('#', Ingredient.of(ItemTags.PLANKS))
+                .define('X', Ingredient.of(Items.STICK))
+                .pattern("###")
+                .pattern("###")
+                .pattern("X X")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS))
+                .save(consumer, new ResourceLocation(ChangShengJue.MOD_ID, "tool_table_recipe"));
+        //牲畜食槽
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChangShengJueBlocks.PIG_TROUGH.get(), 1)
+                .define('#', Ingredient.of(Items.COBBLESTONE))
+                .pattern("   ")
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS))
+                .save(consumer, new ResourceLocation(ChangShengJue.MOD_ID, "pig_trough_recipe"));
+        //武器架
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChangShengJueBlocks.WEAPON_RACK.get(), 1)
+                .define('X', Ingredient.of(Items.STICK))
+                .pattern("   ")
+                .pattern("XXX")
+                .pattern("XXX")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS))
+                .save(consumer, new ResourceLocation(ChangShengJue.MOD_ID, "weapon_rack_recipe"));
+        //丝绸
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueItems.SILK.get(), 1)
+                .define('#', Ingredient.of(ChangShengJueItems.NATURAL_SILK.get()))
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .unlockedBy("has_planks", has(ItemTags.PLANKS))
+                .save(consumer, new ResourceLocation(ChangShengJue.MOD_ID, "silk_recipe"));
+
+
         /**
          * 家具
          */
