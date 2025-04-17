@@ -1,26 +1,20 @@
 package com.shengchanshe.changshengjue.event.martial_arts;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiCapabilityProvider;
-import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiClientData;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
-import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
-import com.shengchanshe.changshengjue.network.packet.effect.EffectEntityPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiPacket;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
 import com.shengchanshe.changshengjue.util.particle.DachengParticle;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class QianKunDaNuoYiEvent {
 
@@ -102,37 +96,16 @@ public class QianKunDaNuoYiEvent {
                 event.getEntity().getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(qianKunDaNuoYi -> {
                     if(event.getEntity() instanceof Player player) {
                         if (qianKunDaNuoYi.isSkillZActive() || qianKunDaNuoYi.isSkillXActive() || qianKunDaNuoYi.isSkillCActive()) {
-                            if (qianKunDaNuoYi.setQianKunDaNuoYiUseCooldownPercent() <= 0) {
-                                if (player.getFoodData().getFoodLevel() > 8) {
+                            if (qianKunDaNuoYi.setQianKunDaNuoYiUseCooldownPercent() > 0) {
                                     if (qianKunDaNuoYi.getQianKunDaNuoYiLevel() >= 1) {
-                                        if (!player.getAbilities().instabuild) {
-                                            player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
-                                                int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
-                                                if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() >= 1) {
-                                                    player.getFoodData().eat(-foodLevel + 1, -1);//消耗饱食度
-                                                    if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 100) {
-                                                        theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
-                                                    }
-                                                } else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() > 1) {
-                                                    player.getFoodData().eat(-foodLevel + 2, -1);//消耗饱食度
-                                                    if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 100) {
-                                                        theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
-                                                    }
-                                                } else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() < 1) {
-                                                    player.getFoodData().eat(-foodLevel, -1);//消耗饱食度
-                                                }
-                                            });
-                                            qianKunDaNuoYi.setQianKunDaNuoYiUseCooldownMaxAdd(3600);
-                                            qianKunDaNuoYi.setQianKunDaNuoYiUseCooldownMax(qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax() + 40);
-                                            qianKunDaNuoYi.setQianKunDaNuoYiUseCooldownPercent(player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) ?
-                                                    qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax() - 30 : qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax());
-                                        }
                                         float health = player.getHealth();
                                         float v = qianKunDaNuoYi.getQianKunDaNuoYiLevel() <= 1 ? 0.35F : 0.35F + health * 0.02F;
                                         if (player.getRandom().nextFloat() < v) {
                                             if (event.getSource().getEntity() instanceof LivingEntity livingEntity) {
                                                 livingEntity.hurt(event.getSource(), event.getAmount() * 1.35F);
                                             }
+                                            level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                                    ChangShengJueSound.QIAN_KUN_DA_NUO_YI_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                         }
                                         if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())) {
                                             player.setHealth(player.getHealth() + 1);
@@ -141,7 +114,6 @@ public class QianKunDaNuoYiEvent {
                                             player.getFoodData().eat(1, 0);
                                         }
                                     }
-                                }
                             }
                         }
                     }

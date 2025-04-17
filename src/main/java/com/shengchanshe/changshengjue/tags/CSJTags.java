@@ -53,6 +53,7 @@ public class CSJTags {
         public static final TagKey<Item> DRINKS = tag("drinks");
         public static final TagKey<Item> PAINTING = tag("painting");
         public static final TagKey<Item> WINE = tag("wine");
+        public static final TagKey<Item> FOODS = tag("foods");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(ChangShengJue.MOD_ID, name));
@@ -60,8 +61,11 @@ public class CSJTags {
     }
 
     public static class EntityTypes {
-        public static final TagKey<EntityType<?>> WU_XIA_CREATURE = create("wu_xia_creature");
-
+        public static final TagKey<EntityType<?>> HUMANOIDS = create("humanoids");
+        public static final TagKey<EntityType<?>> GANG_LEADER = create("gang_leader");
+        public static final TagKey<EntityType<?>> PILLAGER = create("pillager");
+        public static final TagKey<EntityType<?>> VILLAGERS = create("villagers");
+        public static final TagKey<EntityType<?>> MING_XIA = create("ming_xia");
 
         public static TagKey<EntityType<?>> create(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(ChangShengJue.MOD_ID, name));

@@ -36,6 +36,7 @@ import com.shengchanshe.changshengjue.item.tiers.ChangShengJueArmorMaterials;
 import com.shengchanshe.changshengjue.item.foods.*;
 import com.shengchanshe.changshengjue.item.tool.KaishanPickaxe;
 import com.shengchanshe.changshengjue.item.tool.XuanhuaAxe;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.*;
 import net.minecraftforge.common.ForgeSpawnEggItem;
@@ -292,6 +293,16 @@ public class ChangShengJueItems {
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.VILLAIN,0x405257,0x34423e, new Item.Properties()));
     public static final RegistryObject<Item> ASSASSIN_EGG = ITEMS.register("assassin_egg",
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.ASSASSIN,0x404040,0x404040, new Item.Properties()));
+
+    public static final RegistryObject<Item> CLUBBED_MING_XIA_EGG = ITEMS.register("clubbed_ming_xia_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CLUBBED_MING_XIA, ChatFormatting.BLUE.getColor(),ChatFormatting.BLACK.getColor(), new Item.Properties()));
+    public static final RegistryObject<Item> SWORD_MING_XIA_EGG = ITEMS.register("sword_ming_xia_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.SWORD_MING_XIA, ChatFormatting.GOLD.getColor(),ChatFormatting.BLACK.getColor(), new Item.Properties()));
+    public static final RegistryObject<Item> KNIFE_MING_XIA_EGG = ITEMS.register("knife_ming_xia_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.KNIFE_MING_XIA, ChatFormatting.WHITE.getColor(),ChatFormatting.GREEN.getColor(), new Item.Properties()));
+    public static final RegistryObject<Item> FIST_MING_XIA_EGG = ITEMS.register("fist_ming_xia_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.FIST_MING_XIA, ChatFormatting.BLACK.getColor(),0X3AB3DA, new Item.Properties()));
+
     public static final RegistryObject<Item> PIGLIN_WU_XIA_EGG = ITEMS.register("piglin_wu_xia_egg",
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.PIGLIN_WU_XIA,10051392, 16380836, new Item.Properties()));
     public static final RegistryObject<Item> WITCH_WU_XIA_EGG = ITEMS.register("witch_wu_xia_egg",

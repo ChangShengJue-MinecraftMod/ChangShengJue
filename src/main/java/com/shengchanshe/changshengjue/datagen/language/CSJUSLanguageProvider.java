@@ -6,6 +6,7 @@ import com.shengchanshe.changshengjue.datagen.CSJAdvanceProvider;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
@@ -174,6 +175,10 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.BANDIT_EGG.get(), "强盗刷怪蛋");
         this.add(ChangShengJueItems.VILLAIN_EGG.get(), "恶徒刷怪蛋");
         this.add(ChangShengJueItems.ASSASSIN_EGG.get(), "杀手刷怪蛋");
+        this.add(ChangShengJueItems.CLUBBED_MING_XIA_EGG.get(), "棍王刷怪蛋");
+        this.add(ChangShengJueItems.SWORD_MING_XIA_EGG.get(), "剑仙刷怪蛋");
+        this.add(ChangShengJueItems.KNIFE_MING_XIA_EGG.get(), "刀圣刷怪蛋");
+        this.add(ChangShengJueItems.FIST_MING_XIA_EGG.get(), "北拳刷怪蛋");
         this.add(ChangShengJueItems.PIGLIN_WU_XIA_EGG.get(), "功夫猪灵刷怪蛋");
         this.add(ChangShengJueItems.WITCH_WU_XIA_EGG.get(), "功夫女巫刷怪蛋");
         this.add(ChangShengJueItems.EVOKER_WU_XIA_EGG.get(), "功夫唤魔者刷怪蛋");
@@ -305,6 +310,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("sounds."+ChangShengJue.MOD_ID + ".wu_gang_cut_gui_sound","武功 : 吴刚伐桂");
         this.add("sounds."+ChangShengJue.MOD_ID + ".xuannu_swordsmanship_sound","武功 : 玄女剑法");
         this.add("sounds."+ChangShengJue.MOD_ID + ".golden_belljar_sound","武功 : 金钟罩");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".qian_kun_da_nuo_yi_sound","武功 : 乾坤大挪移");
         this.add("sounds."+ChangShengJue.MOD_ID + ".comprehend_sound","武功 : 领悟");
         this.add("sounds."+ChangShengJue.MOD_ID + ".dacheng_sound","武功 : 大成");
 
@@ -802,6 +808,10 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEntity.BANDIT.get(), "强盗");
         this.add(ChangShengJueEntity.VILLAIN.get(), "恶徒");
         this.add(ChangShengJueEntity.ASSASSIN.get(), "帮派杀手");
+        this.add(ChangShengJueEntity.CLUBBED_MING_XIA.get(), "棍王董大侠");
+        this.add(ChangShengJueEntity.SWORD_MING_XIA.get(), "剑仙张大侠");
+        this.add(ChangShengJueEntity.KNIFE_MING_XIA.get(), "刀圣徐大侠");
+        this.add(ChangShengJueEntity.FIST_MING_XIA.get(), "北拳萧大侠");
         this.add(ChangShengJueEntity.PIGLIN_WU_XIA.get(), "功夫猪灵");
         this.add(ChangShengJueEntity.WITCH_WU_XIA.get(), "功夫女巫");
         this.add(ChangShengJueEntity.EVOKER_WU_XIA.get(), "功夫唤魔者");
@@ -963,5 +973,50 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader", "头把交椅");
         this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader.desc", "击败帮派首领");
 
+        //任务
+        this.add("quest.button", "任务");
+        this.add("quest.requirements", "任务需求:");
+        this.add("quest.rewards", "任务奖励:");
+        this.add("quest.submit.button", "提交任务");
+        this.add("quest.accept.button", "接受任务");
+        this.add("quest.abandon.button", "放弃任务");
+        this.add("quest.flushed.button", "刷新任务");
+        this.add("quest.requirements.prompt", "任务需求不足!");
+
+
+        this.add("quest.food.questName", "收集食物");
+        this.add("quest.food.questDescription", "首领：兄弟们的吃食又不够了，总不能饿肚子吧，兄弟你去想想办法。");
+        this.add("quest.money.questName", "收集钱款");
+        this.add("quest.money.questDescription", "首领：这年头什么都要花钱，一文钱难倒英雄汉，兄弟能筹点帮费吗？");
+
+        this.add("quest.kill.gang_leader.questName", "踢馆");
+        this.add("quest.kill.gang_leader.questDescription", "首领：可恶！这是今年第二个趁我病期来踢馆的了，欺我帮派无人，你去回敬下吧！");
+        this.add("quest.kill.gang_leader.questRequirementsDescription", "击杀任意帮派首领");
+
+        this.add("quest.kill.pillager.questName", "侠客行");
+        this.add("quest.kill.pillager.questDescription", "首领：灾厄巡逻队总是与我们发生冲突，不知死活！做掉他们！");
+        this.add("quest.kill.pillager.questRequirementsDescription", "击杀掠夺者");
+
+        this.add("quest.kill.villager.questName", "杀鸡儆猴");
+        this.add("quest.kill.villager.questDescription", "首领：这群刁民真是有够胆大的，去收帮费的人拒了我们几波，你去给他们点颜色看看！");
+        this.add("quest.kill.villager.questRequirementsDescription", "击杀任意村民");
+
+        this.add("quest.kill.arbitrarily.questName", "投名状");
+        this.add("quest.kill.arbitrarily.questDescription", "首领：这位兄弟，想入我们帮派，你需要先纳投名状！");
+        this.add("quest.kill.arbitrarily.questRequirementsDescription", "击杀任意人型生物");
+
+        this.add("quest.kill.challenger.questName", "挑战");
+        this.add("quest.kill.challenger.questDescription", "首领：有兄弟听说你武功高强，想和你较量一番，你意下如何？");
+        this.add("quest.kill.challenger.questRequirementsDescription", "击败或者击杀前来的挑战者");
+
+        this.add("quest.kill.ming_xia.questName", "天下第一");
+        this.add("quest.kill.ming_xia.questDescription", "首领：虽说现在天下第一是枪神赵大侠，但以兄台的实力也能与其一争啊！");
+        this.add("quest.kill.ming_xia.questRequirementsDescription", "击杀四大名侠之一");
+
+        this.add("quest.raid.village.questName", "保护村庄");
+        this.add("quest.raid.village.questDescription", "首领：我们帮派名下的村庄被入侵了，快去保护咱们的粮仓！");
+
+        this.add("quest.treat.village.questName", "救民侠医");
+        this.add("quest.treat.village.questDescription", "首领：附近的村庄被僵尸袭击，好多村民变成了僵尸村民，听说兄弟你会些医术，去看看吧？");
     }
 }

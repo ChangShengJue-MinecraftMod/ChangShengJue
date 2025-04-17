@@ -1,11 +1,9 @@
 package com.shengchanshe.changshengjue.kungfu.qinggong;
 
-import com.shengchanshe.changshengjue.entity.custom.wuxia.assassin.Assassin;
-import com.shengchanshe.changshengjue.kungfu.externalkunfu.ExternalKungFu;
-import com.shengchanshe.changshengjue.kungfu.externalkunfu.ExternalKungFuCapability;
-import com.shengchanshe.changshengjue.kungfu.externalkunfu.kungfu.*;
+import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.kungfu.qinggong.kungfu.TreadTheSnowWithoutTrace;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.*;
 
@@ -18,12 +16,20 @@ public class QingGongManager {
     }
 
     // 从 NBT 数据中创建 KungFuCapability 实例
-    public static QingGongCapability createExternalKungFuCapabilityFromTag(String kungFuType) {
+    public static QingGongCapability createQingGongCapabilityFromTag(String kungFuType) {
         return switch (kungFuType) {
             case "TreadTheSnowWithoutTrace" -> new TreadTheSnowWithoutTrace();
             default -> null;
         };
     }
+
+    public static ItemStack createQingGongBookItems(String kungFuType) {
+        return switch (kungFuType) {
+            case "TreadTheSnowWithoutTrace" -> new ItemStack(ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get());
+            default -> null;
+        };
+    }
+
 
     public QingGongCapability getRandomExternalKungFuCapability(LivingEntity entity) {
         Random random = new Random();

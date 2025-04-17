@@ -294,5 +294,11 @@
     "sounds": [
       "chang_sheng_jue:martial_arts/throwing_knives_hit_ground"
     ]
+  },
+  "qian_kun_da_nuo_yi_sound": {
+    "subtitle": "sounds.chang_sheng_jue.qian_kun_da_nuo_yi_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/qian_kun_da_nuo_yi_sound"
+    ]
   }
 }

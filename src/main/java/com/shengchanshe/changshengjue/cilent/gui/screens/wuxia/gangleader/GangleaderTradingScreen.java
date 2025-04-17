@@ -2,7 +2,11 @@ package com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.worker.KilnWorkerScreen;
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.Quest;
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.QuestManager;
+import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.gui.quest.OpenGangQuestScreenPacket;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -13,13 +17,18 @@ import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ServerboundSelectTradePacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import java.util.Random;
 
 @OnlyIn(Dist.CLIENT)
 public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderTradingMenu> {
@@ -31,7 +40,7 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
     private static final int MERCHANT_MENU_PART_X = 99;  //整张纹理中菜单的宽度
     //进度条的宽和高,这里不显示进度条,在实体中设置
     private static final int PROGRESS_BAR_X = 136;
-    private static final int PROGRESS_BAR_Y = 59;
+    private static final int PROGRESS_BAR_Y = 60;
     //商品物品在菜单中的位置
     private static final int SELL_ITEM_1_X = 5;
     private static final int SELL_ITEM_2_X = 35;
@@ -57,7 +66,7 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
     int scrollOff;
     private boolean isDragging;
 
-    private ImageButton taskButton;
+    private ImageButton questButton;
 
     public GangleaderTradingScreen(GangleaderTradingMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
@@ -72,7 +81,6 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
         this.menu.tryMoveItems(this.shopItem);
         this.minecraft.getConnection().send(new ServerboundSelectTradePacket(this.shopItem));
     }
-
     @Override
     protected void init() {
         super.init();
@@ -91,10 +99,23 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
             buttonY += TRADE_BUTTON_HEIGHT;
         }
 
-        this.taskButton = this.addRenderableWidget(new ImageButton(left - 12, top + 47, 12, 22, 65, 0, 22, BOTTON, button -> {
-//            this.setCurrentTradeType(KilnWorkerScreen.TradeType.RED);
-//            this.sendTradeTypeUpdate(KilnWorkerScreen.TradeType.RED); // 发送网络数据包
-        }));
+        this.questButton = this.addRenderableWidget(new ImageButton(
+                left - 12,
+                top + 47,
+                12,
+                22,
+                65, 0, 22,
+                BOTTON,
+                button -> {
+                    this.openQuestScreen();
+                }
+        ));
+    }
+    private void openQuestScreen() {
+        if (minecraft != null && minecraft.player != null) {
+            // 发送网络数据包到服务器
+            ChangShengJueMessages.sendToServer(new OpenGangQuestScreenPacket());
+        }
     }
 
     @Override
@@ -111,6 +132,10 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
         transform.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 0x404040, false);
         int l = this.font.width(TRADES_LABEL);
         transform.drawString(this.font, TRADES_LABEL, 5 - l / 2 + 48, 48, 0x404040, false);
+        var lines = font.split(Component.translatable("quest.button"), 16);
+        for (int i = 0; i < lines.size(); i++) {
+            transform.drawString(font, lines.get(i),1 - l / 2,49 + i * font.lineHeight, 0x404040, false);
+        }
     }
 
     @Override

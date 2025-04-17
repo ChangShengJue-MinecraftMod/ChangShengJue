@@ -4,6 +4,8 @@ import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_bell_jar.GoldenBellJarClientData;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.hercules.HerculesClientData;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiClientData;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.turtle_breath_work.TurtleBreathWorkClientData;
 import com.shengchanshe.changshengjue.event.martial_arts.TreadTheSnowWithoutTraceEvent;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
@@ -60,6 +62,8 @@ public class CSJEventClientEvents {
 
             if (player.getMainHandItem().is(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get())){
                 ChangShengJueMessages.sendToServer(new QianKunDaNuoYiPacket2("Z"));
+            }else if (QianKunDaNuoYiClientData.isSkillZActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
+                ChangShengJueMessages.sendToServer(new QianKunDaNuoYiPacket2(""));
             }
 
             if (player.getMainHandItem().is(ChangShengJueItems.HERCULES.get())){
@@ -70,7 +74,7 @@ public class CSJEventClientEvents {
 
             if (player.getMainHandItem().is(ChangShengJueItems.TURTLE_BREATH_WORK.get())){
                 ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2("Z"));
-            }else if (HerculesClientData.isSkillZActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
+            }else if (TurtleBreathWorkClientData.isSkillZActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
                 ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2(""));
             }
         }
@@ -95,9 +99,13 @@ public class CSJEventClientEvents {
             }else if (GoldenBellJarClientData.isSkillXActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
                 ChangShengJueMessages.sendToServer(new GoldenBellJarPacket2(""));
             }
+
             if (player.getMainHandItem().is(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get())){
                 ChangShengJueMessages.sendToServer(new QianKunDaNuoYiPacket2("X"));
+            }else if (QianKunDaNuoYiClientData.isSkillXActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
+                ChangShengJueMessages.sendToServer(new QianKunDaNuoYiPacket2(""));
             }
+
             if (player.getMainHandItem().is(ChangShengJueItems.HERCULES.get())){
                 ChangShengJueMessages.sendToServer(new HerculesPacket2("X"));
             }else if (HerculesClientData.isSkillXActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
@@ -106,7 +114,7 @@ public class CSJEventClientEvents {
 
             if (player.getMainHandItem().is(ChangShengJueItems.TURTLE_BREATH_WORK.get())){
                 ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2("X"));
-            }else if (HerculesClientData.isSkillXActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
+            }else if (TurtleBreathWorkClientData.isSkillXActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
                 ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2(""));
             }
         }
@@ -134,7 +142,10 @@ public class CSJEventClientEvents {
 
             if (player.getMainHandItem().is(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get())){
                 ChangShengJueMessages.sendToServer(new QianKunDaNuoYiPacket2("C"));
+            }else if (QianKunDaNuoYiClientData.isSkillCActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
+                ChangShengJueMessages.sendToServer(new QianKunDaNuoYiPacket2(""));
             }
+
             if (player.getMainHandItem().is(ChangShengJueItems.HERCULES.get())){
                 ChangShengJueMessages.sendToServer(new HerculesPacket2("C"));
             }else if (HerculesClientData.isSkillCActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
@@ -143,7 +154,7 @@ public class CSJEventClientEvents {
 
             if (player.getMainHandItem().is(ChangShengJueItems.TURTLE_BREATH_WORK.get())){
                 ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2("C"));
-            }else if (HerculesClientData.isSkillCActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
+            }else if (TurtleBreathWorkClientData.isSkillCActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
                 ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2(""));
             }
         }

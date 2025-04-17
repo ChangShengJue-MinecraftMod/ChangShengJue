@@ -11,8 +11,10 @@ import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.I
 import com.shengchanshe.changshengjue.capability.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
+import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
+import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
@@ -20,9 +22,11 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.hercules.Hercu
 import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -163,6 +167,45 @@ public class QianKunDaNuoYiPacket2 {
                             turtleBreathWorkPacketMessages(turtleBreathWork,player);
                         }
                     });
+                }else {
+                    if (qianKunDaNuoYi.isQianKunDaNuoYiComprehend() && qianKunDaNuoYi.getQianKunDaNuoYiLevel() > 0) {
+                        if (qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownPercent() <= 0) {
+                            if (player.getFoodData().getFoodLevel() > 8) {
+                                if (qianKunDaNuoYi.getQianKunDaNuoYiLevel() >= 1) {
+                                    if (!player.getAbilities().instabuild) {
+                                        player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
+                                            int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
+                                            if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() >= 1) {
+                                                player.getFoodData().eat(-foodLevel + 1, -1);//消耗饱食度
+                                                if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 100) {
+                                                    theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
+                                                }
+                                            } else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() > 1) {
+                                                player.getFoodData().eat(-foodLevel + 2, -1);//消耗饱食度
+                                                if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 100) {
+                                                    theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
+                                                }
+                                            } else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() < 1) {
+                                                player.getFoodData().eat(-foodLevel, -1);//消耗饱食度
+                                            }
+                                        });
+                                        qianKunDaNuoYi.setQianKunDaNuoYiUseCooldownMaxAdd(3600);
+                                        qianKunDaNuoYi.setQianKunDaNuoYiUseCooldownMax(qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax() + 40);
+                                        qianKunDaNuoYi.setQianKunDaNuoYiUseCooldownPercent(player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) ?
+                                                qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax() - 30 : qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax());
+                                        if (qianKunDaNuoYi.getQianKunDaNuoYiUseCount() < 100){
+                                            qianKunDaNuoYi.addQianKunDaNuoYiUseCount(!player.getAbilities().instabuild ? 1 : 100);
+                                            if (qianKunDaNuoYi.getQianKunDaNuoYiUseCount() >= 100){
+                                                qianKunDaNuoYi.setQianKunDaNuoYiParticle(true);
+                                                level.playSound(null, player.getX(), player.getY(), player.getZ(),
+                                                        ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 if (!qianKunDaNuoYi.isQianKunDaNuoYiOff()){
                     qianKunDaNuoYi.setQianKunDaNuoYiOff(true);

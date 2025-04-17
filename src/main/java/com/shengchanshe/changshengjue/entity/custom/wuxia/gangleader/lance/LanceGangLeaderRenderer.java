@@ -36,18 +36,18 @@ public class LanceGangLeaderRenderer extends DynamicGeoEntityRenderer<LanceGangL
     public static final Map<GangleaderVariant,ResourceLocation> CAPE_TEXTURE =
             Util.make(Maps.newEnumMap(GangleaderVariant.class),(map)->{
                 map.put(GangleaderVariant.TEXTURES_0,
-                        new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/gang_leader/knife_gang_leader.png"));
-                map.put(GangleaderVariant.TEXTURES_1,
                         new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/gang_leader/lance_gang_leader.png"));
+                map.put(GangleaderVariant.TEXTURES_1,
+                        new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/gang_leader/knife_gang_leader.png"));
                 map.put(GangleaderVariant.TEXTURES_2,
                         new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/gang_leader/sword_gang_leader.png"));
             });
     public static final Map<GangleaderVariant,ResourceLocation> CAPE_GEO =
             Util.make(Maps.newEnumMap(GangleaderVariant.class),(map)->{
                 map.put(GangleaderVariant.TEXTURES_0,
-                        new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/gang_leader/knife_gang_leader.geo.json"));
-                map.put(GangleaderVariant.TEXTURES_1,
                         new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/gang_leader/lance_gang_leader.geo.json"));
+                map.put(GangleaderVariant.TEXTURES_1,
+                        new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/gang_leader/knife_gang_leader.geo.json"));
                 map.put(GangleaderVariant.TEXTURES_2,
                         new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/gang_leader/sword_gang_leader.geo.json"));
             });

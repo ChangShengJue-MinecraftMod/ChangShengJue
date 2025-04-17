@@ -1,0 +1,26 @@
+{
+  "questId": "BFBAC359-A2CD-488B-9C75-B6DC10C96EED",
+  "questName": "quest.kill.challenger.questName",
+  "questDescription": "quest.kill.challenger.questDescription",
+  "questRequirementsDescription": "quest.kill.challenger.questRequirementsDescription",
+  "type": "KILL",
+  "targetEntity": "chang_sheng_jue:challenger",
+  "requiredKills": 1,
+  "repeatable": true,
+  "questGenerateTarget" : true,
+  "givesEffect": false,
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:gang_token",
+      "count": 2
+    },
+    {
+      "item": "chang_sheng_jue:yi_guan_tong_qian",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 8.0,
+        "min": 4.0
+      }
+    }
+  ]
+}

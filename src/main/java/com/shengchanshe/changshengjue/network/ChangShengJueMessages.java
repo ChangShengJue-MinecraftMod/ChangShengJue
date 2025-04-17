@@ -1,9 +1,11 @@
 package com.shengchanshe.changshengjue.network;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.cilent.gui.screens.plaque.UpdatePlaqueTextPacket;
 import com.shengchanshe.changshengjue.network.packet.effect.EffectEntityPacket;
 import com.shengchanshe.changshengjue.network.packet.food.FoodPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.KilnWorkerSetTradeTypePacket;
+import com.shengchanshe.changshengjue.network.packet.gui.quest.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket2;
@@ -23,7 +25,6 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.wu_gang_cut_gui.WuGangCutGuiPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.wu_gang_cut_gui.WuGangCutGuiPacket1;
-import com.shengchanshe.changshengjue.cilent.gui.screens.plaque.UpdatePlaqueTextPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -235,6 +236,40 @@ public class ChangShengJueMessages {
                 .encoder(KilnWorkerSetTradeTypePacket::encode)
                 .consumerMainThread( KilnWorkerSetTradeTypePacket::handle)
                 .add();
+        //任务按钮
+        net.messageBuilder(AcceptGangQuestsPacket.class, id())
+                .decoder(AcceptGangQuestsPacket::decode)
+                .encoder(AcceptGangQuestsPacket::encode)
+                .consumerMainThread(AcceptGangQuestsPacket::handle)
+                .add();
+        net.messageBuilder(SubmitGangQuestsPacket.class, id())
+                .decoder(SubmitGangQuestsPacket::decode)
+                .encoder(SubmitGangQuestsPacket::encode)
+                .consumerMainThread(SubmitGangQuestsPacket::handle)
+                .add();
+        net.messageBuilder(AbandonGangQuestPacket.class, id())
+                .decoder(AbandonGangQuestPacket::decode)
+                .encoder(AbandonGangQuestPacket::encode)
+                .consumerMainThread(AbandonGangQuestPacket::handle)
+                .add();
+        net.messageBuilder(RefreshGangQuestPacket.class, id())
+                .decoder(RefreshGangQuestPacket::decode)
+                .encoder(RefreshGangQuestPacket::encode)
+                .consumerMainThread(RefreshGangQuestPacket::handle)
+                .add();
+        //任务UI
+        net.messageBuilder(OpenGangQuestScreenPacket.class, id())
+                .decoder(OpenGangQuestScreenPacket::decode)
+                .encoder(OpenGangQuestScreenPacket::encode)
+                .consumerMainThread(OpenGangQuestScreenPacket::handle)
+                .add();
+
+        net.messageBuilder(RefreshQuestScreenPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(RefreshQuestScreenPacket::decode)
+                .encoder(RefreshQuestScreenPacket::encode)
+                .consumerMainThread(RefreshQuestScreenPacket::handle)
+                .add();
+
     }
 
     public static <MSG> void sendToServer(MSG message) {

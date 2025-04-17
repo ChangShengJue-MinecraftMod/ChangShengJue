@@ -1,0 +1,26 @@
+{
+  "questId": "C99BC619-6361-4485-9DA9-C0835F0ABB12",
+  "questName": "quest.kill.villager.questName",
+  "questDescription": "quest.kill.villager.questDescription",
+  "questRequirementsDescription": "quest.kill.villager.questRequirementsDescription",
+  "type": "KILL",
+  "targetEntity": "#chang_sheng_jue:villagers",
+  "requiredKills": 1,
+  "repeatable": true,
+  "questGenerateTarget" : false,
+  "givesEffect": false,
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:gang_token",
+      "count": 1
+    },
+    {
+      "item": "chang_sheng_jue:yi_guan_tong_qian",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 1.0
+      }
+    }
+  ]
+}

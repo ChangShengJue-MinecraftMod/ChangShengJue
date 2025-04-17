@@ -1,14 +1,18 @@
 package com.shengchanshe.changshengjue.kungfu.externalkunfu;
 
 import com.shengchanshe.changshengjue.entity.custom.wuxia.assassin.Assassin;
-import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.GangLeader;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeader;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.knife.KnifeGangLeader;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.lance.LanceGangLeader;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other.GangLeader;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.sword.SwordGangLeader;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.xia.clubbed.ClubbedMingXia;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.xia.knife.KnifeMingXia;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.xia.sword.SwordMingXia;
+import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.kungfu.externalkunfu.kungfu.*;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.Cow;
+import net.minecraft.world.item.ItemStack;
 
 import java.util.*;
 
@@ -38,6 +42,20 @@ public class ExternalKungFuManager {
             case "XuannuSwordsmanship" -> new XuannuSwordsmanship();
             case "GeShanDaNiu" -> new GeShanDaNiu();
             case "SunflowerPointCaveman" -> new SunflowerPointCaveman();
+            default -> null;
+        };
+    }
+
+    public static ItemStack createExternalKungFuBookItems(String kungFuType) {
+        return switch (kungFuType) {
+            case "DuguNineSwords" -> new ItemStack(ChangShengJueItems.DUGU_NINE_SWORDS.get());
+            case "GaoMarksmanship" -> new ItemStack(ChangShengJueItems.GAO_MARKSMANSHIP.get());
+            case "GoldenBlackKnifeMethod" -> new ItemStack(ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get());
+            case "RelentlessThrowingKnives" -> new ItemStack(ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get());
+            case "ShaolinStickMethod" -> new ItemStack(ChangShengJueItems.SHAOLIN_STICK_METHOD.get());
+            case "XuannuSwordsmanship" -> new ItemStack(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get());
+            case "GeShanDaNiu" -> new ItemStack(ChangShengJueItems.GE_SHAN_DA_NIU.get());
+            case "SunflowerPointCaveman" -> new ItemStack(ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get());
             default -> null;
         };
     }
@@ -93,7 +111,7 @@ public class ExternalKungFuManager {
             availableKungFus.remove(ExternalKungFu.XUANNU_SWORDSMANSHIP);
         }
 
-        if (entity instanceof KnifeGangLeader){
+        if (entity instanceof KnifeGangLeader || entity instanceof KnifeMingXia){
             externalKungFuCapabilities.add(new GoldenBlackKnifeMethod());
             availableKungFus.remove(ExternalKungFu.DUGU_NINE_SWORDS);
             availableKungFus.remove(ExternalKungFu.GAO_MARKSMANSHIP);
@@ -101,7 +119,7 @@ public class ExternalKungFuManager {
             availableKungFus.remove(ExternalKungFu.XUANNU_SWORDSMANSHIP);
         }
 
-        if (entity instanceof SwordGangLeader){
+        if (entity instanceof SwordGangLeader || entity instanceof SwordMingXia){
             availableKungFus.remove(ExternalKungFu.GOLDEN_BLACK_KNIFE_METHOD);
             availableKungFus.remove(ExternalKungFu.GAO_MARKSMANSHIP);
             availableKungFus.remove(ExternalKungFu.SHAOLIN_STICK_METHOD);
@@ -109,7 +127,7 @@ public class ExternalKungFuManager {
             externalKungFuCapabilities.add(kungFuCapabilities.get(randomKungFu));
         }
 
-        if (entity instanceof ClubbedGangLeader){
+        if (entity instanceof ClubbedGangLeader || entity instanceof ClubbedMingXia){
             externalKungFuCapabilities.add(new ShaolinStickMethod());
             availableKungFus.remove(ExternalKungFu.DUGU_NINE_SWORDS);
             availableKungFus.remove(ExternalKungFu.GAO_MARKSMANSHIP);

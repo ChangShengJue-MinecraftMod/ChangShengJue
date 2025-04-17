@@ -16,7 +16,7 @@ import com.shengchanshe.changshengjue.entity.custom.wuxia.assassin.Assassin;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.bandit.Bandit;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.blacksmith.Blacksmith;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.challenger.Challenger;
-import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.GangLeader;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other.GangLeader;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeader;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.knife.KnifeGangLeader;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.lance.LanceGangLeader;
@@ -25,6 +25,7 @@ import com.shengchanshe.changshengjue.entity.custom.wuxia.innkeeper.female.Femal
 import com.shengchanshe.changshengjue.entity.custom.wuxia.innkeeper.male.MaleInnkeeper;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.piglin.PiglinWuXia;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.villain.Villain;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.xia.AbstractMingXia;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagerEntity;
 import com.shengchanshe.changshengjue.entity.villagers.warrior.Warrior;
 import com.shengchanshe.changshengjue.entity.villagers.worker.KilnWorker;
@@ -32,7 +33,6 @@ import net.minecraft.world.entity.monster.Evoker;
 import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.monster.Vindicator;
 import net.minecraft.world.entity.monster.Witch;
-import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -73,6 +73,11 @@ public class CSJEventBusEvents {
         event.put(ChangShengJueEntity.EVOKER_WU_XIA.get(), Evoker.createAttributes().build());
         event.put(ChangShengJueEntity.VINDICATOR_WU_XIA.get(), Vindicator.createAttributes().build());
         event.put(ChangShengJueEntity.PILLAGER_WU_XIA.get(), Pillager.createAttributes().build());
+
+        event.put(ChangShengJueEntity.CLUBBED_MING_XIA.get(), AbstractMingXia.setAttributes());
+        event.put(ChangShengJueEntity.SWORD_MING_XIA.get(), AbstractMingXia.setAttributes());
+        event.put(ChangShengJueEntity.KNIFE_MING_XIA.get(), AbstractMingXia.setAttributes());
+        event.put(ChangShengJueEntity.FIST_MING_XIA.get(), AbstractMingXia.setAttributes());
 
         event.put(ChangShengJueEntity.STAKES.get(), StakesEntity.setAttributes());
     }

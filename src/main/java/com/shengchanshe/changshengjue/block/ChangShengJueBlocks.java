@@ -797,7 +797,7 @@ public class ChangShengJueBlocks {
             ()-> new Desk(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
 
     public static final RegistryObject<Block> PIG_TROUGH = registerBlock("pig_trough",
-            ()-> new PigTrough(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(0.6F).sound(SoundType.WOOD).ignitedByLava().noCollission()));
+            ()-> new PigTrough(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASEDRUM).strength(0.6F).sound(SoundType.WOOD).ignitedByLava()));
 
     //大门
     public static final RegistryObject<Block> SHING_MUN_LEFT = registerBlock("shing_mun_left",

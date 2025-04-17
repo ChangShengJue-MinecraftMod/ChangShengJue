@@ -1,0 +1,26 @@
+{
+  "questId": "5b8aa169-0e44-48b7-b542-c79acb8a55a1",
+  "questName": "quest.kill.ming_xia.questName",
+  "questDescription": "quest.kill.ming_xia.questDescription",
+  "questRequirementsDescription": "quest.kill.ming_xia.questRequirementsDescription",
+  "type": "KILL",
+  "targetEntity": "#chang_sheng_jue:ming_xia",
+  "requiredKills": 1,
+  "repeatable": false,
+  "questGenerateTarget" : true,
+  "givesEffect": false,
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:gang_token",
+      "count": 5
+    },
+    {
+      "item": "chang_sheng_jue:gold_bullions",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 1.0
+      }
+    }
+  ]
+}

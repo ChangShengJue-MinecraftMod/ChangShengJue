@@ -3,10 +3,6 @@ package com.shengchanshe.changshengjue.entity.custom.wuxia.assassin;
 import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntity;
 import com.shengchanshe.changshengjue.entity.custom.goal.WuXiaAttackGoal;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
-import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeader;
-import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.knife.KnifeGangLeader;
-import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.lance.LanceGangLeader;
-import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.sword.SwordGangLeader;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.item.combat.sword.SoftSword;
 import com.shengchanshe.changshengjue.item.combat.throwingknives.ThrowingKnives;
@@ -18,7 +14,6 @@ import com.shengchanshe.changshengjue.kungfu.internalkungfu.InternalKungFuCapabi
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.*;
 import com.shengchanshe.changshengjue.kungfu.qinggong.QingGongCapability;
 import com.shengchanshe.changshengjue.kungfu.qinggong.QingGongManager;
-import com.shengchanshe.changshengjue.kungfu.qinggong.kungfu.TreadTheSnowWithoutTrace;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
@@ -33,8 +28,6 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.monster.Creeper;
-import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -145,11 +138,11 @@ public class Assassin extends AbstractWuXia implements GeoEntity , RangedAttackM
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
         if (this.externalKungFuCapability != null){
-            pCompound.putString("ExternalKungFuType",this.externalKungFuCapability.getQingGongID());
+            pCompound.putString("ExternalKungFuType",this.externalKungFuCapability.getExternalKungFuID());
             this.externalKungFuCapability.saveNBTData(pCompound); // 保存武功的具体数据，包括冷却时间
         }
         if (this.internalKungFuCapability != null){
-            pCompound.putString("InternalKungFuFuType",this.internalKungFuCapability.getInternalKungFuID());
+            pCompound.putString("InternalKungFuType",this.internalKungFuCapability.getInternalKungFuID());
             this.internalKungFuCapability.saveNBTData(pCompound); // 保存武功的具体数据，包括冷却时间
         }
         if (this.qingGongCapability != null){
@@ -168,8 +161,8 @@ public class Assassin extends AbstractWuXia implements GeoEntity , RangedAttackM
                 this.externalKungFuCapability.loadNBTData(pCompound); // 读取武功的具体数据，包括冷却时间
             }
         }
-        if (pCompound.contains("InternalKungFuFuType")) {
-            String kungFuType = pCompound.getString("InternalKungFuFuType");
+        if (pCompound.contains("InternalKungFuType")) {
+            String kungFuType = pCompound.getString("InternalKungFuType");
             this.internalKungFuCapability = InterfaceKungFuManager.createInterfaceKungFuCapabilityFromTag(kungFuType);
             if (this.internalKungFuCapability != null) {
                 this.internalKungFuCapability.loadNBTData(pCompound); // 读取武功的具体数据，包括冷却时间
@@ -177,7 +170,7 @@ public class Assassin extends AbstractWuXia implements GeoEntity , RangedAttackM
         }
         if (pCompound.contains("QingGongType")) {
             String kungFuType = pCompound.getString("QingGongType");
-            this.qingGongCapability = QingGongManager.createExternalKungFuCapabilityFromTag(kungFuType);
+            this.qingGongCapability = QingGongManager.createQingGongCapabilityFromTag(kungFuType);
             if (this.qingGongCapability != null) {
                 this.qingGongCapability.loadNBTData(pCompound); // 读取武功的具体数据，包括冷却时间
             }

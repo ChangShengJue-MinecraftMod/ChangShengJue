@@ -5,6 +5,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.npc.ClientSideMerchant;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +16,8 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffers;
+
+import java.util.UUID;
 
 public class GangleaderTradingMenu extends AbstractContainerMenu {
     protected static final int PAYMENT1_SLOT = 0;
@@ -33,6 +36,7 @@ public class GangleaderTradingMenu extends AbstractContainerMenu {
     private int merchantLevel;
     private boolean showProgressBar;
     private boolean canRestock;
+    private Player player;
 
     public GangleaderTradingMenu(int id, Inventory inventory) {
         this(id, inventory, new ClientSideMerchant(inventory.player));
@@ -42,6 +46,7 @@ public class GangleaderTradingMenu extends AbstractContainerMenu {
         super(ChangShengJueMenuTypes.GANGLEADER_MENU.get(), id);
         this.trader = merchant;
         this.tradeContainer = new MerchantContainer(merchant);
+        this.player = inventory.player;
         this.addSlot(new Slot(this.tradeContainer, PAYMENT1_SLOT, SELL_SLOT1_X, ROW_Y));
 //        this.addSlot(new Slot(this.tradeContainer, PAYMENT2_SLOT, SELL_SLOT2_X, ROW_Y));
         this.addSlot(new MerchantResultSlot(inventory.player, merchant, this.tradeContainer, RESULT_SLOT, BUY_SLOT_X, ROW_Y));
@@ -77,6 +82,10 @@ public class GangleaderTradingMenu extends AbstractContainerMenu {
         return this.trader.getTradingPlayer() == player;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
     public int getTraderXp() {
         return this.trader.getVillagerXp();
     }
@@ -91,6 +100,18 @@ public class GangleaderTradingMenu extends AbstractContainerMenu {
 
     public int getTraderLevel() {
         return this.merchantLevel;
+    }
+
+    public UUID getNpcUUID() {
+        if (this.trader instanceof AbstractVillager) {
+            return ((AbstractVillager)this.trader).getUUID();
+        }else {
+            return UUID.randomUUID();
+        }
+    }
+
+    public Merchant getTrader() {
+        return trader;
     }
 
     public void setMerchantLevel(int level) {
