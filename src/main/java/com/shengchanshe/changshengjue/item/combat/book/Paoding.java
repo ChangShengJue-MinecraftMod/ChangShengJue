@@ -55,7 +55,7 @@ public class Paoding extends Item {
                                     paoding.getPaodingDachengTick(),
                                     paoding.isPaodingParticle()), (ServerPlayer) player);
                             if (player instanceof ServerPlayer serverPlayer) {
-                                CSJAdvanceInit.learngongfa.trigger(serverPlayer);
+                                CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                             }
                         }
                     }

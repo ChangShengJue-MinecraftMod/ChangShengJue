@@ -43,7 +43,7 @@ public class PotteryWheel extends BaseEntityBlock {
             if (blockEntity instanceof PotteryWheelEntity potteryWheelEntity){
                 if (!pLevel.isClientSide && potteryWheelEntity.addItem(pPlayer.getAbilities().instabuild ? pPlayer.getMainHandItem().copy() : pPlayer.getMainHandItem())){
                     if (pPlayer instanceof ServerPlayer serverPlayer) {
-                        CSJAdvanceInit.makechinaware.trigger(serverPlayer);
+                        CSJAdvanceInit.MAKE_CHINAWARE.trigger(serverPlayer);
                     }
                     return InteractionResult.SUCCESS;
                 }

@@ -142,9 +142,9 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.CRUCIBLE_CRUSHED_COPPER.get(), "坩埚(碎铜块)");
         this.add(ChangShengJueItems.CRUCIBLE_CRUSHED_SILVER.get(), "坩埚(碎银块)");
         this.add(ChangShengJueItems.CRUCIBLE_CRUSHED_GOLD.get(), "坩埚(碎金块)");
-        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get(), "坩埚(铜液)");
-        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get(), "坩埚(银液)");
-        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get(), "坩埚(金液)");
+        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get(), "坩埚(铜水)");
+        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get(), "坩埚(银水)");
+        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get(), "坩埚(金水)");
 
         this.add(ChangShengJueItems.GANG_TOKEN.get(),"帮派令牌");
 

@@ -1,0 +1,24 @@
+{
+  "name": "刷子与石灰浆",
+  "category": "chang_sheng_jue:function",
+  "sortnum": 4,
+  "icon": "chang_sheng_jue:paint_brush",
+  "pages": [
+    {
+      "title": "刷子与石灰浆",
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:paint_brush",
+      "text": "将任意石灰浆桶放副手，主手持刷子就可以将整块红砖刷成对应色系白墙。石灰浆桶使用12次后会变成空桶。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:paint_brush",
+      "recipe2": "chang_sheng_jue:lime_slurry_barrels"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:warm_lime_slurry_barrels",
+      "recipe2": "chang_sheng_jue:cool_lime_slurry_barrels"
+    }
+  ]
+}

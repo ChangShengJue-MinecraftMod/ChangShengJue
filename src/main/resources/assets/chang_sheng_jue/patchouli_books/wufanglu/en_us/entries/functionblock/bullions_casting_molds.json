@@ -1,0 +1,17 @@
+{
+  "name": "元宝铸造模具",
+  "category": "chang_sheng_jue:function",
+  "sortnum": 1,
+  "icon": "chang_sheng_jue:bullions_casting_molds",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:bullions_casting_molds",
+      "text": "用于铸造元宝，将模具右键放置在地面，手持坩埚（金/银水）右键倒入，如右图"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:bullions_casting_molds"
+    }
+  ]
+}

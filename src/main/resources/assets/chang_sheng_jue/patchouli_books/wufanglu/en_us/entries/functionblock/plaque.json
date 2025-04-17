@@ -1,0 +1,14 @@
+{
+  "name": "牌匾",
+  "category": "chang_sheng_jue:function",
+  "sortnum": 2,
+  "icon": "chang_sheng_jue:plaque",
+  "pages": [
+    {
+      "title": "牌匾",
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:plaque",
+      "text": "右键牌匾可以写入内容。侧面放置于方块上，作用同告示牌（可左右连接调整牌匾长度）。"
+    }
+  ]
+}

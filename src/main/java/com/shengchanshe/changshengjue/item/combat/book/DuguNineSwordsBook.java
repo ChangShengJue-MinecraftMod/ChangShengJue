@@ -39,7 +39,7 @@ public class DuguNineSwordsBook extends Item {
                             duguNineSword.getDuguNineSwordsDachengTick(),
                             duguNineSword.isDuguNineSwordsParticle()), (ServerPlayer) pPlayer);
                     if (pPlayer instanceof ServerPlayer serverPlayer) {
-                        CSJAdvanceInit.learngongfa.trigger(serverPlayer);
+                        CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                     }
                 }
             });

@@ -1,0 +1,14 @@
+{
+  "name": "酒",
+  "category": "chang_sheng_jue:xiake",
+  "sortnum": 5,
+  "icon": "chang_sheng_jue:shi_li_xiang",
+  "pages": [
+    {
+      "title": "酒",
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:shi_li_xiang",
+      "text": "喝酒可以让你武功更快冷却、减少施展武功的饥饿度消耗、增加武功伤害等，详细效果可以看酒的描述。不要贪杯，喝多会醉~"
+    }
+  ]
+}

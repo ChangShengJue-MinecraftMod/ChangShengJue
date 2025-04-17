@@ -1,20 +1,18 @@
 {
-  "name": "江湖",
+  "name": "武功秘籍",
   "category": "chang_sheng_jue:xiake",
-  "icon": "chang_sheng_jue:gang_token",
+  "sortnum": 3,
+  "icon": "chang_sheng_jue:immortal_miracle",
   "pages": [
     {
-      "type": "patchouli:text",
-      "text":"武功秘籍$(br2)通过完成帮派任务、村庄任务有概率会获取到武功秘籍；击杀会武功的NPC也有概率掉落武功秘籍。"
+      "title": "武功秘籍",
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:immortal_miracle",
+      "text": "通过完成帮派任务、村庄任务有概率会获取到武功秘籍；击杀会武功的NPC也有概率掉落武功秘籍。"
     },
     {
       "type": "patchouli:text",
       "text": "武功秘籍分为外功类（主要是主动类武功），内功类（主要是被动类武功），轻功类（主要影响移动等效果），心法（提供一些特殊加成）。武功秘境具体效果可以从武功秘籍描述看出。"
-    }
-    ,
-    {
-      "type": "patchouli:text",
-      "text":"任务$(br2)右键帮派首领可以在任务页面领取帮派任务，完成帮派任务可以获取帮派令牌、武功秘籍、货币等物品。游玩时也有概率自动触发一些其他任务（大部分是自动领取的，符合完成条件会自动完成），奖励会有武功秘籍、货币等物品。"
     }
   ]
 }

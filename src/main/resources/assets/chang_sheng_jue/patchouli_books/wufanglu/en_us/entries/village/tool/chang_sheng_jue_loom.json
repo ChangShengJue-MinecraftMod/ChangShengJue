@@ -1,0 +1,17 @@
+{
+  "name": "织布机",
+  "category": "chang_sheng_jue:village",
+  "sortnum": 2,
+  "icon": "chang_sheng_jue:chang_sheng_jue_loom",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:chang_sheng_jue_loom",
+      "text": "使用说明：主手持$(item)蚕丝$()右键织布机可织成$(item)丝绸$()$(br)产出比例：2蚕丝 → 1丝绸"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:loom_recipe"
+    }
+  ]
+}

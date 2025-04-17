@@ -21,27 +21,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJAdvanceEvent {
-
-    @SubscribeEvent
-    public static void onPlayerInventoryChanged(PlayerEvent.PlayerLoggedInEvent event) {
-        checkForItem(event.getEntity());
-    }
-
-    @SubscribeEvent
-    public static void onPlayerInventoryChanged(PlayerEvent.ItemPickupEvent event) {
-        checkForItem(event.getEntity());
-    }
-
-    @SubscribeEvent
-    public static void onPlayerInventoryChanged(PlayerEvent.ItemCraftedEvent event) {
-        checkForItem(event.getEntity());
-    }
 
     //检查物品
     private static void checkForItem(net.minecraft.world.entity.player.Player player) {
@@ -53,40 +37,40 @@ public class CSJAdvanceEvent {
             Item item = itemStack.getItem();
             if (player instanceof ServerPlayer serverPlayer) {
                 if (item == ChangShengJueItems.MI_FAN.get()) {
-                    CSJAdvanceInit.hasmifan.trigger(serverPlayer);//人是铁饭是钢
+                    CSJAdvanceInit.HAS_MI_FAN.trigger(serverPlayer);//人是铁饭是钢
                 }else if (item == ChangShengJueItems.SILVER_BULLIONS.get()) {
-                    CSJAdvanceInit.hassilverbullions.trigger(serverPlayer);//银华熠熠
+                    CSJAdvanceInit.HAS_SILVER_BULLIONS.trigger(serverPlayer);//银华熠熠
                 }else if (item == ChangShengJueItems.GOLD_BULLIONS.get()) {
-                    CSJAdvanceInit.hasgoldbullions.trigger(serverPlayer);//金光闪闪
+                    CSJAdvanceInit.HASGOLD_BULLIONS.trigger(serverPlayer);//金光闪闪
                 }else if (item == ChangShengJueItems.BA_BAO_ZHOU.get()){
-                    CSJAdvanceInit.hasbabaozhou.trigger(serverPlayer);//吉祥如意
+                    CSJAdvanceInit.HAS_BA_BAO_ZHOU.trigger(serverPlayer);//吉祥如意
                 }else if(item == ChangShengJueItems.GUI_HUA_TANG_OU.get()){
-                    CSJAdvanceInit.hasguihuatangou.trigger(serverPlayer);//甜蜜蜜
+                    CSJAdvanceInit.HAS_GUI_HUA_TANG_OU.trigger(serverPlayer);//甜蜜蜜
                 }else if (item == ChangShengJueItems.BRONZE_SWORD.get()) {
-                    CSJAdvanceInit.hasbronzesword.trigger(serverPlayer);//侠客行
+                    CSJAdvanceInit.HAS_BRONZE_SWORD.trigger(serverPlayer);//侠客行
                 }else if (item == ChangShengJueItems.LICHEE.get()) {
-                    CSJAdvanceInit.haslichee.trigger(serverPlayer);//似是妃子笑
+                    CSJAdvanceInit.HAS_LICHEE.trigger(serverPlayer);//似是妃子笑
                 }else if (item == ChangShengJueItems.BILUOCHUN_TEAS.get()
                         || item == ChangShengJueItems.LONG_JING_TEAS.get()) {
-                    CSJAdvanceInit.hastea.trigger(serverPlayer);//习习清风生
+                    CSJAdvanceInit.HAS_TEA.trigger(serverPlayer);//习习清风生
                 }else if (item == ChangShengJueItems.SHI_LI_XIANG.get()
                         || item == ChangShengJueItems.FEN_JIU.get()
                         || item == ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get()) {
-                    CSJAdvanceInit.haswine.trigger(serverPlayer);//对酒当歌
+                    CSJAdvanceInit.HAS_WINE.trigger(serverPlayer);//对酒当歌
                 }else if (item == ChangShengJueItems.TOMATO_EGG.get()) {
-                    CSJAdvanceInit.hastomatoegg.trigger(serverPlayer);//家常小炒
+                    CSJAdvanceInit.HAS_TOMATO_EGG.trigger(serverPlayer);//家常小炒
                 }else if (item == ChangShengJueItems.TU_LONG_DAO.get()
                         || item == ChangShengJueItems.YI_TINA_JIAN.get()
                         || item == ChangShengJueItems.BA_WANG_QIANG.get()
                         || item == ChangShengJueItems.BEAT_DOG_STICK.get()) {
-                    CSJAdvanceInit.hassword.trigger(serverPlayer);//四大神器
+                    CSJAdvanceInit.HAS_SWORD.trigger(serverPlayer);//四大神器
                 }else if (item == Items.LEATHER_CHESTPLATE
                         || item == ChangShengJueItems.FEMALE_TAOIST_ROBES_CHESTPLATE.get()
                         || item == ChangShengJueItems.MALE_TAOIST_ROBES_CHESTPLATE.get()
                         || item == ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_CHESTPLATE.get()
                         || item == ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_CHESTPLATE.get()
                         || item == ChangShengJueItems.CONFUCIAN_COSTUMES_CHESTPLATE.get()){
-                    CSJAdvanceInit.hasarmor.trigger(serverPlayer);
+                    CSJAdvanceInit.HAS_ARMOR.trigger(serverPlayer);
                 }else if (item == Items.CHAINMAIL_CHESTPLATE
                         || item == Items.IRON_CHESTPLATE
                         || item == Items.GOLDEN_CHESTPLATE
@@ -98,26 +82,26 @@ public class CSJAdvanceEvent {
                         || item == ChangShengJueItems.WALKER_SET_CHESTPLATE.get()
                         || item == ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_CHESTPLATE.get()
                 ){
-                    CSJAdvanceInit.hasadvancedarrmor.trigger(serverPlayer);
+                    CSJAdvanceInit.HAS_ADVANCED_ARRMOR.trigger(serverPlayer);
                 }else if (item == ChangShengJueItems.QI_TIAN_DA_SHENG_HELMET.get()) {
                     hasQiTianHelmet = true;
                     if (hasQiTianHelmet && hasQiTianChestplate && hasQiTianLeggings && hasQiTianBoots) {
-                        CSJAdvanceInit.hasqitian.trigger(serverPlayer);
+                        CSJAdvanceInit.HAS_QI_TIAN.trigger(serverPlayer);
                     }
                 }else if (item == ChangShengJueItems.QI_TIAN_DA_SHENG_CHESTPLATE.get()){
                     hasQiTianChestplate = true;
                     if (hasQiTianHelmet && hasQiTianChestplate && hasQiTianLeggings && hasQiTianBoots) {
-                        CSJAdvanceInit.hasqitian.trigger(serverPlayer);
+                        CSJAdvanceInit.HAS_QI_TIAN.trigger(serverPlayer);
                     }
                 }else if (item == ChangShengJueItems.QI_TIAN_DA_SHENG_LEGGINGS.get()) {
                     hasQiTianLeggings = true;
                     if (hasQiTianHelmet && hasQiTianChestplate && hasQiTianLeggings && hasQiTianBoots) {
-                        CSJAdvanceInit.hasqitian.trigger(serverPlayer);
+                        CSJAdvanceInit.HAS_QI_TIAN.trigger(serverPlayer);
                     }
                 }else if (item == ChangShengJueItems.QI_TIAN_DA_SHENG_BOOTS.get()) {
                     hasQiTianBoots = true;
                     if (hasQiTianHelmet && hasQiTianChestplate && hasQiTianLeggings && hasQiTianBoots) {
-                        CSJAdvanceInit.hasqitian.trigger(serverPlayer);
+                        CSJAdvanceInit.HAS_QI_TIAN.trigger(serverPlayer);
                     }
                 }
             }
@@ -127,6 +111,7 @@ public class CSJAdvanceEvent {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END && event.player instanceof ServerPlayer serverPlayer) {
             checkPlayerCungFu(serverPlayer);
+            checkForItem(event.player);
         }
     }
     private static void checkPlayerCungFu(ServerPlayer player) {
@@ -209,15 +194,15 @@ public class CSJAdvanceEvent {
     public static void CheckLevel(int level, ServerPlayer player, int count){
         CheckLevel(level,player);
         if(count >= 1){
-            CSJAdvanceInit.usewaigong.trigger(player);
+            CSJAdvanceInit.USE_WAI_GONG.trigger(player);
         }
     }
     public static void CheckLevel(int level, ServerPlayer player){
         if(level == 1){
-            CSJAdvanceInit.matergongfa.trigger(player);
+            CSJAdvanceInit.MATER_GONG_FA.trigger(player);
         }else if(level == 2){
-            CSJAdvanceInit.matergongfa.trigger(player);
-            CSJAdvanceInit.gongfadone.trigger(player);
+            CSJAdvanceInit.MATER_GONG_FA.trigger(player);
+            CSJAdvanceInit.GONG_FA_DONE.trigger(player);
         }
     }
 
