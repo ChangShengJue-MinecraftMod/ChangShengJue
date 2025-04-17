@@ -51,7 +51,7 @@ public class QianKunDaNuoYi extends Item {
                                     qianKunDaNuoYi.isSkillXActive(),
                                     qianKunDaNuoYi.isSkillCActive()), (ServerPlayer) player);
                             if (player instanceof ServerPlayer serverPlayer) {
-                                CSJAdvanceInit.learngongfa.trigger(serverPlayer);
+                                CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                             }
                         }
                     }

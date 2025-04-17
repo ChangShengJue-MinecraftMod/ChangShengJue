@@ -1,0 +1,14 @@
+{
+  "name": "青花瓷花盆",
+  "category": "chang_sheng_jue:function",
+  "sortnum": 4,
+  "icon": "chang_sheng_jue:blue_and_white_porcelain_flower_pots",
+  "pages": [
+    {
+      "title": "青花瓷花盆",
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:blue_and_white_porcelain_flower_pots",
+      "text": "作用等同于原版花盆"
+    }
+  ]
+}

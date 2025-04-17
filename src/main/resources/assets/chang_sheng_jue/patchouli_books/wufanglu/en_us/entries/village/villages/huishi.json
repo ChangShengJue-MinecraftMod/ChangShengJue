@@ -1,0 +1,17 @@
+{
+  "name": "徽式村庄",
+  "category": "chang_sheng_jue:village",
+  "sortnum": 0,
+  "icon": "chang_sheng_jue:textures/gui/patchouli/villages/huishi.png",
+  "pages": [
+    {
+      "type": "patchouli:image",
+      "images": ["chang_sheng_jue:textures/gui/patchouli/villages/huishi.png"],
+      "border": true
+    },
+    {
+      "type": "patchouli:text",
+      "text": "常生成在森林群系，徽州民居以白墙黛瓦、马头墙闻名。看那雕花门窗多精致！其中常有作物：莲藕、花生、茄子、梨子。"
+    }
+  ]
+}

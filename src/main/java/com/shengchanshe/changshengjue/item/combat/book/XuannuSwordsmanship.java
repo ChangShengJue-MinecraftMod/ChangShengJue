@@ -38,7 +38,7 @@ public class XuannuSwordsmanship extends Item {
                             xuannuSwordsmanship.getXuannuSwordsmanshipDachengTick(),
                             xuannuSwordsmanship.isXuannuSwordsmanshipParticle()), (ServerPlayer) pPlayer);
                     if (pPlayer instanceof ServerPlayer serverPlayer) {
-                        CSJAdvanceInit.learngongfa.trigger(serverPlayer);
+                        CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                     }
                 }
             });

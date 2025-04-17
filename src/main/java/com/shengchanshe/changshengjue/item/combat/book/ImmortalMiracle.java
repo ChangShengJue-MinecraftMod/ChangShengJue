@@ -50,7 +50,7 @@ public class ImmortalMiracle extends Item {
                                         immortalMiracle.isSkillXActive(),
                                         immortalMiracle.isSkillCActive()), (ServerPlayer) player);
                                 if (player instanceof ServerPlayer serverPlayer) {
-                                    CSJAdvanceInit.learngongfa.trigger(serverPlayer);
+                                    CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                                 }
                             }
                         }

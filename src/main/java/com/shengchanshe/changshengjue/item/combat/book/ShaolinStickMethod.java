@@ -39,7 +39,7 @@ public class ShaolinStickMethod extends Item {
                             shaolinStickMethod.getShaolinStickMethodDachengTick(),
                             shaolinStickMethod.isShaolinStickMethodParticle()), (ServerPlayer) pPlayer);
                     if (pPlayer instanceof ServerPlayer serverPlayer) {
-                        CSJAdvanceInit.learngongfa.trigger(serverPlayer);
+                        CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                     }
                 }
             });

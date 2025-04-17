@@ -28,7 +28,7 @@ public class YugongMovesMountains extends Item {
                 if (!yugongMovesMountains.isYugongMovesMountainsComprehend()){
                     yugongMovesMountains.setYugongMovesMountainsComprehend(true);
                     if (pPlayer instanceof ServerPlayer serverPlayer) {
-                        CSJAdvanceInit.learngongfa.trigger(serverPlayer);
+                        CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                     }
                 }
             });

@@ -36,7 +36,7 @@ public class RelentlessThrowingKnives extends Item {
                             relentlessThrowingKnives.getRelentlessThrowingKnivesDachengTick(),
                             relentlessThrowingKnives.isRelentlessThrowingKnivesParticle()), (ServerPlayer) pPlayer);
                     if (pPlayer instanceof ServerPlayer serverPlayer) {
-                        CSJAdvanceInit.learngongfa.trigger(serverPlayer);
+                        CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                     }
                 }
             });

@@ -73,7 +73,7 @@ public class GoldenBellJar extends Item {
                                         goldenBellJar.isSkillXActive(),
                                         goldenBellJar.isSkillCActive()), (ServerPlayer) player);
                                 if (player instanceof ServerPlayer serverPlayer) {
-                                    CSJAdvanceInit.learngongfa.trigger(serverPlayer);
+                                    CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                                 }
                             }
                         }
