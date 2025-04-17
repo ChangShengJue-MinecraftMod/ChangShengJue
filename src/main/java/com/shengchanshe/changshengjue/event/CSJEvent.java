@@ -987,7 +987,6 @@ public class CSJEvent {
 
                 CSJAdvanceInit.MI_CHANG_SHENG.trigger(player);
 
-                CSJAdvanceInit.michangsheng.trigger(player);
                 player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                     ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),
                             duguNineSword.isDuguNineSwordsComprehend(),
