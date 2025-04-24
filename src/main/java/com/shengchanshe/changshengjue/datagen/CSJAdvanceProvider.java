@@ -36,7 +36,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
                 .display(ChangShengJueBlocks.STONE_LAMPS_BLOCK.get()
                         , Component.translatable("advancement.chang_sheng_jue.begin").withStyle(ChatFormatting.GOLD)
                         , Component.translatable("advancement.chang_sheng_jue.begin.desc").withStyle(ChatFormatting.DARK_GREEN),
-                        new ResourceLocation("textures/block/diamond_block.png"),
+                        new ResourceLocation("chang_sheng_jue:textures/block/blue_stone_fine_bricks.png"),
                         FrameType.TASK, true, true, false)
                 .addCriterion("changshengjue", MiChangSheng.TriggerInstance.createInstance())
                 .save(consumer, ChangShengJue.MOD_ID+":advancement/begin");

@@ -14,6 +14,10 @@ public class ChangShengJueParticles {
 
     public static final RegistryObject<SimpleParticleType> POPLAR_DEFOLIATION_PARTICLE =
             PARTICLE_TYPES.register("poplar_defoliation_particle", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> GUI_HUA_DEFOLIATION_PARTICLE =
+            PARTICLE_TYPES.register("gui_hua_defoliation_particle", () -> new SimpleParticleType(true));
+    public static final RegistryObject<SimpleParticleType> MEI_HUA_DEFOLIATION_PARTICLE =
+            PARTICLE_TYPES.register("mei_hua_defoliation_particle", () -> new SimpleParticleType(true));
 
     public static final RegistryObject<SimpleParticleType> COMPREHEND_PARTICLE =
             PARTICLE_TYPES.register("comprehend_particle", () -> new SimpleParticleType(true));

@@ -1,7 +1,7 @@
 package com.shengchanshe.changshengjue.block.tree_logs;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
-import com.shengchanshe.changshengjue.block.decoration.PoplarDefoliation;
+import com.shengchanshe.changshengjue.block.decoration.LeavesDefoliation;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -45,9 +45,9 @@ public class PoplarLeaves extends LeavesBlock {
                     BlockPos leafPos = groundPos.above();
                     BlockState currentLeafState = pLevel.getBlockState(groundPos);
                     if (currentLeafState.is(ChangShengJueBlocks.POPLAR_DEFOLIATION.get())) {
-                        int currentLevel = currentLeafState.getValue(PoplarDefoliation.LEVEL);
+                        int currentLevel = currentLeafState.getValue(LeavesDefoliation.LEVEL);
                         if (currentLevel < 2) { // 假设LEVEL的最大值是3
-                            pLevel.setBlock(groundPos, currentLeafState.setValue(PoplarDefoliation.LEVEL, currentLevel + 1), 3);
+                            pLevel.setBlock(groundPos, currentLeafState.setValue(LeavesDefoliation.LEVEL, currentLevel + 1), 3);
                         }
                     }else if (currentLeafState.canBeReplaced() || currentLeafState.is(BlockTags.FLOWERS)){
                         pLevel.setBlock(groundPos, ChangShengJueBlocks.POPLAR_DEFOLIATION.get().defaultBlockState(), 3);

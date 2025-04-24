@@ -337,7 +337,7 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChangShengJueBlocks.PIG_TROUGH.get(), 1)
                 .define('#', Ingredient.of(Items.COBBLESTONE))
                 .pattern("   ")
-                .pattern("###")
+                .pattern("# #")
                 .pattern("###")
                 .unlockedBy("has_planks", has(ItemTags.PLANKS))
                 .save(consumer, new ResourceLocation(ChangShengJue.MOD_ID, "pig_trough_recipe"));

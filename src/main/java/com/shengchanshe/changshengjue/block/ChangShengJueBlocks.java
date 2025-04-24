@@ -17,7 +17,8 @@ import com.shengchanshe.changshengjue.block.custom.tile.*;
 import com.shengchanshe.changshengjue.block.custom.window.HighWindows;
 import com.shengchanshe.changshengjue.block.custom.window.Windows;
 import com.shengchanshe.changshengjue.block.decoration.BlueAndWhitePorcelainFlowerPots;
-import com.shengchanshe.changshengjue.block.decoration.PoplarDefoliation;
+import com.shengchanshe.changshengjue.block.decoration.LeavesDefoliation;
+
 import com.shengchanshe.changshengjue.block.food.cibei.CiBei;
 import com.shengchanshe.changshengjue.block.food.cibei.CiBeiFood;
 import com.shengchanshe.changshengjue.block.food.cibei.CiBeiTea;
@@ -164,16 +165,22 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> GUI_HUA_LOG = registerBlock("gui_hua_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
     public static final RegistryObject<Block> GUI_HUA_LEAVES = registerBlock("gui_hua_leaves",
-            ()-> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
+            ()-> new GuiHuaLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> GUI_HUA_SAPLING = registerBlock("gui_hua_sapling",
             ()-> new SaplingBlock(new GuiHuaTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> GUI_HUA_DEFOLIATION = registerBlock( "gui_hua_defoliation",
+            ()-> new LeavesDefoliation(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable()
+                    .noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY)));
 
     public static final RegistryObject<Block> MEI_HUA_LOG = registerBlock("mei_hua_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
     public static final RegistryObject<Block> MEI_HUA_LEAVES = registerBlock("mei_hua_leaves",
-            ()-> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
+            ()-> new MeiHuaLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> MEI_HUA_SAPLING = registerBlock("mei_hua_sapling",
             ()-> new SaplingBlock(new MeiHuaTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> MEI_HUA_DEFOLIATION = registerBlock( "mei_hua_defoliation",
+            ()-> new LeavesDefoliation(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable()
+                    .noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY)));
 
     public static final RegistryObject<Block> HUANG_HUA_LI_LOG = registerBlock("huang_hua_li_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
@@ -203,7 +210,7 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> POPLAR_SAPLING = registerBlock("poplar_sapling",
             ()-> new SaplingBlock(new PoplarTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
     public static final RegistryObject<Block> POPLAR_DEFOLIATION = registerBlock("poplar_defoliation",
-            ()-> new PoplarDefoliation(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable()
+            ()-> new LeavesDefoliation(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable()
                     .noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY)));
     //桑树
     public static final RegistryObject<Block> MULBERRY_LOG = registerBlock("mulberry_log",

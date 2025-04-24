@@ -96,7 +96,9 @@ public class ClientSetup {
 
             ChangShengJueItems.FLYING_FISH_ROBE_HELMET_1,
             ChangShengJueItems.FLYING_FISH_ROBE_CHESTPLATE,
-            ChangShengJueItems.FLYING_FISH_ROBE_BOOTS
+            ChangShengJueItems.FLYING_FISH_ROBE_BOOTS,
+
+            ChangShengJueItems.HENG_DAO
     );
     public static void clientSetup(final FMLClientSetupEvent event){
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.PINEAPPLE_BLOCK.get(), RenderType.cutout());
@@ -126,6 +128,7 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MANGO_SAPLING.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GUI_HUA_LEAVES.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GUI_HUA_SAPLING.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GUI_HUA_DEFOLIATION.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MEI_HUA_LEAVES.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MEI_HUA_SAPLING.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BANANA_LEAVES.get(), RenderType.cutout());

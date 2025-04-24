@@ -7,7 +7,7 @@
   },
   "display": {
     "announce_to_chat": true,
-    "background": "minecraft:textures/block/diamond_block.png",
+    "background": "chang_sheng_jue:textures/block/blue_stone_fine_bricks.png",
     "description": {
       "color": "dark_green",
       "translate": "advancement.chang_sheng_jue.begin.desc"

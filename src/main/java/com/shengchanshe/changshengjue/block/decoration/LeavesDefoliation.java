@@ -2,7 +2,6 @@ package com.shengchanshe.changshengjue.block.decoration;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -15,10 +14,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class PoplarDefoliation extends Block {
+public class LeavesDefoliation extends Block {
     public static final IntegerProperty LEVEL = IntegerProperty.create("level", 0, 3);
     private VoxelShape AABB = Shapes.empty();
-    public PoplarDefoliation(Properties pProperties) {
+    public LeavesDefoliation(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(LEVEL, 0));
     }

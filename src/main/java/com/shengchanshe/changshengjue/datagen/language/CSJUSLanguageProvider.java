@@ -93,9 +93,10 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.BA_BAO_ZHOU.get(),"八宝粥");
         this.add(ChangShengJueItems.BILUOCHUN_TEAS.get(),"碧螺春茶");
         this.add(ChangShengJueItems.LONG_JING_TEAS.get(),"龙井茶");
-        this.add(ChangShengJueItems.FEN_JIU.get(),"汾酒");
-        this.add(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get(),"麦块贡酒");
         this.add(ChangShengJueItems.SHI_LI_XIANG.get(),"十里香");
+        this.add(ChangShengJueItems.FEN_JIU.get(),"汾酒");
+        this.add(ChangShengJueItems.EMPTY_FEN_JIU.get(),"空酒瓶");
+        this.add(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get(),"麦块贡酒");
         this.add(ChangShengJueItems.MANGO.get(),"芒果");
         this.add(ChangShengJueItems.MEI_HUA.get(),"梅花");
         this.add(ChangShengJueItems.GUI_HUA.get(),"桂花");
@@ -376,6 +377,8 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.GUI_HUA_LOG.get(),"桂花原木");
         this.add(ChangShengJueBlocks.GUI_HUA_LEAVES.get(),"桂花树叶");
         this.add(ChangShengJueBlocks.GUI_HUA_SAPLING.get(),"桂花树苗");
+        this.add(ChangShengJueBlocks.GUI_HUA_DEFOLIATION.get(),"桂花落叶");
+
         this.add(ChangShengJueBlocks.MEI_HUA_LOG.get(),"梅花原木");
         this.add(ChangShengJueBlocks.MEI_HUA_LEAVES.get(),"梅花树叶");
         this.add(ChangShengJueBlocks.MEI_HUA_SAPLING.get(),"梅花树苗");
@@ -397,6 +400,8 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get(),"去皮桑树原木");
         this.add(ChangShengJueBlocks.MULBERRY_LEAVES.get(),"桑树树叶");
         this.add(ChangShengJueBlocks.MULBERRY_SAPLING.get(),"桑树树苗");
+
+
 
         this.add(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get(),"青花瓷花盆");
 
@@ -494,17 +499,17 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(),"金色筒瓦台阶");
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),"青色筒瓦台阶");
 
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(),"灰色筒瓦");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(),"红色筒瓦");
         this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(),"黑色筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get(),"金色筒瓦");
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(),"青色筒瓦");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(),"灰色筒瓦");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(),"红色筒瓦");
 
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_1.get(),"青色瓦当");
         this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_1.get(),"灰色瓦当");
         this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_1.get(),"红色瓦当");
         this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_1.get(),"黑色瓦当");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_1.get(),"金色瓦当");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_1.get(),"青色瓦当");
 
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get(),"青色双层筒瓦");
         this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_2.get(),"灰色双层筒瓦");
@@ -777,8 +782,9 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.PIG_TROUGH.get(), "牲畜食槽");
 
         this.add(ChangShengJueBlocks.PLAQUE.get(), "牌匾");
-        this.add(ChangShengJueBlocks.SHING_MUN_LEFT.get(), "城门(左)");
-        this.add(ChangShengJueBlocks.SHING_MUN_RIGHT.get(), "城门(右)");
+        this.add(ChangShengJueBlocks.SHING_MUN_LEFT.get(), "小城门(左)");
+        this.add(ChangShengJueBlocks.SHING_MUN_RIGHT.get(), "小城门(右)");
+
         this.add(ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get(), "大城门(左)");
         this.add(ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get(), "大城门(右)");
 
@@ -885,6 +891,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("death.attack.martial_arts", "%1$s被%2$s强大的武功杀死了。");
         //普通信息
         this.add("block.changshengjue.fen_jiu.no_wine","已经没有酒了！");
+        this.add("tooltip.changshengjue.natural_silk", "通过挖掘桑叶获得");
 
         //进度
         // 一级进度

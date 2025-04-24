@@ -38,12 +38,17 @@ import com.shengchanshe.changshengjue.item.tool.KaishanPickaxe;
 import com.shengchanshe.changshengjue.item.tool.XuanhuaAxe;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ChangShengJueItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ChangShengJue.MOD_ID);
@@ -378,7 +383,15 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> PAINT_BRUSH = ITEMS.register("paint_brush", PaintBrush::new);
 
     //蚕丝
-    public static final RegistryObject<Item> NATURAL_SILK = ITEMS.register("natural_silk", ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> NATURAL_SILK = ITEMS.register("natural_silk", ()-> new Item(new Item.Properties()){
+        @Override
+        public void appendHoverText(ItemStack stack, @Nullable Level level,
+                                    List<Component> tooltip, TooltipFlag flag) {
+            tooltip.add(Component.translatable("tooltip.changshengjue.natural_silk")
+                    .withStyle(ChatFormatting.GRAY));
+            super.appendHoverText(stack, level, tooltip, flag);
+        }
+    });
 
     public static final RegistryObject<Item> SILK = ITEMS.register("silk", ()-> new Item(new Item.Properties()));
 

@@ -142,9 +142,9 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.CRUCIBLE_CRUSHED_COPPER.get(), "坩埚(碎铜块)");
         this.add(ChangShengJueItems.CRUCIBLE_CRUSHED_SILVER.get(), "坩埚(碎银块)");
         this.add(ChangShengJueItems.CRUCIBLE_CRUSHED_GOLD.get(), "坩埚(碎金块)");
-        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get(), "坩埚(铜液)");
-        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get(), "坩埚(银液)");
-        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get(), "坩埚(金液)");
+        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get(), "坩埚(铜水)");
+        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get(), "坩埚(银水)");
+        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get(), "坩埚(金水)");
 
         this.add(ChangShengJueItems.GANG_TOKEN.get(),"帮派令牌");
 
@@ -377,6 +377,8 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.GUI_HUA_LOG.get(),"桂花原木");
         this.add(ChangShengJueBlocks.GUI_HUA_LEAVES.get(),"桂花树叶");
         this.add(ChangShengJueBlocks.GUI_HUA_SAPLING.get(),"桂花树苗");
+        this.add(ChangShengJueBlocks.GUI_HUA_DEFOLIATION.get(),"桂花落叶");
+
         this.add(ChangShengJueBlocks.MEI_HUA_LOG.get(),"梅花原木");
         this.add(ChangShengJueBlocks.MEI_HUA_LEAVES.get(),"梅花树叶");
         this.add(ChangShengJueBlocks.MEI_HUA_SAPLING.get(),"梅花树苗");
@@ -393,6 +395,7 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.POPLAR_LEAVES.get(),"白杨树叶");
         this.add(ChangShengJueBlocks.POPLAR_SAPLING.get(),"白杨树苗");
         this.add(ChangShengJueBlocks.POPLAR_DEFOLIATION.get(),"白杨落叶");
+
 
         this.add(ChangShengJueBlocks.MULBERRY_LOG.get(),"桑树原木");
         this.add(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get(),"去皮桑树原木");
@@ -576,11 +579,11 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE.get(),"黑色双层蹲兽脊瓦");
         this.add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE.get(),"金色双层蹲兽脊瓦");
 
-        this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE_1.get(),"青色蹲兽脊瓦");
-        this.add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE_1.get(),"灰色蹲兽脊瓦");
-        this.add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE_1.get(),"红色蹲兽脊瓦");
-        this.add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE_1.get(),"黑色蹲兽脊瓦");
-        this.add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE_1.get(),"金色蹲兽脊瓦");
+        this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE_1.get(),"青色脊兽脊瓦");
+        this.add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE_1.get(),"灰色脊兽脊瓦");
+        this.add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE_1.get(),"红色脊兽脊瓦");
+        this.add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE_1.get(),"黑色脊兽脊瓦");
+        this.add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE_1.get(),"金色脊兽脊瓦");
 
         this.add(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get(),"青色垂兽脊瓦");
         this.add(ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE.get(),"灰色垂兽脊瓦");
@@ -746,6 +749,8 @@ public class CSJCNLanguageProvider extends LanguageProvider {
 
         this.add(ChangShengJueBlocks.ZAFU.get(), "蒲团");
 
+
+
         this.add(ChangShengJueBlocks.BIRCH_WINE_TABLE.get(), "白桦木酒桌");
         this.add(ChangShengJueBlocks.CRIMSON_WINE_TABLE.get(), "绯红木酒桌");
         this.add(ChangShengJueBlocks.WARPED_WINE_TABLE.get(), "诡异木酒桌");
@@ -824,6 +829,7 @@ public class CSJCNLanguageProvider extends LanguageProvider {
 
         this.add(ChangShengJueEntity.STAKES.get(), "练功木桩");
 
+        // 村民职业
         this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_farmer", "农民");
         this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter", "窑工");
         this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter_1", "高级窑工");
@@ -885,6 +891,95 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         //死亡信息
         this.add("death.attack.bleed", "%1$s失血过多。");
         this.add("death.attack.martial_arts", "%1$s被%2$s强大的武功杀死了。");
+        //普通信息
+        this.add("block.changshengjue.fen_jiu.no_wine","已经没有酒了！");
+
+        //进度
+        // 一级进度
+        this.add("advancement." + ChangShengJue.MOD_ID + ".begin", "长生诀");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".begin.desc", "开启长生之路");
+
+        // 二级进度
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasmifan", "人是铁饭是钢");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasmifan.desc", "在物品栏中获取米饭");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hassilverbullions", "银华熠熠");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hassilverbullions.desc", "在物品栏中获取银元宝");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbronzesword", "侠客行");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbronzesword.desc", "在物品栏中获取青铜剑");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".findchinesevillage", "新生活！");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".findchinesevillage.desc", "发现到任意的中式村庄");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".accessguildtask", "帮会？");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".accessguildtask.desc", "领取任意帮派任务");
+
+        // 三级进度
+        this.add("advancement." + ChangShengJue.MOD_ID + ".haslichee", "似是妃子笑");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".haslichee.desc", "在物品栏中获取荔枝");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hastomatoegg", "家常小炒");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hastomatoegg.desc", "在物品栏中获取番茄炒蛋");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hastea", "习习清风生");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hastea.desc", "在物品栏中获取任意的茶");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".haswine", "对酒当歌，人生几何？");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".haswine.desc", "在物品栏中获取任意的酒");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasgoldbullions", "金光闪闪");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasgoldbullions.desc", "在物品栏中获取金元宝");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".usewaigong", "趁手兵器");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".usewaigong.desc", "使用任意武器施展一次外功");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasarmor", "布衣侠客");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasarmor.desc", "在物品栏中获取盔甲值低于5的胸甲");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".learngongfa", "初学乍练");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".learngongfa.desc", "开始修炼任意的外功或内功");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".makechinaware", "做瓷器");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".makechinaware.desc", "使用陶轮制作瓷碗");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".finishtask", "善恶谁定？");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".finishtask.desc", "完成投名状或救命侠医、斋饭任务之一");
+
+        // 四级进度
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbabaozhu", "吉祥如意");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbabaozhu.desc", "在物品栏中获取八宝粥");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasguihuatangou", "甜蜜蜜");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasguihuatangou.desc", "在物品栏中获取桂花糖藕");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hassword", "绝世神兵");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hassword.desc", "在物品栏中获取四大神器的一种");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasadvancedarrmor", "将门之后");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasadvancedarrmor.desc", "在物品栏获取护甲值低于8的胸甲");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".mastergongfa", "融会贯通");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".mastergongfa.desc", "将任意一本外功或内功修炼至领悟");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".donefivetask", "有求必应");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".donefivetask.desc", "完成五次村长任务");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".agroupgangtoken", "扛把子");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".agroupgangtoken.desc", "在物品栏中获取64个帮派令牌");
+
+        //五级进度
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasqitian", "未竟");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasqitian.desc", "在物品栏中获取凤翅紫金冠、锁子黄金胸甲腿甲、藕丝步云履");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".gongfadone", "一代宗师");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".gongfadone.desc", "将任意一本外功或内功修炼至大成");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".donefinaltask", "隐世大侠");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".donefinaltask.desc", "完成人间正道是沧桑任务");
+
+        this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader", "头把交椅");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader.desc", "击败帮派首领");
 
         //任务
         this.add("quest.button", "任务");
@@ -895,6 +990,12 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add("quest.abandon.button", "放弃任务");
         this.add("quest.flushed.button", "刷新任务");
         this.add("quest.requirements.prompt", "任务需求不足!");
+
+
+        this.add("quest.food.questName", "收集食物");
+        this.add("quest.food.questDescription", "首领：兄弟们的吃食又不够了，总不能饿肚子吧，兄弟你去想想办法。");
+        this.add("quest.money.questName", "收集钱款");
+        this.add("quest.money.questDescription", "首领：这年头什么都要花钱，一文钱难倒英雄汉，兄弟能筹点帮费吗？");
 
         this.add("quest.kill.gang_leader.questName", "踢馆");
         this.add("quest.kill.gang_leader.questDescription", "首领：可恶！这是今年第二个趁我病期来踢馆的了，欺我帮派无人，你去回敬下吧！");

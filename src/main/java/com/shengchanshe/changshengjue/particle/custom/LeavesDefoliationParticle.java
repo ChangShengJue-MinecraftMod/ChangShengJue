@@ -7,12 +7,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class PoplarDefoliationParticle extends TextureSheetParticle {
+public class LeavesDefoliationParticle extends TextureSheetParticle {
     private final float endRed;
     private final float endGreen;
     private final float endBlue;
-    protected PoplarDefoliationParticle(ClientLevel level, double xCoord, double yCoord, double zCoord,
-                               SpriteSet spriteSet,  double pXSpeed, double pYSpeed, double pZSpeed) {
+    protected LeavesDefoliationParticle(ClientLevel level, double xCoord, double yCoord, double zCoord,
+                                        SpriteSet spriteSet, double pXSpeed, double pYSpeed, double pZSpeed) {
         super(level, xCoord, yCoord, zCoord, pXSpeed, pYSpeed, pZSpeed);
         this.rCol = 1f;
         this.gCol = 1f;
@@ -83,7 +83,7 @@ public class PoplarDefoliationParticle extends TextureSheetParticle {
         public Particle createParticle(SimpleParticleType particleType, ClientLevel level,
                                        double x, double y, double z,
                                        double pXSpeed, double pYSpeed, double pZSpeed) {
-            return new PoplarDefoliationParticle(level, x, y, z, this.sprites, pXSpeed, pYSpeed, pZSpeed);
+            return new LeavesDefoliationParticle(level, x, y, z, this.sprites, pXSpeed, pYSpeed, pZSpeed);
         }
     }
 }

@@ -31,7 +31,7 @@ import com.shengchanshe.changshengjue.entity.decoration.seat.SeatRender;
 import com.shengchanshe.changshengjue.entity.villagers.warrior.WarriorModel;
 import com.shengchanshe.changshengjue.entity.villagers.worker.KilnWorkerModel;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
-import com.shengchanshe.changshengjue.particle.custom.PoplarDefoliationParticle;
+import com.shengchanshe.changshengjue.particle.custom.LeavesDefoliationParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendParticle2;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.DachengParticle;
@@ -118,7 +118,9 @@ public class CSJEventClientBusEvents {
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
 
 //        event.registerSpecial(ChangShengJueParticles.SUNFLOWER_POINT_CAVEMAN.get(), new SunflowerPointCavemanParticle.Provider());
-        event.registerSpriteSet(ChangShengJueParticles.POPLAR_DEFOLIATION_PARTICLE.get(), PoplarDefoliationParticle.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.POPLAR_DEFOLIATION_PARTICLE.get(), LeavesDefoliationParticle.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.GUI_HUA_DEFOLIATION_PARTICLE.get(), LeavesDefoliationParticle.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.MEI_HUA_DEFOLIATION_PARTICLE.get(), LeavesDefoliationParticle.Provider::new);
         event.registerSpriteSet(ChangShengJueParticles.COMPREHEND_PARTICLE.get(), ComprehendParticle.Provider::new);
         event.registerSpriteSet(ChangShengJueParticles.COMPREHEND_PARTICLE_2.get(), ComprehendParticle2.Provider::new);
         event.registerSpriteSet(ChangShengJueParticles.DACHENG_PARTICLE.get(), DachengParticle.Provider::new);
