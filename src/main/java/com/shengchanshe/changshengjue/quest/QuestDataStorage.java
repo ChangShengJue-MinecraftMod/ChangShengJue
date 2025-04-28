@@ -1,9 +1,11 @@
-package com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest;
+package com.shengchanshe.changshengjue.quest;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import net.minecraft.nbt.*;
 
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,8 +14,48 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class QuestDataStorage {
     private static final String FILE_NAME = "quest_data.dat";
-    // 新增常量（文件名）
     private static final String COMPLETED_QUESTS_FILE = "completed_quests.dat";
+    private static final String ACCEPT_QUEST_FILE = "accept_quest.dat";
+    private static final String QUEST_COMPLETION_COUNTS_FILE = "quest_completion_counts.dat";
+
+    public static void saveCompletionCounts(Map<UUID, Integer> counts, Path path) {
+        try {
+            Path file = path.resolve(QUEST_COMPLETION_COUNTS_FILE);
+            CompoundTag tag = new CompoundTag();
+
+            // 写入统计数据
+            counts.forEach((questId, count) ->
+                    tag.putInt(questId.toString(), count)
+            );
+
+            // 修正的写入方法
+            try (DataOutputStream output = new DataOutputStream(new FileOutputStream(file.toFile()))) {
+                NbtIo.writeCompressed(tag, output);
+            }
+
+        } catch (Exception e) {
+            ChangShengJue.LOGGER.error("保存任务完成次数失败", e);
+        }
+    }
+
+    public static Map<UUID, Integer> loadCompletionCounts(Path path) {
+        Path file = path.resolve(QUEST_COMPLETION_COUNTS_FILE);
+        if (!Files.exists(file)) return new HashMap<>();
+
+        try {
+            CompoundTag tag = NbtIo.readCompressed(file.toFile());
+            Map<UUID, Integer> counts = new HashMap<>();
+
+            for (String key : tag.getAllKeys()) {
+                counts.put(UUID.fromString(key), tag.getInt(key));
+            }
+
+            return counts;
+        } catch (Exception e) {
+            ChangShengJue.LOGGER.error("加载任务完成次数失败", e);
+            return new HashMap<>();
+        }
+    }
 
     // 保存方法（适配List<Quest>）
     public static void save(Map<UUID, List<Quest>> quests, Path path) {
@@ -73,7 +115,7 @@ public class QuestDataStorage {
         return result;
     }
 
-    // 新增方法：保存已完成不可重复任务记录
+    // 保存已完成不可重复任务记录
     public static void saveCompletedQuests(Set<UUID> completedQuestIds, Path path) {
         CompoundTag tag = new CompoundTag();
         ListTag list = new ListTag();
@@ -87,7 +129,7 @@ public class QuestDataStorage {
         }
     }
 
-    // 新增方法：加载已完成不可重复任务记录
+    // 加载已完成不可重复任务记录
     public static Set<UUID> loadCompletedQuests(Path path) {
         Set<UUID> completed = new HashSet<>();
         File file = path.resolve(COMPLETED_QUESTS_FILE).toFile();
@@ -104,6 +146,37 @@ public class QuestDataStorage {
         return completed;
     }
 
+    // 保存已完成任务记录
+    public static void saveDoneQuests(Set<UUID> doneQuestsIds, Path path) {
+        CompoundTag tag = new CompoundTag();
+        ListTag list = new ListTag();
+        doneQuestsIds.forEach(uuid -> list.add(NbtUtils.createUUID(uuid)));
+        tag.put("acceptQuest", list);
+
+        try {
+            NbtIo.writeCompressed(tag, path.resolve(ACCEPT_QUEST_FILE).toFile());
+        } catch (IOException e) {
+            ChangShengJue.LOGGER.error("保存已完成任务记录失败", e);
+        }
+    }
+
+    // 加载已完成不可重复任务记录
+    public static Set<UUID> loadDoneQuests(Path path) {
+        Set<UUID> acceptQuest = new HashSet<>();
+        File file = path.resolve(ACCEPT_QUEST_FILE).toFile();
+
+        if (file.exists()) {
+            try {
+                CompoundTag tag = NbtIo.readCompressed(file);
+                ListTag list = tag.getList("acceptQuest", Tag.TAG_INT_ARRAY);
+                list.forEach(t -> acceptQuest.add(NbtUtils.loadUUID(t)));
+            } catch (IOException e) {
+                ChangShengJue.LOGGER.error("加载已完成任务记录失败", e);
+            }
+        }
+        return acceptQuest;
+    }
+
     public static void initWorldData(Path path) {
         try {
             Files.createDirectories(path);
@@ -116,12 +189,20 @@ public class QuestDataStorage {
                 NbtIo.writeCompressed(root, questFile);
             }
 
-            // 初始化已完成任务记录文件
+            // 初始化已完成不可重复任务记录文件
             File completedFile = path.resolve(COMPLETED_QUESTS_FILE).toFile();
             if (!completedFile.exists()) {
                 CompoundTag tag = new CompoundTag();
                 tag.put("completed", new ListTag());
                 NbtIo.writeCompressed(tag, completedFile);
+            }
+
+            // 初始化已完成任务记录文件
+            File doneQuestsFile = path.resolve(ACCEPT_QUEST_FILE).toFile();
+            if (!doneQuestsFile.exists()) {
+                CompoundTag tag = new CompoundTag();
+                tag.put("acceptQuest", new ListTag());
+                NbtIo.writeCompressed(tag, doneQuestsFile);
             }
         } catch (IOException e) {
             ChangShengJue.LOGGER.error("初始化任务文件失败", e);

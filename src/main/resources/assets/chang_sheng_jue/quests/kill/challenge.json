@@ -1,14 +1,13 @@
 {
-  "questId": "BFBAC359-A2CD-488B-9C75-B6DC10C96EED",
+  "questId": "bfbac359-a2cd-488b-9c75-b6dc10c96eed",
   "questName": "quest.kill.challenger.questName",
   "questDescription": "quest.kill.challenger.questDescription",
   "questRequirementsDescription": "quest.kill.challenger.questRequirementsDescription",
-  "type": "KILL",
+  "questType": "KILL",
   "targetEntity": "chang_sheng_jue:challenger",
   "requiredKills": 1,
-  "repeatable": true,
+  "repeatable": false,
   "questGenerateTarget" : true,
-  "givesEffect": false,
   "questRewards": [
     {
       "item": "chang_sheng_jue:gang_token",

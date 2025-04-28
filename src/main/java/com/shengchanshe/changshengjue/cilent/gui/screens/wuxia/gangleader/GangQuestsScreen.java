@@ -1,11 +1,14 @@
 package com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.Quest;
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.innkeeper.InnkeeperScreen;
+import com.shengchanshe.changshengjue.network.packet.gui.quest.RefreshGangQuestPacket;
+import com.shengchanshe.changshengjue.quest.Quest;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.gui.quest.AbandonGangQuestPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.quest.AcceptGangQuestsPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.quest.SubmitGangQuestsPacket;
+import com.shengchanshe.changshengjue.util.GuiEntityGraphics;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -27,10 +30,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.joml.Quaternionf;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @OnlyIn(Dist.CLIENT)
 public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
@@ -54,7 +54,7 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
     private TexturedButtonWithLabel actionButton; // 将按钮提取为成员变量
     private TexturedButtonWithLabel cancelButton;
 
-    private static final int HEAD_SIZE = 12; // 每个头像的大小
+    private static final int HEAD_SIZE = 9; // 每个头像的大小
     private static final int MAX_VISIBLE_HEADS = 5; // 最多显示的头像数量
     // 缓存已创建的实体实例
     private static final Map<EntityType<?>, Entity> ENTITY_CACHE = new HashMap<>();
@@ -90,12 +90,14 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
             guiGraphics.drawString(font, lines.get(i), 28, 101 + i * font.lineHeight, 0x404040, false);
         }
 
-        if (menu.getGangQuests().getQuestType() == Quest.QuestType.KILL) {
+//        if (menu.getGangQuests().getQuestType() == Quest.QuestType.KILL) {
             var lines1 = font.split(Component.translatable(menu.getGangQuests().getQuestRequirementsDescription()), imageWidth - 50);
             for (int i = 0; i < lines1.size(); i++) {
-                guiGraphics.drawString(font, lines1.get(i), 28, 120 + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
+                guiGraphics.drawString(font, lines1.get(i), menu.getGangQuests().getTargetEntity().isEmpty() ? REQ_SLOTS_X + 40 : REQ_SLOTS_X + 60,
+                        (REQ_SLOTS_Y - 9) + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
             }
-        }
+//        }
+
 
         guiGraphics.drawString(font, Component.translatable("quest.requirements"), REQ_SLOTS_X, REQ_SLOTS_Y - 9, ChatFormatting.RED.getColor(), false);
         guiGraphics.drawString(font, Component.translatable("quest.rewards"), REWARD_SLOTS_X, REWARD_SLOTS_Y - 9, ChatFormatting.YELLOW.getColor(), false);
@@ -103,6 +105,7 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        this.renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, partialTick);
 
         int x = (width - imageWidth) / 2;
@@ -113,7 +116,7 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
         // 根据任务类型决定渲染内容
         if (currentQuest.getQuestType() == Quest.QuestType.KILL) {
             // 渲染击杀任务的目标生物
-            renderKillTargetHead(guiGraphics,x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y - 1, currentQuest);
+            GuiEntityGraphics.getInstance(font,HEAD_SIZE,MAX_VISIBLE_HEADS,ENTITY_CACHE).renderKillTargetHead(guiGraphics,x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y - 3, currentQuest);
         } else if (currentQuest.getQuestType() == Quest.QuestType.GATHER) {
             // 渲染需求物品
             var reqs = currentQuest.getQuestRequirements();
@@ -130,125 +133,66 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
             renderItemAt(guiGraphics, x + REWARD_SLOTS_X + 40 + i * SLOT_SIZE, y + REWARD_SLOTS_Y - 13, stack);
         }
 
-        renderTooltip(guiGraphics, mouseX, mouseY);
+        this.renderTooltips(guiGraphics, mouseX, mouseY, x, y, currentQuest);
     }
 
-    private void renderKillTargetHead(GuiGraphics guiGraphics, int x, int y, Quest quest) {
-        // 判断是否是标签目标
-        if (quest.getTargetEntity().startsWith("#")) {
-            // 处理生物标签
-            renderTaggedEntities(guiGraphics, x, y, quest);
-        } else {
-            // 处理单个生物
-            renderSingleEntity(guiGraphics, x, y, quest);
+    private void renderTooltips(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y, Quest quest) {
+        // 检查需求物品提示
+        List<ItemStack> reqs = quest.getQuestRequirements();
+        for (int i = 0; i < Math.min(3, reqs.size()); i++) {
+            if (isMouseOverSlot(mouseX, mouseY,
+                    x + REQ_SLOTS_X + 40 + i * SLOT_SIZE,
+                    y + REQ_SLOTS_Y - 13,
+                    SLOT_SIZE, SLOT_SIZE)) {
+
+                guiGraphics.renderTooltip(font, reqs.get(i), mouseX, mouseY);
+                return;
+            }
         }
+        // 检查奖励物品提示
+        List<ItemStack> rewards = quest.getQuestRewards();
+        for (int i = 0; i < Math.min(3, rewards.size()); i++) {
+            if (isMouseOverSlot(mouseX, mouseY,
+                    x + REWARD_SLOTS_X + 40 + i * SLOT_SIZE,
+                    y + REWARD_SLOTS_Y - 13,
+                    SLOT_SIZE, SLOT_SIZE)) {
 
-        // 渲染击杀数量
-        String killText = quest.getCurrentKills() + "/" + quest.getRequiredKills();
-        guiGraphics.drawString(font, killText, x + 15, y + HEAD_SIZE - 15, 0xFFFFFF);
+                guiGraphics.renderTooltip(font, rewards.get(i), mouseX, mouseY);
+                return;
+            }
+        }
+        // 击杀任务目标提示
+        if (quest.getQuestType() == Quest.QuestType.KILL &&
+                isMouseOverSlot(mouseX, mouseY,
+                        x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y - 9, HEAD_SIZE, HEAD_SIZE)) {
+            renderKillTargetTooltip(guiGraphics, mouseX, mouseY, quest);
+        }
     }
-
-    private void renderTaggedEntities(GuiGraphics guiGraphics, int x, int y, Quest quest) {
-        // 获取生物标签
-        TagKey<EntityType<?>> tag = TagKey.create(
-                ForgeRegistries.ENTITY_TYPES.getRegistryKey(),
-                new ResourceLocation(quest.getTargetEntity().substring(1))
+//     击杀目标特殊提示
+    private void renderKillTargetTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, Quest quest) {
+//        String targetName = getEntityName(quest.getTargetEntity(), quest.isEntityTag());
+        List<Component> tooltip = List.of(
+//                Component.literal("目标: " + targetName),
+                Component.literal("需要击杀: " + quest.getRequiredKills() + "次"),
+                Component.literal("当前进度: " + quest.getCurrentKills() + "/" + quest.getRequiredKills())
+                        .withStyle(ChatFormatting.YELLOW)
         );
-
-        // 获取所有带标签的生物
-        List<EntityType<?>> taggedEntities = ForgeRegistries.ENTITY_TYPES.tags().getTag(tag).stream().toList();
-
-        if (taggedEntities.isEmpty()) {
-            // 没有找到生物，显示问号图标
-            renderMissingIcon(guiGraphics, x, y);
-            return;
-        }
-
-        // 计算起始位置（居中显示）
-        int totalWidth = Math.min(taggedEntities.size(), MAX_VISIBLE_HEADS) * HEAD_SIZE;
-        int startX = x - (totalWidth - HEAD_SIZE) / 2;
-
-        // 随机选择一个生物类型渲染
-        EntityType<?> randomEntity = getRandomEntityForTag(quest, taggedEntities);
-        renderEntityHead(guiGraphics, x, y, randomEntity);
-
-        // 如果生物数量超过显示上限，显示"..."提示
-//        if (taggedEntities.size() > MAX_VISIBLE_HEADS) {
-//            guiGraphics.drawString(font, "...",
-//                    startX + MAX_VISIBLE_HEADS * HEAD_SIZE + 2,
-//                    y + HEAD_SIZE / 2 - 4,
-//                    0xFFFFFF);
+        guiGraphics.renderTooltip(font, tooltip, Optional.empty(), mouseX, mouseY);
+    }
+//    // 获取实体显示名称
+//    private String getEntityName(String targetId, boolean isTag) {
+//        if (isTag) {
+//            return "#" + targetId.substring(1);
 //        }
+//        EntityType<?> type = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(targetId));
+//        return type != null ? type.getDescription().getString() : targetId;
+//    }
+
+
+    private boolean isMouseOverSlot(int mouseX, int mouseY, int slotX, int slotY, int width, int height) {
+        return mouseX >= slotX && mouseX <= slotX + width &&
+                mouseY >= slotY && mouseY <= slotY + height;
     }
-
-    // 根据任务ID作为种子随机选择，保证同一任务每次渲染相同生物
-    private EntityType<?> getRandomEntityForTag(Quest quest, List<EntityType<?>> entities) {
-        long seed = quest.getQuestId().getMostSignificantBits();
-        Random random = new Random(seed);
-        return entities.get(random.nextInt(entities.size()));
-    }
-
-    private void renderSingleEntity(GuiGraphics guiGraphics, int x, int y, Quest quest) {
-        EntityType<?> entityType = ForgeRegistries.ENTITY_TYPES.getValue(
-                new ResourceLocation(quest.getTargetEntity())
-        );
-
-        if (entityType != null) {
-            renderEntityHead(guiGraphics, x, y, entityType);
-        } else {
-            renderMissingIcon(guiGraphics, x, y);
-        }
-    }
-
-    private void renderMissingIcon(GuiGraphics guiGraphics, int x, int y) {
-        // 表示未知生物
-        guiGraphics.blit(new ResourceLocation("textures/gui/icon_missing.png"),
-                x, y, 0, 0, HEAD_SIZE, HEAD_SIZE, HEAD_SIZE, HEAD_SIZE);
-    }
-
-    private void renderEntityHead(GuiGraphics guiGraphics, int x, int y, EntityType<?> entityType) {
-        // 从缓存获取或创建实体
-        Entity entity = ENTITY_CACHE.computeIfAbsent(entityType, type -> {
-            Entity e = type.create(Minecraft.getInstance().level);
-            return e;
-        });
-
-        if (entity == null) {
-            renderMissingIcon(guiGraphics, x, y);
-            return;
-        }
-
-        // 设置渲染参数
-        float yOffset = 0.0F;
-
-        guiGraphics.pose().pushPose();
-        guiGraphics.pose().translate(x + (float) HEAD_SIZE / 2, y + (float) HEAD_SIZE / 2 + yOffset, 100.0F);
-        guiGraphics.pose().scale(HEAD_SIZE, HEAD_SIZE, HEAD_SIZE);
-
-        // 设置朝向
-        Quaternionf quaternion = new Quaternionf().rotateZ(180.0F * (float)Math.PI / 180.0F);
-        guiGraphics.pose().mulPose(quaternion);
-
-        // 渲染实体
-        EntityRenderDispatcher renderer = Minecraft.getInstance().getEntityRenderDispatcher();
-        quaternion.conjugate();
-        renderer.overrideCameraOrientation(quaternion);
-        renderer.setRenderShadow(false);
-
-        MultiBufferSource.BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
-        renderer.render(entity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F,
-                guiGraphics.pose(), buffer, 0xF000F0);
-
-        buffer.endBatch();
-        renderer.setRenderShadow(true);
-        guiGraphics.pose().popPose();
-
-//        // 渲染头像边框（可选）
-//        guiGraphics.blit(new ResourceLocation("textures/gui/head_border.png"),
-//                x, y, 0, 0, HEAD_SIZE, HEAD_SIZE, HEAD_SIZE, HEAD_SIZE);
-    }
-
-
 
     private void renderItemAt(GuiGraphics guiGraphics, int x, int y, ItemStack stack) {
         guiGraphics.renderItem(stack, x, y);
@@ -304,16 +248,14 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
         } else {
             ChangShengJueMessages.sendToServer(new AcceptGangQuestsPacket());
         }
-        // 添加刷新调用
-        this.refreshUI();
     }
 
     //处理放弃和刷新按钮点击
     private void handleCancelButtonClick(Button button) {
         if (menu.getGangQuests().getAcceptedBy() != null) {
             ChangShengJueMessages.sendToServer(new AbandonGangQuestPacket());
-        }else {
-
+        } else {
+            ChangShengJueMessages.sendToServer(new RefreshGangQuestPacket());
         }
     }
 
@@ -328,7 +270,6 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
         // 强制布局更新
         this.repositionElements();
     }
-
 
     public static class TexturedButtonWithLabel extends ImageButton {
         private Component label;

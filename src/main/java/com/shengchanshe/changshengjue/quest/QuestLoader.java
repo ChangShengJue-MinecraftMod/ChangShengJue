@@ -1,9 +1,6 @@
-package com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest;
+package com.shengchanshe.changshengjue.quest;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.language.I18n;
@@ -26,11 +23,34 @@ import java.util.*;
 public class QuestLoader {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
+    public static Quest loadSpecificQuest(UUID questId, Set<UUID> completedNonRepeatable,UUID npcId) {
+        Map<ResourceLocation, Resource> allResources = getAutomaticResourceLocationResourceMap();
+
+        // 从所有资源中查找指定ID的任务
+        for (ResourceLocation loc : allResources.keySet()) {
+            try (InputStream stream = allResources.get(loc).open()) {
+                JsonObject json = GSON.fromJson(new InputStreamReader(stream), JsonObject.class);
+
+                UUID currentId = UUID.fromString(json.get("questId").getAsString());
+                boolean repeatable = json.get("repeatable").getAsBoolean();
+
+                if (repeatable || !completedNonRepeatable.contains(questId)) {
+                    if (currentId.equals(questId)) {
+                        return parseQuest(json, npcId);
+                    }
+                }
+            } catch (Exception e) {
+                ChangShengJue.LOGGER.error("加载任务失败: {}", loc, e);
+            }
+        }
+        return null;
+    }
+
     public static Quest loadQuest(UUID npcId, Set<UUID> completedNonRepeatable) {
         Map<ResourceLocation, Resource> allResources = getResourceLocationResourceMap();
         List<ResourceLocation> candidates = new ArrayList<>();
 
-        // 第一步：筛选候选文件
+        // 筛选候选文件
         for (ResourceLocation loc : allResources.keySet()) {
             try (InputStream stream = allResources.get(loc).open()) {
                 JsonObject json = GSON.fromJson(new InputStreamReader(stream), JsonObject.class);
@@ -61,6 +81,25 @@ public class QuestLoader {
         return null; // 无可用任务
     }
 
+    private static @NotNull Map<ResourceLocation, Resource> getAutomaticResourceLocationResourceMap() {
+        ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
+        String namespace = ChangShengJue.MOD_ID;
+
+        // 定义任务类型的路径
+        String[] questPaths = {"quests/automatic"};
+        // 收集所有任务文件
+        Map<ResourceLocation, Resource> allResources = new HashMap<>();
+
+        for (String path : questPaths) {
+            Map<ResourceLocation, Resource> resources = resourceManager.listResources(
+                    path,
+                    location -> location.getNamespace().equals(namespace) && location.getPath().endsWith(".json")
+            );
+            allResources.putAll(resources);
+        }
+        return allResources;
+    }
+
     private static @NotNull Map<ResourceLocation, Resource> getResourceLocationResourceMap() {
         ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
         String namespace = ChangShengJue.MOD_ID;
@@ -88,54 +127,65 @@ public class QuestLoader {
                     ? UUID.fromString(json.get("questId").getAsString()) // 从配置读取
                     : generateDeterministicId(npcId, json); // 根据内容生成
 
-            String titleKey = json.get("questName").getAsString();
-            String descriptionKey = json.get("questDescription").getAsString();
+            String titleKey = json.has("questName") ? json.get("questName").getAsString() : "";
+            String descriptionKey = json.has("questDescription") ? json.get("questDescription").getAsString() : "";
             String title = I18n.get(titleKey);
             String description = I18n.get(descriptionKey);
 
             // 获取任务类型，默认为 GATHER
-            String typeStr = json.has("type") ? json.get("type").getAsString() : "GATHER";
+            String typeStr = json.has("questType") ? json.get("questType").getAsString() : "GATHER";
             Quest.QuestType type = Quest.QuestType.valueOf(typeStr.toUpperCase());
 
-            boolean repeatable = json.get("repeatable").getAsBoolean();
+            boolean repeatable = json.has("repeatable") &&  json.get("repeatable").getAsBoolean();
 
             String questRequirementsDescription = json.has("questRequirementsDescription") ?
-                    I18n.get(json.get("questRequirementsDescription").getAsString()) : " ";
+                    I18n.get(json.get("questRequirementsDescription").getAsString()) : "";
 
-            boolean givesEffect = json.get("givesEffect").getAsBoolean();
-
-            if (type == Quest.QuestType.GATHER) {
-                // 收集物品任务
-                List<ItemStack> requirements = json.has("questRequirements") ?
-                        parseItemList(json.getAsJsonArray("questRequirements")) : Collections.emptyList();
-                List<ItemStack> rewards = json.has("questRewards") ?
-                        parseItemList(json.getAsJsonArray("questRewards")) : Collections.emptyList();
-
-                return new Quest(questId,npcId, title, description, requirements, rewards,type,repeatable,questRequirementsDescription);
-            } else if (type == Quest.QuestType.KILL) {
-                String targetEntity = json.get("targetEntity").getAsString();
-                boolean isEntityTag = targetEntity.startsWith("#");
-                int requiredKills = json.get("requiredKills").getAsInt();
-
-                List<ItemStack> requirements = json.has("questRequirements") ?
-                        parseItemList(json.getAsJsonArray("questRequirements")) : Collections.emptyList();
-                List<ItemStack> rewards = json.has("questRewards") ?
-                        parseItemList(json.getAsJsonArray("questRewards")) : Collections.emptyList();
-
-                boolean questGenerateTarget = json.get("questGenerateTarget").getAsBoolean();
-
-                return new Quest(questId,npcId, title, description, requirements, rewards,
-                        type, targetEntity, isEntityTag, requiredKills,repeatable,questRequirementsDescription,questGenerateTarget);
-            }else if (type == Quest.QuestType.RAID || type == Quest.QuestType.TREAT){
-                List<ItemStack> requirements = json.has("questRequirements") ?
-                        parseItemList(json.getAsJsonArray("questRequirements")) : Collections.emptyList();
-                List<ItemStack> rewards = json.has("questRewards") ?
-                        parseItemList(json.getAsJsonArray("questRewards")) : Collections.emptyList();
-
-                return new Quest(questId,npcId, title, description, requirements, rewards,type,repeatable,questRequirementsDescription,givesEffect);
+            List<QuestEffectEntry> effects = new ArrayList<>();
+            if (json.has("effects")) {
+                JsonArray effectsJson = json.getAsJsonArray("effects");
+                for (JsonElement element : effectsJson) {
+                    JsonObject effectJson = element.getAsJsonObject();
+                    effects.add(new QuestEffectEntry(
+                            effectJson.get("effectId").getAsString(),
+                            effectJson.get("duration").getAsInt(),
+                            effectJson.get("amplifier").getAsInt(),
+                            effectJson.has("isAmbient") && effectJson.get("isAmbient").getAsBoolean(),
+                            !effectJson.has("showParticles") || effectJson.get("showParticles").getAsBoolean(),
+                            !effectJson.has("showIcon") || effectJson.get("showIcon").getAsBoolean()
+                    ));
+                }
             }
 
-            throw new IllegalArgumentException("未知的任务类型: " + type);
+            List<ItemStack> requirements = json.has("questRequirements") ?
+                    parseItemList(json.getAsJsonArray("questRequirements")) : Collections.emptyList();
+            List<ItemStack> rewards = json.has("questRewards") ?
+                    parseItemList(json.getAsJsonArray("questRewards")) : Collections.emptyList();
+            int questDay = json.has("qusetDay") ? json.get("questDay").getAsInt() : 0;
+
+//            if (type == Quest.QuestType.GATHER || type == Quest.QuestType.AUTOMATIC) {
+//                return new Quest(questId, npcId, title, description, requirements, rewards, type, repeatable,questRequirementsDescription,questDay);
+//            } else if (type == Quest.QuestType.KILL) {
+                String targetEntity = json.has("targetEntity") ? json.get("targetEntity").getAsString() : "";
+                boolean isEntityTag = targetEntity.startsWith("#");
+                int requiredKills = json.has("requiredKills") ? json.get("requiredKills").getAsInt() : 0;
+
+                boolean questGenerateTarget = json.has("questGenerateTarget") && json.get("questGenerateTarget").getAsBoolean();
+
+                int questTargetCount = json.has("questTargetCount") ? json.get("questTargetCount").getAsInt() : 0;
+
+                int questTime = json.has("questTime") ? json.get("questTime").getAsInt() : 0;
+
+                boolean isAcceptQuestEffects = json.has("isAcceptQuestEffects") && json.get("isAcceptQuestEffects").getAsBoolean();
+
+                return new Quest(questId,npcId, title, description, requirements, rewards,
+                        type, targetEntity, isEntityTag, requiredKills, repeatable, questRequirementsDescription, questGenerateTarget, questDay,
+                        questTargetCount, questTime, effects, isAcceptQuestEffects);
+//            }else if (type == Quest.QuestType.RAID || type == Quest.QuestType.TREAT){
+//                return new Quest(questId,npcId, title, description, requirements, rewards,type,repeatable,questRequirementsDescription,effects);
+//            }
+
+//            throw new IllegalArgumentException("未知的任务类型: " + type);
 
         } catch (Exception e) {
             System.err.println("解析任务JSON失败: " + e.getMessage());
@@ -211,7 +261,7 @@ public class QuestLoader {
                 case "minecraft:uniform":
                     float min = countObj.get("min").getAsFloat();
                     float max = countObj.get("max").getAsFloat();
-                    return (int) Math.round(min + (max - min) * random.nextFloat());
+                    return Math.round(min + (max - min) * random.nextFloat());
 
                 case "minecraft:binomial":
                     int n = countObj.get("n").getAsInt();

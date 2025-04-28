@@ -5,6 +5,7 @@ import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.blacksmith.Blacks
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangQuestsScreen;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingScreen;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.innkeeper.InnkeeperScreen;
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.playerquest.PlayerQuestScreen;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.worker.KilnWorkerScreen;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.combat.beat_dog_stick.BeatDogStickAttackEntityRender;
@@ -460,6 +461,7 @@ public class ClientSetup {
         MenuScreens.register(ChangShengJueMenuTypes.KILNWORKER_MENU.get(), KilnWorkerScreen::new);
         MenuScreens.register(ChangShengJueMenuTypes.GANGLEADER_MENU.get(), GangleaderTradingScreen::new);
         MenuScreens.register(ChangShengJueMenuTypes.GANG_QUESTS_MENU.get(), GangQuestsScreen::new);
+        MenuScreens.register(ChangShengJueMenuTypes.PLAYER_QUEST_MENU.get(), PlayerQuestScreen::new);
 
         EntityRenderers.register(ChangShengJueEntity.BUTTERFLY.get(), ButterflyRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.MONKEY.get(), MonkeyRenderer::new);

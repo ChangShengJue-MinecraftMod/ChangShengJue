@@ -1,55 +1,114 @@
-[184月2025 19:11:29.825] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\xie_f\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.3.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, chang_sheng_jue, --all, --output, D:\TheModOpen\forge-1.20.1-47.3.0-mdk\src\generated\resources, --existing, D:\TheModOpen\forge-1.20.1-47.3.0-mdk\src\main\resources, --mixin.config, chang_sheng_jue.mixins.json]
-[184月2025 19:11:29.833] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.12 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
-[184月2025 19:11:30.038] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
-[184月2025 19:11:30.191] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/xie_f/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
-[184月2025 19:11:30.881] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\xie_f\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.3.0\d7ebc62120f202109e300e084ca1a31a7b946a62\javafmllanguage-1.20.1-47.3.0.jar is missing mods.toml file
-[184月2025 19:11:30.883] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\xie_f\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.3.0\1bf3e845ea0ce750096da8c71c8364b188ab74d4\lowcodelanguage-1.20.1-47.3.0.jar is missing mods.toml file
-[184月2025 19:11:30.886] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\xie_f\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.3.0\6093682e943ddccbabf70539319d7f2fe64db2e7\mclanguage-1.20.1-47.3.0.jar is missing mods.toml file
-[184月2025 19:11:30.889] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\xie_f\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.3.0\3b6be96aba3e323f3c918e8ef6a96312d82d76ad\fmlcore-1.20.1-47.3.0.jar is missing mods.toml file
-[184月2025 19:11:31.157] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
-[184月2025 19:11:34.645] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
-[184月2025 19:11:34.724] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\xie_f\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, chang_sheng_jue, --all, --output, D:\TheModOpen\forge-1.20.1-47.3.0-mdk\src\generated\resources, --existing, D:\TheModOpen\forge-1.20.1-47.3.0-mdk\src\main\resources]
-[184月2025 19:11:34.980] [main/INFO] [mixin/]: Attempting to load Fernflower decompiler (Threaded mode)
-[184月2025 19:11:34.985] [main/INFO] [mixin/]: Fernflower could not be loaded, exported classes will not be decompiled. NoClassDefFoundError: org/jetbrains/java/decompiler/main/extern/IResultSaver
-[184月2025 19:11:35.054] [main/WARN] [mixin/]: Reference map 'chang_sheng_jue.refmap.json' for chang_sheng_jue.mixins.json could not be read. If this is a development environment you can ignore this message
-[184月2025 19:11:35.792] [main/INFO] [mixin/]: Remapping refMap terrablender.refmap.json using D:\TheModOpen\forge-1.20.1-47.3.0-mdk\build\createSrgToMcp\output.srg
-[184月2025 19:11:35.794] [main/INFO] [mixin/]: Remapping refMap terrablender.refmap.json using D:\TheModOpen\forge-1.20.1-47.3.0-mdk\build\createSrgToMcp\output.srg
-[184月2025 19:11:35.795] [main/INFO] [mixin/]: Remapping refMap patchouli.refmap.json using D:\TheModOpen\forge-1.20.1-47.3.0-mdk\build\createSrgToMcp\output.srg
-[184月2025 19:11:35.796] [main/INFO] [mixin/]: Remapping refMap geckolib.refmap.json using D:\TheModOpen\forge-1.20.1-47.3.0-mdk\build\createSrgToMcp\output.srg
-[184月2025 19:11:37.155] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [chang_sheng_jue]
-[184月2025 19:11:45.767] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.3.0, for MC 1.20.1 with MCP 20230612.114412
-[184月2025 19:11:45.776] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.3.0 Initialized
-[184月2025 19:11:46.038] [modloading-worker-0/WARN] [software.bernie.geckolib.GeckoLib/]: Minecraft.getInstance() was null, could not register reload listeners
-[184月2025 19:11:46.888] [modloading-worker-0/INFO] [terrablender/]: Registered region minecraft:overworld to index 0 for type OVERWORLD
-[184月2025 19:11:46.889] [modloading-worker-0/INFO] [terrablender/]: Registered region minecraft:nether to index 0 for type NETHER
-[184月2025 19:11:46.889] [modloading-worker-0/INFO] [terrablender/]: Registered region chang_sheng_jue:overworld to index 1 for type OVERWORLD
-[184月2025 19:11:50.640] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/D:/TheModOpen/forge-1.20.1-47.3.0-mdk/build/fg_cache/net/minecraftforge/forge/1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar%23193!/assets/.mcassetsroot' uses unexpected schema
-[184月2025 19:11:50.641] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/D:/TheModOpen/forge-1.20.1-47.3.0-mdk/build/fg_cache/net/minecraftforge/forge/1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar%23193!/data/.mcassetsroot' uses unexpected schema
-[184月2025 19:11:51.672] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
-[184月2025 19:11:51.830] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 156 ms
-[184月2025 19:11:51.830] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Registries
-[184月2025 19:11:51.997] [main/INFO] [net.minecraft.data.DataGenerator/]: Registries finished after 166 ms
-[184月2025 19:11:51.998] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: chang_sheng_jue
-[184月2025 19:11:52.250] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: chang_sheng_jue finished after 252 ms
-[184月2025 19:11:52.250] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block Models: chang_sheng_jue
-[184月2025 19:11:52.286] [main/INFO] [net.minecraft.data.DataGenerator/]: Block Models: chang_sheng_jue finished after 35 ms
-[184月2025 19:11:52.286] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: chang_sheng_jue
-[184月2025 19:11:52.336] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: chang_sheng_jue finished after 49 ms
-[184月2025 19:11:52.336] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables
-[184月2025 19:11:52.613] [main/INFO] [net.minecraft.data.DataGenerator/]: Loot Tables finished after 276 ms
-[184月2025 19:11:52.613] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Languages: en_us
-[184月2025 19:11:52.632] [main/INFO] [net.minecraft.data.DataGenerator/]: Languages: en_us finished after 18 ms
-[184月2025 19:11:52.632] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Languages: zh_cn
-[184月2025 19:11:52.640] [main/INFO] [net.minecraft.data.DataGenerator/]: Languages: zh_cn finished after 6 ms
-[184月2025 19:11:52.640] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:point_of_interest_type mod id chang_sheng_jue
-[184月2025 19:11:52.692] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:point_of_interest_type mod id chang_sheng_jue finished after 52 ms
-[184月2025 19:11:52.692] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:block mod id chang_sheng_jue
-[184月2025 19:11:52.702] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:block mod id chang_sheng_jue finished after 9 ms
-[184月2025 19:11:52.702] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:item mod id chang_sheng_jue
-[184月2025 19:11:52.713] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:item mod id chang_sheng_jue finished after 10 ms
-[184月2025 19:11:52.713] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:entity_type mod id chang_sheng_jue
-[184月2025 19:11:52.721] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:entity_type mod id chang_sheng_jue finished after 7 ms
-[184月2025 19:11:52.721] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Advancements
-[184月2025 19:11:52.781] [main/INFO] [net.minecraft.data.DataGenerator/]: Advancements finished after 59 ms
-[184月2025 19:11:52.781] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 1109 ms
-[184月2025 19:11:52.818] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 1669, old count: 1669, new count: 1670, removed stale: 0, written: 2
+[284月2025 14:34:47.669] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\30251\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.3.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, chang_sheng_jue, --all, --output, D:\Mod\forge-1.20.1-47.3.0-mdk\src\generated\resources, --existing, D:\Mod\forge-1.20.1-47.3.0-mdk\src\main\resources, --mixin.config, chang_sheng_jue.mixins.json]
+[284月2025 14:34:47.673] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.11 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
+[284月2025 14:34:47.759] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
+[284月2025 14:34:47.791] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/30251/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
+[284月2025 14:34:47.985] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\30251\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.3.0\d7ebc62120f202109e300e084ca1a31a7b946a62\javafmllanguage-1.20.1-47.3.0.jar is missing mods.toml file
+[284月2025 14:34:47.987] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\30251\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.3.0\1bf3e845ea0ce750096da8c71c8364b188ab74d4\lowcodelanguage-1.20.1-47.3.0.jar is missing mods.toml file
+[284月2025 14:34:47.989] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\30251\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.3.0\6093682e943ddccbabf70539319d7f2fe64db2e7\mclanguage-1.20.1-47.3.0.jar is missing mods.toml file
+[284月2025 14:34:47.991] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\30251\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.3.0\3b6be96aba3e323f3c918e8ef6a96312d82d76ad\fmlcore-1.20.1-47.3.0.jar is missing mods.toml file
+[284月2025 14:34:48.091] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
+[284月2025 14:34:49.090] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[284月2025 14:34:49.097] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\30251\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, chang_sheng_jue, --all, --output, D:\Mod\forge-1.20.1-47.3.0-mdk\src\generated\resources, --existing, D:\Mod\forge-1.20.1-47.3.0-mdk\src\main\resources]
+[284月2025 14:34:49.132] [main/INFO] [mixin/]: Attempting to load Fernflower decompiler (Threaded mode)
+[284月2025 14:34:49.132] [main/INFO] [mixin/]: Fernflower could not be loaded, exported classes will not be decompiled. NoClassDefFoundError: org/jetbrains/java/decompiler/main/extern/IResultSaver
+[284月2025 14:34:49.147] [main/WARN] [mixin/]: Reference map 'chang_sheng_jue.refmap.json' for chang_sheng_jue.mixins.json could not be read. If this is a development environment you can ignore this message
+[284月2025 14:34:49.280] [main/INFO] [mixin/]: Remapping refMap terrablender.refmap.json using D:\Mod\forge-1.20.1-47.3.0-mdk\build\createSrgToMcp\output.srg
+[284月2025 14:34:49.281] [main/INFO] [mixin/]: Remapping refMap terrablender.refmap.json using D:\Mod\forge-1.20.1-47.3.0-mdk\build\createSrgToMcp\output.srg
+[284月2025 14:34:49.281] [main/INFO] [mixin/]: Remapping refMap patchouli.refmap.json using D:\Mod\forge-1.20.1-47.3.0-mdk\build\createSrgToMcp\output.srg
+[284月2025 14:34:49.283] [main/INFO] [mixin/]: Remapping refMap geckolib.refmap.json using D:\Mod\forge-1.20.1-47.3.0-mdk\build\createSrgToMcp\output.srg
+[284月2025 14:34:49.630] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [chang_sheng_jue]
+[284月2025 14:34:52.204] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.3.0, for MC 1.20.1 with MCP 20230612.114412
+[284月2025 14:34:52.204] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.3.0 Initialized
+[284月2025 14:34:52.266] [modloading-worker-0/WARN] [software.bernie.geckolib.GeckoLib/]: Minecraft.getInstance() was null, could not register reload listeners
+[284月2025 14:34:52.451] [modloading-worker-0/INFO] [terrablender/]: Registered region minecraft:overworld to index 0 for type OVERWORLD
+[284月2025 14:34:52.452] [modloading-worker-0/INFO] [terrablender/]: Registered region minecraft:nether to index 0 for type NETHER
+[284月2025 14:34:52.452] [modloading-worker-0/INFO] [terrablender/]: Registered region chang_sheng_jue:overworld to index 1 for type OVERWORLD
+[284月2025 14:34:54.006] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/D:/Mod/forge-1.20.1-47.3.0-mdk/build/fg_cache/net/minecraftforge/forge/1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar%23193!/assets/.mcassetsroot' uses unexpected schema
+[284月2025 14:34:54.007] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/D:/Mod/forge-1.20.1-47.3.0-mdk/build/fg_cache/net/minecraftforge/forge/1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1/forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar%23193!/data/.mcassetsroot' uses unexpected schema
+[284月2025 14:34:54.126] [main/WARN] [net.minecraft.data.HashCache/]: Failed to parse cache D:\Mod\forge-1.20.1-47.3.0-mdk\src\generated\resources\.cache\59eb3dbb5f86130e09b3c62d89b9525ee01cf52d, discarding
+java.nio.file.InvalidPathException: Illegal char <	> at index 6: 1.20.1	2025-04-17T12:11:02.5008898	Loot Tables
+	at sun.nio.fs.WindowsPathParser.normalize(WindowsPathParser.java:182) ~[?:?]
+	at sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:153) ~[?:?]
+	at sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:77) ~[?:?]
+	at sun.nio.fs.WindowsPath.parse(WindowsPath.java:92) ~[?:?]
+	at sun.nio.fs.WindowsFileSystem.getPath(WindowsFileSystem.java:232) ~[?:?]
+	at java.nio.file.Path.resolve(Path.java:515) ~[?:?]
+	at net.minecraft.data.HashCache$ProviderCache.lambda$load$0(HashCache.java:200) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at java.util.Iterator.forEachRemaining(Iterator.java:133) ~[?:?]
+	at java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1845) ~[?:?]
+	at java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762) ~[?:?]
+	at net.minecraft.data.HashCache$ProviderCache.load(HashCache.java:198) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at net.minecraft.data.HashCache.readCache(HashCache.java:72) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at net.minecraft.data.HashCache.<init>(HashCache.java:59) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at net.minecraft.data.DataGenerator.run(DataGenerator.java:34) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at net.minecraftforge.data.event.GatherDataEvent$DataGeneratorConfig.lambda$runAll$2(GatherDataEvent.java:111) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at cpw.mods.modlauncher.api.LamdbaExceptionUtils.lambda$rethrowConsumer$0(LamdbaExceptionUtils.java:34) ~[modlauncher-10.0.9.jar:10.0.9+10.0.9+main.dcd20f30]
+	at java.util.LinkedHashMap$LinkedValues.forEach(LinkedHashMap.java:647) ~[?:?]
+	at net.minecraftforge.data.event.GatherDataEvent$DataGeneratorConfig.runAll(GatherDataEvent.java:107) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at net.minecraftforge.data.loading.DatagenModLoader.begin(DatagenModLoader.java:54) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at net.minecraft.data.Main.main(Main.java:90) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at net.minecraftforge.fml.loading.targets.CommonLaunchHandler.runTarget(CommonLaunchHandler.java:111) ~[fmlloader-1.20.1-47.3.0.jar:?]
+	at net.minecraftforge.fml.loading.targets.CommonLaunchHandler.dataService(CommonLaunchHandler.java:107) ~[fmlloader-1.20.1-47.3.0.jar:?]
+	at net.minecraftforge.fml.loading.targets.ForgeDataUserdevLaunchHandler.devService(ForgeDataUserdevLaunchHandler.java:22) ~[fmlloader-1.20.1-47.3.0.jar:?]
+	at net.minecraftforge.fml.loading.targets.CommonDevLaunchHandler.lambda$makeService$7(CommonDevLaunchHandler.java:135) ~[fmlloader-1.20.1-47.3.0.jar:?]
+	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:30) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:53) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:71) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.Launcher.run(Launcher.java:108) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.Launcher.main(Launcher.java:78) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:141) ~[bootstraplauncher-1.1.2.jar:?]
+[284月2025 14:34:54.136] [main/WARN] [net.minecraft.data.HashCache/]: Failed to parse cache D:\Mod\forge-1.20.1-47.3.0-mdk\src\generated\resources\.cache\2a65ee2815744be1ef1ffdae1c9a37f2a9cbe2ac, discarding
+java.nio.file.InvalidPathException: Illegal char <	> at index 6: 1.20.1	2025-04-28T12:17:00.3565386	Languages: zh_cn
+	at sun.nio.fs.WindowsPathParser.normalize(WindowsPathParser.java:182) ~[?:?]
+	at sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:153) ~[?:?]
+	at sun.nio.fs.WindowsPathParser.parse(WindowsPathParser.java:77) ~[?:?]
+	at sun.nio.fs.WindowsPath.parse(WindowsPath.java:92) ~[?:?]
+	at sun.nio.fs.WindowsFileSystem.getPath(WindowsFileSystem.java:232) ~[?:?]
+	at java.nio.file.Path.resolve(Path.java:515) ~[?:?]
+	at net.minecraft.data.HashCache$ProviderCache.lambda$load$0(HashCache.java:200) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at java.util.Iterator.forEachRemaining(Iterator.java:133) ~[?:?]
+	at java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1845) ~[?:?]
+	at java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762) ~[?:?]
+	at net.minecraft.data.HashCache$ProviderCache.load(HashCache.java:198) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at net.minecraft.data.HashCache.readCache(HashCache.java:72) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at net.minecraft.data.HashCache.<init>(HashCache.java:59) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at net.minecraft.data.DataGenerator.run(DataGenerator.java:34) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at net.minecraftforge.data.event.GatherDataEvent$DataGeneratorConfig.lambda$runAll$2(GatherDataEvent.java:111) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at cpw.mods.modlauncher.api.LamdbaExceptionUtils.lambda$rethrowConsumer$0(LamdbaExceptionUtils.java:34) ~[modlauncher-10.0.9.jar:10.0.9+10.0.9+main.dcd20f30]
+	at java.util.LinkedHashMap$LinkedValues.forEach(LinkedHashMap.java:647) ~[?:?]
+	at net.minecraftforge.data.event.GatherDataEvent$DataGeneratorConfig.runAll(GatherDataEvent.java:107) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at net.minecraftforge.data.loading.DatagenModLoader.begin(DatagenModLoader.java:54) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at net.minecraft.data.Main.main(Main.java:90) ~[forge-1.20.1-47.3.0_mapped_parchment_2023.09.03-1.20.1.jar:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:568) ~[?:?]
+	at net.minecraftforge.fml.loading.targets.CommonLaunchHandler.runTarget(CommonLaunchHandler.java:111) ~[fmlloader-1.20.1-47.3.0.jar:?]
+	at net.minecraftforge.fml.loading.targets.CommonLaunchHandler.dataService(CommonLaunchHandler.java:107) ~[fmlloader-1.20.1-47.3.0.jar:?]
+	at net.minecraftforge.fml.loading.targets.ForgeDataUserdevLaunchHandler.devService(ForgeDataUserdevLaunchHandler.java:22) ~[fmlloader-1.20.1-47.3.0.jar:?]
+	at net.minecraftforge.fml.loading.targets.CommonDevLaunchHandler.lambda$makeService$7(CommonDevLaunchHandler.java:135) ~[fmlloader-1.20.1-47.3.0.jar:?]
+	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:30) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:53) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:71) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.Launcher.run(Launcher.java:108) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.Launcher.main(Launcher.java:78) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) ~[modlauncher-10.0.9.jar:?]
+	at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:141) ~[bootstraplauncher-1.1.2.jar:?]
+[284月2025 14:34:54.142] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
+[284月2025 14:34:54.181] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 39 ms
+[284月2025 14:34:54.183] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Registries
+[284月2025 14:34:54.266] [main/INFO] [net.minecraft.data.DataGenerator/]: Registries finished after 83 ms
+[284月2025 14:34:54.266] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: chang_sheng_jue
+[284月2025 14:34:54.379] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: chang_sheng_jue finished after 112 ms
+[284月2025 14:34:54.379] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block Models: chang_sheng_jue
+[284月2025 14:34:54.440] [main/INFO] [net.minecraft.data.DataGenerator/]: Block Models: chang_sheng_jue finished after 60 ms
+[284月2025 14:34:54.440] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: chang_sheng_jue
+[284月2025 14:34:54.506] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: chang_sheng_jue finished after 65 ms
+[284月2025 14:34:54.506] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Loot Tables

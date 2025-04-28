@@ -54,33 +54,33 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(Item.byBlock(ChangShengJueBlocks.DURIAN_LOG.get()));
 
         this.tag(CSJTags.Items.MJ_BOOK)
+                .addTag(CSJTags.Items.INTERNAL_KUNG_FU_MJ)
+                .addTag(CSJTags.Items.EXTERNAL_KUNG_FU_MJ)
+                .add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get(),ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get());
+        this.tag(CSJTags.Items.INTERNAL_KUNG_FU_MJ)
                 .add(ChangShengJueItems.IMMORTAL_MIRACLE.get())
                 .add(ChangShengJueItems.HERCULES.get())
+                .add(ChangShengJueItems.TURTLE_BREATH_WORK.get())
+                .add(ChangShengJueItems.GOLDEN_BELL_JAR.get())
+                .add(ChangShengJueItems.PAODING.get())
+                .add(ChangShengJueItems.WU_GANG_CUT_GUI.get())
+                .add(ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get())
+                .add(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get())
+                .add(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get());
+        this.tag(CSJTags.Items.EXTERNAL_KUNG_FU_MJ)
                 .add(ChangShengJueItems.DUGU_NINE_SWORDS.get())
                 .add(ChangShengJueItems.GAO_MARKSMANSHIP.get())
                 .add(ChangShengJueItems.GE_SHAN_DA_NIU.get())
-                .add(ChangShengJueItems.TURTLE_BREATH_WORK.get())
                 .add(ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get())
-                .add(ChangShengJueItems.GOLDEN_BELL_JAR.get())
                 .add(ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get())
-                .add(ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get())
-                .add(ChangShengJueItems.PAODING.get())
                 .add(ChangShengJueItems.SHAOLIN_STICK_METHOD.get())
                 .add(ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get())
                 .add(ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get())
-                .add(ChangShengJueItems.WU_GANG_CUT_GUI.get())
-                .add(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get())
-                .add(ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get())
-                .add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get())
-                .add(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get())
-                .add(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get());
+                .add(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get());
 
         this.tag(CSJTags.Items.DRINKS)
-                .add(ChangShengJueItems.BILUOCHUN_TEAS.get())
-                .add(ChangShengJueItems.LONG_JING_TEAS.get())
-                .add(ChangShengJueItems.FEN_JIU.get())
-                .add(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get())
-                .add(ChangShengJueItems.SHI_LI_XIANG.get());
+                .addTag(CSJTags.Items.TEA)
+                .addTag(CSJTags.Items.WINE);
 
         this.tag(CSJTags.Items.PAINTING)
                 .add(Item.byBlock(ChangShengJueBlocks.PAINTING_SCROLL.get()))
@@ -92,18 +92,25 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(ChangShengJueItems.SHI_LI_XIANG.get())
                 .add(ChangShengJueItems.FEN_JIU.get())
                 .add(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get());
+        this.tag(CSJTags.Items.TEA)
+                .add(ChangShengJueItems.BILUOCHUN_TEAS.get())
+                .add(ChangShengJueItems.LONG_JING_TEAS.get());
 
         this.tag(CSJTags.Items.FOODS)
-                .add(ChangShengJueItems.VENISON.get(), ChangShengJueItems.COOKED_VENISON.get(), ChangShengJueItems.PEACOCK.get(), ChangShengJueItems.COOKED_PEACOCK.get(),
-                        ChangShengJueItems.CROC.get(),ChangShengJueItems.COOKED_CROC.get(), ChangShengJueItems.PINEAPPLE.get(), ChangShengJueItems.TOMATO.get(),
-                        ChangShengJueItems.CORN.get(),ChangShengJueItems.MANGO.get(), ChangShengJueItems.CANTALOUPE.get(), ChangShengJueItems.BANANA.get(),
-                        ChangShengJueItems.PEAR.get(),ChangShengJueItems.LICHEE.get(), ChangShengJueItems.GRAPE.get(), ChangShengJueItems.OPEN_DURIAN.get(),
-                        ChangShengJueItems.PEANUT.get(),ChangShengJueItems.BRINJAL.get(), ChangShengJueItems.MULBERRY.get(), ChangShengJueItems.PORTULACA_OLERACEA_CAKE.get(),
+                .addTag(CSJTags.Items.UNPROCESSED_FOODS)
+                .add(ChangShengJueItems.COOKED_VENISON.get(), ChangShengJueItems.COOKED_PEACOCK.get(),
+                        ChangShengJueItems.COOKED_CROC.get(), ChangShengJueItems.PORTULACA_OLERACEA_CAKE.get(),
                         ChangShengJueItems.BAKED_CORN.get(),ChangShengJueItems.SORGHUM_CAKE.get(), ChangShengJueItems.CAPSULE_JIAO_ZI.get(), ChangShengJueItems.QING_TUAN.get(),
                         ChangShengJueItems.XIAO_MI_FAN.get(),ChangShengJueItems.MI_FAN.get(), ChangShengJueItems.ZHENG_CAI.get(), ChangShengJueItems.TOMATO_EGG.get(),
                         ChangShengJueItems.GU_LAO_ROU.get(),ChangShengJueItems.MEAT_FOAM_BRINJAL.get(), ChangShengJueItems.STINKY_TOFU.get(), ChangShengJueItems.GUI_HUA_TANG_OU.get(),
                         ChangShengJueItems.HOT_PEAR_SOUP.get(),ChangShengJueItems.ZHU_DU_JI.get(), ChangShengJueItems.BA_BAO_ZHOU.get()
                 );
+
+        this.tag(CSJTags.Items.UNPROCESSED_FOODS)
+                .add(ChangShengJueItems.VENISON.get(),ChangShengJueItems.PEACOCK.get(),ChangShengJueItems.CROC.get(),ChangShengJueItems.PINEAPPLE.get(),ChangShengJueItems.TOMATO.get(),
+                        ChangShengJueItems.CORN.get(),ChangShengJueItems.MANGO.get(),ChangShengJueItems.CANTALOUPE.get(),ChangShengJueItems.BANANA.get(),ChangShengJueItems.PEAR.get(),
+                        ChangShengJueItems.LICHEE.get(),ChangShengJueItems.GRAPE.get(),ChangShengJueItems.DURIAN_MEAT.get(),ChangShengJueItems.PEANUT.get(),ChangShengJueItems.BRINJAL.get(),
+                        ChangShengJueItems.MULBERRY.get());
 
         this.tag(CSJTags.Items.ARTIFACT)
                 .add(ChangShengJueItems.BEAT_DOG_STICK.get())

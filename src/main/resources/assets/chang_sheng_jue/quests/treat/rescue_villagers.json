@@ -2,10 +2,20 @@
   "questId": "7dc9c671-ec29-4f3f-9467-5324fa026499",
   "questName": "quest.treat.village.questName",
   "questDescription": "quest.treat.village.questDescription",
-  "type": "TREAT",
+  "questRequirementsDescription": "quest.treat.village.questRequirementsDescription",
+  "questType": "TREAT",
   "requiredKills": 1,
   "repeatable": false,
-  "givesEffect": false,
+  "effects": [
+    {
+      "effectId": "chang_sheng_jue:instant_charm_effect",
+      "duration": 0,
+      "amplifier": 1,
+      "isAmbient": false,
+      "showParticles": false,
+      "showIcon": true
+    }
+  ],
   "questRewards": [
     {
       "item": "chang_sheng_jue:gang_token",

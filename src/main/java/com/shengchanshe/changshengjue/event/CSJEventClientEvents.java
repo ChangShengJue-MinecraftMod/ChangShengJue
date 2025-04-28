@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.event;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.cilent.gui.screens.button.TexturedButtonWithText;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_bell_jar.GoldenBellJarClientData;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.hercules.HerculesClientData;
@@ -9,6 +10,7 @@ import com.shengchanshe.changshengjue.cilent.hud.martial_arts.turtle_breath_work
 import com.shengchanshe.changshengjue.event.martial_arts.TreadTheSnowWithoutTraceEvent;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
+import com.shengchanshe.changshengjue.network.packet.gui.playerquest.OpenPlayerQuestScreenPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.hercules.HerculesPacket2;
@@ -19,9 +21,13 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_
 import com.shengchanshe.changshengjue.tags.CSJTags;
 import com.shengchanshe.changshengjue.util.KeyBinding;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -162,5 +168,26 @@ public class CSJEventClientEvents {
     @SubscribeEvent
     public static void onFall(LivingFallEvent event) {
         TreadTheSnowWithoutTraceEvent.onFall(event);
+    }
+
+    private static final ResourceLocation BUTTON_TEXTURE = new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/botton.png");
+
+    @SubscribeEvent
+    public static void onScreenInit(ScreenEvent.Init.Post event) {
+        if (event.getScreen() instanceof InventoryScreen screen) {
+            TexturedButtonWithText customButton = new TexturedButtonWithText(
+                    screen.leftPos - 12,
+                    screen.height / 2 - 80,
+                    13, 22,
+                    65, 0, 22,
+                    BUTTON_TEXTURE,
+                    256, 256,
+                    (button) -> {
+                        ChangShengJueMessages.sendToServer(new OpenPlayerQuestScreenPacket(0, Component.translatable("quest.button")));
+                    },
+                    Component.translatable("quest.button"),0x000,0x000,0.8F
+            );
+            event.addListener(customButton);
+        }
     }
 }

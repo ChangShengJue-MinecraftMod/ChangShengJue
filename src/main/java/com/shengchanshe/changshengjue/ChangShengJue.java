@@ -1,9 +1,9 @@
 package com.shengchanshe.changshengjue;
 
+import com.mojang.brigadier.CommandDispatcher;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.changshengjue.cilent.gui.screens.ChangShengJueMenuTypes;
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.QuestManager;
 import com.shengchanshe.changshengjue.creativemodetab.ChangShengJueCreativeModeTab;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
@@ -19,6 +19,9 @@ import com.shengchanshe.changshengjue.world.biome.surface.CSJSurFaceRules;
 import com.shengchanshe.changshengjue.world.feature.CSJFoliagePlacers;
 import com.shengchanshe.changshengjue.world.feature.CSJTrunkPlacerTypes;
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
@@ -26,8 +29,13 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -43,7 +51,6 @@ public class ChangShengJue {
     public static final Logger LOGGER = LogManager.getLogger();
 
     public static final String MOD_ID = "chang_sheng_jue";
-
 
     public ChangShengJue() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -69,6 +76,8 @@ public class ChangShengJue {
         ChangShengJueMessages.register();
 
         GeckoLib.initialize();
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ChangShengJueConfig.SPEC, MOD_ID + ".toml");
+
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -108,4 +117,6 @@ public class ChangShengJue {
     public void clientSetup(final FMLClientSetupEvent event){
         ClientSetup.clientSetup(event);
     }
+
+
 }

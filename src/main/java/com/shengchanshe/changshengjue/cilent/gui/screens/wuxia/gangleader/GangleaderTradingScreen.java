@@ -2,11 +2,8 @@ package com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.Quest;
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.QuestManager;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.gui.quest.OpenGangQuestScreenPacket;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -17,18 +14,13 @@ import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ServerboundSelectTradePacket;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-
-import java.util.Random;
 
 @OnlyIn(Dist.CLIENT)
 public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderTradingMenu> {

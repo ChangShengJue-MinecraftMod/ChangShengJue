@@ -1,0 +1,38 @@
+{
+  "questId": "4ECF3936-B0F7-4F78-90FE-C7E613A08916",
+  "questName": "quest.chang_sheng_jue.kill.assassin.questName",
+  "questDescription": "quest.chang_sheng_jue.kill.assassin.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.kill.assassin.questRequirementsDescription",
+  "questType": "KILL",
+  "targetEntity": "chang_sheng_jue:assassin",
+  "requiredKills": 3,
+  "questTargetCount" : 3,
+  "repeatable": true,
+  "questGenerateTarget" : true,
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:silver_bullions",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 1.0
+      }
+    },
+    {
+      "item": "#chang_sheng_jue:external_kung_fu_mj",
+      "count": {
+        "type": "minecraft:binomial",
+        "n": 1,
+        "p": 0.25
+      }
+    },
+    {
+      "item": "#chang_sheng_jue:internal_kung_fu_mj",
+      "count": {
+        "type": "minecraft:binomial",
+        "n": 1,
+        "p": 0.25
+      }
+    }
+  ]
+}
