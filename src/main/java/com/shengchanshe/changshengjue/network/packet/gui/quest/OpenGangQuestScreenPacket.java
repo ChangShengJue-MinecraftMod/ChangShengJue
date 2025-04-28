@@ -26,13 +26,6 @@ public record OpenGangQuestScreenPacket() {
             ServerPlayer player = ctx.get().getSender();
             if (player.containerMenu instanceof GangleaderTradingMenu menu) {
                 if (menu.getTrader() instanceof AbstractGangLeader abstractGangLeader) {
-//                    UUID uuid = abstractVillager.getUUID();
-//                    Quest task = QuestManager.getInstance().getQuestForNpc(player,uuid);
-//                    if (task == null) {
-//                        task = QuestManager.getInstance().generateNewQuestForNpc(uuid);
-//                    }
-////                  打开任务界面
-//                    Quest finalTask = task;
                     NetworkHooks.openScreen(
                                 player,
                                 new SimpleMenuProvider(

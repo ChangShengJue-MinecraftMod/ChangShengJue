@@ -1,6 +1,6 @@
 package com.shengchanshe.changshengjue.network.packet.gui.quest;
 
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.QuestManager;
+import com.shengchanshe.changshengjue.quest.QuestManager;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.AbstractGangLeader;
 import net.minecraft.server.level.ServerPlayer;
 

@@ -2,9 +2,8 @@
   "questId": "C07D5D01-2788-4F26-9C6B-0DD61455955F",
   "questName": "quest.money.questName",
   "questDescription": "quest.money.questDescription",
-  "type": "GATHER",
+  "questType": "GATHER",
   "repeatable": true,
-  "givesEffect": false,
   "questRequirements": [
     {
       "item": "chang_sheng_jue:yi_guan_tong_qian",

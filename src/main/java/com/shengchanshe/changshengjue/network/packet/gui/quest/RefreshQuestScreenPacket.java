@@ -1,7 +1,7 @@
 package com.shengchanshe.changshengjue.network.packet.gui.quest;
 
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangQuestsScreen;
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.Quest;
+import com.shengchanshe.changshengjue.quest.Quest;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;

@@ -1,60 +1,56 @@
 package com.shengchanshe.changshengjue.event.quest;
 
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.Quest;
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.QuestManager;
-import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
+import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
+import com.shengchanshe.changshengjue.quest.Quest;
+import com.shengchanshe.changshengjue.quest.QuestManager;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.challenger.Challenger;
-import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.ZombieVillager;
+import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.raid.Raid;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
 import net.minecraftforge.event.entity.living.LivingConversionEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.ZombieEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class QuestEvent {
     public static void onEntityDeath(LivingDeathEvent event){
         if (event.getSource().getEntity() instanceof Player player) {
+            if (player.level().isClientSide) return;
             UUID playerId = player.getUUID();
             if (event.getEntity() instanceof Challenger challenger) {
                 float health = challenger.getHealth();
-                if (health > 0){
-                    return;
+                if (health > 0) {return;}
+            }
+            List<Quest> currentQuest = QuestManager.getInstance().getPlayerQuests(playerId);
+            for (Quest quest : currentQuest) {
+                if (quest != null && quest.getQuestType() == Quest.QuestType.KILL) {
+                    if (quest.matchesEntity(event.getEntity()) && quest.getCurrentKills() < quest.getRequiredKills()) {
+                        quest.incrementKills();
+                        QuestManager.getInstance().saveQuestProgress(quest);
+                        if (quest.canComplete(player)) {
+                            player.sendSystemMessage(Component.literal(
+                                    "§a"+ quest.getQuestName()+ "任务进度: " + quest.getCurrentKills() + "/" + quest.getRequiredKills()
+                            ));
+                        }
+                    }
                 }
             }
-            // 获取玩家当前接受的任务
-            List<Quest> currentQuest = QuestManager.getInstance().getPlayerQuests(playerId);
-            for(Quest quest : currentQuest){
-                if (quest != null && quest.getQuestType() == Quest.QuestType.KILL) {
-                    if (quest.matchesEntity(event.getEntity())) {
-                        quest.incrementKills();
-                        // 保存任务进度
-                        QuestManager.getInstance().saveQuestProgress(quest);
-                    }
-                    if (quest.canComplete(player)) {
-//                        // 通知玩家任务完成
-                        player.sendSystemMessage(Component.literal(
-                                "§a"+ quest.getQuestName()+ "任务进度: " + quest.getCurrentKills() + "/" + quest.getRequiredKills()
-                        ));
-                    }
+            if (event.getEntity() instanceof Villager) {
+                if (player.hasEffect(ChangShengJueEffects.VILLAGER_CHARM_EFFECT.get())){
+                    player.removeEffect(ChangShengJueEffects.VILLAGER_CHARM_EFFECT.get());
+                    player.addEffect(new MobEffectInstance(ChangShengJueEffects.INSTANT_DISFAVOR_EFFECT.get(), 1, 10, false, true));
+                    QuestManager.getInstance().removeQuestCompletion(UUID.fromString("b005b283-34fa-4217-b417-866d830ccda8"));
                 }
             }
         }
@@ -82,7 +78,7 @@ public class QuestEvent {
 
                     if (quest.canComplete(player)) {
                         player.sendSystemMessage(Component.literal(
-                                "§a任务进度: " + quest.getCurrentKills() + "/" + quest.getRequiredKills()
+                                "§a"+ quest.getQuestName()+ "任务进度: " + quest.getCurrentKills() + "/" + quest.getRequiredKills()
                         ));
                     }
                 });

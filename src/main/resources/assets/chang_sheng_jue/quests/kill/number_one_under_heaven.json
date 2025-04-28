@@ -3,12 +3,11 @@
   "questName": "quest.kill.ming_xia.questName",
   "questDescription": "quest.kill.ming_xia.questDescription",
   "questRequirementsDescription": "quest.kill.ming_xia.questRequirementsDescription",
-  "type": "KILL",
+  "questType": "KILL",
   "targetEntity": "#chang_sheng_jue:ming_xia",
   "requiredKills": 1,
   "repeatable": false,
   "questGenerateTarget" : true,
-  "givesEffect": false,
   "questRewards": [
     {
       "item": "chang_sheng_jue:gang_token",

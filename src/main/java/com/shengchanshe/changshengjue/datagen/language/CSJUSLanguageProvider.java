@@ -2,11 +2,9 @@ package com.shengchanshe.changshengjue.datagen.language;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
-import com.shengchanshe.changshengjue.datagen.CSJAdvanceProvider;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
@@ -104,7 +102,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.PEAR.get(),"梨子");
         this.add(ChangShengJueItems.LICHEE.get(),"荔枝");
         this.add(ChangShengJueItems.DURIAN.get(),"榴莲");
-        this.add(ChangShengJueItems.OPEN_DURIAN.get(),"榴莲肉");
+        this.add(ChangShengJueItems.DURIAN_MEAT.get(),"榴莲肉");
         this.add(ChangShengJueItems.MULBERRY.get(),"桑葚");
         this.add(ChangShengJueItems.NATURAL_SILK.get(),"蚕丝");
         this.add(ChangShengJueItems.SILK.get(),"丝绸");
@@ -807,11 +805,11 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEntity.FEMALE_INNKEEPER.get(), "酒馆女掌柜");
         this.add(ChangShengJueEntity.CHALLENGER.get(), "挑战者");
         this.add(ChangShengJueEntity.BLACKSMITH.get(), "铁匠");
-        this.add(ChangShengJueEntity.LANCE_GANG_LEADER.get(), "枪首领");
-        this.add(ChangShengJueEntity.KNIFE_GANG_LEADER.get(), "刀首领");
-        this.add(ChangShengJueEntity.SWORD_GANG_LEADER.get(), "剑首领");
-        this.add(ChangShengJueEntity.CLUBBED_GANG_LEADER.get(), "棍首领");
-        this.add(ChangShengJueEntity.GANG_LEADER.get(), "帮派首领");
+        this.add(ChangShengJueEntity.LANCE_GANG_LEADER.get(), "帮派首领(枪)");
+        this.add(ChangShengJueEntity.KNIFE_GANG_LEADER.get(), "帮派首领(刀)");
+        this.add(ChangShengJueEntity.SWORD_GANG_LEADER.get(), "帮派首领(剑)");
+        this.add(ChangShengJueEntity.CLUBBED_GANG_LEADER.get(), "帮派首领(棍)");
+        this.add(ChangShengJueEntity.GANG_LEADER.get(), "帮派首领(拳,飞刀)");
         this.add(ChangShengJueEntity.BANDIT.get(), "强盗");
         this.add(ChangShengJueEntity.VILLAIN.get(), "恶徒");
         this.add(ChangShengJueEntity.ASSASSIN.get(), "帮派杀手");
@@ -873,15 +871,18 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get(), "麦块贡酒");
         this.add(ChangShengJueEffects.SHI_LI_XIANG.get(), "十里香");
         this.add(ChangShengJueEffects.DRUNKEN.get(), "醉酒");
+        this.add(ChangShengJueEffects.VILLAGER_CHARM_EFFECT.get(), "提高村民声望");
+        this.add(ChangShengJueEffects.INSTANT_CHARM_EFFECT.get(), "瞬间提高村民声望");
+        this.add(ChangShengJueEffects.INSTANT_DISFAVOR_EFFECT.get(), "瞬间降低村民声望");
 
         //群系
         this.add("biome.chang_sheng_jue.chang_shen_jue_prairie", "慕然草原");
 
         //按键
-        this.add("key."+ ChangShengJue.MOD_ID +".key.category", "长生诀");
-        this.add("key."+ ChangShengJue.MOD_ID +".key.ability_1", "技能1");
-        this.add("key."+ ChangShengJue.MOD_ID +".key.ability_2", "技能2");
-        this.add("key."+ ChangShengJue.MOD_ID +".key.ability_3", "技能3");
+        this.add("key."+ ChangShengJue.MOD_ID +".category", "长生诀");
+        this.add("key."+ ChangShengJue.MOD_ID +".ability_1", "技能1");
+        this.add("key."+ ChangShengJue.MOD_ID +".ability_2", "技能2");
+        this.add("key."+ ChangShengJue.MOD_ID +".ability_3", "技能3");
 
         //存储
         this.add("container.hercules", "大力神功");
@@ -990,7 +991,9 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("quest.abandon.button", "放弃任务");
         this.add("quest.flushed.button", "刷新任务");
         this.add("quest.requirements.prompt", "任务需求不足!");
-
+        this.add("quest."+ ChangShengJue.MOD_ID +".finish", "§a%s任务完成！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".trigger", "§a触发%s任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".fail", "§a%s任务失败！");
 
         this.add("quest.food.questName", "收集食物");
         this.add("quest.food.questDescription", "首领：兄弟们的吃食又不够了，总不能饿肚子吧，兄弟你去想想办法。");
@@ -1023,8 +1026,60 @@ public class CSJUSLanguageProvider extends LanguageProvider {
 
         this.add("quest.raid.village.questName", "保护村庄");
         this.add("quest.raid.village.questDescription", "首领：我们帮派名下的村庄被入侵了，快去保护咱们的粮仓！");
+        this.add("quest.raid.village.questRequirementsDescription", "在袭击中胜利");
 
         this.add("quest.treat.village.questName", "救民侠医");
         this.add("quest.treat.village.questDescription", "首领：附近的村庄被僵尸袭击，好多村民变成了僵尸村民，听说兄弟你会些医术，去看看吧？");
+        this.add("quest.treat.village.questRequirementsDescription", "救治1名僵尸村民");
+
+        this.add("quest.automatic.village.questName", "田园侠客");
+        this.add("quest.automatic.village.questDescription", "因为有你，这里的村民没人敢欺负，你也在这里安居乐业。");
+        this.add("quest.automatic.village.questRequirementsDescription", "偶遇村民");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questName", "快意恩仇");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questDescription", "冤仇若不分明报，枉做人间大丈夫。");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questRequirementsDescription", "击败攻击你的敌人");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questName", "为民除害");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questDescription", "这一大虫总拿村民当食吃，大侠小心！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questRequirementsDescription", "击杀1只老虎");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questName", "除暴安良");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questDescription", "村长：村里有一恶人到处抢掠，大侠可能帮帮我们？！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questRequirementsDescription", "击杀1个恶徒");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questName", "武侠");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questDescription", "路见不平，拔刀相助，才堪侠客。");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questRequirementsDescription", "夜间在村庄内击杀1只僵尸");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questName", "杀人越货");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questDescription", "你即以财宝显漏，就别怪我了下手狠了！嘿嘿嘿...");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questRequirementsDescription", "击杀1个流浪商人");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".gather.food.questName", "大额交易");
+        this.add("quest."+ ChangShengJue.MOD_ID +".gather.food.questDescription", "村长：最近庄稼减收冬天怕是不好过了，大侠可以帮我们收集些食物度过难关吗？");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".gather.money.questName", "大额交易");
+        this.add("quest."+ ChangShengJue.MOD_ID +".gather.money.questDescription", "村长：这次真是大丰收！但是如此多粮食放久了会坏，大侠你能帮我们想想办法吗？");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questName", "任我行");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questDescription", "海阔天空，何处不容人。");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questRequirementsDescription", "7天内死亡次数小于1");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questName", "锄强扶弱");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questDescription", "村民不光要面对僵尸的袭击，竟还有帮派的威胁！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questRequirementsDescription", "击杀3个强盗");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questName", "江湖追杀令");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questDescription", "你帮助村庄对抗帮派，各大势力都以你武林公敌的借口对你进行了追杀！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questRequirementsDescription", "杀死袭击你的人");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questName", "傲气天地间");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questDescription", "我有百般力，何向弱者使？天地不平，我自平之！虽百人，有所可惧，智勇以对。");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questRequirementsDescription", "击杀100只僵尸");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questName", "天若有情天亦老");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questDescription", "人间正道是沧桑。");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questRequirementsDescription", "完成两次江湖追杀令");
     }
 }

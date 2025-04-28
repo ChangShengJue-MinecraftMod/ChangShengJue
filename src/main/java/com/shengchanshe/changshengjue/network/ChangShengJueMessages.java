@@ -5,6 +5,10 @@ import com.shengchanshe.changshengjue.cilent.gui.screens.plaque.UpdatePlaqueText
 import com.shengchanshe.changshengjue.network.packet.effect.EffectEntityPacket;
 import com.shengchanshe.changshengjue.network.packet.food.FoodPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.KilnWorkerSetTradeTypePacket;
+import com.shengchanshe.changshengjue.network.packet.gui.playerquest.AbandonPlayerQuestPacket;
+import com.shengchanshe.changshengjue.network.packet.gui.playerquest.OpenPlayerQuestScreenPacket;
+import com.shengchanshe.changshengjue.network.packet.gui.playerquest.RefreshPlayerQuestScreenPacket;
+import com.shengchanshe.changshengjue.network.packet.gui.playerquest.SubmitPlayerQuestsPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.quest.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
@@ -230,13 +234,13 @@ public class ChangShengJueMessages {
                 .encoder(FoodPacket::toBytes)
                 .consumerMainThread(FoodPacket::handle)
                 .add();
-        //按钮切换交易类型
+        // 按钮切换交易类型
         net.messageBuilder(KilnWorkerSetTradeTypePacket.class, id())
                 .decoder(KilnWorkerSetTradeTypePacket::decode)
                 .encoder(KilnWorkerSetTradeTypePacket::encode)
                 .consumerMainThread( KilnWorkerSetTradeTypePacket::handle)
                 .add();
-        //任务按钮
+        // 帮派任务按钮
         net.messageBuilder(AcceptGangQuestsPacket.class, id())
                 .decoder(AcceptGangQuestsPacket::decode)
                 .encoder(AcceptGangQuestsPacket::encode)
@@ -257,17 +261,40 @@ public class ChangShengJueMessages {
                 .encoder(RefreshGangQuestPacket::encode)
                 .consumerMainThread(RefreshGangQuestPacket::handle)
                 .add();
-        //任务UI
+
+        // 背包任务按钮
+        net.messageBuilder(SubmitPlayerQuestsPacket.class, id())
+                .decoder(SubmitPlayerQuestsPacket::decode)
+                .encoder(SubmitPlayerQuestsPacket::encode)
+                .consumerMainThread(SubmitPlayerQuestsPacket::handle)
+                .add();
+        net.messageBuilder(AbandonPlayerQuestPacket.class, id())
+                .decoder(AbandonPlayerQuestPacket::decode)
+                .encoder(AbandonPlayerQuestPacket::encode)
+                .consumerMainThread(AbandonPlayerQuestPacket::handle)
+                .add();
+
+        // 任务UI
         net.messageBuilder(OpenGangQuestScreenPacket.class, id())
                 .decoder(OpenGangQuestScreenPacket::decode)
                 .encoder(OpenGangQuestScreenPacket::encode)
                 .consumerMainThread(OpenGangQuestScreenPacket::handle)
+                .add();
+        net.messageBuilder(OpenPlayerQuestScreenPacket.class, id())
+                .decoder(OpenPlayerQuestScreenPacket::decode)
+                .encoder(OpenPlayerQuestScreenPacket::encode)
+                .consumerMainThread(OpenPlayerQuestScreenPacket::handle)
                 .add();
 
         net.messageBuilder(RefreshQuestScreenPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(RefreshQuestScreenPacket::decode)
                 .encoder(RefreshQuestScreenPacket::encode)
                 .consumerMainThread(RefreshQuestScreenPacket::handle)
+                .add();
+        net.messageBuilder(RefreshPlayerQuestScreenPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(RefreshPlayerQuestScreenPacket::decode)
+                .encoder(RefreshPlayerQuestScreenPacket::encode)
+                .consumerMainThread(RefreshPlayerQuestScreenPacket::handle)
                 .add();
 
     }

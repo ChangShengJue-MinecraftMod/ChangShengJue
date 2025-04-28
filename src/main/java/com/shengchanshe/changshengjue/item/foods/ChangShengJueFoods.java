@@ -2,7 +2,6 @@ package com.shengchanshe.changshengjue.item.foods;
 
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 
 public class ChangShengJueFoods {
@@ -20,7 +19,7 @@ public class ChangShengJueFoods {
     public static final FoodProperties PEAR = (new FoodProperties.Builder()).nutrition(4).saturationMod(2.4F).build();
     public static final FoodProperties LICHEE = (new FoodProperties.Builder()).nutrition(4).saturationMod(2.4F).build();
     public static final FoodProperties GRAPE = (new FoodProperties.Builder()).nutrition(4).saturationMod(2.4F).build();
-    public static final FoodProperties OPEN_DURIAN = (new FoodProperties.Builder()).nutrition(5).saturationMod(3.0F).build();
+    public static final FoodProperties DURIAN_MEAT = (new FoodProperties.Builder()).nutrition(5).saturationMod(3.0F).build();
     public static final FoodProperties MULBERRY = (new FoodProperties.Builder()).nutrition(2).saturationMod(1.0f).build();
 
     public static final FoodProperties CAPSULE_JIAO_ZI = (new FoodProperties.Builder()).nutrition(9).saturationMod(14.4F).meat().build();

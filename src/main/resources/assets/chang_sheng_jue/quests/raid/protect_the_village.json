@@ -2,10 +2,21 @@
   "questId": "85248ab7-ff1b-4d4d-8a05-92d5360e70eb",
   "questName": "quest.raid.village.questName",
   "questDescription": "quest.raid.village.questDescription",
-  "type": "RAID",
+  "questRequirementsDescription": "quest.raid.village.questRequirementsDescription",
+  "questType": "RAID",
   "requiredKills": 1,
   "repeatable": false,
-  "givesEffect": false,
+  "isAcceptQuestEffects" : true,
+  "effects": [
+    {
+      "effectId": "minecraft:bad_omen",
+      "duration": -1,
+      "amplifier": 3,
+      "isAmbient": false,
+      "showParticles": false,
+      "showIcon": true
+    }
+  ],
   "questRewards": [
     {
       "item": "chang_sheng_jue:gang_token",

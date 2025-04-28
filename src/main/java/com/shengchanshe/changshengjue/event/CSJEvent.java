@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.event;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.ChangShengJueConfig;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapabilityProvider;
@@ -32,7 +33,8 @@ import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmansh
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.QuestManager;
+import com.shengchanshe.changshengjue.event.quest.PlayerQuestEvent;
+import com.shengchanshe.changshengjue.quest.QuestManager;
 import com.shengchanshe.changshengjue.entity.custom.croc.Croc;
 import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
@@ -52,10 +54,7 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_poin
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.ImageButton;
-import net.minecraft.client.gui.components.Tooltip;
-import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -67,12 +66,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.EntityLeaveLevelEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -92,6 +90,10 @@ public class CSJEvent {
     @SubscribeEvent
     public static void onVillagerInteract(PlayerInteractEvent.EntityInteractSpecific event) {
         ZhangMenXinxueEvent.onVillagerInteract(event);
+    }
+    @SubscribeEvent
+    public static void onTrackingStart(PlayerEvent.StartTracking event) {
+        PlayerQuestEvent.onTrackingStart(event);
     }
 
     @SubscribeEvent
@@ -725,6 +727,10 @@ public class CSJEvent {
         QianKunDaNuoYiEvent.onPlayerTick(event);
         //大力神功
         HerculesEvent.onPlayerTick(event);
+        // 任务
+        PlayerQuestEvent.onPlayerTick(event);
+        PlayerQuestEvent.onEntityGenerate(event);
+        PlayerQuestEvent.onZombieGenerate(event);
     }
 
     @SubscribeEvent
@@ -745,6 +751,7 @@ public class CSJEvent {
         ArmorEvent.onArmorDamage(event);
 
         QuestEvent.onEntityHurt(event);
+        PlayerQuestEvent.onEntityHurt(event);
     }
     //生物死亡事件
     @SubscribeEvent
@@ -760,6 +767,7 @@ public class CSJEvent {
         }
         PaodingEvent.onEntityDeath(event);
         QuestEvent.onEntityDeath(event);
+        PlayerQuestEvent.onPlayerDeath(event);
     }
 
     @SubscribeEvent
@@ -787,6 +795,7 @@ public class CSJEvent {
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){
         SunflowerPointCavemanEvent.onPlayerEntityInteract(event);
         QuestEvent.onGoldenAppleUse(event);
+        PlayerQuestEvent.onVillagerInteract(event);
     }
     //玩家右键空气事件
     @SubscribeEvent
@@ -882,6 +891,21 @@ public class CSJEvent {
                 event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"hercules_properties"),new HerculesCapabilityProvider());
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onRegisterCommands(RegisterCommandsEvent event) {
+        event.getDispatcher().register(Commands.literal(ChangShengJue.MOD_ID + "_quests")
+                .requires(source -> source.hasPermission(2)) // 需要OP权限
+                .then(Commands.literal("toggle")
+                        .executes(ctx -> {
+                            boolean newState = !ChangShengJueConfig.ENABLE_QUESTS.get();
+                            ChangShengJueConfig.ENABLE_QUESTS.set(newState);
+
+                            ctx.getSource().sendSuccess(() -> Component.literal(
+                                    "自动接受类型任务已" + (newState ? "§a启用" : "§c禁用")), false);
+                            return 1;
+                        })));
     }
 
     //玩家克隆事件,用于玩家死亡重生时或者从末地回到主世界时克隆旧玩家的属性到新玩家

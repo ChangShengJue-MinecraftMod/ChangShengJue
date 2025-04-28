@@ -49,11 +49,15 @@ public class CSJTags {
         public static final TagKey<Item> TILE = tag("tile");
         public static final TagKey<Item> WINDOWS = tag("windows");
         public static final TagKey<Item> MJ_BOOK = tag("mj_book");
+        public static final TagKey<Item> INTERNAL_KUNG_FU_MJ = tag("internal_kung_fu_mj");
+        public static final TagKey<Item> EXTERNAL_KUNG_FU_MJ = tag("external_kung_fu_mj");
         public static final TagKey<Item> ARTIFACT = tag("artifact");
         public static final TagKey<Item> DRINKS = tag("drinks");
         public static final TagKey<Item> PAINTING = tag("painting");
         public static final TagKey<Item> WINE = tag("wine");
+        public static final TagKey<Item> TEA = tag("tea");
         public static final TagKey<Item> FOODS = tag("foods");
+        public static final TagKey<Item> UNPROCESSED_FOODS = tag("unprocessed_foods");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(ChangShengJue.MOD_ID, name));

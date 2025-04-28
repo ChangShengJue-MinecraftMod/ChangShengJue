@@ -427,7 +427,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.PEAR.get());
                 output.accept(ChangShengJueItems.LICHEE.get());
                 output.accept(ChangShengJueItems.GRAPE.get());
-                output.accept(ChangShengJueItems.OPEN_DURIAN.get());
+                output.accept(ChangShengJueItems.DURIAN_MEAT.get());
                 output.accept(ChangShengJueItems.PEANUT.get());
                 output.accept(ChangShengJueItems.BRINJAL.get());
                 output.accept(ChangShengJueItems.MULBERRY.get());

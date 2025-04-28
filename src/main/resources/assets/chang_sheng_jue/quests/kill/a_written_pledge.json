@@ -3,12 +3,11 @@
   "questName": "quest.kill.arbitrarily.questName",
   "questDescription": "quest.kill.arbitrarily.questDescription",
   "questRequirementsDescription": "quest.kill.arbitrarily.questRequirementsDescription",
-  "type": "KILL",
+  "questType": "KILL",
   "targetEntity": "#chang_sheng_jue:humanoids",
   "requiredKills": 1,
   "repeatable": false,
   "questGenerateTarget" : false,
-  "givesEffect": false,
   "questRewards": [
     {
       "item": "chang_sheng_jue:gang_token",

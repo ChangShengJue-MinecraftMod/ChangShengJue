@@ -3,12 +3,11 @@
   "questName": "quest.kill.pillager.questName",
   "questDescription": "quest.kill.pillager.questDescription",
   "questRequirementsDescription": "quest.kill.pillager.questRequirementsDescription",
-  "type": "KILL",
+  "questType": "KILL",
   "targetEntity": "#chang_sheng_jue:pillager",
   "requiredKills": 1,
   "repeatable": true,
   "questGenerateTarget" : false,
-  "givesEffect": false,
   "questRewards": [
     {
       "item": "chang_sheng_jue:gang_token",

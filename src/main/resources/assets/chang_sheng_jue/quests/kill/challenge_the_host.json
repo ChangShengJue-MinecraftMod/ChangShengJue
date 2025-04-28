@@ -3,12 +3,11 @@
   "questName": "quest.kill.gang_leader.questName",
   "questDescription": "quest.kill.gang_leader.questDescription",
   "questRequirementsDescription": "quest.kill.gang_leader.questRequirementsDescription",
-  "type": "KILL",
+  "questType": "KILL",
   "targetEntity": "#chang_sheng_jue:gang_leader",
   "requiredKills": 1,
   "repeatable": false,
   "questGenerateTarget" : false,
-  "givesEffect": false,
   "questRewards": [
     {
       "item": "chang_sheng_jue:gang_token",

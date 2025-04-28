@@ -142,8 +142,9 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> DURIAN = ITEMS.register("durian",
             ()-> new DurianBlockItem(ChangShengJueBlocks.DURIAN.get(),
                     new Item.Properties()));
-    public static final RegistryObject<Item> OPEN_DURIAN = ITEMS.register("open_durian",
-            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.OPEN_DURIAN)));
+
+    public static final RegistryObject<Item> DURIAN_MEAT = ITEMS.register("durian_meat",
+            ()-> new Item(new Item.Properties().food(ChangShengJueFoods.DURIAN_MEAT)));
     public static final RegistryObject<Item> RICE = ITEMS.register("rice",
             ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BILUOCHUN_TEA = ITEMS.register("biluochun_tea",

@@ -1,7 +1,7 @@
 package com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader;
 
 import com.shengchanshe.changshengjue.cilent.gui.screens.ChangShengJueMenuTypes;
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.Quest;
+import com.shengchanshe.changshengjue.quest.Quest;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.npc.ClientSideMerchant;

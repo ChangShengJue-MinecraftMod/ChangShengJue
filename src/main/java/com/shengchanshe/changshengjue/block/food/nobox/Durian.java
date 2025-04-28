@@ -3,7 +3,6 @@ package com.shengchanshe.changshengjue.block.food.nobox;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -34,7 +33,7 @@ public class Durian extends NoBoxTypeBlock{
         if(state.getBlock()==ChangShengJueBlocks.DURIAN.get()){
             if(itemstack.getItem() instanceof AxeItem){
                 itemstack.hurtAndBreak(1, player, (p) -> {p.broadcastBreakEvent(player.getUsedItemHand());});
-                level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ChangShengJueItems.OPEN_DURIAN.get())));
+                level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ChangShengJueItems.DURIAN_MEAT.get())));
                 level.destroyBlock(pos, false);
                 level.playSound(null, pos, SoundEvents.AXE_STRIP, SoundSource.PLAYERS, 0.8F, 0.8F);
             }

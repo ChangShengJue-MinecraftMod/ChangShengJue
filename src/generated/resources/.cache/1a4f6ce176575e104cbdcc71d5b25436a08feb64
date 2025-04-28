@@ -1,15 +1,19 @@
-// 1.20.1	2025-04-07T12:26:04.9043969	Tags for minecraft:item mod id chang_sheng_jue
+// 1.20.1	2025-04-28T12:17:00.3590647	Tags for minecraft:item mod id chang_sheng_jue
 053c60963f1ba310289d3ab69792aed0b1ed0c01 data/chang_sheng_jue/tags/items/artifact.json
 07ecd0eb3ab21efc7faa1276d80bec0779c1300d data/chang_sheng_jue/tags/items/doors.json
-747d8c02c0a6b84cbaaee8bde93d3002779f2da3 data/chang_sheng_jue/tags/items/drinks.json
-1ed0343d3a4de704c7a7c12ea7a9cb27497aaa03 data/chang_sheng_jue/tags/items/foods.json
+9d16765683238565c6ad1db7bdb5cf5b1a4a6620 data/chang_sheng_jue/tags/items/drinks.json
+4ec970d0c2bd3dc984a0f18c9928dfb8a1213a70 data/chang_sheng_jue/tags/items/external_kung_fu_mj.json
+04bc7bce0b4730b19ec84623a7111e214b901c80 data/chang_sheng_jue/tags/items/foods.json
 fc9adbc914d58ba011b7360db65ceafe041ec19c data/chang_sheng_jue/tags/items/huang_hua_li_log.json
+8aa1193f4f9bc3a38a30db61fcec06dcb14a3dff data/chang_sheng_jue/tags/items/internal_kung_fu_mj.json
 8398dd3b781973607469305269c05e6fde0edff1 data/chang_sheng_jue/tags/items/ji_chi_mu_log.json
 0aa1ba5e394b14527494021858f4bcf5206fa757 data/chang_sheng_jue/tags/items/log.json
-5bee270246b102c15bd7742bbcaf810044f0de15 data/chang_sheng_jue/tags/items/mj_book.json
+4ae7492f4cefab797fd5404525027d3ce124b4da data/chang_sheng_jue/tags/items/mj_book.json
 883c9e4be3b2c437119b125eb9a4d0563a1af0b7 data/chang_sheng_jue/tags/items/mulberry_log.json
 3860ac154c185cc8795018c538abd2ac02b16fff data/chang_sheng_jue/tags/items/painting.json
 b4dd3ec7767810f42f59bffc631bfbf734c395b5 data/chang_sheng_jue/tags/items/poplar_log.json
+5ccbcbc027be6f970e64d4f1f89c05bde3cf1813 data/chang_sheng_jue/tags/items/tea.json
+0cf52c5faeab31f5518cb8c8ecd7890d67785f30 data/chang_sheng_jue/tags/items/unprocessed_foods.json
 bff6a6cdb5f41dcb77c1b780fcc964785324ac45 data/chang_sheng_jue/tags/items/wine.json
 65a7d6449d0d549471a825e83180583866846a71 data/chang_sheng_jue/tags/items/zi_tan_log.json
 382a541934bb51d39e074fe89724fb4a5d3131ea data/forge/tags/items/ingots.json

@@ -1,0 +1,27 @@
+{
+  "questId": "edd0cd54-c00c-43b7-aa4c-105e949cf883",
+  "questName": "quest.chang_sheng_jue.kill.zombies.questName",
+  "questDescription": "quest.chang_sheng_jue.kill.zombies.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.kill.zombies.questRequirementsDescription",
+  "questType": "KILL",
+  "targetEntity": "minecraft:zombie",
+  "requiredKills": 100,
+  "questTargetCount" : 5,
+  "questTime": 140,
+  "repeatable": false,
+  "questGenerateTarget" : true,
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:gold_bullions",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 1.0
+      }
+    },
+    {
+      "item": "chang_sheng_jue:gang_token",
+      "count": 5
+    }
+  ]
+}

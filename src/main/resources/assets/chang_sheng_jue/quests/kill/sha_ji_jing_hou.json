@@ -3,12 +3,21 @@
   "questName": "quest.kill.villager.questName",
   "questDescription": "quest.kill.villager.questDescription",
   "questRequirementsDescription": "quest.kill.villager.questRequirementsDescription",
-  "type": "KILL",
+  "questType": "KILL",
   "targetEntity": "#chang_sheng_jue:villagers",
   "requiredKills": 1,
   "repeatable": true,
   "questGenerateTarget" : false,
-  "givesEffect": false,
+  "effects": [
+    {
+      "effectId": "chang_sheng_jue:instant_disfavor_effect",
+      "duration": 1,
+      "amplifier": 1,
+      "isAmbient": false,
+      "showParticles": false,
+      "showIcon": true
+    }
+  ],
   "questRewards": [
     {
       "item": "chang_sheng_jue:gang_token",

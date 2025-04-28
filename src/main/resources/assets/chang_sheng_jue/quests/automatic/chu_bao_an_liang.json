@@ -1,0 +1,39 @@
+{
+  "questId": "066905EA-4B2D-408D-A86E-9D37F450B729",
+  "questName": "quest.chang_sheng_jue.kill.villain.questName",
+  "questDescription": "quest.chang_sheng_jue.kill.villain.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.kill.villain.questRequirementsDescription",
+  "questType": "KILL",
+  "targetEntity": "chang_sheng_jue:villain",
+  "requiredKills": 1,
+  "repeatable": true,
+  "questGenerateTarget" : true,
+  "effects": [
+    {
+      "effectId": "chang_sheng_jue:instant_charm_effect",
+      "duration": 1,
+      "amplifier": 1,
+      "isAmbient": false,
+      "showParticles": false,
+      "showIcon": true
+    }
+  ],
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:yi_guan_tong_qian",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 1.0
+      }
+    },
+    {
+      "item": "#chang_sheng_jue:internal_kung_fu_mj",
+      "count": {
+        "type": "minecraft:binomial",
+          "n": 1,
+          "p": 0.05
+        }
+    }
+  ]
+}

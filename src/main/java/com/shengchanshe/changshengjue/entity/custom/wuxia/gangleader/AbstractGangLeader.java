@@ -1,8 +1,8 @@
 package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader;
 
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingMenu;
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.Quest;
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.quest.QuestManager;
+import com.shengchanshe.changshengjue.quest.Quest;
+import com.shengchanshe.changshengjue.quest.QuestManager;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXiaMerchant;
 import net.minecraft.nbt.CompoundTag;
