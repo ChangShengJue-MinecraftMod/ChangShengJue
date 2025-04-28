@@ -2,7 +2,7 @@
   "name": "四合院村庄",
   "category": "chang_sheng_jue:village",
   "sortnum": 0,
-  "icon": "chang_sheng_jue:textures/gui/patchouli/villages/four_courtyard.png",
+  "icon": "",
   "pages": [
     {
       "type": "patchouli:image",

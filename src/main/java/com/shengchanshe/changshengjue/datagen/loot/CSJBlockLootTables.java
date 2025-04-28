@@ -87,6 +87,8 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
 
         this.dropSelf(ChangShengJueBlocks.MEI_HUA_LOG.get());
         this.dropSelf(ChangShengJueBlocks.MEI_HUA_SAPLING.get());
+        this.add(ChangShengJueBlocks.MEI_HUA_DEFOLIATION.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.MEI_HUA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
         this.add(ChangShengJueBlocks.MEI_HUA_LEAVES.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.MEI_HUA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES).
                 withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_NO_SHEARS_OR_SILK_TOUCH)
                         .add(this.applyExplosionCondition(block, LootItem.lootTableItem(ChangShengJueItems.MEI_HUA.get()))

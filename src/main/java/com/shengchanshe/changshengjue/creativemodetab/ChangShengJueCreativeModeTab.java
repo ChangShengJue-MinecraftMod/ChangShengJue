@@ -31,8 +31,10 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.DURIAN_SAPLING.get());
                 output.accept(ChangShengJueBlocks.GUI_HUA_LEAVES.get());
                 output.accept(ChangShengJueBlocks.GUI_HUA_SAPLING.get());
+                output.accept(ChangShengJueBlocks.GUI_HUA_DEFOLIATION.get());
                 output.accept(ChangShengJueBlocks.MEI_HUA_LEAVES.get());
                 output.accept(ChangShengJueBlocks.MEI_HUA_SAPLING.get());
+                output.accept(ChangShengJueBlocks.MEI_HUA_DEFOLIATION.get());
                 output.accept(ChangShengJueBlocks.POPLAR_LEAVES.get());
                 output.accept(ChangShengJueBlocks.POPLAR_SAPLING.get());
                 output.accept(ChangShengJueBlocks.POPLAR_DEFOLIATION.get());

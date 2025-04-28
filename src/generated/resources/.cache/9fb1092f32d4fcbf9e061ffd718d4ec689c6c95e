@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-15T20:33:26.7992787	Recipes
+// 1.20.1	2025-04-26T15:38:19.4496314	Recipes
 8f8010379e458578bc3f02cdc4fb63984080a96d data/chang_sheng_jue/advancements/recipes/building_blocks/acacia_bench.json
 c479feb8a0764ef7fabe60f8416bc9c9b700573a data/chang_sheng_jue/advancements/recipes/building_blocks/acacia_drinking_table_and_chairs.json
 900ca00c566e2408e2072be496ab212f1bbb791e data/chang_sheng_jue/advancements/recipes/building_blocks/acacia_low_desk.json
@@ -326,7 +326,7 @@ f534cc424688ef5bbeaba16f6a59f27a6f5634da data/chang_sheng_jue/recipes/oak_drinki
 8a962bb67df7c29c7e2badce2fa639625531ac74 data/chang_sheng_jue/recipes/painting_scroll.json
 53e5ab3603495c06a21824acb9c0c6e4975c625f data/chang_sheng_jue/recipes/paint_brush.json
 61c46ef36ca3ee01c674401a91ace1ffa6256048 data/chang_sheng_jue/recipes/pan_hua_gun.json
-597fa3dd87a878746b2d73df413259c847d0cb4a data/chang_sheng_jue/recipes/pig_trough_recipe.json
+59a6e16f0626a3871fe0d4c65ef8b1b525260c89 data/chang_sheng_jue/recipes/pig_trough_recipe.json
 e45a2c41a4a754ff83f6647696b53a29e24f89f0 data/chang_sheng_jue/recipes/plaque.json
 edcedbae5880067703aff31aecdb4e73d7f81984 data/chang_sheng_jue/recipes/portulaca_oleracea_cake.json
 c11b862412e612eb65f4a2e726b06629e29731ba data/chang_sheng_jue/recipes/pottery_wheel_recipe.json

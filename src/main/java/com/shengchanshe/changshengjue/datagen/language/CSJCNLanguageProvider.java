@@ -202,47 +202,48 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.YI_TINA_JIAN.get(),"倚天剑");
         this.add(ChangShengJueItems.TU_LONG_DAO.get(),"屠龙刀");
         this.add(ChangShengJueItems.BA_WANG_QIANG.get(),"霸王枪");
-        this.add(ChangShengJueItems.COTTON_ARMOR_FEATHER_HELMET.get(),"羽翎棉甲头盔");
-        this.add(ChangShengJueItems.COTTON_ARMOR_WHITE_FEATHER_HELMET.get(),"白色羽翎棉甲头盔");
-        this.add(ChangShengJueItems.COTTON_ARMOR_CHESTPLATE.get(),"棉甲胸甲");
-        this.add(ChangShengJueItems.COTTON_ARMOR_LEGGINGS.get(),"棉甲护腿");
-        this.add(ChangShengJueItems.COTTON_ARMOR_BOOTS.get(),"棉甲靴子");
-        this.add(ChangShengJueItems.FEMALE_TAOIST_ROBES_HELMET.get(),"道袍头冠");
-        this.add(ChangShengJueItems.FEMALE_TAOIST_ROBES_CHESTPLATE.get(),"道袍衣裳");
-        this.add(ChangShengJueItems.MALE_TAOIST_ROBES_HELMET.get(),"道袍头冠");
-        this.add(ChangShengJueItems.MALE_TAOIST_ROBES_CHESTPLATE.get(),"道袍衣裳");
-        this.add(ChangShengJueItems.TAOIST_ROBES_BOOTS.get(),"道袍鞋子");
-        this.add(ChangShengJueItems.SILK_LEGGINGS.get(),"丝绸下裳");
-        this.add(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_HELMET.get(),"婚服头冠");
-        this.add(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_CHESTPLATE.get(),"婚服衣裳");
-        this.add(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_HELMET.get(),"嫁衣头冠");
-        this.add(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_CHESTPLATE.get(),"嫁衣衣裳");
-        this.add(ChangShengJueItems.CHINESE_WEDDING_DRESS_BOOTS.get(),"婚服鞋子");
-        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_HELMET.get(),"山文甲头盔");
-        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_CHESTPLATE.get(),"山文甲胸甲");
-        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_LEGGINGS.get(),"山文甲护腿");
-        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_BOOTS.get(),"山文甲靴子");
-        this.add(ChangShengJueItems.FLYING_FISH_ROBE_HELMET_0.get(),"飞鱼服头盔");
-        this.add(ChangShengJueItems.FLYING_FISH_ROBE_HELMET_1.get(),"飞鱼服帽子");
-        this.add(ChangShengJueItems.FLYING_FISH_ROBE_CHESTPLATE.get(),"飞鱼服胸甲");
-        this.add(ChangShengJueItems.FLYING_FISH_ROBE_BOOTS.get(),"飞鱼服靴子");
-        this.add(ChangShengJueItems.WALKER_SET_HELMET_0.get(),"行者头箍");
-        this.add(ChangShengJueItems.WALKER_SET_HELMET_1.get(),"行者头链");
-        this.add(ChangShengJueItems.WALKER_SET_CHESTPLATE.get(),"行者胸甲");
-        this.add(ChangShengJueItems.WALKER_SET_LEGGINGS.get(),"行者护腿");
-        this.add(ChangShengJueItems.WALKER_SET_BOOTS.get(),"行者靴子");
+        this.add(ChangShengJueItems.COTTON_ARMOR_FEATHER_HELMET.get(),"棉盔");
+        this.add(ChangShengJueItems.COTTON_ARMOR_WHITE_FEATHER_HELMET.get(),"白羽棉盔");
+        this.add(ChangShengJueItems.COTTON_ARMOR_CHESTPLATE.get(),"棉甲");
+        this.add(ChangShengJueItems.COTTON_ARMOR_LEGGINGS.get(),"棉护腿");
+        this.add(ChangShengJueItems.COTTON_ARMOR_BOOTS.get(),"棉靴子");
+        this.add(ChangShengJueItems.FEMALE_TAOIST_ROBES_HELMET.get(),"道冠");
+        this.add(ChangShengJueItems.FEMALE_TAOIST_ROBES_CHESTPLATE.get(),"道袍");
+        this.add(ChangShengJueItems.MALE_TAOIST_ROBES_HELMET.get(),"四方巾");
+        this.add(ChangShengJueItems.MALE_TAOIST_ROBES_CHESTPLATE.get(),"道服");
+        this.add(ChangShengJueItems.TAOIST_ROBES_BOOTS.get(),"丝裳");
+        this.add(ChangShengJueItems.SILK_LEGGINGS.get(),"丝履");
+        this.add(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_HELMET.get(),"乌纱帽");
+        this.add(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_CHESTPLATE.get(),"麒麟补服");
+        this.add(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_HELMET.get(),"凤冠");
+        this.add(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_CHESTPLATE.get(),"袆衣");
+        this.add(ChangShengJueItems.CHINESE_WEDDING_DRESS_BOOTS.get(),"金丝履");
+        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_HELMET.get(),"盔枪兜鍪");
+        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_CHESTPLATE.get(),"山文甲");
+        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_LEGGINGS.get(),"鹿皮胫甲");
+        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_BOOTS.get(),"云头乌皮靴");
+        this.add(ChangShengJueItems.FLYING_FISH_ROBE_HELMET_0.get(), "铁笠");
+        this.add(ChangShengJueItems.FLYING_FISH_ROBE_HELMET_1.get(), "云纱冠");
+        this.add(ChangShengJueItems.FLYING_FISH_ROBE_CHESTPLATE.get(), "飞鱼服");
+        this.add(ChangShengJueItems.FLYING_FISH_ROBE_BOOTS.get(), "长靴");
+        this.add(ChangShengJueItems.WALKER_SET_HELMET_1.get(),"绿宝眉心坠");
+        this.add(ChangShengJueItems.WALKER_SET_HELMET_0.get(), "金戒箍");
+        this.add(ChangShengJueItems.WALKER_SET_CHESTPLATE.get(), "行者装");
+        this.add(ChangShengJueItems.WALKER_SET_LEGGINGS.get(), "虎皮裙");
+        this.add(ChangShengJueItems.WALKER_SET_BOOTS.get(), "短靴");
         this.add(ChangShengJueItems.QI_TIAN_DA_SHENG_HELMET.get(),"凤翅紫金冠");
         this.add(ChangShengJueItems.QI_TIAN_DA_SHENG_CHESTPLATE.get(),"锁子黄金甲");
         this.add(ChangShengJueItems.QI_TIAN_DA_SHENG_LEGGINGS.get(),"虎皮下裳");
         this.add(ChangShengJueItems.QI_TIAN_DA_SHENG_BOOTS.get(),"藕丝步云履");
-        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_HELMET.get(),"大将军明光铠头盔");
-        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_CHESTPLATE.get(),"大将军明光铠胸甲");
-        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_LEGGINGS.get(),"大将军明光铠护腿");
-        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_BOOTS.get(),"大将军明光铠靴子");
-        this.add(ChangShengJueItems.CONFUCIAN_COSTUMES_HELMET.get(),"儒装头冠");
-        this.add(ChangShengJueItems.CONFUCIAN_COSTUMES_CHESTPLATE.get(),"儒装衣裳");
-        this.add(ChangShengJueItems.CONFUCIAN_COSTUMES_LEGGINGS.get(),"儒装下裳");
-        this.add(ChangShengJueItems.CONFUCIAN_COSTUMES_BOOTS.get(),"儒装鞋子");
+        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_HELMET.get(), "凤翅兜鍪");
+        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_CHESTPLATE.get(), "明光铠");
+        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_LEGGINGS.get(), "青金护膝");
+        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_BOOTS.get(), "兽皮靴");
+        this.add(ChangShengJueItems.CONFUCIAN_COSTUMES_HELMET.get(), "儒冠");
+        this.add(ChangShengJueItems.CONFUCIAN_COSTUMES_CHESTPLATE.get(), "染墨宽袍");
+        this.add(ChangShengJueItems.CONFUCIAN_COSTUMES_LEGGINGS.get(), "染墨丝裳");
+        this.add(ChangShengJueItems.CONFUCIAN_COSTUMES_BOOTS.get(), "染墨丝履");
+
         this.add(ChangShengJueItems.COTTON_ARMOR_PARCEL.get(), "棉甲包裹");
         this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_PARCEL.get(), "山文甲包裹");
         this.add(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_PARCEL.get(), "大将军明光铠包裹");
@@ -382,6 +383,7 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.MEI_HUA_LOG.get(),"梅花原木");
         this.add(ChangShengJueBlocks.MEI_HUA_LEAVES.get(),"梅花树叶");
         this.add(ChangShengJueBlocks.MEI_HUA_SAPLING.get(),"梅花树苗");
+        this.add(ChangShengJueBlocks.MEI_HUA_DEFOLIATION.get(),"梅花落叶");
         this.add(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get(),"黄花梨原木");
         this.add(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get(),"去皮黄花梨原木");
         this.add(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get(),"黄花梨木板");
@@ -888,11 +890,13 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         //存储
         this.add("container.hercules", "大力神功");
 
+        /*信息*/
         //死亡信息
         this.add("death.attack.bleed", "%1$s失血过多。");
         this.add("death.attack.martial_arts", "%1$s被%2$s强大的武功杀死了。");
         //普通信息
         this.add("block.changshengjue.fen_jiu.no_wine","已经没有酒了！");
+        this.add("tooltip.changshengjue.natural_silk", "通过挖掘桑叶获得");
 
         //进度
         // 一级进度
@@ -1000,23 +1004,30 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add("quest.kill.gang_leader.questName", "踢馆");
         this.add("quest.kill.gang_leader.questDescription", "首领：可恶！这是今年第二个趁我病期来踢馆的了，欺我帮派无人，你去回敬下吧！");
         this.add("quest.kill.gang_leader.questRequirementsDescription", "击杀任意帮派首领");
+
         this.add("quest.kill.pillager.questName", "侠客行");
         this.add("quest.kill.pillager.questDescription", "首领：灾厄巡逻队总是与我们发生冲突，不知死活！做掉他们！");
         this.add("quest.kill.pillager.questRequirementsDescription", "击杀掠夺者");
+
         this.add("quest.kill.villager.questName", "杀鸡儆猴");
         this.add("quest.kill.villager.questDescription", "首领：这群刁民真是有够胆大的，去收帮费的人拒了我们几波，你去给他们点颜色看看！");
         this.add("quest.kill.villager.questRequirementsDescription", "击杀任意村民");
+
         this.add("quest.kill.arbitrarily.questName", "投名状");
         this.add("quest.kill.arbitrarily.questDescription", "首领：这位兄弟，想入我们帮派，你需要先纳投名状！");
         this.add("quest.kill.arbitrarily.questRequirementsDescription", "击杀任意人型生物");
+
         this.add("quest.kill.challenger.questName", "挑战");
         this.add("quest.kill.challenger.questDescription", "首领：有兄弟听说你武功高强，想和你较量一番，你意下如何？");
         this.add("quest.kill.challenger.questRequirementsDescription", "击败或者击杀前来的挑战者");
+
         this.add("quest.kill.ming_xia.questName", "天下第一");
         this.add("quest.kill.ming_xia.questDescription", "首领：虽说现在天下第一是枪神赵大侠，但以兄台的实力也能与其一争啊！");
         this.add("quest.kill.ming_xia.questRequirementsDescription", "击杀四大名侠之一");
+
         this.add("quest.raid.village.questName", "保护村庄");
         this.add("quest.raid.village.questDescription", "首领：我们帮派名下的村庄被入侵了，快去保护咱们的粮仓！");
+
         this.add("quest.treat.village.questName", "救民侠医");
         this.add("quest.treat.village.questDescription", "首领：附近的村庄被僵尸袭击，好多村民变成了僵尸村民，听说兄弟你会些医术，去看看吧？");
     }

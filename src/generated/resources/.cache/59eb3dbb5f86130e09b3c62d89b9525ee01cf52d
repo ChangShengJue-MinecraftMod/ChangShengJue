@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-18T12:38:29.2831978	Loot Tables
+// 1.20.1	2025-04-26T15:38:19.4371176	Loot Tables
 d516f4a29d40770cbbc430275a25288af1bb5af3 data/chang_sheng_jue/loot_tables/blocks/acacia_bench.json
 ad4cf4b39a7d51e5a89dc61dc94d61b791098ae1 data/chang_sheng_jue/loot_tables/blocks/acacia_book_desk.json
 9091a604cab86e4a5dea3fec989602338b84cc4e data/chang_sheng_jue/loot_tables/blocks/acacia_drinking_table_and_chairs.json
@@ -192,6 +192,7 @@ a4fa214c83fdbef96197eb5ebffe2c715acbeb0b data/chang_sheng_jue/loot_tables/blocks
 6b6dc9b5d64dd23a5cbed245047795cb43f2bfaa data/chang_sheng_jue/loot_tables/blocks/gre_roof_ridge.json
 1b49fe18bcbb74a417c6e8bfbd3d5ddf669af1ab data/chang_sheng_jue/loot_tables/blocks/gre_short_cylinder_tile.json
 13bc0f3fc24123b0ac85be938a61d5ab96388369 data/chang_sheng_jue/loot_tables/blocks/gre_stone_lion_block.json
+9436933cff65576aaa468f94ff46aca9aff55d33 data/chang_sheng_jue/loot_tables/blocks/gui_hua_defoliation.json
 f7d2f896718d2e86c773e7f5b6adb9b6e74c7758 data/chang_sheng_jue/loot_tables/blocks/gui_hua_leaves.json
 7c98291ee1975d48f6724fe3548b6f459c3c0e14 data/chang_sheng_jue/loot_tables/blocks/gui_hua_log.json
 96a26cd590b36f22eb00f11f5291773dcefd21aa data/chang_sheng_jue/loot_tables/blocks/gui_hua_sapling.json
@@ -258,6 +259,7 @@ c0e5319552f9e0816ed37a22dc7bc7531c86b225 data/chang_sheng_jue/loot_tables/blocks
 563122ce75b8f9679f04196784a93016330f865e data/chang_sheng_jue/loot_tables/blocks/mangrove_low_desk.json
 79d2be6c9a958ddccdceee31abfa91f413f7cea5 data/chang_sheng_jue/loot_tables/blocks/mangrove_wine_table.json
 d99001257707e6ce4b8abb957e6e1971d0668878 data/chang_sheng_jue/loot_tables/blocks/meat_foam_brinjal.json
+ff3bb37f7be875ca593dbebc8c41f23f61e57563 data/chang_sheng_jue/loot_tables/blocks/mei_hua_defoliation.json
 3c30ce2639b539c38f8ed3fba496e460eaee5448 data/chang_sheng_jue/loot_tables/blocks/mei_hua_leaves.json
 261190a03879bcd2c4880bf7df174b8e97cba417 data/chang_sheng_jue/loot_tables/blocks/mei_hua_log.json
 7d058aa49af43cb1a1518786849156ce4699eee2 data/chang_sheng_jue/loot_tables/blocks/mei_hua_sapling.json
