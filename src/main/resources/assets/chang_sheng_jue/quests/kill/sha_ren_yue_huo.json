@@ -4,10 +4,15 @@
   "questDescription": "quest.chang_sheng_jue.kill.wandering_trader.questDescription",
   "questRequirementsDescription": "quest.chang_sheng_jue.kill.wandering_trader.questRequirementsDescription",
   "questType": "KILL",
-  "targetEntity": "chang_sheng_jue:wandering_trader",
+  "targetEntity": "minecraft:wandering_trader",
   "requiredKills": 1,
   "repeatable": true,
   "questGenerateTarget" : false,
+  "limitQuestIds" : [
+    "C99BC619-6361-4485-9DA9-C0835F0ABB12"
+  ],
+  "isNeedCompletePreQuest" : true,
+  "needCompletionCount" : 1,
   "questRewards": [
     {
       "item": "chang_sheng_jue:yi_guan_tong_qian",

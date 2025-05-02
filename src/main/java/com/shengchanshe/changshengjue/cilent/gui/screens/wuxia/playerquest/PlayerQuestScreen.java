@@ -96,7 +96,7 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 (button) -> {
                     ChangShengJueMessages.sendToServer(new SubmitPlayerQuestsPacket(this.getMenu().getCurrentPage()));
                 },
-                Component.translatable("quest.submit.button")
+                Component.translatable("quest."+ ChangShengJue.MOD_ID +".submit.button")
         ));
 
         cancelButton = this.addRenderableWidget(new TexturedButtonWithLabel(
@@ -105,7 +105,7 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 (button) -> {
                     ChangShengJueMessages.sendToServer(new AbandonPlayerQuestPacket(this.getMenu().getCurrentPage()));
                 },
-                Component.translatable("quest.abandon.button")
+                Component.translatable("quest."+ ChangShengJue.MOD_ID +".abandon.button")
         ));
     }
 
@@ -168,8 +168,8 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                         73 + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
             }
         });
-        guiGraphics.drawString(font, Component.translatable("quest.requirements"), REQ_SLOTS_X, REQ_SLOTS_Y - 6, ChatFormatting.RED.getColor(), false);
-        guiGraphics.drawString(font, Component.translatable("quest.rewards"), REQ_SLOTS_X, REWARD_SLOTS_Y - 3, ChatFormatting.YELLOW.getColor(), false);
+        guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".requirements"), REQ_SLOTS_X, REQ_SLOTS_Y - 6, ChatFormatting.RED.getColor(), false);
+        guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".rewards"), REQ_SLOTS_X, REWARD_SLOTS_Y - 3, ChatFormatting.YELLOW.getColor(), false);
     }
 
     private void renderTooltips(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y, Quest quest) {

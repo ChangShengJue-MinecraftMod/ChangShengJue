@@ -1,13 +1,19 @@
 {
   "questId": "2487A5CD-BE95-4BEE-AE6E-7705531BADAE",
-  "questName": "quest.kill.pillager.questName",
-  "questDescription": "quest.kill.pillager.questDescription",
-  "questRequirementsDescription": "quest.kill.pillager.questRequirementsDescription",
+  "questName": "quest.chang_sheng_jue.kill.pillager.questName",
+  "questDescription": "quest.chang_sheng_jue.kill.pillager.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.kill.pillager.questRequirementsDescription",
   "questType": "KILL",
   "targetEntity": "#chang_sheng_jue:pillager",
   "requiredKills": 1,
   "repeatable": true,
   "questGenerateTarget" : false,
+  "limitQuestIds" : [
+    "C99BC619-6361-4485-9DA9-C0835F0ABB12",
+    "7dc9c671-ec29-4f3f-9467-5324fa026499"
+  ],
+  "isNeedCompletePreQuest" : true,
+  "needCompletionCount" : 1,
   "questRewards": [
     {
       "item": "chang_sheng_jue:gang_token",

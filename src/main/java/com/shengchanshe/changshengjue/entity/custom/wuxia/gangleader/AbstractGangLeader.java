@@ -20,24 +20,16 @@ public class AbstractGangLeader extends AbstractWuXiaMerchant {
 
     public AbstractGangLeader(EntityType<? extends AbstractWuXia> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        this.quest = QuestManager.getInstance().generateNewQuestForNpc(this.getUUID());
+        this.quest = QuestManager.getInstance().generateNewQuestForNpc(this);
     }
-
-    public void openTradingScreen(Player pPlayer, Component pDisplayName, int pLevel) {
-        OptionalInt present = pPlayer.openMenu(new SimpleMenuProvider((i, inventory, player) -> new GangleaderTradingMenu(i, inventory, this), pDisplayName));
-        if (present.isPresent()) {
-            MerchantOffers merchantOffers = this.getOffers();
-            if (!merchantOffers.isEmpty()) {
-                pPlayer.sendMerchantOffers(present.getAsInt(), merchantOffers, pLevel, this.getVillagerXp(), this.showProgressBar(), this.canRestock());
-            }
-        }
-        QuestManager.getInstance().openNpcGui(this);
-    }
-
 //    @Override
 //    protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
 //        this.quest = QuestManager.getInstance().generateNewQuestForNpc(this.getUUID());
 //    }
+
+    public void resetOffers() {
+        this.offers = null; // 强制下次访问时重新生成
+    }
 
     @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
@@ -46,7 +38,7 @@ public class AbstractGangLeader extends AbstractWuXiaMerchant {
             pCompound.putUUID("QuestID",this.quest.getQuestId());
             this.quest.saveNBTData(pCompound);
         }else {
-            QuestManager.getInstance().generateNewQuestForNpc(this.getUUID());
+            QuestManager.getInstance().generateNewQuestForNpc(this);
         }
     }
 
@@ -57,7 +49,7 @@ public class AbstractGangLeader extends AbstractWuXiaMerchant {
             this.quest = new Quest(pCompound);
             quest.loadNBTData(pCompound);
         }else {
-            QuestManager.getInstance().generateNewQuestForNpc(this.getUUID());
+            QuestManager.getInstance().generateNewQuestForNpc(this);
         }
     }
 

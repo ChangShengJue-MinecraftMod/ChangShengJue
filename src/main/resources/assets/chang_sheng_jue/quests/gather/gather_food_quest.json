@@ -1,7 +1,7 @@
 {
   "questId": "78A28266-BF35-400E-8F99-6E9EBB52D4E9",
-  "questName": "quest.food.questName",
-  "questDescription": "quest.food.questDescription",
+  "questName": "quest.chang_sheng_jue.food.questName",
+  "questDescription": "quest.chang_sheng_jue.food.questDescription",
   "questType": "GATHER",
   "repeatable": true,
   "questRequirements": [

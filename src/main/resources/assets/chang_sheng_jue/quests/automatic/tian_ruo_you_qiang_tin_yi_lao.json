@@ -5,11 +5,16 @@
   "questRequirementsDescription": "quest.chang_sheng_jue.automatic.tian_ruo_you_qing.questRequirementsDescription",
   "questType": "AUTOMATIC",
   "repeatable": false,
+  "limitQuestIds" : [
+    "4ECF3936-B0F7-4F78-90FE-C7E613A08916"
+  ],
+  "isNeedCompletePreQuest" : true,
+  "needCompletionCount" : 2,
   "effects": [
     {
       "effectId": "chang_sheng_jue:villager_charm_effect",
       "duration": -1,
-      "amplifier": 1,
+      "amplifier": 0,
       "isAmbient": false,
       "showParticles": false,
       "showIcon": true

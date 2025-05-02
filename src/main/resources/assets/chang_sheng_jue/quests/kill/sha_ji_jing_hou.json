@@ -1,13 +1,18 @@
 {
   "questId": "C99BC619-6361-4485-9DA9-C0835F0ABB12",
-  "questName": "quest.kill.villager.questName",
-  "questDescription": "quest.kill.villager.questDescription",
-  "questRequirementsDescription": "quest.kill.villager.questRequirementsDescription",
+  "questName": "quest.chang_sheng_jue.kill.villager.questName",
+  "questDescription": "quest.chang_sheng_jue.kill.villager.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.kill.villager.questRequirementsDescription",
   "questType": "KILL",
   "targetEntity": "#chang_sheng_jue:villagers",
   "requiredKills": 1,
   "repeatable": true,
   "questGenerateTarget" : false,
+  "limitQuestIds" : [
+    "c4ac1553-b219-4e7c-a54d-e274f9815109"
+  ],
+  "isNeedCompletePreQuest" : true,
+  "needCompletionCount" : 1,
   "effects": [
     {
       "effectId": "chang_sheng_jue:instant_disfavor_effect",

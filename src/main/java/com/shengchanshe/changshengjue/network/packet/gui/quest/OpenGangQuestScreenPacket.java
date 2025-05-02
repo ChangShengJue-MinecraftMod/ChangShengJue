@@ -1,5 +1,6 @@
 package com.shengchanshe.changshengjue.network.packet.gui.quest;
 
+import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangQuestsMenu;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingMenu;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.AbstractGangLeader;
@@ -30,7 +31,7 @@ public record OpenGangQuestScreenPacket() {
                                 player,
                                 new SimpleMenuProvider(
                                         (windowId, inv, p) -> new GangQuestsMenu(windowId, inv,abstractGangLeader,abstractGangLeader.getQuest()),
-                                        Component.translatable("quest.button")
+                                        Component.translatable("quest."+ ChangShengJue.MOD_ID +".button")
                                 ),
                             buf -> {
                                 buf.writeNbt(abstractGangLeader.getQuest().toNbt()); // 传入任务NBT数据,在Menu客户端方法中使用

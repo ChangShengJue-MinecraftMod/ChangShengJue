@@ -312,11 +312,8 @@ public class AbstractWuXia extends AbstractVillager implements NeutralMob {
         PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
         SWORDS = Arrays.asList(
                 new ItemStack(ChangShengJueItems.HAN_JIAN.get()),
-                new ItemStack(Items.DIAMOND_SWORD),
-                new ItemStack(Items.IRON_SWORD),
-                new ItemStack(Items.GOLDEN_SWORD),
-                new ItemStack(Items.STONE_SWORD),
-                new ItemStack(Items.WOODEN_SWORD)
+                new ItemStack(ChangShengJueItems.BRONZE_SWORD.get()),
+                new ItemStack(ChangShengJueItems.SOFT_SWORD.get())
         );
         INTERNAL_KUNGFU = Arrays.asList(
                 new ItemStack(ChangShengJueItems.GOLDEN_BELL_JAR.get()),

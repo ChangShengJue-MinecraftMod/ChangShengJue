@@ -1,12 +1,17 @@
 {
   "questId": "85248ab7-ff1b-4d4d-8a05-92d5360e70eb",
-  "questName": "quest.raid.village.questName",
-  "questDescription": "quest.raid.village.questDescription",
-  "questRequirementsDescription": "quest.raid.village.questRequirementsDescription",
+  "questName": "quest.chang_sheng_jue.raid.village.questName",
+  "questDescription": "quest.chang_sheng_jue.raid.village.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.raid.village.questRequirementsDescription",
   "questType": "RAID",
   "requiredKills": 1,
   "repeatable": false,
   "isAcceptQuestEffects" : true,
+  "limitQuestIds" : [
+    "2487A5CD-BE95-4BEE-AE6E-7705531BADAE"
+  ],
+  "isNeedCompletePreQuest" : true,
+  "needCompletionCount" : 1,
   "effects": [
     {
       "effectId": "minecraft:bad_omen",

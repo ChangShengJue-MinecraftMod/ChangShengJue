@@ -1,7 +1,7 @@
 {
   "questId": "C07D5D01-2788-4F26-9C6B-0DD61455955F",
-  "questName": "quest.money.questName",
-  "questDescription": "quest.money.questDescription",
+  "questName": "quest.chang_sheng_jue.money.questName",
+  "questDescription": "quest.chang_sheng_jue.money.questDescription",
   "questType": "GATHER",
   "repeatable": true,
   "questRequirements": [

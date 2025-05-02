@@ -87,7 +87,7 @@ public class QuestLoader {
 
         // 定义任务类型的路径
         String[] questPaths = {"quests/automatic"};
-        // 收集所有任务文件
+        // 收集任务文件
         Map<ResourceLocation, Resource> allResources = new HashMap<>();
 
         for (String path : questPaths) {
@@ -106,7 +106,7 @@ public class QuestLoader {
 
         // 定义任务类型的路径
         String[] questPaths = {"quests/gather", "quests/kill", "quests/raid", "quests/treat"};
-        // 收集所有任务文件
+        // 收集任务文件
         Map<ResourceLocation, Resource> allResources = new HashMap<>();
 
         for (String path : questPaths) {
@@ -163,29 +163,37 @@ public class QuestLoader {
                     parseItemList(json.getAsJsonArray("questRewards")) : Collections.emptyList();
             int questDay = json.has("qusetDay") ? json.get("questDay").getAsInt() : 0;
 
-//            if (type == Quest.QuestType.GATHER || type == Quest.QuestType.AUTOMATIC) {
-//                return new Quest(questId, npcId, title, description, requirements, rewards, type, repeatable,questRequirementsDescription,questDay);
-//            } else if (type == Quest.QuestType.KILL) {
-                String targetEntity = json.has("targetEntity") ? json.get("targetEntity").getAsString() : "";
-                boolean isEntityTag = targetEntity.startsWith("#");
-                int requiredKills = json.has("requiredKills") ? json.get("requiredKills").getAsInt() : 0;
+            String targetEntity = json.has("targetEntity") ? json.get("targetEntity").getAsString() : "";
+            boolean isEntityTag = targetEntity.startsWith("#");
+            int requiredKills = json.has("requiredKills") ? json.get("requiredKills").getAsInt() : 0;
 
-                boolean questGenerateTarget = json.has("questGenerateTarget") && json.get("questGenerateTarget").getAsBoolean();
+            boolean questGenerateTarget = json.has("questGenerateTarget") && json.get("questGenerateTarget").getAsBoolean();
 
-                int questTargetCount = json.has("questTargetCount") ? json.get("questTargetCount").getAsInt() : 0;
+            int questTargetCount = json.has("questTargetCount") ? json.get("questTargetCount").getAsInt() : 0;
 
-                int questTime = json.has("questTime") ? json.get("questTime").getAsInt() : 0;
+            int questTime = json.has("questTime") ? json.get("questTime").getAsInt() : 0;
 
-                boolean isAcceptQuestEffects = json.has("isAcceptQuestEffects") && json.get("isAcceptQuestEffects").getAsBoolean();
+            boolean isAcceptQuestEffects = json.has("isAcceptQuestEffects") && json.get("isAcceptQuestEffects").getAsBoolean();
 
-                return new Quest(questId,npcId, title, description, requirements, rewards,
-                        type, targetEntity, isEntityTag, requiredKills, repeatable, questRequirementsDescription, questGenerateTarget, questDay,
-                        questTargetCount, questTime, effects, isAcceptQuestEffects);
-//            }else if (type == Quest.QuestType.RAID || type == Quest.QuestType.TREAT){
-//                return new Quest(questId,npcId, title, description, requirements, rewards,type,repeatable,questRequirementsDescription,effects);
-//            }
+            List<UUID> limitQuestIds = new ArrayList<>();
+            if (json.has("limitQuestIds")) {
+                JsonArray idArray = json.getAsJsonArray("limitQuestIds");
+                for (JsonElement element : idArray) {
+                    try {
+                        limitQuestIds.add(UUID.fromString(element.getAsString()));
+                    } catch (IllegalArgumentException e) {
+                        ChangShengJue.LOGGER.error("无效的任务ID格式: {}", element.getAsString());
+                    }
+                }
+            }
 
-//            throw new IllegalArgumentException("未知的任务类型: " + type);
+            boolean isNeedCompletePreQuest = json.has("isNeedCompletePreQuest") && json.get("isNeedCompletePreQuest").getAsBoolean();
+
+            int needCompletionCount = json.has("needCompletionCount") ? json.get("needCompletionCount").getAsInt() : 0;
+
+            return new Quest(questId,npcId, title, description, requirements, rewards,
+                    type, targetEntity, isEntityTag, requiredKills, repeatable, questRequirementsDescription, questGenerateTarget, questDay,
+                    questTargetCount, questTime, effects, isAcceptQuestEffects,limitQuestIds,isNeedCompletePreQuest,needCompletionCount);
 
         } catch (Exception e) {
             System.err.println("解析任务JSON失败: " + e.getMessage());

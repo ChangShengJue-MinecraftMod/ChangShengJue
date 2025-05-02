@@ -8,11 +8,16 @@
   "requiredKills": 3,
   "repeatable": true,
   "questGenerateTarget" : true,
+  "limitQuestIds" : [
+    "066905EA-4B2D-408D-A86E-9D37F450B729"
+  ],
+  "isNeedCompletePreQuest" : true,
+  "needCompletionCount" : 1,
   "effects": [
     {
       "effectId": "chang_sheng_jue:instant_charm_effect",
       "duration": 1,
-      "amplifier": 1,
+      "amplifier": 0,
       "isAmbient": false,
       "showParticles": false,
       "showIcon": true

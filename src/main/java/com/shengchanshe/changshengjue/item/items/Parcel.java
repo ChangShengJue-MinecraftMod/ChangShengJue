@@ -11,12 +11,14 @@ import net.minecraft.world.level.Level;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Parcel extends Item {
     // 使用 Item 列表
     private static final List<Item> COTTON_ARMOR_PARCEL;
     private static final List<Item> MOUNTAIN_PATTERN_ARMOR_PARCEL;
     private static final List<Item> THE_GREAT_GENERAL_MINGGUANG_ARMOR_PARCEL;
+    private static final Random RANDOM = new Random();
 
     public Parcel() {
         super(new Item.Properties());
@@ -76,8 +78,7 @@ public class Parcel extends Item {
 
     static {
         COTTON_ARMOR_PARCEL = Arrays.asList(
-                ChangShengJueItems.COTTON_ARMOR_FEATHER_HELMET.get(),
-                ChangShengJueItems.COTTON_ARMOR_WHITE_FEATHER_HELMET.get(),
+                RANDOM.nextBoolean() ? ChangShengJueItems.COTTON_ARMOR_FEATHER_HELMET.get() : ChangShengJueItems.COTTON_ARMOR_WHITE_FEATHER_HELMET.get(),
                 ChangShengJueItems.COTTON_ARMOR_CHESTPLATE.get(),
                 ChangShengJueItems.COTTON_ARMOR_LEGGINGS.get(),
                 ChangShengJueItems.COTTON_ARMOR_BOOTS.get());

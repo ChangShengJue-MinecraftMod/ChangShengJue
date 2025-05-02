@@ -93,6 +93,7 @@ public class ClubbedGangLeader extends AbstractGangLeader implements GeoEntity {
     }
 
     public void openTradingScreen(Player pPlayer, Component pDisplayName, int pLevel) {
+        this.resetOffers();
         OptionalInt present = pPlayer.openMenu(new SimpleMenuProvider((i, inventory, player) -> new GangleaderTradingMenu(i, inventory, this), pDisplayName));
         if (present.isPresent()) {
             MerchantOffers merchantOffers = this.getOffers();
@@ -111,7 +112,9 @@ public class ClubbedGangLeader extends AbstractGangLeader implements GeoEntity {
             // 添加交易列表1中的5个交易
             this.addOffersFromItemListings(merchantOffers, tradesList1, 8);
             // 随机添加交易列表2中的一个交易
-            this.addOffersFromItemListings(merchantOffers, tradesList1, 2);
+            if (QuestManager.getInstance().getTotalQuestCompletions() >= 5){
+                this.addOffersFromItemListings(merchantOffers, tradesList2, 2);
+            }
 //            int randomIndex2 = this.random.nextInt(tradesList2.length);
 //            VillagerTrades.ItemListing trade2 = tradesList2[randomIndex2];
 //            MerchantOffer offer2 = trade2.getOffer(this, this.random);
