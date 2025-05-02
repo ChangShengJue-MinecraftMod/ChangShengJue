@@ -99,8 +99,8 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
 //        }
 
 
-        guiGraphics.drawString(font, Component.translatable("quest.requirements"), REQ_SLOTS_X, REQ_SLOTS_Y - 9, ChatFormatting.RED.getColor(), false);
-        guiGraphics.drawString(font, Component.translatable("quest.rewards"), REWARD_SLOTS_X, REWARD_SLOTS_Y - 9, ChatFormatting.YELLOW.getColor(), false);
+        guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".requirements"), REQ_SLOTS_X, REQ_SLOTS_Y - 9, ChatFormatting.RED.getColor(), false);
+        guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".rewards"), REWARD_SLOTS_X, REWARD_SLOTS_Y - 9, ChatFormatting.YELLOW.getColor(), false);
     }
 
     @Override
@@ -230,11 +230,13 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
 
     // 动态获取按钮文本
     private Component getActionButtonText() {
-        return Component.translatable(menu.getGangQuests().getAcceptedBy() != null ? "quest.submit.button" : "quest.accept.button");
+        return Component.translatable(menu.getGangQuests().getAcceptedBy() != null ? "quest."+ ChangShengJue.MOD_ID + ".submit.button"
+                : "quest."+ ChangShengJue.MOD_ID + ".accept.button");
     }
 
     private Component getCancelButtonText() {
-        return Component.translatable(menu.getGangQuests().getAcceptedBy() != null ? "quest.abandon.button" : "quest.flushed.button");
+        return Component.translatable(menu.getGangQuests().getAcceptedBy() != null ? "quest."+ ChangShengJue.MOD_ID + ".abandon.button" :
+                "quest."+ ChangShengJue.MOD_ID + ".flushed.button");
     }
     // 更新按钮状态
     private void updateButtonStates() {

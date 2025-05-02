@@ -23,6 +23,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mount
 import com.shengchanshe.changshengjue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.playerquest.PlayerQuestMenu;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.AbstractGangLeader;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeader;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.gui.playerquest.RefreshPlayerQuestScreenPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.quest.RefreshQuestScreenPacket;
@@ -116,8 +117,18 @@ public class QuestManager {
     /**
      * 为指定NPC生成一个新任务
      */
-    public Quest generateNewQuestForNpc(UUID npcId) {
-        return QuestLoader.loadQuest(npcId, completedNonRepeatable);
+    public Quest generateNewQuestForNpc(AbstractGangLeader abstractGangLeader) {
+        Quest quest = QuestLoader.loadQuest(abstractGangLeader.getUUID(), completedNonRepeatable);
+        if (quest != null && quest.checkPrerequisiteQuests(this)) {
+            if (quest.getQuestId().equals(UUID.fromString("33954498-78EF-492C-9338-B2E85C0AD184"))) {
+                if (abstractGangLeader instanceof ClubbedGangLeader){
+                    return quest;
+                }
+            }else {
+                return quest;
+            }
+        }
+        return generateNewQuestForNpc(abstractGangLeader);
     }
 
     /**
@@ -138,15 +149,26 @@ public class QuestManager {
 
         // 设置任务属性
         if (newQuest != null && !newQuest.isComplete()) {
-            newQuest.setAcceptedBy(player.getUUID());
-            newQuest.setQuestNpcId(npcId);
-            newQuest.setComplete(false);
+            if (newQuest.checkPrerequisiteQuests(this)){
+                newQuest.setAcceptedBy(player.getUUID());
+                newQuest.setQuestNpcId(npcId);
+                newQuest.setComplete(false);
+                player.sendSystemMessage(getColoredTranslation(
+                        "quest." + ChangShengJue.MOD_ID + ".trigger", getColoredTranslation(newQuest.getQuestName())));
 
-            playerAcceptedQuests.computeIfAbsent(player.getUUID(), k -> new ArrayList<>()).add(newQuest);
-            this.saveData();
+                playerAcceptedQuests.computeIfAbsent(player.getUUID(), k -> new ArrayList<>()).add(newQuest);
+                this.saveData();
+                return newQuest;
+            }
         }
 
-        return newQuest;
+        return null;
+    }
+
+    // 获取带颜色的翻译文本
+    public static Component getColoredTranslation(String key, Object... args) {
+        String raw = Component.translatable(key, args).getString();
+        return Component.literal(raw);
     }
 
     /**
@@ -207,7 +229,7 @@ public class QuestManager {
             return;
         }
         // 立即刷新NPC任务（无论是否可重复）
-        gangLeader.setQuest(generateNewQuestForNpc(npcQuest.getQuestNpcId()));
+        gangLeader.setQuest(generateNewQuestForNpc(gangLeader));
         // 持久化数据
         this.saveData();
         // 刷新UI
@@ -258,7 +280,7 @@ public class QuestManager {
             completedNonRepeatable.add(actualQuest.getQuestId()); // 记录已完成
         }
         // 立即刷新NPC任务（无论是否可重复）
-        gangLeader.setQuest(generateNewQuestForNpc(npcQuest.getQuestNpcId()));
+        gangLeader.setQuest(generateNewQuestForNpc(gangLeader));
         // 持久化数据
         this.saveData();
         // 刷新UI
@@ -492,7 +514,7 @@ public class QuestManager {
     // 在修改数据的操作后调用保存
     public void saveQuest(Player player, Quest quest) {
         UUID uuid = player.getUUID();
-        playerAcceptedQuests.computeIfAbsent(uuid, k -> new ArrayList<>()).add(quest);
+        this.playerAcceptedQuests.computeIfAbsent(uuid, k -> new ArrayList<>()).add(quest);
         this.saveData();
     }
 
@@ -507,26 +529,37 @@ public class QuestManager {
 
     // 获取玩家所有任务
     public List<Quest> getPlayerQuests(UUID playerId) {
-        return playerAcceptedQuests.getOrDefault(playerId, Collections.emptyList());
+        return this.playerAcceptedQuests.getOrDefault(playerId, Collections.emptyList());
+    }
+
+    /**
+     * 获取所有任务的完成次数总和
+     * @return 所有任务完成次数的累加值
+     */
+    public int getTotalQuestCompletions() {
+        return questCompletionCounts.values()
+                .stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 
     // 获取任务完成次数
     public int getQuestCompletionCount(UUID questId) {
-        return questCompletionCounts.getOrDefault(questId, 0);
+        return this.questCompletionCounts.getOrDefault(questId, 0);
     }
     // 删除指定任务完成记录
     public void removeQuestCompletion(UUID questId) {
-        questCompletionCounts.remove(questId);
+        this.questCompletionCounts.remove(questId);
         this.saveData(); // 触发持久化
     }
     // 增加任务完成次数
     public void incrementQuestCompletion(UUID questId) {
-        questCompletionCounts.merge(questId, 1, Integer::sum);
+        this.questCompletionCounts.merge(questId, 1, Integer::sum);
         this.saveData(); // 立即保存
     }
 
     public Set<UUID> getAllAcceptRepeatableQuests() {
-        return Collections.unmodifiableSet(new HashSet<>(acceptQuestRepeatable));
+        return Collections.unmodifiableSet(new HashSet<>(this.acceptQuestRepeatable));
     }
 
     public void openNpcGui(AbstractGangLeader gangLeader) {

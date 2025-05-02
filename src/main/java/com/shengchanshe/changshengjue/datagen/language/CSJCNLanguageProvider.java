@@ -5,6 +5,7 @@ import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
@@ -166,11 +167,11 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.FEMALE_INNKEEPER_EGG.get(), "酒馆女掌柜刷怪蛋");
         this.add(ChangShengJueItems.CHALLENGER_EGG.get(), "挑战者刷怪蛋");
         this.add(ChangShengJueItems.BLACKSMITH_EGG.get(), "铁匠刷怪蛋");
-        this.add(ChangShengJueItems.LANCE_GANG_LEADER_EGG.get(), "枪首领刷怪蛋");
-        this.add(ChangShengJueItems.KNIFE_GANG_LEADER_EGG.get(), "刀首领刷怪蛋");
-        this.add(ChangShengJueItems.SWORD_GANG_LEADER_EGG.get(), "剑首领刷怪蛋");
-        this.add(ChangShengJueItems.CLUBBED_GANG_LEADER_EGG.get(), "棍首领刷怪蛋");
-        this.add(ChangShengJueItems.GANG_LEADER_EGG.get(), "帮派首领刷怪蛋");
+        this.add(ChangShengJueItems.LANCE_GANG_LEADER_EGG.get(), "帮派首领(枪)刷怪蛋");
+        this.add(ChangShengJueItems.KNIFE_GANG_LEADER_EGG.get(), "帮派首领(刀)刷怪蛋");
+        this.add(ChangShengJueItems.SWORD_GANG_LEADER_EGG.get(), "帮派首领(剑)刷怪蛋");
+        this.add(ChangShengJueItems.CLUBBED_GANG_LEADER_EGG.get(), "帮派首领(棍)刷怪蛋");
+        this.add(ChangShengJueItems.GANG_LEADER_EGG.get(), "帮派首领(拳)刷怪蛋");
         this.add(ChangShengJueItems.BANDIT_EGG.get(), "强盗刷怪蛋");
         this.add(ChangShengJueItems.VILLAIN_EGG.get(), "恶徒刷怪蛋");
         this.add(ChangShengJueItems.ASSASSIN_EGG.get(), "杀手刷怪蛋");
@@ -268,29 +269,52 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get(),"张门心学");
         this.add(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get(),"易筋经");
         this.add(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get(),"乾坤大挪移");
-
+        //工具提示
         //武功描述
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".tooltip","不死不灭，岂是幻梦?");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".hold_shift.tooltip", "手持按技能按键学习，空手击打木桩有1%概率领悟。\\n领悟后在你死亡时抵御致命伤害。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".tooltip","以气御力，神力无穷。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".tooltip","天下剑法中的巅峰绝诣，其中包含森罗万象的诀窍。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".hold_shift.tooltip", "手持按技能按键学习，空手击打木桩有1%概率领悟。\\n领悟后减少疾跑消耗的饱食度\\n武功大成后获得随身末影箱。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".tooltip","天下剑法中的巅峰绝诣，\\n其中包含森罗万象的诀窍。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".hold_shift.tooltip", "右键学习，使用剑类武器有2%概率领悟。\\n领悟后使用剑类武器概率使目标触发流血状态，持剑右键施展独孤九剑。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".tooltip","一点寒芒先到，随后枪出如龙。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".hold_shift.tooltip", "右键学习，使用枪类武器有2%概率领悟。\\n领悟后使用枪类武器概率击飞目标，持枪右键施展高家枪。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GE_SHAN_DA_NIU.get()+".tooltip","神功盖世，何欺牛儿?");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GE_SHAN_DA_NIU.get()+".hold_shift.tooltip", "手持按技能按键学习，空手击打木桩有1%概率领悟。\\n领悟后按键施展隔山打牛攻击目标。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".tooltip","龟虽有鼻，而息之以耳。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".hold_shift.tooltip", "手持按技能按键学习，空手击打木桩有1%概率领悟。\\n领悟后水下可以屏息更久，不会被动物主动攻击。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()+".tooltip","任你千变万化，我只一刀破去!");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()+".hold_shift.tooltip", "右键学习，使用刀类武器有2%概率领悟。\\n领悟后使用刀类武器概率重击目标，持刀右键施展金乌刀法。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BELL_JAR.get()+".tooltip","刀枪不入，浑然一金钟。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BELL_JAR.get()+".hold_shift.tooltip", "手持按技能按键学习，空手击打木桩有1%概率领悟。\\n领悟后按键施展金钟罩提高护甲值。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".tooltip","指如疾风，势如闪电。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".hold_shift.tooltip", "手持按技能按键学习，空手击打木桩有1%概率领悟。\\n领悟后右键施展葵花点穴手定住目标。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".tooltip","学向勤中得，萤窗万卷书。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".hold_shift.tooltip", "右键学习领悟，每秒有5%概率会增加1点经验。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".tooltip","若反复实践，掌握规律；便得心应手，运用自如。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".hold_shift.tooltip", "手持按技能按键学习，空手击打木桩有1%概率领悟。\\n领悟后持菜刀杀死动物有50%概率额外掉落肉。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SHAOLIN_STICK_METHOD.get()+".tooltip","天下武功出少林，一棍定乾坤。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SHAOLIN_STICK_METHOD.get()+".hold_shift.tooltip", "右键学习，使用棍类武器有2%概率领悟。\\n领悟后使用棍类武器概率晕眩目标，持棍右键施展少林棍。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()+".tooltip","来去无影无踪，逍遥自在。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后可以二连跳。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()+".tooltip","无情飞刀人有情义，人有情义飞刀无情。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()+".hold_shift.tooltip", "右键学习，使用飞刀有2%概率领悟。\\n领悟后使用飞刀伤害提高至1.25倍。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WU_GANG_CUT_GUI.get()+".tooltip","何意杀人技，不如快人心。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WU_GANG_CUT_GUI.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后使用萱花斧砍树可以破坏整棵树。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.XUANNU_SWORDSMANSHIP.get()+".tooltip","以巧借力，以柔克刚。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.XUANNU_SWORDSMANSHIP.get()+".hold_shift.tooltip", "右键学习，使用软剑有2%概率领悟。\\n领悟后使用剑类武器概率使目标触发流血状态，持软剑右键施展玄女剑法。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".tooltip","生生不息，直至山平。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后使用开山镐的挖掘面积扩大为2x2。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".tooltip","江湖不是打打杀杀，那是人情世故!");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".hold_shift.tooltip", "右键学习领悟，只需跟村民交易一次即可让村民等级提升为学徒。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get()+".tooltip","武林中人梦寐以求的武学宝典。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后释放武功需要的饥饿度减少1点。\\n武功大成后效果加强");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".tooltip","激发潜力，牵引挪移，其中变化莫测，匪夷所思。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".hold_shift.tooltip", "手持按技能按键学习，空手击打木桩有1%概率领悟。\\n领悟后有35%概率将下次遭受伤害以更大伤害转移给攻击者。（每施展1次冷却时间短期内延长2秒）\\n武功大成后效果加强");
+
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DURIAN.get()+".tooltip","请使用斧子劈开");
+        this.add("tooltip."+ChangShengJue.MOD_ID+".hold_shift.tooltip","按下 §eShift§r 查看更多信息");
+
 
         //声音
         this.add("sounds."+ChangShengJue.MOD_ID + ".ge_shan_da_niu_sound","武功 : 隔山打牛");
@@ -792,7 +816,6 @@ public class CSJCNLanguageProvider extends LanguageProvider {
 
         this.add(ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get(), "大城门(左)");
         this.add(ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get(), "大城门(右)");
-
         //实体生物
         this.add(ChangShengJueEntity.BUTTERFLY.get(), "蝴蝶");
         this.add(ChangShengJueEntity.MONKEY.get(), "猴");
@@ -811,11 +834,11 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEntity.FEMALE_INNKEEPER.get(), "酒馆女掌柜");
         this.add(ChangShengJueEntity.CHALLENGER.get(), "挑战者");
         this.add(ChangShengJueEntity.BLACKSMITH.get(), "铁匠");
-        this.add(ChangShengJueEntity.LANCE_GANG_LEADER.get(), "帮派首领(枪)");
-        this.add(ChangShengJueEntity.KNIFE_GANG_LEADER.get(), "帮派首领(刀)");
-        this.add(ChangShengJueEntity.SWORD_GANG_LEADER.get(), "帮派首领(剑)");
-        this.add(ChangShengJueEntity.CLUBBED_GANG_LEADER.get(), "帮派首领(棍)");
-        this.add(ChangShengJueEntity.GANG_LEADER.get(), "帮派首领(拳,飞刀)");
+        this.add(ChangShengJueEntity.LANCE_GANG_LEADER.get(), "枪首领");
+        this.add(ChangShengJueEntity.KNIFE_GANG_LEADER.get(), "刀首领");
+        this.add(ChangShengJueEntity.SWORD_GANG_LEADER.get(), "剑首领");
+        this.add(ChangShengJueEntity.CLUBBED_GANG_LEADER.get(), "棍首领");
+        this.add(ChangShengJueEntity.GANG_LEADER.get(), "帮派首领");
         this.add(ChangShengJueEntity.BANDIT.get(), "强盗");
         this.add(ChangShengJueEntity.VILLAIN.get(), "恶徒");
         this.add(ChangShengJueEntity.ASSASSIN.get(), "帮派杀手");
@@ -989,100 +1012,98 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader.desc", "击败帮派首领");
 
         //任务
-        this.add("quest.button", "任务");
-        this.add("quest.requirements", "任务需求:");
-        this.add("quest.rewards", "任务奖励:");
-        this.add("quest.submit.button", "提交任务");
-        this.add("quest.accept.button", "接受任务");
-        this.add("quest.abandon.button", "放弃任务");
-        this.add("quest.flushed.button", "刷新任务");
-        this.add("quest.requirements.prompt", "任务需求不足!");
-        this.add("quest."+ ChangShengJue.MOD_ID +".finish", "§a%s任务完成！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".trigger", "§a触发%s任务");
-        this.add("quest."+ ChangShengJue.MOD_ID +".fail", "§a%s任务失败！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".button", "任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".requirements", "任务需求:");
+        this.add("quest."+ ChangShengJue.MOD_ID +".rewards", "任务奖励:");
+        this.add("quest."+ ChangShengJue.MOD_ID +".submit.button", "提交任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".accept.button", "接受任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".abandon.button", "放弃任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".flushed.button", "刷新任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".requirements.prompt", "任务需求不足!");
 
-        this.add("quest.food.questName", "收集食物");
-        this.add("quest.food.questDescription", "首领：兄弟们的吃食又不够了，总不能饿肚子吧，兄弟你去想想办法。");
-        this.add("quest.money.questName", "收集钱款");
-        this.add("quest.money.questDescription", "首领：这年头什么都要花钱，一文钱难倒英雄汉，兄弟能筹点帮费吗？");
 
-        this.add("quest.kill.gang_leader.questName", "踢馆");
-        this.add("quest.kill.gang_leader.questDescription", "首领：可恶！这是今年第二个趁我病期来踢馆的了，欺我帮派无人，你去回敬下吧！");
-        this.add("quest.kill.gang_leader.questRequirementsDescription", "击杀任意帮派首领");
+        this.add("quest."+ ChangShengJue.MOD_ID +".food.questName", "收集食物");
+        this.add("quest."+ ChangShengJue.MOD_ID +".food.questDescription", "首领：兄弟们的吃食又不够了，总不能饿肚子吧，兄弟你去想想办法。");
+        this.add("quest."+ ChangShengJue.MOD_ID +".money.questName", "收集钱款");
+        this.add("quest."+ ChangShengJue.MOD_ID +".money.questDescription", "首领：这年头什么都要花钱，一文钱难倒英雄汉，兄弟能筹点帮费吗？");
 
-        this.add("quest.kill.pillager.questName", "侠客行");
-        this.add("quest.kill.pillager.questDescription", "首领：灾厄巡逻队总是与我们发生冲突，不知死活！做掉他们！");
-        this.add("quest.kill.pillager.questRequirementsDescription", "击杀掠夺者");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questName", "踢馆");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questDescription", "首领：可恶！这是今年第二个趁我病期来踢馆的了，欺我帮派无人，你去回敬下吧！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questRequirementsDescription", "击杀任意帮派首领");
 
-        this.add("quest.kill.villager.questName", "杀鸡儆猴");
-        this.add("quest.kill.villager.questDescription", "首领：这群刁民真是有够胆大的，去收帮费的人拒了我们几波，你去给他们点颜色看看！");
-        this.add("quest.kill.villager.questRequirementsDescription", "击杀任意村民");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questName", "侠客行");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questDescription", "首领：灾厄巡逻队总是与我们发生冲突，不知死活！做掉他们！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questRequirementsDescription", "击杀掠夺者");
 
-        this.add("quest.kill.arbitrarily.questName", "投名状");
-        this.add("quest.kill.arbitrarily.questDescription", "首领：这位兄弟，想入我们帮派，你需要先纳投名状！");
-        this.add("quest.kill.arbitrarily.questRequirementsDescription", "击杀任意人型生物");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questName", "杀鸡儆猴");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questDescription", "首领：这群刁民真是有够胆大的，去收帮费的人拒了我们几波，你去给他们点颜色看看！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questRequirementsDescription", "击杀任意村民");
 
-        this.add("quest.kill.challenger.questName", "挑战");
-        this.add("quest.kill.challenger.questDescription", "首领：有兄弟听说你武功高强，想和你较量一番，你意下如何？");
-        this.add("quest.kill.challenger.questRequirementsDescription", "击败或者击杀前来的挑战者");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questName", "投名状");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questDescription", "首领：这位兄弟，想入我们帮派，你需要先纳投名状！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questRequirementsDescription", "击杀任意人型生物");
 
-        this.add("quest.kill.ming_xia.questName", "天下第一");
-        this.add("quest.kill.ming_xia.questDescription", "首领：虽说现在天下第一是枪神赵大侠，但以兄台的实力也能与其一争啊！");
-        this.add("quest.kill.ming_xia.questRequirementsDescription", "击杀四大名侠之一");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questName", "挑战");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questDescription", "首领：有兄弟听说你武功高强，想和你较量一番，你意下如何？");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questRequirementsDescription", "击败或者击杀前来的挑战者");
 
-        this.add("quest.raid.village.questName", "保护村庄");
-        this.add("quest.raid.village.questDescription", "首领：我们帮派名下的村庄被入侵了，快去保护咱们的粮仓！");
-        this.add("quest.raid.village.questRequirementsDescription", "在袭击中胜利");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia.questName", "天下第一");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_1.questDescription", "首领：虽说现在天下第一是棍王董大侠，但以兄台的实力也能与其一争啊！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_2.questDescription", "首领：虽说现在天下第一是刀圣徐大侠，但以兄台的实力也能与其一争啊！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_3.questDescription", "首领：虽说现在天下第一是北拳萧大侠，但以兄台的实力也能与其一争啊！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_4.questDescription", "首领：虽说现在天下第一是剑仙张大侠，但以兄台的实力也能与其一争啊！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia.questRequirementsDescription", "击杀四大名侠之一");
 
-        this.add("quest.treat.village.questName", "救民侠医");
-        this.add("quest.treat.village.questDescription", "首领：附近的村庄被僵尸袭击，好多村民变成了僵尸村民，听说兄弟你会些医术，去看看吧？");
-        this.add("quest.treat.village.questRequirementsDescription", "救治一名僵尸村民");
-        this.add("quest.automatic.village.questName", "田园侠客");
-        this.add("quest.automatic.village.questDescription", "因为有你，这里的村民没人敢欺负，你也在这里安居乐业。");
-        this.add("quest.automatic.village.questRequirementsDescription", "偶遇村民");
+        this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questName", "保护村庄");
+        this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questDescription", "首领：我们帮派名下的村庄被入侵了，快去保护咱们的粮仓！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questRequirementsDescription", "在袭击中胜利");
 
+        this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questName", "救民侠医");
+        this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questDescription", "首领：附近的村庄被僵尸袭击，好多村民变成了僵尸村民，听说兄弟你会些医术，去看看吧？");
+        this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questRequirementsDescription", "救治一名僵尸村民");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questName", "斋饭");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questDescription", "高僧：心念慈悲，不犯杀戒。");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questRequirementsDescription", "2个游戏日内不杀死生物");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questName", "行侠仗义");
+        this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questDescription", "附近一村庄被乌泱泱的僵尸入侵了，君愿舍身以助吗？");
+        this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questRequirementsDescription", "留在村庄内协助村民抵御僵尸");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questName", "田园侠客");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questDescription", "因为有你，这里的村民没人敢欺负，你也在这里安居乐业。");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questRequirementsDescription", "偶遇村民");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questName", "快意恩仇");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questDescription", "冤仇若不分明报，枉做人间大丈夫。");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questRequirementsDescription", "击败攻击你的敌人");
-
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questName", "为民除害");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questDescription", "这一大虫总拿村民当食吃，大侠小心！");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questRequirementsDescription", "击杀1只老虎");
-
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questName", "除暴安良");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questDescription", "村长：村里有一恶人到处抢掠，大侠可能帮帮我们？！");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questRequirementsDescription", "击杀1个恶徒");
-
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questName", "武侠");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questDescription", "路见不平，拔刀相助，才堪侠客。");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questRequirementsDescription", "夜间在村庄内击杀1只僵尸");
-
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questRequirementsDescription", "夜间村庄内击杀1只僵尸");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questName", "杀人越货");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questDescription", "你即以财宝显漏，就别怪我了下手狠了！嘿嘿嘿...");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questRequirementsDescription", "击杀1个流浪商人");
-
         this.add("quest."+ ChangShengJue.MOD_ID +".gather.food.questName", "大额交易");
         this.add("quest."+ ChangShengJue.MOD_ID +".gather.food.questDescription", "村长：最近庄稼减收冬天怕是不好过了，大侠可以帮我们收集些食物度过难关吗？");
-
         this.add("quest."+ ChangShengJue.MOD_ID +".gather.money.questName", "大额交易");
         this.add("quest."+ ChangShengJue.MOD_ID +".gather.money.questDescription", "村长：这次真是大丰收！但是如此多粮食放久了会坏，大侠你能帮我们想想办法吗？");
-
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questName", "任我行");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questDescription", "海阔天空，何处不容人。");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questRequirementsDescription", "7天内死亡次数小于1");
-
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questName", "锄强扶弱");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questDescription", "村民不光要面对僵尸的袭击，竟还有帮派的威胁！");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questRequirementsDescription", "击杀3个强盗");
-
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questName", "江湖追杀令");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questDescription", "你帮助村庄对抗帮派，各大势力都以你武林公敌的借口对你进行了追杀！");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questRequirementsDescription", "杀死袭击你的人");
-
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questName", "傲气天地间");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questDescription", "我有百般力，何向弱者使？天地不平，我自平之！虽百人，有所可惧，智勇以对。");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questRequirementsDescription", "击杀100只僵尸");
-
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questName", "天若有情天亦老");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questDescription", "人间正道是沧桑。");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questRequirementsDescription", "完成两次江湖追杀令");

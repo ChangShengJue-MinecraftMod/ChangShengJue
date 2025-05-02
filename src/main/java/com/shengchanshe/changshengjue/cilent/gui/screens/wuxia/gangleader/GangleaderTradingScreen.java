@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.cilent.gui.screens.button.TexturedButtonWithText;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.gui.quest.OpenGangQuestScreenPacket;
 import net.minecraft.client.Minecraft;
@@ -58,7 +59,7 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
     int scrollOff;
     private boolean isDragging;
 
-    private ImageButton questButton;
+    private TexturedButtonWithText questButton;
 
     public GangleaderTradingScreen(GangleaderTradingMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
@@ -91,16 +92,18 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
             buttonY += TRADE_BUTTON_HEIGHT;
         }
 
-        this.questButton = this.addRenderableWidget(new ImageButton(
-                left - 12,
-                top + 47,
-                12,
-                22,
-                65, 0, 22,
+        this.questButton = this.addRenderableWidget(new TexturedButtonWithText(
+                left - 15,
+                top + 46,
+                15,
+                24,
+                65, 0, 24,
                 BOTTON,
+                256, 256,
                 button -> {
                     this.openQuestScreen();
-                }
+                },
+                Component.translatable("quest."+ ChangShengJue.MOD_ID +".button"),0x000,0x000,1.0F
         ));
     }
     private void openQuestScreen() {
@@ -124,10 +127,6 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
         transform.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 0x404040, false);
         int l = this.font.width(TRADES_LABEL);
         transform.drawString(this.font, TRADES_LABEL, 5 - l / 2 + 48, 48, 0x404040, false);
-        var lines = font.split(Component.translatable("quest.button"), 16);
-        for (int i = 0; i < lines.size(); i++) {
-            transform.drawString(font, lines.get(i),1 - l / 2,49 + i * font.lineHeight, 0x404040, false);
-        }
     }
 
     @Override

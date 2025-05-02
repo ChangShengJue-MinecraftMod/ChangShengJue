@@ -175,19 +175,22 @@ public class CSJEventClientEvents {
     @SubscribeEvent
     public static void onScreenInit(ScreenEvent.Init.Post event) {
         if (event.getScreen() instanceof InventoryScreen screen) {
+            // 检查合成书是否可见
+            boolean isRecipeBookVisible = screen.getRecipeBookComponent().isVisible();
             TexturedButtonWithText customButton = new TexturedButtonWithText(
-                    screen.leftPos - 12,
+                    screen.leftPos - (!isRecipeBookVisible ? 15 : 92),
                     screen.height / 2 - 80,
-                    13, 22,
-                    65, 0, 22,
+                    15, 24,
+                    65, 0, 24,
                     BUTTON_TEXTURE,
                     256, 256,
                     (button) -> {
-                        ChangShengJueMessages.sendToServer(new OpenPlayerQuestScreenPacket(0, Component.translatable("quest.button")));
+                        ChangShengJueMessages.sendToServer(new OpenPlayerQuestScreenPacket(0, Component.translatable("quest."+ ChangShengJue.MOD_ID +".button")));
                     },
-                    Component.translatable("quest.button"),0x000,0x000,0.8F
+                    Component.translatable("quest."+ ChangShengJue.MOD_ID +".button"),0x000,0x000,1.0F
             );
             event.addListener(customButton);
         }
     }
+
 }

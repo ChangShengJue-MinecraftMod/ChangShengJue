@@ -71,13 +71,27 @@ public class Tiger extends TamableAnimal implements GeoEntity {
         this.targetSelector.addGoal(1, (new HurtByTargetGoal(this)));
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(1, new OwnerHurtTargetGoal(this));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false,
-                (entity) -> !isTame() && getHungryTime()==0));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Animal.class, 15, true, false,
-                (entity) -> !this.isTame() && this.getFedTime() == 0));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Mob.class, 15, true, false,
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Animal.class, 15, true, false,
+                (entity) -> {
+                    if (entity instanceof Tiger) {
+                        if (entity.isBaby()) {
+                            return false;
+                        }
+                        if (this.isBaby()) {
+                            return false;
+                        }
+                    }
+                    if (entity instanceof Tiger) {
+                        return !this.isTame() &&
+                                this.getFedTime() == 0;
+                    }
+                    return !this.isTame() &&
+                            this.getFedTime() == 0;
+                }));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 15, true, false,
                 (entity) -> !this.isTame() && entity instanceof Enemy && !(entity instanceof Creeper)));
-
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false,
+                (entity) -> !isTame() && getHungryTime()==0));
     }
 
     @Override
@@ -111,7 +125,7 @@ public class Tiger extends TamableAnimal implements GeoEntity {
                     return interactionresult;
                 }
             }
-        } else if (isFood(itemstack)) {
+        } else if (this.isFood(itemstack)) {
             if (!pPlayer.getAbilities().instabuild) {
                 itemstack.shrink(1);
             }
@@ -187,14 +201,11 @@ public class Tiger extends TamableAnimal implements GeoEntity {
         return PlayState.CONTINUE;
     }
 
-
-
     @Override
     public boolean doHurtTarget(Entity p_21372_) {
         boolean result = super.doHurtTarget(p_21372_);
         return result;
     }
-
 
     public double getFedTime() {
         return fedTime;

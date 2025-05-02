@@ -8,6 +8,12 @@
   "requiredKills": 1,
   "repeatable": true,
   "questGenerateTarget" : false,
+  "limitQuestIds" : [
+    "2b0fedb0-2b4d-4b24-81fb-c4b6c8a47fa7",
+    "3A54CDE8-91B4-42A8-9F37-9C40934A15C8"
+  ],
+  "isNeedCompletePreQuest" : true,
+  "needCompletionCount" : 1,
   "questRewards": [
     {
       "item": "chang_sheng_jue:yi_guan_tong_qian",

@@ -1,9 +1,11 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
+import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapabilityProvider;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
@@ -17,6 +19,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class WuGangCutGui extends Item {
@@ -58,7 +61,18 @@ public class WuGangCutGui extends Item {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        pTooltipComponents.add(Component.translatable("tooltip.chang_sheng_jue.wu_gang_cut_gui.tooltip").withStyle(ChatFormatting.GRAY));
+        if (Screen.hasShiftDown()) {
+            Component fullDesc = Component.translatable("tooltip."+ ChangShengJue.MOD_ID + "."
+                    + this + ".hold_shift.tooltip").withStyle(ChatFormatting.GRAY);
+            String formattedText = fullDesc.getString();
+            Arrays.stream(formattedText.split("\\u000A|\\\\n"))
+                    .map(line -> Component.literal(line).withStyle(fullDesc.getStyle()))
+                    .forEach(pTooltipComponents::add);
+        } else {
+            pTooltipComponents.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + "." + this + ".tooltip").withStyle(ChatFormatting.GRAY));
+            // 提示按住Shift
+            pTooltipComponents.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID +".hold_shift.tooltip"));
+        }
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 }

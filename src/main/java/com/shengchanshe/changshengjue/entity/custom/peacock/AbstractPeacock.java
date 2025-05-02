@@ -1,5 +1,6 @@
 package com.shengchanshe.changshengjue.entity.custom.peacock;
 
+import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.server.level.ServerLevel;
@@ -42,10 +43,11 @@ public abstract class AbstractPeacock extends Animal implements GeoEntity {
 
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 0.6D));
-        this.goalSelector.addGoal(2, new BreedGoal(this, 0.6D, AbstractPeacock.class));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 0.7D, FOOD_ITEMS, false));
-        this.goalSelector.addGoal(4, new FollowParentGoal(this, 0.6D));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 0.7D));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Tiger.class, 8.0F, 0.7D, 0.8D));
+        this.goalSelector.addGoal(3, new BreedGoal(this, 0.6D, AbstractPeacock.class));
+        this.goalSelector.addGoal(4, new TemptGoal(this, 0.7D, FOOD_ITEMS, false));
+        this.goalSelector.addGoal(5, new FollowParentGoal(this, 0.6D));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 0.6D));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));

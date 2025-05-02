@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.quest;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -41,6 +42,9 @@ public class Quest {
     private int questTime; // 任务时间
     private int questCurrentTime; // 当前任务时间
     private boolean isAcceptQuestEffects;
+    private List<UUID> limitQuestIds;
+    private boolean isNeedCompletePreQuest;//是否需要完成前置任务
+    private int needCompletionCount;// 完成任务次数
 
     /**
      * 全参数构造方法
@@ -67,9 +71,8 @@ public class Quest {
                  List<ItemStack> questRequirements, List<ItemStack> questRewards,
                  QuestType questType, String targetEntity, boolean isEntityTag, int requiredKills,
                  boolean repeatable, String questRequirementsDescription, boolean questGenerateTarget,
-                 int questDay, int questTargetCount, int questTime, List<QuestEffectEntry> effects, boolean isAcceptQuestEffects) {
-
-        // 基础字段
+                 int questDay, int questTargetCount, int questTime, List<QuestEffectEntry> effects, boolean isAcceptQuestEffects,
+                 List<UUID> limitQuestIds,boolean isNeedCompletePreQuest, int needCompletionCount) {
         this.questId = Objects.requireNonNull(questId, "任务ID不能为null");
         this.questNpcId = questNpcId;
         this.questName = questName;
@@ -80,7 +83,7 @@ public class Quest {
         this.repeatable = repeatable;
         this.questRequirementsDescription = questRequirementsDescription;
         this.effects = effects != null ? effects : new ArrayList<>();
-        // 任务特定字段
+        this.limitQuestIds = limitQuestIds != null ? limitQuestIds : new ArrayList<>();;
         this.targetEntity = targetEntity;
         this.isEntityTag = isEntityTag;
         this.requiredKills = requiredKills;
@@ -94,6 +97,8 @@ public class Quest {
         this.questCurrentTime = 0;
         this.isComplete = false;
         this.isAcceptQuestEffects = isAcceptQuestEffects;
+        this.isNeedCompletePreQuest = isNeedCompletePreQuest;
+        this.needCompletionCount = needCompletionCount;
     }
 
 //    //收集任务构造方法
@@ -177,6 +182,9 @@ public class Quest {
         this.questCurrentTargetCount = newQuest.questCurrentTargetCount;
         this.questTime = newQuest.questTime;
         this.isAcceptQuestEffects = newQuest.isAcceptQuestEffects;
+        this.limitQuestIds = newQuest.limitQuestIds;
+        this.isNeedCompletePreQuest = newQuest.isNeedCompletePreQuest;
+        this.needCompletionCount = newQuest.needCompletionCount;
     }
 
     // 从NBT读取任务
@@ -264,6 +272,20 @@ public class Quest {
         if (tag.contains("IsAcceptQuestEffects")){
             this.isAcceptQuestEffects = tag.getBoolean("IsAcceptQuestEffects");
         }
+
+        this.limitQuestIds = new ArrayList<>();
+        if (tag.contains("LimitQuestIds")) {
+            ListTag idList = tag.getList("LimitQuestIds", Tag.TAG_INT_ARRAY);
+            for (Tag value : idList) {
+                limitQuestIds.add(NbtUtils.loadUUID(value));
+            }
+        }
+        if (tag.contains("IsNeedCompletePreQuest")) {
+            this.isNeedCompletePreQuest = tag.getBoolean("IsNeedCompletePreQuest");
+        }
+        if (tag.contains("NeedCompletionCount")){
+            this.needCompletionCount = tag.getInt("NeedCompletionCount");
+        }
     }
 
     // 将任务写入NBT
@@ -325,64 +347,77 @@ public class Quest {
         tag.putInt("QuestCurrentTargetCount", this.questCurrentTargetCount);
         tag.putInt("QuestTime", this.questTime);
         tag.putBoolean("IsAcceptQuestEffects", this.isAcceptQuestEffects);
+        ListTag idList = new ListTag();
+        limitQuestIds.forEach(id -> idList.add(NbtUtils.createUUID(id)));
+        tag.put("LimitQuestIds", idList);
+        tag.putBoolean("IsNeedCompletePreQuest", this.isNeedCompletePreQuest);
+        tag.putInt("NeedCompletionCount", this.needCompletionCount);
         return tag;
     }
 
     public void saveNBTData(CompoundTag compound) {
         if (this.questId != null){
-            compound.putUUID("QuestId", questId);
+            compound.putUUID("QuestId", this.questId);
         }
         if (this.questName != null){
-            compound.putString("QuestName", questName);
+            compound.putString("QuestName", this.questName);
         }
         if (this.questDescription != null) {
-            compound.putString("QuestDescription", questDescription);
+            compound.putString("QuestDescription", this.questDescription);
         }
         if (this.questRewards != null) {
             ListTag rewardList = new ListTag();
-            for (ItemStack stack : questRewards) {
+            for (ItemStack stack : this.questRewards) {
                 rewardList.add(stack.save(new CompoundTag()));
             }
             compound.put("QuestRewards", rewardList);
         }
-        if (acceptedBy != null) {
-            compound.putUUID("AcceptedBy", acceptedBy);
+        if (this.acceptedBy != null) {
+            compound.putUUID("AcceptedBy", this.acceptedBy);
         }
-        compound.putBoolean("Repeatable", repeatable);
+        compound.putBoolean("Repeatable", this.repeatable);
         ListTag effectsList = getTags();
         compound.put("Effects", effectsList);
         if (this.questType != null) {
-            compound.putString("QuestType", questType.name());
+            compound.putString("QuestType", this.questType.name());
         }
         if (this.questRequirementsDescription != null) {
-            compound.putString("QuestRequirementsDescription", questRequirementsDescription);
+            compound.putString("QuestRequirementsDescription", this.questRequirementsDescription);
         }
         if (this.questNpcId != null) {
-            compound.putUUID("QuestNpcId", questNpcId);
+            compound.putUUID("QuestNpcId", this.questNpcId);
         }
 
         if (this.questRequirements != null) {
             ListTag reqList = new ListTag();
-            for (ItemStack stack : questRequirements) {
+            for (ItemStack stack : this.questRequirements) {
                 reqList.add(stack.save(new CompoundTag()));
             }
             compound.put("QuestRequirements", reqList);
         }
 
-        if (targetEntity != null) {
-            compound.putString("TargetEntity", targetEntity);
+        if (this.targetEntity != null) {
+            compound.putString("TargetEntity", this.targetEntity);
         }
-        compound.putInt("RequiredKills", requiredKills);
-        compound.putInt("CurrentKills", currentKills);
-        compound.putBoolean("IsEntityTag", isEntityTag);
-        compound.putBoolean("QuestGenerateTarget", questGenerateTarget);
-        compound.putBoolean("IsComplete", isComplete);
-        compound.putInt("QuestDay", questDay);
-        compound.putInt("QuestCurrentDay", questCurrentDay);
-        compound.putInt("QuestTargetCount", questTargetCount);
-        compound.putInt("QuestCurrentTargetCount", questCurrentTargetCount);
-        compound.putInt("QuestTime", questTime);
+        compound.putInt("RequiredKills", this.requiredKills);
+        compound.putInt("CurrentKills", this.currentKills);
+        compound.putBoolean("IsEntityTag", this.isEntityTag);
+        compound.putBoolean("QuestGenerateTarget", this.questGenerateTarget);
+        compound.putBoolean("IsComplete", this.isComplete);
+        compound.putInt("QuestDay", this.questDay);
+        compound.putInt("QuestCurrentDay", this.questCurrentDay);
+        compound.putInt("QuestTargetCount", this.questTargetCount);
+        compound.putInt("QuestCurrentTargetCount", this.questCurrentTargetCount);
+        compound.putInt("QuestTime", this.questTime);
         compound.putBoolean("IsAcceptQuestEffects", this.isAcceptQuestEffects);
+
+        ListTag idList = new ListTag();
+        limitQuestIds.forEach(id -> idList.add(NbtUtils.createUUID(id)));
+        compound.put("LimitQuestIds", idList);
+
+        compound.putBoolean("IsNeedCompletePreQuest", this.isNeedCompletePreQuest);
+
+        compound.putInt("NeedCompletionCount", this.needCompletionCount);
     }
     public void loadNBTData(CompoundTag tag) {
         this.questId = tag.hasUUID("QuestId") ? tag.getUUID("QuestId") : UUID.randomUUID();
@@ -468,6 +503,19 @@ public class Quest {
         if (tag.contains("IsAcceptQuestEffects")){
             this.isAcceptQuestEffects = tag.getBoolean("IsAcceptQuestEffects");
         }
+        this.limitQuestIds = new ArrayList<>();
+        if (tag.contains("LimitQuestIds")) {
+            ListTag idList = tag.getList("LimitQuestIds", Tag.TAG_INT_ARRAY);
+            for (Tag value : idList) {
+                limitQuestIds.add(NbtUtils.loadUUID(value));
+            }
+        }
+        if (tag.contains("IsNeedCompletePreQuest")) {
+            this.isNeedCompletePreQuest = tag.getBoolean("IsNeedCompletePreQuest");
+        }
+        if (tag.contains("NeedCompletionCount")){
+            this.needCompletionCount = tag.getInt("NeedCompletionCount");
+        }
     }
 
     // Getter 和 Setter 方法
@@ -547,7 +595,6 @@ public class Quest {
         return questGenerateTarget;
     }
 
-
     public boolean isComplete() {
         return isComplete;
     }
@@ -612,6 +659,9 @@ public class Quest {
         return isEntityTag;
     }
 
+    public List<UUID> getLimitQuestIds() {
+        return limitQuestIds;
+    }
     // 检查玩家是否满足任务需求
     public boolean canComplete(Player player) {
         if (questType == QuestType.GATHER) {
@@ -628,10 +678,17 @@ public class Quest {
         }
         return false;
     }
-
     // 判断是否是同一种任务
     public boolean isSameQuestType(Quest other) {
         return this.questId.equals(other.questId);
+    }
+
+    public boolean isNeedCompletePreQuest() {
+        return isNeedCompletePreQuest;
+    }
+
+    public int getNeedCompletionCount() {
+        return needCompletionCount;
     }
 
     // 添加方法检查实体是否匹配
@@ -649,6 +706,37 @@ public class Quest {
             return entityId.toString().equals(targetEntity);
         }
     }
+
+    /**
+     * 检查玩家是否完成任意一个前置任务
+     * @param questManager 任务管理器
+     * @return 如果不需要前置任务或已完成任一前置则返回true
+     */
+    public boolean checkPrerequisiteQuests(QuestManager questManager) {
+        if (this.limitQuestIds.isEmpty()) return true;
+        return this.isNeedCompletePreQuest ?
+                // 检查是否完成过任一前置任务
+                checkCompletedPrerequisites(questManager) :
+                // 检查是否接受过任一前置任务
+                checkNeverAcceptedPrerequisites(questManager);
+    }
+    // 检查是否完成过任一前置任务
+    private boolean checkCompletedPrerequisites(QuestManager questManager) {
+        return limitQuestIds.stream()
+                .anyMatch(limitQuestIds -> questManager.getQuestCompletionCount(limitQuestIds) >= this.needCompletionCount);
+    }
+    // 检查是否接受过任一前置任务
+//    private boolean checkAcceptedPrerequisites(QuestManager questManager) {
+//        Set<UUID> acceptedQuests = questManager.getAllAcceptRepeatableQuests();
+//        return acceptedQuests != null && limitQuestIds.stream().anyMatch(acceptedQuests::contains);
+//    }
+    // 检查是否从未接受过所有前置任务
+    private boolean checkNeverAcceptedPrerequisites(QuestManager questManager) {
+        Set<UUID> acceptedQuests = questManager.getAllAcceptRepeatableQuests();
+        return acceptedQuests != null &&
+                limitQuestIds.stream().noneMatch(acceptedQuests::contains);
+    }
+
 
     // 给予玩家奖励
     public void giveRewards(Player player) {

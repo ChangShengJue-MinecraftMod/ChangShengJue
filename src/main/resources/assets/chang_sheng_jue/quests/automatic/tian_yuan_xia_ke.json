@@ -1,10 +1,14 @@
 {
   "questId": "2b0fedb0-2b4d-4b24-81fb-c4b6c8a47fa7",
-  "questName": "quest.automatic.village.questName",
-  "questDescription": "quest.automatic.village.questDescription",
-  "questRequirementsDescription": "quest.automatic.village.questRequirementsDescription",
+  "questName": "quest.chang_sheng_jue.automatic.village.questName",
+  "questDescription": "quest.chang_sheng_jue.automatic.village.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.automatic.village.questRequirementsDescription",
   "questType": "AUTOMATIC",
   "repeatable": false,
+  "limitQuestIds" : [
+    "C99BC619-6361-4485-9DA9-C0835F0ABB12"
+  ],
+  "isNeedCompletePreQuest" : false,
   "questRewards": [
     {
       "item": "chang_sheng_jue:yi_guan_tong_qian",

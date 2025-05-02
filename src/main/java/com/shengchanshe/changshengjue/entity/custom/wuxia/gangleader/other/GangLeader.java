@@ -1,5 +1,6 @@
 package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other;
 
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingMenu;
 import com.shengchanshe.changshengjue.quest.QuestManager;
 import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntity;
 import com.shengchanshe.changshengjue.entity.custom.goal.WuXiaAttackGoal;
@@ -18,6 +19,7 @@ import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.*;
 import com.shengchanshe.changshengjue.world.village.WuXiaMerahantTrades;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -28,6 +30,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -61,6 +64,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.OptionalInt;
 
 public class GangLeader extends AbstractGangLeader implements GeoEntity , RangedAttackMob {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -103,23 +107,37 @@ public class GangLeader extends AbstractGangLeader implements GeoEntity , Ranged
         this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, false));
     }
 
+    public void openTradingScreen(Player pPlayer, Component pDisplayName, int pLevel) {
+        this.resetOffers();
+        OptionalInt present = pPlayer.openMenu(new SimpleMenuProvider((i, inventory, player) -> new GangleaderTradingMenu(i, inventory, this), pDisplayName));
+        if (present.isPresent()) {
+            MerchantOffers merchantOffers = this.getOffers();
+            if (!merchantOffers.isEmpty()) {
+                pPlayer.sendMerchantOffers(present.getAsInt(), merchantOffers, pLevel, this.getVillagerXp(), this.showProgressBar(), this.canRestock());
+            }
+        }
+        QuestManager.getInstance().openNpcGui(this);
+    }
+
     protected void updateTrades() {
         // 获取交易列表1和2
         VillagerTrades.ItemListing[] tradesList1 = WuXiaMerahantTrades.OTHER_GANG_LEADER_TRADES.get(1);
         VillagerTrades.ItemListing[] tradesList2 = WuXiaMerahantTrades.OTHER_GANG_LEADER_TRADES.get(2);
         if (tradesList1 != null && tradesList2 != null) {
             MerchantOffers merchantOffers = this.getOffers();
-            // 添加交易列表1中的5个交易
             this.addOffersFromItemListings(merchantOffers, tradesList1, 11);
-            // 随机添加交易列表2中的一个交易
-            this.addOffersFromItemListings(merchantOffers, tradesList2, 2);
-//            int randomIndex2 = this.random.nextInt(tradesList2.length);
-//            VillagerTrades.ItemListing trade2 = tradesList2[randomIndex2];
-//            MerchantOffer offer2 = trade2.getOffer(this, this.random);
-//            if (offer2 != null) {
-//                merchantOffers.add(offer2);
-//            }
+            if (QuestManager.getInstance().getTotalQuestCompletions() >= 1){
+                this.addOffersFromItemListings(merchantOffers, tradesList2, 2);
+            }
         }
+    }
+    @Override
+    public MerchantOffers getOffers() {
+        if (this.offers == null) {
+            this.offers = new MerchantOffers();
+            this.updateTrades();
+        }
+        return this.offers;
     }
 
     public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {

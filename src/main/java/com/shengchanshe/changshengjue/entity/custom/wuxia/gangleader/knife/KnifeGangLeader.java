@@ -105,6 +105,7 @@ public class KnifeGangLeader extends AbstractGangLeader implements GeoEntity {
     }
 
     public void openTradingScreen(Player pPlayer, Component pDisplayName, int pLevel) {
+        this.resetOffers();
         OptionalInt present = pPlayer.openMenu(new SimpleMenuProvider((i, inventory, player) -> new GangleaderTradingMenu(i, inventory, this), pDisplayName));
         if (present.isPresent()) {
             MerchantOffers merchantOffers = this.getOffers();
@@ -116,14 +117,16 @@ public class KnifeGangLeader extends AbstractGangLeader implements GeoEntity {
 
     protected void updateTrades() {
         // 获取交易列表1和2
-        VillagerTrades.ItemListing[] tradesList1 = WuXiaMerahantTrades.CLUBBED_AND_LANCE_GANG_LEADER_TRADES.get(1);
-        VillagerTrades.ItemListing[] tradesList2 = WuXiaMerahantTrades.CLUBBED_AND_LANCE_GANG_LEADER_TRADES.get(2);
+        VillagerTrades.ItemListing[] tradesList1 = WuXiaMerahantTrades.KNIFE_AND_SWORD_GANG_LEADER_TRADES.get(1);
+        VillagerTrades.ItemListing[] tradesList2 = WuXiaMerahantTrades.KNIFE_AND_SWORD_GANG_LEADER_TRADES.get(2);
         if (tradesList1 != null && tradesList2 != null) {
             MerchantOffers merchantOffers = this.getOffers();
             // 添加交易列表1中的5个交易
             this.addOffersFromItemListings(merchantOffers, tradesList1, 8);
             // 随机添加交易列表2中的一个交易
-            this.addOffersFromItemListings(merchantOffers, tradesList2, 2);
+            if (QuestManager.getInstance().getTotalQuestCompletions() >= 5){
+                this.addOffersFromItemListings(merchantOffers, tradesList2, 2);
+            }
 //            int randomIndex2 = this.random.nextInt(tradesList2.length);
 //            VillagerTrades.ItemListing trade2 = tradesList2[randomIndex2];
 //            MerchantOffer offer2 = trade2.getOffer(this, this.random);

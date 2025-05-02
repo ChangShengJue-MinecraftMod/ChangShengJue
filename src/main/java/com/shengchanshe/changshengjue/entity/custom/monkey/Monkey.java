@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.entity.custom.monkey;
 
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
+import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
@@ -70,6 +71,7 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
     protected void registerGoals(){
         this.goalSelector.addGoal(1, new FloatGoal(this));
         this.goalSelector.addGoal(2, new SitWhenOrderedToGoal(this));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Tiger.class, 8.0F, 0.7D, 0.8D));
         this.goalSelector.addGoal(3, new TemptGoal(this, 0.7D, Ingredient.of(ChangShengJueItems.BANANA.get()), false));
         this.goalSelector.addGoal(4, new MeleeAttackGoal(this,0.7D, false));
         this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 0.7, 10.0F, 2.0F, false));

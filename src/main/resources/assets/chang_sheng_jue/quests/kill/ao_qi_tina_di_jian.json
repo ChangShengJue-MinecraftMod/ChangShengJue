@@ -10,6 +10,11 @@
   "questTime": 140,
   "repeatable": false,
   "questGenerateTarget" : true,
+  "limitQuestIds" : [
+    "bfbac359-a2cd-488b-9c75-b6dc10c96eed"
+  ],
+  "isNeedCompletePreQuest" : true,
+  "needCompletionCount" : 1,
   "questRewards": [
     {
       "item": "chang_sheng_jue:gold_bullions",

@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.entity.custom.deer;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
+import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.server.level.ServerLevel;
@@ -70,7 +71,8 @@ public abstract class AbstractDeer extends Animal implements GeoEntity {
     protected void registerGoals(){
         this.eatBlockGoal = new EatBlockGoal(this);
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 0.6D));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 0.7D));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Tiger.class, 8.0F, 0.7D, 0.8D));
         this.goalSelector.addGoal(2, new BreedGoal(this, 0.6D, AbstractDeer.class));
         this.goalSelector.addGoal(3, new TemptGoal(this, 0.7D, FOOD_ITEMS, false));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 0.6D));
