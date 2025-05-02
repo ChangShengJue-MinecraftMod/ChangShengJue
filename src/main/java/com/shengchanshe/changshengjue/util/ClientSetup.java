@@ -75,29 +75,29 @@ import java.util.function.Supplier;
 public class ClientSetup {
     // 假设你有一个包含所有需要注册颜色渲染器的物品的集合
     static List<Supplier<? extends Item>> cottonArmorItems = Arrays.asList(
-            ChangShengJueItems.COTTON_ARMOR_FEATHER_HELMET,
-            ChangShengJueItems.COTTON_ARMOR_WHITE_FEATHER_HELMET,
-            ChangShengJueItems.COTTON_ARMOR_CHESTPLATE,
-            ChangShengJueItems.COTTON_ARMOR_LEGGINGS,
-            ChangShengJueItems.COTTON_ARMOR_BOOTS,
+            ChangShengJueItems.COTTON_HELMET,
+            ChangShengJueItems.WHITE_COTTON_helmet,
+            ChangShengJueItems.COTTON_CHESTPLATE,
+            ChangShengJueItems.COTTON_LEGGINGS,
+            ChangShengJueItems.COTTON_BOOTS,
 
-            ChangShengJueItems.FEMALE_TAOIST_ROBES_HELMET,
-            ChangShengJueItems.FEMALE_TAOIST_ROBES_CHESTPLATE,
-            ChangShengJueItems.MALE_TAOIST_ROBES_HELMET,
-            ChangShengJueItems.MALE_TAOIST_ROBES_CHESTPLATE,
-            ChangShengJueItems.TAOIST_ROBES_BOOTS,
+            ChangShengJueItems.FEMALE_TAOIST_HELMET,
+            ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE,
+            ChangShengJueItems.MALE_TAOIST_HELMET,
+            ChangShengJueItems.MALE_TAOIST_CHESTPLATE,
+            ChangShengJueItems.SILK_BOOTS,
 
             ChangShengJueItems.SILK_LEGGINGS,
 
-            ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_HELMET,
-            ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_CHESTPLATE,
-            ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_HELMET,
-            ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_CHESTPLATE,
-            ChangShengJueItems.CHINESE_WEDDING_DRESS_BOOTS,
+            ChangShengJueItems.BLACK_GAUZE_CAP,
+            ChangShengJueItems.KYLIN_BUFU,
+            ChangShengJueItems.PHOENIX_CORONET,
+            ChangShengJueItems.QUEEN_CLOTHING,
+            ChangShengJueItems.GOLDEN_THREAD_SHOES,
 
-            ChangShengJueItems.FLYING_FISH_ROBE_HELMET_1,
-            ChangShengJueItems.FLYING_FISH_ROBE_CHESTPLATE,
-            ChangShengJueItems.FLYING_FISH_ROBE_BOOTS,
+            ChangShengJueItems.CLOUD_VEIL_CROWN,
+            ChangShengJueItems.FLYING_FISH_CHESTPLATE,
+            ChangShengJueItems.LONG_BOOTS,
 
             ChangShengJueItems.HENG_DAO
     );
@@ -446,7 +446,7 @@ public class ClientSetup {
             itemColors.register((stack, color) -> {
                 if (color == 1 && stack.getItem() instanceof DyeableItem dyeable) {
                     // color == 1 表示这是覆盖层
-                    return dyeable.hasCustomColor(stack) ? dyeable.getColor(stack) : dyeable == ChangShengJueItems.MALE_TAOIST_ROBES_HELMET.get() ? 0x000000 : 0xFFFFFF;
+                    return dyeable.hasCustomColor(stack) ? dyeable.getColor(stack) : dyeable == ChangShengJueItems.MALE_TAOIST_HELMET.get() ? 0x000000 : 0xFFFFFF;
                 }else if (color == 1 && stack.getItem() instanceof DyeableChineseWeddingDressItem dyeable){
                     // color == 1 表示这是覆盖层
                     return dyeable.hasCustomColor(stack) ? dyeable.getColor(stack) : 0xC81717;

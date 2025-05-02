@@ -65,40 +65,40 @@ public class CSJAdvanceEvent {
                         || item == ChangShengJueItems.BEAT_DOG_STICK.get()) {
                     CSJAdvanceInit.HAS_SWORD.trigger(serverPlayer);//四大神器
                 }else if (item == Items.LEATHER_CHESTPLATE
-                        || item == ChangShengJueItems.FEMALE_TAOIST_ROBES_CHESTPLATE.get()
-                        || item == ChangShengJueItems.MALE_TAOIST_ROBES_CHESTPLATE.get()
-                        || item == ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_CHESTPLATE.get()
-                        || item == ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_CHESTPLATE.get()
-                        || item == ChangShengJueItems.CONFUCIAN_COSTUMES_CHESTPLATE.get()){
+                        || item == ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE.get()
+                        || item == ChangShengJueItems.MALE_TAOIST_CHESTPLATE.get()
+                        || item == ChangShengJueItems.KYLIN_BUFU.get()
+                        || item == ChangShengJueItems.QUEEN_CLOTHING.get()
+                        || item == ChangShengJueItems.INK_CHESTPLATE.get()){
                     CSJAdvanceInit.HAS_ARMOR.trigger(serverPlayer);
                 }else if (item == Items.CHAINMAIL_CHESTPLATE
                         || item == Items.IRON_CHESTPLATE
                         || item == Items.GOLDEN_CHESTPLATE
                         || item == Items.DIAMOND_CHESTPLATE
                         || item == Items.NETHERITE_CHESTPLATE
-                        || item == ChangShengJueItems.COTTON_ARMOR_CHESTPLATE.get()
-                        || item == ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_CHESTPLATE.get()
-                        || item == ChangShengJueItems.FLYING_FISH_ROBE_CHESTPLATE.get()
-                        || item == ChangShengJueItems.WALKER_SET_CHESTPLATE.get()
-                        || item == ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_CHESTPLATE.get()
+                        || item == ChangShengJueItems.COTTON_CHESTPLATE.get()
+                        || item == ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get()
+                        || item == ChangShengJueItems.FLYING_FISH_CHESTPLATE.get()
+                        || item == ChangShengJueItems.TRAVELER_CHESTPLATE.get()
+                        || item == ChangShengJueItems.LIGHT_CHESTPLATE.get()
                 ){
                     CSJAdvanceInit.HAS_ADVANCED_ARRMOR.trigger(serverPlayer);
-                }else if (item == ChangShengJueItems.QI_TIAN_DA_SHENG_HELMET.get()) {
+                }else if (item == ChangShengJueItems.PHOENIX_FEATHER_CAP.get()) {
                     hasQiTianHelmet = true;
                     if (hasQiTianHelmet && hasQiTianChestplate && hasQiTianLeggings && hasQiTianBoots) {
                         CSJAdvanceInit.HAS_QI_TIAN.trigger(serverPlayer);
                     }
-                }else if (item == ChangShengJueItems.QI_TIAN_DA_SHENG_CHESTPLATE.get()){
+                }else if (item == ChangShengJueItems.OLDEN_CHAIN_MAIL_SHIRT.get()){
                     hasQiTianChestplate = true;
                     if (hasQiTianHelmet && hasQiTianChestplate && hasQiTianLeggings && hasQiTianBoots) {
                         CSJAdvanceInit.HAS_QI_TIAN.trigger(serverPlayer);
                     }
-                }else if (item == ChangShengJueItems.QI_TIAN_DA_SHENG_LEGGINGS.get()) {
+                }else if (item == ChangShengJueItems.TIGER_SKIN_GARMENT.get()) {
                     hasQiTianLeggings = true;
                     if (hasQiTianHelmet && hasQiTianChestplate && hasQiTianLeggings && hasQiTianBoots) {
                         CSJAdvanceInit.HAS_QI_TIAN.trigger(serverPlayer);
                     }
-                }else if (item == ChangShengJueItems.QI_TIAN_DA_SHENG_BOOTS.get()) {
+                }else if (item == ChangShengJueItems.CLOUD_WALKING_BOOTS.get()) {
                     hasQiTianBoots = true;
                     if (hasQiTianHelmet && hasQiTianChestplate && hasQiTianLeggings && hasQiTianBoots) {
                         CSJAdvanceInit.HAS_QI_TIAN.trigger(serverPlayer);

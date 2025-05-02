@@ -27,7 +27,7 @@ public class FlyingFishRobeLayer extends GeoRenderLayer<FlyingFishRobe> {
         // 获取当前的 ItemStack
         ItemStack currentStack = ((FlyingFishRobeRender) this.getRenderer()).getCurrentStack();
         RenderType armorRenderType = RenderType.armorCutoutNoCull(TEXTURE);
-        if (currentStack.is(ChangShengJueItems.FLYING_FISH_ROBE_HELMET_1.get())){
+        if (currentStack.is(ChangShengJueItems.CLOUD_VEIL_CROWN.get())){
             armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_2);
         }
         // 从物品堆中获取颜色

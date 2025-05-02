@@ -76,20 +76,20 @@ public class Parcel extends Item {
 
     static {
         COTTON_ARMOR_PARCEL = Arrays.asList(
-                ChangShengJueItems.COTTON_ARMOR_FEATHER_HELMET.get(),
-                ChangShengJueItems.COTTON_ARMOR_WHITE_FEATHER_HELMET.get(),
-                ChangShengJueItems.COTTON_ARMOR_CHESTPLATE.get(),
-                ChangShengJueItems.COTTON_ARMOR_LEGGINGS.get(),
-                ChangShengJueItems.COTTON_ARMOR_BOOTS.get());
+                ChangShengJueItems.COTTON_HELMET.get(),
+                ChangShengJueItems.WHITE_COTTON_helmet.get(),
+                ChangShengJueItems.COTTON_CHESTPLATE.get(),
+                ChangShengJueItems.COTTON_LEGGINGS.get(),
+                ChangShengJueItems.COTTON_BOOTS.get());
         MOUNTAIN_PATTERN_ARMOR_PARCEL = Arrays.asList(
-                ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_HELMET.get(),
-                ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_CHESTPLATE.get(),
-                ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_LEGGINGS.get(),
-                ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_BOOTS.get());
+                ChangShengJueItems.HELMET_GUN_HOOD.get(),
+                ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get(),
+                ChangShengJueItems.DEERSKIN_TIBIAL_ARMOR.get(),
+                ChangShengJueItems.CLOUD_BLACK_BOOTS.get());
         THE_GREAT_GENERAL_MINGGUANG_ARMOR_PARCEL = Arrays.asList(
-                ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_HELMET.get(),
-                ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_CHESTPLATE.get(),
-                ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_LEGGINGS.get(),
-                ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_BOOTS.get());
+                ChangShengJueItems.PHOENIX_WINGS_HELMET.get(),
+                ChangShengJueItems.LIGHT_CHESTPLATE.get(),
+                ChangShengJueItems.LAZULI_KNEE_PADS.get(),
+                ChangShengJueItems.ANIMAL_SKIN_BOOTS.get());
     }
 }

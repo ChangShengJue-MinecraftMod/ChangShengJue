@@ -15,7 +15,7 @@ public interface DyeableItem extends DyeableLeatherItem {
 
     default int getColor(ItemStack pStack) {
         CompoundTag compoundtag = pStack.getTagElement("display");
-        if (pStack.is(ChangShengJueItems.MALE_TAOIST_ROBES_HELMET.get())){
+        if (pStack.is(ChangShengJueItems.MALE_TAOIST_HELMET.get())){
             return compoundtag != null && compoundtag.contains("color", 99) ? compoundtag.getInt("color") : 0;
         }else {
             return compoundtag != null && compoundtag.contains("color", 99) ? compoundtag.getInt("color") : DEFAULT_COLOR;

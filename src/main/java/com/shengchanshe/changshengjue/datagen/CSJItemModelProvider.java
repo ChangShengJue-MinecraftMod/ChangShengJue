@@ -103,56 +103,56 @@ public class CSJItemModelProvider extends ItemModelProvider {
 
         //护甲
         //棉甲
-        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_FEATHER_HELMET);
-        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_WHITE_FEATHER_HELMET);
-        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_CHESTPLATE);
-        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_LEGGINGS);
-        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_BOOTS);
+        simpleArmorItem(ChangShengJueItems.COTTON_HELMET);
+        simpleArmorItem(ChangShengJueItems.WHITE_COTTON_helmet);
+        simpleArmorItem(ChangShengJueItems.COTTON_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.COTTON_LEGGINGS);
+        simpleArmorItem(ChangShengJueItems.COTTON_BOOTS);
         //道袍
-        simpleItem(ChangShengJueItems.FEMALE_TAOIST_ROBES_HELMET);
-        simpleArmorItem(ChangShengJueItems.MALE_TAOIST_ROBES_HELMET);
-        simpleArmorItem(ChangShengJueItems.FEMALE_TAOIST_ROBES_CHESTPLATE);
-        simpleArmorItem(ChangShengJueItems.MALE_TAOIST_ROBES_CHESTPLATE);
-        simpleArmorItem(ChangShengJueItems.TAOIST_ROBES_BOOTS);
+        simpleItem(ChangShengJueItems.FEMALE_TAOIST_HELMET);
+        simpleArmorItem(ChangShengJueItems.MALE_TAOIST_HELMET);
+        simpleArmorItem(ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.MALE_TAOIST_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.SILK_BOOTS);
         //丝绸裤裤
         simpleArmorItem(ChangShengJueItems.SILK_LEGGINGS);
         //婚服
-        simpleArmorItem(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_HELMET);
-        simpleItem(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_HELMET);
-        simpleArmorItem(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_CHESTPLATE);
-        simpleArmorItem(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_CHESTPLATE);
-        simpleArmorItem(ChangShengJueItems.CHINESE_WEDDING_DRESS_BOOTS);
+        simpleArmorItem(ChangShengJueItems.BLACK_GAUZE_CAP);
+        simpleItem(ChangShengJueItems.PHOENIX_CORONET);
+        simpleArmorItem(ChangShengJueItems.KYLIN_BUFU);
+        simpleArmorItem(ChangShengJueItems.QUEEN_CLOTHING);
+        simpleArmorItem(ChangShengJueItems.GOLDEN_THREAD_SHOES);
         //山文甲
-        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_HELMET);
-        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_CHESTPLATE);
-        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_LEGGINGS);
-        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_BOOTS);
+        simpleItem(ChangShengJueItems.HELMET_GUN_HOOD);
+        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR);
+        simpleItem(ChangShengJueItems.DEERSKIN_TIBIAL_ARMOR);
+        simpleItem(ChangShengJueItems.CLOUD_BLACK_BOOTS);
         //飞鱼服
-        simpleItem(ChangShengJueItems.FLYING_FISH_ROBE_HELMET_0);
-        simpleArmorItem(ChangShengJueItems.FLYING_FISH_ROBE_HELMET_1);
-        simpleArmorItem(ChangShengJueItems.FLYING_FISH_ROBE_CHESTPLATE);
-        simpleArmorItem(ChangShengJueItems.FLYING_FISH_ROBE_BOOTS);
+        simpleItem(ChangShengJueItems.IRON_HAT);
+        simpleArmorItem(ChangShengJueItems.CLOUD_VEIL_CROWN);
+        simpleArmorItem(ChangShengJueItems.FLYING_FISH_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.LONG_BOOTS);
         //行者套
-        simpleItem(ChangShengJueItems.WALKER_SET_HELMET_0);
-        simpleItem(ChangShengJueItems.WALKER_SET_HELMET_1);
-        simpleItem(ChangShengJueItems.WALKER_SET_CHESTPLATE);
-        simpleItem(ChangShengJueItems.WALKER_SET_LEGGINGS);
-        simpleItem(ChangShengJueItems.WALKER_SET_BOOTS);
+        simpleItem(ChangShengJueItems.GOLD_RING_BAND);
+        simpleItem(ChangShengJueItems.GREEN_TREASURE_PENDANT);
+        simpleItem(ChangShengJueItems.TRAVELER_CHESTPLATE);
+        simpleItem(ChangShengJueItems.TIGER_SKIN_SKIRT);
+        simpleItem(ChangShengJueItems.SHORT_BOOTS);
         //齐天大圣套
-        simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_HELMET);
-        simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_CHESTPLATE);
-        simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_LEGGINGS);
-        simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_BOOTS);
+        simpleItem(ChangShengJueItems.PHOENIX_FEATHER_CAP);
+        simpleItem(ChangShengJueItems.OLDEN_CHAIN_MAIL_SHIRT);
+        simpleItem(ChangShengJueItems.TIGER_SKIN_GARMENT);
+        simpleItem(ChangShengJueItems.CLOUD_WALKING_BOOTS);
         //大将军明光铠
-        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_HELMET);
-        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_CHESTPLATE);
-        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_LEGGINGS);
-        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_BOOTS);
+        simpleItem(ChangShengJueItems.PHOENIX_WINGS_HELMET);
+        simpleItem(ChangShengJueItems.LIGHT_CHESTPLATE);
+        simpleItem(ChangShengJueItems.LAZULI_KNEE_PADS);
+        simpleItem(ChangShengJueItems.ANIMAL_SKIN_BOOTS);
         //儒装
-        simpleItem(ChangShengJueItems.CONFUCIAN_COSTUMES_HELMET);
-        simpleItem(ChangShengJueItems.CONFUCIAN_COSTUMES_CHESTPLATE);
-        simpleItem(ChangShengJueItems.CONFUCIAN_COSTUMES_LEGGINGS);
-        simpleItem(ChangShengJueItems.CONFUCIAN_COSTUMES_BOOTS);
+        simpleItem(ChangShengJueItems.CONFUCIAN_HELMET);
+        simpleItem(ChangShengJueItems.INK_CHESTPLATE);
+        simpleItem(ChangShengJueItems.INK_LEGGINGS);
+        simpleItem(ChangShengJueItems.INK_BOOTS);
         //武器
         handheldItem(ChangShengJueItems.BRONZE_SWORD);
         handheldItem(ChangShengJueItems.HAN_JIAN);

@@ -27,9 +27,9 @@ public class FlyingFishRobeHelmetLayer extends GeoRenderLayer<FlyingFishRobe> {
         // 获取当前的 ItemStack
         ItemStack currentStack = ((FlyingFishRobeRender) this.getRenderer()).getCurrentStack();
         RenderType armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_0);
-        if (currentStack.is(ChangShengJueItems.FLYING_FISH_ROBE_HELMET_0.get())){
+        if (currentStack.is(ChangShengJueItems.IRON_HAT.get())){
             armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_0);
-        }else if (currentStack.is(ChangShengJueItems.FLYING_FISH_ROBE_HELMET_1.get())){
+        }else if (currentStack.is(ChangShengJueItems.CLOUD_VEIL_CROWN.get())){
             armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_1);
         }
         this.getRenderer().reRender(this.getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, armorRenderType,

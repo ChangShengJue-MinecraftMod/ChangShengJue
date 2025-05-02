@@ -19,7 +19,7 @@ public class FemaleTaoistRobesRender extends GeoArmorRenderer<FemaleTaoistRobes>
      */
     public int getArmorColor(ItemStack stack) {
         if (stack.getItem() instanceof FemaleTaoistRobes dyeableArmorItem) {
-            if (!stack.is(ChangShengJueItems.FEMALE_TAOIST_ROBES_HELMET.get())){
+            if (!stack.is(ChangShengJueItems.FEMALE_TAOIST_HELMET.get())){
                 return dyeableArmorItem.getColor(stack);
             }
         }

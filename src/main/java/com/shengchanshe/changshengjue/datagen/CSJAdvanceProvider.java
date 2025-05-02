@@ -22,8 +22,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
 
 import java.util.function.Consumer;
 
@@ -166,7 +164,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
 
         //布衣侠客
         Advancement hasarmor = Advancement.Builder.advancement().parent(hasbronzesword)
-                .display(ChangShengJueItems.CONFUCIAN_COSTUMES_CHESTPLATE.get()
+                .display(ChangShengJueItems.INK_CHESTPLATE.get()
                         , Component.translatable("advancement.chang_sheng_jue.hasarmor").withStyle(ChatFormatting.GREEN)
                         , Component.translatable("advancement.chang_sheng_jue.hasarmor.desc").withStyle(ChatFormatting.GRAY)
                         , (ResourceLocation) null
@@ -241,7 +239,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
 
         // 将门之后
         Advancement hasadvancedarrmor = Advancement.Builder.advancement().parent(hasarmor)
-                .display(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_CHESTPLATE.get()
+                .display(ChangShengJueItems.LIGHT_CHESTPLATE.get()
                         , Component.translatable("advancement.chang_sheng_jue.hasadvancedarrmor").withStyle(ChatFormatting.GREEN)
                         , Component.translatable("advancement.chang_sheng_jue.hasadvancedarrmor.desc").withStyle(ChatFormatting.GRAY)
                         , (ResourceLocation) null
@@ -283,7 +281,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
         ///*挑战进度*///
         //未竟
         Advancement hasqitian = Advancement.Builder.advancement().parent(hasadvancedarrmor)
-                .display(ChangShengJueItems.QI_TIAN_DA_SHENG_CHESTPLATE.get()
+                .display(ChangShengJueItems.OLDEN_CHAIN_MAIL_SHIRT.get()
                         , Component.translatable("advancement.chang_sheng_jue.hasqitian").withStyle(ChatFormatting.GOLD)
                         , Component.translatable("advancement.chang_sheng_jue.hasqitian.desc").withStyle(ChatFormatting.GRAY)
                         , (ResourceLocation) null
