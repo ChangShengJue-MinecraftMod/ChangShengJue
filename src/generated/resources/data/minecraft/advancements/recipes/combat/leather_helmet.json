@@ -1,13 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_leather_deer": {
+    "has_leather": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "chang_sheng_jue:deerskin"
-            ]
+            "tag": "forge:leather"
           }
         ]
       },
@@ -22,7 +20,7 @@
   },
   "requirements": [
     [
-      "has_leather_deer",
+      "has_leather",
       "has_the_recipe"
     ]
   ],

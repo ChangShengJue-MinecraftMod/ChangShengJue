@@ -104,7 +104,7 @@ public class CSJItemModelProvider extends ItemModelProvider {
         //护甲
         //棉甲
         simpleArmorItem(ChangShengJueItems.COTTON_HELMET);
-        simpleArmorItem(ChangShengJueItems.WHITE_COTTON_helmet);
+        simpleArmorItem(ChangShengJueItems.WHITE_COTTON_HELMET);
         simpleArmorItem(ChangShengJueItems.COTTON_CHESTPLATE);
         simpleArmorItem(ChangShengJueItems.COTTON_LEGGINGS);
         simpleArmorItem(ChangShengJueItems.COTTON_BOOTS);

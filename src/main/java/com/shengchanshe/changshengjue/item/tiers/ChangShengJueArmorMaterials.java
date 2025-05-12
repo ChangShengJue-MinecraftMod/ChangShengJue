@@ -18,6 +18,12 @@ public enum ChangShengJueArmorMaterials implements StringRepresentable, ArmorMat
         enumMap.put(ArmorItem.Type.LEGGINGS, 4);
         enumMap.put(ArmorItem.Type.CHESTPLATE, 5);
         enumMap.put(ArmorItem.Type.HELMET, 2);
+    }), 15, SoundEvents.ARMOR_EQUIP_LEATHER, 1.0F, 0.0F, () -> Ingredient.of(ChangShengJueItems.COTTON.get())),
+    WALK("leather", 6, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
+        enumMap.put(ArmorItem.Type.BOOTS, 1);
+        enumMap.put(ArmorItem.Type.LEGGINGS, 4);
+        enumMap.put(ArmorItem.Type.CHESTPLATE, 4);
+        enumMap.put(ArmorItem.Type.HELMET, 1);
     }), 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(ChangShengJueItems.COTTON.get())),
     SILK("leather", 18, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
         enumMap.put(ArmorItem.Type.BOOTS, 1);
@@ -30,7 +36,34 @@ public enum ChangShengJueArmorMaterials implements StringRepresentable, ArmorMat
         enumMap.put(ArmorItem.Type.LEGGINGS, 3);
         enumMap.put(ArmorItem.Type.CHESTPLATE, 4);
         enumMap.put(ArmorItem.Type.HELMET, 2);
-    }), 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(ChangShengJueItems.SILK.get()));
+    }), 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(ChangShengJueItems.SILK.get())),
+    MOUNTAIN("diamond", 6, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
+        enumMap.put(ArmorItem.Type.BOOTS, 2);
+        enumMap.put(ArmorItem.Type.LEGGINGS, 5);
+        enumMap.put(ArmorItem.Type.CHESTPLATE, 7);
+        enumMap.put(ArmorItem.Type.HELMET, 3);
+    }), 0, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, 0.0F, () -> Ingredient.of(ChangShengJueItems.SILK.get())),
+    INK("leather", 6, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
+        enumMap.put(ArmorItem.Type.BOOTS, 1);
+        enumMap.put(ArmorItem.Type.LEGGINGS, 3);
+        enumMap.put(ArmorItem.Type.CHESTPLATE, 4);
+        enumMap.put(ArmorItem.Type.HELMET, 1);
+    }), 0, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(ChangShengJueItems.SILK.get())),
+    BRIGHT("leather", 6, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
+        enumMap.put(ArmorItem.Type.BOOTS, 2);
+        enumMap.put(ArmorItem.Type.LEGGINGS, 5);
+        enumMap.put(ArmorItem.Type.CHESTPLATE, 7);
+        enumMap.put(ArmorItem.Type.HELMET, 3);
+    }), 0, SoundEvents.ARMOR_EQUIP_LEATHER, 2.0F, 0.0F, () -> Ingredient.of(ChangShengJueItems.SILK.get())),
+    FLY("leather", 6, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
+        enumMap.put(ArmorItem.Type.BOOTS, 2);
+        enumMap.put(ArmorItem.Type.LEGGINGS, 4);
+        enumMap.put(ArmorItem.Type.CHESTPLATE, 5);
+        enumMap.put(ArmorItem.Type.HELMET, 2);
+    }), 0, SoundEvents.ARMOR_EQUIP_LEATHER, 1.0F, 0.0F, () -> Ingredient.of(ChangShengJueItems.SILK.get())),
+    FLY_IRON("iron", 6, Util.make(new EnumMap<>(ArmorItem.Type.class), (enumMap) -> {
+        enumMap.put(ArmorItem.Type.HELMET, 3);
+    }), 0, SoundEvents.ARMOR_EQUIP_LEATHER, 1.0F, 0.0F, () -> Ingredient.of(ChangShengJueItems.SILK.get()));
     public static final StringRepresentable.EnumCodec<ChangShengJueArmorMaterials> CODEC = StringRepresentable.fromEnum(ChangShengJueArmorMaterials::values);
     private static final EnumMap<ArmorItem.Type, Integer> HEALTH_FUNCTION_FOR_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266653_) -> {
         p_266653_.put(ArmorItem.Type.BOOTS, 13);
@@ -57,6 +90,7 @@ public enum ChangShengJueArmorMaterials implements StringRepresentable, ArmorMat
         this.knockbackResistance = pKnockbackResistance;
         this.repairIngredient = new LazyLoadedValue<>(pRepairIngredient);
     }
+
 
     public int getDurabilityForType(ArmorItem.Type pType) {
         return HEALTH_FUNCTION_FOR_TYPE.get(pType) * this.durabilityMultiplier;

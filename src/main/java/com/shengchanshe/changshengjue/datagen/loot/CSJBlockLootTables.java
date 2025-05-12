@@ -155,10 +155,10 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(ChangShengJueBlocks.PEANUT_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.PEANUT_BLOCK.get(), ChangShengJueItems.PEANUT.get(), ChangShengJueItems.PEANUT_SEEDS.get(), peanut,3));
         LootItemCondition.Builder brinjal = cropDrop(ChangShengJueBlocks.BRINJAL_BLOCK.get(), 7);
         this.add(ChangShengJueBlocks.BRINJAL_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.BRINJAL_BLOCK.get(), ChangShengJueItems.BRINJAL.get(), ChangShengJueItems.BRINJAL_SEEDS.get(), brinjal,3));
-        LootItemCondition.Builder grape =  LootItemBlockStatePropertyCondition
-                .hasBlockStateProperties(ChangShengJueBlocks.GRAPE_BLOCK.get())
-                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 6))
-                .or(LootItemBlockStatePropertyCondition.hasBlockStateProperties(ChangShengJueBlocks.GRAPE_BLOCK.get())
+        LootItemCondition.Builder grape =  LootItemBlockStatePropertyCondition.hasBlockStateProperties(ChangShengJueBlocks.GRAPE_BLOCK.get())
+                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 6))
+                .or(LootItemBlockStatePropertyCondition
+                        .hasBlockStateProperties(ChangShengJueBlocks.GRAPE_BLOCK.get())
                         .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornBlock.AGE, 7)));
         this.add(ChangShengJueBlocks.GRAPE_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.GRAPE_BLOCK.get(), ChangShengJueItems.GRAPE.get(), ChangShengJueItems.GRAPE_SEEDS.get(),6, grape));
 
@@ -817,22 +817,35 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
 
     protected LootTable.Builder createCropDrops(Block pCropBlock, Item pGrownCropItem, Item pSeedsItem,LootItemCondition.Builder pDropGrownCropCondition,int fruitsMin,int fruitsMax,int seedsMin,int seedsMax) {
         return this.applyExplosionDecay(pCropBlock, LootTable.lootTable()
-                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(pGrownCropItem).when(pDropGrownCropCondition).apply(SetItemCountFunction.setCount(UniformGenerator.between(fruitsMin, fruitsMax)))
-               .otherwise(LootItem.lootTableItem(pSeedsItem))))
-                .withPool(LootPool.lootPool().when(pDropGrownCropCondition)
+                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(pGrownCropItem)
+                        .when(pDropGrownCropCondition)
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(fruitsMin, fruitsMax))).otherwise(LootItem.lootTableItem(pSeedsItem))))
+                .withPool(LootPool.lootPool()
+                        .when(pDropGrownCropCondition)
                         .add(LootItem.lootTableItem(pSeedsItem).apply(SetItemCountFunction.setCount(UniformGenerator.between(seedsMin, seedsMax))))));
     }
 
     protected LootTable.Builder createCropDrops(Block pCropBlock, Item pGrownCropItem, Item pSeedsItem,int pExtraRounds1, LootItemCondition.Builder pDropGrownCropCondition) {
-        return this.applyExplosionDecay(pCropBlock, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(pGrownCropItem)
-                        .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, pExtraRounds1))
-                .when(pDropGrownCropCondition).otherwise(LootItem.lootTableItem(pSeedsItem)))));
+        return this.applyExplosionDecay(pCropBlock, LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(pGrownCropItem)
+                                .when(pDropGrownCropCondition).otherwise(LootItem.lootTableItem(pSeedsItem))))
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(pSeedsItem)
+                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, pExtraRounds1)))));
+
     }
 
     protected LootTable.Builder createCropDrops(Block pCropBlock, Item pGrownCropItem, Item pSeedsItem, LootItemCondition.Builder pDropGrownCropCondition,int pExtraRounds) {
-        return this.applyExplosionDecay(pCropBlock, LootTable.lootTable().withPool(LootPool.lootPool().add(LootItem.lootTableItem(pGrownCropItem)
-                .when(pDropGrownCropCondition).otherwise(LootItem.lootTableItem(pSeedsItem)))).withPool(LootPool.lootPool().when(pDropGrownCropCondition)
-                .add(LootItem.lootTableItem(pSeedsItem).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, pExtraRounds)))));
+        return this.applyExplosionDecay(pCropBlock, LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(pGrownCropItem)
+                                .when(pDropGrownCropCondition).otherwise(LootItem.lootTableItem(pSeedsItem))))
+                .withPool(LootPool.lootPool()
+                        .when(pDropGrownCropCondition)
+                        .add(LootItem.lootTableItem(pSeedsItem)
+                                .apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, pExtraRounds)))));
+
     }
 
     public LootItemCondition.Builder cropDrop(Block blocks, int age) {

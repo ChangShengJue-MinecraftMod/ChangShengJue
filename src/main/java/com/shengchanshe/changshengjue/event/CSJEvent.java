@@ -33,6 +33,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmansh
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other.GangLeader;
 import com.shengchanshe.changshengjue.event.quest.PlayerQuestEvent;
 import com.shengchanshe.changshengjue.quest.QuestManager;
 import com.shengchanshe.changshengjue.entity.custom.croc.Croc;
@@ -768,6 +769,12 @@ public class CSJEvent {
         PaodingEvent.onEntityDeath(event);
         QuestEvent.onEntityDeath(event);
         PlayerQuestEvent.onPlayerDeath(event);
+        //如果死亡的是帮派首领
+        if (event.getSource().getEntity() instanceof Player player && event.getEntity() instanceof GangLeader){
+            if (player instanceof ServerPlayer serverPlayer) {
+                CSJAdvanceInit.BEAT_LEADER.trigger(serverPlayer);
+            }
+        }
     }
 
     @SubscribeEvent

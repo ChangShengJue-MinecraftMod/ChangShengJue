@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.event.quest;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.challenger.Challenger;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.quest.Quest;
 import com.shengchanshe.changshengjue.quest.QuestManager;
 import net.minecraft.network.chat.Component;
@@ -51,6 +52,11 @@ public class QuestEvent {
                             player.sendSystemMessage(Component.literal(
                                     "§a"+ quest.getQuestName()+ "任务进度: " + quest.getCurrentKills() + "/" + quest.getRequiredKills()
                             ));
+                            if(Objects.equals(quest.getQuestName(), "救民侠医") && Objects.equals(quest.getQuestName(), "投名状") && Objects.equals(quest.getQuestName(), "斋饭")){
+                                if(player instanceof ServerPlayer serverPlayer) {
+                                    CSJAdvanceInit.FINISH_TASK.trigger(serverPlayer);
+                                }
+                            }
                         }
                     }
                 }
@@ -108,6 +114,11 @@ public class QuestEvent {
                         player.sendSystemMessage(Component.literal(
                                 "§a"+ quest.getQuestName()+ "任务进度: " + quest.getCurrentKills() + "/" + quest.getRequiredKills()
                         ));
+                        if(Objects.equals(quest.getQuestName(), "救民侠医") && Objects.equals(quest.getQuestName(), "投名状") && Objects.equals(quest.getQuestName(), "斋饭")){
+                            if(player instanceof ServerPlayer serverPlayer) {
+                                CSJAdvanceInit.FINISH_TASK.trigger(serverPlayer);
+                            }
+                        }
                     }
                 });
     }

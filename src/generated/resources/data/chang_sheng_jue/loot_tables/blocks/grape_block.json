@@ -35,17 +35,6 @@
                   ]
                 }
               ],
-              "functions": [
-                {
-                  "enchantment": "minecraft:fortune",
-                  "formula": "minecraft:binomial_with_bonus_count",
-                  "function": "minecraft:apply_bonus",
-                  "parameters": {
-                    "extra": 6,
-                    "probability": 0.5714286
-                  }
-                }
-              ],
               "name": "chang_sheng_jue:grape"
             },
             {
@@ -53,6 +42,27 @@
               "name": "chang_sheng_jue:grape_seeds"
             }
           ]
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "enchantment": "minecraft:fortune",
+              "formula": "minecraft:binomial_with_bonus_count",
+              "function": "minecraft:apply_bonus",
+              "parameters": {
+                "extra": 6,
+                "probability": 0.5714286
+              }
+            }
+          ],
+          "name": "chang_sheng_jue:grape_seeds"
         }
       ],
       "rolls": 1.0

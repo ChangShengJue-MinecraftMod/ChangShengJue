@@ -78,6 +78,22 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get())
                 .add(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get());
 
+        this.tag(ItemTags.FLOWERS)
+                .add(Item.byBlock(ChangShengJueBlocks.MUGWORT_BLOCK.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.CUCKOO_BLOCK.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.PORTULACA_OLERACEA_BLOCK.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.JASMINE_BLOCK.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.KOCHIA_SCOPARIA_BLOCK.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.SHUI_XIAN_BLOCK.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.TAN_HUA_BLOCK.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.CAPSULE_BLOCK.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.SOLIDAGO.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.GEUM_TRIFLORUM.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.PURPLE_DANDELION.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.RED_KNOTWEED.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.PURPLE_RED_KNOTWEED.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.RAPE_FLOWERS.get()));
+
         this.tag(CSJTags.Items.DRINKS)
                 .addTag(CSJTags.Items.TEA)
                 .addTag(CSJTags.Items.WINE);
@@ -167,6 +183,12 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(Item.byBlock(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.ZI_TAN_PLANKS.get()));
 
+        this.tag(Tags.Items.CROPS_WHEAT)
+                .add(ChangShengJueItems.HORDEUM.get());
+
+        this.tag(Tags.Items.LEATHER)
+                .add(ChangShengJueItems.TIGER_SKIN.get())
+                .add(ChangShengJueItems.CROC_SKIN.get());
 
         //Forge矿石物品标签
         this.tag(Tags.Items.INGOTS).add(ChangShengJueItems.AG_INGOT.get());

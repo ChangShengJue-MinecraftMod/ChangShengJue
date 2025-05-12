@@ -78,7 +78,7 @@ public class Parcel extends Item {
 
     static {
         COTTON_ARMOR_PARCEL = Arrays.asList(
-                RANDOM.nextBoolean() ? ChangShengJueItems.COTTON_HELMET.get() : ChangShengJueItems.WHITE_COTTON_helmet.get(),
+                RANDOM.nextBoolean() ? ChangShengJueItems.COTTON_HELMET.get() : ChangShengJueItems.WHITE_COTTON_HELMET.get(),
                 ChangShengJueItems.COTTON_CHESTPLATE.get(),
                 ChangShengJueItems.COTTON_LEGGINGS.get(),
                 ChangShengJueItems.COTTON_BOOTS.get());

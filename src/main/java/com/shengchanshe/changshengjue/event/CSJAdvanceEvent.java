@@ -16,16 +16,25 @@ import com.shengchanshe.changshengjue.capability.martial_arts.turtle_breath_work
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.quest.Quest;
+import com.shengchanshe.changshengjue.quest.QuestManager;
+import com.shengchanshe.changshengjue.tags.CSJTags;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.UUID;
+
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJAdvanceEvent {
+    private static int TASK_COUNT = 0;
 
     //检查物品
     private static void checkForItem(net.minecraft.world.entity.player.Player player) {
@@ -103,6 +112,8 @@ public class CSJAdvanceEvent {
                     if (hasQiTianHelmet && hasQiTianChestplate && hasQiTianLeggings && hasQiTianBoots) {
                         CSJAdvanceInit.HAS_QI_TIAN.trigger(serverPlayer);
                     }
+                }else if (item == ChangShengJueItems.GANG_TOKEN.get() && itemStack.getCount() == 64) {
+                    CSJAdvanceInit.A_GROUP_GANG_TOKEN.trigger(serverPlayer);
                 }
             }
         }
@@ -113,6 +124,8 @@ public class CSJAdvanceEvent {
             checkPlayerCungFu(serverPlayer);
             checkForItem(event.player);
         }
+
+
     }
     private static void checkPlayerCungFu(ServerPlayer player) {
         // 获取玩家的独孤九剑能力
@@ -179,12 +192,12 @@ public class CSJAdvanceEvent {
             int level = qianKunDaNuoYi.getQianKunDaNuoYiLevel();
             CheckLevel(level,player);
         });
-        
+
         player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
             int level = theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel();
             CheckLevel(level,player);
         });
-        
+
         player.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
             int level = turtleBreathWork.getTurtleBreathWorkLevel();
             CheckLevel(level,player);
@@ -205,5 +218,36 @@ public class CSJAdvanceEvent {
             CSJAdvanceInit.GONG_FA_DONE.trigger(player);
         }
     }
+    /**
+     * 处理特定任务奖励（投名状）
+     * @param player 完成任务的玩家
+     * @param quest 完成的任务
+     */
+    public static void handleSpecialQuestReward(ServerPlayer player, Quest quest) {
+        UUID TOU_MING_ZHUANG = UUID.fromString("c4ac1553-b219-4e7c-a54d-e274f9815109");
+        UUID JIU_MING_XIA_YI = UUID.fromString("7dc9c671-ec29-4f3f-9467-5324fa026499");
+        UUID ZHAI_FAN = UUID.fromString("33954498-78EF-492C-9338-B2E85C0AD184");
+        UUID TIAN_RUO_YOU_QING = UUID.fromString("b005b283-34fa-4217-b417-866d830ccda8");
+        UUID CHU_BAO_AN_LIANG = UUID.fromString("066905EA-4B2D-408D-A86E-9D37F450B729");
+        if (TOU_MING_ZHUANG.equals(quest.getQuestId())) {
+            CSJAdvanceInit.FINISH_TASK.trigger(player);
+        }
+        if(JIU_MING_XIA_YI.equals(quest.getQuestId())){
+            CSJAdvanceInit.FINISH_TASK.trigger(player);
+        }
+        if(ZHAI_FAN.equals(quest.getQuestId())){
+            CSJAdvanceInit.FINISH_TASK.trigger(player);
+        }
+        if(TIAN_RUO_YOU_QING.equals(quest.getQuestId())){
+            CSJAdvanceInit.DONE_FINAL_TASK.trigger(player);
+        }
+        if(CHU_BAO_AN_LIANG.equals(quest.getQuestId())){
+            TASK_COUNT++;
+            if(TASK_COUNT == 5){
+                CSJAdvanceInit.DONE_FIVE_TASK.trigger(player);
+            }
+        }
+    }
+
 
 }

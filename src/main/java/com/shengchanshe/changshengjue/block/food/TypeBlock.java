@@ -31,7 +31,7 @@ public class TypeBlock extends Block {
     public static final IntegerProperty TYPES = IntegerProperty.create("types", 0, 2);
 
 
-    public final boolean hasLeftovers;
+    public boolean hasLeftovers;
 
     public static int nutrition = 0;
     public static float saturationMod = 0.0F;
@@ -44,13 +44,17 @@ public class TypeBlock extends Block {
     public TypeBlock(Properties properties, boolean hasLeftovers, int nutrition, float saturationMod) {
         super(properties);
         this.hasLeftovers = hasLeftovers;
-        this.nutrition = nutrition;
-        this.saturationMod = saturationMod;
+        TypeBlock.nutrition = nutrition;
+        TypeBlock.saturationMod = saturationMod;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(getTYPE(), getMaxTYPES()));
     }
 
-
-
+    public TypeBlock(Properties pProperties, int nutrition, float saturationMod) {
+        super(pProperties);
+        this.nutrition = nutrition;
+        this.saturationMod = saturationMod;
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+    }
 
 
     public IntegerProperty getTYPE() {

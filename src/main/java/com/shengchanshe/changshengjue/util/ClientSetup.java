@@ -76,7 +76,7 @@ public class ClientSetup {
     // 假设你有一个包含所有需要注册颜色渲染器的物品的集合
     static List<Supplier<? extends Item>> cottonArmorItems = Arrays.asList(
             ChangShengJueItems.COTTON_HELMET,
-            ChangShengJueItems.WHITE_COTTON_helmet,
+            ChangShengJueItems.WHITE_COTTON_HELMET,
             ChangShengJueItems.COTTON_CHESTPLATE,
             ChangShengJueItems.COTTON_LEGGINGS,
             ChangShengJueItems.COTTON_BOOTS,
@@ -284,6 +284,7 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.PLAQUE.get(), RenderType.cutout());
 
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get(), RenderType.cutout());

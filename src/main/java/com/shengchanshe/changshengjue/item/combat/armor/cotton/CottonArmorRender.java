@@ -21,7 +21,7 @@ public class CottonArmorRender extends GeoArmorRenderer<CottonArmor> {
      */
     public int getArmorColor(ItemStack stack) {
         if (stack.getItem() instanceof CottonArmor dyeableArmorItem) {
-            if (stack.is(ChangShengJueItems.COTTON_HELMET.get()) || stack.is(ChangShengJueItems.WHITE_COTTON_helmet.get()) ||
+            if (stack.is(ChangShengJueItems.COTTON_HELMET.get()) || stack.is(ChangShengJueItems.WHITE_COTTON_HELMET.get()) ||
                     stack.is(ChangShengJueItems.COTTON_CHESTPLATE.get()) || stack.is(ChangShengJueItems.COTTON_LEGGINGS.get()) || stack.is(ChangShengJueItems.COTTON_BOOTS.get())){
                 return dyeableArmorItem.getColor(stack);
             }

@@ -11,7 +11,7 @@ import net.minecraft.advancements.CriteriaTriggers;
 public class CSJAdvanceInit {
     /*
     if (player instanceof ServerPlayer serverPlayer) {
-        CSJAdvanceInit.makechinaware.trigger(serverPlayer);
+        CSJAdvanceInit.BEAT_LEADER.trigger(serverPlayer);
     }
     */
     //一级
@@ -20,7 +20,6 @@ public class CSJAdvanceInit {
     public static final HasMiFan HAS_MI_FAN = CriteriaTriggers.register(new HasMiFan());
     public static final HasSilverBullions HAS_SILVER_BULLIONS = CriteriaTriggers.register(new HasSilverBullions());
     public static final HasBronzeSword HAS_BRONZE_SWORD = CriteriaTriggers.register(new HasBronzeSword());
-//    public static final FindChineseVillage FIND_CHINESE_VILLAGE = CriteriaTriggers.register(new FindChineseVillage());
     public static final AccessGuildTask ACCESS_GUILD_TASK = CriteriaTriggers.register(new AccessGuildTask());
 
     //三级

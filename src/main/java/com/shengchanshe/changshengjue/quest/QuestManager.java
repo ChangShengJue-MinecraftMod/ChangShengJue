@@ -24,6 +24,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.zhang_men_xin_xue.
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.playerquest.PlayerQuestMenu;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.AbstractGangLeader;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeader;
+import com.shengchanshe.changshengjue.event.CSJAdvanceEvent;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.gui.playerquest.RefreshPlayerQuestScreenPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.quest.RefreshQuestScreenPacket;
@@ -261,7 +262,7 @@ public class QuestManager {
             player.sendSystemMessage(Component.translatable("quest.requirements.prompt"));
             return;
         }
-
+        CSJAdvanceEvent.handleSpecialQuestReward((ServerPlayer) player, actualQuest);
         // 给予奖励并移除需求物品
         actualQuest.takeRequirements(player);
         actualQuest.giveRewards(player);
@@ -661,4 +662,5 @@ public class QuestManager {
         }
         return quests;
     }
+
 }

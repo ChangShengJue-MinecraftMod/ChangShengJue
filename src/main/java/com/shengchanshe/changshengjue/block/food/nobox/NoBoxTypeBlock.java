@@ -32,7 +32,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NoBoxTypeBlock extends Block {
+public class NoBoxTypeBlock extends TypeBlock {
     public static int nutrition = 0;
     public static float saturationMod = 0.0F;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -44,7 +44,7 @@ public class NoBoxTypeBlock extends Block {
     }
 
     public NoBoxTypeBlock(Properties pProperties, int nutrition, float saturationMod) {
-        super(pProperties);
+        super(pProperties, nutrition, saturationMod);
         this.nutrition = nutrition;
         this.saturationMod = saturationMod;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
@@ -53,14 +53,7 @@ public class NoBoxTypeBlock extends Block {
 
 
 
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (level.isClientSide) {
-            if (this.addFed(level, pos, state, player, hand, nutrition, saturationMod).consumesAction()) {
-                return InteractionResult.SUCCESS;
-            }
-        }
-        return this.addFed(level, pos, state, player, hand, nutrition, saturationMod);
-    }
+
 
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
         if (player.getFoodData().getFoodLevel() < 20 || player.isCreative()) {

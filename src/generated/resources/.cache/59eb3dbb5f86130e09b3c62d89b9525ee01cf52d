@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-26T15:38:19.4371176	Loot Tables
+// 1.20.1	2025-05-12T20:21:09.8053479	Loot Tables
 d516f4a29d40770cbbc430275a25288af1bb5af3 data/chang_sheng_jue/loot_tables/blocks/acacia_bench.json
 ad4cf4b39a7d51e5a89dc61dc94d61b791098ae1 data/chang_sheng_jue/loot_tables/blocks/acacia_book_desk.json
 9091a604cab86e4a5dea3fec989602338b84cc4e data/chang_sheng_jue/loot_tables/blocks/acacia_drinking_table_and_chairs.json
@@ -180,7 +180,7 @@ d20de13c2ce7971a78e68ee2db7fd2bfd89f24a5 data/chang_sheng_jue/loot_tables/blocks
 695a76c8e5a9b42f47a9a4fc160dd42a5b18a5b9 data/chang_sheng_jue/loot_tables/blocks/golden_tile_block_3.json
 b2b6507085700291f74307a65bae47374a893d60 data/chang_sheng_jue/loot_tables/blocks/golden_tile_block_4.json
 82c7d49aeb2cb7d2637bf10292dccaa0c338b860 data/chang_sheng_jue/loot_tables/blocks/grape.json
-16b439c70bbd7ba0911eba93bda59eebe4dfd8ce data/chang_sheng_jue/loot_tables/blocks/grape_block.json
+e80c27886783c6a4893759d0bc5c945743996c71 data/chang_sheng_jue/loot_tables/blocks/grape_block.json
 6e86c941606db4b18d2f21254df3ff87d20a0669 data/chang_sheng_jue/loot_tables/blocks/grape_juice.json
 ca37197b7677bb0b49de3f0ace02c150b8565fcb data/chang_sheng_jue/loot_tables/blocks/gre_character_plaque_pavilion.json
 2fb1cc06429224eec68fb3b9d1bccab0867dfb0f data/chang_sheng_jue/loot_tables/blocks/gre_cylinder_tile_slab.json
@@ -288,7 +288,7 @@ fbe7f01ea27a695e212deb77267e704d94186227 data/chang_sheng_jue/loot_tables/blocks
 f61336d754a7b7ae0bdb9912a84213c7f6c5cdd9 data/chang_sheng_jue/loot_tables/blocks/pear_sapling.json
 1df5f689560b3bb730171fc9d1b43467f026f605 data/chang_sheng_jue/loot_tables/blocks/pig_trough.json
 5f7327903251e95cadc7a2bd97aa38928fbbf122 data/chang_sheng_jue/loot_tables/blocks/pineapple.json
-e2130e0b727edcfa15e2ed76b3d16fe978416268 data/chang_sheng_jue/loot_tables/blocks/pineapple_block.json
+3103da213328b77671ef01d792d800479bf13f21 data/chang_sheng_jue/loot_tables/blocks/pineapple_block.json
 c3ba7429f1bac158ff6ac5a1d3d056a3a191dde9 data/chang_sheng_jue/loot_tables/blocks/plaque.json
 d9eeaadcacfddc0165a52c4763d3d285dcbb871a data/chang_sheng_jue/loot_tables/blocks/poplar_defoliation.json
 dbb33c5344c2d5504eac3e6df137e3c2c3625f28 data/chang_sheng_jue/loot_tables/blocks/poplar_leaves.json

@@ -994,35 +994,35 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy("has_ingots_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
         //棉甲
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.COTTON_HELMET.get(),1)
-                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('#', Ingredient.of(Tags.Items.LEATHER))
                 .define('X', Ingredient.of(ChangShengJueItems.PEACOCK_FEATHERS.get()))
                 .define('$', Ingredient.of(ChangShengJueItems.COTTON.get()))
                 .pattern("#X#")
                 .pattern("$ $")
                 .unlockedBy("has_cotton", has(ChangShengJueItems.COTTON.get())).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.WHITE_COTTON_helmet.get(),1)
-                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.WHITE_COTTON_HELMET.get(),1)
+                .define('#', Ingredient.of(Tags.Items.LEATHER))
                 .define('X', Ingredient.of(ChangShengJueItems.WHITE_PEACOCK_FEATHERS.get()))
                 .define('$', Ingredient.of(ChangShengJueItems.COTTON.get()))
                 .pattern("#X#")
                 .pattern("$ $")
                 .unlockedBy("has_cotton", has(ChangShengJueItems.COTTON.get())).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.COTTON_CHESTPLATE.get(),1)
-                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('#', Ingredient.of(Tags.Items.LEATHER))
                 .define('$', Ingredient.of(ChangShengJueItems.COTTON.get()))
                 .pattern("# #")
                 .pattern("$#$")
                 .pattern("$$$")
                 .unlockedBy("has_cotton", has(ChangShengJueItems.COTTON.get())).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.COTTON_LEGGINGS.get(),1)
-                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('#', Ingredient.of(Tags.Items.LEATHER))
                 .define('$', Ingredient.of(ChangShengJueItems.COTTON.get()))
                 .pattern("###")
                 .pattern("$ $")
                 .pattern("$ $")
                 .unlockedBy("has_cotton", has(ChangShengJueItems.COTTON.get())).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.COTTON_BOOTS.get(),1)
-                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get()))
+                .define('#', Ingredient.of(Tags.Items.LEATHER))
                 .define('$', Ingredient.of(ChangShengJueItems.COTTON.get()))
                 .pattern("# #")
                 .pattern("$ $")
@@ -1036,8 +1036,9 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.MALE_TAOIST_CHESTPLATE.get(),1)
                 .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
+                .define('X', Ingredient.of(Items.LAPIS_LAZULI))
                 .pattern("# #")
-                .pattern("###")
+                .pattern("#X#")
                 .pattern("###")
                 .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
 
@@ -1102,14 +1103,14 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
 
         //皮革帽子
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.LEATHER_HELMET,1)
-                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get(), ChangShengJueItems.TIGER_SKIN.get(),ChangShengJueItems.CROC_SKIN.get()))
+                .define('#', Ingredient.of(Tags.Items.LEATHER))
                 .pattern("###")
                 .pattern("# #")
-                .unlockedBy("has_leather", has(ChangShengJueItems.DEERSKIN.get())).save(consumer);
+                .unlockedBy("has_leather", has(Tags.Items.LEATHER)).save(consumer);
 
         //皮革胸甲
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.LEATHER_CHESTPLATE,1)
-                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get(), ChangShengJueItems.TIGER_SKIN.get(),ChangShengJueItems.CROC_SKIN.get()))
+                .define('#', Ingredient.of(Tags.Items.LEATHER))
                 .pattern("# #")
                 .pattern("###")
                 .pattern("###")
@@ -1117,7 +1118,7 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
 
         //皮革护腿
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.LEATHER_LEGGINGS,1)
-                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get(), ChangShengJueItems.TIGER_SKIN.get(),ChangShengJueItems.CROC_SKIN.get()))
+                .define('#', Ingredient.of(Tags.Items.LEATHER))
                 .pattern("###")
                 .pattern("# #")
                 .pattern("# #")
@@ -1126,7 +1127,7 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
 
         //皮革靴子
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.LEATHER_BOOTS,1)
-                .define('#', Ingredient.of(ChangShengJueItems.DEERSKIN.get(), ChangShengJueItems.TIGER_SKIN.get(),ChangShengJueItems.CROC_SKIN.get()))
+                .define('#', Ingredient.of(Tags.Items.LEATHER))
                 .pattern("# #")
                 .pattern("# #")
                 .unlockedBy("has_leather", has(ChangShengJueItems.DEERSKIN.get())).save(consumer);

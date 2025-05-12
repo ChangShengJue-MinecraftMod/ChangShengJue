@@ -4,11 +4,14 @@
   "key": {
     "#": {
       "item": "chang_sheng_jue:silk"
+    },
+    "X": {
+      "item": "minecraft:lapis_lazuli"
     }
   },
   "pattern": [
     "# #",
-    "###",
+    "#X#",
     "###"
   ],
   "result": {
