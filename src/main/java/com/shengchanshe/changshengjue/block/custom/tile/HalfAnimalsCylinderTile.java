@@ -69,13 +69,13 @@ public class HalfAnimalsCylinderTile extends SlabBlock {
     }
 
     @Override
-    public BlockState rotate(BlockState blockState, Rotation rotation) {
-        return blockState.setValue(FACING,rotation.rotate(blockState.getValue(FACING)));
+    public BlockState rotate(BlockState pState, Rotation pRot) {
+        return (BlockState)pState.setValue(FACING, pRot.rotate((Direction)pState.getValue(FACING)));
     }
 
     @Override
-    public BlockState mirror(BlockState blockState, Mirror mirror) {
-        return super.mirror(blockState, mirror);
+    public BlockState mirror(BlockState pState, Mirror pMirror) {
+        return pState.rotate(pMirror.getRotation((Direction)pState.getValue(FACING)));
     }
 
     @Override

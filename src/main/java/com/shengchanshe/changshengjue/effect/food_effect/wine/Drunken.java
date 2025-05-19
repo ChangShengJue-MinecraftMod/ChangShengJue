@@ -7,6 +7,8 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 
+import java.util.Iterator;
+
 public class Drunken extends MobEffect {
     public Drunken() {
         super(MobEffectCategory.BENEFICIAL, 0xbcdcaf);
@@ -19,16 +21,23 @@ public class Drunken extends MobEffect {
     }
 
     @Override
-    public void removeAttributeModifiers(LivingEntity pLivingEntity, AttributeMap pAttributeMap, int pAmplifier) {
-        super.removeAttributeModifiers(pLivingEntity, pAttributeMap, pAmplifier);
-        if (pLivingEntity.hasEffect(MobEffects.CONFUSION) && pLivingEntity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
-            pLivingEntity.removeEffect(MobEffects.CONFUSION);
-            pLivingEntity.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+    public void removeAttributeModifiers(LivingEntity entity, AttributeMap attributes, int amplifier) {
+        super.removeAttributeModifiers(entity, attributes, amplifier);
+
+        if (!entity.level().isClientSide) {
+            Iterator<MobEffectInstance> iterator = entity.getActiveEffects().iterator();
+            while (iterator.hasNext()) {
+                MobEffectInstance effect = iterator.next();
+                if (effect.getEffect() == MobEffects.CONFUSION ||
+                        effect.getEffect() == MobEffects.MOVEMENT_SLOWDOWN) {
+                    iterator.remove();
+                }
+            }
         }
     }
 
     @Override
     public boolean isDurationEffectTick(int duration, int amplifier) {
-        return true; // 每 tick 检查冲突
+        return true;
     }
 }

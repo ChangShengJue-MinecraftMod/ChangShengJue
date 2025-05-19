@@ -13,6 +13,5 @@
       },
       "weight": 80
     }
-  ],
-  "fallback": "minecraft:empty"
+  ]
 }

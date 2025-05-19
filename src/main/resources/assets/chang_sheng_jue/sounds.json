@@ -300,5 +300,11 @@
     "sounds": [
       "chang_sheng_jue:martial_arts/qian_kun_da_nuo_yi_sound"
     ]
+  },
+  "wind_chime_sound": {
+    "subtitle": "sounds.chang_sheng_jue.wind_chime_sound",
+    "sounds": [
+      "chang_sheng_jue:block/wind_chime_sound"
+    ]
   }
 }

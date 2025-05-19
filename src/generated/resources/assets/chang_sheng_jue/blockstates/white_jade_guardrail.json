@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "chang_sheng_jue:block/white_jade_guardrail",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "chang_sheng_jue:block/white_jade_guardrail"
+    },
+    "facing=south": {
+      "model": "chang_sheng_jue:block/white_jade_guardrail",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "chang_sheng_jue:block/white_jade_guardrail",
+      "y": 270
+    }
+  }
+}

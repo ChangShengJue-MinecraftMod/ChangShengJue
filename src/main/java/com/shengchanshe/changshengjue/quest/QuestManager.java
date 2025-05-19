@@ -259,7 +259,7 @@ public class QuestManager {
         // 检查任务完成条件
         Quest actualQuest = matchedQuest.get();
         if (!actualQuest.canComplete(player)) {
-            player.sendSystemMessage(Component.translatable("quest.requirements.prompt"));
+            player.sendSystemMessage(Component.translatable("quest."+ChangShengJue.MOD_ID+".requirements.prompt"));
             return;
         }
         CSJAdvanceEvent.handleSpecialQuestReward((ServerPlayer) player, actualQuest);
@@ -307,7 +307,7 @@ public class QuestManager {
 
             Quest actualQuest = matchedQuest.get();
             if (!actualQuest.canComplete(player)) {
-                player.sendSystemMessage(Component.translatable("quest.requirements.prompt"));
+                player.sendSystemMessage(Component.translatable("quest."+ChangShengJue.MOD_ID+".requirements.prompt"));
                 return;
             }
 

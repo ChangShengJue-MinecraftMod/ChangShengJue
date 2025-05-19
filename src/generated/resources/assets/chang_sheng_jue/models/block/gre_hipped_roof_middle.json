@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/hipped_roof_middle",
+  "textures": {
+    "1": "chang_sheng_jue:block/gre_hipped_roof",
+    "particle": "chang_sheng_jue:block/gre_hipped_roof"
+  }
+}

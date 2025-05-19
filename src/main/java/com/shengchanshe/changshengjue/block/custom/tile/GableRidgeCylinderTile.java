@@ -6,10 +6,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
@@ -26,6 +23,7 @@ import java.util.stream.Stream;
 public class GableRidgeCylinderTile extends CylinderTile {
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
     public static final BooleanProperty LEFT = BooleanProperty.create("left");
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final VoxelShape GABLE_RIDGE_CYLINDER_TILE_BOTTOM_N = Block.box(0, 0, 7, 16, 16, 16);
     public static final VoxelShape GABLE_RIDGE_CYLINDER_TILE_BOTTOM_E = Block.box(0, 0, 0, 9, 16, 16);
     public static final VoxelShape GABLE_RIDGE_CYLINDER_TILE_BOTTOM_S = Block.box(0, 0, 0, 16, 16, 9);
@@ -68,7 +66,7 @@ public class GableRidgeCylinderTile extends CylinderTile {
 
     @Override
     public BlockState rotate(BlockState blockState, Rotation rotation) {
-        return blockState.setValue(FACING,rotation.rotate(blockState.getValue(FACING)));
+        return super.rotate(blockState,rotation);
     }
 
     @Override

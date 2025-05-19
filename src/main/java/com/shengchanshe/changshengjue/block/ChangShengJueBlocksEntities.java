@@ -6,6 +6,7 @@ import com.shengchanshe.changshengjue.block.custom.shing_mun.bigright.BigShingMu
 import com.shengchanshe.changshengjue.block.custom.shing_mun.bigright.entity.BigShingMunRightEntity;
 import com.shengchanshe.changshengjue.block.custom.shing_mun.left.entity.ShingMunLeftEntity;
 import com.shengchanshe.changshengjue.block.custom.shing_mun.right.entity.ShingMunRightEntity;
+import com.shengchanshe.changshengjue.block.decoration.windchime.WindChimeEntity;
 import com.shengchanshe.changshengjue.block.entity.*;
 import com.shengchanshe.changshengjue.block.entity.desk.Desk;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -62,6 +63,11 @@ public class ChangShengJueBlocksEntities {
     public static final RegistryObject<BlockEntityType<BigShingMunRightEntity>> BIG_SHING_MUN_RIGHT_ENTITY =
             BLOCK_ENTITYES.register("big_shing_mun_right_entity", ()-> BlockEntityType.Builder.of(BigShingMunRightEntity::new,
                     ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get()).build(null));
+
+    //风铃
+    public static final RegistryObject<BlockEntityType<WindChimeEntity>> WIND_CHIME_ENTITY =
+            BLOCK_ENTITYES.register("wind_chime_entity",
+                    ()-> BlockEntityType.Builder.of(WindChimeEntity::new, ChangShengJueBlocks.WIND_CHIME.get()).build(null));
 
 
     //桌子

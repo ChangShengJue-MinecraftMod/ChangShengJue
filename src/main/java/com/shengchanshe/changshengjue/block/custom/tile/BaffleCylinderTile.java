@@ -7,10 +7,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -19,6 +22,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class BaffleCylinderTile extends CylinderTile {
     public static final BooleanProperty BAFFLE = BooleanProperty.create("baffle");
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
     public BaffleCylinderTile(Properties properties) {
         super(properties);
@@ -59,6 +63,11 @@ public class BaffleCylinderTile extends CylinderTile {
         BlockState blockstate = this.defaultBlockState().setValue(FACING,pContext.getHorizontalDirection().getOpposite())
                 .setValue(BAFFLE, direction == Direction.NORTH || direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH);
         return blockstate;
+    }
+
+    @Override
+    public BlockState rotate(BlockState blockState, Rotation rotation) {
+        return super.rotate(blockState,rotation);
     }
 
     @Override
