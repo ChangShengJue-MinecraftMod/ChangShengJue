@@ -1,5 +1,5 @@
-// 1.20.1	2025-05-12T10:34:54.3182036	Tags for minecraft:item mod id chang_sheng_jue
-053c60963f1ba310289d3ab69792aed0b1ed0c01 data/chang_sheng_jue/tags/items/artifact.json
+// 1.20.1	2025-05-18T17:15:22.6887984	Tags for minecraft:item mod id chang_sheng_jue
+cc5dd550d43d528b509db78c5b51b23885f33a25 data/chang_sheng_jue/tags/items/artifact.json
 07ecd0eb3ab21efc7faa1276d80bec0779c1300d data/chang_sheng_jue/tags/items/doors.json
 9d16765683238565c6ad1db7bdb5cf5b1a4a6620 data/chang_sheng_jue/tags/items/drinks.json
 4ec970d0c2bd3dc984a0f18c9928dfb8a1213a70 data/chang_sheng_jue/tags/items/external_kung_fu_mj.json
@@ -26,4 +26,4 @@ ff3f27392f0f5079b01c75bf6968fca3a5e01af0 data/minecraft/tags/items/logs.json
 cd30965299c8bc8e16ad7d950021e54b42366643 data/minecraft/tags/items/logs_that_burn.json
 8c58fd159b0d57ec71e1dfdfad642e205b0ba090 data/minecraft/tags/items/pickaxes.json
 8464f886a195f298b9d4510ebd6779b98683eff5 data/minecraft/tags/items/planks.json
-0c0922727474957e1118f848eea2e32913bf93c4 data/minecraft/tags/items/swords.json
+a99ce8795baebaec61c7037ac51ea3a94cfa4f85 data/minecraft/tags/items/swords.json

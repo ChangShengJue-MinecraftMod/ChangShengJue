@@ -41,6 +41,12 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.GUI_HUA_DEFOLIATION.get());
                 output.accept(ChangShengJueBlocks.MULBERRY_LEAVES.get());
                 output.accept(ChangShengJueBlocks.MULBERRY_SAPLING.get());
+                output.accept(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get());
+                output.accept(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get());
+                output.accept(ChangShengJueBlocks.JI_CHI_MU_LEAVES.get());
+                output.accept(ChangShengJueBlocks.JI_CHI_MU_SAPLING.get());
+                output.accept(ChangShengJueBlocks.ZI_TAN_LEAVES.get());
+                output.accept(ChangShengJueBlocks.ZI_TAN_SAPLING.get());
 
                 output.accept(ChangShengJueBlocks.MUGWORT_BLOCK.get());
                 output.accept(ChangShengJueBlocks.CUCKOO_BLOCK.get());
@@ -533,7 +539,7 @@ public class ChangShengJueCreativeModeTab {
             .title(Component.translatable("itemGroup.chang_sheng_jue_combat")).icon(() ->
                     ChangShengJueItems.TU_LONG_DAO.get().getDefaultInstance()).displayItems((parameters,output)->{
                 output.accept(ChangShengJueItems.BEAT_DOG_STICK.get().getDefaultInstance());
-                output.accept(ChangShengJueItems.YI_TINA_JIAN.get().getDefaultInstance());
+                output.accept(ChangShengJueItems.YI_TIAN_JIAN.get().getDefaultInstance());
                 output.accept(ChangShengJueItems.TU_LONG_DAO.get().getDefaultInstance());
                 output.accept(ChangShengJueItems.BA_WANG_QIANG.get().getDefaultInstance());
                 output.accept(ChangShengJueItems.BRONZE_SWORD.get());

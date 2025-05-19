@@ -9,7 +9,6 @@ import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntity;
 import com.shengchanshe.changshengjue.entity.combat.yi_tian_jian.YiTianJianAttackEntity;
-import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.DuguNineSwordsPacket;
@@ -99,7 +98,7 @@ public class Sword extends SwordItem {
                     }
                 }
             });
-            if (player.getMainHandItem().is(ChangShengJueItems.YI_TINA_JIAN.get())){
+            if (player.getMainHandItem().is(ChangShengJueItems.YI_TIAN_JIAN.get())){
                 YiTianJianAttackEntity yiTianJianAttackEntity = new YiTianJianAttackEntity(ChangShengJueEntity.YI_TIAN_JIAN_ATTACK.get(), player.level());
                 yiTianJianAttackEntity.moveTo(entity.position().add(0, entity.getEyeHeight(), 0).add(entity.getForward().scale(0)));
                 yiTianJianAttackEntity.setYRot(player.getYRot());

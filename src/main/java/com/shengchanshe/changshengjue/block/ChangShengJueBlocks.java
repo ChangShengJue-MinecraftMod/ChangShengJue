@@ -125,6 +125,7 @@ public class ChangShengJueBlocks {
             ()-> new LotusBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission()
                     .randomTicks().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY)));
     //树木
+    //芒果树
     public static final RegistryObject<Block> MANGO_LOG = registerBlock("mango_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
     public static final RegistryObject<Block> MANGO_LEAVES = registerBlock("mango_leaves",
@@ -167,7 +168,7 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> GUI_HUA_LEAVES = registerBlock("gui_hua_leaves",
             ()-> new GuiHuaLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> GUI_HUA_SAPLING = registerBlock("gui_hua_sapling",
-            ()-> new SaplingBlock(new GuiHuaTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+            ()-> new SaplingBlock(new HuangHuaLiTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
     public static final RegistryObject<Block> GUI_HUA_DEFOLIATION = registerBlock( "gui_hua_defoliation",
             ()-> new LeavesDefoliation(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable()
                     .noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY)));
@@ -188,6 +189,10 @@ public class ChangShengJueBlocks {
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
     public static final RegistryObject<Block> HUANG_HUA_LI_PLANKS = registerBlock("huang_hua_li_planks",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> HUANG_HUA_LI_LEAVES = registerBlock("huang_hua_li_leaves",
+            ()-> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
+    public static final RegistryObject<Block> HUANG_HUA_LI_SAPLING = registerBlock("huang_hua_li_sapling",
+            ()-> new SaplingBlock(new HuangHuaLiTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
     public static final RegistryObject<Block> JI_CHI_MU_LOG = registerBlock("ji_chi_mu_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
@@ -195,6 +200,10 @@ public class ChangShengJueBlocks {
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
     public static final RegistryObject<Block> JI_CHI_MU_PLANKS = registerBlock("ji_chi_mu_planks",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> JI_CHI_MU_LEAVES = registerBlock("ji_chi_mu_leaves",
+            ()-> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
+    public static final RegistryObject<Block> JI_CHI_MU_SAPLING = registerBlock("ji_chi_mu_sapling",
+            ()-> new SaplingBlock(new JiChiMuTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
     public static final RegistryObject<Block> ZI_TAN_LOG = registerBlock("zi_tan_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
@@ -202,6 +211,10 @@ public class ChangShengJueBlocks {
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
     public static final RegistryObject<Block> ZI_TAN_PLANKS = registerBlock("zi_tan_planks",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> ZI_TAN_LEAVES = registerBlock("zi_tan_leaves",
+            ()-> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
+    public static final RegistryObject<Block> ZI_TAN_SAPLING = registerBlock("zi_tan_sapling",
+            ()-> new SaplingBlock(new ZiTanTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
     //白杨树
     public static final RegistryObject<Block> POPLAR_LOG = registerBlock("poplar_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));

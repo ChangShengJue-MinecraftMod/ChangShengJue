@@ -10,26 +10,18 @@ import com.shengchanshe.changshengjue.item.combat.clubbed.BeatDogStick;
 import com.shengchanshe.changshengjue.item.combat.clubbed.BeatDogStickRender;
 import com.shengchanshe.changshengjue.item.combat.clubbed.PanHuaGun;
 import com.shengchanshe.changshengjue.item.combat.clubbed.PanHuaGunRender;
-import com.shengchanshe.changshengjue.item.combat.knife.HengDao;
-import com.shengchanshe.changshengjue.item.combat.knife.HengDaoRender;
-import com.shengchanshe.changshengjue.item.combat.knife.LargeKnife;
-import com.shengchanshe.changshengjue.item.combat.knife.LargeKnifeRender;
+import com.shengchanshe.changshengjue.item.combat.knife.*;
 import com.shengchanshe.changshengjue.item.combat.lance.BaWangQiang;
 import com.shengchanshe.changshengjue.item.combat.lance.BaWangQiangRender;
 import com.shengchanshe.changshengjue.item.combat.lance.RedTasselledSpear;
 import com.shengchanshe.changshengjue.item.combat.lance.RedTasselledSpearRender;
-import com.shengchanshe.changshengjue.item.combat.sword.SoftSword;
-import com.shengchanshe.changshengjue.item.combat.sword.SoftSwordRender;
+import com.shengchanshe.changshengjue.item.combat.sword.*;
 import net.minecraft.client.Minecraft;
 
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
@@ -44,17 +36,15 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
     private boolean checkModWeapon(ItemStack item) {
         return
                 item.getItem().equals(ChangShengJueItems.THREE_THROWING_KNIVES.get())
-                        || item.getItem().equals(ChangShengJueItems.YI_TINA_JIAN.get())
-                        || item.getItem().equals(ChangShengJueItems.TU_LONG_DAO.get())
-                        || item.getItem().equals(ChangShengJueItems.BRONZE_SWORD.get())
-                        || item.getItem().equals(ChangShengJueItems.HAN_JIAN.get())
-                        || item.getItem().equals(ChangShengJueItems.KITCHEN_KNIFE.get())
+
+
                 ;
     }
     private boolean checkModWeaponqiang(ItemStack item) {
         return
                 item.getItem().equals(ChangShengJueItems.BA_WANG_QIANG.get())
                 || item.getItem().equals(ChangShengJueItems.RED_TASSELLED_SPEAR.get())
+
                 ;
     }
     private boolean checkModWeapongun(ItemStack item) {
@@ -66,6 +56,16 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
     private boolean checkModWeapondao(ItemStack item) {
         return
                 item.getItem().equals(ChangShengJueItems.LARGE_KNIFE.get())
+
+                ;
+    }
+
+    private boolean checkModWeapojian(ItemStack item) {
+        return
+                item.getItem().equals(ChangShengJueItems.YI_TIAN_JIAN.get())
+                || item.getItem().equals(ChangShengJueItems.TU_LONG_DAO.get())
+                || item.getItem().equals(ChangShengJueItems.BRONZE_SWORD.get())
+                || item.getItem().equals(ChangShengJueItems.HAN_JIAN.get())
                 ;
     }
 
@@ -208,7 +208,45 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
                 // 应用缩放
                 float scale = 0.7f;
                 poseStack.scale(scale, scale, scale);
-            }else if(checkModWeapondao(itemStack)){
+            }else if (checkModWeapojian(itemStack)) {
+                switch (facing) {
+                    case NORTH -> {
+                        poseStack.translate(0.0, 2.18, 0.70);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(270));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(25));
+                    }
+                    case SOUTH -> {
+                        poseStack.translate(1.0, 2.18, 0.30);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(90));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(25));
+                    }
+                    case WEST -> {
+                        poseStack.translate(0.70, 2.18, 1.0);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(25));
+
+                    }
+                    case EAST -> {
+                        poseStack.translate(0.30, 2.18, 0.0);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(25));
+                    }
+                    default -> {
+                        poseStack.translate(0.0, 1.2, 0.15);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+                    }
+                }
+
+                // 应用缩放
+                float scale = 1.0f;
+                poseStack.scale(scale, scale, scale);
+            } else if(checkModWeapondao(itemStack)){
                 switch (facing) {
                     case NORTH -> {
                         poseStack.translate(0, 1.75, 0.6);
@@ -247,7 +285,47 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
                 float scale = 0.8f;
                 poseStack.scale(scale, scale, scale);
 
-            } else if(itemStack.getItem().equals(ChangShengJueItems.HENG_DAO.get())){
+            }else if(itemStack.getItem().equals(ChangShengJueItems.KITCHEN_KNIFE.get())){
+                switch (facing) {
+                    case NORTH -> {
+                        poseStack.translate(0, 1.25, 0.6);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(270));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-25));
+                    }
+                    case SOUTH -> {
+                        poseStack.translate(1, 1.25, 0.4);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(90));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-25));
+                    }
+                    case WEST -> {
+                        poseStack.translate(0.6, 1.25, 1);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-25));
+
+                    }
+                    case EAST -> {
+                        poseStack.translate(0.4, 1.25, 0);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(180));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-25));
+                    }
+                    default -> {
+                        poseStack.translate(0.0, 1.2, 0.15);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+                    }
+                }
+
+                // 应用缩放
+                float scale = 1.0f;
+                poseStack.scale(scale, scale, scale);
+
+            }
+            else if(itemStack.getItem().equals(ChangShengJueItems.HENG_DAO.get())){
                 switch (facing) {
                     case NORTH -> {
                         poseStack.translate(0.11, 1.85, 0.57);
@@ -384,20 +462,24 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
             }else if(itemStack.getItem() instanceof LargeKnife){
                 LargeKnifeRender renderer = new LargeKnifeRender();
                 renderer.renderByItem(itemStack, ItemDisplayContext.FIXED, poseStack, buffer, packedLight, packedOverlay);
-            }
-            else if (itemStack.getItem() instanceof HengDao) {
+            } else if (itemStack.getItem() instanceof HengDao) {
                 HengDaoRender renderer = new HengDaoRender();
                 renderer.renderByItem(itemStack, ItemDisplayContext.FIXED, poseStack, buffer, packedLight, packedOverlay);
-            }
-            else if (itemStack.getItem() instanceof TridentItem) {
-                ItemProperties.register(Items.TRIDENT, new ResourceLocation(ChangShengJue.MOD_ID, "weapon_rack"),
-                        (stack, clientLevel, livingEntity, i) -> {
-                            if (livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack) {
-                                return 1.0F;
-                            } else {
-                                return 0.0F;
-                            }
-                        });
+            } else if (itemStack.getItem() instanceof YiTianJian) {
+                YiTianJianRender renderer = new YiTianJianRender();
+                renderer.renderByItem(itemStack, ItemDisplayContext.FIXED, poseStack, buffer, packedLight, packedOverlay);
+            } else if (itemStack.getItem() instanceof TuLongDao) {
+                TuLongDaoRender renderer = new TuLongDaoRender();
+                renderer.renderByItem(itemStack, ItemDisplayContext.FIXED, poseStack, buffer, packedLight, packedOverlay);
+            } else if (itemStack.getItem() instanceof HanJian) {
+                HanJianRender renderer = new HanJianRender();
+                renderer.renderByItem(itemStack, ItemDisplayContext.FIXED, poseStack, buffer, packedLight, packedOverlay);
+            } else if (itemStack.getItem() instanceof KitchenKnife) {
+                KitchenKnifeRender renderer = new KitchenKnifeRender();
+                renderer.renderByItem(itemStack, ItemDisplayContext.FIXED, poseStack, buffer, packedLight, packedOverlay);
+            } else if (itemStack.getItem() instanceof BronzeSword) {
+                BronzeSwordRender renderer = new BronzeSwordRender();
+                renderer.renderByItem(itemStack, ItemDisplayContext.FIXED, poseStack, buffer, packedLight, packedOverlay);
             }
 
             else {

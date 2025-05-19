@@ -529,7 +529,7 @@ public class ChangShengJueItems {
     //打狗棒
     public static final RegistryObject<Item> BEAT_DOG_STICK = ITEMS.register("beat_dog_stick", BeatDogStick::new);
     //倚天剑
-    public static final RegistryObject<Item> YI_TINA_JIAN = ITEMS.register("yi_tina_jian", YiTianJian::new);
+    public static final RegistryObject<Item> YI_TIAN_JIAN = ITEMS.register("yi_tian_jian", YiTianJian::new);
     //屠龙刀
     public static final RegistryObject<Item> TU_LONG_DAO = ITEMS.register("tu_long_dao", TuLongDao::new);
     //霸王枪

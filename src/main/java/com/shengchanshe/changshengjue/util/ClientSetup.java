@@ -133,6 +133,12 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MEI_HUA_LEAVES.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MEI_HUA_SAPLING.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MEI_HUA_DEFOLIATION.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get(),  RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.JI_CHI_MU_LEAVES.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.JI_CHI_MU_SAPLING.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ZI_TAN_LEAVES.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ZI_TAN_SAPLING.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BANANA_LEAVES.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BANANA_FRUIT.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BANANA_SAPLING.get(), RenderType.cutout());

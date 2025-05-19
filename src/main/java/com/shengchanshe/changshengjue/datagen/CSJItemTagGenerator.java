@@ -130,7 +130,7 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
 
         this.tag(CSJTags.Items.ARTIFACT)
                 .add(ChangShengJueItems.BEAT_DOG_STICK.get())
-                .add(ChangShengJueItems.YI_TINA_JIAN.get())
+                .add(ChangShengJueItems.YI_TIAN_JIAN.get())
                 .add(ChangShengJueItems.TU_LONG_DAO.get())
                 .add(ChangShengJueItems.BA_WANG_QIANG.get());
 
@@ -144,7 +144,7 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(ChangShengJueItems.PAN_HUA_GUN.get())
                 .add(ChangShengJueItems.KITCHEN_KNIFE.get())
                 .add(ChangShengJueItems.BEAT_DOG_STICK.get())
-                .add(ChangShengJueItems.YI_TINA_JIAN.get())
+                .add(ChangShengJueItems.YI_TIAN_JIAN.get())
                 .add(ChangShengJueItems.TU_LONG_DAO.get())
                 .add(ChangShengJueItems.BA_WANG_QIANG.get());
 

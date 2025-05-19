@@ -5,6 +5,9 @@
     64,
     64
   ],
+  "textures": {
+    "particle": "chang_sheng_jue:item/soft_sword"
+  },
   "display": {
     "thirdperson_righthand": {
       "translation": [
@@ -22,26 +25,26 @@
     },
     "firstperson_righthand": {
       "rotation": [
-        -75,
+        -30,
         0,
         0
       ],
       "translation": [
         3,
-        -2.5,
-        8.5
+        -8,
+        0
       ]
     },
     "firstperson_lefthand": {
       "rotation": [
-        -75,
+        -30,
         0,
         0
       ],
       "translation": [
         3,
-        -2.5,
-        8.5
+        -8,
+        0
       ]
     },
     "ground": {
@@ -90,8 +93,5 @@
         0.7
       ]
     }
-  },
-  "textures": {
-    "particle":  "chang_sheng_jue:item/soft_sword"
   }
 }

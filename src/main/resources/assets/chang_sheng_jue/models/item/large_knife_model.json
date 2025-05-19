@@ -5,11 +5,14 @@
     32,
     32
   ],
+  "textures": {
+    "particle": "chang_sheng_jue:item/large_knife"
+  },
   "display": {
     "thirdperson_righthand": {
       "translation": [
         0,
-        0.5,
+        0,
         1
       ],
       "scale": [
@@ -21,7 +24,7 @@
     "thirdperson_lefthand": {
       "translation": [
         0,
-        0.5,
+        0,
         1
       ],
       "scale": [
@@ -110,8 +113,5 @@
         0.7
       ]
     }
-  },
-  "textures": {
-    "particle": "chang_sheng_jue:item/large_knife"
   }
 }

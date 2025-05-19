@@ -194,7 +194,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
 
         //善恶谁定？
         Advancement finishtask = Advancement.Builder.advancement().parent(accessguildtask)
-                .display(ChangShengJueItems.YI_TINA_JIAN.get()
+                .display(ChangShengJueItems.YI_TIAN_JIAN.get()
                         , Component.translatable("advancement.chang_sheng_jue.finishtask").withStyle(ChatFormatting.GREEN)
                         , Component.translatable("advancement.chang_sheng_jue.finishtask.desc").withStyle(ChatFormatting.GRAY)
                         , (ResourceLocation) null
@@ -228,7 +228,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
         // 绝世神兵
         ///*挑战进度*///
         Advancement hassword = Advancement.Builder.advancement().parent(usewaigong)
-                .display(ChangShengJueItems.YI_TINA_JIAN.get()
+                .display(ChangShengJueItems.YI_TIAN_JIAN.get()
                         , Component.translatable("advancement.chang_sheng_jue.hassword").withStyle(ChatFormatting.GOLD)
                         , Component.translatable("advancement.chang_sheng_jue.hassword.desc").withStyle(ChatFormatting.GRAY)
                         , (ResourceLocation) null

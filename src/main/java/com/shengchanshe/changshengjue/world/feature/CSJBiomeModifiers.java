@@ -38,6 +38,9 @@ public class CSJBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_TREE_GUIHUA = registerKey("add_tree_guihua");
     public static final ResourceKey<BiomeModifier> ADD_TREE_MEIHUA = registerKey("add_tree_meihua");
     public static final ResourceKey<BiomeModifier> ADD_TREE_MULBERRY = registerKey("add_tree_mulberry");
+    public static final ResourceKey<BiomeModifier> ADD_TREE_HUANGHUALI = registerKey("add_tree_huanghuali");
+    public static final ResourceKey<BiomeModifier> ADD_TREE_JICHIMU = registerKey("add_tree_jichimu");
+    public static final ResourceKey<BiomeModifier> ADD_TREE_ZITAN = registerKey("add_tree_zitian");
 
     //花花草草
     public static final ResourceKey<BiomeModifier> ADD_MUGWORT = registerKey("add_mugwort");
@@ -107,6 +110,8 @@ public class CSJBiomeModifiers {
                 HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.ORE_SYDEROLIFE_ORE_LOWER)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
+
+        //树木
         context.register(ADD_TREE_MANGO,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_SAVANNA),
                 HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.MANGO_TREE_PLACED_KEY)),
@@ -140,6 +145,22 @@ public class CSJBiomeModifiers {
                 biomes.getOrThrow(BiomeTags.IS_SAVANNA),
                 HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.MULBERRY_TREE_PLACED_KEY)),
                 GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_TREE_HUANGHUALI,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_SAVANNA),
+                HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.HUANGHUALI_TREE_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_TREE_JICHIMU,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_SAVANNA),
+                HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.JICHIMU_TREE_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_TREE_ZITAN,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_SAVANNA),
+                HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.ZITAN_TREE_PLACED_KEY)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
 
         //花花草草
         context.register(ADD_MUGWORT,new ForgeBiomeModifiers.AddFeaturesBiomeModifier(

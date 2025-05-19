@@ -94,15 +94,29 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
                         .add(this.applyExplosionCondition(block, LootItem.lootTableItem(ChangShengJueItems.MEI_HUA.get()))
                                 .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.2F, 0.3F, 0.4F, 0.7F, 0.8F)))));
 
+        //黄花梨
         this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get());
         this.dropSelf(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get());
         this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get());
+        this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get());
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get(),
+                (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+        //鸡翅木
         this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_LOG.get());
         this.dropSelf(ChangShengJueBlocks.STRIPPED_JI_CHI_MU_LOG.get());
         this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get());
+        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_SAPLING.get());
+        this.add(ChangShengJueBlocks.JI_CHI_MU_LEAVES.get(),
+                (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.JI_CHI_MU_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
+
         this.dropSelf(ChangShengJueBlocks.ZI_TAN_LOG.get());
         this.dropSelf(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get());
         this.dropSelf(ChangShengJueBlocks.ZI_TAN_PLANKS.get());
+        this.dropSelf(ChangShengJueBlocks.ZI_TAN_SAPLING.get());
+        this.add(ChangShengJueBlocks.ZI_TAN_LEAVES.get(),
+                (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.ZI_TAN_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         //白杨树
         this.dropSelf(ChangShengJueBlocks.POPLAR_LOG.get());
         this.dropSelf(ChangShengJueBlocks.POPLAR_SAPLING.get());

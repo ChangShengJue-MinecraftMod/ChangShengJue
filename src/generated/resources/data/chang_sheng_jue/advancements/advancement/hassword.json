@@ -15,7 +15,7 @@
     "frame": "challenge",
     "hidden": false,
     "icon": {
-      "item": "chang_sheng_jue:yi_tina_jian",
+      "item": "chang_sheng_jue:yi_tian_jian",
       "nbt": "{Damage:0}"
     },
     "show_toast": true,

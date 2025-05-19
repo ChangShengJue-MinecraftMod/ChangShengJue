@@ -154,11 +154,6 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.INK_LEGGINGS);
         simpleItem(ChangShengJueItems.INK_BOOTS);
         //武器
-        handheldItem(ChangShengJueItems.BRONZE_SWORD);
-        handheldItem(ChangShengJueItems.HAN_JIAN);
-        handheldItem(ChangShengJueItems.KITCHEN_KNIFE);
-        handheldItem(ChangShengJueItems.YI_TINA_JIAN);
-        handheldItem(ChangShengJueItems.TU_LONG_DAO);
         handheldItem(ChangShengJueItems.THROWING_KNIVES);
         handheldItem(ChangShengJueItems.THREE_THROWING_KNIVES);
         handheldItem(ChangShengJueItems.SEVEN_THROWING_KNIVES);

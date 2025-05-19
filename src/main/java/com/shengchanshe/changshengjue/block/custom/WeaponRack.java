@@ -5,7 +5,6 @@ import com.shengchanshe.changshengjue.block.entity.WeaponRackEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -33,13 +32,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
-
-import static com.shengchanshe.changshengjue.util.ChangShengJueVoxelShape.*;
 
 public class WeaponRack extends BaseEntityBlock {
 
@@ -558,7 +551,7 @@ public class WeaponRack extends BaseEntityBlock {
     private boolean checkModWeapon(ItemStack item) {
         return item.getItem().equals(ChangShengJueItems.BEAT_DOG_STICK.get())
                 || item.getItem().equals(ChangShengJueItems.THREE_THROWING_KNIVES.get())
-                || item.getItem().equals(ChangShengJueItems.YI_TINA_JIAN.get())
+                || item.getItem().equals(ChangShengJueItems.YI_TIAN_JIAN.get())
                 || item.getItem().equals(ChangShengJueItems.TU_LONG_DAO.get())
                 || item.getItem().equals(ChangShengJueItems.BA_WANG_QIANG.get())
                 || item.getItem().equals(ChangShengJueItems.BRONZE_SWORD.get())

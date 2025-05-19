@@ -227,7 +227,7 @@ public class WuXiaMerahantTrades {
                         new GangTokenForItems(ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get(), 20,  16, 1),
                         new GangTokenForItems(ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get(), 20, 16, 1),
                 }, 2, new VillagerTrades.ItemListing[]{
-                        new GangTokenForItems(ChangShengJueItems.YI_TINA_JIAN.get().getDefaultInstance(), 60, 16, 1),
+                        new GangTokenForItems(ChangShengJueItems.YI_TIAN_JIAN.get().getDefaultInstance(), 60, 16, 1),
                         new GangTokenForItems(ChangShengJueItems.TU_LONG_DAO.get().getDefaultInstance(), 60, 16, 1),
                 }
         ));

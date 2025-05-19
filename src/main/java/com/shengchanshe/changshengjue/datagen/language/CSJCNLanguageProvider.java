@@ -198,7 +198,7 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.THREE_THROWING_KNIVES.get(),"飞刀");
         this.add(ChangShengJueItems.SEVEN_THROWING_KNIVES.get(),"飞刀");
         this.add(ChangShengJueItems.BEAT_DOG_STICK.get(),"打狗棒");
-        this.add(ChangShengJueItems.YI_TINA_JIAN.get(),"倚天剑");
+        this.add(ChangShengJueItems.YI_TIAN_JIAN.get(),"倚天剑");
         this.add(ChangShengJueItems.TU_LONG_DAO.get(),"屠龙刀");
         this.add(ChangShengJueItems.BA_WANG_QIANG.get(),"霸王枪");
         this.add(ChangShengJueItems.COTTON_HELMET.get(),"棉盔");
@@ -408,12 +408,18 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.MEI_HUA_DEFOLIATION.get(),"梅花落叶");
         this.add(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get(),"黄花梨原木");
         this.add(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get(),"去皮黄花梨原木");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get(),"黄花梨树叶");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get(),"黄花梨树苗");
         this.add(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get(),"黄花梨木板");
         this.add(ChangShengJueBlocks.JI_CHI_MU_LOG.get(),"鸡翅木原木");
         this.add(ChangShengJueBlocks.STRIPPED_JI_CHI_MU_LOG.get(),"去皮鸡翅木原木");
+        this.add(ChangShengJueBlocks.JI_CHI_MU_LEAVES.get(),"鸡翅木树叶");
+        this.add(ChangShengJueBlocks.JI_CHI_MU_SAPLING.get(),"鸡翅木树苗");
         this.add(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get(),"鸡翅木木板");
         this.add(ChangShengJueBlocks.ZI_TAN_LOG.get(),"紫檀原木");
         this.add(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get(),"去皮紫檀原木");
+        this.add(ChangShengJueBlocks.ZI_TAN_LEAVES.get(),"紫檀树叶");
+        this.add(ChangShengJueBlocks.ZI_TAN_SAPLING.get(),"紫檀树苗");
         this.add(ChangShengJueBlocks.ZI_TAN_PLANKS.get(),"紫檀木板");
         this.add(ChangShengJueBlocks.POPLAR_LOG.get(),"白杨原木");
         this.add(ChangShengJueBlocks.POPLAR_LEAVES.get(),"白杨树叶");

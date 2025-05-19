@@ -447,6 +447,9 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.BANANA_FRUIT.get())
                 .add(ChangShengJueBlocks.PEAR_LEAVES.get())
                 .add(ChangShengJueBlocks.MEI_HUA_LEAVES.get())
-                .add(ChangShengJueBlocks.GUI_HUA_LEAVES.get());
+                .add(ChangShengJueBlocks.GUI_HUA_LEAVES.get())
+                .add(ChangShengJueBlocks.JI_CHI_MU_LEAVES.get())
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get())
+                .add(ChangShengJueBlocks.ZI_TAN_LEAVES.get());
     }
 }

@@ -2,12 +2,12 @@
   "name": "武器",
   "category": "chang_sheng_jue:xiake",
   "sortnum": 0,
-  "icon": "chang_sheng_jue:yi_tina_jian",
+  "icon": "chang_sheng_jue:yi_tian_jian",
   "pages": [
     {
       "title": "武器",
       "type": "patchouli:spotlight",
-      "item": "chang_sheng_jue:yi_tina_jian",
+      "item": "chang_sheng_jue:yi_tian_jian",
       "text": "部分外功需要武器作为媒介进行施展，所以拥有对应武器很重要。自己可以制作武器，也可以在帮派使用帮派令牌兑换武器，完成帮派任务则可以解锁绝世兵器的兑换。"
     }
   ]

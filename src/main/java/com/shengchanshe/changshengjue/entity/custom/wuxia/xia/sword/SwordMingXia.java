@@ -35,7 +35,7 @@ public class SwordMingXia extends AbstractMingXia implements GeoEntity {
         this.externalKungFuCapabilities = new ExternalKungFuManager().getRandomExternalKungFuCapabilities(this);
         this.internalKungFuCapability = new InterfaceKungFuManager().getRandomInternalKungFuCapabilities();
         this.qingGongCapability = new QingGongManager().getRandomExternalKungFuCapability(this);
-        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ChangShengJueItems.YI_TINA_JIAN.get()));
+        this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(ChangShengJueItems.YI_TIAN_JIAN.get()));
     }
 
     private <E extends GeoAnimatable> PlayState attackPredicate(AnimationState<E> animationEvent) {
