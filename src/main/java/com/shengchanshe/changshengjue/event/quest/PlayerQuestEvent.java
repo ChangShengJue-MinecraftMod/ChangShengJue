@@ -39,7 +39,6 @@ public class PlayerQuestEvent {
     private static final UUID LARGE_TRANSACTIONS_A_QUEST_ID = UUID.fromString("7C19EB4E-6E86-41B1-A397-36F7572D383B");
     private static final UUID LARGE_TRANSACTIONS_B_QUEST_ID = UUID.fromString("0A9301D6-0B79-4346-A700-35E7C8339658");
     private static final UUID MARTIAL_ARTS_QUEST_ID = UUID.fromString("C8DA8DB7-2AE8-4FB0-9956-179D9D9D1CA8");
-    private static final UUID SHA_REN_DUO_BAO_QUEST_ID = UUID.fromString("10D0CFC0-CD81-4DDE-9716-30D735045D1A");
     private static final UUID REN_WO_XING_QUEST_ID = UUID.fromString("dab3e694-291c-4b58-8ed2-4b215fbcf543");
     private static final UUID CHU_QIANG_FU_RUO_QUEST_ID = UUID.fromString("D8633102-1BC2-47D4-A9D4-311A28860F7D");
     private static final UUID JIANG_HU_ZHUI_SHA_LING_QUEST_ID = UUID.fromString("4ECF3936-B0F7-4F78-90FE-C7E613A08916");
@@ -47,7 +46,6 @@ public class PlayerQuestEvent {
     private static final UUID TIAN_RUO_YOU_QIANG_TIN_YI_LAO_QUEST_ID = UUID.fromString("b005b283-34fa-4217-b417-866d830ccda8");
 
     public static final UUID VEGETARIAN_FOOD_QUEST_ID = UUID.fromString("33954498-78EF-492C-9338-B2E85C0AD184");
-    public static QuestManager instance = QuestManager.getInstance();
 
     public static void onPlayerDeath(LivingDeathEvent event) {
         if ((event.getEntity() instanceof ServerPlayer player)){
@@ -89,6 +87,9 @@ public class PlayerQuestEvent {
         Player player = event.player;
         if (!(player instanceof ServerPlayer)) return;
         if (event.phase != TickEvent.Phase.END) return;
+        // 全局开关检查
+        if (!ChangShengJueConfig.ENABLE_QUESTS.get()) return;
+        QuestManager instance = QuestManager.getInstance();
         // 获取当前游戏时间（0-23999）
         long currentTime = player.level().getDayTime() % 24000;
         // 每天只在第一次tick时检查（避免重复触发）
@@ -108,8 +109,6 @@ public class PlayerQuestEvent {
                 }
             }
         }
-        // 全局开关检查
-        if (!ChangShengJueConfig.ENABLE_QUESTS.get()) return;
 
         if (instance.getQuestCompletionCount(JIANG_HU_ZHUI_SHA_LING_QUEST_ID) >= 2){
             Quest martialArtsQuestId = getOrCreateQuest(player, TIAN_RUO_YOU_QIANG_TIN_YI_LAO_QUEST_ID, null);
@@ -148,8 +147,6 @@ public class PlayerQuestEvent {
                 if (jiangHuZhuiShaLingQuest.getQuestCurrentTargetCount() <= jiangHuZhuiShaLingQuest.getQuestTargetCount()) {
                     if (!jiangHuZhuiShaLingQuest.canComplete(player) && !jiangHuZhuiShaLingQuest.isComplete()) {
                         jiangHuZhuiShaLingQuest.setComplete(true);
-//                        player.sendSystemMessage(getColoredTranslation(
-//                                "quest." + ChangShengJue.MOD_ID + ".trigger", getColoredTranslation(jiangHuZhuiShaLingQuest.getQuestName())));
                     }
                 }
             }
@@ -187,6 +184,7 @@ public class PlayerQuestEvent {
         Player player = event.player;
         if (!(player instanceof ServerPlayer)) return;
         if (event.phase != TickEvent.Phase.END) return;
+        QuestManager instance = QuestManager.getInstance();
         List<Quest> jiangHuZhuiShaLingQuests = instance.getPlayerQuests(player.getUUID());
         if (jiangHuZhuiShaLingQuests != null){
             for (Quest quest : jiangHuZhuiShaLingQuests){
@@ -208,6 +206,7 @@ public class PlayerQuestEvent {
 
     public static void entityGenerate(Player player, int tick, UUID questUUID, int count) {
         if ((player.level().getGameTime() % tick != 0)) return;
+        QuestManager instance = QuestManager.getInstance();
         List<Quest> jiangHuZhuiShaLingQuests = instance.getPlayerQuests(player.getUUID());
         if (jiangHuZhuiShaLingQuests != null){
             for (Quest quest : jiangHuZhuiShaLingQuests){
@@ -228,6 +227,7 @@ public class PlayerQuestEvent {
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
         // 全局开关检查
         if (!ChangShengJueConfig.ENABLE_QUESTS.get()) return;
+        QuestManager instance = QuestManager.getInstance();
         // 检查村民职业（例如农民）
         if (villager.getVillagerData().getProfession() != ChangShengJueVillagers.CHANG_SHENG_JUE_CHIEF.get()) {
             return;
@@ -239,8 +239,6 @@ public class PlayerQuestEvent {
                 if (!chuQiangFuRuoQuest.canComplete(player) && !chuQiangFuRuoQuest.isComplete()){
                     chuQiangFuRuoQuest.setComplete(true);
                     instance.spawnTargetForQuest(player, chuQiangFuRuoQuest, chuQiangFuRuoQuest.getRequiredKills());
-//                    player.sendSystemMessage(getColoredTranslation(
-//                            "quest." + ChangShengJue.MOD_ID + ".trigger", getColoredTranslation(chuQiangFuRuoQuest.getQuestName())));
                 }
             }
         }
@@ -251,8 +249,6 @@ public class PlayerQuestEvent {
                 if (!villagerInteractQuest.canComplete(player) && !villagerInteractQuest.isComplete()) {
                     villagerInteractQuest.setComplete(true);
                     instance.spawnTargetForQuest(player, villagerInteractQuest, villagerInteractQuest.getRequiredKills());
-//                        player.sendSystemMessage(getColoredTranslation(
-//                                "quest." + ChangShengJue.MOD_ID + ".trigger", getColoredTranslation(villagerInteractQuest.getQuestName())));
                 }
             }
         }else {
@@ -284,9 +280,6 @@ public class PlayerQuestEvent {
             }
             if (targetQuest != null && !targetQuest.isComplete()) {
                 targetQuest.setComplete(true);
-//                player.sendSystemMessage(getColoredTranslation(
-//                        "quest." + ChangShengJue.MOD_ID + ".trigger",
-//                        getColoredTranslation(targetQuest.getQuestName())));
             }
         }
     }
@@ -308,41 +301,9 @@ public class PlayerQuestEvent {
             if (level.isVillage(blockpos) && TimeDetection.isFullNight(player.level())) {
                 onEntityEncounter(player, MARTIAL_ARTS_QUEST_ID, null, 0.5F);
             }
-        } else if (target instanceof WanderingTrader) {
-            onEntityEncounter(player, SHA_REN_DUO_BAO_QUEST_ID, null, 0.5F);
         }
     }
 
-//    public static void onVillagerEncounter(Player player, Entity target){
-//        if (target instanceof Villager){
-//            Quest firstVillagerQuest = getOrCreateQuest(player,FIRST_VILLAGER_QUEST_ID,null);
-//
-//            if (firstVillagerQuest != null) {
-//                if (!firstVillagerQuest.isComplete()) {
-//                    firstVillagerQuest.setComplete(true);
-//                    player.sendSystemMessage(
-//                            getColoredTranslation("quest." + ChangShengJue.MOD_ID + ".trigger",
-//                                    getColoredTranslation(firstVillagerQuest.getQuestName()))
-//                    );
-//                }
-//            }
-//        }
-//    }
-//    public static void onTigerEncounter(Player player, Entity target){
-//        if (target instanceof Tiger){
-//            Quest weiMinChuHaiQuestId = getOrCreateQuest(player, WEI_MIN_CHU_HAI_QUEST_ID,null);
-//
-//            if (weiMinChuHaiQuestId != null) {
-//                if (player.getRandom().nextFloat() < 0.75F){
-//                    if (!weiMinChuHaiQuestId.canComplete(player) && !weiMinChuHaiQuestId.isComplete()) {
-//                        weiMinChuHaiQuestId.setComplete(true);
-//                        player.sendSystemMessage(getColoredTranslation(
-//                                        "quest." + ChangShengJue.MOD_ID + ".trigger", getColoredTranslation(weiMinChuHaiQuestId.getQuestName())));
-//                    }
-//                }
-//            }
-//        }
-//    }
     public static void onEntityEncounter(Player player, UUID questUUID, UUID npcUUID, Float f){
         Quest martialArtsQuestId = getOrCreateQuest(player, questUUID, npcUUID);
         if (martialArtsQuestId != null) {
@@ -362,13 +323,7 @@ public class PlayerQuestEvent {
             if (event.getSource().getEntity() instanceof Mob mob && !(mob instanceof AbstractWuXiaMonster)
                     && !(mob instanceof Creeper) && !(mob instanceof Spider) && !(mob instanceof Silverfish) && !(mob instanceof Endermite)) {
                 if (player.getRandom().nextFloat() < 1.0F) {
-                    Quest kuaiYiEnChouQuest = getOrCreateQuest(player, KUAI_YI_EN_CHOU_QUEST_ID, mob.getUUID());
-                    if (kuaiYiEnChouQuest != null) {
-                        if (!kuaiYiEnChouQuest.isComplete()) {
-                            player.sendSystemMessage(getColoredTranslation(
-                                            "quest." + ChangShengJue.MOD_ID + ".trigger", getColoredTranslation(kuaiYiEnChouQuest.getQuestName())));
-                        }
-                    }
+                    getOrCreateQuest(player, KUAI_YI_EN_CHOU_QUEST_ID, mob.getUUID());
                 }
             }
         }
@@ -409,7 +364,6 @@ public class PlayerQuestEvent {
                     });
         }
     }
-
 
     // 获取带颜色的翻译文本
     public static Component getColoredTranslation(String key, Object... args) {

@@ -62,6 +62,7 @@ public class ChangShengJueLoomBlock extends BaseEntityBlock{
         }
         return InteractionResult.PASS;
     }
+
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (!pState.is(pNewState.getBlock())) {
@@ -72,6 +73,7 @@ public class ChangShengJueLoomBlock extends BaseEntityBlock{
             super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
         }
     }
+
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
@@ -86,14 +88,24 @@ public class ChangShengJueLoomBlock extends BaseEntityBlock{
         return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
     }
 
+    public BlockState rotate(BlockState pState, Rotation pRot) {
+        return pState.setValue(FACING, pRot.rotate(pState.getValue(FACING)));
+    }
+
+    public BlockState mirror(BlockState pState, Mirror pMirror) {
+        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+    }
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(FACING);
     }
+
     @Override
     public RenderShape getRenderShape(BlockState state) {
         return RenderShape.ENTITYBLOCK_ANIMATED;
     }
+
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {

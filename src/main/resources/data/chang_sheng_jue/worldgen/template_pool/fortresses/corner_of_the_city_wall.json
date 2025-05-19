@@ -1,0 +1,134 @@
+{
+  "name": "chang_sheng_jue:fortresses/corner_of_the_city_wall",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/corner_of_the_city_wall/corner_of_the_city_wall",
+        "projection": "rigid",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_ignore",
+            "blocks": [
+              {
+                "Name": "minecraft:air"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/corner_of_the_city_wall/corner_of_the_city_wall_1",
+        "projection": "rigid",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_ignore",
+            "blocks": [
+              {
+                "Name": "minecraft:air"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/corner_of_the_city_wall/corner_of_the_city_wall_2",
+        "projection": "rigid",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_ignore",
+            "blocks": [
+              {
+                "Name": "minecraft:air"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/corner_of_the_city_wall/corner_of_the_city_wall_3",
+        "projection": "rigid",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_ignore",
+            "blocks": [
+              {
+                "Name": "minecraft:air"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/corner_of_the_city_wall/corner_of_the_city_wall_4",
+        "projection": "terrain_matching",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_rot",
+            "integrity": 0.9
+          }
+        ]
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/corner_of_the_city_wall/corner_of_the_city_wall_5",
+        "projection": "terrain_matching",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_rot",
+            "integrity": 0.9
+          }
+        ]
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/corner_of_the_city_wall/corner_of_the_city_wall_6",
+        "projection": "terrain_matching",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_rot",
+            "integrity": 0.9
+          }
+        ]
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/corner_of_the_city_wall/corner_of_the_city_wall_7",
+        "projection": "terrain_matching",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_rot",
+            "integrity": 0.9
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -199,6 +199,31 @@ public class CSJBlockModelProvider extends BlockModelProvider {
         parentTopBlock(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION,"character_plaque_pavilion_top");
         parentTopBlock(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION,"character_plaque_pavilion_top");
 
+        //攒尖
+        parentBottomBlock(ChangShengJueBlocks.GRE_HIPPED_ROOF,"hipped_roof_bottom");
+        parentBottomBlock(ChangShengJueBlocks.RED_HIPPED_ROOF,"hipped_roof_bottom");
+        parentBottomBlock(ChangShengJueBlocks.BLACK_HIPPED_ROOF,"hipped_roof_bottom");
+        parentBottomBlock(ChangShengJueBlocks.GOLDEN_HIPPED_ROOF,"hipped_roof_bottom");
+        parentBottomBlock(ChangShengJueBlocks.BLUE_HIPPED_ROOF,"hipped_roof_bottom");
+
+        parentMiddleBlock(ChangShengJueBlocks.GRE_HIPPED_ROOF,"hipped_roof_middle");
+        parentMiddleBlock(ChangShengJueBlocks.RED_HIPPED_ROOF,"hipped_roof_middle");
+        parentMiddleBlock(ChangShengJueBlocks.BLACK_HIPPED_ROOF,"hipped_roof_middle");
+        parentMiddleBlock(ChangShengJueBlocks.GOLDEN_HIPPED_ROOF,"hipped_roof_middle");
+        parentMiddleBlock(ChangShengJueBlocks.BLUE_HIPPED_ROOF,"hipped_roof_middle");
+
+        parentTopBlock(ChangShengJueBlocks.GRE_HIPPED_ROOF,"hipped_roof_top");
+        parentTopBlock(ChangShengJueBlocks.RED_HIPPED_ROOF,"hipped_roof_top");
+        parentTopBlock(ChangShengJueBlocks.BLACK_HIPPED_ROOF,"hipped_roof_top");
+        parentTopBlock(ChangShengJueBlocks.GOLDEN_HIPPED_ROOF,"hipped_roof_top");
+        parentTopBlock(ChangShengJueBlocks.BLUE_HIPPED_ROOF,"hipped_roof_top");
+
+        parentInventoryBlock(ChangShengJueBlocks.GRE_HIPPED_ROOF,"hipped_roof_inventory");
+        parentInventoryBlock(ChangShengJueBlocks.RED_HIPPED_ROOF,"hipped_roof_inventory");
+        parentInventoryBlock(ChangShengJueBlocks.BLACK_HIPPED_ROOF,"hipped_roof_inventory");
+        parentInventoryBlock(ChangShengJueBlocks.GOLDEN_HIPPED_ROOF,"hipped_roof_inventory");
+        parentInventoryBlock(ChangShengJueBlocks.BLUE_HIPPED_ROOF,"hipped_roof_inventory");
+
         parentBottomBlock(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE,"gable_ridge_cylinder_tile_bottom","cylinder_tile_gre_block");
         parentBottomBlock(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE,"gable_ridge_cylinder_tile_bottom","cylinder_tile_red_block");
         parentBottomBlock(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE,"gable_ridge_cylinder_tile_bottom","cylinder_tile_black_block");
@@ -222,6 +247,172 @@ public class CSJBlockModelProvider extends BlockModelProvider {
         parentBlock(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_bottom_left",
                 "gable_ridge_cylinder_tile_bottom_left","cylinder_tile_blue_block");
 
+        //八角飞檐
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_left",
+                "octagonal_upturned_eaves_left","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_left",
+                "octagonal_upturned_eaves_left","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_left",
+                "octagonal_upturned_eaves_left","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_left",
+                "octagonal_upturned_eaves_left","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_left",
+                "octagonal_upturned_eaves_left","cylinder_tile_blue_block");
+
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_right",
+                "octagonal_upturned_eaves_right","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_right",
+                "octagonal_upturned_eaves_right","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_right",
+                "octagonal_upturned_eaves_right","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_right",
+                "octagonal_upturned_eaves_right","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_right",
+                "octagonal_upturned_eaves_right","cylinder_tile_blue_block");
+
+        //八角垂脊(矮)
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_left",
+                "octagonal_dwarf_ridge_tiles_front_left","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_left",
+                "octagonal_dwarf_ridge_tiles_front_left","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_left",
+                "octagonal_dwarf_ridge_tiles_front_left","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_left",
+                "octagonal_dwarf_ridge_tiles_front_left","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_left",
+                "octagonal_dwarf_ridge_tiles_front_left","cylinder_tile_blue_block");
+
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_right",
+                "octagonal_dwarf_ridge_tiles_front_right","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_right",
+                "octagonal_dwarf_ridge_tiles_front_right","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_right",
+                "octagonal_dwarf_ridge_tiles_front_right","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_right",
+                "octagonal_dwarf_ridge_tiles_front_right","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_right",
+                "octagonal_dwarf_ridge_tiles_front_right","cylinder_tile_blue_block");
+
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_left",
+                "octagonal_dwarf_ridge_tiles_behind_left","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_left",
+                "octagonal_dwarf_ridge_tiles_behind_left","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_left",
+                "octagonal_dwarf_ridge_tiles_behind_left","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_left",
+                "octagonal_dwarf_ridge_tiles_behind_left","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_left",
+                "octagonal_dwarf_ridge_tiles_behind_left","cylinder_tile_blue_block");
+
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_right",
+                "octagonal_dwarf_ridge_tiles_behind_right","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_right",
+                "octagonal_dwarf_ridge_tiles_behind_right","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_right",
+                "octagonal_dwarf_ridge_tiles_behind_right","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_right",
+                "octagonal_dwarf_ridge_tiles_behind_right","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_right",
+                "octagonal_dwarf_ridge_tiles_behind_right","cylinder_tile_blue_block");
+
+        //八角高垂脊(前)
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_left",
+                "octagonal_high_ridge_tiles_front_left","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_left",
+                "octagonal_high_ridge_tiles_front_left","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_left",
+                "octagonal_high_ridge_tiles_front_left","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_left",
+                "octagonal_high_ridge_tiles_front_left","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_left",
+                "octagonal_high_ridge_tiles_front_left","cylinder_tile_blue_block");
+
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_right",
+                "octagonal_high_ridge_tiles_front_right","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_right",
+                "octagonal_high_ridge_tiles_front_right","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_right",
+                "octagonal_high_ridge_tiles_front_right","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_right",
+                "octagonal_high_ridge_tiles_front_right","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_right",
+                "octagonal_high_ridge_tiles_front_right","cylinder_tile_blue_block");
+        //八角高垂脊(后)
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_left",
+                "octagonal_high_ridge_tiles_behind_left","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_left",
+                "octagonal_high_ridge_tiles_behind_left","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_left",
+                "octagonal_high_ridge_tiles_behind_left","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_left",
+                "octagonal_high_ridge_tiles_behind_left","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_left",
+                "octagonal_high_ridge_tiles_behind_left","cylinder_tile_blue_block");
+
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_right",
+                "octagonal_high_ridge_tiles_behind_right","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_right",
+                "octagonal_high_ridge_tiles_behind_right","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_right",
+                "octagonal_high_ridge_tiles_behind_right","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_right",
+                "octagonal_high_ridge_tiles_behind_right","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_right",
+                "octagonal_high_ridge_tiles_behind_right","cylinder_tile_blue_block");
+
+        //八角双层垂脊(前)
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_left",
+                "octagonal_double_gable_ridge_cylinder_tile_front_left","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_left",
+                "octagonal_double_gable_ridge_cylinder_tile_front_left","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_left",
+                "octagonal_double_gable_ridge_cylinder_tile_front_left","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_left",
+                "octagonal_double_gable_ridge_cylinder_tile_front_left","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_left",
+                "octagonal_double_gable_ridge_cylinder_tile_front_left","cylinder_tile_blue_block");
+
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_right",
+                "octagonal_double_gable_ridge_cylinder_tile_front_right","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_right",
+                "octagonal_double_gable_ridge_cylinder_tile_front_right","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_right",
+                "octagonal_double_gable_ridge_cylinder_tile_front_right","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_right",
+                "octagonal_double_gable_ridge_cylinder_tile_front_right","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_right",
+                "octagonal_double_gable_ridge_cylinder_tile_front_right","cylinder_tile_blue_block");
+
+        //八角双层垂脊(后)
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_left",
+                "octagonal_double_gable_ridge_cylinder_tile_behind_left","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_left",
+                "octagonal_double_gable_ridge_cylinder_tile_behind_left","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_left",
+                "octagonal_double_gable_ridge_cylinder_tile_behind_left","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_left",
+                "octagonal_double_gable_ridge_cylinder_tile_behind_left","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_left",
+                "octagonal_double_gable_ridge_cylinder_tile_behind_left","cylinder_tile_blue_block");
+
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_right",
+                "octagonal_double_gable_ridge_cylinder_tile_behind_right","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_right",
+                "octagonal_double_gable_ridge_cylinder_tile_behind_right","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_right",
+                "octagonal_double_gable_ridge_cylinder_tile_behind_right","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_right",
+                "octagonal_double_gable_ridge_cylinder_tile_behind_right","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_right",
+                "octagonal_double_gable_ridge_cylinder_tile_behind_right","cylinder_tile_blue_block");
+
+        //八角垂脊
+        parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE ,"octagonal_gable_ridge_cylinder_tile","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE ,"octagonal_gable_ridge_cylinder_tile","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE ,"octagonal_gable_ridge_cylinder_tile","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE ,"octagonal_gable_ridge_cylinder_tile","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE ,"octagonal_gable_ridge_cylinder_tile","cylinder_tile_blue_block");
+
         parentBlock(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE,"double_gable_ridge_cylinder_tile","gre_double_gable_ridge_cylinder_tile");
         parentBlock(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE,"double_gable_ridge_cylinder_tile","red_double_gable_ridge_cylinder_tile");
         parentBlock(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE,"double_gable_ridge_cylinder_tile","black_double_gable_ridge_cylinder_tile");
@@ -240,6 +431,24 @@ public class CSJBlockModelProvider extends BlockModelProvider {
         parentBlock(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE,"short_cylinder_tile","cylinder_tile_golden_block");
         parentBlock(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE,"short_cylinder_tile","cylinder_tile_blue_block");
 
+        //侧双层筒瓦
+        parentBlock(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE,"double_cylinder_tile_side","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE_SIDE,"double_cylinder_tile_side","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE,"double_cylinder_tile_side","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE_SIDE,"double_cylinder_tile_side","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE,"double_cylinder_tile_side","cylinder_tile_blue_block");
+        //侧高筒瓦
+        parentBlock(ChangShengJueBlocks.GRE_HIGH_CYLINDER_TILE_SIDE,"high_cylinder_tile_side","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_HIGH_CYLINDER_TILE_SIDE,"high_cylinder_tile_side","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_HIGH_CYLINDER_TILE_SIDE,"high_cylinder_tile_side","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_HIGH_CYLINDER_TILE_SIDE,"high_cylinder_tile_side","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_HIGH_CYLINDER_TILE_SIDE,"high_cylinder_tile_side","cylinder_tile_blue_block");
+        //侧瓦当
+        parentBlock(ChangShengJueBlocks.GRE_EAVES_TILE_SIDE,"eaves_tile_side","cylinder_tile_gre_block");
+        parentBlock(ChangShengJueBlocks.RED_EAVES_TILE_SIDE,"eaves_tile_side","cylinder_tile_red_block");
+        parentBlock(ChangShengJueBlocks.BLACK_EAVES_TILE_SIDE,"eaves_tile_side","cylinder_tile_black_block");
+        parentBlock(ChangShengJueBlocks.GOLDEN_EAVES_TILE_SIDE,"eaves_tile_side","cylinder_tile_golden_block");
+        parentBlock(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE,"eaves_tile_side","cylinder_tile_blue_block");
     }
 
     //自定义方块模型
@@ -249,15 +458,28 @@ public class CSJBlockModelProvider extends BlockModelProvider {
                 .texture("1","block/"+block.getId().getPath())
                 .texture("particle","block/"+block.getId().getPath());
     }
-    //自定义两格方块模型
+    //自定义多格方块模型
     private BlockModelBuilder parentBottomBlock(RegistryObject<Block> block,String parent){
         return withExistingParent(block.getId().getPath() + "_bottom",
                 new ResourceLocation(ChangShengJue.MOD_ID,"block/" + parent))
                 .texture("1","block/"+block.getId().getPath())
                 .texture("particle","block/"+block.getId().getPath());
     }
+    private BlockModelBuilder parentMiddleBlock(RegistryObject<Block> block,String parent){
+        return withExistingParent(block.getId().getPath() + "_middle",
+                new ResourceLocation(ChangShengJue.MOD_ID,"block/" + parent))
+                .texture("1","block/"+block.getId().getPath())
+                .texture("particle","block/"+block.getId().getPath());
+    }
     private BlockModelBuilder parentTopBlock(RegistryObject<Block> block,String parent){
         return withExistingParent(block.getId().getPath() + "_top",
+                new ResourceLocation(ChangShengJue.MOD_ID,"block/" + parent))
+                .texture("1","block/"+block.getId().getPath())
+                .texture("particle","block/"+block.getId().getPath());
+    }
+    //自定义多格方块手持模型
+    private BlockModelBuilder parentInventoryBlock(RegistryObject<Block> block,String parent){
+        return withExistingParent(block.getId().getPath() + "_inventory",
                 new ResourceLocation(ChangShengJue.MOD_ID,"block/" + parent))
                 .texture("1","block/"+block.getId().getPath())
                 .texture("particle","block/"+block.getId().getPath());

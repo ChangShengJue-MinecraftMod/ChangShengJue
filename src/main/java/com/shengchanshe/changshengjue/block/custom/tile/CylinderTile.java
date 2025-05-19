@@ -7,6 +7,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
@@ -19,27 +20,16 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class CylinderTile extends Block {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+public class CylinderTile extends HorizontalDirectionalBlock {
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     protected static final VoxelShape AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
     public CylinderTile(Properties properties) {
         super(properties);
-    }
-
-    @Nullable
-    @Override
-    public BlockState getStateForPlacement(BlockPlaceContext placeContext) {
-        return this.defaultBlockState().setValue(FACING,placeContext.getHorizontalDirection().getOpposite());
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     @Override
-    public BlockState rotate(BlockState blockState, Rotation rotation) {
-        return blockState.setValue(FACING,rotation.rotate(blockState.getValue(FACING)));
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
-    {
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context) {
         Direction value = state.getValue(FACING);
         if (state.is(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_1.get()) || state.is(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_1.get())
                 || state.is(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_1.get()) || state.is(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_1.get())
@@ -115,25 +105,38 @@ public class CylinderTile extends Block {
                 case EAST -> ChangShengJueVoxelShape.SHORT_CYLINDER_TILE_E;
                 default ->  ChangShengJueVoxelShape.SHORT_CYLINDER_TILE_W;
             };
+        }else if (state.is(ChangShengJueBlocks.GRE_EAVES_TILE_SIDE.get()) || state.is(ChangShengJueBlocks.RED_EAVES_TILE_SIDE.get())
+                || state.is(ChangShengJueBlocks.BLACK_EAVES_TILE_SIDE.get()) || state.is(ChangShengJueBlocks.GOLDEN_EAVES_TILE_SIDE.get())
+                || state.is(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE.get())){
+            return switch (value){
+                case NORTH -> ChangShengJueVoxelShape.EAVES_TILE_SIDE_N;
+                case SOUTH -> ChangShengJueVoxelShape.EAVES_TILE_SIDE_S;
+                case EAST -> ChangShengJueVoxelShape.EAVES_TILE_SIDE_E;
+                default ->  ChangShengJueVoxelShape.EAVES_TILE_SIDE_W;
+            };
         }else {
             return AABB;
         }
+    }
 
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
-    {
-        return AABB;
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
+        pBuilder.add(FACING);
+    }
+
+    @Override
+    public BlockState rotate(BlockState blockState, Rotation rotation) {
+        return blockState.setValue(FACING, rotation.rotate(blockState.getValue(FACING)));
     }
 
     @Override
     public BlockState mirror(BlockState blockState, Mirror mirror) {
         return super.mirror(blockState, mirror);
-    }
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
     }
 }

@@ -1,80 +1,42 @@
 package com.shengchanshe.changshengjue.block.custom.furniture.desk;
 
 import com.shengchanshe.changshengjue.util.ChangShengJueVoxelShape;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class WineTable extends AbstractDesk {
+import java.util.Map;
+
+public class WineTable extends Desks {
     public static final BooleanProperty NORTH = BooleanProperty.create("north");
     public static final BooleanProperty EAST = BooleanProperty.create("east");
     public static final BooleanProperty SOUTH = BooleanProperty.create("south");
     public static final BooleanProperty WEST = BooleanProperty.create("west");
-    public static final BooleanProperty MIDDLE = BooleanProperty.create("middle");
+    protected static final Map<Direction, BooleanProperty> PROPERTY_BY_DIRECTION;
 
     public WineTable(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false).setValue(MIDDLE,false).setValue(FACING, Direction.NORTH));
-    }
-    @Override
-    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean isMoving) {
-        super.neighborChanged(pState, pLevel, pPos, pBlock, pFromPos, isMoving);
+//        this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, false)
+//                .setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, false)
+                .setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false).setValue(FACING, Direction.NORTH));
 
-        // 获取当前位置的北方向坐标
-        BlockPos northPos = pPos.north();
-        // 获取当前位置的南方向坐标
-        BlockPos southPos = pPos.south();
-        // 获取当前位置的东方向坐标
-        BlockPos eastPos = pPos.east();
-        // 获取当前位置的西方向坐标
-        BlockPos westPos = pPos.west();
-
-        // 检查北方向的邻居块是否与当前块相同
-        boolean northNeighbor = isSameBlock(pLevel, northPos);
-        // 检查南方向的邻居块是否与当前块相同
-        boolean southNeighbor = isSameBlock(pLevel, southPos);
-        // 检查东方向的邻居块是否与当前块相同
-        boolean eastNeighbor = isSameBlock(pLevel, eastPos);
-        // 检查西方向的邻居块是否与当前块相同
-        boolean westNeighbor = isSameBlock(pLevel, westPos);
-
-        // 创建一个新的BlockState对象，基于当前的pState对象，并设置其四个方向的邻居状态
-        BlockState newState = pState
-                // 设置北方向的邻居状态为northNeighbor
-                .setValue(NORTH, northNeighbor)
-                // 设置南方向的邻居状态为southNeighbor
-                .setValue(SOUTH, southNeighbor)
-                // 设置东方向的邻居状态为eastNeighbor
-                .setValue(EAST, eastNeighbor)
-                // 设置西方向的邻居状态为westNeighbor
-                .setValue(WEST, westNeighbor);
-
-        // 检查当前方块的所有邻近方块是否存在
-        // northNeighbor 表示北方邻近方块是否存在
-        // southNeighbor 表示南方邻近方块是否存在
-        // eastNeighbor 表示东方邻近方块是否存在
-        // westNeighbor 表示西方邻近方块是否存在
-        boolean allNeighbors = northNeighbor && southNeighbor && eastNeighbor && westNeighbor;
-        // 设置新的状态
-        // newState 是一个对象，它有一个方法 setValue
-        // MIDDLE 是一个常量，表示中间状态
-        // allNeighbors 是一个布尔值，表示所有邻居是否存在
-        // 将 allNeighbors 的值设置为 MIDDLE 状态
-        newState = newState.setValue(MIDDLE, allNeighbors);
-
-        // 更新方块状态
-        pLevel.setBlock(pPos, newState, 3); // 更新状态，标记为需要同步到客户端
     }
 
-    // 获取方块形状的方法，参数包括方块状态、方块获取器、方块位置和碰撞上下文
+// 获取方块形状的方法，参数包括方块状态、方块获取器、方块位置和碰撞上下文
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         // 使用switch表达式根据方块状态中的NORTH, EAST, SOUTH, WEST, MIDDLE属性值来返回不同的VoxelShape
@@ -84,35 +46,96 @@ public class WineTable extends AbstractDesk {
         boolean east = pState.getValue(EAST);
         boolean south = pState.getValue(SOUTH);
         boolean west = pState.getValue(WEST);
-        boolean middle = pState.getValue(MIDDLE);
 
         // 根据属性值返回不同的VoxelShape
-        return south && north && east && !middle ? ChangShengJueVoxelShape.WINE_TABLE_MIDDLE_SIDE : south && west && east && !middle ? ChangShengJueVoxelShape.WINE_TABLE_MIDDLE_SIDE :
-                south && north && west && !middle ? ChangShengJueVoxelShape.WINE_TABLE_MIDDLE_SIDE : north && west && east && !middle ? ChangShengJueVoxelShape.WINE_TABLE_MIDDLE_SIDE :
-
-                south && east && !middle ? ChangShengJueVoxelShape.WINE_TABLE_NORTH_WEST_SIDE : south && west && !middle ? ChangShengJueVoxelShape.WINE_TABLE_SOUTH_WEST_SIDE :
-                north && east && !middle ? ChangShengJueVoxelShape.WINE_TABLE_SOUTH_EAST_SIDE : north && west && !middle ? ChangShengJueVoxelShape.WINE_TABLE_NORTH_EAST_SIDE :
-
-                south && north && !middle ? ChangShengJueVoxelShape.WINE_TABLE_NORTH_SOUTH_SIDE : east && west && !middle ? ChangShengJueVoxelShape.WINE_TABLE_EAST_WEST_SIDE :
-                south && !middle ? ChangShengJueVoxelShape.WINE_TABLE_WEST_SIDE : north && !middle ? ChangShengJueVoxelShape.WINE_TABLE_EAST_SIDE :
-                east && !middle ? ChangShengJueVoxelShape.WINE_TABLE_SOUTH_SIDE : west && !middle ? ChangShengJueVoxelShape.WINE_TABLE_NORTH_SIDE :
-                middle ? ChangShengJueVoxelShape.WINE_TABLE_MIDDLE : ChangShengJueVoxelShape.WINE_TABLE;
+        return south && north && east && west ? ChangShengJueVoxelShape.WINE_TABLE_MIDDLE :
+                south && north && east ? ChangShengJueVoxelShape.WINE_TABLE_MIDDLE_SIDE_1 :
+                south && west && east ? ChangShengJueVoxelShape.WINE_TABLE_MIDDLE_SIDE :
+                south && north && west ? ChangShengJueVoxelShape.WINE_TABLE_MIDDLE_SIDE_1 :
+                        north && west && east ? ChangShengJueVoxelShape.WINE_TABLE_MIDDLE_SIDE :
+                                south && east ? ChangShengJueVoxelShape.WINE_TABLE_NORTH_WEST_SIDE :
+                                south && west ? ChangShengJueVoxelShape.WINE_TABLE_SOUTH_WEST_SIDE :
+                                north && east ? ChangShengJueVoxelShape.WINE_TABLE_SOUTH_EAST_SIDE :
+                                        north && west ? ChangShengJueVoxelShape.WINE_TABLE_NORTH_EAST_SIDE :
+                                                south && north ? ChangShengJueVoxelShape.WINE_TABLE_NORTH_SOUTH_SIDE :
+                                                        east && west ? ChangShengJueVoxelShape.WINE_TABLE_EAST_WEST_SIDE :
+                                                                south ? ChangShengJueVoxelShape.WINE_TABLE_WEST_SIDE :
+                                                                        north ? ChangShengJueVoxelShape.WINE_TABLE_EAST_SIDE :
+                                                                        east ? ChangShengJueVoxelShape.WINE_TABLE_SOUTH_SIDE :
+                                                                                west ? ChangShengJueVoxelShape.WINE_TABLE_NORTH_SIDE : ChangShengJueVoxelShape.WINE_TABLE;
     }
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        // 这里仍然设置方块的朝向为玩家的反方向
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
+        BlockGetter $$1 = pContext.getLevel();
+        BlockPos $$2 = pContext.getClickedPos();
+        BlockPos $$4 = $$2.north();
+        BlockPos $$5 = $$2.east();
+        BlockPos $$6 = $$2.south();
+        BlockPos $$7 = $$2.west();
+        BlockState $$8 = $$1.getBlockState($$4);
+        BlockState $$9 = $$1.getBlockState($$5);
+        BlockState $$10 = $$1.getBlockState($$6);
+        BlockState $$11 = $$1.getBlockState($$7);
+        return super.getStateForPlacement(pContext).
+                setValue(NORTH, this.isSameBlock($$8)).
+                setValue(EAST, this.isSameBlock($$9)).
+                setValue(SOUTH, this.isSameBlock($$10)).
+                setValue(WEST, this.isSameBlock($$11));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, NORTH, EAST, SOUTH, WEST, MIDDLE);
+        pBuilder.add(FACING,NORTH, EAST, WEST, SOUTH);
+    }
+
+    public BlockState updateShape(BlockState pState, Direction pFacing, BlockState pFacingState, LevelAccessor pLevel, BlockPos pCurrentPos, BlockPos pFacingPos) {
+
+        return pFacing.getAxis().getPlane() == Direction.Plane.HORIZONTAL ?
+                pState.setValue(PROPERTY_BY_DIRECTION.get(pFacing),
+                        this.isSameBlock(pFacingState)) : super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
+    }
+
+    public BlockState rotate(BlockState pState, Rotation pRot) {
+        switch (pRot) {
+            case CLOCKWISE_180 -> {
+                return pState.setValue(NORTH, pState.getValue(SOUTH)).setValue(EAST, pState.getValue(WEST))
+                        .setValue(SOUTH, pState.getValue(NORTH)).setValue(WEST, pState.getValue(EAST));
+            }
+            case COUNTERCLOCKWISE_90 -> {
+                return pState.setValue(NORTH, pState.getValue(EAST)).setValue(EAST, pState.getValue(SOUTH))
+                        .setValue(SOUTH, pState.getValue(WEST)).setValue(WEST, pState.getValue(NORTH));
+            }
+            case CLOCKWISE_90 -> {
+                return pState.setValue(NORTH, pState.getValue(WEST)).setValue(EAST, pState.getValue(NORTH))
+                        .setValue(SOUTH, pState.getValue(EAST)).setValue(WEST, pState.getValue(SOUTH));
+            }
+            default -> {
+                return pState;
+            }
+        }
+    }
+
+    public BlockState mirror(BlockState pState, Mirror pMirror) {
+        switch (pMirror) {
+            case LEFT_RIGHT -> {
+                return pState.setValue(NORTH, pState.getValue(SOUTH)).setValue(SOUTH, pState.getValue(NORTH));
+            }
+            case FRONT_BACK -> {
+                return pState.setValue(EAST, pState.getValue(WEST)).setValue(WEST, pState.getValue(EAST));
+            }
+            default -> {
+                return super.mirror(pState, pMirror);
+            }
+        }
     }
 
     // 检查邻近方块是否是相同的方块
-    private boolean isSameBlock(Level pLevel, BlockPos pos) {
-        BlockState neighborState = pLevel.getBlockState(pos);
-        return neighborState.getBlock() instanceof WineTable; // 检查邻近方块是否是 WineTable
+    private boolean isSameBlock(BlockState pState) {
+        return pState.getBlock() instanceof WineTable;
+    }
+
+    static {
+        PROPERTY_BY_DIRECTION = PipeBlock.PROPERTY_BY_DIRECTION.entrySet().stream().filter((p_52346_) -> (p_52346_.getKey()).getAxis().isHorizontal()).collect(Util.toMap());
     }
 }

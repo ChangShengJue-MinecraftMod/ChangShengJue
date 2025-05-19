@@ -1,0 +1,65 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"misc.idle": {
+			"loop": true,
+			"animation_length": 5,
+			"bones": {
+				"VoxelShapes": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"2.2667": {
+							"vector": [-5, 0, 5]
+						},
+						"5.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"bone": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.8667": {
+							"vector": [0, 0, 5]
+						},
+						"3.6667": {
+							"vector": [0, 0, -5]
+						},
+						"5.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"bone3": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.2333": {
+							"vector": [7.5, 0, -7.5]
+						},
+						"2.5333": {
+							"vector": [0.54671, -1.3634, 0.7473]
+						},
+						"3.6333": {
+							"vector": [-5.06836, -3.24696, 4.8643]
+						},
+						"5.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				}
+			},
+			"sound_effects": {
+				"0.0": {
+					"effect": "wind_chime_sound"
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}

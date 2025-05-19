@@ -11,10 +11,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
@@ -27,6 +24,7 @@ import java.util.stream.Stream;
 
 public class Pavilion extends CylinderTile {
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     protected static final VoxelShape AABB = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
 
     public Pavilion(Properties properties) {
@@ -85,8 +83,13 @@ public class Pavilion extends CylinderTile {
     }
 
     @Override
-    public BlockState rotate(BlockState pState, Rotation pRotation) {
-        return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
+    public BlockState rotate(BlockState blockState, Rotation rotation) {
+        return super.rotate(blockState,rotation);
+    }
+
+    @Override
+    public BlockState mirror(BlockState blockState, Mirror mirror) {
+        return super.mirror(blockState, mirror);
     }
 
     @Override

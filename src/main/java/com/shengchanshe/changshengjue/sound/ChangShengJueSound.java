@@ -1,5 +1,6 @@
 package com.shengchanshe.changshengjue.sound;
 
+import ca.weblite.objc.Proxy;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -86,6 +87,9 @@ public class ChangShengJueSound {
     public static final RegistryObject<SoundEvent> COMPREHEND_SOUND = registerSoundEvent("comprehend_sound");
     //大成
     public static final RegistryObject<SoundEvent> DACHENG_SOUND = registerSoundEvent("dacheng_sound");
+
+    //风铃
+    public static final RegistryObject<SoundEvent> WIND_CHIME_SOUND = registerSoundEvent("wind_chime_sound");
 
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {

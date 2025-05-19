@@ -1,0 +1,87 @@
+{
+  "name": "chang_sheng_jue:fortresses/houses/fortresses_houses",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/houses/houses_1",
+        "projection": "rigid",
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/houses/houses_2",
+        "projection": "rigid",
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/houses/houses_3",
+        "projection": "rigid",
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/houses/houses_4",
+        "projection": "rigid",
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/houses/houses_5",
+        "projection": "rigid",
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/houses/houses_6",
+        "projection": "rigid",
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/houses/houses_7",
+        "projection": "rigid",
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/houses/houses_8",
+        "projection": "rigid",
+        "processors": []
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/houses/houses_9",
+        "projection": "rigid",
+        "processors": []
+      }
+    }
+  ]
+}

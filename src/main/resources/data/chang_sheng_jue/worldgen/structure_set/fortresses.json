@@ -1,0 +1,18 @@
+{
+  "structures": [
+    {
+      "structure": "chang_sheng_jue:fortresses",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 32,
+    "separation": 25,
+    "salt": 1825068955,
+    "exclusion_zone": {
+      "chunk_count": 7,
+      "other_set": "#minecraft:village"
+    }
+  }
+}

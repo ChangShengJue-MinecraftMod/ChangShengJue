@@ -1,8 +1,6 @@
 package com.shengchanshe.changshengjue.block.custom.furniture.desk;
 
-import com.shengchanshe.changshengjue.util.ChangShengJueVoxelShape;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -13,7 +11,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.stream.Stream;
 
-public class Teapoy extends AbstractDesk {
+public class Teapoy extends Desks {
     private VoxelShape AABB = Shapes.empty();
 
     public Teapoy(Properties pProperties) {

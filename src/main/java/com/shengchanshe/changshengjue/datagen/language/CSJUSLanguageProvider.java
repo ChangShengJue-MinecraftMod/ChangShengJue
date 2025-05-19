@@ -5,6 +5,7 @@ import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
@@ -387,6 +388,9 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("sounds."+ChangShengJue.MOD_ID + ".peacock_hurt" , "孔雀 : 受伤");
         this.add("sounds."+ChangShengJue.MOD_ID + ".peacock_death" , "孔雀 : 死亡");
 
+        //风铃
+        this.add("sounds."+ChangShengJue.MOD_ID + ".wind_chime_sound", "风铃 : 叮铃铃");
+
         //方块
         this.add(ChangShengJueItems.STAKES.get(),"练功木桩");
 
@@ -547,6 +551,61 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(),"金色筒瓦台阶");
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),"青色筒瓦台阶");
 
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SIDE.get(),"灰色侧向筒瓦");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SIDE.get(),"红色侧向筒瓦");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SIDE.get(),"黑色侧向筒瓦");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SIDE.get(),"金色侧向筒瓦");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SIDE.get(),"青色侧向筒瓦");
+
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_UPTURNED_EAVES.get(),"灰色侧向飞檐");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_UPTURNED_EAVES.get(),"红色侧向飞檐");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_UPTURNED_EAVES.get(),"黑色侧向飞檐");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_UPTURNED_EAVES.get(),"金色侧向飞檐");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES.get(),"青色侧向飞檐");
+
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"灰色侧向矮垂脊(前)");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"红色侧向矮垂脊(前)");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"黑色侧向矮垂脊(前)");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"金色侧向矮垂脊(前)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"青色侧向矮垂脊(前)");
+
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"灰色侧向矮垂脊(后)");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"红色侧向矮垂脊(后)");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"黑色侧向矮垂脊(后)");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"金色侧向矮垂脊(后)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"青色侧向矮垂脊(后)");
+
+
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"灰色侧向高垂脊(前)");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"灰色侧向高垂脊(前)");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"灰色侧向高垂脊(前)");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"灰色侧向高垂脊(前)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"灰色侧向高垂脊(前)");
+
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"灰色侧向高垂脊(后)");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"灰色侧向高垂脊(后)");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"灰色侧向高垂脊(后)");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"灰色侧向高垂脊(后)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"灰色侧向高垂脊(后)");
+
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"灰色侧向双层垂脊(前)");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"红色侧向双层垂脊(前)");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"黑色侧向双层垂脊(前)");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"金色侧向双层垂脊(前)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"青色侧向双层垂脊(前)");
+
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"灰色侧向双层垂脊(后)");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"红色侧向双层垂脊(后)");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"黑色侧向双层垂脊(后)");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"金色侧向双层垂脊(后)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"青色侧向双层垂脊(后)");
+
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"灰色侧向垂脊屋顶");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"红色侧向垂脊屋顶");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"黑色侧向垂脊屋顶");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"金色侧向垂脊屋顶");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"青色侧向垂脊屋顶");
+
         this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(),"灰色筒瓦");
         this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(),"红色筒瓦");
         this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(),"黑色筒瓦");
@@ -643,6 +702,12 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION.get(), "黑色字牌脊刹");
         this.add(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION.get(), "金色字牌脊刹");
 
+        this.add(ChangShengJueBlocks.BLUE_HIPPED_ROOF.get(), "青色攒尖");
+        this.add(ChangShengJueBlocks.GRE_HIPPED_ROOF.get(), "灰色攒尖");
+        this.add(ChangShengJueBlocks.RED_HIPPED_ROOF.get(), "红色攒尖");
+        this.add(ChangShengJueBlocks.BLACK_HIPPED_ROOF.get(), "黑色攒尖");
+        this.add(ChangShengJueBlocks.GOLDEN_HIPPED_ROOF.get(), "金色攒尖");
+
         this.add(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get(), "青色垂脊筒瓦");
         this.add(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.get(), "灰色垂脊筒瓦");
         this.add(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get(), "红色垂脊筒瓦");
@@ -666,6 +731,24 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get(), "红色短筒瓦");
         this.add(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get(), "黑色短筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get(), "金色短筒瓦");
+
+        this.add(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE.get(), "青色侧向双层筒瓦");
+        this.add(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE.get(), "灰色侧向双层筒瓦");
+        this.add(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE_SIDE.get(), "红色侧向双层筒瓦");
+        this.add(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE.get(), "黑色侧向双层筒瓦");
+        this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE_SIDE.get(), "金色侧向双层筒瓦");
+
+        this.add(ChangShengJueBlocks.BLUE_HIGH_CYLINDER_TILE_SIDE.get(), "青色侧向高筒瓦");
+        this.add(ChangShengJueBlocks.GRE_HIGH_CYLINDER_TILE_SIDE.get(), "灰色侧向高筒瓦");
+        this.add(ChangShengJueBlocks.RED_HIGH_CYLINDER_TILE_SIDE.get(), "红色侧向高筒瓦");
+        this.add(ChangShengJueBlocks.BLACK_HIGH_CYLINDER_TILE_SIDE.get(), "黑色侧向高筒瓦");
+        this.add(ChangShengJueBlocks.GOLDEN_HIGH_CYLINDER_TILE_SIDE.get(), "金色侧向高筒瓦");
+
+        this.add(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE.get(), "青色侧向瓦当");
+        this.add(ChangShengJueBlocks.GRE_EAVES_TILE_SIDE.get(), "灰色侧向瓦当");
+        this.add(ChangShengJueBlocks.RED_EAVES_TILE_SIDE.get(), "红色侧向瓦当");
+        this.add(ChangShengJueBlocks.BLACK_EAVES_TILE_SIDE.get(), "黑色侧向瓦当");
+        this.add(ChangShengJueBlocks.GOLDEN_EAVES_TILE_SIDE.get(), "金色侧向瓦当");
 
         this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get(), "金色瓦片");
         this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get(), "金色瓦片");
@@ -777,6 +860,9 @@ public class CSJUSLanguageProvider extends LanguageProvider {
 
         this.add(ChangShengJueBlocks.ZAFU.get(), "蒲团");
 
+        this.add(ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get(),"汉白玉栏杆");
+        this.add(ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get(),"汉白玉护栏");
+
         // 食物容器类方块
         this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_PAN.get(), "饺子盘");
         this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_WAN.get(), "饺子碗");
@@ -835,6 +921,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
 
         this.add(ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get(), "大城门(左)");
         this.add(ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get(), "大城门(右)");
+        this.add(ChangShengJueBlocks.WIND_CHIME.get(), "风铃");
 
         //实体生物
         this.add(ChangShengJueEntity.BUTTERFLY.get(), "蝴蝶");
@@ -1040,7 +1127,9 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("quest."+ ChangShengJue.MOD_ID +".abandon.button", "放弃任务");
         this.add("quest."+ ChangShengJue.MOD_ID +".flushed.button", "刷新任务");
         this.add("quest."+ ChangShengJue.MOD_ID +".requirements.prompt", "任务需求不足!");
-
+        this.add("quest."+ ChangShengJue.MOD_ID +".finish", "§a%s任务完成！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".trigger", "§a触发%s任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".fail", "§a%s任务失败！");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".food.questName", "收集食物");
         this.add("quest."+ ChangShengJue.MOD_ID +".food.questDescription", "首领：兄弟们的吃食又不够了，总不能饿肚子吧，兄弟你去想想办法。");
@@ -1083,7 +1172,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questRequirementsDescription", "救治一名僵尸村民");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questName", "斋饭");
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questDescription", "高僧：心念慈悲，不犯杀戒。");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questDescription", "首领：心念慈悲，不犯杀戒。");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questRequirementsDescription", "2个游戏日内不杀死生物");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questName", "行侠仗义");

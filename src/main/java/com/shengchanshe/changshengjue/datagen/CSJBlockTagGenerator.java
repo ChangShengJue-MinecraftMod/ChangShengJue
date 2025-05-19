@@ -71,6 +71,12 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get())
                 .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get())
 
+                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SIDE.get())
+
                 .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get())
                 .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get())
                 .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get())
@@ -133,6 +139,48 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get())
                 .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get())
 
+                .add(ChangShengJueBlocks.GRE_OCTAGONAL_UPTURNED_EAVES.get())
+                .add(ChangShengJueBlocks.RED_OCTAGONAL_UPTURNED_EAVES.get())
+                .add(ChangShengJueBlocks.BLACK_OCTAGONAL_UPTURNED_EAVES.get())
+                .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_UPTURNED_EAVES.get())
+                .add(ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES.get())
+
+                .add(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get())
+                .add(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get())
+                .add(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get())
+                .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get())
+                .add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get())
+
+                .add(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get())
+                .add(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get())
+                .add(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get())
+                .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get())
+                .add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get())
+
+                .add(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get())
+                .add(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get())
+                .add(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get())
+                .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get())
+                .add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get())
+
+                .add(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get())
+                .add(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get())
+                .add(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get())
+                .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get())
+                .add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get())
+
+                .add(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get())
+                .add(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get())
+                .add(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get())
+                .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get())
+                .add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get())
+
+                .add(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get())
+                .add(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get())
+                .add(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get())
+                .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get())
+                .add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get())
+
                 .add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE_1.get())
                 .add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE_1.get())
                 .add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE_1.get())
@@ -163,6 +211,12 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION.get())
                 .add(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION.get())
 
+                .add(ChangShengJueBlocks.GRE_HIPPED_ROOF.get())
+                .add(ChangShengJueBlocks.RED_HIPPED_ROOF.get())
+                .add(ChangShengJueBlocks.BLACK_HIPPED_ROOF.get())
+                .add(ChangShengJueBlocks.GOLDEN_HIPPED_ROOF.get())
+                .add(ChangShengJueBlocks.BLUE_HIPPED_ROOF.get())
+
                 .add(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.get())
                 .add(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get())
                 .add(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.get())
@@ -186,6 +240,30 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get())
                 .add(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get())
                 .add(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get())
+
+                .add(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE.get())
+
+                .add(ChangShengJueBlocks.GRE_HIGH_CYLINDER_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.RED_HIGH_CYLINDER_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.BLACK_HIGH_CYLINDER_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.GOLDEN_HIGH_CYLINDER_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.BLUE_HIGH_CYLINDER_TILE_SIDE.get())
+
+                .add(ChangShengJueBlocks.GRE_EAVES_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.RED_EAVES_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.BLACK_EAVES_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.GOLDEN_EAVES_TILE_SIDE.get())
+                .add(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE.get())
+
+                .add(ChangShengJueBlocks.GRE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.RED_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.BLACK_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get())
+                .add(ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get())
 
                 .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get())
                 .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get())
@@ -344,36 +422,40 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .addTag(CSJTags.Blocks.LOW_DESK);
         this.tag(BlockTags.MINEABLE_WITH_HOE);
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).addTag(CSJTags.Blocks.TILE)
-                .add(ChangShengJueBlocks.WHITE_WALLS_BLOCK.get())
-                .add(ChangShengJueBlocks.COOL_WHITE_WALLS_BLOCK.get())
-                .add(ChangShengJueBlocks.WARM_WHITE_WALLS_BLOCK.get())
-                .add(ChangShengJueBlocks.WHITE_FINE_BRICKS.get())
-                .add(ChangShengJueBlocks.WHITE_BRICKS.get())
-                .add(ChangShengJueBlocks.BLACK_STONE_FINE_BRICKS.get())
-                .add(ChangShengJueBlocks.BLACK_STONE_BRICKS.get())
-                .add(ChangShengJueBlocks.BLUE_STONE_FINE_BRICKS.get())
-                .add(ChangShengJueBlocks.BLUE_STONE_BRICKS.get())
-                .add(ChangShengJueBlocks.WHITE_BRICKS_STAIRS.get())
-                .add(ChangShengJueBlocks.BLACK_STONE_BRICKS_STAIRS.get())
-                .add(ChangShengJueBlocks.BLUE_STONE_BRICKS_STAIRS.get())
-                .add(ChangShengJueBlocks.WHITE_BRICKS_SLAB.get())
-                .add(ChangShengJueBlocks.BLACK_STONE_BRICKS_SLAB.get())
-                .add(ChangShengJueBlocks.BLUE_STONE_BRICKS_SLAB.get())
-                .add(ChangShengJueBlocks.STONE_LAMPS_BASE_BLOCK.get())
-                .add(ChangShengJueBlocks.STONE_LAMPS_BLOCK.get())
-                .add(ChangShengJueBlocks.STONE_LAMPS_LIANG_BLOCK.get())
-                .add(ChangShengJueBlocks.YELLOW_STONE_LION_BLOCK.get())
-                .add(ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get())
-                .add(ChangShengJueBlocks.BITUMEN_FLOOR_TILES_BLOCK.get())
-                .add(ChangShengJueBlocks.BLUE_FLOOR_TILES_BLOCK.get())
-                .add(ChangShengJueBlocks.BLACK_FLOOR_TILES_BLOCK.get())
-                .add(ChangShengJueBlocks.AG_ORE.get())
-                .add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get())
-                .add(ChangShengJueBlocks.KAOLIN_ORE.get())
-                .add(ChangShengJueBlocks.LIMESTONE.get())
-                .add(ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get())
-                .add(ChangShengJueBlocks.CASTING_MOLDS.get())
-                .add(ChangShengJueBlocks.SYDEROLIFE_ORE.get());
+                .add(ChangShengJueBlocks.WHITE_WALLS_BLOCK.get(),
+                        ChangShengJueBlocks.COOL_WHITE_WALLS_BLOCK.get(),
+                        ChangShengJueBlocks.WARM_WHITE_WALLS_BLOCK.get(),
+                        ChangShengJueBlocks.WHITE_FINE_BRICKS.get(),
+                        ChangShengJueBlocks.WHITE_BRICKS.get(),
+                        ChangShengJueBlocks.BLACK_STONE_FINE_BRICKS.get(),
+                        ChangShengJueBlocks.BLACK_STONE_BRICKS.get(),
+                        ChangShengJueBlocks.BLUE_STONE_FINE_BRICKS.get(),
+                        ChangShengJueBlocks.BLUE_STONE_BRICKS.get(),
+                        ChangShengJueBlocks.WHITE_BRICKS_STAIRS.get(),
+                        ChangShengJueBlocks.BLACK_STONE_BRICKS_STAIRS.get(),
+                        ChangShengJueBlocks.BLUE_STONE_BRICKS_STAIRS.get(),
+                        ChangShengJueBlocks.WHITE_BRICKS_SLAB.get(),
+                        ChangShengJueBlocks.BLACK_STONE_BRICKS_SLAB.get(),
+                        ChangShengJueBlocks.BLUE_STONE_BRICKS_SLAB.get(),
+                        ChangShengJueBlocks.STONE_LAMPS_BASE_BLOCK.get(),
+                        ChangShengJueBlocks.STONE_LAMPS_BLOCK.get(),
+                        ChangShengJueBlocks.STONE_LAMPS_LIANG_BLOCK.get(),
+                        ChangShengJueBlocks.YELLOW_STONE_LION_BLOCK.get(),
+                        ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get(),
+                        ChangShengJueBlocks.BITUMEN_FLOOR_TILES_BLOCK.get(),
+                        ChangShengJueBlocks.BLUE_FLOOR_TILES_BLOCK.get(),
+                        ChangShengJueBlocks.BLACK_FLOOR_TILES_BLOCK.get(),
+                        ChangShengJueBlocks.AG_ORE.get(),
+                        ChangShengJueBlocks.DEEPSLATE_AG_ORE.get(),
+                        ChangShengJueBlocks.KAOLIN_ORE.get(),
+                        ChangShengJueBlocks.LIMESTONE.get(),
+                        ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get(),
+                        ChangShengJueBlocks.CASTING_MOLDS.get(),
+                        ChangShengJueBlocks.SYDEROLIFE_ORE.get(),
+                        ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get(),
+                        ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get(),
+                        ChangShengJueBlocks.WIND_CHIME.get());
+
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(ChangShengJueBlocks.HANG_TU_BLOCK.get())

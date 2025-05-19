@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -42,7 +43,8 @@ public class Plaque extends BaseEntityBlock {
 
     public Plaque(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(LEFT, false).setValue(MIDDLE, false).setValue(RIGHT, false).setValue(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(LEFT, false)
+                .setValue(MIDDLE, false).setValue(RIGHT, false).setValue(FACING, Direction.NORTH));
     }
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return AABBS.get(pState.getValue(FACING));
@@ -64,32 +66,22 @@ public class Plaque extends BaseEntityBlock {
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
     public Direction rightOf(Direction facing) {
-        switch (facing) {
-            case NORTH:
-                return Direction.WEST;
-            case EAST:
-                return Direction.NORTH;
-            case SOUTH:
-                return Direction.EAST;
-            case WEST:
-                return Direction.SOUTH;
-            default:
-                return facing; // 如果不是水平方向，就返回原方向
-        }
+        return switch (facing) {
+            case NORTH -> Direction.WEST;
+            case EAST -> Direction.NORTH;
+            case SOUTH -> Direction.EAST;
+            case WEST -> Direction.SOUTH;
+            default -> facing; // 如果不是水平方向，就返回原方向
+        };
     }
     public Direction leftOf(Direction facing) {
-        switch (facing) {
-            case NORTH:
-                return Direction.EAST;
-            case EAST:
-                return Direction.SOUTH;
-            case SOUTH:
-                return Direction.WEST;
-            case WEST:
-                return Direction.NORTH;
-            default:
-                return facing; // 如果不是水平方向，就返回原方向
-        }
+        return switch (facing) {
+            case NORTH -> Direction.EAST;
+            case EAST -> Direction.SOUTH;
+            case SOUTH -> Direction.WEST;
+            case WEST -> Direction.NORTH;
+            default -> facing; // 如果不是水平方向，就返回原方向
+        };
     }
 
     @Override
@@ -117,6 +109,14 @@ public class Plaque extends BaseEntityBlock {
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
+    }
+    @Override
+    public BlockState rotate(BlockState pState, Rotation pRot) {
+        return pState.setValue(FACING, pRot.rotate(pState.getValue(FACING)));
+    }
+    @Override
+    public BlockState mirror(BlockState pState, Mirror pMirror) {
+        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 
     @Override

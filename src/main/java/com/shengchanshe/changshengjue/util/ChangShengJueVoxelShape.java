@@ -72,6 +72,11 @@ public class ChangShengJueVoxelShape {
             Block.box(15, 5, 12, 16, 8, 16)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
+    //侧瓦当
+    public static final VoxelShape EAVES_TILE_SIDE_N = Block.box(9, 0, 9, 16, 9, 16);
+    public static final VoxelShape EAVES_TILE_SIDE_E = Block.box(0, 0, 9, 7, 9, 16);
+    public static final VoxelShape EAVES_TILE_SIDE_S = Block.box(0, 0, 0, 7, 9, 7);
+    public static final VoxelShape EAVES_TILE_SIDE_W = Block.box(9, 0, 0, 16, 9, 7);
 
     public static final VoxelShape CYLINDER_TILE_BLOCK_N_1 = Stream.of(
             Block.box(4, 0, 10, 12, 8, 16),
@@ -1256,7 +1261,14 @@ public class ChangShengJueVoxelShape {
     //中边
     public static final VoxelShape WINE_TABLE_MIDDLE_SIDE = Stream.of(
             Block.box(0, 15, 0, 16, 16, 16),
-            Block.box(0, 14.3, 0, 15, 15.3, 16),
+            Block.box(0, 14.3, 1, 16, 15.3, 15),
+            Block.box(0, 13.3, 0, 16, 14.3, 16),
+            Block.box(0, 9.3, 0, 16, 13.3, 16)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+
+    public static final VoxelShape WINE_TABLE_MIDDLE_SIDE_1 = Stream.of(
+            Block.box(0, 15, 0, 16, 16, 16),
+            Block.box(1, 14.3, 0, 15, 15.3, 16),
             Block.box(0, 13.3, 0, 16, 14.3, 16),
             Block.box(0, 9.3, 0, 16, 13.3, 16)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();

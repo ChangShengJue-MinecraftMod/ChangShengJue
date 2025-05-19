@@ -15,7 +15,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class BookDesk extends AbstractDesk {
+public class BookDesk extends Desks {
     public static final BooleanProperty RIGHT = BooleanProperty.create("right");
     private VoxelShape AABB = Shapes.empty();
 

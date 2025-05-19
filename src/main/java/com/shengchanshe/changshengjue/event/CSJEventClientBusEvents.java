@@ -6,6 +6,7 @@ import com.shengchanshe.changshengjue.block.custom.shing_mun.bigleft.entity.BigS
 import com.shengchanshe.changshengjue.block.custom.shing_mun.bigright.entity.BigShingMunRightEntityRender;
 import com.shengchanshe.changshengjue.block.custom.shing_mun.left.entity.ShingMunLeftEntityRender;
 import com.shengchanshe.changshengjue.block.custom.shing_mun.right.entity.ShingMunRightEntityRender;
+import com.shengchanshe.changshengjue.block.decoration.windchime.WindChimeEntityRender;
 import com.shengchanshe.changshengjue.block.entity.desk.DeskRender;
 import com.shengchanshe.changshengjue.block.entity.render.*;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.dugu_nine_swords.DuguNineSwordsHudOverlay;
@@ -89,6 +90,9 @@ public class CSJEventClientBusEvents {
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.PLAQUE_ENTITY.get(), PlaqueEntityRender::new);
 
         event.registerEntityRenderer(ChangShengJueEntity.SEAT.get(), SeatRender::new);
+
+        event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.WIND_CHIME_ENTITY.get(),
+                (BlockEntityRendererProvider.Context context) -> new WindChimeEntityRender());
     }
 
     @SubscribeEvent

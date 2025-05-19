@@ -1,7 +1,9 @@
 package com.shengchanshe.changshengjue.datagen.loot;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
+import com.shengchanshe.changshengjue.block.RoofPart;
 import com.shengchanshe.changshengjue.block.cropper.*;
+import com.shengchanshe.changshengjue.block.custom.tile.HippedRoof;
 import com.shengchanshe.changshengjue.block.tree_logs.FruitLeaves;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
@@ -9,17 +11,22 @@ import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.storage.loot.IntRange;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.LimitCount;
@@ -374,6 +381,72 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get());
         this.dropSelf(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get());
 
+        this.dropSelf(ChangShengJueBlocks.GRE_OCTAGONAL_UPTURNED_EAVES.get());
+        this.dropSelf(ChangShengJueBlocks.RED_OCTAGONAL_UPTURNED_EAVES.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_OCTAGONAL_UPTURNED_EAVES.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_OCTAGONAL_UPTURNED_EAVES.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES.get());
+
+        this.dropSelf(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get());
+        this.dropSelf(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get());
+
+        this.dropSelf(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get());
+        this.dropSelf(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get());
+
+        this.dropSelf(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get());
+        this.dropSelf(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get());
+
+        this.dropSelf(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get());
+        this.dropSelf(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get());
+
+        this.dropSelf(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get());
+        this.dropSelf(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get());
+
+        this.dropSelf(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get());
+        this.dropSelf(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get());
+
+        this.dropSelf(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE.get());
+        this.dropSelf(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE_SIDE.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE_SIDE.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE.get());
+
+        this.dropSelf(ChangShengJueBlocks.GRE_HIGH_CYLINDER_TILE_SIDE.get());
+        this.dropSelf(ChangShengJueBlocks.RED_HIGH_CYLINDER_TILE_SIDE.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_HIGH_CYLINDER_TILE_SIDE.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_HIGH_CYLINDER_TILE_SIDE.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_HIGH_CYLINDER_TILE_SIDE.get());
+
+        this.dropSelf(ChangShengJueBlocks.GRE_EAVES_TILE_SIDE.get());
+        this.dropSelf(ChangShengJueBlocks.RED_EAVES_TILE_SIDE.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_EAVES_TILE_SIDE.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_EAVES_TILE_SIDE.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE.get());
+
+        this.dropSelf(ChangShengJueBlocks.GRE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.RED_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.BLACK_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.GOLDEN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get());
+        this.dropSelf(ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get());
+
         this.dropSelf(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get());
         this.dropSelf(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_2.get());
@@ -403,11 +476,11 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.WINDOWS_OAK_BLOCK_1.get());
         this.dropSelf(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_1.get());
-        this.add(ChangShengJueBlocks.HIGH_BIRCH_WINDOWS.get(), (door) -> this.createDoorTable(door));
-        this.add(ChangShengJueBlocks.HIGH_ACACIA_WINDOWS.get(), (door) -> this.createDoorTable(door));
-        this.add(ChangShengJueBlocks.HIGH_DARK_OAK_WINDOWS.get(), (door) -> this.createDoorTable(door));
-        this.add(ChangShengJueBlocks.HIGH_OAK_WINDOWS.get(), (door) -> this.createDoorTable(door));
-        this.add(ChangShengJueBlocks.HIGH_SPRUCE_WINDOWS.get(), (door) -> this.createDoorTable(door));
+        this.add(ChangShengJueBlocks.HIGH_BIRCH_WINDOWS.get(), this::createDoorTable);
+        this.add(ChangShengJueBlocks.HIGH_ACACIA_WINDOWS.get(), this::createDoorTable);
+        this.add(ChangShengJueBlocks.HIGH_DARK_OAK_WINDOWS.get(), this::createDoorTable);
+        this.add(ChangShengJueBlocks.HIGH_OAK_WINDOWS.get(), this::createDoorTable);
+        this.add(ChangShengJueBlocks.HIGH_SPRUCE_WINDOWS.get(), this::createDoorTable);
         //方块
         this.dropSelf(ChangShengJueBlocks.HANG_TU_WALL.get());
         this.dropSelf(ChangShengJueBlocks.TU_PEI_WALL.get());
@@ -438,6 +511,9 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get());
         this.dropSelf(ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get());
 
+        this.dropSelf(ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get());
+        this.dropSelf(ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get());
+
         //织布机
         this.dropSelf(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get());
         //陶轮
@@ -458,6 +534,8 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get());
         //画轴(大)
         this.dropSelf(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get());
+        //风铃
+        this.dropSelf(ChangShengJueBlocks.WIND_CHIME.get());
 
         //城门
         this.dropSelf(ChangShengJueBlocks.SHING_MUN_LEFT.get());
@@ -751,8 +829,30 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),
                 block -> createSlabItemTable(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get()));
 
-    }
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SIDE.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.GRE_CYLINDER_TILE_SIDE.get()));
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SIDE.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.RED_CYLINDER_TILE_SIDE.get()));
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SIDE.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SIDE.get()));
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SIDE.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SIDE.get()));
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SIDE.get(),
+                block -> createSlabItemTable(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SIDE.get()));
 
+        //攒尖
+        this.add(ChangShengJueBlocks.GRE_HIPPED_ROOF.get(),
+                block -> this.createSinglePropConditionTable(ChangShengJueBlocks.GRE_HIPPED_ROOF.get(), HippedRoof.PART ,RoofPart.BOTTOM));
+        this.add(ChangShengJueBlocks.RED_HIPPED_ROOF.get(),
+                block -> this.createSinglePropConditionTable(ChangShengJueBlocks.RED_HIPPED_ROOF.get(), HippedRoof.PART ,RoofPart.BOTTOM));
+        this.add(ChangShengJueBlocks.BLACK_HIPPED_ROOF.get(),
+                block -> this.createSinglePropConditionTable(ChangShengJueBlocks.BLACK_HIPPED_ROOF.get(), HippedRoof.PART ,RoofPart.BOTTOM));
+        this.add(ChangShengJueBlocks.GOLDEN_HIPPED_ROOF.get(),
+                block -> this.createSinglePropConditionTable(ChangShengJueBlocks.GOLDEN_HIPPED_ROOF.get(), HippedRoof.PART ,RoofPart.BOTTOM));
+        this.add(ChangShengJueBlocks.BLUE_HIPPED_ROOF.get(),
+                block -> this.createSinglePropConditionTable(ChangShengJueBlocks.BLUE_HIPPED_ROOF.get(), HippedRoof.PART ,RoofPart.BOTTOM));
+
+    }
 
 
     public void createLeavesFruitsDrops(Block leavesBlock, Item fruitsItem,Block sapling){

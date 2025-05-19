@@ -12,10 +12,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -441,6 +438,16 @@ public class BigShingMunLeft extends BaseEntityBlock{
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(FACING,HALF,RIGHT,OPEN,ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT);
+    }
+
+    @Override
+    public BlockState rotate(BlockState blockState, Rotation rotation) {
+        return blockState.setValue(FACING, rotation.rotate(blockState.getValue(FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState blockState, Mirror mirror) {
+        return super.mirror(blockState, mirror);
     }
 
     @Override

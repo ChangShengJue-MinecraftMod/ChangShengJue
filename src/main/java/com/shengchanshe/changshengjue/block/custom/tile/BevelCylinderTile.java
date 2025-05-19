@@ -5,17 +5,19 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
 import javax.annotation.Nullable;
 
 public class BevelCylinderTile extends CylinderTile {
     public static final BooleanProperty HAS_SAME_BLOCK_DIAGONAL = BooleanProperty.create("has_same_block_diagonal");
-
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public BevelCylinderTile(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(HAS_SAME_BLOCK_DIAGONAL, false));
@@ -27,13 +29,13 @@ public class BevelCylinderTile extends CylinderTile {
     }
 
     @Override
-    public BlockState rotate(BlockState state, Rotation rot) {
-        return state;
+    public BlockState rotate(BlockState blockState, Rotation rotation) {
+        return super.rotate(blockState,rotation);
     }
 
     @Override
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state;
+    public BlockState mirror(BlockState blockState, Mirror mirror) {
+        return super.mirror(blockState, mirror);
     }
 
     @Override
