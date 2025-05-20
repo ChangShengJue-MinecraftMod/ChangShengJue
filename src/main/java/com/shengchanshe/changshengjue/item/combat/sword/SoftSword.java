@@ -23,6 +23,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -66,6 +67,55 @@ public class SoftSword extends Sword implements GeoItem {
                                 xuannuSwordsmanship.getXuannuSwordsmanshipToppedTick(),
                                 xuannuSwordsmanship.getXuannuSwordsmanshipDachengTick(),
                                 xuannuSwordsmanship.isXuannuSwordsmanshipParticle()), (ServerPlayer) player);
+                    }
+                }else if (xuannuSwordsmanship.getXuannuSwordsmanshipLevel() > 0) {
+                    if (entity instanceof LivingEntity livingEntity){
+                        float probability = player.getRandom().nextFloat();
+                        float defaultProbability = 0.15F;
+                        if (xuannuSwordsmanship.getXuannuSwordsmanshipLevel() < 2) {
+                            if (probability < defaultProbability) {
+                                if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
+                                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
+                                }
+                            }
+                        } else {
+                            if (probability < (defaultProbability * 1.2F)) {
+                                if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
+                                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
+                                }
+                            }
+                        }
+                        if (probability < 0.25F) {
+                            if (!(livingEntity instanceof Zombie)){
+                                int duration = 40;
+                                int level = player.getRandom().nextInt(2); // 0或1
+
+                                // 如果已有外伤效果，延长1秒并保持最高等级
+                                if (livingEntity.hasEffect(ChangShengJueEffects.TRAUMA_EFFECT.get())) {
+                                    MobEffectInstance oldEffect = livingEntity.getEffect(ChangShengJueEffects.TRAUMA_EFFECT.get());
+                                    if (oldEffect != null) {
+                                        duration = oldEffect.getDuration() + 20;
+                                        level = Math.max(level, oldEffect.getAmplifier());
+                                    }
+                                }
+
+                                livingEntity.addEffect(new MobEffectInstance(
+                                        ChangShengJueEffects.TRAUMA_EFFECT.get(), duration, level,
+                                        true,
+                                        true,
+                                        true
+                                ), player);
+                            }
+                        }
+                        if (player.getMainHandItem().canDisableShield(livingEntity.getUseItem(), livingEntity, player)) {
+                            if (probability < 0.5) {
+                                // 强制打破目标玩家的防御状态（禁用盾牌防御）
+                                player.getCooldowns().addCooldown(player.getUseItem().getItem(), 100);
+                                player.stopUsingItem();
+                                livingEntity.stopUsingItem();
+                                player.level().broadcastEntityEvent(player, (byte) 30);
+                            }
+                        }
                     }
                 }
             });
@@ -141,8 +191,30 @@ public class SoftSword extends Sword implements GeoItem {
                         if (entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
                                         .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player),
                                 player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
-                            if (xuannuSwordsmanship.getXuannuSwordsmanshipUseCount() <= 100){
+                            if (probability < 0.25F && entity instanceof LivingEntity livingEntity) {
+                                if (!(livingEntity instanceof Zombie)){
+                                    int duration = 100;
+                                    int level = player.getRandom().nextInt(5);
 
+                                    if (livingEntity.hasEffect(ChangShengJueEffects.TRAUMA_EFFECT.get())) {
+                                        MobEffectInstance oldEffect = livingEntity.getEffect(ChangShengJueEffects.TRAUMA_EFFECT.get());
+                                        if (oldEffect != null) {
+                                            duration = oldEffect.getDuration() + 20;
+                                            level = Math.max(level, oldEffect.getAmplifier());
+                                        }
+                                    }
+
+                                    livingEntity.addEffect(new MobEffectInstance(
+                                            ChangShengJueEffects.TRAUMA_EFFECT.get(),
+                                            duration,
+                                            level,
+                                            true,
+                                            true,
+                                            true
+                                    ), player);
+                                }
+                            }
+                            if (xuannuSwordsmanship.getXuannuSwordsmanshipUseCount() <= 100){
                                 xuannuSwordsmanship.addXuannuSwordsmanshipUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (xuannuSwordsmanship.getXuannuSwordsmanshipUseCount() >= 100){
                                     xuannuSwordsmanship.setXuannuSwordsmanshipParticle(true);

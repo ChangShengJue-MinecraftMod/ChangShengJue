@@ -21,8 +21,10 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
@@ -65,6 +67,28 @@ public class Knife extends SwordItem {
                         if (entity instanceof LivingEntity livingEntity){
                             float probability = pPlayer.getRandom().nextFloat();
                             float defaultProbability = 0.5f;
+                            if (probability < 0.25F) {
+                                if (!(livingEntity instanceof Zombie)){
+                                    int duration = 40;
+                                    int level = pPlayer.getRandom().nextInt(2); // 0或1
+
+                                    // 如果已有外伤效果，延长1秒并保持最高等级
+                                    if (livingEntity.hasEffect(ChangShengJueEffects.TRAUMA_EFFECT.get())) {
+                                        MobEffectInstance oldEffect = livingEntity.getEffect(ChangShengJueEffects.TRAUMA_EFFECT.get());
+                                        if (oldEffect != null) {
+                                            duration = oldEffect.getDuration() + 20;
+                                            level = Math.max(level, oldEffect.getAmplifier());
+                                        }
+                                    }
+
+                                    livingEntity.addEffect(new MobEffectInstance(
+                                            ChangShengJueEffects.TRAUMA_EFFECT.get(), duration, level,
+                                            true,
+                                            true,
+                                            true
+                                    ), pPlayer);
+                                }
+                            }
                             if (pPlayer.getMainHandItem().canDisableShield(livingEntity.getUseItem(), livingEntity, pPlayer)) {
                                 if (probability < defaultProbability) {
                                     // 强制打破目标玩家的防御状态（禁用盾牌防御）
@@ -173,12 +197,35 @@ public class Knife extends SwordItem {
                 for (Entity entity : entities) {//遍历包围盒中的实体
                     //检查生物是否可以交互,是否在给定的平方距离内,检查生物是否是LivingEntity,检查生物是否还活着
                     if (player.isPickable() && player.distanceToSqr(entity) < radius * radius && entity instanceof LivingEntity && entity.isAlive()) {
+                        float probability = player.getRandom().nextFloat();
                         float damage1 = this.getDamage();
                         float damage = goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel() < 2 ? (damage1 + 2) * 1.3F : (damage1 + 2) * 1.6F;
                         if (entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
                                 .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player),
                                 player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
+                            if (probability < 0.25F && entity instanceof LivingEntity livingEntity) {
+                                if (!(livingEntity instanceof Zombie)){
+                                    int duration = 100;
+                                    int level = player.getRandom().nextInt(5);
 
+                                    if (livingEntity.hasEffect(ChangShengJueEffects.TRAUMA_EFFECT.get())) {
+                                        MobEffectInstance oldEffect = livingEntity.getEffect(ChangShengJueEffects.TRAUMA_EFFECT.get());
+                                        if (oldEffect != null) {
+                                            duration = oldEffect.getDuration() + 20;
+                                            level = Math.max(level, oldEffect.getAmplifier());
+                                        }
+                                    }
+
+                                    livingEntity.addEffect(new MobEffectInstance(
+                                            ChangShengJueEffects.TRAUMA_EFFECT.get(),
+                                            duration,
+                                            level,
+                                            true,
+                                            true,
+                                            true
+                                    ), player);
+                                }
+                            }
                             if (goldenBlackKnifeMethod.getGoldenBlackKnifeMethodUseCount() < 100) {
                                 goldenBlackKnifeMethod.addGoldenBlackKnifeMethodUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (goldenBlackKnifeMethod.getGoldenBlackKnifeMethodUseCount() >= 100){

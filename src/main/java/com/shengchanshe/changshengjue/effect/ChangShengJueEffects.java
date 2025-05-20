@@ -44,6 +44,9 @@ public class ChangShengJueEffects {
     public static final Supplier<MobEffect> INSTANT_CHARM_EFFECT = register("instant_charm_effect", InstantCharmEffect::new);
     public static final Supplier<MobEffect> INSTANT_DISFAVOR_EFFECT = register("instant_disfavor_effect", InstantDisfavorEffect::new);
 
+    public static final Supplier<MobEffect> TRAUMA_EFFECT = register("trauma_effect", TraumaEffect::new);
+    public static final Supplier<MobEffect> INTERNAL_INJURY_EFFECT = register("internal_injury_effect", InternalInjuryEffect::new);
+
     public static RegistryObject<MobEffect> register(String name, Supplier<MobEffect> effect){
         return MOD_EFFECTS.register(name, effect);
     }

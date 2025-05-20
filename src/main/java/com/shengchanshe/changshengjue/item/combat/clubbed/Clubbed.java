@@ -22,6 +22,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
@@ -72,6 +73,29 @@ public class Clubbed extends SwordItem {
                             } else {
                                 if (probability < defaultProbability * 1.2) {
                                     livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 10, 1, false, true), pPlayer);
+                                }
+                            }
+
+                            if (probability < 0.25F) {
+                                if (!(livingEntity instanceof Zombie)){
+                                    int duration = 40;
+                                    int level = pPlayer.getRandom().nextInt(2); // 0或1
+
+                                    // 如果已有外伤效果，延长1秒并保持最高等级
+                                    if (livingEntity.hasEffect(ChangShengJueEffects.TRAUMA_EFFECT.get())) {
+                                        MobEffectInstance oldEffect = livingEntity.getEffect(ChangShengJueEffects.TRAUMA_EFFECT.get());
+                                        if (oldEffect != null) {
+                                            duration = oldEffect.getDuration() + 20;
+                                            level = Math.max(level, oldEffect.getAmplifier());
+                                        }
+                                    }
+
+                                    livingEntity.addEffect(new MobEffectInstance(
+                                            ChangShengJueEffects.TRAUMA_EFFECT.get(), duration, level,
+                                            true,
+                                            true,
+                                            true
+                                    ), pPlayer);
                                 }
                             }
                             if (pPlayer.getMainHandItem().canDisableShield(livingEntity.getUseItem(), livingEntity, pPlayer)) {
@@ -183,6 +207,29 @@ public class Clubbed extends SwordItem {
                         if (entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
                                 .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player)
                                 , player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
+                            if (probability < 0.25F && entity instanceof LivingEntity livingEntity) {
+                                if (!(livingEntity instanceof Zombie)){
+                                    int duration = 100;
+                                    int level = player.getRandom().nextInt(5);
+
+                                    if (livingEntity.hasEffect(ChangShengJueEffects.TRAUMA_EFFECT.get())) {
+                                        MobEffectInstance oldEffect = livingEntity.getEffect(ChangShengJueEffects.TRAUMA_EFFECT.get());
+                                        if (oldEffect != null) {
+                                            duration = oldEffect.getDuration() + 20;
+                                            level = Math.max(level, oldEffect.getAmplifier());
+                                        }
+                                    }
+
+                                    livingEntity.addEffect(new MobEffectInstance(
+                                            ChangShengJueEffects.TRAUMA_EFFECT.get(),
+                                            duration,
+                                            level,
+                                            true,
+                                            true,
+                                            true
+                                    ), player);
+                                }
+                            }
                             if (shaolinStickMethod.getShaolinStickMethodUseCount() < 100) {
                                 shaolinStickMethod.addShaolinStickMethodUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (shaolinStickMethod.getShaolinStickMethodUseCount() >= 100) {

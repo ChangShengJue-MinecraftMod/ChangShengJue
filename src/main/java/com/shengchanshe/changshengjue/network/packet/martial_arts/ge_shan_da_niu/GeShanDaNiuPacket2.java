@@ -35,8 +35,10 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.AABB;
@@ -223,6 +225,28 @@ public class GeShanDaNiuPacket2 {
                                                 if (entity.hurt(new DamageSource(level.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
                                                                 .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player)
                                                         , player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 14 + 2 : 14)) {//造成伤害
+                                                    float probability = player.getRandom().nextFloat();
+                                                    if (probability < 0.25F && entity instanceof LivingEntity livingEntity) {
+                                                        int duration = 100;
+                                                        int level1 = 0;
+                                                        if (livingEntity.hasEffect(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get())) {
+                                                            MobEffectInstance oldEffect =
+                                                                    livingEntity.getEffect(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get());
+                                                            if (oldEffect != null) {
+                                                                duration = oldEffect.getDuration() + 20;
+                                                                level1 = oldEffect.getAmplifier() + (livingEntity instanceof Zombie ? 2 : 1);
+                                                            }
+                                                        }
+                                                        livingEntity.addEffect(new MobEffectInstance(
+                                                                ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get(),
+                                                                duration,
+                                                                level1,
+                                                                true,
+                                                                true,
+                                                                true
+                                                        ), player);
+                                                    }
+
                                                     EnchantmentHelper.doPostDamageEffects(player, entity);//应用附魔
                                                     if (geShanDaNiu.getGeShanDaNiuUseCount() <= 100) {
                                                         geShanDaNiu.addGeShanDaNiuUseCount(!player.getAbilities().instabuild ? 1 : 100);

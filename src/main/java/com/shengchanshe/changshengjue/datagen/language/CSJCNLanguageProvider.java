@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.datagen.language;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
+import com.shengchanshe.changshengjue.damage.CSJDamageTypes;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
@@ -352,6 +353,10 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_angry_sound" , "猴 : 生气");
         this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_hurt" , "猴 : 受伤");
         this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_death" , "猴 : 死亡");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_play_1" , "猴 : 拜年");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_play_2" , "猴 : 翻筋斗");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_play_3" , "猴 : 敬礼");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_play_4" , "猴 : 很脏很脏的嚎叫");
         this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_sound" , "虎 : 咆哮");
         this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_sound_1" , "虎 : 咆哮");
         this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_hurt" , "虎 : 受伤");
@@ -981,6 +986,8 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEffects.FIXATION_EFFECT.get(), "定身");
         this.add(ChangShengJueEffects.GOLDEN_BELL_JAR_EFFECT.get(), "金钟罩");
         this.add(ChangShengJueEffects.TURTLE_BREATH_EFFECT.get(), "龟息");
+        this.add(ChangShengJueEffects.TRAUMA_EFFECT.get(), "外伤");
+        this.add(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get(), "内伤");
         this.add(ChangShengJueEffects.BILUOCHUN_TEAS.get(), "碧螺春");
         this.add(ChangShengJueEffects.LONG_JING_TEAS.get(), "龙井");
         this.add(ChangShengJueEffects.FEN_JIU.get(), "汾酒");
@@ -1005,8 +1012,9 @@ public class CSJCNLanguageProvider extends LanguageProvider {
 
         /*信息*/
         //死亡信息
-        this.add("death.attack.bleed", "%1$s失血过多。");
-        this.add("death.attack.martial_arts", "%1$s被%2$s强大的武功杀死了。");
+        this.add("death.attack." + CSJDamageTypes.BLEED.location().getPath(), "%1$s失血过多。");
+        this.add("death.attack." + CSJDamageTypes.MARTIAL_ARTS.location().getPath(), "%1$s被%2$s被武功震碎了内脏。");
+        this.add("death.attack." + CSJDamageTypes.TRAUMA.location().getPath(), "%1$s的伤势过重。");
         //普通信息
         this.add("block.changshengjue.fen_jiu.no_wine","已经没有酒了！");
         this.add("tooltip.changshengjue.natural_silk", "通过挖掘桑叶获得");

@@ -48,6 +48,22 @@
 						}
 					}
 				},
+				"bone": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.1667": {
+							"vector": [397.5, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [347.5, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
 				"bone2": {
 					"rotation": {
 						"0.1667": {
@@ -165,8 +181,38 @@
 							"vector": [1, 1.5, 1],
 							"easing": "linear"
 						},
-						"0.5": {
+						"0.25": {
 							"vector": [1, 1.5, 1],
+							"easing": "linear"
+						}
+					}
+				},
+				"bone": {
+					"rotation": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [-7.49294, -0.32621, -2.47864],
+							"easing": "linear"
+						},
+						"1.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					},
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.5": {
+							"vector": [0, 0, 0.1],
+							"easing": "linear"
+						},
+						"1.0": {
+							"vector": [0, 0, 0],
 							"easing": "linear"
 						}
 					}
@@ -193,6 +239,56 @@
 							"vector": [0, 0, 0],
 							"easing": "linear"
 						}
+					}
+				}
+			}
+		},
+		"attack-1": {
+			"animation_length": 0.2917,
+			"bones": {
+				"all": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.0417": {
+							"vector": [0.2, 0, 0.2]
+						},
+						"0.0833": {
+							"vector": [-0.2, 0, -0.2]
+						},
+						"0.125": {
+							"vector": [0, 0, 0]
+						},
+						"0.1667": {
+							"vector": [-0.2, 0, 0.2]
+						},
+						"0.2083": {
+							"vector": [0.2, 0, -0.2]
+						},
+						"0.25": {
+							"vector": [0, 0, 0]
+						}
+					},
+					"scale": {
+						"0.0": {
+							"vector": [1, 1.5, 1],
+							"easing": "linear"
+						},
+						"0.0833": {
+							"vector": [1, 1.5, 1],
+							"easing": "linear"
+						}
+					}
+				},
+				"bone2": {
+					"scale": {
+						"vector": [0, 0, 0]
+					}
+				},
+				"bone3": {
+					"scale": {
+						"vector": [0, 0, 0]
 					}
 				}
 			}

@@ -6,9 +6,9 @@
 				"identifier": "geometry.unknown",
 				"texture_width": 64,
 				"texture_height": 64,
-				"visible_bounds_width": 2,
-				"visible_bounds_height": 3.5,
-				"visible_bounds_offset": [0, 1.25, 0]
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 3,
+				"visible_bounds_offset": [0, 0.5, 0]
 			},
 			"bones": [
 				{
@@ -18,10 +18,10 @@
 				{
 					"name": "bone2",
 					"parent": "all",
-					"pivot": [0, 19, 0],
+					"pivot": [0, 0, 0],
 					"cubes": [
 						{
-							"origin": [-0.75, -2, -0.75],
+							"origin": [-0.75, -21, -0.75],
 							"size": [1.5, 42, 1.5],
 							"uv": {
 								"north": {"uv": [3, 0], "uv_size": [-3, 42]},
@@ -33,7 +33,7 @@
 							}
 						},
 						{
-							"origin": [-0.75, 32.5, -0.75],
+							"origin": [-0.75, 13.5, -0.75],
 							"size": [1.5, 1, 1.5],
 							"inflate": 0.1,
 							"uv": {
@@ -46,7 +46,7 @@
 							}
 						},
 						{
-							"origin": [-0.75, 5.5, -0.75],
+							"origin": [-0.75, -13.5, -0.75],
 							"size": [1.5, 1, 1.5],
 							"inflate": 0.1,
 							"uv": {
@@ -59,7 +59,7 @@
 							}
 						},
 						{
-							"origin": [-1, -0.5, -1],
+							"origin": [-1, -19.5, -1],
 							"size": [2, 1, 2],
 							"inflate": -0.2,
 							"uv": {
@@ -72,10 +72,10 @@
 							}
 						},
 						{
-							"origin": [0, 0, -4.75],
+							"origin": [0, -19, -4.75],
 							"size": [0, 3, 4],
 							"inflate": 0.03,
-							"pivot": [0, 0, -0.75],
+							"pivot": [0, -19, -0.75],
 							"rotation": [22.5, 0, 0],
 							"uv": {
 								"north": {"uv": [27, 8], "uv_size": [2, 3]},
@@ -91,10 +91,10 @@
 				{
 					"name": "bone3",
 					"parent": "bone2",
-					"pivot": [0, 35, 1],
+					"pivot": [0, 16, 1],
 					"cubes": [
 						{
-							"origin": [0, 34.5, 0],
+							"origin": [0, 15.5, 0],
 							"size": [0, 5, 6],
 							"uv": {
 								"north": {"uv": [0, 0], "uv_size": [0, 4]},
@@ -110,10 +110,10 @@
 				{
 					"name": "bone4",
 					"parent": "bone2",
-					"pivot": [0, 1, -1],
+					"pivot": [0, -18, -1],
 					"cubes": [
 						{
-							"origin": [0, -1.5, -6],
+							"origin": [0, -20.5, -6],
 							"size": [0, 4, 6],
 							"uv": {
 								"north": {"uv": [0, 0], "uv_size": [0, 4]},

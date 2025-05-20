@@ -37,6 +37,7 @@ import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.ClientUtils;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import software.bernie.geckolib.core.animation.*;
 
@@ -246,20 +247,6 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
         return PlayState.CONTINUE;
     }
 
-    // 定义一个私有方法performingPredicate，用于根据performing的值设置动画状态
-    private <E extends GeoAnimatable> PlayState performingPredicate(AnimationState<E> event){
-        if (this.performing == 1) {
-            event.setAnimation(RawAnimation.begin().thenPlay("play1"));
-        } else if (this.performing == 2) {
-            event.setAnimation(RawAnimation.begin().thenPlay("play2"));
-        } else if (this.performing == 3) {
-            event.setAnimation(RawAnimation.begin().thenPlay("play3"));
-        } else if (this.performing == 4) {
-            event.setAnimation(RawAnimation.begin().thenPlay("play4"));
-        }
-        return PlayState.CONTINUE;
-    }
-
 //    public boolean shouldFollow(LivingEntity entity) {
 //        if (entity instanceof Player){
 //            Player player = (Player) entity;
@@ -361,14 +348,42 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
         return itemStack.getItem() == ChangShengJueItems.BANANA.get();
     }
 
+    // 定义一个私有方法performingPredicate，用于根据performing的值设置动画状态
+    private <E extends GeoAnimatable> PlayState performingPredicate(AnimationState<E> event){
+        if (this.performing == 1) {
+            event.setAnimation(RawAnimation.begin().thenPlay("play1"));
+        } else if (this.performing == 2) {
+            event.setAnimation(RawAnimation.begin().thenPlay("play2"));
+        } else if (this.performing == 3) {
+            event.setAnimation(RawAnimation.begin().thenPlay("play3"));
+        } else if (this.performing == 4) {
+            event.setAnimation(RawAnimation.begin().thenPlay("play4"));
+        }
+        return PlayState.CONTINUE;
+    }
+
+
+
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-    // 注册动画控制器的方法，参数是一个控制器注册器对象
-    // 添加一个名为"controller"的动画控制器，使用predicate方法作为动画状态判断逻辑
+        // 注册动画控制器的方法，参数是一个控制器注册器对象
+        // 添加一个名为"controller"的动画控制器，使用predicate方法作为动画状态判断逻辑
         controllers.add(new AnimationController<>(this,"controller",0,this::predicate));
-    // 添加一个名为"performing"的动画控制器，使用performingPredicate方法作为动画状态判断逻辑
-        controllers.add(new AnimationController<>(this,"performing",0,this::performingPredicate));
-    // 添加一个名为"attackController"的动画控制器，使用attackPredicate方法作为动画状态判断逻辑
+        // 添加一个名为"performing"的动画控制器，使用performingPredicate方法作为动画状态判断逻辑
+        controllers.add(new AnimationController<>(this,"performing",0, this::performingPredicate).setSoundKeyframeHandler((state) -> {
+            Player player = ClientUtils.getClientPlayer();
+            if (player != null) {
+                if (this.performing == 1) {
+                    player.playSound(ChangShengJueSound.MONKEY_PLAY_1.get(), 1.0F, 1.0F);
+                } else if (this.performing == 2) {
+                    player.playSound(ChangShengJueSound.MONKEY_PLAY_2.get(), 1.0F, 1.0F);
+                } else if (this.performing == 3) {
+                    player.playSound(ChangShengJueSound.MONKEY_PLAY_3.get(), 1.0F, 1.0F);
+                } else if (this.performing == 4) {
+                    player.playSound(ChangShengJueSound.MONKEY_PLAY_4.get(), 1.0F, 1.0F);
+                }
+            }}));
+        // 添加一个名为"attackController"的动画控制器，使用attackPredicate方法作为动画状态判断逻辑
         controllers.add(new AnimationController<>(this,"attackController",0,this::attackPredicate));
     }
 
@@ -414,6 +429,9 @@ public class Monkey extends TamableAnimal implements GeoEntity,NeutralMob{
 
     @Override
     protected SoundEvent getAmbientSound() {
+        if (performing != 0){
+            return null;
+        }
         return isBaby() ? ChangShengJueSound.MONKEY_BABY_SOUND.get() : attackTick ? ChangShengJueSound.MONKEY_ANGRY_SOUND.get() : ChangShengJueSound.MONKEY_SOUND.get();
     }
 

@@ -16,24 +16,24 @@ public class Drunken extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, -1, 0, false, false), entity);
-        entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, -1, 0, false, false), entity);
+        entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 5, 0, false, false), entity);
+        entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 0, false, false), entity);
     }
 
     @Override
     public void removeAttributeModifiers(LivingEntity entity, AttributeMap attributes, int amplifier) {
         super.removeAttributeModifiers(entity, attributes, amplifier);
 
-        if (!entity.level().isClientSide) {
-            Iterator<MobEffectInstance> iterator = entity.getActiveEffects().iterator();
-            while (iterator.hasNext()) {
-                MobEffectInstance effect = iterator.next();
-                if (effect.getEffect() == MobEffects.CONFUSION ||
-                        effect.getEffect() == MobEffects.MOVEMENT_SLOWDOWN) {
-                    iterator.remove();
-                }
-            }
-        }
+//        if (!entity.level().isClientSide) {
+//            Iterator<MobEffectInstance> iterator = entity.getActiveEffects().iterator();
+//            while (iterator.hasNext()) {
+//                MobEffectInstance effect = iterator.next();
+//                if (effect.getEffect() == MobEffects.CONFUSION ||
+//                        effect.getEffect() == MobEffects.MOVEMENT_SLOWDOWN) {
+//                    iterator.remove();
+//                }
+//            }
+//        }
     }
 
     @Override
