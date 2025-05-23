@@ -16,6 +16,7 @@ import org.joml.Matrix4f;
 
 public class BaWangQiangAttackEntityRender extends EntityRenderer<BaWangQiangAttackEntity> {
     private static final ResourceLocation[] TEXTURES = {
+            new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/ba_wang_qiang_attack/ba_wang_qiang_attack_0.png"),
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/ba_wang_qiang_attack/ba_wang_qiang_attack_1.png"),
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/ba_wang_qiang_attack/ba_wang_qiang_attack_2.png"),
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/ba_wang_qiang_attack/ba_wang_qiang_attack_3.png"),
@@ -74,7 +75,7 @@ public class BaWangQiangAttackEntityRender extends EntityRenderer<BaWangQiangAtt
 
     @Override
     public ResourceLocation getTextureLocation(BaWangQiangAttackEntity entity) {
-        int frame = entity.tickCount % TEXTURES.length;
+        int frame = (entity.tickCount * 2) % TEXTURES.length;
         return TEXTURES[frame];
     }
 

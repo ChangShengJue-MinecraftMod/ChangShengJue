@@ -9,9 +9,9 @@ import java.util.function.Supplier;
 public class DuguNineSwordsPacket {
     private final int duguNineSwordsLevel;
     private final boolean duguNineSwordsComprehend;
-    private float duguNineSwordsToppedTick;//技能领悟特效计时
-    private float duguNineSwordsDachengTick;//技能领悟特效计时
-    private boolean duguNineSwordsParticle;//技能特效显示
+    private final float duguNineSwordsToppedTick;//技能领悟特效计时
+    private final float duguNineSwordsDachengTick;//技能领悟特效计时
+    private final boolean duguNineSwordsParticle;//技能特效显示
 
     public DuguNineSwordsPacket(int duguNineSwordsLevel, boolean duguNineSwordsComprehend, float duguNineSwordsToppedTick, float duguNineSwordsDachengTick, boolean duguNineSwordsParticle){
         this.duguNineSwordsLevel = duguNineSwordsLevel;

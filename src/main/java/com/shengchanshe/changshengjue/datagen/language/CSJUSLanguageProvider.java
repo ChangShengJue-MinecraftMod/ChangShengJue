@@ -203,6 +203,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.YI_TIAN_JIAN.get(),"倚天剑");
         this.add(ChangShengJueItems.TU_LONG_DAO.get(),"屠龙刀");
         this.add(ChangShengJueItems.BA_WANG_QIANG.get(),"霸王枪");
+        this.add(ChangShengJueItems.GOLD_THREAD_GLOVE.get(),"金丝手套");
         this.add(ChangShengJueItems.COTTON_HELMET.get(),"棉盔");
         this.add(ChangShengJueItems.WHITE_COTTON_HELMET.get(),"白羽棉盔");
         this.add(ChangShengJueItems.COTTON_CHESTPLATE.get(),"棉甲");

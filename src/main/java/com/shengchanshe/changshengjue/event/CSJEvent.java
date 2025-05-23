@@ -800,7 +800,6 @@ public class CSJEvent {
     //生物交互事件
     @SubscribeEvent
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){
-        SunflowerPointCavemanEvent.onPlayerEntityInteract(event);
         QuestEvent.onGoldenAppleUse(event);
         PlayerQuestEvent.onVillagerInteract(event);
     }
@@ -1068,9 +1067,7 @@ public class CSJEvent {
                             sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
                             sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
                             sunflowerPointCaveman.isSunflowerPointCavemanParticle(),
-                            sunflowerPointCaveman.isSkillZActive(),
-                            sunflowerPointCaveman.isSkillXActive(),
-                            sunflowerPointCaveman.isSkillCActive()), player);
+                            sunflowerPointCaveman.isSkillActive()), player);
                 });
                 player.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
                     ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
@@ -1081,9 +1078,7 @@ public class CSJEvent {
                             goldenBellJar.getGoldenBellJarToppedTick(),
                             goldenBellJar.getGoldenBellJarDachengTick(),
                             goldenBellJar.isGoldenBellJarParticle(),
-                            goldenBellJar.isSkillZActive(),
-                            goldenBellJar.isSkillXActive(),
-                            goldenBellJar.isSkillCActive()), player);
+                            goldenBellJar.isSkillActive()), player);
                 });
                 player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
                     ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
@@ -1095,9 +1090,7 @@ public class CSJEvent {
                             immortalMiracle.getImmortalMiracleDachengTick(),
                             immortalMiracle.isImmortalMiracleParticle(),
                             immortalMiracle.getImmortalMiracleUseCooldownPercentMax(),
-                            immortalMiracle.isSkillZActive(),
-                            immortalMiracle.isSkillXActive(),
-                            immortalMiracle.isSkillCActive()), player);
+                            immortalMiracle.isSkillActive()), player);
                 });
                 player.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
                     ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
@@ -1108,9 +1101,7 @@ public class CSJEvent {
                             geShanDaNiu.getGeShanDaNiuDachengTick(),
                             geShanDaNiu.isGeShanDaNiuParticle(),
                             geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax(),
-                            geShanDaNiu.isSkillZActive(),
-                            geShanDaNiu.isSkillXActive(),
-                            geShanDaNiu.isSkillCActive()), player);
+                            geShanDaNiu.isSkillActive()), player);
                 });
                 player.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
                     ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
@@ -1121,9 +1112,7 @@ public class CSJEvent {
                             turtleBreathWork.getTurtleBreathWorkToppedTick(),
                             turtleBreathWork.getTurtleBreathWorkDachengTick(),
                             turtleBreathWork.isTurtleBreathWorkParticle(),
-                            turtleBreathWork.isSkillZActive(),
-                            turtleBreathWork.isSkillXActive(),
-                            turtleBreathWork.isSkillCActive()), player);
+                            turtleBreathWork.isSkillActive()), player);
                 });
                 player.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(relentlessThrowingKnives -> {
                     ChangShengJueMessages.sendToPlayer(new RelentlessThrowingKnivesPacket(
@@ -1144,9 +1133,7 @@ public class CSJEvent {
                             qianKunDaNuoYi.getQianKunDaNuoYiDachengTick(),
                             qianKunDaNuoYi.isQianKunDaNuoYiParticle(),
                             qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax(),
-                            qianKunDaNuoYi.isSkillZActive(),
-                            qianKunDaNuoYi.isSkillXActive(),
-                            qianKunDaNuoYi.isSkillCActive()), player);
+                            qianKunDaNuoYi.isSkillActive()), (ServerPlayer) player);
                 });
                 player.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(hercules -> {
                     ChangShengJueMessages.sendToPlayer(new HerculesPacket(
@@ -1155,9 +1142,7 @@ public class CSJEvent {
                             hercules.getHerculesToppedTick(),
                             hercules.getHerculesDachengTick(),
                             hercules.isHerculesParticle(),
-                            hercules.isSkillZActive(),
-                            hercules.isSkillXActive(),
-                            hercules.isSkillCActive()), player);
+                            hercules.isSkillActive()), player);
                 });
             }
         }

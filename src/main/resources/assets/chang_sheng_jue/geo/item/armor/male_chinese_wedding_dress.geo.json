@@ -26,7 +26,7 @@
 					"pivot": [0, 24, 0],
 					"cubes": [
 						{"origin": [-4, 30, -4], "size": [8, 4, 8], "inflate": 0.53, "uv": [5, 10]},
-						{"origin": [-4, 35, 1], "size": [8, 4, 3], "inflate": 0.53, "uv": [10, 2]}
+						{"origin": [-4, 35.05, 1], "size": [8, 4, 3], "inflate": 0.53, "uv": [10, 2]}
 					]
 				},
 				{
@@ -68,15 +68,15 @@
 					"parent": "bone2",
 					"pivot": [0, 13.75, 0],
 					"cubes": [
-						{"origin": [-4, 12.75, -2], "size": [8, 1, 4], "inflate": 0.7, "uv": [1, 67]}
+						{"origin": [-4.5, 13, -2.5], "size": [9, 1, 5], "inflate": 0.2, "uv": [0, 66]}
 					]
 				},
 				{
 					"name": "qianbai",
 					"parent": "bone2",
-					"pivot": [0, 13, -2],
+					"pivot": [0, 13, -2.1],
 					"cubes": [
-						{"origin": [-4, 2, -2], "size": [8, 10, 3], "inflate": 0.45, "pivot": [0, 12, 0], "rotation": [-2.5, 0, 0], "uv": [5, 73]}
+						{"origin": [-4, 2, -2], "size": [8, 10, 3], "inflate": 0.51, "pivot": [0, 12, 0], "rotation": [-2.5, 0, 0], "uv": [5, 73]}
 					]
 				},
 				{
@@ -84,7 +84,7 @@
 					"parent": "bone2",
 					"pivot": [0, 13, 2],
 					"cubes": [
-						{"origin": [-4, 2, -1], "size": [8, 10, 3], "inflate": 0.4, "pivot": [0, 12, 0], "rotation": [2.5, 0, 0], "uv": [4, 89]}
+						{"origin": [-4, 2, -1], "size": [8, 10, 3], "inflate": 0.505, "pivot": [0, 12, 0], "rotation": [2.5, 0, 0], "uv": [4, 89]}
 					]
 				},
 				{

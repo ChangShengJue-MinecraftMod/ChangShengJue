@@ -12,10 +12,7 @@ public class TurtleBreathWorkCapability {
     private float turtleBreathWorkDachengTick = 0;//技能领悟特效计时
     private boolean turtleBreathWorkParticle = false;//技能特效显示
     // 技能状态
-    private boolean skillZActive = false;
-    private boolean skillXActive = false;
-    private boolean skillCActive = false;
-
+    private boolean skillActive = false;
 
     public int getTurtleBreathWorkLevel() {
         return turtleBreathWorkLevel;
@@ -86,28 +83,13 @@ public class TurtleBreathWorkCapability {
     public boolean isTurtleBreathWorkParticle(){
         return this.turtleBreathWorkParticle;
     }
-    public boolean isSkillZActive() {
-        return skillZActive;
+
+    public boolean isSkillActive() {
+        return skillActive;
     }
 
-    public void setSkillZActive(boolean skillZActive) {
-        this.skillZActive = skillZActive;
-    }
-
-    public boolean isSkillXActive() {
-        return skillXActive;
-    }
-
-    public void setSkillXActive(boolean skillXActive) {
-        this.skillXActive = skillXActive;
-    }
-
-    public boolean isSkillCActive() {
-        return skillCActive;
-    }
-
-    public void setSkillCActive(boolean skillCActive) {
-        this.skillCActive = skillCActive;
+    public void setSkillActive(boolean skillActive) {
+        this.skillActive = skillActive;
     }
     public void copyTurtleBreathWork(TurtleBreathWorkCapability capability){
         this.turtleBreathWorkLevel = capability.turtleBreathWorkLevel;
@@ -118,9 +100,7 @@ public class TurtleBreathWorkCapability {
         this.turtleBreathWorkToppedTick = capability.turtleBreathWorkToppedTick;
         this.turtleBreathWorkDachengTick = capability.turtleBreathWorkDachengTick;
         this.turtleBreathWorkParticle = capability.turtleBreathWorkParticle;
-        this.skillZActive = capability.skillZActive;
-        this.skillXActive = capability.skillXActive;
-        this.skillCActive = capability.skillCActive;
+        this.skillActive = capability.skillActive;
     }
 
     // 将能力保存到 NBT 数据中
@@ -133,9 +113,7 @@ public class TurtleBreathWorkCapability {
         nbt.putFloat("TurtleBreathWorkToppedTick",turtleBreathWorkToppedTick);
         nbt.putFloat("TurtleBreathWorkDachengTick",turtleBreathWorkDachengTick);
         nbt.putBoolean("TurtleBreathWorkParticle",turtleBreathWorkParticle);
-        nbt.putBoolean("SkillZActive", skillZActive);
-        nbt.putBoolean("SkillXActive", skillXActive);
-        nbt.putBoolean("SkillCActive", skillCActive);
+        nbt.putBoolean("SkillActive", skillActive);
     }
 
     // 从 NBT 数据中加载能力
@@ -148,8 +126,6 @@ public class TurtleBreathWorkCapability {
         turtleBreathWorkToppedTick = nbt.getFloat("TurtleBreathWorkToppedTick");
         turtleBreathWorkDachengTick = nbt.getFloat("TurtleBreathWorkDachengTick");
         turtleBreathWorkParticle = nbt.getBoolean("TurtleBreathWorkParticle");
-        skillZActive = nbt.getBoolean("SkillZActive");
-        skillXActive = nbt.getBoolean("SkillXActive");
-        skillCActive = nbt.getBoolean("SkillCActive");
+        skillActive = nbt.getBoolean("SkillActive");
     }
 }

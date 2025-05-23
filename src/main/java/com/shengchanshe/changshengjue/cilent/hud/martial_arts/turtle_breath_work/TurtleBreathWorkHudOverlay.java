@@ -3,11 +3,15 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.turtle_breath_wor
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiClientData;
+import com.shengchanshe.changshengjue.item.combat.glove.GoldThreadGlove;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class TurtleBreathWorkHudOverlay {
@@ -38,32 +42,28 @@ public class TurtleBreathWorkHudOverlay {
         return foodLevel > 8;
     }
 
+    public static boolean shouldDisplayHud() {
+        LocalPlayer player = minecraft.player;
+        ItemStack mainHand = player.getMainHandItem();
+        return mainHand.getItem() instanceof GoldThreadGlove;
+    }
+
     // 通过这个属性进行绘制，这个是一个IguiOverLay的接口，实现这个接口，注册他。
     // 通过lammbd表达式实现。
     public static final IGuiOverlay HUD_TURTLE_BREATH_WORK = (gui, guiGraphics, partialTick, screenWidth, screenHeight) -> {
-        boolean turtleBreathWorkComprehend = TurtleBreathWorkClientData.isTurtleBreathWorkComprehend();
-        if (turtleBreathWorkComprehend){
-            int getTurtleBreathWorkLevel = TurtleBreathWorkClientData.getTurtleBreathWorkLevel();
-            // 通过宽高获得绘制的x，y
-            int x = 5;
-            int y = screenHeight / 2;
-            //设置绘制的信息
-            RenderSystem.setShader(GameRenderer::getPositionTexShader);
-            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            if (TurtleBreathWorkClientData.isSkillZActive()){
-                CSJDisplayHud.displayHudPermanent(getTurtleBreathWorkLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,TURTLE_BREATH_WORK,TURTLE_BREATH_WORK_1,TURTLE_BREATH_WORK_2,COOLING,gui.getFont(),x,y - 25);
-                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
-                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.turtle_breath_work"),x, y - 25,ChatFormatting.BLUE.getColor());
-            }
-            if (TurtleBreathWorkClientData.isSkillXActive()){
-                CSJDisplayHud.displayHudPermanent(getTurtleBreathWorkLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,TURTLE_BREATH_WORK,TURTLE_BREATH_WORK_1,TURTLE_BREATH_WORK_2,COOLING,gui.getFont(),x,y);
-                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
-                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.turtle_breath_work"),x, y,ChatFormatting.BLUE.getColor());
-            }
-            if (TurtleBreathWorkClientData.isSkillCActive()){
-                CSJDisplayHud.displayHudPermanent(getTurtleBreathWorkLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,TURTLE_BREATH_WORK,TURTLE_BREATH_WORK_1,TURTLE_BREATH_WORK_2,COOLING,gui.getFont(),x,y + 25);
-                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
-                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.turtle_breath_work"),x, y + 25,ChatFormatting.BLUE.getColor());
+        if (shouldDisplayHud() && TurtleBreathWorkClientData.isSkillActive()) {
+            boolean turtleBreathWorkComprehend = TurtleBreathWorkClientData.isTurtleBreathWorkComprehend();
+            if (turtleBreathWorkComprehend) {
+                int getTurtleBreathWorkLevel = TurtleBreathWorkClientData.getTurtleBreathWorkLevel();
+                // 通过宽高获得绘制的x，y
+                int x = 5;
+                int y = screenHeight / 2;
+                //设置绘制的信息
+                RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+                CSJDisplayHud.displayHudPermanent(getTurtleBreathWorkLevel, frameTime(), frameTimeMax(), playerCanOpened(), guiGraphics, TURTLE_BREATH_WORK, TURTLE_BREATH_WORK_1, TURTLE_BREATH_WORK_2, COOLING, gui.getFont(), x, y);
+                CSJDisplayHud.displayHudPermanent(guiGraphics, gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item." + ChangShengJue.MOD_ID + ".turtle_breath_work"), x, y, ChatFormatting.BLUE.getColor());
             }
         }
     };

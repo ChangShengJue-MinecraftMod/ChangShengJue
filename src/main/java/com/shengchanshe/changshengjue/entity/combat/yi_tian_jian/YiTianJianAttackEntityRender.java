@@ -29,8 +29,7 @@ public class YiTianJianAttackEntityRender extends EntityRenderer<YiTianJianAttac
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/yi_tian_jian_attack/yi_tian_jian_attack_11.png"),
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/yi_tian_jian_attack/yi_tian_jian_attack_12.png"),
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/yi_tian_jian_attack/yi_tian_jian_attack_13.png"),
-            new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/yi_tian_jian_attack/yi_tian_jian_attack_14.png"),
-            new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/yi_tian_jian_attack/yi_tian_jian_attack_15.png"),
+            new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/yi_tian_jian_attack/yi_tian_jian_attack_14.png")
     };
 
     public YiTianJianAttackEntityRender(EntityRendererProvider.Context renderManager) {
@@ -74,7 +73,7 @@ public class YiTianJianAttackEntityRender extends EntityRenderer<YiTianJianAttac
 
     @Override
     public ResourceLocation getTextureLocation(YiTianJianAttackEntity entity) {
-        int frame = entity.tickCount % TEXTURES.length;
+        int frame = (entity.tickCount * 2) % TEXTURES.length;
         return TEXTURES[frame];
     }
 

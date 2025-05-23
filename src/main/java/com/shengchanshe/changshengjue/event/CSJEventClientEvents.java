@@ -2,24 +2,9 @@ package com.shengchanshe.changshengjue.event;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.gui.screens.button.TexturedButtonWithText;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_bell_jar.GoldenBellJarClientData;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.hercules.HerculesClientData;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiClientData;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.turtle_breath_work.TurtleBreathWorkClientData;
 import com.shengchanshe.changshengjue.event.martial_arts.TreadTheSnowWithoutTraceEvent;
-import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.gui.playerquest.OpenPlayerQuestScreenPacket;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket2;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket2;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.hercules.HerculesPacket2;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket2;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiPacket2;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket2;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket2;
-import com.shengchanshe.changshengjue.tags.CSJTags;
-import com.shengchanshe.changshengjue.util.KeyBinding;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
@@ -38,132 +23,12 @@ public class CSJEventClientEvents {
     @SubscribeEvent
     public static void onKey(InputEvent.Key event) {
         TreadTheSnowWithoutTraceEvent.onKey(event);
-//        GoldenBellJarEvent.onKey(event);
         onKeys(event);
     }
 
     public static void onKeys(InputEvent.Key event) {
         Player player = Minecraft.getInstance().player;
         if (player == null) return;
-        if (KeyBinding.ABILITY_KEY_Z.consumeClick()){
-            if (player.getMainHandItem().is(ChangShengJueItems.GE_SHAN_DA_NIU.get())){
-                ChangShengJueMessages.sendToServer(new GeShanDaNiuPacket2("Z"));
-            }else if (GeShanDaNiuClientData.isSkillZActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new GeShanDaNiuPacket2(""));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.IMMORTAL_MIRACLE.get())){
-                ChangShengJueMessages.sendToServer(new ImmortalMiraclePacket2("Z"));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get())){
-                ChangShengJueMessages.sendToServer(new SunflowerPointCavemanPacket2("Z"));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.GOLDEN_BELL_JAR.get())){
-                ChangShengJueMessages.sendToServer(new GoldenBellJarPacket2("Z"));
-            }else if (GoldenBellJarClientData.isSkillZActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new GoldenBellJarPacket2(""));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get())){
-                ChangShengJueMessages.sendToServer(new QianKunDaNuoYiPacket2("Z"));
-            }else if (QianKunDaNuoYiClientData.isSkillZActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new QianKunDaNuoYiPacket2(""));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.HERCULES.get())){
-                ChangShengJueMessages.sendToServer(new HerculesPacket2("Z"));
-            }else if (HerculesClientData.isSkillZActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new HerculesPacket2(""));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.TURTLE_BREATH_WORK.get())){
-                ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2("Z"));
-            }else if (TurtleBreathWorkClientData.isSkillZActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2(""));
-            }
-        }
-
-        if (KeyBinding.ABILITY_KEY_X.consumeClick()){
-            if (player.getMainHandItem().is(ChangShengJueItems.GE_SHAN_DA_NIU.get())){
-                ChangShengJueMessages.sendToServer(new GeShanDaNiuPacket2("X"));
-            }else if (GeShanDaNiuClientData.isSkillXActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new GeShanDaNiuPacket2(""));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.IMMORTAL_MIRACLE.get())){
-                ChangShengJueMessages.sendToServer(new ImmortalMiraclePacket2("X"));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get())){
-                ChangShengJueMessages.sendToServer(new SunflowerPointCavemanPacket2("X"));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.GOLDEN_BELL_JAR.get())){
-                ChangShengJueMessages.sendToServer(new GoldenBellJarPacket2("X"));
-            }else if (GoldenBellJarClientData.isSkillXActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new GoldenBellJarPacket2(""));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get())){
-                ChangShengJueMessages.sendToServer(new QianKunDaNuoYiPacket2("X"));
-            }else if (QianKunDaNuoYiClientData.isSkillXActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new QianKunDaNuoYiPacket2(""));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.HERCULES.get())){
-                ChangShengJueMessages.sendToServer(new HerculesPacket2("X"));
-            }else if (HerculesClientData.isSkillXActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new HerculesPacket2(""));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.TURTLE_BREATH_WORK.get())){
-                ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2("X"));
-            }else if (TurtleBreathWorkClientData.isSkillXActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2(""));
-            }
-        }
-
-        if (KeyBinding.ABILITY_KEY_C.consumeClick()){
-            if (player.getMainHandItem().is(ChangShengJueItems.GE_SHAN_DA_NIU.get())){
-                ChangShengJueMessages.sendToServer(new GeShanDaNiuPacket2("C"));
-            }else if (GeShanDaNiuClientData.isSkillCActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new GeShanDaNiuPacket2(""));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.IMMORTAL_MIRACLE.get())){
-                ChangShengJueMessages.sendToServer(new ImmortalMiraclePacket2("C"));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get())){
-                ChangShengJueMessages.sendToServer(new SunflowerPointCavemanPacket2("C"));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.GOLDEN_BELL_JAR.get())){
-                ChangShengJueMessages.sendToServer(new GoldenBellJarPacket2("C"));
-            }else if (GoldenBellJarClientData.isSkillCActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new GoldenBellJarPacket2(""));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get())){
-                ChangShengJueMessages.sendToServer(new QianKunDaNuoYiPacket2("C"));
-            }else if (QianKunDaNuoYiClientData.isSkillCActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new QianKunDaNuoYiPacket2(""));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.HERCULES.get())){
-                ChangShengJueMessages.sendToServer(new HerculesPacket2("C"));
-            }else if (HerculesClientData.isSkillCActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new HerculesPacket2(""));
-            }
-
-            if (player.getMainHandItem().is(ChangShengJueItems.TURTLE_BREATH_WORK.get())){
-                ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2("C"));
-            }else if (TurtleBreathWorkClientData.isSkillCActive() && !player.getMainHandItem().is(CSJTags.Items.MJ_BOOK)){
-                ChangShengJueMessages.sendToServer(new TurtleBreathWorkPacket2(""));
-            }
-        }
     }
     @SubscribeEvent
     public static void onFall(LivingFallEvent event) {

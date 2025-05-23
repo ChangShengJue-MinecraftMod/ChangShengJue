@@ -9,9 +9,7 @@ public class SunflowerPointCavemanClientData {
     private static float sunflowerPointCavemanDachengTick;//技能大成特效计时
     private static boolean sunflowerPointCavemanParticle;//技能特效显示
     // 技能状态
-    private static boolean skillZActive;
-    private static boolean skillXActive;
-    private static boolean skillCActive;
+    private static boolean skillActive;
     //获取技能等级
     public static int getSunflowerPointCavemanLevel() {
         return sunflowerPointCavemanLevel;
@@ -68,28 +66,13 @@ public class SunflowerPointCavemanClientData {
     public static void setSunflowerPointCavemanParticle(boolean sunflowerPointCavemanParticle) {
         SunflowerPointCavemanClientData.sunflowerPointCavemanParticle = sunflowerPointCavemanParticle;
     }
-    public static boolean isSkillZActive() {
-        return skillZActive;
+
+    public static boolean isSkillActive() {
+        return skillActive;
     }
 
-    public static void setSkillZActive(boolean skillZActive) {
-        SunflowerPointCavemanClientData.skillZActive = skillZActive;
-    }
-
-    public static boolean isSkillXActive() {
-        return skillXActive;
-    }
-
-    public static void setSkillXActive(boolean skillXActive) {
-        SunflowerPointCavemanClientData.skillXActive = skillXActive;
-    }
-
-    public static boolean isSkillCActive() {
-        return skillCActive;
-    }
-
-    public static void setSkillCActive(boolean skillCActive) {
-        SunflowerPointCavemanClientData.skillCActive = skillCActive;
+    public static void setSkillActive(boolean skillActive) {
+        SunflowerPointCavemanClientData.skillActive = skillActive;
     }
 
 }

@@ -14,20 +14,16 @@ public class HerculesPacket {
     private float herculesDachengTick;//技能领悟特效计时
     private boolean herculesParticle;//技能特效显示
 
-    // 技能状态
-    private boolean skillZActive;
-    private boolean skillXActive;
-    private boolean skillCActive;
+    private boolean skillActive;
 
-    public HerculesPacket(int herculesLevel, boolean herculesComprehend, float herculesToppedTick, float herculesDachengTick, boolean herculesParticle,boolean skillZActive,boolean skillXActive,boolean skillCActive){
+    public HerculesPacket(int herculesLevel, boolean herculesComprehend, float herculesToppedTick, float herculesDachengTick,
+                          boolean herculesParticle,boolean skillActive){
         this.herculesLevel = herculesLevel;
         this.herculesComprehend = herculesComprehend;
         this.herculesToppedTick = herculesToppedTick;
         this.herculesDachengTick = herculesDachengTick;
         this.herculesParticle = herculesParticle;
-        this.skillZActive = skillZActive;
-        this.skillXActive = skillXActive;
-        this.skillCActive = skillCActive;
+        this.skillActive = skillActive;
     }
 
     public HerculesPacket(FriendlyByteBuf buf){
@@ -36,9 +32,7 @@ public class HerculesPacket {
         this.herculesToppedTick = buf.readFloat();
         this.herculesDachengTick = buf.readFloat();
         this.herculesParticle = buf.readBoolean();
-        this.skillZActive = buf.readBoolean();
-        this.skillXActive = buf.readBoolean();
-        this.skillCActive = buf.readBoolean();
+        this.skillActive = buf.readBoolean();
     }
 
     public void toBytes(FriendlyByteBuf buf){
@@ -47,9 +41,7 @@ public class HerculesPacket {
         buf.writeFloat(herculesToppedTick);
         buf.writeFloat(herculesDachengTick);
         buf.writeBoolean(herculesParticle);
-        buf.writeBoolean(skillZActive);
-        buf.writeBoolean(skillXActive);
-        buf.writeBoolean(skillCActive);
+        buf.writeBoolean(skillActive);
     }
 
     // 客户端处理
@@ -62,9 +54,7 @@ public class HerculesPacket {
             HerculesClientData.setHerculesToppedTick(herculesToppedTick);
             HerculesClientData.setHerculesDachengTick(herculesDachengTick);
             HerculesClientData.setHerculesParticle(herculesParticle);
-            HerculesClientData.setSkillZActive(skillZActive);
-            HerculesClientData.setSkillXActive(skillXActive);
-            HerculesClientData.setSkillCActive(skillCActive);
+            HerculesClientData.setSkillActive(skillActive);
         });
         return true;
     }

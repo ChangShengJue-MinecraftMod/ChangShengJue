@@ -2,23 +2,16 @@ package com.shengchanshe.changshengjue.event.martial_arts;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.turtle_breath_work.TurtleBreathWorkClientData;
-import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
-import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket2;
-import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
 import com.shengchanshe.changshengjue.util.particle.DachengParticle;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class TurtleBreathWorkEvent {
 
@@ -28,15 +21,8 @@ public class TurtleBreathWorkEvent {
             Level level = player.level();
             if (!player.level().isClientSide) {
                 player.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
-                    if (turtleBreathWork.getTurtleBreathWorkLevel() >= 1){
-                        if (!player.hasEffect(MobEffects.WATER_BREATHING)){
-                            if (turtleBreathWork.isSkillZActive() || turtleBreathWork.isSkillXActive() || turtleBreathWork.isSkillCActive()) {
-                                player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING,-1, 1));
-                            }
-                        }
-                    }
                     if (turtleBreathWork.getTurtleBreathWorkUseCooldownPercent() > 0) {
-                        if (turtleBreathWork.isSkillZActive() || turtleBreathWork.isSkillXActive() || turtleBreathWork.isSkillCActive()) {
+                        if (turtleBreathWork.isSkillActive()) {
                             turtleBreathWork.setTurtleBreathWorkUseCooldownPercent();
                             ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
                                     turtleBreathWork.getTurtleBreathWorkLevel(),
@@ -46,9 +32,7 @@ public class TurtleBreathWorkEvent {
                                     turtleBreathWork.getTurtleBreathWorkToppedTick(),
                                     turtleBreathWork.getTurtleBreathWorkDachengTick(),
                                     turtleBreathWork.isTurtleBreathWorkParticle(),
-                                    turtleBreathWork.isSkillZActive(),
-                                    turtleBreathWork.isSkillXActive(),
-                                    turtleBreathWork.isSkillCActive()), (ServerPlayer) player);
+                                    turtleBreathWork.isSkillActive()), (ServerPlayer) player);
                         }
                     }
                     if (turtleBreathWork.isTurtleBreathWorkParticle()){
@@ -62,22 +46,18 @@ public class TurtleBreathWorkEvent {
                                     turtleBreathWork.getTurtleBreathWorkToppedTick(),
                                     turtleBreathWork.getTurtleBreathWorkDachengTick(),
                                     turtleBreathWork.isTurtleBreathWorkParticle(),
-                                    turtleBreathWork.isSkillZActive(),
-                                    turtleBreathWork.isSkillXActive(),
-                                    turtleBreathWork.isSkillCActive()),(ServerPlayer) player);
+                                    turtleBreathWork.isSkillActive()), (ServerPlayer) player);
                         }else if (turtleBreathWork.getTurtleBreathWorkLevel() == 2){
                             turtleBreathWork.setTurtleBreathWorkDachengTick();
                             ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
-                                     turtleBreathWork.getTurtleBreathWorkLevel(),
+                                    turtleBreathWork.getTurtleBreathWorkLevel(),
                                     turtleBreathWork.isTurtleBreathWorkComprehend(),
                                     turtleBreathWork.getTurtleBreathWorkUseCooldownPercent(),
                                     turtleBreathWork.isTurtleBreathWorkOff(),
                                     turtleBreathWork.getTurtleBreathWorkToppedTick(),
                                     turtleBreathWork.getTurtleBreathWorkDachengTick(),
                                     turtleBreathWork.isTurtleBreathWorkParticle(),
-                                    turtleBreathWork.isSkillZActive(),
-                                    turtleBreathWork.isSkillXActive(),
-                                    turtleBreathWork.isSkillCActive()), (ServerPlayer) player);
+                                    turtleBreathWork.isSkillActive()), (ServerPlayer) player);
                         }
                     }
                 });

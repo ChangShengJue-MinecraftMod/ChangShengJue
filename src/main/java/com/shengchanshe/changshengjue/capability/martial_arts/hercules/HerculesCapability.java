@@ -10,9 +10,7 @@ public class HerculesCapability {
     private float herculesDachengTick = 0;//技能领悟特效计时
     private boolean herculesParticle = false;//技能特效显示
     // 技能状态
-    private boolean skillZActive = false;
-    private boolean skillXActive = false;
-    private boolean skillCActive = false;
+    private boolean skillActive = false;
     public boolean isHerculesComprehend() {
         return herculesComprehend;
     }
@@ -72,29 +70,15 @@ public class HerculesCapability {
     public boolean isHerculesParticle(){
         return this.herculesParticle;
     }
-    public boolean isSkillZActive() {
-        return skillZActive;
+
+    public boolean isSkillActive() {
+        return skillActive;
     }
 
-    public void setSkillZActive(boolean skillZActive) {
-        this.skillZActive = skillZActive;
+    public void setSkillActive(boolean skillActive) {
+        this.skillActive = skillActive;
     }
 
-    public boolean isSkillXActive() {
-        return skillXActive;
-    }
-
-    public void setSkillXActive(boolean skillXActive) {
-        this.skillXActive = skillXActive;
-    }
-
-    public boolean isSkillCActive() {
-        return skillCActive;
-    }
-
-    public void setSkillCActive(boolean skillCActive) {
-        this.skillCActive = skillCActive;
-    }
     public void copyHercules(HerculesCapability capability){
         this.herculesLevel = capability.herculesLevel;
         this.herculesComprehend = capability.herculesComprehend;
@@ -102,9 +86,7 @@ public class HerculesCapability {
         this.herculesToppedTick = capability.herculesToppedTick;
         this.herculesDachengTick = capability.herculesDachengTick;
         this.herculesParticle = capability.herculesParticle;
-        this.skillZActive = capability.skillZActive;
-        this.skillXActive = capability.skillXActive;
-        this.skillCActive = capability.skillCActive;
+        this.skillActive = capability.skillActive;
     }
 
     // 将能力保存到 NBT 数据中
@@ -115,9 +97,7 @@ public class HerculesCapability {
         nbt.putFloat("HerculesToppedTick",herculesToppedTick);
         nbt.putFloat("HerculesDachengTick",herculesDachengTick);
         nbt.putBoolean("HerculesParticle",herculesParticle);
-        nbt.putBoolean("SkillZActive", skillZActive);
-        nbt.putBoolean("SkillXActive", skillXActive);
-        nbt.putBoolean("SkillCActive", skillCActive);
+        nbt.putBoolean("SkillActive", skillActive);
     }
 
     // 从 NBT 数据中加载能力
@@ -128,8 +108,6 @@ public class HerculesCapability {
         herculesToppedTick = nbt.getFloat("HerculesToppedTick");
         herculesDachengTick = nbt.getFloat("HerculesDachengTick");
         herculesParticle = nbt.getBoolean("HerculesParticle");
-        skillZActive = nbt.getBoolean("SkillZActive");
-        skillXActive = nbt.getBoolean("SkillXActive");
-        skillCActive = nbt.getBoolean("SkillCActive");
+        skillActive = nbt.getBoolean("SkillActive");
     }
 }

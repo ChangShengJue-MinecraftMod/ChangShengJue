@@ -135,18 +135,19 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(ChangShengJueItems.BA_WANG_QIANG.get());
 
         this.tag(ItemTags.SWORDS)
-                .add(ChangShengJueItems.BRONZE_SWORD.get())
-                .add(ChangShengJueItems.HAN_JIAN.get())
-                .add(ChangShengJueItems.HENG_DAO.get())
-                .add(ChangShengJueItems.LARGE_KNIFE.get())
-                .add(ChangShengJueItems.RED_TASSELLED_SPEAR.get())
-                .add(ChangShengJueItems.SOFT_SWORD.get())
-                .add(ChangShengJueItems.PAN_HUA_GUN.get())
-                .add(ChangShengJueItems.KITCHEN_KNIFE.get())
-                .add(ChangShengJueItems.BEAT_DOG_STICK.get())
-                .add(ChangShengJueItems.YI_TIAN_JIAN.get())
-                .add(ChangShengJueItems.TU_LONG_DAO.get())
-                .add(ChangShengJueItems.BA_WANG_QIANG.get());
+                .add(ChangShengJueItems.BRONZE_SWORD.get(),
+                        ChangShengJueItems.HAN_JIAN.get(),
+                        ChangShengJueItems.HENG_DAO.get(),
+                        ChangShengJueItems.LARGE_KNIFE.get(),
+                        ChangShengJueItems.RED_TASSELLED_SPEAR.get(),
+                        ChangShengJueItems.SOFT_SWORD.get(),
+                        ChangShengJueItems.PAN_HUA_GUN.get(),
+                        ChangShengJueItems.KITCHEN_KNIFE.get(),
+                        ChangShengJueItems.BEAT_DOG_STICK.get(),
+                        ChangShengJueItems.YI_TIAN_JIAN.get(),
+                        ChangShengJueItems.TU_LONG_DAO.get(),
+                        ChangShengJueItems.BA_WANG_QIANG.get(),
+                        ChangShengJueItems.GOLD_THREAD_GLOVE.get());
 
         this.tag(ItemTags.AXES)
                 .add(ChangShengJueItems.XUANHUA_AXE.get());

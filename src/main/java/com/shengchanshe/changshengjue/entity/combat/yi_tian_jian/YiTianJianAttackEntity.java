@@ -22,7 +22,7 @@ public class YiTianJianAttackEntity extends Projectile {
         if (!firstTick) {
             firstTick = true;
         }
-        if (tickCount >= 15){
+        if (tickCount >= 7){
             discard();
         }
     }

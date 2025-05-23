@@ -41,9 +41,7 @@ public class HerculesEvent {
                                     hercules.getHerculesToppedTick(),
                                     hercules.getHerculesDachengTick(),
                                     hercules.isHerculesParticle(),
-                                    hercules.isSkillZActive(),
-                                    hercules.isSkillXActive(),
-                                    hercules.isSkillCActive()), (ServerPlayer) player);
+                                    hercules.isSkillActive()), (ServerPlayer) player);
                         }else if (hercules.getHerculesLevel() == 2){
                             hercules.setHerculesDachengTick();
                             ChangShengJueMessages.sendToPlayer(new HerculesPacket(
@@ -52,9 +50,7 @@ public class HerculesEvent {
                                     hercules.getHerculesToppedTick(),
                                     hercules.getHerculesDachengTick(),
                                     hercules.isHerculesParticle(),
-                                    hercules.isSkillZActive(),
-                                    hercules.isSkillXActive(),
-                                    hercules.isSkillCActive()), (ServerPlayer) player);
+                                    hercules.isSkillActive()), (ServerPlayer) player);
                         }
                     }
                     if (hercules.getHerculesLevel() == 1){
@@ -70,9 +66,7 @@ public class HerculesEvent {
                                         hercules.getHerculesToppedTick(),
                                         hercules.getHerculesDachengTick(),
                                         hercules.isHerculesParticle(),
-                                        hercules.isSkillZActive(),
-                                        hercules.isSkillXActive(),
-                                        hercules.isSkillCActive()), (ServerPlayer) player);
+                                        hercules.isSkillActive()), (ServerPlayer) player);
                             }
                         }
                     }
