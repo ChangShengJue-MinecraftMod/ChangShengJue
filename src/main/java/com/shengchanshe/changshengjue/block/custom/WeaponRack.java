@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.block.custom;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.changshengjue.block.entity.WeaponRackEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.item.combat.sword.Sword;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -11,6 +12,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -538,14 +540,14 @@ public class WeaponRack extends BaseEntityBlock {
         return new WeaponRackEntity(blockPos, blockState);
     }
 
-    private boolean checkWeapon(Item item) {
-        return item.equals(Items.WOODEN_SWORD)
-                || item.equals(Items.STONE_SWORD)
-                || item.equals(Items.IRON_SWORD)
-                || item.equals(Items.DIAMOND_SWORD)
-                || item.equals(Items.GOLDEN_SWORD)
-                || item.equals(Items.NETHERITE_SWORD)
-                || item.equals(Items.TRIDENT);
+    private boolean checkWeapon(ItemStack item) {
+        return item.getItem().equals(Items.WOODEN_SWORD)
+                || item.getItem().equals(Items.STONE_SWORD)
+                || item.getItem().equals(Items.IRON_SWORD)
+                || item.getItem().equals(Items.DIAMOND_SWORD)
+                || item.getItem().equals(Items.GOLDEN_SWORD)
+                || item.getItem().equals(Items.NETHERITE_SWORD)
+                || item.getItem().equals(Items.TRIDENT);
     }
 
     private boolean checkModWeapon(ItemStack item) {
@@ -565,17 +567,19 @@ public class WeaponRack extends BaseEntityBlock {
                 ;
     }
 
+    private boolean checkfather(ItemStack item) {
+        if(item.getItem() instanceof SwordItem){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         if (blockEntity instanceof WeaponRackEntity entity) {
             ItemStack item = pPlayer.getMainHandItem();
-            if (checkWeapon(item.getItem())) {
-                if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? item.copy() : item)) {
-                    return InteractionResult.SUCCESS;
-                }
-            }
-            if (checkModWeapon(item)) {
+            if (checkWeapon(item) || checkModWeapon(item) ||checkfather(item)) {
                 if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? item.copy() : item)) {
                     return InteractionResult.SUCCESS;
                 }

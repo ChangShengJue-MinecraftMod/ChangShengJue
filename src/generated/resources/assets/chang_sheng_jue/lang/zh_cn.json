@@ -521,7 +521,7 @@
   "container.hercules": "大力神功",
   "death.attack.bleed": "%1$s失血过多。",
   "death.attack.martial_arts": "%1$s被%2$s被武功震碎了内脏。",
-  "death.attack.trauma": "%1$s被%2$s伤势过重。",
+  "death.attack.trauma": "%1$s的伤势过重。",
   "effect.chang_sheng_jue.airborne_effect": "挑飞",
   "effect.chang_sheng_jue.biluochun_teas": "碧螺春",
   "effect.chang_sheng_jue.bleed_effect": "流血",
