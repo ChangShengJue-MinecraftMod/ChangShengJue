@@ -249,6 +249,10 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_PARCEL.get(), "山文甲包裹");
         this.add(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_PARCEL.get(), "大将军明光铠包裹");
 
+        //效果
+        this.add(ChangShengJueItems.TRAUMA_EFFECT.get(), "内伤");
+        this.add(ChangShengJueItems.INTERNAL_INJURY_EFFECT.get(), "外伤");
+
         //武功秘籍物品
         this.add(ChangShengJueItems.IMMORTAL_MIRACLE.get(),"不死神功");
         this.add(ChangShengJueItems.HERCULES.get(),"大力神功");

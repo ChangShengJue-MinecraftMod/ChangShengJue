@@ -5,12 +5,8 @@
   "icon": "",
   "pages": [
     {
-      "type": "patchouli:image",
-      "images": ["chang_sheng_jue:textures/gui/patchouli/villages/yaodong.png"],
-      "border": true
-    },
-    {
       "type": "patchouli:text",
+      "title": "窑洞村庄",
       "text": "常生成在高原群系，通过下挖泥土建造窑洞，冬暖夏凉，是一种特殊的建筑。其中常有作物：甘蔗、胡椒、芒果、菠萝。"
     }
   ]

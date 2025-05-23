@@ -2,12 +2,12 @@
   "name": "外伤",
   "category": "chang_sheng_jue:xiake",
   "sortnum": 1,
-  "icon": "chang_sheng_jue:silk",
+  "icon": "chang_sheng_jue:textures/mob_effect/trauma_effect.png",
   "pages": [
     {
       "title": "外伤",
-      "type": "patchouli:text",
-
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:trauma_effect",
       "text": "每层外伤效果影响：造成伤害降低5%，速度降低5%，每秒流失1%血量，持续5秒；已被施加这个效果的目标再次使用对应兵器攻击他可使外伤效果持续时间延长1秒(若此次攻击造成更大级别外伤效果则会覆盖前效果)；外伤效果最大是5级，每等级效果提升1倍。"
     },
     {

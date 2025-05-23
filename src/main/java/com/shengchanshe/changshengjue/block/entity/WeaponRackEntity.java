@@ -120,6 +120,7 @@ public class WeaponRackEntity extends BlockEntity {
             // 清空输入槽位中的物品
             this.inventory.setStackInSlot(INPUT_SLOT, ItemStack.EMPTY);
         }
+        this.inventory.setStackInSlot(INPUT_SLOT, ItemStack.EMPTY);
     }
 
     @Override

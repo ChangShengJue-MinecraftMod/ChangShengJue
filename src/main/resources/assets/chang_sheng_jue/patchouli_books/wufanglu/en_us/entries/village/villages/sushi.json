@@ -5,12 +5,8 @@
   "icon": "",
   "pages": [
     {
-      "type": "patchouli:image",
-      "images": ["chang_sheng_jue:textures/gui/patchouli/villages/sushi.png"],
-      "border": true
-    },
-    {
       "type": "patchouli:text",
+      "title": "苏式村庄",
       "text": "常生成在丛林群系，白墙黑瓦那朴素典雅的风格与脊角高翘的屋顶，是苏派建筑的艺术典范。其中常有作物：荔枝、香蕉、榴莲、水稻。"
     }
   ]

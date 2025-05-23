@@ -580,13 +580,23 @@ public class WeaponRack extends BaseEntityBlock {
         if (blockEntity instanceof WeaponRackEntity entity) {
             ItemStack item = pPlayer.getMainHandItem();
             if (checkWeapon(item) || checkModWeapon(item) ||checkfather(item)) {
-                if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? item.copy() : item)) {
-                    return InteractionResult.SUCCESS;
+                if (!pLevel.isClientSide ) {
+                    if(pPlayer.getAbilities().instabuild){
+                        ItemStack itemcopy = item.copy();
+                        if (itemcopy.hasTag()) {
+                            itemcopy.getTag().remove("GeckoLibID");
+                        }
+                        entity.addItem(itemcopy);
+                        return InteractionResult.SUCCESS;
+                    } else {
+                        entity.addItem(item);
+                    }
                 }
-            }else {
+            } else {
                 entity.drops(pPlayer);
                 return InteractionResult.SUCCESS;
             }
+
         }
         return InteractionResult.PASS;
     }

@@ -416,7 +416,6 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> WHITE_BRICKS_ITEM = ITEMS.register("white_bricks_item", ()-> new Item((new Item.Properties())));
     public static final RegistryObject<Item> GOLD_BRICKS = ITEMS.register("gold_bricks", ()-> new Item((new Item.Properties())));
 
-
     //工具
     public static final RegistryObject<Item> KAISHAN_PICKAXE = ITEMS.register("kaishan_pickaxe", KaishanPickaxe::new);
     public static final RegistryObject<Item> XUANHUA_AXE = ITEMS.register("xuanhua_axe", XuanhuaAxe::new);
@@ -600,6 +599,10 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> MOUNTAIN_PATTERN_ARMOR_PARCEL = ITEMS.register("mountain_pattern_armor_parcel", Parcel::new);
     public static final RegistryObject<Item> THE_GREAT_GENERAL_MINGGUANG_ARMOR_PARCEL = ITEMS.register("the_great_general_mingguang_armor_parcel", Parcel::new);
 
+    public static final RegistryObject<Item> TRAUMA_EFFECT = ITEMS.register("trauma_effect",
+            ()-> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> INTERNAL_INJURY_EFFECT = ITEMS.register("internal_injury_effect",
+            ()-> new Item(new Item.Properties()));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

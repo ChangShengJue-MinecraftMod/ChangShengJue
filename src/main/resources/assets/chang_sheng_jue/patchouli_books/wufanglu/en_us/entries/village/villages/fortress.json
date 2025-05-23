@@ -5,12 +5,8 @@
   "icon": "",
   "pages": [
     {
-      "type": "patchouli:image",
-      "images": ["chang_sheng_jue:textures/gui/patchouli/villages/fortress.png"],
-      "border": true
-    },
-    {
       "type": "patchouli:text",
+      "title": "沙石堡",
       "text": "常生成在沙漠群系，用砂岩构筑的堡垒式村庄，储备充足、抗袭击，仿佛沙漠中的明珠。其中常有作物：棉花、番茄、葡萄、哈密瓜。"
     }
   ]
