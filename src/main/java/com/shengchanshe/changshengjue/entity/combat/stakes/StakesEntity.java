@@ -397,12 +397,7 @@ public class StakesEntity extends LivingEntity {
                 this.kill();
                 return true; // 实体对所有伤害免疫
             }else {
-                GeShanDaNiu.comprehend(entity,level);
-                GoldenBellJar.comprehend(entity,level);
-                Hercules.comprehend(entity,level);
-                ImmortalMiracle.comprehend(entity,level);
-                QianKunDaNuoYi.comprehend(entity,level);
-                SunflowerPointCaveman.comprehend(entity,level);
+//                GeShanDaNiu.comprehend(entity,level);
                 TheClassicsOfTendonChanging.comprehend(entity,level);
                 WuGangCutGui.comprehend(entity,level);
                 YugongMovesMountains.comprehend(entity,level);

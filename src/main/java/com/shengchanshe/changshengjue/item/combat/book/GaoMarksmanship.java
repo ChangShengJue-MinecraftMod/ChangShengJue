@@ -29,13 +29,9 @@ public class GaoMarksmanship extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (!pLevel.isClientSide){
-            ItemStack itemInHand = pPlayer.getItemInHand(pUsedHand);
             pPlayer.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
                 if (!gaoMarksmanship.gaoMarksmanshipComprehend()){
                     gaoMarksmanship.setGaoMarksmanshipComprehend(true);
-                    if (!pPlayer.getAbilities().instabuild) {
-                        itemInHand.shrink(1);
-                    }
                     ChangShengJueMessages.sendToPlayer(new GaoMarksmanshipPacket(gaoMarksmanship.getGaoMarksmanshipLevel(),
                             gaoMarksmanship.isGaoMarksmanshipComprehend(),
                             gaoMarksmanship.getGaoMarksmanshipToppedTick(),

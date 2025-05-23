@@ -30,7 +30,6 @@ public class BeatDogStickAttackEntityRender extends EntityRenderer<BeatDogStickA
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/beat_dog_stick_attack/beat_dog_stick_attack_12.png"),
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/beat_dog_stick_attack/beat_dog_stick_attack_13.png"),
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/beat_dog_stick_attack/beat_dog_stick_attack_14.png"),
-            new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/beat_dog_stick_attack/beat_dog_stick_attack_15.png"),
     };
 
     public BeatDogStickAttackEntityRender(EntityRendererProvider.Context renderManager) {
@@ -74,7 +73,7 @@ public class BeatDogStickAttackEntityRender extends EntityRenderer<BeatDogStickA
 
     @Override
     public ResourceLocation getTextureLocation(BeatDogStickAttackEntity entity) {
-        int frame = entity.tickCount % TEXTURES.length;
+        int frame = (entity.tickCount * 2) % TEXTURES.length;
         return TEXTURES[frame];
     }
 

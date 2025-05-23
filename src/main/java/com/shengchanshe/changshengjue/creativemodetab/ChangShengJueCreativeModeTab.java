@@ -620,6 +620,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.YI_TIAN_JIAN.get().getDefaultInstance());
                 output.accept(ChangShengJueItems.TU_LONG_DAO.get().getDefaultInstance());
                 output.accept(ChangShengJueItems.BA_WANG_QIANG.get().getDefaultInstance());
+                output.accept(ChangShengJueItems.GOLD_THREAD_GLOVE.get().getDefaultInstance());
                 output.accept(ChangShengJueItems.BRONZE_SWORD.get());
                 output.accept(ChangShengJueItems.HAN_JIAN.get());
                 output.accept(ChangShengJueItems.HENG_DAO.get());

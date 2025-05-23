@@ -11,12 +11,8 @@ public class GoldenBellJarCapability {
     private float goldenBellJarToppedTick = 0;//技能领悟特效计时
     private float goldenBellJarDachengTick = 0;//技能领悟特效计时
     private boolean goldenBellJarParticle = false;//技能特效显示
-    // 技能状态
-    private boolean skillZActive = false;
-    private boolean skillXActive = false;
-    private boolean skillCActive = false;
 //    private int goldenBellJarKey;
-//    private boolean skillActive = false;
+    private boolean skillActive = false;
 //    private int goldenBellJarKeyTick = 100;
 
     public int getGoldenBellJarLevel() {
@@ -89,53 +85,14 @@ public class GoldenBellJarCapability {
         return this.goldenBellJarParticle;
     }
 
-    public boolean isSkillZActive() {
-        return skillZActive;
+    public boolean isSkillActive() {
+        return skillActive;
     }
 
-    public void setSkillZActive(boolean skillZActive) {
-        this.skillZActive = skillZActive;
+    public void setSkillActive(boolean skillActive) {
+        this.skillActive = skillActive;
     }
 
-    public boolean isSkillXActive() {
-        return skillXActive;
-    }
-
-    public void setSkillXActive(boolean skillXActive) {
-        this.skillXActive = skillXActive;
-    }
-
-    public boolean isSkillCActive() {
-        return skillCActive;
-    }
-
-    public void setSkillCActive(boolean skillCActive) {
-        this.skillCActive = skillCActive;
-    }
-
-    //    public int getGoldenBellJarKey() {
-//        return goldenBellJarKey;
-//    }
-//
-//    public void setGoldenBellJarKey(int goldenBellJarKey) {
-//        this.goldenBellJarKey = goldenBellJarKey;
-//    }
-//
-//    public boolean isSkillActive() {
-//        return skillActive;
-//    }
-//
-//    public void setSkillActive(boolean skillActive) {
-//        this.skillActive = skillActive;
-//    }
-//
-//    public int getGoldenBellJarKeyTick() {
-//        return goldenBellJarKeyTick--;
-//    }
-//
-//    public void setGoldenBellJarKeyTick(int goldenBellJarKeyTick) {
-//        this.goldenBellJarKeyTick = goldenBellJarKeyTick;
-//    }
 
     public void copyGoldenBellJar(GoldenBellJarCapability capability){
         this.goldenBellJarLevel = capability.goldenBellJarLevel;
@@ -146,12 +103,7 @@ public class GoldenBellJarCapability {
         this.goldenBellJarToppedTick = capability.goldenBellJarToppedTick;
         this.goldenBellJarDachengTick = capability.goldenBellJarDachengTick;
         this.goldenBellJarParticle = capability.goldenBellJarParticle;
-//        this.goldenBellJarKey = capability.goldenBellJarKey;
-//        this.skillActive = capability.skillActive;
-//        this.goldenBellJarKeyTick = capability.goldenBellJarKeyTick;
-        this.skillZActive = capability.skillZActive;
-        this.skillXActive = capability.skillXActive;
-        this.skillCActive = capability.skillCActive;
+        this.skillActive = capability.skillActive;
     }
 
     // 将能力保存到 NBT 数据中
@@ -164,12 +116,7 @@ public class GoldenBellJarCapability {
         nbt.putFloat("GoldenBellJarToppedTick",goldenBellJarToppedTick);
         nbt.putFloat("GoldenBellJarDachengTick",goldenBellJarDachengTick);
         nbt.putBoolean("GoldenBellJarParticle",goldenBellJarParticle);
-        nbt.putBoolean("SkillZActive", skillZActive);
-        nbt.putBoolean("SkillXActive", skillXActive);
-        nbt.putBoolean("SkillCActive", skillCActive);
-//        nbt.putInt("GoldenBellJarKey", goldenBellJarKey);
-//        nbt.putBoolean("SkillActive",skillActive);
-//        nbt.putInt("GoldenBellJarKeyTick", goldenBellJarKeyTick);
+        nbt.putBoolean("SkillActive",skillActive);
     }
 
     // 从 NBT 数据中加载能力
@@ -182,11 +129,6 @@ public class GoldenBellJarCapability {
         goldenBellJarToppedTick = nbt.getFloat("GoldenBellJarToppedTick");
         goldenBellJarDachengTick = nbt.getFloat("GoldenBellJarDachengTick");
         goldenBellJarParticle = nbt.getBoolean("GoldenBellJarParticle");
-        skillZActive = nbt.getBoolean("SkillZActive");
-        skillXActive = nbt.getBoolean("SkillXActive");
-        skillCActive = nbt.getBoolean("SkillCActive");
-//        goldenBellJarKey = nbt.getInt("GoldenBellJarKey");
-//        skillActive = nbt.getBoolean("SkillActive");
-//        goldenBellJarKeyTick = nbt.getInt("GoldenBellJarKeyTick");
+        skillActive = nbt.getBoolean("SkillActive");
     }
 }

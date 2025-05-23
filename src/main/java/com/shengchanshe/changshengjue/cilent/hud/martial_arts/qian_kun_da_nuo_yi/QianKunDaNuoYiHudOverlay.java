@@ -3,11 +3,15 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.qian_kun_da_nuo_y
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle.ImmortalMiracleClientData;
+import com.shengchanshe.changshengjue.item.combat.glove.GoldThreadGlove;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class QianKunDaNuoYiHudOverlay {
@@ -39,32 +43,28 @@ public class QianKunDaNuoYiHudOverlay {
         return foodLevel > 8;
     }
 
+    public static boolean shouldDisplayHud() {
+        LocalPlayer player = minecraft.player;
+        ItemStack mainHand = player.getMainHandItem();
+        return mainHand.getItem() instanceof GoldThreadGlove;
+    }
+
     // 通过这个属性进行绘制，这个是一个IguiOverLay的接口，实现这个接口，注册他。
     // 通过lammbd表达式实现。
     public static final IGuiOverlay HUD_QIAN_KUN_DA_NUO_YI = (gui, guiGraphics, partialTick, screenWidth, screenHeight) -> {
-        boolean qianKunDaNuoYiComprehend = QianKunDaNuoYiClientData.isQianKunDaNuoYiComprehend();
-        if (qianKunDaNuoYiComprehend){
-            int getQianKunDaNuoYiLevel = QianKunDaNuoYiClientData.getQianKunDaNuoYiLevel();
-            // 通过宽高获得绘制的x，y
-            int x = 5;
-            int y = screenHeight / 2;
-            //设置绘制的信息
-            RenderSystem.setShader(GameRenderer::getPositionTexShader);
-            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            if (QianKunDaNuoYiClientData.isSkillZActive()){
-                CSJDisplayHud.displayHudPermanent(getQianKunDaNuoYiLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,QIAN_KUN_DA_NUO_YI,QIAN_KUN_DA_NUO_YI_1,QIAN_KUN_DA_NUO_YI_2,COOLING,gui.getFont(),x,y - 25);
-                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
-                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.qian_kun_da_nuo_yi"),x, y - 25,ChatFormatting.YELLOW.getColor());
-            }
-            if (QianKunDaNuoYiClientData.isSkillXActive()){
-                CSJDisplayHud.displayHudPermanent(getQianKunDaNuoYiLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,QIAN_KUN_DA_NUO_YI,QIAN_KUN_DA_NUO_YI_1,QIAN_KUN_DA_NUO_YI_2,COOLING,gui.getFont(),x,y);
-                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
-                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.qian_kun_da_nuo_yi"),x, y,ChatFormatting.YELLOW.getColor());
-            }
-            if (QianKunDaNuoYiClientData.isSkillCActive()){
-                CSJDisplayHud.displayHudPermanent(getQianKunDaNuoYiLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,QIAN_KUN_DA_NUO_YI,QIAN_KUN_DA_NUO_YI_1,QIAN_KUN_DA_NUO_YI_2,COOLING,gui.getFont(),x,y + 25);
-                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
-                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.qian_kun_da_nuo_yi"),x, y + 25,ChatFormatting.YELLOW.getColor());
+        if (shouldDisplayHud() && QianKunDaNuoYiClientData.isSkillActive()) {
+            boolean qianKunDaNuoYiComprehend = QianKunDaNuoYiClientData.isQianKunDaNuoYiComprehend();
+            if (qianKunDaNuoYiComprehend) {
+                int getQianKunDaNuoYiLevel = QianKunDaNuoYiClientData.getQianKunDaNuoYiLevel();
+                // 通过宽高获得绘制的x，y
+                int x = 5;
+                int y = screenHeight / 2;
+                //设置绘制的信息
+                RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+                CSJDisplayHud.displayHudPermanent(getQianKunDaNuoYiLevel, frameTime(), frameTimeMax(), playerCanOpened(), guiGraphics, QIAN_KUN_DA_NUO_YI, QIAN_KUN_DA_NUO_YI_1, QIAN_KUN_DA_NUO_YI_2, COOLING, gui.getFont(), x, y);
+                CSJDisplayHud.displayHudPermanent(guiGraphics, gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".qian_kun_da_nuo_yi"), x, y, ChatFormatting.YELLOW.getColor());
             }
         }
     };

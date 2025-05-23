@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu;
 
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_bell_jar.GoldenBellJarClientData;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -9,20 +10,15 @@ import java.util.function.Supplier;
 public class GeShanDaNiuPacket {
     private final int geShanDaNiuLevel;
     private final boolean geShanDaNiuComprehend;
-    private float geShanDaNiuUseCooldownPercent;
-    private float geShanDaNiuToppedTick;//技能领悟特效计时
-    private float geShanDaNiuDachengTick;//技能大成特效计时
-    private boolean geShanDaNiuParticle;//技能特效显示
-    private float geShanDaNiuUseCooldownPercentMax;
-
-    // 技能状态
-    private boolean skillZActive;
-    private boolean skillXActive;
-    private boolean skillCActive;
+    private final float geShanDaNiuUseCooldownPercent;
+    private final float geShanDaNiuToppedTick;//技能领悟特效计时
+    private final float geShanDaNiuDachengTick;//技能大成特效计时
+    private final boolean geShanDaNiuParticle;//技能特效显示
+    private final float geShanDaNiuUseCooldownPercentMax;
+    private final boolean skillActive;
 
     public GeShanDaNiuPacket(int geShanDaNiuLevel, boolean geShanDaNiuComprehend, float geShanDaNiuUseCooldownPercent,
-                             float geShanDaNiuToppedTick, float geShanDaNiuDachengTick, boolean geShanDaNiuParticle, float geShanDaNiuUseCooldownPercentMax,
-                             boolean skillZActive,boolean skillXActive,boolean skillCActive){
+                             float geShanDaNiuToppedTick, float geShanDaNiuDachengTick, boolean geShanDaNiuParticle, float geShanDaNiuUseCooldownPercentMax,boolean skillActive){
         this.geShanDaNiuLevel = geShanDaNiuLevel;
         this.geShanDaNiuComprehend = geShanDaNiuComprehend;
         this.geShanDaNiuUseCooldownPercent = geShanDaNiuUseCooldownPercent;
@@ -30,9 +26,7 @@ public class GeShanDaNiuPacket {
         this.geShanDaNiuDachengTick = geShanDaNiuDachengTick;
         this.geShanDaNiuParticle = geShanDaNiuParticle;
         this.geShanDaNiuUseCooldownPercentMax = geShanDaNiuUseCooldownPercentMax;
-        this.skillZActive = skillZActive;
-        this.skillXActive = skillXActive;
-        this.skillCActive = skillCActive;
+        this.skillActive = skillActive;
     }
 
     public GeShanDaNiuPacket(FriendlyByteBuf buf){
@@ -43,9 +37,7 @@ public class GeShanDaNiuPacket {
         this.geShanDaNiuDachengTick = buf.readFloat();
         this.geShanDaNiuParticle = buf.readBoolean();
         this.geShanDaNiuUseCooldownPercentMax = buf.readFloat();
-        this.skillZActive = buf.readBoolean();
-        this.skillXActive = buf.readBoolean();
-        this.skillCActive = buf.readBoolean();
+        this.skillActive = buf.readBoolean();
     }
 
     public void toBytes(FriendlyByteBuf buf){
@@ -56,9 +48,7 @@ public class GeShanDaNiuPacket {
         buf.writeFloat(geShanDaNiuDachengTick);
         buf.writeBoolean(geShanDaNiuParticle);
         buf.writeFloat(geShanDaNiuUseCooldownPercentMax);
-        buf.writeBoolean(skillZActive);
-        buf.writeBoolean(skillXActive);
-        buf.writeBoolean(skillCActive);
+        buf.writeBoolean(skillActive);
     }
 
     // 客户端处理
@@ -72,9 +62,7 @@ public class GeShanDaNiuPacket {
             GeShanDaNiuClientData.setGeShanDaNiuDachengTick(geShanDaNiuDachengTick);
             GeShanDaNiuClientData.setGeShanDaNiuParticle(geShanDaNiuParticle);
             GeShanDaNiuClientData.setGeShanDaNiuUseCooldownPercentMax(geShanDaNiuUseCooldownPercentMax);
-            GeShanDaNiuClientData.setSkillZActive(skillZActive);
-            GeShanDaNiuClientData.setSkillXActive(skillXActive);
-            GeShanDaNiuClientData.setSkillCActive(skillCActive);
+            GeShanDaNiuClientData.setSkillActive(skillActive);
         });
         return true;
     }

@@ -1,5 +1,7 @@
 package com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu;
 
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_bell_jar.GoldenBellJarClientData;
+
 public class GeShanDaNiuClientData {
     // 玩家的技能等级和是否学习了技能
     private static int geShanDaNiuLevel;
@@ -9,11 +11,7 @@ public class GeShanDaNiuClientData {
     private static float geShanDaNiuDachengTick;//技能大成特效计时
     private static boolean geShanDaNiuParticle;//技能特效显示
     private static float geShanDaNiuUseCooldownPercentMax;//技能总冷却时间
-    // 技能状态
-    private static boolean skillZActive;
-    private static boolean skillXActive;
-    private static boolean skillCActive;
-
+    private static boolean skillActive;
     //获取技能等级
     public static int getGeShanDaNiuLevel() {
         return geShanDaNiuLevel;
@@ -71,27 +69,11 @@ public class GeShanDaNiuClientData {
         GeShanDaNiuClientData.geShanDaNiuUseCooldownPercentMax = geShanDaNiuUseCooldownPercentMax;
     }
 
-    public static boolean isSkillZActive() {
-        return skillZActive;
+    public static boolean isSkillActive() {
+        return skillActive;
     }
 
-    public static void setSkillZActive(boolean skillZActive) {
-        GeShanDaNiuClientData.skillZActive = skillZActive;
-    }
-
-    public static boolean isSkillXActive() {
-        return skillXActive;
-    }
-
-    public static void setSkillXActive(boolean skillXActive) {
-        GeShanDaNiuClientData.skillXActive = skillXActive;
-    }
-
-    public static boolean isSkillCActive() {
-        return skillCActive;
-    }
-
-    public static void setSkillCActive(boolean skillCActive) {
-        GeShanDaNiuClientData.skillCActive = skillCActive;
+    public static void setSkillActive(boolean skillActive) {
+        GeShanDaNiuClientData.skillActive = skillActive;
     }
 }

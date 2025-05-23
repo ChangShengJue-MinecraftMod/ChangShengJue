@@ -25,7 +25,7 @@ public class QianKunDaNuoYiEvent {
             if (!player.level().isClientSide) {
                 player.getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(qianKunDaNuoYi -> {
                     if (qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownPercent() > 0) {
-                        if (qianKunDaNuoYi.isSkillZActive() || qianKunDaNuoYi.isSkillXActive() || qianKunDaNuoYi.isSkillCActive()) {
+                        if (qianKunDaNuoYi.isSkillActive()) {
                             qianKunDaNuoYi.setQianKunDaNuoYiUseCooldownPercent();
                             ChangShengJueMessages.sendToPlayer(new QianKunDaNuoYiPacket(
                                     qianKunDaNuoYi.getQianKunDaNuoYiLevel(),
@@ -36,9 +36,7 @@ public class QianKunDaNuoYiEvent {
                                     qianKunDaNuoYi.getQianKunDaNuoYiDachengTick(),
                                     qianKunDaNuoYi.isQianKunDaNuoYiParticle(),
                                     qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax(),
-                                    qianKunDaNuoYi.isSkillZActive(),
-                                    qianKunDaNuoYi.isSkillXActive(),
-                                    qianKunDaNuoYi.isSkillCActive()), (ServerPlayer) player);
+                                    qianKunDaNuoYi.isSkillActive()), (ServerPlayer) player);
                         }
                     }
                     if (qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMaxAdd() > 0){
@@ -56,9 +54,7 @@ public class QianKunDaNuoYiEvent {
                                     qianKunDaNuoYi.getQianKunDaNuoYiDachengTick(),
                                     qianKunDaNuoYi.isQianKunDaNuoYiParticle(),
                                     qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax(),
-                                    qianKunDaNuoYi.isSkillZActive(),
-                                    qianKunDaNuoYi.isSkillXActive(),
-                                    qianKunDaNuoYi.isSkillCActive()), (ServerPlayer) player);
+                                    qianKunDaNuoYi.isSkillActive()), (ServerPlayer) player);
                         }else if (qianKunDaNuoYi.getQianKunDaNuoYiLevel() == 2){
                             qianKunDaNuoYi.setQianKunDaNuoYiDachengTick();
                             ChangShengJueMessages.sendToPlayer(new QianKunDaNuoYiPacket(
@@ -70,9 +66,7 @@ public class QianKunDaNuoYiEvent {
                                     qianKunDaNuoYi.getQianKunDaNuoYiDachengTick(),
                                     qianKunDaNuoYi.isQianKunDaNuoYiParticle(),
                                     qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax(),
-                                    qianKunDaNuoYi.isSkillZActive(),
-                                    qianKunDaNuoYi.isSkillXActive(),
-                                    qianKunDaNuoYi.isSkillCActive()), (ServerPlayer) player);
+                                    qianKunDaNuoYi.isSkillActive()), (ServerPlayer) player);
                         }
                     }
                 });
@@ -95,7 +89,7 @@ public class QianKunDaNuoYiEvent {
             if (event.getEntity() != null && event.getSource().getEntity() != null){
                 event.getEntity().getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(qianKunDaNuoYi -> {
                     if(event.getEntity() instanceof Player player) {
-                        if (qianKunDaNuoYi.isSkillZActive() || qianKunDaNuoYi.isSkillXActive() || qianKunDaNuoYi.isSkillCActive()) {
+                        if (qianKunDaNuoYi.isSkillActive()) {
                             if (qianKunDaNuoYi.setQianKunDaNuoYiUseCooldownPercent() > 0) {
                                     if (qianKunDaNuoYi.getQianKunDaNuoYiLevel() >= 1) {
                                         float health = player.getHealth();

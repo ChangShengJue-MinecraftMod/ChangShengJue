@@ -12,21 +12,14 @@ import com.shengchanshe.changshengjue.network.packet.gui.playerquest.SubmitPlaye
 import com.shengchanshe.changshengjue.network.packet.gui.quest.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.hercules.HerculesPacket;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.hercules.HerculesPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiPacket;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket2;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.wu_gang_cut_gui.WuGangCutGuiPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.wu_gang_cut_gui.WuGangCutGuiPacket1;
 import net.minecraft.resources.ResourceLocation;
@@ -106,11 +99,6 @@ public class ChangShengJueMessages {
                 .encoder(SunflowerPointCavemanPacket::toBytes)
                 .consumerMainThread(SunflowerPointCavemanPacket::handle)
                 .add();
-        net.messageBuilder(SunflowerPointCavemanPacket2.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(SunflowerPointCavemanPacket2::new)
-                .encoder(SunflowerPointCavemanPacket2::toBytes)
-                .consumerMainThread(SunflowerPointCavemanPacket2::handle)
-                .add();
         net.messageBuilder(EffectEntityPacket.class, id())
                 .decoder(EffectEntityPacket::new)
                 .encoder(EffectEntityPacket::toBytes)
@@ -121,11 +109,6 @@ public class ChangShengJueMessages {
                 .decoder(GoldenBellJarPacket::new)
                 .encoder(GoldenBellJarPacket::toBytes)
                 .consumerMainThread(GoldenBellJarPacket::handle)
-                .add();
-        net.messageBuilder(GoldenBellJarPacket2.class, id(),NetworkDirection.PLAY_TO_SERVER)
-                .decoder(GoldenBellJarPacket2::new)
-                .encoder(GoldenBellJarPacket2::toBytes)
-                .consumerMainThread(GoldenBellJarPacket2::handle)
                 .add();
 //        net.messageBuilder(GoldenBellJarPacketKey.class, id(),NetworkDirection.PLAY_TO_SERVER)
 //                .decoder(GoldenBellJarPacketKey::new)
@@ -138,21 +121,11 @@ public class ChangShengJueMessages {
                 .encoder(ImmortalMiraclePacket::toBytes)
                 .consumerMainThread(ImmortalMiraclePacket::handle)
                 .add();
-        net.messageBuilder(ImmortalMiraclePacket2.class, id(),NetworkDirection.PLAY_TO_SERVER)
-                .decoder(ImmortalMiraclePacket2::new)
-                .encoder(ImmortalMiraclePacket2::toBytes)
-                .consumerMainThread(ImmortalMiraclePacket2::handle)
-                .add();
         //隔山打牛
         net.messageBuilder(GeShanDaNiuPacket.class, id())
                 .decoder(GeShanDaNiuPacket::new)
                 .encoder(GeShanDaNiuPacket::toBytes)
                 .consumerMainThread(GeShanDaNiuPacket::handle)
-                .add();
-        net.messageBuilder(GeShanDaNiuPacket2.class, id(),NetworkDirection.PLAY_TO_SERVER)
-                .decoder(GeShanDaNiuPacket2::new)
-                .encoder(GeShanDaNiuPacket2::toBytes)
-                .consumerMainThread(GeShanDaNiuPacket2::handle)
                 .add();
         //麦块百科
         net.messageBuilder(WheatNuggetEncyclopediaPacket.class, id())
@@ -165,11 +138,6 @@ public class ChangShengJueMessages {
                 .decoder(TurtleBreathWorkPacket::new)
                 .encoder(TurtleBreathWorkPacket::toBytes)
                 .consumerMainThread(TurtleBreathWorkPacket::handle)
-                .add();
-        net.messageBuilder(TurtleBreathWorkPacket2.class, id(),NetworkDirection.PLAY_TO_SERVER)
-                .decoder(TurtleBreathWorkPacket2::new)
-                .encoder(TurtleBreathWorkPacket2::toBytes)
-                .consumerMainThread(TurtleBreathWorkPacket2::handle)
                 .add();
         //无情飞刀
         net.messageBuilder(RelentlessThrowingKnivesPacket.class, id())
@@ -212,21 +180,11 @@ public class ChangShengJueMessages {
                 .encoder(QianKunDaNuoYiPacket::toBytes)
                 .consumerMainThread(QianKunDaNuoYiPacket::handle)
                 .add();
-        net.messageBuilder(QianKunDaNuoYiPacket2.class, id(),NetworkDirection.PLAY_TO_SERVER)
-                .decoder(QianKunDaNuoYiPacket2::new)
-                .encoder(QianKunDaNuoYiPacket2::toBytes)
-                .consumerMainThread(QianKunDaNuoYiPacket2::handle)
-                .add();
         //大力神功
         net.messageBuilder(HerculesPacket.class, id())
                 .decoder(HerculesPacket::new)
                 .encoder(HerculesPacket::toBytes)
                 .consumerMainThread(HerculesPacket::handle)
-                .add();
-        net.messageBuilder(HerculesPacket2.class, id(),NetworkDirection.PLAY_TO_SERVER)
-                .decoder(HerculesPacket2::new)
-                .encoder(HerculesPacket2::toBytes)
-                .consumerMainThread(HerculesPacket2::handle)
                 .add();
         //Food
         net.messageBuilder(FoodPacket.class, id())

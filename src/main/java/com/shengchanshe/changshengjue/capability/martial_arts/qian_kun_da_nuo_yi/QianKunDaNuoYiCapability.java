@@ -14,9 +14,7 @@ public class QianKunDaNuoYiCapability {
     private float qianKunDaNuoYiUseCooldownMax = 60;
     private float qianKunDaNuoYiUseCooldownMaxAdd = 0;
     // 技能状态
-    private boolean skillZActive = false;
-    private boolean skillXActive = false;
-    private boolean skillCActive = false;
+    private boolean skillActive = false;
 
     public int getQianKunDaNuoYiLevel() {
         return qianKunDaNuoYiLevel;
@@ -109,29 +107,15 @@ public class QianKunDaNuoYiCapability {
         this.qianKunDaNuoYiUseCooldownMaxAdd = qianKunDaNuoYiUseCooldownMaxAdd;
     }
 
-    public boolean isSkillZActive() {
-        return skillZActive;
+
+    public boolean isSkillActive() {
+        return skillActive;
     }
 
-    public void setSkillZActive(boolean skillZActive) {
-        this.skillZActive = skillZActive;
+    public void setSkillActive(boolean skillActive) {
+        this.skillActive = skillActive;
     }
 
-    public boolean isSkillXActive() {
-        return skillXActive;
-    }
-
-    public void setSkillXActive(boolean skillXActive) {
-        this.skillXActive = skillXActive;
-    }
-
-    public boolean isSkillCActive() {
-        return skillCActive;
-    }
-
-    public void setSkillCActive(boolean skillCActive) {
-        this.skillCActive = skillCActive;
-    }
     public void copyQianKunDaNuoYi(QianKunDaNuoYiCapability capability){
         this.qianKunDaNuoYiLevel = capability.qianKunDaNuoYiLevel;
         this.qianKunDaNuoYiComprehend = capability.qianKunDaNuoYiComprehend;
@@ -143,9 +127,7 @@ public class QianKunDaNuoYiCapability {
         this.qianKunDaNuoYiParticle = capability.qianKunDaNuoYiParticle;
         this.qianKunDaNuoYiUseCooldownMax = capability.qianKunDaNuoYiUseCooldownMax;
         this.qianKunDaNuoYiUseCooldownMaxAdd = capability.qianKunDaNuoYiUseCooldownMaxAdd;
-        this.skillZActive = capability.skillZActive;
-        this.skillXActive = capability.skillXActive;
-        this.skillCActive = capability.skillCActive;
+        this.skillActive = capability.skillActive;
     }
 
     // 将能力保存到 NBT 数据中
@@ -162,9 +144,7 @@ public class QianKunDaNuoYiCapability {
         nbt.putBoolean("QianKunDaNuoYiParticle",qianKunDaNuoYiParticle);
         nbt.putFloat("QianKunDaNuoYiUseCooldownMax",qianKunDaNuoYiUseCooldownMax);
         nbt.putFloat("QianKunDaNuoYiUseCooldownMaxAdd",qianKunDaNuoYiUseCooldownMaxAdd);
-        nbt.putBoolean("SkillZActive", skillZActive);
-        nbt.putBoolean("SkillXActive", skillXActive);
-        nbt.putBoolean("SkillCActive", skillCActive);
+        nbt.putBoolean("SkillActive", skillActive);
     }
 
     // 从 NBT 数据中加载能力
@@ -179,8 +159,6 @@ public class QianKunDaNuoYiCapability {
         qianKunDaNuoYiParticle = nbt.getBoolean("QianKunDaNuoYiParticle");
         qianKunDaNuoYiUseCooldownMax = nbt.getFloat("QianKunDaNuoYiUseCooldownMax");
         qianKunDaNuoYiUseCooldownMaxAdd = nbt.getFloat("QianKunDaNuoYiUseCooldownMaxAdd");
-        skillZActive = nbt.getBoolean("SkillZActive");
-        skillXActive = nbt.getBoolean("SkillXActive");
-        skillCActive = nbt.getBoolean("SkillCActive");
+        skillActive = nbt.getBoolean("SkillActive");
     }
 }

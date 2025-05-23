@@ -4,22 +4,16 @@ import com.shengchanshe.changshengjue.capability.martial_arts.immortal_miracle.I
 import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle.ImmortalMiracleClientData;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
-import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
-import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket2;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
-import com.shengchanshe.changshengjue.util.KeyBinding;
 import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
 import com.shengchanshe.changshengjue.util.particle.DachengParticle;
-import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
@@ -31,27 +25,20 @@ public class ImmortalMiracleEvent {
             Level level = player.level();
             if (!player.level().isClientSide) {
                 player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
-                    if(immortalMiracle.isImmortalMiracleOff()){
-                        if (immortalMiracle.getImmortalMiracleUseCooldownPercent() > 0) {
-                            if (immortalMiracle.isSkillXActive() || immortalMiracle.isSkillZActive() || immortalMiracle.isSkillCActive()) {
-                                immortalMiracle.setImmortalMiracleUseCooldownPercent();
-                            }
+                    if (immortalMiracle.getImmortalMiracleUseCooldownPercent() > 0) {
+                        if (immortalMiracle.isSkillActive()) {
+                            immortalMiracle.setImmortalMiracleUseCooldownPercent();
+                            ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
+                                    immortalMiracle.getImmortalMiracleLevel(),
+                                    immortalMiracle.isImmortalMiracleComprehend(),
+                                    immortalMiracle.getImmortalMiracleUseCooldownPercent(),
+                                    immortalMiracle.isImmortalMiracleOff(),
+                                    immortalMiracle.getImmortalMiracleToppedTick(),
+                                    immortalMiracle.getImmortalMiracleDachengTick(),
+                                    immortalMiracle.isImmortalMiracleParticle(),
+                                    immortalMiracle.getImmortalMiracleUseCooldownPercentMax(),
+                                    immortalMiracle.isSkillActive()), (ServerPlayer) player);
                         }
-                        if (!immortalMiracle.isSkillZActive() && !immortalMiracle.isSkillXActive() && !immortalMiracle.isSkillCActive()){
-                            immortalMiracle.setImmortalMiracleOff(false);
-                        }
-                        ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
-                                immortalMiracle.getImmortalMiracleLevel(),
-                                immortalMiracle.isImmortalMiracleComprehend(),
-                                immortalMiracle.getImmortalMiracleUseCooldownPercent(),
-                                immortalMiracle.isImmortalMiracleOff(),
-                                immortalMiracle.getImmortalMiracleToppedTick(),
-                                immortalMiracle.getImmortalMiracleDachengTick(),
-                                immortalMiracle.isImmortalMiracleParticle(),
-                                immortalMiracle.getImmortalMiracleUseCooldownPercentMax(),
-                                immortalMiracle.isSkillZActive(),
-                                immortalMiracle.isSkillXActive(),
-                                immortalMiracle.isSkillCActive()), (ServerPlayer) player);
                     }
 
                     if (immortalMiracle.isImmortalMiracleParticle()){
@@ -69,9 +56,7 @@ public class ImmortalMiracleEvent {
                                 immortalMiracle.getImmortalMiracleDachengTick(),
                                 immortalMiracle.isImmortalMiracleParticle(),
                                 immortalMiracle.getImmortalMiracleUseCooldownPercentMax(),
-                                immortalMiracle.isSkillZActive(),
-                                immortalMiracle.isSkillXActive(),
-                                immortalMiracle.isSkillCActive()), (ServerPlayer) player);
+                                immortalMiracle.isSkillActive()), (ServerPlayer) player);
                     }
                 });
             }
@@ -124,8 +109,8 @@ public class ImmortalMiracleEvent {
         if (!level.isClientSide) {
             if (event.getEntity() instanceof Player player){
                 player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
-                    if (immortalMiracle.isImmortalMiracleComprehend() && immortalMiracle.isImmortalMiracleOff() && immortalMiracle.getImmortalMiracleLevel() > 0) {
-                        if (immortalMiracle.isSkillXActive() || immortalMiracle.isSkillZActive() || immortalMiracle.isSkillCActive()){
+                    if (immortalMiracle.isImmortalMiracleComprehend() && immortalMiracle.getImmortalMiracleLevel() > 0) {
+                        if (immortalMiracle.isSkillActive()){
                             if (immortalMiracle.getImmortalMiracleUseCooldownPercent() <= 0) {
                                 if (player.getFoodData().getFoodLevel() > 8) {
                                     float cooldownMax1 = 1600 - (15 * 20);
@@ -178,9 +163,7 @@ public class ImmortalMiracleEvent {
                                                 immortalMiracle.getImmortalMiracleDachengTick(),
                                                 immortalMiracle.isImmortalMiracleParticle(),
                                                 immortalMiracle.getImmortalMiracleUseCooldownPercentMax(),
-                                                immortalMiracle.isSkillZActive(),
-                                                immortalMiracle.isSkillXActive(),
-                                                immortalMiracle.isSkillCActive()), (ServerPlayer) player);
+                                                immortalMiracle.isSkillActive()), (ServerPlayer) player);
                                     }
                                 }
                             }

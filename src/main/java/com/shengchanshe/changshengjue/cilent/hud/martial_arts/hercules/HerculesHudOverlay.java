@@ -3,11 +3,15 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.hercules;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
+import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_bell_jar.GoldenBellJarClientData;
+import com.shengchanshe.changshengjue.item.combat.glove.GoldThreadGlove;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 public class HerculesHudOverlay {
@@ -38,33 +42,28 @@ public class HerculesHudOverlay {
         int foodLevel = minecraft.player.getFoodData().getFoodLevel();
         return foodLevel > 0;
     }
+    public static boolean shouldDisplayHud() {
+        LocalPlayer player = minecraft.player;
+        ItemStack mainHand = player.getMainHandItem();
+        return mainHand.getItem() instanceof GoldThreadGlove;
+    }
 
     // 通过这个属性进行绘制，这个是一个IguiOverLay的接口，实现这个接口，注册他。
     // 通过lammbd表达式实现。
     public static final IGuiOverlay HUD_HERCULES = (gui, guiGraphics, partialTick, screenWidth, screenHeight) -> {
-        boolean herculesComprehend = HerculesClientData.isHerculesComprehend();
-        if (herculesComprehend){
-            int getHerculesLevel = HerculesClientData.getHerculesLevel();
-            // 通过宽高获得绘制的x，y
-            int x = 5;
-            int y = screenHeight / 2;
-            //设置绘制的信息
-            RenderSystem.setShader(GameRenderer::getPositionTexShader);
-            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            if (HerculesClientData.isSkillZActive()){
-                CSJDisplayHud.displayHudPermanent(getHerculesLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,HERCULES,HERCULES_1,HERCULES_2,COOLING,gui.getFont(),x,y - 25);
-                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
-                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.hercules"),x, y - 25,ChatFormatting.YELLOW.getColor());
-            }
-            if (HerculesClientData.isSkillXActive()){
-                CSJDisplayHud.displayHudPermanent(getHerculesLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,HERCULES,HERCULES_1,HERCULES_2,COOLING,gui.getFont(),x,y);
-                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
-                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.hercules"),x, y,ChatFormatting.YELLOW.getColor());
-            }
-            if (HerculesClientData.isSkillCActive()){
-                CSJDisplayHud.displayHudPermanent(getHerculesLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,HERCULES,HERCULES_1,HERCULES_2,COOLING,gui.getFont(),x,y + 25);
-                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
-                        ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.hercules"),x, y + 25, ChatFormatting.YELLOW.getColor());
+        if (shouldDisplayHud() && HerculesClientData.isSkillActive()) {
+            boolean herculesComprehend = HerculesClientData.isHerculesComprehend();
+            if (herculesComprehend) {
+                int getHerculesLevel = HerculesClientData.getHerculesLevel();
+                // 通过宽高获得绘制的x，y
+                int x = 5;
+                int y = screenHeight / 2;
+                //设置绘制的信息
+                RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+                CSJDisplayHud.displayHudPermanent(getHerculesLevel, frameTime(), frameTimeMax(), playerCanOpened(), guiGraphics, HERCULES, HERCULES_1, HERCULES_2, COOLING, gui.getFont(), x, y);
+                CSJDisplayHud.displayHudPermanent(guiGraphics, gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".hercules"), x, y, ChatFormatting.YELLOW.getColor());
             }
         }
     };

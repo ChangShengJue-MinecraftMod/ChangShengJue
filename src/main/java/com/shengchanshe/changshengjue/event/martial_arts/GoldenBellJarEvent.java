@@ -24,7 +24,7 @@ public class GoldenBellJarEvent {
             if (!player.level().isClientSide) {
                 player.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
                     if (goldenBellJar.getGoldenBellJarUseCooldownPercent() > 0) {
-                        if (goldenBellJar.isSkillZActive() || goldenBellJar.isSkillXActive() || goldenBellJar.isSkillCActive()) {
+                        if (goldenBellJar.isSkillActive()) {
                             goldenBellJar.setGoldenBellJarUseCooldownPercent();
                             ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
                                     goldenBellJar.getGoldenBellJarLevel(),
@@ -34,9 +34,7 @@ public class GoldenBellJarEvent {
                                     goldenBellJar.getGoldenBellJarToppedTick(),
                                     goldenBellJar.getGoldenBellJarDachengTick(),
                                     goldenBellJar.isGoldenBellJarParticle(),
-                                    goldenBellJar.isSkillZActive(),
-                                    goldenBellJar.isSkillXActive(),
-                                    goldenBellJar.isSkillCActive()), (ServerPlayer) player);
+                                    goldenBellJar.isSkillActive()), (ServerPlayer) player);
                         }
                     }
 //                    if (goldenBellJar.isGoldenBellJarOff()){
@@ -68,9 +66,7 @@ public class GoldenBellJarEvent {
                                     goldenBellJar.getGoldenBellJarToppedTick(),
                                     goldenBellJar.getGoldenBellJarDachengTick(),
                                     goldenBellJar.isGoldenBellJarParticle(),
-                                    goldenBellJar.isSkillZActive(),
-                                    goldenBellJar.isSkillXActive(),
-                                    goldenBellJar.isSkillCActive()), (ServerPlayer) player);
+                                    goldenBellJar.isSkillActive()), (ServerPlayer) player);
                         }else if (goldenBellJar.getGoldenBellJarLevel() == 2){
                             goldenBellJar.setGoldenBellJarDachengTick();
                             ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
@@ -81,9 +77,7 @@ public class GoldenBellJarEvent {
                                     goldenBellJar.getGoldenBellJarToppedTick(),
                                     goldenBellJar.getGoldenBellJarDachengTick(),
                                     goldenBellJar.isGoldenBellJarParticle(),
-                                    goldenBellJar.isSkillZActive(),
-                                    goldenBellJar.isSkillXActive(),
-                                    goldenBellJar.isSkillCActive()), (ServerPlayer) player);
+                                    goldenBellJar.isSkillActive()), (ServerPlayer) player);
                         }
                     }
                 });

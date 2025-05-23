@@ -51,7 +51,7 @@ public class TuLongDaoAttackEntityRender extends EntityRenderer<TuLongDaoAttackE
         Matrix3f normalMatrix = pose.normal();
 
         VertexConsumer consumer = bufferSource.getBuffer(RenderType.entityTranslucent(getTextureLocation(entity)));
-        float halfWidth = width * 0.5f;
+        float halfWidth = width * 0.7f;
         float height = entity.getBbHeight() * 0.1f;
 
         consumer.vertex(poseMatrix, -halfWidth, height, -halfWidth).color(255, 255, 255, alpha)
@@ -66,7 +66,7 @@ public class TuLongDaoAttackEntityRender extends EntityRenderer<TuLongDaoAttackE
 
     @Override
     public ResourceLocation getTextureLocation(TuLongDaoAttackEntity entity) {
-        int frame = entity.tickCount % TEXTURES.length;
+        int frame = (entity.tickCount * 2) % TEXTURES.length;
         return TEXTURES[frame];
     }
 

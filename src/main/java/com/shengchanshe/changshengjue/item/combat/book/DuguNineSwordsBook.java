@@ -31,13 +31,9 @@ public class DuguNineSwordsBook extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (!pLevel.isClientSide){
-            ItemStack itemInHand = pPlayer.getItemInHand(pUsedHand);
             pPlayer.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                 if (!duguNineSword.duguNineSwordsComprehend()){
                     duguNineSword.setDuguNineSwordsComprehend(true);
-                    if (!pPlayer.getAbilities().instabuild) {
-                        itemInHand.shrink(1);
-                    }
                     ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),
                             duguNineSword.isDuguNineSwordsComprehend(),
                             duguNineSword.getDuguNineSwordsToppedTick(),

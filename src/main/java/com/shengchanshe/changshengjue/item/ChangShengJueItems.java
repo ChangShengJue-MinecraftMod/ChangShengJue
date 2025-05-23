@@ -17,6 +17,7 @@ import com.shengchanshe.changshengjue.item.combat.armor.wedding.FemaleChineseWed
 import com.shengchanshe.changshengjue.item.combat.book.*;
 import com.shengchanshe.changshengjue.item.combat.clubbed.BeatDogStick;
 import com.shengchanshe.changshengjue.item.combat.clubbed.PanHuaGun;
+import com.shengchanshe.changshengjue.item.combat.glove.GoldThreadGlove;
 import com.shengchanshe.changshengjue.item.combat.knife.HengDao;
 import com.shengchanshe.changshengjue.item.combat.knife.KitchenKnife;
 import com.shengchanshe.changshengjue.item.combat.knife.LargeKnife;
@@ -534,6 +535,8 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> TU_LONG_DAO = ITEMS.register("tu_long_dao", TuLongDao::new);
     //霸王枪
     public static final RegistryObject<Item> BA_WANG_QIANG = ITEMS.register("ba_wang_qiang", BaWangQiang::new);
+    //金丝手套
+    public static final RegistryObject<Item> GOLD_THREAD_GLOVE = ITEMS.register("gold_thread_glove", GoldThreadGlove::new);
 
     //武功秘籍
     //不死神功

@@ -22,7 +22,7 @@ public class TuLongDaoAttackEntity extends Projectile {
         if (!firstTick) {
             firstTick = true;
         }
-        if (tickCount >= 10){
+        if (tickCount >= 5){
             discard();
         }
     }
@@ -34,7 +34,6 @@ public class TuLongDaoAttackEntity extends Projectile {
 
     @Override
     public void refreshDimensions() {
-        return;
     }
 
     @Override
