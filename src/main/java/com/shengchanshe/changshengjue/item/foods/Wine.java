@@ -50,7 +50,7 @@ public class Wine extends BlockItem {
             }
         }
         ItemStack itemstack = super.finishUsingItem(pStack, pLevel, pEntityLiving);
-        return pEntityLiving instanceof Player && ((Player)pEntityLiving).getAbilities().instabuild ? itemstack : new ItemStack(ChangShengJueItems.CI_BEI.get());
+        return pEntityLiving instanceof Player && ((Player)pEntityLiving).getAbilities().instabuild ? itemstack : new ItemStack(ChangShengJueItems.EMPTY_FEN_JIU.get());
     }
 
 

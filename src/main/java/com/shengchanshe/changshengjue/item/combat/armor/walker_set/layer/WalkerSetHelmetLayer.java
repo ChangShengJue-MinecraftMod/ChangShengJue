@@ -28,9 +28,9 @@ public class WalkerSetHelmetLayer extends GeoRenderLayer<WalkerSet> {
         // 获取当前的 ItemStack
         ItemStack currentStack = ((WalkerSetRender) this.getRenderer()).getCurrentStack();
         RenderType armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_0);
-        if (currentStack.is(ChangShengJueItems.GOLD_RING_BAND.get())){
+        if (currentStack.is(ChangShengJueItems.WALKER_GOLD_RING_BAND.get())){
             armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_0);
-        }else if (currentStack.is(ChangShengJueItems.GREEN_TREASURE_PENDANT.get())){
+        }else if (currentStack.is(ChangShengJueItems.WALKER_GREEN_TREASURE_PENDANT.get())){
             armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_1);
         }
         this.getRenderer().reRender(this.getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, armorRenderType, bufferSource.getBuffer(armorRenderType), partialTick, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);

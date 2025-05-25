@@ -83,14 +83,14 @@ public class Parcel extends Item {
                 ChangShengJueItems.COTTON_LEGGINGS.get(),
                 ChangShengJueItems.COTTON_BOOTS.get());
         MOUNTAIN_PATTERN_ARMOR_PARCEL = Arrays.asList(
-                ChangShengJueItems.HELMET_GUN_HOOD.get(),
+                ChangShengJueItems.MOUNTAIN_PATTERN_HELMET_GUN_HOOD.get(),
                 ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get(),
-                ChangShengJueItems.DEERSKIN_TIBIAL_ARMOR.get(),
-                ChangShengJueItems.CLOUD_BLACK_BOOTS.get());
+                ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR.get(),
+                ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS.get());
         THE_GREAT_GENERAL_MINGGUANG_ARMOR_PARCEL = Arrays.asList(
-                ChangShengJueItems.PHOENIX_WINGS_HELMET.get(),
-                ChangShengJueItems.LIGHT_CHESTPLATE.get(),
-                ChangShengJueItems.LAZULI_KNEE_PADS.get(),
-                ChangShengJueItems.ANIMAL_SKIN_BOOTS.get());
+                ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_PHOENIX_WINGS_HELMET.get(),
+                ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get(),
+                ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS.get(),
+                ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS.get());
     }
 }

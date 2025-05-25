@@ -2,12 +2,12 @@
   "name": "装备",
   "category": "chang_sheng_jue:xiake",
   "sortnum": 0,
-  "icon": "chang_sheng_jue:ink_chestplate",
+  "icon": "chang_sheng_jue:confucian_ink_chestplate",
   "pages": [
     {
       "title": "装备",
       "type": "patchouli:spotlight",
-      "item": "chang_sheng_jue:ink_chestplate",
+      "item": "chang_sheng_jue:confucian_ink_chestplate",
       "text": "武侠装备除了像原版装备可以给你提供盔甲值或盔甲韧性等外，还可以减少他人对你造成的外功伤害。装备可以自己制作也可以在新城的铁匠铺内使用货币兑换。大部分盔甲是支持颜色改变外观的，可以试试。"
     }
   ]

@@ -17,14 +17,20 @@ import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmansh
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.quest.Quest;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import vazkii.patchouli.api.PatchouliAPI;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
@@ -71,9 +77,9 @@ public class CSJAdvanceEvent {
                 }else if (item == Items.LEATHER_CHESTPLATE
                         || item == ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE.get()
                         || item == ChangShengJueItems.MALE_TAOIST_CHESTPLATE.get()
-                        || item == ChangShengJueItems.KYLIN_BUFU.get()
-                        || item == ChangShengJueItems.QUEEN_CLOTHING.get()
-                        || item == ChangShengJueItems.INK_CHESTPLATE.get()){
+                        || item == ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU.get()
+                        || item == ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING.get()
+                        || item == ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get()){
                     CSJAdvanceInit.HAS_ARMOR.trigger(serverPlayer);
                 }else if (item == Items.CHAINMAIL_CHESTPLATE
                         || item == Items.IRON_CHESTPLATE
@@ -82,9 +88,9 @@ public class CSJAdvanceEvent {
                         || item == Items.NETHERITE_CHESTPLATE
                         || item == ChangShengJueItems.COTTON_CHESTPLATE.get()
                         || item == ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get()
-                        || item == ChangShengJueItems.FLYING_FISH_CHESTPLATE.get()
-                        || item == ChangShengJueItems.TRAVELER_CHESTPLATE.get()
-                        || item == ChangShengJueItems.LIGHT_CHESTPLATE.get()
+                        || item == ChangShengJueItems.FLY_FISH_CHESTPLATE.get()
+                        || item == ChangShengJueItems.WALKER_CHESTPLATE.get()
+                        || item == ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get()
                 ){
                     CSJAdvanceInit.HAS_ADVANCED_ARRMOR.trigger(serverPlayer);
                 }else if (item == ChangShengJueItems.PHOENIX_FEATHER_CAP.get()) {
@@ -119,6 +125,7 @@ public class CSJAdvanceEvent {
             checkPlayerCungFu(serverPlayer);
             checkForItem(event.player);
         }
+
 
 
     }
@@ -219,30 +226,37 @@ public class CSJAdvanceEvent {
      * @param quest 完成的任务
      */
     public static void handleSpecialQuestReward(ServerPlayer player, Quest quest) {
-        UUID TOU_MING_ZHUANG = UUID.fromString("c4ac1553-b219-4e7c-a54d-e274f9815109");
-        UUID JIU_MING_XIA_YI = UUID.fromString("7dc9c671-ec29-4f3f-9467-5324fa026499");
-        UUID ZHAI_FAN = UUID.fromString("33954498-78EF-492C-9338-B2E85C0AD184");
-        UUID TIAN_RUO_YOU_QING = UUID.fromString("b005b283-34fa-4217-b417-866d830ccda8");
-        UUID CHU_BAO_AN_LIANG = UUID.fromString("066905EA-4B2D-408D-A86E-9D37F450B729");
-        if (TOU_MING_ZHUANG.equals(quest.getQuestId())) {
+        final UUID TOU_MING_ZHUANG = UUID.fromString("c4ac1553-b219-4e7c-a54d-e274f9815109");
+        final UUID JIU_MING_XIA_YI = UUID.fromString("7dc9c671-ec29-4f3f-9467-5324fa026499");
+        final UUID ZHAI_FAN = UUID.fromString("33954498-78EF-492C-9338-B2E85C0AD184");
+        final UUID TIAN_RUO_YOU_QING = UUID.fromString("b005b283-34fa-4217-b417-866d830ccda8");
+        final UUID CHU_BAO_AN_LIANG = UUID.fromString("066905EA-4B2D-408D-A86E-9D37F450B729");
+        final UUID questId = quest.getQuestId();
+        final Set<UUID> firstGroupQuests = Set.of(TOU_MING_ZHUANG, JIU_MING_XIA_YI, ZHAI_FAN);
+        if (firstGroupQuests.contains(questId)) {
             CSJAdvanceInit.FINISH_TASK.trigger(player);
-        }
-        if(JIU_MING_XIA_YI.equals(quest.getQuestId())){
-            CSJAdvanceInit.FINISH_TASK.trigger(player);
-        }
-        if(ZHAI_FAN.equals(quest.getQuestId())){
-            CSJAdvanceInit.FINISH_TASK.trigger(player);
-        }
-        if(TIAN_RUO_YOU_QING.equals(quest.getQuestId())){
+        } else if (TIAN_RUO_YOU_QING.equals(questId)) {
             CSJAdvanceInit.DONE_FINAL_TASK.trigger(player);
-        }
-        if(CHU_BAO_AN_LIANG.equals(quest.getQuestId())){
-            TASK_COUNT++;
-            if(TASK_COUNT == 5){
+        } else if (CHU_BAO_AN_LIANG.equals(questId)) {
+            final int needCount = quest.getNeedCompletionCount();
+            if (needCount == 5) {
                 CSJAdvanceInit.DONE_FIVE_TASK.trigger(player);
             }
         }
     }
 
+    @SubscribeEvent
+    public static void onPlayerOpenBook(PlayerInteractEvent.RightClickItem event) {
+        if(event.getEntity() instanceof ServerPlayer player){
+            ItemStack itemStack = event.getItemStack();
+            ItemStack book = PatchouliAPI.get().getBookStack(new ResourceLocation("chang_sheng_jue", "wufanglu"));
+
+            if (itemStack.getItem() == book.getItem()) {
+                CSJAdvanceInit.MI_CHANG_SHENG.trigger(player);
+                System.out.println("玩家打开书籍");
+            }
+        }
+
+    }
 
 }

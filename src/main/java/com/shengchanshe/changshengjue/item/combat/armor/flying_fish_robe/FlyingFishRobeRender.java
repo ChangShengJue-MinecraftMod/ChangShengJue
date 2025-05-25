@@ -21,7 +21,7 @@ public class FlyingFishRobeRender extends GeoArmorRenderer<FlyingFishRobe> {
      */
     public int getArmorColor(ItemStack stack) {
         if (stack.getItem() instanceof FlyingFishRobe dyeableArmorItem) {
-            if (!stack.is(ChangShengJueItems.IRON_HAT.get())){
+            if (!stack.is(ChangShengJueItems.FLY_FISH_IRON_HAT.get())){
                 return dyeableArmorItem.getColor(stack);
             }
         }

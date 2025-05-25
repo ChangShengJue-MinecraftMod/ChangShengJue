@@ -164,7 +164,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
 
         //布衣侠客
         Advancement hasarmor = Advancement.Builder.advancement().parent(hasbronzesword)
-                .display(ChangShengJueItems.INK_CHESTPLATE.get()
+                .display(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get()
                         , Component.translatable("advancement.chang_sheng_jue.hasarmor").withStyle(ChatFormatting.GREEN)
                         , Component.translatable("advancement.chang_sheng_jue.hasarmor.desc").withStyle(ChatFormatting.GRAY)
                         , (ResourceLocation) null
@@ -239,7 +239,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
 
         // 将门之后
         Advancement hasadvancedarrmor = Advancement.Builder.advancement().parent(hasarmor)
-                .display(ChangShengJueItems.LIGHT_CHESTPLATE.get()
+                .display(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get()
                         , Component.translatable("advancement.chang_sheng_jue.hasadvancedarrmor").withStyle(ChatFormatting.GREEN)
                         , Component.translatable("advancement.chang_sheng_jue.hasadvancedarrmor.desc").withStyle(ChatFormatting.GRAY)
                         , (ResourceLocation) null

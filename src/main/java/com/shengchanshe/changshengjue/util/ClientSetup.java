@@ -85,19 +85,19 @@ public class ClientSetup {
             ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE,
             ChangShengJueItems.MALE_TAOIST_HELMET,
             ChangShengJueItems.MALE_TAOIST_CHESTPLATE,
-            ChangShengJueItems.SILK_BOOTS,
+            ChangShengJueItems.TAOIST_BOOTS,
 
-            ChangShengJueItems.SILK_LEGGINGS,
+            ChangShengJueItems.TAOIST_LEGGINGS,
 
-            ChangShengJueItems.BLACK_GAUZE_CAP,
-            ChangShengJueItems.KYLIN_BUFU,
-            ChangShengJueItems.PHOENIX_CORONET,
-            ChangShengJueItems.QUEEN_CLOTHING,
-            ChangShengJueItems.GOLDEN_THREAD_SHOES,
+            ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP,
+            ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU,
+            ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET,
+            ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING,
+            ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES,
 
-            ChangShengJueItems.CLOUD_VEIL_CROWN,
-            ChangShengJueItems.FLYING_FISH_CHESTPLATE,
-            ChangShengJueItems.LONG_BOOTS,
+            ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN,
+            ChangShengJueItems.FLY_FISH_CHESTPLATE,
+            ChangShengJueItems.FLY_FISH_LONG_BOOTS,
 
             ChangShengJueItems.HENG_DAO
     );

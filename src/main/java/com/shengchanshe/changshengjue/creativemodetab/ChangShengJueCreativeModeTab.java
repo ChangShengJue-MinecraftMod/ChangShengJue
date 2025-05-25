@@ -641,44 +641,44 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE.get());
                 output.accept(ChangShengJueItems.MALE_TAOIST_HELMET.get());
                 output.accept(ChangShengJueItems.MALE_TAOIST_CHESTPLATE.get());
-                output.accept(ChangShengJueItems.SILK_BOOTS.get());
-                output.accept(ChangShengJueItems.SILK_LEGGINGS.get());
-                output.accept(ChangShengJueItems.BLACK_GAUZE_CAP.get());
-                output.accept(ChangShengJueItems.KYLIN_BUFU.get());
-                output.accept(ChangShengJueItems.PHOENIX_CORONET.get());
-                output.accept(ChangShengJueItems.QUEEN_CLOTHING.get());
-                output.accept(ChangShengJueItems.GOLDEN_THREAD_SHOES.get());
+                output.accept(ChangShengJueItems.TAOIST_BOOTS.get());
+                output.accept(ChangShengJueItems.TAOIST_LEGGINGS.get());
+                output.accept(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get());
+                output.accept(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU.get());
+                output.accept(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET.get());
+                output.accept(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING.get());
+                output.accept(ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES.get());
 
-                output.accept(ChangShengJueItems.HELMET_GUN_HOOD.get());
+                output.accept(ChangShengJueItems.MOUNTAIN_PATTERN_HELMET_GUN_HOOD.get());
                 output.accept(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get());
-                output.accept(ChangShengJueItems.DEERSKIN_TIBIAL_ARMOR.get());
-                output.accept(ChangShengJueItems.CLOUD_BLACK_BOOTS.get());
+                output.accept(ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR.get());
+                output.accept(ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS.get());
 
-                output.accept(ChangShengJueItems.IRON_HAT.get());
-                output.accept(ChangShengJueItems.CLOUD_VEIL_CROWN.get());
-                output.accept(ChangShengJueItems.FLYING_FISH_CHESTPLATE.get());
-                output.accept(ChangShengJueItems.LONG_BOOTS.get());
+                output.accept(ChangShengJueItems.FLY_FISH_IRON_HAT.get());
+                output.accept(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get());
+                output.accept(ChangShengJueItems.FLY_FISH_CHESTPLATE.get());
+                output.accept(ChangShengJueItems.FLY_FISH_LONG_BOOTS.get());
 
-                output.accept(ChangShengJueItems.GOLD_RING_BAND.get());
-                output.accept(ChangShengJueItems.GREEN_TREASURE_PENDANT.get());
-                output.accept(ChangShengJueItems.TRAVELER_CHESTPLATE.get());
-                output.accept(ChangShengJueItems.TIGER_SKIN_SKIRT.get());
-                output.accept(ChangShengJueItems.SHORT_BOOTS.get());
+                output.accept(ChangShengJueItems.WALKER_GOLD_RING_BAND.get());
+                output.accept(ChangShengJueItems.WALKER_GREEN_TREASURE_PENDANT.get());
+                output.accept(ChangShengJueItems.WALKER_CHESTPLATE.get());
+                output.accept(ChangShengJueItems.WALKER_TIGER_SKIN_SKIRT.get());
+                output.accept(ChangShengJueItems.WALKER_SHORT_BOOTS.get());
 
                 output.accept(ChangShengJueItems.PHOENIX_FEATHER_CAP.get());
                 output.accept(ChangShengJueItems.OLDEN_CHAIN_MAIL_SHIRT.get());
                 output.accept(ChangShengJueItems.TIGER_SKIN_GARMENT.get());
                 output.accept(ChangShengJueItems.CLOUD_WALKING_BOOTS.get());
 
-                output.accept(ChangShengJueItems.PHOENIX_WINGS_HELMET.get());
-                output.accept(ChangShengJueItems.LIGHT_CHESTPLATE.get());
-                output.accept(ChangShengJueItems.LAZULI_KNEE_PADS.get());
-                output.accept(ChangShengJueItems.ANIMAL_SKIN_BOOTS.get());
+                output.accept(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_PHOENIX_WINGS_HELMET.get());
+                output.accept(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get());
+                output.accept(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS.get());
+                output.accept(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS.get());
 
                 output.accept(ChangShengJueItems.CONFUCIAN_HELMET.get());
-                output.accept(ChangShengJueItems.INK_CHESTPLATE.get());
-                output.accept(ChangShengJueItems.INK_LEGGINGS.get());
-                output.accept(ChangShengJueItems.INK_BOOTS.get());
+                output.accept(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get());
+                output.accept(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get());
+                output.accept(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get());
             }).build());
     //工具
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_TOOL = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_tool",()-> CreativeModeTab.builder()

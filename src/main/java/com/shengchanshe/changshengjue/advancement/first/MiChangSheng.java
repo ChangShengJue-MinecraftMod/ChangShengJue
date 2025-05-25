@@ -4,7 +4,13 @@ import com.google.gson.JsonObject;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import net.minecraft.advancements.critereon.*;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.PlayerMap;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import vazkii.patchouli.api.PatchouliAPI;
+import vazkii.patchouli.api.PatchouliConfigAccess;
 
 public class MiChangSheng extends SimpleCriterionTrigger<MiChangSheng.TriggerInstance> {
     // 定义触发器的唯一标识符

@@ -64,6 +64,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
@@ -82,6 +83,7 @@ import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.List;
 
@@ -1012,8 +1014,23 @@ public class CSJEvent {
         //玩家进入世界时同步能力数据
         if(!event.getLevel().isClientSide()) {
             if(event.getEntity() instanceof ServerPlayer player) {
+                boolean hasBook = false;
 
-                CSJAdvanceInit.MI_CHANG_SHENG.trigger(player);
+                ItemStack book = PatchouliAPI.get().getBookStack(new ResourceLocation("chang_sheng_jue", "wufanglu"));
+                // 遍历玩家背包检查是否已有书籍
+                for (ItemStack itemStack : player.getInventory().items) {
+                    if (itemStack.getItem() == book.getItem()) {
+                        hasBook = true;
+                        break; // 发现书籍后立即终止循环
+                    }
+                }
+
+                // 未找到书籍时执行赠送
+                if (!hasBook) {
+                    player.getInventory().add(book);
+                }
+
+
 
                 player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                     ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),

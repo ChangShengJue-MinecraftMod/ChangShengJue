@@ -1055,46 +1055,46 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("###")
                 .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.SILK_BOOTS.get(),1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.TAOIST_BOOTS.get(),1)
                 .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
                 .pattern("# #")
                 .pattern("# #")
                 .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
         //丝绸裤裤
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.SILK_LEGGINGS.get(),1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.TAOIST_LEGGINGS.get(),1)
                 .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
                 .pattern("###")
                 .pattern("# #")
                 .pattern("# #")
                 .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
         //婚服
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.BLACK_GAUZE_CAP.get(),1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get(),1)
                 .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
                 .define('$', Ingredient.of(Tags.Items.INGOTS_GOLD))
                 .pattern("#$#")
                 .pattern("# #")
                 .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.KYLIN_BUFU.get(),1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU.get(),1)
                 .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
                 .define('$', Ingredient.of(Tags.Items.INGOTS_GOLD))
                 .pattern("# #")
                 .pattern("#$#")
                 .pattern("###")
                 .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.PHOENIX_CORONET.get(),1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET.get(),1)
                 .define('#', Ingredient.of(Tags.Items.GEMS_LAPIS))
                 .define('X', Ingredient.of(Tags.Items.INGOTS_GOLD))
                 .pattern("XXX")
                 .pattern("# #")
                 .unlockedBy("has_gold", has(Tags.Items.INGOTS_GOLD)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.QUEEN_CLOTHING.get(),1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING.get(),1)
                 .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
                 .define('X', Ingredient.of(Tags.Items.INGOTS_GOLD))
                 .pattern("# #")
                 .pattern("#X#")
                 .pattern("#X#")
                 .unlockedBy("has_silk", has(ChangShengJueItems.SILK.get())).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.GOLDEN_THREAD_SHOES.get(),1)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES.get(),1)
                 .define('#', Ingredient.of(ChangShengJueItems.SILK.get()))
                 .define('X', Ingredient.of(Tags.Items.INGOTS_GOLD))
                 .pattern("# #")

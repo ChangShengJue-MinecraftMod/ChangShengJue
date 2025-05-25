@@ -451,52 +451,51 @@ public class ChangShengJueItems {
             ()-> new MaleTaoistRobes(ChangShengJueArmorMaterials.SILK,ArmorItem.Type.HELMET,new Item.Properties()));
     public static final RegistryObject<Item> MALE_TAOIST_CHESTPLATE = ITEMS.register("male_taoist_chestplate",
             ()-> new MaleTaoistRobes(ChangShengJueArmorMaterials.SILK,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
-    public static final RegistryObject<Item> SILK_BOOTS = ITEMS.register("silk_boots",
+    public static final RegistryObject<Item> TAOIST_BOOTS = ITEMS.register("taoist_boots",
             ()-> new MaleTaoistRobes(ChangShengJueArmorMaterials.SILK,ArmorItem.Type.BOOTS,new Item.Properties()));
-    //丝绸裤裤
-    public static final RegistryObject<Item> SILK_LEGGINGS = ITEMS.register("silk_leggings",
+    public static final RegistryObject<Item> TAOIST_LEGGINGS = ITEMS.register("taoist_leggings",
             ()-> new MaleTaoistRobes(ChangShengJueArmorMaterials.SILK,ArmorItem.Type.LEGGINGS,new Item.Properties()));
     //婚服
-    public static final RegistryObject<Item> BLACK_GAUZE_CAP = ITEMS.register("black_gauze_cap",
+    public static final RegistryObject<Item> MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP = ITEMS.register("male_chinese_wedding_dress_black_gauze_cap",
             ()-> new MaleChineseWeddingDress(ChangShengJueArmorMaterials.SILK_1,ArmorItem.Type.HELMET,new Item.Properties()));
-    public static final RegistryObject<Item> KYLIN_BUFU = ITEMS.register("kylin_bufu",
+    public static final RegistryObject<Item> MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU = ITEMS.register("male_chinese_wedding_dress_kylin_bufu",
             ()-> new MaleChineseWeddingDress(ChangShengJueArmorMaterials.SILK_1,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
 
-    public static final RegistryObject<Item> PHOENIX_CORONET = ITEMS.register("phoenix_coronet",
+    public static final RegistryObject<Item> FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET = ITEMS.register("female_chinese_wedding_dress_phoenix_coronet",
             ()-> new FemaleChineseWeddingDress(ChangShengJueArmorMaterials.SILK_1,ArmorItem.Type.HELMET,new Item.Properties()));
-    public static final RegistryObject<Item> QUEEN_CLOTHING = ITEMS.register("queen_clothing",
+    public static final RegistryObject<Item> FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING = ITEMS.register("female_chinese_wedding_dress_queen_clothing",
             ()-> new FemaleChineseWeddingDress(ChangShengJueArmorMaterials.SILK_1,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
 
-    public static final RegistryObject<Item> GOLDEN_THREAD_SHOES = ITEMS.register("golden_thread_shoes",
+    public static final RegistryObject<Item> CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES = ITEMS.register("chinese_wedding_dress_golden_thread_shoes",
             ()-> new MaleChineseWeddingDress(ChangShengJueArmorMaterials.SILK_1,ArmorItem.Type.BOOTS,new Item.Properties()));
     //山文甲
-    public static final RegistryObject<Item> HELMET_GUN_HOOD = ITEMS.register("helmet_gun_hood",
+    public static final RegistryObject<Item> MOUNTAIN_PATTERN_HELMET_GUN_HOOD = ITEMS.register("mountain_pattern_helmet_gun_hood",
             ()-> new MountainPatternArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.HELMET,new Item.Properties(),40));
     public static final RegistryObject<Item> MOUNTAIN_PATTERN_ARMOR = ITEMS.register("mountain_pattern_armor",
             ()-> new MountainPatternArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.CHESTPLATE,new Item.Properties(),40));
-    public static final RegistryObject<Item> DEERSKIN_TIBIAL_ARMOR = ITEMS.register("deerskin_tibial_armor",
+    public static final RegistryObject<Item> MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR = ITEMS.register("mountain_pattern_deerskin_tibial_armor",
             ()-> new MountainPatternArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.LEGGINGS,new Item.Properties(),40));
-    public static final RegistryObject<Item> CLOUD_BLACK_BOOTS = ITEMS.register("cloud_black_boots",
+    public static final RegistryObject<Item> MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS = ITEMS.register("mountain_pattern_cloud_black_boots",
             ()-> new MountainPatternArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.BOOTS,new Item.Properties(),40));
     //飞鱼服
-    public static final RegistryObject<Item> IRON_HAT = ITEMS.register("iron_hat",
+    public static final RegistryObject<Item> FLY_FISH_IRON_HAT = ITEMS.register("fly_fish_iron_hat",
             ()-> new FlyingFishRobe(ChangShengJueArmorMaterials.FLY_IRON,ArmorItem.Type.HELMET,new Item.Properties()));
-    public static final RegistryObject<Item> CLOUD_VEIL_CROWN = ITEMS.register("cloud_veil_crown",
+    public static final RegistryObject<Item> FLY_FISH_CLOUD_VEIL_CROWN = ITEMS.register("fly_fish_cloud_veil_crown",
             ()-> new FlyingFishRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
-    public static final RegistryObject<Item> FLYING_FISH_CHESTPLATE = ITEMS.register("flying_fish_chestplate",
+    public static final RegistryObject<Item> FLY_FISH_CHESTPLATE = ITEMS.register("fly_fish_chestplate",
             ()-> new FlyingFishRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
-    public static final RegistryObject<Item> LONG_BOOTS = ITEMS.register("long_boots",
+    public static final RegistryObject<Item> FLY_FISH_LONG_BOOTS = ITEMS.register("fly_fish_long_boots",
             ()-> new FlyingFishRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.BOOTS,new Item.Properties()));
     //行者套
-    public static final RegistryObject<Item> GOLD_RING_BAND = ITEMS.register("gold_ring_band",
+    public static final RegistryObject<Item> WALKER_GOLD_RING_BAND = ITEMS.register("walker_gold_ring_band",
             ()-> new WalkerSet(ChangShengJueArmorMaterials.WALK,ArmorItem.Type.HELMET,new Item.Properties()));
-    public static final RegistryObject<Item> GREEN_TREASURE_PENDANT = ITEMS.register("green_treasure_pendant",
+    public static final RegistryObject<Item> WALKER_GREEN_TREASURE_PENDANT = ITEMS.register("walker_green_treasure_pendant",
             ()-> new WalkerSet(ChangShengJueArmorMaterials.WALK,ArmorItem.Type.HELMET,new Item.Properties()));
-    public static final RegistryObject<Item> TRAVELER_CHESTPLATE = ITEMS.register("traveler_chestplate",
+    public static final RegistryObject<Item> WALKER_CHESTPLATE = ITEMS.register("walker_chestplate",
             ()-> new WalkerSet(ChangShengJueArmorMaterials.WALK,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
-    public static final RegistryObject<Item> TIGER_SKIN_SKIRT = ITEMS.register("tiger_skin_skirt",
+    public static final RegistryObject<Item> WALKER_TIGER_SKIN_SKIRT = ITEMS.register("walker_tiger_skin_skirt",
             ()-> new WalkerSet(ChangShengJueArmorMaterials.WALK,ArmorItem.Type.LEGGINGS,new Item.Properties()));
-    public static final RegistryObject<Item> SHORT_BOOTS = ITEMS.register("short_boots",
+    public static final RegistryObject<Item> WALKER_SHORT_BOOTS = ITEMS.register("walker_short_boots",
             ()-> new WalkerSet(ChangShengJueArmorMaterials.WALK,ArmorItem.Type.BOOTS,new Item.Properties()));
     //齐天大圣套
     public static final RegistryObject<Item> PHOENIX_FEATHER_CAP = ITEMS.register("phoenix_feather_cap",
@@ -508,22 +507,22 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> CLOUD_WALKING_BOOTS = ITEMS.register("cloud_walking_boots",
             ()-> new QiTianDaSheng(ArmorMaterials.NETHERITE,ArmorItem.Type.BOOTS,new Item.Properties().fireResistant(),50));
     //大将军明光铠
-    public static final RegistryObject<Item> PHOENIX_WINGS_HELMET = ITEMS.register("phoenix_wings_helmet",
+    public static final RegistryObject<Item> THE_GREAT_GENERAL_MING_GUANG_PHOENIX_WINGS_HELMET = ITEMS.register("the_great_general_ming_guang_phoenix_wings_helmet",
             ()-> new TheGreatGeneralMingguangArmor(ChangShengJueArmorMaterials.BRIGHT,ArmorItem.Type.HELMET,new Item.Properties(),40));
-    public static final RegistryObject<Item> LIGHT_CHESTPLATE = ITEMS.register("light_chestplate",
+    public static final RegistryObject<Item> THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE = ITEMS.register("the_great_general_ming_guang_light_chestplate",
             ()-> new TheGreatGeneralMingguangArmor(ChangShengJueArmorMaterials.BRIGHT,ArmorItem.Type.CHESTPLATE,new Item.Properties(),40));
-    public static final RegistryObject<Item> LAZULI_KNEE_PADS = ITEMS.register("lazuli_knee_pads",
+    public static final RegistryObject<Item> THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS = ITEMS.register("the_great_general_ming_guang_lazuli_knee_pads",
             ()-> new TheGreatGeneralMingguangArmor(ChangShengJueArmorMaterials.BRIGHT,ArmorItem.Type.LEGGINGS,new Item.Properties(),40));
-    public static final RegistryObject<Item> ANIMAL_SKIN_BOOTS = ITEMS.register("animal_skin_boots",
+    public static final RegistryObject<Item> THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS = ITEMS.register("the_great_general_ming_guang_animal_skin_boots",
             ()-> new TheGreatGeneralMingguangArmor(ChangShengJueArmorMaterials.BRIGHT,ArmorItem.Type.BOOTS,new Item.Properties(),40));
     //儒装
     public static final RegistryObject<Item> CONFUCIAN_HELMET = ITEMS.register("confucian_helmet",
             ()-> new ConfucianCostumes(ChangShengJueArmorMaterials.INK,ArmorItem.Type.HELMET,new Item.Properties(),20));
-    public static final RegistryObject<Item> INK_CHESTPLATE = ITEMS.register("ink_chestplate",
+    public static final RegistryObject<Item> CONFUCIAN_INK_CHESTPLATE = ITEMS.register("confucian_ink_chestplate",
             ()-> new ConfucianCostumes(ChangShengJueArmorMaterials.INK,ArmorItem.Type.CHESTPLATE,new Item.Properties(),20));
-    public static final RegistryObject<Item> INK_LEGGINGS = ITEMS.register("ink_leggings",
+    public static final RegistryObject<Item> CONFUCIAN_INK_LEGGINGS = ITEMS.register("confucian_ink_leggings",
             ()-> new ConfucianCostumes(ChangShengJueArmorMaterials.INK,ArmorItem.Type.LEGGINGS,new Item.Properties(),20));
-    public static final RegistryObject<Item> INK_BOOTS = ITEMS.register("ink_boots",
+    public static final RegistryObject<Item> CONFUCIAN_INK_BOOTS = ITEMS.register("confucian_ink_boots",
             ()-> new ConfucianCostumes(ChangShengJueArmorMaterials.INK,ArmorItem.Type.BOOTS,new Item.Properties(),20));
 
     //打狗棒

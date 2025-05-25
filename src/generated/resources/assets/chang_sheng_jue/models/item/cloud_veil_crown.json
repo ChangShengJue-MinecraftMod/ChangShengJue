@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "chang_sheng_jue:item/cloud_veil_crown",
-    "layer1": "chang_sheng_jue:item/cloud_veil_crown_overlay"
-  }
-}

@@ -113,46 +113,46 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleArmorItem(ChangShengJueItems.MALE_TAOIST_HELMET);
         simpleArmorItem(ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE);
         simpleArmorItem(ChangShengJueItems.MALE_TAOIST_CHESTPLATE);
-        simpleArmorItem(ChangShengJueItems.SILK_BOOTS);
+        simpleArmorItem(ChangShengJueItems.TAOIST_BOOTS);
         //丝绸裤裤
-        simpleArmorItem(ChangShengJueItems.SILK_LEGGINGS);
+        simpleArmorItem(ChangShengJueItems.TAOIST_LEGGINGS);
         //婚服
-        simpleArmorItem(ChangShengJueItems.BLACK_GAUZE_CAP);
-        simpleItem(ChangShengJueItems.PHOENIX_CORONET);
-        simpleArmorItem(ChangShengJueItems.KYLIN_BUFU);
-        simpleArmorItem(ChangShengJueItems.QUEEN_CLOTHING);
-        simpleArmorItem(ChangShengJueItems.GOLDEN_THREAD_SHOES);
+        simpleArmorItem(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP);
+        simpleItem(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET);
+        simpleArmorItem(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU);
+        simpleArmorItem(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING);
+        simpleArmorItem(ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES);
         //山文甲
-        simpleItem(ChangShengJueItems.HELMET_GUN_HOOD);
+        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_HELMET_GUN_HOOD);
         simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR);
-        simpleItem(ChangShengJueItems.DEERSKIN_TIBIAL_ARMOR);
-        simpleItem(ChangShengJueItems.CLOUD_BLACK_BOOTS);
+        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR);
+        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS);
         //飞鱼服
-        simpleItem(ChangShengJueItems.IRON_HAT);
-        simpleArmorItem(ChangShengJueItems.CLOUD_VEIL_CROWN);
-        simpleArmorItem(ChangShengJueItems.FLYING_FISH_CHESTPLATE);
-        simpleArmorItem(ChangShengJueItems.LONG_BOOTS);
+        simpleItem(ChangShengJueItems.FLY_FISH_IRON_HAT);
+        simpleArmorItem(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN);
+        simpleArmorItem(ChangShengJueItems.FLY_FISH_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.FLY_FISH_LONG_BOOTS);
         //行者套
-        simpleItem(ChangShengJueItems.GOLD_RING_BAND);
-        simpleItem(ChangShengJueItems.GREEN_TREASURE_PENDANT);
-        simpleItem(ChangShengJueItems.TRAVELER_CHESTPLATE);
-        simpleItem(ChangShengJueItems.TIGER_SKIN_SKIRT);
-        simpleItem(ChangShengJueItems.SHORT_BOOTS);
+        simpleItem(ChangShengJueItems.WALKER_GOLD_RING_BAND);
+        simpleItem(ChangShengJueItems.WALKER_GREEN_TREASURE_PENDANT);
+        simpleItem(ChangShengJueItems.WALKER_CHESTPLATE);
+        simpleItem(ChangShengJueItems.WALKER_TIGER_SKIN_SKIRT);
+        simpleItem(ChangShengJueItems.WALKER_SHORT_BOOTS);
         //齐天大圣套
         simpleItem(ChangShengJueItems.PHOENIX_FEATHER_CAP);
         simpleItem(ChangShengJueItems.OLDEN_CHAIN_MAIL_SHIRT);
         simpleItem(ChangShengJueItems.TIGER_SKIN_GARMENT);
         simpleItem(ChangShengJueItems.CLOUD_WALKING_BOOTS);
         //大将军明光铠
-        simpleItem(ChangShengJueItems.PHOENIX_WINGS_HELMET);
-        simpleItem(ChangShengJueItems.LIGHT_CHESTPLATE);
-        simpleItem(ChangShengJueItems.LAZULI_KNEE_PADS);
-        simpleItem(ChangShengJueItems.ANIMAL_SKIN_BOOTS);
+        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_PHOENIX_WINGS_HELMET);
+        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE);
+        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS);
+        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS);
         //儒装
         simpleItem(ChangShengJueItems.CONFUCIAN_HELMET);
-        simpleItem(ChangShengJueItems.INK_CHESTPLATE);
-        simpleItem(ChangShengJueItems.INK_LEGGINGS);
-        simpleItem(ChangShengJueItems.INK_BOOTS);
+        simpleItem(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE);
+        simpleItem(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS);
+        simpleItem(ChangShengJueItems.CONFUCIAN_INK_BOOTS);
         //武器
         handheldItem(ChangShengJueItems.THROWING_KNIVES);
         handheldItem(ChangShengJueItems.THREE_THROWING_KNIVES);
