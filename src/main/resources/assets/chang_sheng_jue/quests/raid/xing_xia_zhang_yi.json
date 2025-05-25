@@ -17,14 +17,14 @@
   "questRewards": [
     {
       "item": "chang_sheng_jue:gang_token",
-      "count": 2
+      "count": 4
     },
     {
       "item": "chang_sheng_jue:silver_bullions",
       "count": {
         "type": "minecraft:uniform",
         "max": 6.0,
-        "min": 4.0
+        "min": 3.0
       }
     }
   ]

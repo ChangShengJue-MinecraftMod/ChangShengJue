@@ -947,11 +947,11 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEntity.FEMALE_INNKEEPER.get(), "酒馆女掌柜");
         this.add(ChangShengJueEntity.CHALLENGER.get(), "挑战者");
         this.add(ChangShengJueEntity.BLACKSMITH.get(), "铁匠");
-        this.add(ChangShengJueEntity.LANCE_GANG_LEADER.get(), "帮派首领(枪)");
-        this.add(ChangShengJueEntity.KNIFE_GANG_LEADER.get(), "帮派首领(刀)");
-        this.add(ChangShengJueEntity.SWORD_GANG_LEADER.get(), "帮派首领(剑)");
-        this.add(ChangShengJueEntity.CLUBBED_GANG_LEADER.get(), "帮派首领(棍)");
-        this.add(ChangShengJueEntity.GANG_LEADER.get(), "帮派首领(拳,飞刀)");
+        this.add(ChangShengJueEntity.LANCE_GANG_LEADER.get(), "帮派首领");
+        this.add(ChangShengJueEntity.KNIFE_GANG_LEADER.get(), "帮派首领");
+        this.add(ChangShengJueEntity.SWORD_GANG_LEADER.get(), "帮派首领");
+        this.add(ChangShengJueEntity.CLUBBED_GANG_LEADER.get(), "帮派首领");
+        this.add(ChangShengJueEntity.GANG_LEADER.get(), "帮派首领");
         this.add(ChangShengJueEntity.BANDIT.get(), "强盗");
         this.add(ChangShengJueEntity.VILLAIN.get(), "恶徒");
         this.add(ChangShengJueEntity.ASSASSIN.get(), "帮派杀手");
@@ -966,6 +966,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEntity.PILLAGER_WU_XIA.get(), "功夫掠夺者");
 
         this.add(ChangShengJueEntity.STAKES.get(), "练功木桩");
+        this.add(ChangShengJueEntity.GE_SHAN_DA_NIU.get(), "隔山打牛");
 
         // 村民职业
         this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_farmer", "农民");

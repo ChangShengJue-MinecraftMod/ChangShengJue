@@ -272,7 +272,7 @@ public class SoftSword extends Sword implements GeoItem {
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(((new AnimationController(this, "idle",0, (state) ->
                 state.setAndContinue(DefaultAnimations.IDLE)))));
-        controllerRegistrar.add(new AnimationController<>(this, "Attack", 0, state -> PlayState.CONTINUE)
+        controllerRegistrar.add(new AnimationController<>(this, "Attack", 0, state -> PlayState.STOP)
                 .triggerableAnim("attack", DefaultAnimations.ATTACK_SWING).setSoundKeyframeHandler((state) -> {
                     Player player = ClientUtils.getClientPlayer();
                     if (player != null) {

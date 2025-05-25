@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.block.cropper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
@@ -67,23 +68,46 @@ public class HighCropBlock extends CropBlock {
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos) {
-        return super.canSurvive(state, reader, pos) || (reader.getBlockState(pos.below(1)).is(this) &&
-                reader.getBlockState(pos.below(1)).getValue(AGE) == 6);
+        BlockPos belowPos = pos.below();
+        BlockState belowState = reader.getBlockState(belowPos);
+
+        if (this.getAge(state) <= FIRST_STAGE_MAX_AGE) {
+            return super.canSurvive(state, reader, pos);
+        } else {
+            return belowState.is(this) && belowState.getValue(AGE) == FIRST_STAGE_MAX_AGE;
+        }
     }
 
     @Override
     public void growCrops(Level level, BlockPos blockPos, BlockState blockState) {
-        int nextAge = this.getAge(blockState) + this.getBonemealAgeIncrease(level);
-        int maxAge = this.getMaxAge();
-        if(nextAge > maxAge) {
-            nextAge = maxAge;
-        }
+        if (level.getBlockState(blockPos.above(1)).is(Blocks.AIR) && !level.getBlockState(blockPos.above(1)).is(this)){
+            int nextAge = this.getAge(blockState) + this.getBonemealAgeIncrease(level);
+            int maxAge = this.getMaxAge();
+            if(nextAge > maxAge) {
+                nextAge = maxAge;
+            }
 
-        if(this.getAge(blockState) == FIRST_STAGE_MAX_AGE && level.getBlockState(blockPos.above(1)).is(Blocks.AIR)) {
-            level.setBlock(blockPos.above(1), this.getStateForAge(nextAge), 2);
-        } else {
-            level.setBlock(blockPos, this.getStateForAge(nextAge - SECOND_STAGE_MAX_AGE), 2);
+            if (this.getAge(blockState) == FIRST_STAGE_MAX_AGE) {
+                level.setBlock(blockPos.above(1), this.getStateForAge(nextAge), 2);
+            } else if (this.getAge(blockState) < FIRST_STAGE_MAX_AGE) {
+                level.setBlock(blockPos, this.getStateForAge(nextAge - SECOND_STAGE_MAX_AGE), 2);
+            }
         }
+    }
+
+    @Override
+    protected boolean mayPlaceOn(BlockState state, BlockGetter world, BlockPos pos) {
+        return state.is(Blocks.FARMLAND);
+    }
+
+    @Override
+    public boolean isValidBonemealTarget(LevelReader pLevel, BlockPos pPos, BlockState pState, boolean pIsClient) {
+        if (getAge(pState) >= getMaxAge()) return false;
+
+        if (getAge(pState) >= FIRST_STAGE_MAX_AGE) {
+            return pLevel.getBlockState(pPos.above()).isAir();
+        }
+        return true;
     }
 
     @Override

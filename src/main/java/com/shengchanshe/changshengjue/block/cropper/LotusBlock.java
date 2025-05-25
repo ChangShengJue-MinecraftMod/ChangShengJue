@@ -2,24 +2,32 @@ package com.shengchanshe.changshengjue.block.cropper;
 
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.common.IPlantable;
 
 public class LotusBlock extends CropBlock implements SimpleWaterloggedBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
             Block.box(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D),
             Block.box(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D),
@@ -64,15 +72,31 @@ public class LotusBlock extends CropBlock implements SimpleWaterloggedBlock {
         return super.getLightEmission(state, world, pos);
     }
 
-    public FluidState getFluidState(BlockState p_54319_) {
+    @Override
+    public FluidState getFluidState(BlockState pState) {
         return Fluids.WATER.getSource(true);
     }
+
     @Override
-    protected boolean mayPlaceOn(BlockState p_52302_, BlockGetter worldIn, BlockPos pos) {
-        BlockState underState = worldIn.getBlockState(pos);
-        BlockState aboveFluidState = worldIn.getBlockState(pos.above());
-        BlockState aboveFluidState1 = worldIn.getBlockState(pos.above().above());
-        return (p_52302_.is(Blocks.DIRT)) && aboveFluidState.is(Blocks.WATER) && aboveFluidState1.isAir();
+    public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable) {
+        return this.mayPlaceOn(world.getBlockState(pos), world, pos);
     }
+
+    public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
+        BlockPos blockpos = pPos.below();
+        return this.mayPlaceOn(pLevel.getBlockState(blockpos), pLevel, blockpos);
+    }
+
+    @Override
+    protected boolean mayPlaceOn(BlockState pState, BlockGetter worldIn, BlockPos pos) {
+        BlockPos waterPos = pos.above();
+        return pState.is(Blocks.DIRT) && worldIn.getBlockState(waterPos).getFluidState().is(FluidTags.WATER); // 上方第一格是水（包括流动水）
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(WATERLOGGED, AGE);
+    }
+
 }
 

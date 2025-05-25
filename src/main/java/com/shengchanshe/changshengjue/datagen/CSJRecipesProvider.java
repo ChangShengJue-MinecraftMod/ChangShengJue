@@ -970,6 +970,7 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy("has_ingots_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
         //飞刀
         ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT,ChangShengJueItems.THROWING_KNIVES.get()).requires(Ingredient.of(Tags.Items.INGOTS_IRON),1)
+                .requires(Ingredient.of(Tags.Items.LEATHER), 1)
                 .unlockedBy("has_iron",has(Tags.Items.INGOTS_IRON)).save(consumer);
         //三把飞刀
         ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT,ChangShengJueItems.THREE_THROWING_KNIVES.get()).requires(Ingredient.of(ChangShengJueItems.THROWING_KNIVES.get()),3)

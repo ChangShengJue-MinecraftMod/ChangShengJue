@@ -243,6 +243,7 @@ public class WuXiaMerahantTrades {
                         new GangTokenForItems(ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get(), 20, 16, 1),
                         new GangTokenForItems(ChangShengJueItems.TURTLE_BREATH_WORK.get(), 20, 16, 1),
                         new GangTokenForItems(ChangShengJueItems.GE_SHAN_DA_NIU.get(), 20, 16, 1),
+                        new GangTokenForItems(ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get(), 20, 16, 1)
                 }, 2, new VillagerTrades.ItemListing[]{
                         new GangTokenForItems(ChangShengJueItems.KAISHAN_PICKAXE.get().getDefaultInstance(), 10, 16, 1),
                         new GangTokenForItems(ChangShengJueItems.XUANHUA_AXE.get().getDefaultInstance(), 10, 16, 1),
