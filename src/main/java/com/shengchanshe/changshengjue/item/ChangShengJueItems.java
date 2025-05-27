@@ -603,6 +603,8 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> INTERNAL_INJURY_EFFECT = ITEMS.register("internal_injury_effect",
             ()-> new Item(new Item.Properties()));
 
+    //手册
+    public static final RegistryObject<Item> WU_FANG_LU = ITEMS.register("wu_fang_lu", ()-> new Item(new Item.Properties()));
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
     }

@@ -94,6 +94,20 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(Item.byBlock(ChangShengJueBlocks.PURPLE_RED_KNOTWEED.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.RAPE_FLOWERS.get()));
 
+        this.tag(ItemTags.SAPLINGS)
+                .add(Item.byBlock(ChangShengJueBlocks.MANGO_SAPLING.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.GUI_HUA_SAPLING.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.MEI_HUA_SAPLING.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.BANANA_SAPLING.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.PEAR_SAPLING.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.LICHEE_SAPLING.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.DURIAN_SAPLING.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.ZI_TAN_SAPLING.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.POPLAR_SAPLING.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.MULBERRY_SAPLING.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.JI_CHI_MU_SAPLING.get()));
+
         this.tag(CSJTags.Items.DRINKS)
                 .addTag(CSJTags.Items.TEA)
                 .addTag(CSJTags.Items.WINE);
@@ -195,5 +209,17 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
         this.tag(Tags.Items.INGOTS).add(ChangShengJueItems.AG_INGOT.get());
         this.tag(CSJTags.ForgeItems.INGOTS_SILVER).add(ChangShengJueItems.AG_INGOT.get().asItem());
 
+        //slabs台阶标签
+        this.tag(ItemTags.SLABS)
+                .add(Item.byBlock(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.BLACK_STONE_BRICKS_SLAB.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.BLUE_STONE_BRICKS_SLAB.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.HANG_TU_SLAB.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.TU_PEI_SLAB.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.WHITE_BRICKS_SLAB.get()));
     }
 }

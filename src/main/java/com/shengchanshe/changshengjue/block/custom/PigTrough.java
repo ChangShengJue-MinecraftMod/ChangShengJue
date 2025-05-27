@@ -9,6 +9,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -28,6 +29,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.List;
+import java.util.Set;
 
 public class PigTrough extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -67,7 +69,9 @@ public class PigTrough extends Block {
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack itemStack = player.getItemInHand(hand);
-        if (itemStack.getItem() == Items.WHEAT) {
+        final Set<Item> ADD_SET = Set.of(Items.WHEAT, Items.HAY_BLOCK);
+
+        if (ADD_SET.contains(itemStack.getItem())) {
             if (!world.isClientSide) {
                 int level = state.getValue(LEVEL);
                 if (level < 8) {

@@ -12,6 +12,6 @@
     "chang_sheng_jue:villages"
   ],
   "images": ["chang_sheng_jue:textures/gui/patchouli/villages/guideline_filler.png"],
-  "show_progress": false
-
+  "show_progress": false,
+  "give_book_on_first_join": true
 }

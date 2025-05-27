@@ -20,7 +20,6 @@ import com.shengchanshe.changshengjue.quest.Quest;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -81,12 +80,7 @@ public class CSJAdvanceEvent {
                         || item == ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING.get()
                         || item == ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get()){
                     CSJAdvanceInit.HAS_ARMOR.trigger(serverPlayer);
-                }else if (item == Items.CHAINMAIL_CHESTPLATE
-                        || item == Items.IRON_CHESTPLATE
-                        || item == Items.GOLDEN_CHESTPLATE
-                        || item == Items.DIAMOND_CHESTPLATE
-                        || item == Items.NETHERITE_CHESTPLATE
-                        || item == ChangShengJueItems.COTTON_CHESTPLATE.get()
+                }else if (item == ChangShengJueItems.COTTON_CHESTPLATE.get()
                         || item == ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get()
                         || item == ChangShengJueItems.FLY_FISH_CHESTPLATE.get()
                         || item == ChangShengJueItems.WALKER_CHESTPLATE.get()
@@ -249,11 +243,15 @@ public class CSJAdvanceEvent {
     public static void onPlayerOpenBook(PlayerInteractEvent.RightClickItem event) {
         if(event.getEntity() instanceof ServerPlayer player){
             ItemStack itemStack = event.getItemStack();
-            ItemStack book = PatchouliAPI.get().getBookStack(new ResourceLocation("chang_sheng_jue", "wufanglu"));
+            if (!net.minecraftforge.fml.ModList.get().isLoaded("patchouli")) {
+                return;
+            }
+            CompoundTag itemnbt = itemStack.getTag();
+            if (itemnbt == null) return;
 
-            if (itemStack.getItem() == book.getItem()) {
+            if (itemnbt.contains("patchouli:book") &&
+                    itemnbt.getString("patchouli:book").equals("chang_sheng_jue:wufanglu")) {
                 CSJAdvanceInit.MI_CHANG_SHENG.trigger(player);
-                System.out.println("玩家打开书籍");
             }
         }
 

@@ -34,7 +34,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class ChangShengJueLoomBlockEntity extends BlockEntity implements GeoBlockEntity {
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private ItemStackHandler inventory = new ItemStackHandler(3){
+    private ItemStackHandler inventory = new ItemStackHandler(2){
         @Override
         protected int getStackLimit(int slot, @NotNull ItemStack stack) {
             return 1;
@@ -93,6 +93,8 @@ public class ChangShengJueLoomBlockEntity extends BlockEntity implements GeoBloc
 
     public boolean addItem(ItemStack itemStack){
         for (int i = 0; i <  this.inventory.getSlots(); i++) {
+            System.out.println(this.inventory.getSlots());
+            System.out.println(i);
             ItemStack stackInSlot = this.inventory.getStackInSlot(i);
             if(stackInSlot.isEmpty()){
                 this.inventory.setStackInSlot(i,itemStack.split(1));

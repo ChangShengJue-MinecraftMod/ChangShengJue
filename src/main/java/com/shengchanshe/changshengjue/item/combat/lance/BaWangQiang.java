@@ -42,7 +42,7 @@ import java.util.function.Consumer;
 public class BaWangQiang extends Lance implements GeoItem , Vanishable{
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public BaWangQiang() {
-        super(Tiers.IRON, 3, -2.4F, new Properties());
+        super(Tiers.IRON, 5, -2.4F, new Properties());
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
 

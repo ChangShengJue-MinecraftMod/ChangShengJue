@@ -150,17 +150,17 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         LootItemCondition.Builder pineapple = cropDrop(ChangShengJueBlocks.PINEAPPLE_BLOCK.get(), 7);
         this.add(ChangShengJueBlocks.PINEAPPLE_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.PINEAPPLE_BLOCK.get(), ChangShengJueItems.PINEAPPLE.get(), ChangShengJueItems.PINEAPPLE_SEEDS.get(),0, pineapple));
         LootItemCondition.Builder soybean = cropDrop(ChangShengJueBlocks.SOYBEAN_BLOCK.get(), 7);
-        this.add(ChangShengJueBlocks.SOYBEAN_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.SOYBEAN_BLOCK.get(), ChangShengJueItems.SOYBEAN.get(), ChangShengJueItems.SOYBEAN.get(), soybean,3));
+        this.add(ChangShengJueBlocks.SOYBEAN_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.SOYBEAN_BLOCK.get(), ChangShengJueItems.SOYBEAN.get(), ChangShengJueItems.SOYBEAN.get(), soybean,2));
         LootItemCondition.Builder tomato = cropDrop(ChangShengJueBlocks.TOMATO_BLOCK.get(), 7);
         this.add(ChangShengJueBlocks.TOMATO_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.TOMATO_BLOCK.get(), ChangShengJueItems.TOMATO.get(), ChangShengJueItems.TOMATO_SEEDS.get(), tomato,3));
         LootItemCondition.Builder GuZi = cropDrop(ChangShengJueBlocks.GU_ZI_BLOCK.get(), 7);
-        this.add(ChangShengJueBlocks.GU_ZI_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.GU_ZI_BLOCK.get(), ChangShengJueItems.GU_SUI.get(), ChangShengJueItems.GU_SEEDS.get(), GuZi,3));
+        this.add(ChangShengJueBlocks.GU_ZI_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.GU_ZI_BLOCK.get(), ChangShengJueItems.GU_SUI.get(), ChangShengJueItems.GU_SEEDS.get(), GuZi,2));
         LootItemCondition.Builder sorghum = cropDrop(ChangShengJueBlocks.SORGHUM_BLOCK.get(), 7);
         this.add(ChangShengJueBlocks.SORGHUM_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.SORGHUM_BLOCK.get(), ChangShengJueItems.SORGHUM.get(), ChangShengJueItems.SORGHUM_SEEDS.get(), sorghum,1));
         LootItemCondition.Builder redbean = cropDrop(ChangShengJueBlocks.REDBEAN_BLOCK.get(), 7);
         this.add(ChangShengJueBlocks.REDBEAN_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.REDBEAN_BLOCK.get(), ChangShengJueItems.REDBEAN.get(), ChangShengJueItems.SORGHUM_SEEDS.get(), redbean,3));
         LootItemCondition.Builder cotton = cropDrop(ChangShengJueBlocks.COTTON_BLOCK.get(), 7);
-        this.add(ChangShengJueBlocks.COTTON_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.COTTON_BLOCK.get(), ChangShengJueItems.COTTON.get(), ChangShengJueItems.COTTON_SEEDS.get(), cotton,3));
+        this.add(ChangShengJueBlocks.COTTON_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.COTTON_BLOCK.get(), ChangShengJueItems.COTTON.get(), ChangShengJueItems.COTTON_SEEDS.get(), cotton,2));
         LootItemCondition.Builder stickyrice = cropDrop(ChangShengJueBlocks.STICKYRICE_BLOCK.get(), 7);
         this.add(ChangShengJueBlocks.STICKYRICE_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.STICKYRICE_BLOCK.get(), ChangShengJueItems.STICKYRICE.get(), ChangShengJueItems.STICKYRICE_SEEDS.get(), stickyrice,3));
         LootItemCondition.Builder corn = cropDrop(ChangShengJueBlocks.CORN_BLOCK.get(), 7);
@@ -208,7 +208,7 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(ChangShengJueBlocks.LOTUS_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.LOTUS_BLOCK.get(), ChangShengJueItems.LOTUS_ROOT.get(), ChangShengJueItems.LOTUS_SEEDS.get(),lotus0,lotus1, lotus2,lotus3,lotus4));
 
         LootItemCondition.Builder rice = cropDrop(ChangShengJueBlocks.RICE.get(), 7);
-        this.add(ChangShengJueBlocks.RICE.get(), this.createCropDrops(ChangShengJueBlocks.RICE.get(),ChangShengJueItems.RICE.get(),ChangShengJueItems.RICE_SEEDS.get(),rice,3));
+        this.add(ChangShengJueBlocks.RICE.get(), this.createCropDrops(ChangShengJueBlocks.RICE.get(),ChangShengJueItems.RICE.get(),ChangShengJueItems.RICE_SEEDS.get(),rice,2));
 
         LootItemCondition.Builder biluochunTea = cropDrop(ChangShengJueBlocks.BILUOCHUN_TEA.get(), 7);
         this.add(ChangShengJueBlocks.BILUOCHUN_TEA.get(),

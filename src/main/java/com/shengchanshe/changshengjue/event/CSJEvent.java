@@ -68,6 +68,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -77,6 +78,7 @@ import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.TradeWithVillagerEvent;
+import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.event.server.ServerStoppingEvent;
@@ -85,7 +87,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import vazkii.patchouli.api.PatchouliAPI;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJEvent {
@@ -1014,21 +1019,9 @@ public class CSJEvent {
         //玩家进入世界时同步能力数据
         if(!event.getLevel().isClientSide()) {
             if(event.getEntity() instanceof ServerPlayer player) {
-                boolean hasBook = false;
 
-                ItemStack book = PatchouliAPI.get().getBookStack(new ResourceLocation("chang_sheng_jue", "wufanglu"));
-                // 遍历玩家背包检查是否已有书籍
-                for (ItemStack itemStack : player.getInventory().items) {
-                    if (itemStack.getItem() == book.getItem()) {
-                        hasBook = true;
-                        break; // 发现书籍后立即终止循环
-                    }
-                }
 
-                // 未找到书籍时执行赠送
-                if (!hasBook) {
-                    player.getInventory().add(book);
-                }
+
 
 
 
@@ -1181,4 +1174,31 @@ public class CSJEvent {
             QuestManager.getInstance().onWorldLoad();
         }
     }
+
+    @SubscribeEvent
+    public static void onPlayerFirstJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        Player player = event.getEntity();
+        // 检查玩家是否首次加入游戏
+        if (player instanceof ServerPlayer serverPlayer) {
+            if (!net.minecraftforge.fml.ModList.get().isLoaded("patchouli")) {
+                return;
+            }
+            boolean hasBook = false;
+            ItemStack book = PatchouliAPI.get().getBookStack(new ResourceLocation("chang_sheng_jue", "wufanglu"));
+            // 遍历玩家背包检查是否已有书籍
+            for (ItemStack itemStack : player.getInventory().items) {
+                if (itemStack.getItem() == book.getItem()) {
+                    hasBook = true;
+                    break; // 发现书籍后立即终止循环
+                }
+            }
+
+            // 未找到书籍时执行赠送
+            if (!hasBook) {
+                player.getInventory().add(book);
+            }
+        }
+    }
+
+
 }

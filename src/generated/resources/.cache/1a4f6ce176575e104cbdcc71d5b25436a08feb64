@@ -1,4 +1,4 @@
-// 1.20.1	2025-05-21T09:59:42.5356699	Tags for minecraft:item mod id chang_sheng_jue
+// 1.20.1	2025-05-27T15:47:55.3191011	Tags for minecraft:item mod id chang_sheng_jue
 cc5dd550d43d528b509db78c5b51b23885f33a25 data/chang_sheng_jue/tags/items/artifact.json
 07ecd0eb3ab21efc7faa1276d80bec0779c1300d data/chang_sheng_jue/tags/items/doors.json
 9d16765683238565c6ad1db7bdb5cf5b1a4a6620 data/chang_sheng_jue/tags/items/drinks.json
@@ -26,4 +26,6 @@ ff3f27392f0f5079b01c75bf6968fca3a5e01af0 data/minecraft/tags/items/logs.json
 cd30965299c8bc8e16ad7d950021e54b42366643 data/minecraft/tags/items/logs_that_burn.json
 8c58fd159b0d57ec71e1dfdfad642e205b0ba090 data/minecraft/tags/items/pickaxes.json
 8464f886a195f298b9d4510ebd6779b98683eff5 data/minecraft/tags/items/planks.json
+ecd96163ab3058ebdeb36cf0407c95ef47a0d0fb data/minecraft/tags/items/saplings.json
+6fb609cdf45306ff37acb580f4ce3f65116a3291 data/minecraft/tags/items/slabs.json
 0f49db754c19c500da9822e03fb5f700d9ab5fb0 data/minecraft/tags/items/swords.json

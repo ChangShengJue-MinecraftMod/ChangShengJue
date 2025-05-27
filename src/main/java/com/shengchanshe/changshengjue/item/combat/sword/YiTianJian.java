@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 
 public class YiTianJian extends Sword implements GeoItem {
     public YiTianJian() {
-        super(Tiers.IRON, 6, -2.4F, new Item.Properties().durability(3880).fireResistant());
+        super(Tiers.IRON, 5, -2.4F, new Item.Properties().durability(3880).fireResistant());
     }
 
     @Override

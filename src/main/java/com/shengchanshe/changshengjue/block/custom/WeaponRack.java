@@ -552,7 +552,6 @@ public class WeaponRack extends BaseEntityBlock {
 
     private boolean checkModWeapon(ItemStack item) {
         return item.getItem().equals(ChangShengJueItems.BEAT_DOG_STICK.get())
-                || item.getItem().equals(ChangShengJueItems.THREE_THROWING_KNIVES.get())
                 || item.getItem().equals(ChangShengJueItems.YI_TIAN_JIAN.get())
                 || item.getItem().equals(ChangShengJueItems.TU_LONG_DAO.get())
                 || item.getItem().equals(ChangShengJueItems.BA_WANG_QIANG.get())
