@@ -60,61 +60,64 @@ public class GoldenBlackKnifeMethodHudOverlay {
             boolean goldenBlackKnifeMethodComprehend = GoldenBlackKnifeMethodClientData.isGoldenBlackKnifeMethodComprehend();
             // 通过宽高获得绘制的x，y
             int x = 5;
-            int y = (screenHeight / 2) - 50;
+            int y = screenHeight / 2;
             if (goldenBlackKnifeMethodComprehend){
-                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.golden_black_knife_method"),x, y,ChatFormatting.GOLD.getColor());
+//                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".golden_black_knife_method"),x, y,ChatFormatting.GOLD.getColor());
                 int getGoldenBlackKnifeMethodLevel = GoldenBlackKnifeMethodClientData.getGoldenBlackKnifeMethodLevel();
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                if (getGoldenBlackKnifeMethodLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
-                    if (frameTime() <= 0){ //获取技能剩余冷却时间,小于等于0则绘制技能贴图否则绘制冷却中的技能贴图
-                        if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图
-                            if (getGoldenBlackKnifeMethodLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
-                                CSJDisplayHud.displayHud(guiGraphics, GOLDEN_BLACK_KNIFE_METHOD, x, y);
-                            } else {
-                                CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD_1,x,y);
-                            }
-                        }else {
-                            if (getGoldenBlackKnifeMethodLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
-                                CSJDisplayHud.displayHud(guiGraphics, GOLDEN_BLACK_KNIFE_METHOD, x, y);
-                            } else {
-                                CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD_1,x,y);
-                            }
-                            CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                        }
-                    }else{
-                        float v = frameTime();
-                        int v1 = (int) (16 * v + 1);//计算技能剩余冷却时间
-                        if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图并渲染技能剩余冷却时间
-                            if (getGoldenBlackKnifeMethodLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
-                                CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD,x,y);
-                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(GOLDEN_BLACK_KNIFE_METHOD, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
-                            } else {
-                                CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD_1,x,y);
-                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(GOLDEN_BLACK_KNIFE_METHOD_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
-                            }
-                            //以文字形式绘制剩余冷却时间
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),frameTime(),7,x,y);
-                        }else {
-                            if (getGoldenBlackKnifeMethodLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
-                                CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD,x,y);
-                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(GOLDEN_BLACK_KNIFE_METHOD, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
-                            } else {
-                                CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD_1,x,y);
-                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(GOLDEN_BLACK_KNIFE_METHOD_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
-                            }
-                            CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),frameTime(),7,x,y);
-                        }
-                    }
-                }else {
-                    CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD_2,x,y);
-                }
+                CSJDisplayHud.displayHudPermanent1(getGoldenBlackKnifeMethodLevel,frameTime(),7,playerCanOpened(),guiGraphics,GOLDEN_BLACK_KNIFE_METHOD,GOLDEN_BLACK_KNIFE_METHOD_1,GOLDEN_BLACK_KNIFE_METHOD_2,COOLING,gui.getFont(),x,y);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".golden_black_knife_method"),x, y,ChatFormatting.GOLD.getColor());
+//                if (getGoldenBlackKnifeMethodLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
+//                    if (frameTime() <= 0){ //获取技能剩余冷却时间,小于等于0则绘制技能贴图否则绘制冷却中的技能贴图
+//                        if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图
+//                            if (getGoldenBlackKnifeMethodLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
+//                                CSJDisplayHud.displayHud(guiGraphics, GOLDEN_BLACK_KNIFE_METHOD, x, y);
+//                            } else {
+//                                CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD_1,x,y);
+//                            }
+//                        }else {
+//                            if (getGoldenBlackKnifeMethodLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
+//                                CSJDisplayHud.displayHud(guiGraphics, GOLDEN_BLACK_KNIFE_METHOD, x, y);
+//                            } else {
+//                                CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD_1,x,y);
+//                            }
+//                            CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                        }
+//                    }else{
+//                        float v = frameTime();
+//                        int v1 = (int) (16 * v + 1);//计算技能剩余冷却时间
+//                        if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图并渲染技能剩余冷却时间
+//                            if (getGoldenBlackKnifeMethodLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
+//                                CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD,x,y);
+//                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                                guiGraphics.blit(GOLDEN_BLACK_KNIFE_METHOD, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                            } else {
+//                                CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD_1,x,y);
+//                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                                guiGraphics.blit(GOLDEN_BLACK_KNIFE_METHOD_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                            }
+//                            //以文字形式绘制剩余冷却时间
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),frameTime(),7,x,y);
+//                        }else {
+//                            if (getGoldenBlackKnifeMethodLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
+//                                CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD,x,y);
+//                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                                guiGraphics.blit(GOLDEN_BLACK_KNIFE_METHOD, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                            } else {
+//                                CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD_1,x,y);
+//                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                                guiGraphics.blit(GOLDEN_BLACK_KNIFE_METHOD_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                            }
+//                            CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),frameTime(),7,x,y);
+//                        }
+//                    }
+//                }else {
+//                    CSJDisplayHud.displayHud(guiGraphics,GOLDEN_BLACK_KNIFE_METHOD_2,x,y);
+//                }
             }
         }
     };

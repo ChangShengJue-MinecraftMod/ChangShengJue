@@ -339,9 +339,6 @@ public class ChangShengJueEntity {
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"stakes").toString()));
 
     //座位
-//    public static final RegistryObject<EntityType<SeatEntity>> SEAT = ENTITY_TYPES.register("seat",
-//            () -> EntityType.Builder.<SeatEntity>of(((type,level) -> new SeatEntity(level),MobCategory.MISC)).sized(0.0F,0.0F).setCustomClientFactory((spawnEntity, level) -> new SeatEntity(level)));
-
     public static final RegistryObject<EntityType<SeatEntity>> SEAT = register("seat", EntityType.Builder.<SeatEntity>of((type, level) ->
             new SeatEntity(level), MobCategory.MISC).sized(0.0F, 0.0F).setCustomClientFactory((spawnEntity, level) -> new SeatEntity(level)));
 

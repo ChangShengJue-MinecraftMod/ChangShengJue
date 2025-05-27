@@ -61,7 +61,7 @@ public class GoldenBellJarHudOverlay {
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                CSJDisplayHud.displayHudPermanent(getGoldenBellJarLevel, frameTime(), 8, playerCanOpened(), guiGraphics, GOLDEN_BELL_JAR, GOLDEN_BELL_JAR_1, GOLDEN_BELL_JAR_2, COOLING, gui.getFont(), x, y);
+                CSJDisplayHud.displayHudPermanent(getGoldenBellJarLevel, frameTime(), 160, playerCanOpened(), guiGraphics, GOLDEN_BELL_JAR, GOLDEN_BELL_JAR_1, GOLDEN_BELL_JAR_2, COOLING, gui.getFont(), x, y);
                 CSJDisplayHud.displayHudPermanent(guiGraphics, gui.getFont(),
                         ChatFormatting.BOLD + I18n.get("item."+ChangShengJue.MOD_ID+".golden_bell_jar"), x, y, ChatFormatting.GOLD.getColor());
 //        boolean isSkillActive = GoldenBellJarClientData.isSkillActive();

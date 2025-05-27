@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.worker;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.cilent.gui.screens.button.TexturedButtonWithText;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.gui.KilnWorkerSetTradeTypePacket;
 import net.minecraft.client.Minecraft;
@@ -99,26 +100,26 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
             buttonY += TRADE_BUTTON_HEIGHT;
         }
 
-        this.greButton = this.addRenderableWidget(new ImageButton(left - 12, top + 45, 12, 22, 26, 0, 22, BOTTON, button -> {
+        this.greButton = this.addRenderableWidget(new TexturedButtonWithText(left - 12, top + 45, 15, 24, 30, 0, 24, BOTTON, 256, 256,button -> {
             this.setCurrentTradeType(TradeType.GRE);
             this.sendTradeTypeUpdate(TradeType.GRE); // 发送网络数据包
-        }));
-        this.redButton = this.addRenderableWidget(new ImageButton(left - 12, (top + 45) + 22, 12, 22, 52, 0, 22, BOTTON, button -> {
+        },Component.translatable("quest."+ ChangShengJue.MOD_ID +".gre_button"),0x000,0x000,1.0F));
+        this.redButton = this.addRenderableWidget(new TexturedButtonWithText(left - 12, (top + 45) + 24, 15, 24, 60, 0, 24, BOTTON,256, 256, button -> {
             this.setCurrentTradeType(TradeType.RED);
             this.sendTradeTypeUpdate(TradeType.RED); // 发送网络数据包
-        }));
-        this.blackButton = this.addRenderableWidget(new ImageButton(left - 12, (top + 45) + (22 * 2), 12, 22, 39, 0, 22, BOTTON, button -> {
+        },Component.translatable("quest."+ ChangShengJue.MOD_ID +".red_button"),0x000,0x000,1.0F));
+        this.blackButton = this.addRenderableWidget(new TexturedButtonWithText(left - 12, (top + 45) + (24 * 2),15, 24, 45, 0, 24, BOTTON,256, 256,button -> {
             this.setCurrentTradeType(TradeType.BLACK);
             this.sendTradeTypeUpdate(TradeType.BLACK); // 发送网络数据包
-        }));
-        this.blueButton = this.addRenderableWidget(new ImageButton(left - 12, (top + 45) + (22 * 3), 12, 22, 13, 0, 22, BOTTON, button -> {
+        },Component.translatable("quest."+ ChangShengJue.MOD_ID +".black_button"),0x000,0x000,1.0F));
+        this.blueButton = this.addRenderableWidget(new TexturedButtonWithText(left - 12, (top + 45) + (24 * 3),15, 24, 15, 0, 24, BOTTON,256, 256,button -> {
             this.setCurrentTradeType(TradeType.BLUE);
             this.sendTradeTypeUpdate(TradeType.BLUE); // 发送网络数据包
-        }));
-        this.goldenButton = this.addRenderableWidget(new ImageButton(left - 12, (top + 45) + (22 * 4), 12, 22, 0, 0, 22, BOTTON, button -> {
+        },Component.translatable("quest."+ ChangShengJue.MOD_ID +".blue_button"),0x000,0x000,1.0F));
+        this.goldenButton = this.addRenderableWidget(new TexturedButtonWithText(left - 12, (top + 45) + (24 * 4),15, 24, 0, 0, 24, BOTTON,256, 256,button -> {
             this.setCurrentTradeType(TradeType.GOLDEN);
             this.sendTradeTypeUpdate(TradeType.GOLDEN); // 发送网络数据包
-        }));
+        },Component.translatable("quest."+ ChangShengJue.MOD_ID +".golden_button"),0x000,0x000,1.0F));
     }
 
     private void sendTradeTypeUpdate(TradeType tradeType) {

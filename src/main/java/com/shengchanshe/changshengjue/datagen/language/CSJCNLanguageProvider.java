@@ -926,7 +926,7 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEntity.TIGER.get(), "老虎");
         this.add(ChangShengJueEntity.CROC.get(), "鳄鱼");
         this.add(ChangShengJueEntity.WARRIOR.get(), "武夫");
-        this.add(ChangShengJueEntity.KILN_WORKER.get(), "高级窑工");
+        this.add(ChangShengJueEntity.KILN_WORKER.get(), "营缮司主事");
         this.add(ChangShengJueEntity.MALE_INNKEEPER.get(), "酒馆男掌柜");
         this.add(ChangShengJueEntity.FEMALE_INNKEEPER.get(), "酒馆女掌柜");
         this.add(ChangShengJueEntity.CHALLENGER.get(), "挑战者");
@@ -951,18 +951,19 @@ public class CSJCNLanguageProvider extends LanguageProvider {
 
         this.add(ChangShengJueEntity.STAKES.get(), "练功木桩");
         this.add(ChangShengJueEntity.GE_SHAN_DA_NIU.get(), "隔山打牛");
-
+        this.add(ChangShengJueEntity.PEACOCK_EGG.get(), "孔雀蛋");
+        this.add(ChangShengJueEntity.THROWING_KNIVES_ENTITY.get(), "飞刀");
+        this.add(ChangShengJueEntity.BA_WANG_QIANG.get(), "霸王枪");
+        this.add(ChangShengJueEntity.RED_TASSELLED_SPEAR.get(), "红缨枪");
         // 村民职业
         this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_farmer", "农民");
         this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter", "窑工");
-        this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter_1", "高级窑工");
         this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_hunter", "猎人");
         this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_chief", "村长");
         this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_seamstress", "缝工");
 
         this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_farmer", "农民");
         this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_potter", "窑工");
-        this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_potter_1", "高级窑工");
         this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_hunter", "猎人");
         this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_chief", "村长");
         this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_seamstress", "缝工");
@@ -1008,10 +1009,6 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add("biome.chang_sheng_jue.chang_shen_jue_prairie", "慕然草原");
 
         //按键
-        this.add("key."+ ChangShengJue.MOD_ID +".category", "长生诀");
-        this.add("key."+ ChangShengJue.MOD_ID +".ability_1", "技能1");
-        this.add("key."+ ChangShengJue.MOD_ID +".ability_2", "技能2");
-        this.add("key."+ ChangShengJue.MOD_ID +".ability_3", "技能3");
 
         //存储
         this.add("container.hercules", "大力神功");
@@ -1111,6 +1108,13 @@ public class CSJCNLanguageProvider extends LanguageProvider {
 
         this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader", "头把交椅");
         this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader.desc", "这木头座位总比那个剑刃做的舒适，不扎屁股。");
+
+        //按钮
+        this.add("quest."+ ChangShengJue.MOD_ID +".gre_button", "灰");
+        this.add("quest."+ ChangShengJue.MOD_ID +".red_button", "红");
+        this.add("quest."+ ChangShengJue.MOD_ID +".black_button", "黑");
+        this.add("quest."+ ChangShengJue.MOD_ID +".blue_button", "青");
+        this.add("quest."+ ChangShengJue.MOD_ID +".golden_button", "金");
 
         //任务
         this.add("quest."+ ChangShengJue.MOD_ID +".button", "任务");

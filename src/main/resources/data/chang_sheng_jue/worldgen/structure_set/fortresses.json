@@ -8,11 +8,15 @@
   "placement": {
     "type": "minecraft:random_spread",
     "spacing": 32,
-    "separation": 25,
+    "separation": 20,
     "salt": 1825068955,
+    "spread_type": "triangular",
     "exclusion_zone": {
-      "chunk_count": 7,
-      "other_set": "#minecraft:village"
+      "chunk_count": 10,
+      "other_set": [
+        "minecraft:villages",
+        "chang_sheng_jue:si_he_yuan"
+      ]
     }
   }
 }

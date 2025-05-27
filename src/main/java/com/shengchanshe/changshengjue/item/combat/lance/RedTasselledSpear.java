@@ -157,7 +157,7 @@ public class RedTasselledSpear extends Lance implements GeoItem , Vanishable{
         super.onUseTick(pLevel, pLivingEntity, pStack, pRemainingUseDuration);
         if (!pLevel.isClientSide) {
             ItemStack itemstack = pLivingEntity.getMainHandItem();//获取玩家手中物品
-            if (itemstack.getItem() instanceof Lance) {
+            if (itemstack.getItem() instanceof Lance && !pLivingEntity.isShiftKeyDown()) {
                 triggerAnim(pLivingEntity, GeoItem.getOrAssignId(pLivingEntity.getItemInHand(pLivingEntity.getUsedItemHand()), (ServerLevel) pLevel), "Attack", "attack");
             }
         }
