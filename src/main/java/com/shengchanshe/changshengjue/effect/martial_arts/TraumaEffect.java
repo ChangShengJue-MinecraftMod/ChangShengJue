@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.effect.martial_arts;
 
 import com.shengchanshe.changshengjue.damage.CSJDamageTypes;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -19,7 +20,15 @@ public class TraumaEffect extends MobEffect {
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
         // 每秒减少最大生命值的 (1% * (等级+1))
         float damagePercent = 0.01f * (pAmplifier + 1);
-        pLivingEntity.hurt(pLivingEntity.level().damageSources().source(CSJDamageTypes.TRAUMA), pLivingEntity.getMaxHealth() * damagePercent);
+        // 获取施加该效果的玩家（通过LastHurtByMob）
+        LivingEntity attacker = pLivingEntity.getLastHurtByMob();
+
+        // 创建带攻击者引用的伤害来源
+        DamageSource damageSource = pLivingEntity.level().damageSources().source(
+                CSJDamageTypes.TRAUMA,
+                attacker != null ? attacker : pLivingEntity // 若无攻击者则归因于自身
+        );
+        pLivingEntity.hurt(damageSource, pLivingEntity.getMaxHealth() * damagePercent);
     }
 
     @Override

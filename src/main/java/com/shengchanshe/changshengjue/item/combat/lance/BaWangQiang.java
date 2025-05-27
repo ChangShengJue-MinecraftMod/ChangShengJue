@@ -128,9 +128,9 @@ public class BaWangQiang extends Lance implements GeoItem , Vanishable{
         if (!pLevel.isClientSide) {
             ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
             if (itemstack.getItem() instanceof Lance) {
-                if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
+                if (pPlayer.getFoodData().getFoodLevel() > 8 && !pPlayer.isShiftKeyDown()) {//检查玩家饱食度是否大于8
                     pPlayer.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
-                        if (gaoMarksmanship.getGaoMarksmanshipLevel() >= 1 && !pPlayer.isShiftKeyDown()) {
+                        if (gaoMarksmanship.getGaoMarksmanshipLevel() >= 1) {
                             triggerAnim(pPlayer, GeoItem.getOrAssignId(pPlayer.getItemInHand(pUsedHand), (ServerLevel) pLevel), "Attack", "attack");
                         }
                     });
@@ -144,8 +144,8 @@ public class BaWangQiang extends Lance implements GeoItem , Vanishable{
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
         super.onUseTick(pLevel, pLivingEntity, pStack, pRemainingUseDuration);
         if (!pLevel.isClientSide) {
-            ItemStack itemstack = pLivingEntity.getMainHandItem();//获取玩家手中物品
-            if (itemstack.getItem() instanceof Lance) {
+            ItemStack itemstack = pLivingEntity.getMainHandItem();
+            if (itemstack.getItem() instanceof Lance && !pLivingEntity.isShiftKeyDown()) {
                 triggerAnim(pLivingEntity, GeoItem.getOrAssignId(pLivingEntity.getItemInHand(pLivingEntity.getUsedItemHand()), (ServerLevel) pLevel), "Attack", "attack");
             }
         }

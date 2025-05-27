@@ -60,61 +60,64 @@ public class GaoMarksmanshipHudOverlay {
             boolean gaoMarksmanshipComprehend = GaoMarksmanshipClientData.isGaoMarksmanshipComprehend();
             // 通过宽高获得绘制的x，y
             int x = 5;
-            int y = (screenHeight / 2) - 50;
+            int y = screenHeight / 2;
             if (gaoMarksmanshipComprehend){
-                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),ChatFormatting.BOLD + I18n.get("item.chang_sheng_jue.gao_marksmanship"),x, y,ChatFormatting.RED.getColor());
+//                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".gao_marksmanship"),x, y,ChatFormatting.RED.getColor());
                 int getGaoMarksmanshipLevel = GaoMarksmanshipClientData.getGaoMarksmanshipLevel();
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                if (getGaoMarksmanshipLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
-                    if (frameTime() <= 0){ //获取技能剩余冷却时间,小于等于0则绘制技能贴图否则绘制冷却中的技能贴图
-                        if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图
-                            if (getGaoMarksmanshipLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
-                                CSJDisplayHud.displayHud(guiGraphics, GAO_MARKSMANSHIP, x, y);
-                            } else {
-                                CSJDisplayHud.displayHud(guiGraphics,GAO_MARKSMANSHIP_1,x,y);
-                            }
-                        }else {
-                            if (getGaoMarksmanshipLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
-                                CSJDisplayHud.displayHud(guiGraphics, GAO_MARKSMANSHIP, x, y);
-                            } else {
-                                CSJDisplayHud.displayHud(guiGraphics,GAO_MARKSMANSHIP_1,x,y);
-                            }
-                            CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                        }
-                    }else{
-                        float v = frameTime();
-                        int v1 = (int) (16 * v + 1);//计算技能剩余冷却时间
-                        if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图并渲染技能剩余冷却时间
-                            if (getGaoMarksmanshipLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
-                                CSJDisplayHud.displayHud(guiGraphics,GAO_MARKSMANSHIP,x,y);
-                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(GAO_MARKSMANSHIP, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
-                            } else {
-                                CSJDisplayHud.displayHud(guiGraphics,GAO_MARKSMANSHIP_1,x,y);
-                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(GAO_MARKSMANSHIP_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
-                            }
-                            //以文字形式绘制剩余冷却时间
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),frameTime(),6,x,y);
-                        }else {
-                            if (getGaoMarksmanshipLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
-                                CSJDisplayHud.displayHud(guiGraphics,GAO_MARKSMANSHIP,x,y);
-                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(GAO_MARKSMANSHIP, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
-                            } else {
-                                CSJDisplayHud.displayHud(guiGraphics,GAO_MARKSMANSHIP_1,x,y);
-                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(GAO_MARKSMANSHIP_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
-                            }
-                            CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),frameTime(),6,x,y);
-                        }
-                    }
-                }else {
-                    CSJDisplayHud.displayHud(guiGraphics,GAO_MARKSMANSHIP_2,x,y);
-                }
+                CSJDisplayHud.displayHudPermanent1(getGaoMarksmanshipLevel,frameTime(),6,playerCanOpened(),guiGraphics,GAO_MARKSMANSHIP,GAO_MARKSMANSHIP_1,GAO_MARKSMANSHIP_2,COOLING,gui.getFont(),x,y);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".gao_marksmanship"),x, y,ChatFormatting.RED.getColor());
+//                if (getGaoMarksmanshipLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
+//                    if (frameTime() <= 0){ //获取技能剩余冷却时间,小于等于0则绘制技能贴图否则绘制冷却中的技能贴图
+//                        if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图
+//                            if (getGaoMarksmanshipLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
+//                                CSJDisplayHud.displayHud(guiGraphics, GAO_MARKSMANSHIP, x, y);
+//                            } else {
+//                                CSJDisplayHud.displayHud(guiGraphics,GAO_MARKSMANSHIP_1,x,y);
+//                            }
+//                        }else {
+//                            if (getGaoMarksmanshipLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图
+//                                CSJDisplayHud.displayHud(guiGraphics, GAO_MARKSMANSHIP, x, y);
+//                            } else {
+//                                CSJDisplayHud.displayHud(guiGraphics,GAO_MARKSMANSHIP_1,x,y);
+//                            }
+//                            CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                        }
+//                    }else{
+//                        float v = frameTime();
+//                        int v1 = (int) (16 * v + 1);//计算技能剩余冷却时间
+//                        if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图并渲染技能剩余冷却时间
+//                            if (getGaoMarksmanshipLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
+//                                CSJDisplayHud.displayHud(guiGraphics,GAO_MARKSMANSHIP,x,y);
+//                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                                guiGraphics.blit(GAO_MARKSMANSHIP, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                            } else {
+//                                CSJDisplayHud.displayHud(guiGraphics,GAO_MARKSMANSHIP_1,x,y);
+//                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                                guiGraphics.blit(GAO_MARKSMANSHIP_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                            }
+//                            //以文字形式绘制剩余冷却时间
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),frameTime(),6,x,y);
+//                        }else {
+//                            if (getGaoMarksmanshipLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
+//                                CSJDisplayHud.displayHud(guiGraphics,GAO_MARKSMANSHIP,x,y);
+//                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                                guiGraphics.blit(GAO_MARKSMANSHIP, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                            } else {
+//                                CSJDisplayHud.displayHud(guiGraphics,GAO_MARKSMANSHIP_1,x,y);
+//                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                                guiGraphics.blit(GAO_MARKSMANSHIP_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                            }
+//                            CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),frameTime(),6,x,y);
+//                        }
+//                    }
+//                }else {
+//                    CSJDisplayHud.displayHud(guiGraphics,GAO_MARKSMANSHIP_2,x,y);
+//                }
             }
         }
     };

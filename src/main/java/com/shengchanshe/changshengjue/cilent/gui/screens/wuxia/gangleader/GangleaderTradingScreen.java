@@ -97,7 +97,7 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
                 top + 46,
                 15,
                 24,
-                65, 0, 24,
+                75, 0, 24,
                 BOTTON,
                 256, 256,
                 button -> {

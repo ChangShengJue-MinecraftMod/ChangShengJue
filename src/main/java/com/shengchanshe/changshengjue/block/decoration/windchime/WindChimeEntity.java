@@ -46,7 +46,7 @@ public class WindChimeEntity extends BlockEntity implements GeoBlockEntity {
                 state.setAndContinue(DefaultAnimations.IDLE))
         ).setSoundKeyframeHandler((state) -> {
             Player player = ClientUtils.getClientPlayer();
-            if (player != null) {
+            if (player != null && player.getRandom().nextFloat() < 0.2F) {
                 player.playSound(ChangShengJueSound.WIND_CHIME_SOUND.get(), 1.0F, 1.0F);
             }})));
     }
