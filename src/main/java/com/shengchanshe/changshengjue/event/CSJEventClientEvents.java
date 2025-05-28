@@ -46,7 +46,7 @@ public class CSJEventClientEvents {
                     screen.leftPos - (!isRecipeBookVisible ? 15 : 92),
                     screen.height / 2 - 80,
                     15, 24,
-                    65, 0, 24,
+                    75, 0, 24,
                     BUTTON_TEXTURE,
                     256, 256,
                     (button) -> {

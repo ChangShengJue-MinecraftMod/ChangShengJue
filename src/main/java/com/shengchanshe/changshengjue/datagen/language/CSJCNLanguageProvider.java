@@ -280,7 +280,7 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".hold_shift.tooltip", "右键学习，使用金丝手套击打木桩有1%概率领悟。\\n领悟后在你死亡时抵御致命伤害。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".tooltip","以气御力，神力无穷。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".hold_shift.tooltip", "右键学习，使用金丝手套击打木桩有1%概率领悟。\\n领悟后减少疾跑消耗的饱食度\\n武功大成后获得随身末影箱。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".tooltip","天下剑法中的巅峰绝诣，\\n其中包含森罗万象的诀窍。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".tooltip","天下剑法中的巅峰绝诣，其中包含森罗万象的诀窍。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".hold_shift.tooltip", "右键学习，使用剑类武器有2%概率领悟。\\n领悟后使用剑类武器概率使目标触发流血状态，持剑右键施展独孤九剑。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".tooltip","一点寒芒先到，随后枪出如龙。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".hold_shift.tooltip", "右键学习，使用枪类武器有2%概率领悟。\\n领悟后使用枪类武器概率击飞目标，持枪右键施展高家枪。\\n武功大成后效果加强。");
@@ -1017,7 +1017,7 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         /*信息*/
         //死亡信息
         this.add("death.attack." + CSJDamageTypes.BLEED.location().getPath(), "%1$s失血过多。");
-        this.add("death.attack." + CSJDamageTypes.MARTIAL_ARTS.location().getPath(), "%1$s被%2$s被武功震碎了内脏。");
+        this.add("death.attack." + CSJDamageTypes.MARTIAL_ARTS.location().getPath(), "%1$s被%2$s使用武功震碎了内脏。");
         this.add("death.attack." + CSJDamageTypes.TRAUMA.location().getPath(), "%1$s的伤势过重。");
         //普通信息
         this.add("block.changshengjue.fen_jiu.no_wine","已经没有酒了！");

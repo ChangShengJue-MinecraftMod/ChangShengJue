@@ -1,7 +1,6 @@
 package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other;
 
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingMenu;
-import com.shengchanshe.changshengjue.quest.QuestManager;
 import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntity;
 import com.shengchanshe.changshengjue.entity.custom.goal.WuXiaAttackGoal;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
@@ -16,6 +15,7 @@ import com.shengchanshe.changshengjue.kungfu.externalkunfu.kungfu.SunflowerPoint
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.InterfaceKungFuManager;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.InternalKungFuCapability;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.*;
+import com.shengchanshe.changshengjue.quest.QuestManager;
 import com.shengchanshe.changshengjue.world.village.WuXiaMerahantTrades;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
@@ -116,7 +116,6 @@ public class GangLeader extends AbstractGangLeader implements GeoEntity , Ranged
                 pPlayer.sendMerchantOffers(present.getAsInt(), merchantOffers, pLevel, this.getVillagerXp(), this.showProgressBar(), this.canRestock());
             }
         }
-        QuestManager.getInstance().openNpcGui(this);
     }
 
     protected void updateTrades() {

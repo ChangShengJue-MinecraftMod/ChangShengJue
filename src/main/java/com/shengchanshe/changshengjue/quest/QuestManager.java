@@ -563,20 +563,20 @@ public class QuestManager {
         return Collections.unmodifiableSet(new HashSet<>(this.acceptQuestRepeatable));
     }
 
-    public void openNpcGui(AbstractGangLeader gangLeader) {
-        // 获取NPC当前任务
-        Quest npcQuest = gangLeader.getQuest();
-        if (npcQuest == null || npcQuest.getAcceptedBy() == null) {return;}
-        // 更高效的流式处理
-        getPlayerQuests(npcQuest.getAcceptedBy()).stream()
-                .filter(playerQuest -> playerQuest.equals(npcQuest))
-                .findFirst()
-                .ifPresent(matchingQuest -> {
-                    // 使用防御性拷贝
-                    gangLeader.setQuest(new Quest(matchingQuest.toNbt()));
-                    ChangShengJue.LOGGER.debug("已同步任务数据：{}", matchingQuest.getQuestId());
-                });
-    }
+//    public void openNpcGui(AbstractGangLeader gangLeader) {
+//        // 获取NPC当前任务
+//        Quest npcQuest = gangLeader.getQuest();
+//        if (npcQuest == null || npcQuest.getAcceptedBy() == null) {return;}
+//        // 更高效的流式处理
+//        getPlayerQuests(npcQuest.getAcceptedBy()).stream()
+//                .filter(playerQuest -> playerQuest.equals(npcQuest))
+//                .findFirst()
+//                .ifPresent(matchingQuest -> {
+//                    // 使用防御性拷贝
+//                    gangLeader.setQuest(new Quest(matchingQuest.toNbt()));
+//                    ChangShengJue.LOGGER.debug("已同步任务数据：{}", matchingQuest.getQuestId());
+//                });
+//    }
 
     public void saveQuestProgress(Quest quest){
         if (quest == null) return;

@@ -1,7 +1,6 @@
 package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.sword;
 
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingMenu;
-import com.shengchanshe.changshengjue.quest.QuestManager;
 import com.shengchanshe.changshengjue.entity.custom.goal.WuXiaAttackGoal;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.AbstractGangLeader;
@@ -16,6 +15,7 @@ import com.shengchanshe.changshengjue.kungfu.externalkunfu.kungfu.XuannuSwordsma
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.InterfaceKungFuManager;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.InternalKungFuCapability;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.*;
+import com.shengchanshe.changshengjue.quest.QuestManager;
 import com.shengchanshe.changshengjue.world.village.WuXiaMerahantTrades;
 import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
@@ -127,7 +127,6 @@ public class SwordGangLeader extends AbstractGangLeader implements GeoEntity {
                 );
             }
         }
-        QuestManager.getInstance().openNpcGui(this);
     }
 
     protected void updateTrades() {

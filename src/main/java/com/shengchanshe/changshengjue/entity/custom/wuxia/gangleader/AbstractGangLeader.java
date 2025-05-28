@@ -1,19 +1,12 @@
 package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader;
 
-import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingMenu;
-import com.shengchanshe.changshengjue.quest.Quest;
-import com.shengchanshe.changshengjue.quest.QuestManager;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXiaMerchant;
+import com.shengchanshe.changshengjue.quest.Quest;
+import com.shengchanshe.changshengjue.quest.QuestManager;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
-
-import java.util.OptionalInt;
 
 public class AbstractGangLeader extends AbstractWuXiaMerchant {
     private Quest quest;
@@ -45,7 +38,7 @@ public class AbstractGangLeader extends AbstractWuXiaMerchant {
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
-        if (pCompound.contains("QuestId")) {
+        if (pCompound.contains("QuestID")) {
             this.quest = new Quest(pCompound);
             quest.loadNBTData(pCompound);
         }else {

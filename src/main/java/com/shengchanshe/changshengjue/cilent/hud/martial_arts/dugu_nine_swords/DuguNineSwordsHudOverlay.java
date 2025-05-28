@@ -63,14 +63,13 @@ public class DuguNineSwordsHudOverlay {
             int x = 5;
             int y = screenHeight / 2;
             if (duguNineSwordsComprehend){
-                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".dugu_nine_swords"),x, y,ChatFormatting.AQUA.getColor());
                 int duguNineSwordsLevel = DuguNineSwordsClientData.getDuguNineSwordsLevel();
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
                 CSJDisplayHud.displayHudPermanent1(duguNineSwordsLevel,frameTime(),5,playerCanOpened(),guiGraphics,DUGU_NINE_SWORDS,DUGU_NINE_SWORDS_1,DUGU_NINE_SWORDS_2,COOLING,gui.getFont(),x,y);
                 CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
-                        ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".gao_marksmanship"),x, y,ChatFormatting.RED.getColor());
+                        ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".dugu_nine_swords"),x, y,ChatFormatting.RED.getColor());
 //                if (duguNineSwordsLevel != 0) {
 //                    if (frameTime() <= 0){
 //                        if (playerCanOpened()) {

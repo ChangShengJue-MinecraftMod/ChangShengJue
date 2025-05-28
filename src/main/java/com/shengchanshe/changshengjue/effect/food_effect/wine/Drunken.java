@@ -16,8 +16,12 @@ public class Drunken extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 5, 0, false, false), entity);
-        entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 5, 0, false, false), entity);
+        MobEffectInstance drunkenEffect = entity.getEffect(this);
+        if (drunkenEffect == null) return;
+
+        int remainingDuration = drunkenEffect.getDuration();
+        entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, remainingDuration, 0, false, true), entity);
+        entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, remainingDuration, 0, false, true), entity);
     }
 
     @Override
