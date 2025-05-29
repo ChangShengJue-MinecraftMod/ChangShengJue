@@ -1019,11 +1019,7 @@ public class CSJEvent {
         //玩家进入世界时同步能力数据
         if(!event.getLevel().isClientSide()) {
             if(event.getEntity() instanceof ServerPlayer player) {
-
-
-
-
-
+                QuestManager.getInstance().syncQuestsToPlayer(player); // 全量同步
 
                 player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                     ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),
