@@ -28,7 +28,7 @@ import java.util.function.Consumer;
 public class BeatDogStick extends Clubbed implements GeoItem {
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public BeatDogStick() {
-        super(Tiers.IRON, 4, -2.4F, new Properties().fireResistant().durability(4500).setNoRepair());
+        super(Tiers.IRON, 5, -2.4F, new Properties().fireResistant().durability(4500).setNoRepair());
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
 

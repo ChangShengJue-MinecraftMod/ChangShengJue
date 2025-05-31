@@ -1042,7 +1042,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         /*信息*/
         //死亡信息
         this.add("death.attack." + CSJDamageTypes.BLEED.location().getPath(), "%1$s失血过多。");
-        this.add("death.attack." + CSJDamageTypes.MARTIAL_ARTS.location().getPath(), "%1$s被%2$s被武功震碎了内脏。");
+        this.add("death.attack." + CSJDamageTypes.MARTIAL_ARTS.location().getPath(), "%1$s被%2$s使用武功震碎了内脏。");
         this.add("death.attack." + CSJDamageTypes.TRAUMA.location().getPath(), "%1$s的伤势过重。");
         //普通信息
         this.add("block.changshengjue.fen_jiu.no_wine","已经没有酒了！");

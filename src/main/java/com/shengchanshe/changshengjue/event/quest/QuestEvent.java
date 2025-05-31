@@ -6,6 +6,8 @@ import com.shengchanshe.changshengjue.entity.custom.wuxia.challenger.Challenger;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.quest.Quest;
 import com.shengchanshe.changshengjue.quest.QuestManager;
+import com.shengchanshe.changshengjue.util.TimeDetection;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -34,6 +36,8 @@ public class QuestEvent {
     public static final UUID PROTECT_THE_VILLAGE_QUEST_ID = UUID.fromString("85248ab7-ff1b-4d4d-8a05-92d5360e70eb");
     public static final UUID XING_XIA_ZHANG_YI_QUEST_ID = UUID.fromString("a35c7c77-6920-43c0-abaa-94763adfaa10");
 
+    private static final UUID MARTIAL_ARTS_QUEST_ID = UUID.fromString("C8DA8DB7-2AE8-4FB0-9956-179D9D9D1CA8");
+
     public static void onEntityDeath(LivingDeathEvent event){
         if (event.getSource().getEntity() instanceof Player player) {
             if (player.level().isClientSide) return;
@@ -46,7 +50,15 @@ public class QuestEvent {
             for (Quest quest : currentQuest) {
                 if (quest != null && quest.getQuestType() == Quest.QuestType.KILL) {
                     if (quest.matchesEntity(event.getEntity()) && quest.getCurrentKills() < quest.getRequiredKills()) {
-                        quest.incrementKills();
+                        if (quest.getQuestId().equals(MARTIAL_ARTS_QUEST_ID)){
+                            BlockPos blockpos = player.blockPosition();
+                            ServerLevel level = (ServerLevel) player.level();
+                            if (level.isVillage(blockpos) && TimeDetection.isFullNight(player.level())) {
+                                quest.incrementKills();
+                            }
+                        }else {
+                            quest.incrementKills();
+                        }
                         QuestManager.getInstance().saveQuestProgress(quest);
                         if (quest.canComplete(player)) {
                             player.sendSystemMessage(Component.literal(
@@ -135,7 +147,7 @@ public class QuestEvent {
             for (Quest quests : playerQuests) {
                 if (quests.getAcceptedBy() != null && quests.getAcceptedBy().equals(player.getUUID())
                         && quests.getQuestId().equals(PROTECT_THE_VILLAGE_QUEST_ID)) {
-                    if (raid != null && raid.isVictory()) {
+                    if (raid != null && raid.isVictory() && !quests.isComplete()) {
                         quests.setComplete(true);
                         if (quests.canComplete(player)) {
                             player.sendSystemMessage(Component.literal("§a" + quests.getQuestName() + "任务已完成"));

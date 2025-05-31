@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.playerquest;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.gui.playerquest.AbandonPlayerQuestPacket;
+import com.shengchanshe.changshengjue.network.packet.gui.playerquest.RequestQuestsPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.playerquest.SubmitPlayerQuestsPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.quest.AbandonGangQuestPacket;
 import com.shengchanshe.changshengjue.quest.Quest;
@@ -54,6 +55,9 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
 
     public PlayerQuestScreen(PlayerQuestMenu menu, Inventory inv, Component title) {
         super(menu, inv, title);
+        if (minecraft != null && minecraft.level.isClientSide) {
+            ChangShengJueMessages.sendToServer(new RequestQuestsPacket());
+        }
         this.imageWidth = 175;
         this.imageHeight = 165;
     }

@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 
 public class TuLongDao extends Knife implements GeoItem {
     public TuLongDao() {
-        super(Tiers.IRON, 5, -2.4F, new Properties().durability(4000).fireResistant());
+        super(Tiers.IRON, 6, -2.4F, new Properties().durability(4000).fireResistant());
     }
 
     @Override

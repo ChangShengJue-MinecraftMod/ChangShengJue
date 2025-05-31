@@ -5,10 +5,7 @@ import com.shengchanshe.changshengjue.cilent.gui.screens.plaque.UpdatePlaqueText
 import com.shengchanshe.changshengjue.network.packet.effect.EffectEntityPacket;
 import com.shengchanshe.changshengjue.network.packet.food.FoodPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.KilnWorkerSetTradeTypePacket;
-import com.shengchanshe.changshengjue.network.packet.gui.playerquest.AbandonPlayerQuestPacket;
-import com.shengchanshe.changshengjue.network.packet.gui.playerquest.OpenPlayerQuestScreenPacket;
-import com.shengchanshe.changshengjue.network.packet.gui.playerquest.RefreshPlayerQuestScreenPacket;
-import com.shengchanshe.changshengjue.network.packet.gui.playerquest.SubmitPlayerQuestsPacket;
+import com.shengchanshe.changshengjue.network.packet.gui.playerquest.*;
 import com.shengchanshe.changshengjue.network.packet.gui.quest.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
@@ -52,6 +49,8 @@ public class ChangShengJueMessages {
                 .encoder(UpdatePlaqueTextPacket::toBytes)
                 .consumerMainThread(UpdatePlaqueTextPacket::handle)
                 .add();
+
+
         //独孤九剑
         net.messageBuilder(DuguNineSwordsPacket.class, id())
                 .decoder(DuguNineSwordsPacket::new)
@@ -220,6 +219,20 @@ public class ChangShengJueMessages {
                 .consumerMainThread(RefreshGangQuestPacket::handle)
                 .add();
 
+        // 1. 服务端→客户端同步包（任务数据下发）
+        net.messageBuilder(SyncQuestsPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT) // 修改方向
+                .decoder(SyncQuestsPacket::new)
+                .encoder(SyncQuestsPacket::encode)
+                .consumerMainThread(SyncQuestsPacket::handle)
+                .add();
+
+        // 2. 客户端→服务端请求包（数据请求）
+        net.messageBuilder(RequestQuestsPacket.class, id(), NetworkDirection.PLAY_TO_SERVER) // 保持原方向
+                .decoder(RequestQuestsPacket::new)
+                .encoder(RequestQuestsPacket::encode)
+                .consumerMainThread(RequestQuestsPacket::handle)
+                .add();
+
         // 背包任务按钮
         net.messageBuilder(SubmitPlayerQuestsPacket.class, id())
                 .decoder(SubmitPlayerQuestsPacket::decode)
@@ -254,6 +267,7 @@ public class ChangShengJueMessages {
                 .encoder(RefreshPlayerQuestScreenPacket::encode)
                 .consumerMainThread(RefreshPlayerQuestScreenPacket::handle)
                 .add();
+
 
     }
 

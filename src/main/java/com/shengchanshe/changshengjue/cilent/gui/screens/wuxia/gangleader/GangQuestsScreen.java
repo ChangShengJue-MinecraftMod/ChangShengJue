@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.innkeeper.InnkeeperScreen;
+import com.shengchanshe.changshengjue.network.packet.gui.playerquest.RequestQuestsPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.quest.RefreshGangQuestPacket;
 import com.shengchanshe.changshengjue.quest.Quest;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
@@ -70,7 +71,9 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight,TEXTURE_WIDTH,TEXTURE_HEIGHT);
-
+        if (minecraft != null && minecraft.level.isClientSide) {
+            ChangShengJueMessages.sendToServer(new RequestQuestsPacket());
+        }
 //        // 渲染槽位背景
 //        for (int i = 0; i < 3; i++) {
 //            guiGraphics.blit(TEXTURE, x + REQ_SLOTS_X + i * SLOT_SIZE, y + REQ_SLOTS_Y,
