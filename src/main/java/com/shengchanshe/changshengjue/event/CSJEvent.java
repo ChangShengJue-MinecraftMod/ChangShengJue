@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.event;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.ChangShengJueConfig;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
+import com.shengchanshe.changshengjue.block.food.TypeBlock;
 import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapability;
@@ -60,6 +61,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -819,6 +821,14 @@ public class CSJEvent {
     public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
     }
 
+    //玩家右键方块事件
+    @SubscribeEvent
+    public static void onPlayerEntityInteract(PlayerInteractEvent.RightClickBlock event){
+        if (event.getLevel().getBlockState(event.getPos()).getBlock() instanceof TypeBlock){
+            Player player = event.getEntity();
+
+        }
+    }
     //能力给予事件,给生物添加能力
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event){

@@ -50,17 +50,20 @@ public class CastingMolds extends BaseEntityBlock{
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         ItemStack mainHandItem = pPlayer.getMainHandItem();
         ItemStack offhandItem = pPlayer.getOffhandItem();
-        if (mainHandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get() || offhandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get()){
-            if (blockEntity instanceof CastingMoldsBlockEntity entity){
-                if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? pPlayer.getMainHandItem().copy() : pPlayer.getMainHandItem())){
-                    pPlayer.setItemInHand(InteractionHand.MAIN_HAND, ChangShengJueItems.CRUCIBLE.get().getDefaultInstance());
+        if (blockEntity instanceof CastingMoldsBlockEntity entity){
+            ItemStackHandler inventroy = entity.getInventory();
+            if(inventroy.getStackInSlot(0).isEmpty() && inventroy.getStackInSlot(1).isEmpty()) {
+                if (mainHandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get() || offhandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get()) {
+                    if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? pPlayer.getMainHandItem().copy() : pPlayer.getMainHandItem())) {
+                        pPlayer.setItemInHand(InteractionHand.MAIN_HAND, ChangShengJueItems.CRUCIBLE.get().getDefaultInstance());
+                        return InteractionResult.SUCCESS;
+                    }
+                }
+            } else {
+                if (blockEntity instanceof CastingMoldsBlockEntity) {
+                    ((CastingMoldsBlockEntity) blockEntity).drops();
                     return InteractionResult.SUCCESS;
                 }
-            }
-        }else {
-            if (blockEntity instanceof CastingMoldsBlockEntity) {
-                ((CastingMoldsBlockEntity) blockEntity).drops();
-                return InteractionResult.SUCCESS;
             }
         }
         return InteractionResult.CONSUME;

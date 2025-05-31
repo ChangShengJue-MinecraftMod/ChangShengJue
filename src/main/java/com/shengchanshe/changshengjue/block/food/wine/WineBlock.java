@@ -50,6 +50,7 @@ public class WineBlock extends TypeBlock {
                     level.setBlock(pos, state.setValue(getTYPE(), 0), 3);
                     // 增加饥饿值
                     player.getFoodData().eat(fed, fedpro);
+                    player.swing(InteractionHand.MAIN_HAND);
                     level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);
                 }
             } else if (types == 0) {

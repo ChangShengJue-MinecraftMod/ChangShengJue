@@ -926,6 +926,60 @@ public class ChangShengJueBlocks {
             ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
                     .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+
+    public static final RegistryObject<Block> OAK_BALUSTRADE = registerBlock("oak_balustrade",
+            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+
+    public static final RegistryObject<Block> SPRUCE_BALUSTRADE = registerBlock("spruce_balustrade",
+            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+
+    public static final RegistryObject<Block> BIRCH_BALUSTRADE = registerBlock("birch_balustrade",
+            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+
+    public static final RegistryObject<Block> JUNGLE_BALUSTRADE = registerBlock("jungle_balustrade",
+            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+
+    public static final RegistryObject<Block> ACACIA_BALUSTRADE = registerBlock("acacia_balustrade",
+            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+
+    public static final RegistryObject<Block> MANGROVE_BALUSTRADE = registerBlock("mangrove_balustrade",
+            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+
+     public static final RegistryObject<Block> CHERRY_BALUSTRADE = registerBlock("cherry_balustrade",
+            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+
+    public static final RegistryObject<Block> DARK_OAK_BALUSTRADE = registerBlock("dark_oak_balustrade",
+            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+
+    public static final RegistryObject<Block> CRIMSON_BALUSTRADE = registerBlock("crimson_balustrade",
+            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+
+    public static final RegistryObject<Block> WARPED_BALUSTRADE = registerBlock("warped_balustrade",
+            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
+                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+
+
+
+    //增加
     public static final RegistryObject<Block> WHITE_JADE_GUARDRAIL = registerBlock("white_jade_guardrail",
             ()-> new Guardrail(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
                     .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()

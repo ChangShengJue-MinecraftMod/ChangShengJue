@@ -466,7 +466,7 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING = ITEMS.register("female_chinese_wedding_dress_queen_clothing",
             ()-> new FemaleChineseWeddingDress(ChangShengJueArmorMaterials.SILK_1,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
 
-    public static final RegistryObject<Item> CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES = ITEMS.register("chinese_wedding_dress_golden_thread_shoes",
+    public static final RegistryObject<Item>  CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES = ITEMS.register("chinese_wedding_dress_golden_thread_shoes",
             ()-> new MaleChineseWeddingDress(ChangShengJueArmorMaterials.SILK_1,ArmorItem.Type.BOOTS,new Item.Properties()));
     //山文甲
     public static final RegistryObject<Item> MOUNTAIN_PATTERN_HELMET_GUN_HOOD = ITEMS.register("mountain_pattern_helmet_gun_hood",

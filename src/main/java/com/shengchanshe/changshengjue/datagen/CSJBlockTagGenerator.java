@@ -453,6 +453,16 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                         ChangShengJueBlocks.CASTING_MOLDS.get(),
                         ChangShengJueBlocks.SYDEROLIFE_ORE.get(),
                         ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get(),
+                        ChangShengJueBlocks.OAK_BALUSTRADE.get(),
+                        ChangShengJueBlocks.SPRUCE_BALUSTRADE.get(),
+                        ChangShengJueBlocks.BIRCH_BALUSTRADE.get(),
+                        ChangShengJueBlocks.JUNGLE_BALUSTRADE.get(),
+                        ChangShengJueBlocks.ACACIA_BALUSTRADE.get(),
+                        ChangShengJueBlocks.MANGROVE_BALUSTRADE.get(),
+                        ChangShengJueBlocks.CHERRY_BALUSTRADE.get(),
+                        ChangShengJueBlocks.DARK_OAK_BALUSTRADE.get(),
+                        ChangShengJueBlocks.CRIMSON_BALUSTRADE.get(),
+                        ChangShengJueBlocks.WARPED_BALUSTRADE.get(),
                         ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get(),
                         ChangShengJueBlocks.WIND_CHIME.get());
 
@@ -533,5 +543,11 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.JI_CHI_MU_LEAVES.get())
                 .add(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get())
                 .add(ChangShengJueBlocks.ZI_TAN_LEAVES.get());
+        this.tag(BlockTags.WALLS)
+                .add(ChangShengJueBlocks.HANG_TU_WALL.get())
+                .add(ChangShengJueBlocks.TU_PEI_WALL.get())
+                .add(ChangShengJueBlocks.WHITE_BRICKS_VERTICAL_WALLS.get())
+                .add(ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get())
+                .add( ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get());
     }
 }

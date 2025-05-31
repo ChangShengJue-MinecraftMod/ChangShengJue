@@ -597,7 +597,7 @@ public class WeaponRack extends BaseEntityBlock {
             }
 
         }
-        return InteractionResult.PASS;
+        return InteractionResult.SUCCESS;
     }
 
 

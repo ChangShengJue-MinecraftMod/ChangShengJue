@@ -35,7 +35,9 @@ public class CiBeiTypeBlock extends TypeBlock {
 
             level.setBlock(pos, state.setValue(getTYPE(), 0), 3);
             // 增加饥饿值
+
             ChangShengJueMessages.sendToServer(new FoodPacket(fed, fedpro));
+            player.swing(InteractionHand.MAIN_HAND);
             level.setBlock(pos, ChangShengJueBlocks.CI_BEI.get().defaultBlockState(), 3);
             level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);
         } else if (types == 0) {
@@ -44,7 +46,7 @@ public class CiBeiTypeBlock extends TypeBlock {
             level.setBlock(pos, ChangShengJueBlocks.CI_BEI.get().defaultBlockState(), 3);
             return InteractionResult.SUCCESS;
         }
-        return InteractionResult.PASS;
+        return InteractionResult.SUCCESS;
     }
 
 }

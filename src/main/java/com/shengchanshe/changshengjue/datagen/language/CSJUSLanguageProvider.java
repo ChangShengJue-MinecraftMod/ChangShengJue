@@ -867,6 +867,16 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.ZAFU.get(), "蒲团");
 
         this.add(ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get(),"汉白玉栏杆");
+        this.add(ChangShengJueBlocks.OAK_BALUSTRADE.get(),"橡木栏杆");
+        this.add(ChangShengJueBlocks.SPRUCE_BALUSTRADE.get(), "云杉木栏杆");
+        this.add(ChangShengJueBlocks.BIRCH_BALUSTRADE.get(), "白桦木栏杆");
+        this.add(ChangShengJueBlocks.JUNGLE_BALUSTRADE.get(), "金合欢木栏杆");
+        this.add(ChangShengJueBlocks.ACACIA_BALUSTRADE.get(), "金合欢木栏杆");
+        this.add(ChangShengJueBlocks.MANGROVE_BALUSTRADE.get(), "红树栏杆");
+        this.add(ChangShengJueBlocks.CHERRY_BALUSTRADE.get(), "樱花木栏杆");
+        this.add(ChangShengJueBlocks.DARK_OAK_BALUSTRADE.get(), "深色橡木栏杆");
+        this.add(ChangShengJueBlocks.CRIMSON_BALUSTRADE.get(), "绯红木栏杆");
+        this.add(ChangShengJueBlocks.WARPED_BALUSTRADE.get(), "诡异木栏杆");
         this.add(ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get(),"汉白玉护栏");
 
         // 食物容器类方块

@@ -29,15 +29,14 @@ public class PanTypeBlock extends TypeBlock {
 
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
         int types = state.getValue(getTYPE());
-
-
         if (types > 0) {
             //如果玩家饥饿值满且物品等级不为0
             if (player.getFoodData().getFoodLevel() < 20 || player.isCreative()) {
                 level.setBlock(pos, state.setValue(getTYPE(), 0), 3);
                 // 增加饥饿值
-                ChangShengJueMessages.sendToServer(new FoodPacket(fed, fedpro));
 
+                ChangShengJueMessages.sendToServer(new FoodPacket(fed, fedpro));
+                player.swing(InteractionHand.MAIN_HAND);
                 level.setBlock(pos, ChangShengJueBlocks.CI_PAN.get().defaultBlockState(), 3);
                 level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);
             }
@@ -47,8 +46,9 @@ public class PanTypeBlock extends TypeBlock {
             level.setBlock(pos, ChangShengJueBlocks.CI_PAN.get().defaultBlockState(), 3);
             return InteractionResult.SUCCESS;
         }
-        return InteractionResult.PASS;
+        return InteractionResult.SUCCESS;
     }
+
 
 
 }

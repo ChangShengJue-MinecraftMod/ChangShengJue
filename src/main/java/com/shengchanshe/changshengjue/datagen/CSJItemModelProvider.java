@@ -418,6 +418,28 @@ public class CSJItemModelProvider extends ItemModelProvider {
         //栏杆
         parentItem(ChangShengJueBlocks.WHITE_JADE_BALUSTRADE,
                 ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.OAK_BALUSTRADE,
+                ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.SPRUCE_BALUSTRADE,
+                ChangShengJueBlocks.SPRUCE_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.BIRCH_BALUSTRADE,
+                ChangShengJueBlocks.BIRCH_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.JUNGLE_BALUSTRADE,
+                ChangShengJueBlocks.JUNGLE_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.ACACIA_BALUSTRADE,
+                ChangShengJueBlocks.ACACIA_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.MANGROVE_BALUSTRADE,
+                ChangShengJueBlocks.MANGROVE_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.CHERRY_BALUSTRADE,
+                ChangShengJueBlocks.CHERRY_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.DARK_OAK_BALUSTRADE,
+                ChangShengJueBlocks.DARK_OAK_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.CRIMSON_BALUSTRADE,
+                ChangShengJueBlocks.CRIMSON_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.WARPED_BALUSTRADE,
+                ChangShengJueBlocks.WARPED_BALUSTRADE.getId().getPath() + "_inventory");
+
+
         parentItem(ChangShengJueBlocks.WHITE_JADE_GUARDRAIL);
 
         //包裹

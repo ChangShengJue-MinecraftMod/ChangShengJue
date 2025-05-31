@@ -35,8 +35,10 @@ public class WanTypeBlock extends TypeBlock {
                 // 增加饥饿值
 
                 level.setBlock(pos, ChangShengJueBlocks.CI_WAN.get().defaultBlockState(), 3);
+                player.getFoodData().eat(fed, fedpro);
+                player.swing(InteractionHand.MAIN_HAND);
                 level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);
-                ChangShengJueMessages.sendToServer(new FoodPacket(fed, fedpro));
+
             }
         } else if (types == 0) {
             level.playSound(null, pos, SoundEvents.WOOD_BREAK, SoundSource.PLAYERS, 0.8F, 0.8F);
@@ -44,7 +46,7 @@ public class WanTypeBlock extends TypeBlock {
             level.setBlock(pos, ChangShengJueBlocks.CI_WAN.get().defaultBlockState(), 3);
             return InteractionResult.SUCCESS;
         }
-        return InteractionResult.PASS;
+        return InteractionResult.SUCCESS;
     }
 
 

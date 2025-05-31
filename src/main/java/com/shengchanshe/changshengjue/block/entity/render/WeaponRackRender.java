@@ -31,6 +31,8 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
     private boolean checkModWeapon(ItemStack item) {
         return
                 item.getItem().equals(ChangShengJueItems.THREE_THROWING_KNIVES.get())
+                || item.getItem().equals(ChangShengJueItems.THROWING_KNIVES.get())
+                || item.getItem().equals(ChangShengJueItems.SEVEN_THROWING_KNIVES.get())
 
 
                 ;
@@ -77,39 +79,44 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
             poseStack.pushPose();
 
 
+            //向右减NX，向左加NX
+            //向下减NY，向上加NY
+            //向前减NZ，向后加NZ
             if(checkModWeapon(itemStack)) {
-
+                float NX = 0.50f;
+                float NY = 0.55f;
+                float NZ = 0.575f;
                 switch (facing) {
                     case NORTH -> {
-                        poseStack.translate(0.50, 0.85, 0.625);
+                        poseStack.translate(NX, NY, NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(180));
                         poseStack.mulPose(Axis.XP.rotationDegrees(160));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
                     }
                     case SOUTH -> {
-                        poseStack.translate(0.50, 0.85, 0.375);
+                        poseStack.translate(1-NX, NY, 1-NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(0));
                         poseStack.mulPose(Axis.XP.rotationDegrees(160));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
                     }
                     case WEST -> {
-                        poseStack.translate(0.625, 0.85, 0.50);
+                        poseStack.translate(NZ, NY, 1-NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(270));
                         poseStack.mulPose(Axis.XP.rotationDegrees(160));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
 
                     }
                     case EAST -> {
-                        poseStack.translate(0.375, 0.85, 0.50);
+                        poseStack.translate(1-NZ, NY, NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(90));
                         poseStack.mulPose(Axis.XP.rotationDegrees(160));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
                     }
                     default -> {
-                        poseStack.translate(0.0, 0.85, 0.15);
+                        poseStack.translate(0.0, 0.0, 0.0);
                         poseStack.mulPose(Axis.YP.rotationDegrees(0));
-                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
-                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(0));
                     }
                 }
 
@@ -117,16 +124,18 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
                 float scale = 1.0f;
                 poseStack.scale(scale, scale, scale);
             } else if (checkModWeaponqiang(itemStack)) {
+                float NX = 0.05f;
+                float NY = -0.1f;
+                float NZ = 0.85f;
                 switch (facing) {
                     case NORTH -> {
-                        poseStack.translate(0.05,-0.1, 0.85);
+                        poseStack.translate(NX,NY, NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(90));
                         poseStack.mulPose(Axis.XP.rotationDegrees(0));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(20));
-
                     }
                     case SOUTH -> {
-                        poseStack.translate(0.95 ,-0.1, 0.15);
+                        poseStack.translate(1-NX ,NY, 1-NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(270));
                         poseStack.mulPose(Axis.XP.rotationDegrees(0));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(20));
@@ -139,7 +148,7 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
 
                     }
                     case EAST -> {
-                        poseStack.translate(1.1,0.25, 0.95);
+                        poseStack.translate(1.1,0.25, NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(180));
                         poseStack.mulPose(Axis.XP.rotationDegrees(0));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(-20));
@@ -157,27 +166,30 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
                 float scale = 1.0f;
                 poseStack.scale(scale, scale, scale);
             }else if (checkModWeapongun(itemStack)) {
+                float NX = 0.85f;
+                float NY = 1.6f;
+                float NZ = 0.5f;
                 switch (facing) {
                     case NORTH -> {
-                        poseStack.translate(0.85,1.6, 0.5);
+                        poseStack.translate(NX,NY, NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(180));
                         poseStack.mulPose(Axis.XP.rotationDegrees(160));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(0));
                     }
                     case SOUTH -> {
-                        poseStack.translate(0.15 ,1.6, 0.5);
+                        poseStack.translate(1-NX ,NY, 1-NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(0));
                         poseStack.mulPose(Axis.XP.rotationDegrees(160));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(0));
                     }
                     case WEST -> {
-                        poseStack.translate(0.5,1.6, 0.15);
+                        poseStack.translate(NZ,NY, 1-NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(270));
                         poseStack.mulPose(Axis.XP.rotationDegrees(160));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(0));
                     }
                     case EAST -> {
-                        poseStack.translate(0.5,1.6, 0.85);
+                        poseStack.translate(1-NZ,NY, NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(90));
                         poseStack.mulPose(Axis.XP.rotationDegrees(160));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(0));
@@ -194,28 +206,31 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
                 float scale = 0.8f;
                 poseStack.scale(scale, scale, scale);
             }else if (checkModWeapojian(itemStack)) {
+                float NX = 0.0f;
+                float NY = 2.18f;
+                float NZ = 0.70f;
                 switch (facing) {
                     case NORTH -> {
-                        poseStack.translate(0.0, 2.18, 0.70);
+                        poseStack.translate(NX, NY, NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(270));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(25));
                     }
                     case SOUTH -> {
-                        poseStack.translate(1.0, 2.18, 0.30);
+                        poseStack.translate(1-NX, NY, 1-NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(90));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(25));
                     }
                     case WEST -> {
-                        poseStack.translate(0.70, 2.18, 1.0);
+                        poseStack.translate(NZ, NY, 1-NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(0));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(25));
 
                     }
                     case EAST -> {
-                        poseStack.translate(0.30, 2.18, 0.0);
+                        poseStack.translate(1-NZ, NY, NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(180));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(25));
@@ -232,28 +247,31 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
                 float scale = 1.0f;
                 poseStack.scale(scale, scale, scale);
             } else if(checkModWeapondao(itemStack)){
+                float NX = 0.0f;
+                float NY = 1.75f;
+                float NZ = 0.6f;
                 switch (facing) {
                     case NORTH -> {
-                        poseStack.translate(0, 1.75, 0.6);
+                        poseStack.translate(NX, NY, NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(270));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(25));
                     }
                     case SOUTH -> {
-                        poseStack.translate(1, 1.75, 0.4);
+                        poseStack.translate(1-NX, NY, 1-NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(90));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(25));
                     }
                     case WEST -> {
-                        poseStack.translate(0.6, 1.75, 1);
+                        poseStack.translate(NZ, NY, 1-NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(0));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(25));
 
                     }
                     case EAST -> {
-                        poseStack.translate(0.4, 1.75, 0);
+                        poseStack.translate(1-NZ, NY, NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(180));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(25));
@@ -271,31 +289,37 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
                 poseStack.scale(scale, scale, scale);
 
             }else if(itemStack.getItem().equals(ChangShengJueItems.KITCHEN_KNIFE.get())){
+                //向右减NX，向左加NX
+                //向下减NY，向上加NY
+                //向前减NZ，向后加NZ
+                float NX = -0.25f;
+                float NY = 1.0f;
+                float NZ = 0.2f;
                 switch (facing) {
                     case NORTH -> {
-                        poseStack.translate(-0.3, 0.75, -0.1);
-                        poseStack.mulPose(Axis.YP.rotationDegrees(280));
+                        poseStack.translate(NX, NY, NZ);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(265));
                         poseStack.mulPose(Axis.XP.rotationDegrees(210));
-                        poseStack.mulPose(Axis.ZP.rotationDegrees(-20));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(20));
                     }
                     case SOUTH -> {
-                        poseStack.translate(1.3, 0.75, 1.1);
-                        poseStack.mulPose(Axis.YP.rotationDegrees(100));
+                        poseStack.translate(1-NX, NY, 1-NZ);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(85));
                         poseStack.mulPose(Axis.XP.rotationDegrees(210));
-                        poseStack.mulPose(Axis.ZP.rotationDegrees(-20));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(20));
                     }
                     case WEST -> {
-                        poseStack.translate(-0.1, 0.75, 1.3);
-                          poseStack.mulPose(Axis.YP.rotationDegrees(10));
+                        poseStack.translate(NZ, NY, 1-NX);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(-5));
                         poseStack.mulPose(Axis.XP.rotationDegrees(210));
-                        poseStack.mulPose(Axis.ZP.rotationDegrees(-20));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(20));
 
                     }
                     case EAST -> {
-                        poseStack.translate(1.1, 0.75, -0.3);
-                        poseStack.mulPose(Axis.YP.rotationDegrees(190));
+                        poseStack.translate(1-NZ, NY, NX);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(175));
                         poseStack.mulPose(Axis.XP.rotationDegrees(210));
-                        poseStack.mulPose(Axis.ZP.rotationDegrees(-20));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(20));
                     }
                     default -> {
                         poseStack.translate(0.0, 1.2, 0.15);
@@ -311,73 +335,79 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
 
             }
             else if(itemStack.getItem().equals(ChangShengJueItems.HENG_DAO.get())){
+                float NX = 0.0f;
+                float NY = 2.05f;
+                float NZ = 0.55f;
                 switch (facing) {
                     case NORTH -> {
-                        poseStack.translate(0.11, 1.70, 0.50);
+                        poseStack.translate(NX, NY, NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(270));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(20));
                     }
                     case SOUTH -> {
-                        poseStack.translate(0.89, 1.70, 0.50);
+                        poseStack.translate(1-NX, NY, 1-NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(90));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(20));
                     }
                     case WEST -> {
-                        poseStack.translate(0.50, 1.70, 0.89);
+                        poseStack.translate(NZ, NY, 1-NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(0));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(20));
 
                     }
                     case EAST -> {
-                        poseStack.translate(0.50, 1.70, 0.11);
+                        poseStack.translate(1-NZ, NY, NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(180));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(20));
                     }
                     default -> {
-                        poseStack.translate(0.0, 1.2, 0.15);
+                        poseStack.translate(0.0, 0.0, 0.0);
                         poseStack.mulPose(Axis.YP.rotationDegrees(0));
-                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
-                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(0));
                     }
                 }
 
                 // 应用缩放
-                float scale = 0.8f;
+                float scale = 1.0f;
                 poseStack.scale(scale, scale, scale);
 
             } else if (itemStack.getItem().equals(ChangShengJueItems.SOFT_SWORD.get())) {
+                float NX = 0.1f;
+                float NY = 2.05f;
+                float NZ = 0.75f;
                 switch (facing) {
                     case NORTH -> {
-                        poseStack.translate(0.1, 2.05, 0.75);
+                        poseStack.translate(NX, NY, NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(270));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(25));
                     }
                     case SOUTH -> {
-                        poseStack.translate(0.9, 2.05, 0.25);
+                        poseStack.translate(1-NX, NY, 1-NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(90));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(25));
                     }
                     case WEST -> {
-                        poseStack.translate(0.75, 2.05, 0.9);
+                        poseStack.translate(NZ, NY, 1-NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(0));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(25));
 
                     }
                     case EAST -> {
-                        poseStack.translate(0.25, 2.05, 0.1);
+                        poseStack.translate(1-NZ, NY, NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(180));
                         poseStack.mulPose(Axis.XP.rotationDegrees(180));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(25));
                     }
                     default -> {
-                        poseStack.translate(0.0, 1.2, 0.15);
+                        poseStack.translate(0.0, 0.0, 0.0);
                         poseStack.mulPose(Axis.YP.rotationDegrees(0));
                         poseStack.mulPose(Axis.XP.rotationDegrees(160));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
@@ -389,37 +419,40 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
                 poseStack.scale(scale, scale, scale);
 
             } else {
+                float NX = 0.5f;
+                float NY = 0.7f;
+                float NZ = 0.595f;
                 switch (facing) {
                     case NORTH -> {
-                        poseStack.translate(0.50, 0.7, 0.595);
+                        poseStack.translate(NX, NY, NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(180));
                         poseStack.mulPose(Axis.XP.rotationDegrees(160));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
                     }
                     case SOUTH -> {
-                        poseStack.translate(0.50, 0.7, 0.505);
+                        poseStack.translate(1-NX, NY, 1-NZ);
                         poseStack.mulPose(Axis.YP.rotationDegrees(0));
                         poseStack.mulPose(Axis.XP.rotationDegrees(160));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
                     }
                     case WEST -> {
-                        poseStack.translate(0.595, 0.7, 0.5);
+                        poseStack.translate(NZ, NY, 1-NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(270));
                         poseStack.mulPose(Axis.XP.rotationDegrees(160));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
 
                     }
                     case EAST -> {
-                        poseStack.translate(0.505, 0.7, 0.5);
+                        poseStack.translate(1-NZ, NY, NX);
                         poseStack.mulPose(Axis.YP.rotationDegrees(90));
                         poseStack.mulPose(Axis.XP.rotationDegrees(160));
                         poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
                     }
                     default -> {
-                        poseStack.translate(0.0, 0.7, 0.15);
+                        poseStack.translate(0.0, 0.0, 0.0);
                         poseStack.mulPose(Axis.YP.rotationDegrees(0));
-                        poseStack.mulPose(Axis.XP.rotationDegrees(160));
-                        poseStack.mulPose(Axis.ZP.rotationDegrees(-30));
+                        poseStack.mulPose(Axis.XP.rotationDegrees(0));
+                        poseStack.mulPose(Axis.ZP.rotationDegrees(0));
                     }
                 }
 
