@@ -454,6 +454,10 @@ public class ChangShengJueCreativeModeTab {
 
                 output.accept(ChangShengJueBlocks.ZAFU.get());
 
+                output.accept(ChangShengJueBlocks.WHITE_JADE_BLOCK.get());
+                output.accept(ChangShengJueBlocks.WHITE_JADE_STAIRS.get());
+                output.accept(ChangShengJueBlocks.WHITE_JADE_SLAB.get());
+                output.accept(ChangShengJueBlocks.WHITE_JADE_WALL.get());
                 output.accept(ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get());
                 output.accept(ChangShengJueBlocks.OAK_BALUSTRADE.get());
                 output.accept(ChangShengJueBlocks.SPRUCE_BALUSTRADE.get());

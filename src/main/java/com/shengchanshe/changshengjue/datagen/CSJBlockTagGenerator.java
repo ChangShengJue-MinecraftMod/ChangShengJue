@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.checkerframework.checker.units.qual.C;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -452,6 +453,7 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                         ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get(),
                         ChangShengJueBlocks.CASTING_MOLDS.get(),
                         ChangShengJueBlocks.SYDEROLIFE_ORE.get(),
+                        ChangShengJueBlocks.WHITE_JADE_BLOCK.get(),
                         ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get(),
                         ChangShengJueBlocks.OAK_BALUSTRADE.get(),
                         ChangShengJueBlocks.SPRUCE_BALUSTRADE.get(),
@@ -523,6 +525,7 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
         this.tag(BlockTags.WALLS)
                 .add(ChangShengJueBlocks.HANG_TU_WALL.get())
                 .add(ChangShengJueBlocks.TU_PEI_WALL.get())
+                .add(ChangShengJueBlocks.WHITE_JADE_WALL.get())
                 .add(ChangShengJueBlocks.WHITE_BRICKS_VERTICAL_WALLS.get())
                 .add(ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get())
                 .add(ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get());
@@ -546,6 +549,7 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
         this.tag(BlockTags.WALLS)
                 .add(ChangShengJueBlocks.HANG_TU_WALL.get())
                 .add(ChangShengJueBlocks.TU_PEI_WALL.get())
+                .add(ChangShengJueBlocks.WHITE_JADE_WALL.get())
                 .add(ChangShengJueBlocks.WHITE_BRICKS_VERTICAL_WALLS.get())
                 .add(ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get())
                 .add( ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get());

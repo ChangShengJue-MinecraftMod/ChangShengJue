@@ -875,6 +875,9 @@ public class ChangShengJueBlocks {
             ()-> new HighWindows(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.SPRUCE));
 
     //方块
+    //WHITE_JADE_WALL
+     public static final RegistryObject<Block> WHITE_JADE_WALL = registerBlock("white_jade_wall",
+            ()-> new WallBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> HANG_TU_WALL = registerBlock("hang_tu_wall",
             ()-> new WallBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> TU_PEI_WALL = registerBlock("tu_pei_wall",
@@ -897,6 +900,10 @@ public class ChangShengJueBlocks {
             ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> BLUE_STONE_BRICKS = registerBlock("blue_stone_bricks",
             ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> WHITE_JADE_BLOCK = registerBlock("white_jade_block",
+            ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+
+
 
     public static final RegistryObject<Block> BITUMEN_FLOOR_TILES_BLOCK = registerBlock("bitumen_floor_tiles_block",
             ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
@@ -905,6 +912,9 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> BLACK_FLOOR_TILES_BLOCK = registerBlock("black_floor_tiles_block",
             ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
     //楼梯
+    public static final RegistryObject<Block> WHITE_JADE_STAIRS = registerBlock("white_jade_stairs",
+            ()-> new StairBlock(()-> ChangShengJueBlocks.WHITE_JADE_BLOCK.get().defaultBlockState(),
+                    BlockBehaviour.Properties.copy(ChangShengJueBlocks.WHITE_JADE_BLOCK.get())));
     public static final RegistryObject<Block> HANG_TU_STAIRS = registerBlock("hang_tu_stairs",
             ()-> new StairBlock(()-> ChangShengJueBlocks.HANG_TU_BLOCK.get().defaultBlockState(),
                     BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
@@ -986,6 +996,8 @@ public class ChangShengJueBlocks {
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
 
     //台阶
+    public static final RegistryObject<Block> WHITE_JADE_SLAB =  registerBlock("white_jade_slab",
+            ()-> new SlabBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> HANG_TU_SLAB = registerBlock("hang_tu_slab",
             ()-> new SlabBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> TU_PEI_SLAB = registerBlock("tu_pei_slab",
@@ -1364,6 +1376,9 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> WHEAT_NUGGETS_TRIBUTE_WINE = registerBlockWithoutBlockItem("wheat_nuggets_tribute_wine",
             ()-> new WheatNuggetsTributeWine(Block.Properties.copy(Blocks.CAKE), true, 1, 1.0f));
 
+    //霸王拳
+    public static final RegistryObject<Block> OVERLORD_FIST = registerBlock("overlord_fist",
+            ()-> new OverlordFist(Block.Properties.copy(Blocks.CAKE), true, 1, 1.0f));
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name,Supplier<T> block){
         return BLOCKS.register(name,block);

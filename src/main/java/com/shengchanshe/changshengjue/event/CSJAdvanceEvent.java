@@ -20,6 +20,7 @@ import com.shengchanshe.changshengjue.quest.Quest;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -45,6 +46,8 @@ public class CSJAdvanceEvent {
         for (ItemStack itemStack : player.getInventory().items) {
             Item item = itemStack.getItem();
             if (player instanceof ServerPlayer serverPlayer) {
+                //获取玩家所在群系
+                 String biome = serverPlayer.level().getBiome(player.blockPosition()).toString();
                 if (item == ChangShengJueItems.MI_FAN.get()) {
                     CSJAdvanceInit.HAS_MI_FAN.trigger(serverPlayer);//人是铁饭是钢
                 }else if (item == ChangShengJueItems.SILVER_BULLIONS.get()) {
@@ -112,6 +115,7 @@ public class CSJAdvanceEvent {
                 }
             }
         }
+
     }
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {

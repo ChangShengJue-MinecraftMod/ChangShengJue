@@ -220,6 +220,7 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(Item.byBlock(ChangShengJueBlocks.HANG_TU_SLAB.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.TU_PEI_SLAB.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.WHITE_BRICKS_SLAB.get()));
+                .add(Item.byBlock(ChangShengJueBlocks.WHITE_BRICKS_SLAB.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.WHITE_JADE_SLAB.get()));
     }
 }

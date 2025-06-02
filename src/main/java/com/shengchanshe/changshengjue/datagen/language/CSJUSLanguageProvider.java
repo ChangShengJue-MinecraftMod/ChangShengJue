@@ -866,6 +866,10 @@ public class CSJUSLanguageProvider extends LanguageProvider {
 
         this.add(ChangShengJueBlocks.ZAFU.get(), "蒲团");
 
+        this.add(ChangShengJueBlocks.WHITE_JADE_BLOCK.get(),  "汉白玉块");
+        this.add(ChangShengJueBlocks.WHITE_JADE_STAIRS.get(), "汉白玉楼梯");
+        this.add(ChangShengJueBlocks.WHITE_JADE_SLAB.get(), "汉白玉台阶");
+        this.add(ChangShengJueBlocks.WHITE_JADE_WALL.get(), "汉白玉墙");
         this.add(ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get(),"汉白玉栏杆");
         this.add(ChangShengJueBlocks.OAK_BALUSTRADE.get(),"橡木栏杆");
         this.add(ChangShengJueBlocks.SPRUCE_BALUSTRADE.get(), "云杉木栏杆");
