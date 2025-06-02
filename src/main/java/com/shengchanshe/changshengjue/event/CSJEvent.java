@@ -45,6 +45,7 @@ import com.shengchanshe.changshengjue.event.quest.PlayerQuestEvent;
 import com.shengchanshe.changshengjue.event.quest.QuestEvent;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.item.combat.book.GoldenBellJar;
 import com.shengchanshe.changshengjue.item.items.StructureIntelligence;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
@@ -769,13 +770,20 @@ public class CSJEvent {
 
     //生物攻击事件
     @SubscribeEvent
-    public static void onEntityAttack(LivingEvent.LivingTickEvent event){}
+    public static void onEntityHurt(LivingAttackEvent event){
+        QianKunDaNuoYiEvent.onEntityHurt(event);
+    }
+
+    @SubscribeEvent
+    public static void onEntityAttack(LivingEvent.LivingTickEvent event){
+
+    }
 
     //生物受伤事件
     @SubscribeEvent
     public static void onEntityHurt(LivingDamageEvent event){
         ImmortalMiracleEvent.onEntityHurt(event);
-        QianKunDaNuoYiEvent.onEntityHurt(event);
+        GoldenBellJarEvent.onEntityHurt(event);
 
         ArmorEvent.onArmorDamage(event);
 
@@ -847,6 +855,11 @@ public class CSJEvent {
             Player player = event.getEntity();
 
         }
+    }
+    //玩家重生事件
+    @SubscribeEvent
+    public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        GoldenBellJarEvent.onPlayerRespawn(event);
     }
     //能力给予事件,给生物添加能力
     @SubscribeEvent
@@ -1168,7 +1181,10 @@ public class CSJEvent {
                             qianKunDaNuoYi.getQianKunDaNuoYiDachengTick(),
                             qianKunDaNuoYi.isQianKunDaNuoYiParticle(),
                             qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax(),
-                            qianKunDaNuoYi.isSkillActive()), (ServerPlayer) player);
+                            qianKunDaNuoYi.isSkillActive(),
+                            qianKunDaNuoYi.getRecordTime(),
+                            qianKunDaNuoYi.getRecordDamage(),
+                            qianKunDaNuoYi.getRecordDamageSource()), (ServerPlayer) player);
                 });
                 player.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(hercules -> {
                     ChangShengJueMessages.sendToPlayer(new HerculesPacket(

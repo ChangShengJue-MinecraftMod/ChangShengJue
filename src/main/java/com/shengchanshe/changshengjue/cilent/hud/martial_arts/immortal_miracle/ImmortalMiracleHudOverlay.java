@@ -3,7 +3,6 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.hercules.HerculesClientData;
 import com.shengchanshe.changshengjue.item.combat.glove.GoldThreadGlove;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -13,8 +12,6 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
-
-import java.util.Formatter;
 
 public class ImmortalMiracleHudOverlay {
     // 绘制的领悟后技能贴图的位置
@@ -52,7 +49,7 @@ public class ImmortalMiracleHudOverlay {
     // 通过这个属性进行绘制，这个是一个IguiOverLay的接口，实现这个接口，注册他。
     // 通过lammbd表达式实现。
     public static final IGuiOverlay HUD_IMMORTAL_MIRACLE = (gui, guiGraphics, partialTick, screenWidth, screenHeight) -> {
-        if (shouldDisplayHud() && ImmortalMiracleClientData.isSkillActive()) {
+        if (ImmortalMiracleClientData.isSkillActive() && ImmortalMiracleClientData.getImmortalMiracleUseCooldownPercent() > 0) {
             boolean immortalMiracleComprehend = ImmortalMiracleClientData.isImmortalMiracleComprehend();
             if (immortalMiracleComprehend) {
                 int getImmortalMiracleLevel = ImmortalMiracleClientData.getImmortalMiracleLevel();
@@ -62,9 +59,10 @@ public class ImmortalMiracleHudOverlay {
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                CSJDisplayHud.displayHudPermanent(getImmortalMiracleLevel, frameTime(), frameTimeMax(), playerCanOpened(), guiGraphics, IMMORTAL_MIRACLE, IMMORTAL_MIRACLE_1, IMMORTAL_MIRACLE_2, COOLING, gui.getFont(), x, y);
+                CSJDisplayHud.displayHudPermanent(getImmortalMiracleLevel, frameTime(), frameTimeMax(), playerCanOpened(), guiGraphics,
+                        IMMORTAL_MIRACLE, IMMORTAL_MIRACLE_1, IMMORTAL_MIRACLE_2, COOLING, gui.getFont(), x, y + 75);
                 CSJDisplayHud.displayHudPermanent(guiGraphics, gui.getFont(),
-                        ChatFormatting.BOLD + I18n.get("item." + ChangShengJue.MOD_ID + ".immortal_miracle"), x, y, ChatFormatting.GOLD.getColor());
+                        ChatFormatting.BOLD + I18n.get("item." + ChangShengJue.MOD_ID + ".immortal_miracle"), x, y + 75, ChatFormatting.GOLD.getColor());
 //            if (getImmortalMiracleLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
 //                if (frameTime() <= 0){ //获取技能剩余冷却时间,小于等于0则绘制技能贴图否则绘制冷却中的技能贴图
 //                    if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图

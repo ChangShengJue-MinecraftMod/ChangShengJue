@@ -110,7 +110,7 @@ public class ImmortalMiracleEvent {
             if (event.getEntity() instanceof Player player){
                 player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
                     if (immortalMiracle.isImmortalMiracleComprehend() && immortalMiracle.getImmortalMiracleLevel() > 0) {
-                        if (immortalMiracle.isSkillActive()){
+//                        if (immortalMiracle.isSkillActive()){
                             if (immortalMiracle.getImmortalMiracleUseCooldownPercent() <= 0) {
                                 if (player.getFoodData().getFoodLevel() > 8) {
                                     float cooldownMax1 = 1600 - (15 * 20);
@@ -168,7 +168,7 @@ public class ImmortalMiracleEvent {
                                 }
                             }
                         }
-                    }
+//                    }
                 });
             }
         }

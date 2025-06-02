@@ -1,6 +1,5 @@
 package com.shengchanshe.changshengjue.network.packet.martial_arts.immortal_miracle;
 
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle.ImmortalMiracleClientData;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
@@ -10,14 +9,14 @@ import java.util.function.Supplier;
 public class ImmortalMiraclePacket {
     private final int immortalMiracleLevel;
     private final boolean immortalMiracleComprehend;
-    private float immortalMiracleUseCooldownPercent;
-    private boolean immortalMiracleOff;//技能是否启用
-    private float immortalMiracleToppedTick;//技能领悟特效计时
-    private float immortalMiracleDachengTick;//技能大成特效计时
-    private boolean immortalMiracleParticle;//技能特效显示
-    private float immortalMiracleUseCooldownPercentMax;
+    private final float immortalMiracleUseCooldownPercent;
+    private final boolean immortalMiracleOff;//技能是否启用
+    private final float immortalMiracleToppedTick;//技能领悟特效计时
+    private final float immortalMiracleDachengTick;//技能大成特效计时
+    private final boolean immortalMiracleParticle;//技能特效显示
+    private final float immortalMiracleUseCooldownPercentMax;
     // 技能状态
-    private boolean skillActive;
+    private final boolean skillActive;
 
     public ImmortalMiraclePacket(int immortalMiracleLevel, boolean immortalMiracleComprehend, float immortalMiracleUseCooldownPercent, boolean immortalMiracleOff,
                                  float immortalMiracleToppedTick, float immortalMiracleDachengTick, boolean immortalMiracleParticle,float immortalMiracleUseCooldownPercentMax,

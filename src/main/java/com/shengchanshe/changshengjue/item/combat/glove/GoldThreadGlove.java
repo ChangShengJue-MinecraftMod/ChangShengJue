@@ -33,10 +33,10 @@ public class GoldThreadGlove extends SwordItem implements GeoItem {
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         if (!player.level().isClientSide) {
             GeShanDaNiu.comprehend(player,player.level(),entity);
-            GoldenBellJar.comprehend(player,player.level());
+//            GoldenBellJar.comprehend(player,player.level());
             Hercules.comprehend(player,player.level());
-            ImmortalMiracle.comprehend(player,player.level());
-            QianKunDaNuoYi.comprehend(player,player.level());
+
+//            QianKunDaNuoYi.comprehend(player,player.level());
             SunflowerPointCaveman.comprehend(player,player.level(),entity);
             TurtleBreathWork.comprehend(player,player.level());
         }
@@ -58,9 +58,9 @@ public class GoldThreadGlove extends SwordItem implements GeoItem {
                 ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
                 if (itemstack.getItem() instanceof GoldThreadGlove) {
                     GeShanDaNiu.onGeShanDaNiu(pLevel, pPlayer);
-                    GoldenBellJar.onGoldenBellJar(pLevel, pPlayer);
+//                    GoldenBellJar.onGoldenBellJar(pLevel, pPlayer);
                     Hercules.onHercules(pLevel, pPlayer);
-                    QianKunDaNuoYi.onQianKunDaNuoYi(pLevel, pPlayer);
+//                    QianKunDaNuoYi.onQianKunDaNuoYi(pLevel, pPlayer);
                     TurtleBreathWork.onTurtleBreathWork(pLevel, pPlayer);
                 }
             }

@@ -88,28 +88,31 @@ public class CSJDisplayHud {
                 float frameTime_ = ((frameTime / 20.0F) / frameTimeMax_);
                 int v1 = (int) (16 * frameTime_ + 1);//计算技能剩余冷却时间
                 if (playerCanOpened) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图并渲染技能剩余冷却时间
-                    if (capabilityLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation0,x,y);
+//                    if () {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
+                        CSJDisplayHud.displayHudPermanent(guiGraphics,capabilityLevel < 2 ? pAtlasLocation0 : pAtlasLocation1,x,y);
                         CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation3,x,y);
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation0,x,y,-v1);
-                    } else {
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation1,x,y);
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation3,x,y);
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation1,x,y,-v1);
-                    }
+                        CSJDisplayHud.displayHudPermanent(guiGraphics,capabilityLevel < 2 ? pAtlasLocation0 : pAtlasLocation1,x,y,-v1);
+//                    } else {
+//                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation1,x,y);
+//                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation3,x,y);
+//                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation1,x,y,-v1);
+//                    }
                     //以文字形式绘制剩余冷却时间
                     CSJDisplayHud.displayHudPermanent(guiGraphics,pFont,frameTime_,frameTimeMax_,x,y);
                 }else {
-                    if (capabilityLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation0,x,y);
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation3,x,y);
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation0,x,y,-v1);
-                    } else {
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation1,x,y);
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation3,x,y);
-                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation1,x,y,-v1);
-                    }
+//                    if (capabilityLevel < 2) {//如果技能等级不为2,绘制普通技能贴图否则绘制大成技能贴图并渲染技能剩余冷却时间
+//                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation0,x,y);
+//                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation3,x,y);
+//                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation0,x,y,-v1);
+//                    } else {
+//                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation1,x,y);
+//                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation3,x,y);
+//                        CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation1,x,y,-v1);
+//                    }
+                    CSJDisplayHud.displayHudPermanent(guiGraphics,capabilityLevel < 2 ? pAtlasLocation0 : pAtlasLocation1,x,y);
                     CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation3,x,y);
+                    CSJDisplayHud.displayHudPermanent(guiGraphics,capabilityLevel < 2 ? pAtlasLocation0 : pAtlasLocation1,x,y,-v1);
+//                    CSJDisplayHud.displayHudPermanent(guiGraphics,pAtlasLocation3,x,y);
                     CSJDisplayHud.displayHudPermanent(guiGraphics,pFont,frameTime_,frameTimeMax_,x,y);
                 }
             }
