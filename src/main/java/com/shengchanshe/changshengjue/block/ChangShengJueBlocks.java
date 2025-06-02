@@ -878,8 +878,7 @@ public class ChangShengJueBlocks {
             ()-> new HighWindows(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.SPRUCE));
 
     //方块
-    //WHITE_JADE_WALL
-     public static final RegistryObject<Block> WHITE_JADE_WALL = registerBlock("white_jade_wall",
+    public static final RegistryObject<Block> WHITE_JADE_WALL = registerBlock("white_jade_wall",
             ()-> new WallBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
     public static final RegistryObject<Block> HANG_TU_WALL = registerBlock("hang_tu_wall",
             ()-> new WallBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
@@ -970,7 +969,7 @@ public class ChangShengJueBlocks {
                     .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
 
-     public static final RegistryObject<Block> CHERRY_BALUSTRADE = registerBlock("cherry_balustrade",
+    public static final RegistryObject<Block> CHERRY_BALUSTRADE = registerBlock("cherry_balustrade",
             ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
                     .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
@@ -1020,6 +1019,12 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> BLUE_STONE_VERTICAL_WALLS = registerBlock("blue_stone_vertical_walls",
             ()-> new VerticalWalls(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().sound(SoundType.STONE).strength(1.5F, 6.0F).noOcclusion()));
 
+    //霸王拳
+    public static final RegistryObject<Block> MANGROVE_OVERLORD_FIST = registerBlock("mangrove_overlord_fist",
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+    
+    
+    
     //矿石
     public static final RegistryObject<Block> AG_ORE = registerBlock("ag_ore",
             ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.0F, 6.0F)));
@@ -1379,9 +1384,7 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> WHEAT_NUGGETS_TRIBUTE_WINE = registerBlockWithoutBlockItem("wheat_nuggets_tribute_wine",
             ()-> new WheatNuggetsTributeWine(Block.Properties.copy(Blocks.CAKE), true, 1, 1.0f));
 
-    //霸王拳
-    public static final RegistryObject<Block> OVERLORD_FIST = registerBlock("overlord_fist",
-            ()-> new OverlordFist(Block.Properties.copy(Blocks.CAKE), true, 1, 1.0f));
+
 
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name,Supplier<T> block){
         return BLOCKS.register(name,block);

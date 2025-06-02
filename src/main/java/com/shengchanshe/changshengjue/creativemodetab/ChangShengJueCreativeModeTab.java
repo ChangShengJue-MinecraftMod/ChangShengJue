@@ -471,7 +471,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.CRIMSON_BALUSTRADE.get());
                 output.accept(ChangShengJueBlocks.WARPED_BALUSTRADE.get());
                 output.accept(ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get());
-
+                output.accept(ChangShengJueBlocks.MANGROVE_OVERLORD_FIST.get());
 
                 output.accept(ChangShengJueBlocks.WIND_CHIME.get());
             }).build());

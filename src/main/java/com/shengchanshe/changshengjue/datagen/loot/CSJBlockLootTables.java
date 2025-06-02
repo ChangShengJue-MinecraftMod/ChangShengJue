@@ -510,6 +510,7 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.WHITE_BRICKS_VERTICAL_WALLS.get());
         this.dropSelf(ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get());
         this.dropSelf(ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get());
+        this.dropSelf(ChangShengJueBlocks.MANGROVE_OVERLORD_FIST.get());
 
         this.dropSelf(ChangShengJueBlocks.WHITE_JADE_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.WHITE_JADE_STAIRS.get());

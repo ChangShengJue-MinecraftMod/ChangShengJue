@@ -565,6 +565,8 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.WHITE_BRICKS_VERTICAL_WALLS.get(),"白砖竖墙");
         this.add(ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get(),"黑石竖墙");
         this.add(ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get(),"青石竖墙");
+        this.add(ChangShengJueBlocks.MANGROVE_OVERLORD_FIST.get(),"红木霸王拳");
+
 
         this.add(ChangShengJueBlocks.STONE_LAMPS_BASE_BLOCK.get(),"石灯底座");
         this.add(ChangShengJueBlocks.STONE_LAMPS_BLOCK.get(),"未点亮的石灯");
