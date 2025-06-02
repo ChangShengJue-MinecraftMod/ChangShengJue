@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.item.combat.sword;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
@@ -15,7 +16,7 @@ import java.util.function.Consumer;
 
 public class YiTianJian extends Sword implements GeoItem {
     public YiTianJian() {
-        super(Tiers.IRON, 5, -2.4F, new Item.Properties().durability(3880).fireResistant());
+        super(Tiers.IRON, 5, -2.4F, new Item.Properties().durability(3880).fireResistant().rarity(Rarity.UNCOMMON));
     }
 
     @Override

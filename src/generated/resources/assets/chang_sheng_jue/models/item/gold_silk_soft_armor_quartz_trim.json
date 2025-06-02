@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "chang_sheng_jue:item/gold_silk_soft_armor",
+    "layer1": "minecraft:trims/items/chestplate_trim_quartz"
+  }
+}

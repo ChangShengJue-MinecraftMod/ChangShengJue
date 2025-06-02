@@ -6,6 +6,8 @@ import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.combat.armor.confucian_costumes.ConfucianCostumes;
 import com.shengchanshe.changshengjue.item.combat.armor.cotton.CottonArmor;
 import com.shengchanshe.changshengjue.item.combat.armor.flying_fish_robe.FlyingFishRobe;
+import com.shengchanshe.changshengjue.item.combat.armor.inner_armor.GoldSilkSoftArmor;
+import com.shengchanshe.changshengjue.item.combat.armor.inner_armor.LeatherInnerArmor;
 import com.shengchanshe.changshengjue.item.combat.armor.mountain_pattern_armor.MountainPatternArmor;
 import com.shengchanshe.changshengjue.item.combat.armor.qi_tian_da_sheng.QiTianDaSheng;
 import com.shengchanshe.changshengjue.item.combat.armor.taoistrobes.FemaleTaoistRobes;
@@ -33,6 +35,7 @@ import com.shengchanshe.changshengjue.item.combat.throwingknives.SevenThrowingKn
 import com.shengchanshe.changshengjue.item.combat.throwingknives.ThreeThrowingKnives;
 import com.shengchanshe.changshengjue.item.combat.throwingknives.ThrowingKnives;
 import com.shengchanshe.changshengjue.item.items.*;
+import com.shengchanshe.changshengjue.item.items.StructureIntelligence;
 import com.shengchanshe.changshengjue.item.tiers.ChangShengJueArmorMaterials;
 import com.shengchanshe.changshengjue.item.foods.*;
 import com.shengchanshe.changshengjue.item.tool.KaishanPickaxe;
@@ -431,6 +434,14 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> THROWING_KNIVES = ITEMS.register("throwing_knives", ThrowingKnives::new);
     public static final RegistryObject<Item> THREE_THROWING_KNIVES = ITEMS.register("three_throwing_knives", ThreeThrowingKnives::new);
     public static final RegistryObject<Item> SEVEN_THROWING_KNIVES = ITEMS.register("seven_throwing_knives", SevenThrowingKnives::new);
+    //金丝软甲
+    public static final RegistryObject<Item> GOLD_SILK_SOFT_ARMOR = ITEMS.register("gold_silk_soft_armor",
+            ()-> new GoldSilkSoftArmor(com.shengchanshe.changshengjue.item.combat.armor.ChangShengJueArmorMaterials.GOLD_SILK,
+                    ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    //皮革内甲
+    public static final RegistryObject<Item> LEATHER_INNER_ARMOR = ITEMS.register("leather_inner_armor",
+            ()-> new LeatherInnerArmor(com.shengchanshe.changshengjue.item.combat.armor.ChangShengJueArmorMaterials.LEATHER,
+                    ArmorItem.Type.CHESTPLATE,new Item.Properties().defaultDurability(96)));
     //棉甲
     public static final RegistryObject<Item> COTTON_HELMET = ITEMS.register("cotton_helmet",
             () -> new CottonArmor(ChangShengJueArmorMaterials.COTTON, ArmorItem.Type.HELMET, new Item.Properties()));
@@ -602,6 +613,9 @@ public class ChangShengJueItems {
             ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> INTERNAL_INJURY_EFFECT = ITEMS.register("internal_injury_effect",
             ()-> new Item(new Item.Properties()));
+
+    //情报
+    public static final RegistryObject<Item> STRUCTURE_INTELLIGENCE = ITEMS.register("structure_intelligence", () -> new StructureIntelligence(new Item.Properties().stacksTo(1)));
 
     //手册
     public static final RegistryObject<Item> WU_FANG_LU = ITEMS.register("wu_fang_lu", ()-> new Item(new Item.Properties()));

@@ -13,6 +13,7 @@ import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.DuguNineSwordsPacket;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
+import com.shengchanshe.changshengjue.util.EffectUtils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -28,7 +29,6 @@ import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.animal.horse.SkeletonHorse;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Slime;
-import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
@@ -80,34 +80,13 @@ public class Sword extends SwordItem {
                                     }
                                 }
                             } else {
-                                if (probability < (defaultProbability * 1.2F)) {
+                                if (probability < (defaultProbability * 1.05F)) {
                                     if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
                                         livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
                                     }
                                 }
                             }
-                            if (probability < 0.25F) {
-                                if (!(livingEntity instanceof Zombie)){
-                                    int duration = 40;
-                                    int level = player.getRandom().nextInt(2); // 0或1
-
-                                    // 如果已有外伤效果，延长1秒并保持最高等级
-                                    if (livingEntity.hasEffect(ChangShengJueEffects.TRAUMA_EFFECT.get())) {
-                                        MobEffectInstance oldEffect = livingEntity.getEffect(ChangShengJueEffects.TRAUMA_EFFECT.get());
-                                        if (oldEffect != null) {
-                                            duration = oldEffect.getDuration() + 20;
-                                            level = Math.max(level, oldEffect.getAmplifier());
-                                        }
-                                    }
-
-                                    livingEntity.addEffect(new MobEffectInstance(
-                                            ChangShengJueEffects.TRAUMA_EFFECT.get(), duration, level,
-                                            true,
-                                            true,
-                                            true
-                                    ), player);
-                                }
-                            }
+                            EffectUtils.setTrauma(player, livingEntity, 2,140,0.25F);
                             if (player.getMainHandItem().canDisableShield(livingEntity.getUseItem(), livingEntity, player)) {
                                 if (probability < 0.5) {
                                     // 强制打破目标玩家的防御状态（禁用盾牌防御）
@@ -186,14 +165,14 @@ public class Sword extends SwordItem {
                         float probability = player.getRandom().nextFloat();
                         float defaultProbability = 0.15F;
                         if (martialArtsLevel < 2) {
-                            damage = (this.getDamage() + 2) * 1.4F;
+                            damage = (this.getDamage() + 2) * 1.8F;
                             if (probability < defaultProbability) {
                                 if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
                                     ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, false), player);
                                 }
                             }
                         } else {
-                            damage = (this.getDamage() + 2) * 1.6F;
+                            damage = (this.getDamage() + 2) * 2.2F;
                             if (probability < (defaultProbability * 1.2F)) {
                                 if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
                                     ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, false), player);
@@ -203,28 +182,8 @@ public class Sword extends SwordItem {
                         if (entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
                                         .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player),
                                 player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
-                            if (probability < 0.25F && entity instanceof LivingEntity livingEntity) {
-                                if (!(livingEntity instanceof Zombie)){
-                                    int duration = 100;
-                                    int level = player.getRandom().nextInt(5);
-
-                                    if (livingEntity.hasEffect(ChangShengJueEffects.TRAUMA_EFFECT.get())) {
-                                        MobEffectInstance oldEffect = livingEntity.getEffect(ChangShengJueEffects.TRAUMA_EFFECT.get());
-                                        if (oldEffect != null) {
-                                            duration = oldEffect.getDuration() + 20;
-                                            level = Math.max(level, oldEffect.getAmplifier());
-                                        }
-                                    }
-
-                                    livingEntity.addEffect(new MobEffectInstance(
-                                            ChangShengJueEffects.TRAUMA_EFFECT.get(),
-                                            duration,
-                                            level,
-                                            true,
-                                            true,
-                                            true
-                                    ), player);
-                                }
+                            if (entity instanceof LivingEntity livingEntity) {
+                                EffectUtils.setTrauma(player, livingEntity, 5,140,0.25F);
                             }
                             if (duguNineSword.getDuguNineSwordsUseCount() < 100) {
                                 duguNineSword.addDuguNineSwordsUseCount(!player.getAbilities().instabuild ? 1 : 100);

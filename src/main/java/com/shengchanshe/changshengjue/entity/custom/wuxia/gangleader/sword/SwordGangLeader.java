@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.sword;
 
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingMenu;
+import com.shengchanshe.changshengjue.entity.custom.goal.ReturnToSpawnGoal;
 import com.shengchanshe.changshengjue.entity.custom.goal.WuXiaAttackGoal;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.AbstractGangLeader;
@@ -40,6 +41,7 @@ import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.monster.AbstractIllager;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -85,6 +87,26 @@ public class SwordGangLeader extends AbstractGangLeader implements GeoEntity {
                 .add(Attributes.KNOCKBACK_RESISTANCE,1.0).build();
     }
 
+//    public AbstractIllager.IllagerArmPose getArmPose() {
+//        if (this.isAggressive()) {
+//            return AbstractIllager.IllagerArmPose.ATTACKING;
+//        }else {
+//            return AbstractIllager.IllagerArmPose.CROSSED;
+//        }
+//    }
+
+
+    @Override
+    public void setTarget(@Nullable LivingEntity pTarget) {
+        super.setTarget(pTarget);
+    }
+
+    @Nullable
+    @Override
+    public LivingEntity getTarget() {
+        return super.getTarget();
+    }
+
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
@@ -97,6 +119,7 @@ public class SwordGangLeader extends AbstractGangLeader implements GeoEntity {
         this.goalSelector.addGoal(1, new WuXiaAttackGoal(this, 1.0F, true));
         this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9, 32.0F));
         this.goalSelector.addGoal(2, new MoveBackToVillageGoal(this, 0.6, false));
+        this.goalSelector.addGoal(5, new ReturnToSpawnGoal(this, 0.6, 16, 100));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.7F));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
@@ -136,7 +159,7 @@ public class SwordGangLeader extends AbstractGangLeader implements GeoEntity {
         if (tradesList1 != null && tradesList2 != null) {
             MerchantOffers merchantOffers = this.getOffers();
             // 添加交易列表1中的5个交易
-            this.addOffersFromItemListings(merchantOffers, tradesList1, 8);
+            this.addOffersFromItemListings(merchantOffers, tradesList1, 10);
             // 随机添加交易列表2中的一个交易
             if (QuestManager.getInstance().getTotalQuestCompletions() >= 5){
                 this.addOffersFromItemListings(merchantOffers, tradesList2, 2);

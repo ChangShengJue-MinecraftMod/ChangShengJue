@@ -221,5 +221,10 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(Item.byBlock(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.TU_PEI_SLAB.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.WHITE_BRICKS_SLAB.get()));
+
+        //盔甲
+        this.tag(ItemTags.TRIMMABLE_ARMOR)
+                .add(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR.get().asItem(),
+                        ChangShengJueItems.LEATHER_INNER_ARMOR.get().asItem());
     }
 }

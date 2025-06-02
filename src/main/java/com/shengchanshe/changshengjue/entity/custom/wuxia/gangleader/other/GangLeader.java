@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other;
 
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingMenu;
 import com.shengchanshe.changshengjue.entity.combat.throwingknives.ThrowingKnivesEntity;
+import com.shengchanshe.changshengjue.entity.custom.goal.ReturnToSpawnGoal;
 import com.shengchanshe.changshengjue.entity.custom.goal.WuXiaAttackGoal;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.AbstractGangLeader;
@@ -99,6 +100,7 @@ public class GangLeader extends AbstractGangLeader implements GeoEntity , Ranged
         this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9, 32.0F));
         this.goalSelector.addGoal(2, new MoveBackToVillageGoal(this, 0.6, false));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.7F));
+        this.goalSelector.addGoal(5, new ReturnToSpawnGoal(this, 0.6, 16, 100));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
@@ -124,7 +126,7 @@ public class GangLeader extends AbstractGangLeader implements GeoEntity , Ranged
         VillagerTrades.ItemListing[] tradesList2 = WuXiaMerahantTrades.OTHER_GANG_LEADER_TRADES.get(2);
         if (tradesList1 != null && tradesList2 != null) {
             MerchantOffers merchantOffers = this.getOffers();
-            this.addOffersFromItemListings(merchantOffers, tradesList1, 11);
+            this.addOffersFromItemListings(merchantOffers, tradesList1, 10);
             if (QuestManager.getInstance().getTotalQuestCompletions() >= 1){
                 this.addOffersFromItemListings(merchantOffers, tradesList2, 2);
             }

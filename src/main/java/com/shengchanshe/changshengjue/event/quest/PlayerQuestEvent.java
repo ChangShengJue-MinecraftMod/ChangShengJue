@@ -14,14 +14,22 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.PoiTypeTags;
+import net.minecraft.tags.StructureTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.village.poi.PoiManager;
+import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.WanderingTrader;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.levelgen.structure.StructureStart;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -290,7 +298,7 @@ public class PlayerQuestEvent {
 
         Player player = event.getEntity();
         Entity target = event.getTarget();
-        BlockPos blockpos = player.blockPosition();
+        BlockPos blockPos = player.blockPosition();
         ServerLevel level = (ServerLevel) player.level();
         if (target instanceof Villager) {
             onEntityEncounter(player, FIRST_VILLAGER_QUEST_ID, null, 1.0F);
@@ -298,11 +306,14 @@ public class PlayerQuestEvent {
         if (target instanceof Tiger) {
             onEntityEncounter(player, WEI_MIN_CHU_HAI_QUEST_ID, null, 0.75F);
         } else if (target instanceof Zombie) {
-            if (level.isVillage(blockpos) && TimeDetection.isFullNight(player.level())) {
-                onEntityEncounter(player, MARTIAL_ARTS_QUEST_ID, null, 0.5F);
+            if (TimeDetection.isFullNight(player.level())) {
+                if (level.isVillage(blockPos) || isPlayerInVillage(player)) {
+                    onEntityEncounter(player, MARTIAL_ARTS_QUEST_ID, null, 0.5F);
+                }
             }
         }
     }
+
 
     public static void onEntityEncounter(Player player, UUID questUUID, UUID npcUUID, Float f){
         Quest martialArtsQuestId = getOrCreateQuest(player, questUUID, npcUUID);
@@ -313,6 +324,38 @@ public class PlayerQuestEvent {
                 }
             }
         }
+    }
+
+    public static boolean isPlayerInVillage(Player player) {
+        if (player.level() instanceof ServerLevel serverLevel) {
+            // 获取玩家所在区块的村庄管理器
+            PoiManager poiManager = serverLevel.getPoiManager();
+
+            // 检查玩家周围是否有村庄
+            Optional<BlockPos> nearestVillageCenter = poiManager.findClosest(
+                    holder -> holder.is(PoiTypeTags.VILLAGE),
+                    player.blockPosition(),
+                    64, // 搜索半径
+                    PoiManager.Occupancy.ANY
+            );
+
+            // 检查至少1个有效村民（非幼儿）
+            AABB searchBox = new AABB(player.blockPosition()).inflate(64);
+            boolean hasVillager = !serverLevel.getEntitiesOfClass(
+                    Villager.class,
+                    searchBox,
+                    v -> !v.isBaby()).isEmpty();
+
+            // 检查有效床铺数量
+            long beds = poiManager.getCountInRange(holder -> holder.is(PoiTypes.HOME),
+                    player.blockPosition(),
+                    64, // 村庄半径
+                    PoiManager.Occupancy.HAS_SPACE
+            );
+
+            return nearestVillageCenter.isPresent() && beds >= 1 && hasVillager;
+        }
+        return false;
     }
 
     public static void onEntityHurt(LivingDamageEvent event){

@@ -1,10 +1,9 @@
 package com.shengchanshe.changshengjue.item.combat.armor.confucian_costumes;
 
-import com.shengchanshe.changshengjue.item.combat.armor.the_great_general_mingguang_armor.TheGreatGeneralMingguangArmorRender;
+import com.shengchanshe.changshengjue.item.combat.armor.ChangShengJueArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
@@ -19,7 +18,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
 
-public class ConfucianCostumes extends ArmorItem implements GeoItem {
+public class ConfucianCostumes extends ChangShengJueArmorItem implements GeoItem {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     private final int durabilityMultiplier;

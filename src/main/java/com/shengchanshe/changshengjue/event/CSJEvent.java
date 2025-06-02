@@ -34,17 +34,18 @@ import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmansh
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
-import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other.GangLeader;
-import com.shengchanshe.changshengjue.event.quest.PlayerQuestEvent;
-import com.shengchanshe.changshengjue.quest.QuestManager;
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.ClientQuestDataCache;
 import com.shengchanshe.changshengjue.entity.custom.croc.Croc;
 import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other.GangLeader;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.event.armor.ArmorEvent;
 import com.shengchanshe.changshengjue.event.martial_arts.*;
+import com.shengchanshe.changshengjue.event.quest.PlayerQuestEvent;
 import com.shengchanshe.changshengjue.event.quest.QuestEvent;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.item.items.StructureIntelligence;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
@@ -55,22 +56,20 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.qian_kun_da_nu
 import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
+import com.shengchanshe.changshengjue.quest.QuestManager;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -80,7 +79,6 @@ import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.TradeWithVillagerEvent;
-import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.event.server.ServerStoppingEvent;
@@ -89,10 +87,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import vazkii.patchouli.api.PatchouliAPI;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJEvent {
@@ -487,14 +482,19 @@ public class CSJEvent {
 
         }
         if(event.getType() == ChangShengJueVillagers.CHANG_SHENG_JUE_CHIEF.get()) {
+            ItemStack stack = new ItemStack(ChangShengJueItems.STRUCTURE_INTELLIGENCE.get());
+            stack.setDamageValue(StructureIntelligence.FORTRESSES_TYPE);
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
             ItemStack[] stack1 = new ItemStack[]{new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 6),
                     new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 6)};
-            ItemStack[] stack2 = new ItemStack[]{new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4),
+            ItemStack[] stack2 = new ItemStack[]{
+                    new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4),
                     new ItemStack(ChangShengJueItems.ZHU_TAI.get(), 2)};
-            ItemStack[] stack3 = new ItemStack[]{new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4),
+            ItemStack[] stack3 = new ItemStack[]{
+                    new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4),
                     new ItemStack(Items.EMERALD, 1)};
-            ItemStack[] stack4 = new ItemStack[]{new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4)};
+            ItemStack[] stack4 = new ItemStack[]{
+                    new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4), stack};
             ItemStack[] stack5 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.PAINTING_SCROLL.get(), 1),
                     new ItemStack(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(), 1),
                     new ItemStack(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(), 1),
@@ -553,7 +553,7 @@ public class CSJEvent {
                 if (firstStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
                     return new MerchantOffer(new ItemStack(Items.COMPASS,1), firstStack,16,5,0.05F);
                 }else{
-                    return new MerchantOffer(stack2[firstIndex[0]],firstStack ,12,5,0.05F);
+                    return new MerchantOffer(stack3[firstIndex[0]],firstStack ,12,5,0.05F);
                 }
             });
             trades.get(3).add((trader, rand) -> {
@@ -565,13 +565,32 @@ public class CSJEvent {
                 if (secondStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
                     return new MerchantOffer(new ItemStack(Items.COMPASS,1), secondStack,16,20,0.05F);
                 }else{
-                    return new MerchantOffer(stack2[firstIndex[0]],secondStack ,12,10,0.05F);
+                    return new MerchantOffer(stack3[firstIndex[0]],secondStack ,12,10,0.05F);
                 }
             });
             trades.get(4).add((trader, rand) -> {
                 firstIndex[0] = rand.nextInt(stack4.length);
                 ItemStack firstStack = stack4[firstIndex[0]];
-                return new MerchantOffer(new ItemStack(Items.WRITABLE_BOOK, 1),firstStack,16,30,0.05F);
+                if (firstStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
+                    return new MerchantOffer(new ItemStack(Items.WRITABLE_BOOK,2), firstStack,16,5,0.05F);
+                }else{
+                    return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(),2),firstStack ,12,5,0.05F);
+                }
+//                firstIndex[0] = rand.nextInt(stack4.length);
+//                ItemStack firstStack = stack4[firstIndex[0]];
+//                return new MerchantOffer(new ItemStack(Items.WRITABLE_BOOK, 1),firstStack,16,30,0.05F);
+            });
+            trades.get(4).add((trader, rand) -> {
+                int secondIndex;
+                do {
+                    secondIndex = rand.nextInt(stack4.length);
+                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+                ItemStack secondStack = stack4[secondIndex];
+                if (secondStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
+                    return new MerchantOffer(new ItemStack(Items.WRITABLE_BOOK,1), secondStack,16,5,0.05F);
+                }else{
+                    return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(),2),secondStack ,12,10,0.05F);
+                }
             });
             trades.get(5).add((trader, rand) -> {
                 firstIndex[0] = rand.nextInt(stack5.length);
@@ -1163,6 +1182,13 @@ public class CSJEvent {
             }
         }
     }
+
+    // 在玩家退出世界时调用
+    @SubscribeEvent
+    public void onWorldUnload(LevelEvent.Unload event) {
+        ClientQuestDataCache.clearCache();
+    }
+
     @SubscribeEvent
     public static void onServerStopping(ServerStoppingEvent event) {
         QuestManager.getInstance().saveData();

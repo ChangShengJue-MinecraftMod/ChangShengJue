@@ -127,6 +127,10 @@ public class MaleInnkeeperRenderer extends DynamicGeoEntityRenderer<MaleInnkeepe
         this.addRenderLayer(new BlockAndItemGeoLayer<>(this) {
             @Nullable
             protected ItemStack getStackForBone(GeoBone bone, MaleInnkeeper animatable) {
+                // 新增：没有仇恨目标时隐藏武器
+                if (!animatable.isAggressive()) {
+                    return null;
+                }
                 ItemStack var10000;
                 switch (bone.getName()) {
                     case "bipedHandLeft" -> var10000 = animatable.isLeftHanded() ? MaleInnkeeperRenderer.this.mainHandItem : MaleInnkeeperRenderer.this.offhandItem;

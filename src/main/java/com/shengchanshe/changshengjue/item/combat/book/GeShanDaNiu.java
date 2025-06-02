@@ -195,7 +195,7 @@ public class GeShanDaNiu extends Item {
                             LivingEntity livingEntity = (LivingEntity) entity;
                             float probability = player.getRandom().nextFloat();
                             if (probability < 0.25F) {
-                                int duration = 100;
+                                int duration = 300;
                                 int level1 = 0;
 
                                 if (livingEntity.hasEffect(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get())) {
@@ -264,7 +264,7 @@ public class GeShanDaNiu extends Item {
                                                         , player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 14 + 2 : 14)) {//造成伤害
                                                     float probability = player.getRandom().nextFloat();
                                                     if (probability < 0.25F && entity instanceof LivingEntity livingEntity) {
-                                                        int duration = 100;
+                                                        int duration = 300;
                                                         int level1 = 0;
 
                                                         if (livingEntity.hasEffect(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get())) {

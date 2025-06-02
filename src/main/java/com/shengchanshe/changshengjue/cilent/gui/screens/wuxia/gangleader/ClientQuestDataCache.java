@@ -27,6 +27,13 @@ public class ClientQuestDataCache {
                 .collect(Collectors.toList());
     }
 
+    // 在ClientQuestDataCache中
+    public static void clearCache() {
+        clientQuests.clear();
+        completedQuests.clear();
+        completionCounts.clear();
+    }
+
     /** 检查任务是否完成 */
     public static boolean isQuestCompleted(UUID questId) {
         return completedQuests.contains(questId);

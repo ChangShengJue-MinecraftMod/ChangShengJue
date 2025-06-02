@@ -37,6 +37,9 @@ public class ChallengerRenderer extends DynamicGeoEntityRenderer<Challenger> {
         this.addRenderLayer(new BlockAndItemGeoLayer<>(this) {
             @Nullable
             protected ItemStack getStackForBone(GeoBone bone, Challenger animatable) {
+                if (!animatable.isAggressive()) {
+                    return null;
+                }
                 ItemStack var10000;
                 switch (bone.getName()) {
                     case "bipedHandLeft" -> var10000 = animatable.isLeftHanded() ? ChallengerRenderer.this.mainHandItem : ChallengerRenderer.this.offhandItem;

@@ -26,8 +26,8 @@ public class TurtleBreathWork implements InternalKungFuCapability {
 
     @Override
     public void applyAttackEffect(LivingEntity livingEntity) {
-        Objects.requireNonNull(livingEntity.getAttribute(Attributes.MAX_HEALTH)).setBaseValue(livingEntity.getMaxHealth() + 25.0F);
-        livingEntity.setHealth(livingEntity.getMaxHealth() + 25.0F);
+        Objects.requireNonNull(livingEntity.getAttribute(Attributes.MAX_HEALTH)).setBaseValue(livingEntity.getMaxHealth() + 50.0F);
+        livingEntity.setHealth(livingEntity.getMaxHealth() + 50.0F);
     }
 
     @Override

@@ -8,10 +8,10 @@ import java.util.function.Supplier;
 public class TreadTheSnowWithoutTracePacket {
     private final int treadTheSnowWithoutTraceLevel;
     private final boolean treadTheSnowWithoutTraceComprehend;
-    private int treadTheSnowWithoutTraceUseCooldownPercent;
-    private float treadTheSnowWithoutTraceToppedTick;//技能领悟特效计时
-    private float treadTheSnowWithoutTraceDachengTick;//技能领悟特效计时
-    private boolean treadTheSnowWithoutTraceParticle;//技能特效显示
+    private final int treadTheSnowWithoutTraceUseCooldownPercent;
+    private final float treadTheSnowWithoutTraceToppedTick;//技能领悟特效计时
+    private final float treadTheSnowWithoutTraceDachengTick;//技能领悟特效计时
+    private final boolean treadTheSnowWithoutTraceParticle;//技能特效显示
 
     public TreadTheSnowWithoutTracePacket(int treadTheSnowWithoutTraceLevel, boolean treadTheSnowWithoutTraceComprehend,int treadTheSnowWithoutTraceUseCooldownPercent ,
                                           float treadTheSnowWithoutTraceToppedTick, float treadTheSnowWithoutTraceDachengTick, boolean treadTheSnowWithoutTraceParticle){

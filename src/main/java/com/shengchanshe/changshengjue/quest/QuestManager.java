@@ -90,9 +90,15 @@ public class QuestManager {
         this.storagePath = getWorldSpecificDataDir();
         try {
             Files.createDirectories(storagePath);
-            this.playerAcceptedQuests = FMLEnvironment.dist.isClient() ?
-                    new ConcurrentHashMap<>() : // 客户端使用空Map
-                    QuestDataStorage.load(storagePath); // 服务端加载数据
+
+            // 统一使用复合判断条件
+            boolean isServerSide = FMLEnvironment.dist.isDedicatedServer() ||
+                    (FMLEnvironment.dist.isClient() && Minecraft.getInstance().isLocalServer());
+
+            this.playerAcceptedQuests = isServerSide ?
+                    QuestDataStorage.load(storagePath) : // 服务端/单人游戏加载数据
+                    new ConcurrentHashMap<>();           // 纯客户端使用空Map
+
         } catch (IOException e) {
             ChangShengJue.LOGGER.error("初始化任务数据失败", e);
             this.playerAcceptedQuests = new ConcurrentHashMap<>();
@@ -107,6 +113,7 @@ public class QuestManager {
         if (FMLEnvironment.dist.isDedicatedServer() ||
                 (FMLEnvironment.dist.isClient() && Minecraft.getInstance().isLocalServer())) {
             try {
+
                 return ServerLifecycleHooks.getCurrentServer()
                         .getWorldPath(LevelResource.ROOT)
                         .resolve("data")
@@ -117,12 +124,10 @@ public class QuestManager {
         }
 
         // 纯客户端或异常情况
-        return Path.of(".").resolve("temp_client_data").resolve(ChangShengJue.MOD_ID);
-
+        return null;
     }
 
     public void onWorldLoad() {
-        if (FMLEnvironment.dist.isClient()) return; // 客户端跳过
 
         Path path = getWorldSpecificDataDir();
         QuestDataStorage.initWorldData(path); // 强制初始化文件
@@ -214,7 +219,7 @@ public class QuestManager {
         if (npcQuest == null || !player.getUUID().equals(npcQuest.getAcceptedBy())) {
             return;
         }
-        syncQuestsToPlayer((ServerPlayer) player); // 增量同步
+
         // 获取玩家任务列表并匹配任务（通过固定ID比较）
         List<Quest> playerQuests = this.getPlayerQuests(player.getUUID());
         Optional<Quest> matchedQuest = playerQuests.stream()
@@ -237,9 +242,9 @@ public class QuestManager {
         // 持久化数据
         this.saveData();
 
+        syncQuestsToPlayer((ServerPlayer) player); // 增量同步
         // 刷新UI
         this.flushedContainer((ServerPlayer) player, gangLeader);
-
     }
     /**
      * 玩家刷新帮派任务
@@ -249,13 +254,13 @@ public class QuestManager {
         if (npcQuest == null || npcQuest.getAcceptedBy() != null) {
             return;
         }
-        syncQuestsToPlayer((ServerPlayer) player); // 增量同步
+
         // 立即刷新NPC任务（无论是否可重复）
         gangLeader.setQuest(generateNewQuestForNpc(gangLeader));
         // 持久化数据
         this.saveData();
+        syncQuestsToPlayer((ServerPlayer) player); // 增量同步
         // 刷新UI
-
         this.flushedContainer((ServerPlayer) player, gangLeader);
     }
     /**
@@ -267,7 +272,6 @@ public class QuestManager {
         if (npcQuest == null || !player.getUUID().equals(npcQuest.getAcceptedBy())) {
             return;
         }
-        syncQuestsToPlayer((ServerPlayer) player); // 增量同步
         // 获取玩家任务列表并匹配任务（通过固定ID比较）
         List<Quest> playerQuests = this.getPlayerQuests(player.getUUID());
         Optional<Quest> matchedQuest = playerQuests.stream()
@@ -306,10 +310,9 @@ public class QuestManager {
         gangLeader.setQuest(generateNewQuestForNpc(gangLeader));
         // 持久化数据
         this.saveData();
-
+        syncQuestsToPlayer((ServerPlayer) player); // 增量同步
         // 刷新UI
         this.flushedContainer((ServerPlayer) player, gangLeader);
-
     }
     /**
      * 玩家提交背包任务
@@ -319,7 +322,7 @@ public class QuestManager {
             if (quest == null || !player.getUUID().equals(quest.getAcceptedBy())) {
                 return;
             }
-            syncQuestsToPlayer((ServerPlayer) player); // 增量同步
+
             List<Quest> playerQuests = this.getPlayerQuests(player.getUUID());
             Optional<Quest> matchedQuest = playerQuests.stream()
                     .filter(q -> q.getQuestId().equals(quest.getQuestId())) // 使用固定ID比较
@@ -353,6 +356,7 @@ public class QuestManager {
                 completedNonRepeatable.add(actualQuest.getQuestId()); // 记录已完成
             }
             this.saveData();
+            syncQuestsToPlayer((ServerPlayer) player); // 增量同步
             ChangShengJueMessages.sendToPlayer(new RefreshPlayerQuestScreenPacket(), (ServerPlayer) player);
         }
     }
@@ -364,7 +368,7 @@ public class QuestManager {
         if (quest == null || !player.getUUID().equals(quest.getAcceptedBy())) {
             return;
         }
-        syncQuestsToPlayer((ServerPlayer) player); // 增量同步
+
         // 获取玩家任务列表并匹配任务（通过固定ID比较）
         List<Quest> playerQuests = this.getPlayerQuests(player.getUUID());
         Optional<Quest> matchedQuest = playerQuests.stream()
@@ -382,7 +386,7 @@ public class QuestManager {
         this.removeQuest(actualQuest, playerQuests);
         this.saveData();
 
-
+        syncQuestsToPlayer((ServerPlayer) player); // 增量同步
         ChangShengJueMessages.sendToPlayer(new RefreshPlayerQuestScreenPacket(), (ServerPlayer) player);
     }
 

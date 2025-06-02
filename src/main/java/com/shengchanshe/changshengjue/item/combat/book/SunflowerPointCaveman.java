@@ -77,7 +77,7 @@ public class SunflowerPointCaveman extends Item {
                             LivingEntity livingEntity = (LivingEntity) entity;
                             float probability = player.getRandom().nextFloat();
                             if (probability < 0.25F) {
-                                int duration = 100;
+                                int duration = 300;
                                 int level1 = 0;
 
                                 if (livingEntity.hasEffect(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get())) {
@@ -153,13 +153,13 @@ public class SunflowerPointCaveman extends Item {
                                     float probability = player.getRandom().nextFloat();
                                     if (probability < 0.25F) {
                                         int duration = 100;
-                                        int level1 = 0;
+                                        int level1 = 1;
 
                                         if (pEntity.hasEffect(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get())) {
                                             MobEffectInstance oldEffect = pEntity.getEffect(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get());
                                             if (oldEffect != null) {
-                                                int increment = pEntity instanceof Zombie ? 2 : 1;
-                                                level1 = Math.min(oldEffect.getAmplifier() + increment, 4);
+                                                int increment = pEntity instanceof Zombie ? 3 : 2;
+                                                level1 = Math.min((oldEffect.getAmplifier() + increment), 4);
                                             }
                                         }
 

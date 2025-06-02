@@ -79,7 +79,7 @@ public class SoftSword extends Sword implements GeoItem {
                                 }
                             }
                         } else {
-                            if (probability < (defaultProbability * 1.2F)) {
+                            if (probability < (defaultProbability * 1.5F)) {
                                 if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
                                     livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
                                 }
@@ -174,15 +174,15 @@ public class SoftSword extends Sword implements GeoItem {
                         float probability = player.getRandom().nextFloat();
                         float defaultProbability = 0.15F;
                         if (martialArtsLevel < 2) {
-                            damage = (this.getDamage() + 2) * 1.8F;
+                            damage = (this.getDamage() + 2) * 2.2F;
                             if (probability < defaultProbability) {
                                 if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
                                     ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, false), player);
                                 }
                             }
                         } else {
-                            damage = (this.getDamage() + 2) * 2.0F;
-                            if (probability < (defaultProbability * 1.2F)) {
+                            damage = (this.getDamage() + 2) * 2.5F;
+                            if (probability < (defaultProbability * 1.5F)) {
                                 if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
                                     ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, false), player);
                                 }

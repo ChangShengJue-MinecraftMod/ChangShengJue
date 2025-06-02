@@ -9,6 +9,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraftforge.common.Tags;
 
 public class CSJTags {
@@ -73,6 +74,19 @@ public class CSJTags {
 
         public static TagKey<EntityType<?>> create(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(ChangShengJue.MOD_ID, name));
+        }
+    }
+
+    public static class StructureTypes {
+        public static final TagKey<Structure> SANDSTONE_CASTLE = create("sandstone_castle");
+        public static final TagKey<Structure> PIT_YARD = create("pit_yard");
+        public static final TagKey<Structure> SI_HE_YUAN = create("si_he_yuan");
+        public static final TagKey<Structure> SU_PAI_VILLAGE = create("su_pai_village");
+        public static final TagKey<Structure> WAN_PAI_VILLAGE = create("wan_pai_village");
+        public static final TagKey<Structure> FORTRESSES = create("fortresses");
+
+        public static TagKey<Structure> create(String name) {
+            return TagKey.create(Registries.STRUCTURE, new ResourceLocation(ChangShengJue.MOD_ID, name));
         }
     }
 

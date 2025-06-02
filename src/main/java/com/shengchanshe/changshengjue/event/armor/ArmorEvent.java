@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.event.armor;
 
 import com.shengchanshe.changshengjue.damage.CSJDamageTypes;
+import com.shengchanshe.changshengjue.item.combat.armor.ChangShengJueArmorItem;
 import com.shengchanshe.changshengjue.item.combat.armor.cotton.CottonArmor;
 import com.shengchanshe.changshengjue.item.combat.armor.flying_fish_robe.FlyingFishRobe;
 import com.shengchanshe.changshengjue.item.combat.armor.mountain_pattern_armor.MountainPatternArmor;
@@ -39,20 +40,12 @@ public class ArmorEvent {
                     }
                 }
                 if (source.is(CSJDamageTypes.MARTIAL_ARTS)) {
-                    if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof CottonArmor) {
-                        event.setAmount(originalDamage * (damageMultiplier - 0.3F));
-                    }else if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof TaoistRobes){
-                        event.setAmount(originalDamage * (damageMultiplier - 0.25F));
-                    }else if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ChineseWeddingDress){
-                        event.setAmount(originalDamage * (damageMultiplier - 0.2F));
-                    }else if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof MountainPatternArmor){
-                        event.setAmount(originalDamage * (damageMultiplier - 0.3F));
-                    }else if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof WalkerSet){
-                        event.setAmount(originalDamage * (damageMultiplier - 0.25F));
-                    }else if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof FlyingFishRobe){
-                        event.setAmount(originalDamage * (damageMultiplier - 0.25F));
-                    }else if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof QiTianDaSheng){
-                        event.setAmount(originalDamage * (damageMultiplier - 0.4F));
+                    if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ChangShengJueArmorItem changShengJueArmorItem) {
+                        float damageReduction = changShengJueArmorItem.getDamageReduction(entity.getItemBySlot(EquipmentSlot.CHEST));
+                        event.setAmount(originalDamage * (damageMultiplier - damageReduction));
+                    }else if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof QiTianDaSheng qiTianDaSheng){
+                        float damageReduction = qiTianDaSheng.getDamageReduction(entity.getItemBySlot(EquipmentSlot.CHEST));
+                        event.setAmount(originalDamage * (damageMultiplier - damageReduction));
                     }else {
                         event.setAmount(originalDamage * damageMultiplier);
                     }

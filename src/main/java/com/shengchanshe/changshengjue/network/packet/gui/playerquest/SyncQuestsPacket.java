@@ -22,9 +22,11 @@ public class SyncQuestsPacket {
     }
 
     public SyncQuestsPacket(FriendlyByteBuf buf) {
-        this.quests = QuestManager.getInstance().decodeQuests(buf);
-        this.completedQuests = buf.readCollection(HashSet::new, FriendlyByteBuf::readUUID);
-        this.completionCounts = buf.readMap(FriendlyByteBuf::readUUID, FriendlyByteBuf::readInt);
+        this(
+                QuestManager.getInstance().decodeQuests(buf), // 静态方法避免实例依赖
+                buf.readCollection(HashSet::new, FriendlyByteBuf::readUUID),
+                buf.readMap(FriendlyByteBuf::readUUID, FriendlyByteBuf::readInt)
+        );
     }
 
     public void encode(FriendlyByteBuf buf) {
@@ -37,11 +39,11 @@ public class SyncQuestsPacket {
         ctx.get().enqueueWork(() -> {
             // 客户端更新本地数据
             // 纯客户端才更新缓存
-            if (!Minecraft.getInstance().isLocalServer()) {
+            if (ctx.get().getDirection().getReceptionSide().isClient()) {
                 ClientQuestDataCache.update(
-                        this.quests,
-                        this.completedQuests,
-                        this.completionCounts
+                    this.quests,
+                    this.completedQuests,
+                    this.completionCounts
                 );
             }
 

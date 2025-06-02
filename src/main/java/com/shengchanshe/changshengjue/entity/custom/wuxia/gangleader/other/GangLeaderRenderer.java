@@ -73,6 +73,9 @@ public class GangLeaderRenderer extends DynamicGeoEntityRenderer<GangLeader> {
         this.addRenderLayer(new BlockAndItemGeoLayer<>(this) {
             @Nullable
             protected ItemStack getStackForBone(GeoBone bone, GangLeader animatable) {
+                if (!animatable.isAggressive()) {
+                    return null;
+                }
                 ItemStack var10000;
                 switch (bone.getName()) {
                     case "bipedHandLeft" -> var10000 = animatable.isLeftHanded() ? GangLeaderRenderer.this.mainHandItem : GangLeaderRenderer.this.offhandItem;

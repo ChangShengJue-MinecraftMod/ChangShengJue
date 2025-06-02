@@ -37,6 +37,9 @@ public class ClubbedMingXiaRenderer extends DynamicGeoEntityRenderer<ClubbedMing
         this.addRenderLayer(new BlockAndItemGeoLayer<>(this) {
             @Nullable
             protected ItemStack getStackForBone(GeoBone bone, ClubbedMingXia animatable) {
+                if (!animatable.isAggressive()) {
+                    return null;
+                }
                 ItemStack var10000;
                 switch (bone.getName()) {
                     case "bipedHandLeft" -> var10000 = animatable.isLeftHanded() ? ClubbedMingXiaRenderer.this.mainHandItem : ClubbedMingXiaRenderer.this.offhandItem;

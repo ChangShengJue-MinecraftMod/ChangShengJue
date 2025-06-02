@@ -28,12 +28,8 @@
         "projection": "rigid",
         "processors": [
           {
-            "processor_type": "minecraft:block_ignore",
-            "blocks": [
-              {
-                "Name": "minecraft:air"
-              }
-            ]
+            "processor_type": "minecraft:block_rot",
+            "integrity": 0.9
           }
         ]
       }
