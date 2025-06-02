@@ -44,8 +44,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class StakesEntity extends LivingEntity {
-    public static final int WOBBLE_TIME = 5;
-    private static final boolean ENABLE_ARMS = true;
     private static final Rotations DEFAULT_HEAD_POSE = new Rotations(0.0F, 0.0F, 0.0F);
     private static final Rotations DEFAULT_BODY_POSE = new Rotations(0.0F, 0.0F, 0.0F);
     private static final Rotations DEFAULT_LEFT_ARM_POSE = new Rotations(-10.0F, 0.0F, -10.0F);
@@ -54,16 +52,6 @@ public class StakesEntity extends LivingEntity {
     private static final Rotations DEFAULT_RIGHT_LEG_POSE = new Rotations(1.0F, 0.0F, 1.0F);
     private static final EntityDimensions MARKER_DIMENSIONS = new EntityDimensions(0.0F, 0.0F, true);
     private static final EntityDimensions BABY_DIMENSIONS;
-    private static final double FEET_OFFSET = 0.1;
-    private static final double CHEST_OFFSET = 0.9;
-    private static final double LEGS_OFFSET = 0.4;
-    private static final double HEAD_OFFSET = 1.6;
-    public static final int DISABLE_TAKING_OFFSET = 8;
-    public static final int DISABLE_PUTTING_OFFSET = 16;
-    public static final int CLIENT_FLAG_SMALL = 1;
-    public static final int CLIENT_FLAG_SHOW_ARMS = 4;
-    public static final int CLIENT_FLAG_NO_BASEPLATE = 8;
-    public static final int CLIENT_FLAG_MARKER = 16;
     public static final EntityDataAccessor<Byte> DATA_CLIENT_FLAGS;
     public static final EntityDataAccessor<Rotations> DATA_HEAD_POSE;
     public static final EntityDataAccessor<Rotations> DATA_BODY_POSE;
@@ -305,88 +293,10 @@ public class StakesEntity extends LivingEntity {
 
     }
 
-//    public InteractionResult interactAt(Player pPlayer, Vec3 pVec, InteractionHand pHand) {
-//        ItemStack itemstack = pPlayer.getItemInHand(pHand);
-//        if (!this.isMarker() && !itemstack.is(Items.NAME_TAG)) {
-//            if (pPlayer.isSpectator()) {
-//                return InteractionResult.SUCCESS;
-//            } else if (pPlayer.level().isClientSide) {
-//                return InteractionResult.CONSUME;
-//            } else {
-//                EquipmentSlot equipmentslot = Mob.getEquipmentSlotForItem(itemstack);
-//                if (itemstack.isEmpty()) {
-//                    EquipmentSlot equipmentslot1 = this.getClickedSlot(pVec);
-//                    EquipmentSlot equipmentslot2 = this.isDisabled(equipmentslot1) ? equipmentslot : equipmentslot1;
-//                    if (this.hasItemInSlot(equipmentslot2) && this.swapItem(pPlayer, equipmentslot2, itemstack, pHand)) {
-//                        return InteractionResult.SUCCESS;
-//                    }
-//                } else {
-//                    if (this.isDisabled(equipmentslot)) {
-//                        return InteractionResult.FAIL;
-//                    }
-//
-//                    if (equipmentslot.getType() == EquipmentSlot.Type.HAND && !this.isShowArms()) {
-//                        return InteractionResult.FAIL;
-//                    }
-//
-//                    if (this.swapItem(pPlayer, equipmentslot, itemstack, pHand)) {
-//                        return InteractionResult.SUCCESS;
-//                    }
-//                }
-//
-//                return InteractionResult.PASS;
-//            }
-//        } else {
-//            return InteractionResult.PASS;
-//        }
-//    }
-
-//    private EquipmentSlot getClickedSlot(Vec3 pVector) {
-//        EquipmentSlot equipmentslot = EquipmentSlot.MAINHAND;
-//        boolean flag = this.isSmall();
-//        double d0 = flag ? pVector.y * 2.0 : pVector.y;
-//        EquipmentSlot equipmentslot1 = EquipmentSlot.FEET;
-//        if (d0 >= 0.1 && d0 < 0.1 + (flag ? 0.8 : 0.45) && this.hasItemInSlot(equipmentslot1)) {
-//            equipmentslot = EquipmentSlot.FEET;
-//        } else if (d0 >= 0.9 + (flag ? 0.3 : 0.0) && d0 < 0.9 + (flag ? 1.0 : 0.7) && this.hasItemInSlot(EquipmentSlot.CHEST)) {
-//            equipmentslot = EquipmentSlot.CHEST;
-//        } else if (d0 >= 0.4 && d0 < 0.4 + (flag ? 1.0 : 0.8) && this.hasItemInSlot(EquipmentSlot.LEGS)) {
-//            equipmentslot = EquipmentSlot.LEGS;
-//        } else if (d0 >= 1.6 && this.hasItemInSlot(EquipmentSlot.HEAD)) {
-//            equipmentslot = EquipmentSlot.HEAD;
-//        } else if (!this.hasItemInSlot(EquipmentSlot.MAINHAND) && this.hasItemInSlot(EquipmentSlot.OFFHAND)) {
-//            equipmentslot = EquipmentSlot.OFFHAND;
-//        }
-//
-//        return equipmentslot;
-//    }
 
     private boolean isDisabled(EquipmentSlot pSlot) {
         return (this.disabledSlots & 1 << pSlot.getFilterFlag()) != 0 || pSlot.getType() == EquipmentSlot.Type.HAND && !this.isShowArms();
     }
-
-//    private boolean swapItem(Player pPlayer, EquipmentSlot pSlot, ItemStack pStack, InteractionHand pHand) {
-//        ItemStack itemstack = this.getItemBySlot(pSlot);
-//        if (!itemstack.isEmpty() && (this.disabledSlots & 1 << pSlot.getFilterFlag() + 8) != 0) {
-//            return false;
-//        } else if (itemstack.isEmpty() && (this.disabledSlots & 1 << pSlot.getFilterFlag() + 16) != 0) {
-//            return false;
-//        } else if (pPlayer.getAbilities().instabuild && itemstack.isEmpty() && !pStack.isEmpty()) {
-//            this.setItemSlot(pSlot, pStack.copyWithCount(1));
-//            return true;
-//        } else if (!pStack.isEmpty() && pStack.getCount() > 1) {
-//            if (!itemstack.isEmpty()) {
-//                return false;
-//            } else {
-//                this.setItemSlot(pSlot, pStack.split(1));
-//                return true;
-//            }
-//        } else {
-//            this.setItemSlot(pSlot, pStack);
-//            pPlayer.setItemInHand(pHand, itemstack);
-//            return true;
-//        }
-//    }
     public boolean hurt(DamageSource pSource, float pAmount) {
         Level level = this.level();
         if (!level.isClientSide && !this.isRemoved()) {
@@ -398,6 +308,9 @@ public class StakesEntity extends LivingEntity {
                 return true; // 实体对所有伤害免疫
             }else {
 //                GeShanDaNiu.comprehend(entity,level);
+                GoldenBellJar.comprehend(entity,level);
+                QianKunDaNuoYi.comprehend(entity,level);
+                ImmortalMiracle.comprehend(entity,level);
                 TheClassicsOfTendonChanging.comprehend(entity,level);
                 WuGangCutGui.comprehend(entity,level);
                 YugongMovesMountains.comprehend(entity,level);

@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
+import com.shengchanshe.changshengjue.item.combat.book.GoldenBellJar;
 import com.shengchanshe.changshengjue.item.combat.glove.GoldThreadGlove;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -51,7 +52,7 @@ public class GoldenBellJarHudOverlay {
     // 通过这个属性进行绘制，这个是一个IguiOverLay的接口，实现这个接口，注册他。
     // 通过lammbd表达式实现。
     public static final IGuiOverlay HUD_GOLDEN_BELL_JAR = (gui, guiGraphics, partialTick, screenWidth, screenHeight) -> {
-        if (shouldDisplayHud() && GoldenBellJarClientData.isSkillActive()) {
+        if (GoldenBellJarClientData.isSkillActive() && frameTime() > 0) {
             boolean goldenBellJarComprehend = GoldenBellJarClientData.isGoldenBellJarComprehend();
             if (goldenBellJarComprehend) {
                 int getGoldenBellJarLevel = GoldenBellJarClientData.getGoldenBellJarLevel();
@@ -61,9 +62,11 @@ public class GoldenBellJarHudOverlay {
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                CSJDisplayHud.displayHudPermanent(getGoldenBellJarLevel, frameTime(), 160, playerCanOpened(), guiGraphics, GOLDEN_BELL_JAR, GOLDEN_BELL_JAR_1, GOLDEN_BELL_JAR_2, COOLING, gui.getFont(), x, y);
+                CSJDisplayHud.displayHudPermanent(getGoldenBellJarLevel, frameTime(), 160,
+                        playerCanOpened(), guiGraphics, GOLDEN_BELL_JAR, GOLDEN_BELL_JAR_1, GOLDEN_BELL_JAR_2, COOLING, gui.getFont(), x, y + 25);
                 CSJDisplayHud.displayHudPermanent(guiGraphics, gui.getFont(),
-                        ChatFormatting.BOLD + I18n.get("item."+ChangShengJue.MOD_ID+".golden_bell_jar"), x, y, ChatFormatting.GOLD.getColor());
+                        ChatFormatting.BOLD + I18n.get("item."+ChangShengJue.MOD_ID+".golden_bell_jar"),
+                        x, y + 25, ChatFormatting.GOLD.getColor());
 //        boolean isSkillActive = GoldenBellJarClientData.isSkillActive();
 //        if (goldenBellJarComprehend && isSkillActive){
 //            int getGoldenBellJarLevel = GoldenBellJarClientData.getGoldenBellJarLevel();

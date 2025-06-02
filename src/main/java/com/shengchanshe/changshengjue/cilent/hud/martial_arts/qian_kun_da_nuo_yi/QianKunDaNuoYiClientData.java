@@ -1,5 +1,7 @@
 package com.shengchanshe.changshengjue.cilent.hud.martial_arts.qian_kun_da_nuo_yi;
 
+import java.util.UUID;
+
 public class QianKunDaNuoYiClientData {
     // 玩家的技能等级和是否学习了技能
     private static int qianKunDaNuoYiLevel;
@@ -10,6 +12,9 @@ public class QianKunDaNuoYiClientData {
     private static float qianKunDaNuoYiDachengTick;//技能大成特效计时
     private static boolean qianKunDaNuoYiParticle;//技能特效显示
     private static float qianKunDaNuoYiUseCooldownMax;//技能特效显示
+    private static int recordTime;
+    private static float recordDamage;
+    private static UUID recordDamageSource;
     // 技能状态
     private static boolean skillActive;
     //获取技能等级
@@ -82,5 +87,29 @@ public class QianKunDaNuoYiClientData {
 
     public static void setQianKunDaNuoYiUseCooldownMax(float qianKunDaNuoYiUseCooldownMax) {
         QianKunDaNuoYiClientData.qianKunDaNuoYiUseCooldownMax = qianKunDaNuoYiUseCooldownMax;
+    }
+
+    public static int getRecordTime() {
+        return recordTime;
+    }
+
+    public static void setRecordTime(int recordTime) {
+        QianKunDaNuoYiClientData.recordTime = recordTime;
+    }
+
+    public static float getRecordDamage() {
+        return recordDamage;
+    }
+
+    public static void setRecordDamage(float recordDamage) {
+        QianKunDaNuoYiClientData.recordDamage = recordDamage;
+    }
+
+    public static UUID getRecordDamageSource() {
+        return recordDamageSource;
+    }
+
+    public static void setRecordDamageSource(UUID recordDamageSource) {
+        QianKunDaNuoYiClientData.recordDamageSource = recordDamageSource;
     }
 }
