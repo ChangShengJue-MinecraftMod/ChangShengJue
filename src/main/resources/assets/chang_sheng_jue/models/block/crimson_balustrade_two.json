@@ -1,5 +1,5 @@
 {
-	"parent" : "chang_sheng_jue:block/balustrade_side",
+	"parent" : "chang_sheng_jue:block/balustrade_two",
 	"textures": {
 		"8": "minecraft:block/stripped_crimson_stem",
 		"particle": "minecraft:block/stripped_crimson_stem"

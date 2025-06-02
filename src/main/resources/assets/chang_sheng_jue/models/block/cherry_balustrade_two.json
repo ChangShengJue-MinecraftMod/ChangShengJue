@@ -1,5 +1,5 @@
 {
-	"parent" : "chang_sheng_jue:block/balustrade_post",
+	"parent" : "chang_sheng_jue:block/balustrade_two",
 	"textures": {
 		"8": "minecraft:block/stripped_cherry_log",
 		"particle": "minecraft:block/stripped_cherry_log"

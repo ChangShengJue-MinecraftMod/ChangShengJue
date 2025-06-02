@@ -6,6 +6,8 @@ import com.shengchanshe.changshengjue.tags.CSJTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
@@ -552,6 +554,21 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.WHITE_JADE_WALL.get())
                 .add(ChangShengJueBlocks.WHITE_BRICKS_VERTICAL_WALLS.get())
                 .add(ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get())
-                .add( ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get());
+                .add(ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get());
+
+
+        this.tag(BlockTags.SAPLINGS)
+                .add(ChangShengJueBlocks.MANGO_SAPLING.get())
+                .add(ChangShengJueBlocks.GUI_HUA_SAPLING.get())
+                .add(ChangShengJueBlocks.MEI_HUA_SAPLING.get())
+                .add(ChangShengJueBlocks.BANANA_SAPLING.get())
+                .add(ChangShengJueBlocks.PEAR_SAPLING.get())
+                .add(ChangShengJueBlocks.LICHEE_SAPLING.get())
+                .add(ChangShengJueBlocks.DURIAN_SAPLING.get())
+                .add(ChangShengJueBlocks.ZI_TAN_SAPLING.get())
+                .add(ChangShengJueBlocks.POPLAR_SAPLING.get())
+                .add(ChangShengJueBlocks.MULBERRY_SAPLING.get())
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get())
+                .add(ChangShengJueBlocks.JI_CHI_MU_SAPLING.get());
     }
 }

@@ -5,6 +5,7 @@ import com.shengchanshe.changshengjue.block.cropper.*;
 import com.shengchanshe.changshengjue.block.custom.*;
 import com.shengchanshe.changshengjue.block.custom.balustrade.Balustrade;
 import com.shengchanshe.changshengjue.block.custom.balustrade.Guardrail;
+import com.shengchanshe.changshengjue.block.custom.balustrade.Wooden_Balustrade;
 import com.shengchanshe.changshengjue.block.custom.eescalator.Eescalator;
 import com.shengchanshe.changshengjue.block.custom.furniture.chair.*;
 import com.shengchanshe.changshengjue.block.custom.furniture.desk.BookDesk;
@@ -940,52 +941,52 @@ public class ChangShengJueBlocks {
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
 
     public static final RegistryObject<Block> OAK_BALUSTRADE = registerBlock("oak_balustrade",
-            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
                     .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
 
     public static final RegistryObject<Block> SPRUCE_BALUSTRADE = registerBlock("spruce_balustrade",
-            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
                     .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
 
     public static final RegistryObject<Block> BIRCH_BALUSTRADE = registerBlock("birch_balustrade",
-            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
                     .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
 
     public static final RegistryObject<Block> JUNGLE_BALUSTRADE = registerBlock("jungle_balustrade",
-            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
                     .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
 
     public static final RegistryObject<Block> ACACIA_BALUSTRADE = registerBlock("acacia_balustrade",
-            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
                     .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
 
     public static final RegistryObject<Block> MANGROVE_BALUSTRADE = registerBlock("mangrove_balustrade",
-            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
                     .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
 
     public static final RegistryObject<Block> CHERRY_BALUSTRADE = registerBlock("cherry_balustrade",
-            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
                     .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
 
     public static final RegistryObject<Block> DARK_OAK_BALUSTRADE = registerBlock("dark_oak_balustrade",
-            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
                     .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
 
     public static final RegistryObject<Block> CRIMSON_BALUSTRADE = registerBlock("crimson_balustrade",
-            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
                     .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
 
     public static final RegistryObject<Block> WARPED_BALUSTRADE = registerBlock("warped_balustrade",
-            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
+            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
                     .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
                     .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
 
