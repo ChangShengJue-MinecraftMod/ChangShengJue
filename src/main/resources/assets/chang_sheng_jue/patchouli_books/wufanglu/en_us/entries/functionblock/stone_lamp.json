@@ -5,10 +5,16 @@
   "icon": "chang_sheng_jue:stone_lamps_block",
   "pages": [
     {
-      "title": "石灯",
+      "title": "石灯底座",
       "type": "patchouli:spotlight",
-      "item": "chang_sheng_jue:stone_lamps_block",
-      "text": "石灯整体分为底座和石灯，底座除装饰外无其他作用,石灯分为点燃和未燃两个状态,使用打火石进行点燃，用作光源，光照亮度等同于烛台"
+      "item": "chang_sheng_jue:stone_lamps_base_block",
+      "text": "石灯的底座，除装饰外无其他作用"
+    },
+    {
+       "title": "石灯",
+       "type": "patchouli:spotlight",
+       "item": "chang_sheng_jue:stone_lamps_block",
+       "text": "分为点燃和未燃两个状态$(br)使用打火石进行点燃，用作光源，光照亮度等同于烛台"
     },
     {
       "type": "patchouli:crafting",

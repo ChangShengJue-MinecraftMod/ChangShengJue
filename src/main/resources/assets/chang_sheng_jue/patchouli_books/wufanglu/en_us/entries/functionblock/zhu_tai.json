@@ -7,7 +7,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:zhu_tai",
-      "text": "作用等同火把，照亮半径为12格"
+      "text": "作用同火把，照亮半径12格范围。"
     },
     {
       "type": "patchouli:crafting",

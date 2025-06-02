@@ -1022,6 +1022,24 @@ public class ChangShengJueBlocks {
     //霸王拳
     public static final RegistryObject<Block> MANGROVE_OVERLORD_FIST = registerBlock("mangrove_overlord_fist",
             ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> BIRCH_OVERLORD_FIST = registerBlock("birch_overlord_fist",
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> JUNGLE_OVERLORD_FIST = registerBlock("jungle_overlord_fist",
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> CRIMSON_OVERLORD_FIST = registerBlock("crimson_overlord_fist",
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> WARPED_OVERLORD_FIST = registerBlock("warped_overlord_fist",
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> ACACIA_OVERLORD_FIST = registerBlock("acacia_overlord_fist",
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> DARK_OAK_OVERLORD_FIST = registerBlock("dark_oak_overlord_fist",
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> OAK_OVERLORD_FIST = registerBlock("oak_overlord_fist",
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> CHERRY_OVERLORD_FIST = registerBlock("cherry_overlord_fist",
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SPRUCE_OVERLORD_FIST = registerBlock("spruce_overlord_fist",
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
     
     
     

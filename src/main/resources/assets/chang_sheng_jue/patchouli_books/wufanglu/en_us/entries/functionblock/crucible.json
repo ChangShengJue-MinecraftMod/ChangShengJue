@@ -8,7 +8,7 @@
       "title": "坩埚",
       "type": "patchouli:crafting",
       "recipe": "chang_sheng_jue:crucible",
-      "text": "是制作铜钱、元宝的重要道具，可与8个铜/银/金合成为 坩埚（碎铜/银/金）$(br)通过熔炉可以将坩埚内的金属固体熔炼成金属液体以便铸造货币。"
+      "text": "是制作铜钱、元宝的重要道具$(br)可与8个铜/银/金合成为 坩埚（碎铜/银/金）$(br)【坩埚（碎铜/银/金）】在熔炉中烧制可获得【坩埚（铜/银/金液）】"
     },
     {
       "type": "patchouli:crafting",

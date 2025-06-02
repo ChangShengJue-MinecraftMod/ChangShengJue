@@ -7,7 +7,7 @@
     {
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:bullions_casting_molds",
-      "text": "用于铸造元宝，将模具右键放置在地面，手持坩埚（金/银水）右键倒入"
+      "text": "将模具右键放置在地面，手持【坩埚（金/银液）】右键倒入"
     },
     {
       "type": "patchouli:crafting",

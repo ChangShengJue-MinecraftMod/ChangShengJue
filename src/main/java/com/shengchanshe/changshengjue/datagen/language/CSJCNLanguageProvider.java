@@ -263,8 +263,8 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_PARCEL.get(), "大将军明光铠包裹");
 
         //效果
-        this.add(ChangShengJueItems.TRAUMA_EFFECT.get(), "内伤");
-        this.add(ChangShengJueItems.INTERNAL_INJURY_EFFECT.get(), "外伤");
+        this.add(ChangShengJueItems.TRAUMA_EFFECT.get(), "外伤");
+        this.add(ChangShengJueItems.INTERNAL_INJURY_EFFECT.get(), "内伤");
 
         //武功秘籍物品
         this.add(ChangShengJueItems.IMMORTAL_MIRACLE.get(),"不死神功");
@@ -565,7 +565,18 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.WHITE_BRICKS_VERTICAL_WALLS.get(),"白砖竖墙");
         this.add(ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get(),"黑石竖墙");
         this.add(ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get(),"青石竖墙");
+
+
         this.add(ChangShengJueBlocks.MANGROVE_OVERLORD_FIST.get(),"红木霸王拳");
+        this.add(ChangShengJueBlocks.BIRCH_OVERLORD_FIST.get(),"白桦木霸王拳");
+        this.add(ChangShengJueBlocks.JUNGLE_OVERLORD_FIST.get(), "丛林木霸王拳");
+        this.add(ChangShengJueBlocks.CRIMSON_OVERLORD_FIST.get(), "绯红木霸王拳");
+        this.add(ChangShengJueBlocks.WARPED_OVERLORD_FIST.get(), "诡异木霸王拳");
+        this.add(ChangShengJueBlocks.ACACIA_OVERLORD_FIST.get(), "金合欢霸王拳");
+        this.add(ChangShengJueBlocks.DARK_OAK_OVERLORD_FIST.get(), "深色橡木霸王拳");
+        this.add(ChangShengJueBlocks.OAK_OVERLORD_FIST.get(), "橡木霸王拳");
+        this.add(ChangShengJueBlocks.CHERRY_OVERLORD_FIST.get(), "樱花木霸王拳");
+        this.add(ChangShengJueBlocks.SPRUCE_OVERLORD_FIST.get(), "云杉木霸王拳");
 
 
         this.add(ChangShengJueBlocks.STONE_LAMPS_BASE_BLOCK.get(),"石灯底座");

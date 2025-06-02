@@ -471,8 +471,17 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.CRIMSON_BALUSTRADE.get());
                 output.accept(ChangShengJueBlocks.WARPED_BALUSTRADE.get());
                 output.accept(ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get());
-                output.accept(ChangShengJueBlocks.MANGROVE_OVERLORD_FIST.get());
 
+                output.accept(ChangShengJueBlocks.MANGROVE_OVERLORD_FIST.get());
+                output.accept(ChangShengJueBlocks.BIRCH_OVERLORD_FIST.get());
+                output.accept(ChangShengJueBlocks.JUNGLE_OVERLORD_FIST.get());
+                output.accept(ChangShengJueBlocks.CRIMSON_OVERLORD_FIST.get());
+                output.accept(ChangShengJueBlocks.WARPED_OVERLORD_FIST.get());
+                output.accept(ChangShengJueBlocks.ACACIA_OVERLORD_FIST.get());
+                output.accept(ChangShengJueBlocks.DARK_OAK_OVERLORD_FIST.get());
+                output.accept(ChangShengJueBlocks.OAK_OVERLORD_FIST.get());
+                output.accept(ChangShengJueBlocks.CHERRY_OVERLORD_FIST.get());
+                output.accept(ChangShengJueBlocks.SPRUCE_OVERLORD_FIST.get());
                 output.accept(ChangShengJueBlocks.WIND_CHIME.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_FUNCTIONAL = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_functional",()-> CreativeModeTab.builder()
