@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.entity.villagers.worker;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.worker.KilnWorkerMenu;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.worker.KilnWorkerScreen;
+import com.shengchanshe.changshengjue.entity.custom.goal.ReturnToSpawnGoal;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.world.village.WuXiaMerahantTrades;
 import net.minecraft.nbt.CompoundTag;
@@ -59,6 +60,7 @@ public class KilnWorker extends AbstractVillager {
         this.goalSelector.addGoal(1, new PanicGoal(this, 0.6D));
         this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9, 32.0F));
         this.goalSelector.addGoal(2, new MoveBackToVillageGoal(this, 0.6, false));
+        this.goalSelector.addGoal(5, new ReturnToSpawnGoal(this, 0.6, 16, 100));
         this.goalSelector.addGoal(4, new GolemRandomStrollInVillageGoal(this, 0.6));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));

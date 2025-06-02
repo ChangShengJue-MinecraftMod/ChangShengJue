@@ -25,8 +25,8 @@
       "item": "#chang_sheng_jue:tea",
       "count": {
         "type": "minecraft:uniform",
-        "max": 16.0,
-        "min": 8.0
+        "max": 8.0,
+        "min": 4.0
       }
     }
   ],

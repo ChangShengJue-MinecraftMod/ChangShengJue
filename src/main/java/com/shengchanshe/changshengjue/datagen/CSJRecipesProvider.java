@@ -1115,7 +1115,7 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("# #")
                 .pattern("###")
                 .pattern("###")
-                .unlockedBy("has_leather", has(ChangShengJueItems.DEERSKIN.get())).save(consumer);
+                .unlockedBy("has_leather", has(Tags.Items.LEATHER)).save(consumer);
 
         //皮革护腿
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.LEATHER_LEGGINGS,1)
@@ -1123,15 +1123,28 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("###")
                 .pattern("# #")
                 .pattern("# #")
-                .unlockedBy("has_leather", has(ChangShengJueItems.DEERSKIN.get())).save(consumer);
-
-
+                .unlockedBy("has_leather", has(Tags.Items.LEATHER)).save(consumer);
         //皮革靴子
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, Items.LEATHER_BOOTS,1)
                 .define('#', Ingredient.of(Tags.Items.LEATHER))
                 .pattern("# #")
                 .pattern("# #")
-                .unlockedBy("has_leather", has(ChangShengJueItems.DEERSKIN.get())).save(consumer);
+                .unlockedBy("has_leather", has(Tags.Items.LEATHER)).save(consumer);
+
+        //金丝软甲
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.GOLD_SILK_SOFT_ARMOR.get(),1)
+                .define('#', Ingredient.of(Tags.Items.INGOTS_GOLD))
+                .pattern("# #")
+                .pattern("###")
+                .pattern("# #")
+                .unlockedBy("has_leather", has(Tags.Items.INGOTS_GOLD)).save(consumer);
+        //皮内甲
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.LEATHER_INNER_ARMOR.get(),1)
+                .define('#', Ingredient.of(Tags.Items.LEATHER))
+                .pattern("# #")
+                .pattern("###")
+                .pattern("   ")
+                .unlockedBy("has_leather", has(Tags.Items.LEATHER)).save(consumer);
 
         //练功木桩
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, ChangShengJueItems.STAKES.get(),1)

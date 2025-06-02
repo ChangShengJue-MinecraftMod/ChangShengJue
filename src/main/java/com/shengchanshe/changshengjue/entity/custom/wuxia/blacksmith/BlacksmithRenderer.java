@@ -37,6 +37,9 @@ public class BlacksmithRenderer extends DynamicGeoEntityRenderer<Blacksmith> {
         this.addRenderLayer(new BlockAndItemGeoLayer<>(this) {
             @Nullable
             protected ItemStack getStackForBone(GeoBone bone, Blacksmith animatable) {
+                if (!animatable.isAggressive()) {
+                    return null;
+                }
                 ItemStack var10000;
                 switch (bone.getName()) {
                     case "bipedHandLeft" -> var10000 = animatable.isLeftHanded() ? BlacksmithRenderer.this.mainHandItem : BlacksmithRenderer.this.offhandItem;

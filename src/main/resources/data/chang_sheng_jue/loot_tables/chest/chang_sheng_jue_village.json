@@ -176,6 +176,81 @@
             }
           ],
           "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "expand" : true,
+          "name": "chang_sheng_jue:zhang_men_xin_xue",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ],
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "expand" : true,
+          "name": "chang_sheng_jue:wheat_nugget_encyclopedia",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ],
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "expand" : true,
+          "name": "chang_sheng_jue:paoding",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ],
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "expand" : true,
+          "name": "chang_sheng_jue:yugong_moves_mountains",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ],
+          "weight": 1
+        },
+        {
+          "type": "minecraft:item",
+          "expand" : true,
+          "name": "chang_sheng_jue:wu_gang_cut_gui",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 1
+              }
+            }
+          ],
+          "weight": 1
         }
       ]
     }

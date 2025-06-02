@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.entity.custom.wuxia.blacksmith;
 
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.blacksmith.BlacksmithMenu;
+import com.shengchanshe.changshengjue.entity.custom.goal.ReturnToSpawnGoal;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXiaMerchant;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
@@ -61,6 +62,7 @@ public class Blacksmith extends AbstractWuXiaMerchant implements GeoEntity {
         this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9, 32.0F));
         this.goalSelector.addGoal(2, new MoveBackToVillageGoal(this, 0.6, false));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 0.6F));
+        this.goalSelector.addGoal(5, new ReturnToSpawnGoal(this, 0.6, 16, 100));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));

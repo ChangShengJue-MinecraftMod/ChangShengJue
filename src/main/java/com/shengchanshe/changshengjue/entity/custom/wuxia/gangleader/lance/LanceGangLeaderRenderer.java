@@ -59,6 +59,9 @@ public class LanceGangLeaderRenderer extends DynamicGeoEntityRenderer<LanceGangL
         this.addRenderLayer(new BlockAndItemGeoLayer<>(this) {
             @Nullable
             protected ItemStack getStackForBone(GeoBone bone, LanceGangLeader animatable) {
+                if (!animatable.isAggressive()) {
+                    return null;
+                }
                 ItemStack var10000;
                 switch (bone.getName()) {
                     case "bipedHandLeft" -> var10000 = animatable.isLeftHanded() ? LanceGangLeaderRenderer.this.mainHandItem : LanceGangLeaderRenderer.this.offhandItem;

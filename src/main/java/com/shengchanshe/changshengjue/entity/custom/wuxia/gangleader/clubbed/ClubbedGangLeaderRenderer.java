@@ -37,6 +37,9 @@ public class ClubbedGangLeaderRenderer extends DynamicGeoEntityRenderer<ClubbedG
         this.addRenderLayer(new BlockAndItemGeoLayer<>(this) {
             @Nullable
             protected ItemStack getStackForBone(GeoBone bone, ClubbedGangLeader animatable) {
+                if (!animatable.isAggressive()) {
+                    return null;
+                }
                 ItemStack var10000;
                 switch (bone.getName()) {
                     case "bipedHandLeft" -> var10000 = animatable.isLeftHanded() ? ClubbedGangLeaderRenderer.this.mainHandItem : ClubbedGangLeaderRenderer.this.offhandItem;

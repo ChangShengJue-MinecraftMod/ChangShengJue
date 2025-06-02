@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.entity.custom.wuxia.innkeeper.female;
 
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.innkeeper.InnkeeperMenu;
+import com.shengchanshe.changshengjue.entity.custom.goal.ReturnToSpawnGoal;
 import com.shengchanshe.changshengjue.entity.custom.goal.WuXiaAttackGoal;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXiaMerchant;
@@ -67,6 +68,7 @@ public class FemaleInnkeeper extends AbstractWuXiaMerchant implements GeoEntity 
         this.goalSelector.addGoal(2, new MoveTowardsTargetGoal(this, 0.9, 32.0F));
         this.goalSelector.addGoal(2, new MoveBackToVillageGoal(this, 0.6, false));
         this.goalSelector.addGoal(4, new GolemRandomStrollInVillageGoal(this, 0.6));
+        this.goalSelector.addGoal(5, new ReturnToSpawnGoal(this, 0.6, 16, 100));
         this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
@@ -123,6 +125,7 @@ public class FemaleInnkeeper extends AbstractWuXiaMerchant implements GeoEntity 
         // 获取交易列表3和4
         VillagerTrades.ItemListing[] tradesList3 = WuXiaMerahantTrades.INNKEEPER_TRADES.get(3);
         VillagerTrades.ItemListing[] tradesList4 = WuXiaMerahantTrades.INNKEEPER_TRADES.get(4);
+        VillagerTrades.ItemListing[] tradesList5 = WuXiaMerahantTrades.INNKEEPER_TRADES.get(5);
         if (tradesList1 != null && tradesList2 != null && tradesList3 != null && tradesList4 != null) {
             MerchantOffers merchantOffers = this.getOffers();
             // 添加交易列表1中的5个交易
@@ -138,6 +141,8 @@ public class FemaleInnkeeper extends AbstractWuXiaMerchant implements GeoEntity 
             this.addOffersFromItemListings(merchantOffers, tradesList3, 2);
             // 添加交易列表4中的2个交易
             this.addOffersFromItemListings(merchantOffers, tradesList4, 2);
+            // 添加交易列表5中的5个交易
+            this.addOffersFromItemListings(merchantOffers, tradesList5, 5);
         }
     }
 

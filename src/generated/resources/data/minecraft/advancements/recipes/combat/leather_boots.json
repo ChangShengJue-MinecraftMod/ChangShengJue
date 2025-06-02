@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "chang_sheng_jue:deerskin"
-            ]
+            "tag": "forge:leather"
           }
         ]
       },

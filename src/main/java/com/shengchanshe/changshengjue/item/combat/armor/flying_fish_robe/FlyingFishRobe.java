@@ -1,6 +1,8 @@
 package com.shengchanshe.changshengjue.item.combat.armor.flying_fish_robe;
 
+import com.shengchanshe.changshengjue.item.combat.armor.ChangShengJueArmorItem;
 import com.shengchanshe.changshengjue.item.combat.armor.DyeableChineseWeddingDressItem;
+import com.shengchanshe.changshengjue.item.combat.armor.DyeableItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,7 +22,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
 
-public class FlyingFishRobe extends ArmorItem implements DyeableChineseWeddingDressItem, GeoItem {
+public class FlyingFishRobe extends ChangShengJueArmorItem implements DyeableItem, GeoItem {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public FlyingFishRobe(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
@@ -30,7 +32,7 @@ public class FlyingFishRobe extends ArmorItem implements DyeableChineseWeddingDr
 
     @Override
     public int getColor(ItemStack pStack) {
-        return DyeableChineseWeddingDressItem.super.getColor(pStack) != -1 ? DyeableChineseWeddingDressItem.super.getColor(pStack) : 0x0000FF;
+        return DyeableItem.super.getColor(pStack) != -1 ? DyeableItem.super.getColor(pStack) : 0x0000FF;
     }
 
     @Override

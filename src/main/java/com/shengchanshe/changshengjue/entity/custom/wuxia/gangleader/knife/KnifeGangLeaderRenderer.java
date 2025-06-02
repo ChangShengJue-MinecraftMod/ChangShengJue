@@ -59,6 +59,9 @@ public class KnifeGangLeaderRenderer extends DynamicGeoEntityRenderer<KnifeGangL
         this.addRenderLayer(new BlockAndItemGeoLayer<>(this) {
             @Nullable
             protected ItemStack getStackForBone(GeoBone bone, KnifeGangLeader animatable) {
+                if (!animatable.isAggressive()) {
+                    return null;
+                }
                 ItemStack var10000;
                 switch (bone.getName()) {
                     case "bipedHandLeft" -> var10000 = animatable.isLeftHanded() ? KnifeGangLeaderRenderer.this.mainHandItem : KnifeGangLeaderRenderer.this.offhandItem;

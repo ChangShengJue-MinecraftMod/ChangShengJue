@@ -121,7 +121,6 @@ public class AbstractMingXia extends AbstractWuXia {
                         this.setLastHurtMob(pEntity);
                     }
 
-                    this.playSound(SoundEvents.IRON_GOLEM_ATTACK, 1.0F, 1.0F);
                     return hurt;
                 }
                 break;
@@ -133,7 +132,7 @@ public class AbstractMingXia extends AbstractWuXia {
             float v = (int)attackDamage > 0 ? attackDamage / 2.0F + (float)this.random.nextInt((int)attackDamage) : attackDamage;
             boolean hurt = pEntity.hurt(this.damageSources().mobAttack(this), v);
             if (hurt) {
-                float f1 = this.getAttackDamage();
+                float f1 = (float)this.getAttributeValue(Attributes.ATTACK_KNOCKBACK);
                 if (f1 > 0.0F && pEntity instanceof LivingEntity) {
                     ((LivingEntity)pEntity).knockback(f1 * 0.5F, Mth.sin(this.getYRot() * 0.017453292F), -Mth.cos(this.getYRot() * 0.017453292F));
                     this.setDeltaMovement(this.getDeltaMovement().multiply(0.6, 1.0, 0.6));
@@ -143,7 +142,6 @@ public class AbstractMingXia extends AbstractWuXia {
                 this.setLastHurtMob(pEntity);
             }
 
-            this.playSound(SoundEvents.IRON_GOLEM_ATTACK, 1.0F, 1.0F);
             return hurt;
         }
     }

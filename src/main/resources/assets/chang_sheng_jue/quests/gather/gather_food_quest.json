@@ -25,8 +25,8 @@
       "item": "#chang_sheng_jue:wine",
       "count": {
         "type": "minecraft:uniform",
-        "max": 8.0,
-        "min": 4.0
+        "max": 4.0,
+        "min": 2.0
       }
     }
   ],
@@ -36,10 +36,10 @@
       "count": 1
     },
     {
-      "item": "chang_sheng_jue:yi_guan_tong_qian",
+      "item": "chang_sheng_jue:silver_bullions",
       "count": {
         "type": "minecraft:uniform",
-        "max": 6.0,
+        "max": 3.0,
         "min": 1.0
       }
     }

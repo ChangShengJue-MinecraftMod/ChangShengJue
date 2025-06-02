@@ -9,6 +9,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -28,7 +29,7 @@ import java.util.function.Consumer;
 public class BeatDogStick extends Clubbed implements GeoItem {
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public BeatDogStick() {
-        super(Tiers.IRON, 5, -2.4F, new Properties().fireResistant().durability(4500).setNoRepair());
+        super(Tiers.IRON, 5, -2.4F, new Properties().fireResistant().durability(4500).setNoRepair().rarity(Rarity.UNCOMMON));
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
 

@@ -15,16 +15,21 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AirItem;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.Random;
+import java.util.UUID;
 
 public class TreadTheSnowWithoutTraceEvent {
     private static Minecraft mc = Minecraft.getInstance();
@@ -116,6 +121,7 @@ public class TreadTheSnowWithoutTraceEvent {
             }
         }
     }
+
 
 //    //生物受伤事件
 //    public static void onEntityHurt(LivingDamageEvent event) {

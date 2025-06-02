@@ -37,6 +37,9 @@ public class KnifeMingXiaRenderer extends DynamicGeoEntityRenderer<KnifeMingXia>
         this.addRenderLayer(new BlockAndItemGeoLayer<>(this) {
             @Nullable
             protected ItemStack getStackForBone(GeoBone bone, KnifeMingXia animatable) {
+                if (!animatable.isAggressive()) {
+                    return null;
+                }
                 ItemStack var10000;
                 switch (bone.getName()) {
                     case "bipedHandLeft" -> var10000 = animatable.isLeftHanded() ? KnifeMingXiaRenderer.this.mainHandItem : KnifeMingXiaRenderer.this.offhandItem;

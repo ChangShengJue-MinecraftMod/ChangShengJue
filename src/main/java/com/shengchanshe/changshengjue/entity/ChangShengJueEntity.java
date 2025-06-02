@@ -140,7 +140,7 @@ public class ChangShengJueEntity {
                     () -> EntityType.Builder.of(Warrior::new, MobCategory.CREATURE)
                             .sized(1.0F, 2.4F)
                             .build(new ResourceLocation(ChangShengJue.MOD_ID,"warrior").toString()));
-    //高级窑工
+    //主事
     public static final RegistryObject<EntityType<KilnWorker>> KILN_WORKER =
             ENTITY_TYPES.register("kiln_worker",
                     () -> EntityType.Builder.of(KilnWorker::new, MobCategory.CREATURE)

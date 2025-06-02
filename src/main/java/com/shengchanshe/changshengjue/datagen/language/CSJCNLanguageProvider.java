@@ -6,7 +6,10 @@ import com.shengchanshe.changshengjue.damage.CSJDamageTypes;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.item.items.StructureIntelligence;
+import com.shengchanshe.changshengjue.world.CSJStructures;
 import net.minecraft.data.PackOutput;
+import net.minecraft.network.chat.Component;
 import net.minecraftforge.common.data.LanguageProvider;
 
 public class CSJCNLanguageProvider extends LanguageProvider {
@@ -148,6 +151,13 @@ public class CSJCNLanguageProvider extends LanguageProvider {
 
         this.add(ChangShengJueItems.GANG_TOKEN.get(),"帮派令牌");
 
+        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.PIT_YARD_TYPE, "%s情报");
+        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SANDSTONE_CASTLE_TYPE, "%s情报");
+        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SI_HE_YUAN_TYPE, "%s情报");
+        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SU_PAI_VILLAGE_TYPE, "%s情报");
+        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.WAN_PAI_VILLAGE_TYPE, "%s情报");
+        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.FORTRESSES_TYPE, "%s情报");
+
         //刷怪蛋
         this.add(ChangShengJueItems.BUTTERFLY_EGG.get(), "蝴蝶刷怪蛋");
         this.add(ChangShengJueItems.MONKEY_EGG.get(), "猴刷怪蛋");
@@ -162,7 +172,7 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.CROC_EGG.get(), "鳄鱼刷怪蛋");
         this.add(ChangShengJueItems.CHANG_SHENG_JUE_VILLAGER_EGG.get(), "村民刷怪蛋");
         this.add(ChangShengJueItems.WARRIOR_EGG.get(), "武夫刷怪蛋");
-        this.add(ChangShengJueItems.KILN_WORKER_EGG.get(), "高级窑工刷怪蛋");
+        this.add(ChangShengJueItems.KILN_WORKER_EGG.get(), "营造主事刷怪蛋");
         this.add(ChangShengJueItems.MALE_INNKEEPER_EGG.get(), "酒馆男掌柜刷怪蛋");
         this.add(ChangShengJueItems.FEMALE_INNKEEPER_EGG.get(), "酒馆女掌柜刷怪蛋");
         this.add(ChangShengJueItems.CHALLENGER_EGG.get(), "挑战者刷怪蛋");
@@ -245,6 +255,9 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get(), "染墨丝裳");
         this.add(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get(), "染墨丝履");
 
+        this.add(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR.get(), "金丝软甲");
+        this.add(ChangShengJueItems.LEATHER_INNER_ARMOR.get(), "皮内甲");
+
         this.add(ChangShengJueItems.COTTON_ARMOR_PARCEL.get(), "棉甲包裹");
         this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_PARCEL.get(), "山文甲包裹");
         this.add(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_PARCEL.get(), "大将军明光铠包裹");
@@ -320,7 +333,19 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DURIAN.get()+".tooltip","请使用斧子劈开");
         this.add("tooltip."+ChangShengJue.MOD_ID+".hold_shift.tooltip","按下 §eShift§r 查看更多信息");
 
+        this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data","已内衬");
 
+        this.add("tooltip."+ ChangShengJue.MOD_ID + ".damage_reduction","外功伤害减免: +%s%%");
+        this.add("tooltip."+ ChangShengJue.MOD_ID + ".trauma","受到外伤的概率: -%s%%");
+
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "pit_yard.tooltip", "地下窑洞");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "sandstone_castle.tooltip","沙石堡");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "si_he_yuan.tooltip","四合院");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "su_pai_village.tooltip","苏式村庄");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "wan_pai_village.tooltip","徽式村庄");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "fortresses_type.tooltip","古城");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "null.structure.tooltip","未知结构");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".structural_location","在 [x=%d | z=%d] 位置坐落着一处%s,去看看吧");
         //声音
         this.add("sounds."+ChangShengJue.MOD_ID + ".ge_shan_da_niu_sound","武功 : 隔山打牛");
         this.add("sounds."+ChangShengJue.MOD_ID + ".dugu_nine_swords_sound","武功 : 独孤九剑");
@@ -941,7 +966,7 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEntity.TIGER.get(), "老虎");
         this.add(ChangShengJueEntity.CROC.get(), "鳄鱼");
         this.add(ChangShengJueEntity.WARRIOR.get(), "武夫");
-        this.add(ChangShengJueEntity.KILN_WORKER.get(), "营缮司主事");
+        this.add(ChangShengJueEntity.KILN_WORKER.get(), "营造主事");
         this.add(ChangShengJueEntity.MALE_INNKEEPER.get(), "酒馆男掌柜");
         this.add(ChangShengJueEntity.FEMALE_INNKEEPER.get(), "酒馆女掌柜");
         this.add(ChangShengJueEntity.CHALLENGER.get(), "挑战者");

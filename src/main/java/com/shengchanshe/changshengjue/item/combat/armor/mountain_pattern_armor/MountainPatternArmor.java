@@ -1,5 +1,7 @@
 package com.shengchanshe.changshengjue.item.combat.armor.mountain_pattern_armor;
 
+import com.shengchanshe.changshengjue.item.combat.armor.ArmorInterface;
+import com.shengchanshe.changshengjue.item.combat.armor.ChangShengJueArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,8 +20,9 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
 
-public class MountainPatternArmor extends ArmorItem implements GeoItem {
+public class MountainPatternArmor extends ChangShengJueArmorItem implements GeoItem , ArmorInterface {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
     // 自定义耐久倍数
     private final int durabilityMultiplier;
     public MountainPatternArmor(ArmorMaterial pMaterial, Type pType, Properties pProperties,int durabilityMultiplier) {
@@ -34,7 +37,7 @@ public class MountainPatternArmor extends ArmorItem implements GeoItem {
         EquipmentSlot slot = this.getEquipmentSlot();
         return baseDurability[slot.getIndex()] * this.durabilityMultiplier;
     }
-//
+
 //    @Override
 //    public boolean isRepairable(ItemStack stack) {
 //        //禁用工作台修复

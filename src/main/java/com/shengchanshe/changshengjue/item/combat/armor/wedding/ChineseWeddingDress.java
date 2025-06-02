@@ -1,5 +1,6 @@
 package com.shengchanshe.changshengjue.item.combat.armor.wedding;
 
+import com.shengchanshe.changshengjue.item.combat.armor.ChangShengJueArmorItem;
 import com.shengchanshe.changshengjue.item.combat.armor.DyeableChineseWeddingDressItem;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
@@ -11,7 +12,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class ChineseWeddingDress extends ArmorItem implements DyeableChineseWeddingDressItem, GeoItem {
+public class ChineseWeddingDress extends ChangShengJueArmorItem implements DyeableChineseWeddingDressItem, GeoItem {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public ChineseWeddingDress(ArmorMaterial pMaterial, Type pType, Properties pProperties) {

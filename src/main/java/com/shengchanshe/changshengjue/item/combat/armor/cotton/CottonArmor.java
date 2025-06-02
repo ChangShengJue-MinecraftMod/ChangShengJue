@@ -1,10 +1,11 @@
 package com.shengchanshe.changshengjue.item.combat.armor.cotton;
 
+import com.shengchanshe.changshengjue.item.combat.armor.ArmorInterface;
+import com.shengchanshe.changshengjue.item.combat.armor.ChangShengJueArmorItem;
 import com.shengchanshe.changshengjue.item.combat.armor.DyeableItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
@@ -20,7 +21,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
 
-public class CottonArmor extends ArmorItem implements DyeableItem, GeoItem {
+public class CottonArmor extends ChangShengJueArmorItem implements DyeableItem, GeoItem, ArmorInterface {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public CottonArmor(ArmorMaterial pMaterial, Type pType, Properties pProperties) {

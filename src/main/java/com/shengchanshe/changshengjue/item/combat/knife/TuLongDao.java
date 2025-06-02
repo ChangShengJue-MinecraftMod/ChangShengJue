@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.item.combat.knife;
 
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
@@ -15,7 +16,7 @@ import java.util.function.Consumer;
 
 public class TuLongDao extends Knife implements GeoItem {
     public TuLongDao() {
-        super(Tiers.IRON, 6, -2.4F, new Properties().durability(4000).fireResistant());
+        super(Tiers.IRON, 6, -2.4F, new Properties().durability(4000).fireResistant().rarity(Rarity.UNCOMMON));
     }
 
     @Override
