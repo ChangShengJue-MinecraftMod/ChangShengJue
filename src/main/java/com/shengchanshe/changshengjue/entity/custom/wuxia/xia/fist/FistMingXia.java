@@ -15,10 +15,7 @@ import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
@@ -38,39 +35,13 @@ public class FistMingXia extends AbstractMingXia implements GeoEntity {
     }
 
     private <E extends GeoAnimatable> PlayState attackPredicate(AnimationState<E> animationEvent) {
-        if (this.isAttacking() && this.swinging && animationEvent.getController().getAnimationState().equals(AnimationController.State.STOPPED)){
-            int i = this.random.nextInt(6);
+        if (this.isAttacking() && animationEvent.getController().getAnimationState().equals(AnimationController.State.STOPPED)){
+            animationEvent.getController().forceAnimationReset();
+            int i = this.random.nextInt(3);
             switch (i) {
-                case 0 -> {
-                    animationEvent.getController().forceAnimationReset();//重置动画
-                    animationEvent.getController().setAnimation(RawAnimation.begin().thenPlay("attack.right_hand_knife1_and_sword1"));
-                    this.swinging = false;
-                    this.setAttacking(false);
-                }
-                case 1 -> {
-                    animationEvent.getController().forceAnimationReset();
-                    animationEvent.getController().setAnimation(RawAnimation.begin().thenPlay("attack.right_hand2_knife1_and_sword1"));
-                    this.swinging = false;
-                    this.setAttacking(false);
-                }
-                case 2 -> {
-                    animationEvent.getController().forceAnimationReset();
-                    animationEvent.getController().setAnimation(RawAnimation.begin().thenPlay("attack.right_hand_knife2_and_sword2"));
-                    this.swinging = false;
-                    this.setAttacking(false);
-                }
-                case 3 -> {
-                    animationEvent.getController().forceAnimationReset();
-                    animationEvent.getController().setAnimation(RawAnimation.begin().thenPlay("attack.right_hand2_knife2_and_sword2"));
-                    this.swinging = false;
-                    this.setAttacking(false);
-                }
-                case 4 -> {
-                    animationEvent.getController().forceAnimationReset();
-                    animationEvent.getController().setAnimation(RawAnimation.begin().thenPlay("attack.right_hand_sword3_and_spear"));
-                    this.swinging = false;
-                    this.setAttacking(false);
-                }
+                case 0 -> animationEvent.setAnimation(RawAnimation.begin().then("attack.right_hand_knife1_and_sword1", Animation.LoopType.PLAY_ONCE));
+                case 1 -> animationEvent.setAnimation(RawAnimation.begin().then("attack.right_hand2_knife1_and_sword1", Animation.LoopType.PLAY_ONCE));
+                case 2 -> animationEvent.setAnimation(RawAnimation.begin().then("attack.right_hand_knife2_and_sword2", Animation.LoopType.PLAY_ONCE));
             }
         }
         return PlayState.CONTINUE;

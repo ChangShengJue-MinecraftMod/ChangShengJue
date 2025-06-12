@@ -36,10 +36,8 @@ import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
@@ -248,23 +246,15 @@ public class Assassin extends AbstractWuXia implements GeoEntity , RangedAttackM
     }
 
     private PlayState attackPredicate(AnimationState animationEvent) {
-        if (this.isAttacking() && this.swinging){
+        if (this.isAttacking() && animationEvent.getController().getAnimationState().equals(AnimationController.State.STOPPED)){
+            animationEvent.getController().forceAnimationReset();
             ItemStack mainHandItem = this.getMainHandItem();
              if (mainHandItem.getItem() instanceof SoftSword) {
-                animationEvent.getController().forceAnimationReset();
-                animationEvent.setAndContinue(RawAnimation.begin().thenPlay("attack.right_hand_sword3_and_spear"));
-                this.setAttacking(false);
-                 this.swinging = false;
+                animationEvent.setAnimation(RawAnimation.begin().then("attack.right_hand_sword3_and_spear", Animation.LoopType.PLAY_ONCE));
             }else if (mainHandItem.getItem() instanceof ThrowingKnives){
-                animationEvent.getController().forceAnimationReset();
-                animationEvent.setAndContinue(RawAnimation.begin().thenPlay("attack.right_hand_knife2_and_sword2"));
-                this.setAttacking(false);
-                 this.swinging = false;
+                animationEvent.setAnimation(RawAnimation.begin().then("attack.right_hand_knife2_and_sword2", Animation.LoopType.PLAY_ONCE));
             }else {
-                 animationEvent.getController().forceAnimationReset();
-                 animationEvent.setAndContinue(RawAnimation.begin().thenPlay("attack.right_hand_knife1_and_sword1"));
-                 this.setAttacking(false);
-                 this.swinging = false;
+                animationEvent.setAnimation(RawAnimation.begin().then("attack.right_hand_knife1_and_sword1", Animation.LoopType.PLAY_ONCE));
             }
         }
         return PlayState.CONTINUE;

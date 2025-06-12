@@ -2,7 +2,6 @@ package com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.clubbed;
 
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingMenu;
 import com.shengchanshe.changshengjue.entity.custom.goal.ReturnToSpawnGoal;
-import com.shengchanshe.changshengjue.quest.QuestManager;
 import com.shengchanshe.changshengjue.entity.custom.goal.WuXiaAttackGoal;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.AbstractWuXia;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.AbstractGangLeader;
@@ -15,6 +14,7 @@ import com.shengchanshe.changshengjue.kungfu.externalkunfu.kungfu.SunflowerPoint
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.InterfaceKungFuManager;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.InternalKungFuCapability;
 import com.shengchanshe.changshengjue.kungfu.internalkungfu.kungfu.*;
+import com.shengchanshe.changshengjue.quest.QuestManager;
 import com.shengchanshe.changshengjue.world.village.WuXiaMerahantTrades;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -48,10 +48,8 @@ import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
@@ -344,23 +342,13 @@ public class ClubbedGangLeader extends AbstractGangLeader implements GeoEntity {
     }
 
     private <E extends GeoAnimatable> PlayState attackPredicate(AnimationState<E> animationEvent) {
-        if (this.isAttacking() && this.swinging){
+        if (this.isAttacking() && animationEvent.getController().getAnimationState().equals(AnimationController.State.STOPPED)){
+            animationEvent.getController().forceAnimationReset();
             int i = this.random.nextInt(2);
             switch (i) {
-                case 0 -> {
-                    animationEvent.getController().forceAnimationReset();
-                    animationEvent.setAndContinue(RawAnimation.begin().thenPlay("attack.right_hand_sword3_and_spear"));
-                    this.setAttacking(false);
-                    this.swinging = false;
-                }
-                case 1 -> {
-                    animationEvent.getController().forceAnimationReset();
-                    animationEvent.setAndContinue(RawAnimation.begin().thenPlay("attack.right_hand_knife2_and_sword2"));
-                    this.setAttacking(false);
-                    this.swinging = false;
-                }
+                case 0 -> animationEvent.setAnimation(RawAnimation.begin().then("attack.right_hand_sword3_and_spear", Animation.LoopType.PLAY_ONCE));
+                case 1 -> animationEvent.setAnimation(RawAnimation.begin().then("attack.right_hand_knife2_and_sword2", Animation.LoopType.PLAY_ONCE));
             }
-
         }
         return PlayState.CONTINUE;
     }
