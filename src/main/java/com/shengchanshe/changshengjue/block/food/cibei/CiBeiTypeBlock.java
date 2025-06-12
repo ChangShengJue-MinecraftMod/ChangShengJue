@@ -29,6 +29,8 @@ public class CiBeiTypeBlock extends TypeBlock {
 
             level.setBlock(pos, state.setValue(getTYPE(), 0), 3);
             // 增加饥饿值
+
+//            ChangShengJueMessages.sendToServer(new FoodPacket(fed, fedpro));
             player.getFoodData().eat(fed, fedpro);
             player.swing(InteractionHand.MAIN_HAND);
             level.setBlock(pos, ChangShengJueBlocks.CI_BEI.get().defaultBlockState(), 3);

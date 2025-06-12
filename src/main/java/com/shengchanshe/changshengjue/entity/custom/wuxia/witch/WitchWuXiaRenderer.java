@@ -9,7 +9,10 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.WitchItemLayer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class WitchWuXiaRenderer extends MobRenderer<WitchWuXia, WitchModel<WitchWuXia>> {
     private static final ResourceLocation WITCH_LOCATION = new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/witch_wuxia.png");
 

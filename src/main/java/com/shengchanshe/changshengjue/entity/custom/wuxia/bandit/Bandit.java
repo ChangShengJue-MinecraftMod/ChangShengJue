@@ -29,10 +29,7 @@ import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
@@ -96,33 +93,18 @@ public class Bandit extends AbstractWuXiaMonster implements GeoEntity {
     }
 
     private PlayState attackPredicate(AnimationState animationEvent) {
-        if (this.isAttacking() && this.swinging){
+        if (this.isAttacking() && animationEvent.getController().getAnimationState().equals(AnimationController.State.STOPPED)){
+            animationEvent.getController().forceAnimationReset();
             ItemStack mainHandItem = this.getMainHandItem();
             if (mainHandItem.getItem() instanceof Lance || mainHandItem.getItem() instanceof SoftSword) {
-                animationEvent.getController().forceAnimationReset();
-                animationEvent.setAndContinue(RawAnimation.begin().thenPlay("attack.right_hand_sword3_and_spear"));
-                this.setAttacking(false);
-                this.swinging = false;
+                animationEvent.setAnimation(RawAnimation.begin().then("attack.right_hand_sword3_and_spear", Animation.LoopType.PLAY_ONCE));
             }else if (mainHandItem.getItem() instanceof Clubbed){
-                animationEvent.getController().forceAnimationReset();
-                animationEvent.setAndContinue(RawAnimation.begin().thenPlay("attack.right_hand_knife2_and_sword2"));
-                this.setAttacking(false);
-                this.swinging = false;
+                animationEvent.setAnimation(RawAnimation.begin().then("attack.right_hand_knife2_and_sword2", Animation.LoopType.PLAY_ONCE));
             }else {
                 int i = this.random.nextInt(2);
                 switch (i) {
-                    case 0 -> {
-                        animationEvent.getController().forceAnimationReset();
-                        animationEvent.setAndContinue(RawAnimation.begin().thenPlay("attack.right_hand_knife1_and_sword1"));
-                        this.setAttacking(false);
-                        this.swinging = false;
-                    }
-                    case 1 -> {
-                        animationEvent.getController().forceAnimationReset();
-                        animationEvent.setAndContinue(RawAnimation.begin().thenPlay("attack.right_hand_knife2_and_sword2"));
-                        this.setAttacking(false);
-                        this.swinging = false;
-                    }
+                    case 0 -> animationEvent.setAnimation(RawAnimation.begin().then("attack.right_hand_knife1_and_sword1", Animation.LoopType.PLAY_ONCE));
+                    case 1 -> animationEvent.setAnimation(RawAnimation.begin().then("attack.right_hand_knife2_and_sword2", Animation.LoopType.PLAY_ONCE));
                 }
             }
         }

@@ -9,6 +9,7 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class ThrowingknivesParticle extends SimpleAnimatedParticle {
     ThrowingknivesParticle(ClientLevel pLevel, double pX, double pY, double pZ,
                            double pXSpeed, double pYSpeed, double pZSpeed, SpriteSet pSprites) {

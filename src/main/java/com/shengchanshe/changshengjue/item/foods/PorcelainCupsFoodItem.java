@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.item.foods;
 
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -31,6 +32,9 @@ public class PorcelainCupsFoodItem extends BlockItem {
                     pEntityLiving.removeEffect(ChangShengJueEffects.DRUNKEN.get());
                     // 将新的状态效果添加到实体上，这将替换旧的效果
                     pEntityLiving.addEffect(new MobEffectInstance(ChangShengJueEffects.DRUNKEN.get(), newDuration), pEntityLiving);
+
+                    MobEffect mobEffect = ChangShengJueEffects.DRUNKEN.get();
+                    mobEffect.applyInstantenousEffect( null, null, pEntityLiving, 1, 0.0);
                 }
             }
         }

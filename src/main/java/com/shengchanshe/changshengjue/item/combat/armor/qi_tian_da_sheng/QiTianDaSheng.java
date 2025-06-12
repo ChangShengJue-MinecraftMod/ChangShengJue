@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.item.combat.armor.qi_tian_da_sheng;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -31,7 +32,9 @@ import java.util.function.Consumer;
 public class QiTianDaSheng extends ArmorItem implements GeoItem {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final String DAMAGE_REDUCTION_TAG = "DamageReduction";
+    private static final String TRAUMA = "Trauma";
     private final int durabilityMultiplier;
+    private final RandomSource RANDOM_SOURCE = RandomSource.create();
     public QiTianDaSheng(ArmorMaterial pMaterial, Type pType, Properties pProperties,int durabilityMultiplier) {
         super(pMaterial, pType, pProperties);
         this.durabilityMultiplier = durabilityMultiplier; // 存储自定义的耐久倍数
@@ -51,7 +54,13 @@ public class QiTianDaSheng extends ArmorItem implements GeoItem {
         if (!stack.hasTag() || !stack.getTag().contains(DAMAGE_REDUCTION_TAG)) {
             if (this.getEquipmentSlot() == EquipmentSlot.CHEST) {
                 CompoundTag tag = stack.getOrCreateTag();
-                tag.putInt(DAMAGE_REDUCTION_TAG, 40);
+                tag.putFloat(DAMAGE_REDUCTION_TAG, 40);
+            }
+        }
+        if (!stack.hasTag() || !stack.getTag().contains(TRAUMA)) {
+            if (this.getEquipmentSlot() == EquipmentSlot.CHEST) {
+                CompoundTag tag = stack.getOrCreateTag();
+                tag.putFloat(TRAUMA, 15);
             }
         }
         return stack;
@@ -64,30 +73,48 @@ public class QiTianDaSheng extends ArmorItem implements GeoItem {
 //                repair.is(Items.EMERALD);
     }
 
+    private void ensureTrauma(ItemStack stack) {
+        CompoundTag tag = stack.getOrCreateTag();
+        if (this.getEquipmentSlot() != EquipmentSlot.CHEST) return;
+        if (!tag.contains(TRAUMA)) {
+            float newReduction = (70 + RANDOM_SOURCE.nextInt(81)) /10.0f;
+                tag.putFloat(TRAUMA, Math.max(tag.getFloat(TRAUMA), newReduction));
+        }
+    }
+
     private void ensureDamageReduction(ItemStack stack) {
+        if (this.getEquipmentSlot() != EquipmentSlot.CHEST) return;
         if (!stack.hasTag() || !stack.getTag().contains(DAMAGE_REDUCTION_TAG)) {
-            int newReduction = 20 + RandomSource.create().nextInt(20);
-            if (this.getEquipmentSlot() == EquipmentSlot.CHEST) {
-                CompoundTag tag = stack.getOrCreateTag();
-                tag.putInt(DAMAGE_REDUCTION_TAG,
-                        Math.max(newReduction, tag.getInt(DAMAGE_REDUCTION_TAG)));
-            }
+            float newReduction = (200 + RANDOM_SOURCE.nextInt(201)) / 10.0f;
+            CompoundTag tag = stack.getOrCreateTag();
+            tag.putFloat(DAMAGE_REDUCTION_TAG,
+                Math.max(newReduction, tag.getFloat(DAMAGE_REDUCTION_TAG)));
         }
     }
 
     public float getDamageReduction(ItemStack stack){
         CompoundTag tag = stack.getOrCreateTag();
-        return (tag.getInt(DAMAGE_REDUCTION_TAG) / 100F);
+        return (tag.getFloat(DAMAGE_REDUCTION_TAG) / 100F);
     }
 
     @Override
     public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
         ensureDamageReduction(stack);
+        ensureTrauma(stack);
         return super.initCapabilities(stack, nbt);
     }
 
     public boolean hasDamageReduction(ItemStack stack){
         return stack.hasTag() && stack.getTag().contains(DAMAGE_REDUCTION_TAG);
+    }
+
+    public float getTrauma(ItemStack stack){
+        CompoundTag tag = stack.getOrCreateTag();
+        return (tag.getFloat(TRAUMA));
+    }
+
+    public boolean hasTrauma(ItemStack stack){
+        return stack.hasTag() && stack.getTag().contains(TRAUMA);
     }
 
     @Override
@@ -119,14 +146,30 @@ public class QiTianDaSheng extends ArmorItem implements GeoItem {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (hasDamageReduction(pStack)) {
-            int reduction = pStack.getTag().getInt(DAMAGE_REDUCTION_TAG);
-            pTooltipComponents.add(
-                    Component.translatable(
-                            "tooltip." + ChangShengJue.MOD_ID + ".damage_reduction",
-                            reduction
-                    ).withStyle(ChatFormatting.BLUE)
-            );
+//        if (hasDamageReduction(pStack)) {
+//            int reduction = pStack.getTag().getInt(DAMAGE_REDUCTION_TAG);
+//            pTooltipComponents.add(
+//                    Component.translatable(
+//                            "tooltip." + ChangShengJue.MOD_ID + ".damage_reduction",
+//                            reduction
+//                    ).withStyle(ChatFormatting.BLUE)
+//            );
+//        }
+//        if (hasTrauma(pStack)) {
+//            int anInt = pStack.getTag().getInt(TRAUMA);
+//            pTooltipComponents.add(Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".trauma", anInt).withStyle(ChatFormatting.BLUE));
+//        }
+        if (Screen.hasShiftDown()) {
+            if (hasDamageReduction(pStack)) {
+                float reduction = pStack.getTag().getFloat(DAMAGE_REDUCTION_TAG);
+                pTooltipComponents.add(Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".damage_reduction", reduction).withStyle(ChatFormatting.BLUE));
+            }
+            if (hasTrauma(pStack)) {
+                float aFloat = pStack.getTag().getFloat(TRAUMA);
+                pTooltipComponents.add(Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".trauma", aFloat).withStyle(ChatFormatting.BLUE));
+            }
+        } else {
+            pTooltipComponents.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID +".hold_shift.tooltip"));
         }
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }

@@ -472,6 +472,7 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.COTTON_ARMOR_PARCEL,"parcel");
         simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_PARCEL,"parcel");
         simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_PARCEL,"parcel");
+        simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_PARCEL,"parcel");
     }
 
     private ItemModelBuilder parentItem(RegistryObject<Block> block){

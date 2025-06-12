@@ -11,8 +11,11 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.ItemStackHandler;
 
+@OnlyIn(Dist.CLIENT)
 public class PotteryWheelEntityRender implements BlockEntityRenderer<PotteryWheelEntity> {
     public PotteryWheelEntityRender(BlockEntityRendererProvider.Context context){}
     @Override

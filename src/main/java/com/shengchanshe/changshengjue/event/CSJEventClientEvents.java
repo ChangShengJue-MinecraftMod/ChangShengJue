@@ -2,7 +2,7 @@ package com.shengchanshe.changshengjue.event;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.gui.screens.button.TexturedButtonWithText;
-import com.shengchanshe.changshengjue.event.martial_arts.TreadTheSnowWithoutTraceEvent;
+import com.shengchanshe.changshengjue.event.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceClientEvent;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.gui.playerquest.OpenPlayerQuestScreenPacket;
 import net.minecraft.client.Minecraft;
@@ -22,7 +22,7 @@ public class CSJEventClientEvents {
     private static Minecraft mc = Minecraft.getInstance();
     @SubscribeEvent
     public static void onKey(InputEvent.Key event) {
-        TreadTheSnowWithoutTraceEvent.onKey(event);
+        TreadTheSnowWithoutTraceClientEvent.onKey(event);
         onKeys(event);
     }
 
@@ -32,7 +32,7 @@ public class CSJEventClientEvents {
     }
     @SubscribeEvent
     public static void onFall(LivingFallEvent event) {
-        TreadTheSnowWithoutTraceEvent.onFall(event);
+        TreadTheSnowWithoutTraceClientEvent.onFall(event);
     }
 
     private static final ResourceLocation BUTTON_TEXTURE = new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/botton.png");

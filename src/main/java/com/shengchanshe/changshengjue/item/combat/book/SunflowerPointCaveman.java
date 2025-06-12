@@ -9,7 +9,6 @@ import com.shengchanshe.changshengjue.capability.martial_arts.turtle_breath_work
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
-import com.shengchanshe.changshengjue.network.packet.effect.EffectEntityPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.hercules.HerculesPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
@@ -132,7 +131,7 @@ public class SunflowerPointCaveman extends Item {
                                                     ChangShengJueSound.SUNFLOWER_POINT_CAVEMAN_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                             pEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 25, 1, false, false), player);
                                             MobEffectInstance effectInstance = new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 25, 0, false, false);
-                                            ChangShengJueMessages.sendMSGToAll(new EffectEntityPacket(pEntity.getId(), player.getId(), 0, effectInstance.getDuration()));
+//                                            ChangShengJueMessages.sendMSGToAll(new EffectEntityPacket(pEntity.getId(), player.getId(), 0, effectInstance.getDuration()));
                                         }
                                     } else {
                                         health = 200;
@@ -140,8 +139,9 @@ public class SunflowerPointCaveman extends Item {
                                             pLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
                                                     ChangShengJueSound.SUNFLOWER_POINT_CAVEMAN_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                             pEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 30, 1, false, false), player);
-                                            MobEffectInstance effectInstance = new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(), 30, 0, false, false);
-                                            ChangShengJueMessages.sendMSGToAll(new EffectEntityPacket(pEntity.getId(), player.getId(), 0, effectInstance.getDuration()));
+                                            MobEffectInstance effectInstance = new MobEffectInstance(ChangShengJueEffects.FIXATION_EFFECT.get(),
+                                                    30, 0, false, false);
+//                                            ChangShengJueMessages.sendMSGToAll(new EffectEntityPacket(pEntity.getId(), player.getId(), 0, effectInstance.getDuration()));
                                         }
                                     }
                                     float probability = player.getRandom().nextFloat();

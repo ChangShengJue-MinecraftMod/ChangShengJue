@@ -907,7 +907,6 @@ public class ChangShengJueBlocks {
             ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
 
 
-
     public static final RegistryObject<Block> BITUMEN_FLOOR_TILES_BLOCK = registerBlock("bitumen_floor_tiles_block",
             ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> BLUE_FLOOR_TILES_BLOCK = registerBlock("blue_floor_tiles_block",

@@ -41,11 +41,13 @@ import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other.GangL
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.event.armor.ArmorEvent;
 import com.shengchanshe.changshengjue.event.martial_arts.*;
+import com.shengchanshe.changshengjue.event.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceClientEvent;
+import com.shengchanshe.changshengjue.event.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceEvent;
 import com.shengchanshe.changshengjue.event.quest.PlayerQuestEvent;
 import com.shengchanshe.changshengjue.event.quest.QuestEvent;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import com.shengchanshe.changshengjue.item.combat.book.GoldenBellJar;
+import com.shengchanshe.changshengjue.item.items.Parcel;
 import com.shengchanshe.changshengjue.item.items.StructureIntelligence;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
@@ -805,6 +807,7 @@ public class CSJEvent {
         PaodingEvent.onEntityDeath(event);
         QuestEvent.onEntityDeath(event);
         PlayerQuestEvent.onPlayerDeath(event);
+//        Parcel.onEntityDeath(event);
         //如果死亡的是帮派首领
         if (event.getSource().getEntity() instanceof Player player && event.getEntity() instanceof GangLeader){
             if (player instanceof ServerPlayer serverPlayer) {
@@ -1062,7 +1065,6 @@ public class CSJEvent {
         if(!event.getLevel().isClientSide()) {
             if(event.getEntity() instanceof ServerPlayer player) {
                 QuestManager.getInstance().syncQuestsToPlayer(player); // 全量同步
-
                 player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                     ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),
                             duguNineSword.isDuguNineSwordsComprehend(),
@@ -1228,6 +1230,12 @@ public class CSJEvent {
         Player player = event.getEntity();
         // 检查玩家是否首次加入游戏
         if (player instanceof ServerPlayer serverPlayer) {
+            QuestManager.getInstance().syncQuestsToPlayer(serverPlayer); // 全量同步
+//            player.getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(data -> {
+//                if (data.getRecordDamageSource() == null){
+//                    data.setRecordDamageSource(UUID.randomUUID());
+//                }
+//            });
             if (!net.minecraftforge.fml.ModList.get().isLoaded("patchouli")) {
                 return;
             }

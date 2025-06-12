@@ -608,6 +608,7 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> COTTON_ARMOR_PARCEL = ITEMS.register("cotton_armor_parcel", Parcel::new);
     public static final RegistryObject<Item> MOUNTAIN_PATTERN_ARMOR_PARCEL = ITEMS.register("mountain_pattern_armor_parcel", Parcel::new);
     public static final RegistryObject<Item> THE_GREAT_GENERAL_MINGGUANG_ARMOR_PARCEL = ITEMS.register("the_great_general_mingguang_armor_parcel", Parcel::new);
+    public static final RegistryObject<Item> QI_TIAN_DA_SHENG_PARCEL = ITEMS.register("qi_tian_da_sheng_parcel", Parcel::new);
 
     public static final RegistryObject<Item> TRAUMA_EFFECT = ITEMS.register("trauma_effect",
             ()-> new Item(new Item.Properties()));

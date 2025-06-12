@@ -11,6 +11,7 @@ import com.shengchanshe.changshengjue.effect.village.InstantCharmEffect;
 import com.shengchanshe.changshengjue.effect.village.InstantDisfavorEffect;
 import com.shengchanshe.changshengjue.effect.village.VillagerCharmEffect;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.effect.InstantenousMobEffect;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -29,7 +30,7 @@ public class ChangShengJueEffects {
 
     public static final Supplier<MobEffect> FIXATION_EFFECT = register("fixation_effect", DizzyEffect::new);
 
-    public static final Supplier<MobEffect> GOLDEN_BELL_JAR_EFFECT = register("golden_bell_jar_effect", GoldenBellJarEffect::new);
+//    public static final Supplier<MobEffect> GOLDEN_BELL_JAR_EFFECT = register("golden_bell_jar_effect", GoldenBellJarEffect::new);
 
     public static final Supplier<MobEffect> TURTLE_BREATH_EFFECT = register("turtle_breath_effect", TurtleBreathEffect::new);
 

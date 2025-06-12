@@ -29,6 +29,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import org.checkerframework.checker.units.qual.A;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -144,7 +145,8 @@ public class AbstractWuXia extends AbstractVillager implements NeutralMob {
     @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
-        if (this instanceof AbstractGangLeader){return;}
+        if (this instanceof AbstractGangLeader) return;
+        pCompound.putBoolean("Attack", this.isAttacking());
         if (this.externalKungFuCapability != null){
             pCompound.putString("ExternalKungFuType",this.externalKungFuCapability.getExternalKungFuID());
             this.externalKungFuCapability.saveNBTData(pCompound); // 保存武功的具体数据，包括冷却时间
@@ -158,7 +160,8 @@ public class AbstractWuXia extends AbstractVillager implements NeutralMob {
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
-        if (this instanceof AbstractGangLeader){return;}
+        if (this instanceof AbstractGangLeader) return;
+        this.entityData.define(ATTACKING, pCompound.getBoolean("Attack"));
         if (pCompound.contains("ExternalKungFuType")) {
             String kungFuType = pCompound.getString("ExternalKungFuType");
             this.externalKungFuCapability = ExternalKungFuManager.createExternalKungFuCapabilityFromTag(kungFuType);
@@ -196,6 +199,7 @@ public class AbstractWuXia extends AbstractVillager implements NeutralMob {
     @Override
     protected void populateDefaultEquipmentSlots(RandomSource pRandom, DifficultyInstance pDifficulty) {
         super.populateDefaultEquipmentSlots(pRandom, pDifficulty);
+        if (this instanceof AbstractGangLeader) return;
         // 使用 KungFuManager 随机分配武功能力
         this.externalKungFuCapability = new ExternalKungFuManager().getRandomExternalKungFuCapability(this);
         this.internalKungFuCapability = new InterfaceKungFuManager().getRandomInterfaceKungFuCapability();

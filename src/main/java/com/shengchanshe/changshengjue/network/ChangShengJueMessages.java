@@ -97,11 +97,11 @@ public class ChangShengJueMessages {
                 .encoder(SunflowerPointCavemanPacket::toBytes)
                 .consumerMainThread(SunflowerPointCavemanPacket::handle)
                 .add();
-        net.messageBuilder(EffectEntityPacket.class, id())
-                .decoder(EffectEntityPacket::new)
-                .encoder(EffectEntityPacket::toBytes)
-                .consumerMainThread(EffectEntityPacket::handle)
-                .add();
+//        net.messageBuilder(EffectEntityPacket.class, id())
+//                .decoder(EffectEntityPacket::new)
+//                .encoder(EffectEntityPacket::toBytes)
+//                .consumerMainThread(EffectEntityPacket::handle)
+//                .add();
         //金钟罩
         net.messageBuilder(GoldenBellJarPacket.class, id())
                 .decoder(GoldenBellJarPacket::new)
@@ -184,6 +184,12 @@ public class ChangShengJueMessages {
                 .encoder(HerculesPacket::toBytes)
                 .consumerMainThread(HerculesPacket::handle)
                 .add();
+        //Food
+//        net.messageBuilder(FoodPacket.class, id())
+//                .decoder(FoodPacket::new)
+//                .encoder(FoodPacket::toBytes)
+//                .consumerMainThread(FoodPacket::handle)
+//                .add();
         // 按钮切换交易类型
         net.messageBuilder(KilnWorkerSetTradeTypePacket.class, id())
                 .decoder(KilnWorkerSetTradeTypePacket::decode)

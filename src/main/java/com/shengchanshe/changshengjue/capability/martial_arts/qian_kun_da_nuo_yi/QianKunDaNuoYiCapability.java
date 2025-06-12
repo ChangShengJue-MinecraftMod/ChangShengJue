@@ -2,7 +2,6 @@ package com.shengchanshe.changshengjue.capability.martial_arts.qian_kun_da_nuo_y
 
 import net.minecraft.nbt.CompoundTag;
 
-import java.util.Random;
 import java.util.UUID;
 
 public class QianKunDaNuoYiCapability {
@@ -201,7 +200,13 @@ public class QianKunDaNuoYiCapability {
         this.qianKunDaNuoYiUseCooldownMaxAdd = nbt.getFloat("QianKunDaNuoYiUseCooldownMaxAdd");
         this.recordTime = nbt.getInt("RecordTime");
         this.recordDamage = nbt.getFloat("RecordDamage");
-        this.recordDamageSource = nbt.getUUID("RecordDamageSource");
+        // 处理旧数据（无UUID字段的情况）
+        if (!nbt.contains("RecordDamageSource")) {
+            this.recordDamageSource = UUID.randomUUID(); // 生成新UUID
+        }else {
+            this.recordDamageSource = nbt.getUUID("RecordDamageSource");
+        }
+
         this.skillActive = nbt.getBoolean("SkillActive");
     }
 }

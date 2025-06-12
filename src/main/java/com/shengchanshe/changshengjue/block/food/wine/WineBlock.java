@@ -3,17 +3,15 @@ package com.shengchanshe.changshengjue.block.food.wine;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.block.food.TypeBlock;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
-import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -61,6 +59,8 @@ public class WineBlock extends TypeBlock {
                 if (player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) || player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) || player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get())){
                     if (state.getBlock() == ChangShengJueBlocks.SHI_LI_XIANG.get() || state.getBlock() == ChangShengJueBlocks.WHEAT_NUGGETS_TRIBUTE_WINE.get() || state.getBlock() == ChangShengJueBlocks.FEN_JIU.get()){
                         player.addEffect(new MobEffectInstance(ChangShengJueEffects.DRUNKEN.get(),1600),player);
+                        MobEffect mobEffect = ChangShengJueEffects.DRUNKEN.get();
+                        mobEffect.applyInstantenousEffect( null, null, player, 1, 0.0);
                     }
                 }
                 if (state.getBlock() == ChangShengJueBlocks.FEN_JIU.get()){

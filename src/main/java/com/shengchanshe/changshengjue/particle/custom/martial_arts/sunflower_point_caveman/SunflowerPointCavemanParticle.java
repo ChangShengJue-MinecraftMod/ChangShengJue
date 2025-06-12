@@ -1,16 +1,15 @@
 package com.shengchanshe.changshengjue.particle.custom.martial_arts.sunflower_point_caveman;
 
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
-import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class SunflowerPointCavemanParticle extends TextureSheetParticle {
     private final SpriteSet sprites;
     private final int entityId;

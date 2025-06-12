@@ -40,17 +40,19 @@ public class Lance extends SwordItem {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player pPlayer, Entity entity) {
         if (!pPlayer.level().isClientSide) {
+            float probability = pPlayer.getRandom().nextFloat();
+            float defaultProbability = 0.10F;
+            if (entity instanceof LivingEntity livingEntity) {
+                if (probability < defaultProbability) {
+                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(),
+                            30, 1, false, true), entity);
+                }
+            }
             pPlayer.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
                 int gaoMarksmanshipLevel = gaoMarksmanship.getGaoMarksmanshipLevel();
                 if (gaoMarksmanship.gaoMarksmanshipComprehend() && gaoMarksmanshipLevel == 0) {
-                    float probability = pPlayer.getRandom().nextFloat();
-                    float defaultProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
-                    if (entity instanceof LivingEntity livingEntity) {
-                        if (probability < 0.10F) {
-                            livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 30, 1, false, true), entity);
-                        }
-                    }
-                    if (probability < defaultProbability) {
+                    float defaultComprehendProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
+                    if (probability < defaultComprehendProbability) {
                         gaoMarksmanship.addGaoMarksmanshipLevel();
                         gaoMarksmanship.setGaoMarksmanshipParticle(true);
                         pPlayer.level().playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(),
@@ -64,14 +66,9 @@ public class Lance extends SwordItem {
                 }else {
                     if (gaoMarksmanshipLevel > 0) {
                         if (entity instanceof LivingEntity livingEntity){
-                            float probability = pPlayer.getRandom().nextFloat();
-                            float defaultProbability = 0.10F;
-                            if (gaoMarksmanshipLevel < 2) {
-                                if (probability < defaultProbability) {
-                                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 30, 1, false, true), entity);
-                                }
-                            } else {
-                                if (probability < defaultProbability * 1.15) {
+
+                            if (gaoMarksmanshipLevel >= 2) {
+                                if (probability < defaultProbability * 2.5F) {
                                     livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 30, 1, false, true), entity);
                                 }
                             }
