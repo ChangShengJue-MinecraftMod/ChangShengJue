@@ -8,10 +8,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
 import java.util.Formatter;
 
+@OnlyIn(Dist.CLIENT)
 public class TreadTheSnowWithoutTraceHudOverlay {
     // 绘制的领悟后技能贴图的位置
     private static final ResourceLocation TREAD_THE_SNOW_WITHOUT_TRACE = new ResourceLocation(ChangShengJue.MOD_ID,

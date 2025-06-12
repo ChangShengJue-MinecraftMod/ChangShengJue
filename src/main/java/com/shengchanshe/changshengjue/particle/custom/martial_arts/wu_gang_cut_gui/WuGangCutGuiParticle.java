@@ -13,6 +13,7 @@ import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class WuGangCutGuiParticle extends SimpleAnimatedParticle {
     private final float endRed;
     private final float endGreen;

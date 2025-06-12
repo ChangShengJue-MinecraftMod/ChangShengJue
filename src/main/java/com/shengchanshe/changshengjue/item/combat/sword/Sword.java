@@ -46,18 +46,19 @@ public class Sword extends SwordItem {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         if (!player.level().isClientSide) {
+            float probability = player.getRandom().nextFloat();
+            float defaultProbability = 0.10F;
+            if (entity instanceof LivingEntity livingEntity) {
+                if (probability < defaultProbability) {
+                    if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
+                        livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
+                    }
+                }
+            }
             player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                 if (duguNineSword.duguNineSwordsComprehend() && duguNineSword.getDuguNineSwordsLevel() == 0) {
-                    float probability = player.getRandom().nextFloat();
-                    float defaultProbability = !player.getAbilities().instabuild ? 0.02F : 1.0F;
-                    if (entity instanceof LivingEntity livingEntity) {
-                        if (probability < 0.15F) {
-                            if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
-                                livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
-                            }
-                        }
-                    }
-                    if (probability < defaultProbability) {
+                    float defaultComprehendProbability = !player.getAbilities().instabuild ? 0.15F : 1.0F;
+                    if (probability < defaultComprehendProbability) {
                         duguNineSword.addDuguNineSwordsLevel();
                         duguNineSword.setDuguNineSwordsParticle(true);
                         player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
@@ -71,16 +72,8 @@ public class Sword extends SwordItem {
                 }else {
                     if (duguNineSword.getDuguNineSwordsLevel() > 0) {
                         if (entity instanceof LivingEntity livingEntity){
-                            float probability = player.getRandom().nextFloat();
-                            float defaultProbability = 0.15F;
-                            if (duguNineSword.getDuguNineSwordsLevel() < 2) {
-                                if (probability < defaultProbability) {
-                                    if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
-                                        livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
-                                    }
-                                }
-                            } else {
-                                if (probability < (defaultProbability * 1.05F)) {
+                            if (duguNineSword.getDuguNineSwordsLevel() >= 2) {
+                                if (probability < (defaultProbability * 1.25F)) {
                                     if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
                                         livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
                                     }

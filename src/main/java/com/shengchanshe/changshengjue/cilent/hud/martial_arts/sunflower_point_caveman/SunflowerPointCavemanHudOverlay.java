@@ -3,11 +3,6 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.sunflower_point_c
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.immortal_miracle.ImmortalMiracleClientData;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiClientData;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceClientData;
-import com.shengchanshe.changshengjue.item.combat.clubbed.Clubbed;
 import com.shengchanshe.changshengjue.item.combat.glove.GoldThreadGlove;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -16,10 +11,11 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
-import java.util.Formatter;
-
+@OnlyIn(Dist.CLIENT)
 public class SunflowerPointCavemanHudOverlay {
     // 绘制的领悟后技能贴图的位置
     private static final ResourceLocation SUNFLOWER_POINT_CAVEMAN = new ResourceLocation(ChangShengJue.MOD_ID,

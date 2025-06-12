@@ -11,9 +11,12 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
+@OnlyIn(Dist.CLIENT)
 public class BeatDogStickAttackEntityRender extends EntityRenderer<BeatDogStickAttackEntity> {
     private static final ResourceLocation[] TEXTURES = {
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/beat_dog_stick_attack/beat_dog_stick_attack_1.png"),

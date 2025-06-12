@@ -13,7 +13,7 @@ import software.bernie.geckolib.renderer.GeoItemRenderer;
 
 public class SoftSwordRender extends GeoItemRenderer<SoftSword> {
     public SoftSwordRender() {
-        super(new DefaultedItemGeoModel(new ResourceLocation(ChangShengJue.MOD_ID,"soft_sword")));
+        super(new DefaultedItemGeoModel<>(new ResourceLocation(ChangShengJue.MOD_ID,"soft_sword")));
     }
 
     @Override

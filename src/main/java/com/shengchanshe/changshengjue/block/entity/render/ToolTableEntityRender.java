@@ -14,8 +14,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.Vec2;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.ItemStackHandler;
 
+@OnlyIn(Dist.CLIENT)
 public class ToolTableEntityRender implements BlockEntityRenderer<ToolTableEntity> {
     public ToolTableEntityRender(BlockEntityRendererProvider.Context context){}
     @Override

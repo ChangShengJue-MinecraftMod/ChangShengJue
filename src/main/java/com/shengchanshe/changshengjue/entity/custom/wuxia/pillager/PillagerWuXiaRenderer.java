@@ -8,7 +8,10 @@ import net.minecraft.client.renderer.entity.IllagerRenderer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.Pillager;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class PillagerWuXiaRenderer extends IllagerRenderer<Pillager> {
     private static final ResourceLocation PILLAGER = new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/illager/pillager_wu_xia.png");
 

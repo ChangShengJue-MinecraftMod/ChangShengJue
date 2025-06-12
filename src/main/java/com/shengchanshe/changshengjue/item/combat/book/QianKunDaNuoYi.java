@@ -54,6 +54,10 @@ public class QianKunDaNuoYi extends Item {
                     if (pPlayer instanceof ServerPlayer serverPlayer) {
                         CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                     }
+                } else{
+                    if (qianKunDaNuoYi.getQianKunDaNuoYiUseCount() < 100 && pPlayer.getAbilities().instabuild) {
+                        qianKunDaNuoYi.addQianKunDaNuoYiUseCount(100);
+                    }
                 }
 //                else {
 //                    qianKunDaNuoYi.setSkillActive(!qianKunDaNuoYi.isSkillActive());
@@ -140,22 +144,24 @@ public class QianKunDaNuoYi extends Item {
 //                                turtleBreathWork.isSkillActive()), (ServerPlayer) pPlayer);
 //                    }
 //                });
-                ChangShengJueMessages.sendToPlayer(new QianKunDaNuoYiPacket(
-                        qianKunDaNuoYi.getQianKunDaNuoYiLevel(),
-                        qianKunDaNuoYi.isQianKunDaNuoYiComprehend(),
-                        qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownPercent(),
-                        qianKunDaNuoYi.isQianKunDaNuoYiOff(),
-                        qianKunDaNuoYi.getQianKunDaNuoYiToppedTick(),
-                        qianKunDaNuoYi.getQianKunDaNuoYiDachengTick(),
-                        qianKunDaNuoYi.isQianKunDaNuoYiParticle(),
-                        qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax(),
-                        qianKunDaNuoYi.isSkillActive(),
-                        qianKunDaNuoYi.getRecordTime(),
-                        qianKunDaNuoYi.getRecordDamage(),
-                        qianKunDaNuoYi.getRecordDamageSource()), (ServerPlayer) pPlayer);
+                if (pPlayer instanceof ServerPlayer) {
+                    ChangShengJueMessages.sendToPlayer(new QianKunDaNuoYiPacket(
+                            qianKunDaNuoYi.getQianKunDaNuoYiLevel(),
+                            qianKunDaNuoYi.isQianKunDaNuoYiComprehend(),
+                            qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownPercent(),
+                            qianKunDaNuoYi.isQianKunDaNuoYiOff(),
+                            qianKunDaNuoYi.getQianKunDaNuoYiToppedTick(),
+                            qianKunDaNuoYi.getQianKunDaNuoYiDachengTick(),
+                            qianKunDaNuoYi.isQianKunDaNuoYiParticle(),
+                            qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax(),
+                            qianKunDaNuoYi.isSkillActive(),
+                            qianKunDaNuoYi.getRecordTime(),
+                            qianKunDaNuoYi.getRecordDamage(),
+                            qianKunDaNuoYi.getRecordDamageSource()), (ServerPlayer) pPlayer);
+                }
             });
         }
-        return super.use(pLevel, pPlayer, pUsedHand);
+        return InteractionResultHolder.consume(pPlayer.getItemInHand(pUsedHand));
     }
 
     public static void comprehend(Entity entity, Level level){
@@ -201,53 +207,47 @@ public class QianKunDaNuoYi extends Item {
                         if (player.getFoodData().getFoodLevel() > 8) {
                             if (qianKunDaNuoYi.getQianKunDaNuoYiLevel() >= 1) {
                                 if (!player.getAbilities().instabuild) {
-                                    player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
-                                        int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
-                                        if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() >= 1) {
-                                            player.getFoodData().eat(-foodLevel + 1, -1);//消耗饱食度
-                                            if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 100) {
-                                                theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
-                                            }
-                                        } else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() > 1) {
-                                            player.getFoodData().eat(-foodLevel + 2, -1);//消耗饱食度
-                                            if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 100) {
-                                                theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
-                                            }
-                                        } else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() < 1) {
-                                            player.getFoodData().eat(-foodLevel, -1);//消耗饱食度
-                                        }
-                                    });
-
                                     float healthMax = player.getMaxHealth();
-                                    float v = qianKunDaNuoYi.getQianKunDaNuoYiLevel() <= 1 ? 0.35F : 0.35F + (healthMax * 0.02F);
-                                    if (player.getRandom().nextFloat() < v) {
+                                    float baseChance = 0.35F;
+                                    float healthBonus = (healthMax - 20.0F) * 0.02F;
+                                    float totalChance = baseChance + Math.max(0, healthBonus);
+                                    float finalChance = qianKunDaNuoYi.getQianKunDaNuoYiLevel() < 2 ? baseChance : totalChance;
+
+                                    if (player.getRandom().nextFloat() < finalChance) {
                                         if (source.getEntity() instanceof LivingEntity livingEntity) {
                                             qianKunDaNuoYi.setRecordDamage(amount * 1.5F);
                                             qianKunDaNuoYi.setRecordTime(20);
                                             qianKunDaNuoYi.setRecordDamageSource(livingEntity.getUUID());
+                                            player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
+                                                int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
+                                                if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() >= 1) {
+                                                    player.getFoodData().eat(-foodLevel + 1, -1);//消耗饱食度
+                                                    if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 100) {
+                                                        theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
+                                                    }
+                                                } else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() > 1) {
+                                                    player.getFoodData().eat(-foodLevel + 2, -1);//消耗饱食度
+                                                    if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 100) {
+                                                        theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
+                                                    }
+                                                } else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() < 1) {
+                                                    player.getFoodData().eat(-foodLevel, -1);//消耗饱食度
+                                                }
+                                            });
                                         }
-//                                        if (source.getEntity() instanceof LivingEntity livingEntity) {
-//                                            if (source.getEntity() != null && source.getEntity().isAlive()) {
-//                                                livingEntity.hurt(source, amount * 1.5f);
-//                                            }
-//                                            qianKunDaNuoYi.setQianKunDaNuoYiUseCooldownMaxAdd(3600);
-//                                            qianKunDaNuoYi.setQianKunDaNuoYiUseCooldownMax(qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax() + 20);
-//                                        }
-//                                        pLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
-//                                                ChangShengJueSound.QIAN_KUN_DA_NUO_YI_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                         qianKunDaNuoYi.setQianKunDaNuoYiUseCooldownPercent(player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) ?
                                                 qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax() - 30 : qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax());
-                                    }
 
-                                    if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())) {
-                                        player.setHealth(player.getHealth() + 1);
-                                    }
-                                    if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())) {
-                                        player.getFoodData().eat(1, 0);
+                                        if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())) {
+                                            player.setHealth(player.getHealth() + 1);
+                                        }
+                                        if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())) {
+                                            player.getFoodData().eat(1, 0);
+                                        }
                                     }
 
                                     if (qianKunDaNuoYi.getQianKunDaNuoYiUseCount() < 100){
-                                        qianKunDaNuoYi.addQianKunDaNuoYiUseCount(!player.getAbilities().instabuild ? 1 : 100);
+                                        qianKunDaNuoYi.addQianKunDaNuoYiUseCount(1);
                                         if (qianKunDaNuoYi.getQianKunDaNuoYiUseCount() >= 100){
                                             qianKunDaNuoYi.setQianKunDaNuoYiParticle(true);
                                             pLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
@@ -258,12 +258,6 @@ public class QianKunDaNuoYi extends Item {
                             }
                         }
                     }
-                }
-                if (!qianKunDaNuoYi.isQianKunDaNuoYiOff()){
-                    qianKunDaNuoYi.setQianKunDaNuoYiOff(true);
-                }
-                if (!qianKunDaNuoYi.isQianKunDaNuoYiComprehend()) {
-                    qianKunDaNuoYi.setQianKunDaNuoYiComprehend(true);
                 }
                 ChangShengJueMessages.sendToPlayer(new QianKunDaNuoYiPacket(
                         qianKunDaNuoYi.getQianKunDaNuoYiLevel(),

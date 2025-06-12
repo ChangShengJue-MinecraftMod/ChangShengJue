@@ -11,7 +11,10 @@ import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class ThrowingKnivesEntityRender extends EntityRenderer<ThrowingKnivesEntity> {
     public static final ResourceLocation THROWING_KNIVES = new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/throwing_knives_entity.png");
     private final ThrowingKnivesEntityModel model;

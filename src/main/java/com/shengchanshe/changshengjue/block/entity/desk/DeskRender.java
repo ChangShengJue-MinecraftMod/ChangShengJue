@@ -12,8 +12,11 @@ import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.Vec2;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.ItemStackHandler;
 
+@OnlyIn(Dist.CLIENT)
 public class DeskRender implements BlockEntityRenderer<Desk> {
     public DeskRender(BlockEntityRendererProvider.Context context){}
     @Override

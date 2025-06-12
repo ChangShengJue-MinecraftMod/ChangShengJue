@@ -10,7 +10,10 @@ import net.minecraft.client.renderer.entity.IllagerRenderer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.monster.SpellcasterIllager;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class EvokerWuXiaRenderer <T extends SpellcasterIllager> extends IllagerRenderer<T> {
     private static final ResourceLocation EVOKER_ILLAGER = new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/illager/evoker_wuxia.png");
     public EvokerWuXiaRenderer(EntityRendererProvider.Context context) {

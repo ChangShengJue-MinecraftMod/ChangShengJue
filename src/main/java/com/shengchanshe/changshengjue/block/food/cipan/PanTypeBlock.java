@@ -2,11 +2,7 @@ package com.shengchanshe.changshengjue.block.food.cipan;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.block.food.TypeBlock;
-import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
-import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
-import com.shengchanshe.changshengjue.network.packet.food.FoodPacket;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -34,8 +30,8 @@ public class PanTypeBlock extends TypeBlock {
             if (player.getFoodData().getFoodLevel() < 20 || player.isCreative()) {
                 level.setBlock(pos, state.setValue(getTYPE(), 0), 3);
                 // 增加饥饿值
-
-                ChangShengJueMessages.sendToServer(new FoodPacket(fed, fedpro));
+                player.getFoodData().eat(10, 10);//消耗饱食度
+//                ChangShengJueMessages.sendToServer(new FoodPacket(fed, fedpro));
                 player.swing(InteractionHand.MAIN_HAND);
                 level.setBlock(pos, ChangShengJueBlocks.CI_PAN.get().defaultBlockState(), 3);
                 level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);

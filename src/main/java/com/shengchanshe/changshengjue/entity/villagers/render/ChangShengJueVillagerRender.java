@@ -10,7 +10,10 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.CrossedArmsItemLayer;
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class ChangShengJueVillagerRender extends MobRenderer<ChangShengJueVillagerEntity, VillagerModel<ChangShengJueVillagerEntity>> {
     private static final ResourceLocation VILLAGER_BASE_SKIN = new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/villager/chang_sheng_jue_villager.png");
 

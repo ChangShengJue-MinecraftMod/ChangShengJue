@@ -49,8 +49,8 @@ public class Knife extends SwordItem {
                 int goldenBlackKnifeMethodLevel = goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel();
                 if (goldenBlackKnifeMethod.goldenBlackKnifeMethodComprehend() && goldenBlackKnifeMethodLevel == 0) {
                     float probability = pPlayer.getRandom().nextFloat();
-                    float defaultProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
-                    if (probability < defaultProbability) {
+                    float defaultComprehendProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
+                    if (probability < defaultComprehendProbability) {
                         goldenBlackKnifeMethod.addGoldenBlackKnifeMethodLevel();
                         goldenBlackKnifeMethod.setGoldenBlackKnifeMethodParticle(true);
                         pPlayer.level().playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(),
@@ -61,12 +61,12 @@ public class Knife extends SwordItem {
                                 goldenBlackKnifeMethod.getGoldenBlackKnifeMethodDachengTick(),
                                 goldenBlackKnifeMethod.isGoldenBlackKnifeMethodParticle()), (ServerPlayer) pPlayer);
                     }
-                }else {
+                } else {
                     if (goldenBlackKnifeMethodLevel > 0) {
-                        if (entity instanceof LivingEntity livingEntity){
+                        if (entity instanceof LivingEntity livingEntity) {
                             float probability = pPlayer.getRandom().nextFloat();
                             float defaultProbability = 0.5f;
-                            EffectUtils.setTrauma(pPlayer, livingEntity, 2,140,0.25F);
+                            EffectUtils.setTrauma(pPlayer, livingEntity, 2, 140, 0.25F);
                             if (pPlayer.getMainHandItem().canDisableShield(livingEntity.getUseItem(), livingEntity, pPlayer)) {
                                 if (probability < defaultProbability) {
                                     // 强制打破目标玩家的防御状态（禁用盾牌防御）
@@ -80,7 +80,7 @@ public class Knife extends SwordItem {
                     }
                 }
             });
-            if (pPlayer.getMainHandItem().is(ChangShengJueItems.TU_LONG_DAO.get())){
+            if (pPlayer.getMainHandItem().is(ChangShengJueItems.TU_LONG_DAO.get())) {
                 TuLongDaoAttackEntity tuLongDaoEntity = new TuLongDaoAttackEntity(ChangShengJueEntity.TU_LONG_DAO_ATTACK.get(), pPlayer.level());
                 tuLongDaoEntity.moveTo(entity.position().add(0, entity.getEyeHeight(), 0).add(entity.getForward().scale(0)));
                 tuLongDaoEntity.setYRot(pPlayer.getYRot());
@@ -96,26 +96,25 @@ public class Knife extends SwordItem {
         Level level = event.getEntity().level();
         if (!level.isClientSide) {
             if (event.getSource().getDirectEntity() instanceof Player directEntity) {
-                directEntity.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
-                    int goldenBlackKnifeMethodLevel = goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel();
-                    if (goldenBlackKnifeMethodLevel >= 0) {
-                        if (directEntity.getMainHandItem().getItem() == this) {
-                            float probability = directEntity.getRandom().nextFloat();
-                            float defaultProbability = 0.10F;
-                            if (goldenBlackKnifeMethodLevel < 2) {
-                                if (probability < defaultProbability) {
-                                    float amount = event.getAmount();
-                                    event.setAmount((float) (amount * 1.80));
-                                }
-                            } else {
-                                if (probability < defaultProbability * 1.1) {
+                if (directEntity.getMainHandItem().getItem() == this) {
+                    float probability = directEntity.getRandom().nextFloat();
+                    float defaultProbability = 0.10F;
+                    if (probability < defaultProbability) {
+                        float amount = event.getAmount();
+                        event.setAmount((float) (amount * 1.80));
+                    }
+                    directEntity.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
+                        int goldenBlackKnifeMethodLevel = goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel();
+                        if (goldenBlackKnifeMethodLevel >= 0) {
+                            if (goldenBlackKnifeMethodLevel >= 2) {
+                                if (probability < defaultProbability * 2.0) {
                                     float amount = event.getAmount();
                                     event.setAmount((float) (amount * 1.80));
                                 }
                             }
                         }
-                    }
-                });
+                    });
+                }
             }
         }
     }
@@ -152,17 +151,17 @@ public class Knife extends SwordItem {
                 if (!player.getAbilities().instabuild) {
                     player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
                         int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
-                        if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() >= 1){
+                        if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() >= 1) {
                             player.getFoodData().eat(-foodLevel + 1, -1);//消耗饱食度
-                            if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 1000){
+                            if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 1000) {
                                 theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
                             }
-                        }else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() > 1){
+                        } else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() > 1) {
                             player.getFoodData().eat(-foodLevel + 2, -1);//消耗饱食度
-                            if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 1000){
+                            if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 1000) {
                                 theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
                             }
-                        }else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() < 1){
+                        } else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() < 1) {
                             player.getFoodData().eat(-foodLevel, -1);//消耗饱食度
                         }
                     });
@@ -179,14 +178,14 @@ public class Knife extends SwordItem {
                         float damage1 = this.getDamage();
                         float damage = goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel() < 2 ? (damage1 + 2) * 1.3F : (damage1 + 2) * 1.6F;
                         if (entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
-                                .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player),
+                                        .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player),
                                 player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
                             if (entity instanceof LivingEntity livingEntity) {
-                                EffectUtils.setTrauma(player, livingEntity, 5,140,0.25F);
+                                EffectUtils.setTrauma(player, livingEntity, 5, 140, 0.25F);
                             }
                             if (goldenBlackKnifeMethod.getGoldenBlackKnifeMethodUseCount() < 100) {
                                 goldenBlackKnifeMethod.addGoldenBlackKnifeMethodUseCount(!player.getAbilities().instabuild ? 1 : 100);
-                                if (goldenBlackKnifeMethod.getGoldenBlackKnifeMethodUseCount() >= 100){
+                                if (goldenBlackKnifeMethod.getGoldenBlackKnifeMethodUseCount() >= 100) {
                                     goldenBlackKnifeMethod.setGoldenBlackKnifeMethodParticle(true);
                                     player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                                             ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
@@ -203,11 +202,11 @@ public class Knife extends SwordItem {
                 }
                 pLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
                         ChangShengJueSound.GOLDEN_BLACK_KNIFE_METHOD_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())){
+                if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())) {
                     player.setHealth(player.getHealth() + 1);
                 }
-                if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())){
-                    player.getFoodData().eat(1,0);
+                if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())) {
+                    player.getFoodData().eat(1, 0);
                 }
                 itemstack.hurtAndBreak(1, player, (player1) -> {//消耗耐久
                     player1.broadcastBreakEvent(player.getUsedItemHand());

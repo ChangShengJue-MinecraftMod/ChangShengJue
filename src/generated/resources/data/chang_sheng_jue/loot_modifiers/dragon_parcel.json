@@ -1,0 +1,9 @@
+{
+  "type": "chang_sheng_jue:dragon_parcel",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:entities/ender_dragon"
+    }
+  ]
+}

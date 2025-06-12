@@ -1,6 +1,8 @@
 package com.shengchanshe.changshengjue.util;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
+import com.shengchanshe.changshengjue.cilent.gui.screens.ChangShengJueMenuTypes;
+import com.shengchanshe.changshengjue.cilent.gui.screens.plaque.PlaqueScreen;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.blacksmith.BlacksmithScreen;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangQuestsScreen;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingScreen;
@@ -35,10 +37,10 @@ import com.shengchanshe.changshengjue.entity.custom.wuxia.bandit.BanditRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.blacksmith.BlacksmithRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.challenger.ChallengerRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.evoker.EvokerWuXiaRenderer;
-import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other.GangLeaderRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeaderRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.knife.KnifeGangLeaderRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.lance.LanceGangLeaderRenderer;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other.GangLeaderRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.sword.SwordGangLeaderRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.innkeeper.female.FemaleInnkeeperRenderer;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.innkeeper.male.MaleInnkeeperRenderer;
@@ -57,14 +59,14 @@ import com.shengchanshe.changshengjue.entity.villagers.worker.KilnWorkerRenderer
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.item.combat.armor.DyeableChineseWeddingDressItem;
 import com.shengchanshe.changshengjue.item.combat.armor.DyeableItem;
-import com.shengchanshe.changshengjue.cilent.gui.screens.ChangShengJueMenuTypes;
-import com.shengchanshe.changshengjue.cilent.gui.screens.plaque.PlaqueScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
@@ -600,5 +602,9 @@ public class ClientSetup {
         EntityRenderers.register(ChangShengJueEntity.SWORD_MING_XIA.get(), SwordMingXiaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.KNIFE_MING_XIA.get(), KnifeMingXiaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.FIST_MING_XIA.get(), FistMingXiaRenderer::new);
+
+        ItemProperties.register(ChangShengJueItems.BA_WANG_QIANG.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack ? 1.0F : 0.0F);
+        ItemProperties.register(ChangShengJueItems.RED_TASSELLED_SPEAR.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack ? 1.0F : 0.0F);
+
     }
 }

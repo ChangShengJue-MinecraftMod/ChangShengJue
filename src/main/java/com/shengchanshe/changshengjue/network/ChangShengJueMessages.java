@@ -2,8 +2,6 @@ package com.shengchanshe.changshengjue.network;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.gui.screens.plaque.UpdatePlaqueTextPacket;
-import com.shengchanshe.changshengjue.network.packet.effect.EffectEntityPacket;
-import com.shengchanshe.changshengjue.network.packet.food.FoodPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.KilnWorkerSetTradeTypePacket;
 import com.shengchanshe.changshengjue.network.packet.gui.playerquest.*;
 import com.shengchanshe.changshengjue.network.packet.gui.quest.*;
@@ -98,11 +96,11 @@ public class ChangShengJueMessages {
                 .encoder(SunflowerPointCavemanPacket::toBytes)
                 .consumerMainThread(SunflowerPointCavemanPacket::handle)
                 .add();
-        net.messageBuilder(EffectEntityPacket.class, id())
-                .decoder(EffectEntityPacket::new)
-                .encoder(EffectEntityPacket::toBytes)
-                .consumerMainThread(EffectEntityPacket::handle)
-                .add();
+//        net.messageBuilder(EffectEntityPacket.class, id())
+//                .decoder(EffectEntityPacket::new)
+//                .encoder(EffectEntityPacket::toBytes)
+//                .consumerMainThread(EffectEntityPacket::handle)
+//                .add();
         //金钟罩
         net.messageBuilder(GoldenBellJarPacket.class, id())
                 .decoder(GoldenBellJarPacket::new)
@@ -186,11 +184,11 @@ public class ChangShengJueMessages {
                 .consumerMainThread(HerculesPacket::handle)
                 .add();
         //Food
-        net.messageBuilder(FoodPacket.class, id())
-                .decoder(FoodPacket::new)
-                .encoder(FoodPacket::toBytes)
-                .consumerMainThread(FoodPacket::handle)
-                .add();
+//        net.messageBuilder(FoodPacket.class, id())
+//                .decoder(FoodPacket::new)
+//                .encoder(FoodPacket::toBytes)
+//                .consumerMainThread(FoodPacket::handle)
+//                .add();
         // 按钮切换交易类型
         net.messageBuilder(KilnWorkerSetTradeTypePacket.class, id())
                 .decoder(KilnWorkerSetTradeTypePacket::decode)

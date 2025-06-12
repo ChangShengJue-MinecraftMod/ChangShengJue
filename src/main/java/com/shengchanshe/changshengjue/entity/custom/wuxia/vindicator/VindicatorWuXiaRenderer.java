@@ -9,7 +9,10 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.IllagerRenderer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class VindicatorWuXiaRenderer extends IllagerRenderer<VindicatorWuXia> {
     private static final ResourceLocation VINDICATOR = new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/illager/vindicator_wu_xia.png");
 

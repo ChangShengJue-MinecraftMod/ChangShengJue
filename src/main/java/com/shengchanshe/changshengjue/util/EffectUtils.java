@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.util;
 
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.item.combat.armor.ChangShengJueArmorItem;
+import com.shengchanshe.changshengjue.item.combat.armor.qi_tian_da_sheng.QiTianDaSheng;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -13,6 +14,8 @@ public class EffectUtils {
         float probability1 = source.getRandom().nextFloat();
         if (target.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ChangShengJueArmorItem changShengJueArmorItem) {
             probability =  probability - changShengJueArmorItem.getTrauma(target.getItemBySlot(EquipmentSlot.CHEST));
+        }else if (target.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof QiTianDaSheng qiTianDaSheng) {
+            probability =  probability - qiTianDaSheng.getTrauma(target.getItemBySlot(EquipmentSlot.CHEST));
         }
         if (probability1 < probability) {
             if (!(target instanceof Zombie)){

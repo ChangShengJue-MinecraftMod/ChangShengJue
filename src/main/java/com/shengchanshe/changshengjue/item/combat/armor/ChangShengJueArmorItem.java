@@ -33,7 +33,7 @@ public class ChangShengJueArmorItem extends ArmorItem {
     private static final String INNER_ARMOR_TAG = "InnerArmorData";
     private static final String DAMAGE_REDUCTION_TAG = "DamageReduction";
     private static final String TRAUMA = "Trauma";
-
+    private final RandomSource RANDOM_SOURCE = RandomSource.create();
     public ChangShengJueArmorItem(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
     }
@@ -44,13 +44,13 @@ public class ChangShengJueArmorItem extends ArmorItem {
         if (!stack.hasTag() || !stack.getTag().contains(DAMAGE_REDUCTION_TAG)) {
             if (this.getEquipmentSlot() == EquipmentSlot.CHEST) {
                 CompoundTag tag = stack.getOrCreateTag();
-                tag.putInt(DAMAGE_REDUCTION_TAG, 30);
+                tag.putFloat(DAMAGE_REDUCTION_TAG, 30);
             }
         }
         if (!stack.hasTag() || !stack.getTag().contains(TRAUMA)) {
             if (this.getEquipmentSlot() == EquipmentSlot.CHEST) {
                 CompoundTag tag = stack.getOrCreateTag();
-                tag.putInt(TRAUMA, 10);
+                tag.putFloat(TRAUMA, 10);
             }
         }
         return stack;
@@ -59,9 +59,9 @@ public class ChangShengJueArmorItem extends ArmorItem {
     private void ensureDamageReduction(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
         if (!tag.contains(DAMAGE_REDUCTION_TAG)) {
-            int newReduction = 15 + RandomSource.create().nextInt(16);
+            float newReduction = (150 + RANDOM_SOURCE.nextInt(151)) / 10f;
             if (this.getEquipmentSlot() == EquipmentSlot.CHEST) {
-                tag.putInt(DAMAGE_REDUCTION_TAG, Math.max(tag.getInt(DAMAGE_REDUCTION_TAG), newReduction));
+                tag.putFloat(DAMAGE_REDUCTION_TAG, Math.max(tag.getFloat(DAMAGE_REDUCTION_TAG), newReduction));
             }
         }
     }
@@ -69,9 +69,9 @@ public class ChangShengJueArmorItem extends ArmorItem {
     private void ensureTrauma(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
         if (!tag.contains(TRAUMA)) {
-            int newReduction = 5 + RandomSource.create().nextInt(6);
+            float newReduction = (50 + RANDOM_SOURCE.nextInt(51)) / 10f;
             if (this.getEquipmentSlot() == EquipmentSlot.CHEST) {
-                tag.putInt(TRAUMA, Math.max(tag.getInt(TRAUMA), newReduction));
+                tag.putFloat(TRAUMA, Math.max(tag.getFloat(TRAUMA), newReduction));
             }
         }
     }
@@ -85,7 +85,7 @@ public class ChangShengJueArmorItem extends ArmorItem {
 
     public float getTrauma(ItemStack stack){
         CompoundTag tag = stack.getOrCreateTag();
-        return (tag.getInt(TRAUMA));
+        return (tag.getFloat(TRAUMA));
     }
 
     public boolean hasTrauma(ItemStack stack){
@@ -94,7 +94,7 @@ public class ChangShengJueArmorItem extends ArmorItem {
 
     public float getDamageReduction(ItemStack stack){
         CompoundTag tag = stack.getOrCreateTag();
-        return (tag.getInt(DAMAGE_REDUCTION_TAG) / 100F);
+        return (tag.getFloat(DAMAGE_REDUCTION_TAG) / 100F);
     }
 
     public boolean hasDamageReduction(ItemStack stack){
@@ -226,12 +226,12 @@ public class ChangShengJueArmorItem extends ArmorItem {
                 pTooltipComponents.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data").append(innerArmor.getHoverName().copy()).withStyle(ChatFormatting.GRAY));
             }
             if (hasDamageReduction(pStack)) {
-                int reduction = pStack.getTag().getInt(DAMAGE_REDUCTION_TAG);
+                float reduction = pStack.getTag().getFloat(DAMAGE_REDUCTION_TAG);
                 pTooltipComponents.add(Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".damage_reduction", reduction).withStyle(ChatFormatting.BLUE));
             }
-            if (hasDamageReduction(pStack)) {
-                int anInt = pStack.getTag().getInt(TRAUMA);
-                pTooltipComponents.add(Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".trauma", anInt).withStyle(ChatFormatting.BLUE));
+            if (hasTrauma(pStack)) {
+                float aFloat = pStack.getTag().getFloat(TRAUMA);
+                pTooltipComponents.add(Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".trauma", aFloat).withStyle(ChatFormatting.BLUE));
             }
         } else {
             pTooltipComponents.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID +".hold_shift.tooltip"));

@@ -5,7 +5,6 @@ import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.gui.playerquest.AbandonPlayerQuestPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.playerquest.RequestQuestsPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.playerquest.SubmitPlayerQuestsPacket;
-import com.shengchanshe.changshengjue.network.packet.gui.quest.AbandonGangQuestPacket;
 import com.shengchanshe.changshengjue.quest.Quest;
 import com.shengchanshe.changshengjue.util.GuiEntityGraphics;
 import net.minecraft.ChatFormatting;
@@ -20,9 +19,12 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.*;
 
+@OnlyIn(Dist.CLIENT)
 public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/container/player_quests.png");
     private static final int TEXTURE_WIDTH = 256;

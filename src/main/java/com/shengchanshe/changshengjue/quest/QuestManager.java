@@ -89,15 +89,19 @@ public class QuestManager {
     private QuestManager() {
         this.storagePath = getWorldSpecificDataDir();
         try {
-            Files.createDirectories(storagePath);
+            if (storagePath != null) {
+                Files.createDirectories(storagePath);
+            }
 
             // 统一使用复合判断条件
             boolean isServerSide = FMLEnvironment.dist.isDedicatedServer() ||
                     (FMLEnvironment.dist.isClient() && Minecraft.getInstance().isLocalServer());
 
-            this.playerAcceptedQuests = isServerSide ?
-                    QuestDataStorage.load(storagePath) : // 服务端/单人游戏加载数据
-                    new ConcurrentHashMap<>();           // 纯客户端使用空Map
+            if (storagePath != null) {
+                this.playerAcceptedQuests = isServerSide ?
+                        QuestDataStorage.load(storagePath) : // 服务端/单人游戏加载数据
+                        new ConcurrentHashMap<>();           // 纯客户端使用空Map
+            }
 
         } catch (IOException e) {
             ChangShengJue.LOGGER.error("初始化任务数据失败", e);

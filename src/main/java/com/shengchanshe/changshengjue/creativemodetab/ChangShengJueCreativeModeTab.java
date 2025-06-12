@@ -719,6 +719,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.COTTON_ARMOR_PARCEL.get());
                 output.accept(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_PARCEL.get());
                 output.accept(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_PARCEL.get());
+                output.accept(ChangShengJueItems.QI_TIAN_DA_SHENG_PARCEL.get());
                 ItemStack sandstoneLocator = new ItemStack(ChangShengJueItems.STRUCTURE_INTELLIGENCE.get());
                 sandstoneLocator.setDamageValue(StructureIntelligence.SANDSTONE_CASTLE_TYPE);
                 output.accept(sandstoneLocator);

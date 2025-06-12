@@ -57,8 +57,8 @@ public class SoftSword extends Sword implements GeoItem {
             player.getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(xuannuSwordsmanship -> {
                 if (xuannuSwordsmanship.xuannuSwordsmanshipComprehend() && xuannuSwordsmanship.getXuannuSwordsmanshipLevel() == 0) {
                     float probability = player.getRandom().nextFloat();
-                    float defaultProbability = !player.getAbilities().instabuild ? 0.02F : 1.0F;
-                    if (probability < defaultProbability) {
+                    float defaultComprehendProbability = !player.getAbilities().instabuild ? 0.15F : 1.0F;
+                    if (probability < defaultComprehendProbability) {
                         xuannuSwordsmanship.addXuannuSwordsmanshipLevel();
                         xuannuSwordsmanship.setXuannuSwordsmanshipParticle(true);
                         player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
@@ -71,15 +71,9 @@ public class SoftSword extends Sword implements GeoItem {
                 }else if (xuannuSwordsmanship.getXuannuSwordsmanshipLevel() > 0) {
                     if (entity instanceof LivingEntity livingEntity){
                         float probability = player.getRandom().nextFloat();
-                        float defaultProbability = 0.15F;
-                        if (xuannuSwordsmanship.getXuannuSwordsmanshipLevel() < 2) {
-                            if (probability < defaultProbability) {
-                                if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
-                                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
-                                }
-                            }
-                        } else {
-                            if (probability < (defaultProbability * 1.5F)) {
+                        float defaultProbability = 0.10F;
+                        if (xuannuSwordsmanship.getXuannuSwordsmanshipLevel() >= 2) {
+                            if (probability < (defaultProbability * 3.0F)) {
                                 if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
                                     livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
                                 }

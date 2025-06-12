@@ -41,17 +41,18 @@ public class Clubbed extends SwordItem {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player pPlayer, Entity entity) {
         if (!pPlayer.level().isClientSide) {
+            float probability = pPlayer.getRandom().nextFloat();
+            float defaultProbability = 0.10F;
+            if (entity instanceof LivingEntity livingEntity) {
+                if (probability < defaultProbability) {
+                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 20, 1, false, true), pPlayer);
+                }
+            }
             pPlayer.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(shaolinStickMethod -> {
                 int shaolinStickMethodLevel = shaolinStickMethod.getShaolinStickMethodLevel();
                 if (shaolinStickMethod.getShaolinStickMethodComprehend() && shaolinStickMethodLevel == 0) {
-                    float probability = pPlayer.getRandom().nextFloat();
-                    float defaultProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
-                    if (entity instanceof LivingEntity livingEntity) {
-                        if (probability < 0.10F) {
-                            livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 20, 1, false, true), pPlayer);
-                        }
-                    }
-                    if (probability < defaultProbability) {
+                    float defaultComprehendProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
+                    if (probability < defaultComprehendProbability) {
                         shaolinStickMethod.addShaolinStickMethodLevel();
                         shaolinStickMethod.setShaolinStickMethodParticle(true);
                         pPlayer.level().playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
@@ -64,14 +65,8 @@ public class Clubbed extends SwordItem {
                 }else {
                     if (shaolinStickMethodLevel > 0) {
                         if (entity instanceof LivingEntity livingEntity){
-                            float probability = pPlayer.getRandom().nextFloat();
-                            float defaultProbability = 0.10F;
-                            if (shaolinStickMethodLevel < 2) {
-                                if (probability < defaultProbability) {
-                                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 20, 1, false, true), pPlayer);
-                                }
-                            } else {
-                                if (probability < defaultProbability * 1.15) {
+                            if (shaolinStickMethodLevel >= 2) {
+                                if (probability < (defaultProbability * 2.5)) {
                                     livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 20, 1, false, true), pPlayer);
                                 }
                             }

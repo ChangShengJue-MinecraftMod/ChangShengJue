@@ -13,6 +13,7 @@ import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class TreadTheSnowWithoutTraceParticle extends SimpleAnimatedParticle {
 
     TreadTheSnowWithoutTraceParticle(ClientLevel pLevel, double pX, double pY, double pZ,

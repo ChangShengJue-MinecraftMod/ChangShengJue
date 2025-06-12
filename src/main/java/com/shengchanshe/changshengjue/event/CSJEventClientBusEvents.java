@@ -37,7 +37,6 @@ import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendPar
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.ComprehendParticle2;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.DachengParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.ge_shan_da_niu.GeShanDaNiuParticle;
-import com.shengchanshe.changshengjue.particle.custom.martial_arts.golden_bell_jar.GoldenBellJarParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.immortal_miracle.ImmortalMiracleParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.sunflower_point_caveman.SunflowerPointCavemanParticle;
 import com.shengchanshe.changshengjue.particle.custom.martial_arts.sunflower_point_caveman.SunflowerPointCavemanParticle1;
@@ -121,7 +120,6 @@ public class CSJEventClientBusEvents {
     @SubscribeEvent
     public static void registerParticleFactories(RegisterParticleProvidersEvent event) {
 
-//        event.registerSpecial(ChangShengJueParticles.SUNFLOWER_POINT_CAVEMAN.get(), new SunflowerPointCavemanParticle.Provider());
         event.registerSpriteSet(ChangShengJueParticles.POPLAR_DEFOLIATION_PARTICLE.get(), LeavesDefoliationParticle.Provider::new);
         event.registerSpriteSet(ChangShengJueParticles.GUI_HUA_DEFOLIATION_PARTICLE.get(), LeavesDefoliationParticle.Provider::new);
         event.registerSpriteSet(ChangShengJueParticles.MEI_HUA_DEFOLIATION_PARTICLE.get(), LeavesDefoliationParticle.Provider::new);
@@ -137,7 +135,6 @@ public class CSJEventClientBusEvents {
         event.registerSpriteSet(ChangShengJueParticles.WU_GANG_CUT_GUI_PARTICLE.get(), WuGangCutGuiParticle.Provider::new);
         event.registerSpriteSet(ChangShengJueParticles.WU_GANG_CUT_GUI_PARTICLE_1.get(), WuGangCutGuiParticle1.Provider::new);
 
-        event.registerSpriteSet(ChangShengJueParticles.GOLDEN_BELL_JAR_PARTICLE.get(), GoldenBellJarParticle.Provider::new);
 
         event.registerSpriteSet(ChangShengJueParticles.TREAD_THE_SNOW_WITHOUT_TRACE_PARTICLE.get(), TreadTheSnowWithoutTraceParticle.Provider::new);
 
@@ -145,7 +142,6 @@ public class CSJEventClientBusEvents {
 
         event.registerSpriteSet(ChangShengJueParticles.THROWING_KNIVES_PARTICLE.get(), ThrowingknivesParticle.Provider::new);
 
-//        event.registerSpriteSet(ChangShengJueParticles.COMPREHEND_PARTICLE.get(), ComprehendParticle.Provider::new);
     }
 
     @SubscribeEvent

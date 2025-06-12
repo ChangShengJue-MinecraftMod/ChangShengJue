@@ -23,9 +23,9 @@ public class SyncQuestsPacket {
 
     public SyncQuestsPacket(FriendlyByteBuf buf) {
         this(
-                QuestManager.getInstance().decodeQuests(buf), // 静态方法避免实例依赖
-                buf.readCollection(HashSet::new, FriendlyByteBuf::readUUID),
-                buf.readMap(FriendlyByteBuf::readUUID, FriendlyByteBuf::readInt)
+            QuestManager.getInstance().decodeQuests(buf), // 静态方法避免实例依赖
+            buf.readCollection(HashSet::new, FriendlyByteBuf::readUUID),
+            buf.readMap(FriendlyByteBuf::readUUID, FriendlyByteBuf::readInt)
         );
     }
 

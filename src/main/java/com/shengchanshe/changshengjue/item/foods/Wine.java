@@ -4,6 +4,7 @@ import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -27,6 +28,8 @@ public class Wine extends BlockItem {
             if (pEntityLiving.hasEffect(ChangShengJueEffects.FEN_JIU.get()) || pEntityLiving.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) || pEntityLiving.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get())){
                 if (pStack.getItem().asItem() == ChangShengJueItems.SHI_LI_XIANG.get() || pStack.getItem().asItem() == ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get() || pStack.getItem().asItem() == ChangShengJueItems.FEN_JIU.get()){
                     pEntityLiving.addEffect(new MobEffectInstance(ChangShengJueEffects.DRUNKEN.get(),1600),pEntityLiving);
+                    MobEffect mobEffect = ChangShengJueEffects.DRUNKEN.get();
+                    mobEffect.applyInstantenousEffect( null, null, pEntityLiving, 1, 0.0);
                 }
             }
             if (pStack.getItem().asItem() == ChangShengJueItems.FEN_JIU.get()){
