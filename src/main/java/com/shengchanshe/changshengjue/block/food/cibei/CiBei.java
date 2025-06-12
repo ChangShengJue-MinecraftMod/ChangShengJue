@@ -15,9 +15,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class CiBei extends CiBeiTypeBlock{
 
     protected static final VoxelShape PLATE_SHAPE = Block.box(5.5D, 0.0D, 5.5D, 10.5D, 5.0D, 10.5D);
-
-    public CiBei(Properties properties, boolean hasLeftovers, int nutrition, float saturationMod) {
-        super(properties, hasLeftovers, nutrition, saturationMod);
+    protected int fed;
+    protected float fedpro;
+    public CiBei(Properties properties, boolean hasLeftovers, int fed, float fedpro) {
+        super(properties, hasLeftovers, fed, fedpro);
+        this.fed = fed;
+        this.fedpro = fedpro;
     }
 
     @Override

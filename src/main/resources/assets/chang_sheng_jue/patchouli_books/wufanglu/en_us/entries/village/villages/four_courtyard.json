@@ -1,8 +1,8 @@
 {
-  "name": "四合院村庄",
+  "name": "四合院",
   "category": "chang_sheng_jue:village",
   "sortnum": 0,
-  "icon": "",
+  "icon": "chang_sheng_jue:textures/gui/patchouli/si_he_yuan.png",
   "pages": [
     {
       "type": "patchouli:text",

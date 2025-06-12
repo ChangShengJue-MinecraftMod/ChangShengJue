@@ -3,7 +3,6 @@ package com.shengchanshe.changshengjue.network;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.gui.screens.plaque.UpdatePlaqueTextPacket;
 import com.shengchanshe.changshengjue.network.packet.effect.EffectEntityPacket;
-import com.shengchanshe.changshengjue.network.packet.food.FoodPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.KilnWorkerSetTradeTypePacket;
 import com.shengchanshe.changshengjue.network.packet.gui.playerquest.*;
 import com.shengchanshe.changshengjue.network.packet.gui.quest.*;
@@ -184,12 +183,6 @@ public class ChangShengJueMessages {
                 .decoder(HerculesPacket::new)
                 .encoder(HerculesPacket::toBytes)
                 .consumerMainThread(HerculesPacket::handle)
-                .add();
-        //Food
-        net.messageBuilder(FoodPacket.class, id())
-                .decoder(FoodPacket::new)
-                .encoder(FoodPacket::toBytes)
-                .consumerMainThread(FoodPacket::handle)
                 .add();
         // 按钮切换交易类型
         net.messageBuilder(KilnWorkerSetTradeTypePacket.class, id())

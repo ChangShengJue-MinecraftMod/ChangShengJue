@@ -34,8 +34,8 @@ public class WineBlock extends TypeBlock {
     protected static final VoxelShape PIE_SHAPE = Shapes.joinUnoptimized(PLATE_SHAPE, Block.box(6.5D, 1.0D, 6.5D, 9.5D, 5.0D, 9.5D), BooleanOp.OR);
 
 
-    public WineBlock(BlockBehaviour.Properties properties, boolean hasLeftovers, int nutrition, float saturationMod) {
-        super(properties, hasLeftovers, nutrition, saturationMod);
+    public WineBlock(BlockBehaviour.Properties properties, boolean hasLeftovers, int fed, float fedpro) {
+        super(properties, hasLeftovers, fed, fedpro);
     }
 
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
@@ -49,7 +49,7 @@ public class WineBlock extends TypeBlock {
                 if (player.getFoodData().getFoodLevel() < 20 || player.isCreative()) {
                     level.setBlock(pos, state.setValue(getTYPE(), 0), 3);
                     // 增加饥饿值
-                    player.getFoodData().eat(fed, fedpro);
+                    player.getFoodData().eat(this.fed, this.fedpro);
                     player.swing(InteractionHand.MAIN_HAND);
                     level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);
                 }

@@ -582,9 +582,6 @@ public class WeaponRack extends BaseEntityBlock {
                 if (!pLevel.isClientSide ) {
                     if(pPlayer.getAbilities().instabuild){
                         ItemStack itemcopy = item.copy();
-                        if (itemcopy.hasTag()) {
-                            itemcopy.getTag().remove("GeckoLibID");
-                        }
                         entity.addItem(itemcopy);
                         return InteractionResult.SUCCESS;
                     } else {

@@ -11,6 +11,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -142,48 +144,26 @@ public class Wooden_Balustrade extends  Balustrade{
             Block.box(0, 4.75, 7.5, 4, 5.75, 8.5),
             Block.box(5, 3.75, 7.5, 6, 8.75, 8.5)
              ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-    @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         boolean N_VALUE = state.getValue(NORTH);
         boolean S_VALUE = state.getValue(SOUTH);
         boolean W_VALUE = state.getValue(WEST);
         boolean E_VALUE = state.getValue(EAST);
-        //定义一个基础模型
-        if (N_VALUE && S_VALUE && W_VALUE && E_VALUE)
-            return Stream.of(N_SHAPE, S_SHAPE, W_SHAPE, E_SHAPE).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
-        if (N_VALUE && S_VALUE && W_VALUE && !E_VALUE)
-            return Stream.of(N_SHAPE, S_SHAPE, W_SHAPE).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-        if (N_VALUE && S_VALUE && !W_VALUE && E_VALUE)
-            return Stream.of(N_SHAPE, S_SHAPE, E_SHAPE).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-        if (N_VALUE && !S_VALUE && W_VALUE && E_VALUE)
-            return Stream.of(N_SHAPE, W_SHAPE, E_SHAPE).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-        if (!N_VALUE && S_VALUE && W_VALUE && E_VALUE)
-            return Stream.of(S_SHAPE, W_SHAPE, E_SHAPE).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+        List<VoxelShape> shapes = new ArrayList<>(4);
+        if (N_VALUE) shapes.add(N_SHAPE);
+        if (S_VALUE) shapes.add(S_SHAPE);
+        if (W_VALUE) shapes.add(W_SHAPE);
+        if (E_VALUE) shapes.add(E_SHAPE);
 
-        if (N_VALUE && S_VALUE && !W_VALUE && !E_VALUE)
-            return Stream.of(N_SHAPE, S_SHAPE).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-        if (N_VALUE && !S_VALUE && W_VALUE && !E_VALUE)
-            return Stream.of(N_SHAPE, W_SHAPE).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-        if (!N_VALUE && S_VALUE && W_VALUE && !E_VALUE)
-            return Stream.of(S_SHAPE, W_SHAPE).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-        if (!N_VALUE && !S_VALUE && W_VALUE && E_VALUE)
-            return Stream.of(W_SHAPE, E_SHAPE).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-        if (!N_VALUE && S_VALUE && !W_VALUE && E_VALUE)
-            return Stream.of(S_SHAPE, E_SHAPE).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
-        if (N_VALUE && !S_VALUE && !W_VALUE && E_VALUE)
-            return Stream.of(N_SHAPE, E_SHAPE).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
+        if (shapes.size() == 1) {
+            shapes.add(BASE_SHAPE);
+        }
 
-        if (N_VALUE && !S_VALUE && !W_VALUE && !E_VALUE)
-            return NORTH_SHAPE;
-        if (!N_VALUE && S_VALUE && !W_VALUE && !E_VALUE)
-            return SOUTH_SHAPE;
-        if (!N_VALUE && !S_VALUE && W_VALUE && !E_VALUE)
-            return WEST_SHAPE;
-        if (!N_VALUE && !S_VALUE && !W_VALUE && E_VALUE)
-            return EAST_SHAPE;
-         return BASE_SHAPE;
-
+        if (shapes.isEmpty()) {
+            return BASE_SHAPE;
+        }
+        return shapes.stream().reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
     }
 
 

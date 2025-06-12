@@ -1,8 +1,8 @@
 {
-  "name": "窑洞村庄",
+  "name": "窑洞",
   "category": "chang_sheng_jue:village",
   "sortnum": 0,
-  "icon": "",
+  "icon": "chang_sheng_jue:textures/gui/patchouli/yao_dong.png",
   "pages": [
     {
       "type": "patchouli:text",

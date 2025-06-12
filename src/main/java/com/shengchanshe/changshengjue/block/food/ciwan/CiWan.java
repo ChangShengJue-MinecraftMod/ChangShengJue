@@ -18,8 +18,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class CiWan extends WanTypeBlock{
     protected static final VoxelShape PLATE_SHAPE = Block.box(3.5D, 0.0D, 3.5D, 12.5D, 5.0D, 12.5D);
 
-    public CiWan(BlockBehaviour.Properties properties, boolean hasLeftovers, int nutrition, float saturationMod) {
-        super(properties, hasLeftovers, nutrition, saturationMod);
+    public CiWan(BlockBehaviour.Properties properties, boolean hasLeftovers, int fed, float fedpro) {
+        super(properties, hasLeftovers, fed, fedpro);
     }
 
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {

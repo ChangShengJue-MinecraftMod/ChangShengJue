@@ -11,8 +11,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class EmptyWheatNuggetsTributeWine extends WineBlock{
     protected static final VoxelShape PLATE_SHAPE = Block.box(2.75D, 0.0D, 2.75D, 13.25D, 12.0D, 13.25D);
 
-    public EmptyWheatNuggetsTributeWine(Properties properties, boolean hasLeftovers, int nutrition, float saturationMod) {
-        super(properties, hasLeftovers, nutrition, saturationMod);
+    public EmptyWheatNuggetsTributeWine(Properties properties, boolean hasLeftovers, int fed, float fedpro) {
+        super(properties, hasLeftovers, fed, fedpro);
     }
 
     @Override

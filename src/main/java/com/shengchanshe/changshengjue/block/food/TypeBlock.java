@@ -33,26 +33,26 @@ public class TypeBlock extends Block {
 
     public boolean hasLeftovers;
 
-    public static int nutrition = 0;
-    public static float saturationMod = 0.0F;
+    public static int fed = 0;
+    public static float fedpro = 0.0F;
     protected static final VoxelShape[] SHAPES = new VoxelShape[]{
             Block.box(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D),
             Block.box(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D),
 
     };
 
-    public TypeBlock(Properties properties, boolean hasLeftovers, int nutrition, float saturationMod) {
+    public TypeBlock(Properties properties, boolean hasLeftovers, int fed, float fedpro) {
         super(properties);
         this.hasLeftovers = hasLeftovers;
-        TypeBlock.nutrition = nutrition;
-        TypeBlock.saturationMod = saturationMod;
+        TypeBlock.fed = fed;
+        TypeBlock.fedpro = fedpro;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(getTYPE(), getMaxTYPES()));
     }
 
-    public TypeBlock(Properties pProperties, int nutrition, float saturationMod) {
+    public TypeBlock(Properties pProperties, int fed, float fedpro) {
         super(pProperties);
-        this.nutrition = nutrition;
-        this.saturationMod = saturationMod;
+        this.fed = fed;
+        this.fedpro = fedpro;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
@@ -67,12 +67,12 @@ public class TypeBlock extends Block {
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (level.isClientSide) {
-            if (this.addFed(level, pos, state, player, hand, nutrition, saturationMod).consumesAction()) {
+            if (this.addFed(level, pos, state, player, hand, fed, fedpro).consumesAction()) {
                 return InteractionResult.SUCCESS;
             }
         }
 
-        return this.addFed(level, pos, state, player, hand, nutrition, saturationMod);
+        return this.addFed(level, pos, state, player, hand, fed, fedpro);
     }
 
     public void put(Level level, BlockPos pos, Player player, InteractionHand hand, Item item, Block block){

@@ -12,8 +12,8 @@ public class ShiLiXiang extends WineBlock {
     protected static final VoxelShape PLATE_SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 10.55D, 11.0D);
 
 
-    public ShiLiXiang(Properties properties, boolean hasLeftovers, int nutrition, float saturationMod) {
-        super(properties, hasLeftovers, nutrition, saturationMod);
+    public ShiLiXiang(Properties properties, boolean hasLeftovers, int fed, float fedpro) {
+        super(properties, hasLeftovers, fed, fedpro);
     }
 
 

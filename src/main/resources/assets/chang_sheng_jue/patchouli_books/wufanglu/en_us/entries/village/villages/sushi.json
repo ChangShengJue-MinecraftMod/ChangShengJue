@@ -2,7 +2,7 @@
   "name": "苏式村庄",
   "category": "chang_sheng_jue:village",
   "sortnum": 0,
-  "icon": "",
+  "icon": "chang_sheng_jue:textures/gui/patchouli/su_shi.png",
   "pages": [
     {
       "type": "patchouli:text",

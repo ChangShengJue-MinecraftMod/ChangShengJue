@@ -2,30 +2,24 @@ package com.shengchanshe.changshengjue.block.food.cibei;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.block.food.TypeBlock;
-import com.shengchanshe.changshengjue.entity.decoration.seat.SeatEntity;
-import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
-import com.shengchanshe.changshengjue.network.packet.food.FoodPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
 
 @SuppressWarnings("deprecation")
 public class CiBeiTypeBlock extends TypeBlock {
-    public static int nutrition = 0;
-    public static float saturationMod = 0.0F;
+    public static int fed = 0;
+    public static float fedpro = 0.0F;
 
-    public CiBeiTypeBlock(Properties properties, boolean hasLeftovers, int nutrition, float saturationMod) {
-        super(properties, hasLeftovers, nutrition, saturationMod);
-        this.nutrition = nutrition;
-        this.saturationMod = saturationMod;
+    public CiBeiTypeBlock(Properties properties, boolean hasLeftovers, int fed, float fedpro) {
+        super(properties, hasLeftovers, fed, fedpro);
+        this.fed = fed;
+        this.fedpro = fedpro;
     }
 
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
@@ -35,8 +29,7 @@ public class CiBeiTypeBlock extends TypeBlock {
 
             level.setBlock(pos, state.setValue(getTYPE(), 0), 3);
             // 增加饥饿值
-
-            ChangShengJueMessages.sendToServer(new FoodPacket(fed, fedpro));
+            player.getFoodData().eat(fed, fedpro);
             player.swing(InteractionHand.MAIN_HAND);
             level.setBlock(pos, ChangShengJueBlocks.CI_BEI.get().defaultBlockState(), 3);
             level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);

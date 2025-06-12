@@ -12,8 +12,8 @@ public class FenJiu extends WineBlock {
     protected static final VoxelShape PLATE_SHAPE = Block.box(2.5D, 0.0D, 2.5D, 13.5D, 11.25D, 13.5D);
 
 
-    public FenJiu(Properties properties, boolean hasLeftovers, int nutrition, float saturationMod) {
-        super(properties, hasLeftovers, nutrition, saturationMod);
+    public FenJiu(Properties properties, boolean hasLeftovers, int fed, float fedpro) {
+        super(properties, hasLeftovers, fed, fedpro);
     }
 
 

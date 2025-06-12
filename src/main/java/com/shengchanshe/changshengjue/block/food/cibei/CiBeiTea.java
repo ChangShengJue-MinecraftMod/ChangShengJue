@@ -22,19 +22,23 @@ public class CiBeiTea extends CiBeiTypeBlock{
     protected static final VoxelShape PLATE_SHAPE = Block.box(5.5D, 0.0D, 5.5D, 10.5D, 5.0D, 10.5D);
     protected static final VoxelShape PIE_SHAPE = Shapes.joinUnoptimized(PLATE_SHAPE, Block.box(6.5D, 1.0D, 6.5D, 9.5D, 5.0D, 9.5D), BooleanOp.OR);
     protected static int eff;
+    protected static int fed;
+    protected static float fedpro;
 
 
 
-    public CiBeiTea(BlockBehaviour.Properties properties, boolean hasLeftovers, int nutrition, float saturationMod, int eff) {
-        super(properties, hasLeftovers, nutrition, saturationMod);
+    public CiBeiTea(BlockBehaviour.Properties properties, boolean hasLeftovers, int fed, float fedpro, int eff) {
+        super(properties, hasLeftovers, fed, fedpro);
         this.eff = eff;
+        this.fed = fed;
+        this.fedpro = fedpro;
     }
 
     private void addEffect(MobEffect effect) {
     }
 
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
-        super.addFed(level, pos, state, player, hand, fed, fedpro);
+        super.addFed(level, pos, state, player, hand, this.fed, this.fedpro);
         //为玩家添加效果
         if(eff == 1){
             player.addEffect(new MobEffectInstance(ChangShengJueEffects.BILUOCHUN_TEAS.get(), 1200, 0));

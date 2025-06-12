@@ -1,9 +1,7 @@
 package com.shengchanshe.changshengjue.block.food.nobox;
 
-import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.block.food.TypeBlock;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
-import com.shengchanshe.changshengjue.network.packet.food.FoodPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -22,19 +20,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
-
 public class NoBoxTypeBlock extends TypeBlock {
-    public static int nutrition = 0;
-    public static float saturationMod = 0.0F;
+    public static int fed = 0;
+    public static float fedpro = 0.0F;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     protected static final VoxelShape PLATE_SHAPE = Block.box(0D, 0D, 0D, 0D, 0D, 0D);
 
@@ -43,10 +34,10 @@ public class NoBoxTypeBlock extends TypeBlock {
         return PLATE_SHAPE;
     }
 
-    public NoBoxTypeBlock(Properties pProperties, int nutrition, float saturationMod) {
-        super(pProperties, nutrition, saturationMod);
-        this.nutrition = nutrition;
-        this.saturationMod = saturationMod;
+    public NoBoxTypeBlock(Properties pProperties, int fed, float fedpro) {
+        super(pProperties, fed, fedpro);
+        this.fed = fed;
+        this.fedpro = fedpro;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
@@ -57,7 +48,7 @@ public class NoBoxTypeBlock extends TypeBlock {
 
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
         if (player.getFoodData().getFoodLevel() < 20 || player.isCreative()) {
-            ChangShengJueMessages.sendToServer(new FoodPacket(fed, fedpro));
+            player.getFoodData().eat(this.fed, this.fedpro);
             level.destroyBlock(pos, false);
             level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);
             return InteractionResult.SUCCESS;

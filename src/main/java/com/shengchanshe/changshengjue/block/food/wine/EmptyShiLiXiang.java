@@ -15,8 +15,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class EmptyShiLiXiang extends WineBlock{
     protected static final VoxelShape PLATE_SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 10.55D, 11.0D);
 
-    public EmptyShiLiXiang(Properties properties, boolean hasLeftovers, int nutrition, float saturationMod) {
-        super(properties, hasLeftovers, nutrition, saturationMod);
+    public EmptyShiLiXiang(Properties properties, boolean hasLeftovers, int fed, float fedpro) {
+        super(properties, hasLeftovers, fed, fedpro);
     }
 
     @Override

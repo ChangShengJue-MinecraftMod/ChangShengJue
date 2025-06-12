@@ -2,7 +2,7 @@
   "name": "沙石堡",
   "category": "chang_sheng_jue:village",
   "sortnum": 0,
-  "icon": "",
+  "icon": "chang_sheng_jue:textures/gui/patchouli/bao_lei.png",
   "pages": [
     {
       "type": "patchouli:text",

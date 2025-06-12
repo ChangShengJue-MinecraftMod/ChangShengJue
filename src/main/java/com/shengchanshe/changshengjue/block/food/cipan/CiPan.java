@@ -18,8 +18,8 @@ public class CiPan extends PanTypeBlock {
     protected static final VoxelShape PLATE_SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 2.0D, 15.0D);
 
 
-    public CiPan(Properties properties, boolean hasLeftovers, int nutrition, float saturationMod) {
-        super(properties, hasLeftovers, nutrition, saturationMod);
+    public CiPan(Properties properties, boolean hasLeftovers, int fed, float fedpro) {
+        super(properties, hasLeftovers, fed, fedpro);
     }
 
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
@@ -29,7 +29,7 @@ public class CiPan extends PanTypeBlock {
         put(level, pos, player, hand, ChangShengJueItems.MI_FAN.get(), ChangShengJueBlocks.MI_FAN_PAN.get());
         put(level, pos, player, hand, ChangShengJueItems.XIAO_MI_FAN.get(), ChangShengJueBlocks.XIAO_MI_FAN_PAN.get());
         put(level, pos, player, hand, ChangShengJueItems.SORGHUM_CAKE.get(), ChangShengJueBlocks.SORGHUM_CAKE_PAN.get());
-
+        super.addFed(level, pos, state, player, hand, fed, fedpro);
         return InteractionResult.SUCCESS;
     }
     @Override
