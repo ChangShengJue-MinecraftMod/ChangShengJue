@@ -560,6 +560,28 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.OAK_OVERLORD_FIST.get(), "橡木霸王拳");
         this.add(ChangShengJueBlocks.CHERRY_OVERLORD_FIST.get(), "樱花木霸王拳");
         this.add(ChangShengJueBlocks.SPRUCE_OVERLORD_FIST.get(), "云杉木霸王拳");
+        this.add(ChangShengJueBlocks.SHORT_MANGROVE_BACK_BRACKET.get(), "红木回纹雀替");
+        this.add(ChangShengJueBlocks.SHORT_BIRCH_BACK_BRACKET.get(), "白桦木回纹雀替");
+        this.add(ChangShengJueBlocks.SHORT_JUNGLE_BACK_BRACKET.get(), "丛林木回纹雀替");
+        this.add(ChangShengJueBlocks.SHORT_CRIMSON_BACK_BRACKET.get(), "绯红木回纹雀替");
+        this.add(ChangShengJueBlocks.SHORT_WARPED_BACK_BRACKET.get(), "诡异木回纹雀替");
+        this.add(ChangShengJueBlocks.SHORT_ACACIA_BACK_BRACKET.get(), "金合欢回纹雀替");
+        this.add(ChangShengJueBlocks.SHORT_DARK_OAK_BACK_BRACKET.get(), "深色橡木回纹雀替");
+        this.add(ChangShengJueBlocks.SHORT_OAK_BACK_BRACKET.get(), "橡木回纹雀替");
+        this.add(ChangShengJueBlocks.SHORT_CHERRY_BACK_BRACKET.get(), "樱花木回纹雀替");
+        this.add(ChangShengJueBlocks.SHORT_SPRUCE_BACK_BRACKET.get(), "云杉木回纹雀替");
+        this.add(ChangShengJueBlocks.LONG_MANGROVE_BACK_BRACKET.get(), "红木回纹雀替");
+        this.add(ChangShengJueBlocks.LONG_BIRCH_BACK_BRACKET.get(), "白桦木回纹雀替");
+        this.add(ChangShengJueBlocks.LONG_JUNGLE_BACK_BRACKET.get(), "丛林木回纹雀替");
+        this.add(ChangShengJueBlocks.LONG_CRIMSON_BACK_BRACKET.get(), "绯红木回纹雀替");
+        this.add(ChangShengJueBlocks.LONG_WARPED_BACK_BRACKET.get(), "诡异木回纹雀替");
+        this.add(ChangShengJueBlocks.LONG_ACACIA_BACK_BRACKET.get(), "金合欢回纹雀替");
+        this.add(ChangShengJueBlocks.LONG_DARK_OAK_BACK_BRACKET.get(), "深色橡木回纹雀替");
+        this.add(ChangShengJueBlocks.LONG_OAK_BACK_BRACKET.get(), "橡木回纹雀替");
+        this.add(ChangShengJueBlocks.LONG_CHERRY_BACK_BRACKET.get(), "樱花木回纹雀替");
+        this.add(ChangShengJueBlocks.LONG_SPRUCE_BACK_BRACKET.get(), "云杉木回纹雀替");
+
+
 
         this.add(ChangShengJueBlocks.STONE_LAMPS_BASE_BLOCK.get(),"石灯底座");
         this.add(ChangShengJueBlocks.STONE_LAMPS_BLOCK.get(),"未点亮的石灯");

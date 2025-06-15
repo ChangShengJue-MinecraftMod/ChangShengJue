@@ -482,6 +482,28 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.OAK_OVERLORD_FIST.get());
                 output.accept(ChangShengJueBlocks.CHERRY_OVERLORD_FIST.get());
                 output.accept(ChangShengJueBlocks.SPRUCE_OVERLORD_FIST.get());
+                output.accept(ChangShengJueBlocks.SHORT_MANGROVE_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_BIRCH_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_JUNGLE_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_CRIMSON_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_WARPED_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_ACACIA_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_DARK_OAK_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_OAK_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_CHERRY_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_SPRUCE_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_MANGROVE_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_BIRCH_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_JUNGLE_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_CRIMSON_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_WARPED_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_ACACIA_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_DARK_OAK_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_OAK_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_CHERRY_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_SPRUCE_BACK_BRACKET.get());
+
+
                 output.accept(ChangShengJueBlocks.WIND_CHIME.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_FUNCTIONAL = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_functional",()-> CreativeModeTab.builder()

@@ -2,7 +2,6 @@ package com.shengchanshe.changshengjue.network;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.gui.screens.plaque.UpdatePlaqueTextPacket;
-import com.shengchanshe.changshengjue.network.packet.effect.EffectEntityPacket;
 import com.shengchanshe.changshengjue.network.packet.gui.KilnWorkerSetTradeTypePacket;
 import com.shengchanshe.changshengjue.network.packet.gui.playerquest.*;
 import com.shengchanshe.changshengjue.network.packet.gui.quest.*;

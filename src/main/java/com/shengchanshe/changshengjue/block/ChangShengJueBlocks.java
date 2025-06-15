@@ -1040,9 +1040,50 @@ public class ChangShengJueBlocks {
             ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> SPRUCE_OVERLORD_FIST = registerBlock("spruce_overlord_fist",
             ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
-    
-    
-    
+    /*雀替-短*/
+    //回纹雀替
+    public static final RegistryObject<Block> SHORT_MANGROVE_BACK_BRACKET = registerBlock( "short_mangrove_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_BIRCH_BACK_BRACKET = registerBlock( "short_birch_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_JUNGLE_BACK_BRACKET = registerBlock( "short_jungle_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_CRIMSON_BACK_BRACKET = registerBlock( "short_crimson_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_WARPED_BACK_BRACKET = registerBlock( "short_warped_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_ACACIA_BACK_BRACKET = registerBlock( "short_acacia_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_DARK_OAK_BACK_BRACKET = registerBlock( "short_dark_oak_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_OAK_BACK_BRACKET = registerBlock( "short_oak_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_CHERRY_BACK_BRACKET = registerBlock( "short_cherry_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_SPRUCE_BACK_BRACKET = registerBlock( "short_spruce_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
+    /*雀替-长*/
+    public static final RegistryObject<Block> LONG_MANGROVE_BACK_BRACKET = registerBlock( "long_mangrove_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_BIRCH_BACK_BRACKET = registerBlock( "long_birch_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_JUNGLE_BACK_BRACKET = registerBlock( "long_jungle_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_CRIMSON_BACK_BRACKET = registerBlock( "long_crimson_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_WARPED_BACK_BRACKET = registerBlock( "long_warped_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_ACACIA_BACK_BRACKET = registerBlock( "long_acacia_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_DARK_OAK_BACK_BRACKET = registerBlock( "long_dark_oak_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_OAK_BACK_BRACKET = registerBlock( "long_oak_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_CHERRY_BACK_BRACKET = registerBlock( "long_cherry_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_SPRUCE_BACK_BRACKET = registerBlock( "long_spruce_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
+
     //矿石
     public static final RegistryObject<Block> AG_ORE = registerBlock("ag_ore",
             ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.0F, 6.0F)));
