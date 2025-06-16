@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:birch_planks"
+    },
+    "X": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " # ",
+    "###",
+    "X X"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:birch_drinking_table_and_chairs"
+  },
+  "show_notification": true
+}

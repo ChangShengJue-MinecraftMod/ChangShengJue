@@ -1,0 +1,7 @@
+{
+  "parent" : "chang_sheng_jue:block/overlord_fist",
+  "textures": {
+    "0": "chang_sheng_jue:block/cherry_overlord_fist",
+    "particle": "chang_sheng_jue:block/cherry_overlord_fist"
+  }
+}

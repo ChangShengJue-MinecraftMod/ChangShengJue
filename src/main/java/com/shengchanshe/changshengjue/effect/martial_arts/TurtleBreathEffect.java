@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.effect.martial_arts;
 
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
+import net.minecraft.ChatFormatting;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,7 +19,7 @@ public class TurtleBreathEffect extends MobEffect {
 
     public TurtleBreathEffect() {
         // 第二个参数是颜色
-        super(MobEffectCategory.BENEFICIAL, 0x000000);
+        super(MobEffectCategory.BENEFICIAL, ChatFormatting.AQUA.getColor());
     }
 
     @Override

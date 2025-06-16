@@ -9,13 +9,7 @@ public class GoldenBellJarClientData {
     private static float goldenBellJarToppedTick;//技能领悟特效计时
     private static float goldenBellJarDachengTick;//技能大成特效计时
     private static boolean goldenBellJarParticle;//技能特效显示
-    // 技能状态
-    private static boolean skillZActive;
-    private static boolean skillXActive;
-    private static boolean skillCActive;
-    // 技能状态
-//    private static int goldenBellJarKey;
-//    private static boolean skillActive;
+    private static boolean skillActive;
     //获取技能等级
     public static int getGoldenBellJarLevel() {
         return goldenBellJarLevel;
@@ -73,42 +67,12 @@ public class GoldenBellJarClientData {
     public static void setGoldenBellJarParticle(boolean goldenBellJarParticle) {
         GoldenBellJarClientData.goldenBellJarParticle = goldenBellJarParticle;
     }
-    public static boolean isSkillZActive() {
-        return skillZActive;
+
+    public static boolean isSkillActive() {
+        return skillActive;
     }
 
-    public static void setSkillZActive(boolean skillZActive) {
-        GoldenBellJarClientData.skillZActive = skillZActive;
+    public static void setSkillActive(boolean skillActive) {
+        GoldenBellJarClientData.skillActive = skillActive;
     }
-
-    public static boolean isSkillXActive() {
-        return skillXActive;
-    }
-
-    public static void setSkillXActive(boolean skillXActive) {
-        GoldenBellJarClientData.skillXActive = skillXActive;
-    }
-
-    public static boolean isSkillCActive() {
-        return skillCActive;
-    }
-
-    public static void setSkillCActive(boolean skillCActive) {
-        GoldenBellJarClientData.skillCActive = skillCActive;
-    }
-//    public static int getGoldenBellJarKey() {
-//        return goldenBellJarKey;
-//    }
-//
-//    public static void setGoldenBellJarKey(int goldenBellJarKey) {
-//        GoldenBellJarClientData.goldenBellJarKey = goldenBellJarKey;
-//    }
-//
-//    public static boolean isSkillActive() {
-//        return skillActive;
-//    }
-//
-//    public static void setSkillActive(boolean skillActive) {
-//        GoldenBellJarClientData.skillActive = skillActive;
-//    }
 }

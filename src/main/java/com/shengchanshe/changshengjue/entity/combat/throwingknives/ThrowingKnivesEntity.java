@@ -22,6 +22,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
@@ -157,6 +158,8 @@ public class ThrowingKnivesEntity extends AbstractArrow {
                     }
                 }
             });
+        }else if (entity1 != null && !(entity1 instanceof Player) && entity1 instanceof LivingEntity livingEntity){
+            f[0] = (float) (f[0] * 1.5F + livingEntity.getAttributeValue(Attributes.ATTACK_DAMAGE));
         }
         this.dealtDamage = true;
         SoundEvent soundevent = ChangShengJueSound.THROWING_KNIVES_HIT.get();

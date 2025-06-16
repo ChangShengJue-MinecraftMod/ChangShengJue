@@ -2,6 +2,8 @@ package com.shengchanshe.changshengjue.capability.martial_arts.qian_kun_da_nuo_y
 
 import net.minecraft.nbt.CompoundTag;
 
+import java.util.UUID;
+
 public class QianKunDaNuoYiCapability {
     private int qianKunDaNuoYiLevel = 0;//技能等级
     private boolean qianKunDaNuoYiComprehend = false;//是否领悟
@@ -11,12 +13,13 @@ public class QianKunDaNuoYiCapability {
     private float qianKunDaNuoYiToppedTick = 0;//技能领悟特效计时
     private float qianKunDaNuoYiDachengTick = 0;//技能领悟特效计时
     private boolean qianKunDaNuoYiParticle = false;//技能特效显示
-    private float qianKunDaNuoYiUseCooldownMax = 60;
+    private float qianKunDaNuoYiUseCooldownMax = 40;
     private float qianKunDaNuoYiUseCooldownMaxAdd = 0;
+    private int recordTime = 0;
+    private float recordDamage = 0;
+    private UUID recordDamageSource = UUID.randomUUID();
     // 技能状态
-    private boolean skillZActive = false;
-    private boolean skillXActive = false;
-    private boolean skillCActive = false;
+    private boolean skillActive = false;
 
     public int getQianKunDaNuoYiLevel() {
         return qianKunDaNuoYiLevel;
@@ -109,29 +112,43 @@ public class QianKunDaNuoYiCapability {
         this.qianKunDaNuoYiUseCooldownMaxAdd = qianKunDaNuoYiUseCooldownMaxAdd;
     }
 
-    public boolean isSkillZActive() {
-        return skillZActive;
+    public int getRecordTime() {
+        return recordTime;
     }
 
-    public void setSkillZActive(boolean skillZActive) {
-        this.skillZActive = skillZActive;
+    public void setRecordTime(int recordTime) {
+        this.recordTime = recordTime;
     }
 
-    public boolean isSkillXActive() {
-        return skillXActive;
+    public int setRecordTime() {
+        return recordTime--;
     }
 
-    public void setSkillXActive(boolean skillXActive) {
-        this.skillXActive = skillXActive;
+
+    public float getRecordDamage() {
+        return recordDamage;
     }
 
-    public boolean isSkillCActive() {
-        return skillCActive;
+    public void setRecordDamage(float recordDamage) {
+        this.recordDamage = recordDamage;
     }
 
-    public void setSkillCActive(boolean skillCActive) {
-        this.skillCActive = skillCActive;
+    public UUID getRecordDamageSource() {
+        return recordDamageSource;
     }
+
+    public void setRecordDamageSource(UUID recordDamageSource) {
+        this.recordDamageSource = recordDamageSource;
+    }
+
+    public boolean isSkillActive() {
+        return skillActive;
+    }
+
+    public void setSkillActive(boolean skillActive) {
+        this.skillActive = skillActive;
+    }
+
     public void copyQianKunDaNuoYi(QianKunDaNuoYiCapability capability){
         this.qianKunDaNuoYiLevel = capability.qianKunDaNuoYiLevel;
         this.qianKunDaNuoYiComprehend = capability.qianKunDaNuoYiComprehend;
@@ -143,44 +160,53 @@ public class QianKunDaNuoYiCapability {
         this.qianKunDaNuoYiParticle = capability.qianKunDaNuoYiParticle;
         this.qianKunDaNuoYiUseCooldownMax = capability.qianKunDaNuoYiUseCooldownMax;
         this.qianKunDaNuoYiUseCooldownMaxAdd = capability.qianKunDaNuoYiUseCooldownMaxAdd;
-        this.skillZActive = capability.skillZActive;
-        this.skillXActive = capability.skillXActive;
-        this.skillCActive = capability.skillCActive;
+        this.recordTime = capability.recordTime;
+        this.recordDamage = capability.recordDamage;
+        this.recordDamageSource = capability.recordDamageSource;
+        this.skillActive = capability.skillActive;
     }
 
     // 将能力保存到 NBT 数据中
     public void saveNBTData(CompoundTag nbt) {
-        nbt.putInt("QianKunDaNuoYiLevel", qianKunDaNuoYiLevel);
-        nbt.putInt("QianKunDaNuoYiUseCount", qianKunDaNuoYiUseCount);
-        nbt.putBoolean("QianKunDaNuoYiComprehend",qianKunDaNuoYiComprehend);
-        nbt.putFloat("QianKunDaNuoYiUseCooldownPercent",qianKunDaNuoYiUseCooldownPercent);
-        nbt.putBoolean("QianKunDaNuoYiOff",qianKunDaNuoYiOff);
-        nbt.putFloat("QianKunDaNuoYiToppedTick",qianKunDaNuoYiToppedTick);
-        nbt.putFloat("QianKunDaNuoYiDachengTick",qianKunDaNuoYiDachengTick);
-        nbt.putBoolean("QianKunDaNuoYiParticle",qianKunDaNuoYiParticle);
-        nbt.putFloat("QianKunDaNuoYiDachengTick",qianKunDaNuoYiDachengTick);
-        nbt.putBoolean("QianKunDaNuoYiParticle",qianKunDaNuoYiParticle);
-        nbt.putFloat("QianKunDaNuoYiUseCooldownMax",qianKunDaNuoYiUseCooldownMax);
-        nbt.putFloat("QianKunDaNuoYiUseCooldownMaxAdd",qianKunDaNuoYiUseCooldownMaxAdd);
-        nbt.putBoolean("SkillZActive", skillZActive);
-        nbt.putBoolean("SkillXActive", skillXActive);
-        nbt.putBoolean("SkillCActive", skillCActive);
+        nbt.putInt("QianKunDaNuoYiLevel",  this.qianKunDaNuoYiLevel);
+        nbt.putInt("QianKunDaNuoYiUseCount",  this.qianKunDaNuoYiUseCount);
+        nbt.putBoolean("QianKunDaNuoYiComprehend", this.qianKunDaNuoYiComprehend);
+        nbt.putFloat("QianKunDaNuoYiUseCooldownPercent", this.qianKunDaNuoYiUseCooldownPercent);
+        nbt.putBoolean("QianKunDaNuoYiOff", this.qianKunDaNuoYiOff);
+        nbt.putFloat("QianKunDaNuoYiToppedTick", this.qianKunDaNuoYiToppedTick);
+        nbt.putFloat("QianKunDaNuoYiDachengTick", this.qianKunDaNuoYiDachengTick);
+        nbt.putBoolean("QianKunDaNuoYiParticle", this.qianKunDaNuoYiParticle);
+        nbt.putFloat("QianKunDaNuoYiDachengTick", this.qianKunDaNuoYiDachengTick);
+        nbt.putBoolean("QianKunDaNuoYiParticle", this.qianKunDaNuoYiParticle);
+        nbt.putFloat("QianKunDaNuoYiUseCooldownMax", this.qianKunDaNuoYiUseCooldownMax);
+        nbt.putFloat("QianKunDaNuoYiUseCooldownMaxAdd", this.qianKunDaNuoYiUseCooldownMaxAdd);
+        nbt.putInt("RecordTime", this.recordTime);
+        nbt.putFloat("RecordDamage", this.recordDamage);
+        nbt.putUUID("RecordDamageSource", this.recordDamageSource);
+        nbt.putBoolean("SkillActive",  this.skillActive);
     }
 
     // 从 NBT 数据中加载能力
     public void loadNBTData(CompoundTag nbt) {
-        qianKunDaNuoYiLevel = nbt.getInt("QianKunDaNuoYiLevel");
-        qianKunDaNuoYiUseCount = nbt.getInt("QianKunDaNuoYiUseCount");
-        qianKunDaNuoYiUseCooldownPercent = nbt.getFloat("QianKunDaNuoYiUseCooldownPercent");
-        qianKunDaNuoYiComprehend = nbt.getBoolean("QianKunDaNuoYiComprehend");
-        qianKunDaNuoYiOff = nbt.getBoolean("QianKunDaNuoYiOff");
-        qianKunDaNuoYiToppedTick = nbt.getFloat("QianKunDaNuoYiToppedTick");
-        qianKunDaNuoYiDachengTick = nbt.getFloat("QianKunDaNuoYiDachengTick");
-        qianKunDaNuoYiParticle = nbt.getBoolean("QianKunDaNuoYiParticle");
-        qianKunDaNuoYiUseCooldownMax = nbt.getFloat("QianKunDaNuoYiUseCooldownMax");
-        qianKunDaNuoYiUseCooldownMaxAdd = nbt.getFloat("QianKunDaNuoYiUseCooldownMaxAdd");
-        skillZActive = nbt.getBoolean("SkillZActive");
-        skillXActive = nbt.getBoolean("SkillXActive");
-        skillCActive = nbt.getBoolean("SkillCActive");
+        this.qianKunDaNuoYiLevel = nbt.getInt("QianKunDaNuoYiLevel");
+        this.qianKunDaNuoYiUseCount = nbt.getInt("QianKunDaNuoYiUseCount");
+        this.qianKunDaNuoYiUseCooldownPercent = nbt.getFloat("QianKunDaNuoYiUseCooldownPercent");
+        this.qianKunDaNuoYiComprehend = nbt.getBoolean("QianKunDaNuoYiComprehend");
+        this.qianKunDaNuoYiOff = nbt.getBoolean("QianKunDaNuoYiOff");
+        this.qianKunDaNuoYiToppedTick = nbt.getFloat("QianKunDaNuoYiToppedTick");
+        this.qianKunDaNuoYiDachengTick = nbt.getFloat("QianKunDaNuoYiDachengTick");
+        this.qianKunDaNuoYiParticle = nbt.getBoolean("QianKunDaNuoYiParticle");
+        this.qianKunDaNuoYiUseCooldownMax = nbt.getFloat("QianKunDaNuoYiUseCooldownMax");
+        this.qianKunDaNuoYiUseCooldownMaxAdd = nbt.getFloat("QianKunDaNuoYiUseCooldownMaxAdd");
+        this.recordTime = nbt.getInt("RecordTime");
+        this.recordDamage = nbt.getFloat("RecordDamage");
+        // 处理旧数据（无UUID字段的情况）
+        if (!nbt.contains("RecordDamageSource")) {
+            this.recordDamageSource = UUID.randomUUID(); // 生成新UUID
+        }else {
+            this.recordDamageSource = nbt.getUUID("RecordDamageSource");
+        }
+
+        this.skillActive = nbt.getBoolean("SkillActive");
     }
 }

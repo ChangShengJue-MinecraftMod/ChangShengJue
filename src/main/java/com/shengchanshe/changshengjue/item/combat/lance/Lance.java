@@ -11,6 +11,7 @@ import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.GaoMarksmanshipPacket;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
+import com.shengchanshe.changshengjue.util.EffectUtils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -39,17 +40,19 @@ public class Lance extends SwordItem {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player pPlayer, Entity entity) {
         if (!pPlayer.level().isClientSide) {
+            float probability = pPlayer.getRandom().nextFloat();
+            float defaultProbability = 0.10F;
+            if (entity instanceof LivingEntity livingEntity) {
+                if (probability < defaultProbability) {
+                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(),
+                            30, 1, false, true), entity);
+                }
+            }
             pPlayer.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
                 int gaoMarksmanshipLevel = gaoMarksmanship.getGaoMarksmanshipLevel();
                 if (gaoMarksmanship.gaoMarksmanshipComprehend() && gaoMarksmanshipLevel == 0) {
-                    float probability = pPlayer.getRandom().nextFloat();
-                    float defaultProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
-                    if (entity instanceof LivingEntity livingEntity) {
-                        if (probability < 0.15F) {
-                            livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 14, 1, false, true), entity);
-                        }
-                    }
-                    if (probability < defaultProbability) {
+                    float defaultComprehendProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
+                    if (probability < defaultComprehendProbability) {
                         gaoMarksmanship.addGaoMarksmanshipLevel();
                         gaoMarksmanship.setGaoMarksmanshipParticle(true);
                         pPlayer.level().playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(),
@@ -63,17 +66,13 @@ public class Lance extends SwordItem {
                 }else {
                     if (gaoMarksmanshipLevel > 0) {
                         if (entity instanceof LivingEntity livingEntity){
-                            float probability = pPlayer.getRandom().nextFloat();
-                            float defaultProbability = 0.15F;
-                            if (gaoMarksmanshipLevel < 2) {
-                                if (probability < defaultProbability) {
-                                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 14, 1, false, true), entity);
-                                }
-                            } else {
-                                if (probability < defaultProbability * 1.2) {
-                                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 14, 1, false, true), entity);
+
+                            if (gaoMarksmanshipLevel >= 2) {
+                                if (probability < defaultProbability * 2.5F) {
+                                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 30, 1, false, true), entity);
                                 }
                             }
+                            EffectUtils.setTrauma(pPlayer, livingEntity, 2,140,0.25F);
                             if (pPlayer.getMainHandItem().canDisableShield(livingEntity.getUseItem(), livingEntity, pPlayer)) {
                                 if (probability < 0.5) {
                                     // 强制打破目标玩家的防御状态（禁用盾牌防御）
@@ -157,21 +156,24 @@ public class Lance extends SwordItem {
                     if (player.isPickable() && player.distanceToSqr(entity) < radius * radius && entity instanceof LivingEntity && entity.isAlive()) {
                         float damage;
                         float probability = player.getRandom().nextFloat();
-                        float defaultProbability = 0.15F;
+                        float defaultProbability = 0.10F;
                         if (gaoMarksmanship.getGaoMarksmanshipLevel() < 2) {
-                            damage = (this.getDamage() + 2) * 1.6F;
+                            damage = (this.getDamage() + 2) * 1.8F;
                             if (probability < defaultProbability) {
-                                ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 14, 1, false, false), player);
+                                ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 30, 1, false, false), player);
                             }
                         } else {
-                            damage = (this.getDamage() + 2) * 1.8F;
-                            if (probability < (defaultProbability * 1.2F)) {
-                                ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 14, 1, false, false), player);
+                            damage = (this.getDamage() + 2) * 2.1F;
+                            if (probability < (defaultProbability * 1.15F)) {
+                                ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(), 30, 1, false, false), player);
                             }
                         }
                         if (entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
                                         .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player),
                                 player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
+                            if (entity instanceof LivingEntity livingEntity) {
+                                EffectUtils.setTrauma(player, livingEntity, 5,140,0.25F);
+                            }
                             if (gaoMarksmanship.getGaoMarksmanshipUseCount() < 100) {
                                 gaoMarksmanship.addGaoMarksmanshipUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (gaoMarksmanship.getGaoMarksmanshipUseCount() >= 100){

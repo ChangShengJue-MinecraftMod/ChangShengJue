@@ -34,7 +34,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class ChangShengJueLoomBlockEntity extends BlockEntity implements GeoBlockEntity {
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private ItemStackHandler inventory = new ItemStackHandler(3){
+    private ItemStackHandler inventory = new ItemStackHandler(2){
         @Override
         protected int getStackLimit(int slot, @NotNull ItemStack stack) {
             return 1;
@@ -93,6 +93,8 @@ public class ChangShengJueLoomBlockEntity extends BlockEntity implements GeoBloc
 
     public boolean addItem(ItemStack itemStack){
         for (int i = 0; i <  this.inventory.getSlots(); i++) {
+            System.out.println(this.inventory.getSlots());
+            System.out.println(i);
             ItemStack stackInSlot = this.inventory.getStackInSlot(i);
             if(stackInSlot.isEmpty()){
                 this.inventory.setStackInSlot(i,itemStack.split(1));
@@ -175,7 +177,7 @@ public class ChangShengJueLoomBlockEntity extends BlockEntity implements GeoBloc
 
     private void craftItem() {
         ItemStack stack;
-        if (!this.inventory.getStackInSlot(0).isEmpty() && !this.inventory.getStackInSlot(1).isEmpty() && !this.inventory.getStackInSlot(2).isEmpty()){
+        if (!this.inventory.getStackInSlot(0).isEmpty() && !this.inventory.getStackInSlot(1).isEmpty()){
             stack = new ItemStack(ChangShengJueItems.SILK.get(),1);
             for (int i = 0; i < this.inventory.getSlots(); i++) {
                 this.inventory.extractItem(i,1,false);
@@ -186,8 +188,7 @@ public class ChangShengJueLoomBlockEntity extends BlockEntity implements GeoBloc
     private boolean hasRecipe() {
         boolean hasCraftingItem = this.inventory.getStackInSlot(0).getItem() == ChangShengJueItems.NATURAL_SILK.get();
         boolean hasCraftingItem1 = this.inventory.getStackInSlot(1).getItem() == ChangShengJueItems.NATURAL_SILK.get();
-        boolean hasCraftingItem2 = this.inventory.getStackInSlot(2).getItem() == ChangShengJueItems.NATURAL_SILK.get();
-        if (hasCraftingItem && hasCraftingItem1 && hasCraftingItem2){
+        if (hasCraftingItem && hasCraftingItem1){
             return true;
         }
         return false;

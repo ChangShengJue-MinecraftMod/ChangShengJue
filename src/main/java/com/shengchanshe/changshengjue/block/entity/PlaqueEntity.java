@@ -2,7 +2,7 @@ package com.shengchanshe.changshengjue.block.entity;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.changshengjue.block.custom.Plaque;
-import com.shengchanshe.changshengjue.screen.plaque.PlaqueMenu;
+import com.shengchanshe.changshengjue.cilent.gui.screens.plaque.PlaqueMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -13,11 +13,9 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 

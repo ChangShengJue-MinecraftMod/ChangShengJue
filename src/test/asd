@@ -1,0 +1,5 @@
+{VillagerData: {profession: "chang_sheng_jue:chang_sheng_jue_farmer", level: 1, type: "minecraft:swamp"}}
+{VillagerData: {profession: "chang_sheng_jue:chang_sheng_jue_hunter", level: 1, type: "minecraft:swamp"}}
+{VillagerData: {profession: "chang_sheng_jue:chang_sheng_jue_potter", level: 1, type: "minecraft:swamp"}}
+
+{VillagerData: {profession: "chang_sheng_jue:chang_sheng_jue_seamstress"}}

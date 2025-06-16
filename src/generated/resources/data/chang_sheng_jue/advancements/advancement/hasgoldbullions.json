@@ -1,0 +1,32 @@
+{
+  "parent": "chang_sheng_jue:advancement/hassilverbullions",
+  "criteria": {
+    "hasgoldbullions": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:hasgoldbullions"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "advancement.chang_sheng_jue.hasgoldbullions.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:gold_bullions"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancement.chang_sheng_jue.hasgoldbullions"
+    }
+  },
+  "requirements": [
+    [
+      "hasgoldbullions"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

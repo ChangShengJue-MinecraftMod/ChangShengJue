@@ -11,9 +11,12 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
+@OnlyIn(Dist.CLIENT)
 public class TuLongDaoAttackEntityRender extends EntityRenderer<TuLongDaoAttackEntity> {
     private static final ResourceLocation[] TEXTURES = {
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/tu_long_dao_attack/tu_long_dao_attack_1.png"),
@@ -51,7 +54,7 @@ public class TuLongDaoAttackEntityRender extends EntityRenderer<TuLongDaoAttackE
         Matrix3f normalMatrix = pose.normal();
 
         VertexConsumer consumer = bufferSource.getBuffer(RenderType.entityTranslucent(getTextureLocation(entity)));
-        float halfWidth = width * 0.5f;
+        float halfWidth = width * 0.7f;
         float height = entity.getBbHeight() * 0.1f;
 
         consumer.vertex(poseMatrix, -halfWidth, height, -halfWidth).color(255, 255, 255, alpha)
@@ -66,7 +69,7 @@ public class TuLongDaoAttackEntityRender extends EntityRenderer<TuLongDaoAttackE
 
     @Override
     public ResourceLocation getTextureLocation(TuLongDaoAttackEntity entity) {
-        int frame = entity.tickCount % TEXTURES.length;
+        int frame = (entity.tickCount * 2) % TEXTURES.length;
         return TEXTURES[frame];
     }
 

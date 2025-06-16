@@ -1,11 +1,12 @@
 {
-  "parent": "minecraft:item/handheld",
+  "gui_light": "front",
   "loader": "forge:separate_transforms",
   "base": {
     "parent": "chang_sheng_jue:item/beat_dog_stick_model"
   },
   "perspectives": {
     "gui": {
+      "gui_light": "front",
       "parent": "chang_sheng_jue:item/beat_dog_stick_show"
     },
     "ground": {

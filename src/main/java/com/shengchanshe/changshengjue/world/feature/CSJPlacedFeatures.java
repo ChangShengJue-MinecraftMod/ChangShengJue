@@ -39,6 +39,9 @@ public class CSJPlacedFeatures {
     public static final ResourceKey<PlacedFeature> MEIHUA_TREE_PLACED_KEY =registerKey("meihua_tree_placed_key");
     public static final ResourceKey<PlacedFeature> POPLAR_TREE_PLACED_KEY =registerKey("poplar_tree_placed_key");
     public static final ResourceKey<PlacedFeature> MULBERRY_TREE_PLACED_KEY =registerKey("mulberry_tree_placed_key");
+    public static final ResourceKey<PlacedFeature> HUANGHUALI_TREE_PLACED_KEY =registerKey("huanghuali_tree_placed_key");
+    public static final ResourceKey<PlacedFeature> JICHIMU_TREE_PLACED_KEY =registerKey("jichimu_tree_placed_key");
+    public static final ResourceKey<PlacedFeature> ZITAN_TREE_PLACED_KEY =registerKey("zitan_tree_placed_key");
     //花花草草
     public static final ResourceKey<PlacedFeature> MUGWORT_PLACED_KEY =registerKey("mugwort_placed_key");
     public static final ResourceKey<PlacedFeature> CUCKOO_PLACED_KEY =registerKey("cuckoo_placed_key");
@@ -114,6 +117,18 @@ public class CSJPlacedFeatures {
         register(context,MULBERRY_TREE_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.MULBERRY_TREE),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(1,0.1F,1),
                         ChangShengJueBlocks.MULBERRY_SAPLING.get()));
+
+        register(context,HUANGHUALI_TREE_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.HUANGHUALI_TREE),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(1,0.1F,1),
+                        ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get()));
+
+        register(context,JICHIMU_TREE_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.JICHIMU_TREE),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(1,0.1F,1),
+                        ChangShengJueBlocks.JI_CHI_MU_SAPLING.get()));
+
+        register(context,ZITAN_TREE_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.ZITAN_TREE),
+                VegetationPlacements.treePlacement(PlacementUtils.countExtra(1,0.1F,1),
+                        ChangShengJueBlocks.ZI_TAN_SAPLING.get()));
         //花花草草
         register(context,MUGWORT_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.MUGWORT),
                 List.of(RarityFilter.onAverageOnceEvery(16),//生成几率,值越小生成的越多
@@ -144,7 +159,7 @@ public class CSJPlacedFeatures {
                         InSquarePlacement.spread(),PlacementUtils.HEIGHTMAP,BiomeFilter.biome()));
 
         register(context,CAPSULE_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.CAPSULE),
-                List.of(RarityFilter.onAverageOnceEvery(16),
+                List.of(RarityFilter.onAverageOnceEvery(8),
                         InSquarePlacement.spread(),PlacementUtils.HEIGHTMAP,BiomeFilter.biome()));
 
         register(context,STIPA_GRANDIS_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.STIPA_GRANDIS),
@@ -161,7 +176,7 @@ public class CSJPlacedFeatures {
 
         //野生大麦
         register(context,WILDLIFE_HORDEUM_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.WILDLIFE_HORDEUM),
-                List.of(RarityFilter.onAverageOnceEvery(3),//生成几率,值越小生成的越多
+                List.of(RarityFilter.onAverageOnceEvery(8),//生成几率,值越小生成的越多
                         InSquarePlacement.spread(),PlacementUtils.HEIGHTMAP,BiomeFilter.biome()));
         //哈密瓜
         register(context,CANTALOUPE_BLOCK_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.CANTALOUPE_BLOCK),

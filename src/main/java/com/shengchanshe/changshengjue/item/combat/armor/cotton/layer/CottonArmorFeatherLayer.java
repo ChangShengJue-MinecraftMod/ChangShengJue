@@ -28,9 +28,9 @@ public class CottonArmorFeatherLayer extends GeoRenderLayer<CottonArmor> {
         // 获取当前的 ItemStack
         ItemStack currentStack = ((CottonArmorRender) this.getRenderer()).getCurrentStack();
         RenderType armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_0);
-        if (currentStack.is(ChangShengJueItems.COTTON_ARMOR_FEATHER_HELMET.get())){
+        if (currentStack.is(ChangShengJueItems.COTTON_HELMET.get())){
             armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_0);
-        }else if (currentStack.is(ChangShengJueItems.COTTON_ARMOR_WHITE_FEATHER_HELMET.get())){
+        }else if (currentStack.is(ChangShengJueItems.WHITE_COTTON_HELMET.get())){
             armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_1);
         }
         this.getRenderer().reRender(this.getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, armorRenderType, bufferSource.getBuffer(armorRenderType), partialTick, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);

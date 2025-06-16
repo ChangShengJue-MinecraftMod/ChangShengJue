@@ -12,9 +12,7 @@ public class TurtleBreathWorkClientData {
     private static float turtleBreathWorkDachengTick;//技能大成特效计时
     private static boolean turtleBreathWorkParticle;//技能特效显示
     // 技能状态
-    private static boolean skillZActive;
-    private static boolean skillXActive;
-    private static boolean skillCActive;
+    private static boolean skillActive;
     //获取技能等级
     public static int getTurtleBreathWorkLevel() {
         return turtleBreathWorkLevel;
@@ -71,27 +69,12 @@ public class TurtleBreathWorkClientData {
     public static void setTurtleBreathWorkParticle(boolean turtleBreathWorkParticle) {
         TurtleBreathWorkClientData.turtleBreathWorkParticle = turtleBreathWorkParticle;
     }
-    public static boolean isSkillZActive() {
-        return skillZActive;
+
+    public static boolean isSkillActive() {
+        return skillActive;
     }
 
-    public static void setSkillZActive(boolean skillZActive) {
-        TurtleBreathWorkClientData.skillZActive = skillZActive;
-    }
-
-    public static boolean isSkillXActive() {
-        return skillXActive;
-    }
-
-    public static void setSkillXActive(boolean skillXActive) {
-        TurtleBreathWorkClientData.skillXActive = skillXActive;
-    }
-
-    public static boolean isSkillCActive() {
-        return skillCActive;
-    }
-
-    public static void setSkillCActive(boolean skillCActive) {
-        TurtleBreathWorkClientData.skillCActive = skillCActive;
+    public static void setSkillActive(boolean skillActive) {
+        TurtleBreathWorkClientData.skillActive = skillActive;
     }
 }

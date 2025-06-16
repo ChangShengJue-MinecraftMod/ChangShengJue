@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+        "item": "minecraft:paper"
+    },
+    {
+        "item": "minecraft:paper"
+    },
+    {
+        "item": "minecraft:cornflower"
+    },
+    {
+        "item": "minecraft:string"
+    }
+  ],
+  "result": {
+    "item": "patchouli:guide_book",
+    "nbt": {
+      "patchouli:book": "chang_sheng_jue:wufanglu"
+    }
+  }
+}

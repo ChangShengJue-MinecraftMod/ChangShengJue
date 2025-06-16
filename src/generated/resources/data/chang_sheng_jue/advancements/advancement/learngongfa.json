@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:chang_sheng_jueadvancement/hasbronzesword",
+  "criteria": {
+    "learngongfa": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:learngongfa"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "advancement.chang_sheng_jue.learngongfa.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:wheat_nugget_encyclopedia"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "green",
+      "translate": "advancement.chang_sheng_jue.learngongfa"
+    }
+  },
+  "requirements": [
+    [
+      "learngongfa"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

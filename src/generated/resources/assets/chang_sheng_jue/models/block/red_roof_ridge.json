@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/roof_ridge",
+  "textures": {
+    "1": "chang_sheng_jue:block/red_roof_ridge_demon_mask",
+    "particle": "chang_sheng_jue:block/red_roof_ridge_demon_mask"
+  }
+}

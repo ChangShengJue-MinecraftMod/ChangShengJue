@@ -1,0 +1,32 @@
+{
+  "criteria": {
+    "changshengjue": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:michangsheng"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "chang_sheng_jue:textures/block/blue_stone_fine_bricks.png",
+    "description": {
+      "color": "dark_green",
+      "translate": "advancement.chang_sheng_jue.begin.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:stone_lamps_block"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "gold",
+      "translate": "advancement.chang_sheng_jue.begin"
+    }
+  },
+  "requirements": [
+    [
+      "changshengjue"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,6 +1,5 @@
 package com.shengchanshe.changshengjue.network.packet.martial_arts.golden_bell_jar;
 
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_bell_jar.GoldenBellJarClientData;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
@@ -10,21 +9,15 @@ import java.util.function.Supplier;
 public class GoldenBellJarPacket {
     private final int goldenBellJarLevel;
     private final boolean goldenBellJarComprehend;
-    private float goldenBellJarUseCooldownPercent;
-    private boolean goldenBellJarOff;//技能是否启用
-    private float goldenBellJarToppedTick;//技能领悟特效计时
-    private float goldenBellJarDachengTick;//技能领悟特效计时
-    private boolean goldenBellJarParticle;//技能特效显示
-//    private int goldenBellJarKey;
-//    private boolean skillActive;
-
-    // 技能状态
-    private boolean skillZActive;
-    private boolean skillXActive;
-    private boolean skillCActive;
+    private final float goldenBellJarUseCooldownPercent;
+    private final boolean goldenBellJarOff;//技能是否启用
+    private final float goldenBellJarToppedTick;//技能领悟特效计时
+    private final float goldenBellJarDachengTick;//技能领悟特效计时
+    private final boolean goldenBellJarParticle;//技能特效显示
+    private final boolean skillActive;
     public GoldenBellJarPacket(int goldenBellJarLevel, boolean goldenBellJarComprehend, float goldenBellJarUseCooldownPercent, boolean goldenBellJarOff,
                                float goldenBellJarToppedTick, float goldenBellJarDachengTick, boolean goldenBellJarParticle,
-                               boolean skillZActive,boolean skillXActive,boolean skillCActive){
+                               boolean skillActive){
         this.goldenBellJarLevel = goldenBellJarLevel;
         this.goldenBellJarComprehend = goldenBellJarComprehend;
         this.goldenBellJarUseCooldownPercent = goldenBellJarUseCooldownPercent;
@@ -32,11 +25,7 @@ public class GoldenBellJarPacket {
         this.goldenBellJarToppedTick = goldenBellJarToppedTick;
         this.goldenBellJarDachengTick = goldenBellJarDachengTick;
         this.goldenBellJarParticle = goldenBellJarParticle;
-        this.skillZActive = skillZActive;
-        this.skillXActive = skillXActive;
-        this.skillCActive = skillCActive;
-//        this.goldenBellJarKey = goldenBellJarKey;
-//        this.skillActive = skillActive;
+        this.skillActive = skillActive;
     }
 
     public GoldenBellJarPacket(FriendlyByteBuf buf){
@@ -47,11 +36,7 @@ public class GoldenBellJarPacket {
         this.goldenBellJarToppedTick = buf.readFloat();
         this.goldenBellJarDachengTick = buf.readFloat();
         this.goldenBellJarParticle = buf.readBoolean();
-        this.skillZActive = buf.readBoolean();
-        this.skillXActive = buf.readBoolean();
-        this.skillCActive = buf.readBoolean();
-//        this.goldenBellJarKey = buf.readInt();
-//        this.skillActive = buf.readBoolean();
+        this.skillActive = buf.readBoolean();
     }
 
     public void toBytes(FriendlyByteBuf buf){
@@ -62,11 +47,7 @@ public class GoldenBellJarPacket {
         buf.writeFloat(goldenBellJarToppedTick);
         buf.writeFloat(goldenBellJarDachengTick);
         buf.writeBoolean(goldenBellJarParticle);
-        buf.writeBoolean(skillZActive);
-        buf.writeBoolean(skillXActive);
-        buf.writeBoolean(skillCActive);
-//        buf.writeInt(goldenBellJarKey);
-//        buf.writeBoolean(skillActive);
+        buf.writeBoolean(skillActive);
     }
 
     // 客户端处理
@@ -80,11 +61,7 @@ public class GoldenBellJarPacket {
             GoldenBellJarClientData.setGoldenBellJarToppedTick(goldenBellJarToppedTick);
             GoldenBellJarClientData.setGoldenBellJarDachengTick(goldenBellJarDachengTick);
             GoldenBellJarClientData.setGoldenBellJarParticle(goldenBellJarParticle);
-            GoldenBellJarClientData.setSkillZActive(skillZActive);
-            GoldenBellJarClientData.setSkillXActive(skillXActive);
-            GoldenBellJarClientData.setSkillCActive(skillCActive);
-//            GoldenBellJarClientData.setGoldenBellJarKey(goldenBellJarKey);
-//            GoldenBellJarClientData.setSkillActive(skillActive);
+            GoldenBellJarClientData.setSkillActive(skillActive);
         });
         return true;
     }

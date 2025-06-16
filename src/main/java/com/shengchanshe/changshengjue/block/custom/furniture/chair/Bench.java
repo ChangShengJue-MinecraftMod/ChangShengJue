@@ -15,7 +15,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class Bench extends AbstractChair {
+public class Bench extends Chair {
     public Bench(Properties pProperties) {
         super(pProperties);
     }

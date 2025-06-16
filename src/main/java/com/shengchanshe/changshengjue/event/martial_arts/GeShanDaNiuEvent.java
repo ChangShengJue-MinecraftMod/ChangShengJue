@@ -2,23 +2,14 @@ package com.shengchanshe.changshengjue.event.martial_arts;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.ge_shan_da_niu.GeShanDaNiuCapabilityProvider;
 import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
-import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
-import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
-import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket2;
-import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
-import com.shengchanshe.changshengjue.util.KeyBinding;
 import com.shengchanshe.changshengjue.util.particle.ComprehendParticle;
 import com.shengchanshe.changshengjue.util.particle.DachengParticle;
-import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 public class GeShanDaNiuEvent {
 
@@ -29,7 +20,7 @@ public class GeShanDaNiuEvent {
             if (!player.level().isClientSide) {
                 player.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
                     if (geShanDaNiu.getGeShanDaNiuUseCooldownPercent() > 0) {
-                        if (geShanDaNiu.isSkillZActive() || geShanDaNiu.isSkillXActive() || geShanDaNiu.isSkillCActive()){
+                        if (geShanDaNiu.isSkillActive()){
                             geShanDaNiu.setGeShanDaNiuUseCooldownPercent();
                             ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
                                     geShanDaNiu.getGeShanDaNiuLevel(),
@@ -39,13 +30,11 @@ public class GeShanDaNiuEvent {
                                     geShanDaNiu.getGeShanDaNiuDachengTick(),
                                     geShanDaNiu.isGeShanDaNiuParticle(),
                                     geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax(),
-                                    geShanDaNiu.isSkillZActive(),
-                                    geShanDaNiu.isSkillXActive(),
-                                    geShanDaNiu.isSkillCActive()), (ServerPlayer) player);
+                                    geShanDaNiu.isSkillActive()), (ServerPlayer) player);
                         }
                     }
-                    if (geShanDaNiu.isGeShanDaNiuParticle()){
-                        if (geShanDaNiu.getGeShanDaNiuLevel() == 1){
+                    if (geShanDaNiu.isGeShanDaNiuParticle()) {
+                        if (geShanDaNiu.getGeShanDaNiuLevel() == 1) {
                             geShanDaNiu.setGeShanDaNiuToppedTick();
                             ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
                                     geShanDaNiu.getGeShanDaNiuLevel(),
@@ -55,10 +44,8 @@ public class GeShanDaNiuEvent {
                                     geShanDaNiu.getGeShanDaNiuDachengTick(),
                                     geShanDaNiu.isGeShanDaNiuParticle(),
                                     geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax(),
-                                    geShanDaNiu.isSkillZActive(),
-                                    geShanDaNiu.isSkillXActive(),
-                                    geShanDaNiu.isSkillCActive()), (ServerPlayer) player);
-                        }else if (geShanDaNiu.getGeShanDaNiuLevel() == 2){
+                                    geShanDaNiu.isSkillActive()), (ServerPlayer) player);
+                        } else if (geShanDaNiu.getGeShanDaNiuLevel() == 2) {
                             geShanDaNiu.setGeShanDaNiuDachengTick();
                             ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
                                     geShanDaNiu.getGeShanDaNiuLevel(),
@@ -68,9 +55,7 @@ public class GeShanDaNiuEvent {
                                     geShanDaNiu.getGeShanDaNiuDachengTick(),
                                     geShanDaNiu.isGeShanDaNiuParticle(),
                                     geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax(),
-                                    geShanDaNiu.isSkillZActive(),
-                                    geShanDaNiu.isSkillXActive(),
-                                    geShanDaNiu.isSkillCActive()), (ServerPlayer) player);
+                                    geShanDaNiu.isSkillActive()), (ServerPlayer) player);
                         }
                     }
                 });

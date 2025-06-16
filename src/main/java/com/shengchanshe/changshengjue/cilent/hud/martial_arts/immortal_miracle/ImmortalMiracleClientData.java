@@ -13,9 +13,7 @@ public class ImmortalMiracleClientData {
     private static boolean immortalMiracleParticle;//技能特效显示
     private static float immortalMiracleUseCooldownPercentMax;//技能总冷却时间
     // 技能状态
-    private static boolean skillZActive;
-    private static boolean skillXActive;
-    private static boolean skillCActive;
+    private static boolean skillActive;
     //获取技能等级
     public static int getImmortalMiracleLevel() {
         return immortalMiracleLevel;
@@ -80,27 +78,12 @@ public class ImmortalMiracleClientData {
     public static void setImmortalMiracleUseCooldownPercentMax(float immortalMiracleUseCooldownPercentMax) {
         ImmortalMiracleClientData.immortalMiracleUseCooldownPercentMax = immortalMiracleUseCooldownPercentMax;
     }
-    public static boolean isSkillZActive() {
-        return skillZActive;
+
+    public static boolean isSkillActive() {
+        return skillActive;
     }
 
-    public static void setSkillZActive(boolean skillZActive) {
-        ImmortalMiracleClientData.skillZActive = skillZActive;
-    }
-
-    public static boolean isSkillXActive() {
-        return skillXActive;
-    }
-
-    public static void setSkillXActive(boolean skillXActive) {
-        ImmortalMiracleClientData.skillXActive = skillXActive;
-    }
-
-    public static boolean isSkillCActive() {
-        return skillCActive;
-    }
-
-    public static void setSkillCActive(boolean skillCActive) {
-        ImmortalMiracleClientData.skillCActive = skillCActive;
+    public static void setSkillActive(boolean skillActive) {
+        ImmortalMiracleClientData.skillActive = skillActive;
     }
 }

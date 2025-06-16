@@ -1,0 +1,18 @@
+{
+  "gui_light": "front",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "chang_sheng_jue:item/han_jian_model"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "chang_sheng_jue:item/han_jian_show"
+    },
+    "ground": {
+      "parent": "chang_sheng_jue:item/han_jian_show"
+    },
+    "fixed": {
+      "parent": "chang_sheng_jue:item/han_jian_show"
+    }
+  }
+}

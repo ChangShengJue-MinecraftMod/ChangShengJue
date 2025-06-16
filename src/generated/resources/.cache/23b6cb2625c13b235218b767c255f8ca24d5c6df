@@ -1,0 +1,6 @@
+// 1.20.1	2025-04-11T13:37:46.8949742	Tags for minecraft:entity_type mod id chang_sheng_jue
+c0de73661f26e6cc502f4399a7b3580667d1ed8c data/chang_sheng_jue/tags/entity_types/gang_leader.json
+d6d8169cd090775f0848524c5f62b6f4112b263d data/chang_sheng_jue/tags/entity_types/humanoids.json
+50a0b5f6f881da72ecc5fdd31edf63c475d52597 data/chang_sheng_jue/tags/entity_types/ming_xia.json
+585e565f44982fd2a0aa5a6c5d5c69e742884fb9 data/chang_sheng_jue/tags/entity_types/pillager.json
+fbda768295701ad9e9a2127ab28d0c9f62442bcf data/chang_sheng_jue/tags/entity_types/villagers.json

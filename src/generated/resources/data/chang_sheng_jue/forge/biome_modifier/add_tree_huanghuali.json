@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_savanna",
+  "features": "chang_sheng_jue:huanghuali_tree_placed_key",
+  "step": "vegetal_decoration"
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "minecraft:dark_oak_planks"
+    },
+    "X": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " # ",
+    "###",
+    "X X"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:dark_oak_drinking_table_and_chairs"
+  },
+  "show_notification": true
+}

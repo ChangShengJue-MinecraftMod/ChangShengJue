@@ -1,0 +1,37 @@
+{
+  "name": "窑工",
+  "category": "chang_sheng_jue:village",
+  "sortnum": 1,
+  "icon": "chang_sheng_jue:blue_and_white_porcelain_flower_pots",
+  "pages": [
+    {
+      "title": "窑工",
+      "type": "patchouli:entity",
+      "entity": "minecraft:villager{VillagerData: {profession: \"chang_sheng_jue:chang_sheng_jue_potter\"}}"
+    },
+    {
+      "anchor": "窑工-新手",
+      "title": "窑工交易列表-新手",
+      "type": "patchouli:text",
+      "text": "$(br)$(li)8x 一贯铜钱 → 32x 青石砖块$(br)$(li)8x 一贯铜钱 → 32x 青石细砖块$(br)$(li)8x 一贯铜钱 → 32x 青石砖楼梯$(br)$(li)8x 一贯铜钱 → 32x 青石台阶$(br)$(li)8x 一贯铜钱 → 32x 青石竖墙$(br2)"
+    },
+    {
+      "anchor": "窑工-学徒",
+      "title": "窑工交易列表-学徒",
+      "type": "patchouli:text",
+      "text": "$(br)$(li)8x 一贯铜钱 → 32x 青石地砖$(br)$(li)8x 一贯铜钱 → 32x 深色青石地砖$(br)$(li)8x 一贯铜钱 → 32x 沥青地砖$(br2)"
+    },
+    {
+      "anchor": "窑工-老手",
+      "title": "窑工交易列表-老手",
+      "type": "patchouli:text",
+      "text": "$(br)$(li)4x 一贯铜钱 → 8x 瓷碗$(br)$(li)4x 一贯铜钱 → 8x 瓷杯$(br)$(li)4x 一贯铜钱 → 4x 酒坛$(br2)"
+    },
+    {
+      "anchor": "窑工-专家",
+      "title": "窑工交易列表-专家与大师",
+      "type": "patchouli:text",
+      "text": "专家:$(br)$(li)4x 一贯铜钱 → 1x 青花瓷花盆$(br2)大师:$(br)$(li)4x 一贯铜钱 → 1x 黄色石狮子$(br)$(li)4x 一贯铜钱 → 1x 灰色石狮子$(br2)"
+    }
+  ]
+}

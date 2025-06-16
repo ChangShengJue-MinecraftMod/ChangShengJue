@@ -4,8 +4,13 @@ import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.armortrim.TrimMaterial;
+import net.minecraft.world.item.armortrim.TrimMaterials;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -13,7 +18,22 @@ import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.LinkedHashMap;
+
 public class CSJItemModelProvider extends ItemModelProvider {
+    private static LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();
+    static {
+        trimMaterials.put(TrimMaterials.QUARTZ, 0.1F);
+        trimMaterials.put(TrimMaterials.IRON, 0.2F);
+        trimMaterials.put(TrimMaterials.NETHERITE, 0.3F);
+        trimMaterials.put(TrimMaterials.REDSTONE, 0.4F);
+        trimMaterials.put(TrimMaterials.COPPER, 0.5F);
+        trimMaterials.put(TrimMaterials.GOLD, 0.6F);
+        trimMaterials.put(TrimMaterials.EMERALD, 0.7F);
+        trimMaterials.put(TrimMaterials.DIAMOND, 0.8F);
+        trimMaterials.put(TrimMaterials.LAPIS, 0.9F);
+        trimMaterials.put(TrimMaterials.AMETHYST, 1.0F);
+    }
 
     public CSJItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, ChangShengJue.MOD_ID, existingFileHelper);
@@ -69,6 +89,19 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.FEN_JIU);
         simpleItem(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE);
         simpleItem(ChangShengJueItems.SHI_LI_XIANG);
+        simpleItem(ChangShengJueItems.EMPTY_FEN_JIU);
+        //情报
+        simpleItem(ChangShengJueItems.STRUCTURE_INTELLIGENCE);
+
+        //令牌
+        simpleItem(ChangShengJueItems.GANG_TOKEN);
+
+        //食物
+        simpleItem(ChangShengJueItems.PEACOCK);
+        simpleItem(ChangShengJueItems.COOKED_PEACOCK);
+        simpleItem(ChangShengJueItems.CROC);
+        simpleItem(ChangShengJueItems.COOKED_CROC);
+
         //武功秘籍
         simpleItem(ChangShengJueItems.IMMORTAL_MIRACLE);
         simpleItem(ChangShengJueItems.HERCULES);
@@ -93,62 +126,60 @@ public class CSJItemModelProvider extends ItemModelProvider {
 
         //护甲
         //棉甲
-        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_FEATHER_HELMET);
-        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_WHITE_FEATHER_HELMET);
-        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_CHESTPLATE);
-        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_LEGGINGS);
-        simpleArmorItem(ChangShengJueItems.COTTON_ARMOR_BOOTS);
+        simpleArmorItem(ChangShengJueItems.COTTON_HELMET);
+        simpleArmorItem(ChangShengJueItems.WHITE_COTTON_HELMET);
+        simpleArmorItem(ChangShengJueItems.COTTON_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.COTTON_LEGGINGS);
+        simpleArmorItem(ChangShengJueItems.COTTON_BOOTS);
         //道袍
-        simpleItem(ChangShengJueItems.FEMALE_TAOIST_ROBES_HELMET);
-        simpleArmorItem(ChangShengJueItems.MALE_TAOIST_ROBES_HELMET);
-        simpleArmorItem(ChangShengJueItems.FEMALE_TAOIST_ROBES_CHESTPLATE);
-        simpleArmorItem(ChangShengJueItems.MALE_TAOIST_ROBES_CHESTPLATE);
-        simpleArmorItem(ChangShengJueItems.TAOIST_ROBES_BOOTS);
+        simpleItem(ChangShengJueItems.FEMALE_TAOIST_HELMET);
+        simpleArmorItem(ChangShengJueItems.MALE_TAOIST_HELMET);
+        simpleArmorItem(ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.MALE_TAOIST_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.TAOIST_BOOTS);
         //丝绸裤裤
-        simpleArmorItem(ChangShengJueItems.SILK_LEGGINGS);
+        simpleArmorItem(ChangShengJueItems.TAOIST_LEGGINGS);
         //婚服
-        simpleArmorItem(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_HELMET);
-        simpleItem(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_HELMET);
-        simpleArmorItem(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_CHESTPLATE);
-        simpleArmorItem(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_CHESTPLATE);
-        simpleArmorItem(ChangShengJueItems.CHINESE_WEDDING_DRESS_BOOTS);
+        simpleArmorItem(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP);
+        simpleItem(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET);
+        simpleArmorItem(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU);
+        simpleArmorItem(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING);
+        simpleArmorItem(ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES);
         //山文甲
-        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_HELMET);
-        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_CHESTPLATE);
-        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_LEGGINGS);
-        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_BOOTS);
+        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_HELMET_GUN_HOOD);
+        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR);
+        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR);
+        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS);
         //飞鱼服
-        simpleItem(ChangShengJueItems.FLYING_FISH_ROBE_HELMET_0);
-        simpleArmorItem(ChangShengJueItems.FLYING_FISH_ROBE_HELMET_1);
-        simpleArmorItem(ChangShengJueItems.FLYING_FISH_ROBE_CHESTPLATE);
-        simpleArmorItem(ChangShengJueItems.FLYING_FISH_ROBE_BOOTS);
+        simpleItem(ChangShengJueItems.FLY_FISH_IRON_HAT);
+        simpleArmorItem(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN);
+        simpleArmorItem(ChangShengJueItems.FLY_FISH_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.FLY_FISH_LONG_BOOTS);
         //行者套
-        simpleItem(ChangShengJueItems.WALKER_SET_HELMET_0);
-        simpleItem(ChangShengJueItems.WALKER_SET_HELMET_1);
-        simpleItem(ChangShengJueItems.WALKER_SET_CHESTPLATE);
-        simpleItem(ChangShengJueItems.WALKER_SET_LEGGINGS);
-        simpleItem(ChangShengJueItems.WALKER_SET_BOOTS);
+        simpleItem(ChangShengJueItems.WALKER_GOLD_RING_BAND);
+        simpleItem(ChangShengJueItems.WALKER_GREEN_TREASURE_PENDANT);
+        simpleItem(ChangShengJueItems.WALKER_CHESTPLATE);
+        simpleItem(ChangShengJueItems.WALKER_TIGER_SKIN_SKIRT);
+        simpleItem(ChangShengJueItems.WALKER_SHORT_BOOTS);
         //齐天大圣套
-        simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_HELMET);
-        simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_CHESTPLATE);
-        simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_LEGGINGS);
-        simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_BOOTS);
+        simpleItem(ChangShengJueItems.PHOENIX_FEATHER_CAP);
+        simpleItem(ChangShengJueItems.OLDEN_CHAIN_MAIL_SHIRT);
+        simpleItem(ChangShengJueItems.TIGER_SKIN_GARMENT);
+        simpleItem(ChangShengJueItems.CLOUD_WALKING_BOOTS);
         //大将军明光铠
-        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_HELMET);
-        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_CHESTPLATE);
-        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_LEGGINGS);
-        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_BOOTS);
+        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_PHOENIX_WINGS_HELMET);
+        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE);
+        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS);
+        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS);
         //儒装
-        simpleItem(ChangShengJueItems.CONFUCIAN_COSTUMES_HELMET);
-        simpleItem(ChangShengJueItems.CONFUCIAN_COSTUMES_CHESTPLATE);
-        simpleItem(ChangShengJueItems.CONFUCIAN_COSTUMES_LEGGINGS);
-        simpleItem(ChangShengJueItems.CONFUCIAN_COSTUMES_BOOTS);
+        simpleItem(ChangShengJueItems.CONFUCIAN_HELMET);
+        simpleItem(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE);
+        simpleItem(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS);
+        simpleItem(ChangShengJueItems.CONFUCIAN_INK_BOOTS);
+
+        trimmedArmorItem(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR);
+        trimmedArmorItem(ChangShengJueItems.LEATHER_INNER_ARMOR);
         //武器
-        handheldItem(ChangShengJueItems.BRONZE_SWORD);
-        handheldItem(ChangShengJueItems.HAN_JIAN);
-        handheldItem(ChangShengJueItems.KITCHEN_KNIFE);
-        handheldItem(ChangShengJueItems.YI_TINA_JIAN);
-        handheldItem(ChangShengJueItems.TU_LONG_DAO);
         handheldItem(ChangShengJueItems.THROWING_KNIVES);
         handheldItem(ChangShengJueItems.THREE_THROWING_KNIVES);
         handheldItem(ChangShengJueItems.SEVEN_THROWING_KNIVES);
@@ -241,26 +272,223 @@ public class CSJItemModelProvider extends ItemModelProvider {
         parentItem(ChangShengJueBlocks.ZAFU);
 
         //窗户
-        simpleItem(ChangShengJueBlocks.HIGH_BIRCH_WINDOWS,ChangShengJueBlocks.HIGH_BIRCH_WINDOWS.getId().getPath());
-        simpleItem(ChangShengJueBlocks.HIGH_ACACIA_WINDOWS,ChangShengJueBlocks.HIGH_ACACIA_WINDOWS.getId().getPath());
-        simpleItem(ChangShengJueBlocks.HIGH_DARK_OAK_WINDOWS,ChangShengJueBlocks.HIGH_DARK_OAK_WINDOWS.getId().getPath());
-        simpleItem(ChangShengJueBlocks.HIGH_OAK_WINDOWS,ChangShengJueBlocks.HIGH_OAK_WINDOWS.getId().getPath());
-        simpleItem(ChangShengJueBlocks.HIGH_SPRUCE_WINDOWS,ChangShengJueBlocks.HIGH_SPRUCE_WINDOWS.getId().getPath());
+        simpleBlockItem(ChangShengJueBlocks.HIGH_BIRCH_WINDOWS,ChangShengJueBlocks.HIGH_BIRCH_WINDOWS.getId().getPath());
+        simpleBlockItem(ChangShengJueBlocks.HIGH_ACACIA_WINDOWS,ChangShengJueBlocks.HIGH_ACACIA_WINDOWS.getId().getPath());
+        simpleBlockItem(ChangShengJueBlocks.HIGH_DARK_OAK_WINDOWS,ChangShengJueBlocks.HIGH_DARK_OAK_WINDOWS.getId().getPath());
+        simpleBlockItem(ChangShengJueBlocks.HIGH_OAK_WINDOWS,ChangShengJueBlocks.HIGH_OAK_WINDOWS.getId().getPath());
+        simpleBlockItem(ChangShengJueBlocks.HIGH_SPRUCE_WINDOWS,ChangShengJueBlocks.HIGH_SPRUCE_WINDOWS.getId().getPath());
 
         //城门
-        simpleItem(ChangShengJueBlocks.SHING_MUN_RIGHT,ChangShengJueBlocks.SHING_MUN_RIGHT.getId().getPath());
+        simpleBlockItem(ChangShengJueBlocks.SHING_MUN_RIGHT,ChangShengJueBlocks.SHING_MUN_RIGHT.getId().getPath());
+        simpleBlockItem(ChangShengJueBlocks.BIG_SHING_MUN_LEFT,ChangShengJueBlocks.SHING_MUN_LEFT.getId().getPath());
+        simpleBlockItem(ChangShengJueBlocks.BIG_SHING_MUN_RIGHT,ChangShengJueBlocks.SHING_MUN_RIGHT.getId().getPath());
+
+        parentItem(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7);
+        parentItem(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_7);
+        parentItem(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7);
+        parentItem(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7);
+        parentItem(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7);
+
+        parentItem(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8);
+        parentItem(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8);
+        parentItem(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8);
+        parentItem(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8);
+        parentItem(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8);
+
+        parentItem(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB);
+        parentItem(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB);
+        parentItem(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB);
+        parentItem(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB);
+        parentItem(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB);
+
+        parentItem(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE);
+
+        parentItem(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE_1);
+        parentItem(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE_1);
+        parentItem(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE_1);
+        parentItem(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE_1);
+        parentItem(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE_1);
+
+        parentItem(ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.HANGING_BEAST_RED_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE);
+        parentItem(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE);
+
+        parentItem(ChangShengJueBlocks.GRE_ROOF_RIDGE);
+        parentItem(ChangShengJueBlocks.RED_ROOF_RIDGE);
+        parentItem(ChangShengJueBlocks.BLACK_ROOF_RIDGE);
+        parentItem(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE);
+        parentItem(ChangShengJueBlocks.BLUE_ROOF_RIDGE);
+
+        parentItem(ChangShengJueBlocks.GRE_DEMON_MASK);
+        parentItem(ChangShengJueBlocks.RED_DEMON_MASK);
+        parentItem(ChangShengJueBlocks.BLACK_DEMON_MASK);
+        parentItem(ChangShengJueBlocks.GOLDEN_DEMON_MASK);
+        parentItem(ChangShengJueBlocks.BLUE_DEMON_MASK);
+
+        parentItem(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION);
+        parentItem(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION);
+        parentItem(ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION);
+        parentItem(ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION);
+        parentItem(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION);
+
+        parentItem(ChangShengJueBlocks.GRE_CHARACTER_PLAQUE_PAVILION);
+        parentItem(ChangShengJueBlocks.RED_CHARACTER_PLAQUE_PAVILION);
+        parentItem(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION);
+        parentItem(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION);
+        parentItem(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION);
+
+        parentItem(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE,ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_top");
+        parentItem(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE,ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_top");
+        parentItem(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE,ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_top");
+        parentItem(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE,ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_top");
+        parentItem(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE,ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.getId().getPath() + "_top");
+
+        parentItem(ChangShengJueBlocks.GRE_OCTAGONAL_UPTURNED_EAVES,ChangShengJueBlocks.GRE_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.RED_OCTAGONAL_UPTURNED_EAVES,ChangShengJueBlocks.RED_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.BLACK_OCTAGONAL_UPTURNED_EAVES,ChangShengJueBlocks.BLACK_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.GOLDEN_OCTAGONAL_UPTURNED_EAVES,ChangShengJueBlocks.GOLDEN_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES,ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES.getId().getPath() + "_right");
+
+        parentItem(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT,ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_FRONT,ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_FRONT,ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT,ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT,ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_right");
+
+        parentItem(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND,ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND,ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND,ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND,ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND,ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_right");
+
+
+        parentItem(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT,ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_FRONT,ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_FRONT,ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT,ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT,ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.getId().getPath() + "_right");
+
+        parentItem(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND,ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND,ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND,ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND,ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND,ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.getId().getPath() + "_right");
+
+        parentItem(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT,ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT,ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT,ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT,ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT,ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.getId().getPath() + "_right");
+
+        parentItem(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND,ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND,ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND,ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND,ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_right");
+        parentItem(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND,ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.getId().getPath() + "_right");
+
+        parentItem(ChangShengJueBlocks.GRE_HIPPED_ROOF,ChangShengJueBlocks.GRE_HIPPED_ROOF.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.RED_HIPPED_ROOF,ChangShengJueBlocks.RED_HIPPED_ROOF.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.BLACK_HIPPED_ROOF,ChangShengJueBlocks.BLACK_HIPPED_ROOF.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.GOLDEN_HIPPED_ROOF,ChangShengJueBlocks.GOLDEN_HIPPED_ROOF.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.BLUE_HIPPED_ROOF,ChangShengJueBlocks.BLUE_HIPPED_ROOF.getId().getPath() + "_inventory");
+
+        parentItem(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE);
+
+        parentItem(ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE);
+
+        parentItem(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE);
+
+        //侧筒瓦
+        parentItem(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE);
+        parentItem(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE_SIDE);
+        parentItem(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE);
+        parentItem(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE_SIDE);
+        parentItem(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE);
+        //侧高筒瓦
+        parentItem(ChangShengJueBlocks.GRE_HIGH_CYLINDER_TILE_SIDE);
+        parentItem(ChangShengJueBlocks.RED_HIGH_CYLINDER_TILE_SIDE);
+        parentItem(ChangShengJueBlocks.BLACK_HIGH_CYLINDER_TILE_SIDE);
+        parentItem(ChangShengJueBlocks.GOLDEN_HIGH_CYLINDER_TILE_SIDE);
+        parentItem(ChangShengJueBlocks.BLUE_HIGH_CYLINDER_TILE_SIDE);
+        //侧瓦当
+        parentItem(ChangShengJueBlocks.GRE_EAVES_TILE_SIDE);
+        parentItem(ChangShengJueBlocks.RED_EAVES_TILE_SIDE);
+        parentItem(ChangShengJueBlocks.BLACK_EAVES_TILE_SIDE);
+        parentItem(ChangShengJueBlocks.GOLDEN_EAVES_TILE_SIDE);
+        parentItem(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE);
+        //八角垂脊
+        parentItem(ChangShengJueBlocks.GRE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.RED_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.BLACK_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.GOLDEN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE);
+        parentItem(ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE);
+
+        //栏杆
+        parentItem(ChangShengJueBlocks.WHITE_JADE_BALUSTRADE,
+                ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.OAK_BALUSTRADE,
+                ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.SPRUCE_BALUSTRADE,
+                ChangShengJueBlocks.SPRUCE_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.BIRCH_BALUSTRADE,
+                ChangShengJueBlocks.BIRCH_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.JUNGLE_BALUSTRADE,
+                ChangShengJueBlocks.JUNGLE_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.ACACIA_BALUSTRADE,
+                ChangShengJueBlocks.ACACIA_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.MANGROVE_BALUSTRADE,
+                ChangShengJueBlocks.MANGROVE_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.CHERRY_BALUSTRADE,
+                ChangShengJueBlocks.CHERRY_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.DARK_OAK_BALUSTRADE,
+                ChangShengJueBlocks.DARK_OAK_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.CRIMSON_BALUSTRADE,
+                ChangShengJueBlocks.CRIMSON_BALUSTRADE.getId().getPath() + "_inventory");
+        parentItem(ChangShengJueBlocks.WARPED_BALUSTRADE,
+                ChangShengJueBlocks.WARPED_BALUSTRADE.getId().getPath() + "_inventory");
+
+
+        parentItem(ChangShengJueBlocks.WHITE_JADE_GUARDRAIL);
+
+        //包裹
+        simpleItem(ChangShengJueItems.COTTON_ARMOR_PARCEL,"parcel");
+        simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR_PARCEL,"parcel");
+        simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MINGGUANG_ARMOR_PARCEL,"parcel");
+        simpleItem(ChangShengJueItems.QI_TIAN_DA_SHENG_PARCEL,"parcel");
     }
 
-
-    private ItemModelBuilder parentItem(RegistryObject<Block> item){
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation(ChangShengJue.MOD_ID,"block/"+item.getId().getPath()));
+    private ItemModelBuilder parentItem(RegistryObject<Block> block){
+        return withExistingParent(block.getId().getPath(),
+                new ResourceLocation(ChangShengJue.MOD_ID,"block/"+block.getId().getPath()));
+    }
+    //多模型方块物品选择
+    private ItemModelBuilder parentItem(RegistryObject<Block> block,String path){
+        return withExistingParent(block.getId().getPath(),
+                new ResourceLocation(ChangShengJue.MOD_ID,"block/" + path));
     }
 
-    private ItemModelBuilder saplingItem(RegistryObject<Block> item) {
-        return withExistingParent(item.getId().getPath(),
+    private ItemModelBuilder saplingItem(RegistryObject<Block> block) {
+        return withExistingParent(block.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(ChangShengJue.MOD_ID,"block/" + item.getId().getPath()));
+                new ResourceLocation(ChangShengJue.MOD_ID,"block/" + block.getId().getPath()));
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item){
@@ -269,11 +497,17 @@ public class CSJItemModelProvider extends ItemModelProvider {
                 new ResourceLocation(ChangShengJue.MOD_ID,"item/"+item.getId().getPath()));
     }
 
-    //自定义物品路径json
-    private ItemModelBuilder simpleItem(RegistryObject<Block> item,String path) {
-        return withExistingParent(item.getId().getPath(),
+    //自定义方块物品资源路径json
+    private ItemModelBuilder simpleBlockItem(RegistryObject<Block> block, String path) {
+        return withExistingParent(block.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(ChangShengJue.MOD_ID,"item/"+path));
+    }
+    //自定义物品资源路径json
+    private ItemModelBuilder simpleItem(RegistryObject<Item> item,String path) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(ChangShengJue.MOD_ID,"item/" + path));
     }
 
     private ItemModelBuilder simpleArmorItem(RegistryObject<Item> item){
@@ -292,5 +526,54 @@ public class CSJItemModelProvider extends ItemModelProvider {
         return withExistingParent(item.getId().getPath(),
                 new ResourceLocation(ChangShengJue.MOD_ID + ":item/bullions")).texture("layer0",
                 new ResourceLocation(ChangShengJue.MOD_ID,"item/"+item.getId().getPath()));
+    }
+
+
+    // Shoutout to El_Redstoniano for making this
+    private void trimmedArmorItem(RegistryObject<Item> itemRegistryObject) {
+        final String MOD_ID = ChangShengJue.MOD_ID;
+
+        if(itemRegistryObject.get() instanceof ArmorItem armorItem) {
+            trimMaterials.entrySet().forEach(entry -> {
+
+                ResourceKey<TrimMaterial> trimMaterial = entry.getKey();
+                float trimValue = entry.getValue();
+
+                String armorType = switch (armorItem.getEquipmentSlot()) {
+                    case HEAD -> "helmet";
+                    case CHEST -> "chestplate";
+                    case LEGS -> "leggings";
+                    case FEET -> "boots";
+                    default -> "";
+                };
+
+                String armorItemPath = "item/" + armorItem;
+                String trimPath = "trims/items/" + armorType + "_trim_" + trimMaterial.location().getPath();
+                String currentTrimName = armorItemPath + "_" + trimMaterial.location().getPath() + "_trim";
+                ResourceLocation armorItemResLoc = new ResourceLocation(MOD_ID, armorItemPath);
+                ResourceLocation trimResLoc = new ResourceLocation(trimPath); // minecraft namespace
+                ResourceLocation trimNameResLoc = new ResourceLocation(MOD_ID, currentTrimName);
+
+                // This is used for making the ExistingFileHelper acknowledge that this texture exist, so this will
+                // avoid an IllegalArgumentException
+                existingFileHelper.trackGenerated(trimResLoc, PackType.CLIENT_RESOURCES, ".png", "textures");
+
+                // Trimmed armorItem files
+                getBuilder(currentTrimName)
+                        .parent(new ModelFile.UncheckedModelFile("item/generated"))
+                        .texture("layer0", armorItemResLoc)
+                        .texture("layer1", trimResLoc);
+
+                // Non-trimmed armorItem file (normal variant)
+                this.withExistingParent(itemRegistryObject.getId().getPath(),
+                                mcLoc("item/generated"))
+                        .override()
+                        .model(new ModelFile.UncheckedModelFile(trimNameResLoc))
+                        .predicate(mcLoc("trim_type"), trimValue).end()
+                        .texture("layer0",
+                                new ResourceLocation(MOD_ID,
+                                        "item/" + itemRegistryObject.getId().getPath()));
+            });
+        }
     }
 }

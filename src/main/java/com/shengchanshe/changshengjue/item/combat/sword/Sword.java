@@ -13,6 +13,7 @@ import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.DuguNineSwordsPacket;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
+import com.shengchanshe.changshengjue.util.EffectUtils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -45,18 +46,19 @@ public class Sword extends SwordItem {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         if (!player.level().isClientSide) {
+            float probability = player.getRandom().nextFloat();
+            float defaultProbability = 0.10F;
+            if (entity instanceof LivingEntity livingEntity) {
+                if (probability < defaultProbability) {
+                    if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
+                        livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
+                    }
+                }
+            }
             player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                 if (duguNineSword.duguNineSwordsComprehend() && duguNineSword.getDuguNineSwordsLevel() == 0) {
-                    float probability = player.getRandom().nextFloat();
-                    float defaultProbability = !player.getAbilities().instabuild ? 0.02F : 1.0F;
-                    if (entity instanceof LivingEntity livingEntity) {
-                        if (probability < 0.15F) {
-                            if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
-                                livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
-                            }
-                        }
-                    }
-                    if (probability < defaultProbability) {
+                    float defaultComprehendProbability = !player.getAbilities().instabuild ? 0.15F : 1.0F;
+                    if (probability < defaultComprehendProbability) {
                         duguNineSword.addDuguNineSwordsLevel();
                         duguNineSword.setDuguNineSwordsParticle(true);
                         player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
@@ -70,21 +72,14 @@ public class Sword extends SwordItem {
                 }else {
                     if (duguNineSword.getDuguNineSwordsLevel() > 0) {
                         if (entity instanceof LivingEntity livingEntity){
-                            float probability = player.getRandom().nextFloat();
-                            float defaultProbability = 0.15F;
-                            if (duguNineSword.getDuguNineSwordsLevel() < 2) {
-                                if (probability < defaultProbability) {
-                                    if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
-                                        livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
-                                    }
-                                }
-                            } else {
-                                if (probability < (defaultProbability * 1.2F)) {
+                            if (duguNineSword.getDuguNineSwordsLevel() >= 2) {
+                                if (probability < (defaultProbability * 1.25F)) {
                                     if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
                                         livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
                                     }
                                 }
                             }
+                            EffectUtils.setTrauma(player, livingEntity, 2,140,0.25F);
                             if (player.getMainHandItem().canDisableShield(livingEntity.getUseItem(), livingEntity, player)) {
                                 if (probability < 0.5) {
                                     // 强制打破目标玩家的防御状态（禁用盾牌防御）
@@ -98,7 +93,7 @@ public class Sword extends SwordItem {
                     }
                 }
             });
-            if (player.getMainHandItem().is(ChangShengJueItems.YI_TINA_JIAN.get())){
+            if (player.getMainHandItem().is(ChangShengJueItems.YI_TIAN_JIAN.get())){
                 YiTianJianAttackEntity yiTianJianAttackEntity = new YiTianJianAttackEntity(ChangShengJueEntity.YI_TIAN_JIAN_ATTACK.get(), player.level());
                 yiTianJianAttackEntity.moveTo(entity.position().add(0, entity.getEyeHeight(), 0).add(entity.getForward().scale(0)));
                 yiTianJianAttackEntity.setYRot(player.getYRot());
@@ -140,7 +135,7 @@ public class Sword extends SwordItem {
                 if (!player.getAbilities().instabuild) {
                     player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
                         int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
-                        if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() >= 1){
+                        if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() == 1){
                             player.getFoodData().eat(-foodLevel + 1, -1);//消耗饱食度
                             if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 1000){
                                 theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
@@ -163,14 +158,14 @@ public class Sword extends SwordItem {
                         float probability = player.getRandom().nextFloat();
                         float defaultProbability = 0.15F;
                         if (martialArtsLevel < 2) {
-                            damage = (this.getDamage() + 2) * 1.4F;
+                            damage = (this.getDamage() + 2) * 1.8F;
                             if (probability < defaultProbability) {
                                 if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
                                     ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, false), player);
                                 }
                             }
                         } else {
-                            damage = (this.getDamage() + 2) * 1.6F;
+                            damage = (this.getDamage() + 2) * 2.2F;
                             if (probability < (defaultProbability * 1.2F)) {
                                 if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
                                     ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, false), player);
@@ -180,6 +175,9 @@ public class Sword extends SwordItem {
                         if (entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
                                         .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player),
                                 player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
+                            if (entity instanceof LivingEntity livingEntity) {
+                                EffectUtils.setTrauma(player, livingEntity, 5,140,0.25F);
+                            }
                             if (duguNineSword.getDuguNineSwordsUseCount() < 100) {
                                 duguNineSword.addDuguNineSwordsUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (duguNineSword.getDuguNineSwordsUseCount() >= 100){
@@ -208,7 +206,7 @@ public class Sword extends SwordItem {
                 itemstack.hurtAndBreak(1, player, (player1) -> {//消耗耐久
                     player1.broadcastBreakEvent(player.getUsedItemHand());
                 });
-                DuguNineSwordsEntity duguNineSwordsEntity = new DuguNineSwordsEntity(ChangShengJueEntity.DUGU_NINE_SOWRDS_ENTITY.get(), pLevel);
+                DuguNineSwordsEntity duguNineSwordsEntity = new DuguNineSwordsEntity(ChangShengJueEntity.DUGU_NINE_SOWRDS.get(), pLevel);
                 duguNineSwordsEntity.moveTo(hitLocation);
                 duguNineSwordsEntity.setYRot(player.getYRot());
                 pLevel.addFreshEntity(duguNineSwordsEntity);

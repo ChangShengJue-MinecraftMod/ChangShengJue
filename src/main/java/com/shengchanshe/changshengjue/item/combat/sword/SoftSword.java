@@ -5,8 +5,8 @@ import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_te
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import com.shengchanshe.changshengjue.item.render.combat.sword.SoftSwordRender;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.XuannuSwordsmanshipPacket;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
@@ -23,6 +23,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -56,8 +57,8 @@ public class SoftSword extends Sword implements GeoItem {
             player.getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(xuannuSwordsmanship -> {
                 if (xuannuSwordsmanship.xuannuSwordsmanshipComprehend() && xuannuSwordsmanship.getXuannuSwordsmanshipLevel() == 0) {
                     float probability = player.getRandom().nextFloat();
-                    float defaultProbability = !player.getAbilities().instabuild ? 0.02F : 1.0F;
-                    if (probability < defaultProbability) {
+                    float defaultComprehendProbability = !player.getAbilities().instabuild ? 0.15F : 1.0F;
+                    if (probability < defaultComprehendProbability) {
                         xuannuSwordsmanship.addXuannuSwordsmanshipLevel();
                         xuannuSwordsmanship.setXuannuSwordsmanshipParticle(true);
                         player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
@@ -66,6 +67,49 @@ public class SoftSword extends Sword implements GeoItem {
                                 xuannuSwordsmanship.getXuannuSwordsmanshipToppedTick(),
                                 xuannuSwordsmanship.getXuannuSwordsmanshipDachengTick(),
                                 xuannuSwordsmanship.isXuannuSwordsmanshipParticle()), (ServerPlayer) player);
+                    }
+                }else if (xuannuSwordsmanship.getXuannuSwordsmanshipLevel() > 0) {
+                    if (entity instanceof LivingEntity livingEntity){
+                        float probability = player.getRandom().nextFloat();
+                        float defaultProbability = 0.10F;
+                        if (xuannuSwordsmanship.getXuannuSwordsmanshipLevel() >= 2) {
+                            if (probability < (defaultProbability * 3.0F)) {
+                                if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
+                                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, true), player);
+                                }
+                            }
+                        }
+                        if (probability < 0.25F) {
+                            if (!(livingEntity instanceof Zombie)){
+                                int duration = 40;
+                                int level = player.getRandom().nextInt(2); // 0或1
+
+                                // 如果已有外伤效果，延长1秒并保持最高等级
+                                if (livingEntity.hasEffect(ChangShengJueEffects.TRAUMA_EFFECT.get())) {
+                                    MobEffectInstance oldEffect = livingEntity.getEffect(ChangShengJueEffects.TRAUMA_EFFECT.get());
+                                    if (oldEffect != null) {
+                                        duration = oldEffect.getDuration() + 20;
+                                        level = Math.max(level, oldEffect.getAmplifier());
+                                    }
+                                }
+
+                                livingEntity.addEffect(new MobEffectInstance(
+                                        ChangShengJueEffects.TRAUMA_EFFECT.get(), duration, level,
+                                        true,
+                                        true,
+                                        true
+                                ), player);
+                            }
+                        }
+                        if (player.getMainHandItem().canDisableShield(livingEntity.getUseItem(), livingEntity, player)) {
+                            if (probability < 0.5) {
+                                // 强制打破目标玩家的防御状态（禁用盾牌防御）
+                                player.getCooldowns().addCooldown(player.getUseItem().getItem(), 100);
+                                player.stopUsingItem();
+                                livingEntity.stopUsingItem();
+                                player.level().broadcastEntityEvent(player, (byte) 30);
+                            }
+                        }
                     }
                 }
             });
@@ -101,7 +145,7 @@ public class SoftSword extends Sword implements GeoItem {
                 if (!player.getAbilities().instabuild) {
                     player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
                         int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
-                        if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() >= 1){
+                        if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() == 1){
                             player.getFoodData().eat(-foodLevel + 1, -1);//消耗饱食度
                             if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 1000){
                                 theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
@@ -124,15 +168,15 @@ public class SoftSword extends Sword implements GeoItem {
                         float probability = player.getRandom().nextFloat();
                         float defaultProbability = 0.15F;
                         if (martialArtsLevel < 2) {
-                            damage = (this.getDamage() + 2) * 1.8F;
+                            damage = (this.getDamage() + 2) * 2.2F;
                             if (probability < defaultProbability) {
                                 if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
                                     ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, false), player);
                                 }
                             }
                         } else {
-                            damage = (this.getDamage() + 2) * 2.0F;
-                            if (probability < (defaultProbability * 1.2F)) {
+                            damage = (this.getDamage() + 2) * 2.5F;
+                            if (probability < (defaultProbability * 1.5F)) {
                                 if (!isLivingSkeletonAndGolemAndSlime((LivingEntity) entity)) {
                                     ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(), 30, 1, false, false), player);
                                 }
@@ -141,6 +185,29 @@ public class SoftSword extends Sword implements GeoItem {
                         if (entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
                                         .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player),
                                 player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
+                            if (probability < 0.25F && entity instanceof LivingEntity livingEntity) {
+                                if (!(livingEntity instanceof Zombie)){
+                                    int duration = 100;
+                                    int level = player.getRandom().nextInt(5);
+
+                                    if (livingEntity.hasEffect(ChangShengJueEffects.TRAUMA_EFFECT.get())) {
+                                        MobEffectInstance oldEffect = livingEntity.getEffect(ChangShengJueEffects.TRAUMA_EFFECT.get());
+                                        if (oldEffect != null) {
+                                            duration = oldEffect.getDuration() + 20;
+                                            level = Math.max(level, oldEffect.getAmplifier());
+                                        }
+                                    }
+
+                                    livingEntity.addEffect(new MobEffectInstance(
+                                            ChangShengJueEffects.TRAUMA_EFFECT.get(),
+                                            duration,
+                                            level,
+                                            true,
+                                            true,
+                                            true
+                                    ), player);
+                                }
+                            }
                             if (xuannuSwordsmanship.getXuannuSwordsmanshipUseCount() <= 100){
                                 xuannuSwordsmanship.addXuannuSwordsmanshipUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (xuannuSwordsmanship.getXuannuSwordsmanshipUseCount() >= 100){
@@ -171,6 +238,17 @@ public class SoftSword extends Sword implements GeoItem {
     }
 
     @Override
+    public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
+        super.onUseTick(pLevel, pLivingEntity, pStack, pRemainingUseDuration);
+        if (!pLevel.isClientSide) {
+            ItemStack itemstack = pLivingEntity.getMainHandItem();//获取玩家手中物品
+            if (itemstack.getItem() == ChangShengJueItems.SOFT_SWORD.get()) {
+                triggerAnim(pLivingEntity, GeoItem.getOrAssignId(pLivingEntity.getItemInHand(pLivingEntity.getUsedItemHand()), (ServerLevel) pLevel), "Attack", "attack");
+            }
+        }
+    }
+
+    @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
             private SoftSwordRender renderer = null;
@@ -188,7 +266,7 @@ public class SoftSword extends Sword implements GeoItem {
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(((new AnimationController(this, "idle",0, (state) ->
                 state.setAndContinue(DefaultAnimations.IDLE)))));
-        controllerRegistrar.add(new AnimationController<>(this, "Attack", 0, state -> PlayState.CONTINUE)
+        controllerRegistrar.add(new AnimationController<>(this, "Attack", 0, state -> PlayState.STOP)
                 .triggerableAnim("attack", DefaultAnimations.ATTACK_SWING).setSoundKeyframeHandler((state) -> {
                     Player player = ClientUtils.getClientPlayer();
                     if (player != null) {

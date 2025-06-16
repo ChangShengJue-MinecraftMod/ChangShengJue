@@ -15,7 +15,11 @@ public interface DyeableChineseWeddingDressItem extends DyeableLeatherItem {
 
     default int getColor(ItemStack pStack) {
         CompoundTag compoundtag = pStack.getTagElement("display");
-        return compoundtag != null && compoundtag.contains("color", 99) ? compoundtag.getInt("color") : DEFAULT_COLOR;
+        if (pStack.is(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get())){
+            return compoundtag != null && compoundtag.contains("color", 99) ? compoundtag.getInt("color") : 0;
+        }else {
+            return compoundtag != null && compoundtag.contains("color", 99) ? compoundtag.getInt("color") : DEFAULT_COLOR;
+        }
     }
 
     default void clearColor(ItemStack pStack) {

@@ -25,8 +25,8 @@
 					"parent": "armorHead",
 					"pivot": [0, 24, 0],
 					"cubes": [
-						{"origin": [-4, 24, -4], "size": [8, 8, 8], "inflate": 0.31, "uv": [0, 16]},
-						{"origin": [-5, 25, -4.5], "size": [10, 7, 2], "uv": [2, 33]},
+						{"origin": [-4, 24, -4], "size": [8, 8, 8], "inflate": 0.53, "uv": [0, 16]},
+						{"origin": [-5, 25, -4.5], "size": [10, 7, 2], "inflate": 0.3, "uv": [2, 33]},
 						{"origin": [-3, 32, -3], "size": [6, 1, 6], "inflate": 0.3, "uv": [26, 15]},
 						{"origin": [-1, 33, -1], "size": [2, 2, 2], "uv": [33, 25]}
 					]
@@ -36,7 +36,7 @@
 					"parent": "toukui",
 					"pivot": [0, 25, 4.3],
 					"cubes": [
-						{"origin": [-4, 19, 1], "size": [8, 6, 3], "inflate": 0.29, "pivot": [0, 25, 3], "rotation": [10, 0, 0], "uv": [28, 33]}
+						{"origin": [-4, 19, 1], "size": [8, 6, 3], "inflate": 0.52, "pivot": [0, 25, 3], "rotation": [10, 0, 0], "uv": [28, 33]}
 					]
 				},
 				{

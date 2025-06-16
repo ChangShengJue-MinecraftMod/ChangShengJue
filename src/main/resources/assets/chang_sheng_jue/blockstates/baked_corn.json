@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=east": [
+      {
+        "model": "chang_sheng_jue:block/baked_corn",
+        "y": 180
+      }
+    ],
+    "facing=north": [
+      {
+        "model": "chang_sheng_jue:block/baked_corn",
+        "y": 90
+      }
+    ],
+    "facing=south": [
+      {
+        "model": "chang_sheng_jue:block/baked_corn",
+        "y": 270
+      }
+    ],
+    "facing=west": [
+      {
+        "model": "chang_sheng_jue:block/baked_corn"
+      }
+    ]
+  }
+}

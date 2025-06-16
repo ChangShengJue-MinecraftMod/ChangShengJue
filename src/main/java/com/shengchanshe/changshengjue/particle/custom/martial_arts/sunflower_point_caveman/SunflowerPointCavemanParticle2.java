@@ -9,6 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class SunflowerPointCavemanParticle2 extends TextureSheetParticle {
     private final SpriteSet sprites;
     private final int entityId;

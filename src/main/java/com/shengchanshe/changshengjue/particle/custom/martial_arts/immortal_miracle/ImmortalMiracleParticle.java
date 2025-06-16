@@ -7,6 +7,7 @@ import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class ImmortalMiracleParticle extends TextureSheetParticle {
     private final SpriteSet sprites;
     private final float endRed;

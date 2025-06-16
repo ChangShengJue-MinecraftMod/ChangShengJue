@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "chang_sheng_jue:block/zi_tan_leaves"
+  }
+}

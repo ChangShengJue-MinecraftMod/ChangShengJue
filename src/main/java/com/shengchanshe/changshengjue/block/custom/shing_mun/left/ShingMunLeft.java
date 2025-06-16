@@ -11,11 +11,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -34,7 +32,6 @@ public class ShingMunLeft extends BaseEntityBlock{
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
     public static final BooleanProperty RIGHT = BooleanProperty.create("right");
-    public static final BooleanProperty REST = BooleanProperty.create("rest");
 
     public static final BooleanProperty ONE = BooleanProperty.create("one");
     public static final BooleanProperty TWO = BooleanProperty.create("two");
@@ -52,7 +49,6 @@ public class ShingMunLeft extends BaseEntityBlock{
                 .setValue(OPEN,false)
                 .setValue(HALF, DoubleBlockHalf.LOWER)
                 .setValue(RIGHT, false)
-                .setValue(REST,false)
                 .setValue(ONE, false)
                 .setValue(TWO,false)
                 .setValue(THREE, false)
@@ -198,7 +194,6 @@ public class ShingMunLeft extends BaseEntityBlock{
                             .setValue(SIX,y == 2 && x == 1)
                             .setValue(SEVEN, y == 3 && x == 0)
                             .setValue(EIGHT,y == 3 && x == 1); // 第二列的方块标记为 RIGHT
-
                     // 直接替换目标位置的方块（包括可替换的方块）
                     pLevel.setBlockAndUpdate(targetPos, newState);
                 }
@@ -307,7 +302,7 @@ public class ShingMunLeft extends BaseEntityBlock{
         return this.defaultBlockState()
                 .setValue(FACING, playerFacing) // 设置朝向
                 .setValue(HALF, DoubleBlockHalf.LOWER) // 默认设置为 LOWER
-                .setValue(RIGHT, false) // 默认设置为 LEFT 列
+                .setValue(RIGHT, false)
                 .setValue(OPEN, false)
                 .setValue(ONE, false)
                 .setValue(TWO,false)
@@ -319,6 +314,34 @@ public class ShingMunLeft extends BaseEntityBlock{
                 .setValue(EIGHT,false); // 默认关闭
     }
 
+//    @Override
+//    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos currentPos, BlockPos neighborPos) {
+//        BlockEntity blockEntity = level.getBlockEntity(currentPos);
+//        // 检查当前方块是否有 RIGHT 属性为 true
+//        if (state.getValue(RIGHT)) {
+//            if (blockEntity instanceof ShingMunLeftEntity entity){
+//                // 获取当前方块的朝向
+//                Direction facing = state.getValue(FACING);
+//                // 计算右侧位置
+//                BlockPos rightPos = currentPos.relative(facing.getCounterClockWise());
+//                // 获取右侧方块状态
+//                BlockState rightState = level.getBlockState(rightPos);
+//                // 检查右侧方块是否为空气
+//                if (rightState.isAir()) {
+//                    // 如果是空气，将 REST 属性设置为 true
+//                    entity.setRest(state.getValue(REST));
+//                    return state.setValue(REST, true);
+//                }else {
+//                    entity.setRest(state.getValue(REST));
+//                    return state.setValue(REST, false);
+//                }
+//            }
+//        }
+//        // 如果没有满足条件，返回原状态
+//        return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
+//    }
+
+
     @Override
     public void onNeighborChange(BlockState state, LevelReader level, BlockPos pos, BlockPos neighbor) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
@@ -326,7 +349,6 @@ public class ShingMunLeft extends BaseEntityBlock{
             boolean isOpen = state.getValue(OPEN);
             entity.setOpen(isOpen); // 将 BlockState 中的 open 状态同步到 BlockEntity
             entity.setRight(state.getValue(RIGHT)); // 将 BlockState 中的 right 状态同步到 BlockEntity
-            entity.setRest(state.getValue(REST)); // 将 BlockState 中的 rest 状态同步到 BlockEntity
         }
     }
 
@@ -343,7 +365,7 @@ public class ShingMunLeft extends BaseEntityBlock{
                 entity.setOpen(newOpen);
             }
             // 同步切换周围相同类型的方块的 open 状态
-            syncNeighborBlocks(level, pos, newOpen,true, new HashSet<>());
+            syncNeighborBlocks(level, pos, newOpen, new HashSet<>());
         }
         return InteractionResult.SUCCESS;
     }
@@ -351,7 +373,7 @@ public class ShingMunLeft extends BaseEntityBlock{
     /**
      * 同步切换周围相同类型方块的 open 状态。
      */
-    private void syncNeighborBlocks(Level level, BlockPos pos, boolean newOpen, boolean newRest, Set<BlockPos> visited) {
+    private void syncNeighborBlocks(Level level, BlockPos pos, boolean newOpen, Set<BlockPos> visited) {
         // 避免重复访问
         if (visited.contains(pos)) {
             return;
@@ -370,11 +392,10 @@ public class ShingMunLeft extends BaseEntityBlock{
                 BlockEntity neighborEntity = level.getBlockEntity(neighborPos);
                 if (neighborEntity instanceof ShingMunLeftEntity neighborShingMunEntity) {
                     neighborShingMunEntity.setOpen(newOpen);
-                    neighborShingMunEntity.setRest(newRest);
                 }
 
                 // 递归调用以同步更远的方块
-                syncNeighborBlocks(level, neighborPos, newOpen, true,visited);
+                syncNeighborBlocks(level, neighborPos, newOpen,visited);
             }
         }
     }
@@ -404,8 +425,18 @@ public class ShingMunLeft extends BaseEntityBlock{
     }
 
     @Override
+    public BlockState rotate(BlockState blockState, Rotation rotation) {
+        return blockState.setValue(FACING, rotation.rotate(blockState.getValue(FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState blockState, Mirror mirror) {
+        return super.mirror(blockState, mirror);
+    }
+
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING,HALF,RIGHT,OPEN,REST,ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT);
+        pBuilder.add(FACING,HALF,RIGHT,OPEN,ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT);
     }
 
     @Override

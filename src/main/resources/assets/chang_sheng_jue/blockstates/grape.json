@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=east": [
+      {
+        "model": "chang_sheng_jue:block/grape"
+      }
+    ],
+    "facing=north": [
+      {
+        "model": "chang_sheng_jue:block/grape",
+        "y": 270
+      }
+    ],
+    "facing=south": [
+      {
+        "model": "chang_sheng_jue:block/grape",
+        "y": 90
+      }
+    ],
+    "facing=west": [
+      {
+        "model": "chang_sheng_jue:block/grape",
+        "y": 180
+      }
+    ]
+  }
+}

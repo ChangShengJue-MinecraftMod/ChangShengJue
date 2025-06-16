@@ -11,11 +11,15 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
+@OnlyIn(Dist.CLIENT)
 public class BaWangQiangAttackEntityRender extends EntityRenderer<BaWangQiangAttackEntity> {
     private static final ResourceLocation[] TEXTURES = {
+            new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/ba_wang_qiang_attack/ba_wang_qiang_attack_0.png"),
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/ba_wang_qiang_attack/ba_wang_qiang_attack_1.png"),
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/ba_wang_qiang_attack/ba_wang_qiang_attack_2.png"),
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/ba_wang_qiang_attack/ba_wang_qiang_attack_3.png"),
@@ -74,7 +78,7 @@ public class BaWangQiangAttackEntityRender extends EntityRenderer<BaWangQiangAtt
 
     @Override
     public ResourceLocation getTextureLocation(BaWangQiangAttackEntity entity) {
-        int frame = entity.tickCount % TEXTURES.length;
+        int frame = (entity.tickCount * 2) % TEXTURES.length;
         return TEXTURES[frame];
     }
 

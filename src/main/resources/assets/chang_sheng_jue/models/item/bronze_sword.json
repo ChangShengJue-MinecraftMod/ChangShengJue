@@ -1,0 +1,18 @@
+{
+  "gui_light": "front",
+  "loader": "forge:separate_transforms",
+  "base": {
+    "parent": "chang_sheng_jue:item/bronze_sword_model"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "chang_sheng_jue:item/bronze_sword_show"
+    },
+    "ground": {
+      "parent": "chang_sheng_jue:item/bronze_sword_show"
+    },
+    "fixed": {
+      "parent": "chang_sheng_jue:item/bronze_sword_show"
+    }
+  }
+}

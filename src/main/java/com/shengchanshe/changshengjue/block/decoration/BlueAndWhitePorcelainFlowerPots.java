@@ -6,12 +6,15 @@ import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -30,6 +33,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 public class BlueAndWhitePorcelainFlowerPots extends BaseEntityBlock {
@@ -42,7 +46,9 @@ public class BlueAndWhitePorcelainFlowerPots extends BaseEntityBlock {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         if (blockEntity instanceof BlueAndWhitePorcelainFlowerPotsEntity entity) {
             ItemStack itemStack = pPlayer.getItemInHand(pHand);
-            boolean isPlaceable = itemStack.is(ItemTags.FLOWERS);
+            final Set<Item> ITEMS = Set.of(Items.BAMBOO, Items.CACTUS);
+            final Set<TagKey<Item>> ITEMTAGS = Set.of(ItemTags.FLOWERS, ItemTags.SAPLINGS);
+            boolean isPlaceable = ITEMS.contains(itemStack.getItem()) || ITEMTAGS.stream().anyMatch(itemStack::is);
             ItemStack itemStack2 = entity.getPlant(Slot.PLANT);
             if (isPlaceable && itemStack2.isEmpty()) {
                 this.setPlant(entity, Slot.PLANT, pPlayer, itemStack);

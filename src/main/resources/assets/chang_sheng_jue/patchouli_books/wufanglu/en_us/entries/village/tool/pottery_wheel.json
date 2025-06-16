@@ -1,0 +1,17 @@
+{
+  "name": "陶轮",
+  "category": "chang_sheng_jue:village",
+  "sortnum": 2,
+  "icon": "chang_sheng_jue:pottery_wheel",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:pottery_wheel",
+      "text": "交互功能：$(li)1个粘土 → 制造$(item)瓷杯$()$(li)2个粘土 → 制造$(item)瓷碗$()$(li)3个粘土 → 制造$(item)瓷盘$()"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:pottery_wheel_recipe"
+    }
+  ]
+}

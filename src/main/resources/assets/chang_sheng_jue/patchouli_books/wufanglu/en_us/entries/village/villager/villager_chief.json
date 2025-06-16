@@ -1,0 +1,38 @@
+{
+  "name": "村长",
+  "category": "chang_sheng_jue:village",
+  "sortnum": 1,
+  "icon": "chang_sheng_jue:gold_bullions",
+  "pages": [
+    {
+      "title": "村长",
+      "type": "patchouli:entity",
+      "entity": "minecraft:villager{VillagerData: {profession: \"chang_sheng_jue:chang_sheng_jue_chief\"}}",
+      "text": "右键村长时有50%概率会触发村庄任务[除暴安良]，完成可获得一定奖励。"
+    },
+    {
+      "anchor": "村长-新手",
+      "title": "村长交易列表-新手",
+      "type": "patchouli:text",
+      "text": "$(br)$(li)1x 银元宝 → 6x 一贯铜钱$(br)$(li)1x 金元宝 → 6x 银元宝$(br)$(li)7x 一贯铜钱 → 1x 银元宝$(br2)"
+    },
+    {
+      "anchor": "村长-学徒",
+      "title": "村长交易列表-学徒",
+      "type": "patchouli:text",
+      "text": "$(br)$(li)1x 钻石 → 4x 一贯铜钱$(br)$(li)4x 一贯铜钱 → 2x 油灯$(br)$(li)7x 银元宝 → 1x 金元宝$(br2)"
+    },
+    {
+      "anchor": "村长-老手",
+      "title": "村长交易列表-老手",
+      "type": "patchouli:text",
+      "text": "$(br)$(li)1x 指南针 → 4x 一贯铜钱$(br)$(li)4x 一贯铜钱 → 1x 绿宝石$(br2)"
+    },
+    {
+      "anchor": "村长-专家",
+      "title": "村长交易列表-专家与大师",
+      "type": "patchouli:text",
+      "text": "专家:$(br)$(li)2x 书与笔 → 4x 一贯铜钱$(br2)大师:$(br)$(li)1x 银元宝 → 1x 字画$(br)$(li)2x 金元宝 → 1x 绿宝石$(br2)"
+    }
+  ]
+}

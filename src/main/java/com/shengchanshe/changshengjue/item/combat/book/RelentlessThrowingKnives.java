@@ -1,9 +1,12 @@
 package com.shengchanshe.changshengjue.item.combat.book;
 
+import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.capability.martial_arts.relentless_throwing_knives.RelentlessThrowingKnivesCapabilityProvider;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.RelentlessThrowingKnivesPacket;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -15,6 +18,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class RelentlessThrowingKnives extends Item {
@@ -34,6 +38,9 @@ public class RelentlessThrowingKnives extends Item {
                             relentlessThrowingKnives.getRelentlessThrowingKnivesToppedTick(),
                             relentlessThrowingKnives.getRelentlessThrowingKnivesDachengTick(),
                             relentlessThrowingKnives.isRelentlessThrowingKnivesParticle()), (ServerPlayer) pPlayer);
+                    if (pPlayer instanceof ServerPlayer serverPlayer) {
+                        CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
+                    }
                 }
             });
         }
@@ -42,7 +49,18 @@ public class RelentlessThrowingKnives extends Item {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        pTooltipComponents.add(Component.translatable("tooltip.chang_sheng_jue.relentless_throwing_knives.tooltip").withStyle(ChatFormatting.GRAY));
+        if (Screen.hasShiftDown()) {
+            Component fullDesc = Component.translatable("tooltip."+ ChangShengJue.MOD_ID + "."
+                    + this + ".hold_shift.tooltip").withStyle(ChatFormatting.BLUE);
+            String formattedText = fullDesc.getString();
+            Arrays.stream(formattedText.split("\\u000A|\\\\n"))
+                    .map(line -> Component.literal(line).withStyle(fullDesc.getStyle()))
+                    .forEach(pTooltipComponents::add);
+        } else {
+            pTooltipComponents.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + "." + this + ".tooltip").withStyle(ChatFormatting.BLUE));
+            // 提示按住Shift
+            pTooltipComponents.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID +".hold_shift.tooltip"));
+        }
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 }

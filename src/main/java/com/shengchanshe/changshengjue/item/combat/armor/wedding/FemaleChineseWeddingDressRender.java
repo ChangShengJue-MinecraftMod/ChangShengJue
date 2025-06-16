@@ -19,8 +19,8 @@ public class FemaleChineseWeddingDressRender extends GeoArmorRenderer<FemaleChin
      */
     public int getArmorColor(ItemStack stack) {
         if (stack.getItem() instanceof FemaleChineseWeddingDress dyeableArmorItem) {
-            if (stack.is(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_HELMET.get()) || stack.is(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_CHESTPLATE.get())
-                    || stack.is(ChangShengJueItems.SILK_LEGGINGS.get()) || stack.is(ChangShengJueItems.CHINESE_WEDDING_DRESS_BOOTS.get())){
+            if (stack.is(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET.get()) || stack.is(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING.get())
+                    || stack.is(ChangShengJueItems.TAOIST_LEGGINGS.get()) || stack.is(ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES.get())){
                 return dyeableArmorItem.getColor(stack);
             }
         }

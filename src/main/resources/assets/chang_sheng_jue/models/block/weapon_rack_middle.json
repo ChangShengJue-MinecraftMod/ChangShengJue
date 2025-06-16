@@ -1,0 +1,52 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "chang_sheng_jue:block/weapon_rack",
+		"particle": "chang_sheng_jue:block/weapon_rack"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 3],
+			"to": [16, 2, 13],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [4, 2.5, 8, 3], "texture": "#0"},
+				"east": {"uv": [1.5, 2.5, 4, 3], "texture": "#0"},
+				"south": {"uv": [10.5, 2.5, 14.5, 3], "texture": "#0"},
+				"west": {"uv": [8, 2.5, 10.5, 3], "texture": "#0"},
+				"up": {"uv": [8, 2.5, 4, 0], "texture": "#0"},
+				"down": {"uv": [12, 0, 8, 2.5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 14, 11],
+			"to": [16, 15, 13],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [4, 2, 8, 2.25], "texture": "#0"},
+				"east": {"uv": [3.5, 2, 4, 2.25], "texture": "#0"},
+				"south": {"uv": [8.5, 2, 12.5, 2.25], "texture": "#0"},
+				"west": {"uv": [8, 2, 8.5, 2.25], "texture": "#0"},
+				"up": {"uv": [8, 2, 4, 1.5], "texture": "#0"},
+				"down": {"uv": [12, 1.5, 8, 2], "texture": "#0"}
+			}
+		},
+		{
+			"from": [0, 7, 5.5],
+			"to": [16, 8, 7.5],
+			"shade": false,
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [4, 2, 8, 2.25], "texture": "#0"},
+				"east": {"uv": [3.5, 2, 4, 2.25], "texture": "#0"},
+				"south": {"uv": [8.5, 2, 12.5, 2.25], "texture": "#0"},
+				"west": {"uv": [8, 2, 8.5, 2.25], "texture": "#0"},
+				"up": {"uv": [8, 2, 4, 1.5], "texture": "#0"},
+				"down": {"uv": [12, 1.5, 8, 2], "texture": "#0"}
+			}
+		}
+	]
+}

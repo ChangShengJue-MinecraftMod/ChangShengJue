@@ -1,0 +1,74 @@
+{
+  "name": "chang_sheng_jue:fortresses/decoration",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 5,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/big_tree",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_ignore",
+            "blocks": [
+              {
+                "Name": "minecraft:air"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/tower",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_ignore",
+            "blocks": [
+              {
+                "Name": "minecraft:air"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/tower_1",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_rot",
+            "integrity": 0.9
+          }
+        ]
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/water_well",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_ignore",
+            "blocks": [
+              {
+                "Name": "minecraft:air"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

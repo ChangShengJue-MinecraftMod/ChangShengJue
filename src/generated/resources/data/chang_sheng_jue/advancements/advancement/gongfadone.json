@@ -1,0 +1,35 @@
+{
+  "parent": "chang_sheng_jue:advancement/mastergongfa",
+  "criteria": {
+    "gongfadone": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:gongfadone"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "advancement.chang_sheng_jue.gongfadone.desc"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:qian_kun_da_nuo_yi"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "gold",
+      "translate": "advancement.chang_sheng_jue.gongfadone"
+    }
+  },
+  "requirements": [
+    [
+      "gongfadone"
+    ]
+  ],
+  "rewards": {
+    "experience": 1000
+  },
+  "sends_telemetry_event": true
+}

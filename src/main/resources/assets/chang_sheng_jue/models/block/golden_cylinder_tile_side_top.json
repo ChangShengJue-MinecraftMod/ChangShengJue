@@ -1,0 +1,9 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "chang_sheng_jue:block/cylinder_tile_side_top",
+	"texture_size": [64, 64],
+	"textures": {
+		"10": "chang_sheng_jue:block/cylinder_tile_golden_block",
+		"particle": "chang_sheng_jue:block/cylinder_tile_golden_block"
+	}
+}

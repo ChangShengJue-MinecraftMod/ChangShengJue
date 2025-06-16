@@ -2,19 +2,21 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.dugu_nine_swords;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.item.combat.sword.Sword;
-import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
-import java.util.Formatter;
-
+@OnlyIn(Dist.CLIENT)
 public class DuguNineSwordsHudOverlay {
     // 绘制的领悟后技能贴图的位置
     private static final ResourceLocation DUGU_NINE_SWORDS = new ResourceLocation(ChangShengJue.MOD_ID,
@@ -58,63 +60,66 @@ public class DuguNineSwordsHudOverlay {
     public static final IGuiOverlay HUD_DUGU_NINE_SWORDS = (gui, guiGraphics, partialTick, screenWidth, screenHeight) -> {
         if (shouldDisplayHud()) {
             boolean duguNineSwordsComprehend = DuguNineSwordsClientData.isDuguNineSwordsComprehend();
+            // 通过宽高获得绘制的x，y
+            int x = 5;
+            int y = screenHeight / 2;
             if (duguNineSwordsComprehend){
                 int duguNineSwordsLevel = DuguNineSwordsClientData.getDuguNineSwordsLevel();
-                // 通过宽高获得绘制的x，y
-                int x = 5;
-                int y = (screenHeight / 2) - 40;
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                if (duguNineSwordsLevel != 0) {
-                    if (frameTime() <= 0){
-                        if (playerCanOpened()) {
-                            if (duguNineSwordsLevel < 2) {
-                                CSJDisplayHud.displayHud(guiGraphics, DUGU_NINE_SWORDS, x, y);
-                            } else {
-                                CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS_1,x,y);
-                            }
-                        }else {
-                            if (duguNineSwordsLevel < 2) {
-                                CSJDisplayHud.displayHud(guiGraphics, DUGU_NINE_SWORDS, x, y);
-                            } else {
-                                CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS_1,x,y);
-                            }
-                            CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                        }
-                    }else{
-                        float v = frameTime();
-                        int v1 = (int) (16 * v + 1);
-                        if (playerCanOpened()) {
-                            if (duguNineSwordsLevel < 2) {
-                                CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS,x,y);
-                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(DUGU_NINE_SWORDS, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
-                            } else {
-                                CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS_1,x,y);
-                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(DUGU_NINE_SWORDS_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
-                            }
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),frameTime(),5,x,y);
-//                            guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(frameTime() * 5)).toString(),x + 1, y + 5, ChatFormatting.AQUA.getColor());
-                        }else {
-                            if (duguNineSwordsLevel < 2) {
-                                CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS,x,y);
-                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(DUGU_NINE_SWORDS, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
-                            } else {
-                                CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS_1,x,y);
-                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                                guiGraphics.blit(DUGU_NINE_SWORDS_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
-                            }
-                            CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
-                            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),frameTime(),5,x,y);
-//                            guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(frameTime() * 5)).toString(),x + 1, y + 5, ChatFormatting.AQUA.getColor());
-                        }
-                    }
-                }else {
-                    CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS_2,x,y);
-                }
+                CSJDisplayHud.displayHudPermanent1(duguNineSwordsLevel,frameTime(),5,playerCanOpened(),guiGraphics,DUGU_NINE_SWORDS,DUGU_NINE_SWORDS_1,DUGU_NINE_SWORDS_2,COOLING,gui.getFont(),x,y);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".dugu_nine_swords"),x, y,ChatFormatting.AQUA.getColor());
+//                if (duguNineSwordsLevel != 0) {
+//                    if (frameTime() <= 0){
+//                        if (playerCanOpened()) {
+//                            if (duguNineSwordsLevel < 2) {
+//                                CSJDisplayHud.displayHud(guiGraphics, DUGU_NINE_SWORDS, x, y);
+//                            } else {
+//                                CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS_1,x,y);
+//                            }
+//                        }else {
+//                            if (duguNineSwordsLevel < 2) {
+//                                CSJDisplayHud.displayHud(guiGraphics, DUGU_NINE_SWORDS, x, y);
+//                            } else {
+//                                CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS_1,x,y);
+//                            }
+//                            CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                        }
+//                    }else{
+//                        float v = frameTime();
+//                        int v1 = (int) (16 * v + 1);
+//                        if (playerCanOpened()) {
+//                            if (duguNineSwordsLevel < 2) {
+//                                CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS,x,y);
+//                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                                guiGraphics.blit(DUGU_NINE_SWORDS, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                            } else {
+//                                CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS_1,x,y);
+//                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                                guiGraphics.blit(DUGU_NINE_SWORDS_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                            }
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),frameTime(),5,x,y);
+////                            guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(frameTime() * 5)).toString(),x + 1, y + 5, ChatFormatting.AQUA.getColor());
+//                        }else {
+//                            if (duguNineSwordsLevel < 2) {
+//                                CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS,x,y);
+//                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                                guiGraphics.blit(DUGU_NINE_SWORDS, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                            } else {
+//                                CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS_1,x,y);
+//                                CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                                guiGraphics.blit(DUGU_NINE_SWORDS_1, x, y, 0, 0, 0,16, -v1 + 16, 16, 16);
+//                            }
+//                            CSJDisplayHud.displayHud(guiGraphics,COOLING,x,y);
+//                            CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),frameTime(),5,x,y);
+////                            guiGraphics.drawString(gui.getFont(),new Formatter().format("%.1f",(frameTime() * 5)).toString(),x + 1, y + 5, ChatFormatting.AQUA.getColor());
+//                        }
+//                    }
+//                }else {
+//                    CSJDisplayHud.displayHud(guiGraphics,DUGU_NINE_SWORDS_2,x,y);
+//                }
             }
         }
     };

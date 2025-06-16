@@ -131,11 +131,12 @@ repositories {
     maven {
         url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
     }
+    maven { url 'https://maven.blamejared.com' }
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
-    // flatDir {
-    //     dir 'libs'
-    // }
+     flatDir {
+         dir 'libs'
+     }
 }
 
 dependencies {
@@ -154,11 +155,16 @@ dependencies {
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
-
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84.1-FORGE:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-84.1-FORGE")
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
     // The group id is ignored when searching -- in this case, it is "blank"
-    // implementation fg.deobf("blank:coolmod-${mc_version}:${coolmod_version}")
+    implementation fg.deobf("blank:Neat-${minecraft_version}:41")
+    implementation fg.deobf("blank:dummmmmmy-${minecraft_version}:2.0.6")
+    implementation fg.deobf("blank:moonlight-${minecraft_version}:2.14.1")
+    implementation fg.deobf("blank:Jade-${minecraft_version}:11.13.1")
+    implementation fg.deobf("blank:jei-${minecraft_version}:15")
 
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html

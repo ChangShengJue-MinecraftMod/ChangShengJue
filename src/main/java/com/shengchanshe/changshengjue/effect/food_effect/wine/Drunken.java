@@ -1,34 +1,39 @@
 package com.shengchanshe.changshengjue.effect.food_effect.wine;
 
-import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
+import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
+import net.minecraft.world.effect.*;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import org.jetbrains.annotations.Nullable;
 
-public class Drunken extends MobEffect {
+import java.util.Iterator;
+import java.util.Objects;
+
+public class Drunken extends InstantenousMobEffect {
     public Drunken() {
         super(MobEffectCategory.BENEFICIAL, 0xbcdcaf);
+        this.addAttributeModifier(Attributes.MOVEMENT_SPEED, "ED1ED20F-766A-286D-BE69-C61A93AFC5A8",-0.15000000596046448, AttributeModifier.Operation.MULTIPLY_TOTAL);
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
-        entity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, -1, 0, false, false), entity);
-        entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, -1, 0, false, false), entity);
-    }
+    public void applyInstantenousEffect(@Nullable Entity pSource, @Nullable Entity pIndirectSource, LivingEntity pLivingEntity, int pAmplifier, double pHealth) {
+        MobEffectInstance drunkenEffect = pLivingEntity.getEffect(this);
+        if (drunkenEffect == null) return;
+//        i++;
+//        pLivingEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION,
+//                drunkenEffect.getDuration(), i, false, true, true), pLivingEntity);
 
-    @Override
-    public void removeAttributeModifiers(LivingEntity pLivingEntity, AttributeMap pAttributeMap, int pAmplifier) {
-        super.removeAttributeModifiers(pLivingEntity, pAttributeMap, pAmplifier);
-        if (pLivingEntity.hasEffect(MobEffects.CONFUSION) || pLivingEntity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {
+        MobEffectInstance effect = pLivingEntity.getEffect(MobEffects.CONFUSION);
+        if (effect == null) {
+            pLivingEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION,1600), pLivingEntity);
+        }else {
+            int newDuration = Math.max(0, Objects.requireNonNull(effect).getDuration() - 600); // 减少 30 秒
             pLivingEntity.removeEffect(MobEffects.CONFUSION);
-            pLivingEntity.removeEffect(MobEffects.MOVEMENT_SLOWDOWN);
+            // 将新的状态效果添加到实体上，这将替换旧的效果
+            pLivingEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, newDuration), pLivingEntity);
         }
-    }
-
-    @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
-        return true; // 每 tick 检查冲突
     }
 }

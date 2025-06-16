@@ -2,6 +2,7 @@ package com.shengchanshe.changshengjue.entity.custom.deer;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
+import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.server.level.ServerLevel;
@@ -18,6 +19,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -25,17 +27,16 @@ import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 public abstract class AbstractDeer extends Animal implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private EatBlockGoal eatBlockGoal;
-    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.OAK_LEAVES,Items.AZALEA_LEAVES,Items.DARK_OAK_LEAVES,Items.FLOWERING_AZALEA_LEAVES,Items.BIRCH_LEAVES,
+    private static final Ingredient FOOD_ITEMS = Ingredient.of(Items.CARROT, Items.OAK_LEAVES,Items.AZALEA_LEAVES,Items.DARK_OAK_LEAVES,Items.FLOWERING_AZALEA_LEAVES,Items.BIRCH_LEAVES,
             Items.SPRUCE_LEAVES,Items.JUNGLE_LEAVES,Items.AZALEA_LEAVES,Items.WHEAT,
             ChangShengJueBlocks.MANGO_LEAVES.get(),ChangShengJueBlocks.GUI_HUA_LEAVES.get(),ChangShengJueBlocks.MEI_HUA_LEAVES.get(),ChangShengJueBlocks.BANANA_LEAVES.get(),
             ChangShengJueBlocks.PEAR_LEAVES.get(),ChangShengJueBlocks.LICHEE_LEAVES.get(),ChangShengJueBlocks.DURIAN_LEAVES.get(),ChangShengJueBlocks.POPLAR_LEAVES.get(),
-            ChangShengJueBlocks.MULBERRY_LEAVES.get(), ChangShengJueItems.THATCH.get());
+            ChangShengJueBlocks.MULBERRY_LEAVES.get(), ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get(), ChangShengJueBlocks.JI_CHI_MU_LEAVES.get(), ChangShengJueBlocks.ZI_TAN_LEAVES.get(), ChangShengJueItems.THATCH.get());
     public Random random = new Random();
     private int eatAnimationTick;
     public AbstractDeer(EntityType<? extends AbstractDeer> p_27557_, Level p_27558_) {
@@ -70,7 +71,8 @@ public abstract class AbstractDeer extends Animal implements GeoEntity {
     protected void registerGoals(){
         this.eatBlockGoal = new EatBlockGoal(this);
         this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 0.6D));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 0.7D));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Tiger.class, 8.0F, 0.7D, 0.8D));
         this.goalSelector.addGoal(2, new BreedGoal(this, 0.6D, AbstractDeer.class));
         this.goalSelector.addGoal(3, new TemptGoal(this, 0.7D, FOOD_ITEMS, false));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 0.6D));
@@ -86,8 +88,8 @@ public abstract class AbstractDeer extends Animal implements GeoEntity {
 
     @Nullable
     @Override
-    public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
-        return ChangShengJueEntity.STAG_ENTITY.get().create(level());
+    public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
+        return null;
     }
 
     private <E extends GeoAnimatable> PlayState predicate(AnimationState<E> event){

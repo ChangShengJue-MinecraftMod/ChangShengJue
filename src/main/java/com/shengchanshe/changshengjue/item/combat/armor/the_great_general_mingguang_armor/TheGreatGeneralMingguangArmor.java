@@ -1,5 +1,7 @@
 package com.shengchanshe.changshengjue.item.combat.armor.the_great_general_mingguang_armor;
 
+import com.shengchanshe.changshengjue.item.combat.armor.ArmorInterface;
+import com.shengchanshe.changshengjue.item.combat.armor.ChangShengJueArmorItem;
 import com.shengchanshe.changshengjue.item.combat.armor.qi_tian_da_sheng.QiTianDaShengRender;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -19,7 +21,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
 
-public class TheGreatGeneralMingguangArmor extends ArmorItem implements GeoItem {
+public class TheGreatGeneralMingguangArmor extends ChangShengJueArmorItem implements GeoItem , ArmorInterface {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     private final int durabilityMultiplier;

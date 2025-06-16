@@ -5,10 +5,7 @@ import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.block.cropper.HordeumBlock;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.DoorBlock;
-import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -44,6 +41,19 @@ public class CSJBlockStateProvider extends BlockStateProvider {
 
         simpleBlock(ChangShengJueBlocks.POPLAR_LEAVES.get());
         blockWithItem(ChangShengJueBlocks.POPLAR_LEAVES);
+
+
+        //瓦
+        simpleBlock(ChangShengJueBlocks.GRE_CYLINDER_TILE.get());
+        blockWithItem(ChangShengJueBlocks.GRE_CYLINDER_TILE);
+        simpleBlock(ChangShengJueBlocks.RED_CYLINDER_TILE.get());
+        blockWithItem(ChangShengJueBlocks.RED_CYLINDER_TILE);
+        simpleBlock(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get());
+        blockWithItem(ChangShengJueBlocks.BLACK_CYLINDER_TILE);
+        simpleBlock(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get());
+        blockWithItem(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE);
+        simpleBlock(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get());
+        blockWithItem(ChangShengJueBlocks.BLUE_CYLINDER_TILE);
 
         logBlock((RotatedPillarBlock) ChangShengJueBlocks.MULBERRY_LOG.get());
         axisBlock(((RotatedPillarBlock)ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get()),
@@ -123,6 +133,65 @@ public class CSJBlockStateProvider extends BlockStateProvider {
         horizontalBlock(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get(), new ModelFile.UncheckedModelFile(modLoc("block/zi_tan_five_screen_throne")));
         //蒲团
         horizontalBlock(ChangShengJueBlocks.ZAFU.get(), new ModelFile.UncheckedModelFile(modLoc("block/zafu")));
+
+        //屋脊
+        horizontalBlock(ChangShengJueBlocks.GRE_ROOF_RIDGE.get(), new ModelFile.UncheckedModelFile(modLoc("block/gre_roof_ridge")));
+        horizontalBlock(ChangShengJueBlocks.RED_ROOF_RIDGE.get(), new ModelFile.UncheckedModelFile(modLoc("block/red_roof_ridge")));
+        horizontalBlock(ChangShengJueBlocks.BLACK_ROOF_RIDGE.get(), new ModelFile.UncheckedModelFile(modLoc("block/black_roof_ridge")));
+        horizontalBlock(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE.get(), new ModelFile.UncheckedModelFile(modLoc("block/golden_roof_ridge")));
+        horizontalBlock(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get(), new ModelFile.UncheckedModelFile(modLoc("block/blue_roof_ridge")));
+        //鸱吻
+        horizontalBlock(ChangShengJueBlocks.GRE_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/gre_demon_mask")));
+        horizontalBlock(ChangShengJueBlocks.RED_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/red_demon_mask")));
+        horizontalBlock(ChangShengJueBlocks.BLACK_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/black_demon_mask")));
+        horizontalBlock(ChangShengJueBlocks.GOLDEN_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/golden_demon_mask")));
+        horizontalBlock(ChangShengJueBlocks.BLUE_DEMON_MASK.get(), new ModelFile.UncheckedModelFile(modLoc("block/blue_demon_mask")));
+        //脊兽脊瓦
+        horizontalBlock(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/animals_gre_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/animals_red_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/animals_black_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/animals_golden_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/animals_blue_ridge_tile")));
+        //垂兽脊瓦
+        horizontalBlock(ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/hanging_beast_gre_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.HANGING_BEAST_RED_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/hanging_beast_red_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/hanging_beast_black_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/hanging_beast_golden_ridge_tile")));
+        horizontalBlock(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/hanging_beast_blue_ridge_tile")));
+        //侧筒瓦
+        horizontalBlock(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/gre_double_cylinder_tile_side")));
+        horizontalBlock(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/red_double_cylinder_tile_side")));
+        horizontalBlock(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/black_double_cylinder_tile_side")));
+        horizontalBlock(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/golden_double_cylinder_tile_side")));
+        horizontalBlock(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/blue_double_cylinder_tile_side")));
+        //侧高筒瓦
+        horizontalBlock(ChangShengJueBlocks.GRE_HIGH_CYLINDER_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/gre_high_cylinder_tile_side")));
+        horizontalBlock(ChangShengJueBlocks.RED_HIGH_CYLINDER_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/red_high_cylinder_tile_side")));
+        horizontalBlock(ChangShengJueBlocks.BLACK_HIGH_CYLINDER_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/black_high_cylinder_tile_side")));
+        horizontalBlock(ChangShengJueBlocks.GOLDEN_HIGH_CYLINDER_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/golden_high_cylinder_tile_side")));
+        horizontalBlock(ChangShengJueBlocks.BLUE_HIGH_CYLINDER_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/blue_high_cylinder_tile_side")));
+        //侧瓦当
+        horizontalBlock(ChangShengJueBlocks.GRE_EAVES_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/gre_eaves_tile_side")));
+        horizontalBlock(ChangShengJueBlocks.RED_EAVES_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/red_eaves_tile_side")));
+        horizontalBlock(ChangShengJueBlocks.BLACK_EAVES_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/black_eaves_tile_side")));
+        horizontalBlock(ChangShengJueBlocks.GOLDEN_EAVES_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/golden_eaves_tile_side")));
+        horizontalBlock(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE.get(), new ModelFile.UncheckedModelFile(modLoc("block/blue_eaves_tile_side")));
+        //八角垂脊
+        horizontalBlock(ChangShengJueBlocks.GRE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE .get(), new ModelFile.UncheckedModelFile(modLoc("block/gre_octagonal_gable_ridge_cylinder_tile")));
+        horizontalBlock(ChangShengJueBlocks.RED_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE .get(), new ModelFile.UncheckedModelFile(modLoc("block/red_octagonal_gable_ridge_cylinder_tile")));
+        horizontalBlock(ChangShengJueBlocks.BLACK_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE .get(), new ModelFile.UncheckedModelFile(modLoc("block/black_octagonal_gable_ridge_cylinder_tile")));
+        horizontalBlock(ChangShengJueBlocks.GOLDEN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE .get(), new ModelFile.UncheckedModelFile(modLoc("block/golden_octagonal_gable_ridge_cylinder_tile")));
+        horizontalBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE .get(), new ModelFile.UncheckedModelFile(modLoc("block/blue_octagonal_gable_ridge_cylinder_tile")));
+        //台阶
+        slabBlock((SlabBlock) ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(),blockTexture(ChangShengJueBlocks.GRE_CYLINDER_TILE.get()), blockTexture(ChangShengJueBlocks.GRE_CYLINDER_TILE.get()));
+        slabBlock((SlabBlock) ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get(),blockTexture(ChangShengJueBlocks.RED_CYLINDER_TILE.get()), blockTexture(ChangShengJueBlocks.RED_CYLINDER_TILE.get()));
+        slabBlock((SlabBlock) ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(),blockTexture(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get()), blockTexture(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get()));
+        slabBlock((SlabBlock) ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(),blockTexture(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get()), blockTexture(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get()));
+        slabBlock((SlabBlock) ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),blockTexture(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get()), blockTexture(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get()));
+        //栏杆
+        horizontalBlock(ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/white_jade_guardrail")));
+//        wallBlock(((WallBlock) ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get()), new ResourceLocation(ChangShengJue.MOD_ID,"block/white_jade_balustrade"));
     }
 
 

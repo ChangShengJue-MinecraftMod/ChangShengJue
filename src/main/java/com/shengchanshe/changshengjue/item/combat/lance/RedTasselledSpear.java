@@ -2,7 +2,6 @@ package com.shengchanshe.changshengjue.item.combat.lance;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapabilityProvider;
 import com.shengchanshe.changshengjue.entity.combat.lance.ThrownRedTasselledSpear;
-import com.shengchanshe.changshengjue.item.render.combat.lance.RedTasselledSpearRender;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
@@ -38,6 +37,7 @@ import java.util.function.Consumer;
 
 public class RedTasselledSpear extends Lance implements GeoItem , Vanishable{
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private Player player;
     public RedTasselledSpear() {
         super(Tiers.IRON, 3, -2.4F, new Item.Properties());
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
@@ -111,7 +111,7 @@ public class RedTasselledSpear extends Lance implements GeoItem , Vanishable{
                             $$18 = SoundEvents.TRIDENT_RIPTIDE_1;
                         }
 
-                        pLevel.playSound((Player)null, player, $$18, SoundSource.PLAYERS, 1.0F, 1.0F);
+                        pLevel.playSound(null, player, $$18, SoundSource.PLAYERS, 1.0F, 1.0F);
                     }
                 }
             }
@@ -141,6 +141,7 @@ public class RedTasselledSpear extends Lance implements GeoItem , Vanishable{
         if (!pLevel.isClientSide) {
             ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
             if (itemstack.getItem() instanceof Lance) {
+                player = pPlayer;
                 if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
                     pPlayer.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
                         if (gaoMarksmanship.getGaoMarksmanshipLevel() >= 1 && !pPlayer.isShiftKeyDown()){
@@ -151,6 +152,21 @@ public class RedTasselledSpear extends Lance implements GeoItem , Vanishable{
             }
         }
         return super.use(pLevel, pPlayer, pUsedHand);
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    @Override
+    public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
+        super.onUseTick(pLevel, pLivingEntity, pStack, pRemainingUseDuration);
+        if (!pLevel.isClientSide) {
+            ItemStack itemstack = pLivingEntity.getMainHandItem();//获取玩家手中物品
+            if (itemstack.getItem() instanceof Lance && !pLivingEntity.isShiftKeyDown()) {
+                triggerAnim(pLivingEntity, GeoItem.getOrAssignId(pLivingEntity.getItemInHand(pLivingEntity.getUsedItemHand()), (ServerLevel) pLevel), "Attack", "attack");
+            }
+        }
     }
 
     @Override

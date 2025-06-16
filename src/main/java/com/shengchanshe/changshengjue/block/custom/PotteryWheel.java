@@ -2,8 +2,10 @@ package com.shengchanshe.changshengjue.block.custom;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.changshengjue.block.entity.PotteryWheelEntity;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -40,6 +42,9 @@ public class PotteryWheel extends BaseEntityBlock {
         if (mainHandItem.getItem() == Items.CLAY_BALL || offhandItem.getItem() == Items.CLAY_BALL){
             if (blockEntity instanceof PotteryWheelEntity potteryWheelEntity){
                 if (!pLevel.isClientSide && potteryWheelEntity.addItem(pPlayer.getAbilities().instabuild ? pPlayer.getMainHandItem().copy() : pPlayer.getMainHandItem())){
+                    if (pPlayer instanceof ServerPlayer serverPlayer) {
+                        CSJAdvanceInit.MAKE_CHINAWARE.trigger(serverPlayer);
+                    }
                     return InteractionResult.SUCCESS;
                 }
             }

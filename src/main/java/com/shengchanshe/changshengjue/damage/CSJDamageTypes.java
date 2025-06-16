@@ -16,8 +16,11 @@ public class CSJDamageTypes {
 
     public static final ResourceKey<DamageType> MARTIAL_ARTS = register("martial_arts");
 
+    public static final ResourceKey<DamageType> TRAUMA = register("trauma");
+
     public static void bootstrap(BootstapContext<DamageType> pContext) {
-        pContext.register(BLEED, new DamageType(BLEED.location().getPath(), DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER, 0.1f));
-        pContext.register(MARTIAL_ARTS, new DamageType(MARTIAL_ARTS.location().getPath(), DamageScaling.NEVER, 0.1f));
+        pContext.register(BLEED, new DamageType(BLEED.location().getPath(), DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER, 0.0f));
+        pContext.register(MARTIAL_ARTS, new DamageType(MARTIAL_ARTS.location().getPath(), DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER, 0.05f));
+        pContext.register(TRAUMA, new DamageType(TRAUMA.location().getPath(), DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER, 0.0f));
     }
 }

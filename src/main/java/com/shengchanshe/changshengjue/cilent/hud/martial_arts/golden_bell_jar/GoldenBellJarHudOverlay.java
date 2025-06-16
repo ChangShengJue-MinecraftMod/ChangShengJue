@@ -3,15 +3,19 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_bell_jar;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
-import com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuClientData;
+import com.shengchanshe.changshengjue.item.combat.glove.GoldThreadGlove;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
-import java.util.Formatter;
-
+@OnlyIn(Dist.CLIENT)
 public class GoldenBellJarHudOverlay {
     // 绘制的领悟后技能贴图的位置
     private static final ResourceLocation GOLDEN_BELL_JAR = new ResourceLocation(ChangShengJue.MOD_ID,
@@ -38,27 +42,30 @@ public class GoldenBellJarHudOverlay {
         return foodLevel > 8;
     }
 
+    public static boolean shouldDisplayHud() {
+        LocalPlayer player = minecraft.player;
+        ItemStack mainHand = player.getMainHandItem();
+        return mainHand.getItem() instanceof GoldThreadGlove;
+    }
+
     // 通过这个属性进行绘制，这个是一个IguiOverLay的接口，实现这个接口，注册他。
     // 通过lammbd表达式实现。
     public static final IGuiOverlay HUD_GOLDEN_BELL_JAR = (gui, guiGraphics, partialTick, screenWidth, screenHeight) -> {
-        boolean goldenBellJarComprehend = GoldenBellJarClientData.isGoldenBellJarComprehend();
-        if (goldenBellJarComprehend){
-            int getGoldenBellJarLevel = GoldenBellJarClientData.getGoldenBellJarLevel();
-            // 通过宽高获得绘制的x，y
-            int x = 5;
-            int y = screenHeight / 2;
-            //设置绘制的信息
-            RenderSystem.setShader(GameRenderer::getPositionTexShader);
-            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            if (GoldenBellJarClientData.isSkillZActive()){
-                CSJDisplayHud.displayHudPermanent(getGoldenBellJarLevel,frameTime(),8,playerCanOpened(),guiGraphics,GOLDEN_BELL_JAR,GOLDEN_BELL_JAR_1,GOLDEN_BELL_JAR_2,COOLING,gui.getFont(),x,y - 20);
-            }
-            if (GoldenBellJarClientData.isSkillXActive()){
-                CSJDisplayHud.displayHudPermanent(getGoldenBellJarLevel,frameTime(),8,playerCanOpened(),guiGraphics,GOLDEN_BELL_JAR,GOLDEN_BELL_JAR_1,GOLDEN_BELL_JAR_2,COOLING,gui.getFont(),x,y);
-            }
-            if (GoldenBellJarClientData.isSkillCActive()){
-                CSJDisplayHud.displayHudPermanent(getGoldenBellJarLevel,frameTime(),8,playerCanOpened(),guiGraphics,GOLDEN_BELL_JAR,GOLDEN_BELL_JAR_1,GOLDEN_BELL_JAR_2,COOLING,gui.getFont(),x,y + 20);
-            }
+        if (GoldenBellJarClientData.isSkillActive() && frameTime() > 0) {
+            boolean goldenBellJarComprehend = GoldenBellJarClientData.isGoldenBellJarComprehend();
+            if (goldenBellJarComprehend) {
+                int getGoldenBellJarLevel = GoldenBellJarClientData.getGoldenBellJarLevel();
+                // 通过宽高获得绘制的x，y
+                int x = 5;
+                int y = screenHeight / 2;
+                //设置绘制的信息
+                RenderSystem.setShader(GameRenderer::getPositionTexShader);
+                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+                CSJDisplayHud.displayHudPermanent(getGoldenBellJarLevel, frameTime(), 160,
+                        playerCanOpened(), guiGraphics, GOLDEN_BELL_JAR, GOLDEN_BELL_JAR_1, GOLDEN_BELL_JAR_2, COOLING, gui.getFont(), x, y + 25);
+                CSJDisplayHud.displayHudPermanent(guiGraphics, gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item."+ChangShengJue.MOD_ID+".golden_bell_jar"),
+                        x, y + 25, ChatFormatting.GOLD.getColor());
 //        boolean isSkillActive = GoldenBellJarClientData.isSkillActive();
 //        if (goldenBellJarComprehend && isSkillActive){
 //            int getGoldenBellJarLevel = GoldenBellJarClientData.getGoldenBellJarLevel();
@@ -117,6 +124,7 @@ public class GoldenBellJarHudOverlay {
 //            }else {
 //                CSJDisplayHud.displayHudPermanent(guiGraphics,GOLDEN_BELL_JAR_2,x,y);
 //            }
+            }
         }
     };
 }

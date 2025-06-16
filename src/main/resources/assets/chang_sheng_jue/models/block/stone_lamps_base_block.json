@@ -1,5 +1,6 @@
 {
   "credit": "Made with Blockbench",
+  "parent": "minecraft:block/cube_all",
   "texture_size": [64, 64],
   "textures": {
     "all": "chang_sheng_jue:block/stone_lamps_base_block",

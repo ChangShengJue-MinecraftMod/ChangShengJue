@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": [
+      {
+        "model": "chang_sheng_jue:block/mulberry"
+      }
+    ],
+    "facing=south": [
+      {
+        "model": "chang_sheng_jue:block/mulberry",
+        "y": 180
+      }
+    ],
+    "facing=west": [
+      {
+        "model": "chang_sheng_jue:block/mulberry",
+        "y": 270
+      }
+    ],
+    "facing=east": [
+      {
+        "model": "chang_sheng_jue:block/mulberry",
+        "y": 90
+      }
+    ]
+  }
+}

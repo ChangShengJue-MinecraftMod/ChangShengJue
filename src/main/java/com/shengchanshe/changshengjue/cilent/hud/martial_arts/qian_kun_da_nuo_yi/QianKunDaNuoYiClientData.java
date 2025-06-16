@@ -1,5 +1,7 @@
 package com.shengchanshe.changshengjue.cilent.hud.martial_arts.qian_kun_da_nuo_yi;
 
+import java.util.UUID;
+
 public class QianKunDaNuoYiClientData {
     // 玩家的技能等级和是否学习了技能
     private static int qianKunDaNuoYiLevel;
@@ -10,10 +12,11 @@ public class QianKunDaNuoYiClientData {
     private static float qianKunDaNuoYiDachengTick;//技能大成特效计时
     private static boolean qianKunDaNuoYiParticle;//技能特效显示
     private static float qianKunDaNuoYiUseCooldownMax;//技能特效显示
+    private static int recordTime;
+    private static float recordDamage;
+    private static UUID recordDamageSource;
     // 技能状态
-    private static boolean skillZActive;
-    private static boolean skillXActive;
-    private static boolean skillCActive;
+    private static boolean skillActive;
     //获取技能等级
     public static int getQianKunDaNuoYiLevel() {
         return qianKunDaNuoYiLevel;
@@ -70,28 +73,12 @@ public class QianKunDaNuoYiClientData {
     public static void setQianKunDaNuoYiParticle(boolean qianKunDaNuoYiParticle) {
         QianKunDaNuoYiClientData.qianKunDaNuoYiParticle = qianKunDaNuoYiParticle;
     }
-    public static boolean isSkillZActive() {
-        return skillZActive;
-    }
 
-    public static void setSkillZActive(boolean skillZActive) {
-        QianKunDaNuoYiClientData.skillZActive = skillZActive;
+    public static boolean isSkillActive() {
+        return skillActive;
     }
-
-    public static boolean isSkillXActive() {
-        return skillXActive;
-    }
-
-    public static void setSkillXActive(boolean skillXActive) {
-        QianKunDaNuoYiClientData.skillXActive = skillXActive;
-    }
-
-    public static boolean isSkillCActive() {
-        return skillCActive;
-    }
-
-    public static void setSkillCActive(boolean skillCActive) {
-        QianKunDaNuoYiClientData.skillCActive = skillCActive;
+    public static void setSkillActive(boolean skillActive) {
+        QianKunDaNuoYiClientData.skillActive = skillActive;
     }
 
     public static float isQianKunDaNuoYiUseCooldownMax() {
@@ -100,5 +87,29 @@ public class QianKunDaNuoYiClientData {
 
     public static void setQianKunDaNuoYiUseCooldownMax(float qianKunDaNuoYiUseCooldownMax) {
         QianKunDaNuoYiClientData.qianKunDaNuoYiUseCooldownMax = qianKunDaNuoYiUseCooldownMax;
+    }
+
+    public static int getRecordTime() {
+        return recordTime;
+    }
+
+    public static void setRecordTime(int recordTime) {
+        QianKunDaNuoYiClientData.recordTime = recordTime;
+    }
+
+    public static float getRecordDamage() {
+        return recordDamage;
+    }
+
+    public static void setRecordDamage(float recordDamage) {
+        QianKunDaNuoYiClientData.recordDamage = recordDamage;
+    }
+
+    public static UUID getRecordDamageSource() {
+        return recordDamageSource;
+    }
+
+    public static void setRecordDamageSource(UUID recordDamageSource) {
+        QianKunDaNuoYiClientData.recordDamageSource = recordDamageSource;
     }
 }

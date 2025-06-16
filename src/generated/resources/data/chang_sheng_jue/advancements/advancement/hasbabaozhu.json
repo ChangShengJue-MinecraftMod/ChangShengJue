@@ -1,0 +1,32 @@
+{
+  "parent": "chang_sheng_jue:advancement/hastomatoegg",
+  "criteria": {
+    "hasbabaozhu": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:hasbabaozhou"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "advancement.chang_sheng_jue.hasbabaozhu.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:ba_bao_zhou"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancement.chang_sheng_jue.hasbabaozhu"
+    }
+  },
+  "requirements": [
+    [
+      "hasbabaozhu"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

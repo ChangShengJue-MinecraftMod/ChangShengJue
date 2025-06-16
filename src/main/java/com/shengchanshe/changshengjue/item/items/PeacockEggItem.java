@@ -1,6 +1,6 @@
 package com.shengchanshe.changshengjue.item.items;
 
-import com.shengchanshe.changshengjue.entity.custom.peacock.PeacockEgg;
+import com.shengchanshe.changshengjue.entity.custom.peacock.egg.PeacockEgg;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;

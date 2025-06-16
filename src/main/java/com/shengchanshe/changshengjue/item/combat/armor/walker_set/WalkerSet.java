@@ -1,5 +1,6 @@
 package com.shengchanshe.changshengjue.item.combat.armor.walker_set;
 
+import com.shengchanshe.changshengjue.item.combat.armor.ChangShengJueArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,7 +19,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
 
-public class WalkerSet extends ArmorItem implements GeoItem {
+public class WalkerSet extends ChangShengJueArmorItem implements GeoItem {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public WalkerSet(ArmorMaterial pMaterial, Type pType, Properties pProperties) {

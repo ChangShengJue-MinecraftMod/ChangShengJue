@@ -9,6 +9,37 @@ public class ShingMunLeftEntityModel extends GeoModel<ShingMunLeftEntity> {
     @Override
     public ResourceLocation getModelResource(ShingMunLeftEntity entity) {
         if (entity.isRight()){
+//                if (entity.isTwo()){
+//                    if (entity.isOpen()){
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_left/shing_mun_left_two_open_1.geo.json");
+//                    }else {
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_left/shing_mun_left_two_1.geo.json");
+//                    }
+//                }else if (entity.isFour()){
+//                    if (entity.isOpen()){
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_left/shing_mun_left_four_open_1.geo.json");
+//                    }else {
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_left/shing_mun_left_four_1.geo.json");
+//                    }
+//                }else if (entity.isSix()){
+//                    if (entity.isOpen()){
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_left/shing_mun_left_six_open_1.geo.json");
+//                    }else {
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_left/shing_mun_left_six_1.geo.json");
+//                    }
+//                }else if (entity.isEight()){
+//                    if (entity.isOpen()){
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_left/shing_mun_left_eight_open_1.geo.json");
+//                    }else {
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_left/shing_mun_left_eight_1.geo.json");
+//                    }
+//                }else{
+//                    if (entity.isOpen()){
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_left/shing_mun_left_two_open_1.geo.json");
+//                    }else {
+//                        return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_left/shing_mun_left_two_1.geo.json");
+//                    }
+//                }
             if (entity.isTwo()){
                 if (entity.isOpen()){
                     return new ResourceLocation(ChangShengJue.MOD_ID,"geo/block/shing_mun_left/shing_mun_left_two_open.geo.json");
@@ -77,7 +108,7 @@ public class ShingMunLeftEntityModel extends GeoModel<ShingMunLeftEntity> {
 
     @Override
     public ResourceLocation getTextureResource(ShingMunLeftEntity entity) {
-        return new ResourceLocation(ChangShengJue.MOD_ID,"textures/block/shing_mun.png");
+        return new ResourceLocation(ChangShengJue.MOD_ID, "textures/block/shing_mun/shing_mun.png");
     }
 
     @Override

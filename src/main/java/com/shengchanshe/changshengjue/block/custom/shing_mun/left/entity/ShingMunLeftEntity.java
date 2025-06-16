@@ -24,7 +24,6 @@ public class ShingMunLeftEntity extends BlockEntity implements GeoBlockEntity {
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private boolean open; // 用于存储 open 的值
     private boolean right;
-    private boolean rest;
 
     private boolean one; // 用于存储 open 的值
     private boolean two;
@@ -39,7 +38,6 @@ public class ShingMunLeftEntity extends BlockEntity implements GeoBlockEntity {
         super(ChangShengJueBlocksEntities.SHING_MUN_LEFT_ENTITY.get(), pPos, pBlockState);
         this.open = pBlockState.getValue(ShingMunLeft.OPEN); // 初始化时从 BlockState 获取值
         this.right = pBlockState.getValue(ShingMunLeft.RIGHT); // 初始化时从 BlockState 获取值
-        this.rest = pBlockState.getValue(ShingMunLeft.REST); // 初始化时从 BlockState 获取值
 
         this.one = pBlockState.getValue(ShingMunLeft.ONE); // 初始化时从 BlockState 获取值
         this.two = pBlockState.getValue(ShingMunLeft.TWO); // 初始化时从 BlockState 获取值
@@ -51,15 +49,11 @@ public class ShingMunLeftEntity extends BlockEntity implements GeoBlockEntity {
         this.eight = pBlockState.getValue(ShingMunLeft.EIGHT); // 初始化时从 BlockState 获取值
     }
 
-
-
     public boolean isOne() {
         return one;
     }
 
-    public boolean isTwo() {
-        return two;
-    }
+    public boolean isTwo() {return two;}
 
     public boolean isThree() {
         return three;
@@ -102,16 +96,11 @@ public class ShingMunLeftEntity extends BlockEntity implements GeoBlockEntity {
         this.right = right;
     }
 
-    public void setRest(boolean rest) {
-        this.rest = rest;
-    }
-
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.putBoolean("Open", this.open); // 持久化 open 属性
         tag.putBoolean("Right", this.right);
-        tag.putBoolean("Rest", this.rest);
 
         tag.putBoolean("One", this.one); // 持久化 open 属性
         tag.putBoolean("Two", this.two);
@@ -128,7 +117,6 @@ public class ShingMunLeftEntity extends BlockEntity implements GeoBlockEntity {
         super.load(tag);
         this.open = tag.getBoolean("Open"); // 读取 open 属性
         this.right = tag.getBoolean("Right");
-        this.rest = tag.getBoolean("Rest");
 
         this.one =  tag.getBoolean("One");
         this.two =  tag.getBoolean("Two");
@@ -145,7 +133,6 @@ public class ShingMunLeftEntity extends BlockEntity implements GeoBlockEntity {
         super.handleUpdateTag(tag);
         this.open = tag.getBoolean("Open"); // 同步 open 属性
         this.right = tag.getBoolean("Right");
-        this.rest = tag.getBoolean("Rest");
 
         this.one =  tag.getBoolean("One");
         this.two =  tag.getBoolean("Two");
@@ -162,7 +149,6 @@ public class ShingMunLeftEntity extends BlockEntity implements GeoBlockEntity {
         CompoundTag tag = super.getUpdateTag();
         tag.putBoolean("Open", this.open); // 网络同步时发送 open 属性
         tag.putBoolean("Right", this.right);
-        tag.putBoolean("Rest", this.rest);
 
         tag.putBoolean("One", this.one); // 持久化 open 属性
         tag.putBoolean("Two", this.two);
@@ -181,10 +167,6 @@ public class ShingMunLeftEntity extends BlockEntity implements GeoBlockEntity {
 
     public boolean isRight() {
         return right;
-    }
-
-    public boolean isRest() {
-        return rest;
     }
 
     @Override

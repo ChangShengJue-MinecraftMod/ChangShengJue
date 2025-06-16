@@ -1,0 +1,32 @@
+{
+  "parent": "chang_sheng_jue:advancement/hastomatoegg",
+  "criteria": {
+    "hasguihuatangou": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:hasguihuatangou"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "advancement.chang_sheng_jue.hasguihuatangou.desc"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:gui_hua_tang_ou"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "dark_purple",
+      "translate": "advancement.chang_sheng_jue.hasguihuatangou"
+    }
+  },
+  "requirements": [
+    [
+      "hasguihuatangou"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -23,7 +23,7 @@ public class CSJSurFaceRules {
         // 最终的表面规则序列
         return SurfaceRules.sequence(
                 SurfaceRules.sequence(
-                        SurfaceRules.ifTrue(SurfaceRules.isBiome(CSJBiomes.CHANG_SHEN_JUE_PRAIRIE),
+                        SurfaceRules.ifTrue(SurfaceRules.isBiome(CSJBiomes.CHANG_SHENG_JUE_PRAIRIE),
                                 SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, GRASS_BLOCK)
                         ),
                         SurfaceRules.ifTrue(SurfaceRules.ON_CEILING, AIR)

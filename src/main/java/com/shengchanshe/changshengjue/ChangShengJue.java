@@ -2,22 +2,22 @@ package com.shengchanshe.changshengjue;
 
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocksEntities;
+import com.shengchanshe.changshengjue.cilent.gui.screens.ChangShengJueMenuTypes;
 import com.shengchanshe.changshengjue.creativemodetab.ChangShengJueCreativeModeTab;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.loot_modifier.ChangShengJueLootModifier;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.particle.ChangShengJueParticles;
-import com.shengchanshe.changshengjue.screen.ChangShengJueMenuTypes;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import com.shengchanshe.changshengjue.util.ClientSetup;
 import com.shengchanshe.changshengjue.world.biome.CSJTerrablender;
 import com.shengchanshe.changshengjue.world.biome.surface.CSJSurFaceRules;
 import com.shengchanshe.changshengjue.world.feature.CSJFoliagePlacers;
 import com.shengchanshe.changshengjue.world.feature.CSJTrunkPlacerTypes;
-import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.block.Blocks;
@@ -25,7 +25,9 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -60,10 +62,15 @@ public class ChangShengJue {
         CSJTerrablender.registerBiomes();
         CSJFoliagePlacers.register(eventBus);
         CSJTrunkPlacerTypes.register(eventBus);
+        ChangShengJueLootModifier.register(eventBus);
+
+        new CSJAdvanceInit();
 
         ChangShengJueMessages.register();
 
         GeckoLib.initialize();
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ChangShengJueConfig.SPEC, MOD_ID + ".toml");
+
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -80,27 +87,25 @@ public class ChangShengJue {
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.GEUM_TRIFLORUM.getId(), ChangShengJueBlocks.POTTED_GEUM_TRIFLORUM);
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ChangShengJueBlocks.PURPLE_DANDELION.getId(), ChangShengJueBlocks.POTTED_PURPLE_DANDELION);
 
-            SpawnPlacements.register(ChangShengJueEntity.BUTTERFLY_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.MONKEY_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.DRAGONFLY_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.CICADA_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.CRANE_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.MALE_PEACOCK_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.FEMALE_PEACOCK_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.STAG_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.HIND_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.TIGER_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
-            SpawnPlacements.register(ChangShengJueEntity.CROC_ENTITY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.BUTTERFLY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.MONKEY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.DRAGONFLY.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.CICADA.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.CRANE.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.MALE_PEACOCK.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.FEMALE_PEACOCK.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.STAG.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.HIND.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.TIGER.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
+            SpawnPlacements.register(ChangShengJueEntity.CROC.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
 
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD,MOD_ID, CSJSurFaceRules.makeRules());
-
-            ItemProperties.register(ChangShengJueItems.BA_WANG_QIANG.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack ? 1.0F : 0.0F);
-            ItemProperties.register(ChangShengJueItems.RED_TASSELLED_SPEAR.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack ? 1.0F : 0.0F);
-
         });
     }
 
     public void clientSetup(final FMLClientSetupEvent event){
         ClientSetup.clientSetup(event);
     }
+
+
 }

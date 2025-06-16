@@ -1,0 +1,19 @@
+{
+  "name": "扶梯",
+  "category": "chang_sheng_jue:function",
+  "sortnum": 4,
+  "icon": "chang_sheng_jue:yun_shan_fu_ti_block",
+  "pages": [
+    {
+      "Title": "扶梯",
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:yun_shan_fu_ti_block",
+      "text": "梯子有三格高，并且可以向上继续拼接增高。（当玩家处于方块边缘时向前一格放置扶梯会被压趴下）"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:yun_shan_fu_ti_block",
+      "recipe2": "chang_sheng_jue:bai_hua_fu_ti_block"
+    }
+  ]
+}

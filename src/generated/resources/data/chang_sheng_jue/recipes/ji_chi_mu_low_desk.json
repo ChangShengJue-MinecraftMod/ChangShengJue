@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "item": "chang_sheng_jue:ji_chi_mu_planks"
+    }
+  },
+  "pattern": [
+    "###",
+    "# #"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:ji_chi_mu_low_desk"
+  },
+  "show_notification": true
+}

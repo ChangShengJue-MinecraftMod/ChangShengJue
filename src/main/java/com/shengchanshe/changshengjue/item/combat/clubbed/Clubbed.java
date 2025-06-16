@@ -11,6 +11,7 @@ import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ShaolinStickMethodPacket;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
+import com.shengchanshe.changshengjue.util.EffectUtils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -40,17 +41,18 @@ public class Clubbed extends SwordItem {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player pPlayer, Entity entity) {
         if (!pPlayer.level().isClientSide) {
+            float probability = pPlayer.getRandom().nextFloat();
+            float defaultProbability = 0.10F;
+            if (entity instanceof LivingEntity livingEntity) {
+                if (probability < defaultProbability) {
+                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 20, 1, false, true), pPlayer);
+                }
+            }
             pPlayer.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(shaolinStickMethod -> {
                 int shaolinStickMethodLevel = shaolinStickMethod.getShaolinStickMethodLevel();
                 if (shaolinStickMethod.getShaolinStickMethodComprehend() && shaolinStickMethodLevel == 0) {
-                    float probability = pPlayer.getRandom().nextFloat();
-                    float defaultProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
-                    if (entity instanceof LivingEntity livingEntity) {
-                        if (probability < 0.15F) {
-                            livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 10, 1, false, true), pPlayer);
-                        }
-                    }
-                    if (probability < defaultProbability) {
+                    float defaultComprehendProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
+                    if (probability < defaultComprehendProbability) {
                         shaolinStickMethod.addShaolinStickMethodLevel();
                         shaolinStickMethod.setShaolinStickMethodParticle(true);
                         pPlayer.level().playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
@@ -63,17 +65,12 @@ public class Clubbed extends SwordItem {
                 }else {
                     if (shaolinStickMethodLevel > 0) {
                         if (entity instanceof LivingEntity livingEntity){
-                            float probability = pPlayer.getRandom().nextFloat();
-                            float defaultProbability = 0.15F;
-                            if (shaolinStickMethodLevel < 2) {
-                                if (probability < defaultProbability) {
-                                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 10, 1, false, true), pPlayer);
-                                }
-                            } else {
-                                if (probability < defaultProbability * 1.2) {
-                                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 10, 1, false, true), pPlayer);
+                            if (shaolinStickMethodLevel >= 2) {
+                                if (probability < (defaultProbability * 2.5)) {
+                                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 20, 1, false, true), pPlayer);
                                 }
                             }
+                            EffectUtils.setTrauma(pPlayer, livingEntity, 2,140,0.25F);
                             if (pPlayer.getMainHandItem().canDisableShield(livingEntity.getUseItem(), livingEntity, pPlayer)) {
                                 if (probability < 0.5) {
                                     // 强制打破目标玩家的防御状态（禁用盾牌防御）
@@ -161,16 +158,16 @@ public class Clubbed extends SwordItem {
                     if (player.isPickable() && player.distanceToSqr(entity) < radius * radius && entity instanceof LivingEntity && entity.isAlive()) {
                         float damage;
                         float probability = player.getRandom().nextFloat();
-                        float defaultProbability = 0.15F;
+                        float defaultProbability = 0.10F;
                         if (shaolinStickMethod.getShaolinStickMethodLevel() < 2) {
-                            damage = (this.getDamage() + 2) * 1.5F;
+                            damage = (this.getDamage() + 2) * 1.7F;
                             if (probability < defaultProbability) {
-                                ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 14, 1, false, false), player);
+                                ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 20, 1, false, false), player);
                             }
                         } else {
-                            damage = (this.getDamage() + 2) * 1.8F;
+                            damage = (this.getDamage() + 2) * 2.0F;
                             if (probability < (defaultProbability * 1.2F)) {
-                                ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 14, 1, false, false), player);
+                                ((LivingEntity) entity).addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 20, 1, false, false), player);
                             }
                         }
 //                        if (new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
@@ -183,6 +180,9 @@ public class Clubbed extends SwordItem {
                         if (entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
                                 .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player)
                                 , player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
+                            if (entity instanceof LivingEntity livingEntity) {
+                                EffectUtils.setTrauma(player, livingEntity, 5,140,0.25F);
+                            }
                             if (shaolinStickMethod.getShaolinStickMethodUseCount() < 100) {
                                 shaolinStickMethod.addShaolinStickMethodUseCount(!player.getAbilities().instabuild ? 1 : 100);
                                 if (shaolinStickMethod.getShaolinStickMethodUseCount() >= 100) {

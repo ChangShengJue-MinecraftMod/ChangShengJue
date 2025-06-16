@@ -1,0 +1,8 @@
+{
+  "parent": "chang_sheng_jue:block/long_back_bracket",
+  "textures": {
+    "3": "chang_sheng_jue:block/acacia_back_bracket",
+    "particle": "chang_sheng_jue:block/acacia_back_bracket"
+  }
+}
+  

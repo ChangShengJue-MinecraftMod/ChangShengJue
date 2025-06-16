@@ -1,5 +1,6 @@
 package com.shengchanshe.changshengjue.sound;
 
+import ca.weblite.objc.Proxy;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -25,11 +26,18 @@ public class ChangShengJueSound {
     public static final RegistryObject<SoundEvent> DRAGONFLY_HURT = registerSoundEvent("dragonfly_hurt");
     public static final RegistryObject<SoundEvent> DRAGONFLY_DEATH = registerSoundEvent("dragonfly_death");
 
+    //猴子
     public static final RegistryObject<SoundEvent> MONKEY_SOUND = registerSoundEvent("monkey_sound");
     public static final RegistryObject<SoundEvent> MONKEY_BABY_SOUND = registerSoundEvent("monkey_baby_sound");
     public static final RegistryObject<SoundEvent> MONKEY_ANGRY_SOUND = registerSoundEvent("monkey_angry_sound");
     public static final RegistryObject<SoundEvent> MONKEY_HURT = registerSoundEvent("monkey_hurt");
     public static final RegistryObject<SoundEvent> MONKEY_DEATH = registerSoundEvent("monkey_death");
+
+    public static final RegistryObject<SoundEvent> MONKEY_PLAY_1 = registerSoundEvent("monkey_play_1");
+    public static final RegistryObject<SoundEvent> MONKEY_PLAY_2 = registerSoundEvent("monkey_play_2");
+    public static final RegistryObject<SoundEvent> MONKEY_PLAY_3 = registerSoundEvent("monkey_play_3");
+    public static final RegistryObject<SoundEvent> MONKEY_PLAY_4 = registerSoundEvent("monkey_play_4");
+
 
     public static final RegistryObject<SoundEvent> TIGER_SOUND = registerSoundEvent("tiger_sound");
     public static final RegistryObject<SoundEvent> TIGER_SOUND_1 = registerSoundEvent("tiger_sound_1");
@@ -80,11 +88,14 @@ public class ChangShengJueSound {
     public static final RegistryObject<SoundEvent> XUANNU_SWORDSMANSHIP_SOUND = registerSoundEvent("xuannu_swordsmanship_sound");
     //金钟罩
     public static final RegistryObject<SoundEvent> GOLDEN_BELLJAR_SOUND = registerSoundEvent("golden_belljar_sound");
+    //乾坤大挪移
+    public static final RegistryObject<SoundEvent> QIAN_KUN_DA_NUO_YI_SOUND = registerSoundEvent("qian_kun_da_nuo_yi_sound");
     //领悟
     public static final RegistryObject<SoundEvent> COMPREHEND_SOUND = registerSoundEvent("comprehend_sound");
     //大成
     public static final RegistryObject<SoundEvent> DACHENG_SOUND = registerSoundEvent("dacheng_sound");
-
+    //风铃
+    public static final RegistryObject<SoundEvent> WIND_CHIME_SOUND = registerSoundEvent("wind_chime_sound");
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ChangShengJue.MOD_ID, name)));

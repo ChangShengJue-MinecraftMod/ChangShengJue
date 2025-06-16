@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "chang_sheng_jue:block/cylinder_tile_gre"
+  }
+}

@@ -15,9 +15,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -52,17 +50,20 @@ public class CastingMolds extends BaseEntityBlock{
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         ItemStack mainHandItem = pPlayer.getMainHandItem();
         ItemStack offhandItem = pPlayer.getOffhandItem();
-        if (mainHandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get() || offhandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get()){
-            if (blockEntity instanceof CastingMoldsBlockEntity entity){
-                if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? pPlayer.getMainHandItem().copy() : pPlayer.getMainHandItem())){
-                    pPlayer.setItemInHand(InteractionHand.MAIN_HAND, ChangShengJueItems.CRUCIBLE.get().getDefaultInstance());
+        if (blockEntity instanceof CastingMoldsBlockEntity entity){
+            ItemStackHandler inventroy = entity.getInventory();
+            if(inventroy.getStackInSlot(0).isEmpty() && inventroy.getStackInSlot(1).isEmpty()) {
+                if (mainHandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get() || offhandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get()) {
+                    if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? pPlayer.getMainHandItem().copy() : pPlayer.getMainHandItem())) {
+                        pPlayer.setItemInHand(InteractionHand.MAIN_HAND, ChangShengJueItems.CRUCIBLE.get().getDefaultInstance());
+                        return InteractionResult.SUCCESS;
+                    }
+                }
+            } else {
+                if (blockEntity instanceof CastingMoldsBlockEntity) {
+                    ((CastingMoldsBlockEntity) blockEntity).drops();
                     return InteractionResult.SUCCESS;
                 }
-            }
-        }else {
-            if (blockEntity instanceof CastingMoldsBlockEntity) {
-                ((CastingMoldsBlockEntity) blockEntity).drops();
-                return InteractionResult.SUCCESS;
             }
         }
         return InteractionResult.CONSUME;
@@ -158,6 +159,16 @@ public class CastingMolds extends BaseEntityBlock{
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
+    }
+
+    @Override
+    public BlockState rotate(BlockState pState, Rotation pRot) {
+        return pState.setValue(FACING, pRot.rotate(pState.getValue(FACING)));
+    }
+
+    @Override
+    public BlockState mirror(BlockState pState, Mirror pMirror) {
+        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 
     @Override

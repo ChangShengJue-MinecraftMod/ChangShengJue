@@ -5,24 +5,26 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.StringJoiner;
+import java.util.UUID;
 import java.util.function.Supplier;
 
 public class QianKunDaNuoYiPacket {
-    private int qianKunDaNuoYiLevel;
-    private boolean qianKunDaNuoYiComprehend;
-    private float qianKunDaNuoYiUseCooldownPercent;
-    private boolean qianKunDaNuoYiOff;//技能是否启用
-    private float qianKunDaNuoYiToppedTick;//技能领悟特效计时
-    private float qianKunDaNuoYiDachengTick;//技能领悟特效计时
-    private boolean qianKunDaNuoYiParticle;//技能特效显示
-    private float qianKunDaNuoYiUseCooldownMax;
+    private final int qianKunDaNuoYiLevel;
+    private final boolean qianKunDaNuoYiComprehend;
+    private final float qianKunDaNuoYiUseCooldownPercent;
+    private final boolean qianKunDaNuoYiOff;//技能是否启用
+    private final float qianKunDaNuoYiToppedTick;//技能领悟特效计时
+    private final float qianKunDaNuoYiDachengTick;//技能领悟特效计时
+    private final boolean qianKunDaNuoYiParticle;//技能特效显示
+    private final float qianKunDaNuoYiUseCooldownMax;
+    private final int recordTime;
+    private final float recordDamage;
+    private final UUID recordDamageSource;
     // 技能状态
-    private boolean skillZActive;
-    private boolean skillXActive;
-    private boolean skillCActive;
+    private final boolean skillActive;
     public QianKunDaNuoYiPacket(int qianKunDaNuoYiLevel, boolean qianKunDaNuoYiComprehend, float qianKunDaNuoYiUseCooldownPercent, boolean qianKunDaNuoYiOff,
                                 float qianKunDaNuoYiToppedTick, float qianKunDaNuoYiDachengTick, boolean qianKunDaNuoYiParticle,float qianKunDaNuoYiUseCooldownMax,
-                                boolean skillZActive, boolean skillXActive, boolean skillCActive){
+                                boolean skillActive, int recordTime, float recordDamage, UUID recordDamageSource){
         this.qianKunDaNuoYiLevel = qianKunDaNuoYiLevel;
         this.qianKunDaNuoYiComprehend = qianKunDaNuoYiComprehend;
         this.qianKunDaNuoYiUseCooldownPercent = qianKunDaNuoYiUseCooldownPercent;
@@ -31,9 +33,10 @@ public class QianKunDaNuoYiPacket {
         this.qianKunDaNuoYiDachengTick = qianKunDaNuoYiDachengTick;
         this.qianKunDaNuoYiParticle = qianKunDaNuoYiParticle;
         this.qianKunDaNuoYiUseCooldownMax = qianKunDaNuoYiUseCooldownMax;
-        this.skillZActive = skillZActive;
-        this.skillXActive = skillXActive;
-        this.skillCActive = skillCActive;
+        this.recordTime = recordTime;
+        this.recordDamage = recordDamage;
+        this.recordDamageSource = recordDamageSource;
+        this.skillActive = skillActive;
     }
 
     public QianKunDaNuoYiPacket(FriendlyByteBuf buf){
@@ -46,10 +49,11 @@ public class QianKunDaNuoYiPacket {
         this.qianKunDaNuoYiDachengTick = buf.readFloat();
         this.qianKunDaNuoYiParticle = buf.readBoolean();
         this.qianKunDaNuoYiUseCooldownMax = buf.readFloat();
+        this.recordTime = buf.readInt();
+        this.recordDamage = buf.readFloat();
+        this.recordDamageSource = buf.readUUID();
 
-        this.skillZActive = buf.readBoolean();
-        this.skillXActive = buf.readBoolean();
-        this.skillCActive = buf.readBoolean();
+        this.skillActive = buf.readBoolean();
     }
 
     public void toBytes(FriendlyByteBuf buf){
@@ -61,9 +65,10 @@ public class QianKunDaNuoYiPacket {
         buf.writeFloat(qianKunDaNuoYiDachengTick);
         buf.writeBoolean(qianKunDaNuoYiParticle);
         buf.writeFloat(qianKunDaNuoYiUseCooldownMax);
-        buf.writeBoolean(skillZActive);
-        buf.writeBoolean(skillXActive);
-        buf.writeBoolean(skillCActive);
+        buf.writeInt(recordTime);
+        buf.writeFloat(recordDamage);
+        buf.writeBoolean(skillActive);
+        buf.writeUUID(recordDamageSource);
     }
 
     // 客户端处理
@@ -79,9 +84,11 @@ public class QianKunDaNuoYiPacket {
             QianKunDaNuoYiClientData.setQianKunDaNuoYiDachengTick(qianKunDaNuoYiDachengTick);
             QianKunDaNuoYiClientData.setQianKunDaNuoYiParticle(qianKunDaNuoYiParticle);
             QianKunDaNuoYiClientData.setQianKunDaNuoYiUseCooldownMax(qianKunDaNuoYiUseCooldownMax);
-            QianKunDaNuoYiClientData.setSkillZActive(skillZActive);
-            QianKunDaNuoYiClientData.setSkillXActive(skillXActive);
-            QianKunDaNuoYiClientData.setSkillCActive(skillCActive);
+            QianKunDaNuoYiClientData.setRecordTime(this.recordTime);
+            QianKunDaNuoYiClientData.setRecordDamage(this.recordDamage);
+            QianKunDaNuoYiClientData.setRecordDamageSource(this.recordDamageSource);
+
+            QianKunDaNuoYiClientData.setSkillActive(skillActive);
         });
         return true;
     }

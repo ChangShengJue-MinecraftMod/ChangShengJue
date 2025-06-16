@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "chang_sheng_jue:silk"
+    },
+    "X": {
+      "item": "minecraft:lapis_lazuli"
+    }
+  },
+  "pattern": [
+    "# #",
+    "#X#",
+    "###"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:male_taoist_chestplate"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,147 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "chang_sheng_jue:block/birch_balustrade_post"
+      },
+      "when": {
+        "north": "false",
+        "east": "false",
+        "south": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "chang_sheng_jue:block/birch_balustrade_two",
+        "uvlock": true
+      },
+      "when": {
+        "north": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "chang_sheng_jue:block/birch_balustrade_two",
+        "y": 90
+      },
+      "when": {
+        "east": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "chang_sheng_jue:block/birch_balustrade_two",
+        "y": 180
+      },
+      "when": {
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "chang_sheng_jue:block/birch_balustrade_two",
+        "y": 270
+      },
+      "when": {
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "chang_sheng_jue:block/birch_balustrade_side",
+        "uvlock": true
+      },
+      "when": {
+        "north": "true",
+        "east": "false",
+        "west": "false",
+        "south": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "chang_sheng_jue:block/birch_balustrade_side",
+        "y": 90
+      },
+      "when": {
+        "east": "true",
+        "north": "false",
+        "west": "false",
+        "south": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "chang_sheng_jue:block/birch_balustrade_side",
+        "y": 180
+      },
+      "when": {
+        "south": "true",
+        "north": "false",
+        "east": "false",
+        "west": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "chang_sheng_jue:block/birch_balustrade_side",
+        "y": 270
+      },
+      "when": {
+        "west": "true",
+        "east": "false",
+        "north": "false",
+        "south": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "chang_sheng_jue:block/birch_balustrade_side",
+        "uvlock": true
+      },
+      "when": {
+        "north": "true",
+        "east": "true",
+        "west": "false",
+        "south": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "chang_sheng_jue:block/birch_balustrade_side",
+        "y": 90
+      },
+      "when": {
+        "east": "true",
+        "north": "false",
+        "west": "false",
+        "south": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "chang_sheng_jue:block/birch_balustrade_side",
+        "y": 180
+      },
+      "when": {
+        "south": "true",
+        "north": "false",
+        "east": "false",
+        "west": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "chang_sheng_jue:block/birch_balustrade_side",
+        "y": 270
+      },
+      "when": {
+        "west": "true",
+        "east": "false",
+        "north": "true",
+        "south": "false"
+      }
+    }
+  ]
+}

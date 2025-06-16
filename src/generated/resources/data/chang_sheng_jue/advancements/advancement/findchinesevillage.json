@@ -1,0 +1,112 @@
+{
+  "parent": "chang_sheng_jue:advancement/begin",
+  "criteria": {
+    "findchinesevillage-pityard": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "chang_sheng_jue:pit_yard"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "findchinesevillage-sandstonecastle": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "chang_sheng_jue:sandstone_castle"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "findchinesevillage-siheyuan": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "chang_sheng_jue:si_he_yuan"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "findchinesevillage-supaivillage": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "chang_sheng_jue:su_pai_village"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    },
+    "findchinesevillage-wanpaivillage/": {
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "location": {
+                "structure": "chang_sheng_jue:wan_pai_village"
+              }
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:location"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "advancement.chang_sheng_jue.findchinesevillage.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:desk"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "aqua",
+      "translate": "advancement.chang_sheng_jue.findchinesevillage"
+    }
+  },
+  "requirements": [
+    [
+      "findchinesevillage-pityard",
+      "findchinesevillage-sandstonecastle",
+      "findchinesevillage-siheyuan",
+      "findchinesevillage-supaivillage",
+      "findchinesevillage-wanpaivillage/"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

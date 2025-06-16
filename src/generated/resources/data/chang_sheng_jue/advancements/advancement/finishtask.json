@@ -1,0 +1,33 @@
+{
+  "parent": "chang_sheng_jue:advancement/accessguildtask",
+  "criteria": {
+    "finishtask": {
+      "conditions": {},
+      "trigger": "chang_sheng_jue:finishtask"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "color": "gray",
+      "translate": "advancement.chang_sheng_jue.finishtask.desc"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "chang_sheng_jue:yi_tian_jian",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "color": "green",
+      "translate": "advancement.chang_sheng_jue.finishtask"
+    }
+  },
+  "requirements": [
+    [
+      "finishtask"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

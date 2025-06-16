@@ -3,11 +3,19 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.ge_shan_da_niu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
+import com.shengchanshe.changshengjue.item.combat.glove.GoldThreadGlove;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 
+@OnlyIn(Dist.CLIENT)
 public class GeShanDaNiuHudOverlay {
     // 绘制的领悟后技能贴图的位置
     private static final ResourceLocation GE_SHAN_DA_NIU = new ResourceLocation(ChangShengJue.MOD_ID,
@@ -34,28 +42,28 @@ public class GeShanDaNiuHudOverlay {
         int foodLevel = minecraft.player.getFoodData().getFoodLevel();
         return foodLevel > 8;
     }
+    public static boolean shouldDisplayHud() {
+        LocalPlayer player = minecraft.player;
+        ItemStack mainHand = player.getMainHandItem();
+        return mainHand.getItem() instanceof GoldThreadGlove;
+    }
 
     // 通过这个属性进行绘制，这个是一个IguiOverLay的接口，实现这个接口，注册他。
     // 通过lammbd表达式实现。
     public static final IGuiOverlay HUD_GE_SHAN_DA_NIU = (gui, guiGraphics, partialTick, screenWidth, screenHeight) -> {
-        boolean geShanDaNiuComprehend = GeShanDaNiuClientData.isGeShanDaNiuComprehend();
-        if (geShanDaNiuComprehend){
+        if (shouldDisplayHud() && GeShanDaNiuClientData.isSkillActive()) {
+            boolean geShanDaNiuComprehend = GeShanDaNiuClientData.isGeShanDaNiuComprehend();
+            if (geShanDaNiuComprehend){
                 int getGeShanDaNiuLevel = GeShanDaNiuClientData.getGeShanDaNiuLevel();
                 // 通过宽高获得绘制的x，y
                 int x = 5;
                 int y = screenHeight / 2;
-            //设置绘制的信息
+                //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                if (GeShanDaNiuClientData.isSkillZActive()){
-                    CSJDisplayHud.displayHudPermanent(getGeShanDaNiuLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,GE_SHAN_DA_NIU,GE_SHAN_DA_NIU_1,GE_SHAN_DA_NIU_2,COOLING,gui.getFont(),x,y - 20);
-                }
-                if (GeShanDaNiuClientData.isSkillXActive()){
-                    CSJDisplayHud.displayHudPermanent(getGeShanDaNiuLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,GE_SHAN_DA_NIU,GE_SHAN_DA_NIU_1,GE_SHAN_DA_NIU_2,COOLING,gui.getFont(),x,y);
-                }
-                if (GeShanDaNiuClientData.isSkillCActive()){
-                    CSJDisplayHud.displayHudPermanent(getGeShanDaNiuLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,GE_SHAN_DA_NIU,GE_SHAN_DA_NIU_1,GE_SHAN_DA_NIU_2,COOLING,gui.getFont(),x,y + 20);
-                }
+                CSJDisplayHud.displayHudPermanent(getGeShanDaNiuLevel,frameTime(),frameTimeMax(),playerCanOpened(),guiGraphics,GE_SHAN_DA_NIU,GE_SHAN_DA_NIU_1,GE_SHAN_DA_NIU_2,COOLING,gui.getFont(),x,y);
+                CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
+                        ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".ge_shan_da_niu"),x, y,ChatFormatting.YELLOW.getColor());
 //            if (getGeShanDaNiuLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图
 //                if (frameTime() <= 0){ //获取技能剩余冷却时间,小于等于0则绘制技能贴图否则绘制冷却中的技能贴图
 //                    if (playerCanOpened()) {//检查玩家剩余饥饿值,剩余饥饿值不足则绘制冷却中的技能贴图
@@ -105,6 +113,8 @@ public class GeShanDaNiuHudOverlay {
 //            }else {
 //                CSJDisplayHud.displayHudPermanent(guiGraphics,GE_SHAN_DA_NIU_2,x,y);
 //            }
+            }
         }
+
     };
 }

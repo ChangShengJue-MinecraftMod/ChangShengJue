@@ -4,6 +4,9 @@
   "ingredients": [
     {
       "tag": "forge:ingots/iron"
+    },
+    {
+      "tag": "forge:leather"
     }
   ],
   "result": {

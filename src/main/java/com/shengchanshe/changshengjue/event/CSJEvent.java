@@ -1,7 +1,9 @@
 package com.shengchanshe.changshengjue.event;
 
 import com.shengchanshe.changshengjue.ChangShengJue;
+import com.shengchanshe.changshengjue.ChangShengJueConfig;
 import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
+import com.shengchanshe.changshengjue.block.food.TypeBlock;
 import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapability;
@@ -32,11 +34,21 @@ import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmansh
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
+import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.ClientQuestDataCache;
+import com.shengchanshe.changshengjue.entity.custom.croc.Croc;
+import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
+import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other.GangLeader;
 import com.shengchanshe.changshengjue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.changshengjue.event.armor.ArmorEvent;
 import com.shengchanshe.changshengjue.event.martial_arts.*;
+import com.shengchanshe.changshengjue.event.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceClientEvent;
+import com.shengchanshe.changshengjue.event.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceEvent;
+import com.shengchanshe.changshengjue.event.quest.PlayerQuestEvent;
+import com.shengchanshe.changshengjue.event.quest.QuestEvent;
+import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import com.shengchanshe.changshengjue.item.combat.book.*;
+import com.shengchanshe.changshengjue.item.items.Parcel;
+import com.shengchanshe.changshengjue.item.items.StructureIntelligence;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.*;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
@@ -47,13 +59,15 @@ import com.shengchanshe.changshengjue.network.packet.martial_arts.qian_kun_da_nu
 import com.shengchanshe.changshengjue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
+import com.shengchanshe.changshengjue.quest.QuestManager;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.npc.Villager;
-import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -61,46 +75,33 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.TradeWithVillagerEvent;
 import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.event.level.LevelEvent;
+import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.List;
-import java.util.Random;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJEvent {
 
     @SubscribeEvent
     public static void onVillagerInteract(PlayerInteractEvent.EntityInteractSpecific event) {
-        if (event.getTarget() instanceof Villager villager) {
-            CompoundTag villagerData = villager.getPersistentData();
-            // 检查是否已经尝试过职业变更
-            if (!villagerData.getBoolean("HasCheckedProfessionChange")) {
-                VillagerProfession profession = villager.getVillagerData().getProfession();
-                // 检查当前职业是否为ChangShengJue Hunter
-                if (profession == ChangShengJueVillagers.CHANG_SHENG_JUE_POTTER.get()) {
-                    Random random = new Random();
-                    if (random.nextInt(100) == 0) { // 1%的概率
-                        // 设置新职业为ChangShengJue Gatherer
-                        villager.setVillagerData(villager.getVillagerData().setProfession(ChangShengJueVillagers.CHANG_SHENG_JUE_POTTER_1.get()));
-                    }
-                }
-                // 标记已经进行过职业变更尝试
-                villagerData.putBoolean("HasCheckedProfessionChange", true);
-            }
-        }
-
         ZhangMenXinxueEvent.onVillagerInteract(event);
+    }
+    @SubscribeEvent
+    public static void onTrackingStart(PlayerEvent.StartTracking event) {
+        PlayerQuestEvent.onTrackingStart(event);
     }
 
     @SubscribeEvent
@@ -109,7 +110,7 @@ public class CSJEvent {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
             ItemStack stack = new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4);
             ItemStack[] stack1 = new ItemStack[]{new ItemStack(ChangShengJueItems.CORN.get(), 20), new ItemStack(ChangShengJueItems.TOMATO.get(), 22), new ItemStack(ChangShengJueItems.PEANUT.get(), 22), new ItemStack(ChangShengJueItems.MI_FAN.get(), 4),};
-            ItemStack[] stack2 = new ItemStack[]{new ItemStack(ChangShengJueItems.GRAPE.get(), 22), new ItemStack(ChangShengJueItems.ZHENG_CAI.get(), 4), new ItemStack(ChangShengJueItems.QING_TUAN.get(), 4),};
+            ItemStack[] stack2 = new ItemStack[]{new ItemStack(ChangShengJueItems.GRAPE.get(), 22), new ItemStack(ChangShengJueItems.ZHENG_CAI.get(), 4), new ItemStack(ChangShengJueItems.QING_TUAN.get(), 4) ,};
             ItemStack[] stack3 = new ItemStack[]{new ItemStack(ChangShengJueItems.GUI_HUA_TANG_OU.get(), 4), new ItemStack(ChangShengJueItems.ZHU_DU_JI.get(), 4),};
             ItemStack[] stack4 = new ItemStack[]{new ItemStack(Items.SUSPICIOUS_STEW, 1), new ItemStack(ChangShengJueItems.TOMATO_EGG.get(), 4),};
             ItemStack[] stack5 = new ItemStack[]{new ItemStack(ChangShengJueItems.MEAT_FOAM_BRINJAL.get(), 8), new ItemStack(ChangShengJueItems.BA_BAO_ZHOU.get(), 8),};
@@ -143,7 +144,7 @@ public class CSJEvent {
                 ItemStack firstStack = stack2[firstIndex[0]];
                 if (firstStack.is(ChangShengJueItems.ZHENG_CAI.get())){
                     return new MerchantOffer(stack,firstStack ,12,5,0.05F);
-                }else if (firstStack.is(ChangShengJueItems.QING_TUAN.get())){
+                }else if(firstStack.is(ChangShengJueItems.QING_TUAN.get())){
                     return new MerchantOffer(stack,firstStack ,16,5,0.05F);
                 }else{
                     return new MerchantOffer(firstStack, stack,12,5,0.05F);
@@ -157,7 +158,7 @@ public class CSJEvent {
                 ItemStack secondStack = stack2[secondIndex];
                 if (secondStack.is(ChangShengJueItems.ZHENG_CAI.get())){
                     return new MerchantOffer(stack,secondStack ,12,5,0.05F);
-                }else if (secondStack.is(ChangShengJueItems.QING_TUAN.get())){
+                }else if(secondStack.is(ChangShengJueItems.QING_TUAN.get())){
                     return new MerchantOffer(stack,secondStack ,16,5,0.05F);
                 }else{
                     return new MerchantOffer(secondStack, stack,12,5,0.05F);
@@ -306,102 +307,102 @@ public class CSJEvent {
                 return new MerchantOffer(new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4), secondStack,32,30,0.05F);
             });
         }
-        if(event.getType() == ChangShengJueVillagers.CHANG_SHENG_JUE_POTTER_1.get()) {
-                Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
-                ItemStack stack = new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 2);
-                ItemStack[] stack1 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_1.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_2.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_3.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_4.get(), 32)};
-                ItemStack[] stack2 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_1.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_3.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get(), 32)};
-                ItemStack[] stack3 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_1.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_2.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_3.get(), 32),
-                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get(), 32)};
-                ItemStack[] stack4 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.PAINTING_SCROLL.get(), 1),
-                        new ItemStack(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(), 1),
-                        new ItemStack(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(), 1),
-                        new ItemStack(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get(), 1),};
-                ItemStack[] stack5 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.PAINTING_SCROLL.get(), 1),
-                        new ItemStack(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(), 1),
-                        new ItemStack(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(), 1),
-                        new ItemStack(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get(), 1),
-                        new ItemStack(ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get(), 1)};
-                // 存储第一个交易的索引
-                final int[] firstIndex = new int[1];
-                // 添加两个不重复的交易
-                trades.get(1).add((trader, rand) -> {
-                    firstIndex[0] = rand.nextInt(stack1.length);
-                    ItemStack firstStack = stack1[firstIndex[0]];
-                    return new MerchantOffer(stack, firstStack,32,2,0.05F);
-                });
-                trades.get(1).add((trader, rand) -> {
-                    int secondIndex;
-                    do {
-                        secondIndex = rand.nextInt(stack1.length);
-                    } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
-                    ItemStack secondStack = stack1[secondIndex];
-                    return new MerchantOffer(stack, secondStack,32,2,0.05F);
-                });
-                trades.get(2).add((trader, rand) -> {
-                    firstIndex[0] = rand.nextInt(stack2.length);
-                    ItemStack firstStack = stack2[firstIndex[0]];
-                    return new MerchantOffer(stack,firstStack ,32,5,0.05F);
-                });
-                trades.get(2).add((trader, rand) -> {
-                    int secondIndex;
-                    do {
-                        secondIndex = rand.nextInt(stack2.length);
-                    } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
-                    ItemStack secondStack = stack2[secondIndex];
-                    return new MerchantOffer(stack,secondStack ,32,5,0.05F);
-                });
-                trades.get(3).add((trader, rand) -> {
-                    firstIndex[0] = rand.nextInt(stack3.length);
-                    ItemStack firstStack = stack3[firstIndex[0]];
-                    return new MerchantOffer(stack, firstStack,32,10,0.05F);
-                });
-                trades.get(3).add((trader, rand) -> {
-                    int secondIndex;
-                    do {
-                        secondIndex = rand.nextInt(stack3.length);
-                    } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
-                    ItemStack secondStack = stack3[secondIndex];
-                    return new MerchantOffer(stack, secondStack,32,10,0.05F);
-                });
-                trades.get(4).add((trader, rand) -> {
-                firstIndex[0] = rand.nextInt(stack4.length);
-                ItemStack firstStack = stack4[firstIndex[0]];
-                return new MerchantOffer(stack, firstStack,12,15,0.05F);
-            });
-                trades.get(4).add((trader, rand) -> {
-                int secondIndex;
-                do {
-                    secondIndex = rand.nextInt(stack4.length);
-                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
-                ItemStack secondStack = stack4[secondIndex];
-                return new MerchantOffer(stack, secondStack,12,15,0.05F);
-            });
-                trades.get(5).add((trader, rand) -> {
-                firstIndex[0] = rand.nextInt(stack5.length);
-                ItemStack firstStack = stack5[firstIndex[0]];
-                return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 1), firstStack,12,30,0.05F);
-            });
-                trades.get(5).add((trader, rand) -> {
-                int secondIndex;
-                do {
-                    secondIndex = rand.nextInt(stack5.length);
-                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
-                ItemStack secondStack = stack5[secondIndex];
-                return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 1), secondStack,12,30,0.05F);
-            });
-        }
+//        if(event.getType() == ChangShengJueVillagers.CHANG_SHENG_JUE_POTTER_1.get()) {
+//                Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+//                ItemStack stack = new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 2);
+//                ItemStack[] stack1 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_1.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_2.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_3.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_4.get(), 32)};
+//                ItemStack[] stack2 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_1.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_3.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get(), 32)};
+//                ItemStack[] stack3 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_1.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_2.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_3.get(), 32),
+//                        new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get(), 32)};
+//                ItemStack[] stack4 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.PAINTING_SCROLL.get(), 1),
+//                        new ItemStack(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(), 1),
+//                        new ItemStack(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(), 1),
+//                        new ItemStack(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get(), 1),};
+//                ItemStack[] stack5 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.PAINTING_SCROLL.get(), 1),
+//                        new ItemStack(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(), 1),
+//                        new ItemStack(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(), 1),
+//                        new ItemStack(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get(), 1),
+//                        new ItemStack(ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get(), 1)};
+//                // 存储第一个交易的索引
+//                final int[] firstIndex = new int[1];
+//                // 添加两个不重复的交易
+//                trades.get(1).add((trader, rand) -> {
+//                    firstIndex[0] = rand.nextInt(stack1.length);
+//                    ItemStack firstStack = stack1[firstIndex[0]];
+//                    return new MerchantOffer(stack, firstStack,32,2,0.05F);
+//                });
+//                trades.get(1).add((trader, rand) -> {
+//                    int secondIndex;
+//                    do {
+//                        secondIndex = rand.nextInt(stack1.length);
+//                    } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+//                    ItemStack secondStack = stack1[secondIndex];
+//                    return new MerchantOffer(stack, secondStack,32,2,0.05F);
+//                });
+//                trades.get(2).add((trader, rand) -> {
+//                    firstIndex[0] = rand.nextInt(stack2.length);
+//                    ItemStack firstStack = stack2[firstIndex[0]];
+//                    return new MerchantOffer(stack,firstStack ,32,5,0.05F);
+//                });
+//                trades.get(2).add((trader, rand) -> {
+//                    int secondIndex;
+//                    do {
+//                        secondIndex = rand.nextInt(stack2.length);
+//                    } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+//                    ItemStack secondStack = stack2[secondIndex];
+//                    return new MerchantOffer(stack,secondStack ,32,5,0.05F);
+//                });
+//                trades.get(3).add((trader, rand) -> {
+//                    firstIndex[0] = rand.nextInt(stack3.length);
+//                    ItemStack firstStack = stack3[firstIndex[0]];
+//                    return new MerchantOffer(stack, firstStack,32,10,0.05F);
+//                });
+//                trades.get(3).add((trader, rand) -> {
+//                    int secondIndex;
+//                    do {
+//                        secondIndex = rand.nextInt(stack3.length);
+//                    } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+//                    ItemStack secondStack = stack3[secondIndex];
+//                    return new MerchantOffer(stack, secondStack,32,10,0.05F);
+//                });
+//                trades.get(4).add((trader, rand) -> {
+//                firstIndex[0] = rand.nextInt(stack4.length);
+//                ItemStack firstStack = stack4[firstIndex[0]];
+//                return new MerchantOffer(stack, firstStack,12,15,0.05F);
+//            });
+//                trades.get(4).add((trader, rand) -> {
+//                int secondIndex;
+//                do {
+//                    secondIndex = rand.nextInt(stack4.length);
+//                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+//                ItemStack secondStack = stack4[secondIndex];
+//                return new MerchantOffer(stack, secondStack,12,15,0.05F);
+//            });
+//                trades.get(5).add((trader, rand) -> {
+//                firstIndex[0] = rand.nextInt(stack5.length);
+//                ItemStack firstStack = stack5[firstIndex[0]];
+//                return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 1), firstStack,12,30,0.05F);
+//            });
+//                trades.get(5).add((trader, rand) -> {
+//                int secondIndex;
+//                do {
+//                    secondIndex = rand.nextInt(stack5.length);
+//                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+//                ItemStack secondStack = stack5[secondIndex];
+//                return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 1), secondStack,12,30,0.05F);
+//            });
+//        }
         if(event.getType() == ChangShengJueVillagers.CHANG_SHENG_JUE_HUNTER.get()) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
             ItemStack stack = new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4);
@@ -484,14 +485,19 @@ public class CSJEvent {
 
         }
         if(event.getType() == ChangShengJueVillagers.CHANG_SHENG_JUE_CHIEF.get()) {
+            ItemStack stack = new ItemStack(ChangShengJueItems.STRUCTURE_INTELLIGENCE.get());
+            stack.setDamageValue(StructureIntelligence.FORTRESSES_TYPE);
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
             ItemStack[] stack1 = new ItemStack[]{new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 6),
                     new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 6)};
-            ItemStack[] stack2 = new ItemStack[]{new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4),
+            ItemStack[] stack2 = new ItemStack[]{
+                    new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4),
                     new ItemStack(ChangShengJueItems.ZHU_TAI.get(), 2)};
-            ItemStack[] stack3 = new ItemStack[]{new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4),
+            ItemStack[] stack3 = new ItemStack[]{
+                    new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4),
                     new ItemStack(Items.EMERALD, 1)};
-            ItemStack[] stack4 = new ItemStack[]{new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4)};
+            ItemStack[] stack4 = new ItemStack[]{
+                    new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4), stack};
             ItemStack[] stack5 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.PAINTING_SCROLL.get(), 1),
                     new ItemStack(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(), 1),
                     new ItemStack(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(), 1),
@@ -550,7 +556,7 @@ public class CSJEvent {
                 if (firstStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
                     return new MerchantOffer(new ItemStack(Items.COMPASS,1), firstStack,16,5,0.05F);
                 }else{
-                    return new MerchantOffer(stack2[firstIndex[0]],firstStack ,12,5,0.05F);
+                    return new MerchantOffer(stack3[firstIndex[0]],firstStack ,12,5,0.05F);
                 }
             });
             trades.get(3).add((trader, rand) -> {
@@ -562,13 +568,32 @@ public class CSJEvent {
                 if (secondStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
                     return new MerchantOffer(new ItemStack(Items.COMPASS,1), secondStack,16,20,0.05F);
                 }else{
-                    return new MerchantOffer(stack2[firstIndex[0]],secondStack ,12,10,0.05F);
+                    return new MerchantOffer(stack3[firstIndex[0]],secondStack ,12,10,0.05F);
                 }
             });
             trades.get(4).add((trader, rand) -> {
                 firstIndex[0] = rand.nextInt(stack4.length);
                 ItemStack firstStack = stack4[firstIndex[0]];
-                return new MerchantOffer(new ItemStack(Items.WRITABLE_BOOK, 1),firstStack,16,30,0.05F);
+                if (firstStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
+                    return new MerchantOffer(new ItemStack(Items.WRITABLE_BOOK,2), firstStack,16,5,0.05F);
+                }else{
+                    return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(),2),firstStack ,12,5,0.05F);
+                }
+//                firstIndex[0] = rand.nextInt(stack4.length);
+//                ItemStack firstStack = stack4[firstIndex[0]];
+//                return new MerchantOffer(new ItemStack(Items.WRITABLE_BOOK, 1),firstStack,16,30,0.05F);
+            });
+            trades.get(4).add((trader, rand) -> {
+                int secondIndex;
+                do {
+                    secondIndex = rand.nextInt(stack4.length);
+                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
+                ItemStack secondStack = stack4[secondIndex];
+                if (secondStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
+                    return new MerchantOffer(new ItemStack(Items.WRITABLE_BOOK,1), secondStack,16,5,0.05F);
+                }else{
+                    return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(),2),secondStack ,12,10,0.05F);
+                }
             });
             trades.get(5).add((trader, rand) -> {
                 firstIndex[0] = rand.nextInt(stack5.length);
@@ -690,9 +715,8 @@ public class CSJEvent {
 
     @SubscribeEvent
     public static void blockBlockBreakEvent(BlockEvent.BreakEvent event){
-//        WuGangCutGuiEvent.handleBlockBreakEvent(event);
-//        YugongMovesMountainsEvent.handleBlockBreakEvent(event);
     }
+
     @SubscribeEvent
     public static void onInteract(PlayerInteractEvent event) {
         WuGangCutGuiEvent.onInteract(event);
@@ -735,59 +759,111 @@ public class CSJEvent {
         QianKunDaNuoYiEvent.onPlayerTick(event);
         //大力神功
         HerculesEvent.onPlayerTick(event);
+        // 任务
+        PlayerQuestEvent.onPlayerTick(event);
+        PlayerQuestEvent.onEntityGenerate(event);
+        PlayerQuestEvent.onZombieGenerate(event);
     }
+
+    @SubscribeEvent
+    public static void onServerTick(TickEvent.ServerTickEvent event) {
+        QuestEvent.onServerTick(event);
+    }
+
     //生物攻击事件
     @SubscribeEvent
-    public static void onEntityAttack(LivingEvent.LivingTickEvent event){}
+    public static void onEntityHurt(LivingAttackEvent event){
+        QianKunDaNuoYiEvent.onEntityHurt(event);
+    }
+
+    @SubscribeEvent
+    public static void onEntityAttack(LivingEvent.LivingTickEvent event){
+
+    }
+
     //生物受伤事件
     @SubscribeEvent
     public static void onEntityHurt(LivingDamageEvent event){
-//        TreadTheSnowWithoutTraceEvent.onEntityHurt(event);
-//        WuGangCutGuiEvent.onEntityHurt(event);1
-//        YugongMovesMountainsEvent.onEntityHurt(event);1
-//        PaodingEvent.onEntityHurt(event);1
-//        SunflowerPointCavemanEvent.onEntityHurt(event);1
-//        GoldenBellJarEvent.onEntityHurt(event);1
         ImmortalMiracleEvent.onEntityHurt(event);
-//        GeShanDaNiuEvent.onEntityHurt(event);1
-//        TurtleBreathWorkEvent.onEntityHurt(event);1
-//        TheClassicsOfTendonChangingEvent.onEntityHurt(event);1
-        QianKunDaNuoYiEvent.onEntityHurt(event);
-//        HerculesEvent.onEntityHurt(event);1
+        GoldenBellJarEvent.onEntityHurt(event);
 
         ArmorEvent.onArmorDamage(event);
+
+        QuestEvent.onEntityHurt(event);
+        PlayerQuestEvent.onEntityHurt(event);
     }
     //生物死亡事件
     @SubscribeEvent
     public static void onEntityDeath(LivingDeathEvent event){
+        //如果伤害来源为老虎
+        if (event.getSource().getEntity() instanceof Tiger tiger && event.getEntity() instanceof Animal) {
+            if (tiger.getFedTime() == 0 && !tiger.isTame())
+                tiger.setFedTime(3.3 * 60 * 20);
+        }
+        if (event.getSource().getEntity() instanceof Croc croc && event.getEntity() instanceof Animal) {
+            if (croc.getFedTime() == 0 && !croc.isTame())
+                croc.setFedTime(3.3 * 60 * 20);
+        }
         PaodingEvent.onEntityDeath(event);
+        QuestEvent.onEntityDeath(event);
+        PlayerQuestEvent.onPlayerDeath(event);
+//        Parcel.onEntityDeath(event);
+        //如果死亡的是帮派首领
+        if (event.getSource().getEntity() instanceof Player player && event.getEntity() instanceof GangLeader){
+            if (player instanceof ServerPlayer serverPlayer) {
+                CSJAdvanceInit.BEAT_LEADER.trigger(serverPlayer);
+            }
+        }
     }
+
+    @SubscribeEvent
+    public static void onLivingDrops(LivingDropsEvent event) {
+        if (event.getSource().getEntity() instanceof Tiger tiger && event.getEntity() instanceof Animal){
+            if (tiger.getFedTime() == 0 && !tiger.isTame())
+                event.getDrops().clear();
+            //所有会掉落生肉的动物依次if，然后改掉落物，或者干脆直接掉落物改为骨头（吃得只剩骨头了)
+        }
+        if (event.getSource().getEntity() instanceof Croc croc && event.getEntity() instanceof Animal) {
+            if (croc.getFedTime() == 0 && !croc.isTame())
+                event.getDrops().clear();
+        }
+
+    }
+
+    //实体转换事件
+    @SubscribeEvent
+    public static void onLivingConversion(LivingConversionEvent.Post event) {
+        QuestEvent.onCureComplete(event);
+    }
+
     //生物交互事件
     @SubscribeEvent
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){
-        SunflowerPointCavemanEvent.onPlayerEntityInteract(event);
-//        GoldenBellJarEvent.onPlayerEntityInteract(event);
-//        TurtleBreathWorkEvent.onPlayerEntityInteract(event);
+        QuestEvent.onGoldenAppleUse(event);
+        PlayerQuestEvent.onVillagerInteract(event);
     }
     //玩家右键空气事件
     @SubscribeEvent
     public static void onPlayerRightClick(PlayerInteractEvent.RightClickEmpty event){
-//        GoldenBellJarEvent.onPlayerRightClick(event);
-//        TurtleBreathWorkEvent.onPlayerRightClick(event);
     }
-//    @SubscribeEvent
-//    public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
-//        GoldenBellJarEvent.onPlayerRightClickBlock(event);
-//        GeShanDaNiuEvent.onPlayerRightClickBlock(event);
-//        TurtleBreathWorkEvent.onPlayerRightClickBlock(event);
-//    }
 
     @SubscribeEvent
     public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
-//        GoldenBellJarEvent.onPlayerRightClickItem(event);
-//        TurtleBreathWorkEvent.onPlayerRightClickItem(event);
     }
 
+    //玩家右键方块事件
+    @SubscribeEvent
+    public static void onPlayerEntityInteract(PlayerInteractEvent.RightClickBlock event){
+        if (event.getLevel().getBlockState(event.getPos()).getBlock() instanceof TypeBlock){
+            Player player = event.getEntity();
+
+        }
+    }
+    //玩家重生事件
+    @SubscribeEvent
+    public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
+        GoldenBellJarEvent.onPlayerRespawn(event);
+    }
     //能力给予事件,给生物添加能力
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event){
@@ -873,6 +949,21 @@ public class CSJEvent {
                 event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"hercules_properties"),new HerculesCapabilityProvider());
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onRegisterCommands(RegisterCommandsEvent event) {
+        event.getDispatcher().register(Commands.literal(ChangShengJue.MOD_ID + "_quests")
+                .requires(source -> source.hasPermission(2)) // 需要OP权限
+                .then(Commands.literal("toggle")
+                        .executes(ctx -> {
+                            boolean newState = !ChangShengJueConfig.ENABLE_QUESTS.get();
+                            ChangShengJueConfig.ENABLE_QUESTS.set(newState);
+
+                            ctx.getSource().sendSuccess(() -> Component.literal(
+                                    "自动接受类型任务已" + (newState ? "§a启用" : "§c禁用")), false);
+                            return 1;
+                        })));
     }
 
     //玩家克隆事件,用于玩家死亡重生时或者从末地回到主世界时克隆旧玩家的属性到新玩家
@@ -973,6 +1064,7 @@ public class CSJEvent {
         //玩家进入世界时同步能力数据
         if(!event.getLevel().isClientSide()) {
             if(event.getEntity() instanceof ServerPlayer player) {
+                QuestManager.getInstance().syncQuestsToPlayer(player); // 全量同步
                 player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                     ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),
                             duguNineSword.isDuguNineSwordsComprehend(),
@@ -1025,9 +1117,7 @@ public class CSJEvent {
                             sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
                             sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
                             sunflowerPointCaveman.isSunflowerPointCavemanParticle(),
-                            sunflowerPointCaveman.isSkillZActive(),
-                            sunflowerPointCaveman.isSkillXActive(),
-                            sunflowerPointCaveman.isSkillCActive()), player);
+                            sunflowerPointCaveman.isSkillActive()), player);
                 });
                 player.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
                     ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
@@ -1038,9 +1128,7 @@ public class CSJEvent {
                             goldenBellJar.getGoldenBellJarToppedTick(),
                             goldenBellJar.getGoldenBellJarDachengTick(),
                             goldenBellJar.isGoldenBellJarParticle(),
-                            goldenBellJar.isSkillZActive(),
-                            goldenBellJar.isSkillXActive(),
-                            goldenBellJar.isSkillCActive()), player);
+                            goldenBellJar.isSkillActive()), player);
                 });
                 player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
                     ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
@@ -1052,9 +1140,7 @@ public class CSJEvent {
                             immortalMiracle.getImmortalMiracleDachengTick(),
                             immortalMiracle.isImmortalMiracleParticle(),
                             immortalMiracle.getImmortalMiracleUseCooldownPercentMax(),
-                            immortalMiracle.isSkillZActive(),
-                            immortalMiracle.isSkillXActive(),
-                            immortalMiracle.isSkillCActive()), player);
+                            immortalMiracle.isSkillActive()), player);
                 });
                 player.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
                     ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
@@ -1065,9 +1151,7 @@ public class CSJEvent {
                             geShanDaNiu.getGeShanDaNiuDachengTick(),
                             geShanDaNiu.isGeShanDaNiuParticle(),
                             geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax(),
-                            geShanDaNiu.isSkillZActive(),
-                            geShanDaNiu.isSkillXActive(),
-                            geShanDaNiu.isSkillCActive()), player);
+                            geShanDaNiu.isSkillActive()), player);
                 });
                 player.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
                     ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
@@ -1078,9 +1162,7 @@ public class CSJEvent {
                             turtleBreathWork.getTurtleBreathWorkToppedTick(),
                             turtleBreathWork.getTurtleBreathWorkDachengTick(),
                             turtleBreathWork.isTurtleBreathWorkParticle(),
-                            turtleBreathWork.isSkillZActive(),
-                            turtleBreathWork.isSkillXActive(),
-                            turtleBreathWork.isSkillCActive()), player);
+                            turtleBreathWork.isSkillActive()), player);
                 });
                 player.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(relentlessThrowingKnives -> {
                     ChangShengJueMessages.sendToPlayer(new RelentlessThrowingKnivesPacket(
@@ -1101,9 +1183,10 @@ public class CSJEvent {
                             qianKunDaNuoYi.getQianKunDaNuoYiDachengTick(),
                             qianKunDaNuoYi.isQianKunDaNuoYiParticle(),
                             qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax(),
-                            qianKunDaNuoYi.isSkillZActive(),
-                            qianKunDaNuoYi.isSkillXActive(),
-                            qianKunDaNuoYi.isSkillCActive()), player);
+                            qianKunDaNuoYi.isSkillActive(),
+                            qianKunDaNuoYi.getRecordTime(),
+                            qianKunDaNuoYi.getRecordDamage(),
+                            qianKunDaNuoYi.getRecordDamageSource()), (ServerPlayer) player);
                 });
                 player.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(hercules -> {
                     ChangShengJueMessages.sendToPlayer(new HerculesPacket(
@@ -1112,11 +1195,66 @@ public class CSJEvent {
                             hercules.getHerculesToppedTick(),
                             hercules.getHerculesDachengTick(),
                             hercules.isHerculesParticle(),
-                            hercules.isSkillZActive(),
-                            hercules.isSkillXActive(),
-                            hercules.isSkillCActive()), player);
+                            hercules.isSkillActive()), player);
                 });
             }
         }
     }
+
+    // 在玩家退出世界时调用
+    @SubscribeEvent
+    public void onWorldUnload(LevelEvent.Unload event) {
+        ClientQuestDataCache.clearCache();
+    }
+
+    @SubscribeEvent
+    public static void onServerStopping(ServerStoppingEvent event) {
+        QuestManager.getInstance().saveData();
+    }
+
+    @SubscribeEvent
+    public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+        QuestManager.getInstance().saveData();
+    }
+
+    @SubscribeEvent
+    public static void onWorldLoad(LevelEvent.Load event) {
+        if (event.getLevel() instanceof ServerLevel) {
+            // 世界加载时初始化数据
+            QuestManager.getInstance().onWorldLoad();
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerFirstJoin(PlayerEvent.PlayerLoggedInEvent event) {
+        Player player = event.getEntity();
+        // 检查玩家是否首次加入游戏
+        if (player instanceof ServerPlayer serverPlayer) {
+            QuestManager.getInstance().syncQuestsToPlayer(serverPlayer); // 全量同步
+//            player.getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(data -> {
+//                if (data.getRecordDamageSource() == null){
+//                    data.setRecordDamageSource(UUID.randomUUID());
+//                }
+//            });
+            if (!net.minecraftforge.fml.ModList.get().isLoaded("patchouli")) {
+                return;
+            }
+            boolean hasBook = false;
+            ItemStack book = PatchouliAPI.get().getBookStack(new ResourceLocation("chang_sheng_jue", "wufanglu"));
+            // 遍历玩家背包检查是否已有书籍
+            for (ItemStack itemStack : player.getInventory().items) {
+                if (itemStack.getItem() == book.getItem()) {
+                    hasBook = true;
+                    break; // 发现书籍后立即终止循环
+                }
+            }
+
+            // 未找到书籍时执行赠送
+            if (!hasBook) {
+                player.getInventory().add(book);
+            }
+        }
+    }
+
+
 }

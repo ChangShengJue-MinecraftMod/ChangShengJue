@@ -1,0 +1,60 @@
+{
+  "name": "chang_sheng_jue:fortresses/carriage",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 5,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/carriage/carriage",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_ignore",
+            "blocks": [
+              {
+                "Name": "minecraft:air"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/carriage/carriage_1",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_ignore",
+            "blocks": [
+              {
+                "Name": "minecraft:air"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "weight": 5,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:fortresses/carriage/carriage_2",
+        "processors": [
+          {
+            "processor_type": "minecraft:block_ignore",
+            "blocks": [
+              {
+                "Name": "minecraft:air"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

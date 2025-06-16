@@ -2,7 +2,6 @@ package com.shengchanshe.changshengjue.item.combat.lance;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapabilityProvider;
 import com.shengchanshe.changshengjue.entity.combat.lance.ThrownBaWangQiang;
-import com.shengchanshe.changshengjue.item.render.combat.lance.BaWangQiangRender;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
@@ -18,10 +17,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.AbstractArrow;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tiers;
-import net.minecraft.world.item.UseAnim;
-import net.minecraft.world.item.Vanishable;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -41,9 +37,10 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.function.Consumer;
 
 public class BaWangQiang extends Lance implements GeoItem , Vanishable{
-    private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private Player player;
     public BaWangQiang() {
-        super(Tiers.IRON, 3, -2.4F, new Properties());
+        super(Tiers.IRON, 5, -2.4F, new Properties().rarity(Rarity.UNCOMMON));
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
 
@@ -129,9 +126,10 @@ public class BaWangQiang extends Lance implements GeoItem , Vanishable{
         if (!pLevel.isClientSide) {
             ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
             if (itemstack.getItem() instanceof Lance) {
-                if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
+                player = pPlayer;
+                if (pPlayer.getFoodData().getFoodLevel() > 8 && !pPlayer.isShiftKeyDown()) {//检查玩家饱食度是否大于8
                     pPlayer.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
-                        if (gaoMarksmanship.getGaoMarksmanshipLevel() >= 1 && !pPlayer.isShiftKeyDown()) {
+                        if (gaoMarksmanship.getGaoMarksmanshipLevel() >= 1) {
                             triggerAnim(pPlayer, GeoItem.getOrAssignId(pPlayer.getItemInHand(pUsedHand), (ServerLevel) pLevel), "Attack", "attack");
                         }
                     });
@@ -141,6 +139,16 @@ public class BaWangQiang extends Lance implements GeoItem , Vanishable{
         return super.use(pLevel, pPlayer, pUsedHand);
     }
 
+    @Override
+    public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
+        super.onUseTick(pLevel, pLivingEntity, pStack, pRemainingUseDuration);
+        if (!pLevel.isClientSide) {
+            ItemStack itemstack = pLivingEntity.getMainHandItem();
+            if (itemstack.getItem() instanceof Lance && !pLivingEntity.isShiftKeyDown()) {
+                triggerAnim(pLivingEntity, GeoItem.getOrAssignId(pLivingEntity.getItemInHand(pLivingEntity.getUsedItemHand()), (ServerLevel) pLevel), "Attack", "attack");
+            }
+        }
+    }
 
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
@@ -154,6 +162,9 @@ public class BaWangQiang extends Lance implements GeoItem , Vanishable{
                 return renderer;
             }
         });
+    }
+    public Player getPlayer() {
+        return player;
     }
     @Override
     public ItemStack getDefaultInstance() {

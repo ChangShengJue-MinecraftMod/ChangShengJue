@@ -1,0 +1,19 @@
+{
+  "name": "木桩",
+  "category": "chang_sheng_jue:xiake",
+  "sortnum": 2,
+  "icon": "chang_sheng_jue:stakes",
+  "pages": [
+    {
+      "title": "木桩",
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:stakes",
+      "text": "木桩合成表"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:stakes",
+      "text": "内功、轻功、外功(空手)类功法可以通过打击木桩练习领悟，每次打击领悟概率为15%。"
+    }
+  ]
+}

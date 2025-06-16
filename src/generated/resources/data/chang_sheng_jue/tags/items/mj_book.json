@@ -1,24 +1,8 @@
 {
   "values": [
-    "chang_sheng_jue:immortal_miracle",
-    "chang_sheng_jue:hercules",
-    "chang_sheng_jue:dugu_nine_swords",
-    "chang_sheng_jue:gao_marksmanship",
-    "chang_sheng_jue:ge_shan_da_niu",
-    "chang_sheng_jue:turtle_breath_work",
-    "chang_sheng_jue:golden_black_knife_method",
-    "chang_sheng_jue:golden_bell_jar",
-    "chang_sheng_jue:sunflower_point_caveman",
-    "chang_sheng_jue:wheat_nugget_encyclopedia",
-    "chang_sheng_jue:paoding",
-    "chang_sheng_jue:shaolin_stick_method",
-    "chang_sheng_jue:tread_the_snow_without_trace",
-    "chang_sheng_jue:relentless_throwing_knives",
-    "chang_sheng_jue:wu_gang_cut_gui",
-    "chang_sheng_jue:xuannu_swordsmanship",
-    "chang_sheng_jue:yugong_moves_mountains",
+    "#chang_sheng_jue:internal_kung_fu_mj",
+    "#chang_sheng_jue:external_kung_fu_mj",
     "chang_sheng_jue:zhang_men_xin_xue",
-    "chang_sheng_jue:the_classics_of_tendon_changing",
-    "chang_sheng_jue:qian_kun_da_nuo_yi"
+    "chang_sheng_jue:wheat_nugget_encyclopedia"
   ]
 }

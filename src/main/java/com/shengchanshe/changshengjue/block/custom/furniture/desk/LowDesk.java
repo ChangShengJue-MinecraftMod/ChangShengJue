@@ -17,7 +17,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class LowDesk extends AbstractDesk {
+public class LowDesk extends Desks {
     public static final BooleanProperty LEFT = BooleanProperty.create("left");
     public static final BooleanProperty MIDDLE = BooleanProperty.create("middle");
     public static final BooleanProperty RIGHT = BooleanProperty.create("right");

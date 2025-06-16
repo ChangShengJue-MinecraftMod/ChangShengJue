@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,left=false": {
+      "model": "chang_sheng_jue:block/gre_octagonal_high_ridge_tiles_behind_right",
+      "y": 90
+    },
+    "facing=north,left=false": {
+      "model": "chang_sheng_jue:block/gre_octagonal_high_ridge_tiles_behind_right"
+    },
+    "facing=south,left=false": {
+      "model": "chang_sheng_jue:block/gre_octagonal_high_ridge_tiles_behind_right",
+      "y": 180
+    },
+    "facing=west,left=false": {
+      "model": "chang_sheng_jue:block/gre_octagonal_high_ridge_tiles_behind_right",
+      "y": 270
+    },
+    "facing=east,left=true": {
+      "model": "chang_sheng_jue:block/gre_octagonal_high_ridge_tiles_behind_left",
+      "y": 90
+    },
+    "facing=north,left=true": {
+      "model": "chang_sheng_jue:block/gre_octagonal_high_ridge_tiles_behind_left"
+    },
+    "facing=south,left=true": {
+      "model": "chang_sheng_jue:block/gre_octagonal_high_ridge_tiles_behind_left",
+      "y": 180
+    },
+    "facing=west,left=true": {
+      "model": "chang_sheng_jue:block/gre_octagonal_high_ridge_tiles_behind_left",
+      "y": 270
+    }
+  }
+}

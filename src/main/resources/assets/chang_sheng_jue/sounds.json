@@ -89,6 +89,31 @@
       "chang_sheng_jue:entity/monkey_death"
     ]
   },
+
+  "monkey_play_1": {
+    "subtitle": "sounds.chang_sheng_jue.monkey_play_1",
+    "sounds": [
+      "chang_sheng_jue:entity/monkey_play_1"
+    ]
+  },
+  "monkey_play_2": {
+    "subtitle": "sounds.chang_sheng_jue.monkey_play_2",
+    "sounds": [
+      "chang_sheng_jue:entity/monkey_play_2"
+    ]
+  },
+  "monkey_play_3": {
+    "subtitle": "sounds.chang_sheng_jue.monkey_play_3",
+    "sounds": [
+      "chang_sheng_jue:entity/monkey_play_3"
+    ]
+  },
+  "monkey_play_4": {
+    "subtitle": "sounds.chang_sheng_jue.monkey_play_4",
+    "sounds": [
+      "chang_sheng_jue:entity/monkey_play_4"
+    ]
+  },
   "tiger_sound": {
     "subtitle": "sounds.chang_sheng_jue.tiger_sound",
     "sounds": [
@@ -293,6 +318,18 @@
     "subtitle": "sounds.chang_sheng_jue.throwing_knives_hit_ground",
     "sounds": [
       "chang_sheng_jue:martial_arts/throwing_knives_hit_ground"
+    ]
+  },
+  "qian_kun_da_nuo_yi_sound": {
+    "subtitle": "sounds.chang_sheng_jue.qian_kun_da_nuo_yi_sound",
+    "sounds": [
+      "chang_sheng_jue:martial_arts/qian_kun_da_nuo_yi_sound"
+    ]
+  },
+  "wind_chime_sound": {
+    "subtitle": "sounds.chang_sheng_jue.wind_chime_sound",
+    "sounds": [
+      "chang_sheng_jue:block/wind_chime_sound"
     ]
   }
 }

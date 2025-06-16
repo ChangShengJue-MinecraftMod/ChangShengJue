@@ -11,9 +11,12 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 
+@OnlyIn(Dist.CLIENT)
 public class YiTianJianAttackEntityRender extends EntityRenderer<YiTianJianAttackEntity> {
     private static final ResourceLocation[] TEXTURES = {
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/yi_tian_jian_attack/yi_tian_jian_attack_1.png"),
@@ -29,8 +32,7 @@ public class YiTianJianAttackEntityRender extends EntityRenderer<YiTianJianAttac
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/yi_tian_jian_attack/yi_tian_jian_attack_11.png"),
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/yi_tian_jian_attack/yi_tian_jian_attack_12.png"),
             new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/yi_tian_jian_attack/yi_tian_jian_attack_13.png"),
-            new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/yi_tian_jian_attack/yi_tian_jian_attack_14.png"),
-            new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/yi_tian_jian_attack/yi_tian_jian_attack_15.png"),
+            new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/yi_tian_jian_attack/yi_tian_jian_attack_14.png")
     };
 
     public YiTianJianAttackEntityRender(EntityRendererProvider.Context renderManager) {
@@ -74,7 +76,7 @@ public class YiTianJianAttackEntityRender extends EntityRenderer<YiTianJianAttac
 
     @Override
     public ResourceLocation getTextureLocation(YiTianJianAttackEntity entity) {
-        int frame = entity.tickCount % TEXTURES.length;
+        int frame = (entity.tickCount * 2) % TEXTURES.length;
         return TEXTURES[frame];
     }
 
