@@ -362,7 +362,7 @@ public class CSJConfiguredFeatures {
                         new SimpleBlockConfiguration(BlockStateProvider.simple(ChangShengJueBlocks.TAN_HUA_BLOCK.get())))));
 
         register(context,CAPSULE,Feature.FLOWER,
-                new RandomPatchConfiguration(16,4,2,PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                new RandomPatchConfiguration(128,4,2,PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
                         new SimpleBlockConfiguration(BlockStateProvider.simple(ChangShengJueBlocks.CAPSULE_BLOCK.get())))));
 
         register(context,RAPE_FLOWERS,Feature.FLOWER,

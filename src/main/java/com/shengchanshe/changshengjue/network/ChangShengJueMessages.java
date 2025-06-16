@@ -96,11 +96,6 @@ public class ChangShengJueMessages {
                 .encoder(SunflowerPointCavemanPacket::toBytes)
                 .consumerMainThread(SunflowerPointCavemanPacket::handle)
                 .add();
-//        net.messageBuilder(EffectEntityPacket.class, id())
-//                .decoder(EffectEntityPacket::new)
-//                .encoder(EffectEntityPacket::toBytes)
-//                .consumerMainThread(EffectEntityPacket::handle)
-//                .add();
         //金钟罩
         net.messageBuilder(GoldenBellJarPacket.class, id())
                 .decoder(GoldenBellJarPacket::new)

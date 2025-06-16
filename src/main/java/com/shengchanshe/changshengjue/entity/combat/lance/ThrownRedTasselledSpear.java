@@ -45,12 +45,12 @@ public class ThrownRedTasselledSpear extends AbstractArrow implements GeoEntity 
 
     public ThrownRedTasselledSpear(EntityType<? extends ThrownRedTasselledSpear> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        this.redTasselledSpearItem = new ItemStack(ChangShengJueItems.BA_WANG_QIANG.get());
+        this.redTasselledSpearItem = new ItemStack(ChangShengJueItems.RED_TASSELLED_SPEAR.get());
     }
 
     public ThrownRedTasselledSpear(Level pLevel, LivingEntity pShooter, ItemStack pStack) {
         super(ChangShengJueEntity.RED_TASSELLED_SPEAR.get(), pShooter, pLevel);
-        this.redTasselledSpearItem = new ItemStack(ChangShengJueItems.BA_WANG_QIANG.get());
+        this.redTasselledSpearItem = new ItemStack(ChangShengJueItems.RED_TASSELLED_SPEAR.get());
         this.redTasselledSpearItem = pStack.copy();
         this.entityData.set(ID_LOYALTY, (byte)EnchantmentHelper.getLoyalty(pStack));
         this.entityData.set(ID_FOIL, pStack.hasFoil());

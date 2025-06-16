@@ -49,15 +49,6 @@ public class CylinderTile extends HorizontalDirectionalBlock {
                 case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_3;
                 default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_3;
             };
-        }else if (state.is(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get()) || state.is(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_5.get())
-                || state.is(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_5.get()) || state.is(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_5.get())
-                || state.is(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_5.get())){
-            return switch (value){
-                case NORTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_5;
-                case SOUTH -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_5;
-                case EAST -> ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_5;
-                default ->  ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_5;
-            };
         }else if (state.is(ChangShengJueBlocks.GRE_ROOF_RIDGE.get()) || state.is(ChangShengJueBlocks.RED_ROOF_RIDGE.get())
                 || state.is(ChangShengJueBlocks.BLACK_ROOF_RIDGE.get()) || state.is(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE.get())
                 || state.is(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get())){
@@ -68,12 +59,7 @@ public class CylinderTile extends HorizontalDirectionalBlock {
         }else if (state.is(ChangShengJueBlocks.GRE_DEMON_MASK.get()) || state.is(ChangShengJueBlocks.RED_DEMON_MASK.get())
                 || state.is(ChangShengJueBlocks.BLACK_DEMON_MASK.get()) || state.is(ChangShengJueBlocks.GOLDEN_DEMON_MASK.get())
                 || state.is(ChangShengJueBlocks.BLUE_DEMON_MASK.get())){
-            return switch (value){
-                case NORTH -> ChangShengJueVoxelShape.DEMON_MASK_N;
-                case SOUTH -> ChangShengJueVoxelShape.DEMON_MASK_S;
-                case EAST -> ChangShengJueVoxelShape.DEMON_MASK_E;
-                default ->  ChangShengJueVoxelShape.DEMON_MASK_W;
-            };
+            return Block.box(0, 0, 0, 16, 30, 16);
         }else if (state.is(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7.get()) || state.is(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_7.get())
                 || state.is(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get()) || state.is(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get())
                 || state.is(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get())){
@@ -100,10 +86,10 @@ public class CylinderTile extends HorizontalDirectionalBlock {
                 || state.is(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get()) || state.is(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get())
                 || state.is(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get())){
             return switch (value){
-                case NORTH -> ChangShengJueVoxelShape.SHORT_CYLINDER_TILE_N;
-                case SOUTH -> ChangShengJueVoxelShape.SHORT_CYLINDER_TILE_S;
-                case EAST -> ChangShengJueVoxelShape.SHORT_CYLINDER_TILE_E;
-                default ->  ChangShengJueVoxelShape.SHORT_CYLINDER_TILE_W;
+                case NORTH -> Block.box(0, 0, 8, 16, 8, 16);
+                case SOUTH -> Block.box(0, 0, 0, 16, 8, 8);
+                case EAST -> Block.box(0, 0, 0, 8, 8, 16);
+                default ->  Block.box(8, 0, 0, 16, 8, 16);
             };
         }else if (state.is(ChangShengJueBlocks.GRE_EAVES_TILE_SIDE.get()) || state.is(ChangShengJueBlocks.RED_EAVES_TILE_SIDE.get())
                 || state.is(ChangShengJueBlocks.BLACK_EAVES_TILE_SIDE.get()) || state.is(ChangShengJueBlocks.GOLDEN_EAVES_TILE_SIDE.get())

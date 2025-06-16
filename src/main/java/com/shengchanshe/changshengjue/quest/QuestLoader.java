@@ -11,8 +11,11 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
+import net.minecraftforge.server.ServerLifecycleHooks;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.InputStream;
@@ -82,7 +85,7 @@ public class QuestLoader {
     }
 
     private static @NotNull Map<ResourceLocation, Resource> getAutomaticResourceLocationResourceMap() {
-        ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
+        ResourceManager resourceManager = ServerLifecycleHooks.getCurrentServer().getResourceManager(); // 服务端
         String namespace = ChangShengJue.MOD_ID;
 
         // 定义任务类型的路径
@@ -101,7 +104,7 @@ public class QuestLoader {
     }
 
     private static @NotNull Map<ResourceLocation, Resource> getResourceLocationResourceMap() {
-        ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
+        ResourceManager resourceManager = ServerLifecycleHooks.getCurrentServer().getResourceManager(); // 服务端
         String namespace = ChangShengJue.MOD_ID;
 
         // 定义任务类型的路径

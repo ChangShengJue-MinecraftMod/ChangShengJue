@@ -35,12 +35,7 @@ public class BaffleCylinderTile extends CylinderTile {
         if (state.is(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get()) || state.is(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_5.get())
                 || state.is(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_5.get()) || state.is(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_5.get())
                 || state.is(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_5.get())){
-            return switch (value){
-                case NORTH -> state.getValue(BAFFLE) ? ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_NS_5_B : ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_5;
-                case SOUTH -> state.getValue(BAFFLE) ? ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_NS_5_B : ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_5;
-                case EAST -> state.getValue(BAFFLE) ? ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_EW_5_B : ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_5;
-                default ->  state.getValue(BAFFLE) ? ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_EW_5_B : ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_5;
-            };
+            return Block.box(0, 0, 0, 16, 16, 16);
         }if (state.is(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_2.get()) || state.is(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_2.get())
                 || state.is(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_2.get()) || state.is(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_2.get())
                 || state.is(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get())){

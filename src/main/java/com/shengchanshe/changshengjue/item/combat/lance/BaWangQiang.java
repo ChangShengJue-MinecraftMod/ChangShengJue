@@ -37,7 +37,8 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.function.Consumer;
 
 public class BaWangQiang extends Lance implements GeoItem , Vanishable{
-    private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private Player player;
     public BaWangQiang() {
         super(Tiers.IRON, 5, -2.4F, new Properties().rarity(Rarity.UNCOMMON));
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
@@ -125,6 +126,7 @@ public class BaWangQiang extends Lance implements GeoItem , Vanishable{
         if (!pLevel.isClientSide) {
             ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
             if (itemstack.getItem() instanceof Lance) {
+                player = pPlayer;
                 if (pPlayer.getFoodData().getFoodLevel() > 8 && !pPlayer.isShiftKeyDown()) {//检查玩家饱食度是否大于8
                     pPlayer.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
                         if (gaoMarksmanship.getGaoMarksmanshipLevel() >= 1) {
@@ -160,6 +162,9 @@ public class BaWangQiang extends Lance implements GeoItem , Vanishable{
                 return renderer;
             }
         });
+    }
+    public Player getPlayer() {
+        return player;
     }
     @Override
     public ItemStack getDefaultInstance() {
