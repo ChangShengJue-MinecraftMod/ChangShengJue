@@ -524,6 +524,69 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.FEN_JIU.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHI_LI_XIANG.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.WHEAT_NUGGETS_TRIBUTE_WINE.get(), RenderType.cutout());
+        //雀替和斗拱
+        // 雀替类方块透明渲染设置
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_MANGROVE_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_BIRCH_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_JUNGLE_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_CRIMSON_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_WARPED_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_ACACIA_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_DARK_OAK_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_OAK_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_CHERRY_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_SPRUCE_BACK_BRACKET.get(), RenderType.cutout());
+
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_MANGROVE_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_BIRCH_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_JUNGLE_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_CRIMSON_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_WARPED_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_ACACIA_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_DARK_OAK_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_OAK_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_CHERRY_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SHORT_SPRUCE_FLOWER_BRACKET.get(), RenderType.cutout());
+
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_MANGROVE_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_BIRCH_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_JUNGLE_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_CRIMSON_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_WARPED_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_ACACIA_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_DARK_OAK_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_OAK_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_CHERRY_BACK_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_SPRUCE_BACK_BRACKET.get(), RenderType.cutout());
+
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_MANGROVE_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_BIRCH_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_JUNGLE_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_CRIMSON_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_WARPED_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_ACACIA_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_DARK_OAK_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_OAK_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_CHERRY_FLOWER_BRACKET.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.LONG_SPRUCE_FLOWER_BRACKET.get(), RenderType.cutout());
+
+// 斗拱类方块透明渲染设置
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MANGROVE_DOUGONG.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BIRCH_DOUGONG.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.JUNGLE_DOUGONG.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CRIMSON_DOUGONG.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.WARPED_DOUGONG.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ACACIA_DOUGONG.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DARK_OAK_DOUGONG.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.OAK_DOUGONG.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.CHERRY_DOUGONG.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SPRUCE_DOUGONG.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GREEN_DOUGONG.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLUE_DOUGONG.get(), RenderType.cutout());
+
+
+
+
 
 
 

@@ -1,0 +1,8 @@
+{
+  "parent": "chang_sheng_jue:block/short_flower_bracket",
+  "textures": {
+    "18": "chang_sheng_jue:block/warped_flower_bracket",
+    "particle": "chang_sheng_jue:block/warped_flower_bracket"
+  }
+}
+    

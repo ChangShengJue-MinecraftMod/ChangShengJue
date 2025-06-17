@@ -1,0 +1,65 @@
+{
+  "variants": {
+    "facing=east,main_part=true,waterlogged=true": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_main",
+      "y": 90
+    },
+    "facing=east,main_part=true,waterlogged=false": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_main",
+      "y": 90
+    },
+    "facing=east,main_part=false,waterlogged=true": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_secondary",
+      "y": 90
+    },
+    "facing=east,main_part=false,waterlogged=false": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_secondary",
+      "y": 90
+    },
+    "facing=north,main_part=true,waterlogged=true": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_main"
+    },
+    "facing=north,main_part=true,waterlogged=false": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_main"
+    },
+    "facing=north,main_part=false,waterlogged=true": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_secondary"
+    },
+    "facing=north,main_part=false,waterlogged=false": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_secondary"
+    },
+    "facing=south,main_part=true,waterlogged=true": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_main",
+      "y": 180
+    },
+    "facing=south,main_part=true,waterlogged=false": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_main",
+      "y": 180
+    },
+    "facing=south,main_part=false,waterlogged=true": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_secondary",
+      "y": 180
+    },
+    "facing=south,main_part=false,waterlogged=false": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_secondary",
+      "y": 180
+    },
+    "facing=west,main_part=true,waterlogged=true": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_main",
+      "y": 270
+    },
+    "facing=west,main_part=true,waterlogged=false": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_main",
+      "y": 270
+    },
+    "facing=west,main_part=false,waterlogged=true": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_secondary",
+      "y": 270
+    },
+    "facing=west,main_part=false,waterlogged=false": {
+      "model": "chang_sheng_jue:block/long_spruce_flower_bracket_secondary",
+      "y": 270
+    }
+  }
+}
+    

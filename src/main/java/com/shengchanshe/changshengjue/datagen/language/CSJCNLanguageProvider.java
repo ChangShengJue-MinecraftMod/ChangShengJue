@@ -593,6 +593,16 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.SHORT_OAK_BACK_BRACKET.get(), "橡木回纹雀替");
         this.add(ChangShengJueBlocks.SHORT_CHERRY_BACK_BRACKET.get(), "樱花木回纹雀替");
         this.add(ChangShengJueBlocks.SHORT_SPRUCE_BACK_BRACKET.get(), "云杉木回纹雀替");
+        this.add(ChangShengJueBlocks.SHORT_MANGROVE_FLOWER_BRACKET.get(), "红木花牙子雀替");
+        this.add(ChangShengJueBlocks.SHORT_BIRCH_FLOWER_BRACKET.get(), "白桦木花牙子雀替");
+        this.add(ChangShengJueBlocks.SHORT_JUNGLE_FLOWER_BRACKET.get(), "丛林木花牙子雀替");
+        this.add(ChangShengJueBlocks.SHORT_CRIMSON_FLOWER_BRACKET.get(), "绯红木花牙子雀替");
+        this.add(ChangShengJueBlocks.SHORT_WARPED_FLOWER_BRACKET.get(), "诡异木花牙子雀替");
+        this.add(ChangShengJueBlocks.SHORT_ACACIA_FLOWER_BRACKET.get(), "金合欢花牙子雀替");
+        this.add(ChangShengJueBlocks.SHORT_DARK_OAK_FLOWER_BRACKET.get(), "深色橡木花牙子雀替");
+        this.add(ChangShengJueBlocks.SHORT_OAK_FLOWER_BRACKET.get(), "橡木花牙子雀替");
+        this.add(ChangShengJueBlocks.SHORT_CHERRY_FLOWER_BRACKET.get(), "樱花木花牙子雀替");
+        this.add(ChangShengJueBlocks.SHORT_SPRUCE_FLOWER_BRACKET.get(), "云杉木花牙子雀替");
         this.add(ChangShengJueBlocks.LONG_MANGROVE_BACK_BRACKET.get(), "红木回纹雀替");
         this.add(ChangShengJueBlocks.LONG_BIRCH_BACK_BRACKET.get(), "白桦木回纹雀替");
         this.add(ChangShengJueBlocks.LONG_JUNGLE_BACK_BRACKET.get(), "丛林木回纹雀替");
@@ -603,7 +613,28 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.LONG_OAK_BACK_BRACKET.get(), "橡木回纹雀替");
         this.add(ChangShengJueBlocks.LONG_CHERRY_BACK_BRACKET.get(), "樱花木回纹雀替");
         this.add(ChangShengJueBlocks.LONG_SPRUCE_BACK_BRACKET.get(), "云杉木回纹雀替");
-
+        this.add(ChangShengJueBlocks.LONG_MANGROVE_FLOWER_BRACKET.get(), "红木花牙子雀替");
+        this.add(ChangShengJueBlocks.LONG_BIRCH_FLOWER_BRACKET.get(), "白桦木花牙子雀替");
+        this.add(ChangShengJueBlocks.LONG_JUNGLE_FLOWER_BRACKET.get(), "丛林木花牙子雀替");
+        this.add(ChangShengJueBlocks.LONG_CRIMSON_FLOWER_BRACKET.get(), "绯红木花牙子雀替");
+        this.add(ChangShengJueBlocks.LONG_WARPED_FLOWER_BRACKET.get(), "诡异木花牙子雀替");
+        this.add(ChangShengJueBlocks.LONG_ACACIA_FLOWER_BRACKET.get(), "金合欢花牙子雀替");
+        this.add(ChangShengJueBlocks.LONG_DARK_OAK_FLOWER_BRACKET.get(), "深色橡木花牙子雀替");
+        this.add(ChangShengJueBlocks.LONG_OAK_FLOWER_BRACKET.get(), "橡木花牙子雀替");
+        this.add(ChangShengJueBlocks.LONG_CHERRY_FLOWER_BRACKET.get(), "樱花木花牙子雀替");
+        this.add(ChangShengJueBlocks.LONG_SPRUCE_FLOWER_BRACKET.get(), "云杉木花牙子雀替");
+        this.add(ChangShengJueBlocks.MANGROVE_DOUGONG.get(), "红木斗拱");
+        this.add(ChangShengJueBlocks.BIRCH_DOUGONG.get(), "白桦木斗拱");
+        this.add(ChangShengJueBlocks.JUNGLE_DOUGONG.get(), "丛林木斗拱");
+        this.add(ChangShengJueBlocks.CRIMSON_DOUGONG.get(), "绯红木斗拱");
+        this.add(ChangShengJueBlocks.WARPED_DOUGONG.get(), "诡异木斗拱");
+        this.add(ChangShengJueBlocks.ACACIA_DOUGONG.get(), "金合欢斗拱");
+        this.add(ChangShengJueBlocks.DARK_OAK_DOUGONG.get(), "深色橡木斗拱");
+        this.add(ChangShengJueBlocks.OAK_DOUGONG.get(), "橡木斗拱");
+        this.add(ChangShengJueBlocks.CHERRY_DOUGONG.get(), "樱花木斗拱");
+        this.add(ChangShengJueBlocks.SPRUCE_DOUGONG.get(), "云杉木斗拱");
+        this.add(ChangShengJueBlocks.GREEN_DOUGONG.get(),"绿斗青拱");
+        this.add(ChangShengJueBlocks.BLUE_DOUGONG.get(),"青斗绿拱");
 
 
         this.add(ChangShengJueBlocks.STONE_LAMPS_BASE_BLOCK.get(),"石灯底座");

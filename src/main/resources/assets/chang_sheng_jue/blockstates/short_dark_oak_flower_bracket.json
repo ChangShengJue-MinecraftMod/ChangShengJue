@@ -1,0 +1,35 @@
+{
+  "variants": {
+    "facing=east,waterlogged=true": {
+      "model": "chang_sheng_jue:block/short_dark_oak_flower_bracket",
+      "y": 90
+    },
+    "facing=north,waterlogged=true": {
+      "model": "chang_sheng_jue:block/short_dark_oak_flower_bracket"
+    },
+    "facing=south,waterlogged=true": {
+      "model": "chang_sheng_jue:block/short_dark_oak_flower_bracket",
+      "y": 180
+    },
+    "facing=west,waterlogged=true": {
+      "model": "chang_sheng_jue:block/short_dark_oak_flower_bracket",
+      "y": 270
+    },
+    "facing=east,waterlogged=false": {
+      "model": "chang_sheng_jue:block/short_dark_oak_flower_bracket",
+      "y": 90
+    },
+    "facing=north,waterlogged=false": {
+      "model": "chang_sheng_jue:block/short_dark_oak_flower_bracket"
+    },
+    "facing=south,waterlogged=false": {
+      "model": "chang_sheng_jue:block/short_dark_oak_flower_bracket",
+      "y": 180
+    },
+    "facing=west,waterlogged=false": {
+      "model": "chang_sheng_jue:block/short_dark_oak_flower_bracket",
+      "y": 270
+    }
+  }
+}
+    

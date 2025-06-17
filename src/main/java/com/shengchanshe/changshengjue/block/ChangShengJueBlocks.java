@@ -6,6 +6,7 @@ import com.shengchanshe.changshengjue.block.custom.*;
 import com.shengchanshe.changshengjue.block.custom.balustrade.Balustrade;
 import com.shengchanshe.changshengjue.block.custom.balustrade.Guardrail;
 import com.shengchanshe.changshengjue.block.custom.balustrade.Wooden_Balustrade;
+import com.shengchanshe.changshengjue.block.custom.bracket.*;
 import com.shengchanshe.changshengjue.block.custom.eescalator.Eescalator;
 import com.shengchanshe.changshengjue.block.custom.furniture.chair.*;
 import com.shengchanshe.changshengjue.block.custom.furniture.desk.BookDesk;
@@ -1062,6 +1063,27 @@ public class ChangShengJueBlocks {
             ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> SHORT_SPRUCE_BACK_BRACKET = registerBlock( "short_spruce_back_bracket",
             ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
+    //花牙子雀替
+    public static final RegistryObject<Block> SHORT_MANGROVE_FLOWER_BRACKET = registerBlock( "short_mangrove_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_BIRCH_FLOWER_BRACKET = registerBlock( "short_birch_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_JUNGLE_FLOWER_BRACKET = registerBlock( "short_jungle_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_CRIMSON_FLOWER_BRACKET = registerBlock( "short_crimson_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_WARPED_FLOWER_BRACKET = registerBlock( "short_warped_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_ACACIA_FLOWER_BRACKET = registerBlock( "short_acacia_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_DARK_OAK_FLOWER_BRACKET = registerBlock( "short_dark_oak_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_OAK_FLOWER_BRACKET = registerBlock( "short_oak_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_CHERRY_FLOWER_BRACKET = registerBlock( "short_cherry_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_SPRUCE_FLOWER_BRACKET = registerBlock( "short_spruce_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
     /*雀替-长*/
     public static final RegistryObject<Block> LONG_MANGROVE_BACK_BRACKET = registerBlock( "long_mangrove_back_bracket",
             ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
@@ -1083,6 +1105,54 @@ public class ChangShengJueBlocks {
             ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> LONG_SPRUCE_BACK_BRACKET = registerBlock( "long_spruce_back_bracket",
             ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
+    //花牙子雀替
+    public static final RegistryObject<Block> LONG_MANGROVE_FLOWER_BRACKET = registerBlock( "long_mangrove_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_BIRCH_FLOWER_BRACKET = registerBlock( "long_birch_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_JUNGLE_FLOWER_BRACKET = registerBlock( "long_jungle_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_CRIMSON_FLOWER_BRACKET = registerBlock( "long_crimson_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_WARPED_FLOWER_BRACKET = registerBlock( "long_warped_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_ACACIA_FLOWER_BRACKET = registerBlock( "long_acacia_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_DARK_OAK_FLOWER_BRACKET = registerBlock( "long_dark_oak_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_OAK_FLOWER_BRACKET = registerBlock( "long_oak_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_CHERRY_FLOWER_BRACKET = registerBlock( "long_cherry_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_SPRUCE_FLOWER_BRACKET = registerBlock( "long_spruce_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
+    //斗拱
+    public static final RegistryObject<Block> MANGROVE_DOUGONG = registerBlock( "mangrove_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> BIRCH_DOUGONG = registerBlock( "birch_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> JUNGLE_DOUGONG = registerBlock( "jungle_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> CRIMSON_DOUGONG = registerBlock( "crimson_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> WARPED_DOUGONG = registerBlock( "warped_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> ACACIA_DOUGONG = registerBlock( "acacia_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> DARK_OAK_DOUGONG = registerBlock( "dark_oak_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> OAK_DOUGONG = registerBlock( "oak_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> CHERRY_DOUGONG = registerBlock( "cherry_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SPRUCE_DOUGONG = registerBlock( "spruce_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
+    //绿、青斗拱
+    public static final RegistryObject<Block> GREEN_DOUGONG = registerBlock( "green_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> BLUE_DOUGONG = registerBlock( "blue_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
+
 
     //矿石
     public static final RegistryObject<Block> AG_ORE = registerBlock("ag_ore",

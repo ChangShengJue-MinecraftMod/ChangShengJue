@@ -492,6 +492,16 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.SHORT_OAK_BACK_BRACKET.get());
                 output.accept(ChangShengJueBlocks.SHORT_CHERRY_BACK_BRACKET.get());
                 output.accept(ChangShengJueBlocks.SHORT_SPRUCE_BACK_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_MANGROVE_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_BIRCH_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_JUNGLE_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_CRIMSON_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_WARPED_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_ACACIA_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_DARK_OAK_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_OAK_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_CHERRY_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.SHORT_SPRUCE_FLOWER_BRACKET.get());
                 output.accept(ChangShengJueBlocks.LONG_MANGROVE_BACK_BRACKET.get());
                 output.accept(ChangShengJueBlocks.LONG_BIRCH_BACK_BRACKET.get());
                 output.accept(ChangShengJueBlocks.LONG_JUNGLE_BACK_BRACKET.get());
@@ -502,7 +512,28 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.LONG_OAK_BACK_BRACKET.get());
                 output.accept(ChangShengJueBlocks.LONG_CHERRY_BACK_BRACKET.get());
                 output.accept(ChangShengJueBlocks.LONG_SPRUCE_BACK_BRACKET.get());
-
+                output.accept(ChangShengJueBlocks.LONG_MANGROVE_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_BIRCH_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_JUNGLE_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_CRIMSON_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_WARPED_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_ACACIA_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_DARK_OAK_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_OAK_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_CHERRY_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.LONG_SPRUCE_FLOWER_BRACKET.get());
+                output.accept(ChangShengJueBlocks.MANGROVE_DOUGONG.get());
+                output.accept(ChangShengJueBlocks.BIRCH_DOUGONG.get());
+                output.accept(ChangShengJueBlocks.JUNGLE_DOUGONG.get());
+                output.accept(ChangShengJueBlocks.CRIMSON_DOUGONG.get());
+                output.accept(ChangShengJueBlocks.WARPED_DOUGONG.get());
+                output.accept(ChangShengJueBlocks.ACACIA_DOUGONG.get());
+                output.accept(ChangShengJueBlocks.DARK_OAK_DOUGONG.get());
+                output.accept(ChangShengJueBlocks.OAK_DOUGONG.get());
+                output.accept(ChangShengJueBlocks.CHERRY_DOUGONG.get());
+                output.accept(ChangShengJueBlocks.SPRUCE_DOUGONG.get());
+                output.accept(ChangShengJueBlocks.GREEN_DOUGONG.get());
+                output.accept(ChangShengJueBlocks.BLUE_DOUGONG.get());
 
                 output.accept(ChangShengJueBlocks.WIND_CHIME.get());
             }).build());

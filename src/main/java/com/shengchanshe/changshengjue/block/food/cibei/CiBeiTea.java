@@ -21,9 +21,9 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class CiBeiTea extends CiBeiTypeBlock{
     protected static final VoxelShape PLATE_SHAPE = Block.box(5.5D, 0.0D, 5.5D, 10.5D, 5.0D, 10.5D);
     protected static final VoxelShape PIE_SHAPE = Shapes.joinUnoptimized(PLATE_SHAPE, Block.box(6.5D, 1.0D, 6.5D, 9.5D, 5.0D, 9.5D), BooleanOp.OR);
-    protected static int eff;
-    protected static int fed;
-    protected static float fedpro;
+    protected int eff;
+    protected int fed;
+    protected float fedpro;
 
 
 
@@ -34,8 +34,6 @@ public class CiBeiTea extends CiBeiTypeBlock{
         this.fedpro = fedpro;
     }
 
-    private void addEffect(MobEffect effect) {
-    }
 
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
         super.addFed(level, pos, state, player, hand, this.fed, this.fedpro);
@@ -51,7 +49,7 @@ public class CiBeiTea extends CiBeiTypeBlock{
     }
 
 
-        @Override
+    @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return state.getValue(TYPES) == 0 ? PLATE_SHAPE : PIE_SHAPE;
     }

@@ -1,4 +1,4 @@
-package com.shengchanshe.changshengjue.block.custom;
+package com.shengchanshe.changshengjue.block.custom.bracket;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -35,11 +35,6 @@ public class ChineseBracketShort extends Block implements SimpleWaterloggedBlock
     protected static final VoxelShape WEST_AABB = Block.box(0.0, 0.0, 7.0, 16.0, 16.0, 9.0);
     protected static final VoxelShape EAST_AABB = Block.box(0.0, 0.0, 7.0, 16.0, 16.0, 9.0);
 
-    // 侧面碰撞箱
-    protected static final VoxelShape NORTH_SIDE_AABB =  Block.box(7.0, 0.0, 0.0, 9.0, 16.0, 16.0);
-    protected static final VoxelShape SOUTH_SIDE_AABB =  Block.box(7.0, 0.0, 0.0, 9.0, 16.0, 16.0);
-    protected static final VoxelShape WEST_SIDE_AABB =  Block.box(0.0, 0.0, 7.0, 16.0, 16.0, 9.0);
-    protected static final VoxelShape EAST_SIDE_AABB =  Block.box(0.0, 0.0, 7.0, 16.0, 16.0, 9.0);
 
     public ChineseBracketShort(Properties properties) {
         super(properties);
@@ -56,11 +51,11 @@ public class ChineseBracketShort extends Block implements SimpleWaterloggedBlock
 
         if (isSide) {
             return switch (direction) {
-                case NORTH -> NORTH_SIDE_AABB;
-                case SOUTH -> SOUTH_SIDE_AABB;
-                case WEST -> WEST_SIDE_AABB;
-                case EAST -> EAST_SIDE_AABB;
-                default -> NORTH_SIDE_AABB;
+                case NORTH -> NORTH_AABB;
+                case SOUTH -> SOUTH_AABB;
+                case WEST -> WEST_AABB;
+                case EAST -> EAST_AABB;
+                default -> NORTH_AABB;
             };
         } else {
             return switch (direction) {
@@ -174,6 +169,8 @@ public class ChineseBracketShort extends Block implements SimpleWaterloggedBlock
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 }
+
+
 
 
 

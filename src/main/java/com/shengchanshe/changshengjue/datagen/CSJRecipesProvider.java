@@ -47,6 +47,20 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
         planksFromLog(consumer, ChangShengJueBlocks.JI_CHI_MU_PLANKS.get(), CSJTags.Items.JI_CHI_MU_LOG, 4);
         planksFromLog(consumer, ChangShengJueBlocks.ZI_TAN_PLANKS.get(), CSJTags.Items.ZI_TAN_LOG, 4);
 
+        ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.BLUE_DOUGONG.get())
+                .requires(ChangShengJueBlocks.GREEN_DOUGONG.get())
+                .requires(Tags.Items.DYES_BLUE)
+                .unlockedBy("has_green_dougong", has(ChangShengJueBlocks.GREEN_DOUGONG.get()))
+                .save(consumer);
+
+        ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.GREEN_DOUGONG.get())
+                .requires(ChangShengJueBlocks.BLUE_DOUGONG.get())
+                .requires(Tags.Items.DYES_GREEN)
+                .unlockedBy("has_blue_dougong", has(ChangShengJueBlocks.BLUE_DOUGONG.get()))
+                .save(consumer);
+
+
+
         //建筑方块
         ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.HANG_TU_BLOCK.get(),6).requires(Blocks.DIRT,9).unlockedBy("has_dirt",has(Blocks.DIRT)).save(consumer);
         stairBuilder(ChangShengJueBlocks.HANG_TU_STAIRS.get(), Ingredient.of(ChangShengJueBlocks.HANG_TU_BLOCK.get())).unlockedBy("has_hang_tu_block", has(ChangShengJueBlocks.HANG_TU_BLOCK.get())).save(consumer);
@@ -1300,6 +1314,8 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .requires(ChangShengJueItems.GRAPE.get(),3).requires(ChangShengJueItems.CI_BEI.get())
                 .unlockedBy("has_cups",has(ChangShengJueItems.CI_BEI.get()))
                 .save(consumer);
+
+
 
         foodCooking(Ingredient.of(ChangShengJueItems.CORN.get()),ChangShengJueItems.BAKED_CORN.get(),1,consumer,"baked_corn");
 

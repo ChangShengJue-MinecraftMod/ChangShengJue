@@ -1,4 +1,4 @@
-package com.shengchanshe.changshengjue.block.custom;
+package com.shengchanshe.changshengjue.block.custom.bracket;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,7 +19,6 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ChineseBracketLong extends Block implements SimpleWaterloggedBlock {
@@ -32,12 +31,6 @@ public class ChineseBracketLong extends Block implements SimpleWaterloggedBlock 
     protected static final VoxelShape SOUTH_AABB = Block.box(7.0, 0.0, 0.0, 9.0, 16.0, 16.0);
     protected static final VoxelShape WEST_AABB = Block.box(0.0, 0.0, 7.0, 16.0, 16.0, 9.0);
     protected static final VoxelShape EAST_AABB = Block.box(0.0, 0.0, 7.0, 16.0, 16.0, 9.0);
-
-    // 侧面碰撞箱
-    protected static final VoxelShape NORTH_SIDE_AABB =  Block.box(7.0, 0.0, 0.0, 9.0, 16.0, 16.0);
-    protected static final VoxelShape SOUTH_SIDE_AABB =  Block.box(7.0, 0.0, 0.0, 9.0, 16.0, 16.0);
-    protected static final VoxelShape WEST_SIDE_AABB =  Block.box(0.0, 0.0, 7.0, 16.0, 16.0, 9.0);
-    protected static final VoxelShape EAST_SIDE_AABB =  Block.box(0.0, 0.0, 7.0, 16.0, 16.0, 9.0);
 
     public ChineseBracketLong(Properties properties) {
         super(properties);
@@ -55,11 +48,11 @@ public class ChineseBracketLong extends Block implements SimpleWaterloggedBlock 
 
         if (isSide) {
             return switch (direction) {
-                case NORTH -> NORTH_SIDE_AABB;
-                case SOUTH -> SOUTH_SIDE_AABB;
-                case WEST -> WEST_SIDE_AABB;
-                case EAST -> EAST_SIDE_AABB;
-                default -> NORTH_SIDE_AABB;
+                case NORTH -> NORTH_AABB;
+                case SOUTH -> SOUTH_AABB;
+                case WEST -> WEST_AABB;
+                case EAST -> EAST_AABB;
+                default -> NORTH_AABB;
             };
         } else {
             return switch (direction) {
@@ -94,20 +87,17 @@ public class ChineseBracketLong extends Block implements SimpleWaterloggedBlock 
             // 顶面放置时，使用玩家的水平朝向
             facing = context.getHorizontalDirection();
         }
-        System.out.println("1");
 
         // 检查主体方块是否可以放置
         if (!canMainSurvive(context.getLevel(), pos, facing, isSidePlacement || isBottomPlacement, clickedFace)) {
             return null;
         }
-        System.out.println("2");
 
         // 检查第二个方块位置是否可放置
         BlockPos secondPos = getSecondPosition(pos, facing);
         if (!context.getLevel().getBlockState(secondPos).canBeReplaced(context)) {
             return null;
         }
-        System.out.println("3");
 
         // 创建主方块状态
         BlockState mainState = this.defaultBlockState()
@@ -115,16 +105,6 @@ public class ChineseBracketLong extends Block implements SimpleWaterloggedBlock 
                 .setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER)
                 .setValue(MAIN_PART, true)
                 .setValue(ATTACHED_TO_SIDE, isSidePlacement || isBottomPlacement);
-
-        // 创建第二个方块状态（次要结构不需要检查依附）
-        BlockState secondState = this.defaultBlockState()
-                .setValue(FACING, facing)
-                .setValue(WATERLOGGED, context.getLevel().getFluidState(secondPos).getType() == Fluids.WATER)
-                .setValue(MAIN_PART, false)
-                .setValue(ATTACHED_TO_SIDE, isSidePlacement || isBottomPlacement);
-
-        // 放置第二个方块
-        context.getLevel().setBlock(secondPos, secondState, 3);
 
         return mainState;
     }
@@ -151,19 +131,22 @@ public class ChineseBracketLong extends Block implements SimpleWaterloggedBlock 
             boolean isSide = state.getValue(ATTACHED_TO_SIDE);
             BlockPos secondPos = getSecondPosition(pos, facing);
 
-            BlockState secondState = this.defaultBlockState()
-                    .setValue(FACING, facing)
-                    .setValue(WATERLOGGED, level.getFluidState(secondPos).getType() == Fluids.WATER)
-                    .setValue(MAIN_PART, false)
-                    .setValue(ATTACHED_TO_SIDE, isSide);
+            // 确保主方块存在时才放置次要方块
+            if (level.getBlockState(pos).getBlock() == this && level.getBlockState(pos).getValue(MAIN_PART)) {
+                BlockState secondState = this.defaultBlockState()
+                        .setValue(FACING, facing)
+                        .setValue(WATERLOGGED, level.getFluidState(secondPos).getType() == Fluids.WATER)
+                        .setValue(MAIN_PART, false)
+                        .setValue(ATTACHED_TO_SIDE, isSide);
 
-            level.setBlock(secondPos, secondState, 3);
+                level.setBlock(secondPos, secondState, 3);
+            }
         }
     }
 
     @Override
     public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
-        if (!level.isClientSide && player.isCreative()) {
+        if (!level.isClientSide) {
             removeBothParts(level, pos, state, player);
         }
         super.playerWillDestroy(level, pos, state, player);
@@ -171,6 +154,7 @@ public class ChineseBracketLong extends Block implements SimpleWaterloggedBlock 
 
     private void removeBothParts(Level level, BlockPos pos, BlockState state, Player player) {
         if (state.getValue(MAIN_PART)) {
+            // 如果是主方块被破坏，移除次要方块
             Direction facing = state.getValue(FACING);
             BlockPos secondPos = getSecondPosition(pos, facing);
             BlockState secondState = level.getBlockState(secondPos);
@@ -179,6 +163,7 @@ public class ChineseBracketLong extends Block implements SimpleWaterloggedBlock 
                 level.levelEvent(player, 2001, secondPos, Block.getId(secondState));
             }
         } else {
+            // 如果是次要方块被破坏，移除主方块
             BlockPos mainPos = getMainPosition(pos, state.getValue(FACING));
             BlockState mainState = level.getBlockState(mainPos);
             if (mainState.getBlock() == this && mainState.getValue(MAIN_PART)) {
@@ -245,22 +230,23 @@ public class ChineseBracketLong extends Block implements SimpleWaterloggedBlock 
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        // 只检查主体方块的依附情况
         if (state.getValue(MAIN_PART)) {
+            // 主方块需要检查依附
             if (state.getValue(ATTACHED_TO_SIDE)) {
-                // 主体侧面依附：检查侧面方块是否稳固
                 Direction facing = state.getValue(FACING);
                 Direction attachDirection = facing.getOpposite();
                 BlockPos attachPos = pos.relative(attachDirection);
                 return level.getBlockState(attachPos).isFaceSturdy(level, attachPos, facing);
             } else {
-                // 主体地面依附：检查下方方块是否稳固
                 return level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP);
             }
+        } else {
+            // 次要方块需要检查主方块是否存在
+            Direction facing = state.getValue(FACING);
+            BlockPos mainPos = getMainPosition(pos, facing);
+            BlockState mainState = level.getBlockState(mainPos);
+            return mainState.getBlock() == this && mainState.getValue(MAIN_PART);
         }
-
-        // 次要结构不需要单独检查依附，只需确保主体存在
-        return true;
     }
 
     @Override
