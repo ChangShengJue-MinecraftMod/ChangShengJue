@@ -33,7 +33,7 @@ import org.jetbrains.annotations.Nullable;
 public class WeaponRackEntity extends BlockEntity {
     private float rotation = 0.0f;
 
-    private Vec2 itemOffset = new Vec2(8.0f, 160.0f); // 默认居中位置
+    private Vec2 itemOffset = new Vec2(0.0f, 0.0f); // 默认居中位置
     private float rotationOffset = 100.0f;
 
 //    // 添加设置偏移量的方法

@@ -5,18 +5,7 @@ import com.mojang.math.Axis;
 import com.shengchanshe.changshengjue.block.custom.WeaponRack;
 import com.shengchanshe.changshengjue.block.entity.WeaponRackEntity;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
-import com.shengchanshe.changshengjue.item.combat.clubbed.BeatDogStick;
-import com.shengchanshe.changshengjue.item.combat.clubbed.BeatDogStickRender;
-import com.shengchanshe.changshengjue.item.combat.clubbed.PanHuaGun;
-import com.shengchanshe.changshengjue.item.combat.clubbed.PanHuaGunRender;
-import com.shengchanshe.changshengjue.item.combat.knife.*;
-import com.shengchanshe.changshengjue.item.combat.lance.BaWangQiang;
-import com.shengchanshe.changshengjue.item.combat.lance.BaWangQiangRender;
-import com.shengchanshe.changshengjue.item.combat.lance.RedTasselledSpear;
-import com.shengchanshe.changshengjue.item.combat.lance.RedTasselledSpearRender;
-import com.shengchanshe.changshengjue.item.combat.sword.*;
 import net.minecraft.client.Minecraft;
-
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -27,7 +16,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.phys.Vec2;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -173,4 +161,68 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
     public WeaponRackRender(BlockEntityRendererProvider.Context context) {
     }
 }
+//package com.shengchanshe.changshengjue.block.entity.render;
+//
+//import com.mojang.blaze3d.vertex.PoseStack;
+//import com.mojang.math.Axis;
+//import com.shengchanshe.changshengjue.block.entity.WeaponRackEntity;
+//import net.minecraft.client.Minecraft;
+//import net.minecraft.client.renderer.LevelRenderer;
+//import net.minecraft.client.renderer.MultiBufferSource;
+//import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+//import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+//import net.minecraft.client.renderer.entity.ItemRenderer;
+//import net.minecraft.client.resources.model.BakedModel;
+//import net.minecraft.core.Direction;
+//import net.minecraft.world.item.ItemDisplayContext;
+//import net.minecraft.world.item.ItemStack;
+//import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+//import net.minecraft.world.phys.Vec2;
+//import net.minecraftforge.api.distmarker.Dist;
+//import net.minecraftforge.api.distmarker.OnlyIn;
+//
+//import java.util.Objects;
+//
+//@OnlyIn(Dist.CLIENT)
+//public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
+//    public WeaponRackRender(BlockEntityRendererProvider.Context context) {
+//    }
+//    @Override
+//    public void render(WeaponRackEntity entity, float partialTick, PoseStack poseStack,
+//                       MultiBufferSource buffer, int packedLight, int packedOverlay) {
+//        poseStack.pushPose();
+//        Direction opposite = entity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING).getOpposite();
+//        ItemStack stack = entity.getInventory().getStackInSlot(0);//获取方块实体中第一个物品栏的物品
+//        if (!stack.isEmpty()){
+//            poseStack.translate(0.5,0.6,0.5);
+//            ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+//            BakedModel model = itemRenderer.getModel(stack, entity.getLevel(), null, 0);
+//            float rotationDegrees = opposite.toYRot();
+//            poseStack.mulPose(Axis.YP.rotationDegrees(rotationDegrees + 90f));
+//            switch (opposite) {
+//                case EAST, WEST ->  poseStack.mulPose(Axis.ZN.rotationDegrees(15));
+//                case SOUTH,NORTH  ->  poseStack.mulPose(Axis.ZP.rotationDegrees(15));
+//                default -> poseStack.mulPose(Axis.XP.rotationDegrees(15));
+//            }
+//            int light = LevelRenderer.getLightColor(Objects.requireNonNull(entity.getLevel()), entity.getBlockPos());
+//            Vec2 itemOffset = entity.getItemOffset();
+//            poseStack.translate(itemOffset.x,itemOffset.y,0);
+//            poseStack.scale(1.0f,1.0f,1.0f);
+//            if (entity.getLevel() != null){
+//                itemRenderer.render(
+//                        stack,
+//                        ItemDisplayContext.NONE,
+//                        false,
+//                        poseStack,
+//                        buffer,
+//                        light,
+//                        packedOverlay,
+//                        model
+//                );
+//            }
+//        }
+//        poseStack.popPose();
+//    }
+//}
+//
 

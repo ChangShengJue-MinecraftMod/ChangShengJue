@@ -37,6 +37,7 @@ import java.util.function.Consumer;
 
 public class RedTasselledSpear extends Lance implements GeoItem , Vanishable{
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private Player player;
     public RedTasselledSpear() {
         super(Tiers.IRON, 3, -2.4F, new Item.Properties());
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
@@ -110,7 +111,7 @@ public class RedTasselledSpear extends Lance implements GeoItem , Vanishable{
                             $$18 = SoundEvents.TRIDENT_RIPTIDE_1;
                         }
 
-                        pLevel.playSound((Player)null, player, $$18, SoundSource.PLAYERS, 1.0F, 1.0F);
+                        pLevel.playSound(null, player, $$18, SoundSource.PLAYERS, 1.0F, 1.0F);
                     }
                 }
             }
@@ -140,6 +141,7 @@ public class RedTasselledSpear extends Lance implements GeoItem , Vanishable{
         if (!pLevel.isClientSide) {
             ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
             if (itemstack.getItem() instanceof Lance) {
+                player = pPlayer;
                 if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
                     pPlayer.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
                         if (gaoMarksmanship.getGaoMarksmanshipLevel() >= 1 && !pPlayer.isShiftKeyDown()){
@@ -150,6 +152,10 @@ public class RedTasselledSpear extends Lance implements GeoItem , Vanishable{
             }
         }
         return super.use(pLevel, pPlayer, pUsedHand);
+    }
+
+    public Player getPlayer() {
+        return player;
     }
 
     @Override

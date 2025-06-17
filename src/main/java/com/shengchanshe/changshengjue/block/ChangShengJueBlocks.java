@@ -287,7 +287,7 @@ public class ChangShengJueBlocks {
     //地肤草
     public static final RegistryObject<Block> KOCHIA_SCOPARIA_BLOCK = registerBlock("kochia_scoparia_block",
             ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION)){
-                protected static final VoxelShape SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
+                private static final VoxelShape SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 16.0D, 13.0D);
                 @Override
                 public VoxelShape getShape(BlockState p_53517_, BlockGetter p_53518_, BlockPos p_53519_, CollisionContext p_53520_) {
                     Vec3 vec3 = p_53517_.getOffset(p_53518_, p_53519_);
@@ -300,7 +300,7 @@ public class ChangShengJueBlocks {
     //水仙
     public static final RegistryObject<Block> SHUI_XIAN_BLOCK = registerBlock("shui_xian_block",
             ()-> new FlowerBlock(MobEffects.LEVITATION,8,BlockBehaviour.Properties.copy(Blocks.DANDELION)){
-                protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+                private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
                 @Override
                 public VoxelShape getShape(BlockState p_53517_, BlockGetter p_53518_, BlockPos p_53519_, CollisionContext p_53520_) {
                     Vec3 vec3 = p_53517_.getOffset(p_53518_, p_53519_);
@@ -340,8 +340,8 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> RAPE_FLOWERS = registerBlock("rape_flowers",
             ()-> new DoublePlantBlock(BlockBehaviour.Properties.copy(Blocks.SUNFLOWER)));
     //荠菜
-    public static final RegistryObject<Block> CAPSULE_BLOCK = registerBlockWithoutBlockItem("capsule_block",
-            ()-> new CapsuleBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
+    public static final RegistryObject<Block> CAPSULE_BLOCK = registerBlock("capsule_block",
+            ()-> new CapsuleBlock(BlockBehaviour.Properties.copy(Blocks.DANDELION)));
     //大针茅
     public static final RegistryObject<Block> STIPA_GRANDIS = registerBlock("stipa_grandis",
             ()-> new TallGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS)));

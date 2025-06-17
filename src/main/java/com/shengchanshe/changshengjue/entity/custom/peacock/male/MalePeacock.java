@@ -66,7 +66,6 @@ public class MalePeacock extends AbstractPeacock {
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
-        this.entityData.define(DISPLAYING, tag.getBoolean("Displaying"));
         this.entityData.set(DATA_ID_TYPE_VARIANT,tag.getInt("Variant"));
     }
 

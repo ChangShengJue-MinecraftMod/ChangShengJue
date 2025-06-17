@@ -159,7 +159,7 @@ public class CSJPlacedFeatures {
                         InSquarePlacement.spread(),PlacementUtils.HEIGHTMAP,BiomeFilter.biome()));
 
         register(context,CAPSULE_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.CAPSULE),
-                List.of(RarityFilter.onAverageOnceEvery(16),
+                List.of(RarityFilter.onAverageOnceEvery(8),
                         InSquarePlacement.spread(),PlacementUtils.HEIGHTMAP,BiomeFilter.biome()));
 
         register(context,STIPA_GRANDIS_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.STIPA_GRANDIS),
@@ -176,7 +176,7 @@ public class CSJPlacedFeatures {
 
         //野生大麦
         register(context,WILDLIFE_HORDEUM_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.WILDLIFE_HORDEUM),
-                List.of(RarityFilter.onAverageOnceEvery(3),//生成几率,值越小生成的越多
+                List.of(RarityFilter.onAverageOnceEvery(8),//生成几率,值越小生成的越多
                         InSquarePlacement.spread(),PlacementUtils.HEIGHTMAP,BiomeFilter.biome()));
         //哈密瓜
         register(context,CANTALOUPE_BLOCK_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.CANTALOUPE_BLOCK),
