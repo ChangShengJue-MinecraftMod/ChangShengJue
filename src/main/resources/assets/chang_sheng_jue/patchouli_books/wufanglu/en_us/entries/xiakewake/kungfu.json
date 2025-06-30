@@ -8,7 +8,7 @@
       "title": "武功秘籍",
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:immortal_miracle",
-      "text": "通过完成帮派任务、村庄任务有概率会获取到武功秘籍；击杀会武功的NPC也有概率掉落武功秘籍。"
+      "text": "通过完成帮派任务、村庄任务有概率会获取到武功秘籍；击杀会武功的NPC也有概率掉落武功秘籍。使用武器类外功用对应武器右键即可施展；不使用武器类外功则需右键对应外功秘籍，再使用金丝手套施展。"
     },
     {
       "type": "patchouli:text",

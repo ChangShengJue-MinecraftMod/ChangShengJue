@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.shaolin_stick_met
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
+import com.shengchanshe.changshengjue.event.CSJEvent;
 import com.shengchanshe.changshengjue.item.combat.clubbed.Clubbed;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -68,7 +69,7 @@ public class ShaolinStickMethodHudOverlay {
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                CSJDisplayHud.displayHudPermanent1(getShaolinStickMethodLevel,frameTime(),8,playerCanOpened(),guiGraphics,SHAOLIN_STICK_METHOD,SHAOLIN_STICK_METHOD_1,SHAOLIN_STICK_METHOD_2,COOLING,gui.getFont(),x,y);
+                CSJDisplayHud.displayHudPermanent1(getShaolinStickMethodLevel,frameTime(), CSJEvent.hasWheatNuggetsTributeWine ? 6.5f:8,playerCanOpened(),guiGraphics,SHAOLIN_STICK_METHOD,SHAOLIN_STICK_METHOD_1,SHAOLIN_STICK_METHOD_2,COOLING,gui.getFont(),x,y);
                 CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
                         ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".shaolin_stick_method"),x, y,ChatFormatting.RED.getColor());
 //                if (getShaolinStickMethodLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图

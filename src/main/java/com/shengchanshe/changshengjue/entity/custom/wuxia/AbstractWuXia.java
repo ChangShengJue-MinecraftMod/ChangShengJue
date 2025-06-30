@@ -161,7 +161,7 @@ public class AbstractWuXia extends AbstractVillager implements NeutralMob {
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         if (this instanceof AbstractGangLeader) return;
-        this.entityData.define(ATTACKING, pCompound.getBoolean("Attack"));
+//        this.entityData.define(ATTACKING, pCompound.getBoolean("Attack"));
         if (pCompound.contains("ExternalKungFuType")) {
             String kungFuType = pCompound.getString("ExternalKungFuType");
             this.externalKungFuCapability = ExternalKungFuManager.createExternalKungFuCapabilityFromTag(kungFuType);

@@ -78,10 +78,10 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
 
             Direction facing = entity.getBlockState().getValue(WeaponRack.FACING);
 
-            poseStack.translate( 0.5,0.5, 0.5);
+            poseStack.translate( 0.5,0.55, 0.5);
             poseStack.mulPose(Axis.XP.rotationDegrees(0f));
-            poseStack.mulPose(Axis. YP.rotationDegrees(rotetionDegress+90f));//渲染时会将物品y轴旋转
-            poseStack.mulPose(Axis.ZP.rotationDegrees(25f));//渲染时会将物品X轴旋转
+            poseStack.mulPose(Axis.YP.rotationDegrees(rotetionDegress+90f));//渲染时会将物品y轴旋转
+            poseStack.mulPose(Axis.ZP.rotationDegrees(20f));//渲染时会将物品X轴旋转
 
 
             switch (facing)
@@ -89,7 +89,7 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
                 case EAST:
                     poseStack.mulPose(Axis.ZP.rotationDegrees(0));//渲染时会将物品X轴旋转
                 case WEST:
-                    poseStack.mulPose(Axis.ZP.rotationDegrees(-50f));//渲染时会将物品X轴旋转
+                    poseStack.mulPose(Axis.ZP.rotationDegrees(-45));//渲染时会将物品X轴旋转
 
             }
             if(checkModWeapon(itemStack)) {
@@ -126,14 +126,14 @@ public class WeaponRackRender implements BlockEntityRenderer<WeaponRackEntity> {
 
             } else if (itemStack.getItem().equals(ChangShengJueItems.SOFT_SWORD.get())) {
                 // 应用缩放
-                float scale = 0.8f;
+                float scale = 1.0f;
                 poseStack.scale(scale, scale, scale);
 
             } else {
                 switch (facing)
                 {
-                    case EAST:
-                        poseStack.mulPose(Axis. YP.rotationDegrees(rotetionDegress));//渲染时会将物品y轴旋转
+                    case EAST,NORTH,SOUTH:
+                        poseStack.mulPose(Axis. YP.rotationDegrees(rotetionDegress+90));//渲染时会将物品y轴旋转
                     case WEST:
                         poseStack.mulPose(Axis. YP.rotationDegrees(rotetionDegress));//渲染时会将物品y轴旋转
 

@@ -49,21 +49,29 @@ public class BullionsCastingMolds extends BaseEntityBlock {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         ItemStack mainHandItem = pPlayer.getMainHandItem();
         ItemStack offhandItem = pPlayer.getOffhandItem();
-        if (handItem(mainHandItem,offhandItem)){
-            if (blockEntity instanceof BullionsCastingMoldsBlockEntity entity){
-                if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? pPlayer.getMainHandItem().copy() : pPlayer.getMainHandItem())){
-                    pPlayer.setItemInHand(InteractionHand.MAIN_HAND, ChangShengJueItems.CRUCIBLE.get().getDefaultInstance());
-                    return InteractionResult.SUCCESS;
+
+        if (blockEntity instanceof BullionsCastingMoldsBlockEntity entity) {
+            ItemStackHandler inventory = entity.getInventory();
+
+            // 检查是否为空槽位且手持有效坩埚
+            if (inventory.getStackInSlot(0).isEmpty() && inventory.getStackInSlot(1).isEmpty()) {
+                if (mainHandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get() ||
+                        offhandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get() ||
+                        mainHandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get() ||
+                        offhandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get()) {
+
+                    if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? mainHandItem.copy() : mainHandItem)) {
+                        pPlayer.setItemInHand(InteractionHand.MAIN_HAND, ChangShengJueItems.CRUCIBLE.get().getDefaultInstance());
+                        return InteractionResult.SUCCESS;
+                    }
                 }
-            }
-            return InteractionResult.CONSUME;
-        }else {
-            if (blockEntity instanceof BullionsCastingMoldsBlockEntity) {
-                ((BullionsCastingMoldsBlockEntity) blockEntity).drops();
+            } else {
+                // 槽位有物品时执行掉落逻辑
+                entity.drops();
                 return InteractionResult.SUCCESS;
             }
-            return InteractionResult.CONSUME;
         }
+        return InteractionResult.CONSUME;
     }
     public boolean handItem(ItemStack mainHandItem,ItemStack offhandItem){
         return mainHandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get() || offhandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get()

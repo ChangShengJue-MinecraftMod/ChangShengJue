@@ -532,7 +532,12 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get())
                 .add(ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get());
         //门
-        this.tag(BlockTags.WOODEN_DOORS).addTag(CSJTags.Blocks.DOORS);
+        this.tag(BlockTags.WOODEN_DOORS).addTag(CSJTags.Blocks.DOORS)
+                .add(ChangShengJueBlocks.DOOR_BIRCH_BLOCK.get())
+                .add(ChangShengJueBlocks.DOOR_ACACIA_BLOCK.get())
+                .add(ChangShengJueBlocks.DOOR_DARK_OAK_BLOCK.get())
+                .add(ChangShengJueBlocks.DOOR_OAK_BLOCK.get())
+                .add(ChangShengJueBlocks.DOOR_SPRUCE_BLOCK.get());;
         //树叶
         this.tag(BlockTags.LEAVES)
                 .add(ChangShengJueBlocks.MULBERRY_LEAVES.get())

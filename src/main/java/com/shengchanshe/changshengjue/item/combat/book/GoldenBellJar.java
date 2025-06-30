@@ -232,7 +232,7 @@ public class GoldenBellJar extends Item {
                                 } else {
                                     goldenBellJar.setGoldenBellJarUseCooldownPercent(!player.getAbilities().instabuild ? 160 : 0);
                                 }
-                                player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 160, goldenBellJar.getGoldenBellJarLevel() > 1 ? 5 : 3, true, true), player);
+                                player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 160, goldenBellJar.getGoldenBellJarLevel() > 1 ? 4 : 2, true, true), player);
                                 player.playSound(ChangShengJueSound.GOLDEN_BELLJAR_SOUND.get(), 1.0F, 1.0F);
 
                                 if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())) {

@@ -53,19 +53,21 @@ public class GoldThreadGlove extends SwordItem implements GeoItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+        ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
+
         if (!pLevel.isClientSide) {
             if (pPlayer.getFoodData().getFoodLevel() > 8) {
-                ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
                 if (itemstack.getItem() instanceof GoldThreadGlove) {
                     GeShanDaNiu.onGeShanDaNiu(pLevel, pPlayer);
 //                    GoldenBellJar.onGoldenBellJar(pLevel, pPlayer);
                     Hercules.onHercules(pLevel, pPlayer);
 //                    QianKunDaNuoYi.onQianKunDaNuoYi(pLevel, pPlayer);
                     TurtleBreathWork.onTurtleBreathWork(pLevel, pPlayer);
+                    return InteractionResultHolder.success(pPlayer.getMainHandItem());
                 }
             }
         }
-        return InteractionResultHolder.success(pPlayer.getMainHandItem());
+        return super.use(pLevel, pPlayer, pUsedHand);
     }
 
     @Override

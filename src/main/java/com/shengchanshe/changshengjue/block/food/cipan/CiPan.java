@@ -29,7 +29,6 @@ public class CiPan extends PanTypeBlock {
         put(level, pos, player, hand, ChangShengJueItems.MI_FAN.get(), ChangShengJueBlocks.MI_FAN_PAN.get());
         put(level, pos, player, hand, ChangShengJueItems.XIAO_MI_FAN.get(), ChangShengJueBlocks.XIAO_MI_FAN_PAN.get());
         put(level, pos, player, hand, ChangShengJueItems.SORGHUM_CAKE.get(), ChangShengJueBlocks.SORGHUM_CAKE_PAN.get());
-        super.addFed(level, pos, state, player, hand, fed, fedpro);
         return InteractionResult.SUCCESS;
     }
     @Override

@@ -7,6 +7,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_te
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.combat.beat_dog_stick.BeatDogStickAttackEntity;
+import com.shengchanshe.changshengjue.event.CSJEvent;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.ShaolinStickMethodPacket;
@@ -74,7 +75,7 @@ public class Clubbed extends SwordItem {
                             if (pPlayer.getMainHandItem().canDisableShield(livingEntity.getUseItem(), livingEntity, pPlayer)) {
                                 if (probability < 0.5) {
                                     // 强制打破目标玩家的防御状态（禁用盾牌防御）
-                                    pPlayer.getCooldowns().addCooldown(pPlayer.getUseItem().getItem(), 100);
+                                    pPlayer.getCooldowns().addCooldown(pPlayer.getUseItem().getItem(), CSJEvent.hasWheatNuggetsTributeWine ? 70:100);
                                     pPlayer.stopUsingItem();
                                     livingEntity.stopUsingItem();
                                     pPlayer.level().broadcastEntityEvent(pPlayer, (byte) 30);

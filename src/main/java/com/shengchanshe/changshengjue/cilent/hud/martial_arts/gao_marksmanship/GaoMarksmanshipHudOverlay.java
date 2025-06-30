@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.gao_marksmanship;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
+import com.shengchanshe.changshengjue.event.CSJEvent;
 import com.shengchanshe.changshengjue.item.combat.lance.Lance;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -68,7 +69,7 @@ public class GaoMarksmanshipHudOverlay {
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                CSJDisplayHud.displayHudPermanent1(getGaoMarksmanshipLevel,frameTime(),6,playerCanOpened(),guiGraphics,GAO_MARKSMANSHIP,GAO_MARKSMANSHIP_1,GAO_MARKSMANSHIP_2,COOLING,gui.getFont(),x,y);
+                CSJDisplayHud.displayHudPermanent1(getGaoMarksmanshipLevel,frameTime(), CSJEvent.hasWheatNuggetsTributeWine ? 4.5f:6,playerCanOpened(),guiGraphics,GAO_MARKSMANSHIP,GAO_MARKSMANSHIP_1,GAO_MARKSMANSHIP_2,COOLING,gui.getFont(),x,y);
                 CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
                         ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".gao_marksmanship"),x, y,ChatFormatting.RED.getColor());
 //                if (getGaoMarksmanshipLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图

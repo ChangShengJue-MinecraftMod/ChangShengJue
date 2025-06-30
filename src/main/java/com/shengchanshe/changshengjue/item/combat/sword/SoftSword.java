@@ -5,6 +5,7 @@ import com.shengchanshe.changshengjue.capability.martial_arts.the_classics_of_te
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapability;
 import com.shengchanshe.changshengjue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
 import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
+import com.shengchanshe.changshengjue.event.CSJEvent;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
@@ -104,7 +105,7 @@ public class SoftSword extends Sword implements GeoItem {
                         if (player.getMainHandItem().canDisableShield(livingEntity.getUseItem(), livingEntity, player)) {
                             if (probability < 0.5) {
                                 // 强制打破目标玩家的防御状态（禁用盾牌防御）
-                                player.getCooldowns().addCooldown(player.getUseItem().getItem(), 100);
+                                player.getCooldowns().addCooldown(player.getUseItem().getItem(), CSJEvent.hasWheatNuggetsTributeWine ? 70:100);
                                 player.stopUsingItem();
                                 livingEntity.stopUsingItem();
                                 player.level().broadcastEntityEvent(player, (byte) 30);

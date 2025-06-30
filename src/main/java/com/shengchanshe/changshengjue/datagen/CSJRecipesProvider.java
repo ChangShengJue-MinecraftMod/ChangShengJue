@@ -1211,6 +1211,14 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("###")
                 .unlockedBy("has_planks", has(Items.PAPER)).save(consumer);
 
+        //酒坛
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.DECORATIONS, ChangShengJueBlocks.EMPTY_FEN_JIU.get(), 1)
+                .requires(Ingredient.of(Items.CLAY_BALL), 4)
+                .unlockedBy("has_clay_ball", has(Items.CLAY_BALL)).save(consumer);
+
+
+
+
 
         //烧炼配方
         //矿石

@@ -1,6 +1,7 @@
 package com.shengchanshe.changshengjue.network.packet.martial_arts.tread_the_snow_without_trace;
 
 import com.shengchanshe.changshengjue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapabilityProvider;
+import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.sound.ChangShengJueSound;
 import net.minecraft.network.FriendlyByteBuf;
@@ -27,6 +28,12 @@ public class TreadTheSnowWithoutTracePacket2 {
         context.enqueueWork(() -> {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.serverLevel();
+            if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())) {
+                player.setHealth(player.getHealth() + 1);
+            }
+            if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())) {
+                player.getFoodData().eat(1, 0);
+            }
             player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(treadTheSnowWithoutTrace->{
                 treadTheSnowWithoutTrace.setTreadTheSnowWithoutTraceUseCooldownPercent(100);
                 if (treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCount() < 100){

@@ -35,6 +35,8 @@ import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mount
 import com.shengchanshe.changshengjue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.changshengjue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
 import com.shengchanshe.changshengjue.cilent.gui.screens.wuxia.gangleader.ClientQuestDataCache;
+import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
+import com.shengchanshe.changshengjue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.changshengjue.entity.custom.croc.Croc;
 import com.shengchanshe.changshengjue.entity.custom.tiger.Tiger;
 import com.shengchanshe.changshengjue.entity.custom.wuxia.gangleader.other.GangLeader;
@@ -47,6 +49,12 @@ import com.shengchanshe.changshengjue.event.quest.PlayerQuestEvent;
 import com.shengchanshe.changshengjue.event.quest.QuestEvent;
 import com.shengchanshe.changshengjue.init.CSJAdvanceInit;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
+import com.shengchanshe.changshengjue.item.combat.book.GeShanDaNiu;
+import com.shengchanshe.changshengjue.item.combat.book.Hercules;
+import com.shengchanshe.changshengjue.item.combat.book.SunflowerPointCaveman;
+import com.shengchanshe.changshengjue.item.combat.book.TurtleBreathWork;
+import com.shengchanshe.changshengjue.item.combat.glove.GoldThreadGlove;
+import com.shengchanshe.changshengjue.item.combat.stakes.Stakes;
 import com.shengchanshe.changshengjue.item.items.Parcel;
 import com.shengchanshe.changshengjue.item.items.StructureIntelligence;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
@@ -66,8 +74,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -92,8 +103,11 @@ import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.List;
 
+
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJEvent {
+
+    public static boolean hasWheatNuggetsTributeWine = false;
 
     @SubscribeEvent
     public static void onVillagerInteract(PlayerInteractEvent.EntityInteractSpecific event) {
@@ -723,6 +737,9 @@ public class CSJEvent {
     }
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        Player player = event.player;
+        hasWheatNuggetsTributeWine = player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get());
+
         //踏雪无痕
         TreadTheSnowWithoutTraceEvent.onPlayerTick(event);
         //葵花点穴手
@@ -781,16 +798,55 @@ public class CSJEvent {
 
     }
 
+
     //生物受伤事件
     @SubscribeEvent
     public static void onEntityHurt(LivingDamageEvent event){
+        LivingEntity entity = event.getEntity();
+
         ImmortalMiracleEvent.onEntityHurt(event);
+
         GoldenBellJarEvent.onEntityHurt(event);
 
         ArmorEvent.onArmorDamage(event);
 
         QuestEvent.onEntityHurt(event);
         PlayerQuestEvent.onEntityHurt(event);
+
+        if(event.getSource().getEntity() instanceof Player player) {
+            //获取玩家手持物
+            ItemStack itemInHand = player.getMainHandItem();
+            if(itemInHand.getItem() == Items.AIR || itemInHand.getItem() == ChangShengJueItems.GOLD_THREAD_GLOVE.get()){
+                //25%概率给予受伤生物内伤效果
+                if (Math.random() < 0.25) {
+                    MobEffectInstance effect = entity.getEffect(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get());
+                    if (entity.hasEffect(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get())) {
+                        int level = 0;
+                        final int MAX_LEVEL = 4;
+
+                        if (effect != null) {
+                            level = Math.min(effect.getAmplifier() + 1, MAX_LEVEL);
+                        }
+                        entity.addEffect(new MobEffectInstance(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get(), 300, level, true, true, true));
+
+                        // 增加伤害（5% × 等级）
+                        event.setAmount(event.getAmount() * (1 + 0.05f * level));
+                    }else {
+                        entity.addEffect(new MobEffectInstance(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get(), 300, 0, true, true, true));
+                    }
+                }
+
+            }
+//            if (!player.level().isClientSide) {
+//                GeShanDaNiu.comprehend(player,player.level(),entity);
+////            GoldenBellJar.comprehend(player,player.level());
+//                Hercules.comprehend(player,player.level());
+//
+////            QianKunDaNuoYi.comprehend(player,player.level());
+//                SunflowerPointCaveman.comprehend(player,player.level(),entity);
+//                TurtleBreathWork.comprehend(player,player.level());
+//            }
+        }
     }
     //生物死亡事件
     @SubscribeEvent

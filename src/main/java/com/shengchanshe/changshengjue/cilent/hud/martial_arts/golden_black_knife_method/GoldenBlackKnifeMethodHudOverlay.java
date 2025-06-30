@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.golden_black_knif
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
+import com.shengchanshe.changshengjue.event.CSJEvent;
 import com.shengchanshe.changshengjue.item.combat.knife.Knife;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -68,7 +69,7 @@ public class GoldenBlackKnifeMethodHudOverlay {
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                CSJDisplayHud.displayHudPermanent1(getGoldenBlackKnifeMethodLevel,frameTime(),7,playerCanOpened(),guiGraphics,GOLDEN_BLACK_KNIFE_METHOD,GOLDEN_BLACK_KNIFE_METHOD_1,GOLDEN_BLACK_KNIFE_METHOD_2,COOLING,gui.getFont(),x,y);
+                CSJDisplayHud.displayHudPermanent1(getGoldenBlackKnifeMethodLevel,frameTime(), CSJEvent.hasWheatNuggetsTributeWine ? 5.5f:7,playerCanOpened(),guiGraphics,GOLDEN_BLACK_KNIFE_METHOD,GOLDEN_BLACK_KNIFE_METHOD_1,GOLDEN_BLACK_KNIFE_METHOD_2,COOLING,gui.getFont(),x,y);
                 CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
                         ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".golden_black_knife_method"),x, y,ChatFormatting.GOLD.getColor());
 //                if (getGoldenBlackKnifeMethodLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图

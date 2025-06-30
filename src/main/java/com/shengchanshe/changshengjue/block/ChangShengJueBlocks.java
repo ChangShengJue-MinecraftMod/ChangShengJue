@@ -881,11 +881,11 @@ public class ChangShengJueBlocks {
 
     //方块
     public static final RegistryObject<Block> WHITE_JADE_WALL = registerBlock("white_jade_wall",
-            ()-> new WallBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
+            ()-> new WallBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> HANG_TU_WALL = registerBlock("hang_tu_wall",
-            ()-> new WallBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
+            ()-> new WallBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> TU_PEI_WALL = registerBlock("tu_pei_wall",
-            ()-> new WallBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
+            ()-> new WallBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> WHITE_WALLS_BLOCK = registerBlock("white_walls_block",
             ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> COOL_WHITE_WALLS_BLOCK = registerBlock("cool_white_walls_block",

@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.xuannu_swordsmans
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
+import com.shengchanshe.changshengjue.event.CSJEvent;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -68,7 +69,7 @@ public class XuannuSwordsmanshipHudOverlay {
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                CSJDisplayHud.displayHudPermanent1(getXuannuSwordsmanshipLevel,frameTime(),4,playerCanOpened(),guiGraphics,XUANNU_SWORDSMANSHIP,XUANNU_SWORDSMANSHIP_1,XUANNU_SWORDSMANSHIP_2,COOLING,gui.getFont(),x,y);
+                CSJDisplayHud.displayHudPermanent1(getXuannuSwordsmanshipLevel,frameTime(), CSJEvent.hasWheatNuggetsTributeWine ? 2.5f:4,playerCanOpened(),guiGraphics,XUANNU_SWORDSMANSHIP,XUANNU_SWORDSMANSHIP_1,XUANNU_SWORDSMANSHIP_2,COOLING,gui.getFont(),x,y);
                 CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
                         ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".xuannu_swordsmanship"),x, y,ChatFormatting.LIGHT_PURPLE.getColor());
 //                if (getXuannuSwordsmanshipLevel != 0) {//获取技能等级,为零则绘制不可使用的技能贴图

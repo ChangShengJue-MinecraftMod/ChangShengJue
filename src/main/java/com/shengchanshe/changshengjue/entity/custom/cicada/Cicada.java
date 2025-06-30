@@ -35,9 +35,10 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 
-
 public class Cicada extends Animal implements GeoEntity, FlyingAnimal {
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private boolean isHovering = false;
+
     public Cicada(EntityType<? extends Cicada> p_27557_, Level p_27558_) {
         super(p_27557_, p_27558_);
         this.moveControl = new FlyingMoveControl(this, 20, false);
@@ -54,8 +55,8 @@ public class Cicada extends Animal implements GeoEntity, FlyingAnimal {
         this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new CicadaWanderGoal(this, 0.6D));
-
     }
+
     @Override
     protected PathNavigation createNavigation(Level p_29417_) {
         FlyingPathNavigation flyingpathnavigation = new FlyingPathNavigation(this, p_29417_);
@@ -69,6 +70,7 @@ public class Cicada extends Animal implements GeoEntity, FlyingAnimal {
     public int getExperienceReward() {
         return 0;
     }
+
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
@@ -83,7 +85,6 @@ public class Cicada extends Animal implements GeoEntity, FlyingAnimal {
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-//        playSound(ChangShengJueSound.CICADA_SOUND.get(),1f,3f);
         return ChangShengJueSound.CICADA_SOUND.get();
     }
 
@@ -111,11 +112,17 @@ public class Cicada extends Animal implements GeoEntity, FlyingAnimal {
         boolean south = hasBlock(world, pos.south());
         boolean east = hasBlock(world, pos.east());
         boolean west = hasBlock(world, pos.west());
+
+        if (isHovering) {
+            event.setAnimation(RawAnimation.begin().then("idle01", Animation.LoopType.LOOP));
+            return PlayState.CONTINUE;
+        }
+
         if (event.isMoving()){
             event.setAnimation(RawAnimation.begin().then("idle02", Animation.LoopType.LOOP));
-        }else if(north || south || east || west){
+        } else if(north || south || east || west){
             event.setAnimation(RawAnimation.begin().then("idle01", Animation.LoopType.LOOP));
-        }else{
+        } else{
             event.setAnimation(RawAnimation.begin().then("idle02", Animation.LoopType.LOOP));
         }
         return PlayState.CONTINUE;
@@ -123,13 +130,14 @@ public class Cicada extends Animal implements GeoEntity, FlyingAnimal {
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(new AnimationController(this,"controller",0,this::predicate));
+        controllerRegistrar.add(new AnimationController(this, "controller", 0, this::predicate));
     }
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.cache;
     }
+
     @Override
     public boolean isFlying(){
         return !this.onGround();
@@ -139,9 +147,71 @@ public class Cicada extends Animal implements GeoEntity, FlyingAnimal {
     public boolean causeFallDamage(float p_147187_, float p_147188_, DamageSource p_147189_) {
         return false;
     }
+
     @Override
     protected void checkFallDamage(double p_29370_, boolean p_29371_, BlockState p_29372_, BlockPos p_29373_) {
     }
+
+    @Override
+    public void tick() {
+        super.tick();
+
+        // 检测侧面是否有树叶
+        if (checkSideLeaves()) {
+            isHovering = true;
+            this.getNavigation().stop(); // 停止移动
+            this.setDeltaMovement(0, 0, 0); // 清除移动速度
+        } else {
+            isHovering = false;
+        }
+
+        this.updateLook(this);
+    }
+
+    private boolean checkSideLeaves() {
+        Level world = this.level();
+        BlockPos pos = this.blockPosition();
+
+        return hasBlock(world, pos.north()) ||
+                hasBlock(world, pos.south()) ||
+                hasBlock(world, pos.east()) ||
+                hasBlock(world, pos.west());
+    }
+
+    public void updateLook(Mob mob) {
+        Level world = mob.level();
+        BlockPos pos = mob.blockPosition();
+
+        Vec3 lookAt = null;
+        double minDistance = Double.MAX_VALUE;
+
+        for (int x = -1; x <= 1; x++) {
+            for (int z = -1; z <= 1; z++) {
+                BlockPos blockPos = pos.offset(x, 0, z);
+                Block block = world.getBlockState(blockPos).getBlock();
+                if (block instanceof LeavesBlock || block.equals(BlockTags.LOGS)) {
+                    double distance = mob.distanceToSqr(blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5);
+                    if (distance < minDistance) {
+                        Vec3 center = new Vec3(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+                        Vec3 blockCenter = new Vec3(blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5);
+                        Vec3 offset = blockCenter.subtract(center);
+                        lookAt = center.add(offset.normalize());
+                        minDistance = distance;
+                    }
+                }
+            }
+        }
+
+        if (lookAt != null) {
+            mob.getLookControl().setLookAt(lookAt.x, lookAt.y, lookAt.z);
+        }
+    }
+
+    private static boolean hasBlock(Level world, BlockPos pos) {
+        Block block = world.getBlockState(pos).getBlock();
+        return block instanceof LeavesBlock || block.equals(BlockTags.LOGS);
+    }
+
     static class CicadaWanderGoal extends WaterAvoidingRandomFlyingGoal {
         public CicadaWanderGoal(PathfinderMob p_186224_, double p_186225_) {
             super(p_186224_, p_186225_);
@@ -179,41 +249,5 @@ public class Cicada extends Animal implements GeoEntity, FlyingAnimal {
 
             return null;
         }
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-        this.updateLook(this);
-    }
-    public void updateLook(Mob mob) {
-        Level world = mob.level();
-        BlockPos pos = mob.blockPosition();
-
-        Vec3 lookAt = null;
-        double minDistance = Double.MAX_VALUE;
-        for (int x = -1; x <= 1; x++) {
-            for (int z = -1; z <= 1; z++) {
-                BlockPos blockPos = pos.offset(x, 0, z);
-                Block block = world.getBlockState(blockPos).getBlock();
-                if (block instanceof LeavesBlock || block.equals(BlockTags.LOGS)) {
-                    double distance = mob.distanceToSqr(blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5);
-                    if (distance < minDistance) {
-                        Vec3 center = new Vec3(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
-                        Vec3 blockCenter = new Vec3(blockPos.getX() + 0.5, blockPos.getY() + 0.5, blockPos.getZ() + 0.5);
-                        Vec3 offset = blockCenter.subtract(center);
-                        lookAt = center.add(offset.normalize());
-                        minDistance = distance;
-                    }
-                }
-            }
-        }
-        if (lookAt != null) {
-            mob.getLookControl().setLookAt(lookAt.x, lookAt.y, lookAt.z);
-        }
-    }
-    private static boolean hasBlock(Level world, BlockPos pos) {
-        Block block = world.getBlockState(pos).getBlock();
-        return block instanceof LeavesBlock || block.equals(BlockTags.LOGS);
     }
 }

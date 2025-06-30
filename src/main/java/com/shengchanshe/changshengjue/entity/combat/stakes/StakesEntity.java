@@ -317,6 +317,19 @@ public class StakesEntity extends LivingEntity {
                 Paoding.comprehend(entity,level);
                 TurtleBreathWork.comprehend(entity,level);
                 TreadTheSnowWithoutTrace.comprehend(entity,level);
+
+                Player player = null;
+                if (entity instanceof Player) {
+                    player = (Player) entity;
+                    GeShanDaNiu.comprehend(player,player.level(),entity);
+//            GoldenBellJar.comprehend(player,player.level());
+                    Hercules.comprehend(player,player.level());
+
+//            QianKunDaNuoYi.comprehend(player,player.level());
+                    SunflowerPointCaveman.comprehend(player,player.level(),entity);
+                    TurtleBreathWork.comprehend(player,player.level());
+                }
+
                 return false;
             }
         } else {

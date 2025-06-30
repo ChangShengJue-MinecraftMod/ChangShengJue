@@ -3,6 +3,7 @@ package com.shengchanshe.changshengjue.cilent.hud.martial_arts.dugu_nine_swords;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.changshengjue.ChangShengJue;
 import com.shengchanshe.changshengjue.cilent.hud.CSJDisplayHud;
+import com.shengchanshe.changshengjue.event.CSJEvent;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.item.combat.sword.Sword;
 import net.minecraft.ChatFormatting;
@@ -68,7 +69,7 @@ public class DuguNineSwordsHudOverlay {
                 //设置绘制的信息
                 RenderSystem.setShader(GameRenderer::getPositionTexShader);
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-                CSJDisplayHud.displayHudPermanent1(duguNineSwordsLevel,frameTime(),5,playerCanOpened(),guiGraphics,DUGU_NINE_SWORDS,DUGU_NINE_SWORDS_1,DUGU_NINE_SWORDS_2,COOLING,gui.getFont(),x,y);
+                CSJDisplayHud.displayHudPermanent1(duguNineSwordsLevel,frameTime(), CSJEvent.hasWheatNuggetsTributeWine? 3.5f:5,playerCanOpened(),guiGraphics,DUGU_NINE_SWORDS,DUGU_NINE_SWORDS_1,DUGU_NINE_SWORDS_2,COOLING,gui.getFont(),x,y);
                 CSJDisplayHud.displayHudPermanent(guiGraphics,gui.getFont(),
                         ChatFormatting.BOLD + I18n.get("item."+ ChangShengJue.MOD_ID +".dugu_nine_swords"),x, y,ChatFormatting.AQUA.getColor());
 //                if (duguNineSwordsLevel != 0) {

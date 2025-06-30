@@ -29,6 +29,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class DoorsBlock extends Block {
     // 新增三格门的半块属性，增加MIDDLE状态
@@ -37,6 +38,7 @@ public class DoorsBlock extends Block {
     public static final BooleanProperty OPEN;
     public static final EnumProperty<DoorHingeSide> HINGE;
     public static final BooleanProperty POWERED;
+
 
     // 三格门的碰撞箱定义
     protected static final VoxelShape SOUTH_AABB_LOWER;
@@ -127,35 +129,43 @@ public class DoorsBlock extends Block {
 
         // 处理Y轴方向的相邻方块更新（上、中、下部分的关联）
         if (pFacing.getAxis() == Axis.Y) {
-            if (half == ThreeBlockHalf.LOWER && pFacing == Direction.UP) {
-                // 下部分检查中间部分是否是三格门
-                if (pFacingState.is(this) && pFacingState.getValue(HALF) == ThreeBlockHalf.MIDDLE) {
-                    BlockPos upperPos = pFacingPos.above();
-                    BlockState upperState = pLevel.getBlockState(upperPos);
-                    // 中间部分存在时，检查上部分是否是三格门
-                    if (upperState.is(this) && upperState.getValue(HALF) == ThreeBlockHalf.UPPER) {
-                        return (BlockState)((BlockState)((BlockState)((BlockState)pState.setValue(FACING, (Direction)pFacingState.getValue(FACING))).setValue(OPEN, (Boolean)pFacingState.getValue(OPEN))).setValue(HINGE, (DoorHingeSide)pFacingState.getValue(HINGE))).setValue(POWERED, (Boolean)pFacingState.getValue(POWERED));
+            // 获取其他两部分的位置和状态
+            BlockPos lowerPos = half == ThreeBlockHalf.LOWER ? pCurrentPos :
+                    (half == ThreeBlockHalf.MIDDLE ? pCurrentPos.below() : pCurrentPos.below(2));
+            BlockPos middlePos = half == ThreeBlockHalf.LOWER ? pCurrentPos.above() :
+                    (half == ThreeBlockHalf.MIDDLE ? pCurrentPos : pCurrentPos.below());
+            BlockPos upperPos = half == ThreeBlockHalf.LOWER ? pCurrentPos.above(2) :
+                    (half == ThreeBlockHalf.MIDDLE ? pCurrentPos.above() : pCurrentPos);
+
+            BlockState lowerState = pLevel.getBlockState(lowerPos);
+            BlockState middleState = pLevel.getBlockState(middlePos);
+            BlockState upperState = pLevel.getBlockState(upperPos);
+
+            // 检查三部分是否完整且一致
+            boolean isStructureValid = lowerState.is(this) && lowerState.getValue(HALF) == ThreeBlockHalf.LOWER &&
+                    middleState.is(this) && middleState.getValue(HALF) == ThreeBlockHalf.MIDDLE &&
+                    upperState.is(this) && upperState.getValue(HALF) == ThreeBlockHalf.UPPER;
+
+            // 如果结构不完整，破坏整个门
+            if (!isStructureValid) {
+                // 只在服务器端执行破坏操作，避免客户端重复调用
+                if (!pLevel.isClientSide()) {
+                    if (lowerState.is(this)) {
+                        pLevel.destroyBlock(lowerPos, true);
+                    }
+                    if (middleState.is(this)) {
+                        pLevel.destroyBlock(middlePos, true);
+                    }
+                    if (upperState.is(this)) {
+                        pLevel.destroyBlock(upperPos, true);
                     }
                 }
                 return Blocks.AIR.defaultBlockState();
-            } else if (half == ThreeBlockHalf.MIDDLE) {
-                // 中间部分检查下部分和上部分
-                if ((pFacing == Direction.DOWN && pFacingState.is(this) && pFacingState.getValue(HALF) == ThreeBlockHalf.LOWER) ||
-                        (pFacing == Direction.UP && pFacingState.is(this) && pFacingState.getValue(HALF) == ThreeBlockHalf.UPPER)) {
-                    return (BlockState)((BlockState)((BlockState)((BlockState)pState.setValue(FACING, (Direction)pFacingState.getValue(FACING))).setValue(OPEN, (Boolean)pFacingState.getValue(OPEN))).setValue(HINGE, (DoorHingeSide)pFacingState.getValue(HINGE))).setValue(POWERED, (Boolean)pFacingState.getValue(POWERED));
-                }
-                return Blocks.AIR.defaultBlockState();
-            } else if (half == ThreeBlockHalf.UPPER && pFacing == Direction.DOWN) {
-                // 上部分检查中间部分是否是三格门
-                if (pFacingState.is(this) && pFacingState.getValue(HALF) == ThreeBlockHalf.MIDDLE) {
-                    BlockPos lowerPos = pFacingPos.below();
-                    BlockState lowerState = pLevel.getBlockState(lowerPos);
-                    // 中间部分存在时，检查下部分是否是三格门
-                    if (lowerState.is(this) && lowerState.getValue(HALF) == ThreeBlockHalf.LOWER) {
-                        return (BlockState)((BlockState)((BlockState)((BlockState)pState.setValue(FACING, (Direction)pFacingState.getValue(FACING))).setValue(OPEN, (Boolean)pFacingState.getValue(OPEN))).setValue(HINGE, (DoorHingeSide)pFacingState.getValue(HINGE))).setValue(POWERED, (Boolean)pFacingState.getValue(POWERED));
-                    }
-                }
-                return Blocks.AIR.defaultBlockState();
+            }
+
+            // 如果结构有效，同步三个部分的状态
+            if (pFacingState.is(this)) {
+                return syncDoorStates(pState, lowerState, middleState, upperState);
             }
         }
 
@@ -164,34 +174,48 @@ public class DoorsBlock extends Block {
                 Blocks.AIR.defaultBlockState() : super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
     }
 
+    /**
+     * 同步三部分门的状态
+     */
+    private BlockState syncDoorStates(BlockState currentState, BlockState lowerState, BlockState middleState, BlockState upperState) {
+        // 假设我们从lowerState获取状态值，因为它是第一个放置的部分
+        Direction facing = lowerState.getValue(FACING);
+        Boolean open = lowerState.getValue(OPEN);
+        DoorHingeSide hinge = lowerState.getValue(HINGE);
+        Boolean powered = lowerState.getValue(POWERED);
+
+        // 更新当前部分的状态
+        return (BlockState)((BlockState)((BlockState)currentState.setValue(FACING, facing)).setValue(OPEN, open)).setValue(HINGE, hinge).setValue(POWERED, powered);
+    }
+
     @Override
     public void playerWillDestroy(Level pLevel, BlockPos pPos, BlockState pState, Player pPlayer) {
         if (!pLevel.isClientSide && pPlayer.isCreative()) {
             // 防止创造性模式下只破坏部分门
             ThreeBlockHalf half = pState.getValue(HALF);
             if (half == ThreeBlockHalf.LOWER) {
-                pLevel.removeBlock(pPos.above(), false);
-                pLevel.removeBlock(pPos.above(2), false);
+                System.out.println("lower");
+                pLevel.destroyBlock(pPos.above(),false);
+                pLevel.destroyBlock(pPos, false);
+                pLevel.destroyBlock(pPos.above(2), false);
             } else if (half == ThreeBlockHalf.MIDDLE) {
-                pLevel.removeBlock(pPos.below(), false);
-                pLevel.removeBlock(pPos.above(), false);
+                System.out.println("middle");
+                pLevel.destroyBlock(pPos.below(), false);
+                pLevel.destroyBlock(pPos, false);
+                pLevel.destroyBlock(pPos.above(), false);
             } else if (half == ThreeBlockHalf.UPPER) {
-                pLevel.removeBlock(pPos.below(), false);
-                pLevel.removeBlock(pPos.below(2), false);
+                System.out.println("upper");
+                pLevel.destroyBlock(pPos.below(), false);
+                pLevel.destroyBlock(pPos, false);
+                pLevel.destroyBlock(pPos.below(2), false);
             }
         }
         super.playerWillDestroy(pLevel, pPos, pState, pPlayer);
     }
 
-    @Override
+    // 确保三格门的路径寻路判定与原版一致
     public boolean isPathfindable(BlockState pState, BlockGetter pLevel, BlockPos pPos, PathComputationType pType) {
-        switch (pType) {
-            case LAND:
-            case AIR:
-                return (Boolean)pState.getValue(OPEN);
-            default:
-                return false;
-        }
+        return true;
     }
 
     @Nullable
@@ -278,62 +302,74 @@ public class DoorsBlock extends Block {
         return DoorHingeSide.RIGHT;
     }
 
-    @Override
+    // 在use方法中确保事件正确触发
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!this.type.canOpenByHand()) {
             return InteractionResult.PASS;
+        } else {
+            boolean newOpenState = !(Boolean)pState.getValue(OPEN);
+            BlockState newState = pState.setValue(OPEN, newOpenState);
+            pLevel.setBlock(pPos, newState, 10);
+
+            // 更新三格门状态
+            ThreeBlockHalf half = pState.getValue(HALF);
+            if (half == ThreeBlockHalf.LOWER) {
+                pLevel.setBlock(pPos.above(), newState.setValue(HALF, ThreeBlockHalf.MIDDLE), 10);
+                pLevel.setBlock(pPos.above(2), newState.setValue(HALF, ThreeBlockHalf.UPPER), 10);
+            } else if (half == ThreeBlockHalf.MIDDLE) {
+                pLevel.setBlock(pPos.below(), newState.setValue(HALF, ThreeBlockHalf.LOWER), 10);
+                pLevel.setBlock(pPos.above(), newState.setValue(HALF, ThreeBlockHalf.UPPER), 10);
+            } else if (half == ThreeBlockHalf.UPPER) {
+                pLevel.setBlock(pPos.below(), newState.setValue(HALF, ThreeBlockHalf.MIDDLE), 10);
+                pLevel.setBlock(pPos.below(2), newState.setValue(HALF, ThreeBlockHalf.LOWER), 10);
+            }
+
+            // 触发所有三格门的事件
+            this.playSound(pPlayer, pLevel, pPos, newOpenState);
+            pLevel.gameEvent(pPlayer, newOpenState ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pPos);
+
+            if (half == ThreeBlockHalf.LOWER) {
+                pLevel.gameEvent(pPlayer, newOpenState ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pPos.above());
+                pLevel.gameEvent(pPlayer, newOpenState ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pPos.above(2));
+            }
+
+            return InteractionResult.sidedSuccess(pLevel.isClientSide);
         }
-
-        // 切换门的开关状态，并同步到整个三格门
-        boolean newOpenState = !(Boolean)pState.getValue(OPEN);
-        pState = (BlockState)pState.setValue(OPEN, newOpenState);
-        pLevel.setBlock(pPos, pState, 10);
-
-        // 更新中间和上部分的门状态
-        ThreeBlockHalf half = pState.getValue(HALF);
-        if (half == ThreeBlockHalf.LOWER) {
-            pLevel.setBlock(pPos.above(), pState.setValue(HALF, ThreeBlockHalf.MIDDLE), 10);
-            pLevel.setBlock(pPos.above(2), pState.setValue(HALF, ThreeBlockHalf.UPPER), 10);
-        } else if (half == ThreeBlockHalf.MIDDLE) {
-            pLevel.setBlock(pPos.below(), pState.setValue(HALF, ThreeBlockHalf.LOWER), 10);
-            pLevel.setBlock(pPos.above(), pState.setValue(HALF, ThreeBlockHalf.UPPER), 10);
-        } else if (half == ThreeBlockHalf.UPPER) {
-            pLevel.setBlock(pPos.below(), pState.setValue(HALF, ThreeBlockHalf.MIDDLE), 10);
-            pLevel.setBlock(pPos.below(2), pState.setValue(HALF, ThreeBlockHalf.LOWER), 10);
-        }
-
-        // 播放开门/关门声音
-        this.playSound(pPlayer, pLevel, pPos, newOpenState);
-        pLevel.gameEvent(pPlayer, newOpenState ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pPos);
-
-        return InteractionResult.sidedSuccess(pLevel.isClientSide);
     }
 
     public boolean isOpen(BlockState pState) {
         return (Boolean)pState.getValue(OPEN);
     }
 
+    // 修改setOpen方法，确保事件正确触发且状态一致
     public void setOpen(@Nullable Entity pEntity, Level pLevel, BlockState pState, BlockPos pPos, boolean pOpen) {
         if (pState.is(this) && (Boolean)pState.getValue(OPEN) != pOpen) {
-            // 更新当前部分状态
-            pLevel.setBlock(pPos, (BlockState)pState.setValue(OPEN, pOpen), 10);
+            // 先更新当前格状态
+            BlockState newState = pState.setValue(OPEN, pOpen);
+            pLevel.setBlock(pPos, newState, 10);
 
-            // 更新整个三格门的状态
+            // 更新整个三格门状态
             ThreeBlockHalf half = pState.getValue(HALF);
             if (half == ThreeBlockHalf.LOWER) {
-                pLevel.setBlock(pPos.above(), pState.setValue(HALF, ThreeBlockHalf.MIDDLE).setValue(OPEN, pOpen), 10);
-                pLevel.setBlock(pPos.above(2), pState.setValue(HALF, ThreeBlockHalf.UPPER).setValue(OPEN, pOpen), 10);
+                pLevel.setBlock(pPos.above(), newState.setValue(HALF, ThreeBlockHalf.MIDDLE), 10);
+                pLevel.setBlock(pPos.above(2), newState.setValue(HALF, ThreeBlockHalf.UPPER), 10);
             } else if (half == ThreeBlockHalf.MIDDLE) {
-                pLevel.setBlock(pPos.below(), pState.setValue(HALF, ThreeBlockHalf.LOWER).setValue(OPEN, pOpen), 10);
-                pLevel.setBlock(pPos.above(), pState.setValue(HALF, ThreeBlockHalf.UPPER).setValue(OPEN, pOpen), 10);
+                pLevel.setBlock(pPos.below(), newState.setValue(HALF, ThreeBlockHalf.LOWER), 10);
+                pLevel.setBlock(pPos.above(), newState.setValue(HALF, ThreeBlockHalf.UPPER), 10);
             } else if (half == ThreeBlockHalf.UPPER) {
-                pLevel.setBlock(pPos.below(), pState.setValue(HALF, ThreeBlockHalf.MIDDLE).setValue(OPEN, pOpen), 10);
-                pLevel.setBlock(pPos.below(2), pState.setValue(HALF, ThreeBlockHalf.LOWER).setValue(OPEN, pOpen), 10);
+                pLevel.setBlock(pPos.below(), newState.setValue(HALF, ThreeBlockHalf.MIDDLE), 10);
+                pLevel.setBlock(pPos.below(2), newState.setValue(HALF, ThreeBlockHalf.LOWER), 10);
             }
 
-            // 播放声音
+            // 确保事件在所有三格门位置触发
             this.playSound(pEntity, pLevel, pPos, pOpen);
             pLevel.gameEvent(pEntity, pOpen ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pPos);
+
+            // 额外触发中间和顶部方块的事件
+            if (half == ThreeBlockHalf.LOWER) {
+                pLevel.gameEvent(pEntity, pOpen ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pPos.above());
+                pLevel.gameEvent(pEntity, pOpen ? GameEvent.BLOCK_OPEN : GameEvent.BLOCK_CLOSE, pPos.above(2));
+            }
         }
     }
 
@@ -419,7 +455,7 @@ public class DoorsBlock extends Block {
         if (block instanceof DoorsBlock doorBlock) {
             return doorBlock.type().canOpenByHand();
         }
-        return false;
+        return true;
     }
 
     // 新增三格门的半块枚举
@@ -458,5 +494,25 @@ public class DoorsBlock extends Block {
         EAST_AABB_LOWER = Block.box(0.0, 0.0, 0.0, 3.0, 16.0, 16.0);
         EAST_AABB_MIDDLE = Block.box(0.0, 0.0, 0.0, 3.0, 16.0, 16.0);
         EAST_AABB_UPPER = Block.box(0.0, 0.0, 0.0, 3.0, 16.0, 16.0);
+    }
+
+
+
+    public static boolean isWoodenDoor(Level pLevel, BlockPos pPos) {
+        return isWoodenDoor(pLevel.getBlockState(pPos));
+    }
+
+    public static boolean isWoodenDoor(BlockState pState) {
+        Block var2 = pState.getBlock();
+        boolean var10000;
+        if (var2 instanceof DoorBlock $$1) {
+            if ($$1.type().canOpenByHand()) {
+                var10000 = true;
+                return var10000;
+            }
+        }
+
+        var10000 = false;
+        return var10000;
     }
 }

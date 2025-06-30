@@ -9,6 +9,7 @@ import com.shengchanshe.changshengjue.effect.ChangShengJueEffects;
 import com.shengchanshe.changshengjue.entity.ChangShengJueEntity;
 import com.shengchanshe.changshengjue.entity.combat.dugu_nine_swords.DuguNineSwordsEntity;
 import com.shengchanshe.changshengjue.entity.combat.yi_tian_jian.YiTianJianAttackEntity;
+import com.shengchanshe.changshengjue.event.CSJEvent;
 import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.changshengjue.network.ChangShengJueMessages;
 import com.shengchanshe.changshengjue.network.packet.martial_arts.DuguNineSwordsPacket;
@@ -83,7 +84,7 @@ public class Sword extends SwordItem {
                             if (player.getMainHandItem().canDisableShield(livingEntity.getUseItem(), livingEntity, player)) {
                                 if (probability < 0.5) {
                                     // 强制打破目标玩家的防御状态（禁用盾牌防御）
-                                    player.getCooldowns().addCooldown(player.getUseItem().getItem(), 100);
+                                    player.getCooldowns().addCooldown(player.getUseItem().getItem(), CSJEvent.hasWheatNuggetsTributeWine ? 70:100);
                                     player.stopUsingItem();
                                     livingEntity.stopUsingItem();
                                     player.level().broadcastEntityEvent(player, (byte) 30);
@@ -149,7 +150,7 @@ public class Sword extends SwordItem {
                             player.getFoodData().eat(-foodLevel, -1);//消耗饱食度
                         }
                     });
-                    player.getCooldowns().addCooldown(itemstack.getItem(), player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) ? 125 : 140);//添加使用冷却
+                    player.getCooldowns().addCooldown(itemstack.getItem(), player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) ? 75 : 100);//添加使用冷却
                 }
                 for (Entity entity : entities) {//遍历包围盒中的实体
                     //检查生物是否可以交互,是否在给定的平方距离内,检查生物是否是LivingEntity,检查生物是否还活着
