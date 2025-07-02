@@ -1,7 +1,7 @@
 {
 	"loader" : "forge:obj",
 	"custom": { "flip-v": true },
-	"model" : "chang_sheng_jue:models/block/yun_shan_fu_ti_block.obj",
+	"model" : "chang_sheng_jue:models/block/fu_ti_block.obj",
 	"textures" : {
 		"cube" : "chang_sheng_jue:block/yun_shan_fu_ti_block",
 		"particle" : "chang_sheng_jue:block/yun_shan_fu_ti_block"

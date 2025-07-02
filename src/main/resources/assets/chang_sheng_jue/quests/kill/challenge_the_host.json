@@ -1,0 +1,30 @@
+{
+  "questId": "a813fd02-5c0b-4ae0-bf3a-92a09b1d8579",
+  "questName": "quest.chang_sheng_jue.kill.gang_leader.questName",
+  "questDescription": "quest.chang_sheng_jue.kill.gang_leader.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.kill.gang_leader.questRequirementsDescription",
+  "questType": "KILL",
+  "targetEntity": "#chang_sheng_jue:gang_leader",
+  "requiredKills": 1,
+  "repeatable": false,
+  "questGenerateTarget" : false,
+  "limitQuestIds" : [
+    "bfbac359-a2cd-488b-9c75-b6dc10c96eed"
+  ],
+  "isNeedCompletePreQuest" : true,
+  "needCompletionCount" : 1,
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:gang_token",
+      "count": 3
+    },
+    {
+      "item": "chang_sheng_jue:silver_bullions",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 1.0
+      }
+    }
+  ]
+}

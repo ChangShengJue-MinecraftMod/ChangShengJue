@@ -1,0 +1,31 @@
+{
+  "questId": "a35c7c77-6920-43c0-abaa-94763adfaa10",
+  "questName": "quest.chang_sheng_jue.raid.xing_xia_zhang_yi.questName",
+  "questDescription": "quest.chang_sheng_jue.raid.xing_xia_zhang_yi.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.raid.xing_xia_zhang_yi.questRequirementsDescription",
+  "questType": "RAID",
+  "requiredKills": 1,
+  "repeatable": false,
+  "isAcceptQuestEffects" : true,
+  "limitQuestIds" : [
+    "33954498-78EF-492C-9338-B2E85C0AD184",
+    "7dc9c671-ec29-4f3f-9467-5324fa026499",
+    "bfbac359-a2cd-488b-9c75-b6dc10c96eed"
+  ],
+  "isNeedCompletePreQuest" : true,
+  "needCompletionCount" : 1,
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:gang_token",
+      "count": 4
+    },
+    {
+      "item": "chang_sheng_jue:silver_bullions",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 3.0
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "questId": "dab3e694-291c-4b58-8ed2-4b215fbcf543",
+  "questName": "quest.chang_sheng_jue.automatic.death.questName",
+  "questDescription": "quest.chang_sheng_jue.automatic.death.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.automatic.death.questRequirementsDescription",
+  "questType": "AUTOMATIC",
+  "repeatable": false,
+  "questDay": 7
+}

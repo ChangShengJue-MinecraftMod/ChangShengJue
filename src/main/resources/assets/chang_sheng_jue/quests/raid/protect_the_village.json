@@ -1,0 +1,39 @@
+{
+  "questId": "85248ab7-ff1b-4d4d-8a05-92d5360e70eb",
+  "questName": "quest.chang_sheng_jue.raid.village.questName",
+  "questDescription": "quest.chang_sheng_jue.raid.village.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.raid.village.questRequirementsDescription",
+  "questType": "RAID",
+  "requiredKills": 1,
+  "repeatable": false,
+  "isAcceptQuestEffects" : true,
+  "limitQuestIds" : [
+    "2487A5CD-BE95-4BEE-AE6E-7705531BADAE"
+  ],
+  "isNeedCompletePreQuest" : true,
+  "needCompletionCount" : 1,
+  "effects": [
+    {
+      "effectId": "minecraft:bad_omen",
+      "duration": -1,
+      "amplifier": 3,
+      "isAmbient": false,
+      "showParticles": false,
+      "showIcon": true
+    }
+  ],
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:gang_token",
+      "count": 2
+    },
+    {
+      "item": "chang_sheng_jue:yi_guan_tong_qian",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 4.0
+      }
+    }
+  ]
+}

@@ -11,7 +11,16 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "chang_sheng_jue:bai_hua_fu_ti_block"
+          "conditions": [
+            {
+              "block": "chang_sheng_jue:gre_hipped_roof",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "part": "bottom"
+              }
+            }
+          ],
+          "name": "chang_sheng_jue:gre_hipped_roof"
         }
       ],
       "rolls": 1.0
