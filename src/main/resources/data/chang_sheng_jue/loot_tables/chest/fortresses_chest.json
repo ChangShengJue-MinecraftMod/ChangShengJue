@@ -1,0 +1,243 @@
+{
+  "pools": [
+    {
+      "name": "chang_sheng_jue_village",
+      "rolls": {
+        "min": 4,
+        "max": 10
+      },
+      "entries": [
+        {
+          "type": "item",
+          "name": "chang_sheng_jue:yi_guan_tong_qian",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 10
+              }
+            }
+          ],
+          "weight": 29,
+          "quality": 1
+        },
+        {
+          "type": "minecraft:tag",
+          "expand" : true,
+          "name": "chang_sheng_jue:wine",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ],
+          "weight": 15,
+          "quality": 1
+        },
+        {
+          "type": "minecraft:tag",
+          "expand" : true,
+          "name": "chang_sheng_jue:tea",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ],
+          "weight": 15,
+          "quality": 1
+        },
+        {
+          "type": "item",
+          "name": "chang_sheng_jue:gold_bullions",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": 1
+            }
+          ],
+          "weight": 3,
+          "quality": 1
+        },
+        {
+          "type": "item",
+          "name": "chang_sheng_jue:silver_bullions",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ],
+          "weight": 15,
+          "quality": 1
+        },
+        {
+          "type": "item",
+          "name": "chang_sheng_jue:gang_token",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ],
+          "weight": 3,
+          "quality": 1
+        },
+        {
+          "type": "minecraft:tag",
+          "expand" : true,
+          "name": "chang_sheng_jue:weapons",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": 1
+            }
+          ],
+          "weight": 3,
+          "quality": 1
+        },
+        {
+          "type": "minecraft:tag",
+          "expand" : true,
+          "name": "chang_sheng_jue:fruit",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 5
+              }
+            }
+          ],
+          "weight": 15,
+          "quality": 1
+        },
+        {
+          "type": "item",
+          "name": "chang_sheng_jue:antler",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ],
+          "weight": 3,
+          "quality": 1
+        },
+        {
+          "type": "minecraft:tag",
+          "expand" : true,
+          "name": "chang_sheng_jue:painting",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": 1
+            }
+          ],
+          "weight": 29
+        },
+        {
+          "type": "minecraft:tag",
+          "expand" : true,
+          "name": "chang_sheng_jue:feather",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ],
+          "weight": 3
+        },
+        {
+          "type": "item",
+          "name": "chang_sheng_jue:deer_blood",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ],
+          "weight": 3,
+          "quality": 1
+        },
+        {
+          "type": "item",
+          "name": "chang_sheng_jue:crane_feathers",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 3
+              }
+            }
+          ],
+          "weight": 9,
+          "quality": 1
+        },
+        {
+          "type": "item",
+          "name": "chang_sheng_jue:structure_intelligence",
+          "functions": [
+            {
+              "function": "set_damage",
+              "damage": {
+                "type": "minecraft:uniform",
+                "min": 0,
+                "max": 5
+              }
+            }
+          ],
+          "weight": 15,
+          "quality": 1
+        },
+        {
+          "type": "minecraft:tag",
+          "expand" : true,
+          "name": "chang_sheng_jue:crucible",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": 1
+            }
+          ],
+          "weight": 9
+        },
+        {
+          "type": "minecraft:tag",
+          "expand" : true,
+          "name": "chang_sheng_jue:mj_book",
+          "functions": [
+            {
+              "function": "set_count",
+              "count": 1
+            }
+          ],
+          "weight": 3
+        }
+      ]
+    }
+  ]
+}

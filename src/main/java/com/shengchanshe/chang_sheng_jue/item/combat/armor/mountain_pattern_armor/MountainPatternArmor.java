@@ -1,0 +1,68 @@
+package com.shengchanshe.chang_sheng_jue.item.combat.armor.mountain_pattern_armor;
+
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.ArmorInterface;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.ChangShengJueArmorItem;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import org.jetbrains.annotations.NotNull;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.constant.DefaultAnimations;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.renderer.GeoArmorRenderer;
+import software.bernie.geckolib.util.GeckoLibUtil;
+
+import java.util.function.Consumer;
+
+public class MountainPatternArmor extends ChangShengJueArmorItem implements GeoItem , ArmorInterface {
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
+    public MountainPatternArmor(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
+        super(pMaterial, pType, pProperties);
+    }
+
+//    @Override
+//    public boolean isRepairable(ItemStack stack) {
+//        //禁用工作台修复
+//        return false;
+//    }
+
+//    @Override
+//    public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
+//        // 禁止任何修复材料生效 禁用铁砧修复
+//        return false;
+//                repair.is(Items.EMERALD);
+//    }
+
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
+            private GeoArmorRenderer<?> renderer;
+
+            public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack, EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
+                if (this.renderer == null) {
+                    this.renderer = new MountainPatternArmorRender();
+                }
+
+                this.renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
+                return this.renderer;
+            }
+        });
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(((new AnimationController<>(this, 0, (state) ->
+                state.setAndContinue(DefaultAnimations.IDLE)))));
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
+    }
+}

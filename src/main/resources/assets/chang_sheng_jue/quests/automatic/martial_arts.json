@@ -1,0 +1,43 @@
+{
+  "questId": "C8DA8DB7-2AE8-4FB0-9956-179D9D9D1CA8",
+  "questName": "quest.chang_sheng_jue.kill.zombie.questName",
+  "questDescription": "quest.chang_sheng_jue.kill.zombie.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.kill.zombie.questRequirementsDescription",
+  "questType": "KILL",
+  "targetEntity": "minecraft:zombie",
+  "requiredKills": 1,
+  "repeatable": true,
+  "questGenerateTarget" : false,
+  "limitQuestIds" : [
+    "2b0fedb0-2b4d-4b24-81fb-c4b6c8a47fa7",
+    "3A54CDE8-91B4-42A8-9F37-9C40934A15C8"
+  ],
+  "isNeedCompletePreQuest" : true,
+  "needCompletionCount" : 1,
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:yi_guan_tong_qian",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 1.0
+      }
+    },
+    {
+      "item": "#chang_sheng_jue:wine",
+      "count": 1
+    },
+    {
+      "item": "#chang_sheng_jue:tea",
+      "count": 1
+    },
+    {
+      "item": "#chang_sheng_jue:external_kung_fu_mj",
+      "count": {
+        "type": "minecraft:binomial",
+        "n": 1,
+        "p": 0.1
+      }
+    }
+  ]
+}

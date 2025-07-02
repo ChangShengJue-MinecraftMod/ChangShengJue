@@ -1,0 +1,43 @@
+{
+  "questId": "0A9301D6-0B79-4346-A700-35E7C8339658",
+  "questName": "quest.chang_sheng_jue.gather.money.questName",
+  "questDescription": "quest.chang_sheng_jue.gather.money.questDescription",
+  "questType": "GATHER",
+  "repeatable": true,
+  "questRewards": [
+    {
+      "item": "#chang_sheng_jue:unprocessed_foods",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 32.0,
+        "min": 16.0
+      }
+    },
+    {
+      "item": "#chang_sheng_jue:unprocessed_foods",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 32.0,
+        "min": 16.0
+      }
+    },
+    {
+      "item": "#chang_sheng_jue:unprocessed_foods",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 32.0,
+        "min": 16.0
+      }
+    }
+  ],
+  "questRequirements": [
+    {
+      "item": "chang_sheng_jue:yi_guan_tong_qian",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 16.0,
+        "min": 8.0
+      }
+    }
+  ]
+}

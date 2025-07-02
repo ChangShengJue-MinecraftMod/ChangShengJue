@@ -1,0 +1,47 @@
+package com.shengchanshe.chang_sheng_jue.entity.custom.tiger;
+
+import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import software.bernie.geckolib.constant.DataTickets;
+import software.bernie.geckolib.core.animatable.model.CoreGeoBone;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.model.data.EntityModelData;
+
+public class TigerModel extends GeoModel<Tiger> {
+    @Override
+    public ResourceLocation getModelResource(Tiger entity) {
+        if (entity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/tiger/tiger_baby.geo.json");
+        }else {
+            return new ResourceLocation(ChangShengJue.MOD_ID,"geo/entity/tiger/tiger.geo.json");
+        }
+    }
+
+    @Override
+    public ResourceLocation getTextureResource(Tiger entity) {
+        if (entity.isBaby()){
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/tiger/tiger_baby.png");
+        }else {
+            return new ResourceLocation(ChangShengJue.MOD_ID,"textures/entity/tiger/tiger.png");
+        }
+    }
+
+    @Override
+    public ResourceLocation getAnimationResource(Tiger entity) {
+        return new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/tiger/tiger.animation.json");
+    }
+
+    //使生物头部转动
+    @Override
+    public void setCustomAnimations(Tiger animatable, long instanceId, AnimationState<Tiger> animationState) {
+        CoreGeoBone head =  getAnimationProcessor().getBone("hand");
+        if (head != null){
+            EntityModelData entityModelData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
+            head.setRotX(entityModelData.headPitch() * Mth.DEG_TO_RAD);
+            head.setRotY(entityModelData.netHeadYaw() * Mth.DEG_TO_RAD);
+        }
+        super.setCustomAnimations(animatable, instanceId, animationState);
+    }
+}

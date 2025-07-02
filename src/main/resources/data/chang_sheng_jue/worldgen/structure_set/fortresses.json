@@ -12,7 +12,7 @@
     "salt": 1825068955,
     "spread_type": "triangular",
     "exclusion_zone": {
-      "chunk_count": 10,
+      "chunk_count": 64,
       "other_set": [
         "minecraft:villages",
         "chang_sheng_jue:si_he_yuan"

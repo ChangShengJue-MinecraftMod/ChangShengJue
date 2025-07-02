@@ -1,0 +1,38 @@
+{
+  "questId": "7dc9c671-ec29-4f3f-9467-5324fa026499",
+  "questName": "quest.chang_sheng_jue.treat.village.questName",
+  "questDescription": "quest.chang_sheng_jue.treat.village.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.treat.village.questRequirementsDescription",
+  "questType": "TREAT",
+  "requiredKills": 1,
+  "repeatable": false,
+  "limitQuestIds" : [
+    "c4ac1553-b219-4e7c-a54d-e274f9815109"
+  ],
+  "isNeedCompletePreQuest" : false,
+  "needCompletionCount" : 1,
+  "effects": [
+    {
+      "effectId": "chang_sheng_jue:instant_charm_effect",
+      "duration": 0,
+      "amplifier": 1,
+      "isAmbient": false,
+      "showParticles": false,
+      "showIcon": true
+    }
+  ],
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:gang_token",
+      "count": 1
+    },
+    {
+      "item": "chang_sheng_jue:silver_bullions",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 3.0,
+        "min": 1.0
+      }
+    }
+  ]
+}
