@@ -16,7 +16,7 @@
               "block": "chang_sheng_jue:door_spruce_block",
               "condition": "minecraft:block_state_property",
               "properties": {
-                "half": "lower"
+                "half": "middle"
               }
             }
           ],

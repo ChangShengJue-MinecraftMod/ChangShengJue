@@ -196,18 +196,16 @@ public class DoorsBlock extends Block {
             if (half == ThreeBlockHalf.LOWER) {
                 System.out.println("lower");
                 pLevel.destroyBlock(pPos.above(),false);
-                pLevel.destroyBlock(pPos, false);
-                pLevel.destroyBlock(pPos.above(2), false);
-            } else if (half == ThreeBlockHalf.MIDDLE) {
-                System.out.println("middle");
-                pLevel.destroyBlock(pPos.below(), false);
-                pLevel.destroyBlock(pPos, false);
-                pLevel.destroyBlock(pPos.above(), false);
-            } else if (half == ThreeBlockHalf.UPPER) {
+            }
+//            if (half == ThreeBlockHalf.MIDDLE) {
+//                System.out.println("middle");
+//                pLevel.destroyBlock(pPos.below(), false);
+//                pLevel.destroyBlock(pPos, false);
+//                pLevel.destroyBlock(pPos.above(), false);
+//            }
+            if (half == ThreeBlockHalf.UPPER) {
                 System.out.println("upper");
                 pLevel.destroyBlock(pPos.below(), false);
-                pLevel.destroyBlock(pPos, false);
-                pLevel.destroyBlock(pPos.below(2), false);
             }
         }
         super.playerWillDestroy(pLevel, pPos, pState, pPlayer);
