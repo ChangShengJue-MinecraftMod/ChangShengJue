@@ -1,15 +1,9 @@
 package com.shengchanshe.chang_sheng_jue.datagen.loot;
 
-import com.shengchanshe.changshengjue.block.ChangShengJueBlocks;
-import com.shengchanshe.changshengjue.block.RoofPart;
-import com.shengchanshe.changshengjue.block.cropper.*;
-import com.shengchanshe.changshengjue.block.custom.DoorsBlock;
-import com.shengchanshe.changshengjue.block.custom.tile.HippedRoof;
-import com.shengchanshe.changshengjue.block.tree_logs.FruitLeaves;
-import com.shengchanshe.changshengjue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.block.RoofPart;
 import com.shengchanshe.chang_sheng_jue.block.cropper.*;
+import com.shengchanshe.chang_sheng_jue.block.custom.DoorsBlock;
 import com.shengchanshe.chang_sheng_jue.block.custom.tile.HippedRoof;
 import com.shengchanshe.chang_sheng_jue.block.tree_logs.FruitLeaves;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
@@ -18,15 +12,12 @@ import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.storage.loot.IntRange;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -87,7 +78,13 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
 //        this.createLeavesFruitsDrops(ChangShengJueBlocks.DURIAN_LEAVES.get(),ChangShengJueItems.DURIAN.get(),ChangShengJueBlocks.DURIAN_SAPLING.get());
         this.add(ChangShengJueBlocks.DURIAN_LEAVES.get(),
                 (block) -> this.createLeavesDrops(block,ChangShengJueBlocks.DURIAN_SAPLING.get(),ChangShengJueItems.DURIAN.get(),NORMAL_LEAVES_SAPLING_CHANCES));
-
+        this.add(ChangShengJueBlocks.DURIAN.get(), block ->
+                this.createSilkTouchDispatchTable(
+                        block,
+                        LootItem.lootTableItem(ChangShengJueItems.DURIAN_MEAT.get())
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 7.0F)))
+                )
+        );
         this.dropSelf(ChangShengJueBlocks.GUI_HUA_LOG.get());
         this.dropSelf(ChangShengJueBlocks.GUI_HUA_SAPLING.get());
         this.add(ChangShengJueBlocks.GUI_HUA_DEFOLIATION.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.GUI_HUA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
@@ -461,11 +458,11 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.TILE_BLOCK_2.get());
         this.dropSelf(ChangShengJueBlocks.TILE_BLOCK_3.get());
         this.dropSelf(ChangShengJueBlocks.TILE_BLOCK_4.get());
-        this.add(ChangShengJueBlocks.DOOR_BIRCH_BLOCK.get(), block -> this.createSinglePropConditionTable(block,DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
-        this.add(ChangShengJueBlocks.DOOR_ACACIA_BLOCK.get(),  block -> this.createSinglePropConditionTable(block,DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
-        this.add(ChangShengJueBlocks.DOOR_DARK_OAK_BLOCK.get(),  block -> this.createSinglePropConditionTable(block,DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
-        this.add(ChangShengJueBlocks.DOOR_OAK_BLOCK.get(),  block -> this.createSinglePropConditionTable(block,DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
-        this.add(ChangShengJueBlocks.DOOR_SPRUCE_BLOCK.get(),  block -> this.createSinglePropConditionTable(block,DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
+        this.add(ChangShengJueBlocks.DOOR_BIRCH_BLOCK.get(), block -> this.createSinglePropConditionTable(block, DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
+        this.add(ChangShengJueBlocks.DOOR_ACACIA_BLOCK.get(),  block -> this.createSinglePropConditionTable(block, DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
+        this.add(ChangShengJueBlocks.DOOR_DARK_OAK_BLOCK.get(),  block -> this.createSinglePropConditionTable(block, DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
+        this.add(ChangShengJueBlocks.DOOR_OAK_BLOCK.get(),  block -> this.createSinglePropConditionTable(block, DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
+        this.add(ChangShengJueBlocks.DOOR_SPRUCE_BLOCK.get(),  block -> this.createSinglePropConditionTable(block, DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
         this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_ACACIA_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_DARK_OAK_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_OAK_BLOCK.get());
@@ -723,7 +720,6 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.BANANA.get());
         this.dropSelf(ChangShengJueBlocks.GRAPE.get());
         this.dropSelf(ChangShengJueBlocks.MULBERRY.get());
-        this.dropSelf(ChangShengJueBlocks.DURIAN.get());
         /*容器食用*/
         //盘
         this.dropSelf(ChangShengJueBlocks.ZHENG_CAI.get());

@@ -4,6 +4,7 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
+import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
@@ -161,6 +162,7 @@ public class GoldenBellJar extends Item {
                                     ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                             goldenBellJar.addGoldenBellJarLevel();
                             goldenBellJar.setGoldenBellJarParticle(true);
+                            CSJAdvanceEvent.summonChallenger(level, player);
                             ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
                                     goldenBellJar.getGoldenBellJarLevel(),
                                     goldenBellJar.isGoldenBellJarComprehend(),

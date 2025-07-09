@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue.item.combat.book;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.dugu_nine_swords.DuguNineSwordsClientData;
+import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.DuguNineSwordsPacket;
@@ -33,6 +34,8 @@ public class DuguNineSwordsBook extends Item {
             pPlayer.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                 if (!duguNineSword.duguNineSwordsComprehend()){
                     duguNineSword.setDuguNineSwordsComprehend(true);
+
+
                     ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),
                             duguNineSword.isDuguNineSwordsComprehend(),
                             duguNineSword.getDuguNineSwordsToppedTick(),

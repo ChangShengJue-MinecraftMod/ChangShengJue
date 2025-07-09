@@ -32,6 +32,10 @@ public class CottonArmor extends ChangShengJueArmorItem implements DyeableItem, 
     public int getColor(ItemStack pStack) {
         return DyeableItem.super.getColor(pStack) != -1 ? DyeableItem.super.getColor(pStack) : 0x0000FF;
     }
+    @Override
+    public int getEnchantmentValue() {
+        return 15;
+    }
 
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {

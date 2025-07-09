@@ -5,6 +5,7 @@ import com.shengchanshe.chang_sheng_jue.capability.martial_arts.the_classics_of_
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapability;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
+import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.event.CSJEvent;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
@@ -63,6 +64,8 @@ public class SoftSword extends Sword implements GeoItem {
                         xuannuSwordsmanship.setXuannuSwordsmanshipParticle(true);
                         player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                                 ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                        Level pLevel = player.level();
+                        CSJAdvanceEvent.summonChallenger(pLevel, player);
                         ChangShengJueMessages.sendToPlayer(new XuannuSwordsmanshipPacket(xuannuSwordsmanship.getXuannuSwordsmanshipLevel(),xuannuSwordsmanship.isXuannuSwordsmanshipComprehend(),
                                 xuannuSwordsmanship.getXuannuSwordsmanshipToppedTick(),
                                 xuannuSwordsmanship.getXuannuSwordsmanshipDachengTick(),

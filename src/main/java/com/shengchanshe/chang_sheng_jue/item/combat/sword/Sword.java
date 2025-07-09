@@ -9,6 +9,7 @@ import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.dugu_nine_swords.DuguNineSwordsEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.yi_tian_jian.YiTianJianAttackEntity;
+import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.event.CSJEvent;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
@@ -64,6 +65,9 @@ public class Sword extends SwordItem {
                         duguNineSword.setDuguNineSwordsParticle(true);
                         player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                                 ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                        Level pLevel = player.level();
+                        CSJAdvanceEvent.summonChallenger(pLevel, player);
+
                         ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket( duguNineSword.getDuguNineSwordsLevel(),
                                 duguNineSword.isDuguNineSwordsComprehend(),
                                 duguNineSword.getDuguNineSwordsToppedTick(),

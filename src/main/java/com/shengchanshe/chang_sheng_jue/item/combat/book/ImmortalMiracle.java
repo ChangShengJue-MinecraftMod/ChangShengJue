@@ -2,6 +2,7 @@ package com.shengchanshe.chang_sheng_jue.item.combat.book;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
+import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket;
@@ -153,6 +154,8 @@ public class ImmortalMiracle extends Item {
                                         ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                                 immortalMiracle.addImmortalMiracleLevel();
                                 immortalMiracle.setImmortalMiracleParticle(true);
+                                CSJAdvanceEvent.summonChallenger(level, player);
+
                                 ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
                                         immortalMiracle.getImmortalMiracleLevel(),
                                         immortalMiracle.isImmortalMiracleComprehend(),

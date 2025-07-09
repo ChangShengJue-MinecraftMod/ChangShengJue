@@ -2,6 +2,7 @@ package com.shengchanshe.chang_sheng_jue.item.combat.book;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapabilityProvider;
+import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.ChatFormatting;
@@ -51,6 +52,8 @@ public class WuGangCutGui extends Item {
                         if (probability < defaultProbability) {
                             wuGangCutGui.addWuGangCutGuiLevel();
                             wuGangCutGui.setWuGangCutGuiParticle(true);
+                            CSJAdvanceEvent.summonChallenger(level, player);
+
                             level.playSound(null, player.getX(), player.getY(), player.getZ(), ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                         }
                     }

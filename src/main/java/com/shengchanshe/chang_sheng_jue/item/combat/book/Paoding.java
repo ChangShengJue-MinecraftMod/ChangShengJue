@@ -2,6 +2,7 @@ package com.shengchanshe.chang_sheng_jue.item.combat.book;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.paoding.PaodingCapabilityProvider;
+import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.PaodingPacket;
@@ -51,6 +52,8 @@ public class Paoding extends Item {
                             paoding.setPaodingParticle(true);
                             player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                                     ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                            CSJAdvanceEvent.summonChallenger(level, player);
+
                             ChangShengJueMessages.sendToPlayer(new PaodingPacket(
                                     paoding.getPaodingLevel(),
                                     paoding.isPaodingComprehend(),

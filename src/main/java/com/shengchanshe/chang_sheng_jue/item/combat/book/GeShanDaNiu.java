@@ -9,6 +9,7 @@ import com.shengchanshe.chang_sheng_jue.capability.martial_arts.turtle_breath_wo
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.ge_shan_da_niu.GeShanDaNiuEntity;
+import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
@@ -171,6 +172,8 @@ public class GeShanDaNiu extends Item {
                                     ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
                             geShanDaNiu.addGeShanDaNiuLevel();
                             geShanDaNiu.setGeShanDaNiuParticle(true);
+                            CSJAdvanceEvent.summonChallenger(level, player);
+
                             ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
                                     geShanDaNiu.getGeShanDaNiuLevel(),
                                     geShanDaNiu.isGeShanDaNiuComprehend(),

@@ -7,4 +7,8 @@ public class LeatherInnerArmor extends ArmorItem implements InnerArmorInterface 
     public LeatherInnerArmor(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
     }
+    @Override
+    public int getEnchantmentValue() {
+        return 15;
+    }
 }

@@ -9,6 +9,7 @@ import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.tu_long_dao.TuLongDaoAttackEntity;
+import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.GoldenBlackKnifeMethodPacket;
@@ -55,6 +56,8 @@ public class Knife extends SwordItem {
                         goldenBlackKnifeMethod.setGoldenBlackKnifeMethodParticle(true);
                         pPlayer.level().playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(),
                                 ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                        Level pLevel = pPlayer.level();
+                        CSJAdvanceEvent.summonChallenger(pLevel, pPlayer);
                         ChangShengJueMessages.sendToPlayer(new GoldenBlackKnifeMethodPacket(goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel(),
                                 goldenBlackKnifeMethod.isGoldenBlackKnifeMethodComprehend(),
                                 goldenBlackKnifeMethod.getGoldenBlackKnifeMethodToppedTick(),

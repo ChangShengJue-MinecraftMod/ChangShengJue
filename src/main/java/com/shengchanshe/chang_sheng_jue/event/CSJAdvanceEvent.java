@@ -14,37 +14,114 @@ import com.shengchanshe.chang_sheng_jue.capability.martial_arts.sunflower_point_
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
+import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
+import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.bandit.Bandit;
+import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.challenger.Challenger;
+import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.villain.Villain;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;
+import com.shengchanshe.chang_sheng_jue.world.CSJStructures;
+import net.minecraft.advancements.critereon.LocationPredicate;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJAdvanceEvent {
-    private static int TASK_COUNT = 0;
+    private static int COOLDOWN = 3;
+    private static final Set<ChunkPos> generatedVillainChunks = new HashSet<>(); // 新增：跟踪已生成Villain的区块
 
-    //检查物品
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase == TickEvent.Phase.END && event.player instanceof ServerPlayer serverPlayer) {
+            Player player = event.player;
+            checkPlayerCungFu(serverPlayer);
+            checkForItem(player);
+
+            //玩家是否处于某结构
+            Level level = player.level();
+            BlockPos pos = player.blockPosition();
+            ServerLevel serverLevel = (ServerLevel) level;
+            List<ResourceKey<Structure>> villages = List.of(
+                    CSJStructures.PIT_YARD,
+                    CSJStructures.SANDSTONE_CASTLE,
+                    CSJStructures.SI_HE_YUAN,
+                    CSJStructures.SU_PAI_VILLAGE,
+                    CSJStructures.WAN_PAI_VILLAGE,
+                    CSJStructures.FORTRESSES
+            );
+            boolean isInAnyVillage = false;
+            ChunkPos villageChunk = null; // 记录村庄所在的区块
+
+            for (ResourceKey<Structure> village : villages) {
+                LocationPredicate predicate = LocationPredicate.inStructure(village);
+                if (predicate.matches(serverLevel, pos.getX(), pos.getY(), pos.getZ())) {
+                    villageChunk = new ChunkPos(pos);
+                    isInAnyVillage = true;
+                    break;
+                }
+            }
+            if (isInAnyVillage && villageChunk != null && !generatedVillainChunks.contains(villageChunk)) {
+                summonVillain(serverLevel, player, villageChunk); // 传递区块参数
+                generatedVillainChunks.add(villageChunk); // 标记为已生成
+            }
+        }
+    }
+
+
+
     private static void checkForItem(net.minecraft.world.entity.player.Player player) {
         boolean hasQiTianHelmet = false;
         boolean hasQiTianChestplate = false;
         boolean hasQiTianLeggings = false;
         boolean hasQiTianBoots = false;
+        //获取世界时间
+        Level level = player.level();
+        long worldTime = level.getDayTime();
+        if (worldTime % 24000 == 0) {
+            if (COOLDOWN == 3) {
+                //强盗
+                //当玩家拥有8个铜钱时
+                if (player.getInventory().countItem(ChangShengJueItems.YI_GUAN_TONG_QIAN.get()) >= 9 ||
+                    player.getInventory().countItem(ChangShengJueItems.SILVER_BULLIONS.get()) >= 3 ||
+                    player.getInventory().countItem(ChangShengJueItems.GOLD_BULLIONS.get()) >= 1)
+                {
+                    summonBandit(level, player);
+                }
+            } else if (COOLDOWN >= 4) {
+                COOLDOWN = 0;
+            } else {
+                COOLDOWN++;
+            }
+        }
+
+
         for (ItemStack itemStack : player.getInventory().items) {
             Item item = itemStack.getItem();
             if (player instanceof ServerPlayer serverPlayer) {
                 //获取玩家所在群系
                  String biome = serverPlayer.level().getBiome(player.blockPosition()).toString();
+                //成就
                 if (item == ChangShengJueItems.MI_FAN.get()) {
                     CSJAdvanceInit.HAS_MI_FAN.trigger(serverPlayer);//人是铁饭是钢
                 }else if (item == ChangShengJueItems.SILVER_BULLIONS.get()) {
@@ -84,8 +161,7 @@ public class CSJAdvanceEvent {
                         || item == ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get()
                         || item == ChangShengJueItems.FLY_FISH_CHESTPLATE.get()
                         || item == ChangShengJueItems.WALKER_CHESTPLATE.get()
-                        || item == ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get()
-                ){
+                        || item == ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get()) {
                     CSJAdvanceInit.HAS_ADVANCED_ARRMOR.trigger(serverPlayer);
                 }else if (item == ChangShengJueItems.PHOENIX_FEATHER_CAP.get()) {
                     hasQiTianHelmet = true;
@@ -114,15 +190,147 @@ public class CSJAdvanceEvent {
         }
 
     }
-    @SubscribeEvent
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase == TickEvent.Phase.END && event.player instanceof ServerPlayer serverPlayer) {
-            checkPlayerCungFu(serverPlayer);
-            checkForItem(event.player);
+
+    public static void summonBandit(Level level, Player player) {
+        if (level.isClientSide()) {
+            return;
         }
+        BlockPos pos = player.blockPosition();
+        ServerLevel serverLevel = (ServerLevel) level;
+        BlockPos playerPos = player.blockPosition();
+        RandomSource random = serverLevel.getRandom();
+        if (serverLevel.getRandom().nextInt(100) <= 5) {
+            int numberOfBandits = RandomSource.create().nextInt(3) + 1;
+            for (int i = 0; i < numberOfBandits; i++) {
+                BlockPos spawnPos = findValidSpawnPosition(serverLevel, playerPos, random,20);
+                if (spawnPos == null) {
+                    spawnPos = new BlockPos(
+                            playerPos.getX() + random.nextInt(10) - 5,
+                            playerPos.getY() + random.nextInt(10) - 5, // 原方法的Y坐标随机
+                            playerPos.getZ()
+                    );
+                }
+                Bandit bandit = new Bandit(ChangShengJueEntity.BANDIT.get(), serverLevel);
+                if (bandit != null) {
+                    bandit.moveTo(spawnPos,
+                            5.0F, 5.0F);
+                    bandit.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(pos),
+                            MobSpawnType.EVENT, null, null);
+                    serverLevel.addFreshEntity(bandit);
+                    COOLDOWN = 0;
+                }
+            }
+        }
+    }
+    public static void summonVillain(Level level, Player player, ChunkPos villageChunk) {
+        if (level.isClientSide()) {
+            return;
+        }
+        ServerLevel serverLevel = (ServerLevel) level;
+        BlockPos playerPos = player.blockPosition();
+        RandomSource random = serverLevel.getRandom();
+
+        // 50%概率生成
+        if (random.nextInt(100) <= 50) {
+            int numberOfVillains = random.nextInt(5) + 1;
+
+            for (int i = 0; i < numberOfVillains; i++) {
+                // 尝试寻找有效生成位置
+                BlockPos spawnPos = findValidSpawnPosition(serverLevel, playerPos, random,20);
+
+                // 如果失败则使用默认方法（直接在玩家附近生成）
+                if (spawnPos == null) {
+                    spawnPos = playerPos.offset(
+                            random.nextInt(20) - 10,
+                            0,
+                            random.nextInt(20) - 10
+                    );
+                }
+
+                // 生成实体
+                Villain villain = new Villain(ChangShengJueEntity.VILLAIN.get(), serverLevel);
+                if (villain != null) {
+                    villain.moveTo(spawnPos, random.nextFloat() * 360.0F, 0.0F);
+                    villain.finalizeSpawn(
+                            serverLevel,
+                            serverLevel.getCurrentDifficultyAt(spawnPos),
+                            MobSpawnType.EVENT,
+                            null,
+                            null
+                    );
+                    serverLevel.addFreshEntity(villain);
+                }
+            }
+        }
+    }
 
 
+    public static void summonChallenger(Level level, Player player) {
+        // 仅在服务端执行实体生成逻辑
+        if (level.isClientSide()) {
+            return;
+        }
+        System.out.println("成功");
+        ServerLevel serverLevel = (ServerLevel) level;
+        BlockPos playerPos = player.blockPosition();
+        RandomSource random = serverLevel.getRandom();
 
+        int numberOfChallengers = 1;
+
+        for (int i = 0; i < numberOfChallengers; i++) {
+            // 尝试寻找有效生成位置（避免实体卡在方块中）
+            BlockPos spawnPos = findValidSpawnPosition(serverLevel, playerPos, random,5);
+
+            // 如果未找到有效位置，使用玩家周围随机偏移位置
+            if (spawnPos == null) {
+                spawnPos = playerPos.offset(
+                        random.nextInt(31) - 15,  // X轴：-15到15之间随机
+                        0,  // Y轴保持与玩家同高度（避免空中/地下）
+                        random.nextInt(31) - 15   // Z轴：-15到15之间随机
+                );
+            }
+
+            // 创建挑战者实体并设置属性
+            Challenger challenger = new Challenger(ChangShengJueEntity.CHALLENGER.get(), serverLevel);
+            if (challenger != null) {
+                // 设置实体位置和旋转角度
+                challenger.moveTo(spawnPos, random.nextFloat() * 360.0F, 0.0F);
+                // 初始化实体（难度适配、生成状态等）
+                challenger.finalizeSpawn(
+                        serverLevel,
+                        serverLevel.getCurrentDifficultyAt(spawnPos),
+                        MobSpawnType.EVENT,  // 标记为事件生成
+                        null,  // 无额外NBT数据
+                        null
+                );
+                // 将实体添加到世界
+                serverLevel.addFreshEntity(challenger);
+            }
+        }
+    }
+
+    /**
+     * 在玩家周围寻找有效的生成位置（避免卡在土里）
+     */
+    private static BlockPos findValidSpawnPosition(ServerLevel level, BlockPos playerPos, RandomSource random,int range) {
+        // 尝试最多10次寻找有效位置
+        for (int attempt = 0; attempt < 10; attempt++) {
+            // 在玩家周围20×20区域内随机选择XZ坐标
+            int x = playerPos.getX() + random.nextInt(2 * range + 1) - range; // -20到+20
+            int z = playerPos.getZ() +  random.nextInt(2 * range + 1) - range; // -20到+20
+
+            // 获取该坐标处的最高非空气方块
+            BlockPos surfacePos = level.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, new BlockPos(x, 0, z));
+
+            // 检查方块是否可站立（实体生成在方块顶部）
+            BlockState groundState = level.getBlockState(surfacePos.below());
+            if (groundState.isSolidRender(level, surfacePos.below()) && // 下方方块是实体
+                    !level.getBlockState(surfacePos).isSolidRender(level, surfacePos) && // 当前方块非实体
+                    !level.getBlockState(surfacePos.above()).isSolidRender(level, surfacePos.above())) { // 上方方块非实体
+                return surfacePos;
+            }
+        }
+        return null; // 尝试失败，返回null
     }
     private static void checkPlayerCungFu(ServerPlayer player) {
         // 获取玩家的独孤九剑能力
@@ -255,7 +463,5 @@ public class CSJAdvanceEvent {
                 CSJAdvanceInit.MI_CHANG_SHENG.trigger(player);
             }
         }
-
     }
-
 }

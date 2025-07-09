@@ -1007,6 +1007,12 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("#")
                 .pattern("X")
                 .unlockedBy("has_ingots_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
+        //金丝手套（2、4、6金锭）
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.GOLD_THREAD_GLOVE.get(),1)
+                .define('X', Ingredient.of(Tags.Items.INGOTS_GOLD))
+                .pattern(" X ")
+                .pattern("X X")
+                .unlockedBy("has_ingots_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
         //棉甲
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.COTTON_HELMET.get(),1)
                 .define('#', Ingredient.of(Tags.Items.LEATHER))

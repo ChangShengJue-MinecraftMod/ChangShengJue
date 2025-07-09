@@ -8,6 +8,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import static software.bernie.example.registry.SoundRegistry.SOUNDS;
+
 public class ChangShengJueSound {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, ChangShengJue.MOD_ID);
 
@@ -95,6 +97,8 @@ public class ChangShengJueSound {
     public static final RegistryObject<SoundEvent> DACHENG_SOUND = registerSoundEvent("dacheng_sound");
     //风铃
     public static final RegistryObject<SoundEvent> WIND_CHIME_SOUND = registerSoundEvent("wind_chime_sound");
+    //木桩
+    public static final RegistryObject<SoundEvent> STAKES_HIT_SOUND = registerSoundEvent("stakes_hit_sound");
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ChangShengJue.MOD_ID, name)));

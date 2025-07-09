@@ -25,7 +25,10 @@ public class MountainPatternArmor extends ChangShengJueArmorItem implements GeoI
     public MountainPatternArmor(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
     }
-
+    @Override
+    public int getEnchantmentValue() {
+        return 15;
+    }
 //    @Override
 //    public boolean isRepairable(ItemStack stack) {
 //        //禁用工作台修复

@@ -1,8 +1,11 @@
 package com.shengchanshe.chang_sheng_jue.entity.combat.stakes;
 
+import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
+import com.shengchanshe.chang_sheng_jue.entity.custom.deer.hind.Hind;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.item.combat.book.*;
+import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.Rotations;
@@ -13,9 +16,11 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -32,13 +37,24 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.constant.DefaultAnimations;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.Animation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class StakesEntity extends LivingEntity {
+public class StakesEntity extends LivingEntity implements GeoEntity {
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final Rotations DEFAULT_HEAD_POSE = new Rotations(0.0F, 0.0F, 0.0F);
     private static final Rotations DEFAULT_BODY_POSE = new Rotations(0.0F, 0.0F, 0.0F);
     private static final Rotations DEFAULT_LEFT_ARM_POSE = new Rotations(-10.0F, 0.0F, -10.0F);
@@ -85,12 +101,12 @@ public class StakesEntity extends LivingEntity {
         this.setPos(pX, pY, pZ);
     }
 
-    public static AttributeSupplier setAttributes(){
+    public static AttributeSupplier setAttributes() {
         return Animal.createMobAttributes()
-                .add(Attributes.MAX_HEALTH,1D)
-                .add(Attributes.MOVEMENT_SPEED,0.3)
-                .add(Attributes.KNOCKBACK_RESISTANCE,1)
-                .add(Attributes.FLYING_SPEED,0.6).build();
+                .add(Attributes.MAX_HEALTH, 1D)
+                .add(Attributes.MOVEMENT_SPEED, 0.3)
+                .add(Attributes.KNOCKBACK_RESISTANCE, 1)
+                .add(Attributes.FLYING_SPEED, 0.6).build();
     }
 
     public void refreshDimensions() {
@@ -302,6 +318,8 @@ public class StakesEntity extends LivingEntity {
                 this.kill();
                 return true; // 实体对所有伤害免疫
             }else {
+                level.broadcastEntityEvent(this, (byte)32); // 触发受击事件
+
                 GoldenBellJar.comprehend(entity,level);
                 QianKunDaNuoYi.comprehend(entity,level);
                 ImmortalMiracle.comprehend(entity,level);
@@ -331,16 +349,53 @@ public class StakesEntity extends LivingEntity {
         }
     }
 
+
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        AnimationController<StakesEntity> hurtController = new AnimationController<>(
+                this,
+                "stakes_hurt_controller",
+                0,
+                this::hurtPredicate
+        );
+        hurtController.triggerableAnim(
+                "stakes",
+                RawAnimation.begin().then("stakes", Animation.LoopType.PLAY_ONCE)
+        );
+        controllerRegistrar.add(hurtController);
+        controllerRegistrar.add(new AnimationController(this,"stakes",0,this::hurtPredicate));
+
+    }
+
+    private PlayState hurtPredicate(AnimationState event) {
+        return PlayState.CONTINUE;
+    }
+
+    @Override
     public void handleEntityEvent(byte pId) {
         if (pId == 32) {
             if (this.level().isClientSide) {
-                this.level().playLocalSound(this.getX(), this.getY(), this.getZ(), SoundEvents.ARMOR_STAND_HIT, this.getSoundSource(), 0.3F, 1.0F, false);
-                this.lastHit = this.level().getGameTime();
+                // 播放自定义声音
+                this.level().playLocalSound(
+                        this.getX(), this.getY(), this.getZ(),
+                        ChangShengJueSound.STAKES_HIT_SOUND.get(),
+                        this.getSoundSource(), 0.3F, 1.0F,
+                        false
+                );
+                this.triggerAnim("stakes_hurt_controller", "stakes");
             }
         } else {
             super.handleEntityEvent(pId);
         }
+    }
 
+
+
+
+
+    public ResourceLocation getAnimationResource(Hind entity) {
+        return new ResourceLocation(ChangShengJue.MOD_ID,"animations/entity/stakes/stakes.animation.json");
     }
 
     public boolean shouldRenderAtSqrDistance(double pDistance) {
@@ -619,11 +674,6 @@ public class StakesEntity extends LivingEntity {
     }
 
     @Nullable
-    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
-        return SoundEvents.ARMOR_STAND_HIT;
-    }
-
-    @Nullable
     protected SoundEvent getDeathSound() {
         return SoundEvents.ARMOR_STAND_BREAK;
     }
@@ -705,4 +755,30 @@ public class StakesEntity extends LivingEntity {
         DATA_RIGHT_LEG_POSE = SynchedEntityData.defineId(StakesEntity.class, EntityDataSerializers.ROTATIONS);
         RIDABLE_MINECARTS = (p_31582_) -> p_31582_ instanceof AbstractMinecart && ((AbstractMinecart)p_31582_).canBeRidden();
     }
+
+//    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+//        AnimationController<StakesEntity> hurtController = new AnimationController<>(
+//                this,
+//                "stakes_hurt_controller",
+//                0,
+//                state -> PlayState.CONTINUE // 确保返回 CONTINUE 以持续更新动画
+//        );
+//        hurtController.triggerableAnim(
+//                "stakes", // 与 JSON 文件中的动画名一致
+//                RawAnimation.begin().then("stakes", Animation.LoopType.PLAY_ONCE)
+//        );
+//        controllerRegistrar.add(hurtController); // 注册控制器
+//
+//    }
+
+    public ResourceLocation getAnimationResource(StakesEntity entity) {
+        return new ResourceLocation(ChangShengJue.MOD_ID, "animations/entity/stakes/stakes.animation.json");
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
+    }
+
+
 }

@@ -39,7 +39,10 @@ public class QiTianDaSheng extends ArmorItem implements GeoItem {
         super(pMaterial, pType, pProperties);
         this.durabilityMultiplier = durabilityMultiplier; // 存储自定义的耐久倍数
     }
-
+    @Override
+    public int getEnchantmentValue() {
+        return 15;
+    }
     @Override
     public int getMaxDamage(ItemStack stack) {
         // 使用原版的 ArmorMaterial 耐久值计算，并乘以自定义倍数

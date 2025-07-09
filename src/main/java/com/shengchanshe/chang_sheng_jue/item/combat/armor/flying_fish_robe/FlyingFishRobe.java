@@ -27,7 +27,10 @@ public class FlyingFishRobe extends ChangShengJueArmorItem implements DyeableIte
     public FlyingFishRobe(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
     }
-
+    @Override
+    public int getEnchantmentValue() {
+        return 15;
+    }
     @Override
     public int getColor(ItemStack pStack) {
         return DyeableItem.super.getColor(pStack) != -1 ? DyeableItem.super.getColor(pStack) : 0x0000FF;

@@ -4,13 +4,17 @@ import javax.annotation.Nullable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -25,11 +29,16 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.server.ServerLifecycleHooks;
+
+import java.util.List;
 
 public class DoorsBlock extends Block {
     // 新增三格门的半块属性，增加MIDDLE状态
@@ -194,7 +203,6 @@ public class DoorsBlock extends Block {
             // 防止创造性模式下只破坏部分门
             ThreeBlockHalf half = pState.getValue(HALF);
             if (half == ThreeBlockHalf.LOWER) {
-                System.out.println("lower");
                 pLevel.destroyBlock(pPos.above(),false);
             }
 //            if (half == ThreeBlockHalf.MIDDLE) {
@@ -204,7 +212,6 @@ public class DoorsBlock extends Block {
 //                pLevel.destroyBlock(pPos.above(), false);
 //            }
             if (half == ThreeBlockHalf.UPPER) {
-                System.out.println("upper");
                 pLevel.destroyBlock(pPos.below(), false);
             }
         }
@@ -370,6 +377,37 @@ public class DoorsBlock extends Block {
             }
         }
     }
+    public void setClose(@Nullable Entity pEntity, Level pLevel, BlockState pState, BlockPos pPos, boolean pOpen) {
+        if (pState.is(this) && (Boolean)pState.getValue(OPEN)) {
+            // 创建关闭状态的新 BlockState
+            BlockState newState = pState.setValue(OPEN, false);
+            pLevel.setBlock(pPos, newState, 10);
+
+            // 同步三格门状态
+            ThreeBlockHalf half = pState.getValue(HALF);
+            if (half == ThreeBlockHalf.LOWER) {
+                pLevel.setBlock(pPos.above(), newState.setValue(HALF, ThreeBlockHalf.MIDDLE), 10);
+                pLevel.setBlock(pPos.above(2), newState.setValue(HALF, ThreeBlockHalf.UPPER), 10);
+            } else if (half == ThreeBlockHalf.MIDDLE) {
+                pLevel.setBlock(pPos.below(), newState.setValue(HALF, ThreeBlockHalf.LOWER), 10);
+                pLevel.setBlock(pPos.above(), newState.setValue(HALF, ThreeBlockHalf.UPPER), 10);
+            } else if (half == ThreeBlockHalf.UPPER) {
+                pLevel.setBlock(pPos.below(), newState.setValue(HALF, ThreeBlockHalf.MIDDLE), 10);
+                pLevel.setBlock(pPos.below(2), newState.setValue(HALF, ThreeBlockHalf.LOWER), 10);
+            }
+
+            // 触发关闭事件
+            this.playSound(pEntity, pLevel, pPos, false);
+            pLevel.gameEvent(pEntity, GameEvent.BLOCK_CLOSE, pPos);
+
+            // 额外触发中间和顶部方块的关闭事件
+            if (half == ThreeBlockHalf.LOWER) {
+                pLevel.gameEvent(pEntity, GameEvent.BLOCK_CLOSE, pPos.above());
+                pLevel.gameEvent(pEntity, GameEvent.BLOCK_CLOSE, pPos.above(2));
+            }
+        }
+    }
+
 
     @Override
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
@@ -494,6 +532,7 @@ public class DoorsBlock extends Block {
         EAST_AABB_UPPER = Block.box(0.0, 0.0, 0.0, 3.0, 16.0, 16.0);
     }
 
+    //检测方块附近的实体
 
 
     public static boolean isWoodenDoor(Level pLevel, BlockPos pPos) {
@@ -503,7 +542,7 @@ public class DoorsBlock extends Block {
     public static boolean isWoodenDoor(BlockState pState) {
         Block var2 = pState.getBlock();
         boolean var10000;
-        if (var2 instanceof DoorBlock $$1) {
+        if (var2 instanceof DoorsBlock $$1) {
             if ($$1.type().canOpenByHand()) {
                 var10000 = true;
                 return var10000;
@@ -513,4 +552,7 @@ public class DoorsBlock extends Block {
         var10000 = false;
         return var10000;
     }
+
+
+
 }

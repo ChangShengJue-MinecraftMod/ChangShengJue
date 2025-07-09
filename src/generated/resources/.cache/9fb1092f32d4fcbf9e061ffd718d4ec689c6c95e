@@ -1,4 +1,4 @@
-// 1.20.1	2025-07-02T11:40:34.5756217	Recipes
+// 1.20.1	2025-07-04T09:36:14.787335	Recipes
 8f8010379e458578bc3f02cdc4fb63984080a96d data/chang_sheng_jue/advancements/recipes/building_blocks/acacia_bench.json
 c479feb8a0764ef7fabe60f8416bc9c9b700573a data/chang_sheng_jue/advancements/recipes/building_blocks/acacia_drinking_table_and_chairs.json
 900ca00c566e2408e2072be496ab212f1bbb791e data/chang_sheng_jue/advancements/recipes/building_blocks/acacia_low_desk.json
@@ -108,6 +108,7 @@ e37381c5fb21db262917292ef02588bb6a3747f0 data/chang_sheng_jue/advancements/recip
 a87e4a31f97c0ef732d6a44805efa8c2977fe66c data/chang_sheng_jue/advancements/recipes/combat/female_taoist_chestplate.json
 87e40ea2be2a300cd03ab8baba0c0d51c82b1938 data/chang_sheng_jue/advancements/recipes/combat/female_taoist_helmet.json
 6812e2059856f9e47979bf41fa817d63f4e0662e data/chang_sheng_jue/advancements/recipes/combat/gold_silk_soft_armor.json
+e3c1944296227e759cdc8c26d901582f6758cd7f data/chang_sheng_jue/advancements/recipes/combat/gold_thread_glove.json
 21a044eed8756d29eb1ac3bee6b98dfe93f9bf67 data/chang_sheng_jue/advancements/recipes/combat/han_jian.json
 892a54938c76e9244aaf539ad4e1e30b2635da5b data/chang_sheng_jue/advancements/recipes/combat/heng_dao.json
 4caf0c6e42259ec6e86dca28ce80fff3ebc59685 data/chang_sheng_jue/advancements/recipes/combat/kitchen_knife.json
@@ -270,6 +271,7 @@ e94abe299b9c7c0e6e30e029cb2cb02560e6e6de data/chang_sheng_jue/recipes/female_tao
 fa25e7fc17fb76e70e6cb58d968ab47477b31b7f data/chang_sheng_jue/recipes/female_taoist_helmet.json
 90b7543adec8435d3c9c98e6b83ca7e6236d9d5f data/chang_sheng_jue/recipes/gold_bricks.json
 ad9cec9771ce73e9296e5e23f5774fa82985065e data/chang_sheng_jue/recipes/gold_silk_soft_armor.json
+92d1bd767148841c7ac3e08bc544c8cc589b8ac9 data/chang_sheng_jue/recipes/gold_thread_glove.json
 56f90515dcd2a8be1e15dbfe0f7552013c470a67 data/chang_sheng_jue/recipes/grape_juice.json
 fdc95dfddb42c3f49c89ff183e69ee9d06cbc59b data/chang_sheng_jue/recipes/green_dougong.json
 475dc37860c5189810e51bccaf38deda561f407e data/chang_sheng_jue/recipes/gui_hua_tang_ou.json

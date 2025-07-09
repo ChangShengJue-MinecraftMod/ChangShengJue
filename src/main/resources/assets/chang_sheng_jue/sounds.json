@@ -331,5 +331,11 @@
     "sounds": [
       "chang_sheng_jue:block/wind_chime_sound"
     ]
+  },
+  "stakes_hit_sound": {
+    "subtitle": "sounds.chang_sheng_jue.stakes_hit_sound",
+    "sounds": [
+      "chang_sheng_jue:block/stakes_hit_sound"
+    ]
   }
 }

@@ -290,50 +290,50 @@ public class CSJUSLanguageProvider extends LanguageProvider {
 
         //武功描述
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".tooltip","不死不灭，岂是幻梦?");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".hold_shift.tooltip", "右键学习，使用金丝手套击打木桩有1%概率领悟。\\n领悟后在你死亡时抵御致命伤害。\\n武功大成后效果加强。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后在你死亡时抵御致命伤害。\\n武功大成后减少冷却。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".tooltip","以气御力，神力无穷。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".hold_shift.tooltip", "右键学习，使用金丝手套击打木桩有1%概率领悟。\\n领悟后减少疾跑消耗的饱食度\\n武功大成后获得随身末影箱。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后减少疾跑消耗的饱食度\\n武功大成后获得随身末影箱。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".tooltip","天下剑法中的巅峰绝诣，其中包含森罗万象的诀窍。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".hold_shift.tooltip",
-                "右键学习，使用剑类武器有15%概率领悟。\\n领悟后持剑右键施展独孤九剑。\\n武功大成后提高使用剑类武器使目标触发流血状态的概率和武功伤害。");
+                "右键学习，使用剑类武器有15%概率领悟。\\n领悟后持剑右键施展独孤九剑。\\n武功大成后使用剑类武器提高施加流血状态概率与武功伤害。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".tooltip","一点寒芒先到，随后枪出如龙。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".hold_shift.tooltip",
-                "右键学习，使用枪类武器有15%概率领悟。\\n领悟后持枪右键施展高家枪。\\n武功大成后提高使用枪类武器挑飞目标的概率和武功伤害。");
+                "右键学习，使用枪类武器有15%概率领悟。\\n领悟后持枪右键施展高家枪。\\n武功大成后提高使用枪类武器挑飞目标的概率与武功伤害。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GE_SHAN_DA_NIU.get()+".tooltip","神功盖世，何欺牛儿?");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GE_SHAN_DA_NIU.get()+".hold_shift.tooltip", "右键学习，使用金丝手套击打木桩有1%概率领悟。\\n领悟后使用金丝手套可以施展隔山打牛攻击目标。\\n武功大成后效果加强。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GE_SHAN_DA_NIU.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后使用金丝手套施展可无视方块造成伤害。\\n武功大成后增加攻击距离。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".tooltip","龟虽有鼻，而息之以耳。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".hold_shift.tooltip", "右键学习，使用金丝手套击打木桩有1%概率领悟。\\n领悟后水下可以屏息更久，不会被动物主动攻击。\\n武功大成后效果加强。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后使用金丝手套可以在水下屏息更久，不会被动物主动攻击。\\n武功大成后效果加强。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()+".tooltip","任你千变万化，我只一刀破去!");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()+".hold_shift.tooltip",
-                "右键学习，使用刀类武器有15%概率领悟。\\n领悟后持刀右键施展金乌刀法。\\n武功大成后提高使用刀类武器重击目标的概率和武功伤害。");
+                "右键学习，使用刀类武器有15%概率领悟。\\n领悟后持刀右键施展金乌刀法。\\n武功大成后提高使用刀类武器重击目标的概率与武功伤害。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BELL_JAR.get()+".tooltip","刀枪不入，浑然一金钟。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BELL_JAR.get()+".hold_shift.tooltip", "右键学习，使用金丝手套击打木桩有1%概率领悟。\\n领悟后按键施展金钟罩提高护甲值。\\n武功大成后效果加强。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BELL_JAR.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后受到伤害可以获得护甲值与伤害吸收。\\n武功大成后获得更高的护甲值与伤害吸收。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".tooltip","指如疾风，势如闪电。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".hold_shift.tooltip", "右键学习，使用金丝手套击打木桩有1%概率领悟。\\n领悟后右键施展葵花点穴手定住目标。\\n武功大成后效果加强。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后使用金丝手套可以定住血量上限低于25的目标1.5秒。\\n武功大成后提高为200血，2秒。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".tooltip","学向勤中得，萤窗万卷书。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".hold_shift.tooltip", "右键学习领悟，每秒有5%概率会增加1点经验。\\n武功大成后效果加强。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".hold_shift.tooltip", "右键学习，领悟后每次交易有概率获得少量。\\n武功大成后提高概率与获得经验。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".tooltip","若反复实践，掌握规律；便得心应手，运用自如。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后持菜刀杀死动物有50%概率额外掉落肉。\\n武功大成后效果加强。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后持菜刀杀死动物有50%概率额外掉落肉。\\n武功大成后加强为75%。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SHAOLIN_STICK_METHOD.get()+".tooltip","天下武功出少林，一棍定乾坤。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SHAOLIN_STICK_METHOD.get()+".hold_shift.tooltip",
-                "右键学习，使用棍类武器有15%概率领悟。\\n领悟后持棍右键施展少林棍。\\n武功大成后提高使用棍类武器晕眩目标的概率和武功伤害。");
+                "右键学习，使用棍类武器有15%概率领悟。\\n领悟后持棍右键施展少林棍。\\n武功大成后提高使用棍类武器击晕目标的概率与武功伤害。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()+".tooltip","来去无影无踪，逍遥自在。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后可以二连跳。\\n武功大成后效果加强。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后可以二连跳且不会陷入细雪。\\n武功大成后可三连跳。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()+".tooltip","无情飞刀人有情义，人有情义飞刀无情。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()+".hold_shift.tooltip", "右键学习，使用飞刀有2%概率领悟。\\n领悟后使用飞刀伤害提高至1.25倍。\\n武功大成后效果加强。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()+".hold_shift.tooltip", "右键学习，使用飞刀有2%概率领悟。\\n领悟后使用飞刀伤害提高至1.25倍。\\n武功大成后提高伤害与一次性丢出数量。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WU_GANG_CUT_GUI.get()+".tooltip","何意杀人技，不如快人心。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WU_GANG_CUT_GUI.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后使用萱花斧砍树可以破坏整棵树。\\n武功大成后效果加强。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WU_GANG_CUT_GUI.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后使用萱花斧砍树可以破坏整棵树。\\n武功大成后速度增加。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.XUANNU_SWORDSMANSHIP.get()+".tooltip","以巧借力，以柔克刚。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.XUANNU_SWORDSMANSHIP.get()+".hold_shift.tooltip",
-                "右键学习，使用软剑有15%概率领悟。\\n领悟后持软剑右键施展玄女剑法。\\n武功大成后提高使用剑类武器使目标触发流血状态的概率和武功伤害。");
+                "右键学习，使用软剑有15%概率领悟。\\n领悟后持软剑右键施展玄女剑法。\\n武功大成后使用软剑提高施加流血状态概率与提高武功伤害。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".tooltip","生生不息，直至山平。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后使用开山镐的挖掘面积扩大为2x2。\\n武功大成后效果加强。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后使用开山镐的挖掘面积扩大为2x2。\\n武功大成后扩展为3x3。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".tooltip","江湖不是打打杀杀，那是人情世故!");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".hold_shift.tooltip", "右键学习领悟，只需跟村民交易一次即可让村民等级提升为学徒。\\n武功大成后效果加强。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".hold_shift.tooltip", "右键学习领悟，只需跟村民交易一次即可提升等级为学徒。\\n武功大成后交易有概率不消耗物品。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get()+".tooltip","武林中人梦寐以求的武学宝典。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后释放武功需要的饥饿度减少1点。\\n武功大成后效果加强");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后释放武功需要的饥饿值减少1点。\\n武功大成后饥饿值与饱和值各减少一点");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".tooltip","激发潜力，牵引挪移，其中变化莫测，匪夷所思。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".hold_shift.tooltip", "右键学习，使用金丝手套击打木桩有1%概率领悟。\\n领悟后有35%概率将下次遭受伤害以更大伤害转移给攻击者。（每施展1次冷却时间短期内延长2秒）\\n武功大成后效果加强");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后有35%概率将遭受伤害以更大伤害转移给攻击者。（每施展1次冷却时间短期内延长2秒）\\n武功大成后每多一点血量提高2%概率");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DURIAN.get()+".tooltip","请使用斧子劈开");
         this.add("tooltip."+ChangShengJue.MOD_ID+".hold_shift.tooltip","按下 §eShift§r 查看更多信息");
@@ -558,8 +558,8 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.INTERNAL_INJURY_EFFECT.get(), "内伤");
 
         this.add(ChangShengJueBlocks.MANGROVE_OVERLORD_FIST.get(),"红木霸王拳");
-        this.add(ChangShengJueBlocks.BIRCH_OVERLORD_FIST.get(),"桦木霸王拳");
-        this.add(ChangShengJueBlocks.JUNGLE_OVERLORD_FIST.get(), "丛林霸王拳");
+        this.add(ChangShengJueBlocks.BIRCH_OVERLORD_FIST.get(),"白桦木霸王拳");
+        this.add(ChangShengJueBlocks.JUNGLE_OVERLORD_FIST.get(), "丛林木霸王拳");
         this.add(ChangShengJueBlocks.CRIMSON_OVERLORD_FIST.get(), "绯红木霸王拳");
         this.add(ChangShengJueBlocks.WARPED_OVERLORD_FIST.get(), "诡异木霸王拳");
         this.add(ChangShengJueBlocks.ACACIA_OVERLORD_FIST.get(), "金合欢霸王拳");
@@ -630,21 +630,21 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get(),"白桦扶梯");
         this.add(ChangShengJueBlocks.YUN_SHAN_FU_TI_BLOCK.get(),"云杉扶梯");
 
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE.get(),"灰色琉璃瓦块");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE.get(),"灰色筒瓦块");
         this.add(ChangShengJueBlocks.RED_CYLINDER_TILE.get(),"红色琉璃瓦块");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get(),"黑色琉璃瓦块");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get(),"黑色筒瓦块");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get(),"金色琉璃瓦块");
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get(),"青色琉璃瓦块");
 
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(),"灰色琉璃瓦台阶");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(),"灰色筒瓦台阶");
         this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get(),"红色琉璃瓦台阶");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(),"黑色琉璃瓦台阶");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(),"黑色筒瓦台阶");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(),"金色琉璃瓦台阶");
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),"青色琉璃瓦台阶");
 
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SIDE.get(),"灰色侧向琉璃瓦");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SIDE.get(),"灰色侧向筒瓦");
         this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SIDE.get(),"红色侧向琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SIDE.get(),"黑色侧向琉璃瓦");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SIDE.get(),"黑色侧向筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SIDE.get(),"金色侧向琉璃瓦");
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SIDE.get(),"青色侧向琉璃瓦");
 
@@ -697,9 +697,9 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"金色侧向脊瓦屋顶");
         this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"青色侧向脊瓦屋顶");
 
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(),"灰色琉璃瓦");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(),"灰色筒瓦");
         this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(),"红色琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(),"黑色琉璃瓦");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(),"黑色筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get(),"金色琉璃瓦");
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(),"青色琉璃瓦");
 
@@ -710,9 +710,9 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_1.get(),"青色瓦当");
 
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get(),"青色双层琉璃瓦");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_2.get(),"灰色双层琉璃瓦");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_2.get(),"灰色双层筒瓦");
         this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_2.get(),"红色双层琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_2.get(),"黑色双层琉璃瓦");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_2.get(),"黑色双层筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_2.get(),"金色双层琉璃瓦");
 
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_3.get(),"青色小鸱吻");
@@ -728,9 +728,9 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get(),"金色高脊瓦");
 
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_5.get(),"青色高琉璃瓦");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get(),"灰色高琉璃瓦");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get(),"灰色高筒瓦");
         this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_5.get(),"红色高琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_5.get(),"黑色高琉璃瓦");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_5.get(),"黑色高筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_5.get(),"金色高琉璃瓦");
 
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_6.get(),"青色双层脊瓦");
@@ -740,9 +740,9 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_6.get(),"金色双层脊瓦");
 
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get(),"青色飞檐琉璃瓦");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7.get(),"灰色飞檐琉璃瓦");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7.get(),"灰色飞檐筒瓦");
         this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_7.get(),"红色飞檐琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get(),"黑色飞檐琉璃瓦");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get(),"黑色飞檐筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get(),"金色飞檐琉璃瓦");
 
         this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get(),"青色脊瓦");
@@ -818,21 +818,21 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "金色双层垂兽脊瓦");
 
         this.add(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get(), "青色短琉璃瓦");
-        this.add(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get(), "灰色短琉璃瓦");
+        this.add(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get(), "灰色短筒瓦");
         this.add(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get(), "红色短琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get(), "黑色短琉璃瓦");
+        this.add(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get(), "黑色短筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get(), "金色短琉璃瓦");
 
         this.add(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE.get(), "青色侧向双层琉璃瓦");
-        this.add(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE.get(), "灰色侧向双层琉璃瓦");
+        this.add(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE.get(), "灰色侧向双层筒瓦");
         this.add(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE_SIDE.get(), "红色侧向双层琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE.get(), "黑色侧向双层琉璃瓦");
+        this.add(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE.get(), "黑色侧向双层筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE_SIDE.get(), "金色侧向双层琉璃瓦");
 
         this.add(ChangShengJueBlocks.BLUE_HIGH_CYLINDER_TILE_SIDE.get(), "青色侧向高琉璃瓦");
-        this.add(ChangShengJueBlocks.GRE_HIGH_CYLINDER_TILE_SIDE.get(), "灰色侧向高琉璃瓦");
+        this.add(ChangShengJueBlocks.GRE_HIGH_CYLINDER_TILE_SIDE.get(), "灰色侧向高筒瓦");
         this.add(ChangShengJueBlocks.RED_HIGH_CYLINDER_TILE_SIDE.get(), "红色侧向高琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_HIGH_CYLINDER_TILE_SIDE.get(), "黑色侧向高琉璃瓦");
+        this.add(ChangShengJueBlocks.BLACK_HIGH_CYLINDER_TILE_SIDE.get(), "黑色侧向高筒瓦");
         this.add(ChangShengJueBlocks.GOLDEN_HIGH_CYLINDER_TILE_SIDE.get(), "金色侧向高琉璃瓦");
 
         this.add(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE.get(), "青色侧向瓦当");
@@ -1116,7 +1116,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get(), "麦块贡酒");
         this.add(ChangShengJueEffects.SHI_LI_XIANG.get(), "十里香");
         this.add(ChangShengJueEffects.DRUNKEN.get(), "醉酒");
-        this.add(ChangShengJueEffects.VILLAGER_CHARM_EFFECT.get(), "提高村民声望");
+        this.add(ChangShengJueEffects.VILLAGER_CHARM_EFFECT.get(), "持续提高村民声望");
         this.add(ChangShengJueEffects.INSTANT_CHARM_EFFECT.get(), "瞬间提高村民声望");
         this.add(ChangShengJueEffects.INSTANT_DISFAVOR_EFFECT.get(), "瞬间降低村民声望");
 
@@ -1133,7 +1133,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("death.attack." + CSJDamageTypes.BLEED.location().getPath(), "%1$s失血过多。");
         this.add("death.attack." + CSJDamageTypes.MARTIAL_ARTS.location().getPath(), "%1$s被%2$s使用武功震碎了内脏。");
         this.add("death.attack." + CSJDamageTypes.TRAUMA.location().getPath(), "%1$s的伤势过重。");
-        //配置信息
+        //配置文件信息
         this.add("config."+ ChangShengJue.MOD_ID +".reload", "配置已重新加载");
         this.add("config."+ ChangShengJue.MOD_ID +".enable_quests", "是否启用自动接受类型任务。");
         this.add("config."+ ChangShengJue.MOD_ID +".spirit_recovery_amount", "自然恢复的灵气值。");

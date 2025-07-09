@@ -7,6 +7,7 @@ import com.shengchanshe.chang_sheng_jue.capability.martial_arts.sunflower_point_
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
+import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
@@ -53,6 +54,8 @@ public class SunflowerPointCaveman extends Item {
                             sunflowerPointCaveman.addSunflowerPointCavemanLevel();
                             sunflowerPointCaveman.setSunflowerPointCavemanParticle(true);
                         }
+                        CSJAdvanceEvent.summonChallenger(level, player);
+
                         ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
                                 sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
                                 sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),

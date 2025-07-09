@@ -1,10 +1,10 @@
 package com.shengchanshe.chang_sheng_jue.block.food.cibei;
 
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
-import com.shengchanshe.chang_sheng_jue.event.DrunkennessManager;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
@@ -53,7 +53,51 @@ public class CiBeiTea extends CiBeiTypeBlock{
         if(eff == 2){
             player.addEffect(new MobEffectInstance(ChangShengJueEffects.LONG_JING_TEAS.get(), 1200, 0));
         }
-        DrunkennessManager.tryReduceDrunkenness(player);
+
+        UUID playerUUID = player.getUUID();
+        boolean reduced = HAS_REDUCED_DRUNKENNESS.getOrDefault(playerUUID, false);
+
+        if (!reduced) {
+            // 获取当前的 DRUNKEN 效果
+            var effect = player.getEffect(ChangShengJueEffects.DRUNKEN.get());
+
+            //获取原版反胃效果
+            MobEffectInstance effect2 = player.getEffect(MobEffect.byId(9));
+            if (effect != null ) {
+                // 计算新的持续时间
+                int newDuration = Math.max(0, effect.getDuration() - 600); // 减少 30 秒
+
+                player.removeEffect(ChangShengJueEffects.DRUNKEN.get());
+
+
+                // 只有当新持续时间大于0时才重新添加效果
+                if (newDuration > 0) {
+                    player.addEffect(new MobEffectInstance(
+                            ChangShengJueEffects.DRUNKEN.get(),
+                            newDuration,
+                            effect.getAmplifier(),
+                            effect.isAmbient(),
+                            effect.isVisible()
+                    ));
+                }
+                if(effect2 != null) {
+                    int newDuration2 = Math.max(0, effect2.getDuration() - 600);
+                    player.removeEffect(MobEffect.byId(9));
+                    if (newDuration2 > 0) {
+                        player.addEffect(new MobEffectInstance(
+                                MobEffect.byId(9),
+                                newDuration2,
+                                effect2.getAmplifier(),
+                                effect2.isAmbient(),
+                                effect2.isVisible()
+                        ));
+                    }
+                }
+
+                // 标记玩家已经减少过这次醉酒状态
+                HAS_REDUCED_DRUNKENNESS.put(playerUUID, true);
+            }
+        }
 
         return InteractionResult.SUCCESS;
     }

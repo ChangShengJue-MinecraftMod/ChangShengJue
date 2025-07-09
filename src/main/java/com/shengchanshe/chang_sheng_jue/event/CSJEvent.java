@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue.event;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.ChangShengJueConfig;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
+import com.shengchanshe.chang_sheng_jue.block.custom.DoorsBlock;
 import com.shengchanshe.chang_sheng_jue.block.food.TypeBlock;
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapability;
@@ -37,9 +38,12 @@ import com.shengchanshe.chang_sheng_jue.capability.martial_arts.yugong_moves_mou
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.ClientQuestDataCache;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
+import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.custom.croc.Croc;
 import com.shengchanshe.chang_sheng_jue.entity.custom.tiger.Tiger;
+import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.bandit.Bandit;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.other.GangLeader;
+import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.villain.Villain;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.chang_sheng_jue.event.armor.ArmorEvent;
 import com.shengchanshe.chang_sheng_jue.event.martial_arts.*;
@@ -67,12 +71,15 @@ import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.turtle_breat
 import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
 import com.shengchanshe.chang_sheng_jue.util.TradeHelper;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -80,10 +87,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.RegisterStructureConversionsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.*;
@@ -97,6 +107,7 @@ import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.server.ServerLifecycleHooks;
 import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.List;
@@ -1251,5 +1262,48 @@ public class CSJEvent {
         }
     }
 
+    private static final double PLAYER_SEARCH_RANGE = 10.0; // 玩家搜索范围
+    @SubscribeEvent
+    public static void onWorldTick(TickEvent.LevelTickEvent event) {
+        // 只在服务器端执行，避免客户端和服务器端重复执行
+//        if (event.side.isClient() || event.phase != TickEvent.Phase.END) {
+//            return;
+//        }
 
+        Level world = event.level;
+        // 获取在线玩家
+        ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers().forEach(player -> {
+            if (player.level() != world) return; // 确保玩家在当前世界
+            // 搜索玩家附近的村民
+            List<Villager> villagers = world.getEntitiesOfClass(
+                    Villager.class,
+                    player.getBoundingBox().inflate(PLAYER_SEARCH_RANGE),
+                    Entity::isAlive
+            );
+
+            for (Villager villager : villagers) {
+                // 检查村民附近的门
+                BlockPos.betweenClosedStream(
+                        villager.blockPosition().offset(0, 0, 0),
+                        villager.blockPosition().offset(1, 1, 1)
+                ).forEach(pos -> {
+                    BlockState state = world.getBlockState(pos);
+                    if (state.getBlock() instanceof DoorsBlock doorBlock && !state.getValue(DoorsBlock.OPEN)) {
+                        // 打开门
+                        doorBlock.setOpen(null, world, state, pos, true);
+                    }
+                });
+                BlockPos.betweenClosedStream(
+                        villager.blockPosition().offset(1, 1, 1),
+                        villager.blockPosition().offset(2, 2, 2)
+                ).forEach(pos -> {
+                    BlockState state = world.getBlockState(pos);
+                    if (state.getBlock() instanceof DoorsBlock doorBlock && state.getValue(DoorsBlock.OPEN)) {
+                        // 打开门
+                        doorBlock.setClose(null, world, state, pos, false);
+                    }
+                });
+            }
+        });
+    }
 }

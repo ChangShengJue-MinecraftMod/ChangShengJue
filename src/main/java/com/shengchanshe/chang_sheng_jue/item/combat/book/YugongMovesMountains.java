@@ -2,6 +2,7 @@ package com.shengchanshe.chang_sheng_jue.item.combat.book;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
+import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -46,6 +47,8 @@ public class YugongMovesMountains extends Item {
                     if (yugongMovesMountains.isYugongMovesMountainsComprehend() && yugongMovesMountains.getYugongMovesMountainsLevel() == 0) {
                         float probability = player.getRandom().nextFloat();
                         float defaultProbability = !player.getAbilities().instabuild ? 0.01F : 1.0F;
+                        CSJAdvanceEvent.summonChallenger(level, player);
+
                         if (probability < defaultProbability) {
                             yugongMovesMountains.addYugongMovesMountainsLevel();
                         }

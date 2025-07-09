@@ -36,7 +36,17 @@ public class Durian extends NoBoxTypeBlock{
         if(state.getBlock()==ChangShengJueBlocks.DURIAN.get()){
             if(itemstack.getItem() instanceof AxeItem){
                 itemstack.hurtAndBreak(1, player, (p) -> {p.broadcastBreakEvent(player.getUsedItemHand());});
-                level.addFreshEntity(new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ChangShengJueItems.DURIAN_MEAT.get())));
+
+                // 使用level.random生成随机数
+                int dropCount = level.getRandom().nextInt(5) + 3; // 生成3~7的随机数
+                level.addFreshEntity(new ItemEntity(
+                        level,
+                        pos.getX(),
+                        pos.getY(),
+                        pos.getZ(),
+                        new ItemStack(ChangShengJueItems.DURIAN_MEAT.get(), dropCount) // 添加随机数量参数
+                ));
+
                 level.destroyBlock(pos, false);
                 level.playSound(null, pos, SoundEvents.AXE_STRIP, SoundSource.PLAYERS, 0.8F, 0.8F);
             }

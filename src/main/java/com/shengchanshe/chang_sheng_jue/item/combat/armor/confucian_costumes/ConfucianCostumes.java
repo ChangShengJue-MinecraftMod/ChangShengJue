@@ -33,6 +33,10 @@ public class ConfucianCostumes extends ChangShengJueArmorItem implements GeoItem
 //    }
 
     @Override
+    public int getEnchantmentValue() {
+        return 15;
+    }
+    @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
             private GeoArmorRenderer<?> renderer;

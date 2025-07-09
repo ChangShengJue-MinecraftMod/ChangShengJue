@@ -7,6 +7,7 @@ import com.shengchanshe.chang_sheng_jue.capability.martial_arts.the_classics_of_
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.beat_dog_stick.BeatDogStickAttackEntity;
+import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.event.CSJEvent;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
@@ -57,6 +58,8 @@ public class Clubbed extends SwordItem {
                         shaolinStickMethod.addShaolinStickMethodLevel();
                         shaolinStickMethod.setShaolinStickMethodParticle(true);
                         pPlayer.level().playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                        Level pLevel = pPlayer.level();
+                        CSJAdvanceEvent.summonChallenger(pLevel, pPlayer);
                         ChangShengJueMessages.sendToPlayer(new ShaolinStickMethodPacket(shaolinStickMethod.getShaolinStickMethodLevel(),
                                 shaolinStickMethod.isShaolinStickMethodComprehend(),
                                 shaolinStickMethod.getShaolinStickMethodToppedTick(),

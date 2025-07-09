@@ -5,6 +5,7 @@ import com.shengchanshe.chang_sheng_jue.capability.martial_arts.ge_shan_da_niu.G
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.hercules.HerculesCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
+import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
@@ -167,6 +168,8 @@ public class Hercules extends Item {
                                 }
                                 player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
                                         ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+                                CSJAdvanceEvent.summonChallenger(level, player);
+
                                 ChangShengJueMessages.sendToPlayer(new HerculesPacket(
                                         hercules.getHerculesLevel(),
                                         hercules.isHerculesComprehend(),

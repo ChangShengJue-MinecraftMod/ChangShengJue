@@ -87,6 +87,12 @@ public class HippedRoof extends CylinderTile {
     @Override
     public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         if (!level.isClientSide) {
+            if(player.isCreative()) {
+                if (state.getValue(PART) == RoofPart.MIDDLE)
+                    level.setBlock(pos.below(), Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+                if (state.getValue(PART) == RoofPart.TOP)
+                    level.setBlock(pos.below(2), Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+            }
             super.playerWillDestroy(level, pos, state, player);
         }
     }
