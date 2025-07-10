@@ -14,7 +14,7 @@
 				{
 					"name": "all",
 					"pivot": [0, 0, 0],
-					"rotation": [0, 180, 0],
+					"rotation": [0, 90, 0],
 					"cubes": [
 						{
 							"origin": [-0.9, -6.25, -1],

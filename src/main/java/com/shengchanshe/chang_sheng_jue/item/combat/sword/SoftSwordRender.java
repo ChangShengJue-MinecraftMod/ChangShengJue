@@ -21,11 +21,17 @@ public class SoftSwordRender extends GeoItemRenderer<SoftSword> {
         if (!getGeoModel().getAnimationProcessor().getRegisteredBones().isEmpty()) {
             if (transformType == ItemDisplayContext.THIRD_PERSON_LEFT_HAND ||
                     transformType == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND) {
+                getGeoModel().getBone("all3").get().setHidden(true);
                 getGeoModel().getBone("all2").get().setHidden(true);
                 getGeoModel().getBone("all").get().setHidden(false);
-            }
-            else {
+            } else if (transformType == ItemDisplayContext.FIRST_PERSON_LEFT_HAND ||
+                    transformType == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND){
+                getGeoModel().getBone("all3").get().setHidden(true);
                 getGeoModel().getBone("all2").get().setHidden(false);
+                getGeoModel().getBone("all").get().setHidden(true);
+            }else {
+                getGeoModel().getBone("all3").get().setHidden(false);
+                getGeoModel().getBone("all2").get().setHidden(true);
                 getGeoModel().getBone("all").get().setHidden(true);
             }
         }

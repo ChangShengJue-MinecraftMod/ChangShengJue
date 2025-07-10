@@ -1,6 +1,7 @@
 package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.ClientQuestDataCache;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.RequestQuestsPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.quest.RefreshGangQuestPacket;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;
@@ -51,6 +52,10 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
 
     private static final int HEAD_SIZE = 9; // 每个头像的大小
     private static final int MAX_VISIBLE_HEADS = 5; // 最多显示的头像数量
+    // 在GangQuestsScreen类中添加
+//    private long lastClickTime = 0;
+//    private static final int COOLDOWN_TICKS = 20; // 10 ticks = 0.5秒
+
     // 缓存已创建的实体实例
     private static final Map<EntityType<?>, Entity> ENTITY_CACHE = new HashMap<>();
 
@@ -104,7 +109,6 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         this.renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, partialTick);
-
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
 
@@ -214,7 +218,7 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
                 this::handleActionButtonClick,
                 getActionButtonText()
         ));
-        // 取消/放弃按钮
+        // 刷新/放弃按钮
         this.cancelButton = this.addRenderableWidget(new TexturedButtonWithLabel(
                 buttonX + BUTTON_WIDTH + BUTTON_SPACING, buttonY, BUTTON_WIDTH, BUTTON_HEIGHT,
                 0, 211, 20, TEXTURE, TEXTURE_WIDTH, TEXTURE_HEIGHT,
@@ -239,9 +243,20 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
     private void updateButtonStates() {
         actionButton.setMessage(getActionButtonText());
         cancelButton.setMessage(getCancelButtonText());
+        long gameTime = 0;
+        if (Minecraft.getInstance().level != null) {
+            gameTime = Minecraft.getInstance().level.getGameTime();
+        }
+//        lastClickTime = gameTime;
     }
     // 处理提交和接受按钮点击
     private void handleActionButtonClick(Button button) {
+//        long gameTime = 0;
+//        if (Minecraft.getInstance().level != null) {
+//            gameTime = Minecraft.getInstance().level.getGameTime();
+//        }
+//        if (gameTime - lastClickTime < 10) return; // 10 ticks间隔
+
         if (menu.getGangQuests().getAcceptedBy() != null) {
             ChangShengJueMessages.sendToServer(new SubmitGangQuestsPacket());
         } else {
@@ -251,6 +266,12 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
 
     //处理放弃和刷新按钮点击
     private void handleCancelButtonClick(Button button) {
+//        long gameTime = 0;
+//        if (Minecraft.getInstance().level != null) {
+//            gameTime = Minecraft.getInstance().level.getGameTime();
+//        }
+//        if (gameTime - lastClickTime < 10) return; // 10 ticks间隔
+
         if (menu.getGangQuests().getAcceptedBy() != null) {
             ChangShengJueMessages.sendToServer(new AbandonGangQuestPacket());
         } else {

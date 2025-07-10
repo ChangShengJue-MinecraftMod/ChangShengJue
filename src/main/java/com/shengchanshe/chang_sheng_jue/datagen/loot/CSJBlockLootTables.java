@@ -929,9 +929,9 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
                 block -> this.createSinglePropConditionTable(ChangShengJueBlocks.BLUE_HIPPED_ROOF.get(), HippedRoof.PART ,RoofPart.BOTTOM));
 
         this.add(ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get(),
-                block -> this.createSinglePropConditionTable(ChangShengJueBlocks.GRE_HIPPED_ROOF.get(), HippedRoof.PART ,RoofPart.BOTTOM));
+                block -> this.createSinglePropConditionTable(ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get(), HippedRoof.PART ,RoofPart.BOTTOM));
         this.add(ChangShengJueBlocks.YUN_SHAN_FU_TI_BLOCK.get(),
-                block -> this.createSinglePropConditionTable(ChangShengJueBlocks.RED_HIPPED_ROOF.get(), HippedRoof.PART ,RoofPart.BOTTOM));
+                block -> this.createSinglePropConditionTable(ChangShengJueBlocks.YUN_SHAN_FU_TI_BLOCK.get(), HippedRoof.PART ,RoofPart.BOTTOM));
     }
 
 

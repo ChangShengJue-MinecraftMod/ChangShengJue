@@ -108,6 +108,7 @@ public class GangLeader extends AbstractGangLeader implements GeoEntity , Ranged
     }
 
     public void openTradingScreen(Player pPlayer, Component pDisplayName, int pLevel) {
+        super.openTradingScreen(pPlayer, pDisplayName, pLevel);
         this.resetOffers();
         OptionalInt present = pPlayer.openMenu(new SimpleMenuProvider((i, inventory, player) -> new GangleaderTradingMenu(i, inventory, this), pDisplayName));
         if (present.isPresent()) {
@@ -139,26 +140,6 @@ public class GangLeader extends AbstractGangLeader implements GeoEntity , Ranged
         return this.offers;
     }
 
-    public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
-        ItemStack itemInHand = pPlayer.getItemInHand(pHand);
-        if (!itemInHand.is(ChangShengJueItems.MALE_INNKEEPER_EGG.get()) && this.isAlive() && !this.isTrading() && !this.isBaby()) {
-            if (pHand == InteractionHand.MAIN_HAND) {
-                pPlayer.awardStat(Stats.TALKED_TO_VILLAGER);
-            }
-
-            if (this.getOffers().isEmpty()) {
-                return InteractionResult.sidedSuccess(this.level().isClientSide);
-            } else {
-                if (!this.level().isClientSide) {
-                    this.startTrading(pPlayer);
-                }
-
-                return InteractionResult.sidedSuccess(this.level().isClientSide);
-            }
-        } else {
-            return super.mobInteract(pPlayer, pHand);
-        }
-    }
 
     @Override
     public void tick() {
@@ -243,9 +224,6 @@ public class GangLeader extends AbstractGangLeader implements GeoEntity , Ranged
             }else if (this.internalKungFuCapability instanceof QianKunDaNuoYi){
                 ((QianKunDaNuoYi) this.internalKungFuCapability).applyHurtEffect(this, pSource,pAmount);
             }
-        }
-        if (pAmount > this.getHealth()) {
-            QuestManager.getInstance().removeNpcQuests(this.getUUID());
         }
         return super.hurt(pSource, pAmount);
     }

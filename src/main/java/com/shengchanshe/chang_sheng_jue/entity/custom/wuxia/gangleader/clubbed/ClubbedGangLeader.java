@@ -93,7 +93,10 @@ public class ClubbedGangLeader extends AbstractGangLeader implements GeoEntity {
     }
 
     public void openTradingScreen(Player pPlayer, Component pDisplayName, int pLevel) {
-        this.resetOffers();
+        super.openTradingScreen(pPlayer, pDisplayName, pLevel);
+        if (QuestManager.getInstance().getTotalQuestCompletions() <= 5){
+            this.resetOffers();
+        }
         OptionalInt present = pPlayer.openMenu(new SimpleMenuProvider((i, inventory, player) -> new GangleaderTradingMenu(i, inventory, this), pDisplayName));
         if (present.isPresent()) {
             MerchantOffers merchantOffers = this.getOffers();
@@ -124,26 +127,6 @@ public class ClubbedGangLeader extends AbstractGangLeader implements GeoEntity {
         }
     }
 
-    public InteractionResult mobInteract(Player pPlayer, InteractionHand pHand) {
-        ItemStack itemInHand = pPlayer.getItemInHand(pHand);
-        if (!itemInHand.is(ChangShengJueItems.MALE_INNKEEPER_EGG.get()) && this.isAlive() && !this.isTrading() && !this.isBaby()) {
-            if (pHand == InteractionHand.MAIN_HAND) {
-                pPlayer.awardStat(Stats.TALKED_TO_VILLAGER);
-            }
-
-            if (this.getOffers().isEmpty()) {
-                return InteractionResult.sidedSuccess(this.level().isClientSide);
-            } else {
-                if (!this.level().isClientSide) {
-                    this.startTrading(pPlayer);
-                }
-
-                return InteractionResult.sidedSuccess(this.level().isClientSide);
-            }
-        } else {
-            return super.mobInteract(pPlayer, pHand);
-        }
-    }
 
     @Override
     public void tick() {
@@ -228,9 +211,6 @@ public class ClubbedGangLeader extends AbstractGangLeader implements GeoEntity {
             }else if (this.internalKungFuCapability instanceof QianKunDaNuoYi){
                 ((QianKunDaNuoYi) this.internalKungFuCapability).applyHurtEffect(this, pSource,pAmount);
             }
-        }
-        if (pAmount > this.getHealth()) {
-            QuestManager.getInstance().removeNpcQuests(this.getUUID());
         }
         return super.hurt(pSource, pAmount);
     }

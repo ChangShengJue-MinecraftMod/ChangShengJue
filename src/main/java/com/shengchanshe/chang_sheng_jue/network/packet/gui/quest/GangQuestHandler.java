@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.network.packet.gui.quest;
 
+import com.shengchanshe.chang_sheng_jue.quest.Quest;
 import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.AbstractGangLeader;
 import net.minecraft.server.level.ServerPlayer;
@@ -12,7 +13,7 @@ public class GangQuestHandler {
     }
 
     //接受任务
-    public static void handleQuestAccept(ServerPlayer player,AbstractGangLeader abstractGangLeader) {
+    public static void handleQuestAccept(ServerPlayer player, AbstractGangLeader abstractGangLeader) {
         QuestManager.getInstance().acceptQuest(player, abstractGangLeader);
     }
 

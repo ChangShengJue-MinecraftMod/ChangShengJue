@@ -7,7 +7,7 @@ import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.left.entity.Shing
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.right.entity.ShingMunRightEntity;
 import com.shengchanshe.chang_sheng_jue.block.decoration.windchime.WindChimeEntity;
 import com.shengchanshe.chang_sheng_jue.block.entity.*;
-import com.shengchanshe.chang_sheng_jue.block.entity.desk.Desk;
+import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity.DesksEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -70,8 +70,8 @@ public class ChangShengJueBlocksEntities {
 
 
     //桌子
-    public static final RegistryObject<BlockEntityType<Desk>> DESK =
-            BLOCK_ENTITYES.register("desk",()-> BlockEntityType.Builder.of(Desk::new,
+    public static final RegistryObject<BlockEntityType<DesksEntity>> DESK =
+            BLOCK_ENTITYES.register("desk",()-> BlockEntityType.Builder.of(DesksEntity::new,
                     ChangShengJueBlocks.BIRCH_WINE_TABLE.get(),
                     ChangShengJueBlocks.CRIMSON_WINE_TABLE.get(),
                     ChangShengJueBlocks.WARPED_WINE_TABLE.get(),

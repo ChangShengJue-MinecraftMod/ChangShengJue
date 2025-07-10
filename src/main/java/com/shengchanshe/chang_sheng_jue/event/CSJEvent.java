@@ -36,14 +36,11 @@ import com.shengchanshe.chang_sheng_jue.capability.martial_arts.xuannu_swordsman
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapability;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.ClientQuestDataCache;
+import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
-import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.custom.croc.Croc;
 import com.shengchanshe.chang_sheng_jue.entity.custom.tiger.Tiger;
-import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.bandit.Bandit;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.other.GangLeader;
-import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.villain.Villain;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.chang_sheng_jue.event.armor.ArmorEvent;
 import com.shengchanshe.chang_sheng_jue.event.martial_arts.*;
@@ -73,13 +70,9 @@ import com.shengchanshe.chang_sheng_jue.util.TradeHelper;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -93,7 +86,6 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.event.RegisterStructureConversionsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.*;
@@ -747,7 +739,6 @@ public class CSJEvent {
 
     }
 
-
     //生物受伤事件
     @SubscribeEvent
     public static void onEntityHurt(LivingDamageEvent event){
@@ -759,44 +750,12 @@ public class CSJEvent {
 
         ArmorEvent.onArmorDamage(event);
 
-        QuestEvent.onEntityHurt(event);
         PlayerQuestEvent.onEntityHurt(event);
 
         if(event.getSource().getEntity() instanceof Player player) {
             GeShanDaNiu.comprehend(player,player.level(),entity);
             SunflowerPointCaveman.comprehend(player,player.level(),entity);
-//            //获取玩家手持物
-//            ItemStack itemInHand = player.getMainHandItem();
-//            if(itemInHand.getItem() == Items.AIR || itemInHand.getItem() == ChangShengJueItems.GOLD_THREAD_GLOVE.get()){
-//                //25%概率给予受伤生物内伤效果
-//                if (Math.random() < 0.25) {
-//                    MobEffectInstance effect = entity.getEffect(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get());
-//                    if (entity.hasEffect(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get())) {
-//                        int level = 0;
-//                        final int MAX_LEVEL = 4;
-//
-//                        if (effect != null) {
-//                            level = Math.min(effect.getAmplifier() + 1, MAX_LEVEL);
-//                        }
-//                        entity.addEffect(new MobEffectInstance(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get(), 300, level, true, true, true));
-//
-//                        // 增加伤害（5% × 等级）
-//                        event.setAmount(event.getAmount() * (1 + 0.05f * level));
-//                    }else {
-//                        entity.addEffect(new MobEffectInstance(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get(), 300, 0, true, true, true));
-//                    }
-//                }
-//            }
-//            if (!player.level().isClientSide) {
-//                GeShanDaNiu.comprehend(player,player.level(),entity);
-////            GoldenBellJar.comprehend(player,player.level());
-//                Hercules.comprehend(player,player.level());
-//
-////            QianKunDaNuoYi.comprehend(player,player.level());
-//                SunflowerPointCaveman.comprehend(player,player.level(),entity);
-//                TurtleBreathWork.comprehend(player,player.level());
-            }
-//        }
+        }
     }
     //生物死亡事件
     @SubscribeEvent
@@ -874,89 +833,7 @@ public class CSJEvent {
     //能力给予事件,给生物添加能力
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event){
-        if (event.getObject() instanceof Player){//判断生物为玩家,只给玩家添加这些能力
-            ChangShengJueCapabiliy.onAttachCapabilitiesPlayer(event);
-            //独孤九剑
-            if (!event.getObject().getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"dugu_nine_swords_properties"),new DuguNineSwordsCapabilityProvider());
-            }
-            //金乌刀法
-            if (!event.getObject().getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"golden_black_knife_method_properties"),new GoldenBlackKnifeMethodCapabilityProvider());
-            }
-            //玄女剑法
-            if (!event.getObject().getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"xuannu_swordsmanship_properties"),new XuannuSwordsmanshipCapabilityProvider());
-            }
-            //高家枪法
-            if (!event.getObject().getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"gao_marksmanship_properties"),new GaoMarksmanshipCapabilityProvider());
-            }
-            //少林棍法
-            if (!event.getObject().getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"shaolin_stick_method_properties"),new ShaolinStickMethodCapabilityProvider());
-            }
-            //踏雪无痕
-            if (!event.getObject().getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"tread_the_snow_without_trace_properties"),new TreadTheSnowWithoutTraceCapabilityProvider());
-            }
-            //吴刚伐桂
-            if (!event.getObject().getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"wu_gang_cut_gui_properties"),new WuGangCutGuiCapabilityProvider());
-            }
-            //吴刚伐桂
-            if (!event.getObject().getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"yugong_moves_mountains_properties"),new YugongMovesMountainsCapabilityProvider());
-            }
-            //庖丁解牛
-            if (!event.getObject().getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"paoding_properties"),new PaodingCapabilityProvider());
-            }
-            //葵花点穴手
-            if (!event.getObject().getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"sunflower_point_caveman_properties"),new SunflowerPointCavemanCapabilityProvider());
-            }
-            //金钟罩
-            if (!event.getObject().getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"golden_bell_jar_properties"),new GoldenBellJarCapabilityProvider());
-            }
-            //张门心学
-            if (!event.getObject().getCapability(ZhangMenXinxueCapabilityProvider.ZHANG_MEN_XIN_XUE_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"zhang_men_xin_xue_properties"),new ZhangMenXinxueCapabilityProvider());
-            }
-            //不死神功
-            if (!event.getObject().getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"immortal_miracle_properties"),new ImmortalMiracleCapabilityProvider());
-            }
-            //隔山打牛
-            if (!event.getObject().getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"ge_shan_da_niu_properties"),new GeShanDaNiuCapabilityProvider());
-            }
-            //麦块百科
-            if (!event.getObject().getCapability(WheatNuggetEncyclopediaCapabilityProvider.WHEAT_NUGGET_ENCYCLOPEDIA_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"wheat_nugget_encyclopedia_properties"),new WheatNuggetEncyclopediaCapabilityProvider());
-            }
-            //龟息功
-            if (!event.getObject().getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"turtle_breath_work_properties"),new TurtleBreathWorkCapabilityProvider());
-            }
-            //无情飞刀
-            if (!event.getObject().getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"relentless_throwing_knives_properties"),new RelentlessThrowingKnivesCapabilityProvider());
-            }
-            //易筋经
-            if (!event.getObject().getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"the_classics_of_tendon_changing_properties"),new TheClassicsOfTendonChangingCapabilityProvider());
-            }
-            //乾坤大挪移
-            if (!event.getObject().getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"qian_kun_da_nuo_yi_properties"),new QianKunDaNuoYiCapabilityProvider());
-            }
-            //大力神功
-            if (!event.getObject().getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).isPresent()){
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID,"hercules_properties"),new HerculesCapabilityProvider());
-            }
-        }
+        ChangShengJueCapabiliy.onAttachCapabilitiesPlayer(event);
     }
 
     @SubscribeEvent
@@ -1029,8 +906,12 @@ public class CSJEvent {
         //大力神功
         oldPlayer.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(newStore-> newStore.copyHercules(oldStore)));
+        //任务
+        oldPlayer.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(oldStore->
+                event.getEntity().getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(newStore-> newStore.copyFrom(oldStore)));
         //修仙
         XiuXianEvent.onPlayerCloned(event);
+//        QuestsEvent.onPlayerCloned(event);
         event.getOriginal().invalidateCaps();
     }
 
@@ -1067,6 +948,8 @@ public class CSJEvent {
             if(event.getEntity() instanceof ServerPlayer player) {
                 QuestManager.getInstance().syncQuestsToPlayer(player); // 全量同步
                 XiuXianEvent.onPlayerJoinWorld(event);
+                player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY)
+                        .ifPresent(cap -> cap.syncToClient(player));
                 player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
                     ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),
                             duguNineSword.isDuguNineSwordsComprehend(),
@@ -1206,25 +1089,25 @@ public class CSJEvent {
     // 在玩家退出世界时调用
     @SubscribeEvent
     public void onWorldUnload(LevelEvent.Unload event) {
-        ClientQuestDataCache.clearCache();
+        QuestEvent.onWorldUnload(event);
     }
 
     @SubscribeEvent
     public static void onServerStopping(ServerStoppingEvent event) {
-        QuestManager.getInstance().saveData();
+//        QuestManager.getInstance().saveData();
     }
 
     @SubscribeEvent
     public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
-        QuestManager.getInstance().saveData();
+//        QuestManager.getInstance().saveData();
     }
 
     @SubscribeEvent
     public static void onWorldLoad(LevelEvent.Load event) {
-        if (event.getLevel() instanceof ServerLevel) {
+//        if (event.getLevel() instanceof ServerLevel) {
             // 世界加载时初始化数据
-            QuestManager.getInstance().onWorldLoad();
-        }
+//            QuestManager.getInstance().onWorldLoad();
+//        }
     }
 
     @SubscribeEvent

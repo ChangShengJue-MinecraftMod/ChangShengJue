@@ -1,13 +1,23 @@
 package com.shengchanshe.chang_sheng_jue.item.tool;
 
+import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapabilityProvider;
+import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapability;
+import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
+import com.shengchanshe.chang_sheng_jue.event.quest.PlayerQuestEvent;
 import com.shengchanshe.chang_sheng_jue.item.tiers.ChangShengJueTiers;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.wu_gang_cut_gui.WuGangCutGuiPacket;
+import com.shengchanshe.chang_sheng_jue.quest.Quest;
+import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
@@ -24,7 +34,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class XuanhuaAxe extends AxeItem {
     public XuanhuaAxe() {
@@ -120,7 +132,20 @@ public class XuanhuaAxe extends AxeItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-//        if (!pLevel.isClientSide) {
+        if (!pLevel.isClientSide) {
+            pPlayer.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
+                // 1. 获取所有任务
+                List<Quest> allQuests = cap.getQuests(pPlayer.getUUID());
+
+                int completionCount = cap.getCompletionCount(PlayerQuestEvent.FIRST_VILLAGER_QUEST_ID);
+
+                // 2. 构建消息内容
+                Component message = buildQuestMessage(allQuests);
+
+                // 3. 发送给玩家
+                pPlayer.sendSystemMessage(message);
+                pPlayer.sendSystemMessage(Component.literal(String.valueOf(completionCount)));
+            });
 //            pPlayer.getCapability(CultivationCapabilityProvider.XIU_XIAN_CAPABILITY).ifPresent(cap -> {
 //                cap.setSpiritPower(Math.min(cap.getMaxSpiritPower(), cap.getSpiritPower() + 1000));
 //                pPlayer.sendSystemMessage(Component.literal("当前灵力:" + cap.getSpiritPower()));
@@ -154,7 +179,27 @@ public class XuanhuaAxe extends AxeItem {
 //                    .append(Component.literal(String.format("%+.1f%%", level.getEfficiency() * 100)).withStyle(style -> style.withColor(0x55FFFF)))
 //            );
 //
-//        }
+        }
         return super.use(pLevel, pPlayer, pUsedHand);
+    }
+
+    // 构建任务信息消息
+    private Component buildQuestMessage(List<Quest> quests) {
+        MutableComponent message = Component.literal("==== 当前任务 ====\n").withStyle(ChatFormatting.GOLD);
+
+        if (quests.isEmpty()) {
+            return message.append(Component.literal("暂无任务").withStyle(ChatFormatting.GRAY));
+        }
+
+        for (Quest quest : quests) {
+            message.append("\n")
+                    .append(Component.literal("[" + quest.getQuestDescription() + "]")
+                            .withStyle(ChatFormatting.YELLOW))
+                    .append("\n - 任务名称: ")
+                    .append(Component.literal(quest.getQuestName())
+                            .withStyle(ChatFormatting.WHITE));
+        }
+
+        return message;
     }
 }

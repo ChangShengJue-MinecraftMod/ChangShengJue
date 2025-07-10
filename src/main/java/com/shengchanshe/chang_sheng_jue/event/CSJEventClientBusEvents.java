@@ -7,7 +7,7 @@ import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigright.entity.B
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.left.entity.ShingMunLeftEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.right.entity.ShingMunRightEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.decoration.windchime.WindChimeEntityRender;
-import com.shengchanshe.chang_sheng_jue.block.entity.desk.DeskRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity.DesksEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.entity.render.*;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.dugu_nine_swords.DuguNineSwordsHudOverlay;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.gao_marksmanship.GaoMarksmanshipHudOverlay;
@@ -79,7 +79,7 @@ public class CSJEventClientBusEvents {
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.CASTING_MOLDS_BLOCK_ENTITY.get(), (BlockEntityRendererProvider.Context context) -> new CastingMoldsBlockEntityRender());
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.BULLIONS_CASTING_MOLDS_BLOCK_ENTITY.get(), (BlockEntityRendererProvider.Context context) -> new BullionsCastingMoldsBlockEntityRender());
 
-        event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.DESK.get(), DeskRender::new);
+        event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.DESK.get(), DesksEntityRender::new);
 
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.SHING_MUN_LEFT_ENTITY.get(),
                 (BlockEntityRendererProvider.Context context) -> new ShingMunLeftEntityRender());

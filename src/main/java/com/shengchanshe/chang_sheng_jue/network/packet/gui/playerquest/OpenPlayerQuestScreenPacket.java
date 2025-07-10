@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest;
 
+import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.PlayerQuestMenu;
 import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
 import net.minecraft.network.FriendlyByteBuf;
@@ -24,16 +25,24 @@ public record OpenPlayerQuestScreenPacket(int newPage,Component title) {
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer serverPlayer = ctx.get().getSender();
-            NetworkHooks.openScreen(serverPlayer,
-                    new SimpleMenuProvider(
-                            (id, inv, player) -> new PlayerQuestMenu(id, inv, QuestManager.getInstance().getPlayerQuests(player.getUUID()), 0),
-                            Component.literal("")
-                    ),
-                    buf -> {
-                        QuestManager.getInstance().encodeQuests(buf, QuestManager.getInstance().getPlayerQuests(serverPlayer.getUUID())); // 必须写入数据
-                        buf.writeInt(0); // 写入初始页码
-                    }
-            );
+            if (serverPlayer != null) {
+                serverPlayer.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY)
+                        .ifPresent(cap -> cap.syncToClient(serverPlayer));
+                NetworkHooks.openScreen(
+                        serverPlayer,
+                        new SimpleMenuProvider(
+                                PlayerQuestMenu::new, Component.translatable("menu.title.quests")));
+            }
+//            NetworkHooks.openScreen(serverPlayer,
+//                    new SimpleMenuProvider(
+//                            (id, inv, player) -> new PlayerQuestMenu(id, inv, QuestManager.getInstance().getPlayerQuests(player.getUUID()), 0),
+//                            Component.literal("")
+//                    ),
+//                    buf -> {
+//                        QuestManager.getInstance().encodeQuests(buf, QuestManager.getInstance().getPlayerQuests(serverPlayer.getUUID())); // 必须写入数据
+//                        buf.writeInt(0); // 写入初始页码
+//                    }
+//            );
         });
         ctx.get().setPacketHandled(true);
     }

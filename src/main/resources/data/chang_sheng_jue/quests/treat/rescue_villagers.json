@@ -6,10 +6,12 @@
   "questType": "TREAT",
   "requiredKills": 1,
   "repeatable": false,
-  "limitQuestIds" : [
+  "limitQuestIds" : [],
+  "isNeedCompletePreQuest" : false,
+  "conflictQuestIds" : [
     "c4ac1553-b219-4e7c-a54d-e274f9815109"
   ],
-  "isNeedCompletePreQuest" : false,
+  "isConflictQuest" : true,
   "needCompletionCount" : 1,
   "effects": [
     {

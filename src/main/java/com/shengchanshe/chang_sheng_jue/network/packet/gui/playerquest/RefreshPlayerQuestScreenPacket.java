@@ -20,7 +20,7 @@ public record RefreshPlayerQuestScreenPacket() {
         ctx.get().enqueueWork(() -> {
             if (Minecraft.getInstance().screen instanceof PlayerQuestScreen screen) {
                 screen.getMenu().getCurrentQuest(screen.getMenu().getCurrentPage()).ifPresent(quest -> {
-                    screen.refreshUI(quest.getQuestId());
+                    screen.refreshUI();
                 });
             }
         });

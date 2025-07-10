@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk;
 
+import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity.Desks;
 import com.shengchanshe.chang_sheng_jue.util.ChangShengJueVoxelShape;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -15,6 +16,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class WineTable extends Desks {
     public static final BooleanProperty NORTH = BooleanProperty.create("north");
@@ -25,8 +27,6 @@ public class WineTable extends Desks {
 
     public WineTable(Properties pProperties) {
         super(pProperties);
-//        this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, false)
-//                .setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false));
         this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, false)
                 .setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false).setValue(FACING, Direction.NORTH));
 
@@ -62,6 +62,11 @@ public class WineTable extends Desks {
     }
 
     @Override
+    public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return Block.box(0, 0, 0, 16, 16, 16);
+    }
+
+    @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         BlockGetter $$1 = pContext.getLevel();
         BlockPos $$2 = pContext.getClickedPos();
@@ -73,7 +78,7 @@ public class WineTable extends Desks {
         BlockState $$9 = $$1.getBlockState($$5);
         BlockState $$10 = $$1.getBlockState($$6);
         BlockState $$11 = $$1.getBlockState($$7);
-        return super.getStateForPlacement(pContext).
+        return Objects.requireNonNull(super.getStateForPlacement(pContext)).
                 setValue(NORTH, this.isSameBlock($$8)).
                 setValue(EAST, this.isSameBlock($$9)).
                 setValue(SOUTH, this.isSameBlock($$10)).

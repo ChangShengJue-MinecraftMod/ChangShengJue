@@ -2,7 +2,6 @@ package com.shengchanshe.chang_sheng_jue.quest;
 
 import com.google.gson.*;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
@@ -11,7 +10,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
 import net.minecraftforge.server.ServerLifecycleHooks;
@@ -47,12 +45,28 @@ public class QuestLoader {
         }
         return null;
     }
+    public static Quest loadSpecificQuest(UUID questId, UUID npcId) {
+        Map<ResourceLocation, Resource> allResources = getAutomaticResourceLocationResourceMap();
+
+        // 从所有资源中查找指定ID的任务
+        for (ResourceLocation loc : allResources.keySet()) {
+            try (InputStream stream = allResources.get(loc).open()) {
+                JsonObject json = GSON.fromJson(new InputStreamReader(stream), JsonObject.class);
+
+                UUID currentId = UUID.fromString(json.get("questId").getAsString());
+
+                if (currentId.equals(questId)) {
+                    return parseQuest(json, npcId);
+                }
+            } catch (Exception e) {
+                ChangShengJue.LOGGER.error("加载任务失败: {}", loc, e);
+            }
+        }
+        return null;
+    }
 
     public static Quest loadQuest(UUID npcId, Set<UUID> completedNonRepeatable) {
-        Map<ResourceLocation, Resource> allResources = isSafeServerEnvironment()
-                ? getResourceLocationResourceMap()
-                : getClientQuestResources(); // 客户端回退方案
-
+        Map<ResourceLocation, Resource> allResources = getResourceLocationResourceMap();
         List<ResourceLocation> candidates = new ArrayList<>();
 
         // 筛选候选文件
@@ -74,7 +88,7 @@ public class QuestLoader {
             }
         }
 
-        // 第二步：随机选择有效候选
+        // 随机选择有效候选
         if (!candidates.isEmpty()) {
             ResourceLocation selected = candidates.get(new Random().nextInt(candidates.size()));
             try (InputStream stream = allResources.get(selected).open()) {
@@ -87,71 +101,43 @@ public class QuestLoader {
     }
 
     private static @NotNull Map<ResourceLocation, Resource> getAutomaticResourceLocationResourceMap() {
-        // 新增安全检测
-        if (!isSafeServerEnvironment()) {
-            return Collections.emptyMap();
-        }
-
-        try {
-            return ServerLifecycleHooks.getCurrentServer()
-                    .getResourceManager()
-                    .listResources(
-                            "quests/automatic",
-                            location -> location.getNamespace().equals(ChangShengJue.MOD_ID)
-                                    && location.getPath().endsWith(".json")
-                    );
-        } catch (Exception e) {
-            ChangShengJue.LOGGER.error("加载自动任务资源失败", e);
-            return Collections.emptyMap();
-        }
-    }
-
-    private static @NotNull Map<ResourceLocation, Resource> getResourceLocationResourceMap() {
-        // 新增安全检测
-        if (!isSafeServerEnvironment()) {
-            ChangShengJue.LOGGER.warn("客户端环境下跳过资源加载");
-            return Collections.emptyMap();
-        }
-
-        ResourceManager resourceManager = ServerLifecycleHooks.getCurrentServer().getResourceManager();
+        ResourceManager resourceManager = ServerLifecycleHooks.getCurrentServer().getResourceManager(); // 服务端
         String namespace = ChangShengJue.MOD_ID;
+
+        // 定义任务类型的路径
+        String[] questPaths = {"quests/automatic"};
+        // 收集任务文件
         Map<ResourceLocation, Resource> allResources = new HashMap<>();
 
-        String[] questPaths = {"quests/gather", "quests/kill", "quests/raid", "quests/treat"};
         for (String path : questPaths) {
-            try {
-                allResources.putAll(resourceManager.listResources(
-                        path,
-                        location -> location.getNamespace().equals(namespace)
-                                && location.getPath().endsWith(".json")
-                ));
-            } catch (Exception e) {
-                ChangShengJue.LOGGER.error("加载任务资源失败: {}", path, e);
-            }
+            Map<ResourceLocation, Resource> resources = resourceManager.listResources(
+                    path,
+                    location -> location.getNamespace().equals(namespace) && location.getPath().endsWith(".json")
+            );
+            allResources.putAll(resources);
         }
         return allResources;
     }
-    // 新增客户端资源加载方法
-    public static Map<ResourceLocation, Resource> getClientQuestResources() {
-        if (Minecraft.getInstance().getResourceManager() == null) {
-            return Collections.emptyMap();
-        }
 
-        Map<ResourceLocation, Resource> resources = new HashMap<>();
-        String[] paths = {"quests/gather", "quests/kill", "quests/raid", "quests/treat"};
+    private static @NotNull Map<ResourceLocation, Resource> getResourceLocationResourceMap() {
+        ResourceManager resourceManager = ServerLifecycleHooks.getCurrentServer().getResourceManager(); // 服务端
+        String namespace = ChangShengJue.MOD_ID;
 
-        for (String path : paths) {
-            try {
-                resources.putAll(Minecraft.getInstance().getResourceManager()
-                        .listResources(path,
-                                loc -> loc.getNamespace().equals(ChangShengJue.MOD_ID)
-                                        && loc.getPath().endsWith(".json")));
-            } catch (Exception e) {
-                ChangShengJue.LOGGER.error("客户端加载任务资源失败", e);
-            }
+        // 定义任务类型的路径
+        String[] questPaths = {"quests/gather", "quests/kill", "quests/raid", "quests/treat"};
+        // 收集任务文件
+        Map<ResourceLocation, Resource> allResources = new HashMap<>();
+
+        for (String path : questPaths) {
+            Map<ResourceLocation, Resource> resources = resourceManager.listResources(
+                    path,
+                    location -> location.getNamespace().equals(namespace) && location.getPath().endsWith(".json")
+            );
+            allResources.putAll(resources);
         }
-        return resources;
+        return allResources;
     }
+
 
     private static Quest parseQuest(JsonObject json,UUID npcId) {
         try {
@@ -222,11 +208,28 @@ public class QuestLoader {
 
             boolean isNeedCompletePreQuest = json.has("isNeedCompletePreQuest") && json.get("isNeedCompletePreQuest").getAsBoolean();
 
+            List<UUID> conflictQuestIds = new ArrayList<>();
+            if (json.has("conflictQuestIds")) {
+                JsonArray idArray = json.getAsJsonArray("conflictQuestIds");
+                for (JsonElement element : idArray) {
+                    try {
+                        conflictQuestIds.add(UUID.fromString(element.getAsString()));
+                    } catch (IllegalArgumentException e) {
+                        ChangShengJue.LOGGER.error("无效的任务ID格式: {}", element.getAsString());
+                    }
+                }
+            }
+
+            boolean isConflictQuest = json.has("isConflictQuest") && json.get("isConflictQuest").getAsBoolean();
+
+
             int needCompletionCount = json.has("needCompletionCount") ? json.get("needCompletionCount").getAsInt() : 0;
 
-            return new Quest(questId,npcId, title, description, requirements, rewards,
+            boolean needRefresh = json.has("needRefresh") && json.get("needRefresh").getAsBoolean();
+
+            return new Quest(questId,npcId, title, description, needRefresh, requirements, rewards,
                     type, targetEntity, isEntityTag, requiredKills, repeatable, questRequirementsDescription, questGenerateTarget, questDay,
-                    questTargetCount, questTime, effects, isAcceptQuestEffects,limitQuestIds,isNeedCompletePreQuest,needCompletionCount);
+                    questTargetCount, questTime, effects, isAcceptQuestEffects, limitQuestIds,isNeedCompletePreQuest,conflictQuestIds,isConflictQuest,needCompletionCount);
 
         } catch (Exception e) {
             System.err.println("解析任务JSON失败: " + e.getMessage());
@@ -319,12 +322,6 @@ public class QuestLoader {
                     return 1;
             }
         }
-    }
-
-    // 新增方法：检查当前是否在有效服务端环境
-    private static boolean isSafeServerEnvironment() {
-        return ServerLifecycleHooks.getCurrentServer() != null
-                && !FMLEnvironment.dist.isClient();
     }
 
 }

@@ -1,6 +1,12 @@
 package com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.challenger;
 
+import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.AbstractWuXia;
+import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
+import com.shengchanshe.chang_sheng_jue.quest.Quest;
+import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -24,6 +30,11 @@ import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
 
 public class Challenger extends AbstractWuXia implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -51,6 +62,37 @@ public class Challenger extends AbstractWuXia implements GeoEntity {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Mob.class, 5, false, false, (livingEntity) -> livingEntity instanceof Enemy && !(livingEntity instanceof Creeper)));
         this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, false));
+    }
+
+    @Override
+    public boolean hurt(DamageSource pSource, float pAmount) {
+        boolean hurt = super.hurt(pSource, pAmount);
+        if (pSource.getEntity() instanceof Player player) {
+            player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(capability -> {
+                boolean isLethal = this.getHealth() > 0;
+                boolean isNearDeath = this.getHealth() < this.getMaxHealth() * 0.15f;
+
+                if (isLethal && isNearDeath) {
+                    List<Quest> quests = capability.getQuests(player.getUUID());
+                    Optional<Quest> existingUncompleted = quests.stream()
+                            .filter(Objects::nonNull)
+                            .filter(quest -> quest.getQuestId().equals(UUID.fromString("bfbac359-a2cd-488b-9c75-b6dc10c96eed")))
+                            .findFirst();
+                    if (existingUncompleted.isPresent()) {
+                        Quest quest = existingUncompleted.get();
+                        quest.incrementKills();
+                        this.discard();
+                        if (quest.canComplete(player)) {
+                            player.sendSystemMessage(Component.literal(
+                                    "§a" + quest.getQuestName() + "任务进度: " + quest.getCurrentKills() + "/" + quest.getRequiredKills()
+                            ));
+                        }
+                    }
+                }
+            });
+        }
+
+        return hurt;
     }
 
     @Override

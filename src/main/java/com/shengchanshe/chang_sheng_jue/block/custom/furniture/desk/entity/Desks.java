@@ -1,6 +1,5 @@
-package com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk;
+package com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity;
 
-import com.shengchanshe.chang_sheng_jue.block.entity.desk.Desk;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -29,13 +28,13 @@ public class Desks extends HorizontalDirectionalBlock implements EntityBlock {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         ItemStack mainHandItem = pPlayer.getMainHandItem();
         ItemStack offhandItem = pPlayer.getOffhandItem();
-        if (blockEntity instanceof Desk entity) {
+        if (blockEntity instanceof DesksEntity entity) {
             if (!mainHandItem.isEmpty() || !offhandItem.isEmpty()) {
                 if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? pPlayer.getMainHandItem().copy() : pPlayer.getMainHandItem())) {
                     return InteractionResult.SUCCESS;
                 }
             } else {
-                ((Desk) blockEntity).drops(pPlayer);
+                ((DesksEntity) blockEntity).drops(pPlayer);
                 return InteractionResult.SUCCESS;
             }
             return InteractionResult.CONSUME;
@@ -46,8 +45,8 @@ public class Desks extends HorizontalDirectionalBlock implements EntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-            if (blockentity instanceof Desk) {
-                ((Desk) blockentity).drops();
+            if (blockentity instanceof DesksEntity) {
+                ((DesksEntity) blockentity).drops();
             }
             super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
         }
@@ -56,7 +55,7 @@ public class Desks extends HorizontalDirectionalBlock implements EntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new Desk(pPos,pState);
+        return new DesksEntity(pPos,pState);
     }
     @Nullable
     @Override

@@ -1,4 +1,4 @@
-package com.shengchanshe.chang_sheng_jue.block.entity.desk;
+package com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -17,10 +17,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.items.ItemStackHandler;
 
 @OnlyIn(Dist.CLIENT)
-public class DeskRender implements BlockEntityRenderer<Desk> {
-    public DeskRender(BlockEntityRendererProvider.Context context){}
+public class DesksEntityRender implements BlockEntityRenderer<DesksEntity> {
+    public DesksEntityRender(BlockEntityRendererProvider.Context context){}
     @Override
-    public void render(Desk pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
+    public void render(DesksEntity pBlockEntity, float pPartialTick, PoseStack pPoseStack, MultiBufferSource pBuffer, int pPackedLight, int pPackedOverlay) {
         Direction opposite = pBlockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING).getOpposite();
         ItemStackHandler inventroy = pBlockEntity.getInventory();
         int posLong = (int) pBlockEntity.getBlockPos().asLong();

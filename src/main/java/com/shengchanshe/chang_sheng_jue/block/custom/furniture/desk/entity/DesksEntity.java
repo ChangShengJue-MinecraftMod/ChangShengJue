@@ -1,4 +1,4 @@
-package com.shengchanshe.chang_sheng_jue.block.entity.desk;
+package com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity;
 
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.chang_sheng_jue.tags.CSJTags;
@@ -25,8 +25,10 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class Desk extends BlockEntity {
-    private ItemStackHandler inventory = new ItemStackHandler(1){
+import java.util.Objects;
+
+public class DesksEntity extends BlockEntity {
+    private final ItemStackHandler inventory = new ItemStackHandler(1){
         @Override
         protected int getStackLimit(int slot, @NotNull ItemStack stack) {
             return 1;
@@ -41,7 +43,7 @@ public class Desk extends BlockEntity {
     private LazyOptional<IItemHandler> lazyOptional = LazyOptional.empty();
     private final int INPUT_SLOT = 0;
 
-    public Desk(BlockPos pPos, BlockState pBlockState) {
+    public DesksEntity(BlockPos pPos, BlockState pBlockState) {
         super(ChangShengJueBlocksEntities.DESK.get(), pPos, pBlockState);
     }
 
@@ -72,7 +74,9 @@ public class Desk extends BlockEntity {
     public void drops(){
         SimpleContainer simpleContainer = new SimpleContainer(inventory.getSlots());
         simpleContainer.setItem(INPUT_SLOT,inventory.getStackInSlot(INPUT_SLOT));
-        Containers.dropContents(this.level,this.worldPosition,simpleContainer);
+        if (this.level != null) {
+            Containers.dropContents(this.level,this.worldPosition,simpleContainer);
+        }
     }
     public void drops(Player player){
         // 获取当前槽位的物品
@@ -138,7 +142,7 @@ public class Desk extends BlockEntity {
 
     @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-        this.load(pkt.getTag());
+        this.load(Objects.requireNonNull(pkt.getTag()));
     }
 
     @Override

@@ -8,9 +8,12 @@ import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.Gang
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.innkeeper.InnkeeperMenu;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.PlayerQuestMenu;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.worker.KilnWorkerMenu;
+import net.minecraft.world.entity.npc.ClientSideMerchant;
+import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.item.trading.Merchant;
 import net.minecraftforge.common.extensions.IForgeMenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.network.IContainerFactory;
@@ -41,10 +44,12 @@ public class ChangShengJueMenuTypes {
 //            () -> new MenuType<>(GangQuestsMenu::new,FeatureFlags.VANILLA_SET));
 ////
     public static final RegistryObject<MenuType<GangQuestsMenu>> GANG_QUESTS_MENU = MENUS.register("gang_quests_menu",
-            () -> IForgeMenuType.create(GangQuestsMenu::new));
-
+        () -> IForgeMenuType.create(GangQuestsMenu::new));
     public static final RegistryObject<MenuType<PlayerQuestMenu>> PLAYER_QUEST_MENU = MENUS.register("player_quest_menu",
-            () -> IForgeMenuType.create(PlayerQuestMenu::new));
+            () -> new MenuType<>((containerId, inv) ->
+                    new PlayerQuestMenu(containerId, inv, inv.player), // 直接传入Player
+                    FeatureFlagSet.of()
+            ));
 
 //            () -> new MenuType<>(GangQuestsMenu::new, FeatureFlags.VANILLA_SET));
 //    public static final RegistryObject<MenuType<GangQuestsMenu>> GANG_QUESTS_MENU =

@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk;
 
+import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity.Desks;
 import com.shengchanshe.chang_sheng_jue.util.ChangShengJueVoxelShape;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -63,6 +64,11 @@ public class BookDesk extends Desks {
                 world.setBlockAndUpdate(pos2, newState);
             }
         }
+    }
+
+    @Override
+    public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return Block.box(0, 0, 0, 16, 16, 16);
     }
 
     @Override

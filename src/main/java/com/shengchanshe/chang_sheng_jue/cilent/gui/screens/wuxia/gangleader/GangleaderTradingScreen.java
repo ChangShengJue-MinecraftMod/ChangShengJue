@@ -108,7 +108,7 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
     private void openQuestScreen() {
         if (minecraft != null && minecraft.player != null) {
             // 发送网络数据包到服务器
-            ChangShengJueMessages.sendToServer(new OpenGangQuestScreenPacket());
+            ChangShengJueMessages.sendToServer(new OpenGangQuestScreenPacket(this.getMenu().getPlayer().getUUID()));
         }
     }
 

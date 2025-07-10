@@ -21,21 +21,21 @@ import com.shengchanshe.chang_sheng_jue.capability.martial_arts.wu_gang_cut_gui.
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.ClientQuestDataCache;
+import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.PlayerQuestMenu;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.AbstractGangLeader;
-import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeader;
 import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
+import com.shengchanshe.chang_sheng_jue.event.quest.PlayerQuestEvent;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.RefreshPlayerQuestScreenPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.SyncQuestsPacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.SyncQuestDataPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.quest.RefreshQuestScreenPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -51,33 +51,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.LevelResource;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class QuestManager {
     private static QuestManager instance;
-    private Quest currentQuest;
-    //玩家当前任务 <玩家ID, 任务列表>
-    private Map<UUID, List<Quest>> playerAcceptedQuests;
-
     // 任务完成次数统计 <任务ID, 完成次数>
-    private Map<UUID, Integer> questCompletionCounts = new ConcurrentHashMap<>();
-
-    // 已完成的不可重复任务 <任务ID>
-    private Set<UUID> completedNonRepeatable = ConcurrentHashMap.newKeySet();
-
-    private Set<UUID> acceptQuestRepeatable = ConcurrentHashMap.newKeySet();
-
-    private final Path storagePath;
+    private final Map<UUID, Integer> questCompletionCounts = new ConcurrentHashMap<>();
 
     public static QuestManager getInstance() {
         if (instance == null) {
@@ -86,280 +70,223 @@ public class QuestManager {
         return instance;
     }
 
-    private QuestManager() {
-        this.storagePath = getWorldSpecificDataDir();
-        try {
-            if (storagePath != null) {
-                Files.createDirectories(storagePath);
-            }
-
-            // 统一使用复合判断条件
-            boolean isServerSide = FMLEnvironment.dist.isDedicatedServer() ||
-                    (FMLEnvironment.dist.isClient() && Minecraft.getInstance().isLocalServer());
-
-            if (storagePath != null) {
-                this.playerAcceptedQuests = isServerSide ?
-                        QuestDataStorage.load(storagePath) : // 服务端/单人游戏加载数据
-                        new ConcurrentHashMap<>();           // 纯客户端使用空Map
-            }
-
-        } catch (IOException e) {
-            ChangShengJue.LOGGER.error("初始化任务数据失败", e);
-            this.playerAcceptedQuests = new ConcurrentHashMap<>();
-        }
-    }
-
-    /**
-     * 获取玩家数据存储路径（兼容服务端/客户端）
-     */
-    public static Path getWorldSpecificDataDir() {
-        // 新增客户端检测
-        if (FMLEnvironment.dist.isClient() && !Minecraft.getInstance().isLocalServer()) {
-            return null;
-        }
-
-        try {
-            return ServerLifecycleHooks.getCurrentServer()
-                    .getWorldPath(LevelResource.ROOT)
-                    .resolve("data")
-                    .resolve(ChangShengJue.MOD_ID);
-        } catch (NullPointerException e) {
-            ChangShengJue.LOGGER.error("服务端路径获取失败", e);
-            return null;
-        }
-    }
-
-    public void onWorldLoad() {
-
-        Path path = getWorldSpecificDataDir();
-        QuestDataStorage.initWorldData(path); // 强制初始化文件
-        playerAcceptedQuests = QuestDataStorage.load(path);
-        completedNonRepeatable = QuestDataStorage.loadCompletedQuests(path);
-        acceptQuestRepeatable = QuestDataStorage.loadDoneQuests(path);
-        questCompletionCounts = QuestDataStorage.loadCompletionCounts(path);
-    }
-
-    /**
-     * 为指定NPC生成一个新任务
-     */
-    public Quest generateNewQuestForNpc(AbstractGangLeader abstractGangLeader) {
-        Quest quest = QuestLoader.loadQuest(abstractGangLeader.getUUID(), completedNonRepeatable);
-        if (quest != null && quest.checkPrerequisiteQuests(this)) {
-            if (quest.getQuestId().equals(UUID.fromString("33954498-78EF-492C-9338-B2E85C0AD184"))) {
-                if (abstractGangLeader instanceof ClubbedGangLeader){
-                    return quest;
-                }
-            }else {
-                return quest;
-            }
-        }
-        return generateNewQuestForNpc(abstractGangLeader);
-    }
-
-    /**
-     * 为玩家生成指定类型的任务
-     * @param player 目标玩家
-     * @param specificQuestId 指定要生成的任务ID（可为null表示随机）
-     * @return 生成的任务实例（可能为null如果生成失败）
-     */
-    public Quest generateSpecificQuestForPlayer(Player player, UUID specificQuestId,UUID npcId) {
-        // 基础校验
-        if (player == null) {
-            ChangShengJue.LOGGER.error("生成任务参数错误: player={}", player);
-            return null;
-        }
-
-        // 生成新任务（根据是否指定任务ID）
-        Quest newQuest = QuestLoader.loadSpecificQuest(specificQuestId, completedNonRepeatable, npcId);
-
-        // 设置任务属性
-        if (newQuest != null && !newQuest.isComplete()) {
-            if (newQuest.checkPrerequisiteQuests(this)){
-                newQuest.setAcceptedBy(player.getUUID());
-                newQuest.setQuestNpcId(npcId);
-                newQuest.setComplete(false);
-                player.sendSystemMessage(getColoredTranslation(
-                        "quest." + ChangShengJue.MOD_ID + ".trigger", getColoredTranslation(newQuest.getQuestName())));
-
-                playerAcceptedQuests.computeIfAbsent(player.getUUID(), k -> new ArrayList<>()).add(newQuest);
-                this.saveData();
-                return newQuest;
-            }
-        }
-
-        return null;
-    }
-
-    // 获取带颜色的翻译文本
-    public static Component getColoredTranslation(String key, Object... args) {
-        String raw = Component.translatable(key, args).getString();
-        return Component.literal(raw);
-    }
-
     /**
      * 玩家接受帮派任务
      */
     public void acceptQuest(Player player, AbstractGangLeader gangLeader) {
-        Quest npcQuest = gangLeader.getQuest();
-        if (npcQuest == null || npcQuest.getAcceptedBy() != null) {
-            return;
-        }
+        player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
+            List<Quest> npcQuest = gangLeader.getPlayerQuests(player.getUUID());
+            Optional<Quest> existingQuest = npcQuest.stream()
+                    .filter(Objects::nonNull)
+                    .findFirst();
+            if (existingQuest.isPresent()) {
+                Quest quest1 = existingQuest.get();
+                quest1.setAcceptedBy(player.getUUID());
+                cap.setQuests(quest1, player.getUUID());
+                int requiredKills = quest1.getRequiredKills();
 
-        npcQuest.setAcceptedBy(player.getUUID());
-        acceptQuestRepeatable.add(npcQuest.getQuestId());
-        this.saveQuest(player, npcQuest);
-        this.flushedContainer((ServerPlayer) player, gangLeader);
-        syncQuestsToPlayer((ServerPlayer) player); // 增量同步
-        this.spawnTargetForQuest((ServerPlayer) player,npcQuest, npcQuest.getRequiredKills());
+                this.spawnTargetForQuest((ServerPlayer) player,quest1,requiredKills);
+
+                gangLeader.removeUnacceptedQuests(player.getUUID());
+
+                if (player instanceof ServerPlayer serverPlayer) {
+                    cap.syncToClient(serverPlayer);
+
+                    // 发送专用刷新包
+                    ChangShengJueMessages.sendToPlayer(
+                            new RefreshQuestScreenPacket(quest1.toNbt()),
+                            serverPlayer
+                    );
+                }
+            }
+
+        });
+    }
+
+    /**
+     * 玩家刷新帮派任务
+     */
+    public void refreshQuest(Player player, AbstractGangLeader gangLeader) {
+        player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
+            List<Quest> npcQuest = gangLeader.getPlayerQuests(player.getUUID());
+            Optional<Quest> existingQuest = npcQuest.stream()
+                    .filter(Objects::nonNull)
+                    .filter(q -> q.getAcceptedBy() == null)
+                    .findFirst();
+            if (existingQuest.isPresent()) {
+                Quest quest1 = cap.triggerGangQuest(player, gangLeader, 1.0f);
+                gangLeader.removeUnacceptedQuests(player.getUUID());
+                gangLeader.addQuestForPlayer(player.getUUID(), quest1);
+                if (player instanceof ServerPlayer serverPlayer) {
+                    cap.syncToClient(serverPlayer);
+                    // 发送专用刷新包
+                    ChangShengJueMessages.sendToPlayer(
+                            new RefreshQuestScreenPacket(quest1.toNbt()),
+                            serverPlayer
+                    );
+                }
+            }
+        });
     }
     /**
      * 玩家放弃帮派任务
      */
     public void abandonQuest(Player player, AbstractGangLeader gangLeader) {
-        // 获取NPC当前任务并验证基础条件
-        Quest npcQuest = gangLeader.getQuest();
-        if (npcQuest == null || !player.getUUID().equals(npcQuest.getAcceptedBy())) {
-            return;
-        }
+        player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
+            // 获取NPC当前任务并验证基础条件
+            List<Quest> npcQuest = gangLeader.getPlayerQuests(player.getUUID());
+            Optional<Quest> existingQuest = npcQuest.stream()
+                    .filter(Objects::nonNull)
+                    .filter(q -> q.getAcceptedBy() != null && q.getAcceptedBy().equals(player.getUUID()))
+                    .findFirst();
+            if (existingQuest.isPresent()) {
+                Quest quest = existingQuest.get();
+                Optional<Quest> matchedQuest = cap.getQuests(player.getUUID()).stream()
+                        .filter(q -> q != null && q.getQuestId().equals(quest.getQuestId()))
+                        .findFirst();
 
-        // 获取玩家任务列表并匹配任务（通过固定ID比较）
-        List<Quest> playerQuests = this.getPlayerQuests(player.getUUID());
-        Optional<Quest> matchedQuest = playerQuests.stream()
-                .filter(q -> q.getQuestId().equals(npcQuest.getQuestId()))
-                .findFirst();
+                if (matchedQuest.isEmpty()) {
+                    return;
+                }
+                Quest actualQuest = matchedQuest.get();
+                // 4. 处理任务完成
+                actualQuest.setAcceptedBy(null);
+                actualQuest.setCurrentKills(0);
+                actualQuest.setComplete(false);
 
-        if (matchedQuest.isEmpty()) {
-            return;
-        }
-        // 重置任务状态
-        Quest actualQuest = matchedQuest.get();
-        actualQuest.setAcceptedBy(null); // 清除接受者
-        actualQuest.setCurrentKills(0);
-        actualQuest.setComplete(false);
-        // 从玩家任务列表中移除（可选，根据设计需求）
-        this.removeQuest(actualQuest, playerQuests);
-        // 刷新NPC任务（保留任务但重置状态）
-        gangLeader.setQuest(new Quest(npcQuest.toNbt())); // 深拷贝重置
-        npcQuest.setAcceptedBy(null);
-        // 持久化数据
-        this.saveData();
+                cap.removeQuestFromAllPlayers(quest.getQuestId());
+                if (player.hasEffect(MobEffects.BAD_OMEN)){
+                    player.removeEffect(MobEffects.BAD_OMEN);
+                }
+                gangLeader.addQuestForPlayer(player.getUUID(),new Quest(actualQuest.toNbt()));
 
-        syncQuestsToPlayer((ServerPlayer) player); // 增量同步
-        // 刷新UI
-        this.flushedContainer((ServerPlayer) player, gangLeader);
+                if (player instanceof ServerPlayer serverPlayer) {
+                    cap.syncToClient(serverPlayer);
+
+                    // 发送专用刷新包
+                    ChangShengJueMessages.sendToPlayer(
+                            new RefreshQuestScreenPacket(actualQuest.toNbt()),
+                            serverPlayer
+                    );
+                }
+            }
+
+        });
     }
-    /**
-     * 玩家刷新帮派任务
-     */
-    public void refreshQuest(Player player, AbstractGangLeader gangLeader) {
-        Quest npcQuest = gangLeader.getQuest();
-        if (npcQuest == null || npcQuest.getAcceptedBy() != null) {
-            return;
-        }
 
-        // 立即刷新NPC任务（无论是否可重复）
-        gangLeader.setQuest(generateNewQuestForNpc(gangLeader));
-        // 持久化数据
-        this.saveData();
-        syncQuestsToPlayer((ServerPlayer) player); // 增量同步
-        // 刷新UI
-        this.flushedContainer((ServerPlayer) player, gangLeader);
-    }
     /**
      * 玩家提交帮派任务
      */
     public void submitQuest(Player player, AbstractGangLeader gangLeader) {
-        //  获取NPC当前任务并验证基础条件
-        Quest npcQuest = gangLeader.getQuest();
-        if (npcQuest == null || !player.getUUID().equals(npcQuest.getAcceptedBy())) {
-            return;
-        }
-        // 获取玩家任务列表并匹配任务（通过固定ID比较）
-        List<Quest> playerQuests = this.getPlayerQuests(player.getUUID());
-        Optional<Quest> matchedQuest = playerQuests.stream()
-                .filter(q -> q.getQuestId().equals(npcQuest.getQuestId())) // 使用固定ID比较
-                .findFirst();
+        player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
+            //  获取NPC当前任务并验证基础条件
+            List<Quest> npcQuest = gangLeader.getPlayerQuests(player.getUUID());
+            Optional<Quest> existingQuest = npcQuest.stream()
+                    .filter(Objects::nonNull)
+                    .filter(q -> q.getAcceptedBy().equals(player.getUUID()))
+                    .findFirst();
+            if (existingQuest.isPresent()) {
+                Quest quest = existingQuest.get();
+                Optional<Quest> matchedQuest = cap.getQuests(player.getUUID()).stream()
+                        .filter(q -> q != null && q.getQuestId().equals(quest.getQuestId()))
+                        .findFirst();
 
-        if (matchedQuest.isEmpty()) {
-            return;
-        }
+                if (matchedQuest.isEmpty()) {
+                    return;
+                }
+                Quest actualQuest = matchedQuest.get();
+                // 3. 验证任务状态
+                if (!actualQuest.canComplete(player)) {
+                    player.sendSystemMessage(Component.translatable("quest." + ChangShengJue.MOD_ID + ".requirements.prompt"));
+                    return;
+                }
+                CSJAdvanceEvent.handleSpecialQuestReward((ServerPlayer) player, actualQuest);
+                // 给予奖励并移除需求物品
+                actualQuest.takeRequirements(player);
+                actualQuest.giveRewards(player);
+                actualQuest.setComplete(false);
+                actualQuest.setAcceptedBy(null);
+//                actualQuest.applyEffects(player);
 
-        // 检查任务完成条件
-        Quest actualQuest = matchedQuest.get();
-        if (!actualQuest.canComplete(player)) {
-            player.sendSystemMessage(Component.translatable("quest."+ChangShengJue.MOD_ID+".requirements.prompt"));
-            return;
-        }
-        CSJAdvanceEvent.handleSpecialQuestReward((ServerPlayer) player, actualQuest);
-        // 给予奖励并移除需求物品
-        actualQuest.takeRequirements(player);
-        actualQuest.giveRewards(player);
-        actualQuest.setComplete(false);
-        actualQuest.setAcceptedBy(null);
-        actualQuest.applyEffects(player);
-        if (!actualQuest.isRepeatable()) {
-            completedNonRepeatable.add(actualQuest.getQuestId());
-        }
-        incrementQuestCompletion(actualQuest.getQuestId()); // 新增统计
+                cap.markQuestCompleted(actualQuest.getQuestId());
+                cap.setCompletionCount(actualQuest.getQuestId());
+                cap.removeQuestFromAllPlayers(actualQuest.getQuestId());
 
-        // 在玩家任务中移除已完成的任务
-        this.removeQuest(actualQuest, playerQuests);
-        // 不可重复任务：从玩家列表移除并记录
-        if (!actualQuest.isRepeatable()) {
-            completedNonRepeatable.add(actualQuest.getQuestId()); // 记录已完成
-        }
-        // 立即刷新NPC任务（无论是否可重复）
-        gangLeader.setQuest(generateNewQuestForNpc(gangLeader));
-        // 持久化数据
-        this.saveData();
-        syncQuestsToPlayer((ServerPlayer) player); // 增量同步
-        // 刷新UI
-        this.flushedContainer((ServerPlayer) player, gangLeader);
+                questCompletionCounts.merge(actualQuest.getQuestId(), 1, Integer::sum);
+
+                gangLeader.removeQuest(player.getUUID(), actualQuest.getQuestId());
+
+                Quest quest1 = cap.triggerGangQuest(player, gangLeader, 1.0f);
+                gangLeader.addQuestForPlayer(player.getUUID(), quest1);
+
+                if (player instanceof ServerPlayer serverPlayer) {
+                    cap.syncToClient(serverPlayer);
+
+                    // 发送专用刷新包
+                    ChangShengJueMessages.sendToPlayer(
+                            new RefreshQuestScreenPacket(quest1.toNbt()),
+                            serverPlayer
+                    );
+                }
+            }
+
+        });
     }
     /**
      * 玩家提交背包任务
      */
     public void submitPlayerQuest(Player player, Quest quest, AbstractContainerMenu menu) {
-        if (menu instanceof PlayerQuestMenu playerQuestMenu) {
-            if (quest == null || !player.getUUID().equals(quest.getAcceptedBy())) {
+        if (menu instanceof PlayerQuestMenu) {
+            if (quest == null) {
                 return;
             }
+            player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
+                // 2. 查找任务（线程安全方式）
+                Optional<Quest> matchedQuest = cap.getQuests(player.getUUID()).stream()
+                        .filter(q -> q != null && q.getQuestId().equals(quest.getQuestId()))
+                        .findFirst();
 
-            List<Quest> playerQuests = this.getPlayerQuests(player.getUUID());
-            Optional<Quest> matchedQuest = playerQuests.stream()
-                    .filter(q -> q.getQuestId().equals(quest.getQuestId())) // 使用固定ID比较
-                    .findFirst();
+                if (matchedQuest.isEmpty()) {
+                    return;
+                }
+                Quest actualQuest = matchedQuest.get();
+                // 3. 验证任务状态
+                if (!actualQuest.canComplete(player)) {
+                    player.sendSystemMessage(Component.translatable("quest."+ChangShengJue.MOD_ID+".requirements.prompt"));
+                    return;
+                }
+                // 4. 处理任务完成
+                actualQuest.takeRequirements(player);
+                actualQuest.giveRewards(player);
+                actualQuest.setComplete(false);
+                actualQuest.applyEffects(player);
+                actualQuest.setAcceptedBy(null);
+                actualQuest.setNeedRefresh(true);
 
-            if (matchedQuest.isEmpty()) {
-                return;
-            }
+                if (actualQuest.getQuestId().equals(PlayerQuestEvent.KUAI_YI_EN_CHOU_QUEST_ID) && quest.getQuestNpcId() != null) {
+                    questCompletionCounts.merge(actualQuest.getQuestId(), 1, Integer::sum);
+                }
 
-            Quest actualQuest = matchedQuest.get();
-            if (!actualQuest.canComplete(player)) {
-                player.sendSystemMessage(Component.translatable("quest."+ChangShengJue.MOD_ID+".requirements.prompt"));
-                return;
-            }
+                cap.markQuestCompleted(actualQuest.getQuestId());
+                cap.setCompletionCount(actualQuest.getQuestId());
+                cap.removeQuestFromAllPlayers(actualQuest.getQuestId());
 
-            actualQuest.takeRequirements(player);
-            actualQuest.giveRewards(player);
-            actualQuest.setComplete(false);
-            actualQuest.setAcceptedBy(null);
-            quest.applyEffects(player);
-            if (actualQuest.getQuestId().equals(UUID.fromString("dab3e694-291c-4b58-8ed2-4b215fbcf543"))){
-                this.addKungFuCount(player, 25);
-            }
-            if (!actualQuest.isRepeatable()) {
-                completedNonRepeatable.add(actualQuest.getQuestId());
-            }
-            incrementQuestCompletion(actualQuest.getQuestId()); // 新增统计
-            playerQuestMenu.removedCurrentQuest(quest.getQuestId());
-            this.removeQuest(actualQuest, playerQuests);
-            if (!actualQuest.isRepeatable()) {
-                completedNonRepeatable.add(actualQuest.getQuestId()); // 记录已完成
-            }
-            this.saveData();
-            syncQuestsToPlayer((ServerPlayer) player); // 增量同步
-            ChangShengJueMessages.sendToPlayer(new RefreshPlayerQuestScreenPacket(), (ServerPlayer) player);
+                // 6. 特殊任务处理
+                if (actualQuest.getQuestId().equals(UUID.fromString("dab3e694-291c-4b58-8ed2-4b215fbcf543"))) {
+                    this.addKungFuCount(player, 25);
+                }
+                if (player instanceof ServerPlayer serverPlayer) {
+                    cap.syncToClient(serverPlayer);
+
+                    // 发送专用刷新包
+                    ChangShengJueMessages.sendToPlayer(
+                            new RefreshPlayerQuestScreenPacket(),
+                            serverPlayer
+                    );
+                }
+
+            });
+
         }
     }
     /**
@@ -367,29 +294,34 @@ public class QuestManager {
      */
     public void abandonPlayerQuest(Player player, Quest quest) {
         // 获取NPC当前任务并验证基础条件
-        if (quest == null || !player.getUUID().equals(quest.getAcceptedBy())) {
+        if (quest == null) {
             return;
         }
+        player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
+            // 2. 查找任务（线程安全方式）
+            Optional<Quest> matchedQuest = cap.getQuests(player.getUUID()).stream()
+                    .filter(q -> q != null && q.getQuestId().equals(quest.getQuestId()))
+                    .findFirst();
 
-        // 获取玩家任务列表并匹配任务（通过固定ID比较）
-        List<Quest> playerQuests = this.getPlayerQuests(player.getUUID());
-        Optional<Quest> matchedQuest = playerQuests.stream()
-                .filter(q -> q.getQuestId().equals(quest.getQuestId()))
-                .findFirst();
+            if (matchedQuest.isEmpty()) {
+                return;
+            }
+            Quest actualQuest = matchedQuest.get();
+            // 4. 处理任务完成
+            actualQuest.setComplete(false);
+            actualQuest.setAcceptedBy(null);
 
-        if (matchedQuest.isEmpty()) {
-            return;
-        }
+            cap.removeQuestFromAllPlayers(quest.getQuestId());
 
-        // 重置任务状态
-        Quest actualQuest = matchedQuest.get();
-        actualQuest.setAcceptedBy(null); // 清除接受者
-        actualQuest.setComplete(false);
-        this.removeQuest(actualQuest, playerQuests);
-        this.saveData();
-
-        syncQuestsToPlayer((ServerPlayer) player); // 增量同步
-        ChangShengJueMessages.sendToPlayer(new RefreshPlayerQuestScreenPacket(), (ServerPlayer) player);
+            if (player instanceof ServerPlayer serverPlayer) {
+                cap.syncToClient(serverPlayer);
+                // 发送专用刷新包
+                ChangShengJueMessages.sendToPlayer(
+                        new RefreshPlayerQuestScreenPacket(),
+                        serverPlayer
+                );
+            }
+        });
     }
 
     /**
@@ -523,50 +455,34 @@ public class QuestManager {
                 && belowState.isSolidRender(level, pos.below());
     }
 
-    public void removeNpcQuests(UUID npcId) {
-        Optional.ofNullable(npcId).ifPresent(id -> {
-            playerAcceptedQuests.values().forEach(quests ->
-                    quests.removeIf(quest -> id.equals(quest.getQuestNpcId()))
-            );
-        });
-        this.saveData();
-    }
-
-    public void flushedContainer(ServerPlayer player, AbstractGangLeader gangLeader) {
-        ChangShengJueMessages.sendToPlayer(new RefreshQuestScreenPacket(gangLeader.getQuest().toNbt()), player);
-    }
-
-    // 新增保存方法
-    public void saveData() {
-        QuestDataStorage.save(playerAcceptedQuests, getWorldSpecificDataDir());
-        QuestDataStorage.saveCompletedQuests(completedNonRepeatable, getWorldSpecificDataDir());
-        QuestDataStorage.saveDoneQuests(acceptQuestRepeatable, getWorldSpecificDataDir());
-        QuestDataStorage.saveCompletionCounts(questCompletionCounts, getWorldSpecificDataDir()); // 新增
-    }
-
-    // 在修改数据的操作后调用保存
-    public void saveQuest(Player player, Quest quest) {
-        UUID uuid = player.getUUID();
-        this.playerAcceptedQuests.computeIfAbsent(uuid, k -> new ArrayList<>()).add(quest);
-        this.saveData();
-    }
-
-    public boolean removeQuest(Quest quest, List<Quest> quests) {
-        return quests.removeIf(q -> q.equals(quest));
-    }
-
-    public void removePlayerQuests(Iterator<Quest> iterator) {
-        iterator.remove();
-        this.saveData();
-    }
-
     // 获取玩家所有任务
     public List<Quest> getPlayerQuests(UUID playerId) {
-        if (FMLEnvironment.dist.isDedicatedServer() ||
-                (FMLEnvironment.dist.isClient() && Minecraft.getInstance().isLocalServer())) {
-            return this.playerAcceptedQuests.getOrDefault(playerId, Collections.emptyList());
+        if (playerId == null) {
+            return Collections.emptyList();
         }
-        return ClientQuestDataCache.getClientQuests(playerId);
+
+        if (Minecraft.getInstance().level != null) {
+            Player player = Minecraft.getInstance().level.getPlayerByUUID(playerId);
+            if (player != null) {
+                return getQuestsFromCapability(player);
+            }
+        }
+
+        ServerPlayer serverPlayer = ServerLifecycleHooks.getCurrentServer()
+                .getPlayerList()
+                .getPlayer(playerId);
+        if (serverPlayer != null) {
+            return getQuestsFromCapability(serverPlayer);
+        }
+
+        return Collections.emptyList();
+    }
+
+    // 提取的公共能力获取方法
+    private List<Quest> getQuestsFromCapability(Player player) {
+        return player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY)
+                .map(cap -> cap.getQuests(player.getUUID())) // 使用新方法
+                .orElse(Collections.emptyList());
     }
 
     /**
@@ -578,46 +494,6 @@ public class QuestManager {
                 .stream()
                 .mapToInt(Integer::intValue)
                 .sum();
-    }
-
-    // 获取任务完成次数
-    public int getQuestCompletionCount(UUID questId) {
-        return this.questCompletionCounts.getOrDefault(questId, 0);
-    }
-    // 删除指定任务完成记录
-    public void removeQuestCompletion(UUID questId) {
-        this.questCompletionCounts.remove(questId);
-        this.saveData(); // 触发持久化
-    }
-    // 增加任务完成次数
-    public void incrementQuestCompletion(UUID questId) {
-        this.questCompletionCounts.merge(questId, 1, Integer::sum);
-        this.saveData(); // 立即保存
-    }
-
-    public Set<UUID> getAllAcceptRepeatableQuests() {
-        return Collections.unmodifiableSet(new HashSet<>(this.acceptQuestRepeatable));
-    }
-
-//    public void openNpcGui(AbstractGangLeader gangLeader) {
-//        // 获取NPC当前任务
-//        Quest npcQuest = gangLeader.getQuest();
-//        if (npcQuest == null || npcQuest.getAcceptedBy() == null) {return;}
-//        // 更高效的流式处理
-//        getPlayerQuests(npcQuest.getAcceptedBy()).stream()
-//                .filter(playerQuest -> playerQuest.equals(npcQuest))
-//                .findFirst()
-//                .ifPresent(matchingQuest -> {
-//                    // 使用防御性拷贝
-//                    gangLeader.setQuest(new Quest(matchingQuest.toNbt()));
-//                    ChangShengJue.LOGGER.debug("已同步任务数据：{}", matchingQuest.getQuestId());
-//                });
-//    }
-
-    public void saveQuestProgress(Quest quest){
-        if (quest == null) return;
-        if (quest.getAcceptedBy() == null) return;
-        quest.setCurrentKills(quest.getCurrentKills());
     }
 
     public void addKungFuCount(Player player,int count){
@@ -685,31 +561,12 @@ public class QuestManager {
 
     // 新增同步方法
     public void syncQuestsToPlayer(ServerPlayer player) {
-        List<Quest> playerQuests = this.getPlayerQuests(player.getUUID());
-        ChangShengJueMessages.sendToPlayer(
-                new SyncQuestsPacket(
-                        playerQuests,
-                        this.completedNonRepeatable,
-                        this.questCompletionCounts
-                ),
-                player
-        );
+        player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY)
+                .ifPresent(cap -> {
+                    CompoundTag tag = cap.serializeNBT();
+                    ChangShengJueMessages.sendToPlayer(
+                            new SyncQuestDataPacket(player.getUUID(), tag), player);});
     }
 
-    public void encodeQuests(FriendlyByteBuf buf, List<Quest> quests) {
-        buf.writeInt(quests.size());
-        for (Quest quest : quests) {
-            buf.writeNbt(quest.toNbt());
-        }
-    }
-
-    public List<Quest> decodeQuests(FriendlyByteBuf buf) {
-        List<Quest> quests = new ArrayList<>();
-        int count = buf.readInt();
-        for (int i = 0; i < count; i++) {
-            quests.add(new Quest(Objects.requireNonNull(buf.readNbt())));
-        }
-        return quests;
-    }
 
 }

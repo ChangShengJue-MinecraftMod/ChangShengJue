@@ -100,7 +100,19 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 buttonX, buttonY, BUTTON_WIDTH, BUTTON_HEIGHT,
                 0, 167, 17, TEXTURE, TEXTURE_WIDTH, TEXTURE_HEIGHT,
                 (button) -> {
-                    ChangShengJueMessages.sendToServer(new SubmitPlayerQuestsPacket(this.getMenu().getCurrentPage()));
+                    this.getMenu().getCurrentQuest(this.getMenu().getCurrentPage()).ifPresentOrElse(
+                            quest -> {
+                                ChangShengJueMessages.sendToServer(
+                                        new SubmitPlayerQuestsPacket(quest.getQuestId(), this.getMenu().getCurrentPage()));
+                            },
+                            () -> {
+                                // 处理空任务情况
+                                if (Minecraft.getInstance().player != null) {
+                                    Minecraft.getInstance().player.displayClientMessage(
+                                            Component.translatable("当前没有任务可以提交"), false);
+                                }
+                            }
+                    );
                 },
                 Component.translatable("quest."+ ChangShengJue.MOD_ID +".submit.button")
         ));
@@ -109,7 +121,20 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 buttonX + BUTTON_WIDTH + BUTTON_SPACING, buttonY, BUTTON_WIDTH, BUTTON_HEIGHT,
                 0, 167, 17, TEXTURE, TEXTURE_WIDTH, TEXTURE_HEIGHT,
                 (button) -> {
-                    ChangShengJueMessages.sendToServer(new AbandonPlayerQuestPacket(this.getMenu().getCurrentPage()));
+                    this.getMenu().getCurrentQuest(this.getMenu().getCurrentPage()).ifPresentOrElse(
+                            quest -> {
+                                ChangShengJueMessages.sendToServer(
+                                        new AbandonPlayerQuestPacket(quest.getQuestId(), this.getMenu().getCurrentPage()));
+                            },
+                            () -> {
+                                // 处理空任务情况
+                                if (Minecraft.getInstance().player != null) {
+                                    Minecraft.getInstance().player.displayClientMessage(
+                                            Component.translatable("无法放弃不存在的任务"), false);
+                                }
+                            }
+                    );
+
                 },
                 Component.translatable("quest."+ ChangShengJue.MOD_ID +".abandon.button")
         ));
@@ -222,11 +247,11 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 mouseY >= slotY && mouseY <= slotY + height;
     }
 
-    public void refreshUI(UUID uuid) {
+    public void refreshUI() {
         // 彻底清理旧组件
         this.clearWidgets();
         this.renderables.clear(); // 确保所有UI元素被移除
-        this.menu.removedCurrentQuest(uuid);
+        this.menu.refreshQuests();
 
         // 重新初始化
         this.init();

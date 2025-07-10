@@ -1,18 +1,22 @@
 package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader;
 
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.ChangShengJueMenuTypes;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.ClientQuestDataCache;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.npc.ClientSideMerchant;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.Minecart;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.Merchant;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class GangQuestsMenu extends AbstractContainerMenu {
     private final Quest quest;
@@ -27,9 +31,10 @@ public class GangQuestsMenu extends AbstractContainerMenu {
 
     public GangQuestsMenu(int containerId, Inventory inv, Merchant merchant, Quest quest) {
         super(ChangShengJueMenuTypes.GANG_QUESTS_MENU.get(), containerId);
+        this.player = inv.player;
         this.quest = quest;
         this.trader = merchant;
-        this.player = inv.player;
+
 
         // 绑定玩家背包槽位（关键！）
         for (int row = 0; row < 3; ++row) {

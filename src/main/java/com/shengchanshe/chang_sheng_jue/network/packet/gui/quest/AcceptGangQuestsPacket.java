@@ -25,7 +25,6 @@ public record AcceptGangQuestsPacket() {
                 if (menu.getTrader() instanceof AbstractGangLeader abstractGangLeader) {
                     GangQuestHandler.handleQuestAccept(player, abstractGangLeader);
                     CSJAdvanceInit.ACCESS_GUILD_TASK.trigger(player);
-                    //触发成就“帮会？”
                 }
             }
         });

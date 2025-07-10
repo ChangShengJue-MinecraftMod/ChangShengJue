@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class CultivationCapabilityProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-    public static Capability<CultivationCapability> XIU_XIAN_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
+    public static final Capability<CultivationCapability> XIU_XIAN_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
 
     private CultivationCapability xiuXianCapability = null;
 

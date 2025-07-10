@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk;
 
+import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity.Desks;
 import com.shengchanshe.chang_sheng_jue.tags.CSJTags;
 import com.shengchanshe.chang_sheng_jue.util.ChangShengJueVoxelShape;
 import net.minecraft.core.BlockPos;

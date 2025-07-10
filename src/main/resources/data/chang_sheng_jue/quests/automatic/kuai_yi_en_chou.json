@@ -3,8 +3,9 @@
   "questName": "quest.chang_sheng_jue.kill.mob.questName",
   "questDescription": "quest.chang_sheng_jue.kill.mob.questDescription",
   "questRequirementsDescription": "quest.chang_sheng_jue.kill.mob.questRequirementsDescription",
-  "questType": "AUTOMATIC",
-  "repeatable": false,
+  "questType": "KILL",
+  "repeatable": true,
+  "requiredKills": 1,
   "questRewards": [
     {
       "item": "#chang_sheng_jue:internal_kung_fu_mj",

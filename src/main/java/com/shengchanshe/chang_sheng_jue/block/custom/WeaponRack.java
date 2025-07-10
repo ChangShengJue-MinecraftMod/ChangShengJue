@@ -8,9 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -178,8 +176,8 @@ public class WeaponRack extends BaseEntityBlock {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         if (blockEntity instanceof WeaponRackEntity entity) {
             ItemStack item = pPlayer.getMainHandItem();
-            if (checkWeapon(item) || checkModWeapon(item) ||checkfather(item)) {
-                if (!pLevel.isClientSide ) {
+            if (item.getItem() instanceof TieredItem || item.getItem() instanceof TridentItem) {
+                if (!pLevel.isClientSide) {
                     if(pPlayer.getAbilities().instabuild){
                         ItemStack itemcopy = item.copy();
                         entity.addItem(itemcopy);

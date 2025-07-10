@@ -216,10 +216,10 @@ public class ChangShengJueMessages {
                 .add();
 
         // 1. 服务端→客户端同步包（任务数据下发）
-        net.messageBuilder(SyncQuestsPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(SyncQuestsPacket::new)
-                .encoder(SyncQuestsPacket::encode)
-                .consumerMainThread(SyncQuestsPacket::handle)
+        net.messageBuilder(SyncQuestDataPacket.class, id())
+                .decoder(SyncQuestDataPacket::decode)
+                .encoder(SyncQuestDataPacket::encode)
+                .consumerMainThread(SyncQuestDataPacket::handle)
                 .add();
 
         // 2. 客户端→服务端请求包（数据请求）

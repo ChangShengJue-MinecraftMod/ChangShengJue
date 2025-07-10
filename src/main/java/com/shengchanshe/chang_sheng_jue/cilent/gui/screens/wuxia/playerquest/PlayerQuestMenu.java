@@ -1,37 +1,30 @@
 package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest;
 
+import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.ChangShengJueMenuTypes;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;
-import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public class PlayerQuestMenu extends AbstractContainerMenu {
-    private final List<Quest> quests;
+    private List<Quest> quests;
     private int currentPage;
     private Player player;
 
-    // 客户端构造函数（通过FriendlyByteBuf）
-    public PlayerQuestMenu(int containerId, Inventory playerInv, FriendlyByteBuf data) {
-        this(containerId, playerInv,
-                QuestManager.getInstance().decodeQuests(data), // 从网络包解码
-                data.readInt());
-    }
-
-    public PlayerQuestMenu(int containerId, Inventory playerInv, List<Quest> quests, int page) {
+    public PlayerQuestMenu(int containerId, Inventory playerInv, Player player) {
         super(ChangShengJueMenuTypes.PLAYER_QUEST_MENU.get(), containerId);
-        this.quests = quests;
-        this.currentPage = page;
+        this.player = player;
+        refreshQuests();
+        this.currentPage = 0;
 
-        // 绑定玩家背包槽位（关键！）
+        // 绑定玩家背包槽位
         for (int row = 0; row < 3; ++row) {
             for (int col = 0; col < 9; ++col) {
                 this.addSlot(new Slot(playerInv, col + row * 9 + 9, 8 + col * 18, 100000));
@@ -40,6 +33,18 @@ public class PlayerQuestMenu extends AbstractContainerMenu {
         // 绑定快捷栏
         for (int col = 0; col < 9; ++col) {
             this.addSlot(new Slot(playerInv, col, 8 + col * 18, 100000));
+        }
+    }
+
+    public void refreshQuests() {
+        if (player.level().isClientSide) {
+            // 客户端从本地缓存获取
+            this.quests = ClientQuestDataCache.get().getPlayerQuests(player.getUUID());
+        } else {
+            // 服务端直接从能力系统获取
+            this.quests = player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY)
+                    .map(cap -> cap.getQuests(player.getUUID()))
+                    .orElse(Collections.emptyList());
         }
     }
 
@@ -55,20 +60,12 @@ public class PlayerQuestMenu extends AbstractContainerMenu {
 
     // 获取当前页任务
     public Optional<Quest> getCurrentQuest(int page) {
-        if (quests.isEmpty() || page < 0 || page >= quests.size()) {
-            return Optional.empty(); // 防止越界
+        if (quests.isEmpty() || page < 0 || page >= quests.size() || quests.get(page).getAcceptedBy() == null) {
+            return Optional.empty();
         }
         return Optional.of(quests.get(page));
     }
 
-
-    public void removedCurrentQuest(UUID questId) {
-        this.getCurrentQuest(currentPage).ifPresent(quest -> {
-            if (quest.getQuestId().equals(questId)) {
-                quests.remove(quest);
-            }
-        });
-    }
 
     // 是否有上一页
     public boolean hasPrevPage() {

@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk;
 
+import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity.Desks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
