@@ -1,0 +1,188 @@
+{
+  "variants": {
+    "facing=east,part=bottom,hinge=left,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_left"
+    },
+    "facing=east,part=bottom,hinge=left,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_left_open",
+      "y": 90
+    },
+    "facing=east,part=bottom,hinge=right,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_right"
+    },
+    "facing=east,part=bottom,hinge=right,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_right_open",
+      "y": 270
+    },
+    "facing=east,part=middle,hinge=left,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_middle_left"
+    },
+    "facing=east,part=middle,hinge=left,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_middle_left_open",
+      "y": 90
+    },
+    "facing=east,part=middle,hinge=right,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_middle_right"
+    },
+    "facing=east,part=middle,hinge=right,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_middle_right_open",
+      "y": 270
+    },
+    "facing=east,part=top,hinge=left,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_top_left"
+    },
+    "facing=east,part=top,hinge=left,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_top_left_open",
+      "y": 90
+    },
+    "facing=east,part=top,hinge=right,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_top_right"
+    },
+    "facing=east,part=top,hinge=right,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_top_right_open",
+      "y": 270
+    },
+
+    "facing=north,part=bottom,hinge=left,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_left",
+      "y": 270
+    },
+    "facing=north,part=bottom,hinge=left,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_left_open"
+    },
+    "facing=north,part=bottom,hinge=right,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_right",
+      "y": 270
+    },
+    "facing=north,part=bottom,hinge=right,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_right_open",
+      "y": 180
+    },
+    "facing=north,part=middle,hinge=left,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_middle_left",
+      "y": 270
+    },
+    "facing=north,part=middle,hinge=left,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_middle_left_open"
+    },
+    "facing=north,part=middle,hinge=right,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_middle_right",
+      "y": 270
+    },
+    "facing=north,part=middle,hinge=right,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_middle_right_open",
+      "y": 180
+    },
+    "facing=north,part=top,hinge=left,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_top_left",
+      "y": 270
+    },
+    "facing=north,part=top,hinge=left,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_top_left_open"
+    },
+    "facing=north,part=top,hinge=right,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_top_right",
+      "y": 270
+    },
+    "facing=north,part=top,hinge=right,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_top_right_open",
+      "y": 180
+    },
+
+    "facing=south,part=bottom,hinge=left,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_left",
+      "y": 90
+    },
+    "facing=south,part=bottom,hinge=left,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_left_open",
+      "y": 180
+    },
+    "facing=south,part=bottom,hinge=right,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_right",
+      "y": 90
+    },
+    "facing=south,part=bottom,hinge=right,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_right_open"
+    },
+    "facing=south,part=middle,hinge=left,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_middle_left",
+      "y": 90
+    },
+    "facing=south,part=middle,hinge=left,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_middle_left_open",
+      "y": 180
+    },
+    "facing=south,part=middle,hinge=right,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_middle_right",
+      "y": 90
+    },
+    "facing=south,part=middle,hinge=right,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_middle_right_open"
+    },
+    "facing=south,part=top,hinge=left,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_top_left",
+      "y": 90
+    },
+    "facing=south,part=top,hinge=left,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_top_left_open",
+      "y": 180
+    },
+    "facing=south,part=top,hinge=right,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_top_right",
+      "y": 90
+    },
+    "facing=south,part=top,hinge=right,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_top_right_open"
+    },
+
+    "facing=west,part=bottom,hinge=left,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_left",
+      "y": 180
+    },
+    "facing=west,part=bottom,hinge=left,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_left_open",
+      "y": 270
+    },
+    "facing=west,part=bottom,hinge=right,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_right",
+      "y": 180
+    },
+    "facing=west,part=bottom,hinge=right,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_bottom_right_open",
+      "y": 90
+    },
+    "facing=west,part=middle,hinge=left,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_middle_left",
+      "y": 180
+    },
+    "facing=west,part=middle,hinge=left,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_middle_left_open",
+      "y": 270
+    },
+    "facing=west,part=middle,hinge=right,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_middle_right",
+      "y": 180
+    },
+    "facing=west,part=middle,hinge=right,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_middle_right_open",
+      "y": 90
+    },
+    "facing=west,part=top,hinge=left,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_top_left",
+      "y": 180
+    },
+    "facing=west,part=top,hinge=left,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_top_left_open",
+      "y": 270
+    },
+    "facing=west,part=top,hinge=right,open=false": {
+      "model": "chang_sheng_jue:block/door_oak_top_right",
+      "y": 180
+    },
+    "facing=west,part=top,hinge=right,open=true": {
+      "model": "chang_sheng_jue:block/door_oak_top_right_open",
+      "y": 90
+    }
+
+  }
+}

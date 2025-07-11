@@ -23,11 +23,11 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         //mod标签
         this.tag(CSJTags.Blocks.DOORS)
-                .add(ChangShengJueBlocks.DOOR_BIRCH_BLOCK.get())
-                .add(ChangShengJueBlocks.DOOR_ACACIA_BLOCK.get())
-                .add(ChangShengJueBlocks.DOOR_DARK_OAK_BLOCK.get())
-                .add(ChangShengJueBlocks.DOOR_OAK_BLOCK.get())
-                .add(ChangShengJueBlocks.DOOR_SPRUCE_BLOCK.get());
+                .add(ChangShengJueBlocks.DOOR_BIRCH.get())
+                .add(ChangShengJueBlocks.DOOR_ACACIA.get())
+                .add(ChangShengJueBlocks.DOOR_DARK_OAK.get())
+                .add(ChangShengJueBlocks.DOOR_OAK.get())
+                .add(ChangShengJueBlocks.DOOR_SPRUCE.get());
 
         this.tag(CSJTags.Blocks.JI_CHI_MU_LOG)
                 .add(ChangShengJueBlocks.JI_CHI_MU_LOG.get())
@@ -530,11 +530,11 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get());
         //门
         this.tag(BlockTags.WOODEN_DOORS).addTag(CSJTags.Blocks.DOORS)
-                .add(ChangShengJueBlocks.DOOR_BIRCH_BLOCK.get())
-                .add(ChangShengJueBlocks.DOOR_ACACIA_BLOCK.get())
-                .add(ChangShengJueBlocks.DOOR_DARK_OAK_BLOCK.get())
-                .add(ChangShengJueBlocks.DOOR_OAK_BLOCK.get())
-                .add(ChangShengJueBlocks.DOOR_SPRUCE_BLOCK.get());;
+                .add(ChangShengJueBlocks.DOOR_BIRCH.get())
+                .add(ChangShengJueBlocks.DOOR_ACACIA.get())
+                .add(ChangShengJueBlocks.DOOR_DARK_OAK.get())
+                .add(ChangShengJueBlocks.DOOR_OAK.get())
+                .add(ChangShengJueBlocks.DOOR_SPRUCE.get());;
         //树叶
         this.tag(BlockTags.LEAVES)
                 .add(ChangShengJueBlocks.MULBERRY_LEAVES.get())

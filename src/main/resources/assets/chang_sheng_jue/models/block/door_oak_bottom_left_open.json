@@ -1,7 +1,8 @@
 {
-	"parent": "minecraft:block/door_bottom_left_open",
+	"parent": "chang_sheng_jue:block/doors/door_bottom_left_open",
 	"textures": {
-		"top": "chang_sheng_jue:block/door_oak_block_bottom",
-		"bottom": "chang_sheng_jue:block/door_oak_block_bottom"
+		"top": "chang_sheng_jue:block/door_oak_block",
+		"middle": "chang_sheng_jue:block/door_oak_block",
+		"bottom": "chang_sheng_jue:block/door_oak_block"
 	}
 }

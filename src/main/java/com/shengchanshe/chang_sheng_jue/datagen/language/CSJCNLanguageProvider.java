@@ -895,11 +895,11 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.HIGH_OAK_WINDOWS.get(), "橡木窗户");
         this.add(ChangShengJueBlocks.HIGH_SPRUCE_WINDOWS.get(), "云杉木窗户");
 
-        this.add(ChangShengJueBlocks.DOOR_BIRCH_BLOCK.get(), "白桦木门");
-        this.add(ChangShengJueBlocks.DOOR_ACACIA_BLOCK.get(), "金合欢木门");
-        this.add(ChangShengJueBlocks.DOOR_DARK_OAK_BLOCK.get(), "深色橡木门");
-        this.add(ChangShengJueBlocks.DOOR_OAK_BLOCK.get(), "橡木门");
-        this.add(ChangShengJueBlocks.DOOR_SPRUCE_BLOCK.get(), "云杉木门");
+        this.add(ChangShengJueBlocks.DOOR_BIRCH.get(), "白桦木门");
+        this.add(ChangShengJueBlocks.DOOR_ACACIA.get(), "金合欢木门");
+        this.add(ChangShengJueBlocks.DOOR_DARK_OAK.get(), "深色橡木门");
+        this.add(ChangShengJueBlocks.DOOR_OAK.get(), "橡木门");
+        this.add(ChangShengJueBlocks.DOOR_SPRUCE.get(), "云杉木门");
 
         this.add(ChangShengJueBlocks.MEI_REN_KAO_ACACIA_BLOCK.get(), "金合欢木美人靠");
         this.add(ChangShengJueBlocks.MEI_REN_KAO_DARK_OAK_BLOCK.get(), "深色橡木美人靠");

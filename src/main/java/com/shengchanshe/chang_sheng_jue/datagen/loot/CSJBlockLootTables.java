@@ -458,11 +458,11 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.TILE_BLOCK_2.get());
         this.dropSelf(ChangShengJueBlocks.TILE_BLOCK_3.get());
         this.dropSelf(ChangShengJueBlocks.TILE_BLOCK_4.get());
-        this.add(ChangShengJueBlocks.DOOR_BIRCH_BLOCK.get(), block -> this.createSinglePropConditionTable(block, DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
-        this.add(ChangShengJueBlocks.DOOR_ACACIA_BLOCK.get(),  block -> this.createSinglePropConditionTable(block, DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
-        this.add(ChangShengJueBlocks.DOOR_DARK_OAK_BLOCK.get(),  block -> this.createSinglePropConditionTable(block, DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
-        this.add(ChangShengJueBlocks.DOOR_OAK_BLOCK.get(),  block -> this.createSinglePropConditionTable(block, DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
-        this.add(ChangShengJueBlocks.DOOR_SPRUCE_BLOCK.get(),  block -> this.createSinglePropConditionTable(block, DoorsBlock.HALF, DoorsBlock.ThreeBlockHalf.MIDDLE));
+        this.add(ChangShengJueBlocks.DOOR_BIRCH.get(), block -> this.createSinglePropConditionTable(block, DoorsBlock.PART, RoofPart.MIDDLE));
+        this.add(ChangShengJueBlocks.DOOR_ACACIA.get(),  block -> this.createSinglePropConditionTable(block, DoorsBlock.PART, RoofPart.MIDDLE));
+        this.add(ChangShengJueBlocks.DOOR_DARK_OAK.get(),  block -> this.createSinglePropConditionTable(block, DoorsBlock.PART, RoofPart.MIDDLE));
+        this.add(ChangShengJueBlocks.DOOR_OAK.get(),  block -> this.createSinglePropConditionTable(block, DoorsBlock.PART, RoofPart.MIDDLE));
+        this.add(ChangShengJueBlocks.DOOR_SPRUCE.get(),  block -> this.createSinglePropConditionTable(block, DoorsBlock.PART, RoofPart.MIDDLE));
         this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_ACACIA_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_DARK_OAK_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_OAK_BLOCK.get());

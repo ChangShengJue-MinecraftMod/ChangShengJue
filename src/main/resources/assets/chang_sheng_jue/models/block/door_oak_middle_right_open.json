@@ -1,0 +1,8 @@
+{
+	"parent": "chang_sheng_jue:block/doors/door_middle_right_open",
+	"textures": {
+		"top": "chang_sheng_jue:block/door_oak_block",
+		"middle": "chang_sheng_jue:block/door_oak_block",
+		"bottom": "chang_sheng_jue:block/door_oak_block"
+	}
+}

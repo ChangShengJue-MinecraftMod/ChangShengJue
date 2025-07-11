@@ -1,21 +1,8 @@
 {
-	"parent": "minecraft:block/door_top_right_open",
+	"parent": "chang_sheng_jue:block/doors/door_top_right_open",
 	"textures": {
-		"top": "chang_sheng_jue:block/door_dark_oak_block_top",
-		"bottom": "chang_sheng_jue:block/door_dark_oak_block_top"
-	},
-	"texture_size": [16, 32],
-	"elements": [
-		{
-			"from": [0, 0, 0],
-			"to": [3, 32, 16],
-			"faces": {
-				"up":    { "uv": [  0,  3, 16,  0 ], "texture": "#top", "cullface": "up", "rotation": 90 },
-				"north": { "uv": [  3,  0,  0, 16 ], "texture": "#top", "cullface": "north" },
-				"south": { "uv": [  0,  0,  3, 16 ], "texture": "#top", "cullface": "south" },
-				"west":  { "uv": [  0,  0, 16, 16 ], "texture": "#top", "cullface": "west" },
-				"east":  { "uv": [ 16,  0,  0, 16 ], "texture": "#top" }
-			}
-		}
-	]
+		"top": "chang_sheng_jue:block/door_dark_oak_block",
+		"middle": "chang_sheng_jue:block/door_dark_oak_block",
+		"bottom": "chang_sheng_jue:block/door_dark_oak_block"
+	}
 }

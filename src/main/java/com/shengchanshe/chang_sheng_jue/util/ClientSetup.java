@@ -193,11 +193,11 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_1.get(), RenderType.cutout());
 
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DOOR_BIRCH_BLOCK.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DOOR_ACACIA_BLOCK.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DOOR_DARK_OAK_BLOCK.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DOOR_OAK_BLOCK.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DOOR_SPRUCE_BLOCK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DOOR_BIRCH.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DOOR_ACACIA.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DOOR_DARK_OAK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DOOR_OAK.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.DOOR_SPRUCE.get(), RenderType.cutout());
 
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GRE_CYLINDER_TILE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.RED_CYLINDER_TILE.get(), RenderType.cutout());

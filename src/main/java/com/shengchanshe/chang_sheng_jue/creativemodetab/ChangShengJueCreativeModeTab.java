@@ -351,11 +351,11 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.WHITE_BRICKS_VERTICAL_WALLS.get());
                 output.accept(ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get());
                 output.accept(ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get());
-                output.accept(ChangShengJueBlocks.DOOR_BIRCH_BLOCK.get());
-                output.accept(ChangShengJueBlocks.DOOR_ACACIA_BLOCK.get());
-                output.accept(ChangShengJueBlocks.DOOR_DARK_OAK_BLOCK.get());
-                output.accept(ChangShengJueBlocks.DOOR_OAK_BLOCK.get());
-                output.accept(ChangShengJueBlocks.DOOR_SPRUCE_BLOCK.get());
+                output.accept(ChangShengJueBlocks.DOOR_BIRCH.get());
+                output.accept(ChangShengJueBlocks.DOOR_ACACIA.get());
+                output.accept(ChangShengJueBlocks.DOOR_DARK_OAK.get());
+                output.accept(ChangShengJueBlocks.DOOR_OAK.get());
+                output.accept(ChangShengJueBlocks.DOOR_SPRUCE.get());
                 output.accept(ChangShengJueBlocks.MEI_REN_KAO_ACACIA_BLOCK.get());
                 output.accept(ChangShengJueBlocks.MEI_REN_KAO_DARK_OAK_BLOCK.get());
                 output.accept(ChangShengJueBlocks.MEI_REN_KAO_OAK_BLOCK.get());
