@@ -24,11 +24,11 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(CSJTags.Items.DOORS)
-                .add(Item.byBlock(ChangShengJueBlocks.DOOR_BIRCH_BLOCK.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.DOOR_ACACIA_BLOCK.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.DOOR_DARK_OAK_BLOCK.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.DOOR_OAK_BLOCK.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.DOOR_SPRUCE_BLOCK.get()));
+                .add(Item.byBlock(ChangShengJueBlocks.DOOR_BIRCH.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.DOOR_ACACIA.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.DOOR_DARK_OAK.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.DOOR_OAK.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.DOOR_SPRUCE.get()));
 
         this.tag(CSJTags.Items.JI_CHI_MU_LOG)
                 .add(Item.byBlock(ChangShengJueBlocks.JI_CHI_MU_LOG.get()))

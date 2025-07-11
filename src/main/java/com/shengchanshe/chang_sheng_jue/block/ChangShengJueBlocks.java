@@ -822,16 +822,16 @@ public class ChangShengJueBlocks {
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
 
     // 门
-    public static final RegistryObject<Block> DOOR_BIRCH_BLOCK = registerBlock("door_birch_block",
-            ()-> new DoorsBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR), BlockSetType.BIRCH));
-    public static final RegistryObject<Block> DOOR_ACACIA_BLOCK = registerBlock("door_acacia_block",
-            ()-> new DoorsBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR), BlockSetType.ACACIA));
-    public static final RegistryObject<Block> DOOR_DARK_OAK_BLOCK = registerBlock("door_dark_oak_block",
-            ()-> new DoorsBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR), BlockSetType.DARK_OAK));
-    public static final RegistryObject<Block> DOOR_OAK_BLOCK = registerBlock("door_oak_block",
+    public static final RegistryObject<Block> DOOR_BIRCH = registerBlock("door_birch",
+            ()-> new DoorsBlock(BlockBehaviour.Properties.copy(Blocks.BIRCH_DOOR), BlockSetType.BIRCH));
+    public static final RegistryObject<Block> DOOR_ACACIA = registerBlock("door_acacia",
+            ()-> new DoorsBlock(BlockBehaviour.Properties.copy(Blocks.ACACIA_DOOR), BlockSetType.ACACIA));
+    public static final RegistryObject<Block> DOOR_DARK_OAK = registerBlock("door_dark_oak",
+            ()-> new DoorsBlock(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_DOOR), BlockSetType.DARK_OAK));
+    public static final RegistryObject<Block> DOOR_OAK = registerBlock("door_oak",
             ()-> new DoorsBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR), BlockSetType.OAK));
-    public static final RegistryObject<Block> DOOR_SPRUCE_BLOCK = registerBlock("door_spruce_block",
-            ()-> new DoorsBlock(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR), BlockSetType.SPRUCE));
+    public static final RegistryObject<Block> DOOR_SPRUCE = registerBlock("door_spruce",
+            ()-> new DoorsBlock(BlockBehaviour.Properties.copy(Blocks.SPRUCE_DOOR), BlockSetType.SPRUCE));
 
     public static final RegistryObject<Block> MEI_REN_KAO_ACACIA_BLOCK = registerBlock("mei_ren_kao_acacia_block",
             ()-> new MeiRenKaoBlock(Blocks.ACACIA_WOOD.defaultBlockState(),

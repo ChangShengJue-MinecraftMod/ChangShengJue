@@ -1145,48 +1145,48 @@ public class CSJEvent {
         }
     }
 
-    private static final double PLAYER_SEARCH_RANGE = 10.0; // 玩家搜索范围
-    @SubscribeEvent
-    public static void onWorldTick(TickEvent.LevelTickEvent event) {
-        // 只在服务器端执行，避免客户端和服务器端重复执行
-//        if (event.side.isClient() || event.phase != TickEvent.Phase.END) {
-//            return;
-//        }
-
-        Level world = event.level;
-        // 获取在线玩家
-        ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers().forEach(player -> {
-            if (player.level() != world) return; // 确保玩家在当前世界
-            // 搜索玩家附近的村民
-            List<Villager> villagers = world.getEntitiesOfClass(
-                    Villager.class,
-                    player.getBoundingBox().inflate(PLAYER_SEARCH_RANGE),
-                    Entity::isAlive
-            );
-
-            for (Villager villager : villagers) {
-                // 检查村民附近的门
-                BlockPos.betweenClosedStream(
-                        villager.blockPosition().offset(0, 0, 0),
-                        villager.blockPosition().offset(1, 1, 1)
-                ).forEach(pos -> {
-                    BlockState state = world.getBlockState(pos);
-                    if (state.getBlock() instanceof DoorsBlock doorBlock && !state.getValue(DoorsBlock.OPEN)) {
-                        // 打开门
-                        doorBlock.setOpen(null, world, state, pos, true);
-                    }
-                });
-                BlockPos.betweenClosedStream(
-                        villager.blockPosition().offset(1, 1, 1),
-                        villager.blockPosition().offset(2, 2, 2)
-                ).forEach(pos -> {
-                    BlockState state = world.getBlockState(pos);
-                    if (state.getBlock() instanceof DoorsBlock doorBlock && state.getValue(DoorsBlock.OPEN)) {
-                        // 打开门
-                        doorBlock.setClose(null, world, state, pos, false);
-                    }
-                });
-            }
-        });
-    }
+//    private static final double PLAYER_SEARCH_RANGE = 10.0; // 玩家搜索范围
+//    @SubscribeEvent
+//    public static void onWorldTick(TickEvent.LevelTickEvent event) {
+//        // 只在服务器端执行，避免客户端和服务器端重复执行
+////        if (event.side.isClient() || event.phase != TickEvent.Phase.END) {
+////            return;
+////        }
+//
+//        Level world = event.level;
+//        // 获取在线玩家
+//        ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers().forEach(player -> {
+//            if (player.level() != world) return; // 确保玩家在当前世界
+//            // 搜索玩家附近的村民
+//            List<Villager> villagers = world.getEntitiesOfClass(
+//                    Villager.class,
+//                    player.getBoundingBox().inflate(PLAYER_SEARCH_RANGE),
+//                    Entity::isAlive
+//            );
+//
+//            for (Villager villager : villagers) {
+//                // 检查村民附近的门
+//                BlockPos.betweenClosedStream(
+//                        villager.blockPosition().offset(0, 0, 0),
+//                        villager.blockPosition().offset(1, 1, 1)
+//                ).forEach(pos -> {
+//                    BlockState state = world.getBlockState(pos);
+//                    if (state.getBlock() instanceof DoorsBlock doorBlock && !state.getValue(DoorsBlock.OPEN)) {
+//                        // 打开门
+//                        doorBlock.setOpen(null, world, state, pos, true);
+//                    }
+//                });
+//                BlockPos.betweenClosedStream(
+//                        villager.blockPosition().offset(1, 1, 1),
+//                        villager.blockPosition().offset(2, 2, 2)
+//                ).forEach(pos -> {
+//                    BlockState state = world.getBlockState(pos);
+//                    if (state.getBlock() instanceof DoorsBlock doorBlock && state.getValue(DoorsBlock.OPEN)) {
+//                        // 打开门
+//                        doorBlock.setClose(null, world, state, pos, false);
+//                    }
+//                });
+//            }
+//        });
+//    }
 }

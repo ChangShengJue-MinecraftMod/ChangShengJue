@@ -216,31 +216,31 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("X#X")
                 .unlockedBy("has_sand", has(Items.STICK)).save(consumer);
         //门
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_OAK_BLOCK.get(),2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_OAK.get(),2)
                 .define('#', Ingredient.of(Items.OAK_PLANKS))
                 .pattern("###")
                 .pattern("# #")
                 .pattern("# #")
                 .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_BIRCH_BLOCK.get(),2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_BIRCH.get(),2)
                 .define('#', Ingredient.of(Items.BIRCH_PLANKS))
                 .pattern("###")
                 .pattern("# #")
                 .pattern("# #")
                 .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_DARK_OAK_BLOCK.get(),2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_DARK_OAK.get(),2)
                 .define('#', Ingredient.of(Items.DARK_OAK_PLANKS))
                 .pattern("###")
                 .pattern("# #")
                 .pattern("# #")
                 .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_SPRUCE_BLOCK.get(),2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_SPRUCE.get(),2)
                 .define('#', Ingredient.of(Items.SPRUCE_PLANKS))
                 .pattern("###")
                 .pattern("# #")
                 .pattern("# #")
                 .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_ACACIA_BLOCK.get(),2)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_ACACIA.get(),2)
                 .define('#', Ingredient.of(Items.ACACIA_PLANKS))
                 .pattern("###")
                 .pattern("# #")
