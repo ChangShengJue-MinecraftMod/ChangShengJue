@@ -24,6 +24,7 @@ import com.shengchanshe.chang_sheng_jue.quest.Quest;
 import com.shengchanshe.chang_sheng_jue.world.CSJStructures;
 import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.core.BlockPos;
+import net.minecraft.data.worldgen.Structures;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
@@ -38,6 +39,7 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -68,7 +70,11 @@ public class CSJAdvanceEvent {
                     CSJStructures.SI_HE_YUAN,
                     CSJStructures.SU_PAI_VILLAGE,
                     CSJStructures.WAN_PAI_VILLAGE,
-                    CSJStructures.FORTRESSES
+                    BuiltinStructures.VILLAGE_DESERT,
+                    BuiltinStructures.VILLAGE_PLAINS,
+                    BuiltinStructures.VILLAGE_SAVANNA,
+                    BuiltinStructures.VILLAGE_SNOWY,
+                    BuiltinStructures.VILLAGE_TAIGA
             );
             boolean isInAnyVillage = false;
             ChunkPos villageChunk = null; // 记录村庄所在的区块
@@ -270,7 +276,6 @@ public class CSJAdvanceEvent {
         if (level.isClientSide()) {
             return;
         }
-        System.out.println("成功");
         ServerLevel serverLevel = (ServerLevel) level;
         BlockPos playerPos = player.blockPosition();
         RandomSource random = serverLevel.getRandom();
