@@ -2,13 +2,21 @@ package com.shengchanshe.chang_sheng_jue.event;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
+import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.CastingMoldsBlockEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.gong.GongEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.loom.ChangShengJueLoomBlockEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.plaque.PlaqueEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.pottery.PotteryWheelEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigleft.entity.BigShingMunLeftEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigright.entity.BigShingMunRightEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.left.entity.ShingMunLeftEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.right.entity.ShingMunRightEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.tool_table.ToolTableEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.weaponrack.WeaponRackRender;
+import com.shengchanshe.chang_sheng_jue.block.decoration.flowerpot.BlueAndWhitePorcelainFlowerPotsEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.BullionsCastingMoldsBlockEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.decoration.windchime.WindChimeEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity.DesksEntityRender;
-import com.shengchanshe.chang_sheng_jue.block.entity.render.*;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.dugu_nine_swords.DuguNineSwordsHudOverlay;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.gao_marksmanship.GaoMarksmanshipHudOverlay;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuHudOverlay;
@@ -99,6 +107,10 @@ public class CSJEventClientBusEvents {
 
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.WIND_CHIME_ENTITY.get(),
                 (BlockEntityRendererProvider.Context context) -> new WindChimeEntityRender());
+
+        event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.GONG_ENTITY.get(),
+                (BlockEntityRendererProvider.Context context) -> new GongEntityRender());
+
     }
 
     @SubscribeEvent

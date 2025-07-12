@@ -100,6 +100,10 @@ public class ChangShengJueSound {
     //木桩
     public static final RegistryObject<SoundEvent> STAKES_HIT_SOUND = registerSoundEvent("stakes_hit_sound");
 
+    //锣
+    public static final RegistryObject<SoundEvent> GONG_SOUND = registerSoundEvent("gong_sound");
+
+
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ChangShengJue.MOD_ID, name)));
     }

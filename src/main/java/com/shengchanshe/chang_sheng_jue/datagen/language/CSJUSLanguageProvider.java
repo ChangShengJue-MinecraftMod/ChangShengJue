@@ -289,51 +289,85 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get(),"乾坤大挪移");
 
         //武功描述
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".tooltip","不死不灭，岂是幻梦?");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后在你死亡时抵御致命伤害。\\n武功大成后减少冷却。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".tooltip","以气御力，神力无穷。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后减少疾跑消耗的饱食度\\n武功大成后获得随身末影箱。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".tooltip","天下剑法中的巅峰绝诣，其中包含森罗万象的诀窍。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".hold_shift.tooltip",
-                "右键学习，使用剑类武器有15%概率领悟。\\n领悟后持剑右键施展独孤九剑。\\n武功大成后使用剑类武器提高施加流血状态概率与武功伤害。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".tooltip","一点寒芒先到，随后枪出如龙。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".hold_shift.tooltip",
-                "右键学习，使用枪类武器有15%概率领悟。\\n领悟后持枪右键施展高家枪。\\n武功大成后提高使用枪类武器挑飞目标的概率与武功伤害。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GE_SHAN_DA_NIU.get()+".tooltip","神功盖世，何欺牛儿?");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GE_SHAN_DA_NIU.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后使用金丝手套施展可无视方块造成伤害。\\n武功大成后增加攻击距离。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".tooltip","龟虽有鼻，而息之以耳。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后使用金丝手套可以在水下屏息更久，不会被动物主动攻击。\\n武功大成后效果加强。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()+".tooltip","任你千变万化，我只一刀破去!");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()+".hold_shift.tooltip",
-                "右键学习，使用刀类武器有15%概率领悟。\\n领悟后持刀右键施展金乌刀法。\\n武功大成后提高使用刀类武器重击目标的概率与武功伤害。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BELL_JAR.get()+".tooltip","刀枪不入，浑然一金钟。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BELL_JAR.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后受到伤害可以获得护甲值与伤害吸收。\\n武功大成后获得更高的护甲值与伤害吸收。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".tooltip","指如疾风，势如闪电。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后使用金丝手套可以定住血量上限低于25的目标1.5秒。\\n武功大成后提高为200血，2秒。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".tooltip","学向勤中得，萤窗万卷书。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".hold_shift.tooltip", "右键学习，领悟后每次交易有概率获得少量。\\n武功大成后提高概率与获得经验。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".tooltip","若反复实践，掌握规律；便得心应手，运用自如。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后持菜刀杀死动物有50%概率额外掉落肉。\\n武功大成后加强为75%。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SHAOLIN_STICK_METHOD.get()+".tooltip","天下武功出少林，一棍定乾坤。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SHAOLIN_STICK_METHOD.get()+".hold_shift.tooltip",
-                "右键学习，使用棍类武器有15%概率领悟。\\n领悟后持棍右键施展少林棍。\\n武功大成后提高使用棍类武器击晕目标的概率与武功伤害。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()+".tooltip","来去无影无踪，逍遥自在。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后可以二连跳且不会陷入细雪。\\n武功大成后可三连跳。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()+".tooltip","无情飞刀人有情义，人有情义飞刀无情。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()+".hold_shift.tooltip", "右键学习，使用飞刀有2%概率领悟。\\n领悟后使用飞刀伤害提高至1.25倍。\\n武功大成后提高伤害与一次性丢出数量。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WU_GANG_CUT_GUI.get()+".tooltip","何意杀人技，不如快人心。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WU_GANG_CUT_GUI.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后使用萱花斧砍树可以破坏整棵树。\\n武功大成后速度增加。");
+                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.8倍的伤害\\n大成后施展效果:伤害倍数提高至2.2倍、使用剑时流血触发概率*1.25\\n成功施展100次后武功大成");
+
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.XUANNU_SWORDSMANSHIP.get()+".tooltip","以巧借力，以柔克刚。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.XUANNU_SWORDSMANSHIP.get()+".hold_shift.tooltip",
-                "右键学习，使用软剑有15%概率领悟。\\n领悟后持软剑右键施展玄女剑法。\\n武功大成后使用软剑提高施加流血状态概率与提高武功伤害。");
+                "未大成前施展效果:外功释放造成(主手武器伤害+1)*2.2倍伤害\\n大成后施展效果:伤害倍数提高至2.5倍、使用软剑时流血触发概率*3.0\\n成功施展100次后武功大成");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".tooltip","一点寒芒先到，随后枪出如龙。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".hold_shift.tooltip",
+                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.8倍的伤害\\n大成后施展效果:伤害倍数提高至2.1倍、使用枪时挑飞触发概率*2.5\\n成功施展100次后武功大成");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()+".tooltip","无情飞刀人有情义，人有情义飞刀无情。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()+".hold_shift.tooltip",
+                "未大成前施展效果:飞刀伤害提高至1.25倍并可一次丢出3把飞刀\\n大成后施展效果:飞刀伤害提高至1.5倍并可一次丢出7把飞刀\\n成功施展100次后武功大成");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SHAOLIN_STICK_METHOD.get()+".tooltip","天下武功出少林，一棍定乾坤。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SHAOLIN_STICK_METHOD.get()+".hold_shift.tooltip",
+                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.7倍伤害\\n大成后施展效果:伤害倍数提高至2.0倍、使用棍时击晕触发概率*2.5\\n成功施展100次后武功大成");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()+".tooltip","任你千变万化，我只一刀破去!");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()+".hold_shift.tooltip",
+                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.9倍的伤害\\n大成后施展效果:伤害倍数提高至2.0倍、使用刀时重击触发概率*2.0\\n成功施展100次后武功大成");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()+".tooltip","来去无影无踪，逍遥自在。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()+".hold_shift.tooltip",
+                "未大成前施展效果:可以进行二连跳\\n大成后施展效果:可以进行三段跳\\n成功施展100次后武功大成");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WU_GANG_CUT_GUI.get()+".tooltip","何意杀人技，不如快人心。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WU_GANG_CUT_GUI.get()+".hold_shift.tooltip",
+                "未大成前施展效果:使用萱花斧砍树可以破坏整棵树\\n大成后施展效果:砍树连带破坏整个树的速度更快\\n成功施展1000次后武功大成");
+
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".tooltip","生生不息，直至山平。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后使用开山镐的挖掘面积扩大为2x2。\\n武功大成后扩展为3x3。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".hold_shift.tooltip",
+                "未大成前施展效果:使用开山镐的挖掘面积扩大为2x2\\n大成后施展效果:挖掘面积扩大为3x3\\n成功施展1000次后武功大成");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".tooltip","若反复实践，掌握规律；便得心应手，运用自如。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".hold_shift.tooltip",
+                "未大成前施展效果:主手持菜刀杀死动物有50%概率额外掉落肉\\n大成后施展效果:主手持菜刀杀死动物有75%概率额外掉落肉\\n成功施展1000次后武功大成");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".tooltip","以气御力，神力无穷。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".hold_shift.tooltip",
+                "未大成前施展效果:减少疾跑消耗的饱食度降低至60%\\n大成后施展效果:主手持金丝手套右键可打开末影箱\\n移动大于1万米后武功大成");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".tooltip","指如疾风，势如闪电。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".hold_shift.tooltip",
+                "未大成前施展效果:定住血量上限低于25点的目标1.5秒\\n大成后施展效果:定住血量上限低于200点的目标2秒\\n成功施展100次后武功大成");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BELL_JAR.get()+".tooltip","刀枪不入，浑然一金钟。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BELL_JAR.get()+".hold_shift.tooltip",
+                "未大成前施展效果:提高4点护甲,受到伤害时会获得3级的伤害吸收\\n大成后施展效果:提高8点护甲,受到伤害时伤害吸收的效果提高到5级\\n成功施展100次后武功大成");
+
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".tooltip","江湖不是打打杀杀，那是人情世故!");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".hold_shift.tooltip", "右键学习领悟，只需跟村民交易一次即可提升等级为学徒。\\n武功大成后交易有概率不消耗物品。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".hold_shift.tooltip",
+                "未大成前施展效果:与村民的交易一次即可将村民等级提升至学徒\\n大成后施展效果:额外有10%概率不消耗物品交易\\n与村民交易100次后武功大成");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".tooltip","不死不灭，岂是幻梦?");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".hold_shift.tooltip",
+                "未大成前施展效果:在濒死时抵御一次致命伤害\\n大成后施展效果:减少15秒冷却时间\\n成功施展25次后武功大成");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GE_SHAN_DA_NIU.get()+".tooltip","神功盖世，何欺牛儿?");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GE_SHAN_DA_NIU.get()+".hold_shift.tooltip",
+                "未大成前施展效果:无视方块阻拦施展外功造成22点伤害\\n大成后施展效果:攻击伤害范围提高2格\\n成功施展100次后武功大成");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".tooltip","学向勤中得，萤窗万卷书。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".hold_shift.tooltip",
+                "未大成前施展效果:每次交易有25%概率获得5点经验\\n大成后施展效果:每次交易有35%概率获得10点经验\\n经验到达30级后武功大成");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".tooltip","龟虽有鼻，而息之以耳。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".hold_shift.tooltip",
+                "未大成前施展效果:施展后一段时间内可以水下屏息更久，不会被动物主动攻击\\n大成后施展效果:提高屏息效果\\n成功施展100次后武功大成");
+
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get()+".tooltip","武林中人梦寐以求的武学宝典。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后释放武功需要的饥饿值减少1点。\\n武功大成后饥饿值与饱和值各减少一点");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get()+".hold_shift.tooltip",
+                "未大成前施展效果:释放武功需要的饥饿度减少1点\\n大成后施展效果:释放武功需要的饥饿度与饱和度各减少1点\\n成功施展1000次后武功大成");
+
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".tooltip","激发潜力，牵引挪移，其中变化莫测，匪夷所思。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后有35%概率将遭受伤害以更大伤害转移给攻击者。（每施展1次冷却时间短期内延长2秒）\\n武功大成后每多一点血量提高2%概率");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".hold_shift.tooltip",
+                "未大成前施展效果:有35%概率将遭受的攻击伤害于1.0秒后以1.5倍反弹给攻击者\\n大成后施展效果:每多1点血量额外提高2%触发概率\\n每施展1次冷却时间短期内延长2秒\\n成功施展100次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DURIAN.get()+".tooltip","请使用斧子劈开");
         this.add("tooltip."+ChangShengJue.MOD_ID+".hold_shift.tooltip","按下 §eShift§r 查看更多信息");
@@ -412,9 +446,12 @@ public class CSJUSLanguageProvider extends LanguageProvider {
 
         //风铃
         this.add("sounds."+ChangShengJue.MOD_ID + ".wind_chime_sound", "风铃 : 叮铃铃");
+        //锣
+        this.add("sounds."+ChangShengJue.MOD_ID + ".gong_sound", "锣 : 铛~");
 
         //方块
         this.add(ChangShengJueItems.STAKES.get(),"练功木桩");
+        this.add(ChangShengJueBlocks.GONG.get(),"锣");
 
         this.add(ChangShengJueBlocks.CANTALOUPE_BLOCK.get(),"哈密瓜");
         this.add(ChangShengJueBlocks.WILDLIFE_HORDEUM.get(),"野生大麦");

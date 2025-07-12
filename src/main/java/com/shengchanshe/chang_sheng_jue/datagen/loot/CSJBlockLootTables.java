@@ -622,6 +622,8 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         //牌匾
         this.dropSelf(ChangShengJueBlocks.PLAQUE.get());
 
+        this.dropSelf(ChangShengJueBlocks.GONG.get());
+
         //模具
         this.dropSelf(ChangShengJueBlocks.CASTING_MOLDS.get());
         this.dropSelf(ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get());

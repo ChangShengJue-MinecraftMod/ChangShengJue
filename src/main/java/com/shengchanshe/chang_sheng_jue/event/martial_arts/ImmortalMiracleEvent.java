@@ -156,9 +156,9 @@ public class ImmortalMiracleEvent {
                                             event.setAmount(0);
                                             level.playSound(player, player.getX(), player.getY(), player.getZ(),
                                                     ChangShengJueSound.IMMORTAL_MIRACLE_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                            if (immortalMiracle.getImmortalMiracleUseCount() < 100){
-                                                immortalMiracle.addImmortalMiracleUseCount(!player.getAbilities().instabuild ? 1 : 100);
-                                                if (immortalMiracle.getImmortalMiracleUseCount() >= 100){
+                                            if (immortalMiracle.getImmortalMiracleUseCount() < 25){
+                                                immortalMiracle.addImmortalMiracleUseCount(!player.getAbilities().instabuild ? 1 : 25);
+                                                if (immortalMiracle.getImmortalMiracleUseCount() >= 25){
                                                     immortalMiracle.setImmortalMiracleParticle(true);
                                                     level.playSound(null, player.getX(), player.getY(), player.getZ(),
                                                             ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);

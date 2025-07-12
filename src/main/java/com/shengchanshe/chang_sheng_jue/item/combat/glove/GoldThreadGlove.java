@@ -23,7 +23,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.function.Consumer;
 
 public class GoldThreadGlove extends SwordItem implements GeoItem {
-    private final AnimatableInstanceCache CACHE = GeckoLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public GoldThreadGlove() {
         super(Tiers.IRON, 2, -2.4F, new Properties());
         SingletonGeoAnimatable.registerSyncedAnimatable(this);
@@ -100,6 +100,6 @@ public class GoldThreadGlove extends SwordItem implements GeoItem {
 
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return CACHE;
+        return cache;
     }
 }

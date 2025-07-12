@@ -1,4 +1,4 @@
-// 1.20.1	2025-07-10T17:09:58.3604252	Loot Tables
+// 1.20.1	2025-07-11T17:15:01.2755581	Loot Tables
 7a6edc76141fa6f7dd0df0f746f55b8c0bcdfe60 data/chang_sheng_jue/loot_tables/blocks/acacia_balustrade.json
 d516f4a29d40770cbbc430275a25288af1bb5af3 data/chang_sheng_jue/loot_tables/blocks/acacia_bench.json
 ad4cf4b39a7d51e5a89dc61dc94d61b791098ae1 data/chang_sheng_jue/loot_tables/blocks/acacia_book_desk.json
@@ -234,6 +234,7 @@ b753d015e1abed01a95918d766bffcf986c8490b data/chang_sheng_jue/loot_tables/blocks
 d20de13c2ce7971a78e68ee2db7fd2bfd89f24a5 data/chang_sheng_jue/loot_tables/blocks/golden_tile_block_2.json
 695a76c8e5a9b42f47a9a4fc160dd42a5b18a5b9 data/chang_sheng_jue/loot_tables/blocks/golden_tile_block_3.json
 b2b6507085700291f74307a65bae47374a893d60 data/chang_sheng_jue/loot_tables/blocks/golden_tile_block_4.json
+27b8c0523eafcfe42399ebfffe49b3f91d1ee337 data/chang_sheng_jue/loot_tables/blocks/gong.json
 82c7d49aeb2cb7d2637bf10292dccaa0c338b860 data/chang_sheng_jue/loot_tables/blocks/grape.json
 e80c27886783c6a4893759d0bc5c945743996c71 data/chang_sheng_jue/loot_tables/blocks/grape_block.json
 6e86c941606db4b18d2f21254df3ff87d20a0669 data/chang_sheng_jue/loot_tables/blocks/grape_juice.json

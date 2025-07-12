@@ -337,5 +337,11 @@
     "sounds": [
       "chang_sheng_jue:block/stakes_hit_sound"
     ]
+  },
+  "gong_sound": {
+    "subtitle": "sounds.chang_sheng_jue.gong_sound",
+    "sounds": [
+      "chang_sheng_jue:block/gong_sound"
+    ]
   }
 }
