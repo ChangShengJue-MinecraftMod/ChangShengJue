@@ -41,10 +41,11 @@ public class Stakes extends Item {
             Vec3 vec3 = Vec3.atBottomCenterOf(clickedPos);
             AABB aabb = ChangShengJueEntity.STAKES.get().getDimensions().makeBoundingBox(vec3.x(), vec3.y(), vec3.z());
             if (pContextLevel.noCollision(null, aabb) && pContextLevel.getEntities(null, aabb).isEmpty()) {
-                if (pContextLevel instanceof ServerLevel) {
-                    ServerLevel pContextLevel1 = (ServerLevel)pContextLevel;
+                if (pContextLevel instanceof ServerLevel pContextLevel1) {
                     Consumer<StakesEntity> defaultStackConfig = EntityType.createDefaultStackConfig(pContextLevel1, itemInHand, pContext.getPlayer());
-                    StakesEntity stakesEntity = ChangShengJueEntity.STAKES.get().create(pContextLevel1, itemInHand.getTag(), defaultStackConfig, clickedPos, MobSpawnType.SPAWN_EGG, true, true);
+                    StakesEntity stakesEntity = ChangShengJueEntity.STAKES.get().create(pContextLevel1, itemInHand.getTag(),
+                            defaultStackConfig, clickedPos, MobSpawnType.SPAWN_EGG,
+                            true, true);
                     if (stakesEntity == null) {
                         return InteractionResult.FAIL;
                     }
@@ -52,7 +53,8 @@ public class Stakes extends Item {
                     float $$11 = (float) Mth.floor((Mth.wrapDegrees(pContext.getRotation() - 180.0F) + 22.5F) / 45.0F) * 45.0F;
                     stakesEntity.moveTo(stakesEntity.getX(), stakesEntity.getY(), stakesEntity.getZ(), $$11, 0.0F);
                     pContextLevel1.addFreshEntityWithPassengers(stakesEntity);
-                    pContextLevel.playSound((Player)null, stakesEntity.getX(), stakesEntity.getY(), stakesEntity.getZ(), SoundEvents.ARMOR_STAND_PLACE, SoundSource.BLOCKS, 0.75F, 0.8F);
+                    pContextLevel.playSound(null, stakesEntity.getX(), stakesEntity.getY(), stakesEntity.getZ(),
+                            SoundEvents.ARMOR_STAND_PLACE, SoundSource.BLOCKS, 0.75F, 0.8F);
                     stakesEntity.gameEvent(GameEvent.ENTITY_PLACE, pContext.getPlayer());
                 }
 

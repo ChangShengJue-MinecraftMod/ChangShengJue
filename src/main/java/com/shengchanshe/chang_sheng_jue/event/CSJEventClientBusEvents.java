@@ -41,6 +41,7 @@ import com.shengchanshe.chang_sheng_jue.entity.villagers.warrior.WarriorModel;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.worker.KilnWorkerModel;
 import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
 import com.shengchanshe.chang_sheng_jue.particle.custom.block.LeavesDefoliationParticle;
+import com.shengchanshe.chang_sheng_jue.particle.custom.block.StakesParticle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.ComprehendParticle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.ComprehendParticle2;
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.DachengParticle;
@@ -161,6 +162,8 @@ public class CSJEventClientBusEvents {
         event.registerSpriteSet(ChangShengJueParticles.GE_SHAN_DA_NIU_PARTICLE.get(), GeShanDaNiuParticle.Provider::new);
 
         event.registerSpriteSet(ChangShengJueParticles.THROWING_KNIVES_PARTICLE.get(), ThrowingknivesParticle.Provider::new);
+
+        event.registerSpriteSet(ChangShengJueParticles.STAKES_PARTICLE.get(), StakesParticle.Provider::new);
 
         event.registerSpriteSet(ChangShengJueParticles.TUN_NA_PARTICLE.get(), TunNaParticle.TunNaParticleProvider::new);
         event.registerSpriteSet(ChangShengJueParticles.TUN_NA_1_PARTICLE.get(), TunNa1Particle.TunNa1ParticleProvider::new);

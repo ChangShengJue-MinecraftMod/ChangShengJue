@@ -454,6 +454,8 @@ public class CSJCNLanguageProvider extends LanguageProvider {
 
         this.add("sounds."+ChangShengJue.MOD_ID + ".gong_sound", "锣 : 铛~");
 
+        this.add("sounds."+ChangShengJue.MOD_ID + ".stakes_hit_sound", "练功木桩 : 被击打");
+
         //方块
         this.add(ChangShengJueItems.STAKES.get(),"练功木桩");
         this.add(ChangShengJueBlocks.GONG.get(),"锣");
