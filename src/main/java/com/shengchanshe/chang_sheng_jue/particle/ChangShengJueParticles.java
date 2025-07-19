@@ -54,6 +54,10 @@ public class ChangShengJueParticles {
     public static final RegistryObject<SimpleParticleType> THROWING_KNIVES_PARTICLE =
             PARTICLE_TYPES.register("throwing_knives_particle", () -> new SimpleParticleType(false));
 
+    //木桩
+    public static final RegistryObject<SimpleParticleType> STAKES_PARTICLE =
+            PARTICLE_TYPES.register("stakes_particle", () -> new SimpleParticleType(false));
+
     //吐纳
     public static final RegistryObject<SimpleParticleType> TUN_NA_PARTICLE =
             PARTICLE_TYPES.register("tun_na_particle", () -> new SimpleParticleType(false));

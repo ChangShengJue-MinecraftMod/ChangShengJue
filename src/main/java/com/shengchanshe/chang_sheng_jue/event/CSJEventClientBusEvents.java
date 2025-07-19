@@ -2,13 +2,21 @@ package com.shengchanshe.chang_sheng_jue.event;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
+import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.CastingMoldsBlockEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.gong.GongEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.loom.ChangShengJueLoomBlockEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.plaque.PlaqueEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.pottery.PotteryWheelEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigleft.entity.BigShingMunLeftEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigright.entity.BigShingMunRightEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.left.entity.ShingMunLeftEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.right.entity.ShingMunRightEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.tool_table.ToolTableEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.weaponrack.WeaponRackRender;
+import com.shengchanshe.chang_sheng_jue.block.decoration.flowerpot.BlueAndWhitePorcelainFlowerPotsEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.BullionsCastingMoldsBlockEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.decoration.windchime.WindChimeEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity.DesksEntityRender;
-import com.shengchanshe.chang_sheng_jue.block.entity.render.*;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.dugu_nine_swords.DuguNineSwordsHudOverlay;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.gao_marksmanship.GaoMarksmanshipHudOverlay;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuHudOverlay;
@@ -33,6 +41,7 @@ import com.shengchanshe.chang_sheng_jue.entity.villagers.warrior.WarriorModel;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.worker.KilnWorkerModel;
 import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
 import com.shengchanshe.chang_sheng_jue.particle.custom.block.LeavesDefoliationParticle;
+import com.shengchanshe.chang_sheng_jue.particle.custom.block.StakesParticle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.ComprehendParticle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.ComprehendParticle2;
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.DachengParticle;
@@ -99,6 +108,10 @@ public class CSJEventClientBusEvents {
 
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.WIND_CHIME_ENTITY.get(),
                 (BlockEntityRendererProvider.Context context) -> new WindChimeEntityRender());
+
+        event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.GONG_ENTITY.get(),
+                (BlockEntityRendererProvider.Context context) -> new GongEntityRender());
+
     }
 
     @SubscribeEvent
@@ -149,6 +162,8 @@ public class CSJEventClientBusEvents {
         event.registerSpriteSet(ChangShengJueParticles.GE_SHAN_DA_NIU_PARTICLE.get(), GeShanDaNiuParticle.Provider::new);
 
         event.registerSpriteSet(ChangShengJueParticles.THROWING_KNIVES_PARTICLE.get(), ThrowingknivesParticle.Provider::new);
+
+        event.registerSpriteSet(ChangShengJueParticles.STAKES_PARTICLE.get(), StakesParticle.Provider::new);
 
         event.registerSpriteSet(ChangShengJueParticles.TUN_NA_PARTICLE.get(), TunNaParticle.TunNaParticleProvider::new);
         event.registerSpriteSet(ChangShengJueParticles.TUN_NA_1_PARTICLE.get(), TunNa1Particle.TunNa1ParticleProvider::new);

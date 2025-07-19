@@ -472,7 +472,8 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                         ChangShengJueBlocks.CRIMSON_BALUSTRADE.get(),
                         ChangShengJueBlocks.WARPED_BALUSTRADE.get(),
                         ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get(),
-                        ChangShengJueBlocks.WIND_CHIME.get());
+                        ChangShengJueBlocks.WIND_CHIME.get(),
+                        ChangShengJueBlocks.GONG.get());
 
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL)

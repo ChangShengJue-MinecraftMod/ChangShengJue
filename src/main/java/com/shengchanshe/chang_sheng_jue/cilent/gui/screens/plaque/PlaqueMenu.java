@@ -1,6 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.plaque;
 
-import com.shengchanshe.chang_sheng_jue.block.entity.PlaqueEntity;
+import com.shengchanshe.chang_sheng_jue.block.custom.plaque.PlaqueEntity;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.ChangShengJueMenuTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;

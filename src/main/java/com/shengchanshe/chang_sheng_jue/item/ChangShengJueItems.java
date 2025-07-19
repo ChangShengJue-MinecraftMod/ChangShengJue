@@ -2,6 +2,7 @@ package com.shengchanshe.chang_sheng_jue.item;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
+import com.shengchanshe.chang_sheng_jue.block.custom.gong.GongItem;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.ChangShengJueArmorMaterials;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.confucian_costumes.ConfucianCostumes;
@@ -615,6 +616,10 @@ public class ChangShengJueItems {
     //情报
     public static final RegistryObject<Item> STRUCTURE_INTELLIGENCE = ITEMS.register("structure_intelligence",
             () -> new StructureIntelligence(new Item.Properties().stacksTo(1)));
+
+    //锣
+    public static final RegistryObject<Item> GONG = ITEMS.register("gong",
+            () -> new GongItem(ChangShengJueBlocks.GONG.get() , new Item.Properties()));
 
     //手册
     public static final RegistryObject<Item> WU_FANG_LU = ITEMS.register("wu_fang_lu", ()-> new Item(new Item.Properties()));

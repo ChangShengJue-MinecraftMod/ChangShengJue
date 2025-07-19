@@ -29,7 +29,7 @@ public abstract class MixinFoodData {
             AtomicReference<Float> pExhaustionRef = new AtomicReference<>(pExhaustion);
             player.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(hercules -> {
                 if (hercules.getHerculesLevel() >= 1 &&player.isSprinting()) {
-                    pExhaustionRef.set(pExhaustionRef.get() * 0.5F);
+                    pExhaustionRef.set(pExhaustionRef.get() * 0.6F);
                 }
             });
             // 将修改后的疲劳值添加到 exhaustionLevel 中

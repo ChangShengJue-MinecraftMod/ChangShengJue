@@ -166,6 +166,7 @@ dependencies {
     implementation fg.deobf("blank:Jade-${minecraft_version}:11.13.1")
     implementation fg.deobf("blank:jei-${minecraft_version}:15")
     implementation fg.deobf("blank:constructionwand-${minecraft_version}:2.11")
+    implementation fg.deobf("blank:appleskin-${minecraft_version}:2.5.1")
 
 
     // For more info:

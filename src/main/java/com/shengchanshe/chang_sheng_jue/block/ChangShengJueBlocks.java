@@ -7,20 +7,28 @@ import com.shengchanshe.chang_sheng_jue.block.custom.balustrade.Balustrade;
 import com.shengchanshe.chang_sheng_jue.block.custom.balustrade.Guardrail;
 import com.shengchanshe.chang_sheng_jue.block.custom.balustrade.Wooden_Balustrade;
 import com.shengchanshe.chang_sheng_jue.block.custom.bracket.*;
+import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.BullionsCastingMolds;
+import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.CastingMolds;
 import com.shengchanshe.chang_sheng_jue.block.custom.eescalator.Eescalator;
 import com.shengchanshe.chang_sheng_jue.block.custom.furniture.chair.*;
 import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.BookDesk;
 import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.LowDesk;
 import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.Teapoy;
 import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.WineTable;
+import com.shengchanshe.chang_sheng_jue.block.custom.gong.Gong;
+import com.shengchanshe.chang_sheng_jue.block.custom.loom.ChangShengJueLoomBlock;
+import com.shengchanshe.chang_sheng_jue.block.custom.plaque.Plaque;
+import com.shengchanshe.chang_sheng_jue.block.custom.pottery.PotteryWheel;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigleft.BigShingMunLeft;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigright.BigShingMunRight;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.left.ShingMunLeft;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.right.ShingMunRight;
 import com.shengchanshe.chang_sheng_jue.block.custom.tile.*;
+import com.shengchanshe.chang_sheng_jue.block.custom.tool_table.ToolTable;
+import com.shengchanshe.chang_sheng_jue.block.custom.weaponrack.WeaponRack;
 import com.shengchanshe.chang_sheng_jue.block.custom.window.HighWindows;
 import com.shengchanshe.chang_sheng_jue.block.custom.window.Windows;
-import com.shengchanshe.chang_sheng_jue.block.decoration.BlueAndWhitePorcelainFlowerPots;
+import com.shengchanshe.chang_sheng_jue.block.decoration.flowerpot.BlueAndWhitePorcelainFlowerPots;
 import com.shengchanshe.chang_sheng_jue.block.decoration.LeavesDefoliation;
 
 import com.shengchanshe.chang_sheng_jue.block.decoration.windchime.WindChime;
@@ -1395,6 +1403,10 @@ public class ChangShengJueBlocks {
     //牌匾
     public static final RegistryObject<Block> PLAQUE = registerBlock("plaque",
             () -> new Plaque(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN)));
+
+    //锣
+    public static final RegistryObject<Block> GONG = registerBlockWithoutBlockItem("gong",
+            () -> new Gong(BlockBehaviour.Properties.copy(Blocks.BELL)));
 
     //*食物*//
     public static final RegistryObject<Block> CI_PAN = registerBlockWithoutBlockItem("ci_pan",

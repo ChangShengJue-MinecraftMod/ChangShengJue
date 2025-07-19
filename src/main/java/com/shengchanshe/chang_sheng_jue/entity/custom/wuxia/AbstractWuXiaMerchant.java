@@ -198,6 +198,7 @@ public class AbstractWuXiaMerchant extends AbstractWuXia {
     }
 
 
+    @Override
     public boolean removeWhenFarAway(double pDistanceToClosestPlayer) {
         return false;
     }

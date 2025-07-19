@@ -1,12 +1,20 @@
 package com.shengchanshe.chang_sheng_jue.block;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.BullionsCastingMoldsBlockEntity;
+import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.CastingMoldsBlockEntity;
+import com.shengchanshe.chang_sheng_jue.block.custom.gong.GongEntity;
+import com.shengchanshe.chang_sheng_jue.block.custom.loom.ChangShengJueLoomBlockEntity;
+import com.shengchanshe.chang_sheng_jue.block.custom.plaque.PlaqueEntity;
+import com.shengchanshe.chang_sheng_jue.block.custom.pottery.PotteryWheelEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigleft.entity.BigShingMunLeftEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigright.entity.BigShingMunRightEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.left.entity.ShingMunLeftEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.right.entity.ShingMunRightEntity;
+import com.shengchanshe.chang_sheng_jue.block.custom.tool_table.ToolTableEntity;
+import com.shengchanshe.chang_sheng_jue.block.custom.weaponrack.WeaponRackEntity;
+import com.shengchanshe.chang_sheng_jue.block.decoration.flowerpot.BlueAndWhitePorcelainFlowerPotsEntity;
 import com.shengchanshe.chang_sheng_jue.block.decoration.windchime.WindChimeEntity;
-import com.shengchanshe.chang_sheng_jue.block.entity.*;
 import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity.DesksEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -67,7 +75,10 @@ public class ChangShengJueBlocksEntities {
     public static final RegistryObject<BlockEntityType<WindChimeEntity>> WIND_CHIME_ENTITY =
             BLOCK_ENTITYES.register("wind_chime_entity",
                     ()-> BlockEntityType.Builder.of(WindChimeEntity::new, ChangShengJueBlocks.WIND_CHIME.get()).build(null));
-
+    //锣
+    public static final RegistryObject<BlockEntityType<GongEntity>> GONG_ENTITY =
+            BLOCK_ENTITYES.register("gong_entity", ()-> BlockEntityType.Builder.of(
+                    GongEntity::new, ChangShengJueBlocks.GONG.get()).build(null));
 
     //桌子
     public static final RegistryObject<BlockEntityType<DesksEntity>> DESK =
