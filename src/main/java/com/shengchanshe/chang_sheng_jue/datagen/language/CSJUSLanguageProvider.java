@@ -153,7 +153,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SANDSTONE_CASTLE_TYPE, "%s情报");
         this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SI_HE_YUAN_TYPE, "%s情报");
         this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SU_PAI_VILLAGE_TYPE, "%s情报");
-        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.WAN_PAI_VILLAGE_TYPE, "%s情报");
+        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.HUI_PAI_VILLAGE_TYPE, "%s情报");
         this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.FORTRESSES_TYPE, "%s情报");
 
         //刷怪蛋
@@ -311,7 +311,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".tooltip","指如疾风，势如闪电。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".hold_shift.tooltip", "右键学习，空手或使用金丝手套击打木桩有1%概率领悟。\\n领悟后使用金丝手套可以定住血量上限低于25的目标1.5秒。\\n武功大成后提高为200血，2秒。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".tooltip","学向勤中得，萤窗万卷书。");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".hold_shift.tooltip", "右键学习，领悟后每次交易有概率获得少量。\\n武功大成后提高概率与获得经验。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".hold_shift.tooltip", "右键学习，领悟后每次交易有概率获得少量经验。\\n武功大成后提高概率与获得经验。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".tooltip","若反复实践，掌握规律；便得心应手，运用自如。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".hold_shift.tooltip", "右键学习，空手击打木桩有1%概率领悟。\\n领悟后持菜刀杀死动物有50%概率额外掉落肉。\\n武功大成后加强为75%。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SHAOLIN_STICK_METHOD.get()+".tooltip","天下武功出少林，一棍定乾坤。");
@@ -348,7 +348,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "sandstone_castle.tooltip","沙石堡");
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "si_he_yuan.tooltip","四合院");
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "su_pai_village.tooltip","苏式村庄");
-        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "wan_pai_village.tooltip","徽式村庄");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "hui_pai_village.tooltip","徽式村庄");
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "fortresses_type.tooltip","古城");
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "null.structure.tooltip","未知结构");
         this.add("tooltip." + ChangShengJue.MOD_ID + ".structural_location","在 [x=%d | z=%d] 位置坐落着一处%s,去看看吧");
@@ -884,6 +884,13 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.MEI_REN_KAO_DARK_OAK_BLOCK.get(), "深色橡木美人靠");
         this.add(ChangShengJueBlocks.MEI_REN_KAO_OAK_BLOCK.get(), "橡木美人靠");
         this.add(ChangShengJueBlocks.MEI_REN_KAO_SPRUCE_BLOCK.get(), "云杉木美人靠");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_BIRCH_BLOCK.get(), "白桦木美人靠");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_JUNGLE_BLOCK.get(), "丛林木美人靠");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_MANGROVE_BLOCK.get(), "红树木美人靠");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_CHERRY_BLOCK.get(), "樱花木美人靠");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_CRIMSON_BLOCK.get(), "绯红木美人靠");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_WARPED_BLOCK.get(), "诡异木美人靠");
+
 
         this.add(ChangShengJueBlocks.BIRCH_BENCH.get(), "白桦木长凳");
         this.add(ChangShengJueBlocks.CRIMSON_BENCH.get(), "绯红木长凳");

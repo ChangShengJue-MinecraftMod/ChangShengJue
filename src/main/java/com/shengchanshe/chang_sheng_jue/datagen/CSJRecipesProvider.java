@@ -199,6 +199,43 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("###")
                 .pattern("XXX")
                 .unlockedBy("has_sand", has(Items.STICK)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.MEI_REN_KAO_BIRCH_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.BIRCH_PLANKS))
+                .pattern("###")
+                .pattern("XXX")
+                .unlockedBy("has_sand", has(Items.STICK)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.MEI_REN_KAO_JUNGLE_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.JUNGLE_PLANKS))
+                .pattern("###")
+                .pattern("XXX")
+                .unlockedBy("has_sand", has(Items.STICK)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.MEI_REN_KAO_MANGROVE_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.MANGROVE_PLANKS))
+                .pattern("###")
+                .pattern("XXX")
+                .unlockedBy("has_planks", has(Items.MANGROVE_PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.MEI_REN_KAO_CHERRY_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.CHERRY_PLANKS))
+                .pattern("###")
+                .pattern("XXX")
+                .unlockedBy("has_planks", has(Items.CHERRY_PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.MEI_REN_KAO_CRIMSON_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.CRIMSON_PLANKS))
+                .pattern("###")
+                .pattern("XXX")
+                .unlockedBy("has_planks", has(Items.CRIMSON_PLANKS)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.MEI_REN_KAO_WARPED_BLOCK.get(),3)
+                .define('#', Ingredient.of(Items.STICK))
+                .define('X', Ingredient.of(Items.WARPED_PLANKS))
+                .pattern("###")
+                .pattern("XXX")
+                .unlockedBy("has_planks", has(Items.WARPED_PLANKS)).save(consumer);
+
 
         //扶梯
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get(),1)

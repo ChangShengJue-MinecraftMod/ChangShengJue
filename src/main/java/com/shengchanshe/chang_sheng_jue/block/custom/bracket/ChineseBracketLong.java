@@ -147,30 +147,16 @@ public class ChineseBracketLong extends Block implements SimpleWaterloggedBlock 
     @Override
     public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
         if (!level.isClientSide) {
-            removeBothParts(level, pos, state, player);
+            if (!state.getValue(MAIN_PART)) {
+                BlockPos mainPos = getMainPosition(pos, state.getValue(FACING));
+                BlockState mainState = level.getBlockState(mainPos);
+                if (mainState.getBlock() == this && mainState.getValue(MAIN_PART)) {
+                    level.setBlock(mainPos, Blocks.AIR.defaultBlockState(), 35);
+                    level.levelEvent(player, 2001, mainPos, Block.getId(mainState));
+                }
+            }
         }
         super.playerWillDestroy(level, pos, state, player);
-    }
-
-    private void removeBothParts(Level level, BlockPos pos, BlockState state, Player player) {
-        if (state.getValue(MAIN_PART)) {
-            // 如果是主方块被破坏，移除次要方块
-            Direction facing = state.getValue(FACING);
-            BlockPos secondPos = getSecondPosition(pos, facing);
-            BlockState secondState = level.getBlockState(secondPos);
-            if (secondState.getBlock() == this && !secondState.getValue(MAIN_PART)) {
-                level.setBlock(secondPos, Blocks.AIR.defaultBlockState(), 35);
-                level.levelEvent(player, 2001, secondPos, Block.getId(secondState));
-            }
-        } else {
-            // 如果是次要方块被破坏，移除主方块
-            BlockPos mainPos = getMainPosition(pos, state.getValue(FACING));
-            BlockState mainState = level.getBlockState(mainPos);
-            if (mainState.getBlock() == this && mainState.getValue(MAIN_PART)) {
-                level.setBlock(mainPos, Blocks.AIR.defaultBlockState(), 35);
-                level.levelEvent(player, 2001, mainPos, Block.getId(mainState));
-            }
-        }
     }
 
     private BlockPos getMainPosition(BlockPos pos, Direction facing) {

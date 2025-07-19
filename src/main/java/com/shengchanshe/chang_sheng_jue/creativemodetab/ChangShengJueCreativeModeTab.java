@@ -360,6 +360,12 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.MEI_REN_KAO_DARK_OAK_BLOCK.get());
                 output.accept(ChangShengJueBlocks.MEI_REN_KAO_OAK_BLOCK.get());
                 output.accept(ChangShengJueBlocks.MEI_REN_KAO_SPRUCE_BLOCK.get());
+                output.accept(ChangShengJueBlocks.MEI_REN_KAO_BIRCH_BLOCK.get());
+                output.accept(ChangShengJueBlocks.MEI_REN_KAO_JUNGLE_BLOCK.get());
+                output.accept(ChangShengJueBlocks.MEI_REN_KAO_MANGROVE_BLOCK.get());
+                output.accept(ChangShengJueBlocks.MEI_REN_KAO_CHERRY_BLOCK.get());
+                output.accept(ChangShengJueBlocks.MEI_REN_KAO_CRIMSON_BLOCK.get());
+                output.accept(ChangShengJueBlocks.MEI_REN_KAO_WARPED_BLOCK.get());
                 output.accept(ChangShengJueBlocks.WINDOWS_BIRCH_BLOCK.get());
                 output.accept(ChangShengJueBlocks.WINDOWS_ACACIA_BLOCK.get());
                 output.accept(ChangShengJueBlocks.WINDOWS_DARK_OAK_BLOCK.get());
@@ -776,7 +782,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(createStructureIntelligence(StructureIntelligence.SI_HE_YUAN_TYPE));
                 output.accept(createStructureIntelligence(StructureIntelligence.PIT_YARD_TYPE));
                 output.accept(createStructureIntelligence(StructureIntelligence.SU_PAI_VILLAGE_TYPE));
-                output.accept(createStructureIntelligence(StructureIntelligence.WAN_PAI_VILLAGE_TYPE));
+                output.accept(createStructureIntelligence(StructureIntelligence.HUI_PAI_VILLAGE_TYPE));
                 output.accept(createStructureIntelligence(StructureIntelligence.FORTRESSES_TYPE));
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_SPAWN_EGGS = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_spawn_eggs",()-> CreativeModeTab.builder()

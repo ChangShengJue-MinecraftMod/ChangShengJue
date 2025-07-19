@@ -22,7 +22,7 @@ public class StructureIntelligence extends Item {
     public static final int SANDSTONE_CASTLE_TYPE = 1;
     public static final int SI_HE_YUAN_TYPE = 2;
     public static final int SU_PAI_VILLAGE_TYPE = 3;
-    public static final int WAN_PAI_VILLAGE_TYPE = 4;
+    public static final int HUI_PAI_VILLAGE_TYPE = 4;
     public static final int FORTRESSES_TYPE = 5;
 
     public StructureIntelligence(Properties properties) {
@@ -86,7 +86,7 @@ public class StructureIntelligence extends Item {
             case SANDSTONE_CASTLE_TYPE -> CSJTags.StructureTypes.SANDSTONE_CASTLE;
             case SI_HE_YUAN_TYPE -> CSJTags.StructureTypes.SI_HE_YUAN;
             case SU_PAI_VILLAGE_TYPE -> CSJTags.StructureTypes.SU_PAI_VILLAGE;
-            case WAN_PAI_VILLAGE_TYPE -> CSJTags.StructureTypes.WAN_PAI_VILLAGE;
+            case HUI_PAI_VILLAGE_TYPE -> CSJTags.StructureTypes.HUI_PAI_VILLAGE;
             case FORTRESSES_TYPE -> CSJTags.StructureTypes.FORTRESSES;
             default -> null;
         };
@@ -98,7 +98,7 @@ public class StructureIntelligence extends Item {
             case SANDSTONE_CASTLE_TYPE -> Component.translatable("tooltip." + ChangShengJue.MOD_ID + "." + "sandstone_castle.tooltip");
             case SI_HE_YUAN_TYPE -> Component.translatable("tooltip." + ChangShengJue.MOD_ID + "." + "si_he_yuan.tooltip");
             case SU_PAI_VILLAGE_TYPE -> Component.translatable("tooltip." + ChangShengJue.MOD_ID + "." + "su_pai_village.tooltip");
-            case WAN_PAI_VILLAGE_TYPE ->   Component.translatable("tooltip." + ChangShengJue.MOD_ID + "." + "wan_pai_village.tooltip");
+            case HUI_PAI_VILLAGE_TYPE ->   Component.translatable("tooltip." + ChangShengJue.MOD_ID + "." + "hui_pai_village.tooltip");
             case FORTRESSES_TYPE ->   Component.translatable("tooltip." + ChangShengJue.MOD_ID + "." + "fortresses_type.tooltip");
             default -> Component.translatable("tooltip." + ChangShengJue.MOD_ID + "." + "null.structure.tooltip");
         };

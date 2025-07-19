@@ -86,7 +86,7 @@ public class CSJTags {
         public static final TagKey<Structure> PIT_YARD = create("pit_yard");
         public static final TagKey<Structure> SI_HE_YUAN = create("si_he_yuan");
         public static final TagKey<Structure> SU_PAI_VILLAGE = create("su_pai_village");
-        public static final TagKey<Structure> WAN_PAI_VILLAGE = create("wan_pai_village");
+        public static final TagKey<Structure> HUI_PAI_VILLAGE = create("hui_pai_village");
         public static final TagKey<Structure> FORTRESSES = create("fortresses");
 
         public static TagKey<Structure> create(String name) {

@@ -38,5 +38,4 @@ public class Dougong extends ChineseBracketLong{
             };
         }
     }
-
 }

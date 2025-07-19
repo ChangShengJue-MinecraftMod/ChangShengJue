@@ -68,7 +68,7 @@ public class WuXiaMerahantTrades {
                         new StructureIntelTrade(StructureIntelligence.SANDSTONE_CASTLE_TYPE, 2, 1, 16, 1),
                         new StructureIntelTrade(StructureIntelligence.SI_HE_YUAN_TYPE, 2, 1, 16, 1),
                         new StructureIntelTrade(StructureIntelligence.SU_PAI_VILLAGE_TYPE, 2, 1, 16, 1),
-                        new StructureIntelTrade(StructureIntelligence.WAN_PAI_VILLAGE_TYPE, 2, 1, 16, 1),
+                        new StructureIntelTrade(StructureIntelligence.HUI_PAI_VILLAGE_TYPE, 2, 1, 16, 1),
                 }
         ));
 

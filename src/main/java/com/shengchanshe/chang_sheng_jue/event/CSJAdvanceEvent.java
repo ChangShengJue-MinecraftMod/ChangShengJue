@@ -24,7 +24,6 @@ import com.shengchanshe.chang_sheng_jue.quest.Quest;
 import com.shengchanshe.chang_sheng_jue.world.CSJStructures;
 import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.core.BlockPos;
-import net.minecraft.data.worldgen.Structures;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
@@ -69,7 +68,7 @@ public class CSJAdvanceEvent {
                     CSJStructures.SANDSTONE_CASTLE,
                     CSJStructures.SI_HE_YUAN,
                     CSJStructures.SU_PAI_VILLAGE,
-                    CSJStructures.WAN_PAI_VILLAGE,
+                    CSJStructures.HUI_PAI_VILLAGE,
                     BuiltinStructures.VILLAGE_DESERT,
                     BuiltinStructures.VILLAGE_PLAINS,
                     BuiltinStructures.VILLAGE_SAVANNA,
@@ -89,7 +88,6 @@ public class CSJAdvanceEvent {
             }
             if (isInAnyVillage && villageChunk != null && !generatedVillainChunks.contains(villageChunk)) {
                 summonVillain(serverLevel, player, villageChunk); // 传递区块参数
-                generatedVillainChunks.add(villageChunk); // 标记为已生成
             }
         }
     }
@@ -112,6 +110,7 @@ public class CSJAdvanceEvent {
                     player.getInventory().countItem(ChangShengJueItems.SILVER_BULLIONS.get()) >= 3 ||
                     player.getInventory().countItem(ChangShengJueItems.GOLD_BULLIONS.get()) >= 1)
                 {
+                    System.out.println("0");
                     summonBandit(level, player);
                 }
             } else if (COOLDOWN >= 4) {
@@ -197,15 +196,31 @@ public class CSJAdvanceEvent {
 
     }
 
+    private static final Map<UUID, Integer> summonTracker = new HashMap<>();
+
     public static void summonBandit(Level level, Player player) {
         if (level.isClientSide()) {
             return;
         }
+        UUID playerUUID = player.getUUID();
+
+        int summonCount = summonTracker.getOrDefault(playerUUID, 0);
+
+        ServerPlayer serverPlayer = (ServerPlayer) player;
+
+
+
+
+        if (summonCount >= 3) {
+            return;
+        }
+        System.out.println("1");
         BlockPos pos = player.blockPosition();
         ServerLevel serverLevel = (ServerLevel) level;
         BlockPos playerPos = player.blockPosition();
         RandomSource random = serverLevel.getRandom();
-        if (serverLevel.getRandom().nextInt(100) <= 5) {
+        if (serverLevel.getRandom().nextInt(100) <= 20) {
+            System.out.println("2");
             int numberOfBandits = RandomSource.create().nextInt(3) + 1;
             for (int i = 0; i < numberOfBandits; i++) {
                 BlockPos spawnPos = findValidSpawnPosition(serverLevel, playerPos, random,20);
@@ -224,6 +239,8 @@ public class CSJAdvanceEvent {
                             MobSpawnType.EVENT, null, null);
                     serverLevel.addFreshEntity(bandit);
                     COOLDOWN = 0;
+                    summonTracker.put(playerUUID, summonCount + 1);
+                    System.out.println("summonCount" + summonCount);
                 }
             }
         }
@@ -238,6 +255,7 @@ public class CSJAdvanceEvent {
 
         // 50%概率生成
         if (random.nextInt(100) <= 50) {
+            System.out.println("生成 villain");
             int numberOfVillains = random.nextInt(5) + 1;
 
             for (int i = 0; i < numberOfVillains; i++) {
@@ -268,6 +286,12 @@ public class CSJAdvanceEvent {
                 }
             }
         }
+        for (int dx = -3; dx <= 3; dx++) {
+            for (int dz = -3; dz <= 3; dz++) {
+                ChunkPos surroundingChunk = new ChunkPos(villageChunk.x + dx, villageChunk.z + dz);
+                generatedVillainChunks.add(surroundingChunk);
+            }
+        }
     }
 
 
@@ -280,36 +304,38 @@ public class CSJAdvanceEvent {
         BlockPos playerPos = player.blockPosition();
         RandomSource random = serverLevel.getRandom();
 
-        int numberOfChallengers = 1;
+        if (random.nextInt(100) <= 20) {
+            int numberOfChallengers = 1;
 
-        for (int i = 0; i < numberOfChallengers; i++) {
-            // 尝试寻找有效生成位置（避免实体卡在方块中）
-            BlockPos spawnPos = findValidSpawnPosition(serverLevel, playerPos, random,5);
+            for (int i = 0; i < numberOfChallengers; i++) {
+                // 尝试寻找有效生成位置（避免实体卡在方块中）
+                BlockPos spawnPos = findValidSpawnPosition(serverLevel, playerPos, random, 5);
 
-            // 如果未找到有效位置，使用玩家周围随机偏移位置
-            if (spawnPos == null) {
-                spawnPos = playerPos.offset(
-                        random.nextInt(31) - 15,  // X轴：-15到15之间随机
-                        0,  // Y轴保持与玩家同高度（避免空中/地下）
-                        random.nextInt(31) - 15   // Z轴：-15到15之间随机
-                );
-            }
+                // 如果未找到有效位置，使用玩家周围随机偏移位置
+                if (spawnPos == null) {
+                    spawnPos = playerPos.offset(
+                            random.nextInt(31) - 15,  // X轴：-15到15之间随机
+                            0,  // Y轴保持与玩家同高度（避免空中/地下）
+                            random.nextInt(31) - 15   // Z轴：-15到15之间随机
+                    );
+                }
 
-            // 创建挑战者实体并设置属性
-            Challenger challenger = new Challenger(ChangShengJueEntity.CHALLENGER.get(), serverLevel);
-            if (challenger != null) {
-                // 设置实体位置和旋转角度
-                challenger.moveTo(spawnPos, random.nextFloat() * 360.0F, 0.0F);
-                // 初始化实体（难度适配、生成状态等）
-                challenger.finalizeSpawn(
-                        serverLevel,
-                        serverLevel.getCurrentDifficultyAt(spawnPos),
-                        MobSpawnType.EVENT,  // 标记为事件生成
-                        null,  // 无额外NBT数据
-                        null
-                );
-                // 将实体添加到世界
-                serverLevel.addFreshEntity(challenger);
+                // 创建挑战者实体并设置属性
+                Challenger challenger = new Challenger(ChangShengJueEntity.CHALLENGER.get(), serverLevel);
+                if (challenger != null) {
+                    // 设置实体位置和旋转角度
+                    challenger.moveTo(spawnPos, random.nextFloat() * 360.0F, 0.0F);
+                    // 初始化实体（难度适配、生成状态等）
+                    challenger.finalizeSpawn(
+                            serverLevel,
+                            serverLevel.getCurrentDifficultyAt(spawnPos),
+                            MobSpawnType.EVENT,  // 标记为事件生成
+                            null,  // 无额外NBT数据
+                            null
+                    );
+                    // 将实体添加到世界
+                    serverLevel.addFreshEntity(challenger);
+                }
             }
         }
     }

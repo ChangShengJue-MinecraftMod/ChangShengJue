@@ -22,7 +22,7 @@ public class CSJStructureTagProvider extends StructureTagsProvider {
         this.tag(CSJTags.StructureTypes.PIT_YARD).add(CSJStructures.PIT_YARD);
         this.tag(CSJTags.StructureTypes.SI_HE_YUAN).add(CSJStructures.SI_HE_YUAN);
         this.tag(CSJTags.StructureTypes.SU_PAI_VILLAGE).add(CSJStructures.SU_PAI_VILLAGE);
-        this.tag(CSJTags.StructureTypes.WAN_PAI_VILLAGE).add(CSJStructures.WAN_PAI_VILLAGE);
+        this.tag(CSJTags.StructureTypes.HUI_PAI_VILLAGE).add(CSJStructures.HUI_PAI_VILLAGE);
         this.tag(CSJTags.StructureTypes.FORTRESSES).add(CSJStructures.FORTRESSES);
     }
 }

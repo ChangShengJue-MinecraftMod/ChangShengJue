@@ -87,7 +87,7 @@ public class CSJAdvanceProvider implements AdvancementSubProvider {
                 .addCriterion("findchinesevillage-supaivillage", PlayerTrigger.TriggerInstance.located(
                         LocationPredicate.inStructure(CSJStructures.SU_PAI_VILLAGE)))
                 .addCriterion("findchinesevillage-wanpaivillage/", PlayerTrigger.TriggerInstance.located(
-                        LocationPredicate.inStructure(CSJStructures.WAN_PAI_VILLAGE)))
+                        LocationPredicate.inStructure(CSJStructures.HUI_PAI_VILLAGE)))
                 .requirements(RequirementsStrategy.OR)
                 .save(consumer, ChangShengJue.MOD_ID + ":advancement/findchinesevillage");
 

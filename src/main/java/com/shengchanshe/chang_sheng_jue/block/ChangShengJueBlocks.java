@@ -845,6 +845,24 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> MEI_REN_KAO_SPRUCE_BLOCK = registerBlock("mei_ren_kao_spruce_block",
             ()-> new MeiRenKaoBlock(Blocks.ACACIA_WOOD.defaultBlockState(),
                     BlockBehaviour.Properties.copy(Blocks.ACACIA_WOOD)));
+    public static final RegistryObject<Block> MEI_REN_KAO_BIRCH_BLOCK = registerBlock("mei_ren_kao_birch_block",
+            ()-> new MeiRenKaoBlock(Blocks.ACACIA_WOOD.defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.ACACIA_WOOD)));
+    public static final RegistryObject<Block> MEI_REN_KAO_JUNGLE_BLOCK = registerBlock("mei_ren_kao_jungle_block",
+            ()-> new MeiRenKaoBlock(Blocks.ACACIA_WOOD.defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.ACACIA_WOOD)));
+    public static final RegistryObject<Block> MEI_REN_KAO_MANGROVE_BLOCK = registerBlock("mei_ren_kao_mangrove_block",
+            ()-> new MeiRenKaoBlock(Blocks.ACACIA_WOOD.defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.ACACIA_WOOD)));
+    public static final RegistryObject<Block> MEI_REN_KAO_CHERRY_BLOCK = registerBlock("mei_ren_kao_cherry_block",
+            ()-> new MeiRenKaoBlock(Blocks.ACACIA_WOOD.defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.ACACIA_WOOD)));
+    public static final RegistryObject<Block> MEI_REN_KAO_CRIMSON_BLOCK = registerBlock("mei_ren_kao_crimson_block",
+            ()-> new MeiRenKaoBlock(Blocks.ACACIA_WOOD.defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.ACACIA_WOOD)));
+    public static final RegistryObject<Block> MEI_REN_KAO_WARPED_BLOCK = registerBlock("mei_ren_kao_warped_block",
+            ()-> new MeiRenKaoBlock(Blocks.ACACIA_WOOD.defaultBlockState(),
+                    BlockBehaviour.Properties.copy(Blocks.ACACIA_WOOD)));
 
     //窗户
     public static final RegistryObject<Block> WINDOWS_BIRCH_BLOCK = registerBlock("windows_birch_block",

@@ -56,7 +56,14 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.MEI_REN_KAO_ACACIA_BLOCK.get())
                 .add(ChangShengJueBlocks.MEI_REN_KAO_DARK_OAK_BLOCK.get())
                 .add(ChangShengJueBlocks.MEI_REN_KAO_OAK_BLOCK.get())
-                .add(ChangShengJueBlocks.MEI_REN_KAO_SPRUCE_BLOCK.get());
+                .add(ChangShengJueBlocks.MEI_REN_KAO_SPRUCE_BLOCK.get())
+                .add(ChangShengJueBlocks.MEI_REN_KAO_BIRCH_BLOCK.get())
+                .add(ChangShengJueBlocks.MEI_REN_KAO_JUNGLE_BLOCK.get())
+                .add(ChangShengJueBlocks.MEI_REN_KAO_MANGROVE_BLOCK.get())
+                .add(ChangShengJueBlocks.MEI_REN_KAO_CHERRY_BLOCK.get())
+                .add(ChangShengJueBlocks.MEI_REN_KAO_CRIMSON_BLOCK.get())
+                .add(ChangShengJueBlocks.MEI_REN_KAO_WARPED_BLOCK.get());
+        ;
 
         this.tag(CSJTags.Blocks.TILE)
                 .add(ChangShengJueBlocks.GRE_CYLINDER_TILE.get())

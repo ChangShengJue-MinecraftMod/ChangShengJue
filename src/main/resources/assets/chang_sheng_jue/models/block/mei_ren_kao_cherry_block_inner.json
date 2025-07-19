@@ -1,0 +1,9 @@
+{
+  "parent": "chang_sheng_jue:block/mei_ren_kao_block_inner",
+  "textures": {
+    "bottom": "minecraft:block/cherry_planks",
+    "top": "minecraft:block/cherry_planks",
+    "side": "minecraft:block/cherry_planks"
+  }
+}
+    

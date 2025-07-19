@@ -153,7 +153,7 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SANDSTONE_CASTLE_TYPE, "%s情报");
         this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SI_HE_YUAN_TYPE, "%s情报");
         this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SU_PAI_VILLAGE_TYPE, "%s情报");
-        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.WAN_PAI_VILLAGE_TYPE, "%s情报");
+        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.HUI_PAI_VILLAGE_TYPE, "%s情报");
         this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.FORTRESSES_TYPE, "%s情报");
 
         //刷怪蛋
@@ -354,7 +354,7 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "sandstone_castle.tooltip","沙石堡");
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "si_he_yuan.tooltip","四合院");
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "su_pai_village.tooltip","苏式村庄");
-        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "wan_pai_village.tooltip","徽式村庄");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "hui_pai_village.tooltip","徽式村庄");
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "fortresses_type.tooltip","古城");
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "null.structure.tooltip","未知结构");
         this.add("tooltip." + ChangShengJue.MOD_ID + ".structural_location","在 [x=%d | z=%d] 位置坐落着一处%s,去看看吧");
@@ -905,6 +905,14 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.MEI_REN_KAO_DARK_OAK_BLOCK.get(), "深色橡木美人靠");
         this.add(ChangShengJueBlocks.MEI_REN_KAO_OAK_BLOCK.get(), "橡木美人靠");
         this.add(ChangShengJueBlocks.MEI_REN_KAO_SPRUCE_BLOCK.get(), "云杉木美人靠");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_BIRCH_BLOCK.get(), "白桦木美人靠");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_JUNGLE_BLOCK.get(), "丛林木美人靠");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_MANGROVE_BLOCK.get(), "红树木美人靠");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_CHERRY_BLOCK.get(), "樱花木美人靠");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_CRIMSON_BLOCK.get(), "绯红木美人靠");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_WARPED_BLOCK.get(), "诡异木美人靠");
+
+
 
         this.add(ChangShengJueBlocks.BIRCH_BENCH.get(), "白桦木长凳");
         this.add(ChangShengJueBlocks.CRIMSON_BENCH.get(), "绯红木长凳");

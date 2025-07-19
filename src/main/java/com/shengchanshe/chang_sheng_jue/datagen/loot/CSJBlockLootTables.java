@@ -4,6 +4,7 @@ import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.block.RoofPart;
 import com.shengchanshe.chang_sheng_jue.block.cropper.*;
 import com.shengchanshe.chang_sheng_jue.block.custom.DoorsBlock;
+import com.shengchanshe.chang_sheng_jue.block.custom.bracket.ChineseBracketLong;
 import com.shengchanshe.chang_sheng_jue.block.custom.tile.HippedRoof;
 import com.shengchanshe.chang_sheng_jue.block.tree_logs.FruitLeaves;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
@@ -17,6 +18,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.IntRange;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -467,6 +469,12 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_DARK_OAK_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_OAK_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_SPRUCE_BLOCK.get());
+        this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_BIRCH_BLOCK.get());
+        this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_JUNGLE_BLOCK.get());
+        this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_MANGROVE_BLOCK.get());
+        this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_CHERRY_BLOCK.get());
+        this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_CRIMSON_BLOCK.get());
+        this.dropSelf(ChangShengJueBlocks.MEI_REN_KAO_WARPED_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.WINDOWS_BIRCH_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.WINDOWS_BIRCH_BLOCK_1.get());
         this.dropSelf(ChangShengJueBlocks.WINDOWS_ACACIA_BLOCK.get());
@@ -561,18 +569,31 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.LONG_OAK_FLOWER_BRACKET.get());
         this.dropSelf(ChangShengJueBlocks.LONG_CHERRY_FLOWER_BRACKET.get());
         this.dropSelf(ChangShengJueBlocks.LONG_SPRUCE_FLOWER_BRACKET.get());
-        this.dropSelf(ChangShengJueBlocks.MANGROVE_DOUGONG.get());
-        this.dropSelf(ChangShengJueBlocks.BIRCH_DOUGONG.get());
-        this.dropSelf(ChangShengJueBlocks.JUNGLE_DOUGONG.get());
-        this.dropSelf(ChangShengJueBlocks.CRIMSON_DOUGONG.get());
-        this.dropSelf(ChangShengJueBlocks.WARPED_DOUGONG.get());
-        this.dropSelf(ChangShengJueBlocks.ACACIA_DOUGONG.get());
-        this.dropSelf(ChangShengJueBlocks.DARK_OAK_DOUGONG.get());
-        this.dropSelf(ChangShengJueBlocks.OAK_DOUGONG.get());
-        this.dropSelf(ChangShengJueBlocks.CHERRY_DOUGONG.get());
-        this.dropSelf(ChangShengJueBlocks.SPRUCE_DOUGONG.get());
-        this.dropSelf(ChangShengJueBlocks.GREEN_DOUGONG.get());
-        this.dropSelf(ChangShengJueBlocks.BLUE_DOUGONG.get());
+        this.add(ChangShengJueBlocks.MANGROVE_DOUGONG.get(), block ->
+                this.createBooleanConditionTable(block, ChineseBracketLong.MAIN_PART, true));
+        this.add(ChangShengJueBlocks.SPRUCE_DOUGONG.get(), block ->
+                this.createBooleanConditionTable(block, ChineseBracketLong.MAIN_PART, true));
+        this.add(ChangShengJueBlocks.BIRCH_DOUGONG.get(), block ->
+                this.createBooleanConditionTable(block, ChineseBracketLong.MAIN_PART, true));
+        this.add(ChangShengJueBlocks.JUNGLE_DOUGONG.get(), block ->
+                this.createBooleanConditionTable(block, ChineseBracketLong.MAIN_PART, true));
+        this.add(ChangShengJueBlocks.CRIMSON_DOUGONG.get(), block ->
+                this.createBooleanConditionTable(block, ChineseBracketLong.MAIN_PART, true));
+        this.add(ChangShengJueBlocks.WARPED_DOUGONG.get(), block ->
+                this.createBooleanConditionTable(block, ChineseBracketLong.MAIN_PART, true));
+        this.add(ChangShengJueBlocks.ACACIA_DOUGONG.get(), block ->
+                this.createBooleanConditionTable(block, ChineseBracketLong.MAIN_PART, true));
+        this.add(ChangShengJueBlocks.DARK_OAK_DOUGONG.get(), block ->
+                this.createBooleanConditionTable(block, ChineseBracketLong.MAIN_PART, true));
+        this.add(ChangShengJueBlocks.OAK_DOUGONG.get(), block ->
+                this.createBooleanConditionTable(block, ChineseBracketLong.MAIN_PART, true));
+        this.add(ChangShengJueBlocks.CHERRY_DOUGONG.get(), block ->
+                this.createBooleanConditionTable(block, ChineseBracketLong.MAIN_PART, true));
+        this.add(ChangShengJueBlocks.GREEN_DOUGONG.get(), block ->
+                this.createBooleanConditionTable(block, ChineseBracketLong.MAIN_PART, true));
+        this.add(ChangShengJueBlocks.BLUE_DOUGONG.get(), block ->
+                this.createBooleanConditionTable(block, ChineseBracketLong.MAIN_PART, true));
+
 
         this.dropSelf(ChangShengJueBlocks.WHITE_JADE_BLOCK.get());
         this.dropSelf(ChangShengJueBlocks.WHITE_JADE_STAIRS.get());
@@ -1051,5 +1072,16 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
     @Override
     protected Iterable<Block> getKnownBlocks() {
         return ChangShengJueBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+    }
+
+
+
+    protected LootTable.Builder createBooleanConditionTable(Block block, BooleanProperty property, boolean value) {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(block))
+                        .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                .setProperties(StatePropertiesPredicate.Builder.properties()
+                                        .hasProperty(property, value))));
     }
 }
