@@ -679,22 +679,23 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.WARM_LIME_SLURRY_BARRELS.get());
                 output.accept(ChangShengJueItems.COOL_LIME_SLURRY_BARRELS.get());
 
-                output.accept(ChangShengJueItems.IMMORTAL_MIRACLE.get());
-                output.accept(ChangShengJueItems.HERCULES.get());
                 output.accept(ChangShengJueItems.DUGU_NINE_SWORDS.get());
                 output.accept(ChangShengJueItems.GAO_MARKSMANSHIP.get());
-                output.accept(ChangShengJueItems.GE_SHAN_DA_NIU.get());
-                output.accept(ChangShengJueItems.TURTLE_BREATH_WORK.get());
                 output.accept(ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get());
-                output.accept(ChangShengJueItems.GOLDEN_BELL_JAR.get());
+                output.accept(ChangShengJueItems.SHAOLIN_STICK_METHOD.get());
+                output.accept(ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get());
+                output.accept(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get());
+                output.accept(ChangShengJueItems.GE_SHAN_DA_NIU.get());
                 output.accept(ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get());
+                output.accept(ChangShengJueItems.TURTLE_BREATH_WORK.get());
+
+                output.accept(ChangShengJueItems.IMMORTAL_MIRACLE.get());
+                output.accept(ChangShengJueItems.HERCULES.get());
+                output.accept(ChangShengJueItems.GOLDEN_BELL_JAR.get());
                 output.accept(ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get());
                 output.accept(ChangShengJueItems.PAODING.get());
-                output.accept(ChangShengJueItems.SHAOLIN_STICK_METHOD.get());
                 output.accept(ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get());
-                output.accept(ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get());
                 output.accept(ChangShengJueItems.WU_GANG_CUT_GUI.get());
-                output.accept(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get());
                 output.accept(ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get());
                 output.accept(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get());
                 output.accept(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get());
@@ -717,8 +718,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.PAN_HUA_GUN.get());
                 output.accept(ChangShengJueItems.KITCHEN_KNIFE.get());
                 output.accept(ChangShengJueItems.THROWING_KNIVES.get());
-                output.accept(ChangShengJueItems.THREE_THROWING_KNIVES.get());
-                output.accept(ChangShengJueItems.SEVEN_THROWING_KNIVES.get());
+                output.accept(ChangShengJueItems.FLYING_DAGGER_POUCH.get());
                 output.accept(ChangShengJueItems.COTTON_HELMET.get());
                 output.accept(ChangShengJueItems.WHITE_COTTON_HELMET.get());
                 output.accept(ChangShengJueItems.COTTON_CHESTPLATE.get().getDefaultInstance());

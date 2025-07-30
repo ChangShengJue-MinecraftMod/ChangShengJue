@@ -13,6 +13,7 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraftforge.common.Tags;
 
 public class CSJTags {
+
     public static class Blocks{
         public static final TagKey<Block> DOORS = tag("doors");
         public static final TagKey<Block> JI_CHI_MU_LOG = tag("ji_chi_mu_log");

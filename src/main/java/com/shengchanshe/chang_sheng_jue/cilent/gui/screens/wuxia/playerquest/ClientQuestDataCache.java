@@ -12,7 +12,7 @@ public class ClientQuestDataCache {
     private static final ClientQuestDataCache INSTANCE = new ClientQuestDataCache();
     private final Map<UUID, List<Quest>> playerQuests = new ConcurrentHashMap<>();
 
-        public static ClientQuestDataCache get() {
+    public static ClientQuestDataCache get() {
         return INSTANCE;
     }
 

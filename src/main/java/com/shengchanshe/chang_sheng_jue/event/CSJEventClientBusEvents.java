@@ -2,7 +2,9 @@ package com.shengchanshe.chang_sheng_jue.event;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
+import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.BullionsCastingMoldsBlockEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.CastingMoldsBlockEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity.DesksEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.gong.GongEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.loom.ChangShengJueLoomBlockEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.plaque.PlaqueEntityRender;
@@ -14,23 +16,8 @@ import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.right.entity.Shin
 import com.shengchanshe.chang_sheng_jue.block.custom.tool_table.ToolTableEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.weaponrack.WeaponRackRender;
 import com.shengchanshe.chang_sheng_jue.block.decoration.flowerpot.BlueAndWhitePorcelainFlowerPotsEntityRender;
-import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.BullionsCastingMoldsBlockEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.decoration.windchime.WindChimeEntityRender;
-import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity.DesksEntityRender;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.dugu_nine_swords.DuguNineSwordsHudOverlay;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.gao_marksmanship.GaoMarksmanshipHudOverlay;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.ge_shan_da_niu.GeShanDaNiuHudOverlay;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.golden_bell_jar.GoldenBellJarHudOverlay;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodHudOverlay;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.hercules.HerculesHudOverlay;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.immortal_miracle.ImmortalMiracleHudOverlay;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiHudOverlay;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.relentless_throwing_knives.RelentlessThrowingKnivesHudOverlay;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.shaolin_stick_method.ShaolinStickMethodHudOverlay;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.sunflower_point_caveman.SunflowerPointCavemanHudOverlay;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceHudOverlay;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.turtle_breath_work.TurtleBreathWorkHudOverlay;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipHudOverlay;
+import com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu.KungFuHudOverlay;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.stakes.StakesModel;
 import com.shengchanshe.chang_sheng_jue.entity.combat.throwingknives.ThrowingKnivesEntityModel;
@@ -54,10 +41,10 @@ import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.throwingkni
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceParticle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.wu_gang_cut_gui.WuGangCutGuiParticle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.wu_gang_cut_gui.WuGangCutGuiParticle1;
-import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.breakthrough.mortal.MortalBreakthrough3Particle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.breakthrough.mortal.MortalBreakthrough0Particle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.breakthrough.mortal.MortalBreakthrough1Particle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.breakthrough.mortal.MortalBreakthrough2Particle;
+import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.breakthrough.mortal.MortalBreakthrough3Particle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.breakthrough.qi_condensation.*;
 import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.tun_na.TunNa1Particle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.tun_na.TunNaParticle;
@@ -121,21 +108,10 @@ public class CSJEventClientBusEvents {
 
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiOverlaysEvent event){
-        event.registerAboveAll("dugu_nine_swords_hud", DuguNineSwordsHudOverlay.HUD_DUGU_NINE_SWORDS);
-        event.registerAboveAll("golden_black_knife_method_hud", GoldenBlackKnifeMethodHudOverlay.HUD_GOLDEN_BLACK_KNIFE_METHOD);
-        event.registerAboveAll("xuannu_swordsmanship_hud", XuannuSwordsmanshipHudOverlay.HUD_XUANNU_SWORDSMANSHIP);
-        event.registerAboveAll("gao_marksmanship_hud", GaoMarksmanshipHudOverlay.HUD_GAO_MARKSMANSHIP);
-        event.registerAboveAll("shaolin_stick_method_hud", ShaolinStickMethodHudOverlay.HUD_SHAOLIN_STICK_METHOD);
-        event.registerAboveAll("tread_the_snow_without_trace_hud", TreadTheSnowWithoutTraceHudOverlay.HUD_TREAD_THE_SNOW_WITHOUT_TRACE);
-        event.registerAboveAll("sunflower_point_caveman_hud", SunflowerPointCavemanHudOverlay.HUD_SUNFLOWER_POINT_CAVEMAN);
-        event.registerAboveAll("golden_bell_jar_hud", GoldenBellJarHudOverlay.HUD_GOLDEN_BELL_JAR);
-        event.registerAboveAll("immortal_miracle_hud", ImmortalMiracleHudOverlay.HUD_IMMORTAL_MIRACLE);
-        event.registerAboveAll("ge_shan_da_niu_hud", GeShanDaNiuHudOverlay.HUD_GE_SHAN_DA_NIU);
-        event.registerAboveAll("turtle_breath_work_hud", TurtleBreathWorkHudOverlay.HUD_TURTLE_BREATH_WORK);
-        event.registerAboveAll("relentless_throwing_knives_hud", RelentlessThrowingKnivesHudOverlay.HUD_RELENTLESS_THROWING_KNIVES);
-        event.registerAboveAll("qian_kun_da_nuo_yi_hud", QianKunDaNuoYiHudOverlay.HUD_QIAN_KUN_DA_NUO_YI);
-        event.registerAboveAll("hercules_hud", HerculesHudOverlay.HUD_HERCULES);
+        event.registerAboveAll("kung_fu_hud", KungFuHudOverlay.HUD);
+
 //        event.registerAboveAll("hud_cultivation", CultivationHudOverlay.HUD_CULTIVATION);
+
     }
 
     @SubscribeEvent

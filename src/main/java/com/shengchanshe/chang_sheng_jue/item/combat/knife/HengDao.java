@@ -10,8 +10,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
 
-public class HengDao extends Knife implements GeoItem {
-    private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+public class HengDao extends Knife {
     public HengDao() {
         super(Tiers.IRON, 4, -2.4F, new Properties().durability(1500));
     }
@@ -29,11 +28,5 @@ public class HengDao extends Knife implements GeoItem {
             }
         });
     }
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {}
 
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
-    }
 }

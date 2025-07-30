@@ -7,14 +7,10 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import software.bernie.geckolib.animatable.GeoItem;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
 
-public class YiTianJian extends Sword implements GeoItem {
+public class YiTianJian extends Sword {
     public YiTianJian() {
         super(Tiers.IRON, 5, -2.4F, new Item.Properties().durability(3880).fireResistant().rarity(Rarity.UNCOMMON));
     }
@@ -26,7 +22,7 @@ public class YiTianJian extends Sword implements GeoItem {
         stack.enchant(Enchantments.SHARPNESS, 5);
         return stack;
     }
-    private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
@@ -40,12 +36,5 @@ public class YiTianJian extends Sword implements GeoItem {
                 return renderer;
             }
         });
-    }
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {}
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
     }
 }

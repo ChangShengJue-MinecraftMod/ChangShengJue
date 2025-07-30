@@ -1,15 +1,14 @@
 package com.shengchanshe.chang_sheng_jue.item.tool;
 
-import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapability;
+import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.event.quest.PlayerQuestEvent;
 import com.shengchanshe.chang_sheng_jue.item.tiers.ChangShengJueTiers;
+import com.shengchanshe.chang_sheng_jue.martial_arts.IKungFu;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.WuGangCutGui;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
-import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.wu_gang_cut_gui.WuGangCutGuiPacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.particle.kungfu.WuGangCutGuiParticlePacket;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;
-import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -22,6 +21,8 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -36,7 +37,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class XuanhuaAxe extends AxeItem {
     public XuanhuaAxe() {
@@ -55,42 +55,42 @@ public class XuanhuaAxe extends AxeItem {
 
     @Override
     public boolean mineBlock(ItemStack stack, Level worldIn, BlockState state, BlockPos pos, LivingEntity entityLiving) {
-        if (entityLiving instanceof Player player){
+        if (entityLiving instanceof Player player && player.isShiftKeyDown()){
             Level level = player.getCommandSenderWorld();
             if (!level.isClientSide) {
-                player.getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(wuGangCutGui -> {
-                    if (wuGangCutGui.isWuGangCutGuiComprehend() && wuGangCutGui.getWuGangCutGuiLevel() >= 1) {
-                        BlockPos startPos = pos;
-                        BlockState blockState = level.getBlockState(startPos);
-                        ItemStack mainHandItem = player.getMainHandItem();
-                        if (mainHandItem.getItem() instanceof XuanhuaAxe) {
-                            // 判断是否是木头
-                            if (isLog(blockState)) {
-                                // 存储已处理的方块
-                                Set<BlockPos> visited = new HashSet<>();
-                                // 记录第一个破坏的位置
-                                BlockPos dropPos = startPos;
-                                // 执行连锁砍树
-                                chopTree((ServerLevel) level, startPos, visited, dropPos, mainHandItem, player);
-                                level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                                        ChangShengJueSound.WU_GANG_CUT_GUI_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-
-                                CompoundTag nbt = stack.getOrCreateTag();
-                                int maxDamage = nbt.getInt("xuanhuaAxeMaxDamage");
-                                wuGangCutGui.setWuGangCutGuiMaxDamage(player.getRandom().nextFloat() > 0.2 ? 0 : 1);
-                                nbt.putInt("xuanhuaAxeMaxDamage", maxDamage + wuGangCutGui.getWuGangCutGuiMaxDamage());
-                                if (wuGangCutGui.getWuGangCutGuiUseCount() < 1000) {
-                                    wuGangCutGui.addWuGangCutGuiUseCount(!player.getAbilities().instabuild ? 1 : 1000);
-                                    if (wuGangCutGui.getWuGangCutGuiUseCount() >= 1000){
+                player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                    cap.getKungFu(WuGangCutGui.KUNG_FU_ID.toString())
+                            .filter(kungFu -> kungFu instanceof WuGangCutGui)
+                            .filter(IKungFu::isReady)
+                            .map(active -> {
+                                BlockState blockState = level.getBlockState(pos);
+                                ItemStack mainHandItem = player.getMainHandItem();
+                                if (mainHandItem.getItem() instanceof XuanhuaAxe) {
+                                    // 判断是否是木头
+                                    if (isLog(blockState)) {
+                                        // 存储已处理的方块
+                                        Set<BlockPos> visited = new HashSet<>();
+                                        // 记录第一个破坏的位置
+                                        BlockPos dropPos = pos;
+                                        // 执行连锁砍树
+                                        chopTree((ServerLevel) level, pos, visited, dropPos, mainHandItem, player);
                                         level.playSound(null, player.getX(), player.getY(), player.getZ(),
-                                                ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                        wuGangCutGui.setWuGangCutGuiParticle(true);
+                                                ChangShengJueSound.WU_GANG_CUT_GUI_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
+
+                                        CompoundTag nbt = stack.getOrCreateTag();
+                                        int maxDamage = nbt.getInt("xuanhuaAxeMaxDamage");
+                                        ((WuGangCutGui) active).setXuanhuaAxeMaxDamage(player.getRandom().nextFloat() > 0.2 ? 0 : 1);
+                                        nbt.putInt("xuanhuaAxeMaxDamage", maxDamage + ((WuGangCutGui) active).getXuanhuaAxeMaxDamage());
+                                        ((WuGangCutGui) active).onInteranKungFu(level, player);
+                                        ChangShengJueMessages.sendToPlayer(new WuGangCutGuiParticlePacket(dropPos.getX() + 0.5f, dropPos.getY(), dropPos.getZ() + 0.5f),
+                                                (ServerPlayer) player);
                                     }
                                 }
-                                ChangShengJueMessages.sendToServer(new WuGangCutGuiPacket(dropPos,20));
-                            }
-                        }
-                    }
+                                if (entityLiving instanceof ServerPlayer) {
+                                    cap.syncToClient((ServerPlayer) player);
+                                }
+                                return true;
+                            });
                 });
             }
         }

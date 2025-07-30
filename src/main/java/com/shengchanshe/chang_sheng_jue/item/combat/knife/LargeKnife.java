@@ -11,8 +11,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
 
-public class LargeKnife extends Knife implements GeoItem {
-    private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+public class LargeKnife extends Knife {
     public LargeKnife() {
         super(Tiers.IRON, 4, -2.4F, new Item.Properties().durability(1500));
     }
@@ -29,12 +28,5 @@ public class LargeKnife extends Knife implements GeoItem {
                 return renderer;
             }
         });
-    }
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {}
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
     }
 }

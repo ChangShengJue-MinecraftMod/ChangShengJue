@@ -59,6 +59,7 @@ import com.shengchanshe.chang_sheng_jue.entity.villagers.worker.KilnWorkerRender
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.wedding.DyeableChineseWeddingDressItem;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.DyeableItem;
+import com.shengchanshe.chang_sheng_jue.item.combat.lance.Lance;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -672,8 +673,12 @@ public class ClientSetup {
         EntityRenderers.register(ChangShengJueEntity.KNIFE_MING_XIA.get(), KnifeMingXiaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.FIST_MING_XIA.get(), FistMingXiaRenderer::new);
 
-        ItemProperties.register(ChangShengJueItems.BA_WANG_QIANG.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack ? 1.0F : 0.0F);
-        ItemProperties.register(ChangShengJueItems.RED_TASSELLED_SPEAR.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) -> livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack ? 1.0F : 0.0F);
+        ItemProperties.register(ChangShengJueItems.BA_WANG_QIANG.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) ->
+                livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack
+                        && stack.getItem() instanceof Lance lance && lance.isThrowing ? 1.0F : 0.0F);
+        ItemProperties.register(ChangShengJueItems.RED_TASSELLED_SPEAR.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) ->
+                livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack
+                        && stack.getItem() instanceof Lance lance && lance.isThrowing ? 1.0F : 0.0F);
 
     }
 }

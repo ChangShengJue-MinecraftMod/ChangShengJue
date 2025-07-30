@@ -17,6 +17,7 @@ public class ChangShengJueConfig {
     public static final ForgeConfigSpec.IntValue APTITUDE_TO_TUN_NA_RATE;
     public static final ForgeConfigSpec.BooleanValue TUN_NA_PARTICLE;
     public static final ForgeConfigSpec.BooleanValue BREAKTHROUGH_PARTICLE;
+    public static final ForgeConfigSpec.IntValue FLYING_DAGGER_POUCH_MAX_SLOTS;
     public static final ForgeConfigSpec SPEC;
 
     static {
@@ -57,6 +58,11 @@ public class ChangShengJueConfig {
                 .comment("是否显示突破粒子","突破境界时的粒子特效,默认显示")
                 .translation("config."+ ChangShengJue.MOD_ID +".breakthrough_particle")
                 .define("breakthroughParticle", true);
+
+        FLYING_DAGGER_POUCH_MAX_SLOTS = builder
+                .comment("飞刀囊中最大可放入的飞刀数量", "默认为9把")
+                .translation("config."+ ChangShengJue.MOD_ID +".flying_dagger_pouch_max_slots")
+                .defineInRange("flyingDaggerPouchMaxSlots", 9, 0, 64);
 
         SPEC = builder.build();
     }

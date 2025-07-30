@@ -14,7 +14,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.function.Consumer;
 
 
-public class TuLongDao extends Knife implements GeoItem {
+public class TuLongDao extends Knife {
     public TuLongDao() {
         super(Tiers.IRON, 6, -2.4F, new Properties().durability(4000).fireResistant().rarity(Rarity.UNCOMMON));
     }
@@ -27,7 +27,6 @@ public class TuLongDao extends Knife implements GeoItem {
         return stack;
     }
 
-    private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
@@ -41,12 +40,5 @@ public class TuLongDao extends Knife implements GeoItem {
                 return renderer;
             }
         });
-    }
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {}
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
     }
 }

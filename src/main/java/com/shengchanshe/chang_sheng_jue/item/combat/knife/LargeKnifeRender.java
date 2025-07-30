@@ -11,15 +11,22 @@ import software.bernie.geckolib.renderer.GeoItemRenderer;
 
 public class LargeKnifeRender extends GeoItemRenderer<LargeKnife> {
     public LargeKnifeRender() {
-        super(new DefaultedItemGeoModel(new ResourceLocation(ChangShengJue.MOD_ID,"large_knife")));
+        super(new DefaultedItemGeoModel<>(new ResourceLocation(ChangShengJue.MOD_ID,"large_knife")));
 //        this.addRenderLayer(new RedTasselledSpearLayer(this));
     }
 
     @Override
     public void renderByItem(ItemStack stack, ItemDisplayContext transformType, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
         if (!getGeoModel().getAnimationProcessor().getRegisteredBones().isEmpty()) {
-            if (transformType == ItemDisplayContext.GUI) {
+            if (transformType == ItemDisplayContext.THIRD_PERSON_LEFT_HAND ||
+                    transformType == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND ||
+                    transformType == ItemDisplayContext.FIRST_PERSON_LEFT_HAND ||
+                    transformType == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND) {
+                getGeoModel().getBone("all2").get().setHidden(true);
                 getGeoModel().getBone("all").get().setHidden(false);
+            } else {
+                getGeoModel().getBone("all2").get().setHidden(false);
+                getGeoModel().getBone("all").get().setHidden(true);
             }
         }
         super.renderByItem(stack, transformType, poseStack, bufferSource, packedLight, packedOverlay);

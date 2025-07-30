@@ -1,26 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.quest;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.ge_shan_da_niu.GeShanDaNiuCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.hercules.HerculesCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.paoding.PaodingCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.relentless_throwing_knives.RelentlessThrowingKnivesCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.wheat_nugget_encyclopedia.WheatNuggetEncyclopediaCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.PlayerQuestMenu;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.AbstractGangLeader;
@@ -497,66 +477,66 @@ public class QuestManager {
     }
 
     public void addKungFuCount(Player player,int count){
-        player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSwords -> {
-            duguNineSwords.addDuguNineSwordsUseCount(Math.min(duguNineSwords.getDuguNineSwordsUseCount() - 100, count));
-        });
-        player.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
-            gaoMarksmanship.addGaoMarksmanshipUseCount(Math.min(gaoMarksmanship.getGaoMarksmanshipUseCount() - 100, count));
-        });
-        player.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
-            geShanDaNiu.addGeShanDaNiuUseCount(Math.min(geShanDaNiu.getGeShanDaNiuUseCount() - 100, count));
-        });
-        player.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
-            goldenBellJar.addGoldenBellJarUseCount(Math.min(goldenBellJar.getGoldenBellJarUseCount() - 100, count));
-        });
-        player.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
-            goldenBlackKnifeMethod.addGoldenBlackKnifeMethodUseCount(Math.min(goldenBlackKnifeMethod.getGoldenBlackKnifeMethodUseCount() - 100, count));
-        });
-        player.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(hercules -> {
-            hercules.addHerculesUseCount(Math.min(hercules.getHerculesUseCount() - 100, count));
-        });
-        player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
-            immortalMiracle.addImmortalMiracleUseCount(Math.min(immortalMiracle.getImmortalMiracleUseCount() - 100, count));
-        });
-        player.getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).ifPresent(paoding -> {
-            paoding.addPaodingUseCount(Math.min(paoding.getPaodingUseCount() - 100, count));
-        });
-        player.getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(qianKunDaNuoYi -> {
-            qianKunDaNuoYi.addQianKunDaNuoYiUseCount(Math.min(qianKunDaNuoYi.getQianKunDaNuoYiUseCount() - 100, count));
-        });
-        player.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(relentlessThrowingKnives -> {
-            relentlessThrowingKnives.addRelentlessThrowingKnivesUseCount(Math.min(relentlessThrowingKnives.getRelentlessThrowingKnivesUseCount() - 100, count));
-        });
-        player.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(shaolinStickMethod -> {
-            shaolinStickMethod.addShaolinStickMethodUseCount(Math.min(shaolinStickMethod.getShaolinStickMethodUseCount() - 100, count));
-        });
-        player.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
-            sunflowerPointCaveman.addSunflowerPointCavemanUseCount(Math.min(sunflowerPointCaveman.getSunflowerPointCavemanUseCount() - 100, count));
-        });
-        player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
-            theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(Math.min(theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() - 100, count));
-        });
-        player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
-            treadTheSnowWithoutTrace.addTreadTheSnowWithoutTraceUseCount(Math.min(treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCount() - 100, count));
-        });
-        player.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
-            turtleBreathWork.addTurtleBreathWorkUseCount(Math.min(turtleBreathWork.getTurtleBreathWorkUseCount() - 100, count));
-        });
-        player.getCapability(WheatNuggetEncyclopediaCapabilityProvider.WHEAT_NUGGET_ENCYCLOPEDIA_CAPABILITY).ifPresent(wheatNuggetEncyclopedia -> {
-            wheatNuggetEncyclopedia.addWheatNuggetEncyclopediaUseCount(Math.min(wheatNuggetEncyclopedia.getWheatNuggetEncyclopediaUseCount() - 100, count));
-        });
-        player.getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(wuGangCutGui -> {
-            wuGangCutGui.addWuGangCutGuiUseCount(Math.min(wuGangCutGui.getWuGangCutGuiUseCount() - 100, count));
-        });
-        player.getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(xuannuSwordsmanship -> {
-            xuannuSwordsmanship.addXuannuSwordsmanshipUseCount(Math.min(xuannuSwordsmanship.getXuannuSwordsmanshipUseCount() - 100, count));
-        });
-        player.getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).ifPresent(yugongMovesMountains -> {
-            yugongMovesMountains.addYugongMovesMountainsUseCount(Math.min(yugongMovesMountains.getYugongMovesMountainsUseCount() - 100, count));
-        });
-        player.getCapability(ZhangMenXinxueCapabilityProvider.ZHANG_MEN_XIN_XUE_CAPABILITY).ifPresent(zhangMenXinxueCapability -> {
-            zhangMenXinxueCapability.addZhangMenXinxueUseCount(Math.min(zhangMenXinxueCapability.getZhangMenXinxueUseCount() - 100, count));
-        });
+//        player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSwords -> {
+//            duguNineSwords.addDuguNineSwordsUseCount(Math.min(duguNineSwords.getDuguNineSwordsUseCount() - 100, count));
+//        });
+//        player.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
+//            gaoMarksmanship.addGaoMarksmanshipUseCount(Math.min(gaoMarksmanship.getGaoMarksmanshipUseCount() - 100, count));
+//        });
+//        player.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
+//            geShanDaNiu.addGeShanDaNiuUseCount(Math.min(geShanDaNiu.getGeShanDaNiuUseCount() - 100, count));
+//        });
+//        player.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
+//            goldenBellJar.addGoldenBellJarUseCount(Math.min(goldenBellJar.getGoldenBellJarUseCount() - 100, count));
+//        });
+//        player.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
+//            goldenBlackKnifeMethod.addGoldenBlackKnifeMethodUseCount(Math.min(goldenBlackKnifeMethod.getGoldenBlackKnifeMethodUseCount() - 100, count));
+//        });
+//        player.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(hercules -> {
+//            hercules.addHerculesUseCount(Math.min(hercules.getHerculesUseCount() - 100, count));
+//        });
+//        player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
+//            immortalMiracle.addImmortalMiracleUseCount(Math.min(immortalMiracle.getImmortalMiracleUseCount() - 100, count));
+//        });
+//        player.getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).ifPresent(paoding -> {
+//            paoding.addPaodingUseCount(Math.min(paoding.getPaodingUseCount() - 100, count));
+//        });
+//        player.getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(qianKunDaNuoYi -> {
+//            qianKunDaNuoYi.addQianKunDaNuoYiUseCount(Math.min(qianKunDaNuoYi.getQianKunDaNuoYiUseCount() - 100, count));
+//        });
+//        player.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(relentlessThrowingKnives -> {
+//            relentlessThrowingKnives.addRelentlessThrowingKnivesUseCount(Math.min(relentlessThrowingKnives.getRelentlessThrowingKnivesUseCount() - 100, count));
+//        });
+//        player.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(shaolinStickMethod -> {
+//            shaolinStickMethod.addShaolinStickMethodUseCount(Math.min(shaolinStickMethod.getShaolinStickMethodUseCount() - 100, count));
+//        });
+//        player.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
+//            sunflowerPointCaveman.addSunflowerPointCavemanUseCount(Math.min(sunflowerPointCaveman.getSunflowerPointCavemanUseCount() - 100, count));
+//        });
+//        player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
+//            theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(Math.min(theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() - 100, count));
+//        });
+//        player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
+//            treadTheSnowWithoutTrace.addTreadTheSnowWithoutTraceUseCount(Math.min(treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCount() - 100, count));
+//        });
+//        player.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
+//            turtleBreathWork.addTurtleBreathWorkUseCount(Math.min(turtleBreathWork.getTurtleBreathWorkUseCount() - 100, count));
+//        });
+//        player.getCapability(WheatNuggetEncyclopediaCapabilityProvider.WHEAT_NUGGET_ENCYCLOPEDIA_CAPABILITY).ifPresent(wheatNuggetEncyclopedia -> {
+//            wheatNuggetEncyclopedia.addWheatNuggetEncyclopediaUseCount(Math.min(wheatNuggetEncyclopedia.getWheatNuggetEncyclopediaUseCount() - 100, count));
+//        });
+//        player.getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(wuGangCutGui -> {
+//            wuGangCutGui.addWuGangCutGuiUseCount(Math.min(wuGangCutGui.getWuGangCutGuiUseCount() - 100, count));
+//        });
+//        player.getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(xuannuSwordsmanship -> {
+//            xuannuSwordsmanship.addXuannuSwordsmanshipUseCount(Math.min(xuannuSwordsmanship.getXuannuSwordsmanshipUseCount() - 100, count));
+//        });
+//        player.getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).ifPresent(yugongMovesMountains -> {
+//            yugongMovesMountains.addYugongMovesMountainsUseCount(Math.min(yugongMovesMountains.getYugongMovesMountainsUseCount() - 100, count));
+//        });
+//        player.getCapability(ZhangMenXinxueCapabilityProvider.ZHANG_MEN_XIN_XUE_CAPABILITY).ifPresent(zhangMenXinxueCapability -> {
+//            zhangMenXinxueCapability.addZhangMenXinxueUseCount(Math.min(zhangMenXinxueCapability.getZhangMenXinxueUseCount() - 100, count));
+//        });
     }
 
     // 新增同步方法
