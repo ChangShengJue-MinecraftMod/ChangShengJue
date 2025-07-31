@@ -1,16 +1,9 @@
 package com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
-import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import software.bernie.geckolib.renderer.GeoBlockRenderer;
 
-public class TailoringCaseEntityRender implements BlockEntityRenderer<TailoringCaseEntity> {
-    @Override
-    public void render(TailoringCaseEntity tailoringCaseEntity, float v, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int i1) {
-
+public class TailoringCaseEntityRender extends GeoBlockRenderer<TailoringCaseEntity> {
+    public TailoringCaseEntityRender() {
+        super(new TailoringCaseEntityModel());
     }
-
-    public TailoringCaseEntityRender(BlockEntityRendererProvider.Context context) {}
-
 }

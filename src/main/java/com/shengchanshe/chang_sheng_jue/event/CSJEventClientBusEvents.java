@@ -13,6 +13,7 @@ import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigleft.entity.Bi
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigright.entity.BigShingMunRightEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.left.entity.ShingMunLeftEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.right.entity.ShingMunRightEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase.TailoringCaseEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.tool_table.ToolTableEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.weaponrack.WeaponRackRender;
 import com.shengchanshe.chang_sheng_jue.block.decoration.flowerpot.BlueAndWhitePorcelainFlowerPotsEntityRender;
@@ -99,6 +100,9 @@ public class CSJEventClientBusEvents {
 
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.GONG_ENTITY.get(),
                 (BlockEntityRendererProvider.Context context) -> new GongEntityRender());
+
+        event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.TAILORING_CASE_ENTITY.get(),
+                (BlockEntityRendererProvider.Context context) -> new TailoringCaseEntityRender());
 
     }
 

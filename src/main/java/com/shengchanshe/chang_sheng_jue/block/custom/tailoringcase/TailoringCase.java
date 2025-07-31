@@ -41,10 +41,10 @@ public class TailoringCase extends BaseEntityBlock {
         pBuilder.add(FACING);
     }
 
+    @Override
     public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL;
+        return RenderShape.ENTITYBLOCK_ANIMATED;
     }
-
 
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
@@ -78,6 +78,7 @@ public class TailoringCase extends BaseEntityBlock {
         return createTickerHelper(pBlockEntityType, ChangShengJueBlocksEntities.TAILORING_CASE_ENTITY.get(),
                 (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }
+
 
     @Nullable
     @Override

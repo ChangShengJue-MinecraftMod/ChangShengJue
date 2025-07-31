@@ -343,5 +343,11 @@
     "sounds": [
       "chang_sheng_jue:block/gong_sound"
     ]
+  },
+  "tailoring_case_sound": {
+    "subtitle": "sounds.chang_sheng_jue.tailoring_case_sound",
+    "sounds": [
+      "chang_sheng_jue:block/tailoring_case_sound"
+    ]
   }
 }

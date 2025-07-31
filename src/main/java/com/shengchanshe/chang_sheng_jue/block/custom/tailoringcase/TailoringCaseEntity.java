@@ -2,13 +2,16 @@ package com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
+import com.shengchanshe.chang_sheng_jue.block.custom.loom.ChangShengJueLoomBlockEntity;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase.TailoringCaseMenu;
+import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -18,32 +21,35 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoBlockEntity;
+import software.bernie.geckolib.constant.DefaultAnimations;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.ClientUtils;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Arrays;
 
-public class TailoringCaseEntity extends BlockEntity implements MenuProvider {
+public class TailoringCaseEntity extends BlockEntity implements MenuProvider , GeoBlockEntity {
+    private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public static final DirectionProperty FACING = TailoringCase.FACING;
-
     // 物品槽位处理器（9个输入，1个输出）
     private final ItemStackHandler itemHandler = new ItemStackHandler(10);
-    public static final int SLOT_INPUT_1 = 0;
-    public static final int SLOT_INPUT_2 = 1;
-    public static final int SLOT_INPUT_3 = 2;
-    public static final int SLOT_INPUT_4 = 3;
-    public static final int SLOT_INPUT_5 = 4;
-    public static final int SLOT_INPUT_6 = 5;
-    public static final int SLOT_INPUT_7 = 6;
-    public static final int SLOT_INPUT_8 = 7;
-    public static final int SLOT_INPUT_9 = 8;
     public static final int SLOT_OUTPUT = 9;
     private LazyOptional<ItemStackHandler> itemHandlerLazy = LazyOptional.empty();
     protected final ContainerData data;
@@ -84,8 +90,8 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider {
             @Override
             public int get(int i) {
                 return switch (i){
-                    case 0 -> progress;
-                    case 1 -> maxProgress;
+                    case 0 -> TailoringCaseEntity.this.progress;
+                    case 1 -> TailoringCaseEntity.this.maxProgress;
                     default -> 0;
                 };
             }
@@ -93,8 +99,8 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider {
             @Override
             public void set(int i, int i1) {
                 switch (i){
-                    case 0 -> progress = i1;
-                    case 1 -> maxProgress = i1;
+                    case 0 -> TailoringCaseEntity.this.progress = i1;
+                    case 1 -> TailoringCaseEntity.this.maxProgress = i1;
                 }
             }
         };
@@ -177,13 +183,14 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider {
         // 只有在制作中时才增加进度
         if (progress > 0 && progress < maxProgress) {
             progress++;
-            setChanged(pLevel, pPos, pState);
+            this.setChanged();
         } else if (progress >= maxProgress) {
             // 进度完成，生成物品
             if (currentRecipe != null) {
                 craftItem(currentRecipe.getResult());
             }
             progress = 0;
+            this.setChanged();
         }
     }
 
@@ -221,7 +228,7 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider {
             consumeMaterials(player.getInventory(), currentRecipe);
             // 开始制作进度
             this.progress = 1;
-            setChanged(level, worldPosition, getBlockState());
+            this.setChanged();
         }
     }
 
@@ -317,5 +324,34 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider {
         if (level != null) {
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
         }
+    }
+
+    @Override
+    public void setChanged() {
+        super.setChanged();
+        if (this.level != null){
+            this.level.sendBlockUpdated(this.getBlockPos(),this.getBlockState(),this.getBlockState(), Block.UPDATE_CLIENTS);
+        }
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(((new AnimationController<>(this, "work", 0, (state) ->{
+            if (this.progress != 0){
+                state.setAndContinue(RawAnimation.begin().thenPlay("work"));
+                return PlayState.CONTINUE;
+            } else {
+                return PlayState.STOP;
+            }
+        }).setSoundKeyframeHandler((state) -> {
+            Player player = ClientUtils.getClientPlayer();
+            Level level1 = ClientUtils.getLevel();
+                level1.playSound(player,this.getBlockPos(), ChangShengJueSound.TAILORING_CASE_SOUND.get(), SoundSource.BLOCKS, 0.1F, 1.0F);
+            }))));
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
     }
 }
