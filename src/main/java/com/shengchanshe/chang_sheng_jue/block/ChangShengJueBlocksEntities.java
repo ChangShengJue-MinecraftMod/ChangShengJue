@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue.block;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.BullionsCastingMoldsBlockEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.CastingMoldsBlockEntity;
+import com.shengchanshe.chang_sheng_jue.block.custom.forgeblock.ForgeBlockEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.gong.GongEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.loom.ChangShengJueLoomBlockEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.plaque.PlaqueEntity;
@@ -11,6 +12,7 @@ import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigleft.entity.Bi
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigright.entity.BigShingMunRightEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.left.entity.ShingMunLeftEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.right.entity.ShingMunRightEntity;
+import com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase.TailoringCaseEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.tool_table.ToolTableEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.weaponrack.WeaponRackEntity;
 import com.shengchanshe.chang_sheng_jue.block.decoration.flowerpot.BlueAndWhitePorcelainFlowerPotsEntity;
@@ -49,6 +51,13 @@ public class ChangShengJueBlocksEntities {
 
     public static final RegistryObject<BlockEntityType<PlaqueEntity>> PLAQUE_ENTITY =
             BLOCK_ENTITYES.register("plaque_entity", ()-> BlockEntityType.Builder.of(PlaqueEntity::new, ChangShengJueBlocks.PLAQUE.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<TailoringCaseEntity>> TAILORING_CASE_ENTITY =
+            BLOCK_ENTITYES.register("tailoring_case_entity", ()-> BlockEntityType.Builder.of(TailoringCaseEntity::new, ChangShengJueBlocks.TAILORING_CASE.get()).build(null));
+
+    //forgeblcok
+    public static final RegistryObject<BlockEntityType<ForgeBlockEntity>> FORGE_BLOCK_ENTITY =
+            BLOCK_ENTITYES.register("forge_block_entity",()-> BlockEntityType.Builder.of(ForgeBlockEntity::new, ChangShengJueBlocks.FORGE_BLOCK.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<CastingMoldsBlockEntity>> CASTING_MOLDS_BLOCK_ENTITY =
             BLOCK_ENTITYES.register("casting_molds_block_entity",()-> BlockEntityType.Builder.of(CastingMoldsBlockEntity::new, ChangShengJueBlocks.CASTING_MOLDS.get()).build(null));

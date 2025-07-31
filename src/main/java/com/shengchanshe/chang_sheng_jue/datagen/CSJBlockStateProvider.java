@@ -192,6 +192,11 @@ public class CSJBlockStateProvider extends BlockStateProvider {
         horizontalBlock(ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/white_jade_guardrail")));
 //        wallBlock(((WallBlock) ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get()), new ResourceLocation(ChangShengJue.MOD_ID,"block/white_jade_balustrade"));
+
+
+
+
+
     }
 
 

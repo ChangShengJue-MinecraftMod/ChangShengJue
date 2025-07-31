@@ -764,12 +764,19 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.FEN_JIU.get());
         this.dropSelf(ChangShengJueBlocks.SHI_LI_XIANG.get());
         this.dropSelf(ChangShengJueBlocks.WHEAT_NUGGETS_TRIBUTE_WINE.get());
+        //裁衣案
+        this.dropSelf(ChangShengJueBlocks.TAILORING_CASE.get());
+        this.dropSelf(ChangShengJueBlocks.FORGE_BLOCK.get());
         this.add(ChangShengJueBlocks.EMPTY_FEN_JIU.get(),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()
                                 .add(LootItem.lootTableItem(ChangShengJueBlocks.EMPTY_FEN_JIU.get())))
                         .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
         );
+
+
+
+
         this.add(ChangShengJueBlocks.EMPTY_SHI_LI_XIANG.get(),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()

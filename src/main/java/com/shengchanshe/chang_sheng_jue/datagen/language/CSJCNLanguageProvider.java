@@ -1077,6 +1077,8 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get(), "大城门(左)");
         this.add(ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get(), "大城门(右)");
         this.add(ChangShengJueBlocks.WIND_CHIME.get(), "风铃");
+        this.add(ChangShengJueBlocks.TAILORING_CASE.get(), "裁衣案");
+        this.add(ChangShengJueBlocks.FORGE_BLOCK.get(), "锻台");
         //实体生物
         this.add(ChangShengJueEntity.BUTTERFLY.get(), "蝴蝶");
         this.add(ChangShengJueEntity.MONKEY.get(), "猴");
@@ -1387,5 +1389,13 @@ public class CSJCNLanguageProvider extends LanguageProvider {
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questName", "天若有情天亦老");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questDescription", "人间正道是沧桑。");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questRequirementsDescription", "完成两次江湖追杀令");
+
+        //裁衣案"container.tailoring_case.json"
+        this.add("container."+ ChangShengJue.MOD_ID +".tailoring_case", "裁衣案");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".tailoring_case.craft", "裁衣");
+        //锻台“forgeblock”
+        this.add("container."+ ChangShengJue.MOD_ID +".forge_block", "锻台");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".forge_block.craft", "锻造");
+
     }
 }

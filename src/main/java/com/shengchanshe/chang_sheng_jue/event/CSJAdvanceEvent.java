@@ -193,7 +193,6 @@ public class CSJAdvanceEvent {
                 }
             }
         }
-
     }
 
     private static final Map<UUID, Integer> summonTracker = new HashMap<>();
@@ -214,13 +213,12 @@ public class CSJAdvanceEvent {
         if (summonCount >= 3) {
             return;
         }
-        System.out.println("1");
         BlockPos pos = player.blockPosition();
         ServerLevel serverLevel = (ServerLevel) level;
         BlockPos playerPos = player.blockPosition();
         RandomSource random = serverLevel.getRandom();
         if (serverLevel.getRandom().nextInt(100) <= 20) {
-            System.out.println("2");
+
             int numberOfBandits = RandomSource.create().nextInt(3) + 1;
             for (int i = 0; i < numberOfBandits; i++) {
                 BlockPos spawnPos = findValidSpawnPosition(serverLevel, playerPos, random,20);
@@ -240,7 +238,6 @@ public class CSJAdvanceEvent {
                     serverLevel.addFreshEntity(bandit);
                     COOLDOWN = 0;
                     summonTracker.put(playerUUID, summonCount + 1);
-                    System.out.println("summonCount" + summonCount);
                 }
             }
         }

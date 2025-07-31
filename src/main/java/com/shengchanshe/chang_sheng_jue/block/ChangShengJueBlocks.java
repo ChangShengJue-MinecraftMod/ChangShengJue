@@ -10,6 +10,7 @@ import com.shengchanshe.chang_sheng_jue.block.custom.bracket.*;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.BullionsCastingMolds;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.CastingMolds;
 import com.shengchanshe.chang_sheng_jue.block.custom.eescalator.Eescalator;
+import com.shengchanshe.chang_sheng_jue.block.custom.forgeblock.ForgeBlock;
 import com.shengchanshe.chang_sheng_jue.block.custom.furniture.chair.*;
 import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.BookDesk;
 import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.LowDesk;
@@ -23,6 +24,7 @@ import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigleft.BigShingM
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigright.BigShingMunRight;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.left.ShingMunLeft;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.right.ShingMunRight;
+import com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase.TailoringCase;
 import com.shengchanshe.chang_sheng_jue.block.custom.tile.*;
 import com.shengchanshe.chang_sheng_jue.block.custom.tool_table.ToolTable;
 import com.shengchanshe.chang_sheng_jue.block.custom.weaponrack.WeaponRack;
@@ -1404,6 +1406,12 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> PLAQUE = registerBlock("plaque",
             () -> new Plaque(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN)));
 
+    //裁衣案
+    public static final RegistryObject<Block> TAILORING_CASE = registerBlock("tailoring_case",
+            ()-> new TailoringCase(BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.CHAIN).noOcclusion()));
+    //锻台
+    public static final RegistryObject<Block> FORGE_BLOCK = registerBlock("forge_block",
+            () -> new ForgeBlock(BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.CHAIN).noOcclusion()));
     //锣
     public static final RegistryObject<Block> GONG = registerBlockWithoutBlockItem("gong",
             () -> new Gong(BlockBehaviour.Properties.copy(Blocks.BELL)));

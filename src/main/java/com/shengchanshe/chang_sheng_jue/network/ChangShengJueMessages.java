@@ -4,6 +4,10 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.plaque.UpdatePlaqueTextPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.cultivation.CultivationPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.cultivation.SpiritDensityLevelPacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.gui.CraftItem.ForgeCraftPacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.gui.CraftItem.ForgeSyncRecipePacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.gui.CraftItem.TailoringCraftPacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.gui.CraftItem.TailoringSyncRecipePacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.KilnWorkerSetTradeTypePacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.*;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.quest.*;
@@ -287,6 +291,33 @@ public class ChangShengJueMessages {
                 .encoder(TriggerBreakthroughParticlePacket::encode)
                 .consumerMainThread(TriggerBreakthroughParticlePacket::handle)
                 .add();
+
+        net.messageBuilder(TailoringCraftPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(TailoringCraftPacket::fromBytes)
+                .encoder(TailoringCraftPacket::toBytes)
+                .consumerMainThread(TailoringCraftPacket::handle)
+                .add();
+
+        // 注册配方同步
+        net.messageBuilder(TailoringSyncRecipePacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(TailoringSyncRecipePacket::fromBytes)
+                .encoder(TailoringSyncRecipePacket::toBytes)
+                .consumerMainThread(TailoringSyncRecipePacket::handle)
+                .add();
+
+        //forgeblock
+        net.messageBuilder(ForgeCraftPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(ForgeCraftPacket::fromBytes)
+                .encoder(ForgeCraftPacket::toBytes)
+                .consumerMainThread(ForgeCraftPacket::handle)
+                .add();
+
+        net.messageBuilder(ForgeSyncRecipePacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(ForgeSyncRecipePacket::fromBytes)
+                .encoder(ForgeSyncRecipePacket::toBytes)
+                .consumerMainThread(ForgeSyncRecipePacket::handle)
+                .add();
+
     }
 
     public static <MSG> void sendToServer(MSG message) {
