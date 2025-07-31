@@ -68,7 +68,7 @@ public class KungFuCapability implements IKungFuCapability {
     }
 
     @Override
-    public int getCooldownTick(ServerPlayer player, String kungFuId) {
+    public int getCooldownTick(String kungFuId) {
         return getKungFu(kungFuId).filter(kungFu -> kungFu instanceof IKungFu)
                 .map(IKungFu::getCoolDown)
                 .orElse(0);

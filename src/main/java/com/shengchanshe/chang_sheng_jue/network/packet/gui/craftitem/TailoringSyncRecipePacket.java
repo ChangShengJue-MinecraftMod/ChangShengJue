@@ -1,12 +1,10 @@
-package com.shengchanshe.chang_sheng_jue.network.packet.gui.CraftItem;
+package com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem;
 
 import com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase.TailoringCaseEntity;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase.TailoringCaseMenu;
-import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;

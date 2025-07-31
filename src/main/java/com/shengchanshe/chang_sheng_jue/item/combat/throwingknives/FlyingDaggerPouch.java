@@ -90,7 +90,7 @@ public class FlyingDaggerPouch extends Item {
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                 cap.comprehendKungFu((ServerPlayer) player, RelentlessThrowingKnives.KUNG_FU_ID.toString(), player);
                 if (cap.getKungFuLevel(RelentlessThrowingKnives.KUNG_FU_ID.toString()) >= 1
-                        && cap.getCooldownTick((ServerPlayer) player, RelentlessThrowingKnives.KUNG_FU_ID.toString()) <= 0
+                        && cap.getCooldownTick(RelentlessThrowingKnives.KUNG_FU_ID.toString()) <= 0
                         && player.getFoodData().getFoodLevel() > 8 && player.getFoodData().getSaturationLevel() > 0) {
                     int throwingKnivesCount = cap.getThrowingKnivesCount(RelentlessThrowingKnives.KUNG_FU_ID.toString());
                     int i1 = Math.min(daggers.size(), throwingKnivesCount);

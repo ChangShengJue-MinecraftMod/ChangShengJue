@@ -5,6 +5,7 @@ import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.beat_dog_stick.BeatDogStickAttackEntity;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.ShaolinStickMethod;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.Hercules;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -58,7 +59,7 @@ public class Clubbed extends SwordItem implements GeoItem {
             if (itemstack.getItem() instanceof Clubbed) {
                 if (!pPlayer.level().isClientSide){
                     pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                        if (cap.getCooldownTick((ServerPlayer) pPlayer, ShaolinStickMethod.KUNG_FU_ID.toString()) <= 0) {
+                        if (cap.getCooldownTick(ShaolinStickMethod.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(ShaolinStickMethod.KUNG_FU_ID.toString()) >= 1) {
                             pPlayer.startUsingItem(pUsedHand);
                         }
                     });
@@ -73,7 +74,7 @@ public class Clubbed extends SwordItem implements GeoItem {
         if (!pLevel.isClientSide) {
             if (pLivingEntity instanceof Player player) {
                 player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                    if (cap.getCooldownTick((ServerPlayer) player, ShaolinStickMethod.KUNG_FU_ID.toString()) <= 0
+                    if (cap.getCooldownTick(ShaolinStickMethod.KUNG_FU_ID.toString()) <= 0
                             && cap.getKungFuLevel(ShaolinStickMethod.KUNG_FU_ID.toString()) >= 1) {
                         triggerAnim(player, GeoItem.getOrAssignId(pStack, (ServerLevel) pLevel),
                                 "Charge", "charge");
@@ -91,7 +92,7 @@ public class Clubbed extends SwordItem implements GeoItem {
         if (user instanceof Player player && !world.isClientSide) {
             int usedTicks = this.getUseDuration(stack) - remainingUseDuration;
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                if (cap.getCooldownTick((ServerPlayer) player, ShaolinStickMethod.KUNG_FU_ID.toString()) <= 0) {
+                if (cap.getCooldownTick(ShaolinStickMethod.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(ShaolinStickMethod.KUNG_FU_ID.toString()) >= 1) {
                     // 检查是否按住至少 0.3 秒（6 tick）
                     if (usedTicks >= cap.getSwingTick((ServerPlayer) player, ShaolinStickMethod.KUNG_FU_ID.toString())) {
                         cap.castKungFu(ShaolinStickMethod.KUNG_FU_ID.toString(), player);

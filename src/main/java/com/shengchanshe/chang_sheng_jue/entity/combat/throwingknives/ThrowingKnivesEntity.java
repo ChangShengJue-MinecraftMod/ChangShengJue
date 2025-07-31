@@ -188,7 +188,7 @@ public class ThrowingKnivesEntity extends AbstractArrow {
         if (entity1 != null && !entity1.level().isClientSide && entity1 instanceof Player player){
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                 if (cap.getKungFuLevel(RelentlessThrowingKnives.KUNG_FU_ID.toString()) > 0
-                        && cap.getCooldownTick((ServerPlayer) player, RelentlessThrowingKnives.KUNG_FU_ID.toString()) <= 0) {
+                        && cap.getCooldownTick(RelentlessThrowingKnives.KUNG_FU_ID.toString()) <= 0) {
                     if ((player.getFoodData().getFoodLevel() > 8 && player.getFoodData().getSaturationLevel() > 0)) {
                         f[0] = f[0] * cap.getDamageFactor((ServerPlayer) player, RelentlessThrowingKnives.KUNG_FU_ID.toString());
                         if (player.hasEffect(ChangShengJueEffects.FEN_JIU.get())){

@@ -71,6 +71,8 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.UseAnim;
+import net.minecraftforge.common.IExtensibleEnum;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 import java.util.Arrays;
@@ -79,33 +81,25 @@ import java.util.function.Supplier;
 
 public class ClientSetup {
     // 所有需要注册颜色渲染器的物品的集合
-    static List<Supplier<? extends Item>> cottonArmorItems = Arrays.asList(
-            ChangShengJueItems.COTTON_HELMET,
-            ChangShengJueItems.WHITE_COTTON_HELMET,
-            ChangShengJueItems.COTTON_CHESTPLATE,
-            ChangShengJueItems.COTTON_LEGGINGS,
-            ChangShengJueItems.COTTON_BOOTS,
+    public static final List<Supplier<? extends Item>> ARMOR_ITEMS = Arrays.asList(ChangShengJueItems.COTTON_HELMET, ChangShengJueItems.WHITE_COTTON_HELMET,
+            ChangShengJueItems.COTTON_CHESTPLATE, ChangShengJueItems.COTTON_LEGGINGS, ChangShengJueItems.COTTON_BOOTS,
 
-            ChangShengJueItems.FEMALE_TAOIST_HELMET,
-            ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE,
-            ChangShengJueItems.MALE_TAOIST_HELMET,
-            ChangShengJueItems.MALE_TAOIST_CHESTPLATE,
-            ChangShengJueItems.TAOIST_BOOTS,
+            ChangShengJueItems.FEMALE_TAOIST_HELMET, ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE, ChangShengJueItems.MALE_TAOIST_HELMET,
+            ChangShengJueItems.MALE_TAOIST_CHESTPLATE, ChangShengJueItems.TAOIST_BOOTS,
 
             ChangShengJueItems.TAOIST_LEGGINGS,
 
-            ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP,
-            ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU,
-            ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET,
-            ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING,
+            ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP, ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU,
+            ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET, ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING,
             ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES,
 
-            ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN,
-            ChangShengJueItems.FLY_FISH_CHESTPLATE,
+            ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN, ChangShengJueItems.FLY_FISH_CHESTPLATE,
             ChangShengJueItems.FLY_FISH_LONG_BOOTS,
 
             ChangShengJueItems.HENG_DAO
     );
+
+
     public static void clientSetup(final FMLClientSetupEvent event){
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.PINEAPPLE_BLOCK.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SOYBEAN_BLOCK.get(), RenderType.cutout());
@@ -593,15 +587,9 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GREEN_DOUGONG.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLUE_DOUGONG.get(), RenderType.cutout());
 
-
-
-
-
-
-
         ItemColors itemColors = Minecraft.getInstance().getItemColors();
         // 为每个物品注册颜色渲染器
-        for (Supplier<? extends Item> itemSupplier : cottonArmorItems) {
+        for (Supplier<? extends Item> itemSupplier : ARMOR_ITEMS) {
             itemColors.register((stack, color) -> {
                 if (color == 1 && stack.getItem() instanceof DyeableItem dyeable) {
                     // color == 1 表示这是覆盖层
@@ -684,6 +672,5 @@ public class ClientSetup {
         ItemProperties.register(ChangShengJueItems.RED_TASSELLED_SPEAR.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) ->
                 livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack
                         && stack.getItem() instanceof Lance lance && lance.isThrowing ? 1.0F : 0.0F);
-
     }
 }

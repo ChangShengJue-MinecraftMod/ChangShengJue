@@ -51,7 +51,7 @@ public class SoftSword extends Sword implements GeoItem {
         if ((pPlayer.getFoodData().getFoodLevel() > 8 && pPlayer.getFoodData().getSaturationLevel() > 0) || pPlayer.getAbilities().instabuild) {
             if (!pPlayer.level().isClientSide){
                 pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                    if (cap.getCooldownTick((ServerPlayer) pPlayer, XuannuSwordsmanship.KUNG_FU_ID.toString()) <= 0) {
+                    if (cap.getCooldownTick(XuannuSwordsmanship.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(XuannuSwordsmanship.KUNG_FU_ID.toString()) >= 1) {
                         pPlayer.startUsingItem(pUsedHand); // 开始记录按住时间
                     }
                 });
@@ -65,7 +65,7 @@ public class SoftSword extends Sword implements GeoItem {
         if (!pLevel.isClientSide) {
             if (pLivingEntity instanceof Player player) {
                 player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                    if (cap.getCooldownTick((ServerPlayer) player, XuannuSwordsmanship.KUNG_FU_ID.toString()) <= 0
+                    if (cap.getCooldownTick(XuannuSwordsmanship.KUNG_FU_ID.toString()) <= 0
                             && cap.getKungFuLevel(XuannuSwordsmanship.KUNG_FU_ID.toString()) >= 1) {
                         triggerAnim(player, GeoItem.getOrAssignId(pStack, (ServerLevel) pLevel),
                                 "Charge", "charge");
@@ -83,7 +83,7 @@ public class SoftSword extends Sword implements GeoItem {
         if (user instanceof Player player && !world.isClientSide) {
             int usedTicks = this.getUseDuration(stack) - remainingUseDuration;
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                if (cap.getCooldownTick((ServerPlayer) player, XuannuSwordsmanship.KUNG_FU_ID.toString()) <= 0) {
+                if (cap.getCooldownTick(XuannuSwordsmanship.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(XuannuSwordsmanship.KUNG_FU_ID.toString()) >= 1) {
                     // 检查是否按住至少 0.3 秒（6 tick）
                     if (usedTicks >= cap.getSwingTick((ServerPlayer) player, XuannuSwordsmanship.KUNG_FU_ID.toString()) && !player.isShiftKeyDown()) {
                         cap.castKungFu(XuannuSwordsmanship.KUNG_FU_ID.toString(), player);

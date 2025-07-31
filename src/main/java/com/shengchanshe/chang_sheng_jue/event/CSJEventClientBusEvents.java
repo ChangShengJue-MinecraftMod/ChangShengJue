@@ -18,6 +18,7 @@ import com.shengchanshe.chang_sheng_jue.block.custom.weaponrack.WeaponRackRender
 import com.shengchanshe.chang_sheng_jue.block.decoration.flowerpot.BlueAndWhitePorcelainFlowerPotsEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.decoration.windchime.WindChimeEntityRender;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu.KungFuHudOverlay;
+import com.shengchanshe.chang_sheng_jue.cilent.layer.EntityExtraLayer;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.stakes.StakesModel;
 import com.shengchanshe.chang_sheng_jue.entity.combat.throwingknives.ThrowingKnivesEntityModel;
@@ -171,4 +172,12 @@ public class CSJEventClientBusEvents {
         KeyBinding.registerKey(event);
     }
 
+    @SubscribeEvent
+    public static void addLayersToEntities(EntityRenderersEvent.AddLayers event) {
+        for (String skinType : event.getSkins()){
+            event.getSkin(skinType).addLayer(new EntityExtraLayer(event.getSkin(skinType)));
+        }
+
+//        GeckoPlayer.GeckoPlayerThirdPerson.initRenderer();
+    }
 }

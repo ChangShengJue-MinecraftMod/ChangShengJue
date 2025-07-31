@@ -45,38 +45,38 @@ public class GoldThreadGlove extends SwordItem implements GeoItem {
         if (!pPlayer.level().isClientSide){
             pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                 if (pPlayer.getAbilities().instabuild) {
-                        if (cap.getCooldownTick((ServerPlayer) pPlayer, GeShanDaNiu.KUNG_FU_ID.toString()) <= 0
+                        if (cap.getCooldownTick(GeShanDaNiu.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(GeShanDaNiu.KUNG_FU_ID.toString()) >= 1
                                 && cap.isStart(GeShanDaNiu.KUNG_FU_ID.toString())) {
                             // 检查是否按住至少 0.3 秒（6 tick）
                             pPlayer.startUsingItem(pUsedHand); // 开始记录按住时间
-                        } else if (cap.getCooldownTick((ServerPlayer) pPlayer, SunflowerPointCaveman.KUNG_FU_ID.toString()) <= 0
+                        } else if (cap.getCooldownTick(SunflowerPointCaveman.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(SunflowerPointCaveman.KUNG_FU_ID.toString()) >= 1
                                 && cap.isStart(SunflowerPointCaveman.KUNG_FU_ID.toString())) {
                             pPlayer.startUsingItem(pUsedHand);
-                        } else if (cap.getCooldownTick((ServerPlayer) pPlayer, TurtleBreathWork.KUNG_FU_ID.toString()) <= 0
+                        } else if (cap.getCooldownTick(TurtleBreathWork.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(TurtleBreathWork.KUNG_FU_ID.toString()) >= 1
                                 && cap.isStart(TurtleBreathWork.KUNG_FU_ID.toString())) {
                             pPlayer.startUsingItem(pUsedHand);
-                        }else if (cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) > 1
+                        }else if (cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) > 1 && cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) >= 1
                                 && cap.isStart(Hercules.KUNG_FU_ID.toString())) {
                             pPlayer.startUsingItem(pUsedHand);
                         }
                 } else {
                     if ((pPlayer.getFoodData().getFoodLevel() > 8 && pPlayer.getFoodData().getSaturationLevel() > 0)) {
-                        if (cap.getCooldownTick((ServerPlayer) pPlayer, GeShanDaNiu.KUNG_FU_ID.toString()) <= 0
+                        if (cap.getCooldownTick(GeShanDaNiu.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(GeShanDaNiu.KUNG_FU_ID.toString()) >= 1
                                 && cap.isStart(GeShanDaNiu.KUNG_FU_ID.toString())) {
                             // 检查是否按住至少 0.3 秒（6 tick）
                             pPlayer.startUsingItem(pUsedHand); // 开始记录按住时间
-                        } else if (cap.getCooldownTick((ServerPlayer) pPlayer, SunflowerPointCaveman.KUNG_FU_ID.toString()) <= 0
+                        } else if (cap.getCooldownTick(SunflowerPointCaveman.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(SunflowerPointCaveman.KUNG_FU_ID.toString()) >= 1
                                 && cap.isStart(SunflowerPointCaveman.KUNG_FU_ID.toString())) {
                             pPlayer.startUsingItem(pUsedHand);
-                        } else if (cap.getCooldownTick((ServerPlayer) pPlayer, TurtleBreathWork.KUNG_FU_ID.toString()) <= 0
+                        } else if (cap.getCooldownTick(TurtleBreathWork.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(TurtleBreathWork.KUNG_FU_ID.toString()) >= 1
                                 && cap.isStart(TurtleBreathWork.KUNG_FU_ID.toString())) {
                             pPlayer.startUsingItem(pUsedHand);
-                        }else if (cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) > 1
+                        }else if (cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) > 1 && cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) >= 1
                                 && cap.isStart(Hercules.KUNG_FU_ID.toString())) {
                             pPlayer.startUsingItem(pUsedHand);
                         }
                     }else {
-                        if (cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) > 1
+                        if (cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) > 1 && cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) >= 1
                                 && cap.isStart(Hercules.KUNG_FU_ID.toString())) {
                             pPlayer.startUsingItem(pUsedHand);
                         }
@@ -92,23 +92,24 @@ public class GoldThreadGlove extends SwordItem implements GeoItem {
         if (user instanceof Player player && !world.isClientSide) {
             int usedTicks = this.getUseDuration(stack) - remainingUseDuration;
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                if (cap.getCooldownTick((ServerPlayer) player, GeShanDaNiu.KUNG_FU_ID.toString()) <= 0
+                if (cap.getCooldownTick(GeShanDaNiu.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(GeShanDaNiu.KUNG_FU_ID.toString()) >= 1
                         && cap.isStart(GeShanDaNiu.KUNG_FU_ID.toString())) {
                     // 检查是否按住至少 0.3 秒（6 tick）
                     if (usedTicks >= cap.getSwingTick((ServerPlayer) player, GeShanDaNiu.KUNG_FU_ID.toString())) {
                         cap.castKungFu(GeShanDaNiu.KUNG_FU_ID.toString(), player);
                     }
-                } else if (cap.getCooldownTick((ServerPlayer) player, SunflowerPointCaveman.KUNG_FU_ID.toString()) <= 0
+                } else if (cap.getCooldownTick(SunflowerPointCaveman.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(SunflowerPointCaveman.KUNG_FU_ID.toString()) >= 1
                         && cap.isStart(SunflowerPointCaveman.KUNG_FU_ID.toString())) {
                     if (usedTicks >= cap.getSwingTick((ServerPlayer) player, SunflowerPointCaveman.KUNG_FU_ID.toString())) {
                         cap.castKungFu(SunflowerPointCaveman.KUNG_FU_ID.toString(), player);
                     }
-                } else if (cap.getCooldownTick((ServerPlayer) player, TurtleBreathWork.KUNG_FU_ID.toString()) <= 0
+                } else if (cap.getCooldownTick(TurtleBreathWork.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(TurtleBreathWork.KUNG_FU_ID.toString()) >= 1
                         && cap.isStart(TurtleBreathWork.KUNG_FU_ID.toString())) {
                     if (usedTicks >= cap.getSwingTick((ServerPlayer) player, TurtleBreathWork.KUNG_FU_ID.toString())) {
                         cap.castKungFu(TurtleBreathWork.KUNG_FU_ID.toString(), player);
                     }
-                } else if (cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) > 1 && cap.isStart(Hercules.KUNG_FU_ID.toString())) {
+                } else if (cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) > 1  && cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) >= 1
+                        && cap.isStart(Hercules.KUNG_FU_ID.toString())) {
                     cap.getKungFu(Hercules.KUNG_FU_ID.toString())
                             .filter(kungFu -> kungFu instanceof IInteranlKungFu)
                             .map(kungFu -> (IInteranlKungFu) kungFu)
@@ -136,9 +137,9 @@ public class GoldThreadGlove extends SwordItem implements GeoItem {
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
         if (pLivingEntity instanceof Player player && !pLevel.isClientSide) {
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                if ((cap.getCooldownTick((ServerPlayer) player, GeShanDaNiu.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(GeShanDaNiu.KUNG_FU_ID.toString()) >= 1)
-                        || (cap.getCooldownTick((ServerPlayer) player, SunflowerPointCaveman.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(SunflowerPointCaveman.KUNG_FU_ID.toString()) >= 1)
-                        || (cap.getCooldownTick((ServerPlayer) player, TurtleBreathWork.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(TurtleBreathWork.KUNG_FU_ID.toString()) >= 1)) {
+                if ((cap.getCooldownTick(GeShanDaNiu.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(GeShanDaNiu.KUNG_FU_ID.toString()) >= 1)
+                        || (cap.getCooldownTick(SunflowerPointCaveman.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(SunflowerPointCaveman.KUNG_FU_ID.toString()) >= 1)
+                        || (cap.getCooldownTick(TurtleBreathWork.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(TurtleBreathWork.KUNG_FU_ID.toString()) >= 1)) {
                     triggerAnim(player, GeoItem.getOrAssignId(pStack, (ServerLevel) pLevel),
                             "Charge", "charge");
                 }

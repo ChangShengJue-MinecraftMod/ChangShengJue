@@ -73,22 +73,23 @@ public class CSJDisplayHud {
             return;
         }
 
-        // 1. 检查技能是否解锁
+        // 检查技能是否解锁
         if (kungFuLevel <= 0) {
             renderDisabledSkill(guiGraphics, disabledTexture, x, y);
             return;
         }
 
-        // 2. 渲染基础技能图标
+        // 渲染基础技能图标
         ResourceLocation baseTexture = getBaseTexture(kungFuLevel, maxKungFuLevel, normalTexture, maxLevelTexture);
         renderBaseIcon(guiGraphics, baseTexture, x, y);
 
-        // 3. 处理冷却状态
-        if (frameTime > 0) {
-            handleCooldown(guiGraphics, frameTime, frameTimeMax, cooldownMask, font, x, y);
-        }
+        // 处理冷却状态
         if (!playerCanOpened) {
             handleCooldown(guiGraphics, cooldownMask, x, y);
+        }
+
+        if (frameTime > 0) {
+            handleCooldown(guiGraphics, frameTime, frameTimeMax, cooldownMask, font, x, y);
         }
     }
 

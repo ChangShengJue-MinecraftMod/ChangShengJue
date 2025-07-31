@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.ChangShengJueMenuTypes;
+import com.shengchanshe.chang_sheng_jue.cilent.layer.EntityExtraLayer;
 import com.shengchanshe.chang_sheng_jue.creativemodetab.ChangShengJueCreativeModeTab;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;

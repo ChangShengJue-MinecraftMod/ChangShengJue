@@ -5,6 +5,7 @@ import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.yi_tian_jian.YiTianJianAttackEntity;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.DuguNineSwords;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.XuannuSwordsmanship;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -63,7 +64,7 @@ public class Sword extends SwordItem implements GeoItem {
             if (itemstack.getItem() instanceof Sword && itemstack.getItem() != ChangShengJueItems.SOFT_SWORD.get()) {
                 if (!pPlayer.level().isClientSide){
                     pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                        if (cap.getCooldownTick((ServerPlayer) pPlayer, DuguNineSwords.KUNG_FU_ID.toString()) <= 0) {
+                        if (cap.getCooldownTick(DuguNineSwords.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(DuguNineSwords.KUNG_FU_ID.toString()) >= 1) {
                             // 检查是否按住至少 0.3 秒（6 tick）
                             pPlayer.startUsingItem(pUsedHand); // 开始记录按住时间
                         }
@@ -77,13 +78,14 @@ public class Sword extends SwordItem implements GeoItem {
     @Override
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
         if (pLivingEntity instanceof Player player && !pLevel.isClientSide) {
-            player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                if (cap.getCooldownTick((ServerPlayer) player, DuguNineSwords.KUNG_FU_ID.toString()) <= 0
-                        && cap.getKungFuLevel(DuguNineSwords.KUNG_FU_ID.toString()) >= 1) {
-                    triggerAnim(player, GeoItem.getOrAssignId(pStack, (ServerLevel) pLevel),
-                            "Charge", "charge");
-                }
-            });
+            if (!player.getMainHandItem().is(ChangShengJueItems.SOFT_SWORD.get())){
+                player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                    if (cap.getCooldownTick(DuguNineSwords.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(DuguNineSwords.KUNG_FU_ID.toString()) >= 1) {
+                        triggerAnim(player, GeoItem.getOrAssignId(pStack, (ServerLevel) pLevel),
+                                "Charge", "charge");
+                    }
+                });
+            }
         }
         super.onUseTick(pLevel, pLivingEntity, pStack, pRemainingUseDuration);
     }
@@ -93,7 +95,7 @@ public class Sword extends SwordItem implements GeoItem {
         if (user instanceof Player player && !world.isClientSide) {
             int usedTicks = this.getUseDuration(stack) - remainingUseDuration;
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                if (cap.getCooldownTick((ServerPlayer) player, DuguNineSwords.KUNG_FU_ID.toString()) <= 0) {
+                if (cap.getCooldownTick(DuguNineSwords.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(DuguNineSwords.KUNG_FU_ID.toString()) >= 1) {
                     if (usedTicks >= cap.getSwingTick((ServerPlayer) player, DuguNineSwords.KUNG_FU_ID.toString())) {
                         cap.castKungFu(DuguNineSwords.KUNG_FU_ID.toString(), player);
                     }

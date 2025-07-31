@@ -1,4 +1,4 @@
-package com.shengchanshe.chang_sheng_jue.network.packet.gui.CraftItem;
+package com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem;
 
 import com.shengchanshe.chang_sheng_jue.block.custom.forgeblock.ForgeBlockEntity;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.forgeblock.ForgeBlockMenu;

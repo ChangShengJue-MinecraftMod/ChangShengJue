@@ -3,10 +3,9 @@ package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
-import com.shengchanshe.chang_sheng_jue.network.packet.gui.CraftItem.TailoringCraftPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.gui.CraftItem.TailoringSyncRecipePacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.TailoringCraftPacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.TailoringSyncRecipePacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -14,7 +13,6 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
-import net.minecraft.core.Rotations;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -23,8 +21,6 @@ import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import org.joml.Quaternionf;
 
 import java.util.ArrayList;
@@ -136,42 +132,25 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
 
     // 更新槽位显示并同步配方到服务端
     private void updateSlotsForSelectedItem(ItemStack selectedItem) {
-
         if (menu.isCrafting()) {
             return;
         }
-        //新加
 
-
-
-
-        // 记录配方，放置重复刷新
-        TailoringCaseMenu.TailoringRecipe oldRecipe = menu.currentRecipe;
-
+        // 查找对应的配方
         Optional<TailoringCaseMenu.TailoringRecipe> newRecipe = selectedItem.isEmpty()
                 ? Optional.empty()
                 : TailoringCaseMenu.findRecipe(selectedItem);
 
-        // 配方未变化则不执行操作
-        if (Objects.equals(oldRecipe, newRecipe.orElse(null))) {
-            return;
-        }
-
-        // 先设置客户端本地配方（立即显示）
+        // 立即更新客户端本地显示
         menu.setCurrentRecipe(newRecipe.orElse(null));
+
         // 发送同步包到服务端
         ChangShengJueMessages.sendToServer(
                 new TailoringSyncRecipePacket(menu.getBlockPos(), newRecipe.orElse(null))
         );
 
-        // 延迟刷新UI，等服务端同步确认
-        Minecraft.getInstance().tell(() -> {
-            if (newRecipe.isPresent()) {
-                menu.updateRecipeSlots(); // 仅在确认后刷新槽位
-            } else {
-                menu.clearAllSlots();
-            }
-        });
+        // 强制刷新UI
+        menu.updateRecipeSlots();
     }
 
     private void createArmorStandEntity() {

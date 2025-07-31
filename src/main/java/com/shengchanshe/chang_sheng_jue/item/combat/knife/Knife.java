@@ -77,7 +77,7 @@ public class Knife extends SwordItem implements GeoItem {
         if ((pPlayer.getFoodData().getFoodLevel() > 8 && pPlayer.getFoodData().getSaturationLevel() > 0) || pPlayer.getAbilities().instabuild) {
             if (!pPlayer.level().isClientSide){
                 pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                    if (cap.getCooldownTick((ServerPlayer) pPlayer, GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) <= 0) {
+                    if (cap.getCooldownTick(GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) >= 1) {
                         // 检查是否按住至少 0.3 秒（6 tick）
                         pPlayer.startUsingItem(pUsedHand); // 开始记录按住时间
                     }
@@ -91,7 +91,7 @@ public class Knife extends SwordItem implements GeoItem {
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
         if (pLivingEntity instanceof Player player && !pLevel.isClientSide) {
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                if (cap.getCooldownTick((ServerPlayer) player, GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) <= 0
+                if (cap.getCooldownTick(GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) <= 0
                         && cap.getKungFuLevel(GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) >= 1) {
                     triggerAnim(player, GeoItem.getOrAssignId(pStack, (ServerLevel) pLevel),
                             "Charge", "charge");
@@ -106,7 +106,7 @@ public class Knife extends SwordItem implements GeoItem {
         if (user instanceof Player player && !world.isClientSide) {
             int usedTicks = this.getUseDuration(stack) - remainingUseDuration;
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                if (cap.getCooldownTick((ServerPlayer) player, GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) <= 0) {
+                if (cap.getCooldownTick(GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) >= 1) {
                     // 检查是否按住至少 0.3 秒（6 tick）
                     if (usedTicks >= cap.getSwingTick((ServerPlayer) player, GoldenBlackKnifeMethod.KUNG_FU_ID.toString())) {
                         cap.castKungFu(GoldenBlackKnifeMethod.KUNG_FU_ID.toString(), player);

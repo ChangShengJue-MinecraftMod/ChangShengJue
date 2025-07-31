@@ -19,7 +19,7 @@ public interface IKungFuCapability {
     void castKungFu(String kungFuId, LivingEntity entity);
     void startKungFu(ServerPlayer player, String kungFuId, String kungFuName);
     boolean isStart(String kungFuId);
-    int getCooldownTick(ServerPlayer player, String kungFuId);
+    int getCooldownTick(String kungFuId);
     int getKungFuLevel(String kungFuId);
     float getDamageFactor(ServerPlayer player, String kungFuId);
     int getSwingTick(ServerPlayer player, String kungFuId);

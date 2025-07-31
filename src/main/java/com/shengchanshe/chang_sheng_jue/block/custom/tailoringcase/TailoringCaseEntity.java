@@ -266,6 +266,17 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider {
 
     public void setCurrentRecipe(TailoringCaseMenu.TailoringRecipe recipe) {
         this.currentRecipe = recipe;
+        // 立即更新输入槽位
+        if (recipe != null) {
+            for (int i = 0; i < recipe.getMaterials().length && i < 9; i++) {
+                itemHandler.setStackInSlot(i, recipe.getMaterials()[i].copy());
+            }
+        } else {
+            // 清空输入槽
+            for (int i = 0; i < 9; i++) {
+                itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+            }
+        }
         setChanged();
         if (level != null) {
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);

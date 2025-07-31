@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class TailoringCaseMenu extends AbstractContainerMenu {
-
     public final TailoringCaseEntity blockEntity;
     private final Level level;
     public final ContainerData data;
@@ -42,7 +41,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         this.level = inv.player.level();
         this.data = data;
 
-        // 加载陪访
+        // 加载配方
         this.currentRecipe = blockEntity.getCurrentRecipe();
 
         addPlayerInventory(inv);
@@ -75,10 +74,20 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
 
     }
 
+    public TailoringRecipe getCurrentRecipe() {
+        return currentRecipe;
+    }
+
     @Override
     public void removed(Player player) {
         super.removed(player);
-        clearAllSlots(); // 关闭UI时清空槽位
+        // 只有不在制作中时才清除
+        if(!isCrafting()) {
+            clearAllSlots();
+            if (!player.level().isClientSide) {
+                blockEntity.setCurrentRecipe(null);
+            }
+        }
     }
 
     public boolean isCrafting() {
@@ -332,12 +341,11 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
     }
 
 
-
     public static Optional<TailoringRecipe> findRecipe(ItemStack result) {
         return RECIPES.stream()
                 .filter(recipe -> {
                     ItemStack recipeResult = recipe.getResult();
-                    return ItemStack.isSameItem(recipeResult, result) &&
+                    return ItemStack.isSameItemSameTags(recipeResult, result) &&
                             recipeResult.getCount() == result.getCount();
                 })
                 .findFirst();
