@@ -60,9 +60,10 @@ public class ForgeBlock extends BaseEntityBlock {
         pBuilder.add(FACING);
     }
 
-    public RenderShape getRenderShape(BlockState pState) {
-        return RenderShape.MODEL;
-    }
+//    @Override
+//    public RenderShape getRenderShape(BlockState pState) {
+//        return RenderShape.ENTITYBLOCK_ANIMATED;
+//    }
 
 
     @Override
@@ -104,5 +105,6 @@ public class ForgeBlock extends BaseEntityBlock {
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new ForgeBlockEntity(pPos,pState);
     }
+
 
 }

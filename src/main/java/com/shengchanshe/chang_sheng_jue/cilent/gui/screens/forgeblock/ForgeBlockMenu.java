@@ -71,13 +71,22 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         if (currentRecipe != null) {
             updateRecipeSlots();
         }
+    }
 
+    public ForgeRecipe getCurrentRecipe() {
+        return currentRecipe;
     }
 
     @Override
     public void removed(Player player) {
         super.removed(player);
-        clearAllSlots(); // 关闭UI时清空槽位
+        // 只有不在制作中时才清除
+        if (!isCrafting()) {
+            clearAllSlots();
+            if (!player.level().isClientSide) {
+                blockEntity.setCurrentRecipe(null);
+            }
+        }
     }
 
     public boolean isCrafting() {
@@ -196,37 +205,39 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
-    // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
+    // 修正槽位数量为10（9个输入槽 + 1个输出槽）
+    private static final int TE_INVENTORY_SLOT_COUNT = 10;
+
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
-        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
+        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
-        // Check if the slot clicked is one of the vanilla container slots
+        // 检查点击的槽位是否是玩家物品栏
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            // This is a vanilla container slot so merge the stack into the tile inventory
-            if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
-                    + TE_INVENTORY_SLOT_COUNT, false)) {
-                return ItemStack.EMPTY;  // EMPTY_ITEM
+            // 从玩家物品栏移动到锻台
+            if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX,
+                    TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT, false)) {
+                return ItemStack.EMPTY;
             }
         } else if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
-            // This is a TE slot so merge the stack into the players inventory
-            if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
+            // 从锻台移动到玩家物品栏
+            if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX,
+                    VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;
             }
         } else {
-            System.out.println("Invalid slotIndex:" + pIndex);
             return ItemStack.EMPTY;
         }
-        // If stack size == 0 (the entire stack was moved) set slot contents to null
+
         if (sourceStack.getCount() == 0) {
             sourceSlot.set(ItemStack.EMPTY);
         } else {
             sourceSlot.setChanged();
         }
+
         sourceSlot.onTake(playerIn, sourceStack);
         return copyOfSourceStack;
     }
@@ -299,7 +310,6 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
             return Arrays.stream(materials).map(ItemStack::copy).toArray(ItemStack[]::new);
         }
 
-        // 用于NBT序列化
         public CompoundTag serializeNBT() {
             CompoundTag tag = new CompoundTag();
             tag.put("result", result.serializeNBT());
@@ -314,7 +324,6 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
             return tag;
         }
 
-        // 用于NBT反序列化
         public static ForgeRecipe deserializeNBT(CompoundTag tag) {
             ItemStack result = ItemStack.of(tag.getCompound("result"));
             int count = tag.getInt("material_count");
@@ -329,37 +338,38 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         }
     }
 
-
-
     public static Optional<ForgeRecipe> findRecipe(ItemStack result) {
         return RECIPES.stream()
                 .filter(recipe -> {
                     ItemStack recipeResult = recipe.getResult();
-                    return ItemStack.isSameItem(recipeResult, result) &&
+                    return ItemStack.isSameItemSameTags(recipeResult, result) &&
                             recipeResult.getCount() == result.getCount();
                 })
                 .findFirst();
     }
 
-    //添加配方
     // 配方定义
     public static final List<ForgeRecipe> RECIPES = new ArrayList<>();
 
     // 静态初始化块 - 在这里添加配方
     static {
-        // 添加钻石剑配方（示例）
+        // 添加钻石剑配方
         addRecipe(
                 new ItemStack(Items.DIAMOND_SWORD),
                 new ItemStack(Items.DIAMOND, 2),
                 new ItemStack(Items.STICK, 1)
         );
 
-
+        // 添加钻石镐配方
+        addRecipe(
+                new ItemStack(Items.DIAMOND_PICKAXE),
+                new ItemStack(Items.DIAMOND, 3),
+                new ItemStack(Items.STICK, 2)
+        );
     }
 
     // 添加配方的辅助方法
     private static void addRecipe(ItemStack result, ItemStack... materials) {
         RECIPES.add(new ForgeRecipe(result, materials));
     }
-
 }

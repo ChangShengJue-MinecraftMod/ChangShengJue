@@ -4,8 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
-import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.ForgeCraftPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.ForgeSyncRecipePacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -139,33 +138,20 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
             return;
         }
 
-        // 记录当前配方，避免重复刷新
-        ForgeBlockMenu.ForgeRecipe oldRecipe = menu.currentRecipe;
-
         Optional<ForgeBlockMenu.ForgeRecipe> newRecipe = selectedItem.isEmpty()
                 ? Optional.empty()
                 : ForgeBlockMenu.findRecipe(selectedItem);
 
-        // 配方未变化则不执行操作
-        if (Objects.equals(oldRecipe, newRecipe.orElse(null))) {
-            return;
-        }
-
-        // 先设置客户端本地配方（立即显示）
+        // 立即更新客户端本地显示
         menu.setCurrentRecipe(newRecipe.orElse(null));
+
         // 发送同步包到服务端
         ChangShengJueMessages.sendToServer(
                 new ForgeSyncRecipePacket(menu.getBlockPos(), newRecipe.orElse(null))
         );
 
-        // 关键：延迟刷新UI，等待服务端同步确认
-        Minecraft.getInstance().tell(() -> {
-            if (newRecipe.isPresent()) {
-                menu.updateRecipeSlots(); // 仅在确认后刷新槽位
-            } else {
-                menu.clearAllSlots();
-            }
-        });
+        // 强制刷新UI
+        menu.updateRecipeSlots();
     }
 
     private void createArmorStandEntity() {
@@ -391,10 +377,11 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                         this.getY() + 4,
                         textColor);
 
+                // 更新合成按钮状态
                 if (craftButton != null) {
                     boolean isCrafting = menu.isCrafting();
                     craftButton.active = !isCrafting; // 正在合成时禁用按钮
-                    craftButton.visible = !isCrafting; // 可选：直接隐藏按钮
+                    // 保持按钮可见，但禁用状态
                 }
             }
         }
@@ -402,26 +389,24 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
 
 
     private void renderCustomProgressBar(GuiGraphics guiGraphics, int x, int y) {
-        // 计算进度条位置（根据你的GUI布局调整坐标）
+        // 计算进度条位置
         int progressBarX = x + 191; // 进度条X坐标
         int progressBarY = y + 59; // 进度条Y坐标
         int progressBarWidth = 32; // 进度条总宽度
         int progressBarHeight = 22; // 进度条高度
 
-
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
-        // 从纹理中裁剪背景部分
+        // 渲染背景部分
         guiGraphics.blit(TEXTURE, progressBarX, progressBarY,
-                0, 308, progressBarWidth, progressBarHeight,512,512);
+                0, 308, progressBarWidth, progressBarHeight, 512, 512);
 
-        // 渲染进度条填充部分（根据合成进度动态显示）
+        // 渲染进度条填充部分
         if (menu.isCrafting()) {
-            int scaledProgress = menu.getScaledProgress(); // 获取当前进度（0-26）
-            // 从纹理中裁剪填充部分
+            int scaledProgress = menu.getScaledProgress();
             guiGraphics.blit(TEXTURE, progressBarX, progressBarY,
-                    0, 286, scaledProgress+5, progressBarHeight,512,512);
+                    0, 286, scaledProgress + 5, progressBarHeight, 512, 512);
         }
     }
 }

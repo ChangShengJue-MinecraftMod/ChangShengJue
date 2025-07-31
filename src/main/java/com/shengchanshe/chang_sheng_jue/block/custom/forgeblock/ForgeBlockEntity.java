@@ -18,6 +18,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
@@ -177,13 +178,14 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider {
         // 只有在制作中时才增加进度
         if (progress > 0 && progress < maxProgress) {
             progress++;
-            setChanged(pLevel, pPos, pState);
+            this.setChanged();
         } else if (progress >= maxProgress) {
             // 进度完成，生成物品
             if (currentRecipe != null) {
                 craftItem(currentRecipe.getResult());
             }
             progress = 0;
+            this.setChanged();
         }
     }
 
@@ -221,7 +223,7 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider {
             consumeMaterials(player.getInventory(), currentRecipe);
             // 开始制作进度
             this.progress = 1;
-            setChanged(level, worldPosition, getBlockState());
+            this.setChanged();
         }
     }
 
@@ -266,6 +268,16 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider {
 
     public void setCurrentRecipe(ForgeBlockMenu.ForgeRecipe recipe) {
         this.currentRecipe = recipe;
+        if (recipe != null) {
+            for (int i = 0; i < recipe.getMaterials().length && i < 9; i++) {
+                itemHandler.setStackInSlot(i, recipe.getMaterials()[i].copy());
+            }
+        } else {
+            // 清空输入槽
+            for (int i = 0; i < 9; i++) {
+                itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+            }
+        }
         setChanged();
         if (level != null) {
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
@@ -305,6 +317,14 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider {
         setChanged();
         if (level != null) {
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
+        }
+    }
+
+    @Override
+    public void setChanged() {
+        super.setChanged();
+        if (this.level != null){
+            this.level.sendBlockUpdated(this.getBlockPos(),this.getBlockState(),this.getBlockState(), Block.UPDATE_CLIENTS);
         }
     }
 }

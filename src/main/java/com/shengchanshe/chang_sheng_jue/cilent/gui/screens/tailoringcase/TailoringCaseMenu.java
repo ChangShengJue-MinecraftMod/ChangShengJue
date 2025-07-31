@@ -60,7 +60,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
             this.addSlot(new ReadOnlySlot(handler, 8, 171, 82));
         });
 
-        // 输出槽（可拿）
+        // 输出槽（可拾取）
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
             this.addSlot(new OutputSlot(handler, 9, 229, 63));
         });
