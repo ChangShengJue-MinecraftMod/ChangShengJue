@@ -51,7 +51,9 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(Item.byBlock(ChangShengJueBlocks.BANANA_LOG.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.PEAR_LOG.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.LICHEE_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.DURIAN_LOG.get()));
+                .add(Item.byBlock(ChangShengJueBlocks.DURIAN_LOG.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.ZI_TAN_LOG.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.MULBERRY_LOG.get()));
 
         this.tag(CSJTags.Items.MJ_BOOK)
                 .addTag(CSJTags.Items.INTERNAL_KUNG_FU_MJ)

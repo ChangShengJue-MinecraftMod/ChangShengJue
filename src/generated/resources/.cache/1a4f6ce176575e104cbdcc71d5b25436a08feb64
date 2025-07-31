@@ -1,4 +1,4 @@
-// 1.20.1	2025-07-10T17:09:58.3685447	Tags for minecraft:item mod id chang_sheng_jue
+// 1.20.1	2025-08-01T00:39:50.0749361	Tags for minecraft:item mod id chang_sheng_jue
 cc5dd550d43d528b509db78c5b51b23885f33a25 data/chang_sheng_jue/tags/items/artifact.json
 1f5ad366b60e566ba56034c25b8479c2fa18b0f7 data/chang_sheng_jue/tags/items/crucible.json
 f4b622de2b66643dd46c9a175231f6cd7c67daba data/chang_sheng_jue/tags/items/doors.json
@@ -10,7 +10,7 @@ f4b622de2b66643dd46c9a175231f6cd7c67daba data/chang_sheng_jue/tags/items/doors.j
 fc9adbc914d58ba011b7360db65ceafe041ec19c data/chang_sheng_jue/tags/items/huang_hua_li_log.json
 8aa1193f4f9bc3a38a30db61fcec06dcb14a3dff data/chang_sheng_jue/tags/items/internal_kung_fu_mj.json
 8398dd3b781973607469305269c05e6fde0edff1 data/chang_sheng_jue/tags/items/ji_chi_mu_log.json
-0aa1ba5e394b14527494021858f4bcf5206fa757 data/chang_sheng_jue/tags/items/log.json
+5382480b4fcc60bae78e94fbc294322016db98bb data/chang_sheng_jue/tags/items/log.json
 4ae7492f4cefab797fd5404525027d3ce124b4da data/chang_sheng_jue/tags/items/mj_book.json
 883c9e4be3b2c437119b125eb9a4d0563a1af0b7 data/chang_sheng_jue/tags/items/mulberry_log.json
 3860ac154c185cc8795018c538abd2ac02b16fff data/chang_sheng_jue/tags/items/painting.json

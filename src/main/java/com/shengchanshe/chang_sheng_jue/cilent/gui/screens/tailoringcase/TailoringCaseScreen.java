@@ -66,7 +66,7 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
                             new TailoringCraftPacket(menu.getBlockPos())
                     );
                 })
-                .bounds(x + 90, y + 95, 35, 15)
+                .bounds(x + 200, y + 95, 35, 15)
                 .build();
 
         addRenderableWidget(craftButton);
@@ -250,7 +250,7 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
     }
 
     private void renderArmorStandWithItem(GuiGraphics guiGraphics) {
-        if (currentSelectedItem.isEmpty() || armorStandEntity == null) {
+        if (armorStandEntity == null) {
             return;
         }
 

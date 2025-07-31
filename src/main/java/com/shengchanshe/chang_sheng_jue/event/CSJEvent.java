@@ -28,8 +28,10 @@ import com.shengchanshe.chang_sheng_jue.item.items.StructureIntelligence;
 import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
 import com.shengchanshe.chang_sheng_jue.util.TradeHelper;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.npc.VillagerTrades;
@@ -940,33 +942,42 @@ public class CSJEvent {
     @SubscribeEvent
     public static void onPlayerFirstJoin(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getEntity();
-        // 检查玩家是否首次加入游戏
+
+        // 检查是否为服务器端玩家
         if (player instanceof ServerPlayer serverPlayer) {
             QuestManager.getInstance().syncQuestsToPlayer(serverPlayer); // 全量同步
-//            player.getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(data -> {
-//                if (data.getRecordDamageSource() == null){
-//                    data.setRecordDamageSource(UUID.randomUUID());
-//                }
-//            });
+
+            // 检查Patchouli是否加载
             if (!net.minecraftforge.fml.ModList.get().isLoaded("patchouli")) {
                 return;
             }
-            boolean hasBook = false;
-            ItemStack book = PatchouliAPI.get().getBookStack(new ResourceLocation("chang_sheng_jue", "wufanglu"));
-            // 遍历玩家背包检查是否已有书籍
-            for (ItemStack itemStack : player.getInventory().items) {
-                if (itemStack.getItem() == book.getItem()) {
-                    hasBook = true;
-                    break; // 发现书籍后立即终止循环
-                }
-            }
 
-            // 未找到书籍时执行赠送
-            if (!hasBook) {
-                player.getInventory().add(book);
+            // 判断是否为首次加入 - 通过检查玩家是否有统计数据
+            boolean isFirstJoin;
+            //如果玩家刚进入游戏，则修改为true
+            isFirstJoin = !(serverPlayer.getStats().getValue(Stats.CUSTOM.get(Stats.LEAVE_GAME)) > 0);
+
+            // 如果是首次加入才执行书籍检查和赠送
+            if (isFirstJoin) {
+                ItemStack book = PatchouliAPI.get().getBookStack(new ResourceLocation("chang_sheng_jue", "wufanglu"));
+                boolean hasBook = false;
+
+                // 遍历玩家背包检查是否已有书籍
+                for (ItemStack itemStack : player.getInventory().items) {
+                    if (itemStack.getItem() == book.getItem()) {
+                        hasBook = true;
+                        break; // 发现书籍后立即终止循环
+                    }
+                }
+
+                // 未找到书籍时执行赠送
+                if (!hasBook) {
+                    player.getInventory().add(book);
+                }
             }
         }
     }
+
 
 //    private static final double PLAYER_SEARCH_RANGE = 10.0; // 玩家搜索范围
 //    @SubscribeEvent

@@ -65,7 +65,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                             new ForgeCraftPacket(menu.getBlockPos())
                     );
                 })
-                .bounds(x + 90, y + 95, 35, 15)
+                .bounds(x + 200, y + 95, 35, 15)
                 .build();
 
         addRenderableWidget(craftButton);
@@ -251,7 +251,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     }
 
     private void renderArmorStandWithItem(GuiGraphics guiGraphics) {
-        if (currentSelectedItem.isEmpty() || armorStandEntity == null) {
+        if (armorStandEntity == null) {
             return;
         }
 
