@@ -1,6 +1,7 @@
 package com.shengchanshe.chang_sheng_jue.mixin;
 
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.hercules.HerculesCapabilityProvider;
+import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.Hercules;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -27,8 +28,8 @@ public abstract class MixinFoodData {
         if (player != null) {
 //            // 获取 HerculesCapability
             AtomicReference<Float> pExhaustionRef = new AtomicReference<>(pExhaustion);
-            player.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(hercules -> {
-                if (hercules.getHerculesLevel() >= 1 &&player.isSprinting()) {
+            player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                if (cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) >= 1 && player.isSprinting()) {
                     pExhaustionRef.set(pExhaustionRef.get() * 0.6F);
                 }
             });

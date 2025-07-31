@@ -1,120 +1,70 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.knife;
 
-import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapability;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodClientData;
-import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
+import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
-import com.shengchanshe.chang_sheng_jue.entity.combat.golden_black_knife_method.GoldenBlackKnifeMethodEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.tu_long_dao.TuLongDaoAttackEntity;
-import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
-import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
-import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.GoldenBlackKnifeMethodPacket;
-import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
-import com.shengchanshe.chang_sheng_jue.util.EffectUtils;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import com.shengchanshe.chang_sheng_jue.item.combat.sword.Sword;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.GoldenBlackKnifeMethod;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
+import software.bernie.geckolib.constant.DefaultAnimations;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class Knife extends SwordItem {
+public class Knife extends SwordItem implements GeoItem {
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public Knife(Tier pTier, int pAttackDamageModifier, float pAttackSpeedModifier, Properties pProperties) {
         super(pTier, pAttackDamageModifier, pAttackSpeedModifier, pProperties);
-        MinecraftForge.EVENT_BUS.register(this);
+        SingletonGeoAnimatable.registerSyncedAnimatable(this);
     }
 
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, Player pPlayer, Entity entity) {
-        if (!pPlayer.level().isClientSide) {
-            pPlayer.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
-                int goldenBlackKnifeMethodLevel = goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel();
-                if (goldenBlackKnifeMethod.goldenBlackKnifeMethodComprehend() && goldenBlackKnifeMethodLevel == 0) {
-                    float probability = pPlayer.getRandom().nextFloat();
-                    float defaultComprehendProbability = !pPlayer.getAbilities().instabuild ? 0.02F : 1.0F;
-                    if (probability < defaultComprehendProbability) {
-                        goldenBlackKnifeMethod.addGoldenBlackKnifeMethodLevel();
-                        goldenBlackKnifeMethod.setGoldenBlackKnifeMethodParticle(true);
-                        pPlayer.level().playSound(null, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(),
-                                ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                        Level pLevel = pPlayer.level();
-                        CSJAdvanceEvent.summonChallenger(pLevel, pPlayer);
-                        ChangShengJueMessages.sendToPlayer(new GoldenBlackKnifeMethodPacket(goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel(),
-                                goldenBlackKnifeMethod.isGoldenBlackKnifeMethodComprehend(),
-                                goldenBlackKnifeMethod.getGoldenBlackKnifeMethodToppedTick(),
-                                goldenBlackKnifeMethod.getGoldenBlackKnifeMethodDachengTick(),
-                                goldenBlackKnifeMethod.isGoldenBlackKnifeMethodParticle()), (ServerPlayer) pPlayer);
-                    }
-                } else {
-                    if (goldenBlackKnifeMethodLevel > 0) {
-                        if (entity instanceof LivingEntity livingEntity) {
-                            float probability = pPlayer.getRandom().nextFloat();
-                            float defaultProbability = 0.5f;
-                            EffectUtils.setTrauma(pPlayer, livingEntity, 2, 140, 0.25F);
-                            if (pPlayer.getMainHandItem().canDisableShield(livingEntity.getUseItem(), livingEntity, pPlayer)) {
-                                if (probability < defaultProbability) {
-                                    // 强制打破目标玩家的防御状态（禁用盾牌防御）
-                                    pPlayer.getCooldowns().addCooldown(pPlayer.getUseItem().getItem(), 100);
-                                    pPlayer.stopUsingItem();
-                                    livingEntity.stopUsingItem();
-                                    pPlayer.level().broadcastEntityEvent(pPlayer, (byte) 30);
-                                }
-                            }
-                        }
-                    }
-                }
+    public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
+        if (!player.level().isClientSide) {
+            player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                cap.comprehendKungFu((ServerPlayer) player, GoldenBlackKnifeMethod.KUNG_FU_ID.toString(), player);
+                cap.attack((ServerPlayer) player,GoldenBlackKnifeMethod.KUNG_FU_ID.toString(),player,entity);
             });
-            if (pPlayer.getMainHandItem().is(ChangShengJueItems.TU_LONG_DAO.get())) {
-                TuLongDaoAttackEntity tuLongDaoEntity = new TuLongDaoAttackEntity(ChangShengJueEntity.TU_LONG_DAO_ATTACK.get(), pPlayer.level());
+            if (player.getMainHandItem().is(ChangShengJueItems.TU_LONG_DAO.get())) {
+                TuLongDaoAttackEntity tuLongDaoEntity = new TuLongDaoAttackEntity(ChangShengJueEntity.TU_LONG_DAO_ATTACK.get(), player.level());
                 tuLongDaoEntity.moveTo(entity.position().add(0, entity.getEyeHeight(), 0).add(entity.getForward().scale(0)));
-                tuLongDaoEntity.setYRot(pPlayer.getYRot());
-                pPlayer.level().addFreshEntity(tuLongDaoEntity);
+                tuLongDaoEntity.setYRot(player.getYRot());
+                player.level().addFreshEntity(tuLongDaoEntity);
             }
         }
-
-        return super.onLeftClickEntity(stack, pPlayer, entity);
+        return super.onLeftClickEntity(stack, player, entity);
     }
 
-    @SubscribeEvent
-    public void onKnifeAttack(LivingDamageEvent event) {
+    public static void onKnifeAttack(LivingDamageEvent event) {
         Level level = event.getEntity().level();
         if (!level.isClientSide) {
-            if (event.getSource().getDirectEntity() instanceof Player directEntity) {
-                if (directEntity.getMainHandItem().getItem() == this) {
-                    float probability = directEntity.getRandom().nextFloat();
-                    float defaultProbability = 0.10F;
-                    if (probability < defaultProbability) {
-                        float amount = event.getAmount();
-                        event.setAmount((float) (amount * 1.80));
-                    }
-                    directEntity.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
-                        int goldenBlackKnifeMethodLevel = goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel();
-                        if (goldenBlackKnifeMethodLevel >= 0) {
-                            if (goldenBlackKnifeMethodLevel >= 2) {
-                                if (probability < defaultProbability * 2.0) {
-                                    float amount = event.getAmount();
-                                    event.setAmount((float) (amount * 1.80));
-                                }
-                            }
+            if (event.getSource().getDirectEntity() instanceof LivingEntity directEntity) {
+                if (directEntity.getMainHandItem().getItem() instanceof Knife) {
+                    directEntity.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                        float probability = directEntity.getRandom().nextFloat();
+                        float defaultProbability = cap.getEffectProbability(GoldenBlackKnifeMethod.KUNG_FU_ID.toString());
+                        if (probability < defaultProbability) {
+                            float amount = event.getAmount();
+                            event.setAmount((amount * 1.8f));
                         }
                     });
                 }
@@ -124,97 +74,66 @@ public class Knife extends SwordItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        ItemStack itemstack = pPlayer.getMainHandItem();//获取玩家手中物品
-        if (itemstack.getItem() instanceof Knife) {
-            if (pPlayer.getFoodData().getFoodLevel() > 8) {//检查玩家饱食度是否大于8
-                if (!pLevel.isClientSide) {
-                    pPlayer.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
-                        if (goldenBlackKnifeMethod.goldenBlackKnifeMethodComprehend()) {
-                            this.onGoldenBlackKnifeMethod(pLevel, pPlayer, goldenBlackKnifeMethod);
-                        }
-                    });
-                }
-                if (GoldenBlackKnifeMethodClientData.getGoldenBlackKnifeMethodLevel() >= 1) {
-                    return InteractionResultHolder.success(pPlayer.getMainHandItem());
-                }
-            }
-        }
-        return super.use(pLevel, pPlayer, pUsedHand);
-    }
-
-    private void onGoldenBlackKnifeMethod(Level pLevel, LivingEntity pEntity, GoldenBlackKnifeMethodCapability goldenBlackKnifeMethod) {
-        float radius = 4.0f;//攻击半径
-        float distance = 4.0F;//攻击距离
-        Vec3 forward = pEntity.getForward();//获取实体的前方方向
-        Vec3 hitLocation = pEntity.position().add(0, pEntity.getBbHeight() * 0.3f, 0).add(forward.scale(distance));//获取实体高度的面向,计算攻击和实体生成的位置
-        var entities = pLevel.getEntities(pEntity, AABB.ofSize(hitLocation, radius * 2, radius, radius * 2));//创建包围盒
-        if (pEntity instanceof Player player) {
-            if (goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel() > 0) {
-                ItemStack itemstack = player.getMainHandItem();//获取玩家手中物品
-                if (!player.getAbilities().instabuild) {
-                    player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
-                        int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? 1 : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : 2;
-                        if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() >= 1) {
-                            player.getFoodData().eat(-foodLevel + 1, -1);//消耗饱食度
-                            if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 1000) {
-                                theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
-                            }
-                        } else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() > 1) {
-                            player.getFoodData().eat(-foodLevel + 2, -1);//消耗饱食度
-                            if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingUseCount() < 1000) {
-                                theClassicsOfTendonChanging.addTheClassicsOfTendonChangingUseCount(1);
-                            }
-                        } else if (theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel() < 1) {
-                            player.getFoodData().eat(-foodLevel, -1);//消耗饱食度
-                        }
-                    });
-                    player.getCooldowns().addCooldown(itemstack.getItem(), player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get()) ? 125 : 140);//添加使用冷却
-                }
-                GoldenBlackKnifeMethodEntity goldenBlackKnifeMethodEntity = new GoldenBlackKnifeMethodEntity(ChangShengJueEntity.GOLDEN_BLACK_KNIFE_METHOD.get(), pLevel);
-                goldenBlackKnifeMethodEntity.moveTo(hitLocation);
-                goldenBlackKnifeMethodEntity.setYRot(player.getYRot());
-                pLevel.addFreshEntity(goldenBlackKnifeMethodEntity);
-                for (Entity entity : entities) {//遍历包围盒中的实体
-                    //检查生物是否可以交互,是否在给定的平方距离内,检查生物是否是LivingEntity,检查生物是否还活着
-                    if (player.isPickable() && player.distanceToSqr(entity) < radius * radius && entity instanceof LivingEntity && entity.isAlive()) {
-                        float probability = player.getRandom().nextFloat();
-                        float damage1 = this.getDamage();
-                        float damage = goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel() < 2 ? (damage1 + 2) * 1.9F : (damage1 + 2) * 2.0F;
-                        if (entity.hurt(new DamageSource(pLevel.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
-                                        .getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation(ChangShengJue.MOD_ID + ":martial_arts"))), player),
-                                player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? damage + 2 : damage)) {//造成伤害
-                            if (entity instanceof LivingEntity livingEntity) {
-                                EffectUtils.setTrauma(player, livingEntity, 5, 140, 0.25F);
-                            }
-                            if (goldenBlackKnifeMethod.getGoldenBlackKnifeMethodUseCount() < 100) {
-                                goldenBlackKnifeMethod.addGoldenBlackKnifeMethodUseCount(!player.getAbilities().instabuild ? 1 : 100);
-                                if (goldenBlackKnifeMethod.getGoldenBlackKnifeMethodUseCount() >= 100) {
-                                    goldenBlackKnifeMethod.setGoldenBlackKnifeMethodParticle(true);
-                                    player.level().playSound(null, player.getX(), player.getY(), player.getZ(),
-                                            ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                                }
-                                ChangShengJueMessages.sendToPlayer(new GoldenBlackKnifeMethodPacket(goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel(),
-                                        goldenBlackKnifeMethod.isGoldenBlackKnifeMethodComprehend(),
-                                        goldenBlackKnifeMethod.getGoldenBlackKnifeMethodToppedTick(),
-                                        goldenBlackKnifeMethod.getGoldenBlackKnifeMethodDachengTick(),
-                                        goldenBlackKnifeMethod.isGoldenBlackKnifeMethodParticle()), (ServerPlayer) player);
-                            }
-                            EnchantmentHelper.doPostDamageEffects(player, entity);//应用附魔
-                        }
+        if ((pPlayer.getFoodData().getFoodLevel() > 8 && pPlayer.getFoodData().getSaturationLevel() > 0) || pPlayer.getAbilities().instabuild) {
+            if (!pPlayer.level().isClientSide){
+                pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                    if (cap.getCooldownTick((ServerPlayer) pPlayer, GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) <= 0) {
+                        // 检查是否按住至少 0.3 秒（6 tick）
+                        pPlayer.startUsingItem(pUsedHand); // 开始记录按住时间
                     }
-                }
-                pLevel.playSound(null, player.getX(), player.getY(), player.getZ(),
-                        ChangShengJueSound.GOLDEN_BLACK_KNIFE_METHOD_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                if (player.hasEffect(ChangShengJueEffects.BILUOCHUN_TEAS.get())) {
-                    player.setHealth(player.getHealth() + 1);
-                }
-                if (player.hasEffect(ChangShengJueEffects.LONG_JING_TEAS.get())) {
-                    player.getFoodData().eat(1, 0);
-                }
-                itemstack.hurtAndBreak(1, player, (player1) -> {//消耗耐久
-                    player1.broadcastBreakEvent(player.getUsedItemHand());
                 });
             }
         }
+        return InteractionResultHolder.pass(pPlayer.getItemInHand(pUsedHand));
+    }
+
+    @Override
+    public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
+        if (pLivingEntity instanceof Player player && !pLevel.isClientSide) {
+            player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                if (cap.getCooldownTick((ServerPlayer) player, GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) <= 0
+                        && cap.getKungFuLevel(GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) >= 1) {
+                    triggerAnim(player, GeoItem.getOrAssignId(pStack, (ServerLevel) pLevel),
+                            "Charge", "charge");
+                }
+            });
+        }
+        super.onUseTick(pLevel, pLivingEntity, pStack, pRemainingUseDuration);
+    }
+
+    @Override
+    public void releaseUsing(ItemStack stack, Level world, LivingEntity user, int remainingUseDuration) {
+        if (user instanceof Player player && !world.isClientSide) {
+            int usedTicks = this.getUseDuration(stack) - remainingUseDuration;
+            player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                if (cap.getCooldownTick((ServerPlayer) player, GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) <= 0) {
+                    // 检查是否按住至少 0.3 秒（6 tick）
+                    if (usedTicks >= cap.getSwingTick((ServerPlayer) player, GoldenBlackKnifeMethod.KUNG_FU_ID.toString())) {
+                        cap.castKungFu(GoldenBlackKnifeMethod.KUNG_FU_ID.toString(), player);
+                    }
+                }
+            });
+        }
+    }
+
+    @Override
+    public int getUseDuration(ItemStack stack) {
+        return 72000; // 最大持续时间（实际由逻辑控制）
+    }
+
+    @Override
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.NONE; // 使用动画（可改为 SPEAR、CROSSBOW 等）
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController<>(this, "Charge", 0, state -> PlayState.STOP)
+                .triggerableAnim("charge", DefaultAnimations.ITEM_ON_USE).setAnimationSpeed(2.0));
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
     }
 }

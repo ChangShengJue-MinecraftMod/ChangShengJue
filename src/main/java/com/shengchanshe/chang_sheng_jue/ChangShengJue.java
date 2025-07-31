@@ -10,6 +10,8 @@ import com.shengchanshe.chang_sheng_jue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.loot_modifier.ChangShengJueLootModifier;
+import com.shengchanshe.chang_sheng_jue.martial_arts.KungFuRegistry;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
@@ -69,7 +71,9 @@ public class ChangShengJue {
         ChangShengJueMessages.register();
 
         GeckoLib.initialize();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ChangShengJueConfig.SPEC, MOD_ID + ".toml");
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ChangShengJueConfig.SPEC, MOD_ID + "/" + MOD_ID + ".toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, KungFuConfig.SPEC, MOD_ID + "/" + MOD_ID + ".kung_fu.toml");
 
         MinecraftForge.EVENT_BUS.register(this);
     }

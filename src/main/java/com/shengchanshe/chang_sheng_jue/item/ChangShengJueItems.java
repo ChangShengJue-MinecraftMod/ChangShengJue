@@ -33,8 +33,7 @@ import com.shengchanshe.chang_sheng_jue.item.combat.sword.BronzeSword;
 import com.shengchanshe.chang_sheng_jue.item.combat.sword.HanJian;
 import com.shengchanshe.chang_sheng_jue.item.combat.sword.SoftSword;
 import com.shengchanshe.chang_sheng_jue.item.combat.sword.YiTianJian;
-import com.shengchanshe.chang_sheng_jue.item.combat.throwingknives.SevenThrowingKnives;
-import com.shengchanshe.chang_sheng_jue.item.combat.throwingknives.ThreeThrowingKnives;
+import com.shengchanshe.chang_sheng_jue.item.combat.throwingknives.FlyingDaggerPouch;
 import com.shengchanshe.chang_sheng_jue.item.combat.throwingknives.ThrowingKnives;
 import com.shengchanshe.chang_sheng_jue.item.foods.*;
 import com.shengchanshe.chang_sheng_jue.item.items.*;
@@ -432,8 +431,7 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> PAN_HUA_GUN = ITEMS.register("pan_hua_gun", PanHuaGun::new);
     public static final RegistryObject<Item> KITCHEN_KNIFE = ITEMS.register("kitchen_knife", KitchenKnife::new);
     public static final RegistryObject<Item> THROWING_KNIVES = ITEMS.register("throwing_knives", ThrowingKnives::new);
-    public static final RegistryObject<Item> THREE_THROWING_KNIVES = ITEMS.register("three_throwing_knives", ThreeThrowingKnives::new);
-    public static final RegistryObject<Item> SEVEN_THROWING_KNIVES = ITEMS.register("seven_throwing_knives", SevenThrowingKnives::new);
+    public static final RegistryObject<Item> FLYING_DAGGER_POUCH = ITEMS.register("flying_dagger_pouch", FlyingDaggerPouch::new);
     //金丝软甲
     public static final RegistryObject<Item> GOLD_SILK_SOFT_ARMOR = ITEMS.register("gold_silk_soft_armor",
             ()-> new GoldSilkSoftArmor(ChangShengJueArmorMaterials.GOLD_SILK,
@@ -550,45 +548,45 @@ public class ChangShengJueItems {
 
     //武功秘籍
     //不死神功
-    public static final RegistryObject<Item> IMMORTAL_MIRACLE = ITEMS.register("immortal_miracle", ImmortalMiracle::new);
+    public static final RegistryObject<Item> IMMORTAL_MIRACLE = ITEMS.register("immortal_miracle", ImmortalMiracleBook::new);
     //大力神功
-    public static final RegistryObject<Item> HERCULES = ITEMS.register("hercules", Hercules::new);
+    public static final RegistryObject<Item> HERCULES = ITEMS.register("hercules", HerculesBook::new);
     //独孤九剑
     public static final RegistryObject<Item> DUGU_NINE_SWORDS = ITEMS.register("dugu_nine_swords", DuguNineSwordsBook::new);
     //高家枪法
-    public static final RegistryObject<Item> GAO_MARKSMANSHIP = ITEMS.register("gao_marksmanship", GaoMarksmanship::new);
+    public static final RegistryObject<Item> GAO_MARKSMANSHIP = ITEMS.register("gao_marksmanship", GaoMarksmanshipBook::new);
     //隔山打牛
-    public static final RegistryObject<Item> GE_SHAN_DA_NIU = ITEMS.register("ge_shan_da_niu", GeShanDaNiu::new);
+    public static final RegistryObject<Item> GE_SHAN_DA_NIU = ITEMS.register("ge_shan_da_niu", GeShanDaNiuBook::new);
     //龟息功
-    public static final RegistryObject<Item> TURTLE_BREATH_WORK = ITEMS.register("turtle_breath_work", TurtleBreathWork::new);
+    public static final RegistryObject<Item> TURTLE_BREATH_WORK = ITEMS.register("turtle_breath_work", TurtleBreathWorkBook::new);
     //金乌刀法
-    public static final RegistryObject<Item> GOLDEN_BLACK_KNIFE_METHOD = ITEMS.register("golden_black_knife_method", GoldenBlackKnifeMethod::new);
+    public static final RegistryObject<Item> GOLDEN_BLACK_KNIFE_METHOD = ITEMS.register("golden_black_knife_method", GoldenBlackKnifeMethodBook::new);
     //金钟罩
-    public static final RegistryObject<Item> GOLDEN_BELL_JAR = ITEMS.register("golden_bell_jar", GoldenBellJar::new);
+    public static final RegistryObject<Item> GOLDEN_BELL_JAR = ITEMS.register("golden_bell_jar", GoldenBellJarBook::new);
     //葵花点穴手
-    public static final RegistryObject<Item> SUNFLOWER_POINT_CAVEMAN = ITEMS.register("sunflower_point_caveman", SunflowerPointCaveman::new);
+    public static final RegistryObject<Item> SUNFLOWER_POINT_CAVEMAN = ITEMS.register("sunflower_point_caveman", SunflowerPointCavemanBook::new);
     //麦块百科
-    public static final RegistryObject<Item> WHEAT_NUGGET_ENCYCLOPEDIA = ITEMS.register("wheat_nugget_encyclopedia", WheatNuggetEncyclopedia::new);
+    public static final RegistryObject<Item> WHEAT_NUGGET_ENCYCLOPEDIA = ITEMS.register("wheat_nugget_encyclopedia", WheatNuggetEncyclopediaBook::new);
     //庖丁解牛
-    public static final RegistryObject<Item> PAODING = ITEMS.register("paoding", Paoding::new);
+    public static final RegistryObject<Item> PAODING = ITEMS.register("paoding", PaodingBook::new);
     //少林棍法
-    public static final RegistryObject<Item> SHAOLIN_STICK_METHOD = ITEMS.register("shaolin_stick_method", ShaolinStickMethod::new);
+    public static final RegistryObject<Item> SHAOLIN_STICK_METHOD = ITEMS.register("shaolin_stick_method", ShaolinStickMethodBook::new);
     //踏雪无痕
-    public static final RegistryObject<Item> TREAD_THE_SNOW_WITHOUT_TRACE = ITEMS.register("tread_the_snow_without_trace", TreadTheSnowWithoutTrace::new);
+    public static final RegistryObject<Item> TREAD_THE_SNOW_WITHOUT_TRACE = ITEMS.register("tread_the_snow_without_trace", TreadTheSnowWithoutTraceBook::new);
     //无情飞刀
-    public static final RegistryObject<Item> RELENTLESS_THROWING_KNIVES = ITEMS.register("relentless_throwing_knives", RelentlessThrowingKnives::new);
+    public static final RegistryObject<Item> RELENTLESS_THROWING_KNIVES = ITEMS.register("relentless_throwing_knives", RelentlessThrowingKnivesBook::new);
     //吴刚伐桂
-    public static final RegistryObject<Item> WU_GANG_CUT_GUI = ITEMS.register("wu_gang_cut_gui", WuGangCutGui::new);
+    public static final RegistryObject<Item> WU_GANG_CUT_GUI = ITEMS.register("wu_gang_cut_gui", WuGangCutGuiBook::new);
     //玄女剑法
-    public static final RegistryObject<Item> XUANNU_SWORDSMANSHIP = ITEMS.register("xuannu_swordsmanship", XuannuSwordsmanship::new);
+    public static final RegistryObject<Item> XUANNU_SWORDSMANSHIP = ITEMS.register("xuannu_swordsmanship", XuannuSwordsmanshipBook::new);
     //愚公移山
-    public static final RegistryObject<Item> YUGONG_MOVES_MOUNTAINS = ITEMS.register("yugong_moves_mountains", YugongMovesMountains::new);
+    public static final RegistryObject<Item> YUGONG_MOVES_MOUNTAINS = ITEMS.register("yugong_moves_mountains", YugongMovesMountainsBook::new);
     //张门心学
-    public static final RegistryObject<Item> ZHANG_MEN_XIN_XUE = ITEMS.register("zhang_men_xin_xue", ZhangMenXinxue::new);
+    public static final RegistryObject<Item> ZHANG_MEN_XIN_XUE = ITEMS.register("zhang_men_xin_xue", ZhangMenXinxueBook::new);
     //易筋经
-    public static final RegistryObject<Item> THE_CLASSICS_OF_TENDON_CHANGING = ITEMS.register("the_classics_of_tendon_changing", TheClassicsOfTendonChanging::new);
+    public static final RegistryObject<Item> THE_CLASSICS_OF_TENDON_CHANGING = ITEMS.register("the_classics_of_tendon_changing", TheClassicsOfTendonChangingBook::new);
     //乾坤大挪移
-    public static final RegistryObject<Item> QIAN_KUN_DA_NUO_YI = ITEMS.register("qian_kun_da_nuo_yi", QianKunDaNuoYi::new);
+    public static final RegistryObject<Item> QIAN_KUN_DA_NUO_YI = ITEMS.register("qian_kun_da_nuo_yi", QianKunDaNuoYiBook::new);
 
     //令牌
     public static final RegistryObject<Item> GANG_TOKEN = ITEMS.register("gang_token", ()-> new Item(new Item.Properties()));

@@ -1,6 +1,7 @@
 package com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.wu_gang_cut_gui;
 
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
 import net.minecraft.client.Camera;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
@@ -119,6 +120,26 @@ public class WuGangCutGuiParticle1 extends SimpleAnimatedParticle {
             float blue = this.bCol + f * (endBlue + 0.05F);
             // 设置当前颜色
             this.setColor(red, green, blue);
+            double radius = 0.5;
+            int numberOfPoints = 2; // 生成数量
+            for (int i = 0; i < numberOfPoints; i++) {
+                // 随机生成一个点
+                double phi = Math.random() * Math.PI * 2; // 随机生成方位角
+                double costheta = Math.random() * 2 - 1; // 随机生成余弦值
+                double theta = Math.acos(costheta); // 计算天顶角
+                double dx = radius * Math.sin(theta) * Math.cos(phi); // 计算X坐标
+                double dy = radius * Math.sin(theta) * Math.sin(phi); // 计算Y坐标
+                double dz = radius * Math.cos(theta); // 计算Z坐标
+
+                double speedFactor = 0.1;
+                // 计算粒子的速度向量，向外飞出
+                double speedX = dx * speedFactor;
+                double speedY = dy * speedFactor;
+                double speedZ = dz * speedFactor;
+
+                // 生成粒子并设置速度
+                this.level.addParticle(ChangShengJueParticles.WU_GANG_CUT_GUI_PARTICLE.get(), this.xo + dx + 0.5, this.yo + 0.1 + dy, this.zo + dz + 0.5, speedX, speedY, speedZ);
+            }
         }
     }
 

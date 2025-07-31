@@ -181,8 +181,7 @@ public class CSJItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ChangShengJueItems.LEATHER_INNER_ARMOR);
         //武器
         handheldItem(ChangShengJueItems.THROWING_KNIVES);
-        handheldItem(ChangShengJueItems.THREE_THROWING_KNIVES);
-        handheldItem(ChangShengJueItems.SEVEN_THROWING_KNIVES);
+        handheldItem(ChangShengJueItems.FLYING_DAGGER_POUCH);
         //工具
         handheldItem(ChangShengJueItems.KAISHAN_PICKAXE);
         handheldItem(ChangShengJueItems.XUANHUA_AXE);

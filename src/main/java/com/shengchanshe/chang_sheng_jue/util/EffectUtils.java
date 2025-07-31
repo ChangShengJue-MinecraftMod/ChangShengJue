@@ -19,7 +19,7 @@ public class EffectUtils {
         }
         if (probability1 < probability) {
             if (!(target instanceof Zombie)){
-                int level = source.getRandom().nextInt(traumaLevel); // 0或1
+                int level = source.getRandom().nextInt(traumaLevel);
 
                 // 如果已有外伤效果，延长1秒并保持最高等级
                 if (target.hasEffect(ChangShengJueEffects.TRAUMA_EFFECT.get())) {
@@ -37,6 +37,26 @@ public class EffectUtils {
                         true
                 ), source);
             }
+        }
+    }
+
+    public static void setInternal(LivingEntity source,LivingEntity target, int traumaLevel, int duration, float probability){
+        float probability1 = source.getRandom().nextFloat();
+        if (probability1 < probability) {
+            if (target.hasEffect(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get())) {
+                MobEffectInstance oldEffect = target.getEffect(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get());
+                if (oldEffect != null) {
+                    int increment = target instanceof Zombie ? 2 : 1;
+                    traumaLevel = Math.min(oldEffect.getAmplifier() + increment + traumaLevel, 4);
+                }
+            }
+
+            target.addEffect(new MobEffectInstance(
+                    ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get(), duration, traumaLevel,
+                    true,
+                    true,
+                    true
+            ), source);
         }
     }
 

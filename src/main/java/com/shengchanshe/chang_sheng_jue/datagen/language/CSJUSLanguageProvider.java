@@ -204,8 +204,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.PAN_HUA_GUN.get(),"盘花棍");
         this.add(ChangShengJueItems.KITCHEN_KNIFE.get(),"菜刀");
         this.add(ChangShengJueItems.THROWING_KNIVES.get(),"飞刀");
-        this.add(ChangShengJueItems.THREE_THROWING_KNIVES.get(),"飞刀");
-        this.add(ChangShengJueItems.SEVEN_THROWING_KNIVES.get(),"飞刀");
+        this.add(ChangShengJueItems.FLYING_DAGGER_POUCH.get(),"飞刀囊");
         this.add(ChangShengJueItems.BEAT_DOG_STICK.get(),"打狗棒");
         this.add(ChangShengJueItems.YI_TIAN_JIAN.get(),"倚天剑");
         this.add(ChangShengJueItems.TU_LONG_DAO.get(),"屠龙刀");
@@ -291,67 +290,67 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         //武功描述
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".tooltip","天下剑法中的巅峰绝诣，其中包含森罗万象的诀窍。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".hold_shift.tooltip",
-                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.8倍的伤害\\n大成后施展效果:伤害倍数提高至2.2倍、使用剑时流血触发概率*1.25\\n成功施展100次后武功大成");
+                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.8倍的伤害\\n大成后施展效果:伤害倍数提高至2.2倍、使用剑时流血触发概率*1.25\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.XUANNU_SWORDSMANSHIP.get()+".tooltip","以巧借力，以柔克刚。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.XUANNU_SWORDSMANSHIP.get()+".hold_shift.tooltip",
-                "未大成前施展效果:外功释放造成(主手武器伤害+1)*2.2倍伤害\\n大成后施展效果:伤害倍数提高至2.5倍、使用软剑时流血触发概率*3.0\\n成功施展100次后武功大成");
+                "未大成前施展效果:外功释放造成(主手武器伤害+1)*2.2倍伤害\\n大成后施展效果:伤害倍数提高至2.5倍、使用软剑时流血触发概率*3.0\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".tooltip","一点寒芒先到，随后枪出如龙。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".hold_shift.tooltip",
-                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.8倍的伤害\\n大成后施展效果:伤害倍数提高至2.1倍、使用枪时挑飞触发概率*2.5\\n成功施展100次后武功大成");
+                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.8倍的伤害\\n大成后施展效果:伤害倍数提高至2.1倍、使用枪时挑飞触发概率*2.5\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()+".tooltip","无情飞刀人有情义，人有情义飞刀无情。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()+".hold_shift.tooltip",
-                "未大成前施展效果:飞刀伤害提高至1.25倍并可一次丢出3把飞刀\\n大成后施展效果:飞刀伤害提高至1.5倍并可一次丢出7把飞刀\\n成功施展100次后武功大成");
+                "未大成前施展效果:飞刀伤害提高至1.25倍并可一次丢出3把飞刀\\n大成后施展效果:飞刀伤害提高至1.5倍并可一次丢出7把飞刀\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SHAOLIN_STICK_METHOD.get()+".tooltip","天下武功出少林，一棍定乾坤。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SHAOLIN_STICK_METHOD.get()+".hold_shift.tooltip",
-                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.7倍伤害\\n大成后施展效果:伤害倍数提高至2.0倍、使用棍时击晕触发概率*2.5\\n成功施展100次后武功大成");
+                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.7倍伤害\\n大成后施展效果:伤害倍数提高至2.0倍、使用棍时击晕触发概率*2.5\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()+".tooltip","任你千变万化，我只一刀破去!");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()+".hold_shift.tooltip",
-                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.9倍的伤害\\n大成后施展效果:伤害倍数提高至2.0倍、使用刀时重击触发概率*2.0\\n成功施展100次后武功大成");
+                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.9倍的伤害\\n大成后施展效果:伤害倍数提高至2.0倍、使用刀时重击触发概率*2.0\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()+".tooltip","来去无影无踪，逍遥自在。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()+".hold_shift.tooltip",
-                "未大成前施展效果:可以进行二连跳\\n大成后施展效果:可以进行三段跳\\n成功施展100次后武功大成");
+                "未大成前施展效果:可以进行二连跳\\n大成后施展效果:可以进行三段跳\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WU_GANG_CUT_GUI.get()+".tooltip","何意杀人技，不如快人心。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WU_GANG_CUT_GUI.get()+".hold_shift.tooltip",
-                "未大成前施展效果:使用萱花斧砍树可以破坏整棵树\\n大成后施展效果:砍树连带破坏整个树的速度更快\\n成功施展1000次后武功大成");
+                "未大成前施展效果:使用萱花斧砍树可以破坏整棵树\\n大成后施展效果:砍树连带破坏整个树的速度更快\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".tooltip","生生不息，直至山平。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".hold_shift.tooltip",
-                "未大成前施展效果:使用开山镐的挖掘面积扩大为2x2\\n大成后施展效果:挖掘面积扩大为3x3\\n成功施展1000次后武功大成");
+                "未大成前施展效果:使用开山镐的挖掘面积扩大为2x2\\n大成后施展效果:挖掘面积扩大为3x3\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".tooltip","若反复实践，掌握规律；便得心应手，运用自如。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".hold_shift.tooltip",
-                "未大成前施展效果:主手持菜刀杀死动物有50%概率额外掉落肉\\n大成后施展效果:主手持菜刀杀死动物有75%概率额外掉落肉\\n成功施展1000次后武功大成");
+                "未大成前施展效果:主手持菜刀杀死动物有50%概率额外掉落肉\\n大成后施展效果:主手持菜刀杀死动物有75%概率额外掉落肉\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".tooltip","以气御力，神力无穷。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".hold_shift.tooltip",
-                "未大成前施展效果:减少疾跑消耗的饱食度降低至60%\\n大成后施展效果:主手持金丝手套右键可打开末影箱\\n移动大于1万米后武功大成");
+                "未大成前施展效果:减少疾跑消耗的饱食度降低至60%\\n大成后施展效果:主手持金丝手套右键可打开末影箱\\n移动大于%s米后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".tooltip","指如疾风，势如闪电。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".hold_shift.tooltip",
-                "未大成前施展效果:定住血量上限低于25点的目标1.5秒\\n大成后施展效果:定住血量上限低于200点的目标2秒\\n成功施展100次后武功大成");
+                "未大成前施展效果:定住血量上限低于25点的目标1.5秒\\n大成后施展效果:定住血量上限低于200点的目标2秒\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BELL_JAR.get()+".tooltip","刀枪不入，浑然一金钟。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BELL_JAR.get()+".hold_shift.tooltip",
-                "未大成前施展效果:提高4点护甲,受到伤害时会获得3级的伤害吸收\\n大成后施展效果:提高8点护甲,受到伤害时伤害吸收的效果提高到5级\\n成功施展100次后武功大成");
+                "未大成前施展效果:提高4点护甲,受到伤害时会获得3级的伤害吸收\\n大成后施展效果:提高8点护甲,受到伤害时伤害吸收的效果提高到5级\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".tooltip","江湖不是打打杀杀，那是人情世故!");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".hold_shift.tooltip",
-                "未大成前施展效果:与村民的交易一次即可将村民等级提升至学徒\\n大成后施展效果:额外有10%概率不消耗物品交易\\n与村民交易100次后武功大成");
+                "未大成前施展效果:与村民的交易一次即可将村民等级提升至学徒\\n大成后施展效果:额外有10%概率不消耗物品交易\\n与村民交易%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".tooltip","不死不灭，岂是幻梦?");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".hold_shift.tooltip",
-                "未大成前施展效果:在濒死时抵御一次致命伤害\\n大成后施展效果:减少15秒冷却时间\\n成功施展25次后武功大成");
+                "未大成前施展效果:在濒死时抵御一次致命伤害\\n大成后施展效果:减少15秒冷却时间\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GE_SHAN_DA_NIU.get()+".tooltip","神功盖世，何欺牛儿?");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GE_SHAN_DA_NIU.get()+".hold_shift.tooltip",
-                "未大成前施展效果:无视方块阻拦施展外功造成22点伤害\\n大成后施展效果:攻击伤害范围提高2格\\n成功施展100次后武功大成");
+                "未大成前施展效果:无视方块阻拦施展外功造成22点伤害\\n大成后施展效果:攻击伤害范围提高2格\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".tooltip","学向勤中得，萤窗万卷书。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".hold_shift.tooltip",
@@ -359,15 +358,27 @@ public class CSJUSLanguageProvider extends LanguageProvider {
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".tooltip","龟虽有鼻，而息之以耳。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".hold_shift.tooltip",
-                "未大成前施展效果:施展后一段时间内可以水下屏息更久，不会被动物主动攻击\\n大成后施展效果:提高屏息效果\\n成功施展100次后武功大成");
+                "未大成前施展效果:施展后一段时间内可以水下屏息更久，不会被动物主动攻击\\n大成后施展效果:提高屏息效果\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get()+".tooltip","武林中人梦寐以求的武学宝典。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get()+".hold_shift.tooltip",
-                "未大成前施展效果:释放武功需要的饥饿度减少1点\\n大成后施展效果:释放武功需要的饥饿度与饱和度各减少1点\\n成功施展1000次后武功大成");
+                "未大成前施展效果:释放武功需要的饥饿度减少1点\\n大成后施展效果:释放武功需要的饥饿度与饱和度各减少1点\\n成功施展%s次后武功大成");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".tooltip","激发潜力，牵引挪移，其中变化莫测，匪夷所思。");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".hold_shift.tooltip",
-                "未大成前施展效果:有35%概率将遭受的攻击伤害于1.0秒后以1.5倍反弹给攻击者\\n大成后施展效果:每多1点血量额外提高2%触发概率\\n每施展1次冷却时间短期内延长2秒\\n成功施展100次后武功大成");
+                "未大成前施展效果:有35%概率将遭受的攻击伤害于1.0秒后以1.5倍反弹给攻击者\\n大成后施展效果:每多1点血量额外提高2%触发概率\\n每施展1次冷却时间短期内延长2秒\\n成功施展%s次后武功大成");
+
+        this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.kungfu", "已成功领悟%s");
+        this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.kungfu", "这门功法已经习得,快去提升吧");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".state_change.kungfu", "%s : %s");
+        this.add("kungfu.open", "启动");
+        this.add("kungfu.off", "关闭");
+
+        this.add("message." + ChangShengJue.MOD_ID + ".dagger_pouch.empty", "§c没有武器了");
+
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.count","飞刀囊容量 %s / %s");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".durability","耐久 %s / %s");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.contents","飞刀囊内的物品");
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DURIAN.get()+".tooltip","请使用斧子劈开");
         this.add("tooltip."+ChangShengJue.MOD_ID+".hold_shift.tooltip","按下 §eShift§r 查看更多信息");
@@ -386,6 +397,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "fortresses_type.tooltip","古城");
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "null.structure.tooltip","未知结构");
         this.add("tooltip." + ChangShengJue.MOD_ID + ".structural_location","在 [x=%d | z=%d] 位置坐落着一处%s,去看看吧");
+
         //声音
         this.add("sounds."+ChangShengJue.MOD_ID + ".ge_shan_da_niu_sound","武功 : 隔山打牛");
         this.add("sounds."+ChangShengJue.MOD_ID + ".dugu_nine_swords_sound","武功 : 独孤九剑");
@@ -405,7 +417,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("sounds."+ChangShengJue.MOD_ID + ".xuannu_swordsmanship_sound","武功 : 玄女剑法");
         this.add("sounds."+ChangShengJue.MOD_ID + ".golden_belljar_sound","武功 : 金钟罩");
         this.add("sounds."+ChangShengJue.MOD_ID + ".qian_kun_da_nuo_yi_sound","武功 : 乾坤大挪移");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".comprehend_sound","武功 : 领悟");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".comprehend_sound","武功 : 突破");
         this.add("sounds."+ChangShengJue.MOD_ID + ".dacheng_sound","武功 : 大成");
 
         this.add("sounds."+ChangShengJue.MOD_ID + ".cicada_sound", "蝉 : 鸣叫");
@@ -1187,6 +1199,75 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("config."+ ChangShengJue.MOD_ID +".spirit_root_ju_qi_efficiency", "化神期后灵根数量影响聚气效率");
         this.add("config."+ ChangShengJue.MOD_ID +".tun_na_particle", "是否显示吐纳粒子");
         this.add("config."+ ChangShengJue.MOD_ID +".breakthrough_particle", "是否显示突破粒子");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_level", "独孤九剑最大等级上限");
+        this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_exp", "独孤九剑突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_cooldown", "独孤九剑最大冷却时间");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_level", "高家枪法最大等级上限");
+        this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_exp", "高家枪法突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_cooldown", "高家枪法最大冷却时间");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".ge_shan_da_niu_max_level", "隔山打牛最大等级上限");
+        this.add("config."+ ChangShengJue.MOD_ID +".ge_shan_da_niu_max_exp", "隔山打牛突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".ge_shan_da_niu_max_cooldown", "隔山打牛最大冷却时间");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".golden_black_knife_method_max_level", "金乌刀法最大等级上限");
+        this.add("config."+ ChangShengJue.MOD_ID +".golden_black_knife_method_max_exp", "金乌刀法突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".golden_black_knife_method_max_cooldown", "金乌刀法最大冷却时间");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".shaolin_stick_method_max_level", "少林棍法最大等级上限");
+        this.add("config."+ ChangShengJue.MOD_ID +".shaolin_stick_method_max_exp", "少林棍法突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".shaolin_stick_method_max_cooldown", "少林棍法最大冷却时间");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".sunflower_point_caveman_max_level", "葵花点穴手最大等级上限");
+        this.add("config."+ ChangShengJue.MOD_ID +".sunflower_point_caveman_max_exp", "葵花点穴手突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".sunflower_point_caveman_max_cooldown", "葵花点穴手最大冷却时间");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".turtle_breath_work_max_level", "龟息功最大等级上限");
+        this.add("config."+ ChangShengJue.MOD_ID +".turtle_breath_work_max_exp", "龟息功突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".turtle_breath_work_max_cooldown", "龟息功最大冷却时间");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".xuannu_swordsmanship_max_level", "玄女剑法最大等级上限");
+        this.add("config."+ ChangShengJue.MOD_ID +".xuannu_swordsmanship_max_exp", "玄女剑法突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".xuannu_swordsmanship_max_cooldown", "玄女剑法最大冷却时间");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".relentless_throwing_knives_max_level", "无情飞刀最大等级上限");
+        this.add("config."+ ChangShengJue.MOD_ID +".relentless_throwing_knives_max_exp", "无情飞刀突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".relentless_throwing_knives_max_cooldown", "无情飞刀最大冷却时间");
+        this.add("config."+ ChangShengJue.MOD_ID +".flying_dagger_pouch_max_slots", "飞刀囊中最大可放入的飞刀数量");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".golden_bell_jar_max_level", "金钟罩最大等级上限");
+        this.add("config."+ ChangShengJue.MOD_ID +".golden_bell_jar_max_exp", "金钟罩突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".golden_bell_jar_max_cooldown", "金钟罩最大冷却时间");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".hercules_max_exp", "大力神功突破所需的移动距离");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".immortal_miracle_max_level", "不死神功最大等级上限");
+        this.add("config."+ ChangShengJue.MOD_ID +".immortal_miracle_max_exp", "不死神功突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".immortal_miracle_max_cooldown", "不死神功最大冷却时间");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_max_level", "乾坤大挪移最大等级上限");
+        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_max_exp", "乾坤大挪移突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_max_cooldown", "乾坤大挪移最大冷却时间");
+        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_probability", "乾坤大挪移每次反弹伤害的概率");
+        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_extra_probability", "乾坤大挪移大成后每点血量增加反弹伤害的概率");
+        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_multiplier", "乾坤大挪移反弹伤害的倍率");
+        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_tick", "乾坤大挪移每次反弹伤害需要的时间");
+        this.add("config."+ ChangShengJue.MOD_ID +".qian_kun_da_nuo_yi_max_cooldown_extra_tick", "乾坤大挪移每次释放后增加的冷却恢复到默认冷却的时间");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".the_classics_of_tendon_changing_max_exp", "易筋经突破所需的成功释放次数");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".paoding_max_exp", "庖丁解牛突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".paoding_additional_drops_count", "庖丁解牛杀死生物时额外掉落肉的数量");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".wu_gang_cut_gui_max_exp", "吴刚伐桂突破所需的成功释放次数");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".yugong_moves_mountains_max_exp", "愚公移山突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".yugong_moves_mountains_excavation_range", "愚公移山的挖掘范围");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_max_exp", "张门心学突破所需的交易成功次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_extra_probability", "张门心学大成后交易不消耗物品的概率");
 
         //普通信息
         this.add("block.changshengjue.fen_jiu.no_wine","已经没有酒了！");

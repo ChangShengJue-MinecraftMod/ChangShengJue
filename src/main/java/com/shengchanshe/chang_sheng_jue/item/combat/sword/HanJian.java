@@ -11,11 +11,10 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
 
-public class HanJian extends Sword implements GeoItem {
+public class HanJian extends Sword {
     public HanJian() {
         super(Tiers.IRON, 4, -2.4F, new Item.Properties().durability(1500));
     }
-    private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
@@ -29,12 +28,5 @@ public class HanJian extends Sword implements GeoItem {
                 return renderer;
             }
         });
-    }
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {}
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
     }
 }

@@ -1,8 +1,14 @@
 package com.shengchanshe.chang_sheng_jue.entity.combat.stakes;
 
+import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
-import com.shengchanshe.chang_sheng_jue.item.combat.book.*;
+import com.shengchanshe.chang_sheng_jue.item.combat.book.TreadTheSnowWithoutTraceBook;
+import com.shengchanshe.chang_sheng_jue.item.combat.glove.GoldThreadGlove;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.GeShanDaNiu;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.SunflowerPointCaveman;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.TurtleBreathWork;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.*;
 import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.core.NonNullList;
@@ -10,6 +16,7 @@ import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
@@ -107,26 +114,29 @@ public class StakesEntity extends LivingEntity {
 //                ((ServerLevel)this.level()).sendParticles(ChangShengJueParticles.STAKES_PARTICLE.get(), this.getX(),
 //                        this.getY(0.6666666666666666), this.getZ(), 10,
 //                        this.getBbWidth() / 3.0F, this.getBbHeight() / 8.0F, this.getBbWidth() / 3.0F, 0.5);
-                GoldenBellJar.comprehend(entity,level);
-                QianKunDaNuoYi.comprehend(entity,level);
-                ImmortalMiracle.comprehend(entity,level);
-                TheClassicsOfTendonChanging.comprehend(entity,level);
-                WuGangCutGui.comprehend(entity,level);
-                YugongMovesMountains.comprehend(entity,level);
-                Paoding.comprehend(entity,level);
-                TurtleBreathWork.comprehend(entity,level);
-                TreadTheSnowWithoutTrace.comprehend(entity,level);
 
-                Player player;
-                if (entity instanceof Player) {
-                    player = (Player) entity;
-                    GeShanDaNiu.comprehend(player,player.level(),entity);
-//            GoldenBellJar.comprehend(player,player.level());
-                    Hercules.comprehend(player,player.level());
-
-//            QianKunDaNuoYi.comprehend(player,player.level());
-                    SunflowerPointCaveman.comprehend(player,player.level(),entity);
-                    TurtleBreathWork.comprehend(player,player.level());
+                if (entity instanceof Player player) {
+                    player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                        if (player.getMainHandItem().isEmpty() || player.getMainHandItem().getItem() instanceof GoldThreadGlove){
+                            if (cap.isStart(GeShanDaNiu.KUNG_FU_ID.toString())){
+                                cap.comprehendKungFu((ServerPlayer) player, GeShanDaNiu.KUNG_FU_ID.toString(), player);
+                            } else if (cap.isStart(SunflowerPointCaveman.KUNG_FU_ID.toString())) {
+                                cap.comprehendKungFu((ServerPlayer) player, SunflowerPointCaveman.KUNG_FU_ID.toString(), player);
+                            } else if (cap.isStart(TurtleBreathWork.KUNG_FU_ID.toString())) {
+                                cap.comprehendKungFu((ServerPlayer) player, TurtleBreathWork.KUNG_FU_ID.toString(), player);
+                            }
+                        }
+                        if (player.getMainHandItem().isEmpty()){
+                            cap.comprehendKungFu((ServerPlayer) player, GoldenBellJar.KUNG_FU_ID.toString(), player);
+                            cap.comprehendKungFu((ServerPlayer) player, Hercules.KUNG_FU_ID.toString(), player);
+                            cap.comprehendKungFu((ServerPlayer) player, ImmortalMiracle.KUNG_FU_ID.toString(), player);
+                            cap.comprehendKungFu((ServerPlayer) player, QianKunDaNuoYi.KUNG_FU_ID.toString(), player);
+                            cap.comprehendKungFu((ServerPlayer) player, TheClassicsOfTendonChanging.KUNG_FU_ID.toString(), player);
+                            cap.comprehendKungFu((ServerPlayer) player, Paoding.KUNG_FU_ID.toString(), player);
+                            cap.comprehendKungFu((ServerPlayer) player, WuGangCutGui.KUNG_FU_ID.toString(), player);
+                            cap.comprehendKungFu((ServerPlayer) player, YugongMovesMountains.KUNG_FU_ID.toString(), player);
+                        }
+                    });
                 }
 
                 return false;

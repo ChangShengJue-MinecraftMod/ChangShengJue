@@ -1023,12 +1023,6 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
         ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT,ChangShengJueItems.THROWING_KNIVES.get()).requires(Ingredient.of(Tags.Items.INGOTS_IRON),1)
                 .requires(Ingredient.of(Tags.Items.LEATHER), 1)
                 .unlockedBy("has_iron",has(Tags.Items.INGOTS_IRON)).save(consumer);
-        //三把飞刀
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT,ChangShengJueItems.THREE_THROWING_KNIVES.get()).requires(Ingredient.of(ChangShengJueItems.THROWING_KNIVES.get()),3)
-                .unlockedBy("has_throwing_knives",has(ChangShengJueItems.THROWING_KNIVES.get())).save(consumer);
-        //七把飞刀
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.COMBAT,ChangShengJueItems.SEVEN_THROWING_KNIVES.get()).requires(Ingredient.of(ChangShengJueItems.THROWING_KNIVES.get()),7)
-                .unlockedBy("has_throwing_knives",has(ChangShengJueItems.THROWING_KNIVES.get())).save(consumer);
         //盘花棍
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, ChangShengJueItems.PAN_HUA_GUN.get(),1)
                 .define('#', Ingredient.of(Tags.Items.INGOTS_GOLD))

@@ -2,7 +2,7 @@ package com.shengchanshe.chang_sheng_jue.event;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.button.TexturedButtonWithText;
-import com.shengchanshe.chang_sheng_jue.event.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceClientEvent;
+import com.shengchanshe.chang_sheng_jue.event.kungfu.TreadTheSnowWithoutTraceClientEvent;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.OpenPlayerQuestScreenPacket;
 import net.minecraft.client.Minecraft;

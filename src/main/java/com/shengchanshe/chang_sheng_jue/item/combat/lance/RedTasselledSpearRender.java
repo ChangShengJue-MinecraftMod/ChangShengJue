@@ -23,15 +23,8 @@ public class RedTasselledSpearRender extends GeoItemRenderer<RedTasselledSpear> 
                     transformType == ItemDisplayContext.THIRD_PERSON_RIGHT_HAND ||
                     transformType == ItemDisplayContext.FIRST_PERSON_LEFT_HAND ||
                     transformType == ItemDisplayContext.FIRST_PERSON_RIGHT_HAND) {
-                if (stack.getItem() instanceof RedTasselledSpear redTasselledSpear) {
-                    if (redTasselledSpear.getPlayer() != null && redTasselledSpear.getPlayer().isShiftKeyDown()) {
-                        getGeoModel().getBone("all2").get().setHidden(true);
-                        getGeoModel().getBone("all").get().setHidden(false);
-                    }else {
-                        getGeoModel().getBone("all2").get().setHidden(true);
-                        getGeoModel().getBone("all").get().setHidden(false);
-                    }
-                }
+                getGeoModel().getBone("all2").get().setHidden(true);
+                getGeoModel().getBone("all").get().setHidden(false);
             } else {
                 getGeoModel().getBone("all2").get().setHidden(false);
                 getGeoModel().getBone("all").get().setHidden(true);

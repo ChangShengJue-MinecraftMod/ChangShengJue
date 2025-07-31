@@ -139,7 +139,7 @@
 				}
 			}
 		},
-		"attack_1": {
+		"item.use": {
 			"animation_length": 0.2917,
 			"bones": {
 				"all": {

@@ -1,19 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.event;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.ge_shan_da_niu.GeShanDaNiuCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.relentless_throwing_knives.RelentlessThrowingKnivesCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.bandit.Bandit;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.challenger.Challenger;
@@ -56,7 +43,6 @@ public class CSJAdvanceEvent {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END && event.player instanceof ServerPlayer serverPlayer) {
             Player player = event.player;
-            checkPlayerCungFu(serverPlayer);
             checkForItem(player);
 
             //玩家是否处于某结构
@@ -206,10 +192,6 @@ public class CSJAdvanceEvent {
         int summonCount = summonTracker.getOrDefault(playerUUID, 0);
 
         ServerPlayer serverPlayer = (ServerPlayer) player;
-
-
-
-
         if (summonCount >= 3) {
             return;
         }
@@ -360,93 +342,19 @@ public class CSJAdvanceEvent {
         }
         return null; // 尝试失败，返回null
     }
-    private static void checkPlayerCungFu(ServerPlayer player) {
-        // 获取玩家的独孤九剑能力
-        player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSwords -> {
-            // 在这里添加你的能力检查逻辑
-            int level = duguNineSwords.getDuguNineSwordsLevel();
-            int count = duguNineSwords.getDuguNineSwordsUseCount();
-            CheckLevel(level,player,count);
-        });
-        player.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
-            int level = gaoMarksmanship.getGaoMarksmanshipLevel();
-            int count = gaoMarksmanship.getGaoMarksmanshipUseCount();
-            CheckLevel(level, player, count);
-        });
 
-
-        player.getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(xuannuSwordsmanship -> {
-            int level = xuannuSwordsmanship.getXuannuSwordsmanshipLevel();
-            int count = xuannuSwordsmanship.getXuannuSwordsmanshipUseCount();
-            CheckLevel(level, player, count);
-        });
-
-        player.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(relentlessThrowingKnives -> {
-            int level = relentlessThrowingKnives.getRelentlessThrowingKnivesLevel();
-            int count = relentlessThrowingKnives.getRelentlessThrowingKnivesUseCount();
-            CheckLevel(level, player, count);
-        });
-
-        player.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
-            int level = geShanDaNiu.getGeShanDaNiuLevel();
-            int count = geShanDaNiu.getGeShanDaNiuUseCount();
-            CheckLevel(level, player, count);
-        });
-
-        player.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
-            int level = goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel();
-            int count = goldenBlackKnifeMethod.getGoldenBlackKnifeMethodUseCount();
-            CheckLevel(level, player, count);
-        });
-
-        player.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(shaolinStickMethod -> {
-            int level = shaolinStickMethod.getShaolinStickMethodLevel();
-            int count = shaolinStickMethod.getShaolinStickMethodUseCount();
-            CheckLevel(level, player, count);
-        });
-
-        player.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
-            int level = sunflowerPointCaveman.getSunflowerPointCavemanLevel();
-            int count = sunflowerPointCaveman.getSunflowerPointCavemanUseCount();
-            CheckLevel(level, player, count);
-        });
-
-        player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
-            int level = immortalMiracle.getImmortalMiracleLevel();
-            CheckLevel(level,player);
-        });
-
-        player.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
-            int level = goldenBellJar.getGoldenBellJarLevel();
-            CheckLevel(level,player);
-        });
-
-        player.getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(qianKunDaNuoYi -> {
-            int level = qianKunDaNuoYi.getQianKunDaNuoYiLevel();
-            CheckLevel(level,player);
-        });
-
-        player.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(theClassicsOfTendonChanging -> {
-            int level = theClassicsOfTendonChanging.getTheClassicsOfTendonChangingLevel();
-            CheckLevel(level,player);
-        });
-
-        player.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
-            int level = turtleBreathWork.getTurtleBreathWorkLevel();
-            CheckLevel(level,player);
-        });
-    }
-
-    public static void CheckLevel(int level, ServerPlayer player, int count){
-        CheckLevel(level,player);
-        if(count >= 1){
+    public static void CheckLevel(int level, ServerPlayer player, int count, int maxLevel){
+        if (level >= 1){
+            CheckLevel(level, player, maxLevel);
+        }
+        if(count == 1){
             CSJAdvanceInit.USE_WAI_GONG.trigger(player);
         }
     }
-    public static void CheckLevel(int level, ServerPlayer player){
-        if(level == 1){
+    public static void CheckLevel(int level, ServerPlayer player, int maxLevel){
+        if(level == 1) {
             CSJAdvanceInit.MATER_GONG_FA.trigger(player);
-        }else if(level == 2){
+        }else if(level >= maxLevel){
             CSJAdvanceInit.MATER_GONG_FA.trigger(player);
             CSJAdvanceInit.GONG_FA_DONE.trigger(player);
         }

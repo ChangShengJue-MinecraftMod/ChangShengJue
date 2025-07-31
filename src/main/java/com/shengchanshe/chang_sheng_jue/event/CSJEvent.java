@@ -3,85 +3,40 @@ package com.shengchanshe.chang_sheng_jue.event;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.ChangShengJueConfig;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
-import com.shengchanshe.chang_sheng_jue.block.custom.DoorsBlock;
 import com.shengchanshe.chang_sheng_jue.block.food.TypeBlock;
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapability;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.dugu_nine_swords.DuguNineSwordsCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapability;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.gao_marksmanship.GaoMarksmanshipCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.ge_shan_da_niu.GeShanDaNiuCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.golden_bell_jar.GoldenBellJarCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapability;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.golden_black_knife_method.GoldenBlackKnifeMethodCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.hercules.HerculesCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.immortal_miracle.ImmortalMiracleCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.paoding.PaodingCapability;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.paoding.PaodingCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.relentless_throwing_knives.RelentlessThrowingKnivesCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapability;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.shaolin_stick_method.ShaolinStickMethodCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapability;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.sunflower_point_caveman.SunflowerPointCavemanCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.the_classics_of_tendon_changing.TheClassicsOfTendonChangingCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapability;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.turtle_breath_work.TurtleBreathWorkCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.wheat_nugget_encyclopedia.WheatNuggetEncyclopediaCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapability;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.wu_gang_cut_gui.WuGangCutGuiCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapability;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.xuannu_swordsmanship.XuannuSwordsmanshipCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapability;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.yugong_moves_mountains.YugongMovesMountainsCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.martial_arts.zhang_men_xin_xue.ZhangMenXinxueCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
+import com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu.KungFuClientData;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.entity.custom.croc.Croc;
 import com.shengchanshe.chang_sheng_jue.entity.custom.tiger.Tiger;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.other.GangLeader;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.chang_sheng_jue.event.armor.ArmorEvent;
-import com.shengchanshe.chang_sheng_jue.event.martial_arts.*;
-import com.shengchanshe.chang_sheng_jue.event.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceEvent;
+import com.shengchanshe.chang_sheng_jue.event.kungfu.GoldenBellJarEvent;
+import com.shengchanshe.chang_sheng_jue.event.kungfu.KungFuEvent;
+import com.shengchanshe.chang_sheng_jue.event.kungfu.PaodingEvent;
+import com.shengchanshe.chang_sheng_jue.event.kungfu.RelentlessThrowingKnivesEvent;
 import com.shengchanshe.chang_sheng_jue.event.quest.PlayerQuestEvent;
 import com.shengchanshe.chang_sheng_jue.event.quest.QuestEvent;
 import com.shengchanshe.chang_sheng_jue.event.xiu_xian.SpiritEvents;
 import com.shengchanshe.chang_sheng_jue.event.xiu_xian.XiuXianEvent;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
-import com.shengchanshe.chang_sheng_jue.item.combat.book.GeShanDaNiu;
-import com.shengchanshe.chang_sheng_jue.item.combat.book.SunflowerPointCaveman;
+import com.shengchanshe.chang_sheng_jue.item.combat.knife.Knife;
 import com.shengchanshe.chang_sheng_jue.item.items.Parcel;
 import com.shengchanshe.chang_sheng_jue.item.items.StructureIntelligence;
-import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
-import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.*;
-import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.ge_shan_da_niu.GeShanDaNiuPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.golden_bell_jar.GoldenBellJarPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.hercules.HerculesPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.immortal_miracle.ImmortalMiraclePacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.qian_kun_da_nuo_yi.QianKunDaNuoYiPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.sunflower_point_caveman.SunflowerPointCavemanPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.turtle_breath_work.TurtleBreathWorkPacket;
 import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
 import com.shengchanshe.chang_sheng_jue.util.TradeHelper;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -89,6 +44,7 @@ import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.TradeWithVillagerEvent;
@@ -99,7 +55,6 @@ import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.server.ServerLifecycleHooks;
 import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.List;
@@ -111,7 +66,7 @@ public class CSJEvent {
 
     @SubscribeEvent
     public static void onVillagerInteract(PlayerInteractEvent.EntityInteractSpecific event) {
-        ZhangMenXinxueEvent.onVillagerInteract(event);
+        KungFuEvent.onVillagerInteract(event);
     }
     @SubscribeEvent
     public static void onTrackingStart(PlayerEvent.StartTracking event) {
@@ -573,91 +528,13 @@ public class CSJEvent {
                         stack5[0], parcel,
                         12, 30, 0.05F);
             });
-//            // 存储第一个交易的索引
-//            final int[] firstIndex = new int[1];
-//            // 添加两个不重复的交易
-//            trades.get(1).add((trader, rand) -> {
-//                firstIndex[0] = rand.nextInt(stack1.length);
-//                ItemStack firstStack = stack1[firstIndex[0]];
-//                return new MerchantOffer(firstStack,new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4),16,1,0.05F);
-//            });
-//            trades.get(1).add((trader, rand) -> {
-//                int secondIndex;
-//                do {
-//                    secondIndex = rand.nextInt(stack1.length);
-//                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
-//                ItemStack secondStack = stack1[secondIndex];
-//                return new MerchantOffer(secondStack,new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 4),16,1,0.05F);
-//            });
-//
-//            trades.get(2).add((trader, rand) -> {
-//                firstIndex[0] = rand.nextInt(stack2.length);
-//                ItemStack firstStack = stack2[firstIndex[0]];
-//                if (firstStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
-//                    return new MerchantOffer(new ItemStack(ChangShengJueItems.DEERSKIN.get(),5), firstStack,16,5,0.05F);
-//                }else{
-//                    return new MerchantOffer(new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(),4),firstStack ,12,5,0.05F);
-//                }
-//            });
-//            trades.get(2).add((trader, rand) -> {
-//                int secondIndex;
-//                do {
-//                    secondIndex = rand.nextInt(stack2.length);
-//                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
-//                ItemStack secondStack = stack2[secondIndex];
-//                if (secondStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
-//                    return new MerchantOffer(new ItemStack(ChangShengJueItems.DEERSKIN.get(),5), secondStack,16,5,0.05F);
-//                }else{
-//                    return new MerchantOffer(new ItemStack(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(),4),secondStack ,12,5,0.05F);
-//                }
-//            });
-//
-//            trades.get(3).add((trader, rand) -> {
-//                firstIndex[0] = rand.nextInt(stack3.length);
-//                ItemStack firstStack = stack3[firstIndex[0]];
-//                if (firstStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
-//                    return new MerchantOffer(new ItemStack(Items.COMPASS,1), firstStack,16,5,0.05F);
-//                }else{
-//                    return new MerchantOffer(stack2[firstIndex[0]],firstStack ,12,5,0.05F);
-//                }
-//            });
-//            trades.get(3).add((trader, rand) -> {
-//                int secondIndex;
-//                do {
-//                    secondIndex = rand.nextInt(stack3.length);
-//                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
-//                ItemStack secondStack = stack3[secondIndex];
-//                if (secondStack.is(ChangShengJueItems.YI_GUAN_TONG_QIAN.get())){
-//                    return new MerchantOffer(new ItemStack(Items.COMPASS,1), secondStack,16,20,0.05F);
-//                }else{
-//                    return new MerchantOffer(stack2[firstIndex[0]],secondStack ,12,10,0.05F);
-//                }
-//            });
-//            trades.get(4).add((trader, rand) -> {
-//                firstIndex[0] = rand.nextInt(stack4.length);
-//                ItemStack firstStack = stack4[firstIndex[0]];
-//                return new MerchantOffer(new ItemStack(Items.WRITABLE_BOOK, 1),firstStack,16,30,0.05F);
-//            });
-//            trades.get(5).add((trader, rand) -> {
-//                firstIndex[0] = rand.nextInt(stack5.length);
-//                ItemStack firstStack = stack5[firstIndex[0]];
-//                return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 1), firstStack,12,30,0.05F);
-//            });
-//            trades.get(5).add((trader, rand) -> {
-//                int secondIndex;
-//                do {
-//                    secondIndex = rand.nextInt(stack5.length);
-//                } while (secondIndex == firstIndex[0]);  // 确保两次选择不同
-//                ItemStack secondStack = stack5[secondIndex];
-//                return new MerchantOffer(new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 1), secondStack,12,30,0.05F);
-//            });
         }
     }
 
     //村民交易事件
     @SubscribeEvent
     public static void onTradeEvent(TradeWithVillagerEvent event) {
-        ZhangMenXinxueEvent.onTradeEvent(event);
+        KungFuEvent.onTradeEvent(event);
     }
 
     @SubscribeEvent
@@ -666,49 +543,13 @@ public class CSJEvent {
 
     @SubscribeEvent
     public static void onInteract(PlayerInteractEvent event) {
-        WuGangCutGuiEvent.onInteract(event);
+//        WuGangCutGuiEvent.onInteract(event);
     }
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
         hasWheatNuggetsTributeWine = player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get());
-
-        //踏雪无痕
-        TreadTheSnowWithoutTraceEvent.onPlayerTick(event);
-        //葵花点穴手
-        SunflowerPointCavemanEvent.onPlayerTick(event);
-        //金钟罩
-        GoldenBellJarEvent.onPlayerTick(event);
-        //不死神功
-        ImmortalMiracleEvent.onPlayerTick(event);
-        //隔山打牛
-        GeShanDaNiuEvent.onPlayerTick(event);
-        //麦块百科
-        WheatNuggetEncyclopediaEvent.onPlayerTick(event);
-        //龟息功
-        TurtleBreathWorkEvent.onPlayerTick(event);
-        //无情飞刀
-        RelentlessThrowingKnivesEvent.onPlayerTick(event);
-        //吴刚伐桂
-        WuGangCutGuiEvent.onPlayerTick(event);
-        //独孤九剑
-        DuguNineSwordsEvent.onPlayerTick(event);
-        //高家枪法
-        GaoMarksmanshipEvent.onPlayerTick(event);
-        //金乌刀法
-        GoldenBlackKnifeMethodEvent.onPlayerTick(event);
-        //庖丁解牛
-        PaodingEvent.onPlayerTick(event);
-        //少林棍法
-        ShaolinStickMethodEvent.onPlayerTick(event);
-        //玄女剑法
-        XuannuSwordsmanshipEvent.onPlayerTick(event);
-        //易筋经
-        TheClassicsOfTendonChangingEvent.onPlayerTick(event);
-        //乾坤大挪移
-        QianKunDaNuoYiEvent.onPlayerTick(event);
-        //大力神功
-        HerculesEvent.onPlayerTick(event);
+        KungFuEvent.onPlayerTick(event);
         // 任务
         PlayerQuestEvent.onPlayerTick(event);
         PlayerQuestEvent.onEntityGenerate(event);
@@ -723,6 +564,11 @@ public class CSJEvent {
     }
 
     @SubscribeEvent
+    public static void onItemPickup(EntityItemPickupEvent event) {
+        RelentlessThrowingKnivesEvent.onItemPickup(event);
+    }
+
+    @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {
         QuestEvent.onServerTick(event);
         SpiritEvents.onServerTick(event);
@@ -731,7 +577,7 @@ public class CSJEvent {
     //生物攻击事件
     @SubscribeEvent
     public static void onEntityHurt(LivingAttackEvent event){
-        QianKunDaNuoYiEvent.onEntityHurt(event);
+//        KungFuEvent.onEntityHurt(event);
     }
 
     @SubscribeEvent
@@ -742,21 +588,13 @@ public class CSJEvent {
     //生物受伤事件
     @SubscribeEvent
     public static void onEntityHurt(LivingDamageEvent event){
-        LivingEntity entity = event.getEntity();
-
-        ImmortalMiracleEvent.onEntityHurt(event);
-
-        GoldenBellJarEvent.onEntityHurt(event);
+        KungFuEvent.onEntityHurt(event);
+        Knife.onKnifeAttack(event);
 
         ArmorEvent.onArmorDamage(event);
-
         PlayerQuestEvent.onEntityHurt(event);
-
-        if(event.getSource().getEntity() instanceof Player player) {
-            GeShanDaNiu.comprehend(player,player.level(),entity);
-            SunflowerPointCaveman.comprehend(player,player.level(),entity);
-        }
     }
+
     //生物死亡事件
     @SubscribeEvent
     public static void onEntityDeath(LivingDeathEvent event){
@@ -806,7 +644,9 @@ public class CSJEvent {
     public static void onPlayerEntityInteract(PlayerInteractEvent.EntityInteract event){
         QuestEvent.onGoldenAppleUse(event);
         PlayerQuestEvent.onVillagerInteract(event);
+        KungFuEvent.onPlayerEntityInteract(event);
     }
+
     //玩家右键空气事件
     @SubscribeEvent
     public static void onPlayerRightClick(PlayerInteractEvent.RightClickEmpty event){
@@ -844,252 +684,235 @@ public class CSJEvent {
     //玩家克隆事件,用于玩家死亡重生时或者从末地回到主世界时克隆旧玩家的属性到新玩家
     @SubscribeEvent
     public static void onPlayerCloned(PlayerEvent.Clone event){
-        Player oldPlayer = event.getOriginal();
-        oldPlayer.reviveCaps();
-        //独孤九剑
-        oldPlayer.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(newStore-> newStore.copyDuguNineSwords(oldStore)));
-        //金乌刀法
-        oldPlayer.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(newStore-> newStore.copyGoldenBlackKnifeMethod(oldStore)));
-        //玄女剑法
-        oldPlayer.getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(newStore-> newStore.copyXuannuSwordsmanship(oldStore)));
-        //高家枪法
-        oldPlayer.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(newStore-> newStore.copyGaoMarksmanship(oldStore)));
-        //少林棍法
-        oldPlayer.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(newStore-> newStore.copyShaolinStickMethod(oldStore)));
-        //踏雪无痕
-        oldPlayer.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(newStore-> newStore.copyTreadTheSnowWithoutTrace(oldStore)));
-        //吴刚伐桂
-        oldPlayer.getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(newStore-> newStore.copyWuGangCutGui(oldStore)));
-        //愚公移山
-        oldPlayer.getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).ifPresent(newStore-> newStore.copyYugongMovesMountains(oldStore)));
-        //庖丁解牛
-        oldPlayer.getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).ifPresent(newStore-> newStore.copyPaoding(oldStore)));
-        //葵花点穴手
-        oldPlayer.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(newStore-> newStore.copySunflowerPointCaveman(oldStore)));
-        //金钟罩
-        oldPlayer.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(newStore-> newStore.copyGoldenBellJar(oldStore)));
-        //张门心学
-        oldPlayer.getCapability(ZhangMenXinxueCapabilityProvider.ZHANG_MEN_XIN_XUE_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(ZhangMenXinxueCapabilityProvider.ZHANG_MEN_XIN_XUE_CAPABILITY).ifPresent(newStore-> newStore.copyZhangMenXinxue(oldStore)));
-        //不死神功
-        oldPlayer.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(newStore-> newStore.copyImmortalMiracle(oldStore)));
-        //隔山打牛
-        oldPlayer.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(newStore-> newStore.copyGeShanDaNiu(oldStore)));
-        //麦块百科
-        oldPlayer.getCapability(WheatNuggetEncyclopediaCapabilityProvider.WHEAT_NUGGET_ENCYCLOPEDIA_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(WheatNuggetEncyclopediaCapabilityProvider.WHEAT_NUGGET_ENCYCLOPEDIA_CAPABILITY).ifPresent(newStore-> newStore.copyWheatNuggetEncyclopedia(oldStore)));
-        //龟息功
-        oldPlayer.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(newStore-> newStore.copyTurtleBreathWork(oldStore)));
-        //无情飞刀
-        oldPlayer.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(newStore-> newStore.copyRelentlessThrowingKnives(oldStore)));
-        //易筋经
-        oldPlayer.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(newStore-> newStore.copyTheClassicsOfTendonChanging(oldStore)));
-        //乾坤大挪移
-        oldPlayer.getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(newStore-> newStore.copyQianKunDaNuoYi(oldStore)));
-        //大力神功
-        oldPlayer.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(newStore-> newStore.copyHercules(oldStore)));
-        //任务
-        oldPlayer.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(oldStore->
-                event.getEntity().getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(newStore-> newStore.copyFrom(oldStore)));
-        //修仙
-        XiuXianEvent.onPlayerCloned(event);
-//        QuestsEvent.onPlayerCloned(event);
-        event.getOriginal().invalidateCaps();
+        ChangShengJueCapabiliy.onPlayerCloned(event);
+//        Player oldPlayer = event.getOriginal();
+//        oldPlayer.reviveCaps();
+//        //独孤九剑
+//        oldPlayer.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(newStore-> newStore.copyDuguNineSwords(oldStore)));
+//        //金乌刀法
+//        oldPlayer.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(newStore-> newStore.copyGoldenBlackKnifeMethod(oldStore)));
+//        //玄女剑法
+//        oldPlayer.getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(newStore-> newStore.copyXuannuSwordsmanship(oldStore)));
+//        //高家枪法
+//        oldPlayer.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(newStore-> newStore.copyGaoMarksmanship(oldStore)));
+//        //少林棍法
+//        oldPlayer.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(newStore-> newStore.copyShaolinStickMethod(oldStore)));
+//        //踏雪无痕
+//        oldPlayer.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(newStore-> newStore.copyTreadTheSnowWithoutTrace(oldStore)));
+//        //吴刚伐桂
+//        oldPlayer.getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(WuGangCutGuiCapabilityProvider.WU_GANG_CUT_GUI_CAPABILITY).ifPresent(newStore-> newStore.copyWuGangCutGui(oldStore)));
+//        //愚公移山
+//        oldPlayer.getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(YugongMovesMountainsCapabilityProvider.YUGONG_MOVES_MOUNTAINS_CAPABILITY).ifPresent(newStore-> newStore.copyYugongMovesMountains(oldStore)));
+//        //庖丁解牛
+//        oldPlayer.getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(PaodingCapabilityProvider.PAODING_CAPABILITY).ifPresent(newStore-> newStore.copyPaoding(oldStore)));
+//        //葵花点穴手
+//        oldPlayer.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(newStore-> newStore.copySunflowerPointCaveman(oldStore)));
+//        //金钟罩
+//        oldPlayer.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(newStore-> newStore.copyGoldenBellJar(oldStore)));
+//        //张门心学
+//        oldPlayer.getCapability(ZhangMenXinxueCapabilityProvider.ZHANG_MEN_XIN_XUE_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(ZhangMenXinxueCapabilityProvider.ZHANG_MEN_XIN_XUE_CAPABILITY).ifPresent(newStore-> newStore.copyZhangMenXinxue(oldStore)));
+//        //不死神功
+//        oldPlayer.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(newStore-> newStore.copyImmortalMiracle(oldStore)));
+//        //隔山打牛
+//        oldPlayer.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(newStore-> newStore.copyGeShanDaNiu(oldStore)));
+//        //麦块百科
+//        oldPlayer.getCapability(WheatNuggetEncyclopediaCapabilityProvider.WHEAT_NUGGET_ENCYCLOPEDIA_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(WheatNuggetEncyclopediaCapabilityProvider.WHEAT_NUGGET_ENCYCLOPEDIA_CAPABILITY).ifPresent(newStore-> newStore.copyWheatNuggetEncyclopedia(oldStore)));
+//        //龟息功
+//        oldPlayer.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(newStore-> newStore.copyTurtleBreathWork(oldStore)));
+//        //无情飞刀
+//        oldPlayer.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(newStore-> newStore.copyRelentlessThrowingKnives(oldStore)));
+//        //易筋经
+//        oldPlayer.getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(TheClassicsOfTendonChangingCapabilityProvider.THE_CLASSICS_OF_TENDON_CHANGING_CAPABILITY).ifPresent(newStore-> newStore.copyTheClassicsOfTendonChanging(oldStore)));
+//        //乾坤大挪移
+//        oldPlayer.getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(newStore-> newStore.copyQianKunDaNuoYi(oldStore)));
+//        //大力神功
+//        oldPlayer.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(newStore-> newStore.copyHercules(oldStore)));
+//        //任务
+//        oldPlayer.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(oldStore->
+//                event.getEntity().getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(newStore-> newStore.copyFrom(oldStore)));
+//        //修仙
+//        XiuXianEvent.onPlayerCloned(event);
+////        QuestsEvent.onPlayerCloned(event);
+//        event.getOriginal().invalidateCaps();
     }
 
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event){
         //把能力注册到世界中
-        event.register(DuguNineSwordsCapability.class);
-        event.register(GoldenBlackKnifeMethodCapability.class);
-        event.register(XuannuSwordsmanshipCapability.class);
-        event.register(GaoMarksmanshipCapability.class);
-        event.register(ShaolinStickMethodCapability.class);
-        event.register(TreadTheSnowWithoutTraceCapability.class);
-        event.register(WuGangCutGuiCapability.class);
-        event.register(YugongMovesMountainsCapability.class);
-        event.register(PaodingCapability.class);
-        event.register(SunflowerPointCavemanCapability.class);
-        event.register(GoldenBellJarCapabilityProvider.class);
-        event.register(ZhangMenXinxueCapabilityProvider.class);
-        event.register(ImmortalMiracleCapabilityProvider.class);
-        event.register(GeShanDaNiuCapabilityProvider.class);
-        event.register(WheatNuggetEncyclopediaCapabilityProvider.class);
-        event.register(TurtleBreathWorkCapabilityProvider.class);
-        event.register(RelentlessThrowingKnivesCapabilityProvider.class);
-        event.register(TheClassicsOfTendonChangingCapabilityProvider.class);
-        event.register(QianKunDaNuoYiCapabilityProvider.class);
-        event.register(HerculesCapabilityProvider.class);
         ChangShengJueCapabiliy.registerCapabilities(event);
     }
 
     @SubscribeEvent
     public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {
         //玩家进入世界时同步能力数据
-        if(!event.getLevel().isClientSide()) {
-            if(event.getEntity() instanceof ServerPlayer player) {
-                QuestManager.getInstance().syncQuestsToPlayer(player); // 全量同步
-                XiuXianEvent.onPlayerJoinWorld(event);
-                player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY)
-                        .ifPresent(cap -> cap.syncToClient(player));
-                player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
-                    ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),
-                            duguNineSword.isDuguNineSwordsComprehend(),
-                            duguNineSword.getDuguNineSwordsToppedTick(),
-                            duguNineSword.getDuguNineSwordsDachengTick(),
-                            duguNineSword.isDuguNineSwordsParticle()), player);
-                });
-                player.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
-                    ChangShengJueMessages.sendToPlayer(new GoldenBlackKnifeMethodPacket(goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel(),
-                            goldenBlackKnifeMethod.isGoldenBlackKnifeMethodComprehend(),
-                            goldenBlackKnifeMethod.getGoldenBlackKnifeMethodToppedTick(),
-                            goldenBlackKnifeMethod.getGoldenBlackKnifeMethodDachengTick(),
-                            goldenBlackKnifeMethod.isGoldenBlackKnifeMethodParticle()), player);
-                });
-                player.getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(xuannuSwordsmanship -> {
-                    ChangShengJueMessages.sendToPlayer(new XuannuSwordsmanshipPacket(xuannuSwordsmanship.getXuannuSwordsmanshipLevel(),xuannuSwordsmanship.isXuannuSwordsmanshipComprehend(),
-                            xuannuSwordsmanship.getXuannuSwordsmanshipToppedTick(),
-                            xuannuSwordsmanship.getXuannuSwordsmanshipDachengTick(),
-                            xuannuSwordsmanship.isXuannuSwordsmanshipParticle()), player);
-                });
-                player.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
-                    ChangShengJueMessages.sendToPlayer(new GaoMarksmanshipPacket(gaoMarksmanship.getGaoMarksmanshipLevel(),
-                            gaoMarksmanship.isGaoMarksmanshipComprehend(),
-                            gaoMarksmanship.getGaoMarksmanshipToppedTick(),
-                            gaoMarksmanship.getGaoMarksmanshipDachengTick(),
-                            gaoMarksmanship.isGaoMarksmanshipParticle()), player);
-                });
-                player.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(shaolinStickMethod -> {
-                    ChangShengJueMessages.sendToPlayer(new ShaolinStickMethodPacket(shaolinStickMethod.getShaolinStickMethodLevel(),
-                            shaolinStickMethod.isShaolinStickMethodComprehend(),
-                            shaolinStickMethod.getShaolinStickMethodToppedTick(),
-                            shaolinStickMethod.getShaolinStickMethodDachengTick(),
-                            shaolinStickMethod.isShaolinStickMethodParticle()), player);
-                });
-                player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
-                    ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTracePacket(
-                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
-                            treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend(),
-                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent(),
-                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceToppedTick(),
-                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceDachengTick(),
-                            treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceParticle()), player);
-                });
-                player.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
-                    ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
-                            sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
-                            sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
-                            sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
-                            sunflowerPointCaveman.isSunflowerPointCavemanOff(),
-                            sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
-                            sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
-                            sunflowerPointCaveman.isSunflowerPointCavemanParticle(),
-                            sunflowerPointCaveman.isSkillActive()), player);
-                });
-                player.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
-                    ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
-                            goldenBellJar.getGoldenBellJarLevel(),
-                            goldenBellJar.isGoldenBellJarComprehend(),
-                            goldenBellJar.getGoldenBellJarUseCooldownPercent(),
-                            goldenBellJar.isGoldenBellJarOff(),
-                            goldenBellJar.getGoldenBellJarToppedTick(),
-                            goldenBellJar.getGoldenBellJarDachengTick(),
-                            goldenBellJar.isGoldenBellJarParticle(),
-                            goldenBellJar.isSkillActive()), player);
-                });
-                player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
-                    ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
-                            immortalMiracle.getImmortalMiracleLevel(),
-                            immortalMiracle.isImmortalMiracleComprehend(),
-                            immortalMiracle.getImmortalMiracleUseCooldownPercent(),
-                            immortalMiracle.isImmortalMiracleOff(),
-                            immortalMiracle.getImmortalMiracleToppedTick(),
-                            immortalMiracle.getImmortalMiracleDachengTick(),
-                            immortalMiracle.isImmortalMiracleParticle(),
-                            immortalMiracle.getImmortalMiracleUseCooldownPercentMax(),
-                            immortalMiracle.isSkillActive()), player);
-                });
-                player.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
-                    ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
-                            geShanDaNiu.getGeShanDaNiuLevel(),
-                            geShanDaNiu.isGeShanDaNiuComprehend(),
-                            geShanDaNiu.getGeShanDaNiuUseCooldownPercent(),
-                            geShanDaNiu.getGeShanDaNiuToppedTick(),
-                            geShanDaNiu.getGeShanDaNiuDachengTick(),
-                            geShanDaNiu.isGeShanDaNiuParticle(),
-                            geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax(),
-                            geShanDaNiu.isSkillActive()), player);
-                });
-                player.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
-                    ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
-                            turtleBreathWork.getTurtleBreathWorkLevel(),
-                            turtleBreathWork.isTurtleBreathWorkComprehend(),
-                            turtleBreathWork.getTurtleBreathWorkUseCooldownPercent(),
-                            turtleBreathWork.isTurtleBreathWorkOff(),
-                            turtleBreathWork.getTurtleBreathWorkToppedTick(),
-                            turtleBreathWork.getTurtleBreathWorkDachengTick(),
-                            turtleBreathWork.isTurtleBreathWorkParticle(),
-                            turtleBreathWork.isSkillActive()), player);
-                });
-                player.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(relentlessThrowingKnives -> {
-                    ChangShengJueMessages.sendToPlayer(new RelentlessThrowingKnivesPacket(
-                            relentlessThrowingKnives.getRelentlessThrowingKnivesLevel(),
-                            relentlessThrowingKnives.isRelentlessThrowingKnivesComprehend(),
-                            relentlessThrowingKnives.getRelentlessThrowingKnivesUseCooldownPercent(),
-                            relentlessThrowingKnives.getRelentlessThrowingKnivesToppedTick(),
-                            relentlessThrowingKnives.getRelentlessThrowingKnivesDachengTick(),
-                            relentlessThrowingKnives.isRelentlessThrowingKnivesParticle()), player);
-                });
-                player.getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(qianKunDaNuoYi -> {
-                    ChangShengJueMessages.sendToPlayer(new QianKunDaNuoYiPacket(
-                            qianKunDaNuoYi.getQianKunDaNuoYiLevel(),
-                            qianKunDaNuoYi.isQianKunDaNuoYiComprehend(),
-                            qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownPercent(),
-                            qianKunDaNuoYi.isQianKunDaNuoYiOff(),
-                            qianKunDaNuoYi.getQianKunDaNuoYiToppedTick(),
-                            qianKunDaNuoYi.getQianKunDaNuoYiDachengTick(),
-                            qianKunDaNuoYi.isQianKunDaNuoYiParticle(),
-                            qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax(),
-                            qianKunDaNuoYi.isSkillActive(),
-                            qianKunDaNuoYi.getRecordTime(),
-                            qianKunDaNuoYi.getRecordDamage(),
-                            qianKunDaNuoYi.getRecordDamageSource()), (ServerPlayer) player);
-                });
-                player.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(hercules -> {
-                    ChangShengJueMessages.sendToPlayer(new HerculesPacket(
-                            hercules.getHerculesLevel(),
-                            hercules.isHerculesComprehend(),
-                            hercules.getHerculesToppedTick(),
-                            hercules.getHerculesDachengTick(),
-                            hercules.isHerculesParticle(),
-                            hercules.isSkillActive()), player);
-                });
-            }
-        }
+        ChangShengJueCapabiliy.onPlayerJoinWorld(event);
+//        if(!event.getLevel().isClientSide()) {
+//            if(event.getEntity() instanceof ServerPlayer player) {
+//                QuestManager.getInstance().syncQuestsToPlayer(player); // 全量同步
+//                XiuXianEvent.onPlayerJoinWorld(event);
+//                player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY)
+//                        .ifPresent(cap -> cap.syncToClient(player));
+//                player.getCapability(DuguNineSwordsCapabilityProvider.MARTIAL_ARTS_CAPABILITY).ifPresent(duguNineSword -> {
+//                    ChangShengJueMessages.sendToPlayer(new DuguNineSwordsPacket(duguNineSword.getDuguNineSwordsLevel(),
+//                            duguNineSword.isDuguNineSwordsComprehend(),
+//                            duguNineSword.getDuguNineSwordsToppedTick(),
+//                            duguNineSword.getDuguNineSwordsDachengTick(),
+//                            duguNineSword.isDuguNineSwordsParticle()), player);
+//                });
+//                player.getCapability(GoldenBlackKnifeMethodCapabilityProvider.GOLDEN_BLACK_KNIFE_METHOD_CAPABILITY).ifPresent(goldenBlackKnifeMethod -> {
+//                    ChangShengJueMessages.sendToPlayer(new GoldenBlackKnifeMethodPacket(goldenBlackKnifeMethod.getGoldenBlackKnifeMethodLevel(),
+//                            goldenBlackKnifeMethod.isGoldenBlackKnifeMethodComprehend(),
+//                            goldenBlackKnifeMethod.getGoldenBlackKnifeMethodToppedTick(),
+//                            goldenBlackKnifeMethod.getGoldenBlackKnifeMethodDachengTick(),
+//                            goldenBlackKnifeMethod.isGoldenBlackKnifeMethodParticle()), player);
+//                });
+//                player.getCapability(XuannuSwordsmanshipCapabilityProvider.XUANNU_SWORDSMANSHIP_CAPABILITY).ifPresent(xuannuSwordsmanship -> {
+//                    ChangShengJueMessages.sendToPlayer(new XuannuSwordsmanshipPacket(xuannuSwordsmanship.getXuannuSwordsmanshipLevel(),xuannuSwordsmanship.isXuannuSwordsmanshipComprehend(),
+//                            xuannuSwordsmanship.getXuannuSwordsmanshipToppedTick(),
+//                            xuannuSwordsmanship.getXuannuSwordsmanshipDachengTick(),
+//                            xuannuSwordsmanship.isXuannuSwordsmanshipParticle()), player);
+//                });
+//                player.getCapability(GaoMarksmanshipCapabilityProvider.GAO_MARKSMANSHIP_CAPABILITY).ifPresent(gaoMarksmanship -> {
+//                    ChangShengJueMessages.sendToPlayer(new GaoMarksmanshipPacket(gaoMarksmanship.getGaoMarksmanshipLevel(),
+//                            gaoMarksmanship.isGaoMarksmanshipComprehend(),
+//                            gaoMarksmanship.getGaoMarksmanshipToppedTick(),
+//                            gaoMarksmanship.getGaoMarksmanshipDachengTick(),
+//                            gaoMarksmanship.isGaoMarksmanshipParticle()), player);
+//                });
+//                player.getCapability(ShaolinStickMethodCapabilityProvider.SHAOLIN_STICK_METHOD_CAPABILITY).ifPresent(shaolinStickMethod -> {
+//                    ChangShengJueMessages.sendToPlayer(new ShaolinStickMethodPacket(shaolinStickMethod.getShaolinStickMethodLevel(),
+//                            shaolinStickMethod.isShaolinStickMethodComprehend(),
+//                            shaolinStickMethod.getShaolinStickMethodToppedTick(),
+//                            shaolinStickMethod.getShaolinStickMethodDachengTick(),
+//                            shaolinStickMethod.isShaolinStickMethodParticle()), player);
+//                });
+//                player.getCapability(TreadTheSnowWithoutTraceCapabilityProvider.TREAD_THE_SNOW_WITHOUT_TRACE_CAPABILITY).ifPresent(treadTheSnowWithoutTrace -> {
+//                    ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTracePacket(
+//                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceLevel(),
+//                            treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceComprehend(),
+//                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceUseCooldownPercent(),
+//                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceToppedTick(),
+//                            treadTheSnowWithoutTrace.getTreadTheSnowWithoutTraceDachengTick(),
+//                            treadTheSnowWithoutTrace.isTreadTheSnowWithoutTraceParticle()), player);
+//                });
+//                player.getCapability(SunflowerPointCavemanCapabilityProvider.SUNFLOWER_POINT_CAVEMAN_CAPABILITY).ifPresent(sunflowerPointCaveman -> {
+//                    ChangShengJueMessages.sendToPlayer(new SunflowerPointCavemanPacket(
+//                            sunflowerPointCaveman.getSunflowerPointCavemanLevel(),
+//                            sunflowerPointCaveman.isSunflowerPointCavemanComprehend(),
+//                            sunflowerPointCaveman.getSunflowerPointCavemanUseCooldownPercent(),
+//                            sunflowerPointCaveman.isSunflowerPointCavemanOff(),
+//                            sunflowerPointCaveman.getSunflowerPointCavemanToppedTick(),
+//                            sunflowerPointCaveman.getSunflowerPointCavemanDachengTick(),
+//                            sunflowerPointCaveman.isSunflowerPointCavemanParticle(),
+//                            sunflowerPointCaveman.isSkillActive()), player);
+//                });
+//                player.getCapability(GoldenBellJarCapabilityProvider.GOLDEN_BELL_JAR_CAPABILITY).ifPresent(goldenBellJar -> {
+//                    ChangShengJueMessages.sendToPlayer(new GoldenBellJarPacket(
+//                            goldenBellJar.getGoldenBellJarLevel(),
+//                            goldenBellJar.isGoldenBellJarComprehend(),
+//                            goldenBellJar.getGoldenBellJarUseCooldownPercent(),
+//                            goldenBellJar.isGoldenBellJarOff(),
+//                            goldenBellJar.getGoldenBellJarToppedTick(),
+//                            goldenBellJar.getGoldenBellJarDachengTick(),
+//                            goldenBellJar.isGoldenBellJarParticle(),
+//                            goldenBellJar.isSkillActive()), player);
+//                });
+//                player.getCapability(ImmortalMiracleCapabilityProvider.IMMORTAL_MIRACLE_CAPABILITY).ifPresent(immortalMiracle -> {
+//                    ChangShengJueMessages.sendToPlayer(new ImmortalMiraclePacket(
+//                            immortalMiracle.getImmortalMiracleLevel(),
+//                            immortalMiracle.isImmortalMiracleComprehend(),
+//                            immortalMiracle.getImmortalMiracleUseCooldownPercent(),
+//                            immortalMiracle.isImmortalMiracleOff(),
+//                            immortalMiracle.getImmortalMiracleToppedTick(),
+//                            immortalMiracle.getImmortalMiracleDachengTick(),
+//                            immortalMiracle.isImmortalMiracleParticle(),
+//                            immortalMiracle.getImmortalMiracleUseCooldownPercentMax(),
+//                            immortalMiracle.isSkillActive()), player);
+//                });
+//                player.getCapability(GeShanDaNiuCapabilityProvider.GE_SHAN_DA_NIU_CAPABILITY).ifPresent(geShanDaNiu -> {
+//                    ChangShengJueMessages.sendToPlayer(new GeShanDaNiuPacket(
+//                            geShanDaNiu.getGeShanDaNiuLevel(),
+//                            geShanDaNiu.isGeShanDaNiuComprehend(),
+//                            geShanDaNiu.getGeShanDaNiuUseCooldownPercent(),
+//                            geShanDaNiu.getGeShanDaNiuToppedTick(),
+//                            geShanDaNiu.getGeShanDaNiuDachengTick(),
+//                            geShanDaNiu.isGeShanDaNiuParticle(),
+//                            geShanDaNiu.getGeShanDaNiuUseCooldownPercentMax(),
+//                            geShanDaNiu.isSkillActive()), player);
+//                });
+//                player.getCapability(TurtleBreathWorkCapabilityProvider.TURTLE_BREATH_WORK_CAPABILITY).ifPresent(turtleBreathWork -> {
+//                    ChangShengJueMessages.sendToPlayer(new TurtleBreathWorkPacket(
+//                            turtleBreathWork.getTurtleBreathWorkLevel(),
+//                            turtleBreathWork.isTurtleBreathWorkComprehend(),
+//                            turtleBreathWork.getTurtleBreathWorkUseCooldownPercent(),
+//                            turtleBreathWork.isTurtleBreathWorkOff(),
+//                            turtleBreathWork.getTurtleBreathWorkToppedTick(),
+//                            turtleBreathWork.getTurtleBreathWorkDachengTick(),
+//                            turtleBreathWork.isTurtleBreathWorkParticle(),
+//                            turtleBreathWork.isSkillActive()), player);
+//                });
+//                player.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(relentlessThrowingKnives -> {
+//                    ChangShengJueMessages.sendToPlayer(new RelentlessThrowingKnivesPacket(
+//                            relentlessThrowingKnives.getRelentlessThrowingKnivesLevel(),
+//                            relentlessThrowingKnives.isRelentlessThrowingKnivesComprehend(),
+//                            relentlessThrowingKnives.getRelentlessThrowingKnivesUseCooldownPercent(),
+//                            relentlessThrowingKnives.getRelentlessThrowingKnivesToppedTick(),
+//                            relentlessThrowingKnives.getRelentlessThrowingKnivesDachengTick(),
+//                            relentlessThrowingKnives.isRelentlessThrowingKnivesParticle()), player);
+//                });
+//                player.getCapability(QianKunDaNuoYiCapabilityProvider.QIAN_KUN_DA_NUO_YI_CAPABILITY).ifPresent(qianKunDaNuoYi -> {
+//                    ChangShengJueMessages.sendToPlayer(new QianKunDaNuoYiPacket(
+//                            qianKunDaNuoYi.getQianKunDaNuoYiLevel(),
+//                            qianKunDaNuoYi.isQianKunDaNuoYiComprehend(),
+//                            qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownPercent(),
+//                            qianKunDaNuoYi.isQianKunDaNuoYiOff(),
+//                            qianKunDaNuoYi.getQianKunDaNuoYiToppedTick(),
+//                            qianKunDaNuoYi.getQianKunDaNuoYiDachengTick(),
+//                            qianKunDaNuoYi.isQianKunDaNuoYiParticle(),
+//                            qianKunDaNuoYi.getQianKunDaNuoYiUseCooldownMax(),
+//                            qianKunDaNuoYi.isSkillActive(),
+//                            qianKunDaNuoYi.getRecordTime(),
+//                            qianKunDaNuoYi.getRecordDamage(),
+//                            qianKunDaNuoYi.getRecordDamageSource()), (ServerPlayer) player);
+//                });
+//                player.getCapability(HerculesCapabilityProvider.HERCULES_CAPABILITY).ifPresent(hercules -> {
+//                    ChangShengJueMessages.sendToPlayer(new HerculesPacket(
+//                            hercules.getHerculesLevel(),
+//                            hercules.isHerculesComprehend(),
+//                            hercules.getHerculesToppedTick(),
+//                            hercules.getHerculesDachengTick(),
+//                            hercules.isHerculesParticle(),
+//                            hercules.isSkillActive()), player);
+//                });
+//            }
+//        }
     }
 
     // 在玩家退出世界时调用
     @SubscribeEvent
     public void onWorldUnload(LevelEvent.Unload event) {
         QuestEvent.onWorldUnload(event);
+        KungFuClientData.get().clear();
     }
 
     @SubscribeEvent
