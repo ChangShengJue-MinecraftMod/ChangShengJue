@@ -1,7 +1,5 @@
 package com.shengchanshe.chang_sheng_jue.block.custom.forgeblock;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -10,7 +8,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
@@ -23,32 +20,17 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Map;
 
 public class ForgeBlock extends BaseEntityBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    private static final Map<Direction, VoxelShape> AABBS = Maps.newEnumMap(ImmutableMap.of(
-            Direction.NORTH, Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-            Direction.SOUTH, Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-            Direction.EAST, Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D),
-            Direction.WEST, Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)));
-
 
     public ForgeBlock(Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
-
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return AABBS.get(pState.getValue(FACING));
-    }
-
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
@@ -60,11 +42,10 @@ public class ForgeBlock extends BaseEntityBlock {
         pBuilder.add(FACING);
     }
 
-//    @Override
-//    public RenderShape getRenderShape(BlockState pState) {
-//        return RenderShape.ENTITYBLOCK_ANIMATED;
-//    }
-
+    @Override
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.ENTITYBLOCK_ANIMATED;
+    }
 
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
@@ -105,6 +86,4 @@ public class ForgeBlock extends BaseEntityBlock {
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new ForgeBlockEntity(pPos,pState);
     }
-
-
 }

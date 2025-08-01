@@ -106,6 +106,8 @@ public class ChangShengJueSound {
     //裁衣案
     public static final RegistryObject<SoundEvent> TAILORING_CASE_SOUND = registerSoundEvent("tailoring_case_sound");
 
+    //锻造炉
+    public static final RegistryObject<SoundEvent> FORGE_BLOCK_SOUND = registerSoundEvent("forge_block_sound");
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ChangShengJue.MOD_ID, name)));

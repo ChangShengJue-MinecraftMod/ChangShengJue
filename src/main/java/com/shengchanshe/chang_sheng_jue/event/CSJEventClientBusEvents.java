@@ -4,6 +4,7 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.BullionsCastingMoldsBlockEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.CastingMoldsBlockEntityRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.forgeblock.ForgeBlockEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.entity.DesksEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.gong.GongEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.loom.ChangShengJueLoomBlockEntityRender;
@@ -29,6 +30,7 @@ import com.shengchanshe.chang_sheng_jue.entity.decoration.seat.SeatRender;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.warrior.WarriorModel;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.worker.KilnWorkerModel;
 import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
+import com.shengchanshe.chang_sheng_jue.particle.custom.block.ForgeBlockPartcle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.block.LeavesDefoliationParticle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.block.StakesParticle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.ComprehendParticle;
@@ -104,6 +106,8 @@ public class CSJEventClientBusEvents {
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.TAILORING_CASE_ENTITY.get(),
                 (BlockEntityRendererProvider.Context context) -> new TailoringCaseEntityRender());
 
+        event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.FORGE_BLOCK_ENTITY.get(),
+                (BlockEntityRendererProvider.Context context) -> new ForgeBlockEntityRender());
     }
 
     @SubscribeEvent
@@ -143,6 +147,8 @@ public class CSJEventClientBusEvents {
         event.registerSpriteSet(ChangShengJueParticles.GE_SHAN_DA_NIU_PARTICLE.get(), GeShanDaNiuParticle.Provider::new);
 
         event.registerSpriteSet(ChangShengJueParticles.THROWING_KNIVES_PARTICLE.get(), ThrowingknivesParticle.Provider::new);
+
+        event.registerSpriteSet(ChangShengJueParticles.FORGE_BLOCK_PARTCLE.get(), ForgeBlockPartcle.Provider::new);
 
         event.registerSpriteSet(ChangShengJueParticles.STAKES_PARTICLE.get(), StakesParticle.Provider::new);
 

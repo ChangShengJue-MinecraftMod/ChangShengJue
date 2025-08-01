@@ -3,7 +3,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"1": "chang_sheng_jue:block/forge_block"
+		"1": "chang_sheng_jue:block/forge_block",
+		"particle" : "chang_sheng_jue:block/forge_block"
 	},
 	"elements": [
 		{

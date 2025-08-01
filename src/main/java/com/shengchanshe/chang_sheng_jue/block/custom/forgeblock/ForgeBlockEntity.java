@@ -3,12 +3,16 @@ package com.shengchanshe.chang_sheng_jue.block.custom.forgeblock;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.forgeblock.ForgeBlockMenu;
+import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
+import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -28,29 +32,27 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoBlockEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.ClientUtils;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Arrays;
 
-public class ForgeBlockEntity extends BlockEntity implements MenuProvider {
+public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoBlockEntity {
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public static final DirectionProperty FACING = ForgeBlock.FACING;
-
     // 物品槽位处理器（9个输入，1个输出）
     private final ItemStackHandler itemHandler = new ItemStackHandler(10);
-    public static final int SLOT_INPUT_1 = 0;
-    public static final int SLOT_INPUT_2 = 1;
-    public static final int SLOT_INPUT_3 = 2;
-    public static final int SLOT_INPUT_4 = 3;
-    public static final int SLOT_INPUT_5 = 4;
-    public static final int SLOT_INPUT_6 = 5;
-    public static final int SLOT_INPUT_7 = 6;
-    public static final int SLOT_INPUT_8 = 7;
-    public static final int SLOT_INPUT_9 = 8;
     public static final int SLOT_OUTPUT = 9;
     private LazyOptional<ItemStackHandler> itemHandlerLazy = LazyOptional.empty();
     protected final ContainerData data;
     public int progress = 0;
     public int maxProgress = 100;
-
     // 当前选中的配方
     private ForgeBlockMenu.ForgeRecipe currentRecipe;
 
@@ -326,5 +328,86 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider {
         if (this.level != null){
             this.level.sendBlockUpdated(this.getBlockPos(),this.getBlockState(),this.getBlockState(), Block.UPDATE_CLIENTS);
         }
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(((new AnimationController<>(this, "work", 0, (state) ->{
+            if (this.progress != 0){
+                state.setAndContinue(RawAnimation.begin().thenPlay("work"));
+                return PlayState.CONTINUE;
+            } else {
+                return PlayState.STOP;
+            }
+        }).setSoundKeyframeHandler((state) -> {
+            Player player = ClientUtils.getClientPlayer();
+            Level level1 = ClientUtils.getLevel();
+            level1.playSound(player,this.getBlockPos(), ChangShengJueSound.FORGE_BLOCK_SOUND.get(), SoundSource.BLOCKS, 0.1F, 1.0F);
+        }).setParticleKeyframeHandler((state) -> {
+            Level level1 = ClientUtils.getLevel();
+            spawnForgeParticles(level1);
+        }))));
+    }
+
+    private void spawnForgeParticles(Level level) {
+        if (level == null) return;
+
+        Direction facing = getBlockState().getValue(FACING);
+
+        double baseX = worldPosition.getX() + 0.5;
+        double baseY = worldPosition.getY() + 0.8;
+        double baseZ = worldPosition.getZ() + 0.5;
+
+        switch (facing) {
+            case NORTH -> {
+                baseX += 0.2;
+                baseZ += 0.2;
+            }
+            case SOUTH -> {
+                baseX -= 0.2;
+                baseZ -= 0.2;
+            }
+            case EAST -> {
+                baseZ += 0.2;
+                baseX -= 0.2;
+            }
+            case WEST -> {
+                baseZ -= 0.2;
+                baseX += 0.2;
+            }
+        }
+        int particleCount = 6 + level.random.nextInt(6);
+        for (int i = 0; i < particleCount; i++) {
+            // 小范围随机偏移
+            double xOffset = (level.random.nextDouble() - 0.5) * 0.1;
+            double yOffset = level.random.nextDouble() * 0.15;
+            double zOffset = (level.random.nextDouble() - 0.5) * 0.1;
+
+            // 速度参数
+            double xSpeed = (level.random.nextDouble() - 0.5) * 0.2;
+            double ySpeed = level.random.nextDouble() * 0.06 + 0.03;
+            double zSpeed = (level.random.nextDouble() - 0.5) * 0.2;
+
+            // 根据朝向调整主要喷射方向
+            switch (facing) {
+                case NORTH -> zSpeed = -Math.abs(zSpeed) * 1.2;
+                case SOUTH -> zSpeed = Math.abs(zSpeed) * 1.2;
+                case EAST -> xSpeed = Math.abs(xSpeed) * 1.2;
+                case WEST -> xSpeed = -Math.abs(xSpeed) * 1.2;
+            }
+
+            level.addParticle(ChangShengJueParticles.FORGE_BLOCK_PARTCLE.get(),
+                    baseX + xOffset,
+                    baseY + yOffset,
+                    baseZ + zOffset,
+                    xSpeed,
+                    ySpeed,
+                    zSpeed);
+        }
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
     }
 }
