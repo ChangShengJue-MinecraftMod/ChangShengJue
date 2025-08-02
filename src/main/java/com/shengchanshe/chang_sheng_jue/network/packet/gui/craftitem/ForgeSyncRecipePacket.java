@@ -57,6 +57,9 @@ public class ForgeSyncRecipePacket {
             BlockEntity entity = level.getBlockEntity(pos);
 
             if (entity instanceof ForgeBlockEntity forgeEntity) {
+                if (forgeEntity.getCurrentRecipe() != null){
+                    forgeEntity.setCurrentRecipe(null);
+                }
                 forgeEntity.setCurrentRecipe(packet.recipe);
             }
         });
