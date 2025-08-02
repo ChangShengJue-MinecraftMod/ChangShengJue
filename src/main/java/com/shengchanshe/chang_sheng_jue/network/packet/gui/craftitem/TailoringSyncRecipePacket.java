@@ -57,6 +57,9 @@ public class TailoringSyncRecipePacket {
             BlockEntity entity = level.getBlockEntity(pos);
 
             if (entity instanceof TailoringCaseEntity tailoringEntity) {
+                if (tailoringEntity.getCurrentRecipe() != null){
+                    tailoringEntity.setCurrentRecipe(null);
+                }
                 tailoringEntity.setCurrentRecipe(packet.recipe);
             }
         });

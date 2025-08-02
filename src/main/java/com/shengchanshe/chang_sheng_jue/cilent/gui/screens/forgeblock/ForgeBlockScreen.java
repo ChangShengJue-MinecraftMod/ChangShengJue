@@ -40,7 +40,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     private int scrollBarHeight = 0;
     private int scrollBarY = 0;
     private int scrollBarX = 0;
-    private List<ItemStack> currentMaterials = new ArrayList<>();
+    private final List<ItemStack> currentMaterials = new ArrayList<>();
 
     public ForgeBlockScreen(ForgeBlockMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -54,6 +54,15 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         customButtons.clear();
         createArmorStandEntity();
         refreshItemButtons();
+
+        ForgeBlockMenu.ForgeRecipe serverRecipe = menu.getCurrentRecipe();
+
+        //如果处于制作状态
+        if (serverRecipe != null || menu.isCrafting()) {
+            currentMaterials.clear();
+            currentMaterials.addAll(Arrays.asList(serverRecipe.getMaterials()));
+            currentSelectedItem = serverRecipe.getResult();
+        }
 
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
@@ -140,9 +149,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                 ? Optional.empty()
                 : ForgeBlockMenu.findRecipe(selectedItem);
         currentMaterials.clear();
-        if (newRecipe.isPresent()) {
-            currentMaterials.addAll(Arrays.asList(newRecipe.get().getMaterials()));
-        }
+        newRecipe.ifPresent(forgeRecipe -> currentMaterials.addAll(Arrays.asList(forgeRecipe.getMaterials())));
         // 立即更新客户端本地显示
         menu.setCurrentRecipe(newRecipe.orElse(null));
 
@@ -182,23 +189,19 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
-                int slotIndex = row * 3 + col; // 计算槽位索引（0-8）
+                int slotIndex = row * 3 + col; // 槽位索引（0-8）
                 int slotX = x + 134 + col * 18; // 槽位X坐标
                 int slotY = y + 45 + row * 18;  // 槽位Y坐标
 
-                // 判断当前槽位是否有材料需求，以及材料是否充足
-                boolean isMaterialEnough = true;
+                // 仅当槽位有材料需求时才渲染
                 if (slotIndex < currentMaterials.size()) {
                     ItemStack required = currentMaterials.get(slotIndex);
-                    // 空材料默认充足（不改变背景）
-                    isMaterialEnough = required.isEmpty()
-                            ? true
-                            : menu.hasEnoughOfMaterial(minecraft.player.getInventory(), required);
+                    if (!required.isEmpty()) { // 非空材料才处理
+                        boolean isMaterialEnough = menu.hasEnoughOfMaterial(minecraft.player.getInventory(), required);
+                        int textureV = isMaterialEnough ? 217 : 235; // 充足用217，不足用235
+                        guiGraphics.blit(TEXTURE, slotX, slotY, 18, textureV, 18, 18, 512, 512);
+                    }
                 }
-
-                // 选择纹理：充足用217，不足用235（可根据实际纹理调整）
-                int textureV = isMaterialEnough ? 217 : 235;
-                guiGraphics.blit(TEXTURE, slotX, slotY, 18, textureV, 18, 18, 512, 512);
             }
         }
 
