@@ -351,33 +351,11 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
                 .findFirst();
     }
 
-    //添加配方
-    // 配方定义
-    public static final List<TailoringRecipe> RECIPES = new ArrayList<>();
-
-    // 静态初始化块 - 在这里添加配方
-    static {
-        // 添加钻石靴子配方（li
-        addRecipe(
-                new ItemStack(Items.DIAMOND_BOOTS),
-                new ItemStack(Items.DIAMOND, 4),
-                new ItemStack(Items.LEATHER, 2)
-        );
-
-        // 添加钻石护甲配方（li
-        addRecipe(
-                new ItemStack(Items.DIAMOND_CHESTPLATE),
-                new ItemStack(Items.DIAMOND, 8),
-                new ItemStack(Items.LEATHER, 5)
-        );
-
-    }
-
     // 添加配方的辅助方法
+
     private static void addRecipe(ItemStack result, ItemStack... materials) {
         RECIPES.add(new TailoringRecipe(result, materials));
     }
-
     /**
      * 检查玩家是否拥有指定材料的足够数量
      * @param playerInventory 玩家背包
@@ -399,5 +377,357 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
             }
         }
         return false;
+    }
+
+    //添加配方
+    // 配方定义
+    public static final List<TailoringRecipe> RECIPES = new ArrayList<>();
+
+    // 静态初始化块 - 在这里添加配方
+    static {
+        // 添加钻石靴子配方（li
+        addRecipe(
+                new ItemStack(Items.DIAMOND_BOOTS),
+                new ItemStack(Items.DIAMOND, 4),
+                new ItemStack(Items.LEATHER, 2)
+        );
+
+        // 添加钻石护甲配方（li
+        addRecipe(
+                new ItemStack(Items.DIAMOND_CHESTPLATE),
+                new ItemStack(Items.DIAMOND, 8),
+                new ItemStack(Items.LEATHER, 5)
+        );
+
+//        // 四方巾
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.MALE_TAOIST_HELMET.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 5)
+//        );
+//
+//        // 道服
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.MALE_TAOIST_CHESTPLATE.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 8)
+//        );
+//
+//        // 丝裳
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.TAOIST_LEGGINGS.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 7)
+//        );
+//
+//        // 丝履
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.TAOIST_BOOTS.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 4)
+//        );
+//
+//        // 道冠
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.FEMALE_TAOIST_HELMET.get()),
+//                new ItemStack(Items.IRON_INGOT, 3),
+//                new ItemStack(Items.GOLD_INGOT, 2)
+//        );
+//
+//        // 道袍
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 8)
+//        );
+//
+//        // 乌纱帽(镶玉) - 多种宝石可选
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get()),
+//                new ItemStack(Items.IRON_INGOT, 4),
+//                new ItemStack(Items.EMERALD, 1)
+//        );
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get()),
+//                new ItemStack(Items.IRON_INGOT, 4),
+//                new ItemStack(Items.REDSTONE, 1)
+//        );
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get()),
+//                new ItemStack(Items.IRON_INGOT, 4),
+//                new ItemStack(Items.LAPIS_LAZULI, 1)
+//        );
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get()),
+//                new ItemStack(Items.IRON_INGOT, 4),
+//                new ItemStack(Items.DIAMOND, 1)
+//        );
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get()),
+//                new ItemStack(Items.IRON_INGOT, 4),
+//                new ItemStack(Items.AMETHYST_SHARD, 1)
+//        );
+//
+//        // 乌纱帽
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get()),
+//                new ItemStack(Items.IRON_INGOT, 5)
+//        );
+//
+//        // 麒麟补服
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 7),
+//                new ItemStack(Items.GOLD_INGOT, 1)
+//        );
+//
+//        // 金丝履
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 2),
+//                new ItemStack(Items.GOLD_INGOT, 2)
+//        );
+//
+//        // 凤冠
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET.get()),
+//                new ItemStack(Items.GOLD_INGOT, 3),
+//                new ItemStack(Items.LAPIS_LAZULI, 1),
+//                new ItemStack(Items.REDSTONE, 1)
+//        );
+//
+//        // 袆衣
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 7),
+//                new ItemStack(Items.GOLD_INGOT, 1)
+//        );
+//
+//        // 棉盔(白翎)
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.WHITE_COTTON_HELMET.get()),
+//                new ItemStack(Items.LEATHER, 2),
+//                new ItemStack(ChangShengJueItems.COTTON.get(), 2),
+//                new ItemStack(ChangShengJueItems.WHITE_PEACOCK_FEATHERS.get(), 1)
+//        );
+//
+//        // 棉盔(彩翎)
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.COTTON_HELMET.get()),
+//                new ItemStack(Items.LEATHER, 2),
+//                new ItemStack(ChangShengJueItems.COTTON.get(), 2),
+//                new ItemStack(ChangShengJueItems.PEACOCK_FEATHERS.get(), 1)
+//        );
+//
+//        // 棉甲
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.COTTON_CHESTPLATE.get()),
+//                new ItemStack(Items.LEATHER, 4),
+//                new ItemStack(ChangShengJueItems.COTTON.get(), 4)
+//        );
+//
+//        // 棉护腿
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.COTTON_LEGGINGS.get()),
+//                new ItemStack(Items.LEATHER, 4),
+//                new ItemStack(ChangShengJueItems.COTTON.get(), 3)
+//        );
+//
+//        // 棉靴
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.COTTON_BOOTS.get()),
+//                new ItemStack(Items.LEATHER, 2),
+//                new ItemStack(ChangShengJueItems.COTTON.get(), 2)
+//        );
+//
+//        // 盔枪兜鍪
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.MOUNTAIN_PATTERN_HELMET_GUN_HOOD.get()),
+//                new ItemStack(Items.IRON_INGOT, 2),
+//                new ItemStack(Items.EMERALD, 1),
+//                new ItemStack(Items.GOLD_INGOT, 1),
+//                new ItemStack(Items.COPPER_INGOT, 1)
+//        );
+//
+//        // 山文甲
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get()),
+//                new ItemStack(Items.IRON_INGOT, 4),
+//                new ItemStack(Items.GOLD_INGOT, 1),
+//                new ItemStack(Items.COPPER_INGOT, 3)
+//        );
+//
+//        // 鹿皮胫甲
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR.get()),
+//                new ItemStack(Items.IRON_INGOT, 5),
+//                new ItemStack(Items.LEATHER, 2)
+//        );
+//
+//        // 云头乌皮靴
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS.get()),
+//                new ItemStack(Items.IRON_INGOT, 2),
+//                new ItemStack(Items.LEATHER, 2)
+//        );
+//
+//        // 金戒箍
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.WALKER_GOLD_RING_BAND.get()),
+//                new ItemStack(Items.GOLD_INGOT, 3)
+//        );
+//
+//        // 行者装
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.WALKER_CHESTPLATE.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 6),
+//                new ItemStack(Items.LAPIS_LAZULI, 1),
+//                new ItemStack(Items.IRON_INGOT, 1)
+//        );
+//
+//        // 虎皮裙
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.WALKER_TIGER_SKIN_SKIRT.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 5),
+//                new ItemStack(ChangShengJueItems.TIGER_SKIN.get(), 2)
+//        );
+//
+//        // 短靴
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.WALKER_SHORT_BOOTS.get()),
+//                new ItemStack(Items.LEATHER, 2),
+//                new ItemStack(Items.IRON_INGOT, 2)
+//        );
+//
+//        // 云纱冠(镶玉) - 多种宝石可选
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 4),
+//                new ItemStack(Items.EMERALD, 1)
+//        );
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 4),
+//                new ItemStack(Items.REDSTONE, 1)
+//        );
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 4),
+//                new ItemStack(Items.LAPIS_LAZULI, 1)
+//        );
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 4),
+//                new ItemStack(Items.DIAMOND, 1)
+//        );
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 4),
+//                new ItemStack(Items.AMETHYST_SHARD, 1)
+//        );
+//
+//        // 云纱冠
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 5)
+//        );
+//
+//        // 飞鱼服
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.FLY_FISH_CHESTPLATE.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 7),
+//                new ItemStack(Items.GOLD_INGOT, 1),
+//                new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 1)
+//        );
+//
+//        // 长靴
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.FLY_FISH_LONG_BOOTS.get()),
+//                new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 1),
+//                new ItemStack(Items.IRON_INGOT, 3)
+//        );
+//
+//        // 铁笠
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.FLY_FISH_IRON_HAT.get()),
+//                new ItemStack(Items.IRON_INGOT, 4),
+//                new ItemStack(Items.GOLD_INGOT, 1)
+//        );
+//
+//        // 绿宝眉心坠
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.WALKER_GREEN_TREASURE_PENDANT.get()),
+//                new ItemStack(ChangShengJueItems.AG_INGOT.get(), 2),
+//                new ItemStack(Items.EMERALD, 1)
+//        );
+//
+//        // 金丝软甲
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR.get()),
+//                new ItemStack(Items.GOLD_INGOT, 6)
+//        );
+//
+//        // 皮内甲 - 多种兽皮可选
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.LEATHER_INNER_ARMOR.get()),
+//                new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 8)
+//        );
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.LEATHER_INNER_ARMOR.get()),
+//                new ItemStack(ChangShengJueItems.TIGER_SKIN.get(), 8)
+//        );
+//
+//        // 儒冠
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.CONFUCIAN_HELMET.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 4),
+//                new ItemStack(Items.INK_SAC, 1)
+//        );
+//
+//        // 染墨宽袍
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 7),
+//                new ItemStack(Items.INK_SAC, 1)
+//        );
+//
+//        // 染墨丝裳
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 6),
+//                new ItemStack(Items.INK_SAC, 1)
+//        );
+//
+//        // 染墨丝履
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get()),
+//                new ItemStack(ChangShengJueItems.SILK.get(), 3),
+//                new ItemStack(Items.INK_SAC, 1)
+//        );
+//
+//        // 凤翅兜鍪
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_PHOENIX_WINGS_HELMET.get()),
+//                new ItemStack(Items.IRON_INGOT, 1),
+//                new ItemStack(Items.COPPER_INGOT, 3),
+//                new ItemStack(Items.GOLD_INGOT, 1)
+//        );
+//
+//        // 明光铠
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get()),
+//                new ItemStack(Items.IRON_INGOT, 4),
+//                new ItemStack(Items.COPPER_INGOT, 3),
+//                new ItemStack(Items.GOLD_INGOT, 1)
+//        );
+//
+//        // 青金护膝
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS.get()),
+//                new ItemStack(Items.LEATHER, 5),
+//                new ItemStack(Items.LAPIS_LAZULI, 2)
+//        );
+//
+//        // 兽皮靴
+//        addRecipe(
+//                new ItemStack(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS.get()),
+//                new ItemStack(Items.LEATHER, 2),
+//                new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 2)
+//        );
     }
 }

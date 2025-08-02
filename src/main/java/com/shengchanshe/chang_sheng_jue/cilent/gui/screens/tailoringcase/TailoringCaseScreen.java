@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.decoration.ArmorStand;
@@ -55,6 +56,13 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         customButtons.clear();
         createArmorStandEntity();
         refreshItemButtons();
+
+        TailoringCaseMenu.TailoringRecipe serverRecipe = menu.getCurrentRecipe();
+        if (serverRecipe != null) {
+            currentMaterials.clear();
+            currentMaterials.addAll(Arrays.asList(serverRecipe.getMaterials()));
+            currentSelectedItem = serverRecipe.getResult();
+        }
 
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
@@ -134,7 +142,6 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
             return;
         }
 
-        // 查找对应的配方
         Optional<TailoringCaseMenu.TailoringRecipe> newRecipe = selectedItem.isEmpty()
                 ? Optional.empty()
                 : TailoringCaseMenu.findRecipe(selectedItem);
@@ -183,23 +190,19 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
-                int slotIndex = row * 3 + col; // 计算槽位索引（0-8）
+                int slotIndex = row * 3 + col; // 槽位索引（0-8）
                 int slotX = x + 134 + col * 18; // 槽位X坐标
                 int slotY = y + 45 + row * 18;  // 槽位Y坐标
 
-                // 判断当前槽位是否有材料需求，以及材料是否充足
-                boolean isMaterialEnough = true;
+                // 仅当槽位有材料需求时才渲染
                 if (slotIndex < currentMaterials.size()) {
                     ItemStack required = currentMaterials.get(slotIndex);
-                    // 空材料默认充足（不改变背景）
-                    isMaterialEnough = required.isEmpty()
-                            ? true
-                            : menu.hasEnoughOfMaterial(minecraft.player.getInventory(), required);
+                    if (!required.isEmpty()) { // 非空材料才处理
+                        boolean isMaterialEnough = menu.hasEnoughOfMaterial(minecraft.player.getInventory(), required);
+                        int textureV = isMaterialEnough ? 217 : 235; // 充足用217，不足用235
+                        guiGraphics.blit(TEXTURE, slotX, slotY, 18, textureV, 18, 18, 512, 512);
+                    }
                 }
-
-                // 选择纹理：充足用217，不足用235（可根据实际纹理调整）
-                int textureV = isMaterialEnough ? 217 : 235;
-                guiGraphics.blit(TEXTURE, slotX, slotY, 18, textureV, 18, 18, 512, 512);
             }
         }
 
@@ -303,12 +306,12 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         for (EquipmentSlot slot : EquipmentSlot.values()) {
             armorStandEntity.setItemSlot(slot, ItemStack.EMPTY);
         }
-        armorStandEntity.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+        armorStandEntity.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
 
         if (currentSelectedItem.getItem() instanceof ArmorItem armor) {
             armorStandEntity.setItemSlot(armor.getEquipmentSlot(), currentSelectedItem);
         } else {
-            armorStandEntity.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, currentSelectedItem);
+            armorStandEntity.setItemInHand(InteractionHand.MAIN_HAND, currentSelectedItem);
         }
     }
 
