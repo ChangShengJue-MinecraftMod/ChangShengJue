@@ -58,7 +58,9 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         refreshItemButtons();
 
         TailoringCaseMenu.TailoringRecipe serverRecipe = menu.getCurrentRecipe();
-        if (serverRecipe != null) {
+
+        //如果处于制作状态
+        if (serverRecipe != null || menu.isCrafting()) {
             currentMaterials.clear();
             currentMaterials.addAll(Arrays.asList(serverRecipe.getMaterials()));
             currentSelectedItem = serverRecipe.getResult();
@@ -79,6 +81,7 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
     }
 
     private void refreshItemButtons() {
+        // 清除现有按钮
         for (CustomButton button : customButtons) {
             this.removeWidget(button);
         }
@@ -87,15 +90,21 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         int row = 0;
         int col = 0;
 
-        // 遍历所有配方
-        for (TailoringCaseMenu.TailoringRecipe recipe : TailoringCaseMenu.RECIPES) {
-            // 只显示当前可见行
-            if (row >= VISIBLE_ROWS) break;
+        // 计算起始索引：已滚动的行数 × 每行的按钮数（5个）
+        int startIndex = scrollOffset * 5;
+        // 遍历配方，从起始索引开始
+        for (int i = startIndex; i < TailoringCaseMenu.RECIPES.size(); i++) {
+            TailoringCaseMenu.TailoringRecipe recipe = TailoringCaseMenu.RECIPES.get(i);
+
+            // 只显示可见行数（VISIBLE_ROWS）的配方
+            if (row >= VISIBLE_ROWS) {
+                break;
+            }
 
             // 创建按钮
             createButton(col, row, recipe.getResult());
 
-            // 每行5个按钮
+            // 每行5个按钮，满了就换行
             col++;
             if (col >= 5) {
                 col = 0;
