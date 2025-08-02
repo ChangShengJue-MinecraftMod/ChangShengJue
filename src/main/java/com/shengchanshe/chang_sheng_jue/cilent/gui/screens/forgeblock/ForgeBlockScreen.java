@@ -22,10 +22,7 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import org.joml.Quaternionf;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     private static final ResourceLocation TEXTURE =
@@ -43,6 +40,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     private int scrollBarHeight = 0;
     private int scrollBarY = 0;
     private int scrollBarX = 0;
+    private List<ItemStack> currentMaterials = new ArrayList<>();
 
     public ForgeBlockScreen(ForgeBlockMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -141,7 +139,10 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         Optional<ForgeBlockMenu.ForgeRecipe> newRecipe = selectedItem.isEmpty()
                 ? Optional.empty()
                 : ForgeBlockMenu.findRecipe(selectedItem);
-
+        currentMaterials.clear();
+        if (newRecipe.isPresent()) {
+            currentMaterials.addAll(Arrays.asList(newRecipe.get().getMaterials()));
+        }
         // 立即更新客户端本地显示
         menu.setCurrentRecipe(newRecipe.orElse(null));
 
@@ -177,6 +178,30 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         scrollBarX = x - 13 + 5 * 18;
         scrollBarY = y + 45;
         scrollBarHeight = VISIBLE_ROWS * 18;
+
+
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                int slotIndex = row * 3 + col; // 计算槽位索引（0-8）
+                int slotX = x + 134 + col * 18; // 槽位X坐标
+                int slotY = y + 45 + row * 18;  // 槽位Y坐标
+
+                // 判断当前槽位是否有材料需求，以及材料是否充足
+                boolean isMaterialEnough = true;
+                if (slotIndex < currentMaterials.size()) {
+                    ItemStack required = currentMaterials.get(slotIndex);
+                    // 空材料默认充足（不改变背景）
+                    isMaterialEnough = required.isEmpty()
+                            ? true
+                            : menu.hasEnoughOfMaterial(minecraft.player.getInventory(), required);
+                }
+
+                // 选择纹理：充足用217，不足用235（可根据实际纹理调整）
+                int textureV = isMaterialEnough ? 217 : 235;
+                guiGraphics.blit(TEXTURE, slotX, slotY, 18, textureV, 18, 18, 512, 512);
+            }
+        }
+
 
         int maxScrollOffset = TOTAL_ROWS - VISIBLE_ROWS;
         float scrollProgress = maxScrollOffset > 0 ? (float) scrollOffset / maxScrollOffset : 0;

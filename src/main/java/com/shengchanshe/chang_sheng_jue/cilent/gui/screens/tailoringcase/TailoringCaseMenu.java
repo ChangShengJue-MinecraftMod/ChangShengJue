@@ -378,4 +378,26 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         RECIPES.add(new TailoringRecipe(result, materials));
     }
 
+    /**
+     * 检查玩家是否拥有指定材料的足够数量
+     * @param playerInventory 玩家背包
+     * @param required 所需材料
+     * @return 若数量充足返回true，否则返回false
+     */
+    public boolean hasEnoughOfMaterial(Inventory playerInventory, ItemStack required) {
+        if (required.isEmpty()) return true; // 空材料默认充足
+
+        IItemHandler playerItems = new InvWrapper(playerInventory);
+        int needed = required.getCount();
+        int found = 0;
+
+        for (int i = 0; i < playerItems.getSlots(); i++) {
+            ItemStack stack = playerItems.getStackInSlot(i);
+            if (ItemStack.isSameItemSameTags(stack, required)) {
+                found += stack.getCount();
+                if (found >= needed) return true;
+            }
+        }
+        return false;
+    }
 }

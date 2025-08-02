@@ -19,6 +19,9 @@ public class ChangShengJueConfig {
     public static final ForgeConfigSpec.BooleanValue BREAKTHROUGH_PARTICLE;
     public static final ForgeConfigSpec.IntValue FLYING_DAGGER_POUCH_MAX_SLOTS;
     public static final ForgeConfigSpec SPEC;
+    public static final ForgeConfigSpec.BooleanValue ENABLE_BANDIT_SPAWN;
+    public static final ForgeConfigSpec.BooleanValue ENABLE_VILLAIN_SPAWN;
+
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
@@ -27,6 +30,17 @@ public class ChangShengJueConfig {
                 .comment("是否启用自动接受类型任务")
                 .translation("config."+ ChangShengJue.MOD_ID +".enable_quests")
                 .define("enableQuests", true);
+
+        ENABLE_BANDIT_SPAWN = builder
+                .comment("是否启用劫匪生成")
+                .translation("config."+ ChangShengJue.MOD_ID +".enable_bandit_spawn")
+                .define("enableBanditSpawn", true);
+
+        ENABLE_VILLAIN_SPAWN = builder
+                .comment("是否启用反派生成")
+                .translation("config."+ ChangShengJue.MOD_ID +".enable_villain_spawn")
+                .define("enableVillainSpawn", true);
+
 
         // 新增灵气恢复配置
         SPIRIT_RECOVERY_AMOUNT = builder
@@ -86,6 +100,30 @@ public class ChangShengJueConfig {
                                     "自动接受类型任务已" + (newState ? "§a启用" : "§c禁用")), false);
                             return 1;
                         })));
+
+        event.getDispatcher().register(Commands.literal(ChangShengJue.MOD_ID + "_bandit")
+                .requires(source -> source.hasPermission(2))
+                .then(Commands.literal("toggleSpawn")
+                        .executes(ctx -> {
+                            boolean newState = !ChangShengJueConfig.ENABLE_BANDIT_SPAWN.get();
+                            ChangShengJueConfig.ENABLE_BANDIT_SPAWN.set(newState);
+                            ctx.getSource().sendSuccess(() -> Component.literal(
+                                    "强盗生成已" + (newState ? "§a启用" : "§c禁用")), false);
+                            return 1;
+                        })));
+        event.getDispatcher().register(Commands.literal(ChangShengJue.MOD_ID + "_villain")
+                .requires(source -> source.hasPermission(2))
+                .then(Commands.literal("toggleSpawn")
+                        .executes(ctx -> {
+                            boolean newState = !ChangShengJueConfig.ENABLE_VILLAIN_SPAWN.get();
+                            ChangShengJueConfig.ENABLE_VILLAIN_SPAWN.set(newState);
+                            ctx.getSource().sendSuccess(() -> Component.literal(
+                                    "恶徒生成已" + (newState ? "§a启用" : "§c禁用")), false);
+                            return 1;
+                        })));
+
     }
+
+
 
 }

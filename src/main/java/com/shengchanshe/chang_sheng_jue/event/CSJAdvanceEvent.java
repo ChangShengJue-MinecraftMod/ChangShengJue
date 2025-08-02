@@ -1,6 +1,7 @@
 package com.shengchanshe.chang_sheng_jue.event;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import com.shengchanshe.chang_sheng_jue.ChangShengJueConfig;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.bandit.Bandit;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.challenger.Challenger;
@@ -38,6 +39,9 @@ import java.util.*;
 public class CSJAdvanceEvent {
     private static int COOLDOWN = 3;
     private static final Set<ChunkPos> generatedVillainChunks = new HashSet<>(); // 新增：跟踪已生成Villain的区块
+    private static boolean ENABLE_BANDIT_SPAWN = true;
+    private static boolean ENABLE_VILLAIN_SPAWN = true;
+
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
@@ -184,7 +188,7 @@ public class CSJAdvanceEvent {
     private static final Map<UUID, Integer> summonTracker = new HashMap<>();
 
     public static void summonBandit(Level level, Player player) {
-        if (level.isClientSide()) {
+        if (!ChangShengJueConfig.ENABLE_BANDIT_SPAWN.get() || level.isClientSide()) {
             return;
         }
         UUID playerUUID = player.getUUID();
@@ -225,7 +229,7 @@ public class CSJAdvanceEvent {
         }
     }
     public static void summonVillain(Level level, Player player, ChunkPos villageChunk) {
-        if (level.isClientSide()) {
+        if (!ChangShengJueConfig.ENABLE_VILLAIN_SPAWN.get() || level.isClientSide()) {
             return;
         }
         ServerLevel serverLevel = (ServerLevel) level;
@@ -272,7 +276,6 @@ public class CSJAdvanceEvent {
             }
         }
     }
-
 
     public static void summonChallenger(Level level, Player player) {
         // 仅在服务端执行实体生成逻辑
