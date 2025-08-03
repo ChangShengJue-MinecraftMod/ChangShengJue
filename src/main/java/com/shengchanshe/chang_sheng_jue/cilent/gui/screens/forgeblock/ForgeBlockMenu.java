@@ -85,9 +85,10 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         // 只有不在制作中时才清除
         if (!isCrafting()) {
             clearAllSlots();
-            if (!player.level().isClientSide) {
-                blockEntity.setCurrentRecipe(null);
-            }
+            blockEntity.setCurrentRecipe(null);
+//            if (!player.level().isClientSide) {
+//                blockEntity.setCurrentRecipe(null);
+//            }
         }
     }
 

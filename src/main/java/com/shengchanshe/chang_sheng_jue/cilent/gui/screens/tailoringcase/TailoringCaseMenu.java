@@ -109,6 +109,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         // 只有服务端才更
         if (!level.isClientSide) {
             blockEntity.setCurrentRecipe(recipe);
+            blockEntity.setChanged(); // 标记区块需要保存
         }
     }
 
@@ -208,8 +209,9 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
     private static final int VANILLA_FIRST_SLOT_INDEX = 0;
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
-    // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
+    // 修正槽位数量为10（9个输入槽 + 1个输出槽）
+    private static final int TE_INVENTORY_SLOT_COUNT = 10;
+
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
@@ -217,7 +219,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
-        // Check if the slot clicked is one of the vanilla container slots
+        // 检查点击的槽位是否是玩家物品栏
         if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
             // This is a vanilla container slot so merge the stack into the tile inventory
             if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
@@ -230,7 +232,6 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
                 return ItemStack.EMPTY;
             }
         } else {
-            System.out.println("Invalid slotIndex:" + pIndex);
             return ItemStack.EMPTY;
         }
         // If stack size == 0 (the entire stack was moved) set slot contents to null
@@ -424,12 +425,6 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
                 new ItemStack(ChangShengJueItems.SILK.get(), 4)
         );
 
-        // 道冠
-        addRecipe(
-                new ItemStack(ChangShengJueItems.FEMALE_TAOIST_HELMET.get()),
-                new ItemStack(Items.IRON_INGOT, 3),
-                new ItemStack(Items.GOLD_INGOT, 2)
-        );
 
         // 道袍
         addRecipe(
@@ -464,11 +459,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
 //                new ItemStack(Items.AMETHYST_SHARD, 1)
 //        );
 //
-        // 乌纱帽
-        addRecipe(
-                new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get()),
-                new ItemStack(Items.IRON_INGOT, 5)
-        );
+
 
         // 麒麟补服
         addRecipe(
@@ -484,13 +475,6 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
                 new ItemStack(Items.GOLD_INGOT, 2)
         );
 
-        // 凤冠
-        addRecipe(
-                new ItemStack(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET.get()),
-                new ItemStack(Items.GOLD_INGOT, 3),
-                new ItemStack(Items.LAPIS_LAZULI, 1),
-                new ItemStack(Items.REDSTONE, 1)
-        );
 
         // 袆衣
         addRecipe(
@@ -536,22 +520,6 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
                 new ItemStack(ChangShengJueItems.COTTON.get(), 2)
         );
 
-        // 盔枪兜鍪
-        addRecipe(
-                new ItemStack(ChangShengJueItems.MOUNTAIN_PATTERN_HELMET_GUN_HOOD.get()),
-                new ItemStack(Items.IRON_INGOT, 2),
-                new ItemStack(Items.EMERALD, 1),
-                new ItemStack(Items.GOLD_INGOT, 1),
-                new ItemStack(Items.COPPER_INGOT, 1)
-        );
-
-        // 山文甲
-        addRecipe(
-                new ItemStack(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get()),
-                new ItemStack(Items.IRON_INGOT, 4),
-                new ItemStack(Items.GOLD_INGOT, 1),
-                new ItemStack(Items.COPPER_INGOT, 3)
-        );
 
         // 鹿皮胫甲
         addRecipe(
@@ -643,25 +611,6 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
                 new ItemStack(Items.IRON_INGOT, 3)
         );
 
-        // 铁笠
-        addRecipe(
-                new ItemStack(ChangShengJueItems.FLY_FISH_IRON_HAT.get()),
-                new ItemStack(Items.IRON_INGOT, 4),
-                new ItemStack(Items.GOLD_INGOT, 1)
-        );
-
-        // 绿宝眉心坠
-        addRecipe(
-                new ItemStack(ChangShengJueItems.WALKER_GREEN_TREASURE_PENDANT.get()),
-                new ItemStack(ChangShengJueItems.AG_INGOT.get(), 2),
-                new ItemStack(Items.EMERALD, 1)
-        );
-
-        // 金丝软甲
-        addRecipe(
-                new ItemStack(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR.get()),
-                new ItemStack(Items.GOLD_INGOT, 6)
-        );
 
         // 皮内甲 - 多种兽皮可选
         addRecipe(
@@ -730,10 +679,6 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
                 new ItemStack(Items.LEATHER, 2),
                 new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 2)
         );
-        //铁笠	铁锭*4/金锭*1
-        //绿宝眉心坠	银锭*2/绿宝石*1
-        //金丝软甲	金锭*6
-        //皮内甲	兽皮*8（鳄鱼皮/虎皮也可）
 
     }
 }

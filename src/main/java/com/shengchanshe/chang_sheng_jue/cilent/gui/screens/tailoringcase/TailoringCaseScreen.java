@@ -435,8 +435,7 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         int progressBarX = x + 191; // 进度条X坐标
         int progressBarY = y + 59; // 进度条Y坐标
         int progressBarWidth = 32; // 进度条总宽度
-        int progressBarHeight = 22; // 进度条高度q
-
+        int progressBarHeight = 22; // 进度条高度
 
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);

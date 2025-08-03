@@ -88,10 +88,16 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         int row = 0;
         int col = 0;
 
-        // 遍历所有配方
-        for (ForgeBlockMenu.ForgeRecipe recipe : ForgeBlockMenu.RECIPES) {
-            // 只显示当前可见行
-            if (row >= VISIBLE_ROWS) break;
+        // 计算起始索引：已滚动的行数 × 每行的按钮数（5个）
+        int startIndex = scrollOffset * 5;
+        // 遍历配方，从起始索引开始
+        for (int i = startIndex; i < ForgeBlockMenu.RECIPES.size(); i++) {
+            ForgeBlockMenu.ForgeRecipe recipe = ForgeBlockMenu.RECIPES.get(i);
+
+            // 只显示可见行数（VISIBLE_ROWS）的配方
+            if (row >= VISIBLE_ROWS) {
+                break;
+            }
 
             // 创建按钮
             createButton(col, row, recipe.getResult());
@@ -409,7 +415,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                 if (craftButton != null) {
                     boolean isCrafting = menu.isCrafting();
                     craftButton.active = !isCrafting; // 正在合成时禁用按钮
-                    // 保持按钮可见，但禁用状态
+                    craftButton.visible = !isCrafting;
                 }
             }
         }
