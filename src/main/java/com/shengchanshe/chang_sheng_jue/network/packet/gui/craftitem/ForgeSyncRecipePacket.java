@@ -57,9 +57,8 @@ public class ForgeSyncRecipePacket {
             BlockEntity entity = level.getBlockEntity(pos);
 
             if (entity instanceof ForgeBlockEntity forgeEntity) {
-                if (forgeEntity.getCurrentRecipe() != null){
-                    forgeEntity.setCurrentRecipe(null);
-                }
+                // 先清空旧配方再设置新配方（确保状态一致）
+                forgeEntity.setCurrentRecipe(null);
                 forgeEntity.setCurrentRecipe(packet.recipe);
             }
         });

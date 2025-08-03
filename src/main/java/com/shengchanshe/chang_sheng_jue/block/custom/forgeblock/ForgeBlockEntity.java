@@ -12,6 +12,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
@@ -30,6 +31,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
@@ -130,11 +132,9 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
         tag.put("inventory", itemHandler.serializeNBT());
         tag.putInt("progress", progress);
 
-        // 保存当前配方信息
+        // 保存当前配方信息（与缝纫台一致）
         if (currentRecipe != null) {
-            CompoundTag recipeTag = new CompoundTag();
-            currentRecipe.getResult().save(recipeTag);
-            tag.put("current_recipe", recipeTag);
+            tag.put("current_recipe", currentRecipe.serializeNBT());
         }
     }
 
@@ -144,11 +144,10 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
         itemHandler.deserializeNBT(tag.getCompound("inventory"));
         progress = tag.getInt("progress");
 
-        // 加载当前配方信息
+        // 加载当前配方信息（与缝纫台一致）
         if (tag.contains("current_recipe")) {
-            ItemStack result = ItemStack.of(tag.getCompound("current_recipe"));
-            // 从结果查找配方
-            currentRecipe = ForgeBlockMenu.findRecipe(result).orElse(null);
+            CompoundTag recipeTag = tag.getCompound("current_recipe");
+            currentRecipe = ForgeBlockMenu.ForgeRecipe.deserializeNBT(recipeTag);
         }
     }
 
@@ -270,6 +269,7 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
 
     public void setCurrentRecipe(ForgeBlockMenu.ForgeRecipe recipe) {
         this.currentRecipe = recipe;
+        // 立即更新输入槽位
         if (recipe != null) {
             for (int i = 0; i < recipe.getMaterials().length && i < 9; i++) {
                 itemHandler.setStackInSlot(i, recipe.getMaterials()[i].copy());
@@ -293,6 +293,14 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
 
     //新增配方
     public void addRecipeWithMaterials(ItemStack result, ItemStack... materials) {
+        // 检查是否已存在相同配方
+        ResourceLocation key = new ResourceLocation(
+                ForgeRegistries.ITEMS.getKey(result.getItem()).toString() + "_" + result.getCount()
+        );
+        if (ForgeBlockMenu.RECIPE_MAP.containsKey(key)) {
+            return;
+        }
+
         // 1. 将材料放入输入槽位
         for (int i = 0; i < materials.length && i < 9; i++) {
             itemHandler.setStackInSlot(i, materials[i].copy());
@@ -307,10 +315,8 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
                 Arrays.stream(materials).map(ItemStack::copy).toArray(ItemStack[]::new)
         );
 
-        // 避免重复添加相同配方
-        if (!ForgeBlockMenu.RECIPES.contains(newRecipe)) {
-            ForgeBlockMenu.RECIPES.add(newRecipe);
-        }
+        // 注册新配方
+        ForgeBlockMenu.registerRecipe(newRecipe);
 
         // 4. 设置当前配方
         this.currentRecipe = newRecipe;

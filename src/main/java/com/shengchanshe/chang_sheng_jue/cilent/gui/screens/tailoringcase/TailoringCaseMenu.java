@@ -6,7 +6,10 @@ import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.ChangShengJueMenuType
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
@@ -18,11 +21,9 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
+import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class TailoringCaseMenu extends AbstractContainerMenu {
     public final TailoringCaseEntity blockEntity;
@@ -85,9 +86,6 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         if(!isCrafting()) {
             clearAllSlots();
             blockEntity.setCurrentRecipe(null);
-//            if (!player.level().isClientSide) {
-//                blockEntity.setCurrentRecipe(null);
-//            }
         }
     }
 
@@ -106,7 +104,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         this.currentRecipe = recipe;
         updateRecipeSlots();
 
-        // 只有服务端才更
+        // 只有服务端才更新
         if (!level.isClientSide) {
             blockEntity.setCurrentRecipe(recipe);
             blockEntity.setChanged(); // 标记区块需要保存
@@ -317,12 +315,11 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
             CompoundTag tag = new CompoundTag();
             tag.put("result", result.serializeNBT());
 
-            CompoundTag materialsTag = new CompoundTag();
-            for (int i = 0; i < materials.length; i++) {
-                materialsTag.put("material_" + i, materials[i].serializeNBT());
+            ListTag materialsList = new ListTag();
+            for (ItemStack material : materials) {
+                materialsList.add(material.serializeNBT());
             }
-            tag.put("materials", materialsTag);
-            tag.putInt("material_count", materials.length);
+            tag.put("materials", materialsList);
 
             return tag;
         }
@@ -330,12 +327,11 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         // 用于NBT反序列化
         public static TailoringRecipe deserializeNBT(CompoundTag tag) {
             ItemStack result = ItemStack.of(tag.getCompound("result"));
-            int count = tag.getInt("material_count");
-            ItemStack[] materials = new ItemStack[count];
+            ListTag materialsList = tag.getList("materials", Tag.TAG_COMPOUND);
 
-            CompoundTag materialsTag = tag.getCompound("materials");
-            for (int i = 0; i < count; i++) {
-                materials[i] = ItemStack.of(materialsTag.getCompound("material_" + i));
+            ItemStack[] materials = new ItemStack[materialsList.size()];
+            for (int i = 0; i < materialsList.size(); i++) {
+                materials[i] = ItemStack.of(materialsList.getCompound(i));
             }
 
             return new TailoringRecipe(result, materials);
@@ -366,319 +362,272 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         return false;
     }
 
-    public static Optional<TailoringRecipe> findRecipe(ItemStack result) {
-        return RECIPES.stream()
-                .filter(recipe -> {
-                    ItemStack recipeResult = recipe.getResult();
-                    return ItemStack.isSameItemSameTags(recipeResult, result) &&
-                            recipeResult.getCount() == result.getCount();
-                })
-                .findFirst();
-    }
-
-    // 添加配方的辅助方法
-    private static void addRecipe(ItemStack result, ItemStack... materials) {
-        RECIPES.add(new TailoringRecipe(result, materials));
-    }
-
-    //添加配方
-    // 配方定义
+    // 优化配方存储结构
+    public static final Map<ResourceLocation, TailoringRecipe> RECIPE_MAP = new HashMap<>();
     public static final List<TailoringRecipe> RECIPES = new ArrayList<>();
+
+    public static void registerRecipe(TailoringRecipe recipe) {
+        ResourceLocation key = new ResourceLocation(
+                ForgeRegistries.ITEMS.getKey(recipe.result.getItem()).toString() + "_" + recipe.result.getCount()
+        );
+
+        if (!RECIPE_MAP.containsKey(key)) {
+            RECIPE_MAP.put(key, recipe);
+            RECIPES.add(recipe);
+        }
+    }
+
+    public static Optional<TailoringRecipe> findRecipe(ItemStack result) {
+        if (result.isEmpty()) return Optional.empty();
+
+        ResourceLocation key = new ResourceLocation(
+                ForgeRegistries.ITEMS.getKey(result.getItem()).toString() + "_" + result.getCount()
+        );
+        return Optional.ofNullable(RECIPE_MAP.get(key));
+    }
 
     // 静态初始化块 - 在这里添加配方
     static {
-        // 添加钻石靴子配方（li
-        addRecipe(
-                new ItemStack(Items.DIAMOND_BOOTS),
-                new ItemStack(Items.DIAMOND, 4),
-                new ItemStack(Items.LEATHER, 2)
-        );
-
-        // 添加钻石护甲配方（li
-        addRecipe(
-                new ItemStack(Items.DIAMOND_CHESTPLATE),
-                new ItemStack(Items.DIAMOND, 8),
-                new ItemStack(Items.LEATHER, 5)
-        );
-
         // 四方巾
-        addRecipe(
-                new ItemStack(ChangShengJueItems.MALE_TAOIST_HELMET.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 5)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.MALE_TAOIST_HELMET.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 5)
+                )
         );
 
         // 道服
-        addRecipe(
-                new ItemStack(ChangShengJueItems.MALE_TAOIST_CHESTPLATE.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 8)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.MALE_TAOIST_CHESTPLATE.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 8)
+                )
         );
 
         // 丝裳
-        addRecipe(
-                new ItemStack(ChangShengJueItems.TAOIST_LEGGINGS.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 7)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.TAOIST_LEGGINGS.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 7)
+                )
         );
 
         // 丝履
-        addRecipe(
-                new ItemStack(ChangShengJueItems.TAOIST_BOOTS.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 4)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.TAOIST_BOOTS.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 4)
+                )
         );
-
 
         // 道袍
-        addRecipe(
-                new ItemStack(ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 8)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 8)
+                )
         );
 
-//        // 乌纱帽(镶玉) - 多种宝石可选
-//        addRecipe(
-//                new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get()),
-//                new ItemStack(Items.IRON_INGOT, 4),
-//                new ItemStack(Items.EMERALD, 1)
-//        );
-//        addRecipe(
-//                new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get()),
-//                new ItemStack(Items.IRON_INGOT, 4),
-//                new ItemStack(Items.REDSTONE, 1)
-//        );
-//        addRecipe(
-//                new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get()),
-//                new ItemStack(Items.IRON_INGOT, 4),
-//                new ItemStack(Items.LAPIS_LAZULI, 1)
-//        );
-//        addRecipe(
-//                new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get()),
-//                new ItemStack(Items.IRON_INGOT, 4),
-//                new ItemStack(Items.DIAMOND, 1)
-//        );
-//        addRecipe(
-//                new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get()),
-//                new ItemStack(Items.IRON_INGOT, 4),
-//                new ItemStack(Items.AMETHYST_SHARD, 1)
-//        );
-//
-
-
         // 麒麟补服
-        addRecipe(
-                new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 7),
-                new ItemStack(Items.GOLD_INGOT, 1)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 7),
+                        new ItemStack(Items.GOLD_INGOT, 1)
+                )
         );
 
         // 金丝履
-        addRecipe(
-                new ItemStack(ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 2),
-                new ItemStack(Items.GOLD_INGOT, 2)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 2),
+                        new ItemStack(Items.GOLD_INGOT, 2)
+                )
         );
 
-
         // 袆衣
-        addRecipe(
-                new ItemStack(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 7),
-                new ItemStack(Items.GOLD_INGOT, 1)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 7),
+                        new ItemStack(Items.GOLD_INGOT, 1)
+                )
         );
 
         // 棉盔(白翎)
-        addRecipe(
-                new ItemStack(ChangShengJueItems.WHITE_COTTON_HELMET.get()),
-                new ItemStack(Items.LEATHER, 2),
-                new ItemStack(ChangShengJueItems.COTTON.get(), 2),
-                new ItemStack(ChangShengJueItems.WHITE_PEACOCK_FEATHERS.get(), 1)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.WHITE_COTTON_HELMET.get()),
+                        new ItemStack(Items.LEATHER, 2),
+                        new ItemStack(ChangShengJueItems.COTTON.get(), 2),
+                        new ItemStack(ChangShengJueItems.WHITE_PEACOCK_FEATHERS.get(), 1)
+                )
         );
 
         // 棉盔(彩翎)
-        addRecipe(
-                new ItemStack(ChangShengJueItems.COTTON_HELMET.get()),
-                new ItemStack(Items.LEATHER, 2),
-                new ItemStack(ChangShengJueItems.COTTON.get(), 2),
-                new ItemStack(ChangShengJueItems.PEACOCK_FEATHERS.get(), 1)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.COTTON_HELMET.get()),
+                        new ItemStack(Items.LEATHER, 2),
+                        new ItemStack(ChangShengJueItems.COTTON.get(), 2),
+                        new ItemStack(ChangShengJueItems.PEACOCK_FEATHERS.get(), 1)
+                )
         );
 
         // 棉甲
-        addRecipe(
-                new ItemStack(ChangShengJueItems.COTTON_CHESTPLATE.get()),
-                new ItemStack(Items.LEATHER, 4),
-                new ItemStack(ChangShengJueItems.COTTON.get(), 4)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.COTTON_CHESTPLATE.get()),
+                        new ItemStack(Items.LEATHER, 4),
+                        new ItemStack(ChangShengJueItems.COTTON.get(), 4)
+                )
         );
 
         // 棉护腿
-        addRecipe(
-                new ItemStack(ChangShengJueItems.COTTON_LEGGINGS.get()),
-                new ItemStack(Items.LEATHER, 4),
-                new ItemStack(ChangShengJueItems.COTTON.get(), 3)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.COTTON_LEGGINGS.get()),
+                        new ItemStack(Items.LEATHER, 4),
+                        new ItemStack(ChangShengJueItems.COTTON.get(), 3)
+                )
         );
 
         // 棉靴
-        addRecipe(
-                new ItemStack(ChangShengJueItems.COTTON_BOOTS.get()),
-                new ItemStack(Items.LEATHER, 2),
-                new ItemStack(ChangShengJueItems.COTTON.get(), 2)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.COTTON_BOOTS.get()),
+                        new ItemStack(Items.LEATHER, 2),
+                        new ItemStack(ChangShengJueItems.COTTON.get(), 2)
+                )
         );
 
-
         // 鹿皮胫甲
-        addRecipe(
-                new ItemStack(ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR.get()),
-                new ItemStack(Items.IRON_INGOT, 5),
-                new ItemStack(Items.LEATHER, 2)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR.get()),
+                        new ItemStack(Items.IRON_INGOT, 5),
+                        new ItemStack(Items.LEATHER, 2)
+                )
         );
 
         // 云头乌皮靴
-        addRecipe(
-                new ItemStack(ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS.get()),
-                new ItemStack(Items.IRON_INGOT, 2),
-                new ItemStack(Items.LEATHER, 2)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS.get()),
+                        new ItemStack(Items.IRON_INGOT, 2),
+                        new ItemStack(Items.LEATHER, 2)
+                )
         );
 
-        // 金戒箍
-        addRecipe(
-                new ItemStack(ChangShengJueItems.WALKER_GOLD_RING_BAND.get()),
-                new ItemStack(Items.GOLD_INGOT, 3)
-        );
 
         // 行者装
-        addRecipe(
-                new ItemStack(ChangShengJueItems.WALKER_CHESTPLATE.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 6),
-                new ItemStack(Items.LAPIS_LAZULI, 1),
-                new ItemStack(Items.IRON_INGOT, 1)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.WALKER_CHESTPLATE.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 6),
+                        new ItemStack(Items.LAPIS_LAZULI, 1),
+                        new ItemStack(Items.IRON_INGOT, 1)
+                )
         );
 
         // 虎皮裙
-        addRecipe(
-                new ItemStack(ChangShengJueItems.WALKER_TIGER_SKIN_SKIRT.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 5),
-                new ItemStack(ChangShengJueItems.TIGER_SKIN.get(), 2)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.WALKER_TIGER_SKIN_SKIRT.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 5),
+                        new ItemStack(ChangShengJueItems.TIGER_SKIN.get(), 2)
+                )
         );
 
         // 短靴
-        addRecipe(
-                new ItemStack(ChangShengJueItems.WALKER_SHORT_BOOTS.get()),
-                new ItemStack(Items.LEATHER, 2),
-                new ItemStack(Items.IRON_INGOT, 2)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.WALKER_SHORT_BOOTS.get()),
+                        new ItemStack(Items.LEATHER, 2),
+                        new ItemStack(Items.IRON_INGOT, 2)
+                )
         );
 
-//        // 云纱冠(镶玉) - 多种宝石可选
-//        addRecipe(
-//                new ItemStack(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get()),
-//                new ItemStack(ChangShengJueItems.SILK.get(), 4),
-//                new ItemStack(Items.EMERALD, 1)
-//        );
-//        addRecipe(
-//                new ItemStack(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get()),
-//                new ItemStack(ChangShengJueItems.SILK.get(), 4),
-//                new ItemStack(Items.REDSTONE, 1)
-//        );
-//        addRecipe(
-//                new ItemStack(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get()),
-//                new ItemStack(ChangShengJueItems.SILK.get(), 4),
-//                new ItemStack(Items.LAPIS_LAZULI, 1)
-//        );
-//        addRecipe(
-//                new ItemStack(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get()),
-//                new ItemStack(ChangShengJueItems.SILK.get(), 4),
-//                new ItemStack(Items.DIAMOND, 1)
-//        );
-//        addRecipe(
-//                new ItemStack(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get()),
-//                new ItemStack(ChangShengJueItems.SILK.get(), 4),
-//                new ItemStack(Items.AMETHYST_SHARD, 1)
-//        );
-//
         // 云纱冠
-        addRecipe(
-                new ItemStack(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 5)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 5)
+                )
         );
 
         // 飞鱼服
-        addRecipe(
-                new ItemStack(ChangShengJueItems.FLY_FISH_CHESTPLATE.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 7),
-                new ItemStack(Items.GOLD_INGOT, 1),
-                new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 1)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.FLY_FISH_CHESTPLATE.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 7),
+                        new ItemStack(Items.GOLD_INGOT, 1),
+                        new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 1)
+                )
         );
 
         // 长靴
-        addRecipe(
-                new ItemStack(ChangShengJueItems.FLY_FISH_LONG_BOOTS.get()),
-                new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 1),
-                new ItemStack(Items.IRON_INGOT, 3)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.FLY_FISH_LONG_BOOTS.get()),
+                        new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 1),
+                        new ItemStack(Items.IRON_INGOT, 3)
+                )
         );
 
-
-        // 皮内甲 - 多种兽皮可选
-        addRecipe(
-                new ItemStack(ChangShengJueItems.LEATHER_INNER_ARMOR.get()),
-                new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 8)
+        // 皮内甲
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.LEATHER_INNER_ARMOR.get()),
+                        new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 8)
+                )
         );
-//        addRecipe(
-//                new ItemStack(ChangShengJueItems.LEATHER_INNER_ARMOR.get()),
-//                new ItemStack(ChangShengJueItems.TIGER_SKIN.get(), 8)
-//        );
-//
+
         // 儒冠
-        addRecipe(
-                new ItemStack(ChangShengJueItems.CONFUCIAN_HELMET.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 4),
-                new ItemStack(Items.INK_SAC, 1)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.CONFUCIAN_HELMET.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 4),
+                        new ItemStack(Items.INK_SAC, 1)
+                )
         );
 
         // 染墨宽袍
-        addRecipe(
-                new ItemStack(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 7),
-                new ItemStack(Items.INK_SAC, 1)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 7),
+                        new ItemStack(Items.INK_SAC, 1)
+                )
         );
 
         // 染墨丝裳
-        addRecipe(
-                new ItemStack(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 6),
-                new ItemStack(Items.INK_SAC, 1)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 6),
+                        new ItemStack(Items.INK_SAC, 1)
+                )
         );
 
         // 染墨丝履
-        addRecipe(
-                new ItemStack(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get()),
-                new ItemStack(ChangShengJueItems.SILK.get(), 3),
-                new ItemStack(Items.INK_SAC, 1)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get()),
+                        new ItemStack(ChangShengJueItems.SILK.get(), 3),
+                        new ItemStack(Items.INK_SAC, 1)
+                )
         );
 
-        // 凤翅兜鍪
-        addRecipe(
-                new ItemStack(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_PHOENIX_WINGS_HELMET.get()),
-                new ItemStack(Items.IRON_INGOT, 1),
-                new ItemStack(Items.COPPER_INGOT, 3),
-                new ItemStack(Items.GOLD_INGOT, 1)
-        );
-
-        // 明光铠
-        addRecipe(
-                new ItemStack(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get()),
-                new ItemStack(Items.IRON_INGOT, 4),
-                new ItemStack(Items.COPPER_INGOT, 3),
-                new ItemStack(Items.GOLD_INGOT, 1)
-        );
-
-        // 青金护膝
-        addRecipe(
-                new ItemStack(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS.get()),
-                new ItemStack(Items.LEATHER, 5),
-                new ItemStack(Items.LAPIS_LAZULI, 2)
-        );
 
         // 兽皮靴
-        addRecipe(
-                new ItemStack(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS.get()),
-                new ItemStack(Items.LEATHER, 2),
-                new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 2)
+        registerRecipe(
+                new TailoringRecipe(
+                        new ItemStack(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS.get()),
+                        new ItemStack(Items.LEATHER, 2),
+                        new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 2)
+                )
         );
-
     }
 }

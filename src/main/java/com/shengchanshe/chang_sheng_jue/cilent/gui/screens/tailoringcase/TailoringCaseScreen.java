@@ -93,8 +93,9 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         // 计算起始索引：已滚动的行数 × 每行的按钮数（5个）
         int startIndex = scrollOffset * 5;
         // 遍历配方，从起始索引开始
-        for (int i = startIndex; i < TailoringCaseMenu.RECIPES.size(); i++) {
-            TailoringCaseMenu.TailoringRecipe recipe = TailoringCaseMenu.RECIPES.get(i);
+        List<TailoringCaseMenu.TailoringRecipe> recipes = new ArrayList<>(TailoringCaseMenu.RECIPES);
+        for (int i = startIndex; i < recipes.size(); i++) {
+            TailoringCaseMenu.TailoringRecipe recipe = recipes.get(i);
 
             // 只显示可见行数（VISIBLE_ROWS）的配方
             if (row >= VISIBLE_ROWS) {
@@ -222,7 +223,7 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         int sliderY = scrollBarY + (int) (scrollProgress * (scrollBarHeight - sliderHeight));
 
         int scrollerTextureV = isDragging ? 6 : 0;
-        guiGraphics.blit(TEXTURE, scrollBarX, sliderY, scrollerTextureV, 271, 6, 15, 512, 512);
+        guiGraphics.blit(TEXTURE, scrollBarX+1, sliderY, scrollerTextureV, 271, 6, 15, 512, 512);
     }
 
     @Override
@@ -407,7 +408,7 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
                 guiGraphics.blit(TEXTURE, this.getX(), this.getY(),
                         0, textureY, 18, 18, 512, 512);
 
-                guiGraphics.renderItem(itemStack, this.getX() + 1, this.getY());
+                guiGraphics.renderItem(itemStack, this.getX(), this.getY() + 1);
 
                 int textColor = isHoveredOrFocused() ? 0xFFFFA0 : 0xE0E0E0;
                 guiGraphics.drawCenteredString(font, getMessage(),
@@ -420,11 +421,6 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
                     craftButton.active = !isCrafting; // 正在合成时禁用按钮
                     craftButton.visible = !isCrafting;
                 }
-
-
-
-
-
             }
         }
     }
@@ -452,5 +448,4 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
                     0, 286, scaledProgress+5, progressBarHeight,512,512);
         }
     }
-
 }

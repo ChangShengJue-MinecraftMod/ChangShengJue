@@ -2,7 +2,6 @@ package com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
-import com.shengchanshe.chang_sheng_jue.block.custom.loom.ChangShengJueLoomBlockEntity;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase.TailoringCaseMenu;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
@@ -11,6 +10,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
@@ -30,6 +30,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
@@ -135,9 +136,7 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
 
         // 保存当前配方信息
         if (currentRecipe != null) {
-            CompoundTag recipeTag = new CompoundTag();
-            currentRecipe.getResult().save(recipeTag);
-            tag.put("current_recipe", recipeTag);
+            tag.put("current_recipe", currentRecipe.serializeNBT());
         }
     }
 
@@ -149,9 +148,7 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
 
         // 加载当前配方信息
         if (tag.contains("current_recipe")) {
-            ItemStack result = ItemStack.of(tag.getCompound("current_recipe"));
-            // 从结果查找配方
-            currentRecipe = TailoringCaseMenu.findRecipe(result).orElse(null);
+            currentRecipe = TailoringCaseMenu.TailoringRecipe.deserializeNBT(tag.getCompound("current_recipe"));
         }
     }
 
@@ -297,6 +294,14 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
 
     //新增配方
     public void addRecipeWithMaterials(ItemStack result, ItemStack... materials) {
+        // 检查是否已存在相同配方
+        ResourceLocation key = new ResourceLocation(
+                ForgeRegistries.ITEMS.getKey(result.getItem()).toString() + "_" + result.getCount()
+        );
+        if (TailoringCaseMenu.RECIPE_MAP.containsKey(key)) {
+            return;
+        }
+
         // 1. 将材料放入输入槽位
         for (int i = 0; i < materials.length && i < 9; i++) {
             itemHandler.setStackInSlot(i, materials[i].copy());
@@ -311,10 +316,8 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
                 Arrays.stream(materials).map(ItemStack::copy).toArray(ItemStack[]::new)
         );
 
-        // 避免重复添加相同配方
-        if (!TailoringCaseMenu.RECIPES.contains(newRecipe)) {
-            TailoringCaseMenu.RECIPES.add(newRecipe);
-        }
+        // 注册新配方
+        TailoringCaseMenu.registerRecipe(newRecipe);
 
         // 4. 设置当前配方
         this.currentRecipe = newRecipe;
@@ -346,8 +349,8 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
         }).setSoundKeyframeHandler((state) -> {
             Player player = ClientUtils.getClientPlayer();
             Level level1 = ClientUtils.getLevel();
-                level1.playSound(player,this.getBlockPos(), ChangShengJueSound.TAILORING_CASE_SOUND.get(), SoundSource.BLOCKS, 0.1F, 1.0F);
-            }))));
+            level1.playSound(player,this.getBlockPos(), ChangShengJueSound.TAILORING_CASE_SOUND.get(), SoundSource.BLOCKS, 0.1F, 1.0F);
+        }))));
     }
 
     @Override
