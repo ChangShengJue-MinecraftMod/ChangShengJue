@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase;
 
+import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
@@ -350,15 +351,20 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         renderer.setRenderShadow(false);
 
         MultiBufferSource.BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
-        renderer.render(
-                entity,
-                0, 0, 0,
-                0.0F,
-                1.0F,
-                poseStack,
-                buffer,
-                0xF000F0
-        );
+        try {
+            renderer.render(
+                    entity,
+                    0, 0, 0,
+                    0.0F,
+                    1.0F,
+                    poseStack,
+                    buffer,
+                    0xF000F0
+            );
+        } catch (Exception e) {
+            ChangShengJue.LOGGER.warn("缺少纹理文件", e);
+        }
+
         buffer.endBatch();
         renderer.setRenderShadow(true);
 
@@ -407,8 +413,11 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
                 RenderSystem.setShaderTexture(0, TEXTURE);
                 guiGraphics.blit(TEXTURE, this.getX(), this.getY(),
                         0, textureY, 18, 18, 512, 512);
-
-                guiGraphics.renderItem(itemStack, this.getX(), this.getY() + 1);
+                guiGraphics.renderItem(itemStack, this.getX() + 1, this.getY() + 1);
+                if ( !itemStack.isEmpty() && isAir(this.getX(),this.getY(),mouseX,mouseY)) {
+                    // 渲染物品提示
+                    renderToolTip(guiGraphics, mouseX, mouseY, itemStack);
+                }
 
                 int textColor = isHoveredOrFocused() ? 0xFFFFA0 : 0xE0E0E0;
                 guiGraphics.drawCenteredString(font, getMessage(),
@@ -423,6 +432,19 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
                 }
             }
         }
+    }
+
+    private boolean isAir(int guix,int guiy,int mouseX, int mouseY) {
+        return mouseX >= guix && mouseX < guix + 18 && mouseY >= guiy && mouseY < guiy + 18;
+    }
+
+    private void renderToolTip(GuiGraphics guiGraphics, int mouseX, int mouseY, ItemStack stack) {
+        // 计算提示框位置（稍微偏移鼠标位置避免遮挡）
+        int tooltipX = mouseX + 10;
+        int tooltipY = mouseY + 10;
+
+        // 渲染物品提示
+        guiGraphics.renderTooltip(font, stack, tooltipX, tooltipY);
     }
 
 

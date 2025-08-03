@@ -403,7 +403,11 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                 guiGraphics.blit(TEXTURE, this.getX(), this.getY(),
                         0, textureY, 18, 18, 512, 512);
 
-                guiGraphics.renderItem(itemStack, this.getX(), this.getY() + 1);
+                guiGraphics.renderItem(itemStack, this.getX() + 1, this.getY() + 1);
+                if ( !itemStack.isEmpty() && isAir(this.getX(),this.getY(),mouseX,mouseY)) {
+                    // 渲染物品提示
+                    renderToolTip(guiGraphics, mouseX, mouseY, itemStack);
+                }
 
                 int textColor = isHoveredOrFocused() ? 0xFFFFA0 : 0xE0E0E0;
                 guiGraphics.drawCenteredString(font, getMessage(),
@@ -421,6 +425,18 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         }
     }
 
+    private boolean isAir(int guix,int guiy,int mouseX, int mouseY) {
+        return mouseX >= guix && mouseX < guix + 18 && mouseY >= guiy && mouseY < guiy + 18;
+    }
+
+    private void renderToolTip(GuiGraphics guiGraphics, int mouseX, int mouseY, ItemStack stack) {
+        // 计算提示框位置（稍微偏移鼠标位置避免遮挡）
+        int tooltipX = mouseX + 10;
+        int tooltipY = mouseY + 10;
+
+        // 渲染物品提示
+        guiGraphics.renderTooltip(font, stack, tooltipX, tooltipY);
+    }
 
     private void renderCustomProgressBar(GuiGraphics guiGraphics, int x, int y) {
         // 计算进度条位置
