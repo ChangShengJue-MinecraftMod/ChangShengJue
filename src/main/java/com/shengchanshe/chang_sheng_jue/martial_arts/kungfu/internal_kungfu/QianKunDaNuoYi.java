@@ -28,7 +28,7 @@ public class QianKunDaNuoYi extends AbstractionInternalkungfu {
     private int extraCooldown = 0;
     public QianKunDaNuoYi() {
         super(KUNG_FU_ID.toString(), Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.YELLOW),
-                KungFuType.INTERNAL_KUNGFU, "description",0.15f, 2,0.25f);
+                KungFuType.INTERNAL_KUNGFU, "description",0.15f, 2,0.0f);
     }
 
     @Override

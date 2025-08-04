@@ -107,8 +107,7 @@ public class KungFuHudOverlay {
 
     public static boolean playerCanOpened() {
         int foodLevel = minecraft.player.getFoodData().getFoodLevel();
-        float saturationLevel = minecraft.player.getFoodData().getSaturationLevel();
-        return foodLevel > 8 && saturationLevel > 0;
+        return foodLevel > 8;
     }
 
     // 通过这个属性进行绘制，这个是一个IguiOverLay的接口，实现这个接口，注册他。

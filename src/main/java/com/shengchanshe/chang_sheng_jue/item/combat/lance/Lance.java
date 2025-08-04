@@ -84,7 +84,7 @@ public class Lance extends SwordItem implements GeoItem, Vanishable {
             int usedTicks = this.getUseDuration(stack) - remainingUseDuration;
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                 if (cap.getCooldownTick(GaoMarksmanship.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(GaoMarksmanship.KUNG_FU_ID.toString()) >= 1 && !player.isShiftKeyDown()
-                        && (player.getFoodData().getFoodLevel() > 8 && player.getFoodData().getSaturationLevel() > 0)) {
+                        && (player.getFoodData().getFoodLevel() > 8)) {
                     // 检查是否按住至少 0.3 秒（6 tick）
                     if (usedTicks >= cap.getSwingTick((ServerPlayer) player, GaoMarksmanship.KUNG_FU_ID.toString())) {
                         cap.castKungFu(GaoMarksmanship.KUNG_FU_ID.toString(), player);

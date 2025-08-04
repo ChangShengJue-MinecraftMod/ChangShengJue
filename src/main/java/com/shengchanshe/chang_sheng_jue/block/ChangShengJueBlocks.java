@@ -1408,7 +1408,7 @@ public class ChangShengJueBlocks {
 
     //裁衣案
     public static final RegistryObject<Block> TAILORING_CASE = registerBlock("tailoring_case",
-            ()-> new TailoringCase(BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.CHAIN).noOcclusion()));
+            ()-> new TailoringCase(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).noOcclusion()));
     //锻台
     public static final RegistryObject<Block> FORGE_BLOCK = registerBlock("forge_block",
             () -> new ForgeBlock(BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.CHAIN).noOcclusion()));

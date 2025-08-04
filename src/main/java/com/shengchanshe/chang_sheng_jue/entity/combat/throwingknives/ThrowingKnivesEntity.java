@@ -189,7 +189,7 @@ public class ThrowingKnivesEntity extends AbstractArrow {
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                 if (cap.getKungFuLevel(RelentlessThrowingKnives.KUNG_FU_ID.toString()) > 0
                         && cap.getCooldownTick(RelentlessThrowingKnives.KUNG_FU_ID.toString()) <= 0) {
-                    if ((player.getFoodData().getFoodLevel() > 8 && player.getFoodData().getSaturationLevel() > 0)) {
+                    if ((player.getFoodData().getFoodLevel() > 8)) {
                         f[0] = f[0] * cap.getDamageFactor((ServerPlayer) player, RelentlessThrowingKnives.KUNG_FU_ID.toString());
                         if (player.hasEffect(ChangShengJueEffects.FEN_JIU.get())){
                             player.getFoodData().eat(-1,0);
@@ -199,35 +199,6 @@ public class ThrowingKnivesEntity extends AbstractArrow {
                     }
                 }
             });
-//            entity1.getCapability(RelentlessThrowingKnivesCapabilityProvider.RELENTLESS_THROWING_KNIVES_CAPABILITY).ifPresent(relentlessThrowingKnives -> {
-//                if (relentlessThrowingKnives.getRelentlessThrowingKnivesLevel() > 0){
-//                    if (relentlessThrowingKnives.getRelentlessThrowingKnivesUseCooldownPercent() <= 0){
-//                        if (player.getFoodData().getFoodLevel() > 8){
-//                            if (!player.getAbilities().instabuild) {
-//                                player.getFoodData().eat(-3, -2);// 消耗饱食度
-//                            }
-//                            f[0] = relentlessThrowingKnives.getRelentlessThrowingKnivesLevel() <= 1 ? f[0] * 1.25F: f[0] * 1.5F;
-//                            relentlessThrowingKnives.setRelentlessThrowingKnivesUseCooldownPercent(!player.getAbilities().instabuild ? 160 : 0);
-//                            if (relentlessThrowingKnives.isRelentlessThrowingKnivesComprehend() && relentlessThrowingKnives.getRelentlessThrowingKnivesLevel() == 1){
-//                                if (relentlessThrowingKnives.getRelentlessThrowingKnivesUseCount() < 100){
-//                                    relentlessThrowingKnives.addRelentlessThrowingKnivesUseCount(!player.getAbilities().instabuild ? 1 : 100);
-//                                    if (relentlessThrowingKnives.getRelentlessThrowingKnivesUseCount() >= 100){
-//                                        this.getOwner().level().playSound(null, player.getX(), player.getY(), player.getZ(),
-//                                                ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-//                                        relentlessThrowingKnives.setRelentlessThrowingKnivesParticle(true);
-//                                    }
-//                                }
-//                            }
-//                            ChangShengJueMessages.sendToPlayer(new RelentlessThrowingKnivesPacket(relentlessThrowingKnives.getRelentlessThrowingKnivesLevel(),
-//                                    relentlessThrowingKnives.isRelentlessThrowingKnivesComprehend(),
-//                                    relentlessThrowingKnives.getRelentlessThrowingKnivesUseCooldownPercent(),
-//                                    relentlessThrowingKnives.getRelentlessThrowingKnivesToppedTick(),
-//                                    relentlessThrowingKnives.getRelentlessThrowingKnivesDachengTick(),
-//                                    relentlessThrowingKnives.isRelentlessThrowingKnivesParticle()), (ServerPlayer) entity1);
-//                        }
-//                    }
-//                }
-//            });
         }else if (entity1 != null && !(entity1 instanceof Player) && entity1 instanceof LivingEntity livingEntity){
             f[0] = (float) (f[0] * 1.5F + livingEntity.getAttributeValue(Attributes.ATTACK_DAMAGE));
         }

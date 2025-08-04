@@ -24,7 +24,7 @@ public class RelentlessThrowingKnives extends AbstractionExternalKunfu {
         super(KUNG_FU_ID.toString(),
                 Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.BLUE),
                 KungFuType.EXTERNAL_KUNFU,
-                "description",0.1f,0.15f,2,0.25f,
+                "description",0.1f,0.15f,2,0.0f,
                 0.25f, 3);
     }
 

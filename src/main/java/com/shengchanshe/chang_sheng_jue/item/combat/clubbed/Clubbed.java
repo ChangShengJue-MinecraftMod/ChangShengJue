@@ -54,7 +54,7 @@ public class Clubbed extends SwordItem implements GeoItem {
     }
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        if ((pPlayer.getFoodData().getFoodLevel() > 8 && pPlayer.getFoodData().getSaturationLevel() > 0) || pPlayer.getAbilities().instabuild) {
+        if (pPlayer.getFoodData().getFoodLevel() > 8 || pPlayer.getAbilities().instabuild) {
             ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
             if (itemstack.getItem() instanceof Clubbed) {
                 if (!pPlayer.level().isClientSide){

@@ -60,7 +60,7 @@ public class GoldThreadGlove extends SwordItem implements GeoItem {
                             pPlayer.startUsingItem(pUsedHand);
                         }
                 } else {
-                    if ((pPlayer.getFoodData().getFoodLevel() > 8 && pPlayer.getFoodData().getSaturationLevel() > 0)) {
+                    if ((pPlayer.getFoodData().getFoodLevel() > 8)) {
                         if (cap.getCooldownTick(GeShanDaNiu.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(GeShanDaNiu.KUNG_FU_ID.toString()) >= 1
                                 && cap.isStart(GeShanDaNiu.KUNG_FU_ID.toString())) {
                             // 检查是否按住至少 0.3 秒（6 tick）

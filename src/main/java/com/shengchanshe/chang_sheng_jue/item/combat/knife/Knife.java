@@ -74,7 +74,7 @@ public class Knife extends SwordItem implements GeoItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
-        if ((pPlayer.getFoodData().getFoodLevel() > 8 && pPlayer.getFoodData().getSaturationLevel() > 0) || pPlayer.getAbilities().instabuild) {
+        if (pPlayer.getFoodData().getFoodLevel() > 8 || pPlayer.getAbilities().instabuild) {
             if (!pPlayer.level().isClientSide){
                 pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                     if (cap.getCooldownTick(GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) >= 1) {
