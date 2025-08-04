@@ -631,9 +631,6 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.EMPTY_FEN_JIU.get());
                 output.accept(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get());
                 output.accept(ChangShengJueItems.SHI_LI_XIANG.get());
-                output.accept(ChangShengJueItems.CI_PAN.get());
-                output.accept(ChangShengJueItems.CI_WAN.get());
-                output.accept(ChangShengJueItems.CI_BEI.get());
             }).build());
 
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_INGREDIENTS = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_ingredients",()-> CreativeModeTab.builder()
@@ -654,7 +651,6 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.PEACOCK_FEATHERS.get());
                 output.accept(ChangShengJueItems.WHITE_PEACOCK_FEATHERS.get());
                 output.accept(ChangShengJueItems.PEACOCK_EGGS.get());
-                output.accept(ChangShengJueItems.DEERSKIN.get());
                 output.accept(ChangShengJueItems.ANTLER.get());
                 output.accept(ChangShengJueItems.DEER_BLOOD.get());
                 output.accept(ChangShengJueItems.TIGER_SKIN.get());
@@ -675,6 +671,9 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.LONG_JING_TEA.get());
                 output.accept(ChangShengJueItems.HORDEUM.get());
                 output.accept(ChangShengJueItems.THATCH.get());
+                output.accept(ChangShengJueItems.CI_PAN.get());
+                output.accept(ChangShengJueItems.CI_WAN.get());
+                output.accept(ChangShengJueItems.CI_BEI.get());
 
                 output.accept(ChangShengJueItems.QUICKLIME.get());
                 output.accept(ChangShengJueItems.LIME_SLURRY_BARRELS.get());

@@ -33,8 +33,13 @@ public class KungFuCapability implements IKungFuCapability {
         // 检查是否已学习该武功
         if (learnedKungFu.containsKey(kungFuId)) {
             if (!learnedKungFu.get(kungFuId).getId().equals(Hercules.KUNG_FU_ID.toString()) && learnedKungFu.get(kungFuId).getKungFuType() != KungFuType.EXTERNAL_KUNFU_GLOVE) {
-                player.sendSystemMessage(Component.translatable("kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.kungfu"), false);
+                player.sendSystemMessage(
+                        Component.translatable("kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu",
+                                 learnedKungFu.get(kungFuId).getName(),
+                                learnedKungFu.get(kungFuId).isComprehend() ? Component.translatable("kungfu.true.comprehend") : Component.translatable("kungfu.fales.comprehend")
+                        ).withStyle(ChatFormatting.YELLOW),false);
             }
+
             return;
         }
         KungFuRegistry.getInstance().getKungFu(kungFuId).map(kungFu -> {
@@ -42,6 +47,9 @@ public class KungFuCapability implements IKungFuCapability {
             if (kungFu instanceof IInteranlKungFu passive) {
                 activePassives.add(passive);
             }
+            player.sendSystemMessage(
+                    Component.translatable("kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.kungfu",
+                            learnedKungFu.get(kungFuId).getName()).withStyle(ChatFormatting.YELLOW),false);
             CSJAdvanceInit.LEARN_GONG_FA.trigger(player);
             syncToClient(player);
             return true;
@@ -112,8 +120,6 @@ public class KungFuCapability implements IKungFuCapability {
                 .filter(IExternalKunfu::isAttackReday)
                 .map(IExternalKunfu::getEffectProbability).orElse(1.0f);
     }
-
-
 
     @Override
     public void castKungFu(String kungFuId, LivingEntity entity) {

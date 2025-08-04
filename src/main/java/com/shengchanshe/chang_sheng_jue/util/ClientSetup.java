@@ -59,7 +59,6 @@ import com.shengchanshe.chang_sheng_jue.entity.villagers.render.ChangShengJueVil
 import com.shengchanshe.chang_sheng_jue.entity.villagers.warrior.WarriorRenderer;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.worker.KilnWorkerRenderer;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
-import com.shengchanshe.chang_sheng_jue.item.combat.armor.wedding.DyeableChineseWeddingDressItem;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.DyeableItem;
 import com.shengchanshe.chang_sheng_jue.item.combat.lance.Lance;
 import net.minecraft.client.Minecraft;
@@ -71,8 +70,6 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.UseAnim;
-import net.minecraftforge.common.IExtensibleEnum;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 import java.util.Arrays;
@@ -594,9 +591,6 @@ public class ClientSetup {
                 if (color == 1 && stack.getItem() instanceof DyeableItem dyeable) {
                     // color == 1 表示这是覆盖层
                     return dyeable.hasCustomColor(stack) ? dyeable.getColor(stack) : dyeable == ChangShengJueItems.MALE_TAOIST_HELMET.get() ? 0x000000 : 0xFFFFFF;
-                }else if (color == 1 && stack.getItem() instanceof DyeableChineseWeddingDressItem dyeable){
-                    // color == 1 表示这是覆盖层
-                    return dyeable.hasCustomColor(stack) ? dyeable.getColor(stack) : 0xC81717;
                 }else {
                     return 0xFFFFFF;
                 }

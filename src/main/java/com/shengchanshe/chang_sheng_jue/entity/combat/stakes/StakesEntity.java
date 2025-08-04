@@ -126,7 +126,7 @@ public class StakesEntity extends LivingEntity {
                                 cap.comprehendKungFu((ServerPlayer) player, TurtleBreathWork.KUNG_FU_ID.toString(), player);
                             }
                         }
-                        if (player.getMainHandItem().isEmpty()){
+                        if (player.getMainHandItem().isEmpty() || player.getMainHandItem().getItem() instanceof GoldThreadGlove) {
                             cap.comprehendKungFu((ServerPlayer) player, GoldenBellJar.KUNG_FU_ID.toString(), player);
                             cap.comprehendKungFu((ServerPlayer) player, Hercules.KUNG_FU_ID.toString(), player);
                             cap.comprehendKungFu((ServerPlayer) player, ImmortalMiracle.KUNG_FU_ID.toString(), player);

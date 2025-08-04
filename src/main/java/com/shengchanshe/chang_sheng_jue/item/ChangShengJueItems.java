@@ -334,8 +334,6 @@ public class ChangShengJueItems {
             ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> PEACOCK_EGGS = ITEMS.register("peacock_eggs",
             ()-> new PeacockEggItem((new Item.Properties()).stacksTo(16)));
-    public static final RegistryObject<Item> DEERSKIN = ITEMS.register("deerskin",
-            ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ANTLER = ITEMS.register("antler",
             ()-> new Item(new Item.Properties()));
     public static final RegistryObject<Item> DEER_BLOOD = ITEMS.register("deer_blood",

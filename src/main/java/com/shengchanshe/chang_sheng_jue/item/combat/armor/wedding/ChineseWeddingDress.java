@@ -1,6 +1,7 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.armor.wedding;
 
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.ChangShengJueArmorItem;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.DyeableItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ItemStack;
 import software.bernie.geckolib.animatable.GeoItem;
@@ -10,7 +11,7 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class ChineseWeddingDress extends ChangShengJueArmorItem implements DyeableChineseWeddingDressItem, GeoItem {
+public class ChineseWeddingDress extends ChangShengJueArmorItem implements DyeableItem, GeoItem {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public ChineseWeddingDress(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
@@ -18,7 +19,7 @@ public class ChineseWeddingDress extends ChangShengJueArmorItem implements Dyeab
 
     @Override
     public int getColor(ItemStack pStack) {
-        return DyeableChineseWeddingDressItem.super.getColor(pStack) != -1 ? DyeableChineseWeddingDressItem.super.getColor(pStack) : 0x0000FF;
+        return DyeableItem.super.getColor(pStack) != -1 ? DyeableItem.super.getColor(pStack) : 0x0000FF;
     }
 
     @Override

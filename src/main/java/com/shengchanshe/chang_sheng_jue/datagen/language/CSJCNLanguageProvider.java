@@ -118,7 +118,6 @@
             this.add(ChangShengJueItems.WHITE_PEACOCK_FEATHERS.get(), "白孔雀羽翎");
             this.add(ChangShengJueItems.PEACOCK_EGGS.get(), "孔雀蛋");
             this.add(ChangShengJueItems.ANTLER.get(), "鹿茸");
-            this.add(ChangShengJueItems.DEERSKIN.get(), "鹿皮");
             this.add(ChangShengJueItems.DEER_BLOOD.get(), "鹿血");
             this.add(ChangShengJueItems.VENISON.get(), "生鹿肉");
             this.add(ChangShengJueItems.COOKED_VENISON.get(), "熟鹿肉");
@@ -371,9 +370,13 @@
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".tooltip","激发潜力，牵引挪移，其中变化莫测，匪夷所思。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".hold_shift.tooltip",
                     "未大成前施展效果:有35%概率将遭受的攻击伤害于1.0秒后以1.5倍反弹给攻击者\\n大成后施展效果:每多1点血量额外提高2%触发概率\\n每施展1次冷却时间短期内延长2秒\\n成功施展%s次后武功大成");
-    
-            this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.kungfu", "已成功领悟%s");
-            this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.kungfu", "这门功法已经习得,快去提升吧");
+
+            this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.kungfu", "习得%s");
+            this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu", "%s已阅览过,%s!");
+            this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.kungfu", "%s已阅览,快去领悟吧");
+            this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.dacheng.kungfu", "%s神功大成!");
+            this.add("kungfu.true.comprehend", "且已领悟");
+            this.add("kungfu.fales.comprehend", "还需领悟");
             this.add("message.kungfu." + ChangShengJue.MOD_ID + ".state_change.kungfu", "%s : %s");
             this.add("kungfu.open", "启动");
             this.add("kungfu.off", "关闭");

@@ -44,8 +44,6 @@ public class CSJEntityLootTables extends EntityLootSubProvider {
         add(ChangShengJueEntity.STAG.get(),
                 LootTable.lootTable()
                         // 鹿皮掉落（带掠夺加成）
-                        .withPool(createMainDropPool(ChangShengJueItems.DEERSKIN.get(), 0, 2))
-                        // 生鹿肉掉落（带烧烤转换）
                         .withPool(LootPool.lootPool()
                                 .name("main_drops")
                                 .setRolls(ConstantValue.exactly(1))
@@ -69,7 +67,6 @@ public class CSJEntityLootTables extends EntityLootSubProvider {
         // 雌鹿掉落配置
         add(ChangShengJueEntity.HIND.get(),
                 LootTable.lootTable()
-                        .withPool(createMainDropPool(ChangShengJueItems.DEERSKIN.get(), 0.0F, 2.0F))
                         .withPool(LootPool.lootPool()
                                 .name("main_drops")
                                 .setRolls(ConstantValue.exactly(1))

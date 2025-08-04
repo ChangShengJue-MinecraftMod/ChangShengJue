@@ -1,13 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cotton": {
+    "has_planks": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "chang_sheng_jue:cotton"
-            ]
+            "tag": "minecraft:planks"
           }
         ]
       },
@@ -15,20 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "chang_sheng_jue:cotton_helmet"
+        "recipe": "chang_sheng_jue:forge_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_cotton",
+      "has_planks",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "chang_sheng_jue:cotton_helmet"
+      "chang_sheng_jue:forge_block"
     ]
   },
   "sends_telemetry_event": false

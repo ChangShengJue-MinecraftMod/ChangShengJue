@@ -1,4 +1,4 @@
-// 1.20.1	2025-07-31T10:41:34.4889933	Loot Tables
+// 1.20.1	2025-08-04T09:54:15.4352559	Loot Tables
 7a6edc76141fa6f7dd0df0f746f55b8c0bcdfe60 data/chang_sheng_jue/loot_tables/blocks/acacia_balustrade.json
 d516f4a29d40770cbbc430275a25288af1bb5af3 data/chang_sheng_jue/loot_tables/blocks/acacia_bench.json
 ad4cf4b39a7d51e5a89dc61dc94d61b791098ae1 data/chang_sheng_jue/loot_tables/blocks/acacia_book_desk.json
@@ -583,7 +583,7 @@ fa55ee9c15438b0d35102b33407f207ee0475d75 data/chang_sheng_jue/loot_tables/entiti
 1d8a078f414160ae64a691e56394fa894000b399 data/chang_sheng_jue/loot_tables/entities/female_peacock.json
 d6f3b95bede3c9e690cd67320c65141c23da80e2 data/chang_sheng_jue/loot_tables/entities/fist_ming_xia.json
 45a1e0ec711f53cbcd894a6572806a60bdbbdc66 data/chang_sheng_jue/loot_tables/entities/gang_leader.json
-1e00b3e1b0043921fee12fd17d61bb16dffc8559 data/chang_sheng_jue/loot_tables/entities/hind.json
+3fe1cb6b9ced5c846a01de1d8da0c4baccdcc7f8 data/chang_sheng_jue/loot_tables/entities/hind.json
 4010779447ba5d87b1fd18d7202d7fce052313b5 data/chang_sheng_jue/loot_tables/entities/kiln_worker.json
 acfc58648c6367a54dcac9f8851568d006dc2b3e data/chang_sheng_jue/loot_tables/entities/knife_gang_leader.json
 3abfd4f5664ac0614106962817dbe7535f0aec9c data/chang_sheng_jue/loot_tables/entities/knife_ming_xia.json
@@ -593,7 +593,7 @@ ac8b67504eca015edb2e702a8bd964ee497310a2 data/chang_sheng_jue/loot_tables/entiti
 c610037c122c7af78378b88ed1348251a00c0560 data/chang_sheng_jue/loot_tables/entities/monkey.json
 0bbca018355e97d8a479d8f1a58d3b14f48d65e3 data/chang_sheng_jue/loot_tables/entities/piglin_wu_xia.json
 e47d39851b933d2b058361ee8d20a4c9223e7609 data/chang_sheng_jue/loot_tables/entities/pillager_wu_xia.json
-d054dfd0ab710528091607cbf08c18be8d06d1fe data/chang_sheng_jue/loot_tables/entities/stag.json
+1e1a407ad5b4dd9621cf69f3f8ca9f631fa613a9 data/chang_sheng_jue/loot_tables/entities/stag.json
 aa40e507982a067c351325e192f5020ab63152c0 data/chang_sheng_jue/loot_tables/entities/sword_gang_leader.json
 c27265f5edb3b20ad2ab477f8af9c15a6a88f989 data/chang_sheng_jue/loot_tables/entities/sword_ming_xia.json
 5ea10f1f509fa795a0d4e2e3d427570a59949c32 data/chang_sheng_jue/loot_tables/entities/tiger.json

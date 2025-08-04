@@ -9,6 +9,7 @@ import com.shengchanshe.chang_sheng_jue.martial_arts.ILightKungfu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IMentalKungfu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuType;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -236,6 +237,8 @@ public abstract class AbstractionLightKungfu implements ILightKungfu, IKungFuUpg
         while (exp >= getMaxExp() && level < getMaxLevel()) {
             levelUp(entity);
             if (level >= getMaxLevel()) {
+                entity.sendSystemMessage(
+                        Component.translatable("kungfu." + ChangShengJue.MOD_ID + ".succeed.dacheng.kungfu", name).withStyle(ChatFormatting.YELLOW));
                 entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(),
                         ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
             } else {
