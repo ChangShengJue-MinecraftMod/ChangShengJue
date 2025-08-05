@@ -217,22 +217,13 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
-        // 检查点击的槽位是否是玩家物品栏
-        if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            // This is a vanilla container slot so merge the stack into the tile inventory
-            if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
-                    + TE_INVENTORY_SLOT_COUNT, false)) {
-                return ItemStack.EMPTY;  // EMPTY_ITEM
-            }
-        } else if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
-            // This is a TE slot so merge the stack into the players inventory
+        if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
             if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;
             }
         } else {
             return ItemStack.EMPTY;
         }
-        // If stack size == 0 (the entire stack was moved) set slot contents to null
         if (sourceStack.getCount() == 0) {
             sourceSlot.set(ItemStack.EMPTY);
         } else {

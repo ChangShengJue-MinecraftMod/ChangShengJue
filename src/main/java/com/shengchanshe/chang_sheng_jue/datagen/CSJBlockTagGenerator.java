@@ -320,6 +320,20 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.SPRUCE_BENCH.get())
                 .add(ChangShengJueBlocks.ZI_TAN_BENCH.get());
 
+        this.tag(CSJTags.Blocks.WINE_TABLE)
+                .add(ChangShengJueBlocks.BIRCH_WINE_TABLE.get(),
+                ChangShengJueBlocks.CRIMSON_WINE_TABLE.get(),
+                ChangShengJueBlocks.WARPED_WINE_TABLE.get(),
+                ChangShengJueBlocks.MANGROVE_WINE_TABLE.get(),
+                ChangShengJueBlocks.HUANG_HUA_LI_WINE_TABLE.get(),
+                ChangShengJueBlocks.JI_CHI_MU_WINE_TABLE.get(),
+                ChangShengJueBlocks.ACACIA_WINE_TABLE.get(),
+                ChangShengJueBlocks.DARK_OAK_WINE_TABLE.get(),
+                ChangShengJueBlocks.OAK_WINE_TABLE.get(),
+                ChangShengJueBlocks.CHERRY_WINE_TABLE.get(),
+                ChangShengJueBlocks.SPRUCE_WINE_TABLE.get(),
+                ChangShengJueBlocks.ZI_TAN_WINE_TABLE.get());
+
         this.tag(CSJTags.Blocks.DRINKING_TABLE_AND_CHAIRS)
                 .add(ChangShengJueBlocks.BIRCH_DRINKING_TABLE_AND_CHAIRS.get())
                 .add(ChangShengJueBlocks.CRIMSON_DRINKING_TABLE_AND_CHAIRS.get())
@@ -404,25 +418,26 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(Blocks.CRACKED_POLISHED_BLACKSTONE_BRICKS);
         //原版工具
         this.tag(BlockTags.MINEABLE_WITH_AXE)
-                .add(ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get())
-                .add(ChangShengJueBlocks.YUN_SHAN_FU_TI_BLOCK.get())
-                .add(ChangShengJueBlocks.CANTALOUPE_STEM.get())
-                .add(ChangShengJueBlocks.ATTACHED_CANTALOUPE_STEM.get())
-                .add(ChangShengJueBlocks.CANTALOUPE_BLOCK.get())
-                .add(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get())
-                .add(ChangShengJueBlocks.POTTERY_WHEEL.get())
-                .add(ChangShengJueBlocks.TOOL_TABLE.get())
-                .add(ChangShengJueBlocks.WEAPON_RACK.get())
-                .add(ChangShengJueBlocks.DESK.get())
-                .add(ChangShengJueBlocks.SHING_MUN_LEFT.get())
-                .add(ChangShengJueBlocks.SHING_MUN_RIGHT.get())
-                .add(ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get())
-                .add(ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get())
+                .add(ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get(),
+                ChangShengJueBlocks.YUN_SHAN_FU_TI_BLOCK.get(),
+                ChangShengJueBlocks.CANTALOUPE_STEM.get(),
+                ChangShengJueBlocks.ATTACHED_CANTALOUPE_STEM.get(),
+                ChangShengJueBlocks.CANTALOUPE_BLOCK.get(),
+                ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get(),
+                ChangShengJueBlocks.POTTERY_WHEEL.get(),
+                ChangShengJueBlocks.TOOL_TABLE.get(),
+                ChangShengJueBlocks.WEAPON_RACK.get(),
+                ChangShengJueBlocks.DESK.get(),
+                ChangShengJueBlocks.SHING_MUN_LEFT.get(),
+                ChangShengJueBlocks.SHING_MUN_RIGHT.get(),
+                ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get(),
+                ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get(),ChangShengJueBlocks.TAILORING_CASE.get())
                 .addTag(CSJTags.Blocks.WINDOWS)
                 .addTag(CSJTags.Blocks.MEI_REN_KAO)
                 .addTag(CSJTags.Blocks.BENCH)
                 .addTag(CSJTags.Blocks.DRINKING_TABLE_AND_CHAIRS)
                 .addTag(CSJTags.Blocks.BOOK_DESK)
+                .addTag(CSJTags.Blocks.WINE_TABLE)
                 .addTag(CSJTags.Blocks.TEAPOY)
                 .addTag(CSJTags.Blocks.TAISHI_CHAIR)
                 .addTag(CSJTags.Blocks.FIVE_SCREEN_THRONE)
@@ -473,7 +488,8 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                         ChangShengJueBlocks.WARPED_BALUSTRADE.get(),
                         ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get(),
                         ChangShengJueBlocks.WIND_CHIME.get(),
-                        ChangShengJueBlocks.GONG.get());
+                        ChangShengJueBlocks.GONG.get(),
+                        ChangShengJueBlocks.FORGE_BLOCK.get());
 
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL)

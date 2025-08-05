@@ -51,7 +51,7 @@ public class Lance extends SwordItem implements GeoItem, Vanishable {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
-        if (itemstack.getItem() instanceof Lance){
+        if (itemstack.getItem() instanceof Lance && !(pPlayer.getOffhandItem().getItem() instanceof ShieldItem)) {
             if (!pPlayer.level().isClientSide){
                 pPlayer.startUsingItem(pUsedHand); // 开始记录按住时间
             }

@@ -30,19 +30,19 @@ public class TreadTheSnowWithoutTraceClientEvent {
                             if (jumpCount <= 1) {
                                 if (KungFuClientData.get().kungFuCoolDown(TreadTheSnowWithoutTrace.KUNG_FU_ID.toString()) <= 0) {
                                     jumpCount++;
+                                    mc.player.jumpFromGround();
                                     if (jumpCount == 2) {
-                                        mc.player.jumpFromGround();
                                         ChangShengJueMessages.sendToServer(new TreadTheSnowWithoutTracePacket());
                                     }
                                 }
-                            } else if (KungFuClientData.get().getKungFuLevel(TreadTheSnowWithoutTrace.KUNG_FU_ID.toString()) == 2) {
-                                if (jumpCount <= 2) {
-                                    if (KungFuClientData.get().kungFuCoolDown(TreadTheSnowWithoutTrace.KUNG_FU_ID.toString()) <= 0) {
-                                        jumpCount++;
-                                        if (jumpCount == 3) {
-                                            mc.player.jumpFromGround();
-                                            ChangShengJueMessages.sendToServer(new TreadTheSnowWithoutTracePacket());
-                                        }
+                            }
+                        } else if (KungFuClientData.get().getKungFuLevel(TreadTheSnowWithoutTrace.KUNG_FU_ID.toString()) == 2) {
+                            if (jumpCount <= 2) {
+                                if (KungFuClientData.get().kungFuCoolDown(TreadTheSnowWithoutTrace.KUNG_FU_ID.toString()) <= 0) {
+                                    jumpCount++;
+                                    mc.player.jumpFromGround();
+                                    if (jumpCount == 3) {
+                                        ChangShengJueMessages.sendToServer(new TreadTheSnowWithoutTracePacket());
                                     }
                                 }
                             }

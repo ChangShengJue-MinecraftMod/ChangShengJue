@@ -14,10 +14,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
@@ -56,7 +53,7 @@ public class Clubbed extends SwordItem implements GeoItem {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (pPlayer.getFoodData().getFoodLevel() > 8 || pPlayer.getAbilities().instabuild) {
             ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
-            if (itemstack.getItem() instanceof Clubbed) {
+            if (itemstack.getItem() instanceof Clubbed && !(pPlayer.getOffhandItem().getItem() instanceof ShieldItem)) {
                 if (!pPlayer.level().isClientSide){
                     pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                         if (cap.getCooldownTick(ShaolinStickMethod.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(ShaolinStickMethod.KUNG_FU_ID.toString()) >= 1) {

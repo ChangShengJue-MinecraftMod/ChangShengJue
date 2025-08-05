@@ -1,7 +1,7 @@
 {
   "pools": [
     {
-      "name": "chang_sheng_jue_village",
+      "name": "fortresses_chest",
       "rolls": {
         "min": 4,
         "max": 10

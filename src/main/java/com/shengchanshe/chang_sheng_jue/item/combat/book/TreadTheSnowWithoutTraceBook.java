@@ -2,6 +2,7 @@ package com.shengchanshe.chang_sheng_jue.item.combat.book;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.light_kungfu.TreadTheSnowWithoutTrace;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -35,14 +36,14 @@ public class TreadTheSnowWithoutTraceBook extends Item {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (Screen.hasShiftDown()) {
-            Component fullDesc = Component.translatable("tooltip."+ ChangShengJue.MOD_ID + "."
-                    + this + ".hold_shift.tooltip").withStyle(ChatFormatting.DARK_BLUE);
+            Component fullDesc = Component.translatable("tooltip." + ChangShengJue.MOD_ID + "."
+                    + this + ".hold_shift.tooltip", Component.translatable(KungFuConfig.TREAD_THE_SNOW_WITHOUT_TRACE_MAX_EXP.get().toString())).withStyle(ChatFormatting.BLUE);
             String formattedText = fullDesc.getString();
             Arrays.stream(formattedText.split("\\u000A|\\\\n"))
                     .map(line -> Component.literal(line).withStyle(fullDesc.getStyle()))
                     .forEach(pTooltipComponents::add);
         } else {
-            pTooltipComponents.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + "." + this + ".tooltip").withStyle(ChatFormatting.DARK_BLUE));
+            pTooltipComponents.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + "." + this + ".tooltip").withStyle(ChatFormatting.BLUE));
             // 提示按住Shift
             pTooltipComponents.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID +".hold_shift.tooltip"));
         }

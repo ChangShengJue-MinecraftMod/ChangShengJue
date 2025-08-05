@@ -216,14 +216,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
-        // 检查点击的槽位是否是玩家物品栏
-        if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            // 从玩家物品栏移动到锻台
-            if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX,
-                    TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT, false)) {
-                return ItemStack.EMPTY;
-            }
-        } else if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
+        if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
             // 从锻台移动到玩家物品栏
             if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX,
                     VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {

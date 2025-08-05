@@ -34,6 +34,7 @@ public class CSJTags {
         public static final TagKey<Block> TAISHI_CHAIR = tag("taishi_chair");
         public static final TagKey<Block> FIVE_SCREEN_THRONE = tag("five_screen_throne");
         public static final TagKey<Block> LOW_DESK = tag("low_desk");
+        public static final TagKey<Block> WINE_TABLE = tag("wine_table");
 
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(new ResourceLocation(ChangShengJue.MOD_ID, name));

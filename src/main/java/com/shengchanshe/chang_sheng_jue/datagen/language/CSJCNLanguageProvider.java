@@ -326,14 +326,14 @@
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".tooltip","生生不息，直至山平。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".hold_shift.tooltip",
                     "未大成前施展效果:使用开山镐的挖掘面积扩大为2x2\\n大成后施展效果:挖掘面积扩大为3x3\\n成功施展%s次后武功大成");
-    
+
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".tooltip","若反复实践，掌握规律；便得心应手，运用自如。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".hold_shift.tooltip",
-                    "未大成前施展效果:主手持菜刀杀死动物有50%概率额外掉落肉\\n大成后施展效果:主手持菜刀杀死动物有75%概率额外掉落肉\\n成功施展%s次后武功大成");
+                    "未大成前施展效果:主手持菜刀杀死动物有50%%概率额外掉落肉\\n大成后施展效果:主手持菜刀杀死动物有75%%概率额外掉落肉\\n成功施展%s次后武功大成");
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".tooltip","以气御力，神力无穷。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".hold_shift.tooltip",
-                    "未大成前施展效果:减少疾跑消耗的饱食度降低至60%\\n大成后施展效果:主手持金丝手套右键可打开末影箱\\n移动大于%s米后武功大成");
+                    "未大成前施展效果:减少疾跑消耗的饱食度降低至60%%\\n大成后施展效果:主手持金丝手套右键可打开末影箱\\n移动大于%s米后武功大成");
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".tooltip","指如疾风，势如闪电。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".hold_shift.tooltip",
@@ -345,7 +345,7 @@
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".tooltip","江湖不是打打杀杀，那是人情世故!");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".hold_shift.tooltip",
-                    "未大成前施展效果:与村民的交易一次即可将村民等级提升至学徒\\n大成后施展效果:额外有10%概率不消耗物品交易\\n与村民交易%s次后武功大成");
+                    "未大成前施展效果:与村民的交易一次即可将村民等级提升至学徒\\n大成后施展效果:额外有10%%概率不消耗物品交易\\n与村民交易%s次后武功大成");
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".tooltip","不死不灭，岂是幻梦?");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".hold_shift.tooltip",
@@ -357,7 +357,7 @@
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".tooltip","学向勤中得，萤窗万卷书。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".hold_shift.tooltip",
-                    "未大成前施展效果:每次交易有25%概率获得5点经验\\n大成后施展效果:每次交易有35%概率获得10点经验\\n经验到达30级后武功大成");
+                    "未大成前施展效果:每次交易有25%%概率获得5点经验\\n大成后施展效果:每次交易有35%概率获得10点经验\\n经验到达30级后武功大成");
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".tooltip","龟虽有鼻，而息之以耳。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".hold_shift.tooltip",
@@ -369,7 +369,7 @@
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".tooltip","激发潜力，牵引挪移，其中变化莫测，匪夷所思。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".hold_shift.tooltip",
-                    "未大成前施展效果:有35%概率将遭受的攻击伤害于1.0秒后以1.5倍反弹给攻击者\\n大成后施展效果:每多1点血量额外提高2%触发概率\\n每施展1次冷却时间短期内延长2秒\\n成功施展%s次后武功大成");
+                    "未大成前施展效果:有35%%概率将遭受的攻击伤害于1.0秒后以1.5倍反弹给攻击者\\n大成后施展效果:每多1点血量额外提高2%%触发概率\\n每施展1次冷却时间短期内延长2秒\\n成功施展%s次后武功大成");
 
             this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.kungfu", "习得%s");
             this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu", "%s已阅览过,%s!");
