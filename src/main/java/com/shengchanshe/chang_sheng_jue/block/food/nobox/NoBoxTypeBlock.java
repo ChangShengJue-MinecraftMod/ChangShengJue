@@ -23,8 +23,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class NoBoxTypeBlock extends TypeBlock {
-    public static int fed = 0;
-    public static float fedpro = 0.0F;
+    public int fed;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     protected static final VoxelShape PLATE_SHAPE = Block.box(0D, 0D, 0D, 0D, 0D, 0D);
 
@@ -39,11 +38,6 @@ public class NoBoxTypeBlock extends TypeBlock {
         this.fedpro = fedpro;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
-
-
-
-
-
 
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
         if (player.getFoodData().getFoodLevel() < 20 || player.isCreative()) {
@@ -75,6 +69,5 @@ public class NoBoxTypeBlock extends TypeBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
-
 
 }

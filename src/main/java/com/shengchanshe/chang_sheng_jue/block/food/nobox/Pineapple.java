@@ -18,8 +18,8 @@ public class Pineapple extends NoBoxTypeBlock{
     protected static final VoxelShape PINEAPPLE_SOUTH = Block.box(5.5D, 0.0D, 5.5D, 10.5D, 10.0D, 10.5D);
     protected static final VoxelShape PINEAPPLE_EAST = Block.box(5.5D, 0.0D, 5.5D, 10.5D, 10.0D, 10.5D);
     protected static final VoxelShape PINEAPPLE_WEST = Block.box(5.5D, 0.0D, 5.5D, 10.5D, 10.0D, 10.5D);
-    public static int fed = 0;
-    public static float fedpro = 0.0F;
+    public int fed;
+    public float fedpro;
 
     public Pineapple(Properties pProperties, int fed, float fedpro) {
         super(pProperties, fed, fedpro);

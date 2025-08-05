@@ -1428,101 +1428,101 @@ public class ChangShengJueBlocks {
             ()-> new Corn(BlockBehaviour.Properties.copy(Blocks.CAKE), 1, 0.6f));
     //烤玉米
     public static final RegistryObject<Block> BAKED_CORN = registerBlockWithoutBlockItem("baked_corn",
-            ()-> new Corn(BlockBehaviour.Properties.copy(Blocks.CAKE), 5, 6f));
+            ()-> new Corn(BlockBehaviour.Properties.copy(Blocks.CAKE), 6, 1.0f));
     //梨
     public static final RegistryObject<Block> PEAR = registerBlockWithoutBlockItem("pear",
-            ()-> new Pear(BlockBehaviour.Properties.copy(Blocks.CAKE), 4, 2.4f));
+            ()-> new Pear(BlockBehaviour.Properties.copy(Blocks.CAKE), 4, 0.6f));
     //菠萝
     public static final RegistryObject<Block> PINEAPPLE = registerBlockWithoutBlockItem("pineapple",
-            ()-> new Pineapple(BlockBehaviour.Properties.copy(Blocks.CAKE), 2, 1.2f));
+            ()-> new Pineapple(BlockBehaviour.Properties.copy(Blocks.CAKE), 4, 0.6f));
     //芒果
     public static final RegistryObject<Block> MANGO = registerBlockWithoutBlockItem("mango",
-            ()-> new Mango(BlockBehaviour.Properties.copy(Blocks.CAKE), 3, 1.8f));
+            ()-> new Mango(BlockBehaviour.Properties.copy(Blocks.CAKE), 3, 0.6F));
     //荔枝
     public static final RegistryObject<Block> LICHEE = registerBlockWithoutBlockItem("lichee",
-            ()-> new Lichee(BlockBehaviour.Properties.copy(Blocks.CAKE), 4, 2.4f));
+            ()-> new Lichee(BlockBehaviour.Properties.copy(Blocks.CAKE), 4, 0.6f));
     //香蕉
     public static final RegistryObject<Block> BANANA = registerBlockWithoutBlockItem("banana",
-            ()-> new Banana(BlockBehaviour.Properties.copy(Blocks.CAKE), 3, 4.2f));
+            ()-> new Banana(BlockBehaviour.Properties.copy(Blocks.CAKE), 4, 0.8F));
     //葡萄
     public static final RegistryObject<Block> GRAPE = registerBlockWithoutBlockItem("grape",
-            ()-> new Grape(BlockBehaviour.Properties.copy(Blocks.CAKE), 4, 2.4f));
+            ()-> new Grape(BlockBehaviour.Properties.copy(Blocks.CAKE), 4, 0.6f));
     //桑葚
     public static final RegistryObject<Block> MULBERRY = registerBlockWithoutBlockItem("mulberry",
-            ()-> new Mulberry(BlockBehaviour.Properties.copy(Blocks.CAKE), 3, 1.8f));
+            ()-> new Mulberry(BlockBehaviour.Properties.copy(Blocks.CAKE), 1, 0.5F));
     //榴莲
     public static final RegistryObject<Block> DURIAN = registerBlockWithoutBlockItem("durian",
             ()-> new Durian(BlockBehaviour.Properties.copy(Blocks.CAKE), 0, 0f));
     /*直接食用*/
     //饺子
     public static final RegistryObject<Block> CAPSULE_JIAO_ZI_PAN = registerBlockWithoutBlockItem("capsule_jiao_zi_pan",
-            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 13, 20.0f));
+            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 13, 1.587301587301587F));
     public static final RegistryObject<Block> CAPSULE_JIAO_ZI_WAN = registerBlockWithoutBlockItem("capsule_jiao_zi_wan",
-            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 13, 20.0f));
+            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 13, 1.2F));
     //马齿苋饼
     public static final RegistryObject<Block> PORTULACA_OLERACEA_CAKE_PAN = registerBlockWithoutBlockItem("portulaca_oleracea_cake_pan",
-            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 8.4f));
+            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 1.2F));
     public static final RegistryObject<Block> PORTULACA_OLERACEA_CAKE_WAN = registerBlockWithoutBlockItem("portulaca_oleracea_cake_wan",
-            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 8.4f));
+            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 1.2F));
     //青团
     public static final RegistryObject<Block> QING_TUAN_PAN = registerBlockWithoutBlockItem("qing_tuan_pan",
-            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 12, 18.0f));
+            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 12, 1.607142857142857f));
     public static final RegistryObject<Block> QING_TUAN_WAN = registerBlockWithoutBlockItem("qing_tuan_wan",
-            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 12, 18.0f));
+            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 12, 1.607142857142857f));
     //高粱饼
     public static final RegistryObject<Block> SORGHUM_CAKE_PAN = registerBlockWithoutBlockItem("sorghum_cake_pan",
-            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 8.4f));
+            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 1.2F));
     public static final RegistryObject<Block> SORGHUM_CAKE_WAN = registerBlockWithoutBlockItem("sorghum_cake_wan",
-            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 8.4f));
+            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 1.2F));
     //米饭
     public static final RegistryObject<Block> MI_FAN_PAN = registerBlockWithoutBlockItem("mi_fan_pan",
-            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 8.4f));
+            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 1.2F));
     public static final RegistryObject<Block> MI_FAN_WAN = registerBlockWithoutBlockItem("mi_fan_wan",
-            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 8.4f));
+            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 1.2F));
     //小米饭
     public static final RegistryObject<Block> XIAO_MI_FAN_PAN = registerBlockWithoutBlockItem("xiao_mi_fan_pan",
-            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 8.4f));
+            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 1.2F));
     public static final RegistryObject<Block> XIAO_MI_FAN_WAN = registerBlockWithoutBlockItem("xiao_mi_fan_wan",
-            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 8.4f));
+            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 1.2F));
     /*盘*/
     //蒸菜
     public static final RegistryObject<Block> ZHENG_CAI = registerBlockWithoutBlockItem("zheng_cai",
-            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 14, 16.8f));
+            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 14, 1.2f));
     //番茄炒蛋
     public static final RegistryObject<Block> TOMATO_EGG = registerBlockWithoutBlockItem("tomato_egg",
-            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 12, 19.2f));
+            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 12, 1.6f));
     //咕咾肉
     public static final RegistryObject<Block> GU_LAO_ROU = registerBlockWithoutBlockItem("gu_lao_rou",
-            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 14, 20.0f));
+            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 14, 1.4f));
     //肉末茄子
     public static final RegistryObject<Block> MEAT_FOAM_BRINJAL = registerBlockWithoutBlockItem("meat_foam_brinjal",
-            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 14, 20.0f));
+            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 14, 1.4f));
     //臭豆腐
     public static final RegistryObject<Block> STINKY_TOFU = registerBlockWithoutBlockItem("stinky_tofu",
-            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 11.2f));
+            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 7, 1.6f));
     //桂花糖藕
     public static final RegistryObject<Block> GUI_HUA_TANG_OU = registerBlockWithoutBlockItem("gui_hua_tang_ou",
-            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 9, 14.4f));
+            ()-> new CiPanFood(Block.Properties.copy(Blocks.CAKE), true, 9, 1.6f));
     /*碗*/
     //热梨汤
     public static final RegistryObject<Block> HOT_PEAR_SOUP = registerBlockWithoutBlockItem("hot_pear_soup",
-            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 5, 6.0f));
+            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 5, 1.333f));
     //猪肚鸡
     public static final RegistryObject<Block> ZHU_DU_JI = registerBlockWithoutBlockItem("zhu_du_ji",
-            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 15, 20.0f));
+            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 15, 1.333f));
     //八宝粥
     public static final RegistryObject<Block> BA_BAO_ZHOU = registerBlockWithoutBlockItem("ba_bao_zhou",
-            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 18, 20.0f));
+            ()-> new CiWanFood(Block.Properties.copy(Blocks.CAKE), true, 18, 1.111f));
     /*杯*/
     //桑葚汁
     public static final RegistryObject<Block> MULBERRY_JUICE = registerBlockWithoutBlockItem("mulberry_juice",
-            ()-> new CiBeiFood(Block.Properties.copy(Blocks.CAKE), true, 7, 4.8f));
+            ()-> new CiBeiFood(Block.Properties.copy(Blocks.CAKE), true, 7, 0.69f));
     //苹果汁
     public static final RegistryObject<Block> APPLE_JUICE = registerBlockWithoutBlockItem("apple_juice",
-            ()-> new CiBeiFood(Block.Properties.copy(Blocks.CAKE), true, 7, 4.8f));
+            ()-> new CiBeiFood(Block.Properties.copy(Blocks.CAKE), true, 7, 0.69f));
     //葡萄汁
     public static final RegistryObject<Block> GRAPE_JUICE = registerBlockWithoutBlockItem("grape_juice",
-            ()-> new CiBeiFood(Block.Properties.copy(Blocks.CAKE), true, 7, 4.8f));
+            ()-> new CiBeiFood(Block.Properties.copy(Blocks.CAKE), true, 7, 0.69f));
     //碧螺春
     public static final RegistryObject<Block> BILUOCHUN_TEAS = registerBlockWithoutBlockItem("biluochun_teas",
             ()-> new CiBeiTea(Block.Properties.copy(Blocks.CAKE), true, 1, 1.0f,

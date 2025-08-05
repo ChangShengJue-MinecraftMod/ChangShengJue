@@ -15,24 +15,21 @@ public class TradeHelper {
     public static void addTradesForLevel(Int2ObjectMap<List<VillagerTrades.ItemListing>> trades,
                                          int level, ItemStack[] items,
                                          Function<ItemStack, MerchantOffer> offerCreator) {
-        // 存储第一个交易的索引
         final int[] firstIndex = new int[1];
 
-        // 添加第一个交易
         trades.get(level).add((trader, rand) -> {
             firstIndex[0] = rand.nextInt(items.length);
-            ItemStack firstStack = items[firstIndex[0]].copy(); // 使用copy防止修改原对象
+            ItemStack firstStack = items[firstIndex[0]].copy();
             return offerCreator.apply(firstStack);
         });
 
-        // 添加第二个交易（确保与第一个不同）
         trades.get(level).add((trader, rand) -> {
             int secondIndex;
             do {
                 secondIndex = rand.nextInt(items.length);
             } while (secondIndex == firstIndex[0]);
 
-            ItemStack secondStack = items[secondIndex].copy(); // 使用copy防止修改原对象
+            ItemStack secondStack = items[secondIndex].copy();
             return offerCreator.apply(secondStack);
         });
     }

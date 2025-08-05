@@ -21,8 +21,8 @@ public class Banana extends NoBoxTypeBlock{
     protected static final VoxelShape BANANA_EAST = Block.box(0.8D, 0.0D, 4D, 15.0D, 4.25D, 12D);
     protected static final VoxelShape BANANA_SOUTH = Block.box(4D, 0.0D, 3.0D, 12D, 4.25D, 15.5D);
     protected static final VoxelShape BANANA_NORTH = Block.box(4D, 0.0D, 3.0D, 12D, 4.25D, 15.5D);
-    public static int fed = 0;
-    public static float fedpro = 0.0F;
+    public int fed;
+    public float fedpro;
 
 
 

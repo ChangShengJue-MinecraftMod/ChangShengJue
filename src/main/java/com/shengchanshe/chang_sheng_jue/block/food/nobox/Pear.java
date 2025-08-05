@@ -18,8 +18,8 @@ public class Pear extends NoBoxTypeBlock{
     protected static final VoxelShape PEAR_SOUTH = Block.box(6D, 0.0D, 7D, 10D, 8.0D, 11D);
     protected static final VoxelShape PEAR_EAST = Block.box(7D, 0.0D, 6D, 11D, 8.0D, 10D);
     protected static final VoxelShape PEAR_WEST = Block.box(5D, 0.0D, 6D, 9D, 8.0D, 10D);
-    public static int fed = 0;
-    public static float fedpro = 0.0F;
+    public int fed;
+    public float fedpro;
 
     public Pear(Properties pProperties, int fed, float fedpro) {
         super(pProperties, fed, fedpro);

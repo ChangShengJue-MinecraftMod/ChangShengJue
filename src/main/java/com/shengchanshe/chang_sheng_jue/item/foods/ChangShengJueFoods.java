@@ -41,16 +41,16 @@ public class ChangShengJueFoods {
     public static final FoodProperties BA_BAO_ZHOU = (new FoodProperties.Builder()).nutrition(18).saturationMod(0.555556F).meat().build();
 
     //孔雀肉
-    public static final FoodProperties PEACOCK = (new FoodProperties.Builder()).nutrition(3).saturationMod(1.7F).meat().build();
-    public static final FoodProperties COOKED_PEACOCK = (new FoodProperties.Builder()).nutrition(7).saturationMod(8.4F).meat().build();
+    public static final FoodProperties PEACOCK = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.5666666666666667F).meat().build();
+    public static final FoodProperties COOKED_PEACOCK = (new FoodProperties.Builder()).nutrition(7).saturationMod(1.2F).meat().build();
     //鳄鱼
-    public static final FoodProperties CROC = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.6F).meat().build();
-    public static final FoodProperties COOKED_CROC = (new FoodProperties.Builder()).nutrition(8).saturationMod(12.6F).meat().build();
+    public static final FoodProperties CROC = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.2F).meat().build();
+    public static final FoodProperties COOKED_CROC = (new FoodProperties.Builder()).nutrition(8).saturationMod(1.575F).meat().build();
 
-    public static final FoodProperties MULBERRY_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(4.8F).build();
-    public static final FoodProperties APPLE_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(4.8F).build();
-    public static final FoodProperties HOT_PEAR_SOUP = (new FoodProperties.Builder()).nutrition(7).saturationMod(4.8F).build();
-    public static final FoodProperties GRAPE_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(4.8F).build();
+    public static final FoodProperties MULBERRY_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.6857142857142857F).build();
+    public static final FoodProperties APPLE_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.6857142857142857F).build();
+    public static final FoodProperties HOT_PEAR_SOUP = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.6857142857142857F).build();
+    public static final FoodProperties GRAPE_JUICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.6857142857142857F).build();
     //茶
     public static final FoodProperties BILUOCHUN_TEA = (new FoodProperties.Builder()).nutrition(1).saturationMod(1.0F).effect(new MobEffectInstance(ChangShengJueEffects.BILUOCHUN_TEAS.get(), 1200, 0), 1.0F).alwaysEat().build();
     public static final FoodProperties LONG_JING_TEA = (new FoodProperties.Builder()).nutrition(1).saturationMod(1.0F).effect(new MobEffectInstance(ChangShengJueEffects.LONG_JING_TEAS.get(), 1200, 0), 1.0F).alwaysEat().build();

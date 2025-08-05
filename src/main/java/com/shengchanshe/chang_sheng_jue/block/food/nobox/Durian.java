@@ -19,17 +19,15 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class Durian extends NoBoxTypeBlock{
-    public static int fed = 0;
-    public static float fedpro = 0.0F;
+    public int fed;
+    public float fedpro;
     protected static final VoxelShape DURIAN_NORTH = Block.box(4D, 0.0D, 4D, 12D, 13D, 12D);
-    
 
     public Durian(Properties pProperties, int fed, float fedpro) {
         super(pProperties, fed,fedpro);
         this.fed = fed;
         this.fedpro = fedpro;
     }
-
 
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
         ItemStack itemstack = player.getItemInHand(hand);

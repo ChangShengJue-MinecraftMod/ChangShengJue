@@ -19,8 +19,8 @@ public class Lichee extends NoBoxTypeBlock{
     protected static final VoxelShape LICHEE_WEST = Block.box(2D, 0.0D, 4.0D, 11.25D, 3.0D, 11.5D);
     protected static final VoxelShape LICHEE_SOUTH = Block.box(4.25D, 0.0D, 4.75D, 11.5D, 3.0D, 14.0D);
     protected static final VoxelShape LICHEE_NORTH = Block.box(5.25D, 0.0D, 2.0D, 11.5D, 3.0D, 10.75D);
-    public static int fed = 0;
-    public static float fedpro = 0.0F;
+    public int fed;
+    public float fedpro;
 
     public Lichee(Properties pProperties, int fed, float fedpro) {
         super(pProperties, fed, fedpro);

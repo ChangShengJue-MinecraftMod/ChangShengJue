@@ -18,8 +18,8 @@ public class Mulberry extends NoBoxTypeBlock {
     protected static final VoxelShape MULBERRY_SOUTH = Block.box(4.8D, 0.0D, 6D, 11.15D, 2.5D, 10.2D);
     protected static final VoxelShape MULBERRY_EAST = Block.box(6D, 0.0D, 4.25D, 10.2D, 2.5D, 11.2D);
     protected static final VoxelShape MULBERRY_WEST = Block.box(6D, 0.0D, 4.8D, 9.8D, 2.5D, 11.15D);
-    public static int fed = 0;
-    public static float fedpro = 0.0F;
+    public int fed;
+    public float fedpro;
 
 
     public Mulberry(Properties pProperties, int fed, float fedpro) {

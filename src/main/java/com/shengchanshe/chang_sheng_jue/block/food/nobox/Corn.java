@@ -16,14 +16,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class Corn extends NoBoxTypeBlock{
 //    protected static final VoxelShape PLATE_SHAPE = Block.box(3.5D, 0.0D, 5.5D, 12.5D, 5.0D, 10.5D);
-
     protected static final VoxelShape CORN_EAST = Block.box(3.5D, 0.0D, 5.5D, 12.5D, 5.0D, 10.5D);
     protected static final VoxelShape CORN_SOUTH = Block.box(5.5D, 0.0D, 3.5D, 10.5D, 5.0D, 12.5D);
     protected static final VoxelShape CORN_WEST = Block.box(3.5D, 0.0D, 5.5D, 12.5D, 5.0D, 10.5D);
     protected static final VoxelShape CORN_NORTH = Block.box(5.5D, 0.0D, 3.5D, 10.5D, 5.0D, 12.5D);
-    public static int fed = 0;
-    public static float fedpro = 0.0F;
-
+    public int fed;
+    public float fedpro;
 
     public Corn(Properties pProperties, int fed, float fedpro) {
         super(pProperties, fed,fedpro);
@@ -57,7 +55,4 @@ public class Corn extends NoBoxTypeBlock{
                 return CORN_NORTH; // 默认情况
         }
     }
-
-
-
 }

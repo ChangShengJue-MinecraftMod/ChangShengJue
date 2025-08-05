@@ -18,42 +18,34 @@ import java.util.concurrent.atomic.AtomicReference;
 @Mixin(FoodData.class)
 public abstract class MixinFoodData {
     @Shadow
-    private float exhaustionLevel; // 影子字段，用于操作原始 exhaustionLevel
+    private float exhaustionLevel;
 
     @Inject(method = "addExhaustion", at = @At("HEAD"), cancellable = true)
     private void modifyExhaustion(float pExhaustion, CallbackInfo ci) {
-        // 获取持有此 FoodData 的玩家实体
-        Player player = getAssociatedPlayer(); // 自定义方法获取玩家实体
+        Player player = getAssociatedPlayer();
 
         if (player != null) {
-//            // 获取 HerculesCapability
             AtomicReference<Float> pExhaustionRef = new AtomicReference<>(pExhaustion);
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                 if (cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) >= 1 && player.isSprinting()) {
                     pExhaustionRef.set(pExhaustionRef.get() * 0.6F);
                 }
             });
-            // 将修改后的疲劳值添加到 exhaustionLevel 中
             this.exhaustionLevel = Math.min(this.exhaustionLevel + pExhaustionRef.get(), 40.0F);
         }
-        // 将修改后的疲劳值添加到 exhaustionLevel 中
         this.exhaustionLevel = Math.min(this.exhaustionLevel + pExhaustion, 40.0F);
-        // 阻止原始方法的执行
         ci.cancel();
     }
 
-    /**
-     * 自定义方法，用于获取 FoodData 所关联的玩家实体。
-     */
     private Player getAssociatedPlayer() {
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         if (server != null) {
             for (ServerPlayer player : server.getPlayerList().getPlayers()) {
                 if (player.getFoodData() == (Object) this) {
-                    return player; // 找到绑定的玩家并返回
+                    return player;
                 }
             }
         }
-        return null; // 如果找不到，返回 null
+        return null;
     }
 }

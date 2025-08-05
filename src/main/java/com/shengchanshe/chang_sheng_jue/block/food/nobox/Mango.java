@@ -18,8 +18,8 @@ public class Mango extends NoBoxTypeBlock{
     protected static final VoxelShape SOUTH_SHAPE = Block.box(3.75D, 0.0D, 6D, 13D, 5.0D, 9D);
     protected static final VoxelShape WEST_SHAPE = Block.box(7D, 0.0D, 3.75D, 10D, 5.0D, 13D);
     protected static final VoxelShape EAST_SHAPE = Block.box(6D, 0.0D, 3D, 9D, 5.0D, 12.25D);
-    public static int fed = 0;
-    public static float fedpro = 0.0F;
+    public int fed;
+    public float fedpro;
 
     public Mango(Properties pProperties, int fed, float fedpro) {
         super(pProperties, fed,fedpro);

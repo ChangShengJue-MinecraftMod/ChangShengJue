@@ -20,8 +20,8 @@ public class Grape extends NoBoxTypeBlock{
     protected static final VoxelShape GRAPE_EAST = Block.box(1D, 0.0D, 4D, 13D, 5.0D, 12.25D);
     protected static final VoxelShape GRAPE_NORTH = Block.box(4D, 0.0D, 3D, 12.25D, 5.0D, 14D);
     protected static final VoxelShape GRAPE_SOUTH = Block.box(4D, 0.0D, 1D, 12.25D, 5.0D, 13D);
-    public static int fed = 0;
-    public static float fedpro = 0.0F;
+    public int fed;
+    public float fedpro;
 
     public Grape(BlockBehaviour.Properties pProperties, int fed, float fedpro) {
         super(pProperties, fed,fedpro);
