@@ -45,13 +45,6 @@ import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.throwingkni
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceParticle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.wu_gang_cut_gui.WuGangCutGuiParticle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.wu_gang_cut_gui.WuGangCutGuiParticle1;
-import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.breakthrough.mortal.MortalBreakthrough0Particle;
-import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.breakthrough.mortal.MortalBreakthrough1Particle;
-import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.breakthrough.mortal.MortalBreakthrough2Particle;
-import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.breakthrough.mortal.MortalBreakthrough3Particle;
-import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.breakthrough.qi_condensation.*;
-import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.tun_na.TunNa1Particle;
-import com.shengchanshe.chang_sheng_jue.particle.custom.xiu_xian.tun_na.TunNaParticle;
 import com.shengchanshe.chang_sheng_jue.util.KeyBinding;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraftforge.api.distmarker.Dist;
@@ -118,9 +111,6 @@ public class CSJEventClientBusEvents {
     @SubscribeEvent
     public static void registerGuiOverlays(RegisterGuiOverlaysEvent event){
         event.registerAboveAll("kung_fu_hud", KungFuHudOverlay.HUD);
-
-//        event.registerAboveAll("hud_cultivation", CultivationHudOverlay.HUD_CULTIVATION);
-
     }
 
     @SubscribeEvent
@@ -152,22 +142,6 @@ public class CSJEventClientBusEvents {
 
         event.registerSpriteSet(ChangShengJueParticles.STAKES_PARTICLE.get(), StakesParticle.Provider::new);
 
-        event.registerSpriteSet(ChangShengJueParticles.TUN_NA_PARTICLE.get(), TunNaParticle.TunNaParticleProvider::new);
-        event.registerSpriteSet(ChangShengJueParticles.TUN_NA_1_PARTICLE.get(), TunNa1Particle.TunNa1ParticleProvider::new);
-        event.registerSpriteSet(ChangShengJueParticles.MORTAL_BREAKTHROUGH0_PARTICLE.get(), MortalBreakthrough0Particle.BreakthroughParticleProvider::new);
-        event.registerSpriteSet(ChangShengJueParticles.MORTAL_BREAKTHROUGH1_PARTICLE.get(), MortalBreakthrough1Particle.Breakthrough1ParticleProvider::new);
-        event.registerSpriteSet(ChangShengJueParticles.MORTAL_BREAKTHROUGH2_PARTICLE.get(), MortalBreakthrough2Particle.Breakthrough2ParticleProvider::new);
-        event.registerSpriteSet(ChangShengJueParticles.MORTAL_BREAKTHROUGH3_PARTICLE.get(), MortalBreakthrough3Particle.Breakthrough3ParticleProvider::new);
-        event.registerSpriteSet(ChangShengJueParticles.QI_CONDENSATION_BREAKTHROUGH0_PARTICLE.get(),
-                QiCondensationBreakthrough0Particle.QiCondensationBreakthrough0ParticleProvider::new);
-        event.registerSpriteSet(ChangShengJueParticles.QI_CONDENSATION_BREAKTHROUGH1_PARTICLE.get(),
-                QiCondensationBreakthrough1Particle.QiCondensationBreakthrough1ParticleProvider::new);
-        event.registerSpriteSet(ChangShengJueParticles.QI_CONDENSATION_BREAKTHROUGH2_PARTICLE.get(),
-                QiCondensationBreakthrough2Particle.QiCondensationBreakthrough2ParticleProvider::new);
-        event.registerSpriteSet(ChangShengJueParticles.QI_CONDENSATION_BREAKTHROUGH3_PARTICLE.get(),
-                QiCondensationBreakthrough3Particle.QiCondensationBreakthrough3ParticleProvider::new);
-        event.registerSpriteSet(ChangShengJueParticles.QI_CONDENSATION_BREAKTHROUGH4_PARTICLE.get(),
-                QiCondensationBreakthrough4Particle.QiCondensationBreakthrough4ParticleProvider::new);
     }
 
     @SubscribeEvent

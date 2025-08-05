@@ -1,11 +1,9 @@
 package com.shengchanshe.chang_sheng_jue.capability;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.capability.cultivation.entity.CultivationCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.capability.kungfu.IKungFuCapability;
 import com.shengchanshe.chang_sheng_jue.capability.kungfu.KungFuCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.event.xiu_xian.XiuXianEvent;
 import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -24,7 +22,6 @@ public class ChangShengJueCapabiliy {
             CapabilityManager.get(new CapabilityToken<>() {});
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        event.register(CultivationCapabilityProvider.class);
         event.register(PlayerQuestCapabilityProvider.class);
         event.register(KungFuCapabilityProvider.class);
     }
@@ -33,9 +30,6 @@ public class ChangShengJueCapabiliy {
         if (event.getObject() instanceof Player player) {//判断生物为玩家,只给玩家添加这些能力
             if (!event.getObject().getCapability(KUNGFU).isPresent()) {
                 event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID, "kungfu"), new KungFuCapabilityProvider(player));
-            }
-            if (!event.getObject().getCapability(CultivationCapabilityProvider.XIU_XIAN_CAPABILITY).isPresent()) {
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID, "spirit_root"), new CultivationCapabilityProvider());
             }
             if (!event.getObject().getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).isPresent()) {
                 event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID, "quest"), new PlayerQuestCapabilityProvider());
@@ -55,8 +49,6 @@ public class ChangShengJueCapabiliy {
         oldPlayer.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(newStore-> newStore.copyFrom(oldStore)));
 
-        //修仙
-        XiuXianEvent.onPlayerCloned(event);
         event.getOriginal().invalidateCaps();
     }
 
@@ -65,7 +57,6 @@ public class ChangShengJueCapabiliy {
         if(!event.getLevel().isClientSide()) {
             if(event.getEntity() instanceof ServerPlayer player) {
                 QuestManager.getInstance().syncQuestsToPlayer(player); // 全量同步
-                XiuXianEvent.onPlayerJoinWorld(event);
                 player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY)
                         .ifPresent(cap -> cap.syncToClient(player));
                 player.getCapability(KUNGFU).ifPresent(cap -> cap.syncToClient(player));

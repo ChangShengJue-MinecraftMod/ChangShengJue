@@ -2,20 +2,16 @@ package com.shengchanshe.chang_sheng_jue.network;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.plaque.UpdatePlaqueTextPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.cultivation.CultivationPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.cultivation.SpiritDensityLevelPacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.gui.KilnWorkerSetTradeTypePacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.ForgeCraftPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.ForgeSyncRecipePacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.TailoringCraftPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.TailoringSyncRecipePacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.gui.KilnWorkerSetTradeTypePacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.*;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.quest.*;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.SyncKungFuCapabilityPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.particle.kungfu.*;
-import com.shengchanshe.chang_sheng_jue.network.packet.particle.xiu_xian.TriggerBreakthroughParticlePacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.particle.xiu_xian.TriggerTunNaParticlePacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -162,29 +158,7 @@ public class ChangShengJueMessages {
                 .consumerMainThread(RefreshPlayerQuestScreenPacket::handle)
                 .add();
 
-        //修仙
-        net.messageBuilder(CultivationPacket.class, id())
-                .decoder(CultivationPacket::decode)
-                .encoder(CultivationPacket::encode)
-                .consumerMainThread(CultivationPacket::handle)
-                .add();
-        net.messageBuilder(SpiritDensityLevelPacket.class, id())
-                .decoder(SpiritDensityLevelPacket::decode)
-                .encoder(SpiritDensityLevelPacket::encode)
-                .consumerMainThread(SpiritDensityLevelPacket::handle)
-                .add();
 
-        net.messageBuilder(TriggerTunNaParticlePacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(TriggerTunNaParticlePacket::decode)
-                .encoder(TriggerTunNaParticlePacket::encode)
-                .consumerMainThread(TriggerTunNaParticlePacket::handle)
-                .add();
-
-        net.messageBuilder(TriggerBreakthroughParticlePacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(TriggerBreakthroughParticlePacket::decode)
-                .encoder(TriggerBreakthroughParticlePacket::encode)
-                .consumerMainThread(TriggerBreakthroughParticlePacket::handle)
-                .add();
 
         net.messageBuilder(TailoringCraftPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(TailoringCraftPacket::fromBytes)

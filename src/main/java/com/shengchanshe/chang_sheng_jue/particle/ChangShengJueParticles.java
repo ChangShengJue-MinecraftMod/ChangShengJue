@@ -62,35 +62,6 @@ public class ChangShengJueParticles {
     public static final RegistryObject<SimpleParticleType> STAKES_PARTICLE =
             PARTICLE_TYPES.register("stakes_particle", () -> new SimpleParticleType(false));
 
-    //吐纳
-    public static final RegistryObject<SimpleParticleType> TUN_NA_PARTICLE =
-            PARTICLE_TYPES.register("tun_na_particle", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> TUN_NA_1_PARTICLE =
-            PARTICLE_TYPES.register("tun_na_1_particle", () -> new SimpleParticleType(false));
-
-    //凡人到练气
-    public static final RegistryObject<SimpleParticleType> MORTAL_BREAKTHROUGH0_PARTICLE =
-            PARTICLE_TYPES.register("mortal_breakthrough0_particle", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> MORTAL_BREAKTHROUGH1_PARTICLE =
-            PARTICLE_TYPES.register("mortal_breakthrough1_particle", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> MORTAL_BREAKTHROUGH2_PARTICLE =
-            PARTICLE_TYPES.register("mortal_breakthrough2_particle", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> MORTAL_BREAKTHROUGH3_PARTICLE =
-            PARTICLE_TYPES.register("mortal_breakthrough3_particle", () -> new SimpleParticleType(false));
-
-    //练气到筑基
-    public static final RegistryObject<SimpleParticleType> QI_CONDENSATION_BREAKTHROUGH0_PARTICLE =
-            PARTICLE_TYPES.register("qi_condensation_breakthrough0_particle", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> QI_CONDENSATION_BREAKTHROUGH1_PARTICLE =
-            PARTICLE_TYPES.register("qi_condensation_breakthrough1_particle", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> QI_CONDENSATION_BREAKTHROUGH2_PARTICLE =
-            PARTICLE_TYPES.register("qi_condensation_breakthrough2_particle", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> QI_CONDENSATION_BREAKTHROUGH3_PARTICLE =
-            PARTICLE_TYPES.register("qi_condensation_breakthrough3_particle", () -> new SimpleParticleType(false));
-    public static final RegistryObject<SimpleParticleType> QI_CONDENSATION_BREAKTHROUGH4_PARTICLE =
-            PARTICLE_TYPES.register("qi_condensation_breakthrough4_particle", () -> new SimpleParticleType(false));
-
-
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);
     }
