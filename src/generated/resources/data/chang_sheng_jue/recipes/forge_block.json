@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "forge:cobblestone"
+    },
+    "$": {
+      "tag": "forge:ingots/iron"
+    },
+    "X": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "$$ ",
+    "##X",
+    "##X"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:forge_block"
+  },
+  "show_notification": true
+}

@@ -6,7 +6,7 @@
   "questType": "KILL",
   "targetEntity": "chang_sheng_jue:challenger",
   "requiredKills": 1,
-  "repeatable": false,
+  "repeatable": true,
   "questGenerateTarget" : true,
   "limitQuestIds" : [
     "2487A5CD-BE95-4BEE-AE6E-7705531BADAE"

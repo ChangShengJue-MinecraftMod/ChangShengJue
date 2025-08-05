@@ -9,12 +9,15 @@
   "repeatable": false,
   "questGenerateTarget" : true,
   "limitQuestIds" : [
-    "a813fd02-5c0b-4ae0-bf3a-92a09b1d8579",
+    "a813fd02-5c0b-4ae0-bf3a-92a09b1d8579"
+  ],
+  "isNeedCompletePreQuest" : true,
+  "conflictQuestIds" : [
     "5b8aa169-0e44-48b7-b542-c79acb8a55a1",
     "fb53262b-20c8-42a4-a10b-f2ee47024b83",
     "1c0d2510-ec0e-40e6-bc0d-6f6131c790ec"
   ],
-  "isNeedCompletePreQuest" : true,
+  "isConflictQuest" : true,
   "needCompletionCount" : 1,
   "questRewards": [
     {

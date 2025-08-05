@@ -2,7 +2,7 @@
 	"format_version": "1.8.0",
 	"animations": {
 		"attack.swing": {
-			"animation_length": 0.6,
+			"animation_length": 0.7,
 			"bones": {
 				"bone2": {
 					"rotation": {
@@ -51,7 +51,7 @@
 							"easing": "linear"
 						},
 						"0.5": {
-							"vector": [0, 0, 0],
+							"vector": [27.5, 0, 0],
 							"easing": "linear"
 						}
 					}
@@ -95,6 +95,11 @@
 							"easing": "linear"
 						}
 					}
+				}
+			},
+			"sound_effects": {
+				"0.0333": {
+					"effect": ".mp3"
 				}
 			}
 		},
@@ -128,33 +133,9 @@
 				}
 			}
 		},
-		"attack-1": {
+		"item.use": {
 			"animation_length": 0.2917,
 			"bones": {
-				"bone3": {
-					"scale": {
-						"0.0": {
-							"vector": [0, 0, 0],
-							"easing": "linear"
-						},
-						"0.0833": {
-							"vector": [0, 0, 0],
-							"easing": "linear"
-						}
-					}
-				},
-				"bone4": {
-					"scale": {
-						"0.0": {
-							"vector": [0, 0, 0],
-							"easing": "linear"
-						},
-						"0.0833": {
-							"vector": [0, 0, 0],
-							"easing": "linear"
-						}
-					}
-				},
 				"all": {
 					"position": {
 						"0.0": {
@@ -177,6 +158,30 @@
 						},
 						"0.25": {
 							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"bone3": {
+					"scale": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.0833": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"bone4": {
+					"scale": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.0833": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
 						}
 					}
 				}

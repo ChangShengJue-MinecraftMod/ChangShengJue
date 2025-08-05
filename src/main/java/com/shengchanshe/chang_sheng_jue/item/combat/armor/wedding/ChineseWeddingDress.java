@@ -1,0 +1,35 @@
+package com.shengchanshe.chang_sheng_jue.item.combat.armor.wedding;
+
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.ChangShengJueArmorItem;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.DyeableItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.constant.DefaultAnimations;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.util.GeckoLibUtil;
+
+public class ChineseWeddingDress extends ChangShengJueArmorItem implements DyeableItem, GeoItem {
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    public ChineseWeddingDress(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
+        super(pMaterial, pType, pProperties);
+    }
+
+    @Override
+    public int getColor(ItemStack pStack) {
+        return DyeableItem.super.getColor(pStack) != -1 ? DyeableItem.super.getColor(pStack) : 0x0000FF;
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(((new AnimationController<>(this, 0, (state) ->
+                state.setAndContinue(DefaultAnimations.IDLE)))));
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
+    }
+}

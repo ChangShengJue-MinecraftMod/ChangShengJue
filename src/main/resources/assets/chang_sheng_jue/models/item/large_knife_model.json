@@ -15,6 +15,11 @@
         0,
         1
       ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
       "scale": [
         0.75,
         0.75,
@@ -27,6 +32,11 @@
         0,
         1
       ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
       "scale": [
         0.75,
         0.75,
@@ -36,7 +46,7 @@
     "firstperson_righthand": {
       "rotation": [
         -20,
-        0,
+        90,
         0
       ],
       "translation": [
@@ -53,7 +63,7 @@
     "firstperson_lefthand": {
       "rotation": [
         -20,
-        0,
+        90,
         0
       ],
       "translation": [

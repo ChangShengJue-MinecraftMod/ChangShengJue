@@ -1,3 +1,4 @@
+
 {
   "credit": "Made with Blockbench",
   "parent": "builtin/entity",
@@ -14,6 +15,11 @@
         0,
         0,
         1.5
+      ],
+      "rotation": [
+        0,
+        90,
+        0
       ]
     },
     "thirdperson_lefthand": {
@@ -21,19 +27,24 @@
         0,
         0,
         1.5
+      ],
+      "rotation": [
+        0,
+        90,
+        0
       ]
     },
     "firstperson_righthand": {
       "rotation": [
         -10,
-        0,
+        90,
         0
       ]
     },
     "firstperson_lefthand": {
       "rotation": [
         -10,
-        0,
+        90,
         0
       ]
     },

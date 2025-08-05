@@ -95,6 +95,30 @@
 							"easing": "linear"
 						}
 					}
+				},
+				"bone6": {
+					"scale": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.7": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"bone7": {
+					"scale": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.7": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
 				}
 			},
 			"sound_effects": {
@@ -105,7 +129,7 @@
 		},
 		"misc.idle": {
 			"loop": true,
-			"animation_length": 0.5,
+			"animation_length": 0.2,
 			"bones": {
 				"bone3": {
 					"scale": {
@@ -130,10 +154,34 @@
 							"easing": "linear"
 						}
 					}
+				},
+				"bone6": {
+					"scale": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.2": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
+				},
+				"bone7": {
+					"scale": {
+						"0.0": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						},
+						"0.2": {
+							"vector": [0, 0, 0],
+							"easing": "linear"
+						}
+					}
 				}
 			}
 		},
-		"attack-1": {
+		"item.use": {
 			"animation_length": 0.2917,
 			"bones": {
 				"all": {

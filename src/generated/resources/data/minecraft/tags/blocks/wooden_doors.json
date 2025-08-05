@@ -1,5 +1,10 @@
 {
   "values": [
-    "#chang_sheng_jue:doors"
+    "#chang_sheng_jue:doors",
+    "chang_sheng_jue:door_birch",
+    "chang_sheng_jue:door_acacia",
+    "chang_sheng_jue:door_dark_oak",
+    "chang_sheng_jue:door_oak",
+    "chang_sheng_jue:door_spruce"
   ]
 }

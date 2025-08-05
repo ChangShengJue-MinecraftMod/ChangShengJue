@@ -1,0 +1,17 @@
+{
+	"loader" : "forge:obj",
+	"custom": { "flip-v": true },
+	"model" : "chang_sheng_jue:models/block/fu_ti_block_bottom.obj",
+	"textures" : {
+		"cube" : "chang_sheng_jue:block/yun_shan_fu_ti_block",
+		"particle" : "chang_sheng_jue:block/yun_shan_fu_ti_block"
+	},
+	"groups": [
+		{
+			"name": "bone",
+			"origin": [7.78571, 24.44083, 8.03768],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+		}
+	]
+}

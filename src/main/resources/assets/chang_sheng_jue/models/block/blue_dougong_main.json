@@ -1,0 +1,8 @@
+{
+  "parent": "chang_sheng_jue:block/change_dougong_main",
+  "textures": {
+    "8": "chang_sheng_jue:block/blue_dougong",
+    "particle": "chang_sheng_jue:block/blue_dougong"
+  }
+}
+    

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "chang_sheng_jue:silk"
+    },
+    "$": {
+      "tag": "forge:shears"
+    },
+    "X": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    "##$",
+    "XXX",
+    "XXX"
+  ],
+  "result": {
+    "item": "chang_sheng_jue:tailoring_case"
+  },
+  "show_notification": true
+}

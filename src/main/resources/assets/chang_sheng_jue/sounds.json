@@ -331,5 +331,29 @@
     "sounds": [
       "chang_sheng_jue:block/wind_chime_sound"
     ]
+  },
+  "stakes_hit_sound": {
+    "subtitle": "sounds.chang_sheng_jue.stakes_hit_sound",
+    "sounds": [
+      "chang_sheng_jue:block/stakes_hit_sound"
+    ]
+  },
+  "gong_sound": {
+    "subtitle": "sounds.chang_sheng_jue.gong_sound",
+    "sounds": [
+      "chang_sheng_jue:block/gong_sound"
+    ]
+  },
+  "tailoring_case_sound": {
+    "subtitle": "sounds.chang_sheng_jue.tailoring_case_sound",
+    "sounds": [
+      "chang_sheng_jue:block/tailoring_case_sound"
+    ]
+  },
+  "forge_block_sound": {
+    "subtitle": "sounds.chang_sheng_jue.forge_block_sound",
+    "sounds": [
+      "chang_sheng_jue:block/forge_block_sound"
+    ]
   }
 }
