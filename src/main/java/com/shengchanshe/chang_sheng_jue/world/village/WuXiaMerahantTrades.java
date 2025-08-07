@@ -88,11 +88,11 @@ public class WuXiaMerahantTrades {
                         new CoinsToItems(ChangShengJueItems.TONG_QIAN.get(), 0, 5, ChangShengJueItems.LEATHER_INNER_ARMOR.get(), 1, 16, 1),
                 }, 2, new VillagerTrades.ItemListing[]{
                         new BullionsToItems(ChangShengJueItems.SILVER_BULLIONS.get(), 9, ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 1,
-                                Parcel.createCottonParcel().getItem(), 1, 16, 1),
+                                Parcel.createCottonParcel(),16, 1),
                         new BullionsToItems(ChangShengJueItems.SILVER_BULLIONS.get(), 9, ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 3,
-                                Parcel.createMountainParcel().getItem(), 1, 16, 1),
+                                Parcel.createMountainParcel(),16, 1),
                         new BullionsToItems(ChangShengJueItems.SILVER_BULLIONS.get(), 9, ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), 3,
-                                Parcel.createMingguangParcel().getItem(), 1, 16, 1),
+                                Parcel.createMingguangParcel(),16, 1),
                 }
         ));
 
@@ -523,7 +523,7 @@ public class WuXiaMerahantTrades {
         private final ItemStack toItem;
         private final int toCount;
         private final int maxUses;
-        private final int Xp;
+        private final int xp;
 
         public BullionsToItems(ItemLike bullions, int bullionsCost, ItemLike forItem, int fromCount, Item toItem, int toCount, int maxUses, int Xp) {
             this.bullions = new ItemStack(bullions);
@@ -533,16 +533,36 @@ public class WuXiaMerahantTrades {
             this.toItem = new ItemStack(toItem);
             this.toCount = toCount;
             this.maxUses = maxUses;
-            this.Xp = Xp;
+            this.xp = Xp;
+        }
+
+        // 新构造函数，直接接受ItemStack
+        public BullionsToItems(ItemLike bullions, int bullionsCost, ItemLike forItem, int fromCount, ItemStack toStack,int maxUses, int Xp) {
+            this.bullions = new ItemStack(bullions);
+            this.fromItem = new ItemStack(forItem);
+            this.fromCount = fromCount;
+            this.bullionsCost = bullionsCost;
+            this.toItem = toStack.copy();  // 使用传入的ItemStack副本
+            this.toCount = toStack.getCount();
+            this.maxUses = maxUses;
+            this.xp = Xp;
         }
 
         @Nullable
         @Override
         public MerchantOffer getOffer(Entity trader, RandomSource rand) {
-            return new MerchantOffer(new ItemStack(this.bullions.getItem(), this.bullionsCost),
+            // 保留原始ItemStack的NBT数据
+            ItemStack resultStack = this.toItem.copy();
+            resultStack.setCount(this.toCount);
+
+            return new MerchantOffer(
+                    new ItemStack(this.bullions.getItem(), this.bullionsCost),
                     new ItemStack(this.fromItem.getItem(), this.fromCount),
-                    new ItemStack(this.toItem.getItem(), this.toCount),
-                    this.maxUses, this.Xp, 0.05F);
+                    resultStack,  // 使用包含NBT的结果堆栈
+                    this.maxUses,
+                    this.xp,
+                    0.05F
+            );
         }
     }
 }

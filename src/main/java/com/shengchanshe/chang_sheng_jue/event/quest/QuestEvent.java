@@ -92,7 +92,7 @@ public class QuestEvent {
                         return;
                     }
                     // 优化后的查询逻辑
-                    manager.getPlayerQuests(playerId).stream()
+                    manager.getPlayerQuests(player.level(),playerId).stream()
                             .filter(Objects::nonNull) // 过滤空任务
                             .filter(quest -> PlayerQuestEvent.VEGETARIAN_FOOD_QUEST_ID.equals(quest.getQuestId()))
                             .findFirst() // 找到第一个匹配即可

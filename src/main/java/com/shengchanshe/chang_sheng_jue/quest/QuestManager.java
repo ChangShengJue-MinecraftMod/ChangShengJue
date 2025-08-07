@@ -436,13 +436,13 @@ public class QuestManager {
     }
 
     // 获取玩家所有任务
-    public List<Quest> getPlayerQuests(UUID playerId) {
+    public List<Quest> getPlayerQuests(Level level,UUID playerId) {
         if (playerId == null) {
             return Collections.emptyList();
         }
 
-        if (Minecraft.getInstance().level != null) {
-            Player player = Minecraft.getInstance().level.getPlayerByUUID(playerId);
+        if (level != null) {
+            Player player = level.getPlayerByUUID(playerId);
             if (player != null) {
                 return getQuestsFromCapability(player);
             }

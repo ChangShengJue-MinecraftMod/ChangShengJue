@@ -145,55 +145,49 @@ public class Parcel extends Item {
                 () -> RANDOM.nextBoolean() ? ChangShengJueItems.COTTON_HELMET.get() : ChangShengJueItems.WHITE_COTTON_HELMET.get(),
                 ChangShengJueItems.COTTON_CHESTPLATE,
                 ChangShengJueItems.COTTON_LEGGINGS,
-                ChangShengJueItems.COTTON_BOOTS
-        );
+                ChangShengJueItems.COTTON_BOOTS);
 
         PARCEL_CONTENTS[ParcelType.MOUNTAIN_PATTERN.ordinal()] = Arrays.asList(
                 ChangShengJueItems.MOUNTAIN_PATTERN_HELMET_GUN_HOOD,
                 ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR,
                 ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR,
-                ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS
-        );
+                ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS);
 
         PARCEL_CONTENTS[ParcelType.MINGGUANG_ARMOR.ordinal()] = Arrays.asList(
                 ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_PHOENIX_WINGS_HELMET,
                 ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE,
                 ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS,
-                ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS
-        );
+                ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS);
 
         PARCEL_CONTENTS[ParcelType.QI_TIAN_DA_SHENG.ordinal()] = Arrays.asList(
                 ChangShengJueItems.PHOENIX_FEATHER_CAP,
                 ChangShengJueItems.OLDEN_CHAIN_MAIL_SHIRT,
                 ChangShengJueItems.TIGER_SKIN_GARMENT,
-                ChangShengJueItems.CLOUD_WALKING_BOOTS
-        );
+                ChangShengJueItems.CLOUD_WALKING_BOOTS);
 
         PARCEL_CONTENTS[ParcelType.MALE_TAOIST.ordinal()] = Arrays.asList(
                 ChangShengJueItems.MALE_TAOIST_HELMET,
                 ChangShengJueItems.MALE_TAOIST_CHESTPLATE,
                 ChangShengJueItems.TAOIST_LEGGINGS,
-                ChangShengJueItems.TAOIST_BOOTS
-        );
+                ChangShengJueItems.TAOIST_BOOTS);
+
         PARCEL_CONTENTS[ParcelType.FEMALE_TAOIST.ordinal()] = Arrays.asList(
                 ChangShengJueItems.FEMALE_TAOIST_HELMET,
                 ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE,
                 ChangShengJueItems.TAOIST_LEGGINGS,
-                ChangShengJueItems.TAOIST_BOOTS
-        );
+                ChangShengJueItems.TAOIST_BOOTS);
 
         PARCEL_CONTENTS[ParcelType.MALE_WEDDING_DRESS.ordinal()] = Arrays.asList(
                 ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP,
                 ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU,
                 ChangShengJueItems.TAOIST_LEGGINGS,
-                ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES
-        );
+                ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES);
+
         PARCEL_CONTENTS[ParcelType.FEMALE_WEDDING_DRESS.ordinal()] = Arrays.asList(
                 ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET,
                 ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING,
                 ChangShengJueItems.TAOIST_LEGGINGS,
-                ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES
-        );
+                ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES);
 
     }
 }
