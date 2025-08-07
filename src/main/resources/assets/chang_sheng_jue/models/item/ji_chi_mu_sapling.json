@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "chang_sheng_jue:block/ji_chi_mu_sapling"
-  }
-}

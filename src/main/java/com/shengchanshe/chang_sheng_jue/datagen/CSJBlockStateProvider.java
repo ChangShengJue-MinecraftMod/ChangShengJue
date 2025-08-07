@@ -25,61 +25,192 @@ public class CSJBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        simpleBlock(ChangShengJueBlocks.AG_ORE.get());
-        simpleBlock(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get());
         blockWithItem(ChangShengJueBlocks.AG_ORE);
         blockWithItem(ChangShengJueBlocks.DEEPSLATE_AG_ORE);
 
-        simpleBlock(ChangShengJueBlocks.KAOLIN_ORE.get());
         blockWithItem(ChangShengJueBlocks.KAOLIN_ORE);
 
-        simpleBlock(ChangShengJueBlocks.LIMESTONE.get());
         blockWithItem(ChangShengJueBlocks.LIMESTONE);
 
-        simpleBlock(ChangShengJueBlocks.SYDEROLIFE_ORE.get());
         blockWithItem(ChangShengJueBlocks.SYDEROLIFE_ORE);
 
-        simpleBlock(ChangShengJueBlocks.POPLAR_LEAVES.get());
-        blockWithItem(ChangShengJueBlocks.POPLAR_LEAVES);
-
-
         //瓦
-        simpleBlock(ChangShengJueBlocks.GRE_CYLINDER_TILE.get());
         blockWithItem(ChangShengJueBlocks.GRE_CYLINDER_TILE);
-        simpleBlock(ChangShengJueBlocks.RED_CYLINDER_TILE.get());
         blockWithItem(ChangShengJueBlocks.RED_CYLINDER_TILE);
-        simpleBlock(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get());
         blockWithItem(ChangShengJueBlocks.BLACK_CYLINDER_TILE);
-        simpleBlock(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get());
         blockWithItem(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE);
-        simpleBlock(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get());
         blockWithItem(ChangShengJueBlocks.BLUE_CYLINDER_TILE);
 
-        logBlock((RotatedPillarBlock) ChangShengJueBlocks.MULBERRY_LOG.get());
-        axisBlock(((RotatedPillarBlock)ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get()),
-                new ResourceLocation(ChangShengJue.MOD_ID, "block/stripped_mulberry_log_top"));
+        //白杨树
+        logBlock((RotatedPillarBlock) ChangShengJueBlocks.POPLAR_LOG.get());
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.POPLAR_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.POPLAR_LOG.get()), blockTexture(ChangShengJueBlocks.POPLAR_LOG.get()));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_POPLAR_LOG.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_POPLAR_LOG.get()), new ResourceLocation(ChangShengJue.MOD_ID, "block/stripped_poplar_log_top"));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_POPLAR_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_POPLAR_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_POPLAR_LOG.get()));
+        blockItem(ChangShengJueBlocks.POPLAR_LOG);
+        blockItem(ChangShengJueBlocks.POPLAR_WOOD);
+        blockItem(ChangShengJueBlocks.STRIPPED_POPLAR_LOG);
+        blockItem(ChangShengJueBlocks.STRIPPED_POPLAR_WOOD);
+        blockWithItem(ChangShengJueBlocks.POPLAR_PLANKS);
+        leavesBlock(ChangShengJueBlocks.POPLAR_LEAVES);
+        saplingBlock(ChangShengJueBlocks.POPLAR_SAPLING);
+        //紫檀
+        logBlock((RotatedPillarBlock) ChangShengJueBlocks.ZI_TAN_LOG.get());
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.ZI_TAN_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.ZI_TAN_LOG.get()), blockTexture(ChangShengJueBlocks.ZI_TAN_LOG.get()));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get()), new ResourceLocation(ChangShengJue.MOD_ID, "block/stripped_zi_tan_log_top"));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_ZI_TAN_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get()));
+        blockItem(ChangShengJueBlocks.ZI_TAN_LOG);
+        blockItem(ChangShengJueBlocks.ZI_TAN_WOOD);
+        blockItem(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG);
+        blockItem(ChangShengJueBlocks.STRIPPED_ZI_TAN_WOOD);
+        blockWithItem(ChangShengJueBlocks.ZI_TAN_PLANKS);
+        leavesBlock(ChangShengJueBlocks.ZI_TAN_LEAVES);
+        saplingBlock(ChangShengJueBlocks.ZI_TAN_SAPLING);
+        //桂花
+        logBlock((RotatedPillarBlock) ChangShengJueBlocks.OSMANTHUS_LOG.get());
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.OSMANTHUS_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.OSMANTHUS_LOG.get()), blockTexture(ChangShengJueBlocks.OSMANTHUS_LOG.get()));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_OSMANTHUS_LOG.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_OSMANTHUS_LOG.get()), new ResourceLocation(ChangShengJue.MOD_ID, "block/stripped_osmanthus_log_top"));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_OSMANTHUS_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_OSMANTHUS_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_OSMANTHUS_LOG.get()));
+        blockItem(ChangShengJueBlocks.OSMANTHUS_LOG);
+        blockItem(ChangShengJueBlocks.OSMANTHUS_WOOD);
+        blockItem(ChangShengJueBlocks.STRIPPED_OSMANTHUS_LOG);
+        blockItem(ChangShengJueBlocks.STRIPPED_OSMANTHUS_WOOD);
+        blockWithItem(ChangShengJueBlocks.OSMANTHUS_PLANKS);
+        leavesBlock(ChangShengJueBlocks.OSMANTHUS_LEAVES);
+        saplingBlock(ChangShengJueBlocks.OSMANTHUS_SAPLING);
+        //黄花梨
+        logBlock((RotatedPillarBlock) ChangShengJueBlocks.HUANG_HUA_LI_LOG.get());
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.HUANG_HUA_LI_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get()), blockTexture(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get()));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get()), new ResourceLocation(ChangShengJue.MOD_ID, "block/stripped_huang_hua_li_log_top"));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get()));
+        blockItem(ChangShengJueBlocks.HUANG_HUA_LI_LOG);
+        blockItem(ChangShengJueBlocks.HUANG_HUA_LI_WOOD);
+        blockItem(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG);
+        blockItem(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_WOOD);
+        blockWithItem(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS);
+        leavesBlock(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES);
+        saplingBlock(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING);
+        //鸡翅木
+        logBlock((RotatedPillarBlock) ChangShengJueBlocks.WENGE_LOG.get());
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.WENGE_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.WENGE_LOG.get()), blockTexture(ChangShengJueBlocks.WENGE_LOG.get()));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_WENGE_LOG.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_WENGE_LOG.get()), new ResourceLocation(ChangShengJue.MOD_ID, "block/stripped_wenge_log_top"));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_WENGE_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_WENGE_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_WENGE_LOG.get()));
+        blockItem(ChangShengJueBlocks.WENGE_LOG);
+        blockItem(ChangShengJueBlocks.WENGE_WOOD);
+        blockItem(ChangShengJueBlocks.STRIPPED_WENGE_LOG);
+        blockItem(ChangShengJueBlocks.STRIPPED_WENGE_WOOD);
+        blockWithItem(ChangShengJueBlocks.WENGE_PLANKS);
+        leavesBlock(ChangShengJueBlocks.WENGE_LEAVES);
+        saplingBlock(ChangShengJueBlocks.WENGE_SAPLING);
+        //梨树
+        logBlock((RotatedPillarBlock) ChangShengJueBlocks.PEAR_LOG.get());
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.PEAR_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.PEAR_LOG.get()), blockTexture(ChangShengJueBlocks.PEAR_LOG.get()));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_PEAR_LOG.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_PEAR_LOG.get()), new ResourceLocation(ChangShengJue.MOD_ID, "block/stripped_pear_log_top"));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_PEAR_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_PEAR_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_PEAR_LOG.get()));
+        blockItem(ChangShengJueBlocks.PEAR_LOG);
+        blockItem(ChangShengJueBlocks.PEAR_WOOD);
+        blockItem(ChangShengJueBlocks.STRIPPED_PEAR_LOG);
+        blockItem(ChangShengJueBlocks.STRIPPED_PEAR_WOOD);
+        blockWithItem(ChangShengJueBlocks.PEAR_PLANKS);
+        leavesBlock(ChangShengJueBlocks.PEAR_LEAVES);
+        saplingBlock(ChangShengJueBlocks.PEAR_SAPLING);
+        //荔枝
+        logBlock((RotatedPillarBlock) ChangShengJueBlocks.LICHEE_LOG.get());
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.LICHEE_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.LICHEE_LOG.get()), blockTexture(ChangShengJueBlocks.LICHEE_LOG.get()));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_LICHEE_LOG.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_LICHEE_LOG.get()), new ResourceLocation(ChangShengJue.MOD_ID, "block/stripped_lichee_log_top"));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_LICHEE_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_LICHEE_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_LICHEE_LOG.get()));
+        blockItem(ChangShengJueBlocks.LICHEE_LOG);
+        blockItem(ChangShengJueBlocks.LICHEE_WOOD);
+        blockItem(ChangShengJueBlocks.STRIPPED_LICHEE_LOG);
+        blockItem(ChangShengJueBlocks.STRIPPED_LICHEE_WOOD);
+        blockWithItem(ChangShengJueBlocks.LICHEE_PLANKS);
+        leavesBlock(ChangShengJueBlocks.LICHEE_LEAVES);
+        saplingBlock(ChangShengJueBlocks.LICHEE_SAPLING);
+        //榴莲
+        logBlock((RotatedPillarBlock) ChangShengJueBlocks.DURIAN_LOG.get());
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.DURIAN_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.DURIAN_LOG.get()), blockTexture(ChangShengJueBlocks.DURIAN_LOG.get()));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_DURIAN_LOG.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_DURIAN_LOG.get()), new ResourceLocation(ChangShengJue.MOD_ID, "block/stripped_durian_log_top"));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_DURIAN_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_DURIAN_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_DURIAN_LOG.get()));
+        blockItem(ChangShengJueBlocks.DURIAN_LOG);
+        blockItem(ChangShengJueBlocks.DURIAN_WOOD);
+        blockItem(ChangShengJueBlocks.STRIPPED_DURIAN_LOG);
+        blockItem(ChangShengJueBlocks.STRIPPED_DURIAN_WOOD);
+        blockWithItem(ChangShengJueBlocks.DURIAN_PLANKS);
+        leavesBlock(ChangShengJueBlocks.DURIAN_LEAVES);
+        saplingBlock(ChangShengJueBlocks.DURIAN_SAPLING);
 
-
-        blockItem(ChangShengJueBlocks.MULBERRY_LOG);
-        blockItem(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG);
-        saplingBlock(ChangShengJueBlocks.MULBERRY_SAPLING);
-
-        makeCrop((CropBlock) ChangShengJueBlocks.HORDEUM.get(), "hordeum_stage", "hordeum_stage");
         //芒果树叶
-        simpleBlock(ChangShengJueBlocks.MANGO_LEAVES.get());
-        blockWithItem(ChangShengJueBlocks.MANGO_LEAVES);
-        //梨树树叶
-        simpleBlock(ChangShengJueBlocks.PEAR_LEAVES.get());
-        blockWithItem(ChangShengJueBlocks.PEAR_LEAVES);
-        //荔枝树叶
-        simpleBlock(ChangShengJueBlocks.LICHEE_LEAVES.get());
-        blockWithItem(ChangShengJueBlocks.LICHEE_LEAVES);
-        //榴莲树叶
-        simpleBlock(ChangShengJueBlocks.DURIAN_LEAVES.get());
-        blockWithItem(ChangShengJueBlocks.DURIAN_LEAVES);
+        logBlock((RotatedPillarBlock) ChangShengJueBlocks.MANGO_LOG.get());
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.MANGO_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.MANGO_LOG.get()), blockTexture(ChangShengJueBlocks.MANGO_LOG.get()));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_MANGO_LOG.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_MANGO_LOG.get()), new ResourceLocation(ChangShengJue.MOD_ID, "block/stripped_mango_log_top"));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_MANGO_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_MANGO_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_MANGO_LOG.get()));
+        blockItem(ChangShengJueBlocks.MANGO_LOG);
+        blockItem(ChangShengJueBlocks.MANGO_WOOD);
+        blockItem(ChangShengJueBlocks.STRIPPED_MANGO_LOG);
+        blockItem(ChangShengJueBlocks.STRIPPED_MANGO_WOOD);
+        blockWithItem(ChangShengJueBlocks.MANGO_PLANKS);
+        leavesBlock(ChangShengJueBlocks.MANGO_LEAVES);
+        saplingBlock(ChangShengJueBlocks.MANGO_SAPLING);
+        //梅花
+        logBlock((RotatedPillarBlock) ChangShengJueBlocks.PLUM_LOG.get());
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.PLUM_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.PLUM_LOG.get()), blockTexture(ChangShengJueBlocks.PLUM_LOG.get()));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_PLUM_LOG.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_PLUM_LOG.get()), new ResourceLocation(ChangShengJue.MOD_ID, "block/stripped_plum_log_top"));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_PLUM_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_PLUM_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_PLUM_LOG.get()));
+        blockItem(ChangShengJueBlocks.PLUM_LOG);
+        blockItem(ChangShengJueBlocks.PLUM_WOOD);
+        blockItem(ChangShengJueBlocks.STRIPPED_PLUM_LOG);
+        blockItem(ChangShengJueBlocks.STRIPPED_PLUM_WOOD);
+        blockWithItem(ChangShengJueBlocks.PLUM_PLANKS);
+        leavesBlock(ChangShengJueBlocks.PLUM_LEAVES);
+        saplingBlock(ChangShengJueBlocks.PLUM_SAPLING);
+        //桑树
+        logBlock((RotatedPillarBlock) ChangShengJueBlocks.MULBERRY_LOG.get());
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.MULBERRY_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.MULBERRY_LOG.get()), blockTexture(ChangShengJueBlocks.MULBERRY_LOG.get()));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get()), new ResourceLocation(ChangShengJue.MOD_ID, "block/stripped_mulberry_log_top"));
+        axisBlock((RotatedPillarBlock) ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD.get(),
+                blockTexture(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get()), blockTexture(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get()));
+        blockItem(ChangShengJueBlocks.MULBERRY_LOG);
+        blockItem(ChangShengJueBlocks.MULBERRY_WOOD);
+        blockItem(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG);
+        blockItem(ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD);
+        blockWithItem(ChangShengJueBlocks.MULBERRY_PLANKS);
+        saplingBlock(ChangShengJueBlocks.MULBERRY_SAPLING);
 
 //        simpleBlock(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get(),new ModelFile.UncheckedModelFile(modLoc("block/blue_and_white_porcelain_flower_pots")));
 //        simpleBlockItem(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get(),new ModelFile.UncheckedModelFile(modLoc("block/blue_and_white_porcelain_flower_pots")));
+
+        makeCrop((CropBlock) ChangShengJueBlocks.HORDEUM.get(), "hordeum_stage", "hordeum_stage");
         //花盆和盆栽花
         simpleBlockWithItem(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/blue_and_white_porcelain_flower_pots")));
@@ -193,10 +324,6 @@ public class CSJBlockStateProvider extends BlockStateProvider {
                 new ModelFile.UncheckedModelFile(modLoc("block/white_jade_guardrail")));
 //        wallBlock(((WallBlock) ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get()), new ResourceLocation(ChangShengJue.MOD_ID,"block/white_jade_balustrade"));
 
-
-
-
-
     }
 
 
@@ -223,7 +350,12 @@ public class CSJBlockStateProvider extends BlockStateProvider {
                 models().cross(ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
     }
 
+    private void leavesBlock(RegistryObject<Block> blockRegistryObject){
+        simpleBlockWithItem(blockRegistryObject.get(),models().singleTexture(ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath(),
+                new ResourceLocation("block/leaves"), "all", blockTexture(blockRegistryObject.get())).renderType("cutout"));
+    }
+
     public void blockWithItem(RegistryObject<Block> block){
-        simpleBlockItem(block.get(),cubeAll(block.get()));
+        simpleBlockWithItem(block.get(),cubeAll(block.get()));
     }
 }

@@ -146,6 +146,14 @@ public class ChangShengJueBlocks {
     //芒果树
     public static final RegistryObject<Block> MANGO_LOG = registerBlock("mango_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
+    public static final RegistryObject<Block> STRIPPED_MANGO_LOG = registerBlock("stripped_mango_log",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
+    public static final RegistryObject<Block> MANGO_WOOD = registerBlock("mango_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+    public static final RegistryObject<Block> STRIPPED_MANGO_WOOD = registerBlock("stripped_mango_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final RegistryObject<Block> MANGO_PLANKS = registerBlock("mango_planks",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> MANGO_LEAVES = registerBlock("mango_leaves",
             ()-> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> MANGO_SAPLING = registerBlock("mango_sapling",
@@ -160,75 +168,128 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> BANANA_SAPLING = registerBlock("banana_sapling",
             ()-> new SaplingBlock(new BananaTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
+    //梨树
     public static final RegistryObject<Block> PEAR_LOG = registerBlock("pear_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
+    public static final RegistryObject<Block> STRIPPED_PEAR_LOG = registerBlock("stripped_pear_log",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
+    public static final RegistryObject<Block> PEAR_WOOD = registerBlock("pear_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+    public static final RegistryObject<Block> STRIPPED_PEAR_WOOD = registerBlock("stripped_pear_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final RegistryObject<Block> PEAR_PLANKS = registerBlock("pear_planks",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> PEAR_LEAVES = registerBlock("pear_leaves",
             ()-> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> PEAR_SAPLING = registerBlock("pear_sapling",
             ()-> new SaplingBlock(new PearTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
-
+    //荔枝
     public static final RegistryObject<Block> LICHEE_LOG = registerBlock("lichee_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
+    public static final RegistryObject<Block> STRIPPED_LICHEE_LOG = registerBlock("stripped_lichee_log",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
+    public static final RegistryObject<Block> LICHEE_WOOD = registerBlock("lichee_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+    public static final RegistryObject<Block> STRIPPED_LICHEE_WOOD = registerBlock("stripped_lichee_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final RegistryObject<Block> LICHEE_PLANKS = registerBlock("lichee_planks",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> LICHEE_LEAVES = registerBlock("lichee_leaves",
             ()-> new FruitLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> LICHEE_SAPLING = registerBlock("lichee_sapling",
             ()-> new SaplingBlock(new LicheeTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
-
+    //榴莲
     public static final RegistryObject<Block> DURIAN_LOG = registerBlock("durian_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
+    public static final RegistryObject<Block> STRIPPED_DURIAN_LOG = registerBlock("stripped_durian_log",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
+    public static final RegistryObject<Block> DURIAN_WOOD = registerBlock("durian_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+    public static final RegistryObject<Block> STRIPPED_DURIAN_WOOD = registerBlock("stripped_durian_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final RegistryObject<Block> DURIAN_PLANKS = registerBlock("durian_planks",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> DURIAN_LEAVES = registerBlock("durian_leaves",
             ()-> new FruitLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> DURIAN_SAPLING = registerBlock("durian_sapling",
             ()-> new SaplingBlock(new DurianTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
-
-    public static final RegistryObject<Block> GUI_HUA_LOG = registerBlock("gui_hua_log",
+    //桂花树
+    public static final RegistryObject<Block> OSMANTHUS_LOG = registerBlock("osmanthus_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
-    public static final RegistryObject<Block> GUI_HUA_LEAVES = registerBlock("gui_hua_leaves",
+    public static final RegistryObject<Block> OSMANTHUS_WOOD = registerBlock("osmanthus_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+    public static final RegistryObject<Block> STRIPPED_OSMANTHUS_LOG = registerBlock("stripped_osmanthus_log",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
+    public static final RegistryObject<Block> STRIPPED_OSMANTHUS_WOOD = registerBlock("stripped_osmanthus_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final RegistryObject<Block> OSMANTHUS_PLANKS = registerBlock("osmanthus_planks",
+            ()-> new Planks(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> OSMANTHUS_LEAVES = registerBlock("osmanthus_leaves",
             ()-> new GuiHuaLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
-    public static final RegistryObject<Block> GUI_HUA_SAPLING = registerBlock("gui_hua_sapling",
-            ()-> new SaplingBlock(new HuangHuaLiTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
-    public static final RegistryObject<Block> GUI_HUA_DEFOLIATION = registerBlock( "gui_hua_defoliation",
+    public static final RegistryObject<Block> OSMANTHUS_SAPLING = registerBlock("osmanthus_sapling",
+            ()-> new SaplingBlock(new GuiHuaTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> OSMANTHUS_DEFOLIATION = registerBlock( "osmanthus_defoliation",
             ()-> new LeavesDefoliation(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable()
                     .noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY)));
 
-    public static final RegistryObject<Block> MEI_HUA_LOG = registerBlock("mei_hua_log",
+    public static final RegistryObject<Block> PLUM_LOG = registerBlock("plum_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
-    public static final RegistryObject<Block> MEI_HUA_LEAVES = registerBlock("mei_hua_leaves",
+    public static final RegistryObject<Block> PLUM_WOOD = registerBlock("plum_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+    public static final RegistryObject<Block> STRIPPED_PLUM_LOG = registerBlock("stripped_plum_log",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
+    public static final RegistryObject<Block> STRIPPED_PLUM_WOOD = registerBlock("stripped_plum_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final RegistryObject<Block> PLUM_PLANKS = registerBlock("plum_planks",
+            ()-> new Planks(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> PLUM_LEAVES = registerBlock("plum_leaves",
             ()-> new MeiHuaLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
-    public static final RegistryObject<Block> MEI_HUA_SAPLING = registerBlock("mei_hua_sapling",
+    public static final RegistryObject<Block> PLUM_SAPLING = registerBlock("plum_sapling",
             ()-> new SaplingBlock(new MeiHuaTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
-    public static final RegistryObject<Block> MEI_HUA_DEFOLIATION = registerBlock( "mei_hua_defoliation",
+    public static final RegistryObject<Block> PLUM_DEFOLIATION = registerBlock( "plum_defoliation",
             ()-> new LeavesDefoliation(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable()
                     .noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY)));
-
+    //黄花梨
     public static final RegistryObject<Block> HUANG_HUA_LI_LOG = registerBlock("huang_hua_li_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
     public static final RegistryObject<Block> STRIPPED_HUANG_HUA_LI_LOG = registerBlock("stripped_huang_hua_li_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
+    public static final RegistryObject<Block> HUANG_HUA_LI_WOOD = registerBlock("huang_hua_li_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+    public static final RegistryObject<Block> STRIPPED_HUANG_HUA_LI_WOOD = registerBlock("stripped_huang_hua_li_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)));
     public static final RegistryObject<Block> HUANG_HUA_LI_PLANKS = registerBlock("huang_hua_li_planks",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> HUANG_HUA_LI_LEAVES = registerBlock("huang_hua_li_leaves",
             ()-> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> HUANG_HUA_LI_SAPLING = registerBlock("huang_hua_li_sapling",
             ()-> new SaplingBlock(new HuangHuaLiTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
-
-    public static final RegistryObject<Block> JI_CHI_MU_LOG = registerBlock("ji_chi_mu_log",
+    //鸡翅木
+    public static final RegistryObject<Block> WENGE_LOG = registerBlock("wenge_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
-    public static final RegistryObject<Block> STRIPPED_JI_CHI_MU_LOG = registerBlock("ji_chi_mu_stripped_log",
+    public static final RegistryObject<Block> STRIPPED_WENGE_LOG = registerBlock("stripped_wenge_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
-    public static final RegistryObject<Block> JI_CHI_MU_PLANKS = registerBlock("ji_chi_mu_planks",
+    public static final RegistryObject<Block> WENGE_WOOD = registerBlock("wenge_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+    public static final RegistryObject<Block> STRIPPED_WENGE_WOOD = registerBlock("stripped_wenge_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final RegistryObject<Block> WENGE_PLANKS = registerBlock("wenge_planks",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
-    public static final RegistryObject<Block> JI_CHI_MU_LEAVES = registerBlock("ji_chi_mu_leaves",
+    public static final RegistryObject<Block> WENGE_LEAVES = registerBlock("wenge_leaves",
             ()-> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
-    public static final RegistryObject<Block> JI_CHI_MU_SAPLING = registerBlock("ji_chi_mu_sapling",
+    public static final RegistryObject<Block> WENGE_SAPLING = registerBlock("wenge_sapling",
             ()-> new SaplingBlock(new JiChiMuTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
     public static final RegistryObject<Block> ZI_TAN_LOG = registerBlock("zi_tan_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
-    public static final RegistryObject<Block> STRIPPED_ZI_TAN_LOG = registerBlock("zi_tan_stripped_log",
+    public static final RegistryObject<Block> ZI_TAN_WOOD = registerBlock("zi_tan_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+    public static final RegistryObject<Block> STRIPPED_ZI_TAN_LOG = registerBlock("stripped_zi_tan_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
+    public static final RegistryObject<Block> STRIPPED_ZI_TAN_WOOD = registerBlock("stripped_zi_tan_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)));
     public static final RegistryObject<Block> ZI_TAN_PLANKS = registerBlock("zi_tan_planks",
-            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+            ()-> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> ZI_TAN_LEAVES = registerBlock("zi_tan_leaves",
             ()-> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> ZI_TAN_SAPLING = registerBlock("zi_tan_sapling",
@@ -236,6 +297,14 @@ public class ChangShengJueBlocks {
     //白杨树
     public static final RegistryObject<Block> POPLAR_LOG = registerBlock("poplar_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
+    public static final RegistryObject<Block> POPLAR_WOOD = registerBlock("poplar_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
+    public static final RegistryObject<Block> STRIPPED_POPLAR_LOG = registerBlock("stripped_poplar_log",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
+    public static final RegistryObject<Block> STRIPPED_POPLAR_WOOD = registerBlock("stripped_poplar_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final RegistryObject<Block> POPLAR_PLANKS = registerBlock("poplar_planks",
+            ()-> new Planks(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> POPLAR_LEAVES = registerBlock("poplar_leaves",
             ()-> new PoplarLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> POPLAR_SAPLING = registerBlock("poplar_sapling",
@@ -246,8 +315,14 @@ public class ChangShengJueBlocks {
     //桑树
     public static final RegistryObject<Block> MULBERRY_LOG = registerBlock("mulberry_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
+    public static final RegistryObject<Block> MULBERRY_WOOD = registerBlock("mulberry_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));
     public static final RegistryObject<Block> STRIPPED_MULBERRY_LOG = registerBlock("stripped_mulberry_log",
             ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_LOG)));
+    public static final RegistryObject<Block> STRIPPED_MULBERRY_WOOD = registerBlock("stripped_mulberry_wood",
+            ()-> new LogBlock(BlockBehaviour.Properties.copy(Blocks.STRIPPED_OAK_WOOD)));
+    public static final RegistryObject<Block> MULBERRY_PLANKS = registerBlock("mulberry_planks",
+            ()-> new Planks(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> MULBERRY_LEAVES = registerBlock("mulberry_leaves",
             ()-> new MulberryLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> MULBERRY_SAPLING = registerBlock("mulberry_sapling",

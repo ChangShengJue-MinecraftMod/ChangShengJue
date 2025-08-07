@@ -26,7 +26,7 @@ public class GoldenBellJar extends AbstractionInternalkungfu {
 
     public GoldenBellJar() {
         super(KUNG_FU_ID.toString(), Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.GOLD),
-                KungFuType.INTERNAL_KUNGFU, "description",0.15f, 2,0.0f);
+                KungFuType.INTERNAL_KUNGFU,Component.translatable("description"),0.15f, 2,0.0f);
     }
 
     @Override

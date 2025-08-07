@@ -2,8 +2,15 @@
   "values": [
     "#chang_sheng_jue:log",
     "#chang_sheng_jue:huang_hua_li_log",
-    "#chang_sheng_jue:ji_chi_mu_log",
+    "#chang_sheng_jue:wenge_log",
     "#chang_sheng_jue:zi_tan_log",
-    "#chang_sheng_jue:poplar_log"
+    "#chang_sheng_jue:poplar_log",
+    "#chang_sheng_jue:osmanthus_log",
+    "#chang_sheng_jue:pear_log",
+    "#chang_sheng_jue:lichee_log",
+    "#chang_sheng_jue:durian_log",
+    "#chang_sheng_jue:mango_log",
+    "#chang_sheng_jue:plum_log",
+    "#chang_sheng_jue:mulberry_log"
   ]
 }

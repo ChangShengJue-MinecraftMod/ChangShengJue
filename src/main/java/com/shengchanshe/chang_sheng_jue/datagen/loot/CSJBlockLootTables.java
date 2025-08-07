@@ -50,6 +50,10 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         //树木
         //芒果
         this.dropSelf(ChangShengJueBlocks.MANGO_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.MANGO_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_MANGO_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_MANGO_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.MANGO_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.MANGO_SAPLING.get());
 //        this.createLeavesFruitsDrops(ChangShengJueBlocks.MANGO_LEAVES.get(),ChangShengJueItems.MANGO.get(),ChangShengJueBlocks.MANGO_SAPLING.get());
         this.add(ChangShengJueBlocks.MANGO_LEAVES.get(),
@@ -62,80 +66,107 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(ChangShengJueBlocks.BANANA_FRUIT.get(), (createSilkTouchDispatchTable(ChangShengJueBlocks.BANANA_FRUIT.get(),
                 LootItem.lootTableItem(ChangShengJueItems.BANANA.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 7.0F))))));
         //梨
-        this.dropSelf(ChangShengJueBlocks.PEAR_LOG.get());
-        this.dropSelf(ChangShengJueBlocks.PEAR_SAPLING.get());
 //        this.createLeavesFruitsDrops(ChangShengJueBlocks.PEAR_LEAVES.get(),ChangShengJueItems.PEAR.get(),ChangShengJueBlocks.PEAR_SAPLING.get());
-        this.add(ChangShengJueBlocks.PEAR_LEAVES.get(),
-                (block) -> this.createLeavesDrops(block,ChangShengJueBlocks.PEAR_SAPLING.get(),ChangShengJueItems.PEAR.get(),NORMAL_LEAVES_SAPLING_CHANCES));
-
+        this.dropSelf(ChangShengJueBlocks.PEAR_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.PEAR_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_PEAR_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_PEAR_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.PEAR_PLANKS.get());
+        this.dropSelf(ChangShengJueBlocks.PEAR_SAPLING.get());
+        this.add(ChangShengJueBlocks.PEAR_LEAVES.get(), (block) -> this.createLeavesDrops(block,ChangShengJueBlocks.PEAR_SAPLING.get(),ChangShengJueItems.PEAR.get(),NORMAL_LEAVES_SAPLING_CHANCES));
         //荔枝
         this.dropSelf(ChangShengJueBlocks.LICHEE_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.LICHEE_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_LICHEE_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_LICHEE_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.LICHEE_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.LICHEE_SAPLING.get());
 //        this.createLeavesFruitsDrops(ChangShengJueBlocks.LICHEE_LEAVES.get(),ChangShengJueItems.LICHEE.get(),ChangShengJueBlocks.LICHEE_SAPLING.get());
         this.add(ChangShengJueBlocks.LICHEE_LEAVES.get(),
                 (block) -> this.createLeavesDrops(block,ChangShengJueBlocks.LICHEE_SAPLING.get(),ChangShengJueItems.LICHEE.get(),NORMAL_LEAVES_SAPLING_CHANCES));
         //榴莲
         this.dropSelf(ChangShengJueBlocks.DURIAN_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.DURIAN_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_DURIAN_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_DURIAN_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.DURIAN_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.DURIAN_SAPLING.get());
 //        this.createLeavesFruitsDrops(ChangShengJueBlocks.DURIAN_LEAVES.get(),ChangShengJueItems.DURIAN.get(),ChangShengJueBlocks.DURIAN_SAPLING.get());
         this.add(ChangShengJueBlocks.DURIAN_LEAVES.get(),
                 (block) -> this.createLeavesDrops(block,ChangShengJueBlocks.DURIAN_SAPLING.get(),ChangShengJueItems.DURIAN.get(),NORMAL_LEAVES_SAPLING_CHANCES));
         this.add(ChangShengJueBlocks.DURIAN.get(), block ->
-                this.createSilkTouchDispatchTable(
+                createSilkTouchDispatchTable(
                         block,
                         LootItem.lootTableItem(ChangShengJueItems.DURIAN_MEAT.get())
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 7.0F)))
                 )
         );
-        this.dropSelf(ChangShengJueBlocks.GUI_HUA_LOG.get());
-        this.dropSelf(ChangShengJueBlocks.GUI_HUA_SAPLING.get());
-        this.add(ChangShengJueBlocks.GUI_HUA_DEFOLIATION.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.GUI_HUA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-
-        this.add(ChangShengJueBlocks.GUI_HUA_LEAVES.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.GUI_HUA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES).
+        //桂花树
+        this.dropSelf(ChangShengJueBlocks.OSMANTHUS_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.OSMANTHUS_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_OSMANTHUS_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_OSMANTHUS_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.OSMANTHUS_PLANKS.get());
+        this.dropSelf(ChangShengJueBlocks.OSMANTHUS_SAPLING.get());
+        this.add(ChangShengJueBlocks.OSMANTHUS_DEFOLIATION.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.OSMANTHUS_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ChangShengJueBlocks.OSMANTHUS_LEAVES.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.OSMANTHUS_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES).
                 withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_NO_SHEARS_OR_SILK_TOUCH)
                         .add(this.applyExplosionCondition(block, LootItem.lootTableItem(ChangShengJueItems.GUI_HUA.get()))
                                 .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.2F, 0.3F, 0.4F, 0.7F, 0.8F)))));
-
-        this.dropSelf(ChangShengJueBlocks.MEI_HUA_LOG.get());
-        this.dropSelf(ChangShengJueBlocks.MEI_HUA_SAPLING.get());
-        this.add(ChangShengJueBlocks.MEI_HUA_DEFOLIATION.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.MEI_HUA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-
-        this.add(ChangShengJueBlocks.MEI_HUA_LEAVES.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.MEI_HUA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES).
+        // 梅花
+        this.dropSelf(ChangShengJueBlocks.PLUM_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.PLUM_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_PLUM_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_PLUM_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.PLUM_PLANKS.get());
+        this.dropSelf(ChangShengJueBlocks.PLUM_SAPLING.get());
+        this.add(ChangShengJueBlocks.PLUM_DEFOLIATION.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.PLUM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ChangShengJueBlocks.PLUM_LEAVES.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.PLUM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES).
                 withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_NO_SHEARS_OR_SILK_TOUCH)
                         .add(this.applyExplosionCondition(block, LootItem.lootTableItem(ChangShengJueItems.MEI_HUA.get()))
                                 .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.2F, 0.3F, 0.4F, 0.7F, 0.8F)))));
-
         //黄花梨
         this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_WOOD.get());
         this.dropSelf(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_WOOD.get());
         this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get());
         this.add(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get(),
                 (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-
         //鸡翅木
-        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_LOG.get());
-        this.dropSelf(ChangShengJueBlocks.STRIPPED_JI_CHI_MU_LOG.get());
-        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get());
-        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_SAPLING.get());
-        this.add(ChangShengJueBlocks.JI_CHI_MU_LEAVES.get(),
-                (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.JI_CHI_MU_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-
-
+        this.dropSelf(ChangShengJueBlocks.WENGE_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.WENGE_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_WENGE_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_WENGE_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.WENGE_PLANKS.get());
+        this.dropSelf(ChangShengJueBlocks.WENGE_SAPLING.get());
+        this.add(ChangShengJueBlocks.WENGE_LEAVES.get(),
+                (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.WENGE_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        //紫檀
         this.dropSelf(ChangShengJueBlocks.ZI_TAN_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.ZI_TAN_WOOD.get());
         this.dropSelf(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_ZI_TAN_WOOD.get());
         this.dropSelf(ChangShengJueBlocks.ZI_TAN_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.ZI_TAN_SAPLING.get());
         this.add(ChangShengJueBlocks.ZI_TAN_LEAVES.get(),
                 (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.ZI_TAN_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         //白杨树
         this.dropSelf(ChangShengJueBlocks.POPLAR_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.POPLAR_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_POPLAR_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_POPLAR_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.POPLAR_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.POPLAR_SAPLING.get());
         this.add(ChangShengJueBlocks.POPLAR_DEFOLIATION.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.POPLAR_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         this.add(ChangShengJueBlocks.POPLAR_LEAVES.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.POPLAR_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         //桑树
         this.dropSelf(ChangShengJueBlocks.MULBERRY_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.MULBERRY_WOOD.get());
         this.dropSelf(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.MULBERRY_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.MULBERRY_SAPLING.get());
         this.createMulberryLeavesDrops(ChangShengJueBlocks.MULBERRY_LEAVES.get(),ChangShengJueItems.MULBERRY.get(),ChangShengJueBlocks.MULBERRY_SAPLING.get(),ChangShengJueItems.NATURAL_SILK.get());
         //矿石

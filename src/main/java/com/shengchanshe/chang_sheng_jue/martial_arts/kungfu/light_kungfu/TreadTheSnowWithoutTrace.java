@@ -18,7 +18,7 @@ public class TreadTheSnowWithoutTrace extends AbstractionLightKungfu {
     public static final ResourceLocation KUNG_FU_ID = new ResourceLocation(ChangShengJue.MOD_ID, "tread_the_snow_without_trace");
     public TreadTheSnowWithoutTrace() {
         super(KUNG_FU_ID.toString(), Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.GREEN),
-                KungFuType.MENTAL_KUNGFU, "description", 0.15f);
+                KungFuType.MENTAL_KUNGFU,  Component.translatable("description"), 0.15f);
     }
 
     @Override

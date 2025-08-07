@@ -29,7 +29,7 @@ public class ShaolinStickMethod extends AbstractionExternalKunfu {
         super(KUNG_FU_ID.toString(),
                 Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.RED),
                 KungFuType.EXTERNAL_KUNFU,
-                "description",0.1f,0.15f,2,0.0f,
+                Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".clubbed.type"),0.1f,0.15f,2,0.0f,
                 0.25f, 6);
     }
 
@@ -129,6 +129,11 @@ public class ShaolinStickMethod extends AbstractionExternalKunfu {
         }else {
             return super.getEffectProbability();
         }
+    }
+
+    @Override
+    public Component getDescription() {
+        return Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".clubbed.type");
     }
 
     @Override

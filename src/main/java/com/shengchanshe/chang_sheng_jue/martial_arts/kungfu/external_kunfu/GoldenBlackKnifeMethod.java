@@ -30,7 +30,7 @@ public class GoldenBlackKnifeMethod extends AbstractionExternalKunfu {
         super(KUNG_FU_ID.toString(),
                 Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.GOLD),
                 KungFuType.EXTERNAL_KUNFU,
-                "description",0.1f,0.15f,2,0.0f,
+                Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".knife.type"),0.1f,0.15f,2,0.0f,
                 0.25f, 6);
     }
 
@@ -103,6 +103,11 @@ public class GoldenBlackKnifeMethod extends AbstractionExternalKunfu {
                 }
             }
         }
+    }
+
+    @Override
+    public Component getDescription() {
+        return Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".knife.type");
     }
 
     @Override

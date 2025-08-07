@@ -371,15 +371,26 @@
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".hold_shift.tooltip",
                     "未大成前施展效果:有35%%概率将遭受的攻击伤害于1.0秒后以1.5倍反弹给攻击者\\n大成后施展效果:每多1点血量额外提高2%%触发概率\\n每施展1次冷却时间短期内延长2秒\\n成功施展%s次后武功大成");
 
-            this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.kungfu", "习得%s");
-            this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu", "%s已阅览过,%s!");
-            this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.kungfu", "%s已阅览,快去领悟吧");
-            this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.dacheng.kungfu", "%s神功大成!");
-            this.add("kungfu.true.comprehend", "且已领悟");
-            this.add("kungfu.fales.comprehend", "还需领悟");
-            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".state_change.kungfu", "%s : %s");
-            this.add("kungfu.open", "启动");
-            this.add("kungfu.off", "关闭");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.kungfu", "习得%s");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu", "%s已阅览过,%s!");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.external_kunfu", "%s已阅览,使用%s攻击目标来实战领悟吧!");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.external_kunfu_glove", "%s已阅览,还需用空手或%s攻击木桩来操练领悟吧!");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.dacheng.kungfu", "%s神功大成!");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".swords.type", "剑");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".softsword.type", "软剑");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".clubbed.type", "棍");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".glove.type", "拳套");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".knife.type", "刀");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".lance.type", "枪");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".throwingknives.type", "飞刀");
+
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu.true.comprehend", "且已习得!可使用%s长按鼠标右键蓄力%s秒后施展武功");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu.fales.comprehend", "还需用%s攻击目标来实战领悟!");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".state_change.kungfu", "%s : %s");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.open", "启动,还需用空手或%s攻击木桩来操练领悟!");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.comprehend.open", "启动,可使用%s长按鼠标右键蓄力%s秒后施展武功");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.off", "关闭");
+
             this.add("message." + ChangShengJue.MOD_ID + ".dagger_pouch.empty", "§c没有武器了");
     
             this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.count","飞刀囊容量 %s / %s");
@@ -480,10 +491,14 @@
     
             this.add(ChangShengJueBlocks.CANTALOUPE_BLOCK.get(),"哈密瓜");
             this.add(ChangShengJueBlocks.WILDLIFE_HORDEUM.get(),"野生大麦");
-    
-            this.add(ChangShengJueBlocks.MANGO_LOG.get(),"芒果原木");
-            this.add(ChangShengJueBlocks.MANGO_LEAVES.get(),"芒果树叶");
-            this.add(ChangShengJueBlocks.MANGO_SAPLING.get(),"芒果树苗");
+
+            this.add(ChangShengJueBlocks.MANGO_LOG.get(),"芒果树原木");
+            this.add(ChangShengJueBlocks.MANGO_WOOD.get(),"芒果树木");
+            this.add(ChangShengJueBlocks.STRIPPED_MANGO_LOG.get(),"去皮芒果树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_MANGO_WOOD.get(),"去皮芒果树木");
+            this.add(ChangShengJueBlocks.MANGO_PLANKS.get(),"芒果树木板");
+            this.add(ChangShengJueBlocks.MANGO_LEAVES.get(),"芒果树树叶");
+            this.add(ChangShengJueBlocks.MANGO_SAPLING.get(),"芒果树树苗");
     
             this.add(ChangShengJueBlocks.BANANA_LOG.get(),"香蕉原木");
             this.add(ChangShengJueBlocks.BANANA_LEAVES.get(),"香蕉树叶");
@@ -491,54 +506,88 @@
             this.add(ChangShengJueBlocks.BANANA_FRUIT.get(),"香蕉");
     
             this.add(ChangShengJueBlocks.PEAR_LOG.get(),"梨树原木");
+            this.add(ChangShengJueBlocks.PEAR_WOOD.get(),"梨树木");
+            this.add(ChangShengJueBlocks.STRIPPED_PEAR_LOG.get(),"去皮梨树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_PEAR_WOOD.get(),"去皮梨树木");
+            this.add(ChangShengJueBlocks.PEAR_PLANKS.get(),"梨树木板");
             this.add(ChangShengJueBlocks.PEAR_LEAVES.get(),"梨树树叶");
             this.add(ChangShengJueBlocks.PEAR_SAPLING.get(),"梨树树苗");
-    
-            this.add(ChangShengJueBlocks.LICHEE_LOG.get(),"荔枝原木");
-            this.add(ChangShengJueBlocks.LICHEE_LEAVES.get(),"荔枝树叶");
-            this.add(ChangShengJueBlocks.LICHEE_SAPLING.get(),"荔枝树苗");
-    
-    
-            this.add(ChangShengJueBlocks.DURIAN_LOG.get(),"榴莲原木");
-            this.add(ChangShengJueBlocks.DURIAN_LEAVES.get(),"榴莲树叶");
-            this.add(ChangShengJueBlocks.DURIAN_SAPLING.get(),"榴莲树苗");
-    
-            this.add(ChangShengJueBlocks.GUI_HUA_LOG.get(),"桂花原木");
-            this.add(ChangShengJueBlocks.GUI_HUA_LEAVES.get(),"桂花树叶");
-            this.add(ChangShengJueBlocks.GUI_HUA_SAPLING.get(),"桂花树苗");
-            this.add(ChangShengJueBlocks.GUI_HUA_DEFOLIATION.get(),"桂花落叶");
-    
-            this.add(ChangShengJueBlocks.MEI_HUA_LOG.get(),"梅花原木");
-            this.add(ChangShengJueBlocks.MEI_HUA_LEAVES.get(),"梅花树叶");
-            this.add(ChangShengJueBlocks.MEI_HUA_SAPLING.get(),"梅花树苗");
-            this.add(ChangShengJueBlocks.MEI_HUA_DEFOLIATION.get(),"梅花落叶");
+
+            this.add(ChangShengJueBlocks.LICHEE_LOG.get(),"荔枝树原木");
+            this.add(ChangShengJueBlocks.LICHEE_WOOD.get(),"荔枝树木");
+            this.add(ChangShengJueBlocks.STRIPPED_LICHEE_LOG.get(),"去皮荔枝树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_LICHEE_WOOD.get(),"去皮荔枝树");
+            this.add(ChangShengJueBlocks.LICHEE_PLANKS.get(),"荔枝树木板");
+            this.add(ChangShengJueBlocks.LICHEE_LEAVES.get(),"荔枝树树叶");
+            this.add(ChangShengJueBlocks.LICHEE_SAPLING.get(),"荔枝树树苗");
+
+            this.add(ChangShengJueBlocks.DURIAN_LOG.get(),"榴莲树原木");
+            this.add(ChangShengJueBlocks.DURIAN_WOOD.get(),"榴莲树木");
+            this.add(ChangShengJueBlocks.STRIPPED_DURIAN_LOG.get(),"去皮榴莲树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_DURIAN_WOOD.get(),"去皮榴莲树木");
+            this.add(ChangShengJueBlocks.DURIAN_PLANKS.get(),"榴莲树木板");
+            this.add(ChangShengJueBlocks.DURIAN_LEAVES.get(),"榴莲树树叶");
+            this.add(ChangShengJueBlocks.DURIAN_SAPLING.get(),"榴莲树树苗");
+
+            this.add(ChangShengJueBlocks.OSMANTHUS_LOG.get(),"桂花树原木");
+            this.add(ChangShengJueBlocks.OSMANTHUS_WOOD.get(),"桂花树木");
+            this.add(ChangShengJueBlocks.STRIPPED_OSMANTHUS_LOG.get(),"去皮桂花树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_OSMANTHUS_WOOD.get(),"去皮桂花树木");
+            this.add(ChangShengJueBlocks.OSMANTHUS_PLANKS.get(),"桂花树木板");
+            this.add(ChangShengJueBlocks.OSMANTHUS_LEAVES.get(),"桂花树树叶");
+            this.add(ChangShengJueBlocks.OSMANTHUS_SAPLING.get(),"桂花树树苗");
+            this.add(ChangShengJueBlocks.OSMANTHUS_DEFOLIATION.get(),"桂花树落叶");
+
+            this.add(ChangShengJueBlocks.PLUM_LOG.get(),"梅花树原木");
+            this.add(ChangShengJueBlocks.PLUM_WOOD.get(),"梅花树木");
+            this.add(ChangShengJueBlocks.STRIPPED_PLUM_LOG.get(),"去皮梅花树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_PLUM_WOOD.get(),"去皮梅花树木");
+            this.add(ChangShengJueBlocks.PLUM_PLANKS.get(),"梅花树木板");
+            this.add(ChangShengJueBlocks.PLUM_LEAVES.get(),"梅花树树叶");
+            this.add(ChangShengJueBlocks.PLUM_SAPLING.get(),"梅花树树苗");
+            this.add(ChangShengJueBlocks.PLUM_DEFOLIATION.get(),"梅花树落叶");
+
             this.add(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get(),"黄花梨原木");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_WOOD.get(),"黄花梨木");
             this.add(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get(),"去皮黄花梨原木");
+            this.add(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_WOOD.get(),"去皮黄花梨木");
             this.add(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get(),"黄花梨树叶");
             this.add(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get(),"黄花梨树苗");
             this.add(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get(),"黄花梨木板");
-            this.add(ChangShengJueBlocks.JI_CHI_MU_LOG.get(),"鸡翅木原木");
-            this.add(ChangShengJueBlocks.STRIPPED_JI_CHI_MU_LOG.get(),"去皮鸡翅木原木");
-            this.add(ChangShengJueBlocks.JI_CHI_MU_LEAVES.get(),"鸡翅木树叶");
-            this.add(ChangShengJueBlocks.JI_CHI_MU_SAPLING.get(),"鸡翅木树苗");
-            this.add(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get(),"鸡翅木木板");
+
+            this.add(ChangShengJueBlocks.WENGE_LOG.get(),"鸡翅木原木");
+            this.add(ChangShengJueBlocks.WENGE_WOOD.get(),"鸡翅木");
+            this.add(ChangShengJueBlocks.STRIPPED_WENGE_LOG.get(),"去皮鸡翅木原木");
+            this.add(ChangShengJueBlocks.STRIPPED_WENGE_WOOD.get(),"去皮鸡翅木");
+            this.add(ChangShengJueBlocks.WENGE_LEAVES.get(),"鸡翅木树叶");
+            this.add(ChangShengJueBlocks.WENGE_SAPLING.get(),"鸡翅木树苗");
+            this.add(ChangShengJueBlocks.WENGE_PLANKS.get(),"鸡翅木木板");
+
             this.add(ChangShengJueBlocks.ZI_TAN_LOG.get(),"紫檀原木");
+            this.add(ChangShengJueBlocks.ZI_TAN_WOOD.get(),"紫檀木");
             this.add(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get(),"去皮紫檀原木");
-            this.add(ChangShengJueBlocks.ZI_TAN_LEAVES.get(),"紫檀树叶");
-            this.add(ChangShengJueBlocks.ZI_TAN_SAPLING.get(),"紫檀树苗");
+            this.add(ChangShengJueBlocks.STRIPPED_ZI_TAN_WOOD.get(),"去皮紫檀木");
+            this.add(ChangShengJueBlocks.ZI_TAN_LEAVES.get(),"紫檀树树叶");
+            this.add(ChangShengJueBlocks.ZI_TAN_SAPLING.get(),"紫檀树树苗");
             this.add(ChangShengJueBlocks.ZI_TAN_PLANKS.get(),"紫檀木板");
-            this.add(ChangShengJueBlocks.POPLAR_LOG.get(),"白杨原木");
-            this.add(ChangShengJueBlocks.POPLAR_LEAVES.get(),"白杨树叶");
-            this.add(ChangShengJueBlocks.POPLAR_SAPLING.get(),"白杨树苗");
-            this.add(ChangShengJueBlocks.POPLAR_DEFOLIATION.get(),"白杨落叶");
-    
-    
+
+            this.add(ChangShengJueBlocks.POPLAR_LOG.get(),"白杨树原木");
+            this.add(ChangShengJueBlocks.POPLAR_WOOD.get(),"白杨树木");
+            this.add(ChangShengJueBlocks.STRIPPED_POPLAR_LOG.get(),"去皮白杨树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_POPLAR_WOOD.get(),"去皮白杨树木");
+            this.add(ChangShengJueBlocks.POPLAR_PLANKS.get(),"白杨树木板");
+            this.add(ChangShengJueBlocks.POPLAR_LEAVES.get(),"白杨树树叶");
+            this.add(ChangShengJueBlocks.POPLAR_SAPLING.get(),"白杨树树苗");
+            this.add(ChangShengJueBlocks.POPLAR_DEFOLIATION.get(),"白杨树落叶");
+
             this.add(ChangShengJueBlocks.MULBERRY_LOG.get(),"桑树原木");
+            this.add(ChangShengJueBlocks.MULBERRY_WOOD.get(),"桑树木");
             this.add(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get(),"去皮桑树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD.get(),"去皮桑树木");
+            this.add(ChangShengJueBlocks.MULBERRY_PLANKS.get(),"桑树木板");
             this.add(ChangShengJueBlocks.MULBERRY_LEAVES.get(),"桑树树叶");
             this.add(ChangShengJueBlocks.MULBERRY_SAPLING.get(),"桑树树苗");
-    
-    
+
             // 食物容器类方块
             this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_PAN.get(), "饺子盘");
             this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_WAN.get(), "饺子碗");

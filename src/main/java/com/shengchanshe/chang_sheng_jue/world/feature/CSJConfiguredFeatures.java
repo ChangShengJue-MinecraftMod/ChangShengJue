@@ -265,16 +265,16 @@ public class CSJConfiguredFeatures {
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 
         register(context,GUIHUA_TREE,Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(ChangShengJueBlocks.GUI_HUA_LOG.get()),
+                BlockStateProvider.simple(ChangShengJueBlocks.OSMANTHUS_LOG.get()),
                 new StraightTrunkPlacer(5, 2, 1),
-                BlockStateProvider.simple(ChangShengJueBlocks.GUI_HUA_LEAVES.get()),
+                BlockStateProvider.simple(ChangShengJueBlocks.OSMANTHUS_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 
         register(context,MEIHUA_TREE,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(ChangShengJueBlocks.MEI_HUA_LOG.get()),
+                BlockStateProvider.simple(ChangShengJueBlocks.PLUM_LOG.get()),
                 new StraightTrunkPlacer(5, 2, 1),
-                BlockStateProvider.simple(ChangShengJueBlocks.MEI_HUA_LEAVES.get()),
+                BlockStateProvider.simple(ChangShengJueBlocks.PLUM_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 
@@ -293,9 +293,9 @@ public class CSJConfiguredFeatures {
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 
         register(context,JICHIMU_TREE,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(ChangShengJueBlocks.JI_CHI_MU_LOG.get()),
+                BlockStateProvider.simple(ChangShengJueBlocks.WENGE_LOG.get()),
                 new StraightTrunkPlacer(5, 2, 1),
-                BlockStateProvider.simple(ChangShengJueBlocks.JI_CHI_MU_LEAVES.get()),
+                BlockStateProvider.simple(ChangShengJueBlocks.WENGE_LEAVES.get()),
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 

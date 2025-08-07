@@ -31,7 +31,7 @@ public abstract class AbstractionLightKungfu implements ILightKungfu, IKungFuUpg
     // 武功类型
     protected KungFuType type;
     // 武功描述
-    protected String description;
+    protected Component description;
     // 武功是否领悟
     protected boolean isComprehend;
     // 武功领悟概率
@@ -61,7 +61,7 @@ public abstract class AbstractionLightKungfu implements ILightKungfu, IKungFuUpg
 
     public RandomSource randomSource = RandomSource.create();
 
-    public AbstractionLightKungfu(String id, Component name, KungFuType type, String description,
+    public AbstractionLightKungfu(String id, Component name, KungFuType type, Component description,
                                   float comprehendProbability) {
         this.id = id;
         this.name = name;
@@ -86,7 +86,7 @@ public abstract class AbstractionLightKungfu implements ILightKungfu, IKungFuUpg
     }
 
     @Override
-    public String getDescription() {
+    public Component getDescription() {
         return description;
     }
 
@@ -105,7 +105,7 @@ public abstract class AbstractionLightKungfu implements ILightKungfu, IKungFuUpg
                 if (entity instanceof Player player) {
                     player.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(),
                             ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                    player.sendSystemMessage(Component.translatable("kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.kungfu", this.name));
+                    player.sendSystemMessage(Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.kungfu", this.name));
                     if (player instanceof ServerPlayer serverPlayer) {
                         CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                     }
@@ -238,7 +238,7 @@ public abstract class AbstractionLightKungfu implements ILightKungfu, IKungFuUpg
             levelUp(entity);
             if (level >= getMaxLevel()) {
                 entity.sendSystemMessage(
-                        Component.translatable("kungfu." + ChangShengJue.MOD_ID + ".succeed.dacheng.kungfu", name).withStyle(ChatFormatting.YELLOW));
+                        Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.dacheng.kungfu", name).withStyle(ChatFormatting.YELLOW));
                 entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(),
                         ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
             } else {
@@ -314,7 +314,7 @@ public abstract class AbstractionLightKungfu implements ILightKungfu, IKungFuUpg
             tag.putString("KungFuName", Component.Serializer.toJson(this.name));
         }
         if (this.description != null) {
-            tag.putString("KungFuDescription", this.description);
+            tag.putString("KungFuDescription", Component.Serializer.toJson(this.description));
         }
         if (this.type != null) {
             tag.putString("KungFuType", this.type.name());
@@ -338,7 +338,7 @@ public abstract class AbstractionLightKungfu implements ILightKungfu, IKungFuUpg
     public void deserializeNBT(CompoundTag tag) {
         this.id = tag.getString("KungFuId");
         this.name = Component.Serializer.fromJson(tag.getString("KungFuName"));
-        this.description = tag.getString("KungFuDescription");
+        this.description = Component.Serializer.fromJson(tag.getString("KungFuDescription"));
         this.type = KungFuType.valueOf(tag.getString("KungFuType"));
         this.isComprehend = tag.getBoolean("KungFuIsComprehend");
         this.levelUpTick = tag.getInt("KungFuComprehendTick");

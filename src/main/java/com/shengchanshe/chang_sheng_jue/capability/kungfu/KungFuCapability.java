@@ -5,6 +5,7 @@ import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.martial_arts.*;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuType;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.AbstractionExternalKunfu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.RelentlessThrowingKnives;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.Hercules;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.TheClassicsOfTendonChanging;
@@ -33,13 +34,17 @@ public class KungFuCapability implements IKungFuCapability {
         // 检查是否已学习该武功
         if (learnedKungFu.containsKey(kungFuId)) {
             if (!learnedKungFu.get(kungFuId).getId().equals(Hercules.KUNG_FU_ID.toString()) && learnedKungFu.get(kungFuId).getKungFuType() != KungFuType.EXTERNAL_KUNFU_GLOVE) {
-                player.sendSystemMessage(
-                        Component.translatable("kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu",
-                                 learnedKungFu.get(kungFuId).getName(),
-                                learnedKungFu.get(kungFuId).isComprehend() ? Component.translatable("kungfu.true.comprehend") : Component.translatable("kungfu.fales.comprehend")
-                        ).withStyle(ChatFormatting.YELLOW),false);
+                if (learnedKungFu.get(kungFuId) instanceof IExternalKunfu externalKunfu) {
+                    player.sendSystemMessage(
+                            Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu", learnedKungFu.get(kungFuId).getName(),
+                                    learnedKungFu.get(kungFuId).isComprehend()
+                                            ? Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu.true.comprehend",
+                                            learnedKungFu.get(kungFuId).getDescription(), ((float)externalKunfu.getSwingTick() / 20))
+                                            : Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu.fales.comprehend",
+                                            learnedKungFu.get(kungFuId).getDescription())
+                            ).withStyle(ChatFormatting.YELLOW),false);
+                }
             }
-
             return;
         }
         KungFuRegistry.getInstance().getKungFu(kungFuId).map(kungFu -> {
@@ -47,9 +52,17 @@ public class KungFuCapability implements IKungFuCapability {
             if (kungFu instanceof IInteranlKungFu passive) {
                 activePassives.add(passive);
             }
-            player.sendSystemMessage(
-                    Component.translatable("kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.kungfu",
-                            learnedKungFu.get(kungFuId).getName()).withStyle(ChatFormatting.YELLOW),false);
+            if (kungFu.getKungFuType() == KungFuType.EXTERNAL_KUNFU) {
+                player.sendSystemMessage(
+                        Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.external_kunfu",
+                                        learnedKungFu.get(kungFuId).getName(), learnedKungFu.get(kungFuId).getDescription())
+                                .withStyle(ChatFormatting.YELLOW),false);
+            }else if (kungFu.getKungFuType() == KungFuType.EXTERNAL_KUNFU_GLOVE) {
+                player.sendSystemMessage(
+                        Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.external_kunfu_glove",
+                                        learnedKungFu.get(kungFuId).getName(), learnedKungFu.get(kungFuId).getDescription())
+                                .withStyle(ChatFormatting.YELLOW),false);
+            }
             CSJAdvanceInit.LEARN_GONG_FA.trigger(player);
             syncToClient(player);
             return true;
@@ -161,12 +174,27 @@ public class KungFuCapability implements IKungFuCapability {
                         active.startKungFu(newState);
 
                         syncToClient(player);
+                        if (!active.isComprehend()){
+                            player.sendSystemMessage(
+                                    Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".state_change.kungfu",
+                                            Component.translatable("item."+ ChangShengJue.MOD_ID + "." + kungFuName),
+                                            newState ? Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.open",
+                                                    active.getDescription())
+                                                    : Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.off")
+                                    ).withStyle(ChatFormatting.YELLOW), true);
+                        }else {
+                            if (active instanceof IExternalKunfu) {
+                                player.sendSystemMessage(
+                                        Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".state_change.kungfu",
+                                                Component.translatable("item."+ ChangShengJue.MOD_ID + "." + kungFuName),
+                                                newState ? Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.comprehend.open",
+                                                        active.getDescription(), ((float)((IExternalKunfu) active).getSwingTick() / 20))
+                                                        : Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.off")
+                                        ).withStyle(ChatFormatting.YELLOW), true);
+                            }
 
-                        player.sendSystemMessage(
-                                Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".state_change.kungfu",
-                                        Component.translatable("item."+ ChangShengJue.MOD_ID + "." + kungFuName),
-                                        newState ? Component.translatable("kungfu.open") : Component.translatable("kungfu.off")
-                                ).withStyle(ChatFormatting.YELLOW), true);
+                        }
+
                     });
         }
     }

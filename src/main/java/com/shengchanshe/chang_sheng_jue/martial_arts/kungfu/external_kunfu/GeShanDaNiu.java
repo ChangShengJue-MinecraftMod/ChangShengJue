@@ -30,7 +30,7 @@ public class GeShanDaNiu extends AbstractionExternalKunfu {
         super(KUNG_FU_ID.toString(),
                 Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.YELLOW),
                 KungFuType.EXTERNAL_KUNFU_GLOVE,
-                "description",0.0f,0.15f,2,0.0f,
+                Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".glove.type"),0.0f,0.15f,2,0.0f,
                 0.25f,6);
     }
 
@@ -112,6 +112,11 @@ public class GeShanDaNiu extends AbstractionExternalKunfu {
                 }
             }
         }
+    }
+
+    @Override
+    public Component getDescription() {
+        return Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".glove.type");
     }
 
     @Override

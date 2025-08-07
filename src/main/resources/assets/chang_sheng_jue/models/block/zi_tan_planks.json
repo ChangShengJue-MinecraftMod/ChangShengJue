@@ -1,6 +1,0 @@
-{
-  "parent" : "block/cube_all",
-  "textures": {
-    "all": "chang_sheng_jue:block/zi_tan_planks"
-  }
-}

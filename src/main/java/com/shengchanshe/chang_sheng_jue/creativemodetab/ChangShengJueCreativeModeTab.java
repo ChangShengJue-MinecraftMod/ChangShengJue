@@ -31,22 +31,22 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.LICHEE_SAPLING.get());
                 output.accept(ChangShengJueBlocks.DURIAN_LEAVES.get());
                 output.accept(ChangShengJueBlocks.DURIAN_SAPLING.get());
-                output.accept(ChangShengJueBlocks.GUI_HUA_LEAVES.get());
-                output.accept(ChangShengJueBlocks.GUI_HUA_SAPLING.get());
-                output.accept(ChangShengJueBlocks.GUI_HUA_DEFOLIATION.get());
-                output.accept(ChangShengJueBlocks.MEI_HUA_LEAVES.get());
-                output.accept(ChangShengJueBlocks.MEI_HUA_SAPLING.get());
-                output.accept(ChangShengJueBlocks.MEI_HUA_DEFOLIATION.get());
+                output.accept(ChangShengJueBlocks.OSMANTHUS_LEAVES.get());
+                output.accept(ChangShengJueBlocks.OSMANTHUS_SAPLING.get());
+                output.accept(ChangShengJueBlocks.OSMANTHUS_DEFOLIATION.get());
+                output.accept(ChangShengJueBlocks.PLUM_LEAVES.get());
+                output.accept(ChangShengJueBlocks.PLUM_SAPLING.get());
+                output.accept(ChangShengJueBlocks.PLUM_DEFOLIATION.get());
                 output.accept(ChangShengJueBlocks.POPLAR_LEAVES.get());
                 output.accept(ChangShengJueBlocks.POPLAR_SAPLING.get());
                 output.accept(ChangShengJueBlocks.POPLAR_DEFOLIATION.get());
-                output.accept(ChangShengJueBlocks.GUI_HUA_DEFOLIATION.get());
+                output.accept(ChangShengJueBlocks.OSMANTHUS_DEFOLIATION.get());
                 output.accept(ChangShengJueBlocks.MULBERRY_LEAVES.get());
                 output.accept(ChangShengJueBlocks.MULBERRY_SAPLING.get());
                 output.accept(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get());
                 output.accept(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get());
-                output.accept(ChangShengJueBlocks.JI_CHI_MU_LEAVES.get());
-                output.accept(ChangShengJueBlocks.JI_CHI_MU_SAPLING.get());
+                output.accept(ChangShengJueBlocks.WENGE_LEAVES.get());
+                output.accept(ChangShengJueBlocks.WENGE_SAPLING.get());
                 output.accept(ChangShengJueBlocks.ZI_TAN_LEAVES.get());
                 output.accept(ChangShengJueBlocks.ZI_TAN_SAPLING.get());
 
@@ -99,24 +99,71 @@ public class ChangShengJueCreativeModeTab {
             .title(Component.translatable("itemGroup.chang_sheng_jue_building_block")).icon(() ->
                     new ItemStack(ChangShengJueBlocks.MANGO_LOG.get())).displayItems((parameters,output)->{
                 output.accept(ChangShengJueBlocks.MANGO_LOG.get());
+                output.accept(ChangShengJueBlocks.MANGO_WOOD.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_MANGO_LOG.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_MANGO_WOOD.get());
+                output.accept(ChangShengJueBlocks.MANGO_PLANKS.get());
+
                 output.accept(ChangShengJueBlocks.BANANA_LOG.get());
                 output.accept(ChangShengJueBlocks.PEAR_LOG.get());
+                output.accept(ChangShengJueBlocks.PEAR_WOOD.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_PEAR_LOG.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_PEAR_WOOD.get());
+                output.accept(ChangShengJueBlocks.PEAR_PLANKS.get());
+
                 output.accept(ChangShengJueBlocks.LICHEE_LOG.get());
+                output.accept(ChangShengJueBlocks.LICHEE_WOOD.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_LICHEE_LOG.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_LICHEE_WOOD.get());
+                output.accept(ChangShengJueBlocks.LICHEE_PLANKS.get());
+
                 output.accept(ChangShengJueBlocks.DURIAN_LOG.get());
-                output.accept(ChangShengJueBlocks.GUI_HUA_LOG.get());
-                output.accept(ChangShengJueBlocks.MEI_HUA_LOG.get());
+                output.accept(ChangShengJueBlocks.DURIAN_WOOD.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_DURIAN_LOG.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_DURIAN_WOOD.get());
+                output.accept(ChangShengJueBlocks.DURIAN_PLANKS.get());
+
+                output.accept(ChangShengJueBlocks.OSMANTHUS_LOG.get());
+                output.accept(ChangShengJueBlocks.OSMANTHUS_WOOD.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_OSMANTHUS_LOG.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_OSMANTHUS_WOOD.get());
+                output.accept(ChangShengJueBlocks.OSMANTHUS_PLANKS.get());
+
+                output.accept(ChangShengJueBlocks.PLUM_LOG.get());
+                output.accept(ChangShengJueBlocks.PLUM_WOOD.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_PLUM_LOG.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_PLUM_WOOD.get());
+                output.accept(ChangShengJueBlocks.PLUM_PLANKS.get());
+
                 output.accept(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get());
+                output.accept(ChangShengJueBlocks.HUANG_HUA_LI_WOOD.get());
                 output.accept(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_WOOD.get());
                 output.accept(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get());
-                output.accept(ChangShengJueBlocks.JI_CHI_MU_LOG.get());
-                output.accept(ChangShengJueBlocks.STRIPPED_JI_CHI_MU_LOG.get());
-                output.accept(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get());
+
+                output.accept(ChangShengJueBlocks.WENGE_LOG.get());
+                output.accept(ChangShengJueBlocks.WENGE_WOOD.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_WENGE_LOG.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_WENGE_WOOD.get());
+                output.accept(ChangShengJueBlocks.WENGE_PLANKS.get());
+
                 output.accept(ChangShengJueBlocks.ZI_TAN_LOG.get());
+                output.accept(ChangShengJueBlocks.ZI_TAN_WOOD.get());
                 output.accept(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_ZI_TAN_WOOD.get());
                 output.accept(ChangShengJueBlocks.ZI_TAN_PLANKS.get());
+
                 output.accept(ChangShengJueBlocks.POPLAR_LOG.get());
+                output.accept(ChangShengJueBlocks.POPLAR_WOOD.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_POPLAR_LOG.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_POPLAR_WOOD.get());
+                output.accept(ChangShengJueBlocks.POPLAR_PLANKS.get());
+
                 output.accept(ChangShengJueBlocks.MULBERRY_LOG.get());
+                output.accept(ChangShengJueBlocks.MULBERRY_WOOD.get());
                 output.accept(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get());
+                output.accept(ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD.get());
+                output.accept(ChangShengJueBlocks.MULBERRY_PLANKS.get());
 
                 output.accept(ChangShengJueBlocks.HANG_TU_BLOCK.get());
                 output.accept(ChangShengJueBlocks.TU_PEI_BLOCK.get());

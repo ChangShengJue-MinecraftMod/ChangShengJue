@@ -191,6 +191,28 @@ public class CSJItemModelProvider extends ItemModelProvider {
 
         saplingItem(ChangShengJueBlocks.MULBERRY_SAPLING);
 
+        saplingItem(ChangShengJueBlocks.POPLAR_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.OSMANTHUS_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.WENGE_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.PEAR_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.LICHEE_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.DURIAN_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.MANGO_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.PLUM_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.MULBERRY_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.ZI_TAN_SAPLING);
+
         parentItem(ChangShengJueBlocks.BIRCH_BENCH);
         parentItem(ChangShengJueBlocks.CRIMSON_BENCH);
         parentItem(ChangShengJueBlocks.WARPED_BENCH);

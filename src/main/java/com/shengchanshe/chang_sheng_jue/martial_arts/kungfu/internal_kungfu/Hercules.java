@@ -21,7 +21,7 @@ public class Hercules extends AbstractionInternalkungfu {
 
     public Hercules() {
         super(KUNG_FU_ID.toString(), Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.GOLD),
-                KungFuType.INTERNAL_KUNGFU, "description",0.15f, 0,0.0f);
+                KungFuType.INTERNAL_KUNGFU, Component.translatable("description"),0.15f, 0,0.0f);
     }
 
     @Override

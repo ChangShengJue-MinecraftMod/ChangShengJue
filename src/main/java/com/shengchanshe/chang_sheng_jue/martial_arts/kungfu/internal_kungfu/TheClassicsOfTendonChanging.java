@@ -17,7 +17,7 @@ public class TheClassicsOfTendonChanging extends AbstractionInternalkungfu {
 
     public TheClassicsOfTendonChanging() {
         super(KUNG_FU_ID.toString(), Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.YELLOW),
-                KungFuType.INTERNAL_KUNGFU, "description",0.15f, 0,0);
+                KungFuType.INTERNAL_KUNGFU, Component.translatable("description"),0.15f, 0,0);
     }
 
     @Override

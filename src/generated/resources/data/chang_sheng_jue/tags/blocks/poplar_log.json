@@ -1,5 +1,8 @@
 {
   "values": [
-    "chang_sheng_jue:poplar_log"
+    "chang_sheng_jue:poplar_log",
+    "chang_sheng_jue:poplar_wood",
+    "chang_sheng_jue:stripped_poplar_log",
+    "chang_sheng_jue:stripped_poplar_wood"
   ]
 }

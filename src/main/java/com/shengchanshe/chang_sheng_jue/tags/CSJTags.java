@@ -16,10 +16,16 @@ public class CSJTags {
 
     public static class Blocks{
         public static final TagKey<Block> DOORS = tag("doors");
-        public static final TagKey<Block> JI_CHI_MU_LOG = tag("ji_chi_mu_log");
+        public static final TagKey<Block> WENGE_LOG = tag("wenge_log");
         public static final TagKey<Block> HUANG_HUA_LI_LOG = tag("huang_hua_li_log");
+        public static final TagKey<Block> PEAR_LOG = tag("pear_log");
+        public static final TagKey<Block> LICHEE_LOG = tag("lichee_log");
+        public static final TagKey<Block> DURIAN_LOG = tag("durian_log");
+        public static final TagKey<Block> MANGO_LOG = tag("mango_log");
+        public static final TagKey<Block> PLUM_LOG = tag("plum_log");
         public static final TagKey<Block> ZI_TAN_LOG = tag("zi_tan_log");
         public static final TagKey<Block> POPLAR_LOG = tag("poplar_log");
+        public static final TagKey<Block> OSMANTHUS_LOG = tag("osmanthus_log");
         public static final TagKey<Block> MULBERRY_LOG = tag("mulberry_log");
         public static final TagKey<Block> LOG = tag("log");
         public static final TagKey<Block> MEI_REN_KAO = tag("mei_ren_kao");
@@ -42,10 +48,16 @@ public class CSJTags {
     }
     public static class Items{
         public static final TagKey<Item> DOORS = tag("doors");
-        public static final TagKey<Item> JI_CHI_MU_LOG = tag("ji_chi_mu_log");
+        public static final TagKey<Item> WENGE_LOG = tag("wenge_log");
         public static final TagKey<Item> HUANG_HUA_LI_LOG = tag("huang_hua_li_log");
+        public static final TagKey<Item> PEAR_LOG = tag("pear_log");
+        public static final TagKey<Item> LICHEE_LOG = tag("lichee_log");
+        public static final TagKey<Item> DURIAN_LOG = tag("durian_log");
+        public static final TagKey<Item> MANGO_LOG = tag("mango_log");
+        public static final TagKey<Item> PLUM_LOG = tag("plum_log");
         public static final TagKey<Item> ZI_TAN_LOG = tag("zi_tan_log");
         public static final TagKey<Item> POPLAR_LOG = tag("poplar_log");
+        public static final TagKey<Item> OSMANTHUS_LOG = tag("osmanthus_log");
         public static final TagKey<Item> MULBERRY_LOG = tag("mulberry_log");
         public static final TagKey<Item> LOG = tag("log");
         public static final TagKey<Item> MEI_REN_KAO = tag("mei_ren_kao");

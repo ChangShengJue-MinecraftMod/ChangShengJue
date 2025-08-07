@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "chang_sheng_jue:block/stripped_durian_wood_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "chang_sheng_jue:block/stripped_durian_wood"
+    },
+    "axis=z": {
+      "model": "chang_sheng_jue:block/stripped_durian_wood_horizontal",
+      "x": 90
+    }
+  }
+}

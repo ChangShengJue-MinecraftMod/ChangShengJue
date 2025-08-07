@@ -28,7 +28,7 @@ public interface IKungFu {
      * 武功描述
      * @return
      */
-    String getDescription();
+    Component getDescription();
     /**
      * 武功是否领悟
      * @return
