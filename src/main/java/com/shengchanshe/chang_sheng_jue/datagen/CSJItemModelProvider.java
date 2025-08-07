@@ -172,10 +172,10 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS);
         simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS);
         //儒装
-        simpleItem(ChangShengJueItems.CONFUCIAN_HELMET);
-        simpleItem(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE);
-        simpleItem(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS);
-        simpleItem(ChangShengJueItems.CONFUCIAN_INK_BOOTS);
+        simpleArmorItem(ChangShengJueItems.CONFUCIAN_HELMET);
+        simpleArmorItem(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS);
+        simpleArmorItem(ChangShengJueItems.CONFUCIAN_INK_BOOTS);
 
         trimmedArmorItem(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR);
         trimmedArmorItem(ChangShengJueItems.LEATHER_INNER_ARMOR);

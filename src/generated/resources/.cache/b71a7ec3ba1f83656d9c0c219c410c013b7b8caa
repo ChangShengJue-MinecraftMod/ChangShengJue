@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-07T11:33:20.4307455	Item Models: chang_sheng_jue
+// 1.20.1	2025-08-07T16:24:02.7177354	Item Models: chang_sheng_jue
 b3bd262eb0ad48ac4f7c465406471cf989163c19 assets/chang_sheng_jue/models/item/acacia_balustrade.json
 699ea304f59ef7c3527896899187498f42f98343 assets/chang_sheng_jue/models/item/acacia_bench.json
 7e0aa720a11c379083904f12e4722cca0ff34a77 assets/chang_sheng_jue/models/item/acacia_book_desk.json
@@ -80,10 +80,10 @@ a9bffe4c99be9402b95426af09d211a59960c181 assets/chang_sheng_jue/models/item/cher
 337aef79f956aaaf5f230e049688b196a87118ac assets/chang_sheng_jue/models/item/chinese_wedding_dress_golden_thread_shoes.json
 0fa664904f6709f4c48b91fda843df65b9572f93 assets/chang_sheng_jue/models/item/ci_bei.json
 3bd248306f4b8c98926b74023f834ae700d2a9a8 assets/chang_sheng_jue/models/item/cloud_walking_boots.json
-cc3afc56100b8de62e0b3c79f2506554813d5032 assets/chang_sheng_jue/models/item/confucian_helmet.json
-788721bed1dcb581f2c0fdabf86880753b5292af assets/chang_sheng_jue/models/item/confucian_ink_boots.json
-2a806ffde5ed8ef0bb4274fcb6880c594e6f0712 assets/chang_sheng_jue/models/item/confucian_ink_chestplate.json
-d9655585c4f8011b57efc9de173982973d17c65e assets/chang_sheng_jue/models/item/confucian_ink_leggings.json
+c0806fcfe272763c99f1def135930a31018fe011 assets/chang_sheng_jue/models/item/confucian_helmet.json
+8af32a5ef9eeb3e963a875abf559bf3a299df1f9 assets/chang_sheng_jue/models/item/confucian_ink_boots.json
+cd5938a21a2998e62686c8ba914f095eb9af1ead assets/chang_sheng_jue/models/item/confucian_ink_chestplate.json
+b04f587003e8456fddb8a87749ee2085054d81b6 assets/chang_sheng_jue/models/item/confucian_ink_leggings.json
 d0cd3ed850f200369eeade9c8256282b5c7636c0 assets/chang_sheng_jue/models/item/cooked_croc.json
 596b52c6bcdc9a127284f5b7ec84d9aef1d43b95 assets/chang_sheng_jue/models/item/cooked_peacock.json
 efa90d526ea7829ca0444ee54035fe8224cb2fc0 assets/chang_sheng_jue/models/item/cool_lime_slurry_barrels.json

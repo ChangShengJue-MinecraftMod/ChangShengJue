@@ -1,6 +1,7 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.armor.confucian_costumes;
 
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.ChangShengJueArmorItem;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.DyeableItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,19 +19,17 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Consumer;
 
-public class ConfucianCostumes extends ChangShengJueArmorItem implements GeoItem {
+public class ConfucianCostumes extends ChangShengJueArmorItem implements DyeableItem, GeoItem {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public ConfucianCostumes(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
     }
 
-//    @Override
-//    public boolean isValidRepairItem(ItemStack toRepair, ItemStack repair) {
-//        // 禁止任何修复材料生效 禁用铁砧修复
-//        return false;
-////                repair.is(Items.EMERALD);
-//    }
+    @Override
+    public int getColor(ItemStack pStack) {
+        return DyeableItem.super.getColor(pStack) != -1 ? DyeableItem.super.getColor(pStack) : 0x0000FF;
+    }
 
     @Override
     public int getEnchantmentValue() {

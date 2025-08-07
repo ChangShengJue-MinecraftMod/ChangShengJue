@@ -1,6 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "chang_sheng_jue:item/confucian_ink_boots"
+    "layer0": "chang_sheng_jue:item/confucian_ink_boots",
+    "layer1": "chang_sheng_jue:item/confucian_ink_boots_overlay"
   }
 }

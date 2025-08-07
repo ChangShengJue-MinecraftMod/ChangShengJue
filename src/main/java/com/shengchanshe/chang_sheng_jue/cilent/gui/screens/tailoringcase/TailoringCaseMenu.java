@@ -580,7 +580,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.CONFUCIAN_HELMET.get()),
                         new ItemStack(ChangShengJueItems.SILK.get(), 4),
-                        new ItemStack(Items.INK_SAC, 1)
+                        new ItemStack(Items.DIAMOND, 1)
                 )
         );
 
@@ -589,7 +589,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get()),
                         new ItemStack(ChangShengJueItems.SILK.get(), 7),
-                        new ItemStack(Items.INK_SAC, 1)
+                        new ItemStack(Items.EMERALD, 1)
                 )
         );
 
@@ -597,19 +597,14 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         registerRecipe(
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get()),
-                        new ItemStack(ChangShengJueItems.SILK.get(), 6),
-                        new ItemStack(Items.INK_SAC, 1)
-                )
+                        new ItemStack(ChangShengJueItems.SILK.get(), 7))
         );
 
         // 染墨丝履
         registerRecipe(
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get()),
-                        new ItemStack(ChangShengJueItems.SILK.get(), 3),
-                        new ItemStack(Items.INK_SAC, 1)
-                )
-        );
+                        new ItemStack(ChangShengJueItems.SILK.get(), 3)));
 
 
         // 兽皮靴

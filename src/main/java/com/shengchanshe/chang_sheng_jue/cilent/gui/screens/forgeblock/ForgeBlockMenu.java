@@ -520,7 +520,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
                 new ForgeRecipe(
                         new ItemStack(ChangShengJueItems.PAN_HUA_GUN.get()),
                         new ItemStack(Items.COPPER_INGOT,1),
-                        new ItemStack(Items.OAK_LOG,1)
+                        new ItemStack(Items.STICK,2)
                 )
         );
 

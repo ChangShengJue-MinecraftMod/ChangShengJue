@@ -246,10 +246,10 @@
             this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get(), "明光铠");
             this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS.get(), "青金护膝");
             this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS.get(), "兽皮靴");
-            this.add(ChangShengJueItems.CONFUCIAN_HELMET.get(), "儒冠");
-            this.add(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get(), "染墨宽袍");
-            this.add(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get(), "染墨丝裳");
-            this.add(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get(), "染墨丝履");
+            this.add(ChangShengJueItems.CONFUCIAN_HELMET.get(), "宝缁撮");
+            this.add(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get(), "公子宽袍");
+            this.add(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get(), "丝执裤");
+            this.add(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get(), "轻丝履");
     
             this.add(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR.get(), "金丝软甲");
             this.add(ChangShengJueItems.LEATHER_INNER_ARMOR.get(), "皮内甲");
