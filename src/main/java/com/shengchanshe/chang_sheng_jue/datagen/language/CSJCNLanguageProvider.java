@@ -107,6 +107,7 @@
             this.add(ChangShengJueItems.DURIAN_MEAT.get(),"榴莲肉");
             this.add(ChangShengJueItems.MULBERRY.get(),"桑葚");
             this.add(ChangShengJueItems.NATURAL_SILK.get(),"蚕丝");
+            this.add(ChangShengJueItems.SILKWORM.get(),"蚕");
             this.add(ChangShengJueItems.SILK.get(),"丝绸");
             this.add(ChangShengJueItems.CAPSULE.get(),"荠菜");
             this.add(ChangShengJueItems.QUICKLIME.get(),"生石灰");

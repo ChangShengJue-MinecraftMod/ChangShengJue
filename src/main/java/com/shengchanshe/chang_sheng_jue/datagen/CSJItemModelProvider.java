@@ -44,6 +44,7 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.TONG_QIAN);
         simpleItem(ChangShengJueItems.YI_GUAN_TONG_QIAN);
         simpleItem(ChangShengJueItems.NATURAL_SILK);
+        simpleItem(ChangShengJueItems.SILKWORM);
         simpleItem(ChangShengJueItems.SILK);
         simpleItem(ChangShengJueItems.MULBERRY);
         simpleItem(ChangShengJueItems.RICE);

@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-07T16:24:02.7177354	Item Models: chang_sheng_jue
+// 1.20.1	2025-08-07T19:01:13.0017487	Item Models: chang_sheng_jue
 b3bd262eb0ad48ac4f7c465406471cf989163c19 assets/chang_sheng_jue/models/item/acacia_balustrade.json
 699ea304f59ef7c3527896899187498f42f98343 assets/chang_sheng_jue/models/item/acacia_bench.json
 7e0aa720a11c379083904f12e4722cca0ff34a77 assets/chang_sheng_jue/models/item/acacia_book_desk.json
@@ -308,6 +308,7 @@ afc607194da45597c0e46882be8f2df493db6159 assets/chang_sheng_jue/models/item/rele
 d1f7f15124c807320f2f9b43144c9a725a1cb6f4 assets/chang_sheng_jue/models/item/shing_mun_right.json
 322f93193735216ff4af450a98f347ad04f11962 assets/chang_sheng_jue/models/item/shi_li_xiang.json
 9307c7b9d9d3fbcc201577dfe240fcf8cf4071fb assets/chang_sheng_jue/models/item/silk.json
+8114a2290b8cdfc74fc55bbd9528934e812d4b41 assets/chang_sheng_jue/models/item/silkworm.json
 a9d54622dffc1873cb049f24753d99deb56857dc assets/chang_sheng_jue/models/item/silver_bullions.json
 812bb7f77dfe8501a0060bcc1239c3fce6b0b7db assets/chang_sheng_jue/models/item/spruce_balustrade.json
 cff65f346299992707f10de94b808e0eaf21ecd8 assets/chang_sheng_jue/models/item/spruce_bench.json

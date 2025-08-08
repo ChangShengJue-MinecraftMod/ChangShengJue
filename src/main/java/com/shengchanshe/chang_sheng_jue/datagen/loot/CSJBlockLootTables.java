@@ -25,6 +25,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.LimitCount;
@@ -168,7 +169,7 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD.get());
         this.dropSelf(ChangShengJueBlocks.MULBERRY_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.MULBERRY_SAPLING.get());
-        this.createMulberryLeavesDrops(ChangShengJueBlocks.MULBERRY_LEAVES.get(),ChangShengJueItems.MULBERRY.get(),ChangShengJueBlocks.MULBERRY_SAPLING.get(),ChangShengJueItems.NATURAL_SILK.get());
+        this.createMulberryLeavesDrops(ChangShengJueBlocks.MULBERRY_LEAVES.get(),ChangShengJueItems.MULBERRY.get(),ChangShengJueBlocks.MULBERRY_SAPLING.get(),ChangShengJueItems.NATURAL_SILK.get(),ChangShengJueItems.SILKWORM.get());
         //矿石
         this.add(ChangShengJueBlocks.AG_ORE.get(),
                 (block -> createOreDrop(ChangShengJueBlocks.AG_ORE.get(), ChangShengJueItems.RAW_AG.get())));
@@ -1021,39 +1022,52 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
                         .add(((LootPoolSingletonContainer.Builder<?>)this.applyExplosionCondition(pOakLeavesBlock, LootItem.lootTableItem(fruitsItem)))
                                 .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
     }
-    public void createMulberryLeavesDrops(Block leavesBlock, Item fruitsItem,Block sapling,Item stateItem){
-        var leaves = LootItem.lootTableItem(leavesBlock)
+    public void createMulberryLeavesDrops(Block leavesBlock, Item fruitsItem, Block sapling, Item stateItem, Item stateItem1) {
+        LootPoolEntryContainer.Builder<?> leaves = LootItem.lootTableItem(leavesBlock)
                 .when(MatchTool.toolMatches(ItemPredicate.Builder.item()
-                        .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1)))).or(
-                        MatchTool.toolMatches(ItemPredicate.Builder.item().of(Tags.Items.SHEARS))));
+                                .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))))
+                        .or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Tags.Items.SHEARS))));
 
-        var state = LootItem.lootTableItem(stateItem)
-                .when(LootItemBlockStatePropertyCondition
-                        .hasBlockStateProperties(leavesBlock)
+        // 蚕丝掉落
+        LootPoolEntryContainer.Builder<?> state = LootItem.lootTableItem(stateItem)
+                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(leavesBlock)
                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                 .hasProperty(FruitLeaves.STATE, FruitLeaves.State.FRUITS)))
-                .when(LootItemRandomChanceCondition.randomChance(0.1F))
-                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE));
+                .when(LootItemRandomChanceCondition.randomChance(0.25F))
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+                .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE));
+        // 蚕掉落
+        LootPoolEntryContainer.Builder<?> state1 = LootItem.lootTableItem(stateItem1)
+                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(leavesBlock)
+                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                .hasProperty(FruitLeaves.STATE, FruitLeaves.State.FRUITS)))
+                .when(LootItemRandomChanceCondition.randomChance(0.05F))
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE));
 
-        var saplings = LootItem.lootTableItem(sapling)
-                .when(LootItemBlockStatePropertyCondition
-                        .hasBlockStateProperties(leavesBlock)
+        // 树苗掉落
+        LootPoolEntryContainer.Builder<?> saplings = LootItem.lootTableItem(sapling)
+                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(leavesBlock)
                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                 .hasProperty(FruitLeaves.STATE, FruitLeaves.State.LEAVES)))
-                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE,
-                        0.2F, 0.3F, 0.4F, 0.7F, 0.8F));
+                .when(BonusLevelTableCondition.bonusLevelFlatChance(
+                        Enchantments.BLOCK_FORTUNE, 0.2F, 0.3F, 0.4F, 0.7F, 0.8F));
 
-        var fruits = LootItem.lootTableItem(fruitsItem)
-                .when(LootItemBlockStatePropertyCondition
-                        .hasBlockStateProperties(leavesBlock)
+        // 果实掉落
+        LootPoolEntryContainer.Builder<?> fruits = LootItem.lootTableItem(fruitsItem)
+                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(leavesBlock)
                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                 .hasProperty(FruitLeaves.STATE, FruitLeaves.State.LEAVES)))
-                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE,
-                        0.05F, 0.06F, 0.07F, 0.08F, 0.09F));
+                .when(BonusLevelTableCondition.bonusLevelFlatChance(
+                        Enchantments.BLOCK_FORTUNE, 0.05F, 0.06F, 0.07F, 0.08F, 0.09F));
 
-        var drops = AlternativesEntry.alternatives(leaves,state, fruits, saplings);
-        this.add(leavesBlock, LootTable.lootTable().withPool(LootPool.lootPool().add(drops)
-                .when(ExplosionCondition.survivesExplosion())));
+        LootPoolEntryContainer.Builder<?> drops = AlternativesEntry.alternatives(leaves, state, fruits, saplings, state1);
+
+        this.add(leavesBlock,
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(drops)
+                                .when(ExplosionCondition.survivesExplosion())));
     }
 
     protected LootTable.Builder createCropDrops(Block pCropBlock, Item pGrownCropItem, Item pSeedsItem,LootItemCondition.Builder pDropGrownCropCondition0,
