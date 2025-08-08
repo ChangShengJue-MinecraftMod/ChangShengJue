@@ -4,6 +4,7 @@ import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.block.custom.forgeblock.ForgeBlockEntity;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.ChangShengJueMenuTypes;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
+import com.shengchanshe.chang_sheng_jue.recipe.ForgeBlockRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -28,9 +29,9 @@ import java.util.*;
 public class ForgeBlockMenu extends AbstractContainerMenu {
 
     public final ForgeBlockEntity blockEntity;
-    private final Level level;
+    public final Level level;
     public final ContainerData data;
-    ForgeRecipe currentRecipe = null;
+    ForgeBlockRecipe currentRecipe = null;
 
     public ForgeBlockMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
@@ -45,6 +46,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
 
         // 从实体加载当前配方
         this.currentRecipe = blockEntity.getCurrentRecipe();
+        System.out.println("ForgeBlockMenu已创建，当前配方: " + (this.currentRecipe != null ? this.currentRecipe.getId().toString() : "无"));
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -75,8 +77,42 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         }
     }
 
-    public ForgeRecipe getCurrentRecipe() {
-        return currentRecipe;
+    public void setCurrentRecipe(ForgeBlockRecipe recipe) {
+        // 保存配方到菜单
+        this.currentRecipe = recipe;
+        // 输出调试信息
+        System.out.println("设置当前配方 (菜单): " + (recipe != null ? recipe.getId().toString() : "无"));
+
+        // 如果方块实体存在，同步到方块实体
+        if (blockEntity != null) {
+            blockEntity.setCurrentRecipe(recipe);
+        } else {
+            System.out.println("警告: 方块实体为空，无法同步配方");
+        }
+    }
+
+    public ForgeBlockRecipe getCurrentRecipe() {
+        // 优先使用菜单中的配方，如果没有则从方块实体获取
+        if (this.currentRecipe != null) {
+            System.out.println("从菜单获取配方: " + this.currentRecipe.getId());
+            return this.currentRecipe;
+        }
+        if (blockEntity != null) {
+            ForgeBlockRecipe recipe = blockEntity.getCurrentRecipe();
+            System.out.println("从方块实体获取配方: " + (recipe != null ? recipe.getId() : "无"));
+            return recipe;
+        }
+        System.out.println("未找到配方");
+        return null;
+    }
+
+    public void updateRecipeSlots() {
+        System.out.println("更新配方槽位显示");
+        if (blockEntity != null && currentRecipe != null) {
+            ItemStack[] materials = blockEntity.getMaterialsFromRecipe(currentRecipe);
+            System.out.println("需要的材料数量: " + materials.length);
+            // 这里可以添加更新槽位显示的逻辑
+        }
     }
 
     @Override
@@ -100,29 +136,15 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
-    public void setCurrentRecipe(ForgeRecipe recipe) {
-        this.currentRecipe = recipe;
-        updateRecipeSlots();
-
-        // 只有服务端才更新实体
-        if (!level.isClientSide) {
-            blockEntity.setCurrentRecipe(recipe);
-            blockEntity.setChanged(); // 标记区块需要保存
-        }
-    }
-
-    void updateRecipeSlots() {
-        clearAllSlots();
-
-        if (currentRecipe != null) {
-            ItemStack[] materials = currentRecipe.getMaterials();
-            for (int i = 0; i < materials.length && i < 9; i++) {
-                int finalI = i;
-                blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-                    handler.insertItem(finalI, materials[finalI].copy(), false);
-                });
-            }
-        }
+    /**
+     * 从配方中获取材料示例物品（用于UI显示）
+     * @param recipe 配方对象
+     * @return 材料物品数组
+     */
+    public ItemStack[] getMaterialsFromRecipe(ForgeBlockRecipe recipe) {
+        return recipe.getIngredients().stream()
+                .map(ingredient -> ingredient.getItems().length > 0 ? ingredient.getItems()[0] : ItemStack.EMPTY)
+                .toArray(ItemStack[]::new);
     }
 
     void clearAllSlots() {
@@ -153,11 +175,11 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         return false;
     }
 
-    private boolean hasEnoughMaterials(Inventory playerInventory) {
+    boolean hasEnoughMaterials(Inventory playerInventory) {
         if (currentRecipe == null) return false;
 
         IItemHandler playerItems = new InvWrapper(playerInventory);
-        ItemStack[] requiredMaterials = currentRecipe.getMaterials();
+        ItemStack[] requiredMaterials = getMaterialsFromRecipe(currentRecipe);
 
         for (ItemStack required : requiredMaterials) {
             if (required.isEmpty()) continue;
@@ -178,10 +200,10 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         return true;
     }
 
-    private void consumeMaterials(Inventory playerInventory) {
+    void consumeMaterials(Inventory playerInventory) {
         if (currentRecipe == null) return;
 
-        ItemStack[] requiredMaterials = currentRecipe.getMaterials();
+        ItemStack[] requiredMaterials = getMaterialsFromRecipe(currentRecipe);
         for (ItemStack required : requiredMaterials) {
             if (required.isEmpty()) continue;
 
@@ -333,229 +355,6 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
     }
 
     // 优化配方存储结构（与缝纫台一致）
-    public static final Map<ResourceLocation, ForgeRecipe> RECIPE_MAP = new HashMap<>();
-    public static final List<ForgeRecipe> RECIPES = new ArrayList<>();
-
-    public static void registerRecipe(ForgeRecipe recipe) {
-        ResourceLocation key = new ResourceLocation(
-                ForgeRegistries.ITEMS.getKey(recipe.result.getItem()).toString() + "_" + recipe.result.getCount()
-        );
-
-        if (!RECIPE_MAP.containsKey(key)) {
-            RECIPE_MAP.put(key, recipe);
-            RECIPES.add(recipe);
-        }
-    }
-
-    public static Optional<ForgeRecipe> findRecipe(ItemStack result) {
-        if (result.isEmpty()) return Optional.empty();
-
-        ResourceLocation key = new ResourceLocation(
-                ForgeRegistries.ITEMS.getKey(result.getItem()).toString() + "_" + result.getCount()
-        );
-        return Optional.ofNullable(RECIPE_MAP.get(key));
-    }
-
-    // 静态初始化块 - 在这里添加配方
-    static {
-        // 添加配方（使用registerRecipe方法注册）
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.FEMALE_TAOIST_HELMET.get()),
-                        new ItemStack(Items.IRON_INGOT, 3),
-                        new ItemStack(Items.GOLD_INGOT, 2)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get()),
-                        new ItemStack(Items.IRON_INGOT, 5)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET.get()),
-                        new ItemStack(Items.GOLD_INGOT, 3),
-                        new ItemStack(Items.LAPIS_LAZULI, 3),
-                        new ItemStack(Items.REDSTONE, 1)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.MOUNTAIN_PATTERN_HELMET_GUN_HOOD.get()),
-                        new ItemStack(Items.IRON_INGOT, 2),
-                        new ItemStack(Items.EMERALD, 1),
-                        new ItemStack(Items.GOLD_INGOT, 1),
-                        new ItemStack(Items.COPPER_INGOT, 1)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get()),
-                        new ItemStack(Items.IRON_INGOT, 4),
-                        new ItemStack(Items.GOLD_INGOT, 1),
-                        new ItemStack(Items.COPPER_INGOT, 3)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.WALKER_GOLD_RING_BAND.get()),
-                        new ItemStack(Items.GOLD_INGOT, 3)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_PHOENIX_WINGS_HELMET.get()),
-                        new ItemStack(Items.IRON_INGOT, 1),
-                        new ItemStack(Items.GOLD_INGOT, 1),
-                        new ItemStack(Items.COPPER_INGOT, 3)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get()),
-                        new ItemStack(Items.IRON_INGOT, 4),
-                        new ItemStack(Items.GOLD_INGOT, 3),
-                        new ItemStack(Items.COPPER_INGOT, 1)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS.get()),
-                        new ItemStack(Items.LEATHER, 5),
-                        new ItemStack(Items.LAPIS_LAZULI, 2)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.FLY_FISH_IRON_HAT.get()),
-                        new ItemStack(Items.IRON_INGOT, 4),
-                        new ItemStack(Items.GOLD_INGOT, 1)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.WALKER_GREEN_TREASURE_PENDANT.get()),
-                        new ItemStack(ChangShengJueItems.AG_INGOT.get(),2),
-                        new ItemStack(Items.EMERALD, 1)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR.get()),
-                        new ItemStack(Items.GOLD_INGOT, 6)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.BRONZE_SWORD.get()),
-                        new ItemStack(Items.COPPER_INGOT,2),
-                        new ItemStack(Items.STICK,2)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.HAN_JIAN.get()),
-                        new ItemStack(Items.COPPER_INGOT,1),
-                        new ItemStack(Items.IRON_INGOT,2)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.HENG_DAO.get()),
-                        new ItemStack(Items.COPPER_INGOT,1),
-                        new ItemStack(Items.IRON_INGOT,2)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.LARGE_KNIFE.get()),
-                        new ItemStack(Items.GOLD_INGOT,1),
-                        new ItemStack(Items.IRON_INGOT,2)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.RED_TASSELLED_SPEAR.get()),
-                        new ItemStack(Items.IRON_INGOT,1),
-                        new ItemStack(Items.RED_WOOL,1),
-                        new ItemStack(Items.STICK,1)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.THROWING_KNIVES.get()),
-                        new ItemStack(Items.IRON_INGOT,1),
-                        new ItemStack(Items.LEATHER,1)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.SOFT_SWORD.get()),
-                        new ItemStack(Items.IRON_INGOT,1),
-                        new ItemStack(Items.STRING,1),
-                        new ItemStack(Items.STICK,1)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.PAN_HUA_GUN.get()),
-                        new ItemStack(Items.COPPER_INGOT,1),
-                        new ItemStack(Items.STICK,2)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.KITCHEN_KNIFE.get()),
-                        new ItemStack(Items.IRON_INGOT,1),
-                        new ItemStack(Items.STICK,1)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.GOLD_THREAD_GLOVE.get()),
-                        new ItemStack(Items.GOLD_INGOT,1),
-                        new ItemStack(Items.LEATHER,1)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.KAISHAN_PICKAXE.get()),
-                        new ItemStack(Items.IRON_INGOT,3),
-                        new ItemStack(Items.COPPER_INGOT,2)
-                )
-        );
-
-        registerRecipe(
-                new ForgeRecipe(
-                        new ItemStack(ChangShengJueItems.XUANHUA_AXE.get()),
-                        new ItemStack(Items.IRON_INGOT,3),
-                        new ItemStack(Items.COPPER_INGOT,2)
-                )
-        );
-    }
 
     /**
      * 检查玩家是否拥有指定材料的足够数量

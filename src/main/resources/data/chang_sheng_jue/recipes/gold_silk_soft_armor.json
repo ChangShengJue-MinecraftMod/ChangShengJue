@@ -1,0 +1,12 @@
+{
+  "type": "chang_sheng_jue:forge_block",
+  "ingredients": [
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 6
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:gold_silk_soft_armor"
+  }
+}

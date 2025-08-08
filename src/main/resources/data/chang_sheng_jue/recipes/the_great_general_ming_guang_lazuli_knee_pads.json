@@ -1,0 +1,16 @@
+{
+  "type": "chang_sheng_jue:forge_block",
+  "ingredients": [
+    {
+      "item": "minecraft:leather",
+      "count": 5
+    },
+    {
+      "item": "minecraft:lapis_lazuli",
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:the_great_general_ming_guang_lazuli_knee_pads"
+  }
+}

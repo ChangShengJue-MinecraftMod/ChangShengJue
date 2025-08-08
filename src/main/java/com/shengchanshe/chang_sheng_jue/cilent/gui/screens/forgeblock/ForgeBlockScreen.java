@@ -5,6 +5,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.*;
+import com.shengchanshe.chang_sheng_jue.recipe.ForgeBlockRecipe;
+import com.shengchanshe.chang_sheng_jue.recipe.CSJRecipeTypes;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -20,6 +22,8 @@ import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.core.RegistryAccess;
 import org.joml.Quaternionf;
 
 import java.util.*;
@@ -41,6 +45,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     private int scrollBarY = 0;
     private int scrollBarX = 0;
     private final List<ItemStack> currentMaterials = new ArrayList<>();
+    private List<ForgeBlockRecipe> cachedRecipes = new ArrayList<>();
 
     public ForgeBlockScreen(ForgeBlockMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -51,17 +56,22 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     @Override
     protected void init() {
         super.init();
+        System.out.println("正在初始化ForgeBlockScreen");
         customButtons.clear();
+        scrollOffset = 0; // 确保滚动偏移初始化为0
         createArmorStandEntity();
+        refreshRecipes(); // 刷新配方缓存
         refreshItemButtons();
 
-        ForgeBlockMenu.ForgeRecipe serverRecipe = menu.getCurrentRecipe();
+        ForgeBlockRecipe serverRecipe = menu.getCurrentRecipe();
+        System.out.println("服务端配方: " + (serverRecipe != null ? serverRecipe.getId() : "无"));
 
         //如果处于制作状态
         if (serverRecipe != null || menu.isCrafting()) {
             currentMaterials.clear();
-            currentMaterials.addAll(Arrays.asList(serverRecipe.getMaterials()));
-            currentSelectedItem = serverRecipe.getResult();
+            currentMaterials.addAll(Arrays.asList(getMaterialsFromRecipe(serverRecipe)));
+            currentSelectedItem = serverRecipe.getResultItem(getRegistryAccess());
+            System.out.println("设置当前选中物品: " + currentSelectedItem);
         }
 
         int x = (width - imageWidth) / 2;
@@ -76,37 +86,97 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                 .build();
 
         addRenderableWidget(craftButton);
+        // System.out.println("ForgeBlockScreen初始化完成，共有 " + customButtons.size() + " 个按钮");
+    }
+
+    private void refreshRecipes() {
+        // 获取所有配方并缓存
+        if (minecraft != null && minecraft.level != null) {
+            try {
+                System.out.println("尝试获取配方管理器...");
+                var recipeManager = minecraft.level.getRecipeManager();
+                System.out.println("配方管理器: " + recipeManager);
+                
+                System.out.println("尝试获取配方类型...");
+                var recipeType = CSJRecipeTypes.FORGE_BLOCK_TYPE.get();
+                System.out.println("配方类型: " + recipeType);
+                
+                System.out.println("尝试获取所有配方...");
+                cachedRecipes = recipeManager.getAllRecipesFor(recipeType);
+            } catch (Exception e) {
+                cachedRecipes = new ArrayList<>();
+                e.printStackTrace();
+            }
+        } else {
+            cachedRecipes.clear();
+            if (minecraft == null) {
+                System.out.println("Minecraft实例为空");
+            } else if (minecraft.level == null) {
+                System.out.println("Minecraft世界实例为空");
+            }
+        }
     }
 
     private void refreshItemButtons() {
-        // 移除旧按钮
-        for (CustomButton button : customButtons) {
-            this.removeWidget(button);
-        }
-        customButtons.clear();
+        // 保存当前选中的物品
+        ItemStack previouslySelectedItem = currentSelectedItem.copy();
+
+        System.out.println("正在刷新按钮，找到 " + cachedRecipes.size() + " 个配方");
 
         int row = 0;
         int col = 0;
 
         // 计算起始索引：已滚动的行数 × 每行的按钮数（5个）
         int startIndex = scrollOffset * 5;
-        // 遍历配方，从起始索引开始（使用ForgeBlockMenu.RECIPES）
-        for (int i = startIndex; i < ForgeBlockMenu.RECIPES.size(); i++) {
-            ForgeBlockMenu.ForgeRecipe recipe = ForgeBlockMenu.RECIPES.get(i);
 
-            // 只显示可见行数（VISIBLE_ROWS）的配方
-            if (row >= VISIBLE_ROWS) {
-                break;
+        // 计算最大滚动偏移
+        int maxScrollOffset = Math.max(0, (cachedRecipes.size() + 4) / 5 - VISIBLE_ROWS);
+
+        // 确保滚动偏移在有效范围内
+        if (scrollOffset > maxScrollOffset) {
+            scrollOffset = maxScrollOffset;
+        }
+
+        // 清除现有按钮的内容，但不删除按钮对象
+        for (CustomButton button : customButtons) {
+            button.itemStack = ItemStack.EMPTY;
+        }
+
+        // 遍历配方，从起始索引开始
+        for (int i = startIndex; i < cachedRecipes.size() && row < VISIBLE_ROWS; i++) {
+            ForgeBlockRecipe recipe = cachedRecipes.get(i);
+            System.out.println("正在为配方创建按钮: " + recipe.getId() + " 位置 (" + col + ", " + row + ")");
+
+            // 更新现有按钮
+            if (col + row * 5 < customButtons.size()) {
+                CustomButton button = customButtons.get(col + row * 5);
+                button.itemStack = recipe.getResultItem(getRegistryAccess());
+            } else {
+                // 如果按钮数量不够，创建新按钮
+                createButton(col, row, recipe.getResultItem(getRegistryAccess()));
             }
-
-            // 创建按钮
-            createButton(col, row, recipe.getResult());
 
             // 每行5个按钮
             col++;
             if (col >= 5) {
                 col = 0;
                 row++;
+            }
+        }
+
+        // 如果没有任何配方，也尝试刷新一次配方
+        if (cachedRecipes.isEmpty()) {
+            System.out.println("没有找到配方，尝试重新加载...");
+            refreshRecipes();
+        }
+
+        // 恢复之前选中的按钮状态
+        if (!previouslySelectedItem.isEmpty()) {
+            for (CustomButton button : customButtons) {
+                if (ItemStack.isSameItemSameTags(button.itemStack, previouslySelectedItem)) {
+                    button.COUNT = 1;
+                    break;
+                }
             }
         }
     }
@@ -123,9 +193,12 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                 18,
                 Component.literal(" "),
                 (button1) -> {
+                    // 重置其他按钮的状态
                     for (CustomButton btn : customButtons) {
-                        btn.COUNT = (btn == button1) ? 1 : 0;
+                        btn.COUNT = 0;
                     }
+                    // 设置当前按钮为选中状态
+                    ((CustomButton) button1).COUNT = 1;
                     currentSelectedItem = ((CustomButton) button1).itemStack;
 
                     // 更新槽位显示并同步配方到服务端
@@ -139,33 +212,81 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         // 可选：添加半透明效果表示不可用
         button.setAlpha(menu.isCrafting() ? 0.5f : 1.0f);
 
-
         addRenderableWidget(button);
         customButtons.add(button);
     }
 
     // 更新槽位显示并同步配方到服务端
     private void updateSlotsForSelectedItem(ItemStack selectedItem) {
+        System.out.println("更新槽位显示，选中物品: " + selectedItem);
 
         if (menu.isCrafting()) {
+            System.out.println("正在制作中，无法更新配方");
             return;
         }
 
-        Optional<ForgeBlockMenu.ForgeRecipe> newRecipe = selectedItem.isEmpty()
+        Optional<ForgeBlockRecipe> newRecipe = selectedItem.isEmpty()
                 ? Optional.empty()
-                : ForgeBlockMenu.findRecipe(selectedItem);
+                : cachedRecipes.stream()
+                .filter(recipe -> ItemStack.isSameItemSameTags(recipe.getResultItem(getRegistryAccess()), selectedItem))
+                .findFirst();
+        
+        System.out.println("找到匹配的配方: " + (newRecipe.isPresent() ? newRecipe.get().getId() : "无"));
+
         currentMaterials.clear();
-        newRecipe.ifPresent(forgeRecipe -> currentMaterials.addAll(Arrays.asList(forgeRecipe.getMaterials())));
+        if (newRecipe.isPresent()) {
+            ItemStack[] materials = getMaterialsFromRecipe(newRecipe.get());
+            currentMaterials.addAll(Arrays.asList(materials));
+            System.out.println("设置材料显示，共 " + materials.length + " 个材料");
+        }
+        
         // 立即更新客户端本地显示
         menu.setCurrentRecipe(newRecipe.orElse(null));
 
         // 发送同步包到服务端
+        System.out.println("准备发送配方同步包...");
         ChangShengJueMessages.sendToServer(
                 new ForgeSyncRecipePacket(menu.getBlockPos(), newRecipe.orElse(null))
         );
+        System.out.println("配方同步包已发送");
 
         // 强制刷新UI
         menu.updateRecipeSlots();
+    }
+
+    // 获取菜单的Level对象
+    private net.minecraft.world.level.Level getMenuLevel() {
+        return minecraft.level;
+    }
+    
+    // 获取注册表访问对象
+    private RegistryAccess getRegistryAccess() {
+        return getMenuLevel().registryAccess();
+    }
+
+    // 从配方中获取材料示例物品（用于UI显示）
+    private ItemStack[] getMaterialsFromRecipe(ForgeBlockRecipe recipe) {
+        System.out.println("从配方获取材料: " + (recipe != null ? recipe.getId() : "无配方"));
+        if (recipe == null) {
+            System.out.println("配方为空，返回空材料数组");
+            return new ItemStack[0];
+        }
+        
+        ItemStack[] materials = recipe.getIngredients().stream()
+                .map(ingredient -> {
+                    ItemStack[] items = ingredient.getItems();
+                    if (items.length > 0) {
+                        System.out.println("材料: " + items[0]);
+                        return items[0];
+                    } else {
+                        System.out.println("空材料");
+                        return ItemStack.EMPTY;
+                    }
+                })
+                .toArray(ItemStack[]::new);
+        
+        System.out.println("总共获取到 " + materials.length + " 个材料");
+        return materials;
     }
 
     private void createArmorStandEntity() {
@@ -192,7 +313,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         scrollBarY = y + 45;
         scrollBarHeight = VISIBLE_ROWS * 18;
 
-
+        // 渲染材料槽位背景
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 int slotIndex = row * 3 + col; // 槽位索引（0-8）
@@ -211,10 +332,10 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
             }
         }
 
-
-        int maxScrollOffset = TOTAL_ROWS - VISIBLE_ROWS;
+        // 渲染滚动条
+        int maxScrollOffset = Math.max(0, (cachedRecipes.size() + 4) / 5 - VISIBLE_ROWS);
         float scrollProgress = maxScrollOffset > 0 ? (float) scrollOffset / maxScrollOffset : 0;
-        int sliderHeight = Math.max(15, (int) (VISIBLE_ROWS * 1.0f / TOTAL_ROWS * scrollBarHeight));
+        int sliderHeight = Math.max(15, (int) (VISIBLE_ROWS * 1.0f / Math.max(1, (cachedRecipes.size() + 4) / 5) * scrollBarHeight));
         int sliderY = scrollBarY + (int) (scrollProgress * (scrollBarHeight - sliderHeight));
 
         int scrollerTextureV = isDragging ? 6 : 0;
@@ -223,7 +344,8 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
-        int maxScrollOffset = TOTAL_ROWS - VISIBLE_ROWS;
+        int maxScrollOffset = Math.max(0, (cachedRecipes.size() + 4) / 5 - VISIBLE_ROWS);
+        
         if (delta > 0 && scrollOffset > 0) {
             scrollOffset--;
             refreshItemButtons();
@@ -256,16 +378,24 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     }
 
     private void updateScrollFromMousePos(double mouseY) {
-        int maxScrollOffset = TOTAL_ROWS - VISIBLE_ROWS;
-        if (maxScrollOffset <= 0) return;
+        // 计算最大滚动偏移，使用更精确的除法
+        int maxScrollOffset = Math.max(0, (int) Math.ceil((double) cachedRecipes.size() / 5) - VISIBLE_ROWS);
+        System.out.println("拖拽时最大滚动偏移: " + maxScrollOffset);
+        
+        if (maxScrollOffset <= 0) {
+            System.out.println("无需滚动，配方数量不足");
+            return;
+        }
 
-        float scrollSensitivity = 0.2f;
-        float relativeY = (float) (mouseY - scrollBarY) / (scrollBarHeight * scrollSensitivity);
+        // 计算鼠标位置对应的滚动比例
+        float relativeY = (float) (mouseY - scrollBarY) / scrollBarHeight;
         relativeY = Math.max(0, Math.min(1, relativeY));
 
+        // 更新滚动偏移量
         scrollOffset = (int) (relativeY * maxScrollOffset);
         scrollOffset = Math.max(0, Math.min(scrollOffset, maxScrollOffset));
-
+        
+        System.out.println("拖拽更新滚动偏移: " + scrollOffset);
         refreshItemButtons();
     }
 
@@ -373,6 +503,26 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         renderArmorStandWithItem(guiGraphics);
     }
 
+    @Override
+    public void containerTick() {
+        super.containerTick();
+        // 定期刷新配方以确保显示最新数据，但不刷新按钮状态
+        if (minecraft != null && minecraft.level != null && minecraft.level.getGameTime() % 20 == 0) {
+            System.out.println("定期刷新配方...");
+            refreshRecipes();
+
+            // 只更新现有按钮的物品，不改变按钮状态
+            for (CustomButton button : customButtons) {
+                if (!button.itemStack.isEmpty()) {
+                    ItemStack updatedStack = button.itemStack.getItem().getDefaultInstance();
+                    if (!ItemStack.isSameItemSameTags(button.itemStack, updatedStack)) {
+                        button.itemStack = updatedStack;
+                    }
+                }
+            }
+        }
+    }
+
     private class CustomButton extends Button {
         private ItemStack itemStack;
         private static final int TEXTURE_Y_NORMAL = 217;
@@ -409,12 +559,6 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                     renderToolTip(guiGraphics, mouseX, mouseY, itemStack);
                 }
 
-                int textColor = isHoveredOrFocused() ? 0xFFFFA0 : 0xE0E0E0;
-                guiGraphics.drawCenteredString(font, getMessage(),
-                        this.getX() + 9,
-                        this.getY() + 4,
-                        textColor);
-
                 // 更新合成按钮状态
                 if (craftButton != null) {
                     boolean isCrafting = menu.isCrafting();
@@ -422,6 +566,11 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                     craftButton.visible = !isCrafting;
                 }
             }
+        }
+
+        @Override
+        public boolean isHoveredOrFocused() {
+            return this.COUNT == 1 || super.isHoveredOrFocused();
         }
     }
 

@@ -15,6 +15,7 @@ import com.shengchanshe.chang_sheng_jue.martial_arts.KungFuRegistry;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
+import com.shengchanshe.chang_sheng_jue.recipe.CSJRecipeTypes;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import com.shengchanshe.chang_sheng_jue.util.ClientSetup;
 import com.shengchanshe.chang_sheng_jue.world.biome.CSJTerrablender;
@@ -66,6 +67,7 @@ public class ChangShengJue {
         CSJFoliagePlacers.register(eventBus);
         CSJTrunkPlacerTypes.register(eventBus);
         ChangShengJueLootModifier.register(eventBus);
+        CSJRecipeTypes.register(eventBus); // 确保配方类型已注册
 
         new CSJAdvanceInit();
 
@@ -77,6 +79,7 @@ public class ChangShengJue {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, KungFuConfig.SPEC, MOD_ID + "/" + MOD_ID + ".kung_fu.toml");
 
         MinecraftForge.EVENT_BUS.register(this);
+            System.out.println("长生诀模组已初始化");
     }
 
     private void setup(final FMLCommonSetupEvent event) {

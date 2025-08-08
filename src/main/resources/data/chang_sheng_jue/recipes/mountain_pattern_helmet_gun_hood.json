@@ -1,0 +1,24 @@
+{
+  "type": "chang_sheng_jue:forge_block",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot",
+      "count": 2
+    },
+    {
+      "item": "minecraft:emerald",
+      "count": 1
+    },
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 1
+    },
+    {
+      "item": "minecraft:copper_ingot",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:mountain_pattern_helmet_gun_hood"
+  }
+}
