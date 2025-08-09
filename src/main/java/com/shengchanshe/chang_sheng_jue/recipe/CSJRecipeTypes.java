@@ -25,6 +25,17 @@ public class CSJRecipeTypes {
                     return "chang_sheng_jue:forge_block";
                 }
             });
+            
+    public static final RegistryObject<RecipeSerializer<TailoringCaseRecipe>> TAILORING_CASE_SERIALIZERS =
+            SERIALIZERS.register("tailoring_case", () -> TailoringCaseRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeType<TailoringCaseRecipe>> TAILORING_CASE_TYPE =
+            RECIPE_TYPES.register("tailoring_case", () -> new RecipeType<TailoringCaseRecipe>() {
+                @Override
+                public String toString() {
+                    return "chang_sheng_jue:tailoring_case";
+                }
+            });
 
     // 注册配方类型和序列化器
     public static void register(IEventBus eventBus) {

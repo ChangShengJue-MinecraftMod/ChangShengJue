@@ -3,9 +3,12 @@ package com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase.TailoringCaseMenu;
+import com.shengchanshe.chang_sheng_jue.recipe.CSJRecipeTypes;
+import com.shengchanshe.chang_sheng_jue.recipe.TailoringCaseRecipe;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
@@ -20,6 +23,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -45,6 +49,7 @@ import software.bernie.geckolib.util.ClientUtils;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 public class TailoringCaseEntity extends BlockEntity implements MenuProvider , GeoBlockEntity {
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -57,8 +62,9 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
     public int progress = 0;
     public int maxProgress = 100;
 
-    // 当前选中的配方
-    private TailoringCaseMenu.TailoringRecipe currentRecipe;
+    // 当前选中的配方和配方组
+    private TailoringCaseRecipe currentRecipe;
+    private String currentRecipeGroup = ""; // 当前配方组
 
     @Override
     public @Nullable <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
@@ -136,7 +142,7 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
 
         // 保存当前配方信息
         if (currentRecipe != null) {
-            tag.put("current_recipe", currentRecipe.serializeNBT());
+            tag.putString("current_recipe", currentRecipe.getId().toString());
         }
     }
 
@@ -148,7 +154,21 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
 
         // 加载当前配方信息
         if (tag.contains("current_recipe")) {
-            currentRecipe = TailoringCaseMenu.TailoringRecipe.deserializeNBT(tag.getCompound("current_recipe"));
+            ResourceLocation recipeId = new ResourceLocation(tag.getString("current_recipe"));
+            // 注意：这里我们只保存配方ID，在实际使用时需要通过配方管理器获取完整配方
+            // 在getOrCreateLevel()方法中处理配方的实际获取
+            if (level != null) {
+                Optional<? extends net.minecraft.world.item.crafting.Recipe<?>> recipe = level.getRecipeManager().byKey(recipeId);
+                if (recipe.isPresent() && recipe.get() instanceof TailoringCaseRecipe) {
+                    currentRecipe = (TailoringCaseRecipe) recipe.get();
+                } else {
+                    currentRecipe = null;
+                }
+            } else {
+                currentRecipe = null;
+            }
+        } else {
+            currentRecipe = null;
         }
     }
 
@@ -184,7 +204,7 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
         } else if (progress >= maxProgress) {
             // 进度完成，生成物品
             if (currentRecipe != null) {
-                craftItem(currentRecipe.getResult());
+                craftItem(currentRecipe.getResultItem(pLevel.registryAccess()));
             }
             progress = 0;
             this.setChanged();
@@ -203,34 +223,59 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3); // 同步到客户端
         }
     }
-
-    @Override
-    public void handleUpdateTag(CompoundTag tag) {
-        super.handleUpdateTag(tag);
-        load(tag); // 确保客户端同步物品数据
-    }
-
-
+    
     public void craftCurrentRecipe(Player player) {
-        if (currentRecipe == null) return;
+        TailoringCaseRecipe recipeToUse = null;
+        
+        // 首先检查当前配方是否有足够材料
+        if (currentRecipe != null && hasEnoughMaterials(player.getInventory(), currentRecipe)) {
+            recipeToUse = currentRecipe;
+        } else {
+            // 如果当前配方材料不足，只查找同一结果物品的其他配方
+            if (currentRecipe != null) {
+                ItemStack resultItem = currentRecipe.getResultItem(level.registryAccess());
+                // 获取所有可用的配方
+                var recipeManager = level.getRecipeManager();
+                var recipeType = CSJRecipeTypes.TAILORING_CASE_TYPE.get();
+                var allRecipes = recipeManager.getAllRecipesFor(recipeType);
+                
+                // 查找第一个材料足够的配方，且结果物品相同
+                for (TailoringCaseRecipe recipe : allRecipes) {
+                    if (ItemStack.isSameItemSameTags(recipe.getResultItem(level.registryAccess()), resultItem)) {
+                        if (hasEnoughMaterials(player.getInventory(), recipe)) {
+                            // 找到匹配的配方
+                            recipeToUse = recipe;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (recipeToUse == null) return;
 
         // 检查输出槽是否有物品
         if (!itemHandler.getStackInSlot(SLOT_OUTPUT).isEmpty()) {
             return; // 输出槽有物品，禁止合成
         }
 
-        // 检查玩家是否有足够材料
-        if (hasEnoughMaterials(player.getInventory(), currentRecipe)) {
+        // 设置要使用的配方为当前配方（如果不同的话）
+        if (recipeToUse != currentRecipe) {
+            setCurrentRecipe(recipeToUse);
+        }
+
+        // 检查玩家是否有足够材料（再次检查以确保一致性）
+        if (hasEnoughMaterials(player.getInventory(), recipeToUse)) {
             // 消耗材料
-            consumeMaterials(player.getInventory(), currentRecipe);
+            consumeMaterials(player.getInventory(), recipeToUse);
             // 开始制作进度
             this.progress = 1;
             this.setChanged();
         }
     }
-
-    private boolean hasEnoughMaterials(Inventory playerInventory, TailoringCaseMenu.TailoringRecipe recipe) {
-        ItemStack[] requiredMaterials = recipe.getMaterials();
+    
+    private boolean hasEnoughMaterials(Inventory playerInventory, TailoringCaseRecipe recipe) {
+        ItemStack[] requiredMaterials = getMaterialsFromRecipe(recipe);
         for (ItemStack required : requiredMaterials) {
             if (required.isEmpty()) continue;
 
@@ -250,8 +295,8 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
         return true;
     }
 
-    private void consumeMaterials(Inventory playerInventory, TailoringCaseMenu.TailoringRecipe recipe) {
-        ItemStack[] requiredMaterials = recipe.getMaterials();
+    private void consumeMaterials(Inventory playerInventory, TailoringCaseRecipe recipe) {
+        ItemStack[] requiredMaterials = getMaterialsFromRecipe(recipe);
         for (ItemStack required : requiredMaterials) {
             if (required.isEmpty()) continue;
 
@@ -267,67 +312,71 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
             }
         }
     }
+    
+    // 从配方中获取材料示例物品（用于UI显示）
+    public ItemStack[] getMaterialsFromRecipe(TailoringCaseRecipe recipe) {
+        return recipe.getIngredients().stream()
+                .map(ingredient -> ingredient.getItems().length > 0 ? ingredient.getItems()[0] : ItemStack.EMPTY)
+                .toArray(ItemStack[]::new);
+    }
 
-    public void setCurrentRecipe(TailoringCaseMenu.TailoringRecipe recipe) {
+    @Override
+    public void handleUpdateTag(CompoundTag tag) {
+        super.handleUpdateTag(tag);
+        load(tag); // 确保客户端同步物品数据
+    }
+
+
+
+    public void setCurrentRecipe(TailoringCaseRecipe recipe) {
+        setCurrentRecipe(recipe, recipe != null ? recipe.getGroup() : null);
+    }
+
+    public void setCurrentRecipe(TailoringCaseRecipe recipe, String group) {
         this.currentRecipe = recipe;
-        // 立即更新输入槽位
+        this.currentRecipeGroup = group != null ? group : "";
+        
+        // 清空输入槽
+        for (int i = 0; i < 9; i++) {
+            itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+        }
+
+        // 设置配方材料到输入槽
         if (recipe != null) {
-            for (int i = 0; i < recipe.getMaterials().length && i < 9; i++) {
-                itemHandler.setStackInSlot(i, recipe.getMaterials()[i].copy());
-            }
-        } else {
-            // 清空输入槽
-            for (int i = 0; i < 9; i++) {
-                itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+            NonNullList<Ingredient> ingredients = recipe.getIngredients();
+            for (int i = 0; i < ingredients.size() && i < 9; i++) {
+                ItemStack[] matchingStacks = ingredients.get(i).getItems();
+                if (matchingStacks.length > 0) {
+                    itemHandler.setStackInSlot(i, matchingStacks[0].copy());
+                }
             }
         }
+
         setChanged();
         if (level != null) {
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
         }
     }
 
-    public TailoringCaseMenu.TailoringRecipe getCurrentRecipe() {
+    public TailoringCaseRecipe getCurrentRecipe() {
         return currentRecipe;
     }
-
-
-    //新增配方
-    public void addRecipeWithMaterials(ItemStack result, ItemStack... materials) {
-        // 检查是否已存在相同配方
-        ResourceLocation key = new ResourceLocation(
-                ForgeRegistries.ITEMS.getKey(result.getItem()).toString() + "_" + result.getCount()
-        );
-        if (TailoringCaseMenu.RECIPE_MAP.containsKey(key)) {
-            return;
+    
+    // 获取当前配方的结果物品
+    public ItemStack getRecipeResultItem() {
+        if (currentRecipe != null) {
+            return currentRecipe.getResultItem(level.registryAccess());
         }
-
-        // 1. 将材料放入输入槽位
-        for (int i = 0; i < materials.length && i < 9; i++) {
-            itemHandler.setStackInSlot(i, materials[i].copy());
-        }
-
-        // 2. 将成果放入输出槽位
-        itemHandler.setStackInSlot(SLOT_OUTPUT, result.copy());
-
-        // 3. 创建新配方并添加到配方列表
-        TailoringCaseMenu.TailoringRecipe newRecipe = new TailoringCaseMenu.TailoringRecipe(
-                result.copy(),
-                Arrays.stream(materials).map(ItemStack::copy).toArray(ItemStack[]::new)
-        );
-
-        // 注册新配方
-        TailoringCaseMenu.registerRecipe(newRecipe);
-
-        // 4. 设置当前配方
-        this.currentRecipe = newRecipe;
-
-        // 5. 保存更改并同步到客户端
-        setChanged();
-        if (level != null) {
-            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
-        }
+        return ItemStack.EMPTY;
     }
+    
+    public void setRecipeGroup(String group) {
+        this.currentRecipeGroup = group != null ? group : "";
+        // 如果需要根据组更新UI，可以在这里添加相关逻辑
+        setChanged();
+    }
+
+
 
     @Override
     public void setChanged() {

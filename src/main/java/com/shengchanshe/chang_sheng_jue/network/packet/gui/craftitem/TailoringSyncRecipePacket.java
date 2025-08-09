@@ -1,68 +1,110 @@
 package com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem;
 
 import com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase.TailoringCaseEntity;
-import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase.TailoringCaseMenu;
+import com.shengchanshe.chang_sheng_jue.recipe.TailoringCaseRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraftforge.network.NetworkEvent;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
+/**
+ * 配方同步数据包
+ * 用于在客户端和服务端之间同步裁衣案当前使用的配方
+ */
 public class TailoringSyncRecipePacket {
     private final BlockPos pos;
-    private final TailoringCaseMenu.TailoringRecipe recipe;
+    private final ResourceLocation recipeId; // 存储配方的唯一标识符
 
-    public TailoringSyncRecipePacket(BlockPos pos, TailoringCaseMenu.TailoringRecipe recipe) {
+    /**
+     * 创建新的配方同步包
+     * @param pos 方块位置
+     * @param recipe 配方对象
+     */
+    public TailoringSyncRecipePacket(BlockPos pos, TailoringCaseRecipe recipe) {
         this.pos = pos;
-        this.recipe = recipe;
+        this.recipeId = recipe != null ? recipe.getId() : null;
     }
 
+    /**
+     * 创建新的配方同步包
+     * @param pos 方块位置
+     * @param recipeId 配方ID
+     */
+    public TailoringSyncRecipePacket(BlockPos pos, ResourceLocation recipeId) {
+        this.pos = pos;
+        this.recipeId = recipeId;
+    }
+
+    /**
+     * 从字节缓冲区读取数据包
+     * @param buf 字节缓冲区
+     */
+    public TailoringSyncRecipePacket(FriendlyByteBuf buf) {
+        this.pos = buf.readBlockPos();
+        boolean hasRecipe = buf.readBoolean();
+        if (hasRecipe) {
+            this.recipeId = buf.readResourceLocation();
+        } else {
+            this.recipeId = null;
+        }
+    }
+
+    /**
+     * 将数据包写入字节缓冲区
+     * @param buf 字节缓冲区
+     */
     public void toBytes(FriendlyByteBuf buf) {
         buf.writeBlockPos(pos);
-
-        // 将配方序列化为NBT
-        if (recipe != null) {
-            buf.writeBoolean(true);
-            buf.writeNbt(recipe.serializeNBT());
-        } else {
-            buf.writeBoolean(false);
+        buf.writeBoolean(recipeId != null);
+        if (recipeId != null) {
+            buf.writeResourceLocation(recipeId);
         }
     }
 
+    /**
+     * 从字节缓冲区创建数据包
+     * @param buf 字节缓冲区
+     * @return 新的配方同步包
+     */
     public static TailoringSyncRecipePacket fromBytes(FriendlyByteBuf buf) {
         BlockPos pos = buf.readBlockPos();
-        TailoringCaseMenu.TailoringRecipe recipe = null;
-
+        ResourceLocation recipeId = null;
         if (buf.readBoolean()) {
-            CompoundTag tag = buf.readNbt();
-            if (tag != null) {
-                recipe = TailoringCaseMenu.TailoringRecipe.deserializeNBT(tag);
-            }
+            recipeId = buf.readResourceLocation();
         }
-
-        return new TailoringSyncRecipePacket(pos, recipe);
+        return new TailoringSyncRecipePacket(pos, recipeId);
     }
 
-    public static void handle(TailoringSyncRecipePacket packet, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            ServerPlayer player = ctx.get().getSender();
-            if (player == null) return;
-
-            Level level = player.level();
-            BlockPos pos = packet.pos;
-            BlockEntity entity = level.getBlockEntity(pos);
-
-            if (entity instanceof TailoringCaseEntity tailoringEntity) {
-                if (tailoringEntity.getCurrentRecipe() != null){
-                    tailoringEntity.setCurrentRecipe(null);
+    /**
+     * 处理网络包
+     * 在服务端获取配方并设置到对应的方块实体中
+     * @param supplier 网络事件上下文
+     */
+    public void handle(Supplier<NetworkEvent.Context> supplier) {
+        NetworkEvent.Context context = supplier.get();
+        context.enqueueWork(() -> {
+            ServerPlayer player = context.getSender();
+            if (player != null && player.level().getBlockEntity(pos) instanceof TailoringCaseEntity blockEntity) {
+                TailoringCaseRecipe recipe = null;
+                if (recipeId != null) {
+                    Optional<? extends Recipe<?>> optionalRecipe = player.level().getRecipeManager().byKey(recipeId);
+                    if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof TailoringCaseRecipe) {
+                        recipe = (TailoringCaseRecipe) optionalRecipe.get();
+                    } else {
+                        recipe = null;
+                    }
                 }
-                tailoringEntity.setCurrentRecipe(packet.recipe);
+
+                blockEntity.setCurrentRecipe(recipe);
+                blockEntity.setChanged();
             }
         });
-        ctx.get().setPacketHandled(true);
+        context.setPacketHandled(true);
     }
 }
