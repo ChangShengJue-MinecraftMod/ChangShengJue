@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "confucian_ink_chestplate",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 7
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:confucian_ink_chestplate"
+  }
+}

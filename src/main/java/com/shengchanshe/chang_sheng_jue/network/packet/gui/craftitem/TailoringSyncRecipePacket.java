@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraftforge.network.NetworkEvent;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -29,6 +30,7 @@ public class TailoringSyncRecipePacket {
     public TailoringSyncRecipePacket(BlockPos pos, TailoringCaseRecipe recipe) {
         this.pos = pos;
         this.recipeId = recipe != null ? recipe.getId() : null;
+        System.out.println("创建同步包，配方ID: " + (recipeId != null ? recipeId : "无"));
     }
 
     /**
@@ -39,6 +41,7 @@ public class TailoringSyncRecipePacket {
     public TailoringSyncRecipePacket(BlockPos pos, ResourceLocation recipeId) {
         this.pos = pos;
         this.recipeId = recipeId;
+        System.out.println("通过ResourceLocation创建同步包，配方ID: " + (recipeId != null ? recipeId : "无"));
     }
 
     /**
@@ -47,12 +50,8 @@ public class TailoringSyncRecipePacket {
      */
     public TailoringSyncRecipePacket(FriendlyByteBuf buf) {
         this.pos = buf.readBlockPos();
-        boolean hasRecipe = buf.readBoolean();
-        if (hasRecipe) {
-            this.recipeId = buf.readResourceLocation();
-        } else {
-            this.recipeId = null;
-        }
+        this.recipeId = readResourceLocationFromBuffer(buf);
+        System.out.println("解码同步包，配方ID: " + (recipeId != null ? recipeId : "无"));
     }
 
     /**
@@ -60,10 +59,13 @@ public class TailoringSyncRecipePacket {
      * @param buf 字节缓冲区
      */
     public void toBytes(FriendlyByteBuf buf) {
-        buf.writeBlockPos(pos);
-        buf.writeBoolean(recipeId != null);
-        if (recipeId != null) {
-            buf.writeResourceLocation(recipeId);
+        try {
+            buf.writeBlockPos(pos);
+            writeResourceLocationToBuffer(buf, recipeId);
+            System.out.println("编码同步包，配方ID: " + (recipeId != null ? recipeId : "无"));
+        } catch (Exception e) {
+            System.out.println("Error encoding recipe ID: " + (recipeId != null ? recipeId : "null"));
+            e.printStackTrace();
         }
     }
 
@@ -73,12 +75,21 @@ public class TailoringSyncRecipePacket {
      * @return 新的配方同步包
      */
     public static TailoringSyncRecipePacket fromBytes(FriendlyByteBuf buf) {
-        BlockPos pos = buf.readBlockPos();
-        ResourceLocation recipeId = null;
-        if (buf.readBoolean()) {
-            recipeId = buf.readResourceLocation();
+        try {
+            BlockPos pos = buf.readBlockPos();
+            ResourceLocation recipeId = readResourceLocationFromBuffer(buf);
+            return new TailoringSyncRecipePacket(pos, recipeId);
+        } catch (Exception e) {
+            System.out.println("Error decoding recipe packet");
+            e.printStackTrace();
+            // 安全跳过异常数据
+            try {
+                buf.skipBytes(buf.readableBytes());
+            } catch (Exception inner) {
+                // 忽略内部异常
+            }
+            return new TailoringSyncRecipePacket(buf.readBlockPos(), (ResourceLocation)null);
         }
-        return new TailoringSyncRecipePacket(pos, recipeId);
     }
 
     /**
@@ -106,5 +117,37 @@ public class TailoringSyncRecipePacket {
             }
         });
         context.setPacketHandled(true);
+    }
+
+    /**
+     * 从缓冲区读取ResourceLocation
+     * @param buf 字节缓冲区
+     * @return 解析的ResourceLocation对象
+     */
+    private static ResourceLocation readResourceLocationFromBuffer(FriendlyByteBuf buf) {
+        if (buf.readBoolean()) {
+            int length = buf.readInt();
+            if (length >= 0) {
+                byte[] bytes = new byte[length];
+                buf.readBytes(bytes);
+                return ResourceLocation.tryParse(new String(bytes, StandardCharsets.UTF_8));
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 将ResourceLocation写入缓冲区
+     * @param buf 字节缓冲区
+     * @param location ResourceLocation对象
+     */
+    private static void writeResourceLocationToBuffer(FriendlyByteBuf buf, ResourceLocation location) {
+        buf.writeBoolean(location != null);
+        if (location != null) {
+            String idString = location.toString();
+            byte[] bytes = idString.getBytes(StandardCharsets.UTF_8);
+            buf.writeInt(bytes.length);
+            buf.writeBytes(bytes);
+        }
     }
 }
