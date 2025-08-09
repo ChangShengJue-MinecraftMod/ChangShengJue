@@ -46,6 +46,15 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     private int scrollBarX = 0;
     private final List<ItemStack> currentMaterials = new ArrayList<>();
     private List<ForgeBlockRecipe> cachedRecipes = new ArrayList<>();
+    
+    // 添加配方轮播相关变量
+    private final Map<String, List<ForgeBlockRecipe>> recipesByGroup = new HashMap<>();
+    private int currentRecipeIndex = 0;
+    private int carouselTick = 0;
+    private static final int CAROUSEL_INTERVAL = 20; // 1秒(20tick)切换一次
+    private boolean isCarouselPaused = false;
+    private List<ForgeBlockRecipe> currentRecipeGroup = new ArrayList<>();
+    private ForgeBlockRecipe localCurrentRecipe = null;
 
     public ForgeBlockScreen(ForgeBlockMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
@@ -93,12 +102,23 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                 var recipeManager = minecraft.level.getRecipeManager();
                 var recipeType = CSJRecipeTypes.FORGE_BLOCK_TYPE.get();
                 cachedRecipes = recipeManager.getAllRecipesFor(recipeType);
+                
+                // 按组分类配方
+                recipesByGroup.clear();
+                for (ForgeBlockRecipe recipe : cachedRecipes) {
+                    String group = recipe.getGroup();
+                    if (!group.isEmpty()) {
+                        recipesByGroup.computeIfAbsent(group, k -> new ArrayList<>()).add(recipe);
+                    }
+                }
             } catch (Exception e) {
                 cachedRecipes = new ArrayList<>();
+                recipesByGroup.clear();
                 e.printStackTrace();
             }
         } else {
             cachedRecipes.clear();
+            recipesByGroup.clear();
         }
     }
 
@@ -127,18 +147,35 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
             scrollOffset = maxScrollOffset;
         }
         
+        // 使用List来跟踪已经添加的物品，避免重复
+        List<ItemStack> addedItems = new ArrayList<>();
+        
         // 遍历配方，从起始索引开始
         for (int i = startIndex; i < cachedRecipes.size() && row < VISIBLE_ROWS; i++) {
             ForgeBlockRecipe recipe = cachedRecipes.get(i);
+            ItemStack resultItem = recipe.getResultItem(getRegistryAccess());
 
-            // 创建按钮
-            createButton(col, row, recipe.getResultItem(getRegistryAccess()));
+            // 检查此物品是否已经添加过
+            boolean alreadyAdded = false;
+            for (ItemStack addedItem : addedItems) {
+                if (ItemStack.isSameItemSameTags(addedItem, resultItem)) {
+                    alreadyAdded = true;
+                    break;
+                }
+            }
+            
+            // 如果尚未添加此物品，则创建按钮
+            if (!alreadyAdded) {
+                addedItems.add(resultItem);
+                // 创建按钮
+                createButton(col, row, resultItem, recipe);
 
-            // 每行5个按钮
-            col++;
-            if (col >= 5) {
-                col = 0;
-                row++;
+                // 每行5个按钮
+                col++;
+                if (col >= 5) {
+                    col = 0;
+                    row++;
+                }
             }
         }
         
@@ -159,7 +196,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     }
 
     // 创建配方按钮
-    private void createButton(int x, int y, ItemStack item) {
+    private void createButton(int x, int y, ItemStack item, ForgeBlockRecipe recipe) {
         int centerX = (width - imageWidth) / 2 - 13 + x * 18;
         int centerY = (height - imageHeight) / 2 + 45 + y * 18;
 
@@ -178,11 +215,22 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                     ((CustomButton) button1).COUNT = 1;
                     currentSelectedItem = ((CustomButton) button1).itemStack;
 
-                    // 更新槽位显示并同步配方到服务端
-                    updateSlotsForSelectedItem(currentSelectedItem);
+                    // 如果该物品有多个配方组，初始化轮播
+                    String group = recipe.getGroup();
+                    if (!group.isEmpty() && recipesByGroup.containsKey(group)) {
+                        currentRecipeGroup = new ArrayList<>(recipesByGroup.get(group));
+                        currentRecipeIndex = currentRecipeGroup.indexOf(recipe);
+                        // 更新槽位显示并同步配方到服务端
+                        updateSlotsForSelectedItem(currentRecipeGroup.get(currentRecipeIndex));
+                    } else {
+                        currentRecipeGroup.clear();
+                        currentRecipeIndex = 0;
+                        // 更新槽位显示并同步配方到服务端
+                        updateSlotsForSelectedItem(recipe);
+                    }
                 },
                 item,
-                0
+                recipe
         );
 
         button.active = !menu.isCrafting();
@@ -193,29 +241,34 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     }
 
     // 更新槽位显示并同步配方到服务端
-    private void updateSlotsForSelectedItem(ItemStack selectedItem) {
+    private void updateSlotsForSelectedItem(ForgeBlockRecipe recipe) {
         if (menu.isCrafting()) {
             return;
         }
 
-        Optional<ForgeBlockRecipe> newRecipe = selectedItem.isEmpty()
-                ? Optional.empty()
-                : cachedRecipes.stream()
-                .filter(recipe -> ItemStack.isSameItemSameTags(recipe.getResultItem(getRegistryAccess()), selectedItem))
-                .findFirst();
+        // 更新当前配方组
+        String group = recipe.getGroup();
+        if (!group.isEmpty() && recipesByGroup.containsKey(group)) {
+            currentRecipeGroup = new ArrayList<>(recipesByGroup.get(group));
+            currentRecipeIndex = currentRecipeGroup.indexOf(recipe);
+        } else {
+            currentRecipeGroup.clear();
+            currentRecipeIndex = 0;
+        }
 
         currentMaterials.clear();
-        if (newRecipe.isPresent()) {
-            ItemStack[] materials = getMaterialsFromRecipe(newRecipe.get());
+        if (recipe != null) {
+            ItemStack[] materials = getMaterialsFromRecipe(recipe);
             currentMaterials.addAll(Arrays.asList(materials));
         }
         
         // 立即更新客户端本地显示
-        menu.setCurrentRecipe(newRecipe.orElse(null));
+        menu.setCurrentRecipe(recipe);
+        this.localCurrentRecipe = recipe;
 
         // 发送同步包到服务端
         ChangShengJueMessages.sendToServer(
-                new ForgeSyncRecipePacket(menu.getBlockPos(), newRecipe.orElse(null))
+                new ForgeSyncRecipePacket(menu.getBlockPos(), recipe)
         );
 
         // 强制刷新UI
@@ -305,6 +358,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
 
         int scrollerTextureV = isDragging ? 6 : 0;
         guiGraphics.blit(TEXTURE, scrollBarX+1, sliderY, scrollerTextureV, 271, 6, 15, 512, 512);
+        
     }
 
     // 处理鼠标滚动事件
@@ -327,11 +381,34 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     // 处理鼠标点击事件
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        if (mouseX >= scrollBarX && mouseX <= scrollBarX + 6 &&
-                mouseY >= scrollBarY && mouseY <= scrollBarY + scrollBarHeight) {
-            isDragging = true;
-            return true;
+        // 处理滚动条点击
+        int maxScrollOffset = Math.max(0, (cachedRecipes.size() + 4) / 5 - VISIBLE_ROWS);
+        if (maxScrollOffset > 0) {
+            float scrollProgress = maxScrollOffset > 0 ? (float) scrollOffset / maxScrollOffset : 0;
+            int sliderHeight = Math.max(15, (int) (VISIBLE_ROWS * 1.0f / Math.max(1, (cachedRecipes.size() + 4) / 5) * scrollBarHeight));
+            int sliderY = scrollBarY + (int) (scrollProgress * (scrollBarHeight - sliderHeight));
+
+            // 检查是否点击了滚动条滑块
+            if (mouseX >= scrollBarX && mouseX <= scrollBarX + 6 &&
+                    mouseY >= sliderY && mouseY <= sliderY + sliderHeight) {
+                isDragging = true;
+                return true;
+            }
+
+            // 检查是否点击了滚动条背景
+            if (mouseX >= scrollBarX && mouseX <= scrollBarX + 6 &&
+                    mouseY >= scrollBarY && mouseY <= scrollBarY + scrollBarHeight) {
+                // 计算点击位置对应的滚动偏移
+                float clickProgress = (float) (mouseY - scrollBarY) / scrollBarHeight;
+                int newScrollOffset = Math.round(clickProgress * maxScrollOffset);
+                scrollOffset = Math.max(0, Math.min(maxScrollOffset, newScrollOffset));
+                refreshItemButtons();
+                return true;
+            }
         }
+
+        // 移除轮播指示器点击处理逻辑
+
         return super.mouseClicked(mouseX, mouseY, button);
     }
 
@@ -480,6 +557,32 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
             refreshRecipes();
             refreshItemButtons();
         }
+        
+        // 处理配方轮播 (1秒自动轮播)
+        if (!currentRecipeGroup.isEmpty() && !menu.isCrafting()) {
+            carouselTick++;
+            if (carouselTick >= 20) { // 1秒(20tick)切换一次
+                carouselTick = 0;
+                currentRecipeIndex = (currentRecipeIndex + 1) % currentRecipeGroup.size();
+                // 只有在按钮被选中时才自动轮播
+                CustomButton selectedButton = null;
+                for (CustomButton btn : customButtons) {
+                    if (btn.COUNT == 1) {
+                        selectedButton = btn;
+                        break;
+                    }
+                }
+                
+                // 如果当前选中的按钮对应的物品与轮播组一致，则更新显示
+                if (selectedButton != null && 
+                    !selectedButton.itemStack.isEmpty() && 
+                    !currentRecipeGroup.isEmpty() &&
+                    ItemStack.isSameItemSameTags(selectedButton.itemStack, 
+                                                currentRecipeGroup.get(currentRecipeIndex).getResultItem(getRegistryAccess()))) {
+                    updateSlotsForSelectedItem(currentRecipeGroup.get(currentRecipeIndex));
+                }
+            }
+        }
     }
 
     // 自定义按钮类
@@ -488,18 +591,13 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         private static final int TEXTURE_Y_NORMAL = 217;
         private static final int TEXTURE_Y_PRESS = 235;
         int COUNT = 0;
+        private ForgeBlockRecipe recipe;
 
         protected CustomButton(int pX, int pY, int pWidth, int pHeight, Component pMessage, OnPress pOnPress,
-                               CreateNarration pCreateNarration, ItemStack itemStack) {
-            super(pX, pY, pWidth, pHeight, pMessage, pOnPress, pCreateNarration);
-            this.itemStack = itemStack;
-        }
-
-        protected CustomButton(int pX, int pY, int pWidth, int pHeight, Component pMessage, OnPress pOnPress,
-                               ItemStack itemStack, int count) {
+                               ItemStack itemStack, ForgeBlockRecipe recipe) {
             super(pX, pY, pWidth, pHeight, pMessage, pOnPress, Button.DEFAULT_NARRATION);
             this.itemStack = itemStack;
-            this.COUNT = count;
+            this.recipe = recipe;
         }
 
         @Override
@@ -532,6 +630,13 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         @Override
         public boolean isHoveredOrFocused() {
             return this.COUNT == 1 || super.isHoveredOrFocused();
+        }
+        
+        // 重写 onPress 方法，移除配方轮播功能，只保留原始的点击逻辑
+        @Override
+        public void onPress() {
+            // 执行原始的点击逻辑
+            super.onPress();
         }
     }
 
@@ -569,5 +674,25 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
             guiGraphics.blit(TEXTURE, progressBarX, progressBarY,
                     0, 286, scaledProgress + 5, progressBarHeight, 512, 512);
         }
+    }
+    
+    // 处理键盘按键事件，支持TAB键切换配方
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (keyCode == 258 && !currentRecipeGroup.isEmpty()) { // TAB键
+            isCarouselPaused = true;
+            carouselTick = 0; // 重置轮播计时器
+            currentRecipeIndex = (currentRecipeIndex + 1) % currentRecipeGroup.size();
+            updateSlotsForSelectedItem(currentRecipeGroup.get(currentRecipeIndex));
+            return true;
+        }
+        return super.keyPressed(keyCode, scanCode, modifiers);
+    }
+    
+    // 处理鼠标移动，恢复轮播
+    @Override
+    public void mouseMoved(double mouseX, double mouseY) {
+        // 不再恢复轮播，保持当前状态
+        super.mouseMoved(mouseX, mouseY);
     }
 }

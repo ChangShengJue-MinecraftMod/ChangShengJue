@@ -79,8 +79,12 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
     // 设置当前配方
     public void setCurrentRecipe(ForgeBlockRecipe recipe) {
         this.currentRecipe = recipe;
-        if (blockEntity != null) {
+        updateRecipeSlots();
+
+        // 只有服务端才更新实体
+        if (!level.isClientSide) {
             blockEntity.setCurrentRecipe(recipe);
+            blockEntity.setChanged(); // 标记区块需要保存
         }
     }
 
@@ -97,9 +101,20 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
     }
 
     // 更新配方槽位显示
-    public void updateRecipeSlots() {
-        if (blockEntity != null && currentRecipe != null) {
-            ItemStack[] materials = blockEntity.getMaterialsFromRecipe(currentRecipe);
+    void updateRecipeSlots() {
+        clearAllSlots();
+
+        if (currentRecipe != null) {
+            ItemStack[] materials = getMaterialsFromRecipe(currentRecipe);
+            // 将材料放入对应的槽位
+            for (int i = 0; i < materials.length && i < 9; i++) {
+                int slotIndex = i;
+                ItemStack material = materials[i].copy();
+                // 在客户端只更新显示，在服务端更新实际的物品处理器
+                blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+                    handler.insertItem(slotIndex, material, false);
+                });
+            }
         }
     }
 
@@ -110,7 +125,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         // 只有不在制作中时才清除
         if (!isCrafting()) {
             clearAllSlots();
-            blockEntity.setCurrentRecipe(null);
+            blockEntity.setCurrentRecipe((ForgeBlockRecipe) null);
         }
     }
 

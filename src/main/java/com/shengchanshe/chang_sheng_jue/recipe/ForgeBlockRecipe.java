@@ -22,11 +22,13 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
     private final ItemStack result;
     private final NonNullList<Ingredient> ingredients;
+    private final String group;
 
-    public ForgeBlockRecipe(ResourceLocation id, ItemStack result, NonNullList<Ingredient> ingredients) {
+    public ForgeBlockRecipe(ResourceLocation id, ItemStack result, NonNullList<Ingredient> ingredients, String group) {
         this.id = id;
         this.result = result;
         this.ingredients = ingredients;
+        this.group = group;
     }
 
     @Override
@@ -65,6 +67,10 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
         return ingredients;
     }
 
+    public String getGroup() {
+        return group;
+    }
+
     @Override
     public @NotNull ResourceLocation getId() {
         return id;
@@ -95,6 +101,7 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
             // 从JSON解析配方结果和材料
             ItemStack result = net.minecraft.world.item.crafting.ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
+            String group = GsonHelper.getAsString(json, "group", "");
             NonNullList<Ingredient> inputs = NonNullList.create();
 
             // 解析配方所需材料
@@ -102,20 +109,21 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
                 inputs.add(Ingredient.fromJson(ingredients.get(i)));
             }
             
-            return new ForgeBlockRecipe(recipeId, result, inputs);
+            return new ForgeBlockRecipe(recipeId, result, inputs, group);
         }
 
         @Override
         public ForgeBlockRecipe fromNetwork(@NotNull ResourceLocation recipeId, @NotNull FriendlyByteBuf buffer) {
             int size = buffer.readVarInt();
             NonNullList<Ingredient> inputs = NonNullList.withSize(size, Ingredient.EMPTY);
+            String group = buffer.readUtf();
 
             for (int i = 0; i < size; i++) {
                 inputs.set(i, Ingredient.fromNetwork(buffer));
             }
 
             ItemStack result = buffer.readItem();
-            return new ForgeBlockRecipe(recipeId, result, inputs);
+            return new ForgeBlockRecipe(recipeId, result, inputs, group);
         }
 
         @Override
@@ -125,6 +133,7 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
                 ing.toNetwork(buffer);
             }
             buffer.writeItem(recipe.result);
+            buffer.writeUtf(recipe.getGroup());
         }
     }
 }

@@ -8,6 +8,7 @@ import com.shengchanshe.chang_sheng_jue.recipe.ForgeBlockRecipe;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
@@ -23,6 +24,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -56,8 +58,9 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
     protected final ContainerData data;
     public int progress = 0;
     public int maxProgress = 100;
-    // 当前选中的配方
+    // 当前选中的配方和配方组
     private ForgeBlockRecipe currentRecipe;
+    private String currentRecipeGroup = ""; // 当前配方组
 
     @Override
     public @Nullable <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
@@ -289,30 +292,39 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
     }
 
     public void setCurrentRecipe(ForgeBlockRecipe recipe) {
+        setCurrentRecipe(recipe, recipe != null ? recipe.getGroup() : null);
+    }
+
+    public void setCurrentRecipe(ForgeBlockRecipe recipe, String group) {
         this.currentRecipe = recipe;
-        // 立即更新输入槽位
+        this.currentRecipeGroup = group != null ? group : "";
+        
+        // 清空输入槽
+        for (int i = 0; i < 9; i++) {
+            itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+        }
+
+        // 设置配方材料到输入槽
         if (recipe != null) {
-            ItemStack[] materials = getMaterialsFromRecipe(recipe);
-            for (int i = 0; i < materials.length && i < 9; i++) {
-                // 只设置材料的类型，数量保持为0或者设置为实际需要的数量
-                ItemStack material = materials[i].copy();
-                // 注意：这里我们只设置材料类型，不设置具体数量，因为数量应该由玩家提供
-                itemHandler.setStackInSlot(i, material);
-            }
-            // 清空剩余的槽位
-            for (int i = materials.length; i < 9; i++) {
-                itemHandler.setStackInSlot(i, ItemStack.EMPTY);
-            }
-        } else {
-            // 清空输入槽
-            for (int i = 0; i < 9; i++) {
-                itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+            NonNullList<Ingredient> ingredients = recipe.getIngredients();
+            for (int i = 0; i < ingredients.size() && i < 9; i++) {
+                ItemStack[] matchingStacks = ingredients.get(i).getItems();
+                if (matchingStacks.length > 0) {
+                    itemHandler.setStackInSlot(i, matchingStacks[0].copy());
+                }
             }
         }
+
         setChanged();
         if (level != null) {
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
         }
+    }
+
+    public void setRecipeGroup(String group) {
+        this.currentRecipeGroup = group != null ? group : "";
+        // 如果需要根据组更新UI，可以在这里添加相关逻辑
+        setChanged();
     }
 
     public ForgeBlockRecipe getCurrentRecipe() {
