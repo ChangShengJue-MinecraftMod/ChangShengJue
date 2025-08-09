@@ -46,7 +46,6 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
 
         // 从实体加载当前配方
         this.currentRecipe = blockEntity.getCurrentRecipe();
-        System.out.println("ForgeBlockMenu已创建，当前配方: " + (this.currentRecipe != null ? this.currentRecipe.getId().toString() : "无"));
 
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
@@ -77,44 +76,34 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         }
     }
 
+    // 设置当前配方
     public void setCurrentRecipe(ForgeBlockRecipe recipe) {
-        // 保存配方到菜单
         this.currentRecipe = recipe;
-        // 输出调试信息
-        System.out.println("设置当前配方 (菜单): " + (recipe != null ? recipe.getId().toString() : "无"));
-
-        // 如果方块实体存在，同步到方块实体
         if (blockEntity != null) {
             blockEntity.setCurrentRecipe(recipe);
-        } else {
-            System.out.println("警告: 方块实体为空，无法同步配方");
         }
     }
 
+    // 获取当前配方
     public ForgeBlockRecipe getCurrentRecipe() {
         // 优先使用菜单中的配方，如果没有则从方块实体获取
         if (this.currentRecipe != null) {
-            System.out.println("从菜单获取配方: " + this.currentRecipe.getId());
             return this.currentRecipe;
         }
         if (blockEntity != null) {
-            ForgeBlockRecipe recipe = blockEntity.getCurrentRecipe();
-            System.out.println("从方块实体获取配方: " + (recipe != null ? recipe.getId() : "无"));
-            return recipe;
+            return blockEntity.getCurrentRecipe();
         }
-        System.out.println("未找到配方");
         return null;
     }
 
+    // 更新配方槽位显示
     public void updateRecipeSlots() {
-        System.out.println("更新配方槽位显示");
         if (blockEntity != null && currentRecipe != null) {
             ItemStack[] materials = blockEntity.getMaterialsFromRecipe(currentRecipe);
-            System.out.println("需要的材料数量: " + materials.length);
-            // 这里可以添加更新槽位显示的逻辑
         }
     }
 
+    // 移除界面时的处理
     @Override
     public void removed(Player player) {
         super.removed(player);
@@ -125,10 +114,12 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         }
     }
 
+    // 检查是否正在制作中
     public boolean isCrafting() {
         return data.get(0) > 0;
     }
 
+    // 获取缩放后的进度值
     public int getScaledProgress() {
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
@@ -147,6 +138,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
                 .toArray(ItemStack[]::new);
     }
 
+    // 清空所有槽位
     void clearAllSlots() {
         for (int i = 0; i < 9; i++) { // 只清空输入槽
             int finalI = i;
@@ -156,6 +148,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         }
     }
 
+    // 制作物品
     public boolean craftItem(Player player) {
         if (currentRecipe == null || level.isClientSide()) {
             return false;
@@ -175,6 +168,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         return false;
     }
 
+    // 检查是否有足够材料
     boolean hasEnoughMaterials(Inventory playerInventory) {
         if (currentRecipe == null) return false;
 
@@ -200,6 +194,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         return true;
     }
 
+    // 消耗材料
     void consumeMaterials(Inventory playerInventory) {
         if (currentRecipe == null) return;
 
@@ -231,6 +226,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
     // 修正槽位数量为10（9个输入槽 + 1个输出槽）
     private static final int TE_INVENTORY_SLOT_COUNT = 10;
 
+    // 快速移动物品
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
@@ -258,16 +254,19 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         return copyOfSourceStack;
     }
 
+    // 检查界面是否仍然有效
     @Override
     public boolean stillValid(Player player) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 player, ChangShengJueBlocks.FORGE_BLOCK.get());
     }
 
+    // 获取方块位置
     public BlockPos getBlockPos() {
         return blockEntity.getBlockPos();
     }
 
+    // 添加玩家物品栏
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
@@ -276,12 +275,14 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         }
     }
 
+    // 添加玩家快捷栏
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 89 + i * 18, 173));
         }
     }
 
+    // 只读槽位
     public static class ReadOnlySlot extends SlotItemHandler {
         public ReadOnlySlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
             super(itemHandler, index, xPosition, yPosition);
@@ -298,6 +299,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         }
     }
 
+    // 输出槽位
     public static class OutputSlot extends SlotItemHandler {
         public OutputSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
             super(itemHandler, index, xPosition, yPosition);
@@ -309,6 +311,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
         }
     }
 
+    // 配方类
     public static class ForgeRecipe {
         private final ItemStack result;
         private final ItemStack[] materials;
@@ -326,7 +329,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
             return Arrays.stream(materials).map(ItemStack::copy).toArray(ItemStack[]::new);
         }
 
-        // NBT序列化（与缝纫台一致）
+        // NBT序列化
         public CompoundTag serializeNBT() {
             CompoundTag tag = new CompoundTag();
             tag.put("result", result.serializeNBT());
@@ -340,7 +343,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
             return tag;
         }
 
-        // NBT反序列化（与缝纫台一致）
+        // NBT反序列化
         public static ForgeRecipe deserializeNBT(CompoundTag tag) {
             ItemStack result = ItemStack.of(tag.getCompound("result"));
             ListTag materialsList = tag.getList("materials", Tag.TAG_COMPOUND);
@@ -353,8 +356,6 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
             return new ForgeRecipe(result, materials);
         }
     }
-
-    // 优化配方存储结构（与缝纫台一致）
 
     /**
      * 检查玩家是否拥有指定材料的足够数量

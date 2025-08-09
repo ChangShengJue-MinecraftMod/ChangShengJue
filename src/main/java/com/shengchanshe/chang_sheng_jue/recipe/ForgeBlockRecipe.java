@@ -31,12 +31,12 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public boolean matches(SimpleContainer container, Level level) {
-        // 检查容器大小是否足够
+        // 检查容器大小是否满足配方需求
         if (container.getContainerSize() < ingredients.size()) {
             return false;
         }
         
-        // 检查每个材料槽位是否匹配对应的配方材料
+        // 验证每个槽位的材料是否符合配方要求
         for (int i = 0; i < ingredients.size(); i++) {
             if (!ingredients.get(i).test(container.getItem(i))) {
                 return false;
@@ -92,16 +92,16 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public @NotNull ForgeBlockRecipe fromJson(@NotNull ResourceLocation recipeId, @NotNull JsonObject json) {
-            System.out.println("正在从JSON加载配方: " + recipeId);
+            // 从JSON解析配方结果和材料
             ItemStack result = net.minecraft.world.item.crafting.ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.create();
 
+            // 解析配方所需材料
             for (int i = 0; i < ingredients.size(); i++) {
                 inputs.add(Ingredient.fromJson(ingredients.get(i)));
             }
             
-            System.out.println("已加载配方: " + recipeId + "，包含 " + inputs.size() + " 个材料，结果: " + result);
             return new ForgeBlockRecipe(recipeId, result, inputs);
         }
 

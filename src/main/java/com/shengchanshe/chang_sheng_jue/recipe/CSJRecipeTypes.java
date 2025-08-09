@@ -26,9 +26,9 @@ public class CSJRecipeTypes {
                 }
             });
 
+    // 注册配方类型和序列化器
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
         RECIPE_TYPES.register(eventBus);
-        System.out.println("已注册配方类型和序列化器");
     }
 }

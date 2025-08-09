@@ -6,7 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraftforge.network.NetworkEvent;
@@ -14,74 +13,95 @@ import net.minecraftforge.network.NetworkEvent;
 import java.util.Optional;
 import java.util.function.Supplier;
 
+/**
+ * 配方同步数据包
+ * 用于在客户端和服务端之间同步锻造台当前使用的配方
+ */
 public class ForgeSyncRecipePacket {
     private final BlockPos pos;
-    private final ResourceLocation recipeId; // 同步配方ID而非整个配方
+    private final ResourceLocation recipeId; // 存储配方的唯一标识符
 
+    /**
+     * 创建新的配方同步包
+     * @param pos 方块位置
+     * @param recipe 配方对象
+     */
     public ForgeSyncRecipePacket(BlockPos pos, ForgeBlockRecipe recipe) {
         this.pos = pos;
-        // 传输配方时只传输配方ID而不是整个配方对象
         this.recipeId = recipe != null ? recipe.getId() : null;
-        System.out.println("创建配方同步包，配方ID: " + this.recipeId);
     }
 
+    /**
+     * 创建新的配方同步包
+     * @param pos 方块位置
+     * @param recipeId 配方ID
+     */
     public ForgeSyncRecipePacket(BlockPos pos, ResourceLocation recipeId) {
         this.pos = pos;
         this.recipeId = recipeId;
-        System.out.println("创建配方同步包，配方ID: " + this.recipeId);
     }
 
+    /**
+     * 从字节缓冲区读取数据包
+     * @param buf 字节缓冲区
+     */
     public ForgeSyncRecipePacket(FriendlyByteBuf buf) {
         this.pos = buf.readBlockPos();
-        // 读取配方ID，如果有
         boolean hasRecipe = buf.readBoolean();
         if (hasRecipe) {
             this.recipeId = buf.readResourceLocation();
         } else {
             this.recipeId = null;
         }
-        System.out.println("从字节缓冲区读取配方同步包，配方ID: " + this.recipeId);
     }
 
+    /**
+     * 将数据包写入字节缓冲区
+     * @param buf 字节缓冲区
+     */
     public void toBytes(FriendlyByteBuf buf) {
         buf.writeBlockPos(pos);
-        // 写入配方ID，如果有
         buf.writeBoolean(recipeId != null);
         if (recipeId != null) {
             buf.writeResourceLocation(recipeId);
         }
-        System.out.println("将配方同步包写入字节缓冲区，配方ID: " + recipeId);
     }
 
+    /**
+     * 从字节缓冲区创建数据包
+     * @param buf 字节缓冲区
+     * @return 新的配方同步包
+     */
     public static ForgeSyncRecipePacket fromBytes(FriendlyByteBuf buf) {
         BlockPos pos = buf.readBlockPos();
         ResourceLocation recipeId = null;
         if (buf.readBoolean()) {
             recipeId = buf.readResourceLocation();
         }
-        return new ForgeSyncRecipePacket(pos, recipeId); // 修复：传递recipeId而不是null
+        return new ForgeSyncRecipePacket(pos, recipeId);
     }
 
+    /**
+     * 处理网络包
+     * 在服务端获取配方并设置到对应的方块实体中
+     * @param supplier 网络事件上下文
+     */
     public void handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
-            // 确保在服务端执行
             ServerPlayer player = context.getSender();
             if (player != null && player.level().getBlockEntity(pos) instanceof ForgeBlockEntity blockEntity) {
-
-                // 从配方ID获取实际配方对象
                 ForgeBlockRecipe recipe = null;
                 if (recipeId != null) {
                     Optional<? extends Recipe<?>> optionalRecipe = player.level().getRecipeManager().byKey(recipeId);
                     if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof ForgeBlockRecipe) {
                         recipe = (ForgeBlockRecipe) optionalRecipe.get();
+                    } else {
+                        recipe = null;
                     }
                 }
 
-                // 设置配方到方块实体
                 blockEntity.setCurrentRecipe(recipe);
-                
-                // 同步到客户端
                 blockEntity.setChanged();
             }
         });
