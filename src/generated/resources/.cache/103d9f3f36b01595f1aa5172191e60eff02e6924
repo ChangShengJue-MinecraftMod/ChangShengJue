@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-07T10:47:44.7566423	Registries
+// 1.20.1	2025-08-09T15:28:13.9764872	Registries
 f532a247643089c177e23bf745f2f159932d5566 data/chang_sheng_jue/damage_type/bleed.json
 78e33a0453798c5321958bf69a3b4b8fe13a1f9a data/chang_sheng_jue/damage_type/martial_arts.json
 a23eea3e348a4cb2b92b1c52f23914c5de48e3e6 data/chang_sheng_jue/damage_type/trauma.json
@@ -34,6 +34,7 @@ c044e79dfc6520034e7e92e9ea4157c5c8ac6def data/chang_sheng_jue/forge/biome_modifi
 431b9434000304c472dcf57d59dfda61a3e753d1 data/chang_sheng_jue/forge/biome_modifier/add_tree_meihua.json
 a60de80e90f9af2b202d25f3546b7ff427febe13 data/chang_sheng_jue/forge/biome_modifier/add_tree_mulberry.json
 24a589f7f8886d35511b00a32ac0530f0950e4ef data/chang_sheng_jue/forge/biome_modifier/add_tree_zitian.json
+528b41ac739f9f80e53113b7457c4b4d016027fa data/chang_sheng_jue/forge/biome_modifier/add_villain.json
 c3de33bf5091bae01e569641cf18f75c131f61d3 data/chang_sheng_jue/forge/biome_modifier/add_wildlife_hordeum.json
 8ebcb0a1d816031bc93e84277a2bddf3b3d11784 data/chang_sheng_jue/worldgen/biome/chang_sheng_jue_prairie.json
 bd4670bf4106cb841791843f164645de0978c5dc data/chang_sheng_jue/worldgen/configured_feature/ag_ore.json

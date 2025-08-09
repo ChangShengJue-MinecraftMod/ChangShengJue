@@ -38,10 +38,6 @@ import java.util.*;
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJAdvanceEvent {
     private static int COOLDOWN = 3;
-    private static final Set<ChunkPos> generatedVillainChunks = new HashSet<>(); // 新增：跟踪已生成Villain的区块
-    private static boolean ENABLE_BANDIT_SPAWN = true;
-    private static boolean ENABLE_VILLAIN_SPAWN = true;
-
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
@@ -76,13 +72,11 @@ public class CSJAdvanceEvent {
                     break;
                 }
             }
-            if (isInAnyVillage && villageChunk != null && !generatedVillainChunks.contains(villageChunk)) {
-                summonVillain(serverLevel, player, villageChunk); // 传递区块参数
-            }
+//            if (isInAnyVillage && villageChunk != null && !generatedVillainChunks.contains(villageChunk)) {
+//                summonVillain(serverLevel, player, villageChunk); // 传递区块参数
+//            }
         }
     }
-
-
 
     private static void checkForItem(net.minecraft.world.entity.player.Player player) {
         boolean hasQiTianHelmet = false;
@@ -225,54 +219,6 @@ public class CSJAdvanceEvent {
                     COOLDOWN = 0;
                     summonTracker.put(playerUUID, summonCount + 1);
                 }
-            }
-        }
-    }
-    public static void summonVillain(Level level, Player player, ChunkPos villageChunk) {
-        if (!ChangShengJueConfig.ENABLE_VILLAIN_SPAWN.get() || level.isClientSide()) {
-            return;
-        }
-        ServerLevel serverLevel = (ServerLevel) level;
-        BlockPos playerPos = player.blockPosition();
-        RandomSource random = serverLevel.getRandom();
-
-        // 50%概率生成
-        if (random.nextInt(100) <= 50) {
-            System.out.println("生成 villain");
-            int numberOfVillains = random.nextInt(5) + 1;
-
-            for (int i = 0; i < numberOfVillains; i++) {
-                // 尝试寻找有效生成位置
-                BlockPos spawnPos = findValidSpawnPosition(serverLevel, playerPos, random,20);
-
-                // 如果失败则使用默认方法（直接在玩家附近生成）
-                if (spawnPos == null) {
-                    spawnPos = playerPos.offset(
-                            random.nextInt(20) - 10,
-                            0,
-                            random.nextInt(20) - 10
-                    );
-                }
-
-                // 生成实体
-                Villain villain = new Villain(ChangShengJueEntity.VILLAIN.get(), serverLevel);
-                if (villain != null) {
-                    villain.moveTo(spawnPos, random.nextFloat() * 360.0F, 0.0F);
-                    villain.finalizeSpawn(
-                            serverLevel,
-                            serverLevel.getCurrentDifficultyAt(spawnPos),
-                            MobSpawnType.EVENT,
-                            null,
-                            null
-                    );
-                    serverLevel.addFreshEntity(villain);
-                }
-            }
-        }
-        for (int dx = -3; dx <= 3; dx++) {
-            for (int dz = -3; dz <= 3; dz++) {
-                ChunkPos surroundingChunk = new ChunkPos(villageChunk.x + dx, villageChunk.z + dz);
-                generatedVillainChunks.add(surroundingChunk);
             }
         }
     }

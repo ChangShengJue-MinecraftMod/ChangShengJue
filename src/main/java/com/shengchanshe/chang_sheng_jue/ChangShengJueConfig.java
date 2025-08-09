@@ -111,17 +111,6 @@ public class ChangShengJueConfig {
                                     "强盗生成已" + (newState ? "§a启用" : "§c禁用")), false);
                             return 1;
                         })));
-        event.getDispatcher().register(Commands.literal(ChangShengJue.MOD_ID + "_villain")
-                .requires(source -> source.hasPermission(2))
-                .then(Commands.literal("toggleSpawn")
-                        .executes(ctx -> {
-                            boolean newState = !ChangShengJueConfig.ENABLE_VILLAIN_SPAWN.get();
-                            ChangShengJueConfig.ENABLE_VILLAIN_SPAWN.set(newState);
-                            ctx.getSource().sendSuccess(() -> Component.literal(
-                                    "恶徒生成已" + (newState ? "§a启用" : "§c禁用")), false);
-                            return 1;
-                        })));
-
     }
 
 
