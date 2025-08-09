@@ -2,6 +2,7 @@
 package com.shengchanshe.chang_sheng_jue.recipe;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import net.minecraft.core.NonNullList;
@@ -106,7 +107,7 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
 
             // 解析配方所需材料
             for (int i = 0; i < ingredients.size(); i++) {
-                inputs.add(Ingredient.fromJson(ingredients.get(i)));
+                inputs.add(ingredientFromJson(ingredients.get(i)));
             }
             
             return new ForgeBlockRecipe(recipeId, result, inputs, group);
@@ -119,7 +120,18 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
             String group = buffer.readUtf();
 
             for (int i = 0; i < size; i++) {
-                inputs.set(i, Ingredient.fromNetwork(buffer));
+                Ingredient ingredient = Ingredient.fromNetwork(buffer);
+                int count = buffer.readVarInt();
+                
+                // 创建具有指定数量的新ItemStack
+                ItemStack[] stacks = ingredient.getItems();
+                if (stacks.length > 0) {
+                    stacks[0] = stacks[0].copy();
+                    stacks[0].setCount(count);
+                    ingredient = Ingredient.of(stacks);
+                }
+                
+                inputs.set(i, ingredient);
             }
 
             ItemStack result = buffer.readItem();
@@ -130,10 +142,36 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
         public void toNetwork(@NotNull FriendlyByteBuf buffer, ForgeBlockRecipe recipe) {
             buffer.writeVarInt(recipe.getIngredients().size());
             for (Ingredient ing : recipe.getIngredients()) {
+                // 写入原料和其数量
                 ing.toNetwork(buffer);
+                buffer.writeVarInt(ing.getItems()[0].getCount());
             }
             buffer.writeItem(recipe.result);
             buffer.writeUtf(recipe.getGroup());
+        }
+
+        /**
+         * 从JsonElement创建Ingredient，支持count字段
+         * @param json JSON元素
+         * @return Ingredient对象
+         */
+        private Ingredient ingredientFromJson(JsonElement json) {
+            JsonObject jsonObject = GsonHelper.convertToJsonObject(json, "ingredient");
+            if (jsonObject.has("count")) {
+                // 如果有count字段，创建自定义Ingredient
+                int count = GsonHelper.getAsInt(jsonObject, "count");
+                
+                // 直接使用Ingredient.fromJson处理，包括tag类型
+                Ingredient ingredient = Ingredient.fromJson(json);
+                ItemStack[] stacks = ingredient.getItems();
+                for (ItemStack stack : stacks) {
+                    stack.setCount(count);
+                }
+                return Ingredient.of(stacks);
+            } else {
+                // 没有count字段，使用默认解析
+                return Ingredient.fromJson(json);
+            }
         }
     }
 }

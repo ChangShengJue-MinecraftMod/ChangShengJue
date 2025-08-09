@@ -16,6 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -108,7 +109,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
             ItemStack[] materials = getMaterialsFromRecipe(currentRecipe);
             // 将材料放入对应的槽位
             for (int i = 0; i < materials.length && i < 9; i++) {
-                int slotIndex = i;
+                final int slotIndex = i;
                 ItemStack material = materials[i].copy();
                 // 在客户端只更新显示，在服务端更新实际的物品处理器
                 blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
@@ -148,9 +149,17 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
      * @return 材料物品数组
      */
     public ItemStack[] getMaterialsFromRecipe(ForgeBlockRecipe recipe) {
-        return recipe.getIngredients().stream()
-                .map(ingredient -> ingredient.getItems().length > 0 ? ingredient.getItems()[0] : ItemStack.EMPTY)
-                .toArray(ItemStack[]::new);
+        ItemStack[] materials = new ItemStack[recipe.getIngredients().size()];
+        for (int i = 0; i < recipe.getIngredients().size(); i++) {
+            Ingredient ingredient = recipe.getIngredients().get(i);
+            if (ingredient.getItems().length > 0) {
+                // 直接使用ingredient中的物品，它已经包含了正确的数量
+                materials[i] = ingredient.getItems()[0].copy();
+            } else {
+                materials[i] = ItemStack.EMPTY;
+            }
+        }
+        return materials;
     }
 
     // 清空所有槽位

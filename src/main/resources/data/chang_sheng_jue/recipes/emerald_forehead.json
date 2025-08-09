@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:forge_block",
+  "group": "emerald_forehead",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:ag_ingot",
+      "count": 2
+    },
+    {
+      "item": "minecraft:emerald",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:walker_green_treasure_pendant"
+  }
+}

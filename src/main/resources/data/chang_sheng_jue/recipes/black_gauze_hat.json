@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:forge_block",
+  "group": "black_gauze_hat",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot",
+      "count": 5
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:male_chinese_wedding_dress_black_gauze_cap"
+  }
+}

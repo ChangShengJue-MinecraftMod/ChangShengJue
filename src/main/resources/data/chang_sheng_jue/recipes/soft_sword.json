@@ -1,21 +1,21 @@
 {
   "type": "chang_sheng_jue:forge_block",
-  "group": "diamond_sword",
+  "group": "soft_sword",
   "ingredients": [
     {
-      "item": "minecraft:diamond",
-      "count": 2
+      "item": "minecraft:iron_ingot",
+      "count": 1
     },
     {
-      "item": "minecraft:gold_ingot",
+      "item": "minecraft:string",
       "count": 1
     },
     {
       "item": "minecraft:stick",
-      "count": 2
+      "count": 1
     }
   ],
   "result": {
-    "item": "minecraft:diamond_sword"
+    "item": "chang_sheng_jue:soft_sword"
   }
 }
