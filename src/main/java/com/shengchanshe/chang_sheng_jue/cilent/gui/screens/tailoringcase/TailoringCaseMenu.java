@@ -571,41 +571,27 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         registerRecipe(
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.LEATHER_INNER_ARMOR.get()),
-                        new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 8)
-                )
-        );
+                        new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 8)));
 
-        // 儒冠
+        // 儒装
         registerRecipe(
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.CONFUCIAN_HELMET.get()),
                         new ItemStack(ChangShengJueItems.SILK.get(), 4),
-                        new ItemStack(Items.DIAMOND, 1)
-                )
-        );
-
-        // 染墨宽袍
+                        new ItemStack(Items.DIAMOND, 1)));
         registerRecipe(
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get()),
                         new ItemStack(ChangShengJueItems.SILK.get(), 7),
-                        new ItemStack(Items.EMERALD, 1)
-                )
-        );
-
-        // 染墨丝裳
+                        new ItemStack(Items.EMERALD, 1)));
         registerRecipe(
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get()),
-                        new ItemStack(ChangShengJueItems.SILK.get(), 7))
-        );
-
-        // 染墨丝履
+                        new ItemStack(ChangShengJueItems.SILK.get(), 7)));
         registerRecipe(
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get()),
                         new ItemStack(ChangShengJueItems.SILK.get(), 3)));
-
 
         // 兽皮靴
         registerRecipe(

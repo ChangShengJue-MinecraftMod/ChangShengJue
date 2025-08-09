@@ -61,7 +61,8 @@ public class FlyingDaggerPouch extends Item {
         if (user instanceof Player player && !world.isClientSide) {
             int usedTicks = this.getUseDuration(stack) - remainingUseDuration;
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                if (usedTicks >= cap.getSwingTick((ServerPlayer) player, RelentlessThrowingKnives.KUNG_FU_ID.toString())) {
+                int swingTick = cap.getSwingTick((ServerPlayer) player, RelentlessThrowingKnives.KUNG_FU_ID.toString());
+                if (usedTicks >= swingTick && usedTicks >= 3) {
                     tryThrowDagger(player.level(), player, stack, daggers);
                 }
             });
@@ -229,7 +230,10 @@ public class FlyingDaggerPouch extends Item {
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
         List<ItemStack> daggers = getDaggers(stack);
 
-        tooltip.add(Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.count", daggers.size(), ChangShengJueConfig.FLYING_DAGGER_POUCH_MAX_SLOTS.get()));
+        tooltip.add(Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.count", daggers.size(),
+                ChangShengJueConfig.FLYING_DAGGER_POUCH_MAX_SLOTS.get()).withStyle(ChatFormatting.GRAY));
+
+        tooltip.add(Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".flying_dagger_pouch.right_click.tooltip").withStyle(ChatFormatting.GRAY));
 
         if (Screen.hasShiftDown()) {
             if(daggers.isEmpty()) {

@@ -104,7 +104,7 @@ public abstract class AbstractionMentalKungfu implements IMentalKungfu, IKungFuU
                 if (entity instanceof Player player) {
                     player.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(),
                             ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                    player.sendSystemMessage(Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.kungfu", this.name));
+                    player.sendSystemMessage(Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.internal_kungfu", this.name));
                     if (player instanceof ServerPlayer serverPlayer) {
                         CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                     }

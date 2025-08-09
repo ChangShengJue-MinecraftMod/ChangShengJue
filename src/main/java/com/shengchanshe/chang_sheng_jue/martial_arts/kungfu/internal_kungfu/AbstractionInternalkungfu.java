@@ -22,6 +22,7 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 
 public abstract class AbstractionInternalkungfu implements IInteranlKungFu, IKungFuUpgradable {
     protected String id;
@@ -106,7 +107,7 @@ public abstract class AbstractionInternalkungfu implements IInteranlKungFu, IKun
                 if (entity instanceof Player player) {
                     player.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(),
                             ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                    player.sendSystemMessage(Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.kungfu", this.name));
+                    player.sendSystemMessage(Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.internal_kungfu", this.name).withStyle(ChatFormatting.YELLOW));
                     if (player instanceof ServerPlayer serverPlayer) {
                         CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                     }
@@ -117,6 +118,11 @@ public abstract class AbstractionInternalkungfu implements IInteranlKungFu, IKun
 
     @Override
     public void attackEffect(LivingEntity source, Entity target) {
+
+    }
+
+    @Override
+    public void onAttackHurt(LivingAttackEvent event) {
 
     }
 

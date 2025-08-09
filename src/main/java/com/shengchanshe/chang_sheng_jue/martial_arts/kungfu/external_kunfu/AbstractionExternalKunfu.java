@@ -118,7 +118,13 @@ public abstract class AbstractionExternalKunfu implements IExternalKunfu, IKungF
                 if (entity instanceof Player player) {
                     player.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(),
                             ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                    player.sendSystemMessage(Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.kungfu", this.name));
+                    if (this.getKungFuType() == KungFuType.EXTERNAL_KUNFU){
+                        player.sendSystemMessage(Component.translatable("message.kungfu." + ChangShengJue.MOD_ID +
+                                ".succeed.comprehend.external_kunfu", this.name,this.description).withStyle(ChatFormatting.YELLOW));
+                    }else if (this.getKungFuType() == KungFuType.EXTERNAL_KUNFU_GLOVE) {
+                        player.sendSystemMessage(Component.translatable("message.kungfu." + ChangShengJue.MOD_ID +
+                                ".succeed.comprehend.external_kunfu_glove", this.name,this.description).withStyle(ChatFormatting.YELLOW));
+                    }
                     if (player instanceof ServerPlayer serverPlayer) {
                         CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                     }

@@ -15,6 +15,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -28,7 +30,7 @@ public class QianKunDaNuoYi extends AbstractionInternalkungfu {
     private int extraCooldown = 0;
     public QianKunDaNuoYi() {
         super(KUNG_FU_ID.toString(), Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.YELLOW),
-                KungFuType.INTERNAL_KUNGFU, Component.translatable("description"),0.15f, 2,0.0f);
+                KungFuType.INTERNAL_KUNGFU, Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".hand_and_glove.type"),0.15f, 2,0.0f);
     }
 
     @Override
@@ -52,10 +54,16 @@ public class QianKunDaNuoYi extends AbstractionInternalkungfu {
     }
 
     @Override
-    public void onEntityHurt(LivingEntity livingEntity, DamageSource source, float amount) {
+    public void onEntityHurt(LivingDamageEvent event) {
+
+    }
+
+    @Override
+    public void onAttackHurt(LivingAttackEvent event) {
         if (!isReady()) return;
+        LivingEntity livingEntity = event.getEntity();
         if (randomSource.nextFloat() < getBounceDamageProbability(livingEntity)) {
-            Entity entity = source.getEntity();
+            Entity entity = event.getSource().getEntity();
             if (entity != null) {
                 if (livingEntity instanceof Player player) {
                     if (!player.getAbilities().instabuild) {
@@ -68,7 +76,7 @@ public class QianKunDaNuoYi extends AbstractionInternalkungfu {
                 }
                 recordDamageSource = entity.getUUID();
                 recordTime = KungFuConfig.QIAN_KUN_DA_NUO_YI_BOUNCE_DAMAGE_TICK.get();
-                recordDamage = amount * getBounceDamageMultiplier();
+                recordDamage = event.getAmount() * getBounceDamageMultiplier();
             }
         }
     }

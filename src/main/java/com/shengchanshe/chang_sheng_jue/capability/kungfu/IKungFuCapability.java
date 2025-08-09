@@ -6,6 +6,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -28,7 +30,8 @@ public interface IKungFuCapability {
     Optional<IKungFu> getKungFu(String id);
     void syncToClient(ServerPlayer player);
     void tick(LivingEntity entity);
-    void onHurt(DamageSource source, float amount, LivingEntity entity);
+    void onHurt(LivingDamageEvent event);
+    void onAttack(LivingAttackEvent event);
     // 序列化到NBT
     CompoundTag serializeNBT();
     void deserializeNBT(CompoundTag nbt);

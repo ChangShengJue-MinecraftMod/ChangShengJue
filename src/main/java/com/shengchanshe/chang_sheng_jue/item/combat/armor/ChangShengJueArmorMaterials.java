@@ -25,7 +25,7 @@ public enum ChangShengJueArmorMaterials implements ArmorMaterial {
     COTTON("cotton", 40, new int[]{2, 5, 4, 2}, 15, SoundEvents.ARMOR_EQUIP_LEATHER,
             1.0F, 0.0F, () -> Ingredient.of(ChangShengJueItems.COTTON.get())),
 
-    WALK("walk", 18, new int[]{1, 4, 4, 1}, 15, SoundEvents.ARMOR_EQUIP_LEATHER,
+    WALK("walk", 18, new int[]{2, 4, 4, 2}, 15, SoundEvents.ARMOR_EQUIP_LEATHER,
             0.0F, 0.0F, () -> Ingredient.of(ChangShengJueItems.COTTON.get())),
 
     SILK("silk", 6, new int[]{2, 4, 3, 2}, 15, SoundEvents.ARMOR_EQUIP_LEATHER,
@@ -40,7 +40,7 @@ public enum ChangShengJueArmorMaterials implements ArmorMaterial {
     MOUNTAIN("mountain", 40, new int[]{3, 7, 5, 2}, 0, SoundEvents.ARMOR_EQUIP_CHAIN,
             2.0F, 0.0F, () -> Ingredient.of(Tags.Items.INGOTS_IRON)),
 
-    INK("ink", 6, new int[]{1, 4, 3, 1}, 0, SoundEvents.ARMOR_EQUIP_LEATHER,
+    INK("ink", 6, new int[]{2, 4, 3, 1}, 0, SoundEvents.ARMOR_EQUIP_LEATHER,
             0.0F, 0.0F, () -> Ingredient.of(ChangShengJueItems.SILK.get())),
 
     BRIGHT("bright", 40, new int[]{3, 7, 5, 2}, 0, SoundEvents.ARMOR_EQUIP_GOLD,

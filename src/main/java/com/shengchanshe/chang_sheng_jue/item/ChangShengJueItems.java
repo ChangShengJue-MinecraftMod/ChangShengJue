@@ -395,6 +395,9 @@ public class ChangShengJueItems {
         }
     });
 
+    public static final RegistryObject<Item> SILKWORM = ITEMS.register("silkworm", ()-> new Silkworm(new Item.Properties()));
+
+
     public static final RegistryObject<Item> SILK = ITEMS.register("silk", ()-> new Item(new Item.Properties()));
 
     //桑葚

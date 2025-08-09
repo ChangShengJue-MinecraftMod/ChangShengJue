@@ -714,6 +714,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.GOLD_BRICKS.get());
                 output.accept(ChangShengJueItems.SILK.get());
                 output.accept(ChangShengJueItems.NATURAL_SILK.get());
+                output.accept(ChangShengJueItems.SILKWORM.get());
                 output.accept(ChangShengJueItems.BILUOCHUN_TEA.get());
                 output.accept(ChangShengJueItems.LONG_JING_TEA.get());
                 output.accept(ChangShengJueItems.HORDEUM.get());
