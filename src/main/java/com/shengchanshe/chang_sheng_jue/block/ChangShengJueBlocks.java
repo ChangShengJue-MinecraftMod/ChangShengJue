@@ -468,7 +468,7 @@ public class ChangShengJueBlocks {
                 }
             });
     public static final RegistryObject<Block> STONE_LAMPS_LIANG_BLOCK = registerBlock("stone_lamps_liang_block",
-            ()-> new StoneLampsBlock(BlockBehaviour.Properties.of().instabreak().lightLevel((p_50755_) -> 15).sound(SoundType.STONE), ParticleTypes.FLAME));
+            ()-> new StoneLampsBlock(BlockBehaviour.Properties.of().instabreak().lightLevel((state) -> 15).sound(SoundType.STONE), ParticleTypes.FLAME));
 
     public static final RegistryObject<Block> YELLOW_STONE_LION_BLOCK = registerBlock("yellow_stone_lion_block",
             ()-> new StoneLionBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
