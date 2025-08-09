@@ -611,14 +611,8 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                 guiGraphics.blit(TEXTURE, this.getX(), this.getY(),
                         0, textureY, 18, 18, 512, 512);
 
-                // 直接使用配方中的原料，它已经包含了正确的数量
+                // 显示配方结果物品
                 ItemStack displayStack = itemStack.copy();
-                if (recipe != null) {
-                    ItemStack[] materials = menu.getMaterialsFromRecipe(recipe);
-                    if (materials.length > 0 && !materials[0].isEmpty()) {
-                        displayStack = materials[0].copy();
-                    }
-                }
 
                 guiGraphics.renderItem(displayStack, this.getX() + 1, this.getY() + 1);
                 if ( !itemStack.isEmpty() && isAir(this.getX(),this.getY(),mouseX,mouseY)) {
