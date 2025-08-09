@@ -7,7 +7,8 @@
       "count": 2
     },
     {
-      "tag": "minecraft:logs"
+      "item": "minecraft:stick",
+      "count": 1
     }
   ],
   "result": {

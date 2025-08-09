@@ -1,6 +1,7 @@
 package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.forgeblock;
 
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
+import com.shengchanshe.chang_sheng_jue.block.custom.forgeblock.ForgeBlock;
 import com.shengchanshe.chang_sheng_jue.block.custom.forgeblock.ForgeBlockEntity;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.ChangShengJueMenuTypes;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
@@ -123,6 +124,9 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
     @Override
     public void removed(Player player) {
         super.removed(player);
+        // 从OPEN_PLAYERS中移除该方块的位置
+        ForgeBlock.OPEN_PLAYERS.remove(blockEntity.getBlockPos());
+        
         // 只有不在制作中时才清除
         if (!isCrafting()) {
             clearAllSlots();

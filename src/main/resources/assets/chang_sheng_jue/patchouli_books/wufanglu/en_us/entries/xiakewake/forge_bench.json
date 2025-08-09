@@ -1,0 +1,19 @@
+{
+  "name": "锻造炉",
+  "category": "chang_sheng_jue:xiake",
+  "sortnum": 4,
+  "icon": "chang_sheng_jue:forge_block",
+  "pages": [
+    {
+      "title": "锻造炉",
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:forge_block",
+      "text": "锻造炉合成表"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:forge_block",
+      "text": "用于制作武器、盔甲等，可于锻造炉内查看选中物品，制作会自动从背包扣除对应所需材料。"
+    }
+  ]
+}

@@ -4,6 +4,7 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.forgeblock.ForgeBlockMenu;
 import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
+import com.shengchanshe.chang_sheng_jue.recipe.CSJRecipeTypes;
 import com.shengchanshe.chang_sheng_jue.recipe.ForgeBlockRecipe;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
@@ -47,6 +48,7 @@ import software.bernie.geckolib.util.ClientUtils;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Arrays;
+import java.util.Collection;
 
 public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoBlockEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -228,17 +230,47 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
 
 
     public void craftCurrentRecipe(Player player) {
-        if (currentRecipe == null) return;
+        ForgeBlockRecipe recipeToUse = null;
+        
+        // 首先检查当前配方是否有足够材料
+        if (currentRecipe != null && hasEnoughMaterials(player.getInventory(), currentRecipe)) {
+            recipeToUse = currentRecipe;
+        } else {
+            // 如果当前配方材料不足，只查找同一结果物品的其他配方
+            if (currentRecipe != null) {
+                ItemStack resultItem = currentRecipe.getResultItem(level.registryAccess());
+                // 获取所有可用的配方
+                Collection<ForgeBlockRecipe> allRecipes = level.getRecipeManager().getAllRecipesFor(CSJRecipeTypes.FORGE_BLOCK_TYPE.get());
+                
+                // 查找第一个材料足够的配方，且结果物品相同
+                for (ForgeBlockRecipe recipe : allRecipes) {
+                    if (ItemStack.isSameItemSameTags(recipe.getResultItem(level.registryAccess()), resultItem)) {
+                        if (hasEnoughMaterials(player.getInventory(), recipe)) {
+                            // 找到匹配的配方
+                            recipeToUse = recipe;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (recipeToUse == null) return;
 
         // 检查输出槽是否有物品
         if (!itemHandler.getStackInSlot(SLOT_OUTPUT).isEmpty()) {
             return; // 输出槽有物品，禁止合成
         }
 
-        // 检查玩家是否有足够材料
-        if (hasEnoughMaterials(player.getInventory(), currentRecipe)) {
+        // 设置要使用的配方为当前配方（如果不同的话）
+        if (recipeToUse != currentRecipe) {
+            setCurrentRecipe(recipeToUse);
+        }
+
+        // 检查玩家是否有足够材料（再次检查以确保一致性）
+        if (hasEnoughMaterials(player.getInventory(), recipeToUse)) {
             // 消耗材料
-            consumeMaterials(player.getInventory(), currentRecipe);
+            consumeMaterials(player.getInventory(), recipeToUse);
             // 开始制作进度
             this.progress = 1;
             this.setChanged();
@@ -330,7 +362,14 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
     public ForgeBlockRecipe getCurrentRecipe() {
         return currentRecipe;
     }
-
+    
+    // 获取当前配方的结果物品
+    public ItemStack getRecipeResultItem() {
+        if (currentRecipe != null) {
+            return currentRecipe.getResultItem(level.registryAccess());
+        }
+        return ItemStack.EMPTY;
+    }
 
     //新增配方
     //新增配方
@@ -344,6 +383,20 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
         if (this.level != null){
             this.level.sendBlockUpdated(this.getBlockPos(),this.getBlockState(),this.getBlockState(), Block.UPDATE_CLIENTS);
         }
+    }
+
+    @Override
+    public void onChunkUnloaded() {
+        super.onChunkUnloaded();
+        // 当区块卸载时，从OPEN_PLAYERS中移除该方块的位置
+        ForgeBlock.OPEN_PLAYERS.remove(this.getBlockPos());
+    }
+    
+    @Override
+    public void setRemoved() {
+        super.setRemoved();
+        // 当方块被移除时，从OPEN_PLAYERS中移除该方块的位置
+        ForgeBlock.OPEN_PLAYERS.remove(this.getBlockPos());
     }
 
     @Override
