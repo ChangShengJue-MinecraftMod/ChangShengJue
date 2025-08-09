@@ -8,6 +8,7 @@ import com.shengchanshe.chang_sheng_jue.martial_arts.IMentalKungfu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.GeShanDaNiu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.SunflowerPointCaveman;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.TurtleBreathWork;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.ImmortalMiracle;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.QianKunDaNuoYi;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.WheatNuggetEncyclopedia;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.ZhangMenXinXue;
@@ -65,7 +66,7 @@ public class KungFuEvent {
                     player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                         cap.getAllLearned().forEach(id -> {
                             if (!id.getId().equals(QianKunDaNuoYi.KUNG_FU_ID.toString())) {
-                                cap.onHurt(event.getSource(), event.getAmount(), player);
+                                cap.onHurt(event);
                             }
                         });
                     });
@@ -77,13 +78,12 @@ public class KungFuEvent {
     public static void onEntityHurt(LivingAttackEvent event) {
         if (event.getEntity() instanceof Player player && event.getSource().getEntity() != null) {
             if ((player.getFoodData().getFoodLevel() > 8 && player.getFoodData().getSaturationLevel() > 0)) {
-                float originalDamage = event.getAmount();
                 player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                     cap.getKungFu(QianKunDaNuoYi.KUNG_FU_ID.toString())
                             .filter(kungFu -> kungFu instanceof IKungFu)
                             .map(kungFu -> (QianKunDaNuoYi) kungFu)
                             .map(active -> {
-                                cap.onHurt(event.getSource(), originalDamage, player);
+                                cap.onAttack(event);
                                 if (player instanceof ServerPlayer) {
                                     cap.syncToClient((ServerPlayer) player);
                                 }

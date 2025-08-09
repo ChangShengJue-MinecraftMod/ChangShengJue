@@ -22,6 +22,8 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 import java.util.*;
 
@@ -43,6 +45,33 @@ public class KungFuCapability implements IKungFuCapability {
                                             : Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu.fales.comprehend",
                                             learnedKungFu.get(kungFuId).getDescription())
                             ).withStyle(ChatFormatting.YELLOW),false);
+                }else if (learnedKungFu.get(kungFuId) instanceof IInteranlKungFu){
+                    player.sendSystemMessage(
+                            Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu", learnedKungFu.get(kungFuId).getName(),
+                                    learnedKungFu.get(kungFuId).isComprehend()
+                                            ? Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu.true.comprehend",
+                                            learnedKungFu.get(kungFuId).getDescription())
+                                            : Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu.fales.comprehend",
+                                            learnedKungFu.get(kungFuId).getDescription())
+                            ).withStyle(ChatFormatting.YELLOW),false);
+                }else if (learnedKungFu.get(kungFuId) instanceof ILightKungfu) {
+                    player.sendSystemMessage(
+                            Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu", learnedKungFu.get(kungFuId).getName(),
+                                    learnedKungFu.get(kungFuId).isComprehend()
+                                            ? Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu.true.comprehend",
+                                            learnedKungFu.get(kungFuId).getDescription())
+                                            : Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".light_kungfu.fales.comprehend",
+                                            learnedKungFu.get(kungFuId).getDescription())
+                            ).withStyle(ChatFormatting.YELLOW),false);
+                }else if (learnedKungFu.get(kungFuId) instanceof IMentalKungfu) {
+                    player.sendSystemMessage(
+                            Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu", learnedKungFu.get(kungFuId).getName(),
+                                    learnedKungFu.get(kungFuId).isComprehend()
+                                            ? Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu.true.comprehend",
+                                            learnedKungFu.get(kungFuId).getDescription())
+                                            : Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".mental_kungfu.fales.comprehend",
+                                            learnedKungFu.get(kungFuId).getDescription())
+                            ).withStyle(ChatFormatting.YELLOW),false);
                 }
             }
             return;
@@ -60,6 +89,21 @@ public class KungFuCapability implements IKungFuCapability {
             }else if (kungFu.getKungFuType() == KungFuType.EXTERNAL_KUNFU_GLOVE) {
                 player.sendSystemMessage(
                         Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.external_kunfu_glove",
+                                        learnedKungFu.get(kungFuId).getName(), learnedKungFu.get(kungFuId).getDescription())
+                                .withStyle(ChatFormatting.YELLOW),false);
+            }else if (kungFu.getKungFuType() == KungFuType.INTERNAL_KUNGFU) {
+                player.sendSystemMessage(
+                        Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.internal_kungfu",
+                                        learnedKungFu.get(kungFuId).getName(), learnedKungFu.get(kungFuId).getDescription())
+                                .withStyle(ChatFormatting.YELLOW),false);
+            }else if (kungFu.getKungFuType() == KungFuType.LIGHT_KUNGFU) {
+                player.sendSystemMessage(
+                        Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.light_kungfu",
+                                        learnedKungFu.get(kungFuId).getName(), learnedKungFu.get(kungFuId).getDescription())
+                                .withStyle(ChatFormatting.YELLOW),false);
+            }else if (kungFu.getKungFuType() == KungFuType.MENTAL_KUNGFU) {
+                player.sendSystemMessage(
+                        Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.mental_kungfu",
                                         learnedKungFu.get(kungFuId).getName(), learnedKungFu.get(kungFuId).getDescription())
                                 .withStyle(ChatFormatting.YELLOW),false);
             }
@@ -175,13 +219,23 @@ public class KungFuCapability implements IKungFuCapability {
 
                         syncToClient(player);
                         if (!active.isComprehend()){
-                            player.sendSystemMessage(
-                                    Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".state_change.kungfu",
-                                            Component.translatable("item."+ ChangShengJue.MOD_ID + "." + kungFuName),
-                                            newState ? Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.open",
-                                                    active.getDescription())
-                                                    : Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.off")
-                                    ).withStyle(ChatFormatting.YELLOW), true);
+                            if (active.getKungFuType() == KungFuType.EXTERNAL_KUNFU_GLOVE){
+                                player.sendSystemMessage(
+                                        Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".state_change.kungfu",
+                                                Component.translatable("item."+ ChangShengJue.MOD_ID + "." + kungFuName),
+                                                newState ? Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID + ".external_kunfu_glove.open",
+                                                        active.getDescription())
+                                                        : Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.off")
+                                        ).withStyle(ChatFormatting.YELLOW), true);
+                            }else if (active.getKungFuType() == KungFuType.INTERNAL_KUNGFU) {
+                                player.sendSystemMessage(
+                                        Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".state_change.kungfu",
+                                                Component.translatable("item."+ ChangShengJue.MOD_ID + "." + kungFuName),
+                                                newState ? Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu_glove.open",
+                                                        active.getDescription())
+                                                        : Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.off")
+                                        ).withStyle(ChatFormatting.YELLOW), true);
+                            }
                         }else {
                             if (active instanceof IExternalKunfu) {
                                 player.sendSystemMessage(
@@ -191,10 +245,16 @@ public class KungFuCapability implements IKungFuCapability {
                                                         active.getDescription(), ((float)((IExternalKunfu) active).getSwingTick() / 20))
                                                         : Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.off")
                                         ).withStyle(ChatFormatting.YELLOW), true);
+                            }else if (active instanceof IInteranlKungFu){
+                                player.sendSystemMessage(
+                                        Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".state_change.kungfu",
+                                                Component.translatable("item."+ ChangShengJue.MOD_ID + "." + kungFuName),
+                                                newState ? Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu_glove.comprehend.open",
+                                                        active.getDescription())
+                                                        : Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.off")
+                                        ).withStyle(ChatFormatting.YELLOW), true);
                             }
-
                         }
-
                     });
         }
     }
@@ -293,13 +353,27 @@ public class KungFuCapability implements IKungFuCapability {
     }
 
     @Override
-    public void onHurt(DamageSource source, float amount, LivingEntity entity) {
-        if (!source.is(DamageTypes.OUTSIDE_BORDER) && !source.is(DamageTypes.GENERIC_KILL)) {
+    public void onHurt(LivingDamageEvent event) {
+        if (!event.getSource().is(DamageTypes.OUTSIDE_BORDER) && !event.getSource().is(DamageTypes.GENERIC_KILL)) {
             activePassives.forEach(passive -> {
-                passive.onEntityHurt(entity, source, amount);
+                passive.onEntityHurt(event);
                 if (passive instanceof TheClassicsOfTendonChanging theClassicsOfTendonChanging){
                     if (theClassicsOfTendonChanging.isReady()) {
-                        passive.onInteranKungFu(entity.level(),entity);
+                        passive.onInteranKungFu(event.getEntity().level(), event.getEntity());
+                    }
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onAttack(LivingAttackEvent event) {
+        if (!event.getSource().is(DamageTypes.OUTSIDE_BORDER) && !event.getSource().is(DamageTypes.GENERIC_KILL)) {
+            activePassives.forEach(passive -> {
+                passive.onAttackHurt(event);
+                if (passive instanceof TheClassicsOfTendonChanging theClassicsOfTendonChanging){
+                    if (theClassicsOfTendonChanging.isReady()) {
+                        passive.onInteranKungFu(event.getEntity().level(), event.getEntity());
                     }
                 }
             });

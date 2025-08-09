@@ -23,6 +23,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 import java.util.UUID;
 
@@ -31,7 +32,7 @@ public class ImmortalMiracle extends AbstractionInternalkungfu {
 
     public ImmortalMiracle() {
         super(KUNG_FU_ID.toString(), Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.GOLD),
-                KungFuType.INTERNAL_KUNGFU, Component.translatable("description"),0.15f, 3,0.0f);
+                KungFuType.INTERNAL_KUNGFU, Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".hand_and_glove.type"),0.15f, 3,0.0f);
     }
 
     @Override
@@ -42,10 +43,12 @@ public class ImmortalMiracle extends AbstractionInternalkungfu {
     }
 
     @Override
-    public void onEntityHurt(LivingEntity livingEntity, DamageSource source, float amount) {
+    public void onEntityHurt(LivingDamageEvent event) {
         if (!isReady()) return;
+        LivingEntity livingEntity = event.getEntity();
+        if (livingEntity == null || event.getSource() == null) return;
 
-        if (livingEntity.getHealth() <= amount) {
+        if (livingEntity.getHealth() <= event.getAmount()) {
             if (livingEntity instanceof Player player) {
                 if (!player.getAbilities().instabuild) {
                     cooldown = getMaxCoolDown() - wheatNuggetsTributeWineEffect(player);
@@ -59,6 +62,7 @@ public class ImmortalMiracle extends AbstractionInternalkungfu {
             livingEntity.playSound(ChangShengJueSound.IMMORTAL_MIRACLE_SOUND.get(), 1.0F, livingEntity.isBaby() ?
                     (randomSource.nextFloat() - randomSource.nextFloat()) * 0.2F + 1.5F :
                     (randomSource.nextFloat() - randomSource.nextFloat()) * 0.2F + 1.0F);
+            event.setCanceled(true);
         }
     }
 

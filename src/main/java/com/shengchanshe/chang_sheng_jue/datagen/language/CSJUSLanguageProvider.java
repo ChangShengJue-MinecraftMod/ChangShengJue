@@ -368,11 +368,18 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".hold_shift.tooltip",
                 "未大成前施展效果:有35%%概率将遭受的攻击伤害于1.0秒后以1.5倍反弹给攻击者\\n大成后施展效果:每多1点血量额外提高2%%触发概率\\n每施展1次冷却时间短期内延长2秒\\n成功施展%s次后武功大成");
 
-        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.kungfu", "习得%s");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu", "习得%s,使用%s来释放武功吧!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu_glove", "习得%s,使用拳套来释放武功吧!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.internal_kungfu", "习得%s!");
         this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu", "%s已阅览过,%s!");
+
         this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.external_kunfu", "%s已阅览,使用%s攻击目标来实战领悟吧!");
         this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.external_kunfu_glove", "%s已阅览,还需用空手或%s攻击木桩来操练领悟吧!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.internal_kungfu", "%s已阅览,还需用%s攻击木桩来操练领悟吧!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.light_kungfu", "%s已阅览,还需%s来领悟!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.mental_kungfu", "%s已阅览,还需%s来领悟!");
         this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.dacheng.kungfu", "%s神功大成!");
+
         this.add("message.kungfu."+ ChangShengJue.MOD_ID +".swords.type", "剑");
         this.add("message.kungfu."+ ChangShengJue.MOD_ID +".softsword.type", "软剑");
         this.add("message.kungfu."+ ChangShengJue.MOD_ID +".clubbed.type", "棍");
@@ -380,17 +387,32 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("message.kungfu."+ ChangShengJue.MOD_ID +".knife.type", "刀");
         this.add("message.kungfu."+ ChangShengJue.MOD_ID +".lance.type", "枪");
         this.add("message.kungfu."+ ChangShengJue.MOD_ID +".throwingknives.type", "飞刀");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".hand_and_glove.type", "空手或手套");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".run_and_jump.type", "奔跑或跳跃");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".mental_kungfu.type", "跟生物交互");
 
         this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu.true.comprehend", "且已习得!可使用%s长按鼠标右键蓄力%s秒后施展武功");
         this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu.fales.comprehend", "还需用%s攻击目标来实战领悟!");
+
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu.true.comprehend", "且已习得!");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu.fales.comprehend", "还需用%s攻击木桩来操练领悟!");
+
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".light_kungfu.fales.comprehend", "还需%s来领悟!");
+
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".mental_kungfu.fales.comprehend", "还需%s来领悟!");
+
         this.add("message.kungfu."+ ChangShengJue.MOD_ID +".state_change.kungfu", "%s : %s");
         this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.open", "启动,还需用空手或%s攻击木桩来操练领悟!");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu_glove.open", "启动,还需用空手攻击木桩来操练领悟!");
         this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.comprehend.open", "启动,可使用%s长按鼠标右键蓄力%s秒后施展武功");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu_glove.comprehend.open", "启动,大成后可使用%s来施展武功!");
         this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.off", "关闭");
 
         this.add("message." + ChangShengJue.MOD_ID + ".dagger_pouch.empty", "§c没有武器了");
 
         this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.count","飞刀囊容量 %s / %s");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".flying_dagger_pouch.right_click.tooltip","在背包内拿起并右键飞刀可将飞刀放入飞刀囊中");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".throwing_knives.right_click.tooltip","在背包内拿起并右键飞刀囊可将飞刀放入飞刀囊中");
         this.add("tooltip." + ChangShengJue.MOD_ID + ".durability","耐久 %s / %s");
         this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.contents","飞刀囊内的物品");
 

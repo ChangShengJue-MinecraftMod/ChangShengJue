@@ -18,7 +18,7 @@ public class TreadTheSnowWithoutTrace extends AbstractionLightKungfu {
     public static final ResourceLocation KUNG_FU_ID = new ResourceLocation(ChangShengJue.MOD_ID, "tread_the_snow_without_trace");
     public TreadTheSnowWithoutTrace() {
         super(KUNG_FU_ID.toString(), Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.GREEN),
-                KungFuType.MENTAL_KUNGFU,  Component.translatable("description"), 0.15f);
+                KungFuType.LIGHT_KUNGFU, Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".run_and_jump.type"), 0.15f);
     }
 
     @Override
@@ -38,6 +38,11 @@ public class TreadTheSnowWithoutTrace extends AbstractionLightKungfu {
         if ((getMaxCoolDown() - wheatNuggetsTributeWineEffect(player)) - cooldown <= 40 && level >= 1) {
             ChangShengJueMessages.sendToPlayer(new TreadTheSnowWithoutTraceParticlePacket(player.getUUID(), KUNG_FU_ID.toString()), (ServerPlayer) player);
         }
+    }
+
+    @Override
+    public Component getDescription() {
+        return Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".run_and_jump.type");
     }
 
     @Override
