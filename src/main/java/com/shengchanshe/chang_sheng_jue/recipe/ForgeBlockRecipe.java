@@ -21,8 +21,10 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.Nullable;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
@@ -176,8 +178,23 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
         private static Ingredient safelyParseIngredient(JsonElement json) {
             try {
                 JsonObject jsonObj = GsonHelper.convertToJsonObject(json, "ingredient");
+                
+                // 新增：处理tag字段时先解析为Ingredient
+                if (jsonObj.has("tag")) {
+                    Ingredient ingredient = Ingredient.fromJson(json);
+                    
+                    // 如果同时有count字段，创建带有数量限制的新Ingredient
+                    if (jsonObj.has("count")) {
+                        int count = GsonHelper.getAsInt(jsonObj, "count");
+                        return new CountedIngredient(ingredient, count);
+                    }
+                    return ingredient;
+                }
+                
+                // 原始处理逻辑
                 Ingredient ingredient = Ingredient.fromJson(json);
-
+                
+                // 仅当有count字段时修改数量
                 if (jsonObj.has("count")) {
                     int count = GsonHelper.getAsInt(jsonObj, "count");
                     ItemStack[] stacks = ingredient.getItems();
@@ -186,6 +203,7 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
                     }
                     return Ingredient.of(stacks);
                 }
+                
                 return ingredient;
             } catch (Exception e) {
                 ChangShengJue.LOGGER.error("Failed to parse ingredient from JSON", e);
@@ -199,8 +217,9 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
                 int count = buffer.readVarInt();
                 if (!stack.isEmpty()) {
                     stack.setCount(count);
+                    return Ingredient.of(stack);
                 }
-                return Ingredient.of(stack);
+                return Ingredient.EMPTY;
             } catch (Exception e) {
                 ChangShengJue.LOGGER.error("Failed to read ingredient from network", e);
                 return Ingredient.EMPTY;
@@ -220,7 +239,8 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
             try {
                 ItemStack[] items = ingredient.getItems();
                 if (items.length > 0) {
-                    buffer.writeItem(items[0]);
+                    // 写入第一个ItemStack及其count
+                    buffer.writeItem(items[0].copy());
                     buffer.writeVarInt(items[0].getCount());
                 } else {
                     buffer.writeItem(ItemStack.EMPTY);
@@ -240,6 +260,38 @@ public class ForgeBlockRecipe implements Recipe<SimpleContainer> {
                 ChangShengJue.LOGGER.error("Failed to write item stack to network", e);
                 buffer.writeItem(ItemStack.EMPTY);
             }
+        }
+    }
+
+    // 新增内部类用于支持带数量限制的Ingredient
+    private static class CountedIngredient extends Ingredient {
+        private final Ingredient original;
+        private final int requiredCount;
+        
+        public CountedIngredient(Ingredient original, int count) {
+            super(Stream.of());
+            this.original = original;
+            this.requiredCount = count;
+        }
+        
+        @Override
+        public boolean test(@Nullable ItemStack stack) {
+            if (stack == null || stack.isEmpty()) return false;
+            return original.test(stack) && stack.getCount() >= requiredCount;
+        }
+        
+        @Override
+        public ItemStack[] getItems() {
+            ItemStack[] items = original.getItems();
+            if (items.length > 0 && items[0].getCount() != requiredCount) {
+                ItemStack[] countedItems = new ItemStack[items.length];
+                for (int i = 0; i < items.length; i++) {
+                    countedItems[i] = items[i].copy();
+                    countedItems[i].setCount(requiredCount);
+                }
+                return countedItems;
+            }
+            return items;
         }
     }
 

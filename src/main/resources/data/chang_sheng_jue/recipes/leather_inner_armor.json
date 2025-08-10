@@ -3,7 +3,7 @@
   "group": "leather_inner_armor",
   "ingredients": [
     {
-      "item": "minecraft:leather",
+      "tag": "forge:leather",
       "count": 8
     }
   ],

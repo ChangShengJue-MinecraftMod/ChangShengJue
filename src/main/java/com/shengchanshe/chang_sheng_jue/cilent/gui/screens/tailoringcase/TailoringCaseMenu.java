@@ -137,6 +137,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         }
     }
 
+
     void clearAllSlots() {
         for (int i = 0; i < 9; i++) { // 只清空输入槽
             int finalI = i;
@@ -162,8 +163,14 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
             for (int i = 0; i < playerItems.getSlots(); i++) {
                 ItemStack stack = playerItems.getStackInSlot(i);
                 if (ItemStack.isSameItemSameTags(stack, required)) {
-                    found += stack.getCount();
-                    if (found >= needed) break;
+                    // 使用ItemStack.matches()方法确保tag和count都匹配
+                    if (stack.getCount() >= needed) {
+                        found = needed;
+                        break;
+                    } else {
+                        found += stack.getCount();
+                        if (found >= needed) break;
+                    }
                 }
             }
 
@@ -449,7 +456,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
                 )
         );
 
-        // 袆衣
+        // 袂衣
         registerRecipe(
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING.get()),

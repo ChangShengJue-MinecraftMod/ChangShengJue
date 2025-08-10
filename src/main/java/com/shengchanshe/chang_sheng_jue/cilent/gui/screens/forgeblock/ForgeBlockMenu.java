@@ -210,8 +210,14 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
             for (int i = 0; i < playerItems.getSlots(); i++) {
                 ItemStack stack = playerItems.getStackInSlot(i);
                 if (ItemStack.isSameItemSameTags(stack, required)) {
-                    found += stack.getCount();
-                    if (found >= needed) break;
+                    // 使用ItemStack.matches()方法确保tag和count都匹配
+                    if (stack.getCount() >= needed) {
+                        found = needed;
+                        break;
+                    } else {
+                        found += stack.getCount();
+                        if (found >= needed) break;
+                    }
                 }
             }
 
