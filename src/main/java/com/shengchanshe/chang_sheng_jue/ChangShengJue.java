@@ -25,6 +25,8 @@ import com.shengchanshe.chang_sheng_jue.world.feature.CSJTrunkPlacerTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.raid.Raid;
+import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
@@ -111,12 +113,16 @@ public class ChangShengJue {
             SpawnPlacements.register(ChangShengJueEntity.CROC.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
 
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD,MOD_ID, CSJSurFaceRules.makeRules());
+
+            Raid.RaiderType.create(ChangShengJue.MOD_ID + "pillager_wu_xia", ChangShengJueEntity.PILLAGER_WU_XIA.get(), new int[]{0, 0, 1, 0, 1, 1, 2, 1});
+            Raid.RaiderType.create(ChangShengJue.MOD_ID + "vindicator_wu_xia", ChangShengJueEntity.VINDICATOR_WU_XIA.get(), new int[]{1, 0, 0, 1, 1, 2, 1, 2});
+            Raid.RaiderType.create(ChangShengJue.MOD_ID + "evoker_wu_xia", ChangShengJueEntity.EVOKER_WU_XIA.get(), new int[]{0, 0, 0, 0, 1, 1, 1, 2});
+            Raid.RaiderType.create(ChangShengJue.MOD_ID + "witch_wu_xia", ChangShengJueEntity.WITCH_WU_XIA.get(), new int[]{0, 0, 0, 0, 1, 1, 1, 2});
         });
     }
 
     public void clientSetup(final FMLClientSetupEvent event){
         ClientSetup.clientSetup(event);
     }
-
 
 }
