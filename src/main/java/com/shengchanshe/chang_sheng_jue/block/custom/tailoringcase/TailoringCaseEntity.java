@@ -236,7 +236,7 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
                 ItemStack resultItem = currentRecipe.getResultItem(level.registryAccess());
                 // 获取所有可用的配方
                 var recipeManager = level.getRecipeManager();
-                var recipeType = CSJRecipeTypes.TAILORING_CASE_TYPE.get();
+                var recipeType = TailoringCaseRecipe.Type.INSTANCE;
                 var allRecipes = recipeManager.getAllRecipesFor(recipeType);
                 
                 // 查找第一个材料足够的配方，且结果物品相同

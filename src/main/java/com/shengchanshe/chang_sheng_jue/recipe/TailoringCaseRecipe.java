@@ -78,17 +78,22 @@ public class TailoringCaseRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public @NotNull RecipeSerializer<?> getSerializer() {
-        return CSJRecipeTypes.TAILORING_CASE_SERIALIZERS.get();
+        return Serializer.INSTANCE;
     }
 
     @Override
     public @NotNull RecipeType<?> getType() {
-        return CSJRecipeTypes.TAILORING_CASE_TYPE.get();
+        return Type.INSTANCE;
     }
-    
+
+    public static class Type implements RecipeType<TailoringCaseRecipe> {
+        public static final Type INSTANCE = new Type();
+        public static final String ID = "tailoring_case";
+    }
+
     public static class Serializer implements RecipeSerializer<TailoringCaseRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-
+        public static final ResourceLocation ID = new ResourceLocation(ChangShengJue.MOD_ID, "tailoring_case");
         @Override
         public @NotNull TailoringCaseRecipe fromJson(@NotNull ResourceLocation recipeId, @NotNull JsonObject json) {
             // 从JSON解析配方结果和材料

@@ -22,13 +22,16 @@ import com.shengchanshe.chang_sheng_jue.world.biome.CSJTerrablender;
 import com.shengchanshe.chang_sheng_jue.world.biome.surface.CSJSurFaceRules;
 import com.shengchanshe.chang_sheng_jue.world.feature.CSJFoliagePlacers;
 import com.shengchanshe.chang_sheng_jue.world.feature.CSJTrunkPlacerTypes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.server.ServerAboutToStartEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -79,8 +82,8 @@ public class ChangShengJue {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, KungFuConfig.SPEC, MOD_ID + "/" + MOD_ID + ".kung_fu.toml");
 
         MinecraftForge.EVENT_BUS.register(this);
-            System.out.println("长生诀模组已初始化");
     }
+
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(()->{

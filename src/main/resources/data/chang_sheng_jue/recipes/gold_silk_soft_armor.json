@@ -1,6 +1,6 @@
 {
   "type": "chang_sheng_jue:forge_block",
-  "group": "golden_soft_armor",
+  "group": "gold_silk_soft_armor",
   "ingredients": [
     {
       "item": "minecraft:gold_ingot",

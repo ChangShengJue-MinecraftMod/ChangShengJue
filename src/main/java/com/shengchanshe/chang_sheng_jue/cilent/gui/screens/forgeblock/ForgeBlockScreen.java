@@ -104,7 +104,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         if (minecraft != null && minecraft.level != null) {
             try {
                 var recipeManager = minecraft.level.getRecipeManager();
-                var recipeType = CSJRecipeTypes.FORGE_BLOCK_TYPE.get();
+                var recipeType = ForgeBlockRecipe.Type.INSTANCE;
                 cachedRecipes = recipeManager.getAllRecipesFor(recipeType);
                 
                 // 按组分类配方

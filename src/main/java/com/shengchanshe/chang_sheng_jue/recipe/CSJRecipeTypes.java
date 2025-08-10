@@ -9,37 +9,18 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class CSJRecipeTypes {
-    public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES =
-            DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, ChangShengJue.MOD_ID);
 
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS =
             DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ChangShengJue.MOD_ID);
 
     public static final RegistryObject<RecipeSerializer<ForgeBlockRecipe>> FORGE_BLOCK_SERIALIZERS =
             SERIALIZERS.register("forge_block", () -> ForgeBlockRecipe.Serializer.INSTANCE);
-
-    public static final RegistryObject<RecipeType<ForgeBlockRecipe>> FORGE_BLOCK_TYPE =
-            RECIPE_TYPES.register("forge_block", () -> new RecipeType<ForgeBlockRecipe>() {
-                @Override
-                public String toString() {
-                    return "chang_sheng_jue:forge_block";
-                }
-            });
-            
+    
     public static final RegistryObject<RecipeSerializer<TailoringCaseRecipe>> TAILORING_CASE_SERIALIZERS =
             SERIALIZERS.register("tailoring_case", () -> TailoringCaseRecipe.Serializer.INSTANCE);
-
-    public static final RegistryObject<RecipeType<TailoringCaseRecipe>> TAILORING_CASE_TYPE =
-            RECIPE_TYPES.register("tailoring_case", () -> new RecipeType<TailoringCaseRecipe>() {
-                @Override
-                public String toString() {
-                    return "chang_sheng_jue:tailoring_case";
-                }
-            });
 
     // 注册配方类型和序列化器
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
-        RECIPE_TYPES.register(eventBus);
     }
 }

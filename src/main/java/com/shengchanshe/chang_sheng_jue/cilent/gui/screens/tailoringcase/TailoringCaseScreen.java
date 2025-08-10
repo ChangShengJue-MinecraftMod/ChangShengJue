@@ -77,7 +77,9 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         if (serverRecipe != null || menu.isCrafting()) {
             currentMaterials.clear();
             currentMaterials.addAll(Arrays.asList(getMaterialsFromRecipe(serverRecipe)));
-            currentSelectedItem = serverRecipe.getResultItem(getRegistryAccess());
+            if (serverRecipe != null) {
+                currentSelectedItem = serverRecipe.getResultItem(getRegistryAccess());
+            }
         }
 
         int x = (width - imageWidth) / 2;
@@ -103,7 +105,7 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         if (minecraft != null && minecraft.level != null) {
             try {
                 var recipeManager = minecraft.level.getRecipeManager();
-                var recipeType = CSJRecipeTypes.TAILORING_CASE_TYPE.get();
+                var recipeType = TailoringCaseRecipe.Type.INSTANCE;
                 cachedRecipes = recipeManager.getAllRecipesFor(recipeType);
                 
                 // 按组分类配方

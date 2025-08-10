@@ -211,8 +211,9 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
 
     public void craftItem(ItemStack result) {
         ItemStack output = itemHandler.getStackInSlot(SLOT_OUTPUT);
+        ItemStack stack = new ItemStack(result.getItem());
         if (output.isEmpty()) {
-            itemHandler.setStackInSlot(SLOT_OUTPUT, result.copy());
+            itemHandler.setStackInSlot(SLOT_OUTPUT, stack);
         } else {
             output.grow(result.getCount());
         }
@@ -240,7 +241,7 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
             if (currentRecipe != null) {
                 ItemStack resultItem = currentRecipe.getResultItem(level.registryAccess());
                 // 获取所有可用的配方
-                Collection<ForgeBlockRecipe> allRecipes = level.getRecipeManager().getAllRecipesFor(CSJRecipeTypes.FORGE_BLOCK_TYPE.get());
+                Collection<ForgeBlockRecipe> allRecipes = level.getRecipeManager().getAllRecipesFor(ForgeBlockRecipe.Type.INSTANCE);
                 
                 // 查找第一个材料足够的配方，且结果物品相同
                 for (ForgeBlockRecipe recipe : allRecipes) {

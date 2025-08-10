@@ -10,7 +10,6 @@ import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.entity.custom.croc.Croc;
 import com.shengchanshe.chang_sheng_jue.entity.custom.tiger.Tiger;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.other.GangLeader;
-import com.shengchanshe.chang_sheng_jue.entity.placement.BanditEntitySpawns;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.chang_sheng_jue.event.armor.ArmorEvent;
 import com.shengchanshe.chang_sheng_jue.event.kungfu.GoldenBellJarEvent;
@@ -43,7 +42,6 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -572,7 +570,7 @@ public class CSJEvent {
     //生物攻击事件
     @SubscribeEvent
     public static void onEntityHurt(LivingAttackEvent event){
-//        KungFuEvent.onEntityHurt(event);
+        KungFuEvent.onEntityHurt(event);
     }
 
     @SubscribeEvent
