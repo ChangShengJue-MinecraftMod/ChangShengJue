@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue.recipe;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonSyntaxException;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -17,6 +18,8 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class TailoringCaseRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
@@ -37,14 +40,14 @@ public class TailoringCaseRecipe implements Recipe<SimpleContainer> {
         if (container.getContainerSize() < ingredients.size()) {
             return false;
         }
-        
+
         // 验证每个槽位的材料是否符合配方要求
         for (int i = 0; i < ingredients.size(); i++) {
             if (!ingredients.get(i).test(container.getItem(i))) {
                 return false;
             }
         }
-        
+
         return true;
     }
 
@@ -94,81 +97,157 @@ public class TailoringCaseRecipe implements Recipe<SimpleContainer> {
     public static class Serializer implements RecipeSerializer<TailoringCaseRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final ResourceLocation ID = new ResourceLocation(ChangShengJue.MOD_ID, "tailoring_case");
+
         @Override
         public @NotNull TailoringCaseRecipe fromJson(@NotNull ResourceLocation recipeId, @NotNull JsonObject json) {
-            // 从JSON解析配方结果和材料
-            ItemStack result = net.minecraft.world.item.crafting.ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
+            // 验证recipeId格式
+            validateResourceLocation(recipeId);
+
+            ItemStack result = safelyParseItemStack(GsonHelper.getAsJsonObject(json, "result"));
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
             String group = GsonHelper.getAsString(json, "group", "");
-            NonNullList<Ingredient> inputs = NonNullList.create();
 
-            // 解析配方所需材料
-            for (int i = 0; i < ingredients.size(); i++) {
-                inputs.add(ingredientFromJson(ingredients.get(i)));
+            NonNullList<Ingredient> inputs = NonNullList.create();
+            for (JsonElement element : ingredients) {
+                inputs.add(safelyParseIngredient(element));
             }
-            
+
             return new TailoringCaseRecipe(recipeId, result, inputs, group);
         }
 
         @Override
         public TailoringCaseRecipe fromNetwork(@NotNull ResourceLocation recipeId, @NotNull FriendlyByteBuf buffer) {
-            int size = buffer.readVarInt();
-            NonNullList<Ingredient> inputs = NonNullList.withSize(size, Ingredient.EMPTY);
-            String group = buffer.readUtf();
+            try {
+                String group = buffer.readUtf(64);
+                int size = buffer.readVarInt();
+                NonNullList<Ingredient> inputs = NonNullList.withSize(size, Ingredient.EMPTY);
 
-            for (int i = 0; i < size; i++) {
-                Ingredient ingredient = Ingredient.fromNetwork(buffer);
-                int count = buffer.readVarInt();
-                
-                // 创建具有指定数量的新ItemStack
-                ItemStack[] stacks = ingredient.getItems();
-                if (stacks.length > 0) {
-                    stacks[0] = stacks[0].copy();
-                    stacks[0].setCount(count);
-                    ingredient = Ingredient.of(stacks);
+                for (int i = 0; i < size; i++) {
+                    inputs.set(i, safelyReadIngredient(buffer));
                 }
-                
-                inputs.set(i, ingredient);
-            }
 
-            ItemStack result = buffer.readItem();
-            return new TailoringCaseRecipe(recipeId, result, inputs, group);
+                ItemStack result = safelyReadItemStack(buffer);
+                return new TailoringCaseRecipe(recipeId, result, inputs, group);
+            } catch (Exception e) {
+                ChangShengJue.LOGGER.error("Failed to deserialize recipe {} from network", recipeId, e);
+                throw new TailoringCaseRecipe.RecipeDecodeException("Failed to decode recipe: " + recipeId, e);
+            }
         }
 
         @Override
         public void toNetwork(@NotNull FriendlyByteBuf buffer, TailoringCaseRecipe recipe) {
-            buffer.writeVarInt(recipe.getIngredients().size());
-            for (Ingredient ing : recipe.getIngredients()) {
-                // 写入原料和其数量
-                ing.toNetwork(buffer);
-                buffer.writeVarInt(ing.getItems()[0].getCount());
+            try {
+                buffer.writeUtf(recipe.group, 64);
+                buffer.writeVarInt(recipe.ingredients.size());
+
+                for (Ingredient ingredient : recipe.ingredients) {
+                    safelyWriteIngredient(buffer, ingredient);
+                }
+
+                safelyWriteItemStack(buffer, recipe.result);
+            } catch (Exception e) {
+                ChangShengJue.LOGGER.error("Failed to serialize recipe {}", recipe.id, e);
+                throw new RecipeEncodeException("Failed to encode recipe: " + recipe.id, e);
             }
-            buffer.writeItem(recipe.result);
-            buffer.writeUtf(recipe.getGroup());
         }
 
-        /**
-         * 从JsonElement创建Ingredient，支持count字段
-         * @param json JSON元素
-         * @return Ingredient对象
-         */
-        private Ingredient ingredientFromJson(JsonElement json) {
-            JsonObject jsonObject = GsonHelper.convertToJsonObject(json, "ingredient");
-            if (jsonObject.has("count")) {
-                // 如果有count字段，创建自定义Ingredient
-                int count = GsonHelper.getAsInt(jsonObject, "count");
-                
-                // 直接使用Ingredient.fromJson处理，包括tag类型
+        private static void validateResourceLocation(ResourceLocation id) {
+            Objects.requireNonNull(id, "Recipe ID cannot be null");
+            if (!id.getNamespace().matches("[a-z0-9_.-]+") ||
+                    !id.getPath().matches("[a-z0-9_./-]+")) {
+                throw new JsonSyntaxException("Invalid recipe ID format: " + id);
+            }
+        }
+
+        private static ItemStack safelyParseItemStack(JsonObject json) {
+            try {
+                return net.minecraft.world.item.crafting.ShapedRecipe.itemStackFromJson(json);
+            } catch (Exception e) {
+                ChangShengJue.LOGGER.error("Failed to parse item stack from JSON", e);
+                return ItemStack.EMPTY;
+            }
+        }
+
+        private static Ingredient safelyParseIngredient(JsonElement json) {
+            try {
+                JsonObject jsonObj = GsonHelper.convertToJsonObject(json, "ingredient");
                 Ingredient ingredient = Ingredient.fromJson(json);
-                ItemStack[] stacks = ingredient.getItems();
-                for (ItemStack stack : stacks) {
+
+                if (jsonObj.has("count")) {
+                    int count = GsonHelper.getAsInt(jsonObj, "count");
+                    ItemStack[] stacks = ingredient.getItems();
+                    for (ItemStack stack : stacks) {
+                        stack.setCount(count);
+                    }
+                    return Ingredient.of(stacks);
+                }
+                return ingredient;
+            } catch (Exception e) {
+                ChangShengJue.LOGGER.error("Failed to parse ingredient from JSON", e);
+                return Ingredient.EMPTY;
+            }
+        }
+
+        private static Ingredient safelyReadIngredient(FriendlyByteBuf buffer) {
+            try {
+                ItemStack stack = buffer.readItem();
+                int count = buffer.readVarInt();
+                if (!stack.isEmpty()) {
                     stack.setCount(count);
                 }
-                return Ingredient.of(stacks);
-            } else {
-                // 没有count字段，使用默认解析
-                return Ingredient.fromJson(json);
+                return Ingredient.of(stack);
+            } catch (Exception e) {
+                ChangShengJue.LOGGER.error("Failed to read ingredient from network", e);
+                return Ingredient.EMPTY;
             }
+        }
+
+        private static ItemStack safelyReadItemStack(FriendlyByteBuf buffer) {
+            try {
+                return buffer.readItem();
+            } catch (Exception e) {
+                ChangShengJue.LOGGER.error("Failed to read item stack from network", e);
+                return ItemStack.EMPTY;
+            }
+        }
+
+        private static void safelyWriteIngredient(FriendlyByteBuf buffer, Ingredient ingredient) {
+            try {
+                ItemStack[] items = ingredient.getItems();
+                if (items.length > 0) {
+                    buffer.writeItem(items[0]);
+                    buffer.writeVarInt(items[0].getCount());
+                } else {
+                    buffer.writeItem(ItemStack.EMPTY);
+                    buffer.writeVarInt(0);
+                }
+            } catch (Exception e) {
+                ChangShengJue.LOGGER.error("Failed to write ingredient to network", e);
+                buffer.writeItem(ItemStack.EMPTY);
+                buffer.writeVarInt(0);
+            }
+        }
+
+        private static void safelyWriteItemStack(FriendlyByteBuf buffer, ItemStack stack) {
+            try {
+                buffer.writeItem(stack);
+            } catch (Exception e) {
+                ChangShengJue.LOGGER.error("Failed to write item stack to network", e);
+                buffer.writeItem(ItemStack.EMPTY);
+            }
+        }
+    }
+
+    // 自定义异常类
+    public static class RecipeDecodeException extends RuntimeException {
+        public RecipeDecodeException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
+
+    public static class RecipeEncodeException extends RuntimeException {
+        public RecipeEncodeException(String message, Throwable cause) {
+            super(message, cause);
         }
     }
 }

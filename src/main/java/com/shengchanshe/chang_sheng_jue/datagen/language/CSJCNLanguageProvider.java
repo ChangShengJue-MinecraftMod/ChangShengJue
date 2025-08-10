@@ -1551,7 +1551,7 @@
             this.add("container."+ ChangShengJue.MOD_ID +".tailoring_case", "裁衣案");
             this.add("gui."+ ChangShengJue.MOD_ID + ".tailoring_case.craft", "裁衣");
             //锻台“forgeblock”
-            this.add("container."+ ChangShengJue.MOD_ID +".forge_block", "锻台");
+            this.add("container."+ ChangShengJue.MOD_ID +".forge_block", "锻造炉");
             this.add("gui."+ ChangShengJue.MOD_ID + ".forge_block.craft", "锻造");
     
         }

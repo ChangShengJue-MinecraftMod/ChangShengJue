@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "leather_inner_armor",
+  "ingredients": [
+    {
+      "item": "minecraft:leather",
+      "count": 8
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:leather_inner_armor"
+  }
+}

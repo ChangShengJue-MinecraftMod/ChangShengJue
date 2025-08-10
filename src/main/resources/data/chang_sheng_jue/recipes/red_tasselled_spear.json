@@ -1,6 +1,6 @@
 {
   "type": "chang_sheng_jue:forge_block",
-  "group": "spear",
+  "group": "red_tasselled_spear",
   "ingredients": [
     {
       "item": "minecraft:iron_ingot",

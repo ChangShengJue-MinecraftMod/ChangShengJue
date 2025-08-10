@@ -1,6 +1,6 @@
 {
   "type": "chang_sheng_jue:forge_block",
-  "group": "han_sword",
+  "group": "han_jian",
   "ingredients": [
     {
       "item": "minecraft:iron_ingot",

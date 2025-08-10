@@ -3,7 +3,6 @@ package com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase.TailoringCaseMenu;
-import com.shengchanshe.chang_sheng_jue.recipe.CSJRecipeTypes;
 import com.shengchanshe.chang_sheng_jue.recipe.TailoringCaseRecipe;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
@@ -29,30 +28,25 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
-import software.bernie.geckolib.constant.DefaultAnimations;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.ClientUtils;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 public class TailoringCaseEntity extends BlockEntity implements MenuProvider , GeoBlockEntity {
-    private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public static final DirectionProperty FACING = TailoringCase.FACING;
     // 物品槽位处理器（9个输入，1个输出）
     private final ItemStackHandler itemHandler = new ItemStackHandler(10);
@@ -61,6 +55,7 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
     protected final ContainerData data;
     public int progress = 0;
     public int maxProgress = 100;
+    private Player currentUser; // 当前使用玩家
 
     // 当前选中的配方和配方组
     private TailoringCaseRecipe currentRecipe;
@@ -131,7 +126,24 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player player) {
+        // 如果已有玩家在使用，且不是当前玩家，则拒绝打开
+        if (currentUser != null && currentUser != player) {
+            return null; // 返回null会阻止GUI打开
+        }
+
+        // 首次打开时记录玩家
+        if (currentUser == null) {
+            currentUser = player;
+        }
+
         return new TailoringCaseMenu(containerId, inventory, this, this.data);
+    }
+
+    // 玩家关闭容器时清除记录
+    public void onClose(Player player) {
+        if (player == currentUser) {
+            currentUser = null;
+        }
     }
 
     @Override
@@ -213,8 +225,9 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
 
     public void craftItem(ItemStack result) {
         ItemStack output = itemHandler.getStackInSlot(SLOT_OUTPUT);
+        ItemStack stack = new ItemStack(result.getItem());
         if (output.isEmpty()) {
-            itemHandler.setStackInSlot(SLOT_OUTPUT, result.copy());
+            itemHandler.setStackInSlot(SLOT_OUTPUT, stack);
         } else {
             output.grow(result.getCount());
         }
@@ -223,10 +236,10 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3); // 同步到客户端
         }
     }
-    
+
     public void craftCurrentRecipe(Player player) {
         TailoringCaseRecipe recipeToUse = null;
-        
+
         // 首先检查当前配方是否有足够材料
         if (currentRecipe != null && hasEnoughMaterials(player.getInventory(), currentRecipe)) {
             recipeToUse = currentRecipe;
@@ -238,7 +251,7 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
                 var recipeManager = level.getRecipeManager();
                 var recipeType = TailoringCaseRecipe.Type.INSTANCE;
                 var allRecipes = recipeManager.getAllRecipesFor(recipeType);
-                
+
                 // 查找第一个材料足够的配方，且结果物品相同
                 for (TailoringCaseRecipe recipe : allRecipes) {
                     if (ItemStack.isSameItemSameTags(recipe.getResultItem(level.registryAccess()), resultItem)) {
@@ -273,7 +286,7 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
             this.setChanged();
         }
     }
-    
+
     private boolean hasEnoughMaterials(Inventory playerInventory, TailoringCaseRecipe recipe) {
         ItemStack[] requiredMaterials = getMaterialsFromRecipe(recipe);
         for (ItemStack required : requiredMaterials) {
@@ -312,7 +325,7 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
             }
         }
     }
-    
+
     // 从配方中获取材料示例物品（用于UI显示）
     public ItemStack[] getMaterialsFromRecipe(TailoringCaseRecipe recipe) {
         return recipe.getIngredients().stream()
@@ -335,7 +348,7 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
     public void setCurrentRecipe(TailoringCaseRecipe recipe, String group) {
         this.currentRecipe = recipe;
         this.currentRecipeGroup = group != null ? group : "";
-        
+
         // 清空输入槽
         for (int i = 0; i < 9; i++) {
             itemHandler.setStackInSlot(i, ItemStack.EMPTY);
@@ -361,7 +374,7 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
     public TailoringCaseRecipe getCurrentRecipe() {
         return currentRecipe;
     }
-    
+
     // 获取当前配方的结果物品
     public ItemStack getRecipeResultItem() {
         if (currentRecipe != null) {
@@ -369,7 +382,7 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
         }
         return ItemStack.EMPTY;
     }
-    
+
     public void setRecipeGroup(String group) {
         this.currentRecipeGroup = group != null ? group : "";
         // 如果需要根据组更新UI，可以在这里添加相关逻辑

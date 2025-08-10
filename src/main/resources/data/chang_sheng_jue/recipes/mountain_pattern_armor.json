@@ -1,6 +1,6 @@
 {
   "type": "chang_sheng_jue:forge_block",
-  "group": "mountain_armor",
+  "group": "mountain_pattern_armor",
   "ingredients": [
     {
       "item": "minecraft:iron_ingot",

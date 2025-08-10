@@ -1,6 +1,6 @@
 {
   "type": "chang_sheng_jue:forge_block",
-  "group": "horizontal_sword",
+  "group": "heng_dao",
   "ingredients": [
     {
       "item": "minecraft:iron_ingot",

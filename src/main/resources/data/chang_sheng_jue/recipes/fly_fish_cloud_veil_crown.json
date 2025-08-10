@@ -1,17 +1,13 @@
 {
   "type": "chang_sheng_jue:tailoring_case",
-  "group": "tiger_skin_garment",
+  "group": "fly_fish_cloud_veil_crown",
   "ingredients": [
     {
       "item": "chang_sheng_jue:silk",
       "count": 5
-    },
-    {
-      "item": "minecraft:tropical_fish",
-      "count": 2
     }
   ],
   "result": {
-    "item": "chang_sheng_jue:tiger_skin_garment"
+    "item": "chang_sheng_jue:fly_fish_cloud_veil_crown"
   }
 }

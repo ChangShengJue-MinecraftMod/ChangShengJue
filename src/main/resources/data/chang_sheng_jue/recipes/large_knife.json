@@ -1,6 +1,6 @@
 {
   "type": "chang_sheng_jue:forge_block",
-  "group": "dao",
+  "group": "large_knife",
   "ingredients": [
     {
       "item": "minecraft:iron_ingot",

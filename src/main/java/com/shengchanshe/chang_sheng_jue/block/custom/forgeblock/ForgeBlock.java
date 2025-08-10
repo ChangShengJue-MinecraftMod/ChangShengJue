@@ -28,8 +28,6 @@ import java.util.WeakHashMap;
 public class ForgeBlock extends BaseEntityBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    // 跟踪当前正在使用该方块的玩家
-    public static final WeakHashMap<BlockPos, Player> OPEN_PLAYERS = new WeakHashMap<>();
 
     public ForgeBlock(Properties pProperties) {
         super(pProperties);
@@ -65,19 +63,9 @@ public class ForgeBlock extends BaseEntityBlock {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
-            // 检查是否已经有玩家在使用这个方块
-            Player existingPlayer = OPEN_PLAYERS.get(pPos);
-            
-            // 如果有玩家在使用，且不是当前玩家，则拒绝访问
-            if (existingPlayer != null && existingPlayer != pPlayer && existingPlayer.isAlive()) {
-                pPlayer.sendSystemMessage(Component.translatable("这个锻造台正在被其他玩家使用"));
-                return InteractionResult.FAIL;
-            }
-            
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
             if (blockEntity instanceof ForgeBlockEntity) {
                 // 记录当前玩家为正在使用该方块的玩家
-                OPEN_PLAYERS.put(pPos, pPlayer);
                 NetworkHooks.openScreen((ServerPlayer) pPlayer, (ForgeBlockEntity) blockEntity, pPos);
             } else {
                 throw new IllegalStateException("容器提供者消失!");

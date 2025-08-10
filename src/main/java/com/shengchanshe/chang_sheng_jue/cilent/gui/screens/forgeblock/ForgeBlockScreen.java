@@ -261,11 +261,9 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         }
 
         currentMaterials.clear();
-        if (recipe != null) {
-            ItemStack[] materials = getMaterialsFromRecipe(recipe);
-            currentMaterials.addAll(Arrays.asList(materials));
-        }
-        
+        ItemStack[] materials = getMaterialsFromRecipe(recipe);
+        currentMaterials.addAll(Arrays.asList(materials));
+
         // 立即更新客户端本地显示
         menu.setCurrentRecipe(recipe);
         this.localCurrentRecipe = recipe;
@@ -292,11 +290,9 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         }
 
         currentMaterials.clear();
-        if (recipe != null) {
-            ItemStack[] materials = getMaterialsFromRecipe(recipe);
-            currentMaterials.addAll(Arrays.asList(materials));
-        }
-        
+        ItemStack[] materials = getMaterialsFromRecipe(recipe);
+        currentMaterials.addAll(Arrays.asList(materials));
+
         // 立即更新客户端本地显示
         menu.setCurrentRecipe(recipe);
         this.localCurrentRecipe = recipe;
@@ -579,8 +575,6 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
         renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, delta);
-        renderTooltip(guiGraphics, mouseX, mouseY);
-        renderArmorStandWithItem(guiGraphics);
 
         // 渲染按钮工具提示（确保在最上层）
         for (CustomButton button : customButtons) {
@@ -588,6 +582,8 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                 renderToolTip(guiGraphics, mouseX, mouseY, button.getItemStack());
             }
         }
+        renderTooltip(guiGraphics, mouseX, mouseY);
+        renderArmorStandWithItem(guiGraphics);
     }
 
     // 定期更新界面

@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "the_great_general_ming_guang_animal_skin_boots",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:croc_skin",
+      "count": 2
+    },
+    {
+      "item": "minecraft:leather",
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:the_great_general_ming_guang_animal_skin_boots"
+  }
+}

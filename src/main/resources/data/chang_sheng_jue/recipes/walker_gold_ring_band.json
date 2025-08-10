@@ -1,6 +1,6 @@
 {
   "type": "chang_sheng_jue:forge_block",
-  "group": "golden_ring",
+  "group": "walker_gold_ring_band",
   "ingredients": [
     {
       "item": "minecraft:gold_ingot",

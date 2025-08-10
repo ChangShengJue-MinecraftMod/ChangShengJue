@@ -63,6 +63,7 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
     // 当前选中的配方和配方组
     private ForgeBlockRecipe currentRecipe;
     private String currentRecipeGroup = ""; // 当前配方组
+    private Player currentUser; // 当前使用玩家
 
     @Override
     public @Nullable <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
@@ -129,8 +130,24 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player player) {
+        if (currentUser != null && currentUser != player) {
+            return null; // 返回null会阻止GUI打开
+        }
+
+        if (currentUser == null) {
+            currentUser = player;
+        }
+
         return new ForgeBlockMenu(containerId, inventory, this, this.data);
     }
+
+    // 玩家关闭容器时清除记录
+    public void onClose(Player player) {
+        if (player == currentUser) {
+            currentUser = null;
+        }
+    }
+
 
     @Override
     protected void saveAdditional(CompoundTag tag) {
@@ -372,32 +389,12 @@ public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoB
         return ItemStack.EMPTY;
     }
 
-    //新增配方
-    //新增配方
-    public void addRecipeWithMaterials(ItemStack result, ItemStack... materials) {
-        // 这个方法在新的配方系统中不再需要
-    }
-
     @Override
     public void setChanged() {
         super.setChanged();
         if (this.level != null){
             this.level.sendBlockUpdated(this.getBlockPos(),this.getBlockState(),this.getBlockState(), Block.UPDATE_CLIENTS);
         }
-    }
-
-    @Override
-    public void onChunkUnloaded() {
-        super.onChunkUnloaded();
-        // 当区块卸载时，从OPEN_PLAYERS中移除该方块的位置
-        ForgeBlock.OPEN_PLAYERS.remove(this.getBlockPos());
-    }
-    
-    @Override
-    public void setRemoved() {
-        super.setRemoved();
-        // 当方块被移除时，从OPEN_PLAYERS中移除该方块的位置
-        ForgeBlock.OPEN_PLAYERS.remove(this.getBlockPos());
     }
 
     @Override

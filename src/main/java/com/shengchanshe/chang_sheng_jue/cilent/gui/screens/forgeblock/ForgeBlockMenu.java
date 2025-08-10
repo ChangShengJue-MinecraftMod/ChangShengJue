@@ -124,13 +124,11 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
     @Override
     public void removed(Player player) {
         super.removed(player);
-        // 从OPEN_PLAYERS中移除该方块的位置
-        ForgeBlock.OPEN_PLAYERS.remove(blockEntity.getBlockPos());
-        
+        blockEntity.onClose(player);
         // 只有不在制作中时才清除
         if (!isCrafting()) {
             clearAllSlots();
-            blockEntity.setCurrentRecipe((ForgeBlockRecipe) null);
+            blockEntity.setCurrentRecipe(null);
         }
     }
 

@@ -580,15 +580,14 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
         renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, delta);
-        renderTooltip(guiGraphics, mouseX, mouseY);
-        renderArmorStandWithItem(guiGraphics);
-
         // 渲染按钮工具提示（确保在最上层）
         for (CustomButton button : customButtons) {
             if (button.isHovered() && !button.getItemStack().isEmpty()) {
                 renderToolTip(guiGraphics, mouseX, mouseY, button.getItemStack());
             }
         }
+        renderTooltip(guiGraphics, mouseX, mouseY);
+        renderArmorStandWithItem(guiGraphics);
     }
 
     // 定期更新界面

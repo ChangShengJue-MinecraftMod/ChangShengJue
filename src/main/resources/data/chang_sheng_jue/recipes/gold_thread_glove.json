@@ -1,6 +1,6 @@
 {
   "type": "chang_sheng_jue:forge_block",
-  "group": "golden_gloves",
+  "group": "gold_thread_glove",
   "ingredients": [
     {
       "item": "minecraft:gold_ingot",

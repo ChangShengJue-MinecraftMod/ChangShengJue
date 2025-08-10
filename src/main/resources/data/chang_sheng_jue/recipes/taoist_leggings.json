@@ -1,13 +1,13 @@
 {
   "type": "chang_sheng_jue:tailoring_case",
-  "group": "male_taoist_helmet",
+  "group": "taoist_leggings",
   "ingredients": [
     {
       "item": "chang_sheng_jue:silk",
-      "count": 5
+      "count": 7
     }
   ],
   "result": {
-    "item": "chang_sheng_jue:male_taoist_helmet"
+    "item": "chang_sheng_jue:taoist_leggings"
   }
 }

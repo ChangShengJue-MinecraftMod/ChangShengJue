@@ -90,6 +90,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
     @Override
     public void removed(Player player) {
         super.removed(player);
+        blockEntity.onClose(player);
         // 只有不在制作中时才清除
         if(!isCrafting()) {
             clearAllSlots();

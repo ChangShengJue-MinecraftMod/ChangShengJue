@@ -1,6 +1,6 @@
 {
   "type": "chang_sheng_jue:tailoring_case",
-  "group": "traveler_outfit",
+  "group": "walker_chestplate",
   "ingredients": [
     {
       "item": "chang_sheng_jue:silk",
@@ -16,6 +16,6 @@
     }
   ],
   "result": {
-    "item": "chang_sheng_jue:traveler_outfit"
+    "item": "chang_sheng_jue:walker_chestplate"
   }
 }

@@ -1,6 +1,6 @@
 {
   "type": "chang_sheng_jue:forge_block",
-  "group": "stick",
+  "group": "pan_hua_gun",
   "ingredients": [
     {
       "item": "minecraft:copper_ingot",

@@ -1554,5 +1554,12 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questName", "天若有情天亦老");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questDescription", "人间正道是沧桑。");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questRequirementsDescription", "完成两次江湖追杀令");
+
+        //裁衣案"container.tailoring_case.json"
+        this.add("container."+ ChangShengJue.MOD_ID +".tailoring_case", "裁衣案");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".tailoring_case.craft", "裁衣");
+        //锻台“forgeblock”
+        this.add("container."+ ChangShengJue.MOD_ID +".forge_block", "锻造炉");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".forge_block.craft", "锻造");
     }
 }

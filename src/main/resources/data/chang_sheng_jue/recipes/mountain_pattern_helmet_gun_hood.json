@@ -1,6 +1,6 @@
 {
   "type": "chang_sheng_jue:forge_block",
-  "group": "helmet",
+  "group": "mountain_pattern_helmet_gun_hood",
   "ingredients": [
     {
       "item": "minecraft:iron_ingot",
