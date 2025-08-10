@@ -372,8 +372,8 @@
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".hold_shift.tooltip",
                     "未大成前施展效果:有35%%概率将遭受的攻击伤害于1.0秒后以1.5倍反弹给攻击者\\n大成后施展效果:每多1点血量额外提高2%%触发概率\\n每施展1次冷却时间短期内延长2秒\\n成功施展%s次后武功大成");
 
-            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu", "习得%s,使用%s来释放武功吧!");
-            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu_glove", "习得%s,使用拳套来释放武功吧!");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu", "习得%s,可使用使用%s长按鼠标右键蓄力%s秒后施展武功!");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu_glove", "习得%s,可使用%s长按鼠标右键蓄力%s秒后施展武功!");
             this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.internal_kungfu", "习得%s!");
             this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu", "%s已阅览过,%s!");
 
