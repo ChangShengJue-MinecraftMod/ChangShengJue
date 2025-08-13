@@ -3,7 +3,7 @@
   "group": "leather_inner_armor",
   "ingredients": [
     {
-      "item": "minecraft:leather",
+      "item": "chang_sheng_jue:croc_skin",
       "count": 8
     }
   ],
