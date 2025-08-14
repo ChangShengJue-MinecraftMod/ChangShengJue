@@ -12,6 +12,7 @@ import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -333,7 +334,14 @@ public abstract class AbstractionLightKungfu implements ILightKungfu, IKungFuUpg
     public void deserializeNBT(CompoundTag tag) {
         this.id = tag.getString("KungFuId");
         this.name = Component.Serializer.fromJson(tag.getString("KungFuName"));
-        this.description = Component.Serializer.fromJson(tag.getString("KungFuDescription"));
+        if (tag.contains("KungFuDescription", Tag.TAG_STRING)) {
+            String desc = tag.getString("KungFuDescription");
+            if (desc.startsWith("{") && desc.endsWith("}")) {
+                this.description = Component.Serializer.fromJson(desc);
+            } else {
+                this.description = getDescription();
+            }
+        }
         this.type = KungFuType.valueOf(tag.getString("KungFuType"));
         this.isComprehend = tag.getBoolean("KungFuIsComprehend");
         this.levelUpTick = tag.getInt("KungFuComprehendTick");
