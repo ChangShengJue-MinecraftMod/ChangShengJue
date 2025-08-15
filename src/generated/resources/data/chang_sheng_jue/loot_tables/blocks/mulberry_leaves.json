@@ -53,7 +53,7 @@
                   }
                 },
                 {
-                  "chance": 0.1,
+                  "chance": 0.25,
                   "condition": "minecraft:random_chance"
                 }
               ],
@@ -125,6 +125,42 @@
                 }
               ],
               "name": "chang_sheng_jue:mulberry_sapling"
+            },
+            {
+              "type": "minecraft:item",
+              "conditions": [
+                {
+                  "block": "chang_sheng_jue:mulberry_leaves",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "type": "fruits"
+                  }
+                },
+                {
+                  "chance": 0.05,
+                  "condition": "minecraft:random_chance"
+                }
+              ],
+              "functions": [
+                {
+                  "add": false,
+                  "count": {
+                    "type": "minecraft:uniform",
+                    "max": 2.0,
+                    "min": 1.0
+                  },
+                  "function": "minecraft:set_count"
+                },
+                {
+                  "enchantment": "minecraft:fortune",
+                  "formula": "minecraft:uniform_bonus_count",
+                  "function": "minecraft:apply_bonus",
+                  "parameters": {
+                    "bonusMultiplier": 1
+                  }
+                }
+              ],
+              "name": "chang_sheng_jue:silkworm"
             }
           ]
         }

@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "cotton_leggings",
+  "ingredients": [
+    {
+      "item": "minecraft:leather",
+      "count": 4
+    },
+    {
+      "item": "chang_sheng_jue:cotton",
+      "count": 3
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:cotton_leggings"
+  }
+}

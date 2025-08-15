@@ -107,6 +107,7 @@
             this.add(ChangShengJueItems.DURIAN_MEAT.get(),"榴莲肉");
             this.add(ChangShengJueItems.MULBERRY.get(),"桑葚");
             this.add(ChangShengJueItems.NATURAL_SILK.get(),"蚕丝");
+            this.add(ChangShengJueItems.SILKWORM.get(),"蚕");
             this.add(ChangShengJueItems.SILK.get(),"丝绸");
             this.add(ChangShengJueItems.CAPSULE.get(),"荠菜");
             this.add(ChangShengJueItems.QUICKLIME.get(),"生石灰");
@@ -246,10 +247,10 @@
             this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get(), "明光铠");
             this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS.get(), "青金护膝");
             this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS.get(), "兽皮靴");
-            this.add(ChangShengJueItems.CONFUCIAN_HELMET.get(), "儒冠");
-            this.add(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get(), "染墨宽袍");
-            this.add(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get(), "染墨丝裳");
-            this.add(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get(), "染墨丝履");
+            this.add(ChangShengJueItems.CONFUCIAN_HELMET.get(), "宝缁撮");
+            this.add(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get(), "公子宽袍");
+            this.add(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get(), "丝执裤");
+            this.add(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get(), "轻丝履");
     
             this.add(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR.get(), "金丝软甲");
             this.add(ChangShengJueItems.LEATHER_INNER_ARMOR.get(), "皮内甲");
@@ -326,14 +327,14 @@
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".tooltip","生生不息，直至山平。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".hold_shift.tooltip",
                     "未大成前施展效果:使用开山镐的挖掘面积扩大为2x2\\n大成后施展效果:挖掘面积扩大为3x3\\n成功施展%s次后武功大成");
-    
+
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".tooltip","若反复实践，掌握规律；便得心应手，运用自如。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".hold_shift.tooltip",
-                    "未大成前施展效果:主手持菜刀杀死动物有50%概率额外掉落肉\\n大成后施展效果:主手持菜刀杀死动物有75%概率额外掉落肉\\n成功施展%s次后武功大成");
+                    "未大成前施展效果:主手持菜刀杀死动物有50%%概率额外掉落肉\\n大成后施展效果:主手持菜刀杀死动物有75%%概率额外掉落肉\\n成功施展%s次后武功大成");
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".tooltip","以气御力，神力无穷。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".hold_shift.tooltip",
-                    "未大成前施展效果:减少疾跑消耗的饱食度降低至60%\\n大成后施展效果:主手持金丝手套右键可打开末影箱\\n移动大于%s米后武功大成");
+                    "未大成前施展效果:减少疾跑消耗的饱食度降低至60%%\\n大成后施展效果:主手持金丝手套右键可打开末影箱\\n移动大于%s米后武功大成");
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".tooltip","指如疾风，势如闪电。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".hold_shift.tooltip",
@@ -345,7 +346,7 @@
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".tooltip","江湖不是打打杀杀，那是人情世故!");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".hold_shift.tooltip",
-                    "未大成前施展效果:与村民的交易一次即可将村民等级提升至学徒\\n大成后施展效果:额外有10%概率不消耗物品交易\\n与村民交易%s次后武功大成");
+                    "未大成前施展效果:与村民的交易一次即可将村民等级提升至学徒\\n大成后施展效果:额外有10%%概率不消耗物品交易\\n与村民交易%s次后武功大成");
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".tooltip","不死不灭，岂是幻梦?");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".hold_shift.tooltip",
@@ -357,7 +358,7 @@
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".tooltip","学向勤中得，萤窗万卷书。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".hold_shift.tooltip",
-                    "未大成前施展效果:每次交易有25%概率获得5点经验\\n大成后施展效果:每次交易有35%概率获得10点经验\\n经验到达30级后武功大成");
+                    "未大成前施展效果:每次交易有25%%概率获得5点经验\\n大成后施展效果:每次交易有35%概率获得10点经验\\n经验到达30级后武功大成");
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".tooltip","龟虽有鼻，而息之以耳。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".hold_shift.tooltip",
@@ -369,20 +370,53 @@
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".tooltip","激发潜力，牵引挪移，其中变化莫测，匪夷所思。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".hold_shift.tooltip",
-                    "未大成前施展效果:有35%概率将遭受的攻击伤害于1.0秒后以1.5倍反弹给攻击者\\n大成后施展效果:每多1点血量额外提高2%触发概率\\n每施展1次冷却时间短期内延长2秒\\n成功施展%s次后武功大成");
+                    "未大成前施展效果:有35%%概率将遭受的攻击伤害于1.0秒后以1.5倍反弹给攻击者\\n大成后施展效果:每多1点血量额外提高2%%触发概率\\n每施展1次冷却时间短期内延长2秒\\n成功施展%s次后武功大成");
 
-            this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.kungfu", "习得%s");
-            this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu", "%s已阅览过,%s!");
-            this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.kungfu", "%s已阅览,快去领悟吧");
-            this.add("kungfu." + ChangShengJue.MOD_ID + ".succeed.dacheng.kungfu", "%s神功大成!");
-            this.add("kungfu.true.comprehend", "且已领悟");
-            this.add("kungfu.fales.comprehend", "还需领悟");
-            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".state_change.kungfu", "%s : %s");
-            this.add("kungfu.open", "启动");
-            this.add("kungfu.off", "关闭");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu", "习得%s,可使用使用%s长按鼠标右键蓄力%s秒后施展武功!");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu_glove", "习得%s,可使用%s长按鼠标右键蓄力%s秒后施展武功!");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.internal_kungfu", "习得%s!");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu", "%s已阅览过,%s!");
+
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.external_kunfu", "%s已阅览,使用%s攻击目标来实战领悟吧!");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.external_kunfu_glove", "%s已阅览,还需用空手或%s攻击木桩来操练领悟吧!");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.internal_kungfu", "%s已阅览,还需用%s攻击木桩来操练领悟吧!");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.light_kungfu", "%s已阅览,还需%s来领悟!");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.mental_kungfu", "%s已阅览,还需%s来领悟!");
+            this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.dacheng.kungfu", "%s神功大成!");
+
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".swords.type", "剑");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".softsword.type", "软剑");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".clubbed.type", "棍");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".glove.type", "拳套");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".knife.type", "刀");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".lance.type", "枪");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".throwingknives.type", "飞刀");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".hand_and_glove.type", "空手或手套");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".run_and_jump.type", "奔跑或跳跃");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".mental_kungfu.type", "跟生物交互");
+
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu.true.comprehend", "且已习得!可使用%s长按鼠标右键蓄力%s秒后施展武功");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu.fales.comprehend", "还需用%s攻击目标来实战领悟!");
+
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu.true.comprehend", "且已习得!");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu.fales.comprehend", "还需用%s攻击木桩来操练领悟!");
+
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".light_kungfu.fales.comprehend", "还需%s来领悟!");
+
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".mental_kungfu.fales.comprehend", "还需%s来领悟!");
+
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".state_change.kungfu", "%s : %s");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.open", "启动,还需用空手或%s攻击木桩来操练领悟!");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu_glove.open", "启动,还需用空手攻击木桩来操练领悟!");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.comprehend.open", "启动,可使用%s长按鼠标右键蓄力%s秒后施展武功");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu_glove.comprehend.open", "启动,大成后可使用%s来施展武功!");
+            this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.off", "关闭");
+
             this.add("message." + ChangShengJue.MOD_ID + ".dagger_pouch.empty", "§c没有武器了");
     
             this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.count","飞刀囊容量 %s / %s");
+            this.add("tooltip." + ChangShengJue.MOD_ID + ".flying_dagger_pouch.right_click.tooltip","在背包内拿起并右键飞刀可将飞刀放入飞刀囊中");
+            this.add("tooltip." + ChangShengJue.MOD_ID + ".throwing_knives.right_click.tooltip","在背包内拿起并右键飞刀囊可将飞刀放入飞刀囊中");
             this.add("tooltip." + ChangShengJue.MOD_ID + ".durability","耐久 %s / %s");
             this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.contents","飞刀囊内的物品");
     
@@ -480,10 +514,14 @@
     
             this.add(ChangShengJueBlocks.CANTALOUPE_BLOCK.get(),"哈密瓜");
             this.add(ChangShengJueBlocks.WILDLIFE_HORDEUM.get(),"野生大麦");
-    
-            this.add(ChangShengJueBlocks.MANGO_LOG.get(),"芒果原木");
-            this.add(ChangShengJueBlocks.MANGO_LEAVES.get(),"芒果树叶");
-            this.add(ChangShengJueBlocks.MANGO_SAPLING.get(),"芒果树苗");
+
+            this.add(ChangShengJueBlocks.MANGO_LOG.get(),"芒果树原木");
+            this.add(ChangShengJueBlocks.MANGO_WOOD.get(),"芒果树木");
+            this.add(ChangShengJueBlocks.STRIPPED_MANGO_LOG.get(),"去皮芒果树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_MANGO_WOOD.get(),"去皮芒果树木");
+            this.add(ChangShengJueBlocks.MANGO_PLANKS.get(),"芒果树木板");
+            this.add(ChangShengJueBlocks.MANGO_LEAVES.get(),"芒果树树叶");
+            this.add(ChangShengJueBlocks.MANGO_SAPLING.get(),"芒果树树苗");
     
             this.add(ChangShengJueBlocks.BANANA_LOG.get(),"香蕉原木");
             this.add(ChangShengJueBlocks.BANANA_LEAVES.get(),"香蕉树叶");
@@ -491,54 +529,88 @@
             this.add(ChangShengJueBlocks.BANANA_FRUIT.get(),"香蕉");
     
             this.add(ChangShengJueBlocks.PEAR_LOG.get(),"梨树原木");
+            this.add(ChangShengJueBlocks.PEAR_WOOD.get(),"梨树木");
+            this.add(ChangShengJueBlocks.STRIPPED_PEAR_LOG.get(),"去皮梨树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_PEAR_WOOD.get(),"去皮梨树木");
+            this.add(ChangShengJueBlocks.PEAR_PLANKS.get(),"梨树木板");
             this.add(ChangShengJueBlocks.PEAR_LEAVES.get(),"梨树树叶");
             this.add(ChangShengJueBlocks.PEAR_SAPLING.get(),"梨树树苗");
-    
-            this.add(ChangShengJueBlocks.LICHEE_LOG.get(),"荔枝原木");
-            this.add(ChangShengJueBlocks.LICHEE_LEAVES.get(),"荔枝树叶");
-            this.add(ChangShengJueBlocks.LICHEE_SAPLING.get(),"荔枝树苗");
-    
-    
-            this.add(ChangShengJueBlocks.DURIAN_LOG.get(),"榴莲原木");
-            this.add(ChangShengJueBlocks.DURIAN_LEAVES.get(),"榴莲树叶");
-            this.add(ChangShengJueBlocks.DURIAN_SAPLING.get(),"榴莲树苗");
-    
-            this.add(ChangShengJueBlocks.GUI_HUA_LOG.get(),"桂花原木");
-            this.add(ChangShengJueBlocks.GUI_HUA_LEAVES.get(),"桂花树叶");
-            this.add(ChangShengJueBlocks.GUI_HUA_SAPLING.get(),"桂花树苗");
-            this.add(ChangShengJueBlocks.GUI_HUA_DEFOLIATION.get(),"桂花落叶");
-    
-            this.add(ChangShengJueBlocks.MEI_HUA_LOG.get(),"梅花原木");
-            this.add(ChangShengJueBlocks.MEI_HUA_LEAVES.get(),"梅花树叶");
-            this.add(ChangShengJueBlocks.MEI_HUA_SAPLING.get(),"梅花树苗");
-            this.add(ChangShengJueBlocks.MEI_HUA_DEFOLIATION.get(),"梅花落叶");
+
+            this.add(ChangShengJueBlocks.LICHEE_LOG.get(),"荔枝树原木");
+            this.add(ChangShengJueBlocks.LICHEE_WOOD.get(),"荔枝树木");
+            this.add(ChangShengJueBlocks.STRIPPED_LICHEE_LOG.get(),"去皮荔枝树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_LICHEE_WOOD.get(),"去皮荔枝树");
+            this.add(ChangShengJueBlocks.LICHEE_PLANKS.get(),"荔枝树木板");
+            this.add(ChangShengJueBlocks.LICHEE_LEAVES.get(),"荔枝树树叶");
+            this.add(ChangShengJueBlocks.LICHEE_SAPLING.get(),"荔枝树树苗");
+
+            this.add(ChangShengJueBlocks.DURIAN_LOG.get(),"榴莲树原木");
+            this.add(ChangShengJueBlocks.DURIAN_WOOD.get(),"榴莲树木");
+            this.add(ChangShengJueBlocks.STRIPPED_DURIAN_LOG.get(),"去皮榴莲树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_DURIAN_WOOD.get(),"去皮榴莲树木");
+            this.add(ChangShengJueBlocks.DURIAN_PLANKS.get(),"榴莲树木板");
+            this.add(ChangShengJueBlocks.DURIAN_LEAVES.get(),"榴莲树树叶");
+            this.add(ChangShengJueBlocks.DURIAN_SAPLING.get(),"榴莲树树苗");
+
+            this.add(ChangShengJueBlocks.OSMANTHUS_LOG.get(),"桂花树原木");
+            this.add(ChangShengJueBlocks.OSMANTHUS_WOOD.get(),"桂花树木");
+            this.add(ChangShengJueBlocks.STRIPPED_OSMANTHUS_LOG.get(),"去皮桂花树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_OSMANTHUS_WOOD.get(),"去皮桂花树木");
+            this.add(ChangShengJueBlocks.OSMANTHUS_PLANKS.get(),"桂花树木板");
+            this.add(ChangShengJueBlocks.OSMANTHUS_LEAVES.get(),"桂花树树叶");
+            this.add(ChangShengJueBlocks.OSMANTHUS_SAPLING.get(),"桂花树树苗");
+            this.add(ChangShengJueBlocks.OSMANTHUS_DEFOLIATION.get(),"桂花树落叶");
+
+            this.add(ChangShengJueBlocks.PLUM_LOG.get(),"梅花树原木");
+            this.add(ChangShengJueBlocks.PLUM_WOOD.get(),"梅花树木");
+            this.add(ChangShengJueBlocks.STRIPPED_PLUM_LOG.get(),"去皮梅花树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_PLUM_WOOD.get(),"去皮梅花树木");
+            this.add(ChangShengJueBlocks.PLUM_PLANKS.get(),"梅花树木板");
+            this.add(ChangShengJueBlocks.PLUM_LEAVES.get(),"梅花树树叶");
+            this.add(ChangShengJueBlocks.PLUM_SAPLING.get(),"梅花树树苗");
+            this.add(ChangShengJueBlocks.PLUM_DEFOLIATION.get(),"梅花树落叶");
+
             this.add(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get(),"黄花梨原木");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_WOOD.get(),"黄花梨木");
             this.add(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get(),"去皮黄花梨原木");
+            this.add(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_WOOD.get(),"去皮黄花梨木");
             this.add(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get(),"黄花梨树叶");
             this.add(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get(),"黄花梨树苗");
             this.add(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get(),"黄花梨木板");
-            this.add(ChangShengJueBlocks.JI_CHI_MU_LOG.get(),"鸡翅木原木");
-            this.add(ChangShengJueBlocks.STRIPPED_JI_CHI_MU_LOG.get(),"去皮鸡翅木原木");
-            this.add(ChangShengJueBlocks.JI_CHI_MU_LEAVES.get(),"鸡翅木树叶");
-            this.add(ChangShengJueBlocks.JI_CHI_MU_SAPLING.get(),"鸡翅木树苗");
-            this.add(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get(),"鸡翅木木板");
+
+            this.add(ChangShengJueBlocks.WENGE_LOG.get(),"鸡翅木原木");
+            this.add(ChangShengJueBlocks.WENGE_WOOD.get(),"鸡翅木");
+            this.add(ChangShengJueBlocks.STRIPPED_WENGE_LOG.get(),"去皮鸡翅木原木");
+            this.add(ChangShengJueBlocks.STRIPPED_WENGE_WOOD.get(),"去皮鸡翅木");
+            this.add(ChangShengJueBlocks.WENGE_LEAVES.get(),"鸡翅木树叶");
+            this.add(ChangShengJueBlocks.WENGE_SAPLING.get(),"鸡翅木树苗");
+            this.add(ChangShengJueBlocks.WENGE_PLANKS.get(),"鸡翅木木板");
+
             this.add(ChangShengJueBlocks.ZI_TAN_LOG.get(),"紫檀原木");
+            this.add(ChangShengJueBlocks.ZI_TAN_WOOD.get(),"紫檀木");
             this.add(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get(),"去皮紫檀原木");
-            this.add(ChangShengJueBlocks.ZI_TAN_LEAVES.get(),"紫檀树叶");
-            this.add(ChangShengJueBlocks.ZI_TAN_SAPLING.get(),"紫檀树苗");
+            this.add(ChangShengJueBlocks.STRIPPED_ZI_TAN_WOOD.get(),"去皮紫檀木");
+            this.add(ChangShengJueBlocks.ZI_TAN_LEAVES.get(),"紫檀树树叶");
+            this.add(ChangShengJueBlocks.ZI_TAN_SAPLING.get(),"紫檀树树苗");
             this.add(ChangShengJueBlocks.ZI_TAN_PLANKS.get(),"紫檀木板");
-            this.add(ChangShengJueBlocks.POPLAR_LOG.get(),"白杨原木");
-            this.add(ChangShengJueBlocks.POPLAR_LEAVES.get(),"白杨树叶");
-            this.add(ChangShengJueBlocks.POPLAR_SAPLING.get(),"白杨树苗");
-            this.add(ChangShengJueBlocks.POPLAR_DEFOLIATION.get(),"白杨落叶");
-    
-    
+
+            this.add(ChangShengJueBlocks.POPLAR_LOG.get(),"白杨树原木");
+            this.add(ChangShengJueBlocks.POPLAR_WOOD.get(),"白杨树木");
+            this.add(ChangShengJueBlocks.STRIPPED_POPLAR_LOG.get(),"去皮白杨树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_POPLAR_WOOD.get(),"去皮白杨树木");
+            this.add(ChangShengJueBlocks.POPLAR_PLANKS.get(),"白杨树木板");
+            this.add(ChangShengJueBlocks.POPLAR_LEAVES.get(),"白杨树树叶");
+            this.add(ChangShengJueBlocks.POPLAR_SAPLING.get(),"白杨树树苗");
+            this.add(ChangShengJueBlocks.POPLAR_DEFOLIATION.get(),"白杨树落叶");
+
             this.add(ChangShengJueBlocks.MULBERRY_LOG.get(),"桑树原木");
+            this.add(ChangShengJueBlocks.MULBERRY_WOOD.get(),"桑树木");
             this.add(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get(),"去皮桑树原木");
+            this.add(ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD.get(),"去皮桑树木");
+            this.add(ChangShengJueBlocks.MULBERRY_PLANKS.get(),"桑树木板");
             this.add(ChangShengJueBlocks.MULBERRY_LEAVES.get(),"桑树树叶");
             this.add(ChangShengJueBlocks.MULBERRY_SAPLING.get(),"桑树树苗");
-    
-    
+
             // 食物容器类方块
             this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_PAN.get(), "饺子盘");
             this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_WAN.get(), "饺子碗");
@@ -1479,7 +1551,7 @@
             this.add("container."+ ChangShengJue.MOD_ID +".tailoring_case", "裁衣案");
             this.add("gui."+ ChangShengJue.MOD_ID + ".tailoring_case.craft", "裁衣");
             //锻台“forgeblock”
-            this.add("container."+ ChangShengJue.MOD_ID +".forge_block", "锻台");
+            this.add("container."+ ChangShengJue.MOD_ID +".forge_block", "锻造炉");
             this.add("gui."+ ChangShengJue.MOD_ID + ".forge_block.craft", "锻造");
     
         }

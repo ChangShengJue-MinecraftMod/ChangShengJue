@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:forge_block",
+  "group": "gold_thread_glove",
+  "ingredients": [
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 1
+    },
+    {
+      "item": "minecraft:leather",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:gold_thread_glove"
+  }
+}

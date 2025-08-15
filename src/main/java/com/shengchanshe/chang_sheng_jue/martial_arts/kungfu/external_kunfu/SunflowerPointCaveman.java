@@ -26,7 +26,7 @@ public class SunflowerPointCaveman extends AbstractionExternalKunfu {
         super(KUNG_FU_ID.toString(),
                 Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.GOLD),
                 KungFuType.EXTERNAL_KUNFU_GLOVE,
-                "description",0.1f,0.15f,2,0.0f,
+                Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".glove.type"),0.1f,0.15f,2,0.0f,
                 0.25f, 3);
     }
 
@@ -98,6 +98,11 @@ public class SunflowerPointCaveman extends AbstractionExternalKunfu {
     }
 
     @Override
+    public int getSwingTick() {
+        return 3;
+    }
+
+    @Override
     public void attackEffect(LivingEntity source, Entity target) {
         super.attackEffect(source, target);
         if (target instanceof LivingEntity livingEntity) {
@@ -109,6 +114,11 @@ public class SunflowerPointCaveman extends AbstractionExternalKunfu {
                 }
             }
         }
+    }
+
+    @Override
+    public Component getDescription() {
+        return Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".glove.type");
     }
 
     @Override

@@ -4,7 +4,6 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
-import com.shengchanshe.chang_sheng_jue.martial_arts.IInteranlKungFu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IKungFuUpgradable;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IMentalKungfu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuType;
@@ -12,6 +11,7 @@ import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -31,7 +31,7 @@ public abstract class AbstractionMentalKungfu implements IMentalKungfu, IKungFuU
     // 武功类型
     protected KungFuType type;
     // 武功描述
-    protected String description;
+    protected Component description;
     // 武功是否领悟
     protected boolean isComprehend;
     // 武功领悟概率
@@ -61,7 +61,7 @@ public abstract class AbstractionMentalKungfu implements IMentalKungfu, IKungFuU
 
     public RandomSource randomSource = RandomSource.create();
 
-    public AbstractionMentalKungfu(String id, Component name, KungFuType type, String description,
+    public AbstractionMentalKungfu(String id, Component name, KungFuType type, Component description,
                                    float comprehendProbability) {
         this.id = id;
         this.name = name;
@@ -86,7 +86,7 @@ public abstract class AbstractionMentalKungfu implements IMentalKungfu, IKungFuU
     }
 
     @Override
-    public String getDescription() {
+    public Component getDescription() {
         return description;
     }
 
@@ -105,7 +105,7 @@ public abstract class AbstractionMentalKungfu implements IMentalKungfu, IKungFuU
                 if (entity instanceof Player player) {
                     player.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(),
                             ChangShengJueSound.COMPREHEND_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
-                    player.sendSystemMessage(Component.translatable("kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.kungfu", this.name));
+                    player.sendSystemMessage(Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.internal_kungfu", this.name));
                     if (player instanceof ServerPlayer serverPlayer) {
                         CSJAdvanceInit.LEARN_GONG_FA.trigger(serverPlayer);
                     }
@@ -243,7 +243,7 @@ public abstract class AbstractionMentalKungfu implements IMentalKungfu, IKungFuU
             levelUp(entity);
             if (level >= getMaxLevel()) {
                 entity.sendSystemMessage(
-                        Component.translatable("kungfu." + ChangShengJue.MOD_ID + ".succeed.dacheng.kungfu", name).withStyle(ChatFormatting.YELLOW));
+                        Component.translatable("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.dacheng.kungfu", name).withStyle(ChatFormatting.YELLOW));
                 entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(),
                         ChangShengJueSound.DACHENG_SOUND.get(), SoundSource.PLAYERS, 1.0F, 1.0F);
             } else {
@@ -319,7 +319,7 @@ public abstract class AbstractionMentalKungfu implements IMentalKungfu, IKungFuU
             tag.putString("KungFuName", Component.Serializer.toJson(this.name));
         }
         if (this.description != null) {
-            tag.putString("KungFuDescription", this.description);
+            tag.putString("KungFuDescription", Component.Serializer.toJson(this.description));
         }
         if (this.type != null) {
             tag.putString("KungFuType", this.type.name());
@@ -343,7 +343,14 @@ public abstract class AbstractionMentalKungfu implements IMentalKungfu, IKungFuU
     public void deserializeNBT(CompoundTag tag) {
         this.id = tag.getString("KungFuId");
         this.name = Component.Serializer.fromJson(tag.getString("KungFuName"));
-        this.description = tag.getString("KungFuDescription");
+        if (tag.contains("KungFuDescription", Tag.TAG_STRING)) {
+            String desc = tag.getString("KungFuDescription");
+            if (desc.startsWith("{") && desc.endsWith("}")) {
+                this.description = Component.Serializer.fromJson(desc);
+            } else {
+                this.description = getDescription();
+            }
+        }
         this.type = KungFuType.valueOf(tag.getString("KungFuType"));
         this.isComprehend = tag.getBoolean("KungFuIsComprehend");
         this.levelUpTick = tag.getInt("KungFuComprehendTick");

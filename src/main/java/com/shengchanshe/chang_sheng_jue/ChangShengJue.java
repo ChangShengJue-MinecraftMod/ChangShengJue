@@ -15,19 +15,25 @@ import com.shengchanshe.chang_sheng_jue.martial_arts.KungFuRegistry;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
+import com.shengchanshe.chang_sheng_jue.recipe.CSJRecipeTypes;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import com.shengchanshe.chang_sheng_jue.util.ClientSetup;
 import com.shengchanshe.chang_sheng_jue.world.biome.CSJTerrablender;
 import com.shengchanshe.chang_sheng_jue.world.biome.surface.CSJSurFaceRules;
 import com.shengchanshe.chang_sheng_jue.world.feature.CSJFoliagePlacers;
 import com.shengchanshe.chang_sheng_jue.world.feature.CSJTrunkPlacerTypes;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.raid.Raid;
+import net.minecraft.world.entity.raid.Raider;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.server.ServerAboutToStartEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -66,6 +72,7 @@ public class ChangShengJue {
         CSJFoliagePlacers.register(eventBus);
         CSJTrunkPlacerTypes.register(eventBus);
         ChangShengJueLootModifier.register(eventBus);
+        CSJRecipeTypes.register(eventBus); // 确保配方类型已注册
 
         new CSJAdvanceInit();
 
@@ -78,6 +85,7 @@ public class ChangShengJue {
 
         MinecraftForge.EVENT_BUS.register(this);
     }
+
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(()->{
@@ -105,12 +113,16 @@ public class ChangShengJue {
             SpawnPlacements.register(ChangShengJueEntity.CROC.get(),SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules);
 
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD,MOD_ID, CSJSurFaceRules.makeRules());
+
+            Raid.RaiderType.create(ChangShengJue.MOD_ID + "pillager_wu_xia", ChangShengJueEntity.PILLAGER_WU_XIA.get(), new int[]{0, 0, 1, 0, 1, 1, 2, 1});
+            Raid.RaiderType.create(ChangShengJue.MOD_ID + "vindicator_wu_xia", ChangShengJueEntity.VINDICATOR_WU_XIA.get(), new int[]{1, 0, 0, 1, 1, 2, 1, 2});
+            Raid.RaiderType.create(ChangShengJue.MOD_ID + "evoker_wu_xia", ChangShengJueEntity.EVOKER_WU_XIA.get(), new int[]{0, 0, 0, 0, 1, 1, 1, 2});
+            Raid.RaiderType.create(ChangShengJue.MOD_ID + "witch_wu_xia", ChangShengJueEntity.WITCH_WU_XIA.get(), new int[]{0, 0, 0, 0, 1, 1, 1, 2});
         });
     }
 
     public void clientSetup(final FMLClientSetupEvent event){
         ClientSetup.clientSetup(event);
     }
-
 
 }

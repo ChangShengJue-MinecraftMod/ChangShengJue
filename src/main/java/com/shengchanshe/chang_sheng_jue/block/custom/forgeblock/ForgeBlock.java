@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue.block.custom.forgeblock;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
+import java.util.WeakHashMap;
 
 public class ForgeBlock extends BaseEntityBlock {
 
@@ -60,9 +62,10 @@ public class ForgeBlock extends BaseEntityBlock {
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if(!pLevel.isClientSide()){
+        if (!pLevel.isClientSide()) {
             BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if(blockEntity instanceof ForgeBlockEntity){
+            if (blockEntity instanceof ForgeBlockEntity) {
+                // 记录当前玩家为正在使用该方块的玩家
                 NetworkHooks.openScreen((ServerPlayer) pPlayer, (ForgeBlockEntity) blockEntity, pPos);
             } else {
                 throw new IllegalStateException("容器提供者消失!");

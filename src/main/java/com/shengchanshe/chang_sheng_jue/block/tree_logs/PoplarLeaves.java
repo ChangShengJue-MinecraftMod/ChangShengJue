@@ -16,8 +16,8 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class PoplarLeaves extends LeavesBlock {
-    public PoplarLeaves(Properties p_54422_) {
-        super(p_54422_);
+    public PoplarLeaves(Properties properties) {
+        super(properties);
     }
 
     @Override

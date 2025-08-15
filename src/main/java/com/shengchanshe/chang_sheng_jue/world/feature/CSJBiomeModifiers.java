@@ -69,6 +69,8 @@ public class CSJBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_TIGER = registerKey("add_tiger");
     public static final ResourceKey<BiomeModifier> ADD_CROC = registerKey("add_croc");
 
+    public static final ResourceKey<BiomeModifier> ADD_VILLAIN = registerKey("add_villain");
+
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         // 用于获取放置特性和生物群系的注册表引用
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -229,6 +231,10 @@ public class CSJBiomeModifiers {
         context.register(ADD_FEMALE_PEACOCK,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
                 List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.FEMALE_PEACOCK.get(),
                         100, 1, 2))));
+
+        context.register(ADD_VILLAIN,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.VILLAIN.get(),
+                        100, 1, 5))));
 
 //        context.register(ADD_STAG,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
 //                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.STAG.get(),

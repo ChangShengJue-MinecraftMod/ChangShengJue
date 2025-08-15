@@ -17,10 +17,7 @@ import net.minecraft.world.entity.animal.horse.SkeletonHorse;
 import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
@@ -61,7 +58,7 @@ public class Sword extends SwordItem implements GeoItem {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if ((pPlayer.getFoodData().getFoodLevel() > 8) || pPlayer.getAbilities().instabuild) {
            ItemStack itemstack = pPlayer.getItemInHand(pUsedHand);
-            if (itemstack.getItem() instanceof Sword && itemstack.getItem() != ChangShengJueItems.SOFT_SWORD.get()) {
+            if (itemstack.getItem() instanceof Sword && itemstack.getItem() != ChangShengJueItems.SOFT_SWORD.get() && !(pPlayer.getOffhandItem().getItem() instanceof ShieldItem)) {
                 if (!pPlayer.level().isClientSide){
                     pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                         if (cap.getCooldownTick(DuguNineSwords.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(DuguNineSwords.KUNG_FU_ID.toString()) >= 1) {

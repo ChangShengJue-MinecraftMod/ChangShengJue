@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:forge_block",
+  "group": "xuanhua_axe",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot",
+      "count": 3
+    },
+    {
+      "item": "minecraft:copper_ingot",
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:xuanhua_axe"
+  }
+}

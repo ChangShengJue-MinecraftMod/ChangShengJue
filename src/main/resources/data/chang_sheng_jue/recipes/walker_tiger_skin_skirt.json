@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "walker_tiger_skin_skirt",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 5
+    },
+    {
+      "item": "chang_sheng_jue:tiger_skin",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:walker_tiger_skin_skirt"
+  }
+}

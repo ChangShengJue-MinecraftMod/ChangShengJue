@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "chang_sheng_jue:block/huang_hua_li_log",
+    "side": "chang_sheng_jue:block/huang_hua_li_log"
+  }
+}

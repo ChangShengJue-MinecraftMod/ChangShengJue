@@ -78,7 +78,7 @@
 							"rotation": [-45, 0, 0],
 							"uv": {
 								"north": {"uv": [3, 4], "uv_size": [0, 3]},
-								"east": {"uv": [15.5, 0], "uv_size": [-5, 5], "uv_rotation": 90},
+								"east": {"uv": [15.5, 5], "uv_size": [-5, -5], "uv_rotation": 90},
 								"south": {"uv": [3, 4], "uv_size": [0, 3]},
 								"west": {"uv": [10.5, 0], "uv_size": [5, 5]},
 								"up": {"uv": [3, 4], "uv_size": [0, 3]},
@@ -357,7 +357,7 @@
 							"rotation": [-45, 0, 0],
 							"uv": {
 								"north": {"uv": [5.5, 4.5], "uv_size": [0, 3]},
-								"east": {"uv": [15.5, 0], "uv_size": [-5, 5], "uv_rotation": 90},
+								"east": {"uv": [15.5, 5], "uv_size": [-5, -5], "uv_rotation": 90},
 								"south": {"uv": [5.5, 4.5], "uv_size": [0, 3]},
 								"west": {"uv": [10.5, 0], "uv_size": [5, 5]},
 								"up": {"uv": [5.5, 4.5], "uv_size": [0, 3]},

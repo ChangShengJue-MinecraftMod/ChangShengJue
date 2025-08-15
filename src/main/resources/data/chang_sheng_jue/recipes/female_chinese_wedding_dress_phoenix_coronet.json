@@ -1,0 +1,21 @@
+{
+  "type": "chang_sheng_jue:forge_block",
+  "group": "female_chinese_wedding_dress_phoenix_coronet",
+  "ingredients": [
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 3
+    },
+    {
+      "item": "minecraft:lapis_lazuli",
+      "count": 1
+    },
+    {
+      "item": "minecraft:redstone",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:female_chinese_wedding_dress_phoenix_coronet"
+  }
+}

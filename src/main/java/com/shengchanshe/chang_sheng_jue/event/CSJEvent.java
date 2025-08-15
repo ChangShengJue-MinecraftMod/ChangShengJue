@@ -570,7 +570,7 @@ public class CSJEvent {
     //生物攻击事件
     @SubscribeEvent
     public static void onEntityHurt(LivingAttackEvent event){
-//        KungFuEvent.onEntityHurt(event);
+        KungFuEvent.onEntityHurt(event);
     }
 
     @SubscribeEvent

@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:forge_block",
+  "group": "throwing_knives",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot",
+      "count": 1
+    },
+    {
+      "item": "minecraft:leather",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:throwing_knives"
+  }
+}

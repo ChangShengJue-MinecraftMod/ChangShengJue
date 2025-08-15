@@ -4,6 +4,7 @@ import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase.TailoringCaseEntity;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.ChangShengJueMenuTypes;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
+import com.shengchanshe.chang_sheng_jue.recipe.TailoringCaseRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -29,7 +30,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
     public final TailoringCaseEntity blockEntity;
     private final Level level;
     public final ContainerData data;
-    TailoringRecipe currentRecipe = null;
+    TailoringCaseRecipe currentRecipe = null;
 
     public TailoringCaseMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
@@ -75,13 +76,21 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
 
     }
 
-    public TailoringRecipe getCurrentRecipe() {
-        return currentRecipe;
+    public TailoringCaseRecipe getCurrentRecipe() {
+        // 优先使用菜单中的配方，如果没有则从方块实体获取
+        if (this.currentRecipe != null) {
+            return this.currentRecipe;
+        }
+        if (blockEntity != null) {
+            return blockEntity.getCurrentRecipe();
+        }
+        return null;
     }
 
     @Override
     public void removed(Player player) {
         super.removed(player);
+        blockEntity.onClose(player);
         // 只有不在制作中时才清除
         if(!isCrafting()) {
             clearAllSlots();
@@ -100,11 +109,11 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
-    public void setCurrentRecipe(TailoringRecipe recipe) {
+    public void setCurrentRecipe(TailoringCaseRecipe recipe) {
         this.currentRecipe = recipe;
         updateRecipeSlots();
 
-        // 只有服务端才更新
+        // 只有服务端才更新实体
         if (!level.isClientSide) {
             blockEntity.setCurrentRecipe(recipe);
             blockEntity.setChanged(); // 标记区块需要保存
@@ -115,15 +124,19 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         clearAllSlots();
 
         if (currentRecipe != null) {
-            ItemStack[] materials = currentRecipe.getMaterials();
+            ItemStack[] materials = getMaterialsFromRecipe(currentRecipe);
+            // 将材料放入对应的槽位
             for (int i = 0; i < materials.length && i < 9; i++) {
-                int finalI = i;
+                final int slotIndex = i;
+                ItemStack material = materials[i].copy();
+                // 在客户端只更新显示，在服务端更新实际的物品处理器
                 blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-                    handler.insertItem(finalI, materials[finalI].copy(), false);
+                    handler.insertItem(slotIndex, material, false);
                 });
             }
         }
     }
+
 
     void clearAllSlots() {
         for (int i = 0; i < 9; i++) { // 只清空输入槽
@@ -134,31 +147,12 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         }
     }
 
-    //已废弃制作物品逻辑
-    public boolean craftItem(Player player) {
-        if (currentRecipe == null || level.isClientSide()) {
-            return false;
-        }
 
-        // 检查输出槽是否有物品
-        if (!blockEntity.getItemHandler().getStackInSlot(TailoringCaseEntity.SLOT_OUTPUT).isEmpty()) {
-            return false; // 输出槽有物品，禁止合成
-        }
-
-        if (hasEnoughMaterials(player.getInventory())) {
-            consumeMaterials(player.getInventory());
-            blockEntity.progress = 1; // 开始进度
-            blockEntity.setChanged();
-            return true;
-        }
-        return false;
-    }
-
-    private boolean hasEnoughMaterials(Inventory playerInventory) {
+    boolean hasEnoughMaterials(Inventory playerInventory) {
         if (currentRecipe == null) return false;
 
         IItemHandler playerItems = new InvWrapper(playerInventory);
-        ItemStack[] requiredMaterials = currentRecipe.getMaterials();
+        ItemStack[] requiredMaterials = getMaterialsFromRecipe(currentRecipe);
 
         for (ItemStack required : requiredMaterials) {
             if (required.isEmpty()) continue;
@@ -169,8 +163,14 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
             for (int i = 0; i < playerItems.getSlots(); i++) {
                 ItemStack stack = playerItems.getStackInSlot(i);
                 if (ItemStack.isSameItemSameTags(stack, required)) {
-                    found += stack.getCount();
-                    if (found >= needed) break;
+                    // 使用ItemStack.matches()方法确保tag和count都匹配
+                    if (stack.getCount() >= needed) {
+                        found = needed;
+                        break;
+                    } else {
+                        found += stack.getCount();
+                        if (found >= needed) break;
+                    }
                 }
             }
 
@@ -182,7 +182,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
     private void consumeMaterials(Inventory playerInventory) {
         if (currentRecipe == null) return;
 
-        ItemStack[] requiredMaterials = currentRecipe.getMaterials();
+        ItemStack[] requiredMaterials = getMaterialsFromRecipe(currentRecipe);
         for (ItemStack required : requiredMaterials) {
             if (required.isEmpty()) continue;
 
@@ -217,22 +217,13 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
-        // 检查点击的槽位是否是玩家物品栏
-        if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
-            // This is a vanilla container slot so merge the stack into the tile inventory
-            if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
-                    + TE_INVENTORY_SLOT_COUNT, false)) {
-                return ItemStack.EMPTY;  // EMPTY_ITEM
-            }
-        } else if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
-            // This is a TE slot so merge the stack into the players inventory
+        if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
             if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;
             }
         } else {
             return ItemStack.EMPTY;
         }
-        // If stack size == 0 (the entire stack was moved) set slot contents to null
         if (sourceStack.getCount() == 0) {
             sourceSlot.set(ItemStack.EMPTY);
         } else {
@@ -362,6 +353,25 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         return false;
     }
 
+    /**
+     * 从配方中获取材料示例物品（用于UI显示）
+     * @param recipe 配方对象
+     * @return 材料物品数组
+     */
+    public ItemStack[] getMaterialsFromRecipe(TailoringCaseRecipe recipe) {
+        ItemStack[] materials = new ItemStack[recipe.getIngredients().size()];
+        for (int i = 0; i < recipe.getIngredients().size(); i++) {
+            ItemStack[] items = recipe.getIngredients().get(i).getItems();
+            if (items.length > 0) {
+                // 直接使用ingredient中的物品，它已经包含了正确的数量
+                materials[i] = items[0].copy();
+            } else {
+                materials[i] = ItemStack.EMPTY;
+            }
+        }
+        return materials;
+    }
+
     // 优化配方存储结构
     public static final Map<ResourceLocation, TailoringRecipe> RECIPE_MAP = new HashMap<>();
     public static final List<TailoringRecipe> RECIPES = new ArrayList<>();
@@ -446,7 +456,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
                 )
         );
 
-        // 袆衣
+        // 袂衣
         registerRecipe(
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING.get()),
@@ -580,46 +590,27 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         registerRecipe(
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.LEATHER_INNER_ARMOR.get()),
-                        new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 8)
-                )
-        );
+                        new ItemStack(ChangShengJueItems.CROC_SKIN.get(), 8)));
 
-        // 儒冠
+        // 儒装
         registerRecipe(
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.CONFUCIAN_HELMET.get()),
                         new ItemStack(ChangShengJueItems.SILK.get(), 4),
-                        new ItemStack(Items.INK_SAC, 1)
-                )
-        );
-
-        // 染墨宽袍
+                        new ItemStack(Items.DIAMOND, 1)));
         registerRecipe(
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get()),
                         new ItemStack(ChangShengJueItems.SILK.get(), 7),
-                        new ItemStack(Items.INK_SAC, 1)
-                )
-        );
-
-        // 染墨丝裳
+                        new ItemStack(Items.EMERALD, 1)));
         registerRecipe(
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get()),
-                        new ItemStack(ChangShengJueItems.SILK.get(), 6),
-                        new ItemStack(Items.INK_SAC, 1)
-                )
-        );
-
-        // 染墨丝履
+                        new ItemStack(ChangShengJueItems.SILK.get(), 7)));
         registerRecipe(
                 new TailoringRecipe(
                         new ItemStack(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get()),
-                        new ItemStack(ChangShengJueItems.SILK.get(), 3),
-                        new ItemStack(Items.INK_SAC, 1)
-                )
-        );
-
+                        new ItemStack(ChangShengJueItems.SILK.get(), 3)));
 
         // 兽皮靴
         registerRecipe(

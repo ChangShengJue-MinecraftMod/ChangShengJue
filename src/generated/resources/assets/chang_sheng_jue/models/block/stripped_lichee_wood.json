@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "chang_sheng_jue:block/stripped_lichee_log",
+    "side": "chang_sheng_jue:block/stripped_lichee_log"
+  }
+}

@@ -12,10 +12,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Tiers;
-import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import software.bernie.geckolib.animatable.GeoItem;
@@ -50,11 +47,13 @@ public class SoftSword extends Sword implements GeoItem {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         if (pPlayer.getFoodData().getFoodLevel() > 8 || pPlayer.getAbilities().instabuild) {
             if (!pPlayer.level().isClientSide){
-                pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                    if (cap.getCooldownTick(XuannuSwordsmanship.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(XuannuSwordsmanship.KUNG_FU_ID.toString()) >= 1) {
-                        pPlayer.startUsingItem(pUsedHand); // 开始记录按住时间
-                    }
-                });
+                if (!(pPlayer.getOffhandItem().getItem() instanceof ShieldItem)) {
+                    pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                        if (cap.getCooldownTick(XuannuSwordsmanship.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(XuannuSwordsmanship.KUNG_FU_ID.toString()) >= 1) {
+                            pPlayer.startUsingItem(pUsedHand); // 开始记录按住时间
+                        }
+                    });
+                }
             }
         }
         return InteractionResultHolder.pass(pPlayer.getItemInHand(pUsedHand));

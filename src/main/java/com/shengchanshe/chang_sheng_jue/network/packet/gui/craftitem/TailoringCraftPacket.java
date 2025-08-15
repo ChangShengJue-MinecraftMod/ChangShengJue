@@ -36,8 +36,7 @@ public class TailoringCraftPacket {
             BlockEntity entity = level.getBlockEntity(pos);
 
             if (entity instanceof TailoringCaseEntity tailoringEntity) {
-                // 调用制作逻辑（实际制作应在服务端执行）
-
+                // 调用裁衣案制作逻辑
                 tailoringEntity.craftCurrentRecipe(player);
             }
         });

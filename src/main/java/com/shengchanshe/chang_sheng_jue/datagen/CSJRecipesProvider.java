@@ -4,6 +4,7 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.tags.CSJTags;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -41,10 +42,17 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
         ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.YI_GUAN_TONG_QIAN.get()).requires(ChangShengJueItems.TONG_QIAN.get(),7)
                 .unlockedBy("has_tong_qian",has(ChangShengJueItems.TONG_QIAN.get()))
                 .save(consumer);
-
         //原木
+        planksFromLog(consumer, ChangShengJueBlocks.POPLAR_PLANKS.get(), CSJTags.Items.POPLAR_LOG, 4);
+        planksFromLog(consumer, ChangShengJueBlocks.OSMANTHUS_PLANKS.get(), CSJTags.Items.OSMANTHUS_LOG, 4);
         planksFromLog(consumer, ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get(), CSJTags.Items.HUANG_HUA_LI_LOG, 4);
-        planksFromLog(consumer, ChangShengJueBlocks.JI_CHI_MU_PLANKS.get(), CSJTags.Items.JI_CHI_MU_LOG, 4);
+        planksFromLog(consumer, ChangShengJueBlocks.WENGE_PLANKS.get(), CSJTags.Items.WENGE_LOG, 4);
+        planksFromLog(consumer, ChangShengJueBlocks.PEAR_PLANKS.get(), CSJTags.Items.PEAR_LOG, 4);
+        planksFromLog(consumer, ChangShengJueBlocks.LICHEE_PLANKS.get(), CSJTags.Items.LICHEE_LOG, 4);
+        planksFromLog(consumer, ChangShengJueBlocks.DURIAN_PLANKS.get(), CSJTags.Items.DURIAN_LOG, 4);
+        planksFromLog(consumer, ChangShengJueBlocks.MANGO_PLANKS.get(), CSJTags.Items.MANGO_LOG, 4);
+        planksFromLog(consumer, ChangShengJueBlocks.PLUM_PLANKS.get(), CSJTags.Items.PLUM_LOG, 4);
+        planksFromLog(consumer, ChangShengJueBlocks.MULBERRY_PLANKS.get(), CSJTags.Items.MULBERRY_LOG, 4);
         planksFromLog(consumer, ChangShengJueBlocks.ZI_TAN_PLANKS.get(), CSJTags.Items.ZI_TAN_LOG, 4);
 
         ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.BLUE_DOUGONG.get())
@@ -58,9 +66,6 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .requires(Tags.Items.DYES_GREEN)
                 .unlockedBy("has_blue_dougong", has(ChangShengJueBlocks.BLUE_DOUGONG.get()))
                 .save(consumer);
-
-
-
         //建筑方块
         ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.HANG_TU_BLOCK.get(),6).requires(Blocks.DIRT,9).unlockedBy("has_dirt",has(Blocks.DIRT)).save(consumer);
         stairBuilder(ChangShengJueBlocks.HANG_TU_STAIRS.get(), Ingredient.of(ChangShengJueBlocks.HANG_TU_BLOCK.get())).unlockedBy("has_hang_tu_block", has(ChangShengJueBlocks.HANG_TU_BLOCK.get())).save(consumer);
@@ -493,11 +498,11 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy("has_planks", has(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get())).save(consumer);
         //鸡翅木长凳
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.JI_CHI_MU_BENCH.get(),1)
-                .define('#', Ingredient.of(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get()))
+                .define('#', Ingredient.of(ChangShengJueBlocks.WENGE_PLANKS.get()))
                 .define('X', Ingredient.of(Items.STICK))
                 .pattern("###")
                 .pattern("X X")
-                .unlockedBy("has_planks", has(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get())).save(consumer);
+                .unlockedBy("has_planks", has(ChangShengJueBlocks.WENGE_PLANKS.get())).save(consumer);
         //紫檀木长凳
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.ZI_TAN_BENCH.get(),1)
                 .define('#', Ingredient.of(ChangShengJueBlocks.ZI_TAN_PLANKS.get()))
@@ -588,12 +593,12 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy("has_planks", has(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get())).save(consumer);
         //鸡翅木酒桌
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.JI_CHI_MU_WINE_TABLE.get(),1)
-                .define('#', Ingredient.of(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get()))
+                .define('#', Ingredient.of(ChangShengJueBlocks.WENGE_PLANKS.get()))
                 .define('X', Ingredient.of(Items.STICK))
                 .pattern("X##")
                 .pattern("X##")
                 .pattern(" XX")
-                .unlockedBy("has_planks", has(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get())).save(consumer);
+                .unlockedBy("has_planks", has(ChangShengJueBlocks.WENGE_PLANKS.get())).save(consumer);
         //紫檀木酒桌
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.ZI_TAN_WINE_TABLE.get(),1)
                 .define('#', Ingredient.of(ChangShengJueBlocks.ZI_TAN_PLANKS.get()))
@@ -613,12 +618,12 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy("has_planks", has(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get())).save(consumer);
         //鸡翅木茶几
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.JI_CHI_MU_TEAPOY.get(),1)
-                .define('#', Ingredient.of(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get()))
+                .define('#', Ingredient.of(ChangShengJueBlocks.WENGE_PLANKS.get()))
                 .define('X', Ingredient.of(Items.STICK))
                 .pattern(" ##")
                 .pattern("X##")
                 .pattern("XX ")
-                .unlockedBy("has_planks", has(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get())).save(consumer);
+                .unlockedBy("has_planks", has(ChangShengJueBlocks.WENGE_PLANKS.get())).save(consumer);
         //紫檀木茶几
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.ZI_TAN_TEAPOY.get(),1)
                 .define('#', Ingredient.of(ChangShengJueBlocks.ZI_TAN_PLANKS.get()))
@@ -710,12 +715,12 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy("has_planks", has(ChangShengJueBlocks.ZI_TAN_PLANKS.get())).save(consumer);
         //鸡翅木酒桌椅子
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.JI_CHI_MU_DRINKING_TABLE_AND_CHAIRS.get(), 1)
-                .define('#', Ingredient.of(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get()))
+                .define('#', Ingredient.of(ChangShengJueBlocks.WENGE_PLANKS.get()))
                 .define('X', Ingredient.of(Items.STICK))
                 .pattern(" # ")
                 .pattern("###")
                 .pattern("X X")
-                .unlockedBy("has_planks", has(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get())).save(consumer);
+                .unlockedBy("has_planks", has(ChangShengJueBlocks.WENGE_PLANKS.get())).save(consumer);
         //黄花梨酒桌椅子
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.HUANG_HUA_LI_DRINKING_TABLE_AND_CHAIRS.get(), 1)
                 .define('#', Ingredient.of(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()))
@@ -736,12 +741,12 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
         //鸡翅木太师椅
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.JI_CHI_MU_TAISHI_CHAIR.get(), 1)
                 .define('L', Ingredient.of(ChangShengJueItems.AG_INGOT.get()))
-                .define('#', Ingredient.of(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get()))
+                .define('#', Ingredient.of(ChangShengJueBlocks.WENGE_PLANKS.get()))
                 .define('X',Ingredient.of(Items.STICK))
                 .pattern(" L ")
                 .pattern("###")
                 .pattern("X X")
-                .unlockedBy("has_planks", has(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get())).save(consumer);
+                .unlockedBy("has_planks", has(ChangShengJueBlocks.WENGE_PLANKS.get())).save(consumer);
         //紫檀木太师椅
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.ZI_TAN_TAISHI_CHAIR.get(), 1)
                 .define('L', Ingredient.of(ChangShengJueItems.AG_INGOT.get()))
@@ -815,10 +820,10 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy("has_planks", has(Items.SPRUCE_PLANKS)).save(consumer);
         //鸡翅木桌席
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.JI_CHI_MU_LOW_DESK.get(), 1)
-                .define('#', Ingredient.of(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get()))
+                .define('#', Ingredient.of(ChangShengJueBlocks.WENGE_PLANKS.get()))
                 .pattern("###")
                 .pattern("# #")
-                .unlockedBy("has_planks", has(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get())).save(consumer);
+                .unlockedBy("has_planks", has(ChangShengJueBlocks.WENGE_PLANKS.get())).save(consumer);
         //紫檀木桌席
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.ZI_TAN_LOW_DESK.get(), 1)
                 .define('#', Ingredient.of(ChangShengJueBlocks.ZI_TAN_PLANKS.get()))
@@ -902,11 +907,11 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy("has_planks", has(Items.SPRUCE_PLANKS)).save(consumer);
         //鸡翅木书桌
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChangShengJueBlocks.JI_CHI_MU_BOOK_DESK.get(), 1)
-                .define('#', Ingredient.of(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get()))
+                .define('#', Ingredient.of(ChangShengJueBlocks.WENGE_PLANKS.get()))
                 .define('X', Ingredient.of(Items.STICK))
                 .pattern("###")
                 .pattern("XXX")
-                .unlockedBy("has_planks", has(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get())).save(consumer);
+                .unlockedBy("has_planks", has(ChangShengJueBlocks.WENGE_PLANKS.get())).save(consumer);
         //黄花梨书桌
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChangShengJueBlocks.HUANG_HUA_LI_BOOK_DESK.get(), 1)
                 .define('#', Ingredient.of(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()))
@@ -923,13 +928,13 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy("has_planks", has(ChangShengJueBlocks.ZI_TAN_PLANKS.get())).save(consumer);
         //鸡翅木宝座
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChangShengJueBlocks.JI_CHI_MU_FIVE_SCREEN_THRONE.get(), 1)
-                .define('#', Ingredient.of(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get()))
+                .define('#', Ingredient.of(ChangShengJueBlocks.WENGE_PLANKS.get()))
                 .define('Y', Ingredient.of(Items.HAY_BLOCK))
                 .define('X', Ingredient.of(Items.STICK))
                 .pattern("###")
                 .pattern("#Y#")
                 .pattern("X X")
-                .unlockedBy("has_planks", has(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get())).save(consumer);
+                .unlockedBy("has_planks", has(ChangShengJueBlocks.WENGE_PLANKS.get())).save(consumer);
         //紫檀木宝座
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get(), 1)
                 .define('#', Ingredient.of(ChangShengJueBlocks.ZI_TAN_PLANKS.get()))
@@ -1158,7 +1163,6 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .requires(ChangShengJueItems.GRAPE.get(),3).requires(ChangShengJueItems.CI_BEI.get())
                 .unlockedBy("has_cups",has(ChangShengJueItems.CI_BEI.get()))
                 .save(consumer);
-
 
 
         foodCooking(Ingredient.of(ChangShengJueItems.CORN.get()),ChangShengJueItems.BAKED_CORN.get(),1,consumer,"baked_corn");

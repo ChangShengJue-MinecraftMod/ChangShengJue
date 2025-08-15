@@ -1,0 +1,21 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "white_cotton_helmet",
+  "ingredients": [
+    {
+      "item": "minecraft:leather",
+      "count": 2
+    },
+    {
+      "item": "chang_sheng_jue:cotton",
+      "count": 2
+    },
+    {
+      "item": "chang_sheng_jue:white_peacock_feathers",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:white_cotton_helmet"
+  }
+}

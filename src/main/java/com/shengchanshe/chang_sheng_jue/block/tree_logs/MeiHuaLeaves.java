@@ -42,15 +42,15 @@ public class MeiHuaLeaves extends LeavesBlock {
                 if (groundPos != null) {
                     BlockPos leafPos = groundPos.above();
                     BlockState currentLeafState = pLevel.getBlockState(groundPos);
-                    if (currentLeafState.is(ChangShengJueBlocks.MEI_HUA_DEFOLIATION.get())) {
+                    if (currentLeafState.is(ChangShengJueBlocks.PLUM_DEFOLIATION.get())) {
                         int currentLevel = currentLeafState.getValue(LeavesDefoliation.LEVEL);
                         if (currentLevel < 2) { // 假设LEVEL的最大值是3
                             pLevel.setBlock(groundPos, currentLeafState.setValue(LeavesDefoliation.LEVEL, currentLevel + 1), 3);
                         }
                     }else if (currentLeafState.canBeReplaced() || currentLeafState.is(BlockTags.FLOWERS)){
-                        pLevel.setBlock(groundPos, ChangShengJueBlocks.MEI_HUA_DEFOLIATION.get().defaultBlockState(), 3);
+                        pLevel.setBlock(groundPos, ChangShengJueBlocks.PLUM_DEFOLIATION.get().defaultBlockState(), 3);
                     }else if (pLevel.isEmptyBlock(leafPos)) {
-                        pLevel.setBlock(leafPos, ChangShengJueBlocks.MEI_HUA_DEFOLIATION.get().defaultBlockState(), 3);
+                        pLevel.setBlock(leafPos, ChangShengJueBlocks.PLUM_DEFOLIATION.get().defaultBlockState(), 3);
                     }
                 }
             }

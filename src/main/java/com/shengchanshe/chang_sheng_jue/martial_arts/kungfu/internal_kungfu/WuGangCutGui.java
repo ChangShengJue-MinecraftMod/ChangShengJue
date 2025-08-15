@@ -10,13 +10,14 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 public class WuGangCutGui extends AbstractionInternalkungfu {
     public static final ResourceLocation KUNG_FU_ID = new ResourceLocation(ChangShengJue.MOD_ID, "wu_gang_cut_gui");
     private int xuanhuaAxeMaxDamage= 0;
     public WuGangCutGui() {
         super(KUNG_FU_ID.toString(), Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.GREEN),
-                KungFuType.INTERNAL_KUNGFU, "description",0.15f, 0,0);
+                KungFuType.INTERNAL_KUNGFU, Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".hand_and_glove.type"),0.15f, 0,0);
     }
 
     @Override
@@ -24,7 +25,8 @@ public class WuGangCutGui extends AbstractionInternalkungfu {
     }
 
     @Override
-    public void onEntityHurt(LivingEntity livingEntity, DamageSource source, float amount) {
+    public void onEntityHurt(LivingDamageEvent event) {
+
     }
 
     @Override

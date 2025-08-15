@@ -10,6 +10,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 public class YugongMovesMountains extends AbstractionInternalkungfu {
     public static final ResourceLocation KUNG_FU_ID = new ResourceLocation(ChangShengJue.MOD_ID, "yugong_moves_mountains");
@@ -18,7 +19,7 @@ public class YugongMovesMountains extends AbstractionInternalkungfu {
 
     public YugongMovesMountains() {
         super(KUNG_FU_ID.toString(), Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.GRAY),
-                KungFuType.INTERNAL_KUNGFU, "description",0.15f, 0,0);
+                KungFuType.INTERNAL_KUNGFU, Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".hand_and_glove.type"),0.15f, 0,0);
     }
 
     @Override
@@ -26,7 +27,8 @@ public class YugongMovesMountains extends AbstractionInternalkungfu {
     }
 
     @Override
-    public void onEntityHurt(LivingEntity livingEntity, DamageSource source, float amount) {
+    public void onEntityHurt(LivingDamageEvent event) {
+
     }
 
     @Override

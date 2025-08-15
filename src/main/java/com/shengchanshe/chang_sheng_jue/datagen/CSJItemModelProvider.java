@@ -44,6 +44,7 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.TONG_QIAN);
         simpleItem(ChangShengJueItems.YI_GUAN_TONG_QIAN);
         simpleItem(ChangShengJueItems.NATURAL_SILK);
+        simpleItem(ChangShengJueItems.SILKWORM);
         simpleItem(ChangShengJueItems.SILK);
         simpleItem(ChangShengJueItems.MULBERRY);
         simpleItem(ChangShengJueItems.RICE);
@@ -172,10 +173,10 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS);
         simpleItem(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS);
         //儒装
-        simpleItem(ChangShengJueItems.CONFUCIAN_HELMET);
-        simpleItem(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE);
-        simpleItem(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS);
-        simpleItem(ChangShengJueItems.CONFUCIAN_INK_BOOTS);
+        simpleArmorItem(ChangShengJueItems.CONFUCIAN_HELMET);
+        simpleArmorItem(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS);
+        simpleArmorItem(ChangShengJueItems.CONFUCIAN_INK_BOOTS);
 
         trimmedArmorItem(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR);
         trimmedArmorItem(ChangShengJueItems.LEATHER_INNER_ARMOR);
@@ -190,6 +191,28 @@ public class CSJItemModelProvider extends ItemModelProvider {
         bullionsItem(ChangShengJueItems.GOLD_BULLIONS);
 
         saplingItem(ChangShengJueBlocks.MULBERRY_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.POPLAR_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.OSMANTHUS_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.WENGE_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.PEAR_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.LICHEE_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.DURIAN_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.MANGO_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.PLUM_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.MULBERRY_SAPLING);
+
+        saplingItem(ChangShengJueBlocks.ZI_TAN_SAPLING);
 
         parentItem(ChangShengJueBlocks.BIRCH_BENCH);
         parentItem(ChangShengJueBlocks.CRIMSON_BENCH);

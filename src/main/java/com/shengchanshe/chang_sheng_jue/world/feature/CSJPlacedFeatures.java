@@ -103,11 +103,11 @@ public class CSJPlacedFeatures {
 
         register(context,GUIHUA_TREE_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.GUIHUA_TREE),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(0,0.1F,1),
-                        ChangShengJueBlocks.GUI_HUA_SAPLING.get()));
+                        ChangShengJueBlocks.OSMANTHUS_SAPLING.get()));
 
         register(context,MEIHUA_TREE_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.MEIHUA_TREE),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(0,0.1F,1),
-                        ChangShengJueBlocks.MEI_HUA_SAPLING.get()));
+                        ChangShengJueBlocks.PLUM_SAPLING.get()));
 
         register(context,POPLAR_TREE_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.POPLAR_TREE),
                 //                                                            10%的概率尝试1+1次  90%的概率尝试1次
@@ -124,7 +124,7 @@ public class CSJPlacedFeatures {
 
         register(context,JICHIMU_TREE_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.JICHIMU_TREE),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(1,0.1F,1),
-                        ChangShengJueBlocks.JI_CHI_MU_SAPLING.get()));
+                        ChangShengJueBlocks.WENGE_SAPLING.get()));
 
         register(context,ZITAN_TREE_PLACED_KEY,configuredFeature.getOrThrow(CSJConfiguredFeatures.ZITAN_TREE),
                 VegetationPlacements.treePlacement(PlacementUtils.countExtra(1,0.1F,1),

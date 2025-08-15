@@ -26,6 +26,7 @@ import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.innkeeper.male.MaleI
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.piglin.PiglinWuXia;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.villain.Villain;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.xia.AbstractMingXia;
+import com.shengchanshe.chang_sheng_jue.entity.placement.BanditEntitySpawns;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.ChangShengJueVillagerEntity;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.warrior.Warrior;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.worker.KilnWorker;
@@ -34,6 +35,7 @@ import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.monster.Vindicator;
 import net.minecraft.world.entity.monster.Witch;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -82,4 +84,8 @@ public class CSJEventBusEvents {
         event.put(ChangShengJueEntity.STAKES.get(), StakesEntity.setAttributes());
     }
 
+    @SubscribeEvent
+    public static void registerSpawnPlacements(SpawnPlacementRegisterEvent event) {
+        BanditEntitySpawns.registerSpawnRules(event);
+    }
 }

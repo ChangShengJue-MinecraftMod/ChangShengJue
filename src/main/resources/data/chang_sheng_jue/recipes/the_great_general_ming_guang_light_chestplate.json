@@ -1,0 +1,21 @@
+{
+  "type": "chang_sheng_jue:forge_block",
+  "group": "the_great_general_ming_guang_light_chestplate",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot",
+      "count": 4
+    },
+    {
+      "item": "minecraft:copper_ingot",
+      "count": 3
+    },
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:the_great_general_ming_guang_light_chestplate"
+  }
+}

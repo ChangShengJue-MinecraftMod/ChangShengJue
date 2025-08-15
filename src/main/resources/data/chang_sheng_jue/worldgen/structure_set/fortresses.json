@@ -1,22 +1,27 @@
 {
+  "placement": {
+    "type": "minecraft:random_spread",
+    "exclusion_zone": {
+      "chunk_count": 10,
+      "other_set": [
+        "minecraft:villages",
+        "chang_sheng_jue:si_he_yuan",
+        "chang_sheng_jue:hui_pai_village",
+        "chang_sheng_jue:pit_yard",
+        "chang_sheng_jue:su_pai_village"
+      ]
+    },
+    "frequency": 0.2,
+    "frequency_reduction_method": "legacy_type_1",
+    "salt": 1825068955,
+    "spacing": 32,
+    "separation": 24,
+    "spread_type": "linear"
+  },
   "structures": [
     {
       "structure": "chang_sheng_jue:fortresses",
       "weight": 1
     }
-  ],
-  "placement": {
-    "type": "minecraft:random_spread",
-    "spacing": 32,
-    "separation": 20,
-    "salt": 1825068955,
-    "spread_type": "triangular",
-    "exclusion_zone": {
-      "chunk_count": 64,
-      "other_set": [
-        "minecraft:villages",
-        "chang_sheng_jue:si_he_yuan"
-      ]
-    }
-  }
+  ]
 }

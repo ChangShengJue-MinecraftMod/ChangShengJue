@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:forge_block",
+  "group": "fly_fish_iron_hat",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot",
+      "count": 4
+    },
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:fly_fish_iron_hat"
+  }
+}

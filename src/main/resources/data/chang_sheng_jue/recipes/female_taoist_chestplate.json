@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "female_taoist_chestplate",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 8
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:female_taoist_chestplate"
+  }
+}

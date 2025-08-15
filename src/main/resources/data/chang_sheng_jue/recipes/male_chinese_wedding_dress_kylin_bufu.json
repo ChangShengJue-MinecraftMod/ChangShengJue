@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "male_chinese_wedding_dress_kylin_bufu",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 7
+    },
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:male_chinese_wedding_dress_kylin_bufu"
+  }
+}

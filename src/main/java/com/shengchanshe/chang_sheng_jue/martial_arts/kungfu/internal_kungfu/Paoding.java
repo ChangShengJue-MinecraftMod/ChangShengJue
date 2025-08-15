@@ -18,6 +18,7 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 import java.util.List;
 
@@ -26,14 +27,14 @@ public class Paoding extends AbstractionInternalkungfu {
 
     public Paoding() {
         super(KUNG_FU_ID.toString(), Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.BLACK),
-                KungFuType.INTERNAL_KUNGFU, "description",0.15f, 0,0);
+                KungFuType.INTERNAL_KUNGFU, Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".hand_and_glove.type"),0.15f, 0,0);
     }
 
     @Override
     public void onEntityTick(LivingEntity player) {}
 
     @Override
-    public void onEntityHurt(LivingEntity livingEntity, DamageSource source, float amount) {
+    public void onEntityHurt(LivingDamageEvent event) {
 
     }
 

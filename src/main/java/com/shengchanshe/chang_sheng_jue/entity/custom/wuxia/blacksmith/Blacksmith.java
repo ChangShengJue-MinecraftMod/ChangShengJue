@@ -86,16 +86,8 @@ public class Blacksmith extends AbstractWuXiaMerchant implements GeoEntity {
         VillagerTrades.ItemListing[] tradesList2 = WuXiaMerahantTrades.BLACKSMITH_TRADES.get(2);
         if (tradesList1 != null && tradesList2 != null) {
             MerchantOffers merchantOffers = this.getOffers();
-            // 添加交易列表1中的5个交易
-            this.addOffersFromItemListings(merchantOffers, tradesList1, 9);
-            // 随机添加交易列表2中的一个交易
+            this.addOffersFromItemListings(merchantOffers, tradesList1, 11);
             this.addOffersFromItemListings(merchantOffers, tradesList2, 3);
-//            int randomIndex2 = this.random.nextInt(tradesList2.length);
-//            VillagerTrades.ItemListing trade2 = tradesList2[randomIndex2];
-//            MerchantOffer offer2 = trade2.getOffer(this, this.random);
-//            if (offer2 != null) {
-//                merchantOffers.add(offer2);
-//            }
         }
     }
 

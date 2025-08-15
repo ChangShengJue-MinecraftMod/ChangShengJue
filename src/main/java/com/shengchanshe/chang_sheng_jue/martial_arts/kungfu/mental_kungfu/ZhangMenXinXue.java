@@ -18,7 +18,7 @@ public class ZhangMenXinXue extends AbstractionMentalKungfu {
 
     public ZhangMenXinXue() {
         super(KUNG_FU_ID.toString(), Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.WHITE),
-                KungFuType.MENTAL_KUNGFU, "description", 0.15f);
+                KungFuType.MENTAL_KUNGFU,Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".mental_kungfu.type"), 0.15f);
     }
 
     @Override

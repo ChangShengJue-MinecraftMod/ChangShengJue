@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "confucian_helmet",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 4
+    },
+    {
+      "item": "minecraft:diamond",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:confucian_helmet"
+  }
+}

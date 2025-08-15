@@ -36,7 +36,7 @@
       "predicate": {
         "type": "minecraft:would_survive",
         "state": {
-          "Name": "chang_sheng_jue:gui_hua_sapling",
+          "Name": "chang_sheng_jue:osmanthus_sapling",
           "Properties": {
             "stage": "0"
           }

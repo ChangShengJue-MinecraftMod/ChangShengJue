@@ -24,36 +24,74 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(CSJTags.Items.DOORS)
-                .add(Item.byBlock(ChangShengJueBlocks.DOOR_BIRCH.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.DOOR_ACACIA.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.DOOR_DARK_OAK.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.DOOR_OAK.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.DOOR_SPRUCE.get()));
+                .add(ChangShengJueBlocks.DOOR_BIRCH.get().asItem(),
+                ChangShengJueBlocks.DOOR_ACACIA.get().asItem(),
+                ChangShengJueBlocks.DOOR_DARK_OAK.get().asItem(),
+                ChangShengJueBlocks.DOOR_OAK.get().asItem(),
+                ChangShengJueBlocks.DOOR_SPRUCE.get().asItem());
 
-        this.tag(CSJTags.Items.JI_CHI_MU_LOG)
-                .add(Item.byBlock(ChangShengJueBlocks.JI_CHI_MU_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.STRIPPED_JI_CHI_MU_LOG.get()));
+        this.tag(CSJTags.Items.WENGE_LOG)
+                .add(ChangShengJueBlocks.WENGE_LOG.get().asItem(),
+                        ChangShengJueBlocks.WENGE_WOOD.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_WENGE_LOG.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_WENGE_WOOD.get().asItem());
         this.tag(CSJTags.Items.HUANG_HUA_LI_LOG)
-                .add(Item.byBlock(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get()));
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get().asItem(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_WOOD.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_WOOD.get().asItem());
+        this.tag(CSJTags.Items.PEAR_LOG)
+                .add(ChangShengJueBlocks.PEAR_LOG.get().asItem(),
+                        ChangShengJueBlocks.PEAR_WOOD.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_PEAR_LOG.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_PEAR_WOOD.get().asItem());
+        this.tag(CSJTags.Items.LICHEE_LOG)
+                .add(ChangShengJueBlocks.LICHEE_LOG.get().asItem(),
+                        ChangShengJueBlocks.LICHEE_WOOD.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_LICHEE_LOG.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_LICHEE_WOOD.get().asItem());
+        this.tag(CSJTags.Items.DURIAN_LOG)
+                .add(ChangShengJueBlocks.DURIAN_LOG.get().asItem(),
+                        ChangShengJueBlocks.DURIAN_WOOD.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_DURIAN_LOG.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_DURIAN_WOOD.get().asItem());
+        this.tag(CSJTags.Items.MANGO_LOG)
+                .add(ChangShengJueBlocks.MANGO_LOG.get().asItem(),
+                        ChangShengJueBlocks.MANGO_WOOD.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_MANGO_LOG.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_MANGO_WOOD.get().asItem());
+        this.tag(CSJTags.Items.PLUM_LOG)
+                .add(ChangShengJueBlocks.PLUM_LOG.get().asItem(),
+                        ChangShengJueBlocks.PLUM_WOOD.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_PLUM_LOG.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_PLUM_WOOD.get().asItem());
         this.tag(CSJTags.Items.ZI_TAN_LOG)
-                .add(Item.byBlock(ChangShengJueBlocks.ZI_TAN_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get()));
+                .add(ChangShengJueBlocks.ZI_TAN_LOG.get().asItem(),
+                        ChangShengJueBlocks.ZI_TAN_WOOD.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_ZI_TAN_WOOD.get().asItem());
+
         this.tag(CSJTags.Items.POPLAR_LOG)
-                .add(Item.byBlock(ChangShengJueBlocks.POPLAR_LOG.get()));
+                .add(ChangShengJueBlocks.POPLAR_LOG.get().asItem(),
+                        ChangShengJueBlocks.POPLAR_WOOD.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_POPLAR_LOG.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_POPLAR_WOOD.get().asItem());
+
+        this.tag(CSJTags.Items.OSMANTHUS_LOG)
+                .add(ChangShengJueBlocks.OSMANTHUS_LOG.get().asItem(),
+                        ChangShengJueBlocks.OSMANTHUS_WOOD.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_OSMANTHUS_LOG.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_OSMANTHUS_WOOD.get().asItem());
+
         this.tag(CSJTags.Items.MULBERRY_LOG)
-                .add(Item.byBlock(ChangShengJueBlocks.MULBERRY_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get()));
+                .add(ChangShengJueBlocks.MULBERRY_LOG.get().asItem(),
+                        ChangShengJueBlocks.MULBERRY_WOOD.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get().asItem(),
+                        ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD.get().asItem());
+
+
         this.tag(CSJTags.Items.LOG)
-                .add(Item.byBlock(ChangShengJueBlocks.MANGO_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.GUI_HUA_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.MEI_HUA_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.BANANA_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.PEAR_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.LICHEE_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.DURIAN_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.ZI_TAN_LOG.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.MULBERRY_LOG.get()));
+                .add(ChangShengJueBlocks.BANANA_LOG.get().asItem());
 
         this.tag(CSJTags.Items.MJ_BOOK)
                 .addTag(CSJTags.Items.INTERNAL_KUNG_FU_MJ)
@@ -98,8 +136,8 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
 
         this.tag(ItemTags.SAPLINGS)
                 .add(Item.byBlock(ChangShengJueBlocks.MANGO_SAPLING.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.GUI_HUA_SAPLING.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.MEI_HUA_SAPLING.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.OSMANTHUS_SAPLING.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.PLUM_SAPLING.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.BANANA_SAPLING.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.PEAR_SAPLING.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.LICHEE_SAPLING.get()))
@@ -108,7 +146,7 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
                 .add(Item.byBlock(ChangShengJueBlocks.POPLAR_SAPLING.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.MULBERRY_SAPLING.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.JI_CHI_MU_SAPLING.get()));
+                .add(Item.byBlock(ChangShengJueBlocks.WENGE_SAPLING.get()));
 
         this.tag(CSJTags.Items.DRINKS)
                 .addTag(CSJTags.Items.TEA)
@@ -221,16 +259,31 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
 
         this.tag(ItemTags.LOGS).addTag(CSJTags.Items.LOG);
         this.tag(ItemTags.LOGS_THAT_BURN)
-                .addTags(CSJTags.Items.LOG)
+                .addTag(CSJTags.Items.LOG)
                 .addTag(CSJTags.Items.HUANG_HUA_LI_LOG)
-                .addTags(CSJTags.Items.JI_CHI_MU_LOG)
-                .addTags(CSJTags.Items.ZI_TAN_LOG)
-                .addTags(CSJTags.Items.POPLAR_LOG);
+                .addTag(CSJTags.Items.WENGE_LOG)
+                .addTag(CSJTags.Items.ZI_TAN_LOG)
+                .addTag(CSJTags.Items.POPLAR_LOG)
+                .addTag(CSJTags.Items.OSMANTHUS_LOG)
+                .addTag(CSJTags.Items.PEAR_LOG)
+                .addTag(CSJTags.Items.LICHEE_LOG)
+                .addTag(CSJTags.Items.DURIAN_LOG)
+                .addTag(CSJTags.Items.MANGO_LOG)
+                .addTag(CSJTags.Items.PLUM_LOG)
+                .addTag(CSJTags.Items.MULBERRY_LOG);
 
         this.tag(ItemTags.PLANKS)
-                .add(Item.byBlock(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get()))
-                .add(Item.byBlock(ChangShengJueBlocks.ZI_TAN_PLANKS.get()));
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get().asItem(),
+                        ChangShengJueBlocks.WENGE_PLANKS.get().asItem(),
+                        ChangShengJueBlocks.ZI_TAN_PLANKS.get().asItem(),
+                        ChangShengJueBlocks.POPLAR_PLANKS.get().asItem(),
+                        ChangShengJueBlocks.OSMANTHUS_PLANKS.get().asItem(),
+                        ChangShengJueBlocks.PEAR_PLANKS.get().asItem(),
+                        ChangShengJueBlocks.LICHEE_PLANKS.get().asItem(),
+                        ChangShengJueBlocks.DURIAN_PLANKS.get().asItem(),
+                        ChangShengJueBlocks.MANGO_PLANKS.get().asItem(),
+                        ChangShengJueBlocks.PLUM_PLANKS.get().asItem(),
+                        ChangShengJueBlocks.MULBERRY_PLANKS.get().asItem());
 
         this.tag(Tags.Items.CROPS_WHEAT)
                 .add(ChangShengJueItems.HORDEUM.get());

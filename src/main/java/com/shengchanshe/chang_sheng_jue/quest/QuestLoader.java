@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue.quest;
 import com.google.gson.*;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -148,8 +149,8 @@ public class QuestLoader {
 
             String titleKey = json.has("questName") ? json.get("questName").getAsString() : "";
             String descriptionKey = json.has("questDescription") ? json.get("questDescription").getAsString() : "";
-            String title = I18n.get(titleKey);
-            String description = I18n.get(descriptionKey);
+            String title = Component.translatable(titleKey).getString();
+            String description = Component.translatable(descriptionKey).getString();
 
             // 获取任务类型，默认为 GATHER
             String typeStr = json.has("questType") ? json.get("questType").getAsString() : "GATHER";
@@ -158,7 +159,7 @@ public class QuestLoader {
             boolean repeatable = json.has("repeatable") &&  json.get("repeatable").getAsBoolean();
 
             String questRequirementsDescription = json.has("questRequirementsDescription") ?
-                    I18n.get(json.get("questRequirementsDescription").getAsString()) : "";
+                    Component.translatable(json.get("questRequirementsDescription").getAsString()).getString() : "";
 
             List<QuestEffectEntry> effects = new ArrayList<>();
             if (json.has("effects")) {
@@ -232,7 +233,7 @@ public class QuestLoader {
                     questTargetCount, questTime, effects, isAcceptQuestEffects, limitQuestIds,isNeedCompletePreQuest,conflictQuestIds,isConflictQuest,needCompletionCount);
 
         } catch (Exception e) {
-            System.err.println("解析任务JSON失败: " + e.getMessage());
+            ChangShengJue.LOGGER.error("解析任务JSON失败", e);
             return null;
         }
     }

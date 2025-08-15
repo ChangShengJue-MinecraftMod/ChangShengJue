@@ -25,6 +25,7 @@ import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.LimitCount;
@@ -50,6 +51,10 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         //树木
         //芒果
         this.dropSelf(ChangShengJueBlocks.MANGO_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.MANGO_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_MANGO_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_MANGO_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.MANGO_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.MANGO_SAPLING.get());
 //        this.createLeavesFruitsDrops(ChangShengJueBlocks.MANGO_LEAVES.get(),ChangShengJueItems.MANGO.get(),ChangShengJueBlocks.MANGO_SAPLING.get());
         this.add(ChangShengJueBlocks.MANGO_LEAVES.get(),
@@ -62,82 +67,109 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(ChangShengJueBlocks.BANANA_FRUIT.get(), (createSilkTouchDispatchTable(ChangShengJueBlocks.BANANA_FRUIT.get(),
                 LootItem.lootTableItem(ChangShengJueItems.BANANA.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 7.0F))))));
         //梨
-        this.dropSelf(ChangShengJueBlocks.PEAR_LOG.get());
-        this.dropSelf(ChangShengJueBlocks.PEAR_SAPLING.get());
 //        this.createLeavesFruitsDrops(ChangShengJueBlocks.PEAR_LEAVES.get(),ChangShengJueItems.PEAR.get(),ChangShengJueBlocks.PEAR_SAPLING.get());
-        this.add(ChangShengJueBlocks.PEAR_LEAVES.get(),
-                (block) -> this.createLeavesDrops(block,ChangShengJueBlocks.PEAR_SAPLING.get(),ChangShengJueItems.PEAR.get(),NORMAL_LEAVES_SAPLING_CHANCES));
-
+        this.dropSelf(ChangShengJueBlocks.PEAR_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.PEAR_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_PEAR_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_PEAR_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.PEAR_PLANKS.get());
+        this.dropSelf(ChangShengJueBlocks.PEAR_SAPLING.get());
+        this.add(ChangShengJueBlocks.PEAR_LEAVES.get(), (block) -> this.createLeavesDrops(block,ChangShengJueBlocks.PEAR_SAPLING.get(),ChangShengJueItems.PEAR.get(),NORMAL_LEAVES_SAPLING_CHANCES));
         //荔枝
         this.dropSelf(ChangShengJueBlocks.LICHEE_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.LICHEE_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_LICHEE_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_LICHEE_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.LICHEE_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.LICHEE_SAPLING.get());
 //        this.createLeavesFruitsDrops(ChangShengJueBlocks.LICHEE_LEAVES.get(),ChangShengJueItems.LICHEE.get(),ChangShengJueBlocks.LICHEE_SAPLING.get());
         this.add(ChangShengJueBlocks.LICHEE_LEAVES.get(),
                 (block) -> this.createLeavesDrops(block,ChangShengJueBlocks.LICHEE_SAPLING.get(),ChangShengJueItems.LICHEE.get(),NORMAL_LEAVES_SAPLING_CHANCES));
         //榴莲
         this.dropSelf(ChangShengJueBlocks.DURIAN_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.DURIAN_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_DURIAN_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_DURIAN_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.DURIAN_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.DURIAN_SAPLING.get());
 //        this.createLeavesFruitsDrops(ChangShengJueBlocks.DURIAN_LEAVES.get(),ChangShengJueItems.DURIAN.get(),ChangShengJueBlocks.DURIAN_SAPLING.get());
         this.add(ChangShengJueBlocks.DURIAN_LEAVES.get(),
                 (block) -> this.createLeavesDrops(block,ChangShengJueBlocks.DURIAN_SAPLING.get(),ChangShengJueItems.DURIAN.get(),NORMAL_LEAVES_SAPLING_CHANCES));
         this.add(ChangShengJueBlocks.DURIAN.get(), block ->
-                this.createSilkTouchDispatchTable(
+                createSilkTouchDispatchTable(
                         block,
                         LootItem.lootTableItem(ChangShengJueItems.DURIAN_MEAT.get())
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 7.0F)))
                 )
         );
-        this.dropSelf(ChangShengJueBlocks.GUI_HUA_LOG.get());
-        this.dropSelf(ChangShengJueBlocks.GUI_HUA_SAPLING.get());
-        this.add(ChangShengJueBlocks.GUI_HUA_DEFOLIATION.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.GUI_HUA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-
-        this.add(ChangShengJueBlocks.GUI_HUA_LEAVES.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.GUI_HUA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES).
+        //桂花树
+        this.dropSelf(ChangShengJueBlocks.OSMANTHUS_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.OSMANTHUS_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_OSMANTHUS_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_OSMANTHUS_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.OSMANTHUS_PLANKS.get());
+        this.dropSelf(ChangShengJueBlocks.OSMANTHUS_SAPLING.get());
+        this.add(ChangShengJueBlocks.OSMANTHUS_DEFOLIATION.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.OSMANTHUS_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ChangShengJueBlocks.OSMANTHUS_LEAVES.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.OSMANTHUS_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES).
                 withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_NO_SHEARS_OR_SILK_TOUCH)
                         .add(this.applyExplosionCondition(block, LootItem.lootTableItem(ChangShengJueItems.GUI_HUA.get()))
                                 .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.2F, 0.3F, 0.4F, 0.7F, 0.8F)))));
-
-        this.dropSelf(ChangShengJueBlocks.MEI_HUA_LOG.get());
-        this.dropSelf(ChangShengJueBlocks.MEI_HUA_SAPLING.get());
-        this.add(ChangShengJueBlocks.MEI_HUA_DEFOLIATION.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.MEI_HUA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-
-        this.add(ChangShengJueBlocks.MEI_HUA_LEAVES.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.MEI_HUA_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES).
+        // 梅花
+        this.dropSelf(ChangShengJueBlocks.PLUM_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.PLUM_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_PLUM_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_PLUM_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.PLUM_PLANKS.get());
+        this.dropSelf(ChangShengJueBlocks.PLUM_SAPLING.get());
+        this.add(ChangShengJueBlocks.PLUM_DEFOLIATION.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.PLUM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        this.add(ChangShengJueBlocks.PLUM_LEAVES.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.PLUM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES).
                 withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_NO_SHEARS_OR_SILK_TOUCH)
                         .add(this.applyExplosionCondition(block, LootItem.lootTableItem(ChangShengJueItems.MEI_HUA.get()))
                                 .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.2F, 0.3F, 0.4F, 0.7F, 0.8F)))));
-
         //黄花梨
         this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_WOOD.get());
         this.dropSelf(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_WOOD.get());
         this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get());
         this.add(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get(),
                 (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-
         //鸡翅木
-        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_LOG.get());
-        this.dropSelf(ChangShengJueBlocks.STRIPPED_JI_CHI_MU_LOG.get());
-        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_PLANKS.get());
-        this.dropSelf(ChangShengJueBlocks.JI_CHI_MU_SAPLING.get());
-        this.add(ChangShengJueBlocks.JI_CHI_MU_LEAVES.get(),
-                (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.JI_CHI_MU_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-
-
+        this.dropSelf(ChangShengJueBlocks.WENGE_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.WENGE_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_WENGE_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_WENGE_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.WENGE_PLANKS.get());
+        this.dropSelf(ChangShengJueBlocks.WENGE_SAPLING.get());
+        this.add(ChangShengJueBlocks.WENGE_LEAVES.get(),
+                (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.WENGE_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        //紫檀
         this.dropSelf(ChangShengJueBlocks.ZI_TAN_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.ZI_TAN_WOOD.get());
         this.dropSelf(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_ZI_TAN_WOOD.get());
         this.dropSelf(ChangShengJueBlocks.ZI_TAN_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.ZI_TAN_SAPLING.get());
         this.add(ChangShengJueBlocks.ZI_TAN_LEAVES.get(),
                 (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.ZI_TAN_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         //白杨树
         this.dropSelf(ChangShengJueBlocks.POPLAR_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.POPLAR_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_POPLAR_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_POPLAR_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.POPLAR_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.POPLAR_SAPLING.get());
         this.add(ChangShengJueBlocks.POPLAR_DEFOLIATION.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.POPLAR_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         this.add(ChangShengJueBlocks.POPLAR_LEAVES.get(), (block) -> this.createLeavesDrops(block, ChangShengJueBlocks.POPLAR_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
         //桑树
         this.dropSelf(ChangShengJueBlocks.MULBERRY_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.MULBERRY_WOOD.get());
         this.dropSelf(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get());
+        this.dropSelf(ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD.get());
+        this.dropSelf(ChangShengJueBlocks.MULBERRY_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.MULBERRY_SAPLING.get());
-        this.createMulberryLeavesDrops(ChangShengJueBlocks.MULBERRY_LEAVES.get(),ChangShengJueItems.MULBERRY.get(),ChangShengJueBlocks.MULBERRY_SAPLING.get(),ChangShengJueItems.NATURAL_SILK.get());
+        this.createMulberryLeavesDrops(ChangShengJueBlocks.MULBERRY_LEAVES.get(),ChangShengJueItems.MULBERRY.get(),ChangShengJueBlocks.MULBERRY_SAPLING.get(),ChangShengJueItems.NATURAL_SILK.get(),ChangShengJueItems.SILKWORM.get());
         //矿石
         this.add(ChangShengJueBlocks.AG_ORE.get(),
                 (block -> createOreDrop(ChangShengJueBlocks.AG_ORE.get(), ChangShengJueItems.RAW_AG.get())));
@@ -990,39 +1022,52 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
                         .add(((LootPoolSingletonContainer.Builder<?>)this.applyExplosionCondition(pOakLeavesBlock, LootItem.lootTableItem(fruitsItem)))
                                 .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
     }
-    public void createMulberryLeavesDrops(Block leavesBlock, Item fruitsItem,Block sapling,Item stateItem){
-        var leaves = LootItem.lootTableItem(leavesBlock)
+    public void createMulberryLeavesDrops(Block leavesBlock, Item fruitsItem, Block sapling, Item stateItem, Item stateItem1) {
+        LootPoolEntryContainer.Builder<?> leaves = LootItem.lootTableItem(leavesBlock)
                 .when(MatchTool.toolMatches(ItemPredicate.Builder.item()
-                        .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1)))).or(
-                        MatchTool.toolMatches(ItemPredicate.Builder.item().of(Tags.Items.SHEARS))));
+                                .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.atLeast(1))))
+                        .or(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Tags.Items.SHEARS))));
 
-        var state = LootItem.lootTableItem(stateItem)
-                .when(LootItemBlockStatePropertyCondition
-                        .hasBlockStateProperties(leavesBlock)
+        // 蚕丝掉落
+        LootPoolEntryContainer.Builder<?> state = LootItem.lootTableItem(stateItem)
+                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(leavesBlock)
                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                 .hasProperty(FruitLeaves.STATE, FruitLeaves.State.FRUITS)))
-                .when(LootItemRandomChanceCondition.randomChance(0.1F))
-                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE));
+                .when(LootItemRandomChanceCondition.randomChance(0.25F))
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+                .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE));
+        // 蚕掉落
+        LootPoolEntryContainer.Builder<?> state1 = LootItem.lootTableItem(stateItem1)
+                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(leavesBlock)
+                        .setProperties(StatePropertiesPredicate.Builder.properties()
+                                .hasProperty(FruitLeaves.STATE, FruitLeaves.State.FRUITS)))
+                .when(LootItemRandomChanceCondition.randomChance(0.05F))
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE));
 
-        var saplings = LootItem.lootTableItem(sapling)
-                .when(LootItemBlockStatePropertyCondition
-                        .hasBlockStateProperties(leavesBlock)
+        // 树苗掉落
+        LootPoolEntryContainer.Builder<?> saplings = LootItem.lootTableItem(sapling)
+                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(leavesBlock)
                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                 .hasProperty(FruitLeaves.STATE, FruitLeaves.State.LEAVES)))
-                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE,
-                        0.2F, 0.3F, 0.4F, 0.7F, 0.8F));
+                .when(BonusLevelTableCondition.bonusLevelFlatChance(
+                        Enchantments.BLOCK_FORTUNE, 0.2F, 0.3F, 0.4F, 0.7F, 0.8F));
 
-        var fruits = LootItem.lootTableItem(fruitsItem)
-                .when(LootItemBlockStatePropertyCondition
-                        .hasBlockStateProperties(leavesBlock)
+        // 果实掉落
+        LootPoolEntryContainer.Builder<?> fruits = LootItem.lootTableItem(fruitsItem)
+                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(leavesBlock)
                         .setProperties(StatePropertiesPredicate.Builder.properties()
                                 .hasProperty(FruitLeaves.STATE, FruitLeaves.State.LEAVES)))
-                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE,
-                        0.05F, 0.06F, 0.07F, 0.08F, 0.09F));
+                .when(BonusLevelTableCondition.bonusLevelFlatChance(
+                        Enchantments.BLOCK_FORTUNE, 0.05F, 0.06F, 0.07F, 0.08F, 0.09F));
 
-        var drops = AlternativesEntry.alternatives(leaves,state, fruits, saplings);
-        this.add(leavesBlock, LootTable.lootTable().withPool(LootPool.lootPool().add(drops)
-                .when(ExplosionCondition.survivesExplosion())));
+        LootPoolEntryContainer.Builder<?> drops = AlternativesEntry.alternatives(leaves, state, fruits, saplings, state1);
+
+        this.add(leavesBlock,
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(drops)
+                                .when(ExplosionCondition.survivesExplosion())));
     }
 
     protected LootTable.Builder createCropDrops(Block pCropBlock, Item pGrownCropItem, Item pSeedsItem,LootItemCondition.Builder pDropGrownCropCondition0,

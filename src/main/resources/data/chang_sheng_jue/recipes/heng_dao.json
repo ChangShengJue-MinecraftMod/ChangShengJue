@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:forge_block",
+  "group": "heng_dao",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot",
+      "count": 2
+    },
+    {
+      "item": "minecraft:copper_ingot",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:heng_dao"
+  }
+}

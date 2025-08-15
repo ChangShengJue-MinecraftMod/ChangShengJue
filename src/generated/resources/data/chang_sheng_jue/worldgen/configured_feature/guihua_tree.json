@@ -17,7 +17,7 @@
     "foliage_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "chang_sheng_jue:gui_hua_leaves",
+        "Name": "chang_sheng_jue:osmanthus_leaves",
         "Properties": {
           "distance": "7",
           "persistent": "false",
@@ -42,7 +42,7 @@
     "trunk_provider": {
       "type": "minecraft:simple_state_provider",
       "state": {
-        "Name": "chang_sheng_jue:gui_hua_log",
+        "Name": "chang_sheng_jue:osmanthus_log",
         "Properties": {
           "axis": "y"
         }

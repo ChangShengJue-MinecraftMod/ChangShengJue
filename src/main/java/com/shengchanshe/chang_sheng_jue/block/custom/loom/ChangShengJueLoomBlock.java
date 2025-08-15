@@ -45,6 +45,10 @@ public class ChangShengJueLoomBlock extends BaseEntityBlock{
         };
     }
 
+    @Override
+    public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return Block.box(0, 0, 0, 16, 16, 16);
+    }
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {

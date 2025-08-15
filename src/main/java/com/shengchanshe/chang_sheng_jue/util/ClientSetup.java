@@ -78,22 +78,37 @@ import java.util.function.Supplier;
 
 public class ClientSetup {
     // 所有需要注册颜色渲染器的物品的集合
-    public static final List<Supplier<? extends Item>> ARMOR_ITEMS = Arrays.asList(ChangShengJueItems.COTTON_HELMET, ChangShengJueItems.WHITE_COTTON_HELMET,
-            ChangShengJueItems.COTTON_CHESTPLATE, ChangShengJueItems.COTTON_LEGGINGS, ChangShengJueItems.COTTON_BOOTS,
+    public static final List<Supplier<? extends Item>> ARMOR_ITEMS = Arrays.asList(
+            ChangShengJueItems.COTTON_HELMET,
+            ChangShengJueItems.WHITE_COTTON_HELMET,
+            ChangShengJueItems.COTTON_CHESTPLATE,
+            ChangShengJueItems.COTTON_LEGGINGS,
+            ChangShengJueItems.COTTON_BOOTS,
 
-            ChangShengJueItems.FEMALE_TAOIST_HELMET, ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE, ChangShengJueItems.MALE_TAOIST_HELMET,
-            ChangShengJueItems.MALE_TAOIST_CHESTPLATE, ChangShengJueItems.TAOIST_BOOTS,
+            ChangShengJueItems.FEMALE_TAOIST_HELMET,
+            ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE,
+            ChangShengJueItems.MALE_TAOIST_HELMET,
+            ChangShengJueItems.MALE_TAOIST_CHESTPLATE,
+            ChangShengJueItems.TAOIST_BOOTS,
 
             ChangShengJueItems.TAOIST_LEGGINGS,
 
-            ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP, ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU,
-            ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET, ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING,
+            ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP,
+            ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU,
+            ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET,
+            ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING,
             ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES,
 
-            ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN, ChangShengJueItems.FLY_FISH_CHESTPLATE,
+            ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN,
+            ChangShengJueItems.FLY_FISH_CHESTPLATE,
             ChangShengJueItems.FLY_FISH_LONG_BOOTS,
 
-            ChangShengJueItems.HENG_DAO
+            ChangShengJueItems.HENG_DAO,
+
+            ChangShengJueItems.CONFUCIAN_HELMET,
+            ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE,
+            ChangShengJueItems.CONFUCIAN_INK_LEGGINGS,
+            ChangShengJueItems.CONFUCIAN_INK_BOOTS
     );
 
 
@@ -123,16 +138,16 @@ public class ClientSetup {
 
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MANGO_LEAVES.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MANGO_SAPLING.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GUI_HUA_LEAVES.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GUI_HUA_SAPLING.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GUI_HUA_DEFOLIATION.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MEI_HUA_LEAVES.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MEI_HUA_SAPLING.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.MEI_HUA_DEFOLIATION.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.OSMANTHUS_LEAVES.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.OSMANTHUS_SAPLING.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.OSMANTHUS_DEFOLIATION.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.PLUM_LEAVES.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.PLUM_SAPLING.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.PLUM_DEFOLIATION.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get(),  RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.JI_CHI_MU_LEAVES.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.JI_CHI_MU_SAPLING.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.WENGE_LEAVES.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.WENGE_SAPLING.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ZI_TAN_LEAVES.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.ZI_TAN_SAPLING.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BANANA_LEAVES.get(), RenderType.cutout());

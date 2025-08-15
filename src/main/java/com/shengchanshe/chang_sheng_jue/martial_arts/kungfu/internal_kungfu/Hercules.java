@@ -14,6 +14,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.PlayerEnderChestContainer;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 public class Hercules extends AbstractionInternalkungfu {
     public static final ResourceLocation KUNG_FU_ID = new ResourceLocation(ChangShengJue.MOD_ID, "hercules");
@@ -21,7 +22,7 @@ public class Hercules extends AbstractionInternalkungfu {
 
     public Hercules() {
         super(KUNG_FU_ID.toString(), Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.GOLD),
-                KungFuType.INTERNAL_KUNGFU, "description",0.15f, 0,0.0f);
+                KungFuType.INTERNAL_KUNGFU, Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".hand_and_glove.type"),0.15f, 0,0.0f);
     }
 
     @Override
@@ -37,7 +38,7 @@ public class Hercules extends AbstractionInternalkungfu {
     }
 
     @Override
-    public void onEntityHurt(LivingEntity livingEntity, DamageSource source, float amount) {
+    public void onEntityHurt(LivingDamageEvent event) {
 
     }
 
@@ -55,6 +56,11 @@ public class Hercules extends AbstractionInternalkungfu {
                 });
             }
         }
+    }
+
+    @Override
+    public Component getDescription() {
+        return Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".glove.type");
     }
 
     @Override

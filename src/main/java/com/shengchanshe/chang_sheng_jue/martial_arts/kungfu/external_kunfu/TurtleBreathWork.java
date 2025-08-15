@@ -20,8 +20,8 @@ public class TurtleBreathWork extends AbstractionExternalKunfu {
         super(KUNG_FU_ID.toString(),
                 Component.translatable("item."+ ChangShengJue.MOD_ID + "." + KUNG_FU_ID.getPath()).withStyle(ChatFormatting.BLUE),
                 KungFuType.EXTERNAL_KUNFU_GLOVE,
-                "description",0.0f,0.15f,2,0.0f,
-                0.25f,0);
+                Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".glove.type"),0.0f,0.15f,2,0.0f,
+                0.25f,3);
     }
 
     @Override
@@ -64,13 +64,18 @@ public class TurtleBreathWork extends AbstractionExternalKunfu {
     }
 
     @Override
+    public Component getDescription() {
+        return Component.translatable("message.kungfu."+ ChangShengJue.MOD_ID +".glove.type");
+    }
+
+    @Override
     public int getMaxCoolDown() {
         return KungFuConfig.TURTLE_BREATH_WORK_MAX_COOLDOWN.get();
     }
 
     @Override
     public int getSwingTick() {
-        return 0;
+        return 3;
     }
     @Override
     public int getMaxLevel() {
