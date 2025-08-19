@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-09T15:28:13.9764872	Registries
+// 1.20.1	2025-08-19T10:33:46.9352903	Registries
 f532a247643089c177e23bf745f2f159932d5566 data/chang_sheng_jue/damage_type/bleed.json
 78e33a0453798c5321958bf69a3b4b8fe13a1f9a data/chang_sheng_jue/damage_type/martial_arts.json
 a23eea3e348a4cb2b92b1c52f23914c5de48e3e6 data/chang_sheng_jue/damage_type/trauma.json
@@ -9,7 +9,7 @@ c4c03dcad45643093ea2cc409c8bed73ec9225c8 data/chang_sheng_jue/forge/biome_modifi
 2d22cf641a0fb86ca8d9d3305da73af9bb8dd938 data/chang_sheng_jue/forge/biome_modifier/add_cicada.json
 4d0280257d8940c77f72b67e91c8b856e0814d31 data/chang_sheng_jue/forge/biome_modifier/add_cuckoo.json
 41d0f523590846b5bd85d0d2554d0f142c81e097 data/chang_sheng_jue/forge/biome_modifier/add_deepslate_ag_ore.json
-e9bfab7cc2e6780fb78d99e10afcdbc6b401d054 data/chang_sheng_jue/forge/biome_modifier/add_dragonfly.json
+0226190f65e1b93eae9ad3055d047e24fb4f4710 data/chang_sheng_jue/forge/biome_modifier/add_dragonfly.json
 7fa9c2d4f9ce34c7f2b7bfffe5d91e7853703634 data/chang_sheng_jue/forge/biome_modifier/add_female_peacock.json
 118b6a3aa21f23c6eac0184d5b0b7029b89b2cc1 data/chang_sheng_jue/forge/biome_modifier/add_jasmine.json
 dd18890efd05fd4feac61b25853115ea16501800 data/chang_sheng_jue/forge/biome_modifier/add_kaolin_ore.json
