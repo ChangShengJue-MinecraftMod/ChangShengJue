@@ -5,7 +5,7 @@
     "minecraft:forest"
   ],
   "spawners": {
-    "type": "chang_sheng_jue:hind_entity",
+    "type": "chang_sheng_jue:hind",
     "maxCount": 6,
     "minCount": 3,
     "weight": 40

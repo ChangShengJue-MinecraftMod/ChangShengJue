@@ -5,7 +5,7 @@
     "minecraft:river"
   ],
   "spawners": {
-    "type": "chang_sheng_jue:croc_entity",
+    "type": "chang_sheng_jue:croc",
     "maxCount": 6,
     "minCount": 3,
     "weight": 40

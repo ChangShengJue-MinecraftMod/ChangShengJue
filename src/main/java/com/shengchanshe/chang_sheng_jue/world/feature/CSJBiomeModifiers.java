@@ -217,7 +217,7 @@ public class CSJBiomeModifiers {
                 List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.MONKEY.get(),
                         40, 3, 6))));
         context.register(ADD_DRAGONFLY,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_RIVER),
-                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.MONKEY.get(),
+                List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.DRAGONFLY.get(),
                         200, 1, 1))));
         context.register(ADD_CICADA,new ForgeBiomeModifiers.AddSpawnsBiomeModifier(biomes.getOrThrow(BiomeTags.IS_FOREST),
                 List.of(new MobSpawnSettings.SpawnerData(ChangShengJueEntity.CICADA.get(),

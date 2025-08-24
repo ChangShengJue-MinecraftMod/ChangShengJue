@@ -5,7 +5,7 @@
     "minecraft:plains"
   ],
   "spawners": {
-    "type": "chang_sheng_jue:crane_entity",
+    "type": "chang_sheng_jue:crane",
     "maxCount": 6,
     "minCount": 3,
     "weight": 100

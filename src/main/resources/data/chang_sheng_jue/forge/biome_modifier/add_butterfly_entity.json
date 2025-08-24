@@ -4,7 +4,7 @@
     "minecraft:flower_forest"
   ],
   "spawners": {
-    "type": "chang_sheng_jue:butterfly_entity",
+    "type": "chang_sheng_jue:butterfly",
     "maxCount": 2,
     "minCount": 1,
     "weight": 100

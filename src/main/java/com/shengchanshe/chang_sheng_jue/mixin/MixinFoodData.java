@@ -29,11 +29,13 @@ public abstract class MixinFoodData {
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                 if (cap.getKungFuLevel(Hercules.KUNG_FU_ID.toString()) >= 1 && player.isSprinting()) {
                     pExhaustionRef.set(pExhaustionRef.get() * 0.6F);
+                    this.exhaustionLevel = Math.min(this.exhaustionLevel + pExhaustionRef.get(), 40.0F);
+                }else {
+                    this.exhaustionLevel = Math.min(this.exhaustionLevel + pExhaustion, 40.0F);
                 }
             });
-            this.exhaustionLevel = Math.min(this.exhaustionLevel + pExhaustionRef.get(), 40.0F);
         }
-        this.exhaustionLevel = Math.min(this.exhaustionLevel + pExhaustion, 40.0F);
+
         ci.cancel();
     }
 
