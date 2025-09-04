@@ -33,6 +33,8 @@ public class PlayerQuestCapability {
     private final Set<UUID> completedQuests = ConcurrentHashMap.newKeySet();
     private final Set<UUID> acceptedQuests = ConcurrentHashMap.newKeySet();
 
+    // 新增大额交易首次触发状态
+    private boolean firstLargeTransactionTrigger = true;
 
     public void copyFrom(PlayerQuestCapability source) {
         this.playerQuests.clear();
@@ -393,4 +395,11 @@ public class PlayerQuestCapability {
         }
     }
 
+    public boolean isFirstLargeTransactionTrigger() {
+        return firstLargeTransactionTrigger;
+    }
+
+    public void setFirstLargeTransactionTrigger(boolean firstLargeTransactionTrigger) {
+        this.firstLargeTransactionTrigger = firstLargeTransactionTrigger;
+    }
 }

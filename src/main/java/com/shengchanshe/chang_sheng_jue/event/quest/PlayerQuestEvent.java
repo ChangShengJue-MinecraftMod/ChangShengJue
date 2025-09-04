@@ -206,8 +206,19 @@ public class PlayerQuestEvent {
                         .findFirst();
 
                 if (existingUncompleted.isEmpty()) {
-                    UUID newQuestId = player.getRandom().nextBoolean() ? LARGE_TRANSACTIONS_A_QUEST_ID : LARGE_TRANSACTIONS_B_QUEST_ID;
-                    cap.triggerQuest(player, newQuestId, 1.0f, null);
+                    // 新增首次触发状态检查
+                    boolean isFirstTime = cap.isFirstLargeTransactionTrigger();
+                    float triggerChance = isFirstTime ? 0.5F : 0.2F;
+
+                    if (player.getRandom().nextFloat() < triggerChance) {
+                        UUID newQuestId = player.getRandom().nextBoolean() ? LARGE_TRANSACTIONS_A_QUEST_ID : LARGE_TRANSACTIONS_B_QUEST_ID;
+                        cap.triggerQuest(player, newQuestId, 1.0f, null);
+                        
+                        // 更新首次触发状态
+                        if (isFirstTime) {
+                            cap.setFirstLargeTransactionTrigger(false);
+                        }
+                    }
                 }
             }
         });
