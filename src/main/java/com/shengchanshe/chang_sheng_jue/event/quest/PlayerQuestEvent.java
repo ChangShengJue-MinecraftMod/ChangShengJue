@@ -196,7 +196,18 @@ public class PlayerQuestEvent {
             cap.triggerQuest(player, CHU_QIANG_FU_RUO_QUEST_ID, 0.3F, null);
 
             if (player.getRandom().nextFloat() < 0.5) {
-                cap.triggerQuest(player, CHU_BAO_AN_LIANG_QUEST_ID, 1.0F, null);
+                // 新增首次触发状态检查
+                boolean isFirstTime = cap.isFirstChuBaoAnLiangTrigger();
+                float triggerChance = isFirstTime ? 1.0f : 0.4F;
+
+                if (player.getRandom().nextFloat() < triggerChance) {
+                    cap.triggerQuest(player, CHU_BAO_AN_LIANG_QUEST_ID, 1.0F, null);
+                    
+                    // 更新首次触发状态
+                    if (isFirstTime) {
+                        cap.setFirstChuBaoAnLiangTrigger(false);
+                    }
+                }
             } else {
                 List<Quest> quests = cap.getQuests(player.getUUID());
                 Optional<Quest> existingUncompleted = quests.stream()
@@ -208,7 +219,7 @@ public class PlayerQuestEvent {
                 if (existingUncompleted.isEmpty()) {
                     // 新增首次触发状态检查
                     boolean isFirstTime = cap.isFirstLargeTransactionTrigger();
-                    float triggerChance = isFirstTime ? 0.5F : 0.2F;
+                    float triggerChance = isFirstTime ? 1.0f : 0.4F;
 
                     if (player.getRandom().nextFloat() < triggerChance) {
                         UUID newQuestId = player.getRandom().nextBoolean() ? LARGE_TRANSACTIONS_A_QUEST_ID : LARGE_TRANSACTIONS_B_QUEST_ID;

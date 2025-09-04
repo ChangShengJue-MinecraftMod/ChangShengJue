@@ -36,6 +36,9 @@ public class PlayerQuestCapability {
     // 新增大额交易首次触发状态
     private boolean firstLargeTransactionTrigger = true;
 
+    // 新增除暴安良任务首次触发状态
+    private boolean firstChuBaoAnLiangTrigger = true;
+
     public void copyFrom(PlayerQuestCapability source) {
         this.playerQuests.clear();
         this.playerQuests.putAll(source.playerQuests);
@@ -401,5 +404,13 @@ public class PlayerQuestCapability {
 
     public void setFirstLargeTransactionTrigger(boolean firstLargeTransactionTrigger) {
         this.firstLargeTransactionTrigger = firstLargeTransactionTrigger;
+    }
+
+    public boolean isFirstChuBaoAnLiangTrigger() {
+        return firstChuBaoAnLiangTrigger;
+    }
+
+    public void setFirstChuBaoAnLiangTrigger(boolean firstChuBaoAnLiangTrigger) {
+        this.firstChuBaoAnLiangTrigger = firstChuBaoAnLiangTrigger;
     }
 }
