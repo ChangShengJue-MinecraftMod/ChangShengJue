@@ -39,8 +39,8 @@
       "item": "chang_sheng_jue:silver_bullions",
       "count": {
         "type": "minecraft:uniform",
-        "max": 3.0,
-        "min": 1.0
+        "max": 5.0,
+        "min": 3.0
       }
     }
   ]
