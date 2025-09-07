@@ -5,7 +5,8 @@
   "questRequirementsDescription": "quest.chang_sheng_jue.kill.bandit.questRequirementsDescription",
   "questType": "KILL",
   "targetEntity": "chang_sheng_jue:bandit",
-  "requiredKills": 3,
+  "minKills": 2,
+  "maxKills": 3,
   "repeatable": true,
   "questGenerateTarget" : true,
   "limitQuestIds" : [

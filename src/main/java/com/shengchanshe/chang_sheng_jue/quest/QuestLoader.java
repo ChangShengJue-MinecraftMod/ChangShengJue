@@ -185,7 +185,12 @@ public class QuestLoader {
 
             String targetEntity = json.has("targetEntity") ? json.get("targetEntity").getAsString() : "";
             boolean isEntityTag = targetEntity.startsWith("#");
-            int requiredKills = json.has("requiredKills") ? json.get("requiredKills").getAsInt() : 0;
+
+            // 优先处理minKills和maxKills
+
+
+
+            int requiredKills = getrequiredKills(json);
 
             boolean questGenerateTarget = json.has("questGenerateTarget") && json.get("questGenerateTarget").getAsBoolean();
 
@@ -235,6 +240,19 @@ public class QuestLoader {
         } catch (Exception e) {
             ChangShengJue.LOGGER.error("解析任务JSON失败", e);
             return null;
+        }
+    }
+
+    private static int getrequiredKills(JsonObject json) {
+        int minKills = 0;
+        int maxKills = 0;
+        if (json.has("minKills") && json.has("maxKills")) {
+            minKills = json.get("minKills").getAsInt();
+            maxKills = json.get("maxKills").getAsInt();
+            //输出min到max之间的随机数使用math
+            return Math.toIntExact(Math.round(Math.random() * (maxKills - minKills) + minKills));
+        } else {
+            return json.has("requiredKills") ? json.get("requiredKills").getAsInt() : 0;
         }
     }
 
