@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_cups": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "chang_sheng_jue:ci_bei"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "chang_sheng_jue:biluochun_teas"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_cups",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "chang_sheng_jue:biluochun_teas"
+    ]
+  },
+  "sends_telemetry_event": false
+}

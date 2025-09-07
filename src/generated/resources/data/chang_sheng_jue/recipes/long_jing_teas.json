@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:long_jing_tea"
+    },
+    {
+      "item": "chang_sheng_jue:long_jing_tea"
+    },
+    {
+      "item": "chang_sheng_jue:long_jing_tea"
+    },
+    {
+      "item": "chang_sheng_jue:ci_bei"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:long_jing_teas"
+  }
+}

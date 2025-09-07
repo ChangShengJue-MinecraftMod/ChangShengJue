@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:sorghum"
+    },
+    {
+      "item": "chang_sheng_jue:sorghum"
+    },
+    {
+      "item": "chang_sheng_jue:sorghum"
+    },
+    {
+      "item": "chang_sheng_jue:sorghum"
+    },
+    {
+      "item": "chang_sheng_jue:hordeum"
+    },
+    {
+      "item": "chang_sheng_jue:empty_fen_jiu"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:fen_jiu"
+  }
+}
