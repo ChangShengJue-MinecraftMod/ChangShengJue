@@ -15,5 +15,6 @@
 * <font color="#87CEEB">调整大额交易1和2任务奖励</font>
 * <font color="#87CEEB">调整为名除害任务触发</font>
 * <font color="#87CEEB">调整武侠任务触发</font>
-* <font color="#87CEEB">调整锄强扶弱任务完成条件.</font>
-* <font color="#87CEEB">调整傲然天地间任务完成条件.</font>
+* <font color="#87CEEB">调整锄强扶弱任务完成条件</font>
+* <font color="#87CEEB">调整傲然天地间任务完成条件</font>
+* <font color="#87CEEB">任务击杀系统增加人数区间</font>

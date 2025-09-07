@@ -233,9 +233,17 @@ public class QuestLoader {
 
             boolean needRefresh = json.has("needRefresh") && json.get("needRefresh").getAsBoolean();
 
-            return new Quest(questId,npcId, title, description, needRefresh, requirements, rewards,
+            Quest quest = new Quest(questId,npcId, title, description, needRefresh, requirements, rewards,
                     type, targetEntity, isEntityTag, requiredKills, repeatable, questRequirementsDescription, questGenerateTarget, questDay,
                     questTargetCount, questTime, effects, isAcceptQuestEffects, limitQuestIds,isNeedCompletePreQuest,conflictQuestIds,isConflictQuest,needCompletionCount);
+
+            if (json.has("secondTargetEntity")) {
+                quest.secondTargetEntity = json.get("secondTargetEntity").getAsString();
+            }
+            if (json.has("SecondKills")) {
+                quest.secondRequiredKills = json.get("SecondKills").getAsInt();
+            }
+            return quest;
 
         } catch (Exception e) {
             ChangShengJue.LOGGER.error("解析任务JSON失败", e);
