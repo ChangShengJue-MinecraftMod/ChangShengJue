@@ -39,6 +39,9 @@ public class PlayerQuestCapability {
     // 新增除暴安良任务首次触发状态
     private boolean firstChuBaoAnLiangTrigger = true;
 
+    // 新增为民除害任务首次触发状态
+    private boolean firstWeiMinChuHaiTrigger = true;
+
     public void copyFrom(PlayerQuestCapability source) {
         this.playerQuests.clear();
         this.playerQuests.putAll(source.playerQuests);
@@ -412,5 +415,13 @@ public class PlayerQuestCapability {
 
     public void setFirstChuBaoAnLiangTrigger(boolean firstChuBaoAnLiangTrigger) {
         this.firstChuBaoAnLiangTrigger = firstChuBaoAnLiangTrigger;
+    }
+
+    public boolean isFirstWeiMinChuHaiTrigger() {
+        return firstWeiMinChuHaiTrigger;
+    }
+
+    public void setFirstWeiMinChuHaiTrigger(boolean firstWeiMinChuHaiTrigger) {
+        this.firstWeiMinChuHaiTrigger = firstWeiMinChuHaiTrigger;
     }
 }

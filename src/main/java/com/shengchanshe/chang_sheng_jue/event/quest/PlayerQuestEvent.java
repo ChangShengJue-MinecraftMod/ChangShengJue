@@ -258,13 +258,24 @@ public class PlayerQuestEvent {
         }
         if (target instanceof Tiger) {
             player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
-                cap.triggerQuest(player, WEI_MIN_CHU_HAI_QUEST_ID, 0.75F, null);
+                // 新增首次触发状态检查
+                boolean isFirstTime = cap.isFirstWeiMinChuHaiTrigger();
+                float triggerChance = isFirstTime ? 0.75F : 0.05F;
+
+                if (player.getRandom().nextFloat() < triggerChance) {
+                    cap.triggerQuest(player, WEI_MIN_CHU_HAI_QUEST_ID, 1.0f, null);
+                    
+                    // 更新首次触发状态
+                    if (isFirstTime) {
+                        cap.setFirstWeiMinChuHaiTrigger(false);
+                    }
+                }
             });
         } else if (target instanceof Zombie) {
             player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
                 if (TimeDetection.isFullNight(player.level())) {
                     if (level.isVillage(blockPos) || isPlayerInVillage(player)) {
-                        cap.triggerQuest(player, MARTIAL_ARTS_QUEST_ID, 0.75F, null);
+                        cap.triggerQuest(player, MARTIAL_ARTS_QUEST_ID, 0.25F, null);
                     }
                 }
             });
