@@ -322,9 +322,18 @@ public class PlayerQuestEvent {
         if (event.getEntity() instanceof Player player) {
             if (event.getSource().getEntity() instanceof Mob mob && !(mob instanceof AbstractWuXiaMonster)
                     && !(mob instanceof Creeper) && !(mob instanceof Spider) && !(mob instanceof Silverfish) && !(mob instanceof Endermite)) {
-                player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
-                    cap.triggerQuest(player, KUAI_YI_EN_CHOU_QUEST_ID, 0.05F, mob.getUUID());
-                });
+                // 获取当前游戏天数
+                long currentDay = player.level().getDayTime() / 24000;
+                // 从玩家NBT中获取最后触发天数
+                long lastTriggerDay = player.getPersistentData().getLong("KuaiYiEnChouQuestLastTriggerDay");
+                
+                if (currentDay != lastTriggerDay) {
+                    player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
+                        cap.triggerQuest(player, KUAI_YI_EN_CHOU_QUEST_ID, 0.05F, mob.getUUID());
+                        // 更新最后触发天数
+                        player.getPersistentData().putLong("KuaiYiEnChouQuestLastTriggerDay", currentDay);
+                    });
+                }
             }
         }
 
