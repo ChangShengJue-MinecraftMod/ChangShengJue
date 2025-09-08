@@ -18,4 +18,10 @@
 * <font color="#87CEEB">调整武侠任务触发</font>
 * <font color="#87CEEB">调整锄强扶弱任务完成条件</font>
 * <font color="#87CEEB">调整傲然天地间任务完成条件</font>
-* <font color="#87CEEB">任务击杀系统增加人数区间</font>
+* <font color="#87CEEB">调整快意恩仇任务奖励</font>
+* <font color="#87CEEB">调整任我行任务奖励</font>
+* <font color="#87CEEB">调整快意恩仇任务触发条件</font>
+#### 新增
+* <font color="#87CEEB">新增任务击杀系统人数区间</font>
+* <font color="#87CEEB">新增内功经验实体</font>
+* <font color="#87CEEB">新增外功经验实体</font>

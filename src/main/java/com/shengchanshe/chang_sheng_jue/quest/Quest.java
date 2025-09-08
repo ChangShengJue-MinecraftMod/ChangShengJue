@@ -1,6 +1,8 @@
 package com.shengchanshe.chang_sheng_jue.quest;
 
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapability;
+import com.shengchanshe.chang_sheng_jue.entity.custom.xpord.XpOrdType1;  // 新增的import语句
+import com.shengchanshe.chang_sheng_jue.entity.custom.xpord.XpOrdType2;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
@@ -32,7 +34,7 @@ public class Quest {
     private String targetEntity;  // 要击杀的生物ID
     private int requiredKills; // 需要击杀的数量
     private int currentKills; // 当前已击杀数量
-    String secondTargetEntity;  // 第二个目标实体
+    String secondTargetEntity = "";  // 第二个目标实体
     int secondRequiredKills; // 第二个目标需要击杀的数量
     private int secondCurrentKills; // 第二个目标当前击杀数量
     private boolean isEntityTag; // 标记是否是标签
@@ -594,7 +596,8 @@ public class Quest {
 
     public void incrementKills() {
         this.currentKills++;
-        if (!secondTargetEntity.isEmpty() && this.currentKills > requiredKills) {
+        // 使用原生方法进行null安全检查
+        if (this.secondTargetEntity != null && !this.secondTargetEntity.isEmpty() && this.currentKills > requiredKills) {
             this.secondCurrentKills++;
         }
     }
@@ -723,7 +726,7 @@ public class Quest {
             // 检查第一个目标
             boolean firstTargetComplete = currentKills >= requiredKills;
             // 检查第二个目标（如果存在）
-            boolean secondTargetComplete = secondTargetEntity.isEmpty() || secondCurrentKills >= secondRequiredKills;
+            boolean secondTargetComplete = (secondTargetEntity == null || secondTargetEntity.isEmpty()) || secondCurrentKills >= secondRequiredKills;
             return firstTargetComplete && secondTargetComplete;
         } else if (questType == QuestType.RAID || questType == QuestType.TREAT || questType == QuestType.AUTOMATIC) {
             return this.isComplete;
@@ -748,7 +751,7 @@ public class Quest {
         // 检查第一个目标
         boolean firstMatch = isEntityTag ? matchesEntityTag(entity) : matchesEntityId(entity);
         // 检查第二个目标（如果存在）
-        if (!secondTargetEntity.isEmpty()) {
+        if (secondTargetEntity != null && !secondTargetEntity.isEmpty()) {
             boolean secondMatch = secondTargetEntity.startsWith("#") 
                 ? matchesSecondEntityTag(entity) 
                 : matchesSecondEntityId(entity);
@@ -821,6 +824,36 @@ public class Quest {
 
     // 给予玩家奖励
     public void giveRewards(Player player) {
+        // 特定任务奖励逻辑
+        if (this.questId.equals(UUID.fromString("dab3e694-291c-4b58-8ed2-4b215fbcf543"))) {
+            // "ren_wo_xing"任务：生成5个value=1的经验球
+            for (int i = 0; i < 5; i++) {
+                XpOrdType1 xpOrb = new XpOrdType1(
+                    player.level(), 
+                    player.getX(), 
+                    player.getY(), 
+                    player.getZ(),
+                    1  // 固定value为1
+                );
+                player.level().addFreshEntity(xpOrb);
+            }
+            return;
+        }
+        if (this.questId.equals(UUID.fromString("584DF3EE-BD1A-44C1-B66D-5F1015AF8A0E"))) {
+            //生成五个value=1的XP球
+            for (int i = 0; i < 5; i++) {
+                XpOrdType2 xpOrb = new XpOrdType2(
+                    player.level(),
+                    player.getX(),
+                    player.getY(),
+                    player.getZ(),
+                    1  // 默认value为1
+                );
+                player.level().addFreshEntity(xpOrb);
+            }
+        }
+
+        // 默认奖励逻辑
         for (ItemStack reward : questRewards) {
             player.getInventory().add(reward.copy());
         }
