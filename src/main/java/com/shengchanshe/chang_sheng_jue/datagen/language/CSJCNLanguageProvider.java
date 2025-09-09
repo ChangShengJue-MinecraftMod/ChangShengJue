@@ -1442,12 +1442,19 @@
             this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader.desc", "这木头座位总比那个剑刃做的舒适，不扎屁股。");
     
             //按钮
-            this.add("quest."+ ChangShengJue.MOD_ID +".gre_button", "灰");
-            this.add("quest."+ ChangShengJue.MOD_ID +".red_button", "红");
-            this.add("quest."+ ChangShengJue.MOD_ID +".black_button", "黑");
-            this.add("quest."+ ChangShengJue.MOD_ID +".blue_button", "青");
-            this.add("quest."+ ChangShengJue.MOD_ID +".golden_button", "金");
-    
+            this.add("button."+ ChangShengJue.MOD_ID +".gre_button.tips", "灰");
+            this.add("button."+ ChangShengJue.MOD_ID +".red_button.tips", "红");
+            this.add("button."+ ChangShengJue.MOD_ID +".black_button.tips", "黑");
+            this.add("button."+ ChangShengJue.MOD_ID +".blue_button.tips", "青");
+            this.add("button."+ ChangShengJue.MOD_ID +".golden_button.tips", "金");
+            this.add("button."+ ChangShengJue.MOD_ID +".wood_button.tips", "木");
+            this.add("gui."+ ChangShengJue.MOD_ID +".trade.gre", "灰");
+            this.add("gui."+ ChangShengJue.MOD_ID +".trade.red", "红");
+            this.add("gui."+ ChangShengJue.MOD_ID +".trade.black", "黑");
+            this.add("gui."+ ChangShengJue.MOD_ID +".trade.blue", "青");
+            this.add("gui."+ ChangShengJue.MOD_ID +".trade.golden", "金");
+            this.add("gui."+ ChangShengJue.MOD_ID +".trade.wood", "木");
+
             //任务
             this.add("quest."+ ChangShengJue.MOD_ID +".button", "任务");
             this.add("quest."+ ChangShengJue.MOD_ID +".requirements", "任务需求:");

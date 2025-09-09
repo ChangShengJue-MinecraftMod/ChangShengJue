@@ -6,7 +6,18 @@
 
 ## 模组更新日志
 
+### **0.6.13-alpha**
+#### 新增
+* 新增营造主事木制品交易
+#### 修复
+#### 调整
+
+
 ### **0.6.12-alpha**
+#### 新增
+* <font color="#87CEEB">新增任务击杀系统人数区间</font>
+* <font color="#87CEEB">新增内功经验实体</font>
+* <font color="#87CEEB">新增外功经验实体</font>
 #### 修复
 * 修复茅草会和部分其他模组冲突的问题
 * 修复茶和酒无法合成的问题的问题
@@ -21,7 +32,3 @@
 * <font color="#87CEEB">调整快意恩仇任务奖励</font>
 * <font color="#87CEEB">调整任我行任务奖励</font>
 * <font color="#87CEEB">调整快意恩仇任务触发条件</font>
-#### 新增
-* <font color="#87CEEB">新增任务击杀系统人数区间</font>
-* <font color="#87CEEB">新增内功经验实体</font>
-* <font color="#87CEEB">新增外功经验实体</font>
