@@ -75,7 +75,7 @@ public record OpenGangQuestScreenPacket(UUID playerId) {
                             }
                         }
 
-                        if (!availableQuests.isEmpty()) {
+//                        if (!availableQuests.isEmpty()) {
                             NetworkHooks.openScreen(
                                     player,
                                     new SimpleMenuProvider(
@@ -90,7 +90,7 @@ public record OpenGangQuestScreenPacket(UUID playerId) {
                                         }
                                     }
                             );
-                        }
+//                        }
                         playerQuest.syncToClient(player);
                     });
                 }

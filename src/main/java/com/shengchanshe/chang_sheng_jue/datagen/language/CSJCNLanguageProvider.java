@@ -1471,6 +1471,7 @@
             this.add("quest."+ ChangShengJue.MOD_ID +".requires.kill.target","需要击杀: %s次");
             this.add("quest."+ ChangShengJue.MOD_ID +".current.kill.target","当前进度: %s/%s");
             this.add("quest." + ChangShengJue.MOD_ID + ".no_quest","当前没有正在进行的任务!");
+            this.add("quest." + ChangShengJue.MOD_ID + ".no_action_quest","当前没有可以接受的任务!");
 
             this.add("quest."+ ChangShengJue.MOD_ID +".food.questName", "收集食物");
             this.add("quest."+ ChangShengJue.MOD_ID +".food.questDescription", "首领：兄弟们的吃食又不够了，总不能饿肚子吧，兄弟你去想想办法。");

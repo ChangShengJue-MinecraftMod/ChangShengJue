@@ -207,9 +207,9 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
             guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".rewards"), REQ_SLOTS_X, REWARD_SLOTS_Y - 3, ChatFormatting.YELLOW.getColor(), false);
 
         } else {
-            String noQuestText = "当前没有正在进行的任务";
             guiGraphics.drawString(font, Component.translatable("quest." + ChangShengJue.MOD_ID + ".no_quest"),
-                    (this.imageWidth - font.width(noQuestText)) / 2, 35, ChatFormatting.RED.getColor(), true);
+                    (this.imageWidth - font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".no_quest")))
+                            / 2, 35, ChatFormatting.RED.getColor(), true);
         }
     }
 
