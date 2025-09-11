@@ -2,7 +2,6 @@ package com.shengchanshe.chang_sheng_jue.quest;
 
 import com.google.gson.*;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
@@ -66,11 +65,11 @@ public class QuestLoader {
         return null;
     }
 
-    public static Quest loadQuest(UUID npcId, Set<UUID> completedNonRepeatable) {
+    public static List<Quest> loadAllAvailableQuests(UUID npcId, Set<UUID> completedNonRepeatable) {
         Map<ResourceLocation, Resource> allResources = getResourceLocationResourceMap();
-        List<ResourceLocation> candidates = new ArrayList<>();
+        List<Quest> quests = new ArrayList<>();
 
-        // 筛选候选文件
+        // 加载所有符合条件的任务
         for (ResourceLocation loc : allResources.keySet()) {
             try (InputStream stream = allResources.get(loc).open()) {
                 JsonObject json = GSON.fromJson(new InputStreamReader(stream), JsonObject.class);
@@ -82,23 +81,17 @@ public class QuestLoader {
                         : generateDeterministicId(npcId, json);
 
                 if (repeatable || !completedNonRepeatable.contains(questId)) {
-                    candidates.add(loc);
+                    Quest quest = parseQuest(json, npcId);
+                    if (quest != null) {
+                        quests.add(quest);
+                    }
                 }
             } catch (Exception e) {
-                ChangShengJue.LOGGER.error("预扫描任务文件失败: {}", loc, e);
+                ChangShengJue.LOGGER.error("加载任务失败: {}", loc, e);
             }
         }
 
-        // 随机选择有效候选
-        if (!candidates.isEmpty()) {
-            ResourceLocation selected = candidates.get(new Random().nextInt(candidates.size()));
-            try (InputStream stream = allResources.get(selected).open()) {
-                return parseQuest(GSON.fromJson(new InputStreamReader(stream), JsonObject.class), npcId);
-            } catch (Exception e) {
-                ChangShengJue.LOGGER.error("加载任务失败: {}", selected, e);
-            }
-        }
-        return null; // 无可用任务
+        return quests;
     }
 
     private static @NotNull Map<ResourceLocation, Resource> getAutomaticResourceLocationResourceMap() {
@@ -186,10 +179,6 @@ public class QuestLoader {
             String targetEntity = json.has("targetEntity") ? json.get("targetEntity").getAsString() : "";
             boolean isEntityTag = targetEntity.startsWith("#");
 
-            // 优先处理minKills和maxKills
-
-
-
             int requiredKills = getrequiredKills(json);
 
             boolean questGenerateTarget = json.has("questGenerateTarget") && json.get("questGenerateTarget").getAsBoolean();
@@ -233,9 +222,12 @@ public class QuestLoader {
 
             boolean needRefresh = json.has("needRefresh") && json.get("needRefresh").getAsBoolean();
 
+            int weight = json.has("weight") ? json.get("weight").getAsInt() : 1;
+
             Quest quest = new Quest(questId,npcId, title, description, needRefresh, requirements, rewards,
                     type, targetEntity, isEntityTag, requiredKills, repeatable, questRequirementsDescription, questGenerateTarget, questDay,
-                    questTargetCount, questTime, effects, isAcceptQuestEffects, limitQuestIds,isNeedCompletePreQuest,conflictQuestIds,isConflictQuest,needCompletionCount);
+                    questTargetCount, questTime, effects, isAcceptQuestEffects, limitQuestIds,isNeedCompletePreQuest,conflictQuestIds,
+                    isConflictQuest,needCompletionCount, weight);
 
             if (json.has("secondTargetEntity")) {
                 quest.secondTargetEntity = json.get("secondTargetEntity").getAsString();

@@ -3,7 +3,6 @@ package com.shengchanshe.chang_sheng_jue.item.combat.book;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
-import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.GoldenBellJar;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.Paoding;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;

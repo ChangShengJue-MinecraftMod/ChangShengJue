@@ -4,7 +4,6 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.GeShanDaNiu;
-import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.SunflowerPointCaveman;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;

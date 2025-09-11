@@ -4,6 +4,7 @@
   "questDescription": "quest.chang_sheng_jue.kill.gang_leader.questDescription",
   "questRequirementsDescription": "quest.chang_sheng_jue.kill.gang_leader.questRequirementsDescription",
   "questType": "KILL",
+  "weight": 25,
   "targetEntity": "#chang_sheng_jue:gang_leader",
   "requiredKills": 1,
   "repeatable": false,

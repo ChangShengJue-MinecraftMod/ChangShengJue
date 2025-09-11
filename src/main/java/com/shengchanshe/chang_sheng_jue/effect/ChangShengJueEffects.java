@@ -1,7 +1,8 @@
 package com.shengchanshe.chang_sheng_jue.effect;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.effect.food_effect.teas.*;
+import com.shengchanshe.chang_sheng_jue.effect.food_effect.teas.BiluochunTeas;
+import com.shengchanshe.chang_sheng_jue.effect.food_effect.teas.LongJingTeas;
 import com.shengchanshe.chang_sheng_jue.effect.food_effect.wine.Drunken;
 import com.shengchanshe.chang_sheng_jue.effect.food_effect.wine.FenJiu;
 import com.shengchanshe.chang_sheng_jue.effect.food_effect.wine.ShiLiXiang;

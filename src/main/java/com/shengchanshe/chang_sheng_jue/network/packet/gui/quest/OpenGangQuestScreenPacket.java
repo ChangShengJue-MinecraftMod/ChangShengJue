@@ -13,10 +13,7 @@ import net.minecraft.world.SimpleMenuProvider;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkHooks;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.function.Supplier;
 
 public record OpenGangQuestScreenPacket(UUID playerId) {
@@ -35,83 +32,64 @@ public record OpenGangQuestScreenPacket(UUID playerId) {
                 if (menu.getTrader() instanceof AbstractGangLeader abstractGangLeader) {
                     player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(playerQuest -> {
                         List<Quest> quests = abstractGangLeader.getPlayerQuests(playerId);
-                        Optional<Quest> existingQuest = quests.stream()
-                                .filter(Objects::nonNull)
-                                .filter(Quest::isNeedRefresh)
-                                .filter(quest -> quest.getAcceptedBy() == null)
-                                .findFirst();
+                        List<Quest> availableQuests = new ArrayList<>();
 
-                        if (existingQuest.isPresent()) {
-                            abstractGangLeader.removeUnacceptedQuests(playerId);
-                            abstractGangLeader.addQuestForPlayer(playerId, playerQuest.triggerGangQuest(player, abstractGangLeader,1.0f));
-
-                            List<Quest> quests1 = abstractGangLeader.getPlayerQuests(playerId);
-                            Optional<Quest> existingQuest1 = quests1.stream()
-                                    .filter(Objects::nonNull)
-                                    .findFirst();
-                            if (existingQuest1.isPresent()) {
-                                Quest quest = existingQuest1.get();
-                                NetworkHooks.openScreen(
-                                        player,
-                                        new SimpleMenuProvider(
-                                                (windowId, inv, p) -> new GangQuestsMenu(windowId, inv, abstractGangLeader, quest),
-                                                Component.translatable("quest." + ChangShengJue.MOD_ID + ".button")
-                                        ),
-                                        buf -> {
-                                            buf.writeNbt(quest.toNbt()); // 传入任务NBT数据,在Menu客户端方法中使用
-                                        }
-                                );
+                        for (Quest quest : quests) {
+                            if (quest != null){
+                                if (quest.isNeedRefresh()) {
+                                    abstractGangLeader.clearPlayerQuests(playerId);
+                                    availableQuests.clear();
+                                }
+                                if (quest.isValid() && !quest.isNeedRefresh() && quest.getAcceptedBy() == null) {
+                                    availableQuests.add(quest);
+                                }
                             }
-                        }else {
-                            List<Quest> quests1 = playerQuest.getQuests(playerId);
-                            Optional<Quest> existingQuest1 = quests1.stream()
-                                    .filter(Objects::nonNull)
-                                    .filter(quest -> quest.getQuestNpcId().equals(abstractGangLeader.getUUID()))
-                                    .findFirst();
 
-                            if (existingQuest1.isPresent()) {
-                                Quest quest = existingQuest1.get();
-                                NetworkHooks.openScreen(
-                                        player,
-                                        new SimpleMenuProvider(
-                                                (windowId, inv, p) -> new GangQuestsMenu(windowId, inv, abstractGangLeader, quest),
-                                                Component.translatable("quest." + ChangShengJue.MOD_ID + ".button")
-                                        ),
-                                        buf -> {
+                        }
+
+                        List<Quest> newQuests = playerQuest.triggerGangQuest(player, abstractGangLeader, 1.0f);
+
+                        if (newQuests != null) {
+                            for (Quest newQuest : newQuests) {
+                                if (newQuest != null && newQuest.isValid()) {
+                                    boolean alreadyExists = false;
+
+                                    // 检查是否已存在相同任务
+                                    for (int i = 0; i < availableQuests.size(); i++) {
+                                        Quest existingQuest = availableQuests.get(i);
+                                        if (existingQuest.getQuestId().equals(newQuest.getQuestId()) && existingQuest.getAcceptedBy() == null) {
+                                            // 存在相同任务，更新现有任务
+                                            availableQuests.set(i, newQuest); // 替换为新的任务对象
+                                            abstractGangLeader.addQuestForPlayer(playerId, newQuest);
+                                            alreadyExists = true;
+                                            break;
+                                        }
+                                    }
+
+                                    // 不存在相同任务，添加新任务
+                                    if (!alreadyExists && newQuest.getAcceptedBy() == null) {
+                                        abstractGangLeader.addQuestForPlayer(playerId, newQuest);
+                                        availableQuests.add(newQuest);
+                                    }
+                                }
+                            }
+                        }
+
+                        if (!availableQuests.isEmpty()) {
+                            NetworkHooks.openScreen(
+                                    player,
+                                    new SimpleMenuProvider(
+                                            (windowId, inv, p) -> new GangQuestsMenu(windowId, inv, abstractGangLeader, availableQuests),
+                                            Component.translatable("quest." + ChangShengJue.MOD_ID + ".button")
+                                    ),
+                                    buf -> {
+                                        buf.writeInt(availableQuests.size());
+                                        // 写入每个任务的NBT数据
+                                        for (Quest quest : availableQuests) {
                                             buf.writeNbt(quest.toNbt());
                                         }
-                                );
-                            }else {
-                                Optional<Quest> existingQuest3 = quests.stream()
-                                        .filter(Objects::nonNull)
-                                        .filter(quest -> quest.getAcceptedBy() != null)
-                                        .filter(quest -> quest.getAcceptedBy().equals(playerId))
-                                        .findFirst();
-                                if (existingQuest3.isPresent()){
-                                    Quest quest = existingQuest3.get();
-                                    abstractGangLeader.removeQuest(playerId, quest.getQuestId());
-                                }
-
-                                abstractGangLeader.addQuestForPlayer(playerId, playerQuest.triggerGangQuest(player, abstractGangLeader,1.0f));
-
-                                List<Quest> quests2 = abstractGangLeader.getPlayerQuests(playerId);
-                                Optional<Quest> existingQuest2 = quests2.stream()
-                                        .filter(Objects::nonNull)
-                                        .findFirst();
-                                if (existingQuest2.isPresent()) {
-                                    Quest quest = existingQuest2.get();
-                                    NetworkHooks.openScreen(
-                                            player,
-                                            new SimpleMenuProvider(
-                                                    (windowId, inv, p) -> new GangQuestsMenu(windowId, inv, abstractGangLeader, quest),
-                                                    Component.translatable("quest." + ChangShengJue.MOD_ID + ".button")
-                                            ),
-                                            buf -> {
-                                                buf.writeNbt(quest.toNbt());
-                                            }
-                                    );
-                                }
-                            }
+                                    }
+                            );
                         }
                         playerQuest.syncToClient(player);
                     });

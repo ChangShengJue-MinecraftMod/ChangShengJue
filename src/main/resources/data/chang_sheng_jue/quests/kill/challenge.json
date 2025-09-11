@@ -4,6 +4,7 @@
   "questDescription": "quest.chang_sheng_jue.kill.challenger.questDescription",
   "questRequirementsDescription": "quest.chang_sheng_jue.kill.challenger.questRequirementsDescription",
   "questType": "KILL",
+  "weight": 20,
   "targetEntity": "chang_sheng_jue:challenger",
   "requiredKills": 1,
   "repeatable": true,

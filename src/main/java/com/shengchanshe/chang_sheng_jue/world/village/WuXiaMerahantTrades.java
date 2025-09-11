@@ -2,7 +2,6 @@ package com.shengchanshe.chang_sheng_jue.world.village;
 
 import com.google.common.collect.ImmutableMap;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
-import com.shengchanshe.chang_sheng_jue.block.custom.bracket.ChineseBracketShort;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.item.items.Parcel;
 import com.shengchanshe.chang_sheng_jue.item.items.StructureIntelligence;
@@ -16,8 +15,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
 

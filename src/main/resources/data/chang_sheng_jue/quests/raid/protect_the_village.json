@@ -4,6 +4,7 @@
   "questDescription": "quest.chang_sheng_jue.raid.village.questDescription",
   "questRequirementsDescription": "quest.chang_sheng_jue.raid.village.questRequirementsDescription",
   "questType": "RAID",
+  "weight": 18,
   "requiredKills": 1,
   "repeatable": false,
   "isAcceptQuestEffects" : true,

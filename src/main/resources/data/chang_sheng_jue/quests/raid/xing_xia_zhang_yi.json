@@ -4,6 +4,7 @@
   "questDescription": "quest.chang_sheng_jue.raid.xing_xia_zhang_yi.questDescription",
   "questRequirementsDescription": "quest.chang_sheng_jue.raid.xing_xia_zhang_yi.questRequirementsDescription",
   "questType": "RAID",
+  "weight": 8,
   "requiredKills": 1,
   "repeatable": false,
   "isAcceptQuestEffects" : true,

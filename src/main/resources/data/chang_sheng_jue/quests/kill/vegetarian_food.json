@@ -4,6 +4,7 @@
   "questDescription": "quest.chang_sheng_jue.automatic.vegetarian_food.questDescription",
   "questRequirementsDescription": "quest.chang_sheng_jue.automatic.vegetarian_food.questRequirementsDescription",
   "questType": "TREAT",
+  "weight": 10,
   "repeatable": true,
   "questDay": 2,
   "limitQuestIds" : [],

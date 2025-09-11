@@ -6,7 +6,6 @@ import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityPr
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.entity.custom.tiger.Tiger;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.AbstractWuXiaMonster;
-import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.AbstractGangLeader;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.ChangShengJueVillagerEntity;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;
@@ -72,7 +71,7 @@ public class PlayerQuestEvent {
                     }
                     if (AO_QI_TINA_DI_JIAN_QUEST_ID.equals(quest.getQuestId())) {
                         if (!quest.canComplete(player) && quest.getQuestCurrentTime() < quest.getQuestTime()) {
-                            cap.removeQuestFromAllPlayers(quest.getQuestId());
+                            cap.removeQuestFromPlayer(player.getUUID(), quest.getQuestId());
                             player.sendSystemMessage(getColoredTranslation(
                                     "quest." + ChangShengJue.MOD_ID + ".fail",
                                     getColoredTranslation(quest.getQuestName())));

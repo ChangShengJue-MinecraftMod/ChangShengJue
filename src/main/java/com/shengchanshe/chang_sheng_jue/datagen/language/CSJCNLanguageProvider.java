@@ -1,5 +1,5 @@
     package com.shengchanshe.chang_sheng_jue.datagen.language;
-    
+
     import com.shengchanshe.chang_sheng_jue.ChangShengJue;
     import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
     import com.shengchanshe.chang_sheng_jue.damage.CSJDamageTypes;
@@ -1460,14 +1460,18 @@
             this.add("quest."+ ChangShengJue.MOD_ID +".requirements", "任务需求:");
             this.add("quest."+ ChangShengJue.MOD_ID +".rewards", "任务奖励:");
             this.add("quest."+ ChangShengJue.MOD_ID +".submit.button", "提交任务");
+            this.add("quest."+ ChangShengJue.MOD_ID +".no_submit.button", "当前没有任务可以提交!");
             this.add("quest."+ ChangShengJue.MOD_ID +".accept.button", "接受任务");
             this.add("quest."+ ChangShengJue.MOD_ID +".abandon.button", "放弃任务");
-            this.add("quest."+ ChangShengJue.MOD_ID +".flushed.button", "刷新任务");
+            this.add("quest."+ ChangShengJue.MOD_ID +".no_abandon.button", "无法放弃不存在的任务!");
             this.add("quest."+ ChangShengJue.MOD_ID +".requirements.prompt", "任务需求不足!");
             this.add("quest."+ ChangShengJue.MOD_ID +".finish", "§a%s任务完成！");
             this.add("quest."+ ChangShengJue.MOD_ID +".trigger", "§a触发%s任务");
-            this.add("quest."+ ChangShengJue.MOD_ID +".fail", "§a%s任务失败！");
-    
+            this.add("quest."+ ChangShengJue.MOD_ID +".fail", "§a%s任务失败!");
+            this.add("quest."+ ChangShengJue.MOD_ID +".requires.kill.target","需要击杀: %s次");
+            this.add("quest."+ ChangShengJue.MOD_ID +".current.kill.target","当前进度: %s/%s");
+            this.add("quest." + ChangShengJue.MOD_ID + ".no_quest","当前没有正在进行的任务!");
+
             this.add("quest."+ ChangShengJue.MOD_ID +".food.questName", "收集食物");
             this.add("quest."+ ChangShengJue.MOD_ID +".food.questDescription", "首领：兄弟们的吃食又不够了，总不能饿肚子吧，兄弟你去想想办法。");
             this.add("quest."+ ChangShengJue.MOD_ID +".money.questName", "收集钱款");

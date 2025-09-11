@@ -23,7 +23,6 @@ import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.item.combat.knife.Knife;
 import com.shengchanshe.chang_sheng_jue.item.items.Parcel;
 import com.shengchanshe.chang_sheng_jue.item.items.StructureIntelligence;
-import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
 import com.shengchanshe.chang_sheng_jue.util.TradeHelper;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.resources.ResourceLocation;
@@ -717,7 +716,7 @@ public class CSJEvent {
         Player player = event.getEntity();
         // 检查是否为服务器端玩家
         if (player instanceof ServerPlayer serverPlayer) {
-            QuestManager.getInstance().syncQuestsToPlayer(serverPlayer); // 全量同步
+//            QuestManager.getInstance().syncQuestsToPlayer(serverPlayer); // 全量同步
             // 检查Patchouli是否加载
             if (!net.minecraftforge.fml.ModList.get().isLoaded("patchouli")) {
                 return;

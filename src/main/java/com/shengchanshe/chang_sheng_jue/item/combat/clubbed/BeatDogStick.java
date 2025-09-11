@@ -6,7 +6,6 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
-import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
 
 import java.util.function.Consumer;
 

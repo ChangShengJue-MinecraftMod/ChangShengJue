@@ -5,6 +5,7 @@
   "questRequirementsDescription": "quest.chang_sheng_jue.kill.arbitrarily.questRequirementsDescription",
   "questType": "KILL",
   "targetEntity": "#chang_sheng_jue:humanoids",
+  "weight": 10,
   "requiredKills": 1,
   "repeatable": false,
   "questGenerateTarget" : false,

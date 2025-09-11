@@ -4,7 +4,6 @@ import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.item.tiers.ChangShengJueTiers;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IKungFu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
-import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.WuGangCutGui;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.YugongMovesMountains;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

@@ -3,12 +3,13 @@ package com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IKungFu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IKungFuUpgradable;
 import com.shengchanshe.chang_sheng_jue.martial_arts.KungFuRegistry;
-import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.light_kungfu.TreadTheSnowWithoutTrace;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 

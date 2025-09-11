@@ -15,7 +15,7 @@ import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.List;
 
 public class CSJBiomeModifiers {
     //矿石生成
