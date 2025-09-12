@@ -2,7 +2,9 @@ package com.shengchanshe.chang_sheng_jue.capability.quest;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.AbstractGangLeader;
+import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.GangleaderVariant2;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeader;
+import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.other.GangLeader;
 import com.shengchanshe.chang_sheng_jue.event.quest.PlayerQuestEvent;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.SyncQuestDataPacket;
@@ -226,8 +228,13 @@ public class PlayerQuestCapability {
             return false;
         }
 
-        if (quest.getQuestId().equals(PlayerQuestEvent.VEGETARIAN_FOOD_QUEST_ID) && !(questNpc instanceof ClubbedGangLeader)){
-            return false;
+        if (quest.getQuestId().equals(PlayerQuestEvent.VEGETARIAN_FOOD_QUEST_ID)){
+            if (questNpc instanceof GangLeader gangLeader) {
+                GangleaderVariant2 variant = gangLeader.getVariant();
+                if (variant != GangleaderVariant2.TEXTURES_0) return false;
+            } else if (!(questNpc instanceof ClubbedGangLeader)) {
+                return false;
+            }
         }
 
         //任务条件检查
