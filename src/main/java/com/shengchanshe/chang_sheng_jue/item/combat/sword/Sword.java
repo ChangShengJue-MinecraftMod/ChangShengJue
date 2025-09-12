@@ -57,8 +57,7 @@ public class Sword extends SwordItem implements GeoItem {
                 if (!pPlayer.level().isClientSide){
                     pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                         if (cap.getCooldownTick(DuguNineSwords.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(DuguNineSwords.KUNG_FU_ID.toString()) >= 1) {
-                            // 检查是否按住至少 0.3 秒（6 tick）
-                            pPlayer.startUsingItem(pUsedHand); // 开始记录按住时间
+                            pPlayer.startUsingItem(pUsedHand);
                         }
                     });
                 }

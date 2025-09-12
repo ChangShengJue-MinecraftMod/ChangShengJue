@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue.cilent.layer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu.KungFuClientData;
 import com.shengchanshe.chang_sheng_jue.item.combat.lance.Lance;
 import com.shengchanshe.chang_sheng_jue.item.combat.throwingknives.ThrowingKnives;
 import net.minecraft.client.model.EntityModel;
@@ -13,6 +14,7 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -59,28 +61,25 @@ public class EntityExtraLayer<T extends LivingEntity, M extends EntityModel<T>> 
                 model.renderToBuffer(pPoseStack, buffer, pPackedLight, OverlayTexture.NO_OVERLAY,
                         fadeInProgress, fadeInProgress, fadeInProgress, fadeInProgress);
             }
-//            float $$10 = (float)pLivingEntity.tickCount + pPartialTicks;
-//            float animProgress = this.xOffset($$10) % 1.0F;
-//            EntityModel<T> model = this.renderer.getModel();
-//            model.prepareMobModel(pLivingEntity, pLimbSwing, pLimbSwingAmount, pPartialTicks);
-//            this.getParentModel().copyPropertiesTo(model);
-//            VertexConsumer buffer = pBuffer.getBuffer(RenderType.energySwirl(this.getTextureLocation(), this.xOffset($$10) % 1.0F, $$10 * 0.01F % 1.0F));
-//            model.setupAnim(pLivingEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
-//
-//            model.renderToBuffer(pPoseStack, buffer, pPackedLight, OverlayTexture.NO_OVERLAY,
-//                    animProgress, animProgress, animProgress, animProgress);
         }else {
             animationStartTicks.remove(pLivingEntity);
         }
     }
 
     private boolean shouldRender(T entity) {
-        return entity.isUsingItem() &&
+        if (net.minecraftforge.fml.ModList.get().isLoaded("arsenal_core")) {
+            if (entity instanceof Player player) {
+                return ((player.getFoodData().getFoodLevel() > 8 || player.getAbilities().instabuild)) && (player.isUsingItem() &&
+                        player.getMainHandItem().getItem() instanceof SwordItem &&
+                        !(player.getMainHandItem().getItem() instanceof ThrowingKnives));
+            }
+        }
+        return (entity.isUsingItem() &&
                 entity.getMainHandItem().getItem() instanceof SwordItem &&
-                !(entity.getMainHandItem().getItem() instanceof ThrowingKnives);
+                !(entity.getMainHandItem().getItem() instanceof ThrowingKnives));
     }
 
-    // 新增：计算渐入进度（20 tick = 1秒内从0→0.5）
+    // 计算渐入进度（20 tick = 1秒内从0→0.5）
     private float calculateFadeInProgress(T entity, float partialTicks) {
         int startTick = animationStartTicks.getOrDefault(entity, entity.tickCount);
         float elapsed = (entity.tickCount - startTick) + partialTicks;

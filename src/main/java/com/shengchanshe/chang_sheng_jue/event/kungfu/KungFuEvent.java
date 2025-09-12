@@ -1,13 +1,17 @@
 package com.shengchanshe.chang_sheng_jue.event.kungfu;
 
+import cn.mcmod.arsenal.item.rapier.RapierItem;
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu.KungFuClientData;
+import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
+import com.shengchanshe.chang_sheng_jue.item.combat.clubbed.Clubbed;
 import com.shengchanshe.chang_sheng_jue.item.combat.glove.GoldThreadGlove;
+import com.shengchanshe.chang_sheng_jue.item.combat.knife.Knife;
+import com.shengchanshe.chang_sheng_jue.item.combat.lance.Lance;
+import com.shengchanshe.chang_sheng_jue.item.combat.sword.Sword;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IKungFu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IMentalKungfu;
-import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.GeShanDaNiu;
-import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.SunflowerPointCaveman;
-import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.TurtleBreathWork;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.*;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.QianKunDaNuoYi;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.WheatNuggetEncyclopedia;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.ZhangMenXinXue;
@@ -17,11 +21,15 @@ import com.shengchanshe.chang_sheng_jue.network.packet.particle.kungfu.TriggerKu
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShieldItem;
+import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.TradeWithVillagerEvent;
 
@@ -136,4 +144,62 @@ public class KungFuEvent {
             });
         }
     }
+
+    public static void onPlayerAttackEntity(AttackEntityEvent event){
+        Player player = event.getEntity();
+        if (!player.level().isClientSide) {
+            ItemStack itemstack = player.getItemInHand(player.getUsedItemHand());
+            if (itemstack.getItem() instanceof SwordItem
+                    && !(itemstack.getItem() instanceof Sword)
+                    && !(itemstack.getItem() instanceof Lance)
+                    && !(itemstack.getItem() instanceof Knife)
+                    && !(itemstack.getItem() instanceof GoldThreadGlove)
+                    && !(itemstack.getItem() instanceof Clubbed)) {
+                player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                    cap.comprehendKungFu((ServerPlayer) player, DuguNineSwords.KUNG_FU_ID.toString(), player);
+                    cap.attack((ServerPlayer) player, DuguNineSwords.KUNG_FU_ID.toString(), player, event.getTarget());
+                });
+            }
+            if (net.minecraftforge.fml.ModList.get().isLoaded("arsenal_core")) {
+                if (itemstack.getItem() instanceof RapierItem) {
+                    player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                        cap.comprehendKungFu((ServerPlayer) player, XuannuSwordsmanship.KUNG_FU_ID.toString(), player);
+                        cap.attack((ServerPlayer) player, XuannuSwordsmanship.KUNG_FU_ID.toString(),player, event.getTarget());
+                    });
+                }
+            }
+        }
+    }
+
+    public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
+        Player pPlayer = event.getEntity();
+        if (!pPlayer.level().isClientSide) {
+            if ((pPlayer.getFoodData().getFoodLevel() > 8) || pPlayer.getAbilities().instabuild) {
+                ItemStack itemstack = pPlayer.getItemInHand(pPlayer.getUsedItemHand());
+                if (itemstack.getItem() instanceof SwordItem
+                        && !(itemstack.getItem() instanceof Sword)
+                        && !(itemstack.getItem() instanceof Lance)
+                        && !(itemstack.getItem() instanceof Knife)
+                        && !(itemstack.getItem() instanceof GoldThreadGlove)
+                        && !(itemstack.getItem() instanceof Clubbed)
+                        && !(pPlayer.getOffhandItem().getItem() instanceof ShieldItem)) {
+                    pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                        if (cap.getCooldownTick(DuguNineSwords.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(DuguNineSwords.KUNG_FU_ID.toString()) >= 1) {
+                            pPlayer.startUsingItem(pPlayer.getUsedItemHand());
+                        }
+                    });
+                }
+                if (net.minecraftforge.fml.ModList.get().isLoaded("arsenal_core")) {
+                    if (itemstack.getItem() instanceof RapierItem && !(pPlayer.getOffhandItem().getItem() instanceof ShieldItem)) {
+                        pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                            if (cap.getCooldownTick(XuannuSwordsmanship.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(XuannuSwordsmanship.KUNG_FU_ID.toString()) >= 1) {
+                                pPlayer.startUsingItem(pPlayer.getUsedItemHand()); // 开始记录按住时间
+                            }
+                        });
+                    }
+                }
+            }
+        }
+    }
+
 }

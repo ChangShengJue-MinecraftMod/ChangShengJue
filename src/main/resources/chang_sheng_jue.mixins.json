@@ -7,10 +7,11 @@
   "mixins": [
     "MixinAnimal",
     "MixinFoodData",
+    "MixinItem",
     "ServerGamePacketListenerImplMixin"
   ],
   "client": [
-      "ClientPacketListenerMixin"
+    "ClientPacketListenerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
