@@ -1224,23 +1224,23 @@
             this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_chief", "村长");
             this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_seamstress", "缝工");
     
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager", "Villager");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.none", "Villager");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.villager", "Villager");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.armorer", "Armorer");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.butcher", "Butcher");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager", "村民");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.none", "无业");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.villager", "村民");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.armorer", "盔甲匠");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.butcher", "屠夫");
             this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.cartographer", "制图师");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.cleric", "Cleric");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.farmer", "Farmer");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.fisherman", "Fisherman");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.fletcher", "Fletcher");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.leatherworker", "Leatherworker");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.librarian", "Librarian");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.mason", "Mason");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.nitwit", "Nitwit");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.shepherd", "Shepherd");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.toolsmith", "Toolsmith");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.weaponsmith", "Weaponsmith");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.cleric", "牧师");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.farmer", "农民");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.fisherman", "渔夫");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.fletcher", "制箭师");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.leatherworker", "皮匠");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.librarian", "图书管理员");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.mason", "石匠");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.nitwit", "傻子");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.shepherd", "牧羊人");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.toolsmith", "工具匠");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.weaponsmith", "武器匠");
     
             //buff
             this.add(ChangShengJueEffects.BLEED_EFFECT.get(), "流血");
