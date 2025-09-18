@@ -1,8 +1,8 @@
 {
-  "name": "五方汇录",
-  "landing_text": "“天若有情天亦老，人间正道是沧桑。”$(br)长生之道，岂可无知？通晓天地，百科全解。",
+  "name": "chang_sheng_jue.wufanglu",
+  "landing_text": "chang_sheng_jue.wufanglu.desc",
   "version": 0,
-  "subtitle": "长生诀百科书",
+  "subtitle": "chang_sheng_jue.wufanglu.desc2",
   "creative_tab": "chang_sheng_jue:chang_sheng_jue_tool",
   "use_resource_pack": true,
   "book_texture": "chang_sheng_jue:textures/gui/patchouli/guideline.png",
@@ -13,5 +13,6 @@
   ],
   "images": ["chang_sheng_jue:textures/gui/patchouli/villages/guideline_filler.png"],
   "show_progress": false,
-  "give_book_on_first_join": true
+  "give_book_on_first_join": true,
+  "i18n": true
 }

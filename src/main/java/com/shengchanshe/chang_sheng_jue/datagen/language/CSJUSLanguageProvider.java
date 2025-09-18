@@ -18,244 +18,247 @@ public class CSJUSLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         //创造栏
-        this.add("itemGroup." + ChangShengJue.MOD_ID + "_building_block", "长生诀 建筑方块");
-        this.add("itemGroup." + ChangShengJue.MOD_ID + "_natural_blocks", "长生诀 自然方块");
-        this.add("itemGroup." + ChangShengJue.MOD_ID + "_functional", "长生诀 功能方块");
-        this.add("itemGroup." + ChangShengJue.MOD_ID + "_ingredients", "长生诀 原材料");
-        this.add("itemGroup." + ChangShengJue.MOD_ID + "_food_and_drink", "长生诀 食物与饮品");
-        this.add("itemGroup." + ChangShengJue.MOD_ID + "_combat", "长生诀 战斗用品");
-        this.add("itemGroup." + ChangShengJue.MOD_ID + "_tool", "长生诀 工具与实用物品");
-        this.add("itemGroup." + ChangShengJue.MOD_ID + "_spawn_eggs", "长生诀 刷怪蛋");
+        this.add("itemGroup." + ChangShengJue.MOD_ID + "_building_block", "Changshengjue Building Block");
+        this.add("itemGroup." + ChangShengJue.MOD_ID + "_natural_blocks", "Changshengjue Natural Blocks");
+        this.add("itemGroup." + ChangShengJue.MOD_ID + "_functional", "Changshengjue Functional");
+        this.add("itemGroup." + ChangShengJue.MOD_ID + "_ingredients", "Changshengjue Ingredients");
+        this.add("itemGroup." + ChangShengJue.MOD_ID + "_food_and_drink", "Changshengjue Foods");
+        this.add("itemGroup." + ChangShengJue.MOD_ID + "_combat", "Changshengjue Combat");
+        this.add("itemGroup." + ChangShengJue.MOD_ID + "_tool", "Changshengjue Tool");
+        this.add("itemGroup." + ChangShengJue.MOD_ID + "_spawn_eggs", "Changshengjue Spawn Eggs");
         //物品
-        this.add(ChangShengJueItems.PINEAPPLE_SEEDS.get(),"菠萝种子");
-        this.add(ChangShengJueItems.PINEAPPLE.get(),"菠萝");
-        this.add(ChangShengJueItems.TOMATO_SEEDS.get(),"番茄种子");
-        this.add(ChangShengJueItems.TOMATO.get(),"番茄");
-        this.add(ChangShengJueItems.SOYBEAN.get(),"大豆");
-        this.add(ChangShengJueItems.GU_SEEDS.get(),"谷种");
-        this.add(ChangShengJueItems.GU_SUI.get(),"谷穗");
-        this.add(ChangShengJueItems.SORGHUM_SEEDS.get(),"高粱种子");
-        this.add(ChangShengJueItems.SORGHUM.get(),"高粱穗");
-        this.add(ChangShengJueItems.LOTUS_ROOT.get(),"莲藕");
-        this.add(ChangShengJueItems.LOTUS_SEEDS.get(),"莲子");
-        this.add(ChangShengJueItems.LOTUS.get(),"莲花");
-        this.add(ChangShengJueItems.REDBEAN.get(),"红豆");
-        this.add(ChangShengJueItems.COTTON_SEEDS.get(),"棉花种子");
-        this.add(ChangShengJueItems.COTTON.get(),"棉花");
-        this.add(ChangShengJueItems.STICKYRICE_SEEDS.get(),"糯稻种子");
-        this.add(ChangShengJueItems.STICKYRICE.get(),"糯稻");
-        this.add(ChangShengJueItems.STICKYRICE_1.get(),"糯米");
-        this.add(ChangShengJueItems.CORN_SEEDS.get(),"玉米种子");
-        this.add(ChangShengJueItems.CORN.get(),"玉米");
-        this.add(ChangShengJueItems.JALAPENOS_SEEDS.get(),"胡椒种子");
-        this.add(ChangShengJueItems.JALAPENOS.get(),"胡椒");
-        this.add(ChangShengJueItems.PEANUT_SEEDS.get(),"花生种子");
-        this.add(ChangShengJueItems.PEANUT.get(),"花生");
-        this.add(ChangShengJueItems.BRINJAL_SEEDS.get(),"茄子种子");
-        this.add(ChangShengJueItems.BRINJAL.get(),"茄子");
-        this.add(ChangShengJueItems.CANTALOUPE.get(),"哈密瓜片");
-        this.add(ChangShengJueItems.CANTALOUPE_SEEDS.get(),"哈密瓜种子");
-        this.add(ChangShengJueItems.GRAPE_SEEDS.get(),"葡萄种子");
-        this.add(ChangShengJueItems.GRAPE.get(),"葡萄");
-        this.add(ChangShengJueItems.RICE_SEEDS.get(),"水稻苗");
-        this.add(ChangShengJueItems.RICE.get(),"水稻");
-        this.add(ChangShengJueItems.BILUOCHUN_TEA_SEEDS.get(),"碧螺春种子");
-        this.add(ChangShengJueItems.BILUOCHUN_TEA.get(),"碧螺春");
-        this.add(ChangShengJueItems.LONG_JING_TEA_SEEDS.get(),"龙井种子");
-        this.add(ChangShengJueItems.LONG_JING_TEA.get(),"龙井");
-        this.add(ChangShengJueItems.HORDEUM_SEEDS.get(),"大麦种子");
-        this.add(ChangShengJueItems.HORDEUM.get(),"大麦");
-        this.add(ChangShengJueItems.MULBERRY_JUICE.get(),"桑葚汁");
-        this.add(ChangShengJueItems.APPLE_JUICE.get(),"苹果汁");
-        this.add(ChangShengJueItems.HOT_PEAR_SOUP.get(),"热梨汤");
-        this.add(ChangShengJueItems.GRAPE_JUICE.get(),"葡萄汁");
-        this.add(ChangShengJueItems.CROC.get(),"生鳄鱼肉");
-        this.add(ChangShengJueItems.COOKED_CROC.get(),"熟鳄鱼肉");
-        this.add(ChangShengJueItems.PEACOCK.get(),"生孔雀肉");
-        this.add(ChangShengJueItems.COOKED_PEACOCK.get(),"熟孔雀肉");
-        this.add(ChangShengJueItems.CI_PAN.get(),"瓷盘");
-        this.add(ChangShengJueItems.CI_WAN.get(),"瓷碗");
-        this.add(ChangShengJueItems.CI_BEI.get(),"瓷杯");
-        this.add(ChangShengJueItems.CAPSULE_JIAO_ZI.get(),"荠菜饺子");
-        this.add(ChangShengJueItems.ZHENG_CAI.get(),"蒸菜");
-        this.add(ChangShengJueItems.PORTULACA_OLERACEA_CAKE.get(),"马齿苋饼");
-        this.add(ChangShengJueItems.QING_TUAN.get(),"青团");
-        this.add(ChangShengJueItems.BAKED_CORN.get(),"烤玉米");
-        this.add(ChangShengJueItems.TOMATO_EGG.get(),"番茄炒蛋");
-        this.add(ChangShengJueItems.GU_LAO_ROU.get(),"咕咾肉");
-        this.add(ChangShengJueItems.MEAT_FOAM_BRINJAL.get(),"肉沫茄子");
-        this.add(ChangShengJueItems.SORGHUM_CAKE.get(),"高粱饼");
-        this.add(ChangShengJueItems.STINKY_TOFU.get(),"臭豆腐");
-        this.add(ChangShengJueItems.ZHU_DU_JI.get(),"猪肚鸡");
-        this.add(ChangShengJueItems.XIAO_MI_FAN.get(),"小米饭团");
-        this.add(ChangShengJueItems.MI_FAN.get(),"饭团");
-        this.add(ChangShengJueItems.GUI_HUA_TANG_OU.get(),"桂花糖藕");
-        this.add(ChangShengJueItems.BA_BAO_ZHOU.get(),"八宝粥");
-        this.add(ChangShengJueItems.BILUOCHUN_TEAS.get(),"碧螺春茶");
-        this.add(ChangShengJueItems.LONG_JING_TEAS.get(),"龙井茶");
-        this.add(ChangShengJueItems.SHI_LI_XIANG.get(),"十里香");
-        this.add(ChangShengJueItems.FEN_JIU.get(),"汾酒");
-        this.add(ChangShengJueItems.EMPTY_FEN_JIU.get(),"空酒瓶");
-        this.add(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get(),"麦块贡酒");
-        this.add(ChangShengJueItems.MANGO.get(),"芒果");
-        this.add(ChangShengJueItems.MEI_HUA.get(),"梅花");
-        this.add(ChangShengJueItems.GUI_HUA.get(),"桂花");
-        this.add(ChangShengJueItems.BANANA.get(),"香蕉");
-        this.add(ChangShengJueItems.PEAR.get(),"梨子");
-        this.add(ChangShengJueItems.LICHEE.get(),"荔枝");
-        this.add(ChangShengJueItems.DURIAN.get(),"榴莲");
-        this.add(ChangShengJueItems.DURIAN_MEAT.get(),"榴莲肉");
-        this.add(ChangShengJueItems.MULBERRY.get(),"桑葚");
-        this.add(ChangShengJueItems.NATURAL_SILK.get(),"蚕丝");
-        this.add(ChangShengJueItems.SILKWORM.get(),"蚕");
-        this.add(ChangShengJueItems.SILK.get(),"丝绸");
-        this.add(ChangShengJueItems.CAPSULE.get(),"荠菜");
-        this.add(ChangShengJueItems.QUICKLIME.get(),"生石灰");
-        this.add(ChangShengJueItems.LIME_SLURRY_BARRELS.get(),"石灰浆桶");
-        this.add(ChangShengJueItems.WARM_LIME_SLURRY_BARRELS.get(),"暖色石灰浆桶");
-        this.add(ChangShengJueItems.COOL_LIME_SLURRY_BARRELS.get(),"冷色石灰浆桶");
-        this.add(ChangShengJueItems.CRANE_FEATHERS.get(), "鹤羽");
-        this.add(ChangShengJueItems.PEACOCK_FEATHERS.get(), "孔雀羽翎");
-        this.add(ChangShengJueItems.WHITE_PEACOCK_FEATHERS.get(), "白孔雀羽翎");
-        this.add(ChangShengJueItems.PEACOCK_EGGS.get(), "孔雀蛋");
-        this.add(ChangShengJueItems.ANTLER.get(), "鹿茸");
-        this.add(ChangShengJueItems.DEER_BLOOD.get(), "鹿血");
-        this.add(ChangShengJueItems.VENISON.get(), "生鹿肉");
-        this.add(ChangShengJueItems.COOKED_VENISON.get(), "熟鹿肉");
-        this.add(ChangShengJueItems.TIGER_SKIN.get(), "虎皮");
-        this.add(ChangShengJueItems.CROC_SKIN.get(), "鳄鱼皮");
-        this.add(ChangShengJueItems.RAW_AG.get(), "粗银");
-        this.add(ChangShengJueItems.AG_INGOT.get(), "银锭");
+        this.add(ChangShengJueItems.PINEAPPLE_SEEDS.get(),"Pineapple Seeds");
+        this.add(ChangShengJueItems.PINEAPPLE.get(),"Pineapple");
+        this.add(ChangShengJueItems.TOMATO_SEEDS.get(),"Tomato Seeds");
+        this.add(ChangShengJueItems.TOMATO.get(),"Tomato");
+        this.add(ChangShengJueItems.SOYBEAN.get(),"Soybean");
+        this.add(ChangShengJueItems.GU_SEEDS.get(),"Grain Seeds");
+        this.add(ChangShengJueItems.GU_SUI.get(),"Grain Ear");
+        this.add(ChangShengJueItems.SORGHUM_SEEDS.get(),"Sorghum Seeds");
+        this.add(ChangShengJueItems.SORGHUM.get(),"Sorghum");
+        this.add(ChangShengJueItems.LOTUS_ROOT.get(),"Lotus Root");
+        this.add(ChangShengJueItems.LOTUS_SEEDS.get(),"Lotus Seeds");
+        this.add(ChangShengJueItems.LOTUS.get(),"Lotus");
+        this.add(ChangShengJueItems.REDBEAN.get(),"Redbean");
+        this.add(ChangShengJueItems.COTTON_SEEDS.get(),"Cotton Seeds");
+        this.add(ChangShengJueItems.COTTON.get(),"Cotton");
+        this.add(ChangShengJueItems.STICKYRICE_SEEDS.get(),"Sticky Rice Seeds");
+        this.add(ChangShengJueItems.STICKYRICE.get(),"Glutinous Rice");
+        this.add(ChangShengJueItems.STICKYRICE_1.get(),"Sticky Rice");
+        this.add(ChangShengJueItems.CORN_SEEDS.get(),"Corn Seeds");
+        this.add(ChangShengJueItems.CORN.get(),"Corn");
+        this.add(ChangShengJueItems.JALAPENOS_SEEDS.get(),"pepper Seeds");
+        this.add(ChangShengJueItems.JALAPENOS.get(),"pepper");
+        this.add(ChangShengJueItems.PEANUT_SEEDS.get(),"Peanut Seeds");
+        this.add(ChangShengJueItems.PEANUT.get(),"Peanut");
+        this.add(ChangShengJueItems.BRINJAL_SEEDS.get(),"Brinjal Seeds");
+        this.add(ChangShengJueItems.BRINJAL.get(),"Brinjal");
+        this.add(ChangShengJueItems.CANTALOUPE.get(),"Cantaloupe");
+        this.add(ChangShengJueItems.CANTALOUPE_SEEDS.get(),"Cantaloupe Seeds");
+        this.add(ChangShengJueItems.GRAPE_SEEDS.get(),"Grape Seeds");
+        this.add(ChangShengJueItems.GRAPE.get(),"Grape");
+        this.add(ChangShengJueItems.RICE_SEEDS.get(),"Rice Seeds");
+        this.add(ChangShengJueItems.RICE.get(),"Rice");
+        this.add(ChangShengJueItems.BILUOCHUN_TEA_SEEDS.get(),"Biluochun Seeds");
+        this.add(ChangShengJueItems.BILUOCHUN_TEA.get(),"Biluochun Tea");
+        this.add(ChangShengJueItems.LONG_JING_TEA_SEEDS.get(),"Longjing Seeds");
+        this.add(ChangShengJueItems.LONG_JING_TEA.get(),"Longjing Tea");
+        this.add(ChangShengJueItems.HORDEUM_SEEDS.get(),"Hordeum Seeds");
+        this.add(ChangShengJueItems.HORDEUM.get(),"Hordeum");
+        this.add(ChangShengJueItems.MULBERRY_JUICE.get(),"Mulberry Juice");
+        this.add(ChangShengJueItems.APPLE_JUICE.get(),"Apple Juice");
+        this.add(ChangShengJueItems.HOT_PEAR_SOUP.get(),"Hot Pear Soup");
+        this.add(ChangShengJueItems.GRAPE_JUICE.get(),"Grape Juice");
+        this.add(ChangShengJueItems.CROC.get(),"Crocodile");
+        this.add(ChangShengJueItems.COOKED_CROC.get(),"Cooked Crocodile");
+        this.add(ChangShengJueItems.PEACOCK.get(),"Peacock");
+        this.add(ChangShengJueItems.COOKED_PEACOCK.get(),"Cooked Peacock");
+        this.add(ChangShengJueItems.CI_PAN.get(),"Porcelain Plate");
+        this.add(ChangShengJueItems.CI_WAN.get(),"Porcelain Bowl");
+        this.add(ChangShengJueItems.CI_BEI.get(),"Porcelain Cup");
+        this.add(ChangShengJueItems.CAPSULE_JIAO_ZI.get(),"Capsule JiaoZi");
+        this.add(ChangShengJueItems.ZHENG_CAI.get(),"Steamed Dishes");
+        this.add(ChangShengJueItems.PORTULACA_OLERACEA_CAKE.get(),"Portulaca Oleracea Cake");
+        this.add(ChangShengJueItems.QING_TUAN.get(),"QingTuan");
+        this.add(ChangShengJueItems.BAKED_CORN.get(),"Baked Corn");
+        this.add(ChangShengJueItems.TOMATO_EGG.get(),"Tomato Egg");
+        this.add(ChangShengJueItems.GU_LAO_ROU.get(),"GuLao Meat");
+        this.add(ChangShengJueItems.MEAT_FOAM_BRINJAL.get(),"Meat Foam Brinjal");
+        this.add(ChangShengJueItems.SORGHUM_CAKE.get(),"Sorghum Cake");
+        this.add(ChangShengJueItems.STINKY_TOFU.get(),"Stinky Tofu");
+        this.add(ChangShengJueItems.ZHU_DU_JI.get(),"Pork Tripe and Chicken");
+        this.add(ChangShengJueItems.XIAO_MI_FAN.get(),"Rice ball with millet");
+        this.add(ChangShengJueItems.MI_FAN.get(),"rice ball");
+        this.add(ChangShengJueItems.GUI_HUA_TANG_OU.get(),"Lotus Root Soup");
+        this.add(ChangShengJueItems.BA_BAO_ZHOU.get(),"BaBaozhou");
+        this.add(ChangShengJueItems.BILUOCHUN_TEAS.get(),"Biluochun Tea");
+        this.add(ChangShengJueItems.LONG_JING_TEAS.get(),"Longjing Tea");
+        this.add(ChangShengJueItems.SHI_LI_XIANG.get(),"ShiLiXiang");
+        this.add(ChangShengJueItems.FEN_JIU.get(),"FenJiu");
+        this.add(ChangShengJueItems.EMPTY_FEN_JIU.get(),"Empty Bottle");
+        this.add(ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get(),"Mai Kuai Tribute Liquor");
+        this.add(ChangShengJueItems.MANGO.get(),"Mango");
+        this.add(ChangShengJueItems.MEI_HUA.get(),"Plum blossom");
+        this.add(ChangShengJueItems.GUI_HUA.get(),"Osmanthus fragrans");
+        this.add(ChangShengJueItems.BANANA.get(),"Banana");
+        this.add(ChangShengJueItems.PEAR.get(),"Pear");
+        this.add(ChangShengJueItems.LICHEE.get(),"Lychee");
+        this.add(ChangShengJueItems.DURIAN.get(),"Durian");
+        this.add(ChangShengJueItems.DURIAN_MEAT.get(),"Durian flesh");
+        this.add(ChangShengJueItems.MULBERRY.get(),"Mulberry");
+        this.add(ChangShengJueItems.NATURAL_SILK.get(),"Natural Silk");
+        this.add(ChangShengJueItems.SILKWORM.get(),"Silkworm");
+        this.add(ChangShengJueItems.SILK.get(),"Silk");
+        this.add(ChangShengJueItems.CAPSULE.get(),"mustard");
+        this.add(ChangShengJueItems.QUICKLIME.get(),"Quicklime");
+        this.add(ChangShengJueItems.LIME_SLURRY_BARRELS.get(),"Lime slurry bucket");
+        this.add(ChangShengJueItems.WARM_LIME_SLURRY_BARRELS.get(),"Warm lime mortar bucket");
+        this.add(ChangShengJueItems.COOL_LIME_SLURRY_BARRELS.get(),"Cool lime slurry bucket");
 
-        this.add(ChangShengJueItems.THATCH.get(), "茅草");
+        this.add(ChangShengJueItems.CRANE_FEATHERS.get(), "Crane Feathers");
+        this.add(ChangShengJueItems.PEACOCK_FEATHERS.get(), "Peacock Feathers");
+        this.add(ChangShengJueItems.WHITE_PEACOCK_FEATHERS.get(), "White Peacock Feathers");
+        this.add(ChangShengJueItems.PEACOCK_EGGS.get(), "Peacock Eggs");
+        this.add(ChangShengJueItems.ANTLER.get(), "Deer Antler");
+        this.add(ChangShengJueItems.DEER_BLOOD.get(), "Deer Blood");
+        this.add(ChangShengJueItems.VENISON.get(), "Raw Venison");
+        this.add(ChangShengJueItems.COOKED_VENISON.get(), "Cooked Venison");
+        this.add(ChangShengJueItems.TIGER_SKIN.get(), "Tiger Skin");
+        this.add(ChangShengJueItems.CROC_SKIN.get(), "Crocodile Skin");
+        this.add(ChangShengJueItems.RAW_AG.get(), "Crude Silver");
+        this.add(ChangShengJueItems.AG_INGOT.get(), "Silver Ingot");
 
-        this.add(ChangShengJueItems.PAINT_BRUSH.get(), "刷子");
-        this.add(ChangShengJueItems.BLACK_BRICKS.get(), "黑砖");
-        this.add(ChangShengJueItems.WHITE_BRICKS_ITEM.get(), "白砖");
-        this.add(ChangShengJueItems.GOLD_BRICKS.get(), "金砖");
+        this.add(ChangShengJueItems.THATCH.get(), "Thatch");
 
-        this.add(ChangShengJueItems.TONG_QIAN.get(), "铜钱");
-        this.add(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), "一贯铜钱");
-        this.add(ChangShengJueItems.SILVER_BULLIONS.get(), "银元宝");
-        this.add(ChangShengJueItems.GOLD_BULLIONS.get(), "金元宝");
+        this.add(ChangShengJueItems.PAINT_BRUSH.get(), "Paint Brush");
+        this.add(ChangShengJueItems.BLACK_BRICKS.get(), "Black Bricks");
+        this.add(ChangShengJueItems.WHITE_BRICKS_ITEM.get(), "White Bricks");
+        this.add(ChangShengJueItems.GOLD_BRICKS.get(), "Gold Bricks");
 
-        this.add(ChangShengJueItems.CRUCIBLE.get(), "坩埚");
-        this.add(ChangShengJueItems.CRUCIBLE_CRUSHED_COPPER.get(), "坩埚(碎铜块)");
-        this.add(ChangShengJueItems.CRUCIBLE_CRUSHED_SILVER.get(), "坩埚(碎银块)");
-        this.add(ChangShengJueItems.CRUCIBLE_CRUSHED_GOLD.get(), "坩埚(碎金块)");
-        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get(), "坩埚(铜水)");
-        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get(), "坩埚(银水)");
-        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get(), "坩埚(金水)");
+        this.add(ChangShengJueItems.TONG_QIAN.get(), "Copper Coins");
+        this.add(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), "String of Copper Coins");
+        this.add(ChangShengJueItems.SILVER_BULLIONS.get(), "Silver Bullions");
+        this.add(ChangShengJueItems.GOLD_BULLIONS.get(), "Gold Bullions");
 
-        this.add(ChangShengJueItems.GANG_TOKEN.get(),"帮派令牌");
+        this.add(ChangShengJueItems.CRUCIBLE.get(), "Crucible");
+        this.add(ChangShengJueItems.CRUCIBLE_CRUSHED_COPPER.get(), "Crucible (Crushed Copper Pieces)");
+        this.add(ChangShengJueItems.CRUCIBLE_CRUSHED_SILVER.get(), "Crucible (Crushed Silver Pieces)");
+        this.add(ChangShengJueItems.CRUCIBLE_CRUSHED_GOLD.get(), "Crucible (Crushed Gold Pieces)");
+        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get(), "Crucible (Liquid Copper)");
+        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get(), "Crucible (Liquid Silver)");
+        this.add(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get(), "Crucible (Liquid Gold)");
 
-        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.PIT_YARD_TYPE, "%s情报");
-        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SANDSTONE_CASTLE_TYPE, "%s情报");
-        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SI_HE_YUAN_TYPE, "%s情报");
-        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SU_PAI_VILLAGE_TYPE, "%s情报");
-        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.HUI_PAI_VILLAGE_TYPE, "%s情报");
-        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.FORTRESSES_TYPE, "%s情报");
+        this.add(ChangShengJueItems.GANG_TOKEN.get(),"Gang Token");
+
+
+        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.PIT_YARD_TYPE, "%s" + "information");
+        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SANDSTONE_CASTLE_TYPE, "%s" + "information");
+        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SI_HE_YUAN_TYPE, "%s" + "information");
+        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SU_PAI_VILLAGE_TYPE, "%s" + "information");
+        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.HUI_PAI_VILLAGE_TYPE, "%s" + "information");
+        this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.FORTRESSES_TYPE, "%s" + "information");
 
         //刷怪蛋
-        this.add(ChangShengJueItems.BUTTERFLY_EGG.get(), "蝴蝶刷怪蛋");
-        this.add(ChangShengJueItems.MONKEY_EGG.get(), "猴刷怪蛋");
-        this.add(ChangShengJueItems.DRAGONFLY_EGG.get(), "蜻蜓刷怪蛋");
-        this.add(ChangShengJueItems.CICADA_EGG.get(), "蝉刷怪蛋");
-        this.add(ChangShengJueItems.CRANE_EGG.get(), "鹤刷怪蛋");
-        this.add(ChangShengJueItems.PEACOCK_EGG.get(), "雄孔雀刷怪蛋");
-        this.add(ChangShengJueItems.PEACOCK_EGG_1.get(), "雌孔雀刷怪蛋");
-        this.add(ChangShengJueItems.STAG_EGG.get(), "雄鹿刷怪蛋");
-        this.add(ChangShengJueItems.HIND_EGG.get(), "雌鹿刷怪蛋");
-        this.add(ChangShengJueItems.TIGER_EGG.get(), "虎刷怪蛋");
-        this.add(ChangShengJueItems.CROC_EGG.get(), "鳄鱼刷怪蛋");
-        this.add(ChangShengJueItems.CHANG_SHENG_JUE_VILLAGER_EGG.get(), "村民刷怪蛋");
-        this.add(ChangShengJueItems.WARRIOR_EGG.get(), "武夫刷怪蛋");
-        this.add(ChangShengJueItems.KILN_WORKER_EGG.get(), "营造主事刷怪蛋");
-        this.add(ChangShengJueItems.MALE_INNKEEPER_EGG.get(), "酒馆男掌柜刷怪蛋");
-        this.add(ChangShengJueItems.FEMALE_INNKEEPER_EGG.get(), "酒馆女掌柜刷怪蛋");
-        this.add(ChangShengJueItems.CHALLENGER_EGG.get(), "挑战者刷怪蛋");
-        this.add(ChangShengJueItems.BLACKSMITH_EGG.get(), "铁匠刷怪蛋");
-        this.add(ChangShengJueItems.LANCE_GANG_LEADER_EGG.get(), "帮派首领(枪)刷怪蛋");
-        this.add(ChangShengJueItems.KNIFE_GANG_LEADER_EGG.get(), "帮派首领(刀)刷怪蛋");
-        this.add(ChangShengJueItems.SWORD_GANG_LEADER_EGG.get(), "帮派首领(剑)刷怪蛋");
-        this.add(ChangShengJueItems.CLUBBED_GANG_LEADER_EGG.get(), "帮派首领(棍)刷怪蛋");
-        this.add(ChangShengJueItems.GANG_LEADER_EGG.get(), "帮派首领(拳)刷怪蛋");
-        this.add(ChangShengJueItems.BANDIT_EGG.get(), "强盗刷怪蛋");
-        this.add(ChangShengJueItems.VILLAIN_EGG.get(), "恶徒刷怪蛋");
-        this.add(ChangShengJueItems.ASSASSIN_EGG.get(), "杀手刷怪蛋");
-        this.add(ChangShengJueItems.CLUBBED_MING_XIA_EGG.get(), "棍王刷怪蛋");
-        this.add(ChangShengJueItems.SWORD_MING_XIA_EGG.get(), "剑仙刷怪蛋");
-        this.add(ChangShengJueItems.KNIFE_MING_XIA_EGG.get(), "刀圣刷怪蛋");
-        this.add(ChangShengJueItems.FIST_MING_XIA_EGG.get(), "北拳刷怪蛋");
-        this.add(ChangShengJueItems.PIGLIN_WU_XIA_EGG.get(), "功夫猪灵刷怪蛋");
-        this.add(ChangShengJueItems.WITCH_WU_XIA_EGG.get(), "功夫女巫刷怪蛋");
-        this.add(ChangShengJueItems.EVOKER_WU_XIA_EGG.get(), "功夫唤魔者刷怪蛋");
-        this.add(ChangShengJueItems.VINDICATOR_WU_XIA_EGG.get(), "功夫卫道士刷怪蛋");
-        this.add(ChangShengJueItems.PILLAGER_WU_XIA_EGG.get(), "功夫掠夺者刷怪蛋");
+        this.add(ChangShengJueItems.BUTTERFLY_EGG.get(), "Butterfly Spawn Egg");
+        this.add(ChangShengJueItems.MONKEY_EGG.get(), "Monkey Spawn Egg");
+        this.add(ChangShengJueItems.DRAGONFLY_EGG.get(), "Dragonfly Spawn Egg");
+        this.add(ChangShengJueItems.CICADA_EGG.get(), "Cicada Spawn Egg");
+        this.add(ChangShengJueItems.CRANE_EGG.get(), "Crane Spawn Egg");
+        this.add(ChangShengJueItems.PEACOCK_EGG.get(), "Male Peacock Spawn Egg");
+        this.add(ChangShengJueItems.PEACOCK_EGG_1.get(), "Female Peacock Spawn Egg");
+        this.add(ChangShengJueItems.STAG_EGG.get(), "Stag Spawn Egg");
+        this.add(ChangShengJueItems.HIND_EGG.get(), "Hind Spawn Egg");
+        this.add(ChangShengJueItems.TIGER_EGG.get(), "Tiger Spawn Egg");
+        this.add(ChangShengJueItems.CROC_EGG.get(), "Crocodile Spawn Egg");
+        this.add(ChangShengJueItems.CHANG_SHENG_JUE_VILLAGER_EGG.get(), "Villager Spawn Egg");
+        this.add(ChangShengJueItems.WARRIOR_EGG.get(), "Warrior Spawn Egg");
+        this.add(ChangShengJueItems.KILN_WORKER_EGG.get(), "Kiln Worker Spawn Egg");
+        this.add(ChangShengJueItems.MALE_INNKEEPER_EGG.get(), "Male Innkeeper Spawn Egg");
+        this.add(ChangShengJueItems.FEMALE_INNKEEPER_EGG.get(), "Female Innkeeper Spawn Egg");
+        this.add(ChangShengJueItems.CHALLENGER_EGG.get(), "Challenger Spawn Egg");
+        this.add(ChangShengJueItems.BLACKSMITH_EGG.get(), "Blacksmith Spawn Egg");
+        this.add(ChangShengJueItems.LANCE_GANG_LEADER_EGG.get(), "Spear Leader Spawn Egg");
+        this.add(ChangShengJueItems.KNIFE_GANG_LEADER_EGG.get(), "Knife Leader Spawn Egg");
+        this.add(ChangShengJueItems.SWORD_GANG_LEADER_EGG.get(), "Sword Leader Spawn Egg");
+        this.add(ChangShengJueItems.CLUBBED_GANG_LEADER_EGG.get(), "Club Leader Spawn Egg");
+        this.add(ChangShengJueItems.GANG_LEADER_EGG.get(), "Fist Leader Spawn Egg");
+        this.add(ChangShengJueItems.BANDIT_EGG.get(), "Bandit Spawn Egg");
+        this.add(ChangShengJueItems.VILLAIN_EGG.get(), "Villain Spawn Egg");
+        this.add(ChangShengJueItems.ASSASSIN_EGG.get(), "Assassin Spawn Egg");
+        this.add(ChangShengJueItems.CLUBBED_MING_XIA_EGG.get(), "Club Master Spawn Egg");
+        this.add(ChangShengJueItems.SWORD_MING_XIA_EGG.get(), "Sword Immortal Spawn Egg");
+        this.add(ChangShengJueItems.KNIFE_MING_XIA_EGG.get(), "Knife Sage Spawn Egg");
+        this.add(ChangShengJueItems.FIST_MING_XIA_EGG.get(), "Northern Fist Spawn Egg");
+        this.add(ChangShengJueItems.PIGLIN_WU_XIA_EGG.get(), "Kung Fu Piglin Spawn Egg");
+        this.add(ChangShengJueItems.WITCH_WU_XIA_EGG.get(), "Kung Fu Witch Spawn Egg");
+        this.add(ChangShengJueItems.EVOKER_WU_XIA_EGG.get(), "Kung Fu Evoker Spawn Egg");
+        this.add(ChangShengJueItems.VINDICATOR_WU_XIA_EGG.get(), "Kung Fu Vindicator Spawn Egg");
+        this.add(ChangShengJueItems.PILLAGER_WU_XIA_EGG.get(), "Kung Fu Pillager Spawn Egg");
         //工具武器和盔甲物品
-        this.add(ChangShengJueItems.KAISHAN_PICKAXE.get(),"开山镐");
-        this.add(ChangShengJueItems.XUANHUA_AXE.get(),"萱花斧");
-        this.add(ChangShengJueItems.BRONZE_SWORD.get(),"青铜剑");
-        this.add(ChangShengJueItems.HAN_JIAN.get(),"汉剑");
-        this.add(ChangShengJueItems.HENG_DAO.get(),"横刀");
-        this.add(ChangShengJueItems.LARGE_KNIFE.get(),"大刀");
-        this.add(ChangShengJueItems.RED_TASSELLED_SPEAR.get(),"红缨枪");
-        this.add(ChangShengJueItems.SOFT_SWORD.get(),"软剑");
-        this.add(ChangShengJueItems.PAN_HUA_GUN.get(),"盘花棍");
-        this.add(ChangShengJueItems.KITCHEN_KNIFE.get(),"菜刀");
-        this.add(ChangShengJueItems.THROWING_KNIVES.get(),"飞刀");
-        this.add(ChangShengJueItems.FLYING_DAGGER_POUCH.get(),"飞刀囊");
-        this.add(ChangShengJueItems.BEAT_DOG_STICK.get(),"打狗棒");
-        this.add(ChangShengJueItems.YI_TIAN_JIAN.get(),"倚天剑");
-        this.add(ChangShengJueItems.TU_LONG_DAO.get(),"屠龙刀");
-        this.add(ChangShengJueItems.BA_WANG_QIANG.get(),"霸王枪");
-        this.add(ChangShengJueItems.GOLD_THREAD_GLOVE.get(),"金丝手套");
-        this.add(ChangShengJueItems.COTTON_HELMET.get(),"棉盔");
-        this.add(ChangShengJueItems.WHITE_COTTON_HELMET.get(),"白羽棉盔");
-        this.add(ChangShengJueItems.COTTON_CHESTPLATE.get(),"棉甲");
-        this.add(ChangShengJueItems.COTTON_LEGGINGS.get(),"棉护腿");
-        this.add(ChangShengJueItems.COTTON_BOOTS.get(),"棉靴子");
-        this.add(ChangShengJueItems.FEMALE_TAOIST_HELMET.get(),"道冠");
-        this.add(ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE.get(),"道袍");
-        this.add(ChangShengJueItems.MALE_TAOIST_HELMET.get(),"四方巾");
-        this.add(ChangShengJueItems.MALE_TAOIST_CHESTPLATE.get(),"道服");
-        this.add(ChangShengJueItems.TAOIST_BOOTS.get(),"丝履");
-        this.add(ChangShengJueItems.TAOIST_LEGGINGS.get(),"丝裳");
-        this.add(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get(),"乌纱帽");
-        this.add(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU.get(),"麒麟补服");
-        this.add(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET.get(),"凤冠");
-        this.add(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING.get(),"袆衣");
-        this.add(ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES.get(),"金丝履");
-        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_HELMET_GUN_HOOD.get(),"盔枪兜鍪");
-        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get(),"山文甲");
-        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR.get(),"鹿皮胫甲");
-        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS.get(),"云头乌皮靴");
-        this.add(ChangShengJueItems.FLY_FISH_IRON_HAT.get(), "铁笠");
-        this.add(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get(), "云纱冠");
-        this.add(ChangShengJueItems.FLY_FISH_CHESTPLATE.get(), "飞鱼服");
-        this.add(ChangShengJueItems.FLY_FISH_LONG_BOOTS.get(), "长靴");
-        this.add(ChangShengJueItems.WALKER_GREEN_TREASURE_PENDANT.get(),"绿宝眉心坠");
-        this.add(ChangShengJueItems.WALKER_GOLD_RING_BAND.get(), "金戒箍");
-        this.add(ChangShengJueItems.WALKER_CHESTPLATE.get(), "行者装");
-        this.add(ChangShengJueItems.WALKER_TIGER_SKIN_SKIRT.get(), "虎皮裙");
-        this.add(ChangShengJueItems.WALKER_SHORT_BOOTS.get(), "短靴");
-        this.add(ChangShengJueItems.PHOENIX_FEATHER_CAP.get(),"phoenix-feather cap");
-        this.add(ChangShengJueItems.OLDEN_CHAIN_MAIL_SHIRT.get(),"olden chain mail shirt");
-        this.add(ChangShengJueItems.TIGER_SKIN_GARMENT.get(),"虎皮下裳");
-        this.add(ChangShengJueItems.CLOUD_WALKING_BOOTS.get(),"cloud-walking boots");
-        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_PHOENIX_WINGS_HELMET.get(), "凤翅兜鍪");
-        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get(), "明光铠");
-        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS.get(), "青金护膝");
-        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS.get(), "兽皮靴");
-        this.add(ChangShengJueItems.CONFUCIAN_HELMET.get(), "宝缁撮");
-        this.add(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get(), "公子宽袍");
-        this.add(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get(), "丝执裤");
-        this.add(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get(), "轻丝履");
+        this.add(ChangShengJueItems.KAISHAN_PICKAXE.get(),"Kaishan Pickaxe");
+        this.add(ChangShengJueItems.XUANHUA_AXE.get(),"Xuanhua Axe");
+        this.add(ChangShengJueItems.BRONZE_SWORD.get(),"Bronze Sword");
+        this.add(ChangShengJueItems.HAN_JIAN.get(),"Han Jian");
+        this.add(ChangShengJueItems.HENG_DAO.get(),"Heng Dao");
+        this.add(ChangShengJueItems.LARGE_KNIFE.get(),"Large Saber");
+        this.add(ChangShengJueItems.RED_TASSELLED_SPEAR.get(),"Red Tasselled Spear");
+        this.add(ChangShengJueItems.SOFT_SWORD.get(),"Soft Sword");
+        this.add(ChangShengJueItems.PAN_HUA_GUN.get(),"Panhua Gun");
+        this.add(ChangShengJueItems.KITCHEN_KNIFE.get(),"Kitchen Knife");
+        this.add(ChangShengJueItems.THROWING_KNIVES.get(),"Throwing Knives");
+        this.add(ChangShengJueItems.FLYING_DAGGER_POUCH.get(),"Feidao Pouch");
+        this.add(ChangShengJueItems.BEAT_DOG_STICK.get(),"Dagou Bang");
+        this.add(ChangShengJueItems.YI_TIAN_JIAN.get(),"Yitian Sword");
+        this.add(ChangShengJueItems.TU_LONG_DAO.get(),"Tulong Dao");
+        this.add(ChangShengJueItems.BA_WANG_QIANG.get(),"Bawang Spear");
+        this.add(ChangShengJueItems.GOLD_THREAD_GLOVE.get(),"Gold Thread Glove");
+        this.add(ChangShengJueItems.COTTON_HELMET.get(),"Cotton Helmet");
+        this.add(ChangShengJueItems.WHITE_COTTON_HELMET.get(),"White Feather Cotton Helmet");
+        this.add(ChangShengJueItems.COTTON_CHESTPLATE.get(),"Cotton Armor");
+        this.add(ChangShengJueItems.COTTON_LEGGINGS.get(),"Cotton Leg Guards");
+        this.add(ChangShengJueItems.COTTON_BOOTS.get(),"Cotton Boots");
+        this.add(ChangShengJueItems.FEMALE_TAOIST_HELMET.get(),"Taoist Crown");
+        this.add(ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE.get(),"Taoist Robe");
+        this.add(ChangShengJueItems.MALE_TAOIST_HELMET.get(),"Square Scarf");
+        this.add(ChangShengJueItems.MALE_TAOIST_CHESTPLATE.get(),"Taoist Robe");
+        this.add(ChangShengJueItems.TAOIST_BOOTS.get(),"Silk Shoes");
+        this.add(ChangShengJueItems.TAOIST_LEGGINGS.get(),"Silk Trousers");
+        this.add(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_BLACK_GAUZE_CAP.get(),"Black Gauze Cap");
+        this.add(ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU.get(),"Kylin Embroidered Robe");
+        this.add(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET.get(),"Phoenix Coronet");
+        this.add(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING.get(),"Imperial Robe");
+        this.add(ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES.get(),"Gold Thread Shoes");
+        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_HELMET_GUN_HOOD.get(),"Kuiqiang Doumou");
+        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get(),"Shanwen Armor");
+        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR.get(),"Mountain Pattern");
+        this.add(ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS.get(),"Cloud Toe Black Leather Boots");
+        this.add(ChangShengJueItems.FLY_FISH_IRON_HAT.get(), "Iron Hat");
+        this.add(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get(), "Cloud Veil Crown");
+        this.add(ChangShengJueItems.FLY_FISH_CHESTPLATE.get(), "Flying Fish Robe");
+        this.add(ChangShengJueItems.FLY_FISH_LONG_BOOTS.get(), "Long Boots");
+        this.add(ChangShengJueItems.WALKER_GREEN_TREASURE_PENDANT.get(),"Green Gem Forehead Pendant");
+        this.add(ChangShengJueItems.WALKER_GOLD_RING_BAND.get(), "Gold Ring Band");
+        this.add(ChangShengJueItems.WALKER_CHESTPLATE.get(), "Walker's Outfit");
+        this.add(ChangShengJueItems.WALKER_TIGER_SKIN_SKIRT.get(), "Tiger Skin Skirt");
+        this.add(ChangShengJueItems.WALKER_SHORT_BOOTS.get(), "Short Boots");
+        this.add(ChangShengJueItems.PHOENIX_FEATHER_CAP.get(),"Phoenix Feather Cap");
+        this.add(ChangShengJueItems.OLDEN_CHAIN_MAIL_SHIRT.get(),"Olden Chain Mail Shirt");
+        this.add(ChangShengJueItems.TIGER_SKIN_GARMENT.get(),"Tiger Skin Lower Garment");
+        this.add(ChangShengJueItems.CLOUD_WALKING_BOOTS.get(),"Cloud Walking Boots");
+        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_PHOENIX_WINGS_HELMET.get(), "Phoenix Winged Helmet");
+        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get(), "Bright Light Armor");
+        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS.get(), "Lazuli Knee Pads");
+        this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_ANIMAL_SKIN_BOOTS.get(), "Animal Skin Boots");
+        this.add(ChangShengJueItems.CONFUCIAN_HELMET.get(), "Confucian Cap");
+        this.add(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get(), "Scholar's Robe");
+        this.add(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get(), "Silk Trousers");
+        this.add(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get(), "Light Silk Shoes");
 
-        this.add(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR.get(), "金丝软甲");
-        this.add(ChangShengJueItems.LEATHER_INNER_ARMOR.get(), "皮内甲");
+        this.add(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR.get(), "Gold Silk Soft Armor");
+        this.add(ChangShengJueItems.LEATHER_INNER_ARMOR.get(), "Leather Inner Armor");
 
-        this.add(ChangShengJueItems.ARMOR_PARCEL.get(), "盔甲包裹");
+        this.add(ChangShengJueItems.ARMOR_PARCEL.get(), "Armor Parcel");
+
         this.add("item."+ ChangShengJue.MOD_ID +".armor_parcel." + "cotton_armor", "棉甲包裹");
         this.add("item."+ ChangShengJue.MOD_ID +".armor_parcel." + "mountain_pattern", "山文甲包裹");
         this.add("item."+ ChangShengJue.MOD_ID +".armor_parcel." + "mingguang_armor", "大将军明光铠包裹");
@@ -266,967 +269,965 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("item."+ ChangShengJue.MOD_ID +".armor_parcel." + "female_wedding_dress", "袆衣包裹");
 
         //武功秘籍物品
-        this.add(ChangShengJueItems.IMMORTAL_MIRACLE.get(),"不死神功");
-        this.add(ChangShengJueItems.HERCULES.get(),"大力神功");
-        this.add(ChangShengJueItems.DUGU_NINE_SWORDS.get(),"独孤九剑");
-        this.add(ChangShengJueItems.GAO_MARKSMANSHIP.get(),"高家枪法");
-        this.add(ChangShengJueItems.GE_SHAN_DA_NIU.get(),"隔山打牛");
-        this.add(ChangShengJueItems.TURTLE_BREATH_WORK.get(),"龟息功");
-        this.add(ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get(),"金乌刀法");
-        this.add(ChangShengJueItems.GOLDEN_BELL_JAR.get(),"金钟罩");
-        this.add(ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get(),"葵花点穴手");
-        this.add(ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get(),"麦块百科");
-        this.add(ChangShengJueItems.PAODING.get(),"庖丁解牛");
-        this.add(ChangShengJueItems.SHAOLIN_STICK_METHOD.get(),"少林棍法");
-        this.add(ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get(),"踏雪无痕");
-        this.add(ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get(),"无情飞刀");
-        this.add(ChangShengJueItems.WU_GANG_CUT_GUI.get(),"吴刚伐桂");
-        this.add(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get(),"玄女剑法");
-        this.add(ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get(),"愚公移山");
-        this.add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get(),"张门心学");
-        this.add(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get(),"易筋经");
-        this.add(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get(),"乾坤大挪移");
+        this.add(ChangShengJueItems.IMMORTAL_MIRACLE.get(),"Immortal Divine Skill");
+        this.add(ChangShengJueItems.HERCULES.get(),"Hercules' Mighty Skill");
+        this.add(ChangShengJueItems.DUGU_NINE_SWORDS.get(),"Dugu Nine Swords");
+        this.add(ChangShengJueItems.GAO_MARKSMANSHIP.get(),"Gao Family Spearplay");
+        this.add(ChangShengJueItems.GE_SHAN_DA_NIU.get(),"Ge Shan Da Niu");
+        this.add(ChangShengJueItems.TURTLE_BREATH_WORK.get(),"Turtle Breathing Skill");
+        this.add(ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get(),"Jinwu Saberplay");
+        this.add(ChangShengJueItems.GOLDEN_BELL_JAR.get(),"Golden Bell Cover");
+        this.add(ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get(),"Sunflower Acupoint-Shooting Hand");
+        this.add(ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get(),"Wheat Block Encyclopedia");
+        this.add(ChangShengJueItems.PAODING.get(),"Pao Ding's Ox-Butchering Skill");
+        this.add(ChangShengJueItems.SHAOLIN_STICK_METHOD.get(),"Shaolin Staffplay");
+        this.add(ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get(),"Tread Snow Without Trace");
+        this.add(ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get(),"Relentless Flying Daggers");
+        this.add(ChangShengJueItems.WU_GANG_CUT_GUI.get(),"Wu Gang Chopping Cassia");
+        this.add(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get(),"Xuannü Swordplay");
+        this.add(ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get(),"Yugong Moves Mountains");
+        this.add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get(),"Zhang Sect Mind Doctrine");
+        this.add(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get(),"The Muscle-Tendon Changing Classic");
+        this.add(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get(),"Qiankun Great Shift");
 
         //武功描述
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".tooltip","天下剑法中的巅峰绝诣，其中包含森罗万象的诀窍。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".tooltip","The pinnacle of swordsmanship in the world encompasses the profound and all-encompassing secrets of the art.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DUGU_NINE_SWORDS.get()+".hold_shift.tooltip",
-                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.8倍的伤害\\n大成后施展效果:伤害倍数提高至2.2倍、使用剑时流血触发概率*1.25\\n成功施展%s次后武功大成");
+                "Effect before reaching mastery: When unleashing external skills, deal damage equal to (main hand weapon damage + 1) multiplied by 1.8\\nAfter mastering the skill, the effect is as follows: the damage multiplier is increased to 2.2 times, and the probability of triggering bleeding when using a sword is multiplied by 1.25\\nAfter successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.XUANNU_SWORDSMANSHIP.get()+".tooltip","以巧借力，以柔克刚。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.XUANNU_SWORDSMANSHIP.get()+".tooltip","Make clever use of external forces, and conquer the strong with the weak.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.XUANNU_SWORDSMANSHIP.get()+".hold_shift.tooltip",
-                "未大成前施展效果:外功释放造成(主手武器伤害+1)*2.2倍伤害\\n大成后施展效果:伤害倍数提高至2.5倍、使用软剑时流血触发概率*3.0\\n成功施展%s次后武功大成");
+                "Effect before reaching mastery: External skill release causes (main hand weapon damage + 1) * 2.2 times the damage\\nAfter mastering the skill, the effect is as follows: the damage multiplier is increased to 2.5 times, and the probability of triggering bleeding when using a soft sword is multiplied by 3.0\\nAfter successfully performing it\" + \" %s \" + \"times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".tooltip","一点寒芒先到，随后枪出如龙。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".tooltip","First a cold glint arrives, then the spear strikes like a dragon.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GAO_MARKSMANSHIP.get()+".hold_shift.tooltip",
-                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.8倍的伤害\\n大成后施展效果:伤害倍数提高至2.1倍、使用枪时挑飞触发概率*2.5\\n成功施展%s次后武功大成");
+                "Effect before mastery: External skill deals (main hand weapon damage + 1) × 1.8 damage\nEffect after mastery: Damage multiplier increases to 2.1x; chance of knocking up with spears ×2.5\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()+".tooltip","无情飞刀人有情义，人有情义飞刀无情。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()+".tooltip","The relentless flying daggers know no mercy, yet the wielder bears compassion.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.RELENTLESS_THROWING_KNIVES.get()+".hold_shift.tooltip",
-                "未大成前施展效果:飞刀伤害提高至1.25倍并可一次丢出3把飞刀\\n大成后施展效果:飞刀伤害提高至1.5倍并可一次丢出7把飞刀\\n成功施展%s次后武功大成");
+                "Effect before mastery: Flying dagger damage increases to 1.25x; throws 3 daggers at once\nEffect after mastery: Damage increases to 1.5x; throws 7 daggers at once\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SHAOLIN_STICK_METHOD.get()+".tooltip","天下武功出少林，一棍定乾坤。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SHAOLIN_STICK_METHOD.get()+".tooltip","All martial arts under heaven originate from Shaolin; one staff settles the universe.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SHAOLIN_STICK_METHOD.get()+".hold_shift.tooltip",
-                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.7倍伤害\\n大成后施展效果:伤害倍数提高至2.0倍、使用棍时击晕触发概率*2.5\\n成功施展%s次后武功大成");
+                "Effect before mastery: External skill deals (main hand weapon damage + 1) × 1.7 damage\nEffect after mastery: Damage multiplier increases to 2.0x; chance of stunning with staves ×2.5\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()+".tooltip","任你千变万化，我只一刀破去!");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()+".tooltip","No matter how you twist and turn, one strike of my blade shall break through!");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BLACK_KNIFE_METHOD.get()+".hold_shift.tooltip",
-                "未大成前施展效果:外功释放造成(主手武器伤害+1)*1.9倍的伤害\\n大成后施展效果:伤害倍数提高至2.0倍、使用刀时重击触发概率*2.0\\n成功施展%s次后武功大成");
+                "Effect before mastery: External skill deals (main hand weapon damage + 1) × 1.9 damage\nEffect after mastery: Damage multiplier increases to 2.0x; chance of heavy strikes with sabers ×2.0\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()+".tooltip","来去无影无踪，逍遥自在。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()+".tooltip","Coming and going without a trace—free and unrestrained.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TREAD_THE_SNOW_WITHOUT_TRACE.get()+".hold_shift.tooltip",
-                "未大成前施展效果:可以进行二连跳\\n大成后施展效果:可以进行三段跳\\n成功施展%s次后武功大成");
+                "Effect before mastery: Allows double jumps\nEffect after mastery: Allows triple jumps\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WU_GANG_CUT_GUI.get()+".tooltip","何意杀人技，不如快人心。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WU_GANG_CUT_GUI.get()+".tooltip","Why cling to killing skills? Better to satisfy the heart's desire.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WU_GANG_CUT_GUI.get()+".hold_shift.tooltip",
-                "未大成前施展效果:使用萱花斧砍树可以破坏整棵树\\n大成后施展效果:砍树连带破坏整个树的速度更快\\n成功施展%s次后武功大成");
+                "Effect before mastery: Using Xuanhua Axe to chop trees destroys the entire tree\nEffect after mastery: Faster destruction of entire trees\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".tooltip","生生不息，直至山平。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".tooltip","Persist unceasingly until the mountains are leveled.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get()+".hold_shift.tooltip",
-                "未大成前施展效果:使用开山镐的挖掘面积扩大为2x2\\n大成后施展效果:挖掘面积扩大为3x3\\n成功施展%s次后武功大成");
+                "Effect before mastery: Mining area of Kaishan Pickaxe expands to 2x2\nEffect after mastery: Mining area expands to 3x3\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".tooltip","若反复实践，掌握规律；便得心应手，运用自如。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".tooltip","Practice relentlessly to grasp the rhythm; then your hands move as if guided by intuition.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.PAODING.get()+".hold_shift.tooltip",
-                "未大成前施展效果:主手持菜刀杀死动物有50%%概率额外掉落肉\\n大成后施展效果:主手持菜刀杀死动物有75%%概率额外掉落肉\\n成功施展%s次后武功大成");
+                "Effect before mastery: 50% chance of extra meat drops when killing animals with a kitchen knife\nEffect after mastery: 75% chance of extra meat drops\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".tooltip","以气御力，神力无穷。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".tooltip","Channel qi to command strength—divine power knows no bounds.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.HERCULES.get()+".hold_shift.tooltip",
-                "未大成前施展效果:减少疾跑消耗的饱食度降低至60%%\\n大成后施展效果:主手持金丝手套右键可打开末影箱\\n移动大于%s米后武功大成");
+                "Effect before mastery: Reduces sprint hunger consumption to 60%\nEffect after mastery: Right-click with Gold-Thread Gloves to open ender chest\nMartial arts reach mastery after moving more than %s meters");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".tooltip","指如疾风，势如闪电。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".tooltip","Fingers like gales, momentum like lightning.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.SUNFLOWER_POINT_CAVEMAN.get()+".hold_shift.tooltip",
-                "未大成前施展效果:定住血量上限低于25点的目标1.5秒\\n大成后施展效果:定住血量上限低于200点的目标2秒\\n成功施展%s次后武功大成");
+                "Effect before mastery: Stuns targets with max health below 25 for 1.5 seconds\nEffect after mastery: Stuns targets with max health below 200 for 2 seconds\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BELL_JAR.get()+".tooltip","刀枪不入，浑然一金钟。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BELL_JAR.get()+".tooltip","Invulnerable to swords and spears—like an unyielding golden bell.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GOLDEN_BELL_JAR.get()+".hold_shift.tooltip",
-                "未大成前施展效果:提高4点护甲,受到伤害时会获得3级的伤害吸收\\n大成后施展效果:提高8点护甲,受到伤害时伤害吸收的效果提高到5级\\n成功施展%s次后武功大成");
+                "Effect before mastery: Increases armor by 4; gains Level 3 Damage Absorption when hit\nEffect after mastery: Increases armor by 8; Damage Absorption rises to Level 5\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".tooltip","江湖不是打打杀杀，那是人情世故!");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".tooltip","Jianghu isn't just about fighting and killing—it's about human relationships and worldly wisdom!");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZHANG_MEN_XIN_XUE.get()+".hold_shift.tooltip",
-                "未大成前施展效果:与村民的交易一次即可将村民等级提升至学徒\\n大成后施展效果:额外有10%%概率不消耗物品交易\\n与村民交易%s次后武功大成");
+                "Effect before mastery: One trade with villagers instantly raises their level to Apprentice\nEffect after mastery: 10% extra chance to trade without consuming items\nMartial arts reach mastery after %s trades with villagers");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".tooltip","不死不灭，岂是幻梦?");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".tooltip","Immortal and indestructible—could it be but a fantasy?");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.IMMORTAL_MIRACLE.get()+".hold_shift.tooltip",
-                "未大成前施展效果:在濒死时抵御一次致命伤害\\n大成后施展效果:减少15秒冷却时间\\n成功施展%s次后武功大成");
+                "Effect before mastery: Blocks one fatal blow when near death\nEffect after mastery: Reduces cooldown by 15 seconds\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GE_SHAN_DA_NIU.get()+".tooltip","神功盖世，何欺牛儿?");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GE_SHAN_DA_NIU.get()+".tooltip","With such divine skill, why bully a mere ox?");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.GE_SHAN_DA_NIU.get()+".hold_shift.tooltip",
-                "未大成前施展效果:无视方块阻拦施展外功造成22点伤害\\n大成后施展效果:攻击伤害范围提高2格\\n成功施展%s次后武功大成");
+                "Effect before mastery: Ignores block obstacles to deal 22 damage with external skills\nEffect after mastery: Increases attack range by 2 blocks\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".tooltip","学向勤中得，萤窗万卷书。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".tooltip","Knowledge comes from diligence—ten thousand scrolls by the firefly-lit window.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".hold_shift.tooltip",
-                "未大成前施展效果:每次交易有25%%概率获得5点经验\\n大成后施展效果:每次交易有35%概率获得10点经验\\n经验到达30级后武功大成");
+                "Effect before mastery: 25% chance to gain 5 XP per trade\nEffect after mastery: 35% chance to gain 10 XP per trade\nMartial arts reach mastery at Level 30 XP");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".tooltip","龟虽有鼻，而息之以耳。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".tooltip","Though turtles have nostrils, they breathe through their ears.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".hold_shift.tooltip",
-                "未大成前施展效果:施展后一段时间内可以水下屏息更久，不会被动物主动攻击\\n大成后施展效果:提高屏息效果\\n成功施展%s次后武功大成");
+                "Effect before mastery: Extends underwater breath time; animals won't active attack after activation\nEffect after mastery: Enhances breath-holding effect\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get()+".tooltip","武林中人梦寐以求的武学宝典。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get()+".tooltip","A martial arts treasure sought by all in the wulin.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get()+".hold_shift.tooltip",
-                "未大成前施展效果:释放武功需要的饥饿度减少1点\\n大成后施展效果:释放武功需要的饥饿度与饱和度各减少1点\\n成功施展%s次后武功大成");
+                "Effect before mastery: Reduces hunger cost of skill activation by 1\nEffect after mastery: Reduces both hunger and saturation cost by 1\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".tooltip","激发潜力，牵引挪移，其中变化莫测，匪夷所思。");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".tooltip","Awaken potential, manipulate and shift—its changes are unfathomable, beyond imagination.");
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".hold_shift.tooltip",
-                "未大成前施展效果:有35%%概率将遭受的攻击伤害于1.0秒后以1.5倍反弹给攻击者\\n大成后施展效果:每多1点血量额外提高2%%触发概率\\n每施展1次冷却时间短期内延长2秒\\n成功施展%s次后武功大成");
+                "Effect before mastery: 35% chance to reflect 1.5x damage back to attacker after 1.0 second\nEffect after mastery: +2% trigger chance per extra health point\nEach use increases cooldown by 2 seconds temporarily\n After successfully performing it" + " %s " + "times, your martial arts have reached mastery level");
 
-        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu", "习得%s,可使用%s长按鼠标右键蓄力%s秒后施展武功!");
-        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu_glove", "习得%s,可使用%s长按鼠标右键蓄力%s秒后施展武功!");
-        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.internal_kungfu", "习得%s!");
-        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu", "%s已阅览过,%s!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu", "Learn " + "%s" + ", you can use " + "%s" + " to charge by holding down the right mouse button for " + "%s" + " seconds before unleashing your martial arts!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu_glove", "Learn " + "%s" + ", you can use " + "%s" + " to charge by holding down the right mouse button for " + "%s" + " seconds before unleashing your martial arts!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.internal_kungfu", "Learn " + "%s!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.studied.kungfu", "%s" + "had seen," + "%s!");
 
-        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.external_kunfu", "%s已阅览,使用%s攻击目标来实战领悟吧!");
-        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.external_kunfu_glove", "%s已阅览,还需用空手或%s攻击木桩来操练领悟吧!");
-        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.internal_kungfu", "%s已阅览,还需用%s攻击木桩来操练领悟吧!");
-        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.light_kungfu", "%s已阅览,还需%s来领悟!");
-        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.mental_kungfu", "%s已阅览,还需%s来领悟!");
-        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.dacheng.kungfu", "%s神功大成!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.external_kunfu", "%s has been studied. Use %s to attack targets and gain insight through actual combat!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.external_kunfu_glove", "%s has been studied. You still need to use bare hands or %s to attack Practice Stake for drilling and mastery!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.internal_kungfu", "%s has been studied. You still need to use %s to attack Practice Stake for drilling and mastery!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.light_kungfu", "%s has been studied. You still need %s to gain insight!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.learning.mental_kungfu", "%s has been studied. You still need %s to gain insight!");
+        this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.dacheng.kungfu", "%s has achieved divine mastery!");
 
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".swords.type", "剑");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".softsword.type", "软剑");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".clubbed.type", "棍");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".glove.type", "拳套");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".knife.type", "刀");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".lance.type", "枪");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".throwingknives.type", "飞刀");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".hand_and_glove.type", "空手或手套");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".run_and_jump.type", "奔跑或跳跃");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".mental_kungfu.type", "跟生物交互");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".swords.type", "Sword");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".softsword.type", "Soft Sword");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".clubbed.type", "Staff");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".glove.type", "Glove");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".knife.type", "Knife");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".lance.type", "Spear");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".throwingknives.type", "Throwing Knives");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".hand_and_glove.type", "Bare hands or gloves");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".run_and_jump.type", "Running or jumping");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".mental_kungfu.type", "Interacting with creatures");
 
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu.true.comprehend", "且已习得!可使用%s长按鼠标右键蓄力%s秒后施展武功");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu.fales.comprehend", "还需用%s攻击目标来实战领悟!");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu.true.comprehend", "And it has been mastered! Hold the right mouse button with %s to charge for %s seconds to unleash the martial art");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu.fales.comprehend", "You still need to attack targets with %s to gain insight through actual combat!");
 
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu.true.comprehend", "且已习得!");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu.fales.comprehend", "还需用%s攻击木桩来操练领悟!");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu.true.comprehend", "And it has been mastered!");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu.fales.comprehend", "You still need to attack Practice Stake with %s to gain insight through practice!");
 
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".light_kungfu.fales.comprehend", "还需%s来领悟!");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".light_kungfu.fales.comprehend", "You still need %s to gain insight!");
 
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".mental_kungfu.fales.comprehend", "还需%s来领悟!");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".mental_kungfu.fales.comprehend", "You still need %s to gain insight!");
 
         this.add("message.kungfu."+ ChangShengJue.MOD_ID +".state_change.kungfu", "%s : %s");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.open", "启动,还需用空手或%s攻击木桩来操练领悟!");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu_glove.open", "启动,还需用空手攻击木桩来操练领悟!");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.comprehend.open", "启动,可使用%s长按鼠标右键蓄力%s秒后施展武功");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu_glove.comprehend.open", "启动,大成后可使用%s来施展武功!");
-        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.off", "关闭");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.open", "Activated. You still need to attack Practice Stake with bare hands or %s to gain insight through practice!");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu_glove.open", "Activated. You still need to attack Practice Stake with bare hands to gain insight through practice!");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.comprehend.open", "Activated. Hold the right mouse button with %s to charge for %s seconds to unleash the martial art");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".internal_kungfu_glove.comprehend.open", "Activated. Once mastered, you can use %s to unleash the martial art!");
+        this.add("message.kungfu."+ ChangShengJue.MOD_ID +".external_kunfu_glove.off", "Deactivated");
 
-        this.add("message." + ChangShengJue.MOD_ID + ".dagger_pouch.empty", "§c没有武器了");
+        this.add("message." + ChangShengJue.MOD_ID + ".dagger_pouch.empty", "§cNo weapons left");
 
-        this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.count","飞刀囊容量 %s / %s");
-        this.add("tooltip." + ChangShengJue.MOD_ID + ".flying_dagger_pouch.right_click.tooltip","在背包内拿起并右键飞刀可将飞刀放入飞刀囊中");
-        this.add("tooltip." + ChangShengJue.MOD_ID + ".throwing_knives.right_click.tooltip","在背包内拿起并右键飞刀囊可将飞刀放入飞刀囊中");
-        this.add("tooltip." + ChangShengJue.MOD_ID + ".durability","耐久 %s / %s");
-        this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.contents","飞刀囊内的物品");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.count","Dagger Pouch Capacity %s / %s");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".flying_dagger_pouch.right_click.tooltip","Pick up and right-click throwing knives in the inventory to store them in the dagger pouch");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".throwing_knives.right_click.tooltip","Pick up and right-click the dagger pouch in the inventory to store throwing knives in it");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".durability","Durability %s / %s");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.contents","Contents of the dagger pouch");
 
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DURIAN.get()+".tooltip","请使用斧子劈开");
-        this.add("tooltip."+ChangShengJue.MOD_ID+".hold_shift.tooltip","按下 §eShift§r 查看更多信息");
-        this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data","已内衬");
-        this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.lining","此铠甲不可内衬");
-        this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.lining1","请使用胸甲内衬");
-        this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.unload","已从装备中卸下");
-        this.add("tooltip."+ ChangShengJue.MOD_ID + ".damage_reduction","外功伤害减免: +%s%%");
-        this.add("tooltip."+ ChangShengJue.MOD_ID + ".trauma","受到外伤的概率: -%s%%");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DURIAN.get()+".tooltip","Please use an axe to split it open");
+        this.add("tooltip."+ChangShengJue.MOD_ID+".hold_shift.tooltip","Press §eShift§r to view more information");
+        this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data","Lined");
+        this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.lining","This armor cannot be lined");
+        this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.lining1","Please use a chestplate for lining");
+        this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.unload","Unloaded from equipment");
+        this.add("tooltip."+ ChangShengJue.MOD_ID + ".damage_reduction","External damage reduction: +%s%%");
+        this.add("tooltip."+ ChangShengJue.MOD_ID + ".trauma","Chance of sustaining external injuries: -%s%%");
 
-        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "pit_yard.tooltip", "地下窑洞");
-        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "sandstone_castle.tooltip","沙石堡");
-        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "si_he_yuan.tooltip","四合院");
-        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "su_pai_village.tooltip","苏式村庄");
-        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "hui_pai_village.tooltip","徽式村庄");
-        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "fortresses_type.tooltip","古城");
-        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "null.structure.tooltip","未知结构");
-        this.add("tooltip." + ChangShengJue.MOD_ID + ".structural_location","在 [x=%d | z=%d] 位置坐落着一处%s,去看看吧");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "pit_yard.tooltip", "Underground Cave Dwelling");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "sandstone_castle.tooltip","Sandstone Fort");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "si_he_yuan.tooltip","Siheyuan");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "su_pai_village.tooltip","Su-style Village");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "hui_pai_village.tooltip","Hui-style Village");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "fortresses_type.tooltip","Ancient City");
+        this.add("tooltip." + ChangShengJue.MOD_ID + "." + "null.structure.tooltip","Unknown Structure");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".structural_location","At [x=%d | z=%d] there stands a %s, go check it out");
 
         //声音
-        this.add("sounds."+ChangShengJue.MOD_ID + ".ge_shan_da_niu_sound","武功 : 隔山打牛");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".dugu_nine_swords_sound","武功 : 独孤九剑");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".immortal_miracle_sound","武功 : 不死神功");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".gao_marksmanship_sound","武功 : 高家枪法");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".turtle_breath_work_sound","武功 : 龟息功");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".golden_black_knife_method_sound","武功 : 金乌刀法");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".sunflower_point_caveman_sound","武功 : 葵花点穴手");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".shaolin_stick_method_sound","武功 : 少林棍法");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".tread_the_snow_without_trace_sound","武功 : 踏雪无痕");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".throwing_knives_sound","飞刀 : 飞出");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".three_throwing_knives_sound","飞刀 : 飞出");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".seven_throwing_knives_sound","飞刀 : 飞出");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".throwing_knives_hit","飞刀 : 命中");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".throwing_knives_hit_ground","飞刀 : 命中");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".wu_gang_cut_gui_sound","武功 : 吴刚伐桂");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".xuannu_swordsmanship_sound","武功 : 玄女剑法");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".golden_belljar_sound","武功 : 金钟罩");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".qian_kun_da_nuo_yi_sound","武功 : 乾坤大挪移");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".comprehend_sound","武功 : 突破");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".dacheng_sound","武功 : 大成");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".ge_shan_da_niu_sound","Martial Art: Ge Shan Da Niu");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".dugu_nine_swords_sound","Martial Art: Dugu Nine Swords");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".immortal_miracle_sound","Martial Art: Immortal Miracle");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".gao_marksmanship_sound","Martial Art: Gao Family Spearplay");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".turtle_breath_work_sound","Martial Art: Turtle Breathing Work");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".golden_black_knife_method_sound","Martial Art: Jinwu Saber Technique");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".sunflower_point_caveman_sound","Martial Art: Sunflower Acupoint-Shooting Hand");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".shaolin_stick_method_sound","Martial Art: Shaolin Staffplay");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".tread_the_snow_without_trace_sound","Martial Art: Tread Snow Without Trace");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".throwing_knives_sound","Throwing Knives: Flying Out");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".three_throwing_knives_sound","Throwing Knives: Flying Out");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".seven_throwing_knives_sound","Throwing Knives: Flying Out");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".throwing_knives_hit","Throwing Knives: Hit");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".throwing_knives_hit_ground","Throwing Knives: Hit Ground");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".wu_gang_cut_gui_sound","Martial Art: Wu Gang Chopping Cassia");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".xuannu_swordsmanship_sound","Martial Art: Xuannü Swordplay");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".golden_belljar_sound","Martial Art: Golden Bell Jar");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".qian_kun_da_nuo_yi_sound","Martial Art: Qiankun Great Shift");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".comprehend_sound","Martial Art: Breakthrough");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".dacheng_sound","Martial Art: Mastery");
 
-        this.add("sounds."+ChangShengJue.MOD_ID + ".cicada_sound", "蝉 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".cicada_hurt", "蝉 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".crane_sound", "鹤 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".crane_hurt", "鹤 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".crane_death", "鹤 : 死亡");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".croc_sound", "鳄鱼 : 咆哮");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".croc_hurt", "鳄鱼 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".croc_death", "鳄鱼 : 死亡");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".dragonfly_hurt", "蜻蜓 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".dragonfly_death", "蜻蜓 : 死亡");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_sound" , "猴 : 嚎叫");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_baby_sound" , "猴 : 嚎叫");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_angry_sound" , "猴 : 生气");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_hurt" , "猴 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_death" , "猴 : 死亡");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_play_1" , "猴 : 拜年");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_play_2" , "猴 : 翻筋斗");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_play_3" , "猴 : 敬礼");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_play_4" , "猴 : 很脏很脏的嚎叫");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".cicada_sound", "Cicada: Chirping");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".cicada_hurt", "Cicada: Hurt");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".crane_sound", "Crane: Crying");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".crane_hurt", "Crane: Hurt");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".crane_death", "Crane: Death");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".croc_sound", "Crocodile: Roaring");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".croc_hurt", "Crocodile: Hurt");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".croc_death", "Crocodile: Death");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".dragonfly_hurt", "Dragonfly: Hurt");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".dragonfly_death", "Dragonfly: Death");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_sound" , "Monkey: Howling");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_baby_sound" , "Monkey: Howling");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_angry_sound" , "Monkey: Angry");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_hurt" , "Monkey: Hurt");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_death" , "Monkey: Death");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_play_1" , "Monkey: Bowing (New Year Greeting)");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_play_2" , "Monkey: Somersaulting");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_play_3" , "Monkey: Saluting");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".monkey_play_4" , "Monkey: Filthy Howling");
 
-        this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_sound" , "虎 : 咆哮");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_sound_1" , "虎 : 咆哮");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_hurt" , "虎 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_death" , "虎 : 死亡");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound" , "鹿 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_1" , "鹿 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_2" , "鹿 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_3" , "鹿 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_4" , "鹿 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_5" , "鹿 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_hurt" , "鹿 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_death" , "鹿 : 死亡");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".peacock_sound" , "孔雀 : 鸣叫");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".peacock_hurt" , "孔雀 : 受伤");
-        this.add("sounds."+ChangShengJue.MOD_ID + ".peacock_death" , "孔雀 : 死亡");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_sound" , "Tiger: Roaring");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_sound_1" , "Tiger: Roaring");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_hurt" , "Tiger: Hurt");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".tiger_death" , "Tiger: Death");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound" , "Deer: Bleating");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_1" , "Deer: Bleating");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_2" , "Deer: Bleating");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_3" , "Deer: Bleating");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_4" , "Deer: Bleating");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_sound_5" , "Deer: Bleating");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_hurt" , "Deer: Hurt");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".deer_death" , "Deer: Death");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".peacock_sound" , "Peacock: Calling");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".peacock_hurt" , "Peacock: Hurt");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".peacock_death" , "Peacock: Death");
 
-        //风铃
-        this.add("sounds."+ChangShengJue.MOD_ID + ".wind_chime_sound", "风铃 : 叮铃铃");
-        //锣
-        this.add("sounds."+ChangShengJue.MOD_ID + ".gong_sound", "锣 : 铛~");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".wind_chime_sound", "Wind Chime: Ting a ling");
 
-        this.add("sounds."+ChangShengJue.MOD_ID + ".tailoring_case_sound", "裁衣案 : 裁剪");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".gong_sound", "Gong: Dong~");
 
-        this.add("sounds."+ChangShengJue.MOD_ID + ".forge_block_sound", "锻锤 : 锤击");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".tailoring_case_sound", "Tailoring Table: Cutting");
 
-        this.add("sounds."+ChangShengJue.MOD_ID + ".stakes_hit_sound", "练功木桩 : 被击打");
+        this.add("sounds."+ChangShengJue.MOD_ID + ".forge_block_sound", "Forge Hammer: Clanging");
+
+        this.add("sounds."+ChangShengJue.MOD_ID + ".stakes_hit_sound", "Practice Stake: Being Struck");
 
         //方块
-        this.add(ChangShengJueItems.STAKES.get(),"练功木桩");
-        this.add(ChangShengJueBlocks.GONG.get(),"锣");
+        this.add(ChangShengJueItems.STAKES.get(),"Practice Stake");
+        this.add(ChangShengJueBlocks.GONG.get(),"Gong");
+        this.add(ChangShengJueBlocks.CANTALOUPE_BLOCK.get(),"Cantaloupe");
+        this.add(ChangShengJueBlocks.WILDLIFE_HORDEUM.get(),"Wild Barley");
 
-        this.add(ChangShengJueBlocks.CANTALOUPE_BLOCK.get(),"哈密瓜");
-        this.add(ChangShengJueBlocks.WILDLIFE_HORDEUM.get(),"野生大麦");
+        this.add(ChangShengJueBlocks.MANGO_LOG.get(),"Mango Log");
+        this.add(ChangShengJueBlocks.MANGO_WOOD.get(),"Mango Wood");
+        this.add(ChangShengJueBlocks.STRIPPED_MANGO_LOG.get(),"Stripped Mango Log");
+        this.add(ChangShengJueBlocks.STRIPPED_MANGO_WOOD.get(),"Stripped Mango Wood");
+        this.add(ChangShengJueBlocks.MANGO_PLANKS.get(),"Mango Planks");
+        this.add(ChangShengJueBlocks.MANGO_LEAVES.get(),"Mango Leaves");
+        this.add(ChangShengJueBlocks.MANGO_SAPLING.get(),"Mango Sapling");
 
-        this.add(ChangShengJueBlocks.MANGO_LOG.get(),"芒果树原木");
-        this.add(ChangShengJueBlocks.MANGO_WOOD.get(),"芒果树木");
-        this.add(ChangShengJueBlocks.STRIPPED_MANGO_LOG.get(),"去皮芒果树原木");
-        this.add(ChangShengJueBlocks.STRIPPED_MANGO_WOOD.get(),"去皮芒果树木");
-        this.add(ChangShengJueBlocks.MANGO_PLANKS.get(),"芒果树木板");
-        this.add(ChangShengJueBlocks.MANGO_LEAVES.get(),"芒果树树叶");
-        this.add(ChangShengJueBlocks.MANGO_SAPLING.get(),"芒果树树苗");
+        this.add(ChangShengJueBlocks.BANANA_LOG.get(),"Banana Log");
+        this.add(ChangShengJueBlocks.BANANA_LEAVES.get(),"Banana Leaves");
+        this.add(ChangShengJueBlocks.BANANA_SAPLING.get(),"Banana Sapling");
+        this.add(ChangShengJueBlocks.BANANA_FRUIT.get(),"Banana");
 
-        this.add(ChangShengJueBlocks.BANANA_LOG.get(),"香蕉原木");
-        this.add(ChangShengJueBlocks.BANANA_LEAVES.get(),"香蕉树叶");
-        this.add(ChangShengJueBlocks.BANANA_SAPLING.get(),"香蕉树苗");
-        this.add(ChangShengJueBlocks.BANANA_FRUIT.get(),"香蕉");
+        this.add(ChangShengJueBlocks.PEAR_LOG.get(),"Pear Log");
+        this.add(ChangShengJueBlocks.PEAR_WOOD.get(),"Pear Wood");
+        this.add(ChangShengJueBlocks.STRIPPED_PEAR_LOG.get(),"Stripped Pear Log");
+        this.add(ChangShengJueBlocks.STRIPPED_PEAR_WOOD.get(),"Stripped Pear Wood");
+        this.add(ChangShengJueBlocks.PEAR_PLANKS.get(),"Pear Planks");
+        this.add(ChangShengJueBlocks.PEAR_LEAVES.get(),"Pear Leaves");
+        this.add(ChangShengJueBlocks.PEAR_SAPLING.get(),"Pear Sapling");
 
-        this.add(ChangShengJueBlocks.PEAR_LOG.get(),"梨树原木");
-        this.add(ChangShengJueBlocks.PEAR_WOOD.get(),"梨树木");
-        this.add(ChangShengJueBlocks.STRIPPED_PEAR_LOG.get(),"去皮梨树原木");
-        this.add(ChangShengJueBlocks.STRIPPED_PEAR_WOOD.get(),"去皮梨树木");
-        this.add(ChangShengJueBlocks.PEAR_PLANKS.get(),"梨树木板");
-        this.add(ChangShengJueBlocks.PEAR_LEAVES.get(),"梨树树叶");
-        this.add(ChangShengJueBlocks.PEAR_SAPLING.get(),"梨树树苗");
+        this.add(ChangShengJueBlocks.LICHEE_LOG.get(),"Lychee Log");
+        this.add(ChangShengJueBlocks.LICHEE_WOOD.get(),"Lychee Wood");
+        this.add(ChangShengJueBlocks.STRIPPED_LICHEE_LOG.get(),"Stripped Lychee Log");
+        this.add(ChangShengJueBlocks.STRIPPED_LICHEE_WOOD.get(),"Stripped Lychee Wood");
+        this.add(ChangShengJueBlocks.LICHEE_PLANKS.get(),"Lychee Planks");
+        this.add(ChangShengJueBlocks.LICHEE_LEAVES.get(),"Lychee Leaves");
+        this.add(ChangShengJueBlocks.LICHEE_SAPLING.get(),"Lychee Sapling");
 
-        this.add(ChangShengJueBlocks.LICHEE_LOG.get(),"荔枝树原木");
-        this.add(ChangShengJueBlocks.LICHEE_WOOD.get(),"荔枝树木");
-        this.add(ChangShengJueBlocks.STRIPPED_LICHEE_LOG.get(),"去皮荔枝树原木");
-        this.add(ChangShengJueBlocks.STRIPPED_LICHEE_WOOD.get(),"去皮荔枝树");
-        this.add(ChangShengJueBlocks.LICHEE_PLANKS.get(),"荔枝树木板");
-        this.add(ChangShengJueBlocks.LICHEE_LEAVES.get(),"荔枝树树叶");
-        this.add(ChangShengJueBlocks.LICHEE_SAPLING.get(),"荔枝树树苗");
+        this.add(ChangShengJueBlocks.DURIAN_LOG.get(),"Durian Log");
+        this.add(ChangShengJueBlocks.DURIAN_WOOD.get(),"Durian Wood");
+        this.add(ChangShengJueBlocks.STRIPPED_DURIAN_LOG.get(),"Stripped Durian Log");
+        this.add(ChangShengJueBlocks.STRIPPED_DURIAN_WOOD.get(),"Stripped Durian Wood");
+        this.add(ChangShengJueBlocks.DURIAN_PLANKS.get(),"Durian Planks");
+        this.add(ChangShengJueBlocks.DURIAN_LEAVES.get(),"Durian Leaves");
+        this.add(ChangShengJueBlocks.DURIAN_SAPLING.get(),"Durian Sapling");
 
-        this.add(ChangShengJueBlocks.DURIAN_LOG.get(),"榴莲树原木");
-        this.add(ChangShengJueBlocks.DURIAN_WOOD.get(),"榴莲树木");
-        this.add(ChangShengJueBlocks.STRIPPED_DURIAN_LOG.get(),"去皮榴莲树原木");
-        this.add(ChangShengJueBlocks.STRIPPED_DURIAN_WOOD.get(),"去皮榴莲树木");
-        this.add(ChangShengJueBlocks.DURIAN_PLANKS.get(),"榴莲树木板");
-        this.add(ChangShengJueBlocks.DURIAN_LEAVES.get(),"榴莲树树叶");
-        this.add(ChangShengJueBlocks.DURIAN_SAPLING.get(),"榴莲树树苗");
+        this.add(ChangShengJueBlocks.OSMANTHUS_LOG.get(),"Osmanthus Log");
+        this.add(ChangShengJueBlocks.OSMANTHUS_WOOD.get(),"Osmanthus Wood");
+        this.add(ChangShengJueBlocks.STRIPPED_OSMANTHUS_LOG.get(),"Stripped Osmanthus Log");
+        this.add(ChangShengJueBlocks.STRIPPED_OSMANTHUS_WOOD.get(),"Stripped Osmanthus Wood");
+        this.add(ChangShengJueBlocks.OSMANTHUS_PLANKS.get(),"Osmanthus Planks");
+        this.add(ChangShengJueBlocks.OSMANTHUS_LEAVES.get(),"Osmanthus Leaves");
+        this.add(ChangShengJueBlocks.OSMANTHUS_SAPLING.get(),"Osmanthus Sapling");
+        this.add(ChangShengJueBlocks.OSMANTHUS_DEFOLIATION.get(),"Osmanthus Defoliation");
 
-        this.add(ChangShengJueBlocks.OSMANTHUS_LOG.get(),"桂花树原木");
-        this.add(ChangShengJueBlocks.OSMANTHUS_WOOD.get(),"桂花树木");
-        this.add(ChangShengJueBlocks.STRIPPED_OSMANTHUS_LOG.get(),"去皮桂花树原木");
-        this.add(ChangShengJueBlocks.STRIPPED_OSMANTHUS_WOOD.get(),"去皮桂花树木");
-        this.add(ChangShengJueBlocks.OSMANTHUS_PLANKS.get(),"桂花树木板");
-        this.add(ChangShengJueBlocks.OSMANTHUS_LEAVES.get(),"桂花树树叶");
-        this.add(ChangShengJueBlocks.OSMANTHUS_SAPLING.get(),"桂花树树苗");
-        this.add(ChangShengJueBlocks.OSMANTHUS_DEFOLIATION.get(),"桂花树落叶");
+        this.add(ChangShengJueBlocks.PLUM_LOG.get(),"Plum Log");
+        this.add(ChangShengJueBlocks.PLUM_WOOD.get(),"Plum Wood");
+        this.add(ChangShengJueBlocks.STRIPPED_PLUM_LOG.get(),"Stripped Plum Log");
+        this.add(ChangShengJueBlocks.STRIPPED_PLUM_WOOD.get(),"Stripped Plum Wood");
+        this.add(ChangShengJueBlocks.PLUM_PLANKS.get(),"Plum Planks");
+        this.add(ChangShengJueBlocks.PLUM_LEAVES.get(),"Plum Leaves");
+        this.add(ChangShengJueBlocks.PLUM_SAPLING.get(),"Plum Sapling");
+        this.add(ChangShengJueBlocks.PLUM_DEFOLIATION.get(),"Plum Defoliation");
 
-        this.add(ChangShengJueBlocks.PLUM_LOG.get(),"梅花树原木");
-        this.add(ChangShengJueBlocks.PLUM_WOOD.get(),"梅花树木");
-        this.add(ChangShengJueBlocks.STRIPPED_PLUM_LOG.get(),"去皮梅花树原木");
-        this.add(ChangShengJueBlocks.STRIPPED_PLUM_WOOD.get(),"去皮梅花树木");
-        this.add(ChangShengJueBlocks.PLUM_PLANKS.get(),"梅花树木板");
-        this.add(ChangShengJueBlocks.PLUM_LEAVES.get(),"梅花树树叶");
-        this.add(ChangShengJueBlocks.PLUM_SAPLING.get(),"梅花树树苗");
-        this.add(ChangShengJueBlocks.PLUM_DEFOLIATION.get(),"梅花树落叶");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get(),"Huanghuali Log");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_WOOD.get(),"Huanghuali Wood");
+        this.add(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get(),"Stripped Huanghuali Log");
+        this.add(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_WOOD.get(),"Stripped Huanghuali Wood");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get(),"Huanghuali Leaves");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get(),"Huanghuali Sapling");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get(),"Huanghuali Planks");
 
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_LOG.get(),"黄花梨原木");
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_WOOD.get(),"黄花梨木");
-        this.add(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_LOG.get(),"去皮黄花梨原木");
-        this.add(ChangShengJueBlocks.STRIPPED_HUANG_HUA_LI_WOOD.get(),"去皮黄花梨木");
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get(),"黄花梨树叶");
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get(),"黄花梨树苗");
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get(),"黄花梨木板");
+        this.add(ChangShengJueBlocks.WENGE_LOG.get(),"Wenge Log");
+        this.add(ChangShengJueBlocks.WENGE_WOOD.get(),"Wenge Wood");
+        this.add(ChangShengJueBlocks.STRIPPED_WENGE_LOG.get(),"Stripped Wenge Log");
+        this.add(ChangShengJueBlocks.STRIPPED_WENGE_WOOD.get(),"Stripped Wenge Wood");
+        this.add(ChangShengJueBlocks.WENGE_LEAVES.get(),"Wenge Leaves");
+        this.add(ChangShengJueBlocks.WENGE_SAPLING.get(),"Wenge Sapling");
+        this.add(ChangShengJueBlocks.WENGE_PLANKS.get(),"Wenge Planks");
 
-        this.add(ChangShengJueBlocks.WENGE_LOG.get(),"鸡翅木原木");
-        this.add(ChangShengJueBlocks.WENGE_WOOD.get(),"鸡翅木");
-        this.add(ChangShengJueBlocks.STRIPPED_WENGE_LOG.get(),"去皮鸡翅木原木");
-        this.add(ChangShengJueBlocks.STRIPPED_WENGE_WOOD.get(),"去皮鸡翅木");
-        this.add(ChangShengJueBlocks.WENGE_LEAVES.get(),"鸡翅木树叶");
-        this.add(ChangShengJueBlocks.WENGE_SAPLING.get(),"鸡翅木树苗");
-        this.add(ChangShengJueBlocks.WENGE_PLANKS.get(),"鸡翅木木板");
+        this.add(ChangShengJueBlocks.ZI_TAN_LOG.get(),"Zitan Log");
+        this.add(ChangShengJueBlocks.ZI_TAN_WOOD.get(),"Zitan Wood");
+        this.add(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get(),"Stripped Zitan Log");
+        this.add(ChangShengJueBlocks.STRIPPED_ZI_TAN_WOOD.get(),"Stripped Zitan Wood");
+        this.add(ChangShengJueBlocks.ZI_TAN_LEAVES.get(),"Zitan Leaves");
+        this.add(ChangShengJueBlocks.ZI_TAN_SAPLING.get(),"Zitan Sapling");
+        this.add(ChangShengJueBlocks.ZI_TAN_PLANKS.get(),"Zitan Planks");
 
-        this.add(ChangShengJueBlocks.ZI_TAN_LOG.get(),"紫檀原木");
-        this.add(ChangShengJueBlocks.ZI_TAN_WOOD.get(),"紫檀木");
-        this.add(ChangShengJueBlocks.STRIPPED_ZI_TAN_LOG.get(),"去皮紫檀原木");
-        this.add(ChangShengJueBlocks.STRIPPED_ZI_TAN_WOOD.get(),"去皮紫檀木");
-        this.add(ChangShengJueBlocks.ZI_TAN_LEAVES.get(),"紫檀树树叶");
-        this.add(ChangShengJueBlocks.ZI_TAN_SAPLING.get(),"紫檀树树苗");
-        this.add(ChangShengJueBlocks.ZI_TAN_PLANKS.get(),"紫檀木板");
+        this.add(ChangShengJueBlocks.POPLAR_LOG.get(),"Poplar Log");
+        this.add(ChangShengJueBlocks.POPLAR_WOOD.get(),"Poplar Wood");
+        this.add(ChangShengJueBlocks.STRIPPED_POPLAR_LOG.get(),"Stripped Poplar Log");
+        this.add(ChangShengJueBlocks.STRIPPED_POPLAR_WOOD.get(),"Stripped Poplar Wood");
+        this.add(ChangShengJueBlocks.POPLAR_PLANKS.get(),"Poplar Planks");
+        this.add(ChangShengJueBlocks.POPLAR_LEAVES.get(),"Poplar Leaves");
+        this.add(ChangShengJueBlocks.POPLAR_SAPLING.get(),"Poplar Sapling");
+        this.add(ChangShengJueBlocks.POPLAR_DEFOLIATION.get(),"Poplar Defoliation");
 
-        this.add(ChangShengJueBlocks.POPLAR_LOG.get(),"白杨树原木");
-        this.add(ChangShengJueBlocks.POPLAR_WOOD.get(),"白杨树木");
-        this.add(ChangShengJueBlocks.STRIPPED_POPLAR_LOG.get(),"去皮白杨树原木");
-        this.add(ChangShengJueBlocks.STRIPPED_POPLAR_WOOD.get(),"去皮白杨树木");
-        this.add(ChangShengJueBlocks.POPLAR_PLANKS.get(),"白杨树木板");
-        this.add(ChangShengJueBlocks.POPLAR_LEAVES.get(),"白杨树树叶");
-        this.add(ChangShengJueBlocks.POPLAR_SAPLING.get(),"白杨树树苗");
-        this.add(ChangShengJueBlocks.POPLAR_DEFOLIATION.get(),"白杨树落叶");
+        this.add(ChangShengJueBlocks.MULBERRY_LOG.get(),"Mulberry Log");
+        this.add(ChangShengJueBlocks.MULBERRY_WOOD.get(),"Mulberry Wood");
+        this.add(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get(),"Stripped Mulberry Log");
+        this.add(ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD.get(),"Stripped Mulberry Wood");
+        this.add(ChangShengJueBlocks.MULBERRY_PLANKS.get(),"Mulberry Planks");
+        this.add(ChangShengJueBlocks.MULBERRY_LEAVES.get(),"Mulberry Leaves");
+        this.add(ChangShengJueBlocks.MULBERRY_SAPLING.get(),"Mulberry Sapling");
 
-        this.add(ChangShengJueBlocks.MULBERRY_LOG.get(),"桑树原木");
-        this.add(ChangShengJueBlocks.MULBERRY_WOOD.get(),"桑树木");
-        this.add(ChangShengJueBlocks.STRIPPED_MULBERRY_LOG.get(),"去皮桑树原木");
-        this.add(ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD.get(),"去皮桑树木");
-        this.add(ChangShengJueBlocks.MULBERRY_PLANKS.get(),"桑树木板");
-        this.add(ChangShengJueBlocks.MULBERRY_LEAVES.get(),"桑树树叶");
-        this.add(ChangShengJueBlocks.MULBERRY_SAPLING.get(),"桑树树苗");
+        this.add(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get(),"Blue and White Porcelain Flower Pots");
 
-        this.add(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get(),"青花瓷花盆");
+        this.add(ChangShengJueBlocks.MUGWORT_BLOCK.get(),"Mugwort");
+        this.add(ChangShengJueBlocks.POTTED_MUGWORT_BLOCK.get(),"Mugwort");
 
-        this.add(ChangShengJueBlocks.MUGWORT_BLOCK.get(),"艾蒿");
-        this.add(ChangShengJueBlocks.POTTED_MUGWORT_BLOCK.get(),"艾蒿");
+        this.add(ChangShengJueBlocks.CAPSULE_BLOCK.get(),"Shepherd's Purse");
 
-        this.add(ChangShengJueBlocks.CAPSULE_BLOCK.get(),"荠菜");
+        this.add(ChangShengJueBlocks.CUCKOO_BLOCK.get(),"Azalea");
+        this.add(ChangShengJueBlocks.POTTED_CUCKOO_BLOCK.get(),"Azalea");
 
-        this.add(ChangShengJueBlocks.CUCKOO_BLOCK.get(),"杜鹃花");
-        this.add(ChangShengJueBlocks.POTTED_CUCKOO_BLOCK.get(),"杜鹃花");
+        this.add(ChangShengJueBlocks.PORTULACA_OLERACEA_BLOCK.get(),"Portulaca Oleracea");
+        this.add(ChangShengJueBlocks.POTTED_PORTULACA_OLERACEA_BLOCK.get(),"Portulaca Oleracea");
 
-        this.add(ChangShengJueBlocks.PORTULACA_OLERACEA_BLOCK.get(),"马齿苋");
-        this.add(ChangShengJueBlocks.POTTED_PORTULACA_OLERACEA_BLOCK.get(),"马齿苋");
+        this.add(ChangShengJueBlocks.JASMINE_BLOCK.get(),"Jasmine");
+        this.add(ChangShengJueBlocks.POTTED_JASMINE_BLOCK.get(),"Jasmine");
 
-        this.add(ChangShengJueBlocks.JASMINE_BLOCK.get(),"茉莉花");
-        this.add(ChangShengJueBlocks.POTTED_JASMINE_BLOCK.get(),"茉莉花");
+        this.add(ChangShengJueBlocks.KOCHIA_SCOPARIA_BLOCK.get(),"Kochia Scoparia");
+        this.add(ChangShengJueBlocks.POTTED_KOCHIA_SCOPARIA_BLOCK.get(),"Kochia Scoparia");
 
-        this.add(ChangShengJueBlocks.KOCHIA_SCOPARIA_BLOCK.get(),"地肤草");
-        this.add(ChangShengJueBlocks.POTTED_KOCHIA_SCOPARIA_BLOCK.get(),"地肤草");
+        this.add(ChangShengJueBlocks.SHUI_XIAN_BLOCK.get(),"Narcissus");
+        this.add(ChangShengJueBlocks.POTTED_SHUI_XIAN_BLOCK.get(),"Narcissus");
 
-        this.add(ChangShengJueBlocks.SHUI_XIAN_BLOCK.get(),"水仙花");
-        this.add(ChangShengJueBlocks.POTTED_SHUI_XIAN_BLOCK.get(),"水仙花");
+        this.add(ChangShengJueBlocks.TAN_HUA_BLOCK.get(),"Epiphyllum");
+        this.add(ChangShengJueBlocks.POTTED_TAN_HUA_BLOCK.get(),"Epiphyllum");
 
-        this.add(ChangShengJueBlocks.TAN_HUA_BLOCK.get(),"昙花");
-        this.add(ChangShengJueBlocks.POTTED_TAN_HUA_BLOCK.get(),"昙花");
+        this.add(ChangShengJueBlocks.STIPA_GRANDIS.get(),"Stipa Grandis");
+        this.add(ChangShengJueBlocks.TALL_STIPA_GRANDIS.get(),"Stipa Grandis");
+        this.add(ChangShengJueBlocks.TALL_STIPA_GRANDIS_VARIANT.get(),"Tall Variant Stipa Grandis");
 
-        this.add(ChangShengJueBlocks.STIPA_GRANDIS.get(),"大针茅");
-        this.add(ChangShengJueBlocks.TALL_STIPA_GRANDIS.get(),"大针茅");
-        this.add(ChangShengJueBlocks.TALL_STIPA_GRANDIS_VARIANT.get(),"高大的异种大针茅");
+        this.add(ChangShengJueBlocks.SOLIDAGO.get(),"Solidago");
+        this.add(ChangShengJueBlocks.POTTED_SOLIDAGO.get(),"Solidago");
 
-        this.add(ChangShengJueBlocks.SOLIDAGO.get(),"秋麒麟");
-        this.add(ChangShengJueBlocks.POTTED_SOLIDAGO.get(),"秋麒麟");
+        this.add(ChangShengJueBlocks.GEUM_TRIFLORUM.get(),"Geum Triflorum");
+        this.add(ChangShengJueBlocks.POTTED_GEUM_TRIFLORUM.get(),"Geum Triflorum");
 
-        this.add(ChangShengJueBlocks.GEUM_TRIFLORUM.get(),"三花路边青");
-        this.add(ChangShengJueBlocks.POTTED_GEUM_TRIFLORUM.get(),"三花路边青");
+        this.add(ChangShengJueBlocks.PURPLE_DANDELION.get(),"Purple Dandelion");
+        this.add(ChangShengJueBlocks.POTTED_PURPLE_DANDELION.get(),"Purple Dandelion");
 
-        this.add(ChangShengJueBlocks.PURPLE_DANDELION.get(),"紫色蒲公英");
-        this.add(ChangShengJueBlocks.POTTED_PURPLE_DANDELION.get(),"紫色蒲公英");
+        this.add(ChangShengJueBlocks.RED_KNOTWEED.get(),"Red Knotweed");
+        this.add(ChangShengJueBlocks.PURPLE_RED_KNOTWEED.get(),"Variant Red Knotweed");
 
-        this.add(ChangShengJueBlocks.RED_KNOTWEED.get(),"红蓼");
-        this.add(ChangShengJueBlocks.PURPLE_RED_KNOTWEED.get(),"异种红蓼");
+        this.add(ChangShengJueBlocks.RAPE_FLOWERS.get(),"Rape Flowers");
 
-        this.add(ChangShengJueBlocks.RAPE_FLOWERS.get(),"油菜花");
+        this.add(ChangShengJueBlocks.ZHU_TAI.get(),"Candlestick");
+        this.add(ChangShengJueBlocks.HANG_TU_BLOCK.get(),"Rammed Earth");
+        this.add(ChangShengJueBlocks.HANG_TU_STAIRS.get(),"Rammed Earth Stairs");
+        this.add(ChangShengJueBlocks.HANG_TU_SLAB.get(),"Rammed Earth Slab");
+        this.add(ChangShengJueBlocks.HANG_TU_WALL.get(),"Rammed Earth Wall");
+        this.add(ChangShengJueBlocks.TU_PEI_BLOCK.get(),"Adobe");
+        this.add(ChangShengJueBlocks.TU_PEI_STAIRS.get(),"Adobe Stairs");
+        this.add(ChangShengJueBlocks.TU_PEI_SLAB.get(),"Adobe Slab");
+        this.add(ChangShengJueBlocks.TU_PEI_WALL.get(),"Adobe Wall");
 
-        this.add(ChangShengJueBlocks.ZHU_TAI.get(),"烛台");
-        this.add(ChangShengJueBlocks.HANG_TU_BLOCK.get(),"夯土");
-        this.add(ChangShengJueBlocks.HANG_TU_STAIRS.get(),"夯土楼梯");
-        this.add(ChangShengJueBlocks.HANG_TU_SLAB.get(),"夯土台阶");
-        this.add(ChangShengJueBlocks.HANG_TU_WALL.get(),"夯土墙");
-        this.add(ChangShengJueBlocks.TU_PEI_BLOCK.get(),"土坯");
-        this.add(ChangShengJueBlocks.TU_PEI_STAIRS.get(),"土坯楼梯");
-        this.add(ChangShengJueBlocks.TU_PEI_SLAB.get(),"土坯台阶");
-        this.add(ChangShengJueBlocks.TU_PEI_WALL.get(),"土坯墙");
+        this.add(ChangShengJueBlocks.WHITE_WALLS_BLOCK.get(), "White Walls");
+        this.add(ChangShengJueBlocks.COOL_WHITE_WALLS_BLOCK.get(), "Cool White Walls");
+        this.add(ChangShengJueBlocks.WARM_WHITE_WALLS_BLOCK.get(), "Warm White Walls");
 
-        this.add(ChangShengJueBlocks.WHITE_WALLS_BLOCK.get(), "白墙");
-        this.add(ChangShengJueBlocks.COOL_WHITE_WALLS_BLOCK.get(), "冷白色墙");
-        this.add(ChangShengJueBlocks.WARM_WHITE_WALLS_BLOCK.get(), "暖白色墙");
+        this.add(ChangShengJueBlocks.WHITE_FINE_BRICKS.get(),"White Fine Bricks");
+        this.add(ChangShengJueBlocks.WHITE_BRICKS.get(),"White Bricks");
+        this.add(ChangShengJueBlocks.BLACK_STONE_FINE_BRICKS.get(),"Black Stone Fine Bricks");
+        this.add(ChangShengJueBlocks.BLACK_STONE_BRICKS.get(),"Black Stone Bricks");
+        this.add(ChangShengJueBlocks.BLUE_STONE_BRICKS.get(),"Blue Stone Bricks");
+        this.add(ChangShengJueBlocks.BLUE_STONE_FINE_BRICKS.get(),"Blue Stone Fine Bricks");
 
-        this.add(ChangShengJueBlocks.WHITE_FINE_BRICKS.get(),"白细砖");
-        this.add(ChangShengJueBlocks.WHITE_BRICKS.get(),"白砖");
-        this.add(ChangShengJueBlocks.BLACK_STONE_FINE_BRICKS.get(),"黑石细砖");
-        this.add(ChangShengJueBlocks.BLACK_STONE_BRICKS.get(),"黑石砖");
-        this.add(ChangShengJueBlocks.BLUE_STONE_BRICKS.get(),"青石砖");
-        this.add(ChangShengJueBlocks.BLUE_STONE_FINE_BRICKS.get(),"青石细砖");
+        this.add(ChangShengJueBlocks.WHITE_BRICKS_STAIRS.get(),"White Bricks Stairs");
+        this.add(ChangShengJueBlocks.BLACK_STONE_BRICKS_STAIRS.get(),"Black Stone Bricks Stairs");
+        this.add(ChangShengJueBlocks.BLUE_STONE_BRICKS_STAIRS.get(),"Blue Stone Bricks Stairs");
 
-        this.add(ChangShengJueBlocks.WHITE_BRICKS_STAIRS.get(),"白砖楼梯");
-        this.add(ChangShengJueBlocks.BLACK_STONE_BRICKS_STAIRS.get(),"黑石砖楼梯");
-        this.add(ChangShengJueBlocks.BLUE_STONE_BRICKS_STAIRS.get(),"青石砖楼梯");
+        this.add(ChangShengJueBlocks.WHITE_BRICKS_SLAB.get(),"White Bricks Slab");
+        this.add(ChangShengJueBlocks.BLACK_STONE_BRICKS_SLAB.get(),"Black Stone Slab");
+        this.add(ChangShengJueBlocks.BLUE_STONE_BRICKS_SLAB.get(),"Blue Stone Slab");
 
-        this.add(ChangShengJueBlocks.WHITE_BRICKS_SLAB.get(),"白砖台阶");
-        this.add(ChangShengJueBlocks.BLACK_STONE_BRICKS_SLAB.get(),"黑石台阶");
-        this.add(ChangShengJueBlocks.BLUE_STONE_BRICKS_SLAB.get(),"青石台阶");
-
-        this.add(ChangShengJueBlocks.WHITE_BRICKS_VERTICAL_WALLS.get(),"白砖竖墙");
-        this.add(ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get(),"黑石竖墙");
-        this.add(ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get(),"青石竖墙");
+        this.add(ChangShengJueBlocks.WHITE_BRICKS_VERTICAL_WALLS.get(),"White Bricks Vertical Walls");
+        this.add(ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get(),"Black Stone Vertical Walls");
+        this.add(ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get(),"Blue Stone Vertical Walls");
 
         //效果
-        this.add(ChangShengJueItems.TRAUMA_EFFECT.get(), "外伤");
-        this.add(ChangShengJueItems.INTERNAL_INJURY_EFFECT.get(), "内伤");
+        this.add(ChangShengJueItems.TRAUMA_EFFECT.get(), "External Injury");
+        this.add(ChangShengJueItems.INTERNAL_INJURY_EFFECT.get(), "Internal Injury");
 
-        this.add(ChangShengJueBlocks.MANGROVE_OVERLORD_FIST.get(),"红木霸王拳");
-        this.add(ChangShengJueBlocks.BIRCH_OVERLORD_FIST.get(),"白桦木霸王拳");
-        this.add(ChangShengJueBlocks.JUNGLE_OVERLORD_FIST.get(), "丛林木霸王拳");
-        this.add(ChangShengJueBlocks.CRIMSON_OVERLORD_FIST.get(), "绯红木霸王拳");
-        this.add(ChangShengJueBlocks.WARPED_OVERLORD_FIST.get(), "诡异木霸王拳");
-        this.add(ChangShengJueBlocks.ACACIA_OVERLORD_FIST.get(), "金合欢霸王拳");
-        this.add(ChangShengJueBlocks.DARK_OAK_OVERLORD_FIST.get(), "深色橡木霸王拳");
-        this.add(ChangShengJueBlocks.OAK_OVERLORD_FIST.get(), "橡木霸王拳");
-        this.add(ChangShengJueBlocks.CHERRY_OVERLORD_FIST.get(), "樱花木霸王拳");
-        this.add(ChangShengJueBlocks.SPRUCE_OVERLORD_FIST.get(), "云杉木霸王拳");
-        this.add(ChangShengJueBlocks.SHORT_MANGROVE_BACK_BRACKET.get(), "红木回纹雀替");
-        this.add(ChangShengJueBlocks.SHORT_BIRCH_BACK_BRACKET.get(), "白桦木回纹雀替");
-        this.add(ChangShengJueBlocks.SHORT_JUNGLE_BACK_BRACKET.get(), "丛林木回纹雀替");
-        this.add(ChangShengJueBlocks.SHORT_CRIMSON_BACK_BRACKET.get(), "绯红木回纹雀替");
-        this.add(ChangShengJueBlocks.SHORT_WARPED_BACK_BRACKET.get(), "诡异木回纹雀替");
-        this.add(ChangShengJueBlocks.SHORT_ACACIA_BACK_BRACKET.get(), "金合欢回纹雀替");
-        this.add(ChangShengJueBlocks.SHORT_DARK_OAK_BACK_BRACKET.get(), "深色橡木回纹雀替");
-        this.add(ChangShengJueBlocks.SHORT_OAK_BACK_BRACKET.get(), "橡木回纹雀替");
-        this.add(ChangShengJueBlocks.SHORT_CHERRY_BACK_BRACKET.get(), "樱花木回纹雀替");
-        this.add(ChangShengJueBlocks.SHORT_SPRUCE_BACK_BRACKET.get(), "云杉木回纹雀替");
-        this.add(ChangShengJueBlocks.SHORT_MANGROVE_FLOWER_BRACKET.get(), "红木花牙子雀替");
-        this.add(ChangShengJueBlocks.SHORT_BIRCH_FLOWER_BRACKET.get(), "白桦木花牙子雀替");
-        this.add(ChangShengJueBlocks.SHORT_JUNGLE_FLOWER_BRACKET.get(), "丛林木花牙子雀替");
-        this.add(ChangShengJueBlocks.SHORT_CRIMSON_FLOWER_BRACKET.get(), "绯红木花牙子雀替");
-        this.add(ChangShengJueBlocks.SHORT_WARPED_FLOWER_BRACKET.get(), "诡异木花牙子雀替");
-        this.add(ChangShengJueBlocks.SHORT_ACACIA_FLOWER_BRACKET.get(), "金合欢花牙子雀替");
-        this.add(ChangShengJueBlocks.SHORT_DARK_OAK_FLOWER_BRACKET.get(), "深色橡木花牙子雀替");
-        this.add(ChangShengJueBlocks.SHORT_OAK_FLOWER_BRACKET.get(), "橡木花牙子雀替");
-        this.add(ChangShengJueBlocks.SHORT_CHERRY_FLOWER_BRACKET.get(), "樱花木花牙子雀替");
-        this.add(ChangShengJueBlocks.SHORT_SPRUCE_FLOWER_BRACKET.get(), "云杉木花牙子雀替");
-        this.add(ChangShengJueBlocks.LONG_MANGROVE_BACK_BRACKET.get(), "红木回纹雀替");
-        this.add(ChangShengJueBlocks.LONG_BIRCH_BACK_BRACKET.get(), "白桦木回纹雀替");
-        this.add(ChangShengJueBlocks.LONG_JUNGLE_BACK_BRACKET.get(), "丛林木回纹雀替");
-        this.add(ChangShengJueBlocks.LONG_CRIMSON_BACK_BRACKET.get(), "绯红木回纹雀替");
-        this.add(ChangShengJueBlocks.LONG_WARPED_BACK_BRACKET.get(), "诡异木回纹雀替");
-        this.add(ChangShengJueBlocks.LONG_ACACIA_BACK_BRACKET.get(), "金合欢回纹雀替");
-        this.add(ChangShengJueBlocks.LONG_DARK_OAK_BACK_BRACKET.get(), "深色橡木回纹雀替");
-        this.add(ChangShengJueBlocks.LONG_OAK_BACK_BRACKET.get(), "橡木回纹雀替");
-        this.add(ChangShengJueBlocks.LONG_CHERRY_BACK_BRACKET.get(), "樱花木回纹雀替");
-        this.add(ChangShengJueBlocks.LONG_SPRUCE_BACK_BRACKET.get(), "云杉木回纹雀替");
-        this.add(ChangShengJueBlocks.LONG_MANGROVE_FLOWER_BRACKET.get(), "红木花牙子雀替");
-        this.add(ChangShengJueBlocks.LONG_BIRCH_FLOWER_BRACKET.get(), "白桦木花牙子雀替");
-        this.add(ChangShengJueBlocks.LONG_JUNGLE_FLOWER_BRACKET.get(), "丛林木花牙子雀替");
-        this.add(ChangShengJueBlocks.LONG_CRIMSON_FLOWER_BRACKET.get(), "绯红木花牙子雀替");
-        this.add(ChangShengJueBlocks.LONG_WARPED_FLOWER_BRACKET.get(), "诡异木花牙子雀替");
-        this.add(ChangShengJueBlocks.LONG_ACACIA_FLOWER_BRACKET.get(), "金合欢花牙子雀替");
-        this.add(ChangShengJueBlocks.LONG_DARK_OAK_FLOWER_BRACKET.get(), "深色橡木花牙子雀替");
-        this.add(ChangShengJueBlocks.LONG_OAK_FLOWER_BRACKET.get(), "橡木花牙子雀替");
-        this.add(ChangShengJueBlocks.LONG_CHERRY_FLOWER_BRACKET.get(), "樱花木花牙子雀替");
-        this.add(ChangShengJueBlocks.LONG_SPRUCE_FLOWER_BRACKET.get(), "云杉木花牙子雀替");
-        this.add(ChangShengJueBlocks.MANGROVE_DOUGONG.get(), "红木斗拱");
-        this.add(ChangShengJueBlocks.BIRCH_DOUGONG.get(), "白桦木斗拱");
-        this.add(ChangShengJueBlocks.JUNGLE_DOUGONG.get(), "丛林木斗拱");
-        this.add(ChangShengJueBlocks.CRIMSON_DOUGONG.get(), "绯红木斗拱");
-        this.add(ChangShengJueBlocks.WARPED_DOUGONG.get(), "诡异木斗拱");
-        this.add(ChangShengJueBlocks.ACACIA_DOUGONG.get(), "金合欢斗拱");
-        this.add(ChangShengJueBlocks.DARK_OAK_DOUGONG.get(), "深色橡木斗拱");
-        this.add(ChangShengJueBlocks.OAK_DOUGONG.get(), "橡木斗拱");
-        this.add(ChangShengJueBlocks.CHERRY_DOUGONG.get(), "樱花木斗拱");
-        this.add(ChangShengJueBlocks.SPRUCE_DOUGONG.get(), "云杉木斗拱");
-        this.add(ChangShengJueBlocks.GREEN_DOUGONG.get(),"绿斗青拱");
-        this.add(ChangShengJueBlocks.BLUE_DOUGONG.get(),"青斗绿拱");
-
-
-
-        this.add(ChangShengJueBlocks.STONE_LAMPS_BASE_BLOCK.get(),"石灯底座");
-        this.add(ChangShengJueBlocks.STONE_LAMPS_BLOCK.get(),"未点亮的石灯");
-        this.add(ChangShengJueBlocks.STONE_LAMPS_LIANG_BLOCK.get(),"石灯");
-        this.add(ChangShengJueBlocks.YELLOW_STONE_LION_BLOCK.get(),"黄色石狮子");
-        this.add(ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get(),"灰色石狮子");
-        this.add(ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get(),"白桦扶梯");
-        this.add(ChangShengJueBlocks.YUN_SHAN_FU_TI_BLOCK.get(),"云杉扶梯");
-
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE.get(),"灰色筒瓦块");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE.get(),"红色琉璃瓦块");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get(),"黑色筒瓦块");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get(),"金色琉璃瓦块");
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get(),"青色琉璃瓦块");
-
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(),"灰色筒瓦台阶");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get(),"红色琉璃瓦台阶");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(),"黑色筒瓦台阶");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(),"金色琉璃瓦台阶");
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),"青色琉璃瓦台阶");
-
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SIDE.get(),"灰色侧向筒瓦");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SIDE.get(),"红色侧向琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SIDE.get(),"黑色侧向筒瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SIDE.get(),"金色侧向琉璃瓦");
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SIDE.get(),"青色侧向琉璃瓦");
-
-        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_UPTURNED_EAVES.get(),"灰色侧向飞檐");
-        this.add(ChangShengJueBlocks.RED_OCTAGONAL_UPTURNED_EAVES.get(),"红色侧向飞檐");
-        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_UPTURNED_EAVES.get(),"黑色侧向飞檐");
-        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_UPTURNED_EAVES.get(),"金色侧向飞檐");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES.get(),"青色侧向飞檐");
-
-        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"灰色侧向矮脊瓦(前)");
-        this.add(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"红色侧向矮脊瓦(前)");
-        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"黑色侧向矮脊瓦(前)");
-        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"金色侧向矮脊瓦(前)");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"青色侧向矮脊瓦(前)");
-
-        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"灰色侧向矮脊瓦(后)");
-        this.add(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"红色侧向矮脊瓦(后)");
-        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"黑色侧向矮脊瓦(后)");
-        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"金色侧向矮脊瓦(后)");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"青色侧向矮脊瓦(后)");
+        this.add(ChangShengJueBlocks.MANGROVE_OVERLORD_FIST.get(),"Mangrove Overlord Fist");
+        this.add(ChangShengJueBlocks.BIRCH_OVERLORD_FIST.get(),"Birch Overlord Fist");
+        this.add(ChangShengJueBlocks.JUNGLE_OVERLORD_FIST.get(), "Jungle Overlord Fist");
+        this.add(ChangShengJueBlocks.CRIMSON_OVERLORD_FIST.get(), "Crimson Overlord Fist");
+        this.add(ChangShengJueBlocks.WARPED_OVERLORD_FIST.get(), "Warped Overlord Fist");
+        this.add(ChangShengJueBlocks.ACACIA_OVERLORD_FIST.get(), "Acacia Overlord Fist");
+        this.add(ChangShengJueBlocks.DARK_OAK_OVERLORD_FIST.get(), "Dark Oak Overlord Fist");
+        this.add(ChangShengJueBlocks.OAK_OVERLORD_FIST.get(), "Oak Overlord Fist");
+        this.add(ChangShengJueBlocks.CHERRY_OVERLORD_FIST.get(), "Cherry Overlord Fist");
+        this.add(ChangShengJueBlocks.SPRUCE_OVERLORD_FIST.get(), "Spruce Overlord Fist");
+        this.add(ChangShengJueBlocks.SHORT_MANGROVE_BACK_BRACKET.get(), "Short Mangrove Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_BIRCH_BACK_BRACKET.get(), "Short Birch Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_JUNGLE_BACK_BRACKET.get(), "Short Jungle Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_CRIMSON_BACK_BRACKET.get(), "Short Crimson Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_WARPED_BACK_BRACKET.get(), "Short Warped Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_ACACIA_BACK_BRACKET.get(), "Short Acacia Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_DARK_OAK_BACK_BRACKET.get(), "Short Dark Oak Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_OAK_BACK_BRACKET.get(), "Short Oak Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_CHERRY_BACK_BRACKET.get(), "Short Cherry Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_SPRUCE_BACK_BRACKET.get(), "Short Spruce Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_MANGROVE_FLOWER_BRACKET.get(), "Short Mangrove Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_BIRCH_FLOWER_BRACKET.get(), "Short Birch Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_JUNGLE_FLOWER_BRACKET.get(), "Short Jungle Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_CRIMSON_FLOWER_BRACKET.get(), "Short Crimson Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_WARPED_FLOWER_BRACKET.get(), "Short Warped Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_ACACIA_FLOWER_BRACKET.get(), "Short Acacia Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_DARK_OAK_FLOWER_BRACKET.get(), "Short Dark Oak Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_OAK_FLOWER_BRACKET.get(), "Short Oak Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_CHERRY_FLOWER_BRACKET.get(), "Short Cherry Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.SHORT_SPRUCE_FLOWER_BRACKET.get(), "Short Spruce Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.LONG_MANGROVE_BACK_BRACKET.get(), "Long Mangrove Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.LONG_BIRCH_BACK_BRACKET.get(), "Long Birch Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.LONG_JUNGLE_BACK_BRACKET.get(), "Long Jungle Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.LONG_CRIMSON_BACK_BRACKET.get(), "Long Crimson Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.LONG_WARPED_BACK_BRACKET.get(), "Long Warped Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.LONG_ACACIA_BACK_BRACKET.get(), "Long Acacia Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.LONG_DARK_OAK_BACK_BRACKET.get(), "Long Dark Oak Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.LONG_OAK_BACK_BRACKET.get(), "Long Oak Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.LONG_CHERRY_BACK_BRACKET.get(), "Long Cherry Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.LONG_SPRUCE_BACK_BRACKET.get(), "Long Spruce Meander-patterned Que Ti");
+        this.add(ChangShengJueBlocks.LONG_MANGROVE_FLOWER_BRACKET.get(), "Long Mangrove Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.LONG_BIRCH_FLOWER_BRACKET.get(), "Long Birch Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.LONG_JUNGLE_FLOWER_BRACKET.get(), "Long Jungle Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.LONG_CRIMSON_FLOWER_BRACKET.get(), "Long Crimson Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.LONG_WARPED_FLOWER_BRACKET.get(), "Long Warped Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.LONG_ACACIA_FLOWER_BRACKET.get(), "Long Acacia Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.LONG_DARK_OAK_FLOWER_BRACKET.get(), "Long Dark Oak Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.LONG_OAK_FLOWER_BRACKET.get(), "Long Oak Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.LONG_CHERRY_FLOWER_BRACKET.get(), "Long Cherry Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.LONG_SPRUCE_FLOWER_BRACKET.get(), "Long Spruce Flower-tooth Que Ti");
+        this.add(ChangShengJueBlocks.MANGROVE_DOUGONG.get(), "Mangrove Dougong");
+        this.add(ChangShengJueBlocks.BIRCH_DOUGONG.get(), "Birch Dougong");
+        this.add(ChangShengJueBlocks.JUNGLE_DOUGONG.get(), "Jungle Dougong");
+        this.add(ChangShengJueBlocks.CRIMSON_DOUGONG.get(), "Crimson Dougong");
+        this.add(ChangShengJueBlocks.WARPED_DOUGONG.get(), "Warped Dougong");
+        this.add(ChangShengJueBlocks.ACACIA_DOUGONG.get(), "Acacia Dougong");
+        this.add(ChangShengJueBlocks.DARK_OAK_DOUGONG.get(), "Dark Oak Dougong");
+        this.add(ChangShengJueBlocks.OAK_DOUGONG.get(), "Oak Dougong");
+        this.add(ChangShengJueBlocks.CHERRY_DOUGONG.get(), "Cherry Dougong");
+        this.add(ChangShengJueBlocks.SPRUCE_DOUGONG.get(), "Spruce Dougong");
+        this.add(ChangShengJueBlocks.GREEN_DOUGONG.get(),"Green Dou with Blue Gong");
+        this.add(ChangShengJueBlocks.BLUE_DOUGONG.get(),"Blue Dou with Green Gong");
 
 
-        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"灰色侧向高脊瓦(前)");
-        this.add(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"灰色侧向高脊瓦(前)");
-        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"灰色侧向高脊瓦(前)");
-        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"灰色侧向高脊瓦(前)");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"灰色侧向高脊瓦(前)");
 
-        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"灰色侧向高脊瓦(后)");
-        this.add(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"灰色侧向高脊瓦(后)");
-        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"灰色侧向高脊瓦(后)");
-        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"灰色侧向高脊瓦(后)");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"灰色侧向高脊瓦(后)");
+        this.add(ChangShengJueBlocks.STONE_LAMPS_BASE_BLOCK.get(),"Stone Lamp Base");
+        this.add(ChangShengJueBlocks.STONE_LAMPS_BLOCK.get(),"Unlit Stone Lamp");
+        this.add(ChangShengJueBlocks.STONE_LAMPS_LIANG_BLOCK.get(),"Stone Lamp");
+        this.add(ChangShengJueBlocks.YELLOW_STONE_LION_BLOCK.get(),"Yellow Stone Lion");
+        this.add(ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get(),"Gray Stone Lion");
+        this.add(ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get(),"Birch Stairs");
+        this.add(ChangShengJueBlocks.YUN_SHAN_FU_TI_BLOCK.get(),"Spruce Stairs");
 
-        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"灰色侧向双层脊瓦(前)");
-        this.add(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"红色侧向双层脊瓦(前)");
-        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"黑色侧向双层脊瓦(前)");
-        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"金色侧向双层脊瓦(前)");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"青色侧向双层脊瓦(前)");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE.get(),"Gray Cylinder Tile");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE.get(),"Red Glazed Tile");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get(),"Black Cylinder Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get(),"Golden Glazed Tile");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get(),"Blue Glazed Tile");
 
-        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"灰色侧向双层脊瓦(后)");
-        this.add(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"红色侧向双层脊瓦(后)");
-        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"黑色侧向双层脊瓦(后)");
-        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"金色侧向双层脊瓦(后)");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"青色侧向双层脊瓦(后)");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(),"Gray Cylinder Tile Slab");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get(),"Red Glazed Tile Slab");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(),"Black Cylinder Tile Slab");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(),"Golden Glazed Tile Slab");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),"Blue Glazed Tile Slab");
 
-        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"灰色侧向脊瓦屋顶");
-        this.add(ChangShengJueBlocks.RED_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"红色侧向脊瓦屋顶");
-        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"黑色侧向脊瓦屋顶");
-        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"金色侧向脊瓦屋顶");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"青色侧向脊瓦屋顶");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SIDE.get(),"Gray Side Cylinder Tile");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SIDE.get(),"Red Side Glazed Tile");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SIDE.get(),"Black Side Cylinder Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SIDE.get(),"Golden Side Glazed Tile");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SIDE.get(),"Blue Side Glazed Tile");
 
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(),"灰色筒瓦");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(),"红色琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(),"黑色筒瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get(),"金色琉璃瓦");
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(),"青色琉璃瓦");
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_UPTURNED_EAVES.get(),"Gray Side Octagonal Upturned Eaves");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_UPTURNED_EAVES.get(),"Red Side Octagonal Upturned Eaves");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_UPTURNED_EAVES.get(),"Black Side Octagonal Upturned Eaves");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_UPTURNED_EAVES.get(),"Golden Side Octagonal Upturned Eaves");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES.get(),"Blue Side Octagonal Upturned Eaves");
 
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_1.get(),"灰色瓦当");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_1.get(),"红色瓦当");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_1.get(),"黑色瓦当");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_1.get(),"金色瓦当");
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_1.get(),"青色瓦当");
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"Gray Side Octagonal Low Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"Red Side Octagonal Low Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"Black Side Octagonal Low Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"Golden Side Octagonal Low Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"Blue Side Octagonal Low Ridge Tiles (Front)");
 
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get(),"青色双层琉璃瓦");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_2.get(),"灰色双层筒瓦");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_2.get(),"红色双层琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_2.get(),"黑色双层筒瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_2.get(),"金色双层琉璃瓦");
-
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_3.get(),"青色小鸱吻");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_3.get(),"灰色小鸱吻");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_3.get(),"红色小鸱吻");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_3.get(),"黑色小鸱吻");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_3.get(),"金色小鸱吻");
-
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get(),"青色高脊瓦");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_4.get(),"灰色高脊瓦");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_4.get(),"红色高脊瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get(),"黑色高脊瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get(),"金色高脊瓦");
-
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_5.get(),"青色高琉璃瓦");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get(),"灰色高筒瓦");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_5.get(),"红色高琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_5.get(),"黑色高筒瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_5.get(),"金色高琉璃瓦");
-
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_6.get(),"青色双层脊瓦");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_6.get(),"灰色双层脊瓦");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_6.get(),"红色双层脊瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_6.get(),"黑色双层脊瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_6.get(),"金色双层脊瓦");
-
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get(),"青色飞檐琉璃瓦");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7.get(),"灰色飞檐筒瓦");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_7.get(),"红色飞檐琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get(),"黑色飞檐筒瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get(),"金色飞檐琉璃瓦");
-
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get(),"青色脊瓦");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8.get(),"灰色脊瓦");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8.get(),"红色脊瓦");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get(),"黑色脊瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get(),"金色脊瓦");
-
-        this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get(),"青色双层脊兽脊瓦");
-        this.add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE.get(),"灰色双层脊兽脊瓦");
-        this.add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE.get(),"红色双层脊兽脊瓦");
-        this.add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE.get(),"黑色双层脊兽脊瓦");
-        this.add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE.get(),"金色双层脊兽脊瓦");
-
-        this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE_1.get(),"青色脊兽脊瓦");
-        this.add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE_1.get(),"灰色脊兽脊瓦");
-        this.add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE_1.get(),"红色脊兽脊瓦");
-        this.add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE_1.get(),"黑色脊兽脊瓦");
-        this.add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE_1.get(),"金色脊兽脊瓦");
-
-        this.add(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get(),"青色垂兽脊瓦");
-        this.add(ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE.get(),"灰色垂兽脊瓦");
-        this.add(ChangShengJueBlocks.HANGING_BEAST_RED_RIDGE_TILE.get(),"红色垂兽脊瓦");
-        this.add(ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE.get(),"黑色垂兽脊瓦");
-        this.add(ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE.get(),"金色垂兽脊瓦");
-
-        this.add(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get(),"青色屋脊");
-        this.add(ChangShengJueBlocks.GRE_ROOF_RIDGE.get(),"灰色屋脊");
-        this.add(ChangShengJueBlocks.RED_ROOF_RIDGE.get(),"红色屋脊");
-        this.add(ChangShengJueBlocks.BLACK_ROOF_RIDGE.get(),"黑色屋脊");
-        this.add(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE.get(),"金色屋脊");
-
-        this.add(ChangShengJueBlocks.BLUE_DEMON_MASK.get(), "青色鸱吻");
-        this.add(ChangShengJueBlocks.GRE_DEMON_MASK.get(), "灰色鸱吻");
-        this.add(ChangShengJueBlocks.RED_DEMON_MASK.get(), "红色鸱吻");
-        this.add(ChangShengJueBlocks.BLACK_DEMON_MASK.get(), "黑色鸱吻");
-        this.add(ChangShengJueBlocks.GOLDEN_DEMON_MASK.get(), "金色鸱吻");
-
-        this.add(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION.get(), "青色楼阁脊刹");
-        this.add(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION.get(), "灰色楼阁脊刹");
-        this.add(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION.get(), "红色楼阁脊刹");
-        this.add(ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION.get(), "黑色楼阁脊刹");
-        this.add(ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION.get(), "金色楼阁脊刹");
-
-        this.add(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION.get(), "青色字牌脊刹");
-        this.add(ChangShengJueBlocks.GRE_CHARACTER_PLAQUE_PAVILION.get(), "灰色字牌脊刹");
-        this.add(ChangShengJueBlocks.RED_CHARACTER_PLAQUE_PAVILION.get(), "红色字牌脊刹");
-        this.add(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION.get(), "黑色字牌脊刹");
-        this.add(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION.get(), "金色字牌脊刹");
-
-        this.add(ChangShengJueBlocks.BLUE_HIPPED_ROOF.get(), "青色攒尖");
-        this.add(ChangShengJueBlocks.GRE_HIPPED_ROOF.get(), "灰色攒尖");
-        this.add(ChangShengJueBlocks.RED_HIPPED_ROOF.get(), "红色攒尖");
-        this.add(ChangShengJueBlocks.BLACK_HIPPED_ROOF.get(), "黑色攒尖");
-        this.add(ChangShengJueBlocks.GOLDEN_HIPPED_ROOF.get(), "金色攒尖");
-
-        this.add(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get(), "青色齐瓦当");
-        this.add(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.get(), "灰色齐瓦当");
-        this.add(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get(), "红色齐瓦当");
-        this.add(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.get(), "黑色齐瓦当");
-        this.add(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get(), "金色齐瓦当");
-
-        this.add(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "青色双层脊瓦");
-        this.add(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "灰色双层脊瓦");
-        this.add(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "红色双层脊瓦");
-        this.add(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "黑色双层脊瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "金色双层脊瓦");
-
-        this.add(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "青色双层垂兽脊瓦");
-        this.add(ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "灰色双层垂兽脊瓦");
-        this.add(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "红色双层垂兽脊瓦");
-        this.add(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "黑色双层垂兽脊瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "金色双层垂兽脊瓦");
-
-        this.add(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get(), "青色短琉璃瓦");
-        this.add(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get(), "灰色短筒瓦");
-        this.add(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get(), "红色短琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get(), "黑色短筒瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get(), "金色短琉璃瓦");
-
-        this.add(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE.get(), "青色侧向双层琉璃瓦");
-        this.add(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE.get(), "灰色侧向双层筒瓦");
-        this.add(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE_SIDE.get(), "红色侧向双层琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE.get(), "黑色侧向双层筒瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE_SIDE.get(), "金色侧向双层琉璃瓦");
-
-        this.add(ChangShengJueBlocks.BLUE_HIGH_CYLINDER_TILE_SIDE.get(), "青色侧向高琉璃瓦");
-        this.add(ChangShengJueBlocks.GRE_HIGH_CYLINDER_TILE_SIDE.get(), "灰色侧向高筒瓦");
-        this.add(ChangShengJueBlocks.RED_HIGH_CYLINDER_TILE_SIDE.get(), "红色侧向高琉璃瓦");
-        this.add(ChangShengJueBlocks.BLACK_HIGH_CYLINDER_TILE_SIDE.get(), "黑色侧向高筒瓦");
-        this.add(ChangShengJueBlocks.GOLDEN_HIGH_CYLINDER_TILE_SIDE.get(), "金色侧向高琉璃瓦");
-
-        this.add(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE.get(), "青色侧向瓦当");
-        this.add(ChangShengJueBlocks.GRE_EAVES_TILE_SIDE.get(), "灰色侧向瓦当");
-        this.add(ChangShengJueBlocks.RED_EAVES_TILE_SIDE.get(), "红色侧向瓦当");
-        this.add(ChangShengJueBlocks.BLACK_EAVES_TILE_SIDE.get(), "黑色侧向瓦当");
-        this.add(ChangShengJueBlocks.GOLDEN_EAVES_TILE_SIDE.get(), "金色侧向瓦当");
-
-        this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get(), "金色瓦片");
-        this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get(), "金色瓦片");
-        this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_2.get(), "金色瓦片");
-        this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_3.get(), "金色瓦片");
-        this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_4.get(), "金色瓦片");
-
-        this.add(ChangShengJueBlocks.TILE_BLOCK.get(), "瓦片");
-        this.add(ChangShengJueBlocks.TILE_BLOCK_1.get(), "瓦片");
-        this.add(ChangShengJueBlocks.TILE_BLOCK_2.get(), "瓦片");
-        this.add(ChangShengJueBlocks.TILE_BLOCK_3.get(), "瓦片");
-        this.add(ChangShengJueBlocks.TILE_BLOCK_4.get(), "瓦片");
-
-        this.add(ChangShengJueBlocks.BITUMEN_FLOOR_TILES_BLOCK.get(), "沥青地砖");
-        this.add(ChangShengJueBlocks.BLUE_FLOOR_TILES_BLOCK.get(), "青石地砖");
-        this.add(ChangShengJueBlocks.BLACK_FLOOR_TILES_BLOCK.get(), "黑石地砖");
-
-        this.add(ChangShengJueBlocks.WINDOWS_BIRCH_BLOCK.get(), "白桦木窗户");
-        this.add(ChangShengJueBlocks.WINDOWS_BIRCH_BLOCK_1.get(), "白桦木窗户");
-        this.add(ChangShengJueBlocks.WINDOWS_ACACIA_BLOCK.get(), "金合欢窗户");
-        this.add(ChangShengJueBlocks.WINDOWS_ACACIA_BLOCK_1.get(), "金合欢窗户");
-        this.add(ChangShengJueBlocks.WINDOWS_DARK_OAK_BLOCK.get(), "深色橡木窗户");
-        this.add(ChangShengJueBlocks.WINDOWS_DARK_OAK_BLOCK_1.get(), "深色橡木窗户");
-        this.add(ChangShengJueBlocks.WINDOWS_OAK_BLOCK.get(), "橡木窗户");
-        this.add(ChangShengJueBlocks.WINDOWS_OAK_BLOCK_1.get(), "橡木窗户");
-        this.add(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK.get(), "云杉窗户");
-        this.add(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_1.get(), "云杉窗户");
-
-        this.add(ChangShengJueBlocks.HIGH_BIRCH_WINDOWS.get(), "白桦木窗户");
-        this.add(ChangShengJueBlocks.HIGH_ACACIA_WINDOWS.get(), "金合欢木窗户");
-        this.add(ChangShengJueBlocks.HIGH_DARK_OAK_WINDOWS.get(), "深色橡木窗户");
-        this.add(ChangShengJueBlocks.HIGH_OAK_WINDOWS.get(), "橡木窗户");
-        this.add(ChangShengJueBlocks.HIGH_SPRUCE_WINDOWS.get(), "云杉木窗户");
-
-        this.add(ChangShengJueBlocks.DOOR_BIRCH.get(), "白桦木门");
-        this.add(ChangShengJueBlocks.DOOR_ACACIA.get(), "金合欢木门");
-        this.add(ChangShengJueBlocks.DOOR_DARK_OAK.get(), "深色橡木门");
-        this.add(ChangShengJueBlocks.DOOR_OAK.get(), "橡木门");
-        this.add(ChangShengJueBlocks.DOOR_SPRUCE.get(), "云杉木门");
-
-        this.add(ChangShengJueBlocks.MEI_REN_KAO_ACACIA_BLOCK.get(), "金合欢木美人靠");
-        this.add(ChangShengJueBlocks.MEI_REN_KAO_DARK_OAK_BLOCK.get(), "深色橡木美人靠");
-        this.add(ChangShengJueBlocks.MEI_REN_KAO_OAK_BLOCK.get(), "橡木美人靠");
-        this.add(ChangShengJueBlocks.MEI_REN_KAO_SPRUCE_BLOCK.get(), "云杉木美人靠");
-        this.add(ChangShengJueBlocks.MEI_REN_KAO_BIRCH_BLOCK.get(), "白桦木美人靠");
-        this.add(ChangShengJueBlocks.MEI_REN_KAO_JUNGLE_BLOCK.get(), "丛林木美人靠");
-        this.add(ChangShengJueBlocks.MEI_REN_KAO_MANGROVE_BLOCK.get(), "红树木美人靠");
-        this.add(ChangShengJueBlocks.MEI_REN_KAO_CHERRY_BLOCK.get(), "樱花木美人靠");
-        this.add(ChangShengJueBlocks.MEI_REN_KAO_CRIMSON_BLOCK.get(), "绯红木美人靠");
-        this.add(ChangShengJueBlocks.MEI_REN_KAO_WARPED_BLOCK.get(), "诡异木美人靠");
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"Gray Side Octagonal Low Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"Red Side Octagonal Low Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"Black Side Octagonal Low Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"Golden Side Octagonal Low Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"Blue Side Octagonal Low Ridge Tiles (Behind)");
 
 
-        this.add(ChangShengJueBlocks.BIRCH_BENCH.get(), "白桦木长凳");
-        this.add(ChangShengJueBlocks.CRIMSON_BENCH.get(), "绯红木长凳");
-        this.add(ChangShengJueBlocks.WARPED_BENCH.get(), "诡异木长凳");
-        this.add(ChangShengJueBlocks.MANGROVE_BENCH.get(), "红树长凳");
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_BENCH.get(), "黄花梨长凳");
-        this.add(ChangShengJueBlocks.JI_CHI_MU_BENCH.get(), "鸡翅木长凳");
-        this.add(ChangShengJueBlocks.ACACIA_BENCH.get(), "金合欢木长凳");
-        this.add(ChangShengJueBlocks.DARK_OAK_BENCH.get(), "深色橡木长凳");
-        this.add(ChangShengJueBlocks.OAK_BENCH.get(), "橡木长凳");
-        this.add(ChangShengJueBlocks.CHERRY_BENCH.get(), "樱花木长凳");
-        this.add(ChangShengJueBlocks.SPRUCE_BENCH.get(), "云杉木长凳");
-        this.add(ChangShengJueBlocks.ZI_TAN_BENCH.get(), "紫檀木长凳");
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"Gray Side Octagonal High Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"Red Side Octagonal High Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"Black Side Octagonal High Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"Golden Side Octagonal High Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"Blue Side Octagonal High Ridge Tiles (Front)");
 
-        this.add(ChangShengJueBlocks.BIRCH_DRINKING_TABLE_AND_CHAIRS.get(), "白桦木酒桌椅");
-        this.add(ChangShengJueBlocks.CRIMSON_DRINKING_TABLE_AND_CHAIRS.get(), "绯红木酒桌椅");
-        this.add(ChangShengJueBlocks.WARPED_DRINKING_TABLE_AND_CHAIRS.get(), "诡异木酒桌椅");
-        this.add(ChangShengJueBlocks.MANGROVE_DRINKING_TABLE_AND_CHAIRS.get(), "红树酒桌椅");
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_DRINKING_TABLE_AND_CHAIRS.get(), "黄花梨酒桌椅");
-        this.add(ChangShengJueBlocks.JI_CHI_MU_DRINKING_TABLE_AND_CHAIRS.get(), "鸡翅木酒桌椅");
-        this.add(ChangShengJueBlocks.ACACIA_DRINKING_TABLE_AND_CHAIRS.get(), "金合欢木酒桌椅");
-        this.add(ChangShengJueBlocks.DARK_OAK_DRINKING_TABLE_AND_CHAIRS.get(), "深色橡木酒桌椅");
-        this.add(ChangShengJueBlocks.OAK_DRINKING_TABLE_AND_CHAIRS.get(), "橡木酒桌椅");
-        this.add(ChangShengJueBlocks.CHERRY_DRINKING_TABLE_AND_CHAIRS.get(), "樱花木酒桌椅");
-        this.add(ChangShengJueBlocks.SPRUCE_DRINKING_TABLE_AND_CHAIRS.get(), "云杉木酒桌椅");
-        this.add(ChangShengJueBlocks.ZI_TAN_DRINKING_TABLE_AND_CHAIRS.get(), "紫檀木酒桌椅");
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"Gray Side Octagonal High Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"Red Side Octagonal High Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"Black Side Octagonal High Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"Golden Side Octagonal High Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"Blue Side Octagonal High Ridge Tiles (Behind)");
 
-        this.add(ChangShengJueBlocks.BIRCH_BOOK_DESK.get(), "白桦木书桌");
-        this.add(ChangShengJueBlocks.CRIMSON_BOOK_DESK.get(), "绯红木书桌");
-        this.add(ChangShengJueBlocks.WARPED_BOOK_DESK.get(), "诡异木书桌");
-        this.add(ChangShengJueBlocks.MANGROVE_BOOK_DESK.get(), "红树书桌");
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_BOOK_DESK.get(), "黄花梨书桌");
-        this.add(ChangShengJueBlocks.JI_CHI_MU_BOOK_DESK.get(), "鸡翅木书桌");
-        this.add(ChangShengJueBlocks.ACACIA_BOOK_DESK.get(), "金合欢书桌");
-        this.add(ChangShengJueBlocks.DARK_OAK_BOOK_DESK.get(), "深色橡木书桌");
-        this.add(ChangShengJueBlocks.OAK_BOOK_DESK.get(), "橡木书桌");
-        this.add(ChangShengJueBlocks.CHERRY_BOOK_DESK.get(), "樱花木书桌");
-        this.add(ChangShengJueBlocks.SPRUCE_BOOK_DESK.get(), "云杉木书桌");
-        this.add(ChangShengJueBlocks.ZI_TAN_BOOK_DESK.get(), "紫檀木书桌");
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"Gray Side Octagonal Double Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"Red Side Octagonal Double Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"Black Side Octagonal Double Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"Golden Side Octagonal Double Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"Blue Side Octagonal Double Ridge Tiles (Front)");
 
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_TEAPOY.get(), "黄花梨茶几");
-        this.add(ChangShengJueBlocks.JI_CHI_MU_TEAPOY.get(), "鸡翅木茶几");
-        this.add(ChangShengJueBlocks.ZI_TAN_TEAPOY.get(), "紫檀木茶几");
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"Gray Side Octagonal Double Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"Red Side Octagonal Double Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"Black Side Octagonal Double Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"Golden Side Octagonal Double Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"Blue Side Octagonal Double Ridge Tiles (Behind)");
 
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_TAISHI_CHAIR.get(), "黄花梨太师椅");
-        this.add(ChangShengJueBlocks.JI_CHI_MU_TAISHI_CHAIR.get(), "鸡翅木太师椅");
-        this.add(ChangShengJueBlocks.ZI_TAN_TAISHI_CHAIR.get(), "紫檀木太师椅");
+        this.add(ChangShengJueBlocks.GRE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"Gray Side Ridge Tile Roof");
+        this.add(ChangShengJueBlocks.RED_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"Red Side Ridge Tile Roof");
+        this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"Black Side Ridge Tile Roof");
+        this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"Golden Side Ridge Tile Roof");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"Blue Side Ridge Tile Roof");
 
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_FIVE_SCREEN_THRONE.get(), "黄花梨五围屏宝座");
-        this.add(ChangShengJueBlocks.JI_CHI_MU_FIVE_SCREEN_THRONE.get(), "鸡翅木五围屏宝座");
-        this.add(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get(), "紫檀木五围屏宝座");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(),"Gray Cylinder Tile");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(),"Red Glazed Tile");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(),"Black Cylinder Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get(),"Golden Glazed Tile");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(),"Blue Glazed Tile");
 
-        this.add(ChangShengJueBlocks.BIRCH_LOW_DESK.get(), "白桦木席桌");
-        this.add(ChangShengJueBlocks.CRIMSON_LOW_DESK.get(), "绯红木席桌");
-        this.add(ChangShengJueBlocks.WARPED_LOW_DESK.get(), "诡异木席桌");
-        this.add(ChangShengJueBlocks.MANGROVE_LOW_DESK.get(), "红树席桌");
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_LOW_DESK.get(), "黄花梨席桌");
-        this.add(ChangShengJueBlocks.JI_CHI_MU_LOW_DESK.get(), "鸡翅木席桌");
-        this.add(ChangShengJueBlocks.ACACIA_LOW_DESK.get(), "金合欢席桌");
-        this.add(ChangShengJueBlocks.DARK_OAK_LOW_DESK.get(), "深色橡木席桌");
-        this.add(ChangShengJueBlocks.OAK_LOW_DESK.get(), "橡木席桌");
-        this.add(ChangShengJueBlocks.CHERRY_LOW_DESK.get(), "樱花木席桌");
-        this.add(ChangShengJueBlocks.SPRUCE_LOW_DESK.get(), "云杉木席桌");
-        this.add(ChangShengJueBlocks.ZI_TAN_LOW_DESK.get(), "紫檀木席桌");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_1.get(),"Gray Eaves Tile");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_1.get(),"Red Eaves Tile");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_1.get(),"Black Eaves Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_1.get(),"Golden Eaves Tile");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_1.get(),"Blue Eaves Tile");
 
-        this.add(ChangShengJueBlocks.ZAFU.get(), "蒲团");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get(),"Blue Double Glazed Tile");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_2.get(),"Gray Double Cylinder Tile");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_2.get(),"Red Double Glazed Tile");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_2.get(),"Black Double Cylinder Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_2.get(),"Golden Double Glazed Tile");
 
-        this.add(ChangShengJueBlocks.WHITE_JADE_BLOCK.get(),  "汉白玉块");
-        this.add(ChangShengJueBlocks.WHITE_JADE_STAIRS.get(), "汉白玉楼梯");
-        this.add(ChangShengJueBlocks.WHITE_JADE_SLAB.get(), "汉白玉台阶");
-        this.add(ChangShengJueBlocks.WHITE_JADE_WALL.get(), "汉白玉墙");
-        this.add(ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get(),"汉白玉栏杆");
-        this.add(ChangShengJueBlocks.OAK_BALUSTRADE.get(),"橡木栏杆");
-        this.add(ChangShengJueBlocks.SPRUCE_BALUSTRADE.get(), "云杉木栏杆");
-        this.add(ChangShengJueBlocks.BIRCH_BALUSTRADE.get(), "白桦木栏杆");
-        this.add(ChangShengJueBlocks.JUNGLE_BALUSTRADE.get(), "金合欢木栏杆");
-        this.add(ChangShengJueBlocks.ACACIA_BALUSTRADE.get(), "金合欢木栏杆");
-        this.add(ChangShengJueBlocks.MANGROVE_BALUSTRADE.get(), "红树栏杆");
-        this.add(ChangShengJueBlocks.CHERRY_BALUSTRADE.get(), "樱花木栏杆");
-        this.add(ChangShengJueBlocks.DARK_OAK_BALUSTRADE.get(), "深色橡木栏杆");
-        this.add(ChangShengJueBlocks.CRIMSON_BALUSTRADE.get(), "绯红木栏杆");
-        this.add(ChangShengJueBlocks.WARPED_BALUSTRADE.get(), "诡异木栏杆");
-        this.add(ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get(),"汉白玉护栏");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_3.get(),"Blue Small Chiwen");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_3.get(),"Gray Small Chiwen");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_3.get(),"Red Small Chiwen");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_3.get(),"Black Small Chiwen");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_3.get(),"Golden Small Chiwen");
+
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get(),"Blue High Ridge Tile");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_4.get(),"Gray High Ridge Tile");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_4.get(),"Red High Ridge Tile");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get(),"Black High Ridge Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get(),"Golden High Ridge Tile");
+
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_5.get(),"Blue High Glazed Tile");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get(),"Gray High Cylinder Tile");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_5.get(),"Red High Glazed Tile");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_5.get(),"Black High Cylinder Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_5.get(),"Golden High Glazed Tile");
+
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_6.get(),"Blue Double Ridge Tile");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_6.get(),"Gray Double Ridge Tile");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_6.get(),"Red Double Ridge Tile");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_6.get(),"Black Double Ridge Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_6.get(),"Golden Double Ridge Tile");
+
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get(),"Blue Upturned Eaves Glazed Tile");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7.get(),"Gray Upturned Eaves Cylinder Tile");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_7.get(),"Red Upturned Eaves Glazed Tile");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get(),"Black Upturned Eaves Cylinder Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get(),"Golden Upturned Eaves Glazed Tile");
+
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get(),"Blue Ridge Tile");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8.get(),"Gray Ridge Tile");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8.get(),"Red Ridge Tile");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get(),"Black Ridge Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get(),"Golden Ridge Tile");
+
+        this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get(),"Blue Double Ridge Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE.get(),"Gray Double Ridge Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE.get(),"Red Double Ridge Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE.get(),"Black Double Ridge Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE.get(),"Golden Double Ridge Beast Ridge Tile");
+
+        this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE_1.get(),"Blue Ridge Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE_1.get(),"Gray Ridge Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE_1.get(),"Red Ridge Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE_1.get(),"Black Ridge Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE_1.get(),"Golden Ridge Beast Ridge Tile");
+
+        this.add(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get(),"Blue Hanging Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE.get(),"Gray Hanging Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.HANGING_BEAST_RED_RIDGE_TILE.get(),"Red Hanging Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE.get(),"Black Hanging Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE.get(),"Golden Hanging Beast Ridge Tile");
+
+        this.add(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get(),"Blue Roof Ridge");
+        this.add(ChangShengJueBlocks.GRE_ROOF_RIDGE.get(),"Gray Roof Ridge");
+        this.add(ChangShengJueBlocks.RED_ROOF_RIDGE.get(),"Red Roof Ridge");
+        this.add(ChangShengJueBlocks.BLACK_ROOF_RIDGE.get(),"Black Roof Ridge");
+        this.add(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE.get(),"Golden Roof Ridge");
+
+        this.add(ChangShengJueBlocks.BLUE_DEMON_MASK.get(), "Blue Chiwen");
+        this.add(ChangShengJueBlocks.GRE_DEMON_MASK.get(), "Gray Chiwen");
+        this.add(ChangShengJueBlocks.RED_DEMON_MASK.get(), "Red Chiwen");
+        this.add(ChangShengJueBlocks.BLACK_DEMON_MASK.get(), "Black Chiwen");
+        this.add(ChangShengJueBlocks.GOLDEN_DEMON_MASK.get(), "Golden Chiwen");
+
+        this.add(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION.get(), "Blue Pavilion Ridge Finial");
+        this.add(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION.get(), "Gray Pavilion Ridge Finial");
+        this.add(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION.get(), "Red Pavilion Ridge Finial");
+        this.add(ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION.get(), "Black Pavilion Ridge Finial");
+        this.add(ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION.get(), "Golden Pavilion Ridge Finial");
+
+        this.add(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION.get(), "Blue Character Plaque Ridge Finial");
+        this.add(ChangShengJueBlocks.GRE_CHARACTER_PLAQUE_PAVILION.get(), "Gray Character Plaque Ridge Finial");
+        this.add(ChangShengJueBlocks.RED_CHARACTER_PLAQUE_PAVILION.get(), "Red Character Plaque Ridge Finial");
+        this.add(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION.get(), "Black Character Plaque Ridge Finial");
+        this.add(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION.get(), "Golden Character Plaque Ridge Finial");
+
+        this.add(ChangShengJueBlocks.BLUE_HIPPED_ROOF.get(), "Blue Hipped Roof");
+        this.add(ChangShengJueBlocks.GRE_HIPPED_ROOF.get(), "Gray Hipped Roof");
+        this.add(ChangShengJueBlocks.RED_HIPPED_ROOF.get(), "Red Hipped Roof");
+        this.add(ChangShengJueBlocks.BLACK_HIPPED_ROOF.get(), "Black Hipped Roof");
+        this.add(ChangShengJueBlocks.GOLDEN_HIPPED_ROOF.get(), "Golden Hipped Roof");
+
+        this.add(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get(), "Blue Aligned Eaves Tile");
+        this.add(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.get(), "Gray Aligned Eaves Tile");
+        this.add(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get(), "Red Aligned Eaves Tile");
+        this.add(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.get(), "Black Aligned Eaves Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get(), "Golden Aligned Eaves Tile");
+
+        this.add(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "Blue Double Ridge Tile");
+        this.add(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "Gray Double Ridge Tile");
+        this.add(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "Red Double Ridge Tile");
+        this.add(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "Black Double Ridge Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "Golden Double Ridge Tile");
+
+        this.add(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),"Blue Double Hanging Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),"Gray Double Hanging Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),"Red Double Hanging Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),"Black Double Hanging Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),"Golden Double Hanging Beast Ridge Tile");
+
+        this.add(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get(), "Blue Short Glazed Tile");
+        this.add(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get(), "Gray Short Cylinder Tile");
+        this.add(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get(), "Red Short Glazed Tile");
+        this.add(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get(), "Black Short Cylinder Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get(), "Golden Short Glazed Tile");
+
+        this.add(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE.get(), "Blue Side Double Glazed Tile");
+        this.add(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE.get(), "Gray Side Double Cylinder Tile");
+        this.add(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE_SIDE.get(), "Red Side Double Glazed Tile");
+        this.add(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE.get(), "Black Side Double Cylinder Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE_SIDE.get(), "Golden Side Double Glazed Tile");
+
+        this.add(ChangShengJueBlocks.BLUE_HIGH_CYLINDER_TILE_SIDE.get(), "Blue Side High Glazed Tile");
+        this.add(ChangShengJueBlocks.GRE_HIGH_CYLINDER_TILE_SIDE.get(), "Gray Side High Cylinder Tile");
+        this.add(ChangShengJueBlocks.RED_HIGH_CYLINDER_TILE_SIDE.get(), "Red Side High Glazed Tile");
+        this.add(ChangShengJueBlocks.BLACK_HIGH_CYLINDER_TILE_SIDE.get(), "Black Side High Cylinder Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_HIGH_CYLINDER_TILE_SIDE.get(), "Golden Side High Glazed Tile");
+
+        this.add(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE.get(), "Blue Side Eaves Tile");
+        this.add(ChangShengJueBlocks.GRE_EAVES_TILE_SIDE.get(), "Gray Side Eaves Tile");
+        this.add(ChangShengJueBlocks.RED_EAVES_TILE_SIDE.get(), "Red Side Eaves Tile");
+        this.add(ChangShengJueBlocks.BLACK_EAVES_TILE_SIDE.get(), "Black Side Eaves Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_EAVES_TILE_SIDE.get(), "Golden Side Eaves Tile");
+
+        this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get(), "Golden Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get(), "Golden Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_2.get(), "Golden Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_3.get(), "Golden Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_4.get(), "Golden Tile");
+
+        this.add(ChangShengJueBlocks.TILE_BLOCK.get(), "Tile");
+        this.add(ChangShengJueBlocks.TILE_BLOCK_1.get(), "Tile");
+        this.add(ChangShengJueBlocks.TILE_BLOCK_2.get(), "Tile");
+        this.add(ChangShengJueBlocks.TILE_BLOCK_3.get(), "Tile");
+        this.add(ChangShengJueBlocks.TILE_BLOCK_4.get(), "Tile");
+
+        this.add(ChangShengJueBlocks.BITUMEN_FLOOR_TILES_BLOCK.get(), "Bitumen Floor Tiles");
+        this.add(ChangShengJueBlocks.BLUE_FLOOR_TILES_BLOCK.get(), "Blue Stone Floor Tiles");
+        this.add(ChangShengJueBlocks.BLACK_FLOOR_TILES_BLOCK.get(), "Black Stone Floor Tiles");
+
+        this.add(ChangShengJueBlocks.WINDOWS_BIRCH_BLOCK.get(), "Birch Windows");
+        this.add(ChangShengJueBlocks.WINDOWS_BIRCH_BLOCK_1.get(), "Birch Windows");
+        this.add(ChangShengJueBlocks.WINDOWS_ACACIA_BLOCK.get(), "Acacia Windows");
+        this.add(ChangShengJueBlocks.WINDOWS_ACACIA_BLOCK_1.get(), "Acacia Windows");
+        this.add(ChangShengJueBlocks.WINDOWS_DARK_OAK_BLOCK.get(), "Dark Oak Windows");
+        this.add(ChangShengJueBlocks.WINDOWS_DARK_OAK_BLOCK_1.get(), "Dark Oak Windows");
+        this.add(ChangShengJueBlocks.WINDOWS_OAK_BLOCK.get(), "Oak Windows");
+        this.add(ChangShengJueBlocks.WINDOWS_OAK_BLOCK_1.get(), "Oak Windows");
+        this.add(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK.get(), "Spruce Windows");
+        this.add(ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK_1.get(), "Spruce Windows");
+
+        this.add(ChangShengJueBlocks.HIGH_BIRCH_WINDOWS.get(), "High Birch Windows");
+        this.add(ChangShengJueBlocks.HIGH_ACACIA_WINDOWS.get(), "High Acacia Windows");
+        this.add(ChangShengJueBlocks.HIGH_DARK_OAK_WINDOWS.get(), "High Dark Oak Windows");
+        this.add(ChangShengJueBlocks.HIGH_OAK_WINDOWS.get(), "High Oak Windows");
+        this.add(ChangShengJueBlocks.HIGH_SPRUCE_WINDOWS.get(), "High Spruce Windows");
+
+        this.add(ChangShengJueBlocks.DOOR_BIRCH.get(), "Birch Door");
+        this.add(ChangShengJueBlocks.DOOR_ACACIA.get(), "Acacia Door");
+        this.add(ChangShengJueBlocks.DOOR_DARK_OAK.get(), "Dark Oak Door");
+        this.add(ChangShengJueBlocks.DOOR_OAK.get(), "Oak Door");
+        this.add(ChangShengJueBlocks.DOOR_SPRUCE.get(), "Spruce Door");
+
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_ACACIA_BLOCK.get(), "Acacia Meiren Kao");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_DARK_OAK_BLOCK.get(), "Dark Oak Meiren Kao");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_OAK_BLOCK.get(), "Oak Meiren Kao");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_SPRUCE_BLOCK.get(), "Spruce Meiren Kao");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_BIRCH_BLOCK.get(), "Birch Meiren Kao");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_JUNGLE_BLOCK.get(), "Jungle Meiren Kao");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_MANGROVE_BLOCK.get(), "Mangrove Meiren Kao");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_CHERRY_BLOCK.get(), "Cherry Meiren Kao");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_CRIMSON_BLOCK.get(), "Crimson Meiren Kao");
+        this.add(ChangShengJueBlocks.MEI_REN_KAO_WARPED_BLOCK.get(), "Warped Meiren Kao");
+
+
+        this.add(ChangShengJueBlocks.BIRCH_BENCH.get(), "Birch Bench");
+        this.add(ChangShengJueBlocks.CRIMSON_BENCH.get(), "Crimson Bench");
+        this.add(ChangShengJueBlocks.WARPED_BENCH.get(), "Warped Bench");
+        this.add(ChangShengJueBlocks.MANGROVE_BENCH.get(), "Mangrove Bench");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_BENCH.get(), "Huanghuali Bench");
+        this.add(ChangShengJueBlocks.JI_CHI_MU_BENCH.get(), "Jichimu Bench");
+        this.add(ChangShengJueBlocks.ACACIA_BENCH.get(), "Acacia Bench");
+        this.add(ChangShengJueBlocks.DARK_OAK_BENCH.get(), "Dark Oak Bench");
+        this.add(ChangShengJueBlocks.OAK_BENCH.get(), "Oak Bench");
+        this.add(ChangShengJueBlocks.CHERRY_BENCH.get(), "Cherry Bench");
+        this.add(ChangShengJueBlocks.SPRUCE_BENCH.get(), "Spruce Bench");
+        this.add(ChangShengJueBlocks.ZI_TAN_BENCH.get(), "Zitan Bench");
+
+        this.add(ChangShengJueBlocks.BIRCH_DRINKING_TABLE_AND_CHAIRS.get(), "Birch Drinking Table's Chairs");
+        this.add(ChangShengJueBlocks.CRIMSON_DRINKING_TABLE_AND_CHAIRS.get(), "Crimson Drinking Table's Chairs");
+        this.add(ChangShengJueBlocks.WARPED_DRINKING_TABLE_AND_CHAIRS.get(), "Warped Drinking Table's Chairs");
+        this.add(ChangShengJueBlocks.MANGROVE_DRINKING_TABLE_AND_CHAIRS.get(), "Mangrove Drinking Table's Chairs");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_DRINKING_TABLE_AND_CHAIRS.get(), "Huanghuali Drinking Table's Chairs");
+        this.add(ChangShengJueBlocks.JI_CHI_MU_DRINKING_TABLE_AND_CHAIRS.get(), "Jichimu Drinking Table's Chairs");
+        this.add(ChangShengJueBlocks.ACACIA_DRINKING_TABLE_AND_CHAIRS.get(), "Acacia Drinking Table's Chairs");
+        this.add(ChangShengJueBlocks.DARK_OAK_DRINKING_TABLE_AND_CHAIRS.get(), "Dark Oak Drinking Table's Chairs");
+        this.add(ChangShengJueBlocks.OAK_DRINKING_TABLE_AND_CHAIRS.get(), "Oak Drinking Table's Chairs");
+        this.add(ChangShengJueBlocks.CHERRY_DRINKING_TABLE_AND_CHAIRS.get(), "Cherry Drinking Table's Chairs");
+        this.add(ChangShengJueBlocks.SPRUCE_DRINKING_TABLE_AND_CHAIRS.get(), "Spruce Drinking Table's Chairs");
+        this.add(ChangShengJueBlocks.ZI_TAN_DRINKING_TABLE_AND_CHAIRS.get(), "Zitan Drinking Table's Chairs");
+
+        this.add(ChangShengJueBlocks.BIRCH_BOOK_DESK.get(), "Birch Writing Desk");
+        this.add(ChangShengJueBlocks.CRIMSON_BOOK_DESK.get(), "Crimson Writing Desk");
+        this.add(ChangShengJueBlocks.WARPED_BOOK_DESK.get(), "Warped Writing Desk");
+        this.add(ChangShengJueBlocks.MANGROVE_BOOK_DESK.get(), "Mangrove Writing Desk");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_BOOK_DESK.get(), "Huanghuali Writing Desk");
+        this.add(ChangShengJueBlocks.JI_CHI_MU_BOOK_DESK.get(), "Jichimu Writing Desk");
+        this.add(ChangShengJueBlocks.ACACIA_BOOK_DESK.get(), "Acacia Writing Desk");
+        this.add(ChangShengJueBlocks.DARK_OAK_BOOK_DESK.get(), "Dark Oak Writing Desk");
+        this.add(ChangShengJueBlocks.OAK_BOOK_DESK.get(), "Oak Writing Desk");
+        this.add(ChangShengJueBlocks.CHERRY_BOOK_DESK.get(), "Cherry Writing Desk");
+        this.add(ChangShengJueBlocks.SPRUCE_BOOK_DESK.get(), "Spruce Writing Desk");
+        this.add(ChangShengJueBlocks.ZI_TAN_BOOK_DESK.get(), "Zitan Writing Desk");
+
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_TEAPOY.get(), "Huanghuali Teapoy");
+        this.add(ChangShengJueBlocks.JI_CHI_MU_TEAPOY.get(), "Jichimu Teapoy");
+        this.add(ChangShengJueBlocks.ZI_TAN_TEAPOY.get(), "Zitan Teapoy");
+
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_TAISHI_CHAIR.get(), "Huanghuali Taishi Chair");
+        this.add(ChangShengJueBlocks.JI_CHI_MU_TAISHI_CHAIR.get(), "Jichimu Taishi Chair");
+        this.add(ChangShengJueBlocks.ZI_TAN_TAISHI_CHAIR.get(), "Zitan Taishi Chair");
+
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_FIVE_SCREEN_THRONE.get(), "Huanghuali Five-screen Throne");
+        this.add(ChangShengJueBlocks.JI_CHI_MU_FIVE_SCREEN_THRONE.get(), "Jichimu Five-screen Throne");
+        this.add(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get(), "Zitan Five-screen Throne");
+
+        this.add(ChangShengJueBlocks.BIRCH_LOW_DESK.get(), "Birch Low Desk");
+        this.add(ChangShengJueBlocks.CRIMSON_LOW_DESK.get(), "Crimson Low Desk");
+        this.add(ChangShengJueBlocks.WARPED_LOW_DESK.get(), "Warped Low Desk");
+        this.add(ChangShengJueBlocks.MANGROVE_LOW_DESK.get(), "Mangrove Low Desk");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_LOW_DESK.get(), "Huanghuali Low Desk");
+        this.add(ChangShengJueBlocks.JI_CHI_MU_LOW_DESK.get(), "Jichimu Low Desk");
+        this.add(ChangShengJueBlocks.ACACIA_LOW_DESK.get(), "Acacia Low Desk");
+        this.add(ChangShengJueBlocks.DARK_OAK_LOW_DESK.get(), "Dark Oak Low Desk");
+        this.add(ChangShengJueBlocks.OAK_LOW_DESK.get(), "Oak Low Desk");
+        this.add(ChangShengJueBlocks.CHERRY_LOW_DESK.get(), "Cherry Low Desk");
+        this.add(ChangShengJueBlocks.SPRUCE_LOW_DESK.get(), "Spruce Low Desk");
+        this.add(ChangShengJueBlocks.ZI_TAN_LOW_DESK.get(), "Zitan Low Desk");
+
+        this.add(ChangShengJueBlocks.ZAFU.get(), "cushion");
+
+        this.add(ChangShengJueBlocks.WHITE_JADE_BLOCK.get(),  "White Jade Block");
+        this.add(ChangShengJueBlocks.WHITE_JADE_STAIRS.get(), "White Jade Stairs");
+        this.add(ChangShengJueBlocks.WHITE_JADE_SLAB.get(), "White Jade Slab");
+        this.add(ChangShengJueBlocks.WHITE_JADE_WALL.get(), "White Jade Wall");
+        this.add(ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get(),"White Jade Balustrade");
+        this.add(ChangShengJueBlocks.OAK_BALUSTRADE.get(),"Oak Balustrade");
+        this.add(ChangShengJueBlocks.SPRUCE_BALUSTRADE.get(), "Spruce Balustrade");
+        this.add(ChangShengJueBlocks.BIRCH_BALUSTRADE.get(), "Birch Balustrade");
+        this.add(ChangShengJueBlocks.JUNGLE_BALUSTRADE.get(), "Jungle Balustrade");
+        this.add(ChangShengJueBlocks.ACACIA_BALUSTRADE.get(), "Acacia Balustrade");
+        this.add(ChangShengJueBlocks.MANGROVE_BALUSTRADE.get(), "Mangrove Balustrade");
+        this.add(ChangShengJueBlocks.CHERRY_BALUSTRADE.get(), "Cherry Balustrade");
+        this.add(ChangShengJueBlocks.DARK_OAK_BALUSTRADE.get(), "Dark Oak Balustrade");
+        this.add(ChangShengJueBlocks.CRIMSON_BALUSTRADE.get(), "Crimson Balustrade");
+        this.add(ChangShengJueBlocks.WARPED_BALUSTRADE.get(), "Warped Balustrade");
+        this.add(ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get(),"White Jade Guardrail");
 
         // 食物容器类方块
-        this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_PAN.get(), "饺子盘");
-        this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_WAN.get(), "饺子碗");
-        this.add(ChangShengJueBlocks.PORTULACA_OLERACEA_CAKE_PAN.get(), "马齿苋饼盘");
-        this.add(ChangShengJueBlocks.PORTULACA_OLERACEA_CAKE_WAN.get(), "马齿苋饼碗");
-        this.add(ChangShengJueBlocks.QING_TUAN_PAN.get(), "青团盘");
-        this.add(ChangShengJueBlocks.QING_TUAN_WAN.get(), "青团碗");
-        this.add(ChangShengJueBlocks.SORGHUM_CAKE_PAN.get(), "高粱饼盘");
-        this.add(ChangShengJueBlocks.SORGHUM_CAKE_WAN.get(), "高粱饼碗");
-        this.add(ChangShengJueBlocks.MI_FAN_PAN.get(), "米饭盘");
-        this.add(ChangShengJueBlocks.MI_FAN_WAN.get(), "米饭碗");
-        this.add(ChangShengJueBlocks.XIAO_MI_FAN_PAN.get(), "小米饭盘");
-        this.add(ChangShengJueBlocks.XIAO_MI_FAN_WAN.get(), "小米饭碗");
+        this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_PAN.get(), "Jiaozi Plate");
+        this.add(ChangShengJueBlocks.CAPSULE_JIAO_ZI_WAN.get(), "Jiaozi Bowl");
+        this.add(ChangShengJueBlocks.PORTULACA_OLERACEA_CAKE_PAN.get(), "Portulaca Oleracea Cake Plate");
+        this.add(ChangShengJueBlocks.PORTULACA_OLERACEA_CAKE_WAN.get(), "Portulaca Oleracea Cake Bowl");
+        this.add(ChangShengJueBlocks.QING_TUAN_PAN.get(), "Qingtuan Plate");
+        this.add(ChangShengJueBlocks.QING_TUAN_WAN.get(), "Qingtuan Bowl");
+        this.add(ChangShengJueBlocks.SORGHUM_CAKE_PAN.get(), "Sorghum Cake Plate");
+        this.add(ChangShengJueBlocks.SORGHUM_CAKE_WAN.get(), "Sorghum Cake Bowl");
+        this.add(ChangShengJueBlocks.MI_FAN_PAN.get(), "Rice Plate");
+        this.add(ChangShengJueBlocks.MI_FAN_WAN.get(), "Rice Bowl");
+        this.add(ChangShengJueBlocks.XIAO_MI_FAN_PAN.get(), "Millet Rice Plate");
+        this.add(ChangShengJueBlocks.XIAO_MI_FAN_WAN.get(), "Millet Rice Bowl");
 
 
-        this.add(ChangShengJueBlocks.EMPTY_SHI_LI_XIANG.get(), "空十里香杯");
-        this.add(ChangShengJueBlocks.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get(), "空麦块贡酒杯");
+        this.add(ChangShengJueBlocks.EMPTY_SHI_LI_XIANG.get(), "Empty Shi Li Xiang Cup");
+        this.add(ChangShengJueBlocks.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get(), "Empty Wheat Nuggets Tribute Wine Cup");
 
-        this.add(ChangShengJueBlocks.BIRCH_WINE_TABLE.get(), "白桦木酒桌");
-        this.add(ChangShengJueBlocks.CRIMSON_WINE_TABLE.get(), "绯红木酒桌");
-        this.add(ChangShengJueBlocks.WARPED_WINE_TABLE.get(), "诡异木酒桌");
-        this.add(ChangShengJueBlocks.MANGROVE_WINE_TABLE.get(), "红树酒桌");
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_WINE_TABLE.get(), "黄花梨酒桌");
-        this.add(ChangShengJueBlocks.JI_CHI_MU_WINE_TABLE.get(), "鸡翅木酒桌");
-        this.add(ChangShengJueBlocks.ACACIA_WINE_TABLE.get(), "金合欢酒桌");
-        this.add(ChangShengJueBlocks.DARK_OAK_WINE_TABLE.get(), "深色橡木酒桌");
-        this.add(ChangShengJueBlocks.OAK_WINE_TABLE.get(), "橡木酒桌");
-        this.add(ChangShengJueBlocks.CHERRY_WINE_TABLE.get(), "樱花木酒桌");
-        this.add(ChangShengJueBlocks.SPRUCE_WINE_TABLE.get(), "云杉木酒桌");
-        this.add(ChangShengJueBlocks.ZI_TAN_WINE_TABLE.get(), "紫檀木酒桌");
+        this.add(ChangShengJueBlocks.BIRCH_WINE_TABLE.get(), "Birch Wine Table");
+        this.add(ChangShengJueBlocks.CRIMSON_WINE_TABLE.get(), "Crimson Wine Table");
+        this.add(ChangShengJueBlocks.WARPED_WINE_TABLE.get(), "Warped Wine Table");
+        this.add(ChangShengJueBlocks.MANGROVE_WINE_TABLE.get(), "Mangrove Wine Table");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_WINE_TABLE.get(), "Huanghuali Wine Table");
+        this.add(ChangShengJueBlocks.JI_CHI_MU_WINE_TABLE.get(), "Jichimu Wine Table");
+        this.add(ChangShengJueBlocks.ACACIA_WINE_TABLE.get(), "Acacia Wine Table");
+        this.add(ChangShengJueBlocks.DARK_OAK_WINE_TABLE.get(), "Dark Oak Wine Table");
+        this.add(ChangShengJueBlocks.OAK_WINE_TABLE.get(), "Oak Wine Table");
+        this.add(ChangShengJueBlocks.CHERRY_WINE_TABLE.get(), "Cherry Wine Table");
+        this.add(ChangShengJueBlocks.SPRUCE_WINE_TABLE.get(), "Spruce Wine Table");
+        this.add(ChangShengJueBlocks.ZI_TAN_WINE_TABLE.get(), "Zitan Wine Table");
 
-        this.add(ChangShengJueBlocks.AG_ORE.get(), "银矿石");
-        this.add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get(), "深层银矿石");
-        this.add(ChangShengJueBlocks.KAOLIN_ORE.get(), "高岭土矿");
-        this.add(ChangShengJueBlocks.LIMESTONE.get(), "石灰岩");
-        this.add(ChangShengJueBlocks.SYDEROLIFE_ORE.get(), "陶土矿");
+        this.add(ChangShengJueBlocks.AG_ORE.get(), "Silver Ore");
+        this.add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get(), "Deepslate Silver Ore");
+        this.add(ChangShengJueBlocks.KAOLIN_ORE.get(), "Kaolin Ore");
+        this.add(ChangShengJueBlocks.LIMESTONE.get(), "Limestone");
+        this.add(ChangShengJueBlocks.SYDEROLIFE_ORE.get(), "Clay Ore");
 
-        this.add(ChangShengJueBlocks.CASTING_MOLDS.get(), "铜钱模具");
-        this.add(ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get(), "元宝模具");
+        this.add(ChangShengJueBlocks.CASTING_MOLDS.get(), "Copper Coin Mold");
+        this.add(ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get(), "Ingot Casting Mold");
 
-        this.add(ChangShengJueBlocks.PAINTING_SCROLL.get(), "画轴(1X1)");
-        this.add(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(), "画轴(1X2)");
-        this.add(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(), "画轴(2X1)");
-        this.add(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get(), "画轴(2X2)");
+        this.add(ChangShengJueBlocks.PAINTING_SCROLL.get(), "Painting Scroll (1x1)");
+        this.add(ChangShengJueBlocks.HIGH_PAINTING_SCROLL.get(), "Painting Scroll (1x2)");
+        this.add(ChangShengJueBlocks.WIDTH_PAINTING_SCROLL.get(), "Painting Scroll (2x1)");
+        this.add(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get(), "Painting Scroll (2x2)");
 
-        this.add(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get(), "织布机");
-        this.add(ChangShengJueBlocks.POTTERY_WHEEL.get(), "陶轮");
-        this.add(ChangShengJueBlocks.TOOL_TABLE.get(), "工具台");
-        this.add(ChangShengJueBlocks.WEAPON_RACK.get(), "武器架");
-        this.add(ChangShengJueBlocks.DESK.get(), "案台");
-        this.add(ChangShengJueBlocks.PIG_TROUGH.get(), "牲畜食槽");
+        this.add(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get(), "Chang Sheng Jue Loom");
+        this.add(ChangShengJueBlocks.POTTERY_WHEEL.get(), "Pottery Wheel");
+        this.add(ChangShengJueBlocks.TOOL_TABLE.get(), "Tool Table");
+        this.add(ChangShengJueBlocks.WEAPON_RACK.get(), "Weapon Rack");
+        this.add(ChangShengJueBlocks.DESK.get(), "Desk");
+        this.add(ChangShengJueBlocks.PIG_TROUGH.get(), "Livestock Trough");
 
-        this.add(ChangShengJueBlocks.PLAQUE.get(), "牌匾");
-        this.add(ChangShengJueBlocks.SHING_MUN_LEFT.get(), "小城门(左)");
-        this.add(ChangShengJueBlocks.SHING_MUN_RIGHT.get(), "小城门(右)");
+        this.add(ChangShengJueBlocks.PLAQUE.get(), "Plaque");
+        this.add(ChangShengJueBlocks.SHING_MUN_LEFT.get(), "Small City Gate (Left)");
+        this.add(ChangShengJueBlocks.SHING_MUN_RIGHT.get(), "Small City Gate (Right)");
 
-        this.add(ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get(), "大城门(左)");
-        this.add(ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get(), "大城门(右)");
-        this.add(ChangShengJueBlocks.WIND_CHIME.get(), "风铃");
-        this.add(ChangShengJueBlocks.TAILORING_CASE.get(), "裁衣案");
-        this.add(ChangShengJueBlocks.FORGE_BLOCK.get(), "锻造炉");
+        this.add(ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get(), "Big City Gate (Left)");
+        this.add(ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get(), "Big City Gate (Right)");
+        this.add(ChangShengJueBlocks.WIND_CHIME.get(), "Wind Chime");
+        this.add(ChangShengJueBlocks.TAILORING_CASE.get(), "Tailoring Table");
+        this.add(ChangShengJueBlocks.FORGE_BLOCK.get(), "Forge Furnace");
 
         //实体生物
-        this.add(ChangShengJueEntity.BUTTERFLY.get(), "蝴蝶");
-        this.add(ChangShengJueEntity.MONKEY.get(), "猴");
-        this.add(ChangShengJueEntity.DRAGONFLY.get(), "蜻蜓");
-        this.add(ChangShengJueEntity.CICADA.get(), "蝉");
-        this.add(ChangShengJueEntity.CRANE.get(), "鹤");
-        this.add(ChangShengJueEntity.MALE_PEACOCK.get(), "孔雀");
-        this.add(ChangShengJueEntity.FEMALE_PEACOCK.get(), "孔雀");
-        this.add(ChangShengJueEntity.STAG.get(), "鹿");
-        this.add(ChangShengJueEntity.HIND.get(), "鹿");
-        this.add(ChangShengJueEntity.TIGER.get(), "老虎");
-        this.add(ChangShengJueEntity.CROC.get(), "鳄鱼");
-        this.add(ChangShengJueEntity.WARRIOR.get(), "武夫");
-        this.add(ChangShengJueEntity.KILN_WORKER.get(), "营造主事");
-        this.add(ChangShengJueEntity.MALE_INNKEEPER.get(), "酒馆男掌柜");
-        this.add(ChangShengJueEntity.FEMALE_INNKEEPER.get(), "酒馆女掌柜");
-        this.add(ChangShengJueEntity.CHALLENGER.get(), "挑战者");
-        this.add(ChangShengJueEntity.BLACKSMITH.get(), "铁匠");
-        this.add(ChangShengJueEntity.LANCE_GANG_LEADER.get(), "帮派首领");
-        this.add(ChangShengJueEntity.KNIFE_GANG_LEADER.get(), "帮派首领");
-        this.add(ChangShengJueEntity.SWORD_GANG_LEADER.get(), "帮派首领");
-        this.add(ChangShengJueEntity.CLUBBED_GANG_LEADER.get(), "帮派首领");
-        this.add(ChangShengJueEntity.GANG_LEADER.get(), "帮派首领");
-        this.add(ChangShengJueEntity.BANDIT.get(), "强盗");
-        this.add(ChangShengJueEntity.VILLAIN.get(), "恶徒");
-        this.add(ChangShengJueEntity.ASSASSIN.get(), "帮派杀手");
-        this.add(ChangShengJueEntity.CLUBBED_MING_XIA.get(), "棍王董大侠");
-        this.add(ChangShengJueEntity.SWORD_MING_XIA.get(), "剑仙张大侠");
-        this.add(ChangShengJueEntity.KNIFE_MING_XIA.get(), "刀圣徐大侠");
-        this.add(ChangShengJueEntity.FIST_MING_XIA.get(), "北拳萧大侠");
-        this.add(ChangShengJueEntity.PIGLIN_WU_XIA.get(), "功夫猪灵");
-        this.add(ChangShengJueEntity.WITCH_WU_XIA.get(), "功夫女巫");
-        this.add(ChangShengJueEntity.EVOKER_WU_XIA.get(), "功夫唤魔者");
-        this.add(ChangShengJueEntity.VINDICATOR_WU_XIA.get(), "功夫卫道士");
-        this.add(ChangShengJueEntity.PILLAGER_WU_XIA.get(), "功夫掠夺者");
+        this.add(ChangShengJueEntity.BUTTERFLY.get(), "Butterfly");
+        this.add(ChangShengJueEntity.MONKEY.get(), "Monkey");
+        this.add(ChangShengJueEntity.DRAGONFLY.get(), "Dragonfly");
+        this.add(ChangShengJueEntity.CICADA.get(), "Cicada");
+        this.add(ChangShengJueEntity.CRANE.get(), "Crane");
+        this.add(ChangShengJueEntity.MALE_PEACOCK.get(), "Male Peacock");
+        this.add(ChangShengJueEntity.FEMALE_PEACOCK.get(), "Female Peacock");
+        this.add(ChangShengJueEntity.STAG.get(), "Stag");
+        this.add(ChangShengJueEntity.HIND.get(), "Hind");
+        this.add(ChangShengJueEntity.TIGER.get(), "Tiger");
+        this.add(ChangShengJueEntity.CROC.get(), "Crocodile");
+        this.add(ChangShengJueEntity.WARRIOR.get(), "Warrior");
+        this.add(ChangShengJueEntity.KILN_WORKER.get(), "Kiln Worker");
+        this.add(ChangShengJueEntity.MALE_INNKEEPER.get(), "Male Innkeeper");
+        this.add(ChangShengJueEntity.FEMALE_INNKEEPER.get(), "Female Innkeeper");
+        this.add(ChangShengJueEntity.CHALLENGER.get(), "Challenger");
+        this.add(ChangShengJueEntity.BLACKSMITH.get(), "Blacksmith");
+        this.add(ChangShengJueEntity.LANCE_GANG_LEADER.get(), "Lance Gang Leader");
+        this.add(ChangShengJueEntity.KNIFE_GANG_LEADER.get(), "Knife Gang Leader");
+        this.add(ChangShengJueEntity.SWORD_GANG_LEADER.get(), "Sword Gang Leader");
+        this.add(ChangShengJueEntity.CLUBBED_GANG_LEADER.get(), "Clubbed Gang Leader");
+        this.add(ChangShengJueEntity.GANG_LEADER.get(), "Gang Leader");
+        this.add(ChangShengJueEntity.BANDIT.get(), "Bandit");
+        this.add(ChangShengJueEntity.VILLAIN.get(), "Villain");
+        this.add(ChangShengJueEntity.ASSASSIN.get(), "Gang Assassin");
+        this.add(ChangShengJueEntity.CLUBBED_MING_XIA.get(), "Staff King Master Dong");
+        this.add(ChangShengJueEntity.SWORD_MING_XIA.get(), "Sword Immortal Master Zhang");
+        this.add(ChangShengJueEntity.KNIFE_MING_XIA.get(), "Blade Sage Master Xu");
+        this.add(ChangShengJueEntity.FIST_MING_XIA.get(), "Northern Fist Master Xiao");
+        this.add(ChangShengJueEntity.PIGLIN_WU_XIA.get(), "Kung Fu Piglin");
+        this.add(ChangShengJueEntity.WITCH_WU_XIA.get(), "Kung Fu Witch");
+        this.add(ChangShengJueEntity.EVOKER_WU_XIA.get(), "Kung Fu Evoker");
+        this.add(ChangShengJueEntity.VINDICATOR_WU_XIA.get(), "Kung Fu Vindicator");
+        this.add(ChangShengJueEntity.PILLAGER_WU_XIA.get(), "Kung Fu Pillager");
 
-        this.add(ChangShengJueEntity.STAKES.get(), "练功木桩");
-        this.add(ChangShengJueEntity.GE_SHAN_DA_NIU.get(), "隔山打牛");
-        this.add(ChangShengJueEntity.PEACOCK_EGG.get(), "孔雀蛋");
-        this.add(ChangShengJueEntity.THROWING_KNIVES_ENTITY.get(), "飞刀");
-        this.add(ChangShengJueEntity.BA_WANG_QIANG.get(), "霸王枪");
-        this.add(ChangShengJueEntity.RED_TASSELLED_SPEAR.get(), "红缨枪");
+        this.add(ChangShengJueEntity.STAKES.get(), "Training Stake");
+        this.add(ChangShengJueEntity.GE_SHAN_DA_NIU.get(), "Ge Shan Da Niu");
+        this.add(ChangShengJueEntity.PEACOCK_EGG.get(), "Peacock Egg");
+        this.add(ChangShengJueEntity.THROWING_KNIVES_ENTITY.get(), "Throwing Knife");
+        this.add(ChangShengJueEntity.BA_WANG_QIANG.get(), "Ba Wang Spear");
+        this.add(ChangShengJueEntity.RED_TASSELLED_SPEAR.get(), "Red Tasselled Spear");
         // 村民职业
-        this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_farmer", "农民");
-        this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter", "窑工");
-        this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_hunter", "猎人");
-        this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_chief", "村长");
-        this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_seamstress", "缝工");
+        this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_farmer", "Farmer");
+        this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_potter", "Potter");
+        this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_hunter", "Hunter");
+        this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_chief", "Village Chief");
+        this.add("entity.minecraft.villager.chang_sheng_jue.chang_sheng_jue_seamstress", "Seamstress");
 
-        this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_farmer", "农民");
-        this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_potter", "窑工");
-        this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_hunter", "猎人");
-        this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_chief", "村长");
-        this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_seamstress", "缝工");
+        this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_farmer", "Farmer");
+        this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_potter", "Potter");
+        this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_hunter", "Hunter");
+        this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_chief", "Village Chief");
+        this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_seamstress", "Seamstress");
 
         this.add("entity.chang_sheng_jue.chang_sheng_jue_villager", "Villager");
         this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.none", "Villager");
         this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.villager", "Villager");
         this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.armorer", "Armorer");
         this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.butcher", "Butcher");
-        this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.cartographer", "制图师");
+        this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.cartographer", "Cartographer");
         this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.cleric", "Cleric");
         this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.farmer", "Farmer");
         this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.fisherman", "Fisherman");
@@ -1240,326 +1241,517 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.weaponsmith", "Weaponsmith");
 
         //buff
-        this.add(ChangShengJueEffects.BLEED_EFFECT.get(), "流血");
-        this.add(ChangShengJueEffects.DIZZY_EFFECT.get(), "眩晕");
-        this.add(ChangShengJueEffects.AIRBORNE_EFFECT.get(), "挑飞");
-        this.add(ChangShengJueEffects.FIXATION_EFFECT.get(), "定身");
-//        this.add(ChangShengJueEffects.GOLDEN_BELL_JAR_EFFECT.get(), "金钟罩");
-        this.add(ChangShengJueEffects.TURTLE_BREATH_EFFECT.get(), "龟息");
-        this.add(ChangShengJueEffects.TRAUMA_EFFECT.get(), "外伤");
-        this.add(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get(), "内伤");
-        this.add(ChangShengJueEffects.BILUOCHUN_TEAS.get(), "碧螺春");
-        this.add(ChangShengJueEffects.LONG_JING_TEAS.get(), "龙井");
-        this.add(ChangShengJueEffects.FEN_JIU.get(), "汾酒");
-        this.add(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get(), "麦块贡酒");
-        this.add(ChangShengJueEffects.SHI_LI_XIANG.get(), "十里香");
-        this.add(ChangShengJueEffects.DRUNKEN.get(), "醉酒");
-        this.add(ChangShengJueEffects.VILLAGER_CHARM_EFFECT.get(), "持续提高村民声望");
-        this.add(ChangShengJueEffects.INSTANT_CHARM_EFFECT.get(), "瞬间提高村民声望");
-        this.add(ChangShengJueEffects.INSTANT_DISFAVOR_EFFECT.get(), "瞬间降低村民声望");
+        this.add(ChangShengJueEffects.BLEED_EFFECT.get(), "Bleeding");
+        this.add(ChangShengJueEffects.DIZZY_EFFECT.get(), "Dizziness");
+        this.add(ChangShengJueEffects.AIRBORNE_EFFECT.get(), "Airborne");
+        this.add(ChangShengJueEffects.FIXATION_EFFECT.get(), "Fixation");
+//        this.add(ChangShengJueEffects.GOLDEN_BELL_JAR_EFFECT.get(), "Golden Bell Jar");
+        this.add(ChangShengJueEffects.TURTLE_BREATH_EFFECT.get(), "Turtle Breath");
+        this.add(ChangShengJueEffects.TRAUMA_EFFECT.get(), "Trauma");
+        this.add(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get(), "Internal Injury");
+        this.add(ChangShengJueEffects.BILUOCHUN_TEAS.get(), "Biluochun");
+        this.add(ChangShengJueEffects.LONG_JING_TEAS.get(), "Longjing");
+        this.add(ChangShengJueEffects.FEN_JIU.get(), "Fenjiu");
+        this.add(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get(), "Wheat Nuggets Tribute Wine");
+        this.add(ChangShengJueEffects.SHI_LI_XIANG.get(), "Shi Li Xiang");
+        this.add(ChangShengJueEffects.DRUNKEN.get(), "Drunkenness");
+        this.add(ChangShengJueEffects.VILLAGER_CHARM_EFFECT.get(), "Continuous Villager Reputation Boost");
+        this.add(ChangShengJueEffects.INSTANT_CHARM_EFFECT.get(), "Instant Villager Reputation Boost");
+        this.add(ChangShengJueEffects.INSTANT_DISFAVOR_EFFECT.get(), "Instant Villager Reputation Reduction");
 
         //群系
-        this.add("biome."+ ChangShengJue.MOD_ID +".chang_shen_jue_prairie", "慕然草原");
+        this.add("biome."+ ChangShengJue.MOD_ID +".chang_shen_jue_prairie", "Muran Prairie");
 
         //按键
 
         //存储
-        this.add("container.hercules", "大力神功");
+        this.add("container.hercules", "Hercules' Mighty Skill");
 
         /*信息*/
-        //死亡信息
-        this.add("death.attack." + CSJDamageTypes.BLEED.location().getPath(), "%1$s失血过多。");
-        this.add("death.attack." + CSJDamageTypes.MARTIAL_ARTS.location().getPath(), "%1$s被%2$s使用武功震碎了内脏。");
-        this.add("death.attack." + CSJDamageTypes.TRAUMA.location().getPath(), "%1$s的伤势过重。");
+//死亡信息
+        this.add("death.attack." + CSJDamageTypes.BLEED.location().getPath(), "%1$s bled to death.");
+        this.add("death.attack." + CSJDamageTypes.MARTIAL_ARTS.location().getPath(), "%1$s had their internal organs shattered by %2$s using martial arts.");
+        this.add("death.attack." + CSJDamageTypes.TRAUMA.location().getPath(), "%1$s succumbed to severe trauma.");
         //配置文件信息
-        this.add("config."+ ChangShengJue.MOD_ID +".reload", "配置已重新加载");
-        this.add("config."+ ChangShengJue.MOD_ID +".enable_quests", "是否启用自动接受类型任务。");
-        this.add("config."+ ChangShengJue.MOD_ID +".spirit_recovery_amount", "自然恢复的灵气值。");
-        this.add("config."+ ChangShengJue.MOD_ID +".spirit_recovery_interval", "灵气自然恢复间隔(游戏刻)。");
-        this.add("config."+ ChangShengJue.MOD_ID +".spirit_root_ju_qi_efficiency", "化神期后灵根数量影响聚气效率");
-        this.add("config."+ ChangShengJue.MOD_ID +".tun_na_particle", "是否显示吐纳粒子");
-        this.add("config."+ ChangShengJue.MOD_ID +".breakthrough_particle", "是否显示突破粒子");
+        this.add("config."+ ChangShengJue.MOD_ID +".reload", "Configuration reloaded");
+        this.add("config."+ ChangShengJue.MOD_ID +".enable_quests", "Whether to enable auto-accept type quests.");
+        this.add("config."+ ChangShengJue.MOD_ID +".spirit_recovery_amount", "Naturally restored lingqi value.");
+        this.add("config."+ ChangShengJue.MOD_ID +".spirit_recovery_interval", "Lingqi natural recovery interval (game ticks).");
+        this.add("config."+ ChangShengJue.MOD_ID +".spirit_root_ju_qi_efficiency", "Number of spirit roots affects qi gathering efficiency after the huashen stage");
+        this.add("config."+ ChangShengJue.MOD_ID +".tun_na_particle", "Whether to display tuna particles");
+        this.add("config."+ ChangShengJue.MOD_ID +".breakthrough_particle", "Whether to display breakthrough particles");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_level", "独孤九剑最大等级上限");
-        this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_exp", "独孤九剑突破所需的成功释放次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_cooldown", "独孤九剑最大冷却时间");
+        this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_level", "dugu nine swords max level");
+        this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_exp", "dugu nine swords max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_cooldown", "dugu nine swords max cooldown");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_level", "高家枪法最大等级上限");
-        this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_exp", "高家枪法突破所需的成功释放次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_cooldown", "高家枪法最大冷却时间");
+        this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_level", "gao marksmanship max level");
+        this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_exp", "gao marksmanship max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_cooldown", "gao marksmanship max cooldown");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".ge_shan_da_niu_max_level", "隔山打牛最大等级上限");
-        this.add("config."+ ChangShengJue.MOD_ID +".ge_shan_da_niu_max_exp", "隔山打牛突破所需的成功释放次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".ge_shan_da_niu_max_cooldown", "隔山打牛最大冷却时间");
+        this.add("config."+ ChangShengJue.MOD_ID +".ge_shan_da_niu_max_level", "ge shan da niu max level");
+        this.add("config."+ ChangShengJue.MOD_ID +".ge_shan_da_niu_max_exp", "ge shan da niu max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".ge_shan_da_niu_max_cooldown", "ge shan da niu max cooldown");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".golden_black_knife_method_max_level", "金乌刀法最大等级上限");
-        this.add("config."+ ChangShengJue.MOD_ID +".golden_black_knife_method_max_exp", "金乌刀法突破所需的成功释放次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".golden_black_knife_method_max_cooldown", "金乌刀法最大冷却时间");
+        this.add("config."+ ChangShengJue.MOD_ID +".golden_black_knife_method_max_level", "golden black knife method max level");
+        this.add("config."+ ChangShengJue.MOD_ID +".golden_black_knife_method_max_exp", "golden black knife method max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".golden_black_knife_method_max_cooldown", "golden black knife method max cooldown");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".shaolin_stick_method_max_level", "少林棍法最大等级上限");
-        this.add("config."+ ChangShengJue.MOD_ID +".shaolin_stick_method_max_exp", "少林棍法突破所需的成功释放次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".shaolin_stick_method_max_cooldown", "少林棍法最大冷却时间");
+        this.add("config."+ ChangShengJue.MOD_ID +".shaolin_stick_method_max_level", "shaolin stick method max level");
+        this.add("config."+ ChangShengJue.MOD_ID +".shaolin_stick_method_max_exp", "shaolin stick method max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".shaolin_stick_method_max_cooldown", "shaolin stick method max cooldown");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".sunflower_point_caveman_max_level", "葵花点穴手最大等级上限");
-        this.add("config."+ ChangShengJue.MOD_ID +".sunflower_point_caveman_max_exp", "葵花点穴手突破所需的成功释放次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".sunflower_point_caveman_max_cooldown", "葵花点穴手最大冷却时间");
+        this.add("config."+ ChangShengJue.MOD_ID +".sunflower_point_caveman_max_level", "sunflower point caveman max level");
+        this.add("config."+ ChangShengJue.MOD_ID +".sunflower_point_caveman_max_exp", "sunflower point caveman max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".sunflower_point_caveman_max_cooldown", "sunflower point caveman max cooldown");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".turtle_breath_work_max_level", "龟息功最大等级上限");
-        this.add("config."+ ChangShengJue.MOD_ID +".turtle_breath_work_max_exp", "龟息功突破所需的成功释放次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".turtle_breath_work_max_cooldown", "龟息功最大冷却时间");
+        this.add("config."+ ChangShengJue.MOD_ID +".turtle_breath_work_max_level", "turtle breath work max level");
+        this.add("config."+ ChangShengJue.MOD_ID +".turtle_breath_work_max_exp", "turtle breath work max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".turtle_breath_work_max_cooldown", "turtle breath work max cooldown");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".xuannu_swordsmanship_max_level", "玄女剑法最大等级上限");
-        this.add("config."+ ChangShengJue.MOD_ID +".xuannu_swordsmanship_max_exp", "玄女剑法突破所需的成功释放次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".xuannu_swordsmanship_max_cooldown", "玄女剑法最大冷却时间");
+        this.add("config."+ ChangShengJue.MOD_ID +".xuannu_swordsmanship_max_level", "xuannu swordsmanship max level");
+        this.add("config."+ ChangShengJue.MOD_ID +".xuannu_swordsmanship_max_exp", "xuannu swordsmanship max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".xuannu_swordsmanship_max_cooldown", "xuannu swordsmanship max cooldown");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".relentless_throwing_knives_max_level", "无情飞刀最大等级上限");
-        this.add("config."+ ChangShengJue.MOD_ID +".relentless_throwing_knives_max_exp", "无情飞刀突破所需的成功释放次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".relentless_throwing_knives_max_cooldown", "无情飞刀最大冷却时间");
-        this.add("config."+ ChangShengJue.MOD_ID +".flying_dagger_pouch_max_slots", "飞刀囊中最大可放入的飞刀数量");
+        this.add("config."+ ChangShengJue.MOD_ID +".relentless_throwing_knives_max_level", "relentless throwing knives max level");
+        this.add("config."+ ChangShengJue.MOD_ID +".relentless_throwing_knives_max_exp", "relentless throwing knives max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".relentless_throwing_knives_max_cooldown", "relentless throwing knives max cooldown");
+        this.add("config."+ ChangShengJue.MOD_ID +".flying_dagger_pouch_max_slots", "flying dagger pouch max slots");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".golden_bell_jar_max_level", "金钟罩最大等级上限");
-        this.add("config."+ ChangShengJue.MOD_ID +".golden_bell_jar_max_exp", "金钟罩突破所需的成功释放次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".golden_bell_jar_max_cooldown", "金钟罩最大冷却时间");
+        this.add("config."+ ChangShengJue.MOD_ID +".golden_bell_jar_max_level", "golden bell jar max level");
+        this.add("config."+ ChangShengJue.MOD_ID +".golden_bell_jar_max_exp", "golden bell jar max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".golden_bell_jar_max_cooldown", "golden bell jar max cooldown");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".hercules_max_exp", "大力神功突破所需的移动距离");
+        this.add("config."+ ChangShengJue.MOD_ID +".hercules_max_exp", "hercules max exp");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".immortal_miracle_max_level", "不死神功最大等级上限");
-        this.add("config."+ ChangShengJue.MOD_ID +".immortal_miracle_max_exp", "不死神功突破所需的成功释放次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".immortal_miracle_max_cooldown", "不死神功最大冷却时间");
+        this.add("config."+ ChangShengJue.MOD_ID +".immortal_miracle_max_level", "immortal miracle max level");
+        this.add("config."+ ChangShengJue.MOD_ID +".immortal_miracle_max_exp", "immortal miracle max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".immortal_miracle_max_cooldown", "immortal miracle max cooldown");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_max_level", "乾坤大挪移最大等级上限");
-        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_max_exp", "乾坤大挪移突破所需的成功释放次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_max_cooldown", "乾坤大挪移最大冷却时间");
-        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_probability", "乾坤大挪移每次反弹伤害的概率");
-        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_extra_probability", "乾坤大挪移大成后每点血量增加反弹伤害的概率");
-        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_multiplier", "乾坤大挪移反弹伤害的倍率");
-        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_tick", "乾坤大挪移每次反弹伤害需要的时间");
-        this.add("config."+ ChangShengJue.MOD_ID +".qian_kun_da_nuo_yi_max_cooldown_extra_tick", "乾坤大挪移每次释放后增加的冷却恢复到默认冷却的时间");
+        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_max_level", "qian kun da nuo yi max level");
+        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_max_exp", "qian kun da nuo yi max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_max_cooldown", "qian kun da nuo yi max cooldown");
+        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_probability", "qian kun da nuo yi bounce damage probability");
+        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_extra_probability", "qian kun da nuo yi bounce damage extra probability");
+        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_multiplier", "qian kun da nuo yi bounce damage multiplier");
+        this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_tick", "qian kun da nuo yi bounce damage tick");
+        this.add("config."+ ChangShengJue.MOD_ID +".qian_kun_da_nuo_yi_max_cooldown_extra_tick", "qian kun da nuo yi max cooldown extra tick");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".the_classics_of_tendon_changing_max_exp", "易筋经突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".the_classics_of_tendon_changing_max_exp", "the classics of tendon changing max exp");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".paoding_max_exp", "庖丁解牛突破所需的成功释放次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".paoding_additional_drops_count", "庖丁解牛杀死生物时额外掉落肉的数量");
+        this.add("config."+ ChangShengJue.MOD_ID +".paoding_max_exp", "paoding max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".paoding_additional_drops_count", "paoding additional drops count");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".wu_gang_cut_gui_max_exp", "吴刚伐桂突破所需的成功释放次数");
+        this.add("config."+ ChangShengJue.MOD_ID +".wu_gang_cut_gui_max_exp", "wu gang cut gui max exp");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".yugong_moves_mountains_max_exp", "愚公移山突破所需的成功释放次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".yugong_moves_mountains_excavation_range", "愚公移山的挖掘范围");
+        this.add("config."+ ChangShengJue.MOD_ID +".yugong_moves_mountains_max_exp", "yugong moves mountains max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".yugong_moves_mountains_excavation_range", "yugong moves mountains excavation range");
 
-        this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_max_exp", "张门心学突破所需的交易成功次数");
-        this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_extra_probability", "张门心学大成后交易不消耗物品的概率");
+        this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_max_exp", "zhang men xin xue max exp");
+        this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_extra_probability", "zhang men xin xue extra probability");
 
-        //普通信息
-        this.add("block.changshengjue.fen_jiu.no_wine","已经没有酒了！");
-        this.add("tooltip.changshengjue.natural_silk", "通过挖掘桑叶获得");
+        this.add("block.changshengjue.fen_jiu.no_wine","There's no wine left!");
+        this.add("tooltip.changshengjue.natural_silk", "Obtained by mining mulberry leaves");
 
         //进度
         // 一级进度
-        this.add("advancement." + ChangShengJue.MOD_ID + ".begin", "长生诀");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".begin.desc", "大千世界，无奇不有");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".begin", "Chang Sheng Jue");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".begin.desc", "The vast world is full of wonders");
 
         // 二级进度
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasmifan", "人是铁饭是钢");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasmifan.desc", "人靠饭，铁靠钢，一顿不吃饿得慌。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasmifan", "Man is iron, food is steel");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasmifan.desc", "Man relies on food, just as iron relies on steel; skip one meal, and hunger will strike.");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hassilverbullions", "银华熠熠");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hassilverbullions.desc", "银子久了虽会变黑，但他内在还是银光闪烁的。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hassilverbullions", "Silver's Radiance Gleams");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hassilverbullions.desc", "Though silver may turn black over time, its inner brilliance still shines.");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbronzesword", "侠客行");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbronzesword.desc", "所谓侠客者，就是不畏强权，敢于为正义事业而奋斗，以保护弱者、扶持正义为己任，无私奉献，不计较个人得失。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbronzesword", "The Knight's Journey");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbronzesword.desc", "A true knight fears no authority, dares to strive for justice, takes it upon themselves to protect the weak and uphold righteousness, and dedicates themselves selflessly without counting personal gains or losses.");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".findchinesevillage", "新生活！");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".findchinesevillage.desc", "大江南北，江山如画！");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".findchinesevillage", "A New Life!");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".findchinesevillage.desc", "From the great rivers to the north and south, the land is as beautiful as a painting!");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".accessguildtask", "帮会？");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".accessguildtask.desc", "且看小爷我叱咤风云，搅动天下！");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".accessguildtask", "A Guild?");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".accessguildtask.desc", "Watch as this young master dominates the world and shakes the realm!");
 
         // 三级进度
-        this.add("advancement." + ChangShengJue.MOD_ID + ".haslichee", "妃子笑");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".haslichee.desc", "一骑红尘妃子笑，无人知是荔枝来。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".haslichee", "The Concubine's Smile");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".haslichee.desc", "A steed kicks up red dust, the concubine smiles; none knows it's lychees coming."); // 杜牧《过华清宫》诗句英译
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hastomatoegg", "家常小炒");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hastomatoegg.desc", "每个人都能做，做的味道也常不一样的家常小炒。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hastomatoegg", "Homestyle Stir-Fry");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hastomatoegg.desc", "A home-cooked stir-fry anyone can make, yet each tastes uniquely different.");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hastea", "习习清风生");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hastea.desc", "自神农尝百草，饮茶解毒，饮茶的历史源远流长。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hastea", "Gentle Breezes Arise");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hastea.desc", "Since Shennong tasted a hundred herbs, tea has been used to detoxify—its history stretches back through the ages.");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".haswine", "对酒当歌，人生几何？");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".haswine.desc", "譬如朝露，去日苦多。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".haswine", "Sing to Wine, How Long Is Life?");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".haswine.desc", "Like morning dew, the days gone by are bitterly many."); // 曹操《短歌行》诗句英译
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasgoldbullions", "金光闪闪");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasgoldbullions.desc", "是金子，放在哪里都闪光！");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasgoldbullions", "Golden Radiance");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasgoldbullions.desc", "Gold shines wherever it's placed!");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".usewaigong", "趁手兵器");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".usewaigong.desc", "一把趁手剑，潇洒走天涯。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".usewaigong", "A Trusty Weapon");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".usewaigong.desc", "With a trusty sword, roam the world freely.");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasarmor", "布衣侠客");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasarmor.desc", "甲虽简陋，当心如坚石。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasarmor", "Rustic Knight");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasarmor.desc", "Though the armor is simple, the heart is as firm as stone.");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".learngongfa", "初学乍练");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".learngongfa.desc", "若一遇挫折便松散懈怠，日后怎成大器？");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".learngongfa", "First Steps in Training");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".learngongfa.desc", "If you slack at the first setback, how can you achieve greatness?");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".makechinaware", "做瓷器");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".makechinaware.desc", "china，china，china！");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".makechinaware", "Craft Porcelain");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".makechinaware.desc", "china, china, china!");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".finishtask", "善恶谁定？");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".finishtask.desc", "要多读书，才不会被人骗。要多看历史，才能明辨是非。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".finishtask", "Who Defines Good and Evil?");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".finishtask.desc", "Read more to avoid deception. Study history to discern right from wrong.");
 
-        // 四级进度
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbabaozhu", "吉祥如意");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbabaozhu.desc", "健脾养胃，消滞减肥，益气安神。");
+// 四级进度
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbabaozhu", "Auspiciousness and Fortune");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasbabaozhu.desc", "Strengthens the spleen, nourishes the stomach, reduces stagnation, aids weight loss, boosts qi, and calms the spirit.");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasguihuatangou", "甜蜜蜜");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasguihuatangou.desc", "希望你的人生能一直甜蜜下去或者接下去是甜蜜的展开。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasguihuatangou", "Sweetness");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasguihuatangou.desc", "May your life always be sweet, or unfold into sweetness ahead.");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hassword", "绝世神兵");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hassword.desc", "武林至尊，宝刀屠龙，号令天下，莫敢不从！");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hassword", "Legendary Divine Weapon");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hassword.desc", "Supreme in martial arts, the dragon-slaying blade commands all under heaven—none dare disobey!");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasadvancedarrmor", "将门之后");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasadvancedarrmor.desc", "甲虽坚固，莫埋于灰尘。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasadvancedarrmor", "Scion of a Martial Family");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasadvancedarrmor.desc", "Though the armor is strong, do not let it gather dust.");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".mastergongfa", "融会贯通");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".mastergongfa.desc", "成就虽存，然需知道人外有人，天外有天。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".mastergongfa", "Mastery Through Integration");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".mastergongfa.desc", "Achievements exist, yet remember: there are always others greater, heavens beyond heavens.");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".donefivetask", "有求必应");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".donefivetask.desc", "要懂得拒绝人，马桶是通不完的。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".donefivetask", "Respond to Every Request");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".donefivetask.desc", "Learn to refuse—you can't unclog all toilets.");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".agroupgangtoken", "扛把子");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".agroupgangtoken.desc", "我扛的不是铜锣湾，是天下！天下苍生！");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".agroupgangtoken", "Gang Leader");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".agroupgangtoken.desc", "I carry not Causeway Bay, but the world! All living beings under heaven!");
 
-        //五级进度
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasqitian", "未竟");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".hasqitian.desc", "齐天大圣在何处？长生之路又在何处？未来在何处？");
+// 五级进度
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasqitian", "Unfinished Journey");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".hasqitian.desc", "Where is the Great Sage Equal to Heaven? Where lies the path to immortality? What of the future?");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".gongfadone", "一代宗师");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".gongfadone.desc", "人有情欲，剑没有，武功没有。紫禁之巅，谁能与我争高低？");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".gongfadone", "Grand Master");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".gongfadone.desc", "Humans have passions; swords do not, nor do martial arts. Atop the Forbidden City, who can rival me?");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".donefinaltask", "隐世大侠");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".donefinaltask.desc", "既是有情有欲人，天地不平心何甘？");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".donefinaltask", "Recluse Hero");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".donefinaltask.desc", "Though one with passions and desires, how can the heart rest while the world is unjust?");
 
-        this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader", "头把交椅");
-        this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader.desc", "这木头座位总比那个剑刃做的舒适，不扎屁股。");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader", "Top Seat");
+        this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader.desc", "This wooden seat is far more comfortable than that blade-edged one—no more sore buttocks.");
         //按钮
-        this.add("quest."+ ChangShengJue.MOD_ID +".gre_button", "灰");
-        this.add("quest."+ ChangShengJue.MOD_ID +".red_button", "红");
-        this.add("quest."+ ChangShengJue.MOD_ID +".black_button", "黑");
-        this.add("quest."+ ChangShengJue.MOD_ID +".blue_button", "青");
-        this.add("quest."+ ChangShengJue.MOD_ID +".golden_button", "金");
+        this.add ("quest."+ ChangShengJue.MOD_ID +".gre_button", "Gray");
+        this.add ("quest."+ ChangShengJue.MOD_ID +".red_button", "Red");
+        this.add ("quest."+ ChangShengJue.MOD_ID +".black_button", "Black");
+        this.add ("quest."+ ChangShengJue.MOD_ID +".blue_button", "Cyan");
+        this.add ("quest."+ ChangShengJue.MOD_ID +".golden_button", "Golden");
 
         //任务
-        this.add("quest."+ ChangShengJue.MOD_ID +".button", "任务");
-        this.add("quest."+ ChangShengJue.MOD_ID +".requirements", "任务需求:");
-        this.add("quest."+ ChangShengJue.MOD_ID +".rewards", "任务奖励:");
-        this.add("quest."+ ChangShengJue.MOD_ID +".submit.button", "提交任务");
-        this.add("quest."+ ChangShengJue.MOD_ID +".accept.button", "接受任务");
-        this.add("quest."+ ChangShengJue.MOD_ID +".abandon.button", "放弃任务");
-        this.add("quest."+ ChangShengJue.MOD_ID +".flushed.button", "刷新任务");
-        this.add("quest."+ ChangShengJue.MOD_ID +".requirements.prompt", "任务需求不足!");
-        this.add("quest."+ ChangShengJue.MOD_ID +".finish", "§a%s任务完成！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".trigger", "§a触发%s任务");
-        this.add("quest."+ ChangShengJue.MOD_ID +".fail", "§a%s任务失败！");
+        this.add("quest." + ChangShengJue.MOD_ID + ".button", "Quest");
+        this.add("quest." + ChangShengJue.MOD_ID + ".requirements", "Quest Requirements:");
+        this.add("quest." + ChangShengJue.MOD_ID + ".rewards", "Quest Rewards:");
+        this.add("quest." + ChangShengJue.MOD_ID + ".submit.button", "Submit Quest");
+        this.add("quest." + ChangShengJue.MOD_ID + ".accept.button", "Accept Quest");
+        this.add("quest." + ChangShengJue.MOD_ID + ".abandon.button", "Abandon Quest");
+        this.add("quest." + ChangShengJue.MOD_ID + ".flushed.button", "Flush Quest");
+        this.add("quest." + ChangShengJue.MOD_ID + ".requirements.prompt", "Insufficient Quest Requirements!");
+        this.add("quest." + ChangShengJue.MOD_ID + ".finish", "§a%s Quest Completed!");
+        this.add("quest." + ChangShengJue.MOD_ID + ".trigger", "§aTrigger %s Quest");
+        this.add("quest." + ChangShengJue.MOD_ID + ".fail", "§a%s Quest Failed!");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".food.questName", "收集食物");
-        this.add("quest."+ ChangShengJue.MOD_ID +".food.questDescription", "首领：兄弟们的吃食又不够了，总不能饿肚子吧，兄弟你去想想办法。");
-        this.add("quest."+ ChangShengJue.MOD_ID +".money.questName", "收集钱款");
-        this.add("quest."+ ChangShengJue.MOD_ID +".money.questDescription", "首领：这年头什么都要花钱，一文钱难倒英雄汉，兄弟能筹点帮费吗？");
+        this.add("quest."+ ChangShengJue.MOD_ID +".food.questName", "Gather Food");
+        this.add("quest."+ ChangShengJue.MOD_ID +".food.questDescription", "Gang Leader: Our brothers are running out of food supplies—we can't let everyone go hungry! Go find a way to get more.");
+        this.add("quest."+ ChangShengJue.MOD_ID +".money.questName", "Gather Money");
+        this.add("quest."+ ChangShengJue.MOD_ID +".money.questDescription", "Gang Leader: Everything costs money these days—even a hero can be stumped by a single coin. Brother, can you collect some gang funds?");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questName", "踢馆");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questDescription", "首领：可恶！这是今年第二个趁我病期来踢馆的了，欺我帮派无人，你去回敬下吧！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questRequirementsDescription", "击杀任意帮派首领");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questName", "Challenge the Gang Turf");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questDescription", "Gang Leader: Dammit! This is the second gang to invade our turf while I'm ill—they think we have no capable men? Go teach them a lesson!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questRequirementsDescription", "Kill any enemy gang leader");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questName", "侠客行");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questDescription", "首领：灾厄巡逻队总是与我们发生冲突，不知死活！做掉他们！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questRequirementsDescription", "击杀掠夺者");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questName", "Chivalrous Journey");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questDescription", "Gang Leader: Those Pillager Patrols keep picking fights with us—they're asking for death! Take them down!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questRequirementsDescription", "Kill Pillagers");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questName", "杀鸡儆猴");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questDescription", "首领：这群刁民真是有够胆大的，去收帮费的人拒了我们几波，你去给他们点颜色看看！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questRequirementsDescription", "击杀任意村民");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questName", "Kill the Chicken to Warn the Monkey");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questDescription", "Gang Leader: Those unruly folks have refused our gang dues three times—they're getting too bold! Go show them what happens when they defy us!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questRequirementsDescription", "Kill any Villager");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questName", "投名状");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questDescription", "首领：这位兄弟，想入我们帮派，你需要先纳投名状！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questRequirementsDescription", "击杀任意人型生物");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questName", "Toumingzhuang (Admission Token)");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questDescription", "Gang Leader: Brother, if you want to join our gang, you must first present a 'Toumingzhuang'—proof of your loyalty (by killing someone)!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questRequirementsDescription", "Kill any humanoid creature");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questName", "挑战");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questDescription", "首领：有兄弟听说你武功高强，想和你较量一番，你意下如何？");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questRequirementsDescription", "击败或者击杀前来的挑战者");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questName", "Duel of Skill");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questDescription", "Gang Leader: Some brothers heard you're a skilled warrior—they want to test their strength against yours. What do you say?");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questRequirementsDescription", "Defeat or kill the challenger");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia.questName", "天下第一");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_1.questDescription", "首领：虽说现在天下第一是棍王董大侠，但以兄台的实力也能与其一争啊！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_2.questDescription", "首领：虽说现在天下第一是刀圣徐大侠，但以兄台的实力也能与其一争啊！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_3.questDescription", "首领：虽说现在天下第一是北拳萧大侠，但以兄台的实力也能与其一争啊！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_4.questDescription", "首领：虽说现在天下第一是剑仙张大侠，但以兄台的实力也能与其一争啊！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia.questRequirementsDescription", "击杀四大名侠之一");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia.questName", "The Best Under Heaven");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_1.questDescription", "Gang Leader: Though Great Hero Dong the Scepter King is now the strongest under heaven, your skills are enough to rival his!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_2.questDescription", "Gang Leader: Though Great Hero Xu the Saber Sage is now the strongest under heaven, your skills are enough to rival his!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_3.questDescription", "Gang Leader: Though Great Hero Xiao the Northern Fist Master is now the strongest under heaven, your skills are enough to rival his!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_4.questDescription", "Gang Leader: Though Great Hero Zhang the Sword Immortal is now the strongest under heaven, your skills are enough to rival his!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia.questRequirementsDescription", "Kill one of the Four Great Chivalrous Heroes");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questName", "保护村庄");
-        this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questDescription", "首领：我们帮派名下的村庄被入侵了，快去保护咱们的粮仓！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questRequirementsDescription", "在袭击中胜利");
+        this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questName", "Protect the Village");
+        this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questDescription", "Gang Leader: The village under our gang's protection is under attack—hurry and defend our grain storehouse!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questRequirementsDescription", "Win the village raid battle");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questName", "救民侠医");
-        this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questDescription", "首领：附近的村庄被僵尸袭击，好多村民变成了僵尸村民，听说兄弟你会些医术，去看看吧？");
-        this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questRequirementsDescription", "救治一名僵尸村民");
+        this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questName", "Heroic Healer Saving the People");
+        this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questDescription", "Gang Leader: A nearby village was attacked by zombies—many villagers turned into Zombie Villagers. I heard you know some healing skills—can you help?");
+        this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questRequirementsDescription", "Cure one Zombie Villager");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questName", "斋饭");
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questDescription", "首领：心念慈悲，不犯杀戒。");
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questRequirementsDescription", "2个游戏日内不杀死生物");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questName", "Vegetarian Feast");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questDescription", "Gang Leader: With compassion in your heart, you shall not break the precept of killing.");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questRequirementsDescription", "Do not kill any creature within 2 in-game days");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questName", "行侠仗义");
-        this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questDescription", "附近一村庄被乌泱泱的僵尸入侵了，君愿舍身以助吗？");
-        this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questRequirementsDescription", "留在村庄内协助村民抵御僵尸");
+        this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questName", "Uphold Justice with Chivalry");
+        this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questDescription", "A nearby village is swarmed by zombies—will you risk your life to help the villagers?");
+        this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questRequirementsDescription", "Stay in the village and help villagers fend off zombies");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questName", "田园侠客");
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questDescription", "因为有你，这里的村民没人敢欺负，你也在这里安居乐业。");
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questRequirementsDescription", "偶遇村民");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questName", "快意恩仇");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questDescription", "冤仇若不分明报，枉做人间大丈夫。");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questRequirementsDescription", "击败攻击你的敌人");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questName", "Pastoral Chivalric Hero");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questDescription", "Because of you, no one dares to bully the villagers here—and you live in peace alongside them.");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questRequirementsDescription", "Encounter villagers by chance");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questName", "为民除害");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questDescription", "这一大虫总拿村民当食吃，大侠小心！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questRequirementsDescription", "击杀1只老虎");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questName", "Act on Grievances Boldly");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questDescription", "If you don't settle grievances clearly, you're not worthy of being a true man under heaven.");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questRequirementsDescription", "Defeat enemies that attack you");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questName", "除暴安良");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questDescription", "村长：村里有一恶人到处抢掠，大侠可能帮帮我们？！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questRequirementsDescription", "击杀1个恶徒");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questName", "Eliminate Harm for the People");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questDescription", "This fierce tiger preys on villagers—be careful, great hero!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questRequirementsDescription", "Kill 1 Tiger");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questName", "武侠");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questDescription", "路见不平，拔刀相助，才堪侠客。");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questRequirementsDescription", "夜间村庄内击杀1只僵尸");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questName", "杀人越货");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questDescription", "你即以财宝显漏，就别怪我了下手狠了！嘿嘿嘿...");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questRequirementsDescription", "击杀1个流浪商人");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questName", "Suppress the Wicked, Protect the Innocent");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questDescription", "Village Chief: There's a villain looting and plundering our village—can you help us, great hero?!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questRequirementsDescription", "Kill 1 Villain");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".gather.food.questName", "大额交易");
-        this.add("quest."+ ChangShengJue.MOD_ID +".gather.food.questDescription", "村长：最近庄稼减收冬天怕是不好过了，大侠可以帮我们收集些食物度过难关吗？");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questName", "Wuxia Warrior");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questDescription", "When you see injustice on the road, draw your sword to help—that's what makes a chivalrous hero.");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questRequirementsDescription", "Kill 1 Zombie in the village at night");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".gather.money.questName", "大额交易");
-        this.add("quest."+ ChangShengJue.MOD_ID +".gather.money.questDescription", "村长：这次真是大丰收！但是如此多粮食放久了会坏，大侠你能帮我们想想办法吗？");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questName", "Kill for Loot");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questDescription", "You flaunted your treasures so openly—don't blame me for being ruthless! Hehe...");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questRequirementsDescription", "Kill 1 Wandering Trader");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questName", "任我行");
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questDescription", "海阔天空，何处不容人。");
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questRequirementsDescription", "7天内死亡次数小于1");
+        this.add("quest."+ ChangShengJue.MOD_ID +".gather.food.questName", "Large-Scale Transaction");
+        this.add("quest."+ ChangShengJue.MOD_ID +".gather.food.questDescription", "Village Chief: We had a poor harvest this year—we'll struggle through winter. Can you help us gather food to get through the hard times?");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questName", "锄强扶弱");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questDescription", "村民不光要面对僵尸的袭击，竟还有帮派的威胁！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questRequirementsDescription", "击杀3个强盗");
+        this.add("quest."+ ChangShengJue.MOD_ID +".gather.money.questName", "Large-Scale Transaction");
+        this.add("quest."+ ChangShengJue.MOD_ID +".gather.money.questDescription", "Village Chief: We had a great harvest this time! But so much grain will spoil if stored too long—can you help us find a solution, great hero?");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questName", "江湖追杀令");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questDescription", "你帮助村庄对抗帮派，各大势力都以你武林公敌的借口对你进行了追杀！");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questRequirementsDescription", "杀死袭击你的人");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questName", "Ren Woxing (Unrestrained Wanderer)");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questDescription", "The sea is vast and the sky is wide—where can't a man reside freely?");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questRequirementsDescription",  "Less than 1 death within 7 in-game days");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questName", "傲气天地间");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questDescription", "我有百般力，何向弱者使？天地不平，我自平之！虽百人，有所可惧，智勇以对。");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questRequirementsDescription", "击杀100只僵尸");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questName", "Suppress the Strong, Aid the Weak");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questDescription", "Villagers not only face zombie attacks—they're also threatened by bandit gangs!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questRequirementsDescription", "Kill 3 Bandits");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questName", "天若有情天亦老");
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questDescription", "人间正道是沧桑。");
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questRequirementsDescription", "完成两次江湖追杀令");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questName", "Jianghu Bounty (Wulin Manhunt Order)");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questDescription", "You helped the village fight against gangs—now all major forces have labeled you a 'public enemy of Wulin' and sent assassins after you!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questRequirementsDescription", "Kill the assassins sent to attack you");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questName", "Pride Between Heaven and Earth");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questDescription", "I have a hundred strengths—why use them on the weak? If heaven and earth are unjust, I shall right it myself! Even facing a hundred foes, though daunting, counter with wisdom and courage.");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questRequirementsDescription", "Kill 100 Zombies");
+
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questName", "If Heaven Had Affections, It Would Grow Old");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questDescription", "The right path under heaven is full of vicissitudes.");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questRequirementsDescription", "Complete the 'Jianghu Bounty' quest twice");
 
         //裁衣案"container.tailoring_case.json"
-        this.add("container."+ ChangShengJue.MOD_ID +".tailoring_case", "裁衣案");
-        this.add("gui."+ ChangShengJue.MOD_ID + ".tailoring_case.craft", "裁衣");
+        this.add("container."+ ChangShengJue.MOD_ID +".tailoring_case", "tailoring case");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".tailoring_case.craft", "tailoring");
         //锻台“forgeblock”
-        this.add("container."+ ChangShengJue.MOD_ID +".forge_block", "锻造炉");
-        this.add("gui."+ ChangShengJue.MOD_ID + ".forge_block.craft", "锻造");
+        this.add("container."+ ChangShengJue.MOD_ID +".forge_block", "forge block");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".forge_block.craft", "forge");
+
+        this.add(ChangShengJue.MOD_ID +".function", "function item");
+        this.add(ChangShengJue.MOD_ID +".function.desc", "Many strange people came from that rift in space—they not only dance fire into phoenixes and fly through the sky, but also brought many strange things. They're from the East, right?");
+        this.add(ChangShengJue.MOD_ID +".function.blue_and_white_porcelain_flower_pots", "blue and white porcelain flower pots");
+        this.add(ChangShengJue.MOD_ID +".function.blue_and_white_porcelain_flower_pots.page1.title", "blue and white porcelain flower pots");
+        this.add(ChangShengJue.MOD_ID +".function.blue_and_white_porcelain_flower_pots.page1.text", "equivalent to vanilla flower pots");
+        this.add(ChangShengJue.MOD_ID +".function.brush_and_lime_slurry", "brush and lime slurry");
+        this.add(ChangShengJue.MOD_ID +".function.brush_and_lime_slurry.page1.title", "brush and lime slurry");
+        this.add(ChangShengJue.MOD_ID +".function.brush_and_lime_slurry.page1.text", "Place any lime slurry bucket in the offhand, hold the brush in the main hand, and you can paint the entire block of red bricks into the corresponding color system white wall. The lime slurry bucket will become an empty bucket after using it 12 times.");
+        this.add(ChangShengJue.MOD_ID +".function.bullions_casting_molds", "bullions casting molds");
+        this.add(ChangShengJue.MOD_ID +".function.bullions_casting_molds.page1.text", "Place the mold right-click on the ground, hold the crucible (gold/silver liquid) right-click to pour in");
+        this.add(ChangShengJue.MOD_ID +".function.casting_molds", "casting molds");
+        this.add(ChangShengJue.MOD_ID +".function.casting_molds.page1.text", "Used to cast copper coins, place the mold right-click on the ground, hold the crucible (copper liquid) right-click to pour in");
+        this.add(ChangShengJue.MOD_ID +".function.crucible", "crucible");
+        this.add(ChangShengJue.MOD_ID +".function.crucible.page1.title", "crucible");
+        this.add(ChangShengJue.MOD_ID +".function.crucible.page1.text", "It is an important tool for making copper coins and bullions$(br)Can be combined with 8 copper/silver/gold to become crucible (crushed copper/silver/gold)$(br)【crucible (crushed copper/silver/gold)】 can be obtained by burning in the furnace");
+        this.add(ChangShengJue.MOD_ID +".function.crucible.page3.text", "crucible (crushed copper/silver/gold) can be obtained by burning in the furnace");
+        this.add(ChangShengJue.MOD_ID +".function.crucible.page5.text", "crucible (copper/silver/gold liquid) can be placed in the mold to make: copper coins/bullions");
+        this.add(ChangShengJue.MOD_ID +".function.ladder", "ladder");
+        this.add(ChangShengJue.MOD_ID +".function.ladder.page1.title", "ladder");
+        this.add(ChangShengJue.MOD_ID +".function.ladder.page1.text", "The ladder is a tool that can be used to climb up and down. It can be used to climb up and down ladders. It can also be used to climb up and down stairs.");
+        this.add(ChangShengJue.MOD_ID +".function.painting_scroll", "painting scroll");
+        this.add(ChangShengJue.MOD_ID +".function.painting_scroll.page1.title", "painting scroll");
+        this.add(ChangShengJue.MOD_ID +".function.painting_scroll.page1.text", "There are four types of painting scrolls: 1x1, 2x1, 1x2, and 2x2. They are equivalent to vanilla paintings and have many patterns.");
+        this.add(ChangShengJue.MOD_ID +".function.plaque", "plaque");
+        this.add(ChangShengJue.MOD_ID +".function.plaque.page1.title", "plaque");
+        this.add(ChangShengJue.MOD_ID +".function.plaque.page1.text", "Right-click the plaque to write content. Place it on the side of the block, equivalent to the signboard (can connect left and right to adjust the length of the plaque)");
+        this.add(ChangShengJue.MOD_ID +".function.stone_lamp", "stone lamp");
+        this.add(ChangShengJue.MOD_ID +".function.stone_lamp.page1.title", "stone lamp");
+        this.add(ChangShengJue.MOD_ID +".function.stone_lamp.page1.text", "The stone lamp has two states: lit and unlit$(br)Use a flint and steel to ignite it, used as a light source, with an illumination brightness equal to that of a candlestick");
+        this.add(ChangShengJue.MOD_ID +".function.stone_lamp.page2.title", "stone lamp base");
+        this.add(ChangShengJue.MOD_ID +".function.stone_lamp.page2.text", "The base of the stone lamp, except for decoration, has no other functions");
+        this.add(ChangShengJue.MOD_ID +".function.zhu_tai", "candlestick");
+        this.add(ChangShengJue.MOD_ID +".function.zhu_tai.page1.text", "Equivalent to vanilla torches, illuminating a radius of 12 blocks.");this.add(ChangShengJue.MOD_ID +".village", "Village");
+        this.add(ChangShengJue.MOD_ID +".village.desc", "Various Chinese-style villages are scattered across the Minecraft world, bringing many new and interesting items...");
+        this.add(ChangShengJue.MOD_ID +".village.tool.chang_sheng_jue_loom", "Loom");
+        this.add(ChangShengJue.MOD_ID +".village.tool.chang_sheng_jue_loom.page1.text", "Instructions: Right-click the Loom with $(item)Silk$() in your main hand to craft $(item)Silk Cloth$()$(br)Output Ratio: 2 Silk → 1 Silk Cloth");
+        this.add(ChangShengJue.MOD_ID +".village.tool.pig_trough", "Animal Trough");
+        this.add(ChangShengJue.MOD_ID +".village.tool.pig_trough.page1.text", "Growth Acceleration:$(li)Place $(item)Wheat$()$(br)Effect: Increases nearby animal growth speed by 20%");
+        this.add(ChangShengJue.MOD_ID +".village.tool.pig_trough.page2.text", "Animal Trough Crafting Recipe");
+        this.add(ChangShengJue.MOD_ID +".village.tool.pottery_wheel", "Pottery Wheel");
+        this.add(ChangShengJue.MOD_ID +".village.tool.pottery_wheel.page1.text", "Interaction:$(li)1 Clay → Craft $(item)Ceramic Cup$()$(li)2 Clay → Craft $(item)Ceramic Bowl$()$(li)3 Clay → Craft $(item)Ceramic Plate$()");
+        this.add(ChangShengJue.MOD_ID +".village.tool.pottery_wheel.page2.text", "Pottery Wheel Crafting Recipe");
+        this.add(ChangShengJue.MOD_ID +".village.tool.tool_table", "Tool Table");
+        this.add(ChangShengJue.MOD_ID +".village.tool.tool_table.page1.text", "Maintenance: Right-click the Tool Table with $(item)Bow$() in your main hand to quickly repair tool durability");
+        this.add(ChangShengJue.MOD_ID +".village.tool.tool_table.page2.text", "Tool Table Crafting Recipe");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief", "Village Chief");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief.page1.title", "Village Chief");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief.page1.text", "Right-clicking the Village Chief has a 50% chance to trigger the village quest [Suppress Evil], completing it will give certain rewards.");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief.page2.title", "Village Chief Trading List - Novice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief.page2.text", "$(br)$(li)1x Silver Ingot → 6x Copper Coins$(br)$(li)1x Gold Ingot → 6x Silver Ingots$(br)$(li)7x Copper Coins → 1x Silver Ingot$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief.page3.title", "Village Chief Trading List - Apprentice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief.page3.text", "$(br)$(li)1x Diamond → 4x Copper Coins$(br)$(li)4x Copper Coins → 2x Oil Lamp$(br)$(li)7x Silver Ingots → 1x Gold Ingot$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief.page4.title", "Village Chief Trading List - Experienced");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief.page4.text", "$(br)$(li)1x Compass → 4x Copper Coins$(br)$(li)4x Copper Coins → 1x Emerald$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief.page5.title", "Village Chief Trading List - Expert & Master");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief.page5.text", "Expert:$(br)$(li)2x Book and Quill → 4x Copper Coins$(br2)Master:$(br)$(li)1x Silver Ingot → 1x Calligraphy$(br)$(li)2x Gold Ingots → 1x Emerald$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief.page2.anchor", "Village Chief-Novice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief.page3.anchor", "Village Chief-Apprentice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief.page4.anchor", "Village Chief-Experienced");
+        this.add(ChangShengJue.MOD_ID +".village.villager.chief.page5.anchor", "Village Chief-Expert");
+        this.add(ChangShengJue.MOD_ID +".village.villager.farmer", "Farmer");
+        this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page1.title", "Farmer");
+        this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page2.anchor", "Farmer-Novice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page2.title", "Farmer Trading List - Novice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page2.text", "$(br)$(li)20x Corn → 4x Copper Coins$(br)$(li)20x Rice → 4x Copper Coins$(br)$(li)22x Tomato → 4x Copper Coins$(br)$(li)22x Peanut → 4x Copper Coins$(br)$(li)4x Copper Coins → 4x Cooked Rice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page3.anchor", "Farmer-Apprentice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page3.title", "Farmer Trading List - Apprentice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page3.text", "$(br)$(li)22x Grape → 4x Copper Coins$(br)$(li)4x Copper Coins → 4x Steamed Vegetables$(br)$(li)4x Copper Coins → 4x Green Rice Balls");
+        this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page4.anchor", "Farmer-Experienced");
+        this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page4.title", "Farmer Trading List - Experienced");
+        this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page4.text", "$(br)$(li)4x Lotus Root with Osmanthus → 4x Copper Coins$(br)$(li)4x Copper Coins → 4x Pig Stomach Chicken");
+        this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page5.anchor", "Farmer-Expert");
+        this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page5.title", "Farmer Trading List - Expert & Master");
+        this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page5.text", "Expert:$(br)$(li) 4x Copper Coins → 1x Mystery Stew (Night Vision, Blindness, Saturation, Weakness, Jump Boost, Poison - 1-2 effects)$(br2)Master:$(br)$(li)4x Copper Coins → 4x Scrambled Eggs with Tomatoes$(br)$(li)8x Copper Coins → 8x Eggplant with Meat Sauce$(br)$(li)8x Copper Coins → 8x Eight Treasure Porridge");
+        this.add(ChangShengJue.MOD_ID +".village.villager.hunter", "Hunter");
+        this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page1.title", "Hunter");
+        this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page2.anchor", "Hunter - Novice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page2.title", "Hunter Trading List - Novice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page2.text", "$(br)$(li)14x Raw Chicken → 4x Copper Coin$(br)$(li)4x Rabbit → 4x Copper Coin$(br)$(li)7x Pork Chop → 4x Copper Coin$(br)$(li)4x Copper Coin → 1x Peacock Egg$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page3.anchor", "Hunter - Apprentice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page3.title", "Hunter Trading List - Apprentice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page3.text", "$(br)$(li)7x Mutton → 4x Copper Coin$(br)$(li)4x Copper Coin → 5x Cooked Venison$(br)$(li)4x Copper Coin → 1x Deer Blood$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page4.anchor", "Hunter - Expert");
+        this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page4.title", "Hunter Trading List - Expert");
+        this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page4.text", "$(br)$(li)7x Venison → 4x Copper Coin$(br)$(li)10x Beef → 4x Copper Coin$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page5.anchor", "Hunter - Master");
+        this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page5.title", "Hunter Trading List - Master");
+        this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page5.text", "Expert:$(br)$(li)7x Deer Antler → 14x Copper Coin$(br2)Master:$(br)$(li)5x Tiger Hide → 15x Copper Coin");
+        this.add(ChangShengJue.MOD_ID +".village.villager.potter", "Potter");
+        this.add(ChangShengJue.MOD_ID +".village.villager.potter.page1.title", "Potter");
+        this.add(ChangShengJue.MOD_ID +".village.villager.potter.page2.anchor", "Potter - Novice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.potter.page2.title", "Potter Trading List - Novice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.potter.page2.text", "$(br)$(li)8x Copper Coin → 32x Sandstone Brick$(br)$(li)8x Copper Coin → 32x Sandstone Brick Slab$(br)$(li)8x Copper Coin → 32x Sandstone Stairs$(br)$(li)8x Copper Coin → 32x Sandstone Wall$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villager.potter.page3.anchor", "Potter - Apprentice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.potter.page3.title", "Potter Trading List - Apprentice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.potter.page3.text", "$(br)$(li)8x Copper Coin → 32x Sandstone Tile$(br)$(li)8x Copper Coin → 32x Dark Sandstone Tile$(br)$(li)8x Copper Coin → 32x Asphalt Tile$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villager.potter.page4.anchor", "Potter - Expert");
+        this.add(ChangShengJue.MOD_ID +".village.villager.potter.page4.title", "Potter Trading List - Expert");
+        this.add(ChangShengJue.MOD_ID +".village.villager.potter.page4.text", "$(br)$(li)4x Copper Coin → 8x Porcelain Bowl$(br)$(li)4x Copper Coin → 8x Porcelain Cup$(br)$(li)4x Copper Coin → 4x Wine Jar$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villager.potter.page5.anchor", "Potter - Master");
+        this.add(ChangShengJue.MOD_ID +".village.villager.potter.page5.title", "Potter Trading List - Master");
+        this.add(ChangShengJue.MOD_ID +".village.villager.potter.page5.text", "Expert:$(br)$(li)4x Copper Coin → 1x Blue and White Porcelain Planter$(br2)Master:$(br)$(li)4x Copper Coin → 1x Stone Lion (Yellow)$(br)$(li)4x Copper Coin → 1x Stone Lion (Gray)$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villager.seamstress", "Seamstress");
+        this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page1.title", "Seamstress");
+        this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page2.anchor", "Seamstress - Novice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page2.title", "Seamstress Trading List - Novice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page2.text", "$(br)$(li)6x Silk Thread → 4x Copper Coin$(br)$(li)22x Cotton → 4x Copper Coin$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page3.anchor", "Seamstress - Apprentice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page3.title", "Seamstress Trading List - Apprentice");
+        this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page3.text", "$(br)$(li)5x Deer Hide → 10x Copper Coin$(br)$(li)4x Copper Coin → 4x Silk$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page4.anchor", "Seamstress - Expert");
+        this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page4.title", "Seamstress Trading List - Expert");
+        this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page4.text", "$(br)$(li)28x Copper Coin → 1x Male Taoist Robe Bundle$(br)$(li)28x Copper Coin → 1x Female Taoist Robe Bundle$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page5.anchor", "Seamstress - Master");
+        this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page5.title", "Seamstress Trading List - Master");
+        this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page5.text", "Expert:$(br)$(li)6x Silver Ingot → 1x Wedding Dress Bundle$(br)$(li)6x Silver Ingot → 1x Bridal Dress Bundle$(br)$(li)6x Silver Ingot → 1x Traveler's Outfit Bundle$(br)$(li)6x Silver Ingot → 1x Scholar's Outfit Bundle$(br2)Master:$(br)$(li)8x Silver Ingot → 1x Golden Cotton Armor Bundle$(br2)");
+        this.add(ChangShengJue.MOD_ID +".village.villages.sandstone_castle", "Sandstone Castle");
+        this.add(ChangShengJue.MOD_ID +".village.villages.sandstone_castle.page1.title", "Sandstone Castle");
+        this.add(ChangShengJue.MOD_ID +".village.villages.sandstone_castle.page1.text", "Often spawns in desert biomes. A fortress-style village built with sandstone, well-stocked and resistant to attacks, like a pearl in the desert. Common crops include: cotton, tomatoes, grapes, cantaloupe.");
+        this.add(ChangShengJue.MOD_ID +".village.villages.courtyard", "Courtyard");
+        this.add(ChangShengJue.MOD_ID +".village.villages.courtyard.page1.title", "Courtyard Village");
+        this.add(ChangShengJue.MOD_ID +".village.villages.courtyard.page1.text", "Often spawns in grassland biomes. A courtyard surrounded by buildings on all four sides, hence the name Courtyard. Common crops include: sorghum, corn, wheat, soybeans, millet.");
+        this.add(ChangShengJue.MOD_ID +".village.villages.huizhou", "Huizhou Style");
+        this.add(ChangShengJue.MOD_ID +".village.villages.huizhou.page1.title", "Huizhou Style Village");
+        this.add(ChangShengJue.MOD_ID +".village.villages.huizhou.page1.text", "Often spawns in forest biomes. Huizhou residences are famous for their white walls, dark tiles, and horsehead walls. Look at those exquisite carved doors and windows! Common crops include: lotus root, peanuts, eggplant, pears.");
+        this.add(ChangShengJue.MOD_ID +".village.villages.suzhou", "Suzhou Style");
+        this.add(ChangShengJue.MOD_ID +".village.villages.suzhou.page1.title", "Suzhou Style Village");
+        this.add(ChangShengJue.MOD_ID +".village.villages.suzhou.page1.text", "Often spawns in jungle biomes. The simple and elegant style of white walls and black tiles with high-pitched roofs is an artistic masterpiece of Suzhou architecture. Common crops include: lychee, bananas, durian, rice.");
+        this.add(ChangShengJue.MOD_ID +".village.villages.cave_dwelling", "Cave Dwelling");
+        this.add(ChangShengJue.MOD_ID +".village.villages.cave_dwelling.page1.title", "Cave Dwelling Village");
+        this.add(ChangShengJue.MOD_ID +".village.villages.cave_dwelling.page1.text", "Often spawns in plateau biomes. A special building created by digging into the earth, warm in winter and cool in summer. Common crops include: sugarcane, pepper, mango, pineapple.");
+
+        this.add(ChangShengJue.MOD_ID +".xiake", "Xiake (Rogue/Wandering Knight)");
+        this.add(ChangShengJue.MOD_ID +".xiake.desc", "For some time now, things have changed. More and more people claiming to uphold justice have appeared, many of whom prefer to call themselves 'Xiake'.");
+        this.add(ChangShengJue.MOD_ID +".xiake.equipment", "Equipment");
+        this.add(ChangShengJue.MOD_ID +".xiake.equipment.page1.title", "Equipment");
+        this.add(ChangShengJue.MOD_ID +".xiake.equipment.page1.text", "In addition to providing armor value and toughness like vanilla equipment, Wuxia equipment can also reduce external damage dealt to you. Equipment can be crafted by yourself or exchanged for currency in the blacksmith shop of the new town. Most armor supports color customization for appearance, feel free to try. $(br)When you first craft or use a chestplate from Changsheng Jue, it will randomly generate external damage reduction and reduced trauma effects.");
+        this.add(ChangShengJue.MOD_ID +".xiake.equipment.page2.title", "Inner Armor");
+        this.add(ChangShengJue.MOD_ID +".xiake.equipment.page2.text", "Inner Armor can be worn under Changsheng Jue chestplates to increase their armor value or toughness. $(br)There are two ways to equip inner armor: 1. Wear the inner armor first, then wear the chestplate you want to line it with. 2. Or hold the inner armor in your off-hand and the chestplate in your main hand, then press SHIFT+right-click. $(br)Inner Armor can also be worn independently as regular chestplates. $(br)");
+        this.add(ChangShengJue.MOD_ID +".xiake.forge_block", "Forge");
+        this.add(ChangShengJue.MOD_ID +".xiake.forge_block.page1.title", "Forge");
+        this.add(ChangShengJue.MOD_ID +".xiake.forge_block.page1.text", "Forge crafting recipe");
+        this.add(ChangShengJue.MOD_ID +".xiake.forge_block.page2.text", "Used to craft weapons, armor, etc. You can view selected items in the forge, and crafting will automatically deduct the required materials from your inventory.");
+        this.add(ChangShengJue.MOD_ID +".xiake.internal_injury", "Internal Injury");
+        this.add(ChangShengJue.MOD_ID +".xiake.internal_injury.page1.title", "Internal Injury");
+        this.add(ChangShengJue.MOD_ID +".xiake.internal_injury.page1.text", "Each level of Internal Injury effect: Increases damage taken by 5%, reduces equipped armor effectiveness by 5%, 5% chance per second to be stunned for 15 seconds; If a target already has this effect, attacking them unarmed again will stack the effect by 1 level and extend duration by 2 seconds; Maximum of 5 levels, with effects doubling per level.");
+        this.add(ChangShengJue.MOD_ID +".xiake.internal_injury.page2.text", "When using unarmed martial arts, unarmed attacks on targets cause 1 level of Internal Injury, while using unarmed martial arts skills cause 2 levels. $(br)Wearing Gold Silk Gloves in main hand also counts as unarmed attack.");
+
+        this.add(ChangShengJue.MOD_ID +".xiake.martial_arts_manual", "Martial Arts Manual");
+        this.add(ChangShengJue.MOD_ID +".xiake.martial_arts_manual.page1.title", "Martial Arts Manual");
+        this.add(ChangShengJue.MOD_ID +".xiake.martial_arts_manual.page1.text", "You can obtain Martial Arts Manuals by completing faction quests or village quests; there's a chance to drop them from NPCs who know martial arts.");
+        this.add(ChangShengJue.MOD_ID +".xiake.martial_arts_manual.page2.text", "Martial Arts Manuals are divided into External (mainly active skills), Internal (mainly passive skills), Lightness (mainly movement effects), and Mind Cultivation (providing special bonuses). Specific effects can be seen in the manual description. Manuals clearly explain how to learn and perform the skills - right-click to view instructions.");
+        this.add(ChangShengJue.MOD_ID +".xiake.martial_arts_manual.page3.text", "After learning sword martial arts, there's a 15% chance for sword attacks to cause bleeding (1 damage per 0.5 seconds for 1 second). After learning blade martial arts, there's a 15% chance for blade attacks to trigger critical hits (15% extra damage). After learning staff martial arts, there's a 15% chance for staff attacks to stun (0.5 seconds). After learning spear martial arts, there's a 15% chance for spear attacks to knock up (0.7 seconds).");
+
+        this.add(ChangShengJue.MOD_ID +".xiake.trauma", "Trauma");
+        this.add(ChangShengJue.MOD_ID +".xiake.trauma.page1.title", "Trauma");
+        this.add(ChangShengJue.MOD_ID +".xiake.trauma.page1.text", "Each level of Trauma effect: Reduces damage dealt by 5%, reduces speed by 5%, loses 1% health per second for 7 seconds; If a target already has this effect, attacking them with corresponding weapons again extends duration by 1 second (if this attack causes higher level trauma, it overwrites previous effect); Maximum of 5 levels, with effects doubling per level.");
+        this.add(ChangShengJue.MOD_ID +".xiake.trauma.page2.text", "When using weapon-based martial arts, there's a 25% chance for weapon attacks to cause 1-2 levels of Trauma, while using weapon martial arts skills guarantees 1-5 levels of Trauma.");
+
+        this.add(ChangShengJue.MOD_ID +".xiake.stakes", "Training Stakes");
+        this.add(ChangShengJue.MOD_ID +".xiake.stakes.page1.title", "Training Stakes");
+        this.add(ChangShengJue.MOD_ID +".xiake.stakes.page1.text", "Training Stakes crafting recipe");
+        this.add(ChangShengJue.MOD_ID +".xiake.stakes.page2.text", "Internal, Lightness, and External (unarmed) martial arts can be learned by practicing on training stakes, with a 15% chance per strike to comprehend.");
+
+        this.add(ChangShengJue.MOD_ID +".xiake.tailoring_case", "Tailoring Table");
+        this.add(ChangShengJue.MOD_ID +".xiake.tailoring_case.page1.title", "Tailoring Table");
+        this.add(ChangShengJue.MOD_ID +".xiake.tailoring_case.page1.text", "Tailoring Table crafting recipe");
+        this.add(ChangShengJue.MOD_ID +".xiake.tailoring_case.page2.text", "Used to craft clothing (armor), etc. You can view selected items in the table, and crafting will automatically deduct the required materials from your inventory.");
+
+        this.add(ChangShengJue.MOD_ID +".xiake.quest", "Quests");
+        this.add(ChangShengJue.MOD_ID +".xiake.quest.page1.title", "Quests");
+        this.add(ChangShengJue.MOD_ID +".xiake.quest.page1.text", "Right-click faction leaders to accept faction quests. Completing them rewards faction tokens, martial arts manuals, currency, and more. During gameplay, you may also automatically trigger other quests (most are auto-accepted and auto-completed when conditions are met), with rewards including martial arts manuals and currency.");
+
+        this.add(ChangShengJue.MOD_ID +".xiake.tea", "Tea");
+        this.add(ChangShengJue.MOD_ID +".xiake.tea.page1.title", "Tea");
+        this.add(ChangShengJue.MOD_ID +".xiake.tea.page1.text", "Drinking tea allows you to recover health or hunger faster. For detailed effects, check the tea's description.");
+
+        this.add(ChangShengJue.MOD_ID +".xiake.weapon", "Weapons");
+        this.add(ChangShengJue.MOD_ID +".xiake.weapon.page1.title", "Weapons");
+        this.add(ChangShengJue.MOD_ID +".xiake.weapon.page1.text", "Some external martial arts require weapons as a medium, so having the appropriate weapon is important. You can craft weapons yourself or exchange them for faction tokens in your faction, and completing faction quests unlocks the ability to exchange legendary weapons.");
+
+        this.add(ChangShengJue.MOD_ID +".xiake.wine", "Wine");
+        this.add(ChangShengJue.MOD_ID +".xiake.wine.page1.title", "Wine");
+        this.add(ChangShengJue.MOD_ID +".xiake.wine.page1.text", "Drinking wine speeds up martial arts cooldowns, reduces hunger consumption for skills, and increases martial arts damage. For detailed effects, check the wine's description. Don't overdo it - drinking too much will make you drunk~");
+
+
+        this.add(ChangShengJue.MOD_ID +".wufanglu", "WU FANG HUI LU(Everything Record)");
+        this.add(ChangShengJue.MOD_ID +".wufanglu.desc", "“天若有情天亦老，人间正道是沧桑。”$(br)The way of longevity, how can it be unknown? Understand the heavens, understand everything.");
+        this.add(ChangShengJue.MOD_ID +".wufanglu.desc2", "chang sheng jue everything");
     }
 }

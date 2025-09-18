@@ -1,22 +1,22 @@
 {
-  "name": "武功秘籍",
+  "name": "chang_sheng_jue.xiake.martial_arts_manual",
   "category": "chang_sheng_jue:xiake",
   "sortnum": 3,
   "icon": "chang_sheng_jue:immortal_miracle",
   "pages": [
     {
-      "title": "武功秘籍",
+      "title": "chang_sheng_jue.xiake.martial_arts_manual.page1.title",
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:immortal_miracle",
-      "text": "通过完成帮派任务、村庄任务有概率会获取到武功秘籍；击杀会武功的NPC也有概率掉落武功秘籍。"
+      "text": "chang_sheng_jue.xiake.martial_arts_manual.page1.text"
     },
     {
       "type": "patchouli:text",
-      "text": "武功秘籍分为外功类（主要是主动类武功），内功类（主要是被动类武功），轻功类（主要影响移动等效果），心法（提供一些特殊加成）。武功秘境具体效果可以从武功秘籍描述看出。武功秘籍上有清楚的说明，右键它可获取如何领悟及施展武功。"
+      "text": "chang_sheng_jue.xiake.martial_arts_manual.page2.text"
     },
     {
       "type": "patchouli:text",
-      "text": "习得剑类外功后使用剑攻击目标有15%概率让敌人受到流血效果（每0.5秒流失1血量，持续1秒），习得刀类外功后使用刀攻击目标有15%概率触发重击效果（重击额外造成15%伤害），习得棍类外功后使用棍攻击目标有15%概率打晕目标（打晕目标0.5秒），习得枪类外功后使用枪攻击目标有15%概率挑飞目标（挑飞目标0.7秒）。"
+      "text": "chang_sheng_jue.xiake.martial_arts_manual.page3.text"
     }
   ]
 }

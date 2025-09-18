@@ -27,7 +27,7 @@
             },
             {
               "type": "minecraft:item",
-              "name": "chang_sheng_jue:sorghum_seeds"
+              "name": "chang_sheng_jue:redbean"
             }
           ]
         }
@@ -59,7 +59,7 @@
               }
             }
           ],
-          "name": "chang_sheng_jue:sorghum_seeds"
+          "name": "chang_sheng_jue:redbean"
         }
       ],
       "rolls": 1.0

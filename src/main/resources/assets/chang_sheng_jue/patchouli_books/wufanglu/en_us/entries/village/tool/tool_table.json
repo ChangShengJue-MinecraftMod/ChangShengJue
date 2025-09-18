@@ -1,5 +1,5 @@
 {
-  "name": "工具台",
+  "name": "chang_sheng_jue.village.tool.tool_table",
   "category": "chang_sheng_jue:village",
   "sortnum": 2,
   "icon": "chang_sheng_jue:tool_table",
@@ -7,12 +7,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:tool_table",
-      "text": "维护功能：主手持$(item)弓$()右键工具台可快速修复工具耐久"
+      "text": "chang_sheng_jue.village.tool.tool_table.page1.text"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "chang_sheng_jue:tool_table_recipe",
-      "text": "工具台合成配方"
+      "text": "chang_sheng_jue.village.tool.tool_table.page2.text"
     }
   ]
 }

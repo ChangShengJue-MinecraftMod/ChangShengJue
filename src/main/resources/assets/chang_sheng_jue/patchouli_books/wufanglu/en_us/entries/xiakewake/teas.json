@@ -1,14 +1,14 @@
 {
-  "name": "茶",
+  "name": "chang_sheng_jue.xiake.tea",
   "category": "chang_sheng_jue:xiake",
   "sortnum": 4,
   "icon": "chang_sheng_jue:long_jing_teas",
   "pages": [
     {
-      "title": "茶",
+      "title": "chang_sheng_jue.xiake.tea.page1.title",
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:long_jing_teas",
-      "text": "喝茶可以让你更快恢复血量或饥饿度，详细效果可以看茶的描述。"
+      "text": "chang_sheng_jue.xiake.tea.page1.text"
     }
   ]
 }

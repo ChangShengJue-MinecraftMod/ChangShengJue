@@ -1,14 +1,14 @@
 {
-  "name": "青花瓷花盆",
+  "name": "chang_sheng_jue.function.blue_and_white_porcelain_flower_pots",
   "category": "chang_sheng_jue:function",
   "sortnum": 4,
   "icon": "chang_sheng_jue:blue_and_white_porcelain_flower_pots",
   "pages": [
     {
-      "title": "青花瓷花盆",
+      "title": "chang_sheng_jue.function.blue_and_white_porcelain_flower_pots.page1.title",
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:blue_and_white_porcelain_flower_pots",
-      "text": "作用等同于原版花盆"
+      "text": "chang_sheng_jue.function.blue_and_white_porcelain_flower_pots.page1.text"
     }
   ]
 }

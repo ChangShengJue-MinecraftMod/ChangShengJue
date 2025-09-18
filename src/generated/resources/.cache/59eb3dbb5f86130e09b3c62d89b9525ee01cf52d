@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-07T19:05:15.9158613	Loot Tables
+// 1.20.1	2025-09-18T14:04:55.5731131	Loot Tables
 7a6edc76141fa6f7dd0df0f746f55b8c0bcdfe60 data/chang_sheng_jue/loot_tables/blocks/acacia_balustrade.json
 d516f4a29d40770cbbc430275a25288af1bb5af3 data/chang_sheng_jue/loot_tables/blocks/acacia_bench.json
 ad4cf4b39a7d51e5a89dc61dc94d61b791098ae1 data/chang_sheng_jue/loot_tables/blocks/acacia_book_desk.json
@@ -435,7 +435,7 @@ cdb14b0afbff8ba28c0232245710567d4bd851cf data/chang_sheng_jue/loot_tables/blocks
 68e9c17ba1009cb3edd967fe6677d28c30cdb4b4 data/chang_sheng_jue/loot_tables/blocks/qing_tuan_pan.json
 d21abfafe1745210a6d9e7c4486a3a3ad74ec0a9 data/chang_sheng_jue/loot_tables/blocks/qing_tuan_wan.json
 9676ad3a9364c582f239c673cbe320adc738d911 data/chang_sheng_jue/loot_tables/blocks/rape_flowers.json
-308769c44b91527bd71ce7166167666e647188de data/chang_sheng_jue/loot_tables/blocks/redbean_block.json
+15ded58258a83dd1bf3e9be1a9be0ee822a87861 data/chang_sheng_jue/loot_tables/blocks/redbean_block.json
 0aee408e18acb55440da18f4572322abada2f068 data/chang_sheng_jue/loot_tables/blocks/red_character_plaque_pavilion.json
 ff133e04f0d382d95e723a3c9a8d927b2b6f5952 data/chang_sheng_jue/loot_tables/blocks/red_cylinder_tile_side.json
 62333ff5b6bdc8aea6353ad9ff8e341f92157dbe data/chang_sheng_jue/loot_tables/blocks/red_cylinder_tile_slab.json

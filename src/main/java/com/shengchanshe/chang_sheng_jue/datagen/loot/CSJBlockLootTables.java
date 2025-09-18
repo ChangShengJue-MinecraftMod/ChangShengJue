@@ -194,7 +194,7 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         LootItemCondition.Builder sorghum = cropDrop(ChangShengJueBlocks.SORGHUM_BLOCK.get(), 7);
         this.add(ChangShengJueBlocks.SORGHUM_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.SORGHUM_BLOCK.get(), ChangShengJueItems.SORGHUM.get(), ChangShengJueItems.SORGHUM_SEEDS.get(), sorghum,1));
         LootItemCondition.Builder redbean = cropDrop(ChangShengJueBlocks.REDBEAN_BLOCK.get(), 7);
-        this.add(ChangShengJueBlocks.REDBEAN_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.REDBEAN_BLOCK.get(), ChangShengJueItems.REDBEAN.get(), ChangShengJueItems.SORGHUM_SEEDS.get(), redbean,3));
+        this.add(ChangShengJueBlocks.REDBEAN_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.REDBEAN_BLOCK.get(), ChangShengJueItems.REDBEAN.get(), ChangShengJueItems.REDBEAN.get(), redbean,3));
         LootItemCondition.Builder cotton = cropDrop(ChangShengJueBlocks.COTTON_BLOCK.get(), 7);
         this.add(ChangShengJueBlocks.COTTON_BLOCK.get(), this.createCropDrops(ChangShengJueBlocks.COTTON_BLOCK.get(), ChangShengJueItems.COTTON.get(), ChangShengJueItems.COTTON_SEEDS.get(), cotton,2));
         LootItemCondition.Builder stickyrice = cropDrop(ChangShengJueBlocks.STICKYRICE_BLOCK.get(), 7);

@@ -1,14 +1,14 @@
 {
-  "name": "画轴",
+  "name": "chang_sheng_jue.function.painting_scroll",
   "category": "chang_sheng_jue:function",
   "sortnum": 2,
   "icon": "chang_sheng_jue:painting_scroll",
   "pages": [
     {
-      "title": "画轴",
+      "title": "chang_sheng_jue.function.painting_scroll.page1.title",
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:painting_scroll",
-      "text": "分为（1x1、2x1、1x2、2x2）四种，作用同原版画，有多种图案。"
+      "text": "chang_sheng_jue.function.painting_scroll.page1.text"
     },
     {
       "type": "patchouli:crafting",
