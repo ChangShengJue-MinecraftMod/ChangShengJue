@@ -67,6 +67,7 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ExperienceOrbRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -598,7 +599,8 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SPRUCE_DOUGONG.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GREEN_DOUGONG.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLUE_DOUGONG.get(), RenderType.cutout());
-
+        EntityRenderers.register(ChangShengJueEntity.XP_ORD_TYPE1.get(), ExperienceOrbRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.XP_ORD_TYPE2.get(), ExperienceOrbRenderer::new);
         ItemColors itemColors = Minecraft.getInstance().getItemColors();
         // 为每个物品注册颜色渲染器
         for (Supplier<? extends Item> itemSupplier : ARMOR_ITEMS) {

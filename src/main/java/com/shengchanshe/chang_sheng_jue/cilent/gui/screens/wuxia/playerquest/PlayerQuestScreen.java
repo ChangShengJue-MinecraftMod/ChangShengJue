@@ -3,7 +3,6 @@ package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.AbandonPlayerQuestPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.RequestQuestsPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.SubmitPlayerQuestsPacket;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;
 import com.shengchanshe.chang_sheng_jue.util.GuiEntityGraphics;
@@ -22,7 +21,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @OnlyIn(Dist.CLIENT)
 public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> {
@@ -57,9 +59,6 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
 
     public PlayerQuestScreen(PlayerQuestMenu menu, Inventory inv, Component title) {
         super(menu, inv, title);
-        if (minecraft != null && minecraft.level.isClientSide) {
-            ChangShengJueMessages.sendToServer(new RequestQuestsPacket());
-        }
         this.imageWidth = 175;
         this.imageHeight = 165;
     }
@@ -84,7 +83,7 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                     this.menu.prevPage();
 
                 },
-                Component.translatable("")
+                Component.empty()
         ));
 
         nextButton = this.addRenderableWidget(new TexturedButtonWithLabel(
@@ -93,7 +92,7 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 (button) -> {
                     this.menu.nextPage();
                 },
-                Component.translatable("")
+                Component.empty()
         ));
 
         actionButton = this.addRenderableWidget(new TexturedButtonWithLabel(
@@ -109,7 +108,7 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                                 // 处理空任务情况
                                 if (Minecraft.getInstance().player != null) {
                                     Minecraft.getInstance().player.displayClientMessage(
-                                            Component.translatable("当前没有任务可以提交"), false);
+                                            Component.translatable("quest."+ ChangShengJue.MOD_ID +".no_submit.button"), false);
                                 }
                             }
                     );
@@ -130,7 +129,7 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                                 // 处理空任务情况
                                 if (Minecraft.getInstance().player != null) {
                                     Minecraft.getInstance().player.displayClientMessage(
-                                            Component.translatable("无法放弃不存在的任务"), false);
+                                            Component.translatable("quest."+ ChangShengJue.MOD_ID +".no_abandon.button"), false);
                                 }
                             }
                     );
@@ -177,20 +176,26 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight,TEXTURE_WIDTH,TEXTURE_HEIGHT);
+
+        String pageInfo = String.format("%d/%d", menu.getCurrentPage() + 1, menu.getTotalPages());
+        guiGraphics.drawString(font, pageInfo, x + imageWidth - 25, y + 10, 0xFFFFFF, false);
     }
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        // 渲染当前任务
-        menu.getCurrentQuest(this.getMenu().getCurrentPage()).ifPresent(quest -> {
+        Optional<Quest> currentQuest = menu.getCurrentQuest(this.getMenu().getCurrentPage());
+
+        if (currentQuest.isPresent()) {
+            // 渲染当前任务
+            Quest quest = currentQuest.get();
             // 任务标题
-            guiGraphics.drawString(font,  Component.translatable(quest.getQuestName()),
+            guiGraphics.drawString(font, Component.translatable(quest.getQuestName()),
                     (this.imageWidth - font.width(Component.translatable(quest.getQuestName()))) / 2, 14, 0x404040, false);
             // 任务描述
             var lines = font.split(Component.translatable(quest.getQuestDescription()), imageWidth - 50);
             for (int i = 0; i < lines.size(); i++) {
                 int descX = i == 0 ? 20 + 17 : 20;
-                guiGraphics.drawString(font, lines.get(i), descX,35 + i * font.lineHeight,0x404040,false);
+                guiGraphics.drawString(font, lines.get(i), descX, 35 + i * font.lineHeight, 0x404040, false);
             }
 
             var lines1 = font.split(Component.translatable(quest.getQuestRequirementsDescription()), imageWidth - 50);
@@ -198,9 +203,14 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 guiGraphics.drawString(font, lines1.get(i), !quest.getTargetEntity().isEmpty() ? REQ_SLOTS_X + 60 : REQ_SLOTS_X + 40,
                         73 + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
             }
-        });
-        guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".requirements"), REQ_SLOTS_X, REQ_SLOTS_Y - 6, ChatFormatting.RED.getColor(), false);
-        guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".rewards"), REQ_SLOTS_X, REWARD_SLOTS_Y - 3, ChatFormatting.YELLOW.getColor(), false);
+            guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".requirements"), REQ_SLOTS_X, REQ_SLOTS_Y - 6, ChatFormatting.RED.getColor(), false);
+            guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".rewards"), REQ_SLOTS_X, REWARD_SLOTS_Y - 3, ChatFormatting.YELLOW.getColor(), false);
+
+        } else {
+            guiGraphics.drawString(font, Component.translatable("quest." + ChangShengJue.MOD_ID + ".no_quest"),
+                    (this.imageWidth - font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".no_quest")))
+                            / 2, 35, ChatFormatting.RED.getColor(), true);
+        }
     }
 
     private void renderTooltips(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y, Quest quest) {
@@ -251,6 +261,9 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
         // 彻底清理旧组件
         this.clearWidgets();
         this.renderables.clear(); // 确保所有UI元素被移除
+        // 刷新任务列表并调整页码
+        this.menu.refreshQuests();
+        this.menu.adjustPageAfterQuestRemoval();
         this.menu.refreshQuests();
 
         // 重新初始化

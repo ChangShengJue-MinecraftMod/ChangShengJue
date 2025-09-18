@@ -4,6 +4,7 @@
   "questDescription": "quest.chang_sheng_jue.kill.ming_xia_3.questDescription",
   "questRequirementsDescription": "quest.chang_sheng_jue.kill.ming_xia.questRequirementsDescription",
   "questType": "KILL",
+  "weight": 30,
   "targetEntity": "chang_sheng_jue:fist_ming_xia",
   "requiredKills": 1,
   "repeatable": false,

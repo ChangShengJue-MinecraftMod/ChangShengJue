@@ -68,7 +68,7 @@ public class AbstractGangLeader extends AbstractWuXiaMerchant {
     }
 
     /**
-     * 移除玩家所有未接受的任务(acceptedBy为null的任务)
+     * 移除玩家所有已经接受的任务(acceptedBy为null的任务)
      * @param playerId 玩家UUID
      */
     public void removeUnacceptedQuests(UUID playerId) {
@@ -144,7 +144,22 @@ public class AbstractGangLeader extends AbstractWuXiaMerchant {
      */
     public void addQuestForPlayer(UUID playerId, Quest quest) {
         if (quest == null) return;
-        getPlayerQuests(playerId).add(quest);
+        List<Quest> quests = getPlayerQuests(playerId);
+
+        // 检查是否已存在相同ID的任务
+        for (int i = 0; i < quests.size(); i++) {
+            Quest existingQuest = quests.get(i);
+            if (existingQuest != null && existingQuest.getQuestId().equals(quest.getQuestId())) {
+                // 更新现有任务
+                quests.set(i, quest);
+                ChangShengJue.LOGGER.debug("更新玩家 {} 的现有任务: {}", playerId, quest.getQuestId());
+                return;
+            }
+        }
+
+        // 如果不存在，添加新任务
+        quests.add(quest);
+        ChangShengJue.LOGGER.debug("为玩家 {} 添加新任务: {}", playerId, quest.getQuestId());
     }
 
     /**

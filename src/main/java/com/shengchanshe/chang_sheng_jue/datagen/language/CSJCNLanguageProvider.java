@@ -1,5 +1,5 @@
     package com.shengchanshe.chang_sheng_jue.datagen.language;
-    
+
     import com.shengchanshe.chang_sheng_jue.ChangShengJue;
     import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
     import com.shengchanshe.chang_sheng_jue.damage.CSJDamageTypes;
@@ -1224,23 +1224,23 @@
             this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_chief", "村长");
             this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.chang_sheng_jue.chang_sheng_jue_seamstress", "缝工");
     
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager", "Villager");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.none", "Villager");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.villager", "Villager");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.armorer", "Armorer");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.butcher", "Butcher");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager", "村民");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.none", "无业");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.villager", "村民");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.armorer", "盔甲匠");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.butcher", "屠夫");
             this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.cartographer", "制图师");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.cleric", "Cleric");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.farmer", "Farmer");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.fisherman", "Fisherman");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.fletcher", "Fletcher");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.leatherworker", "Leatherworker");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.librarian", "Librarian");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.mason", "Mason");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.nitwit", "Nitwit");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.shepherd", "Shepherd");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.toolsmith", "Toolsmith");
-            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.weaponsmith", "Weaponsmith");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.cleric", "牧师");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.farmer", "农民");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.fisherman", "渔夫");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.fletcher", "制箭师");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.leatherworker", "皮匠");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.librarian", "图书管理员");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.mason", "石匠");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.nitwit", "傻子");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.shepherd", "牧羊人");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.toolsmith", "工具匠");
+            this.add("entity.chang_sheng_jue.chang_sheng_jue_villager.weaponsmith", "武器匠");
     
             //buff
             this.add(ChangShengJueEffects.BLEED_EFFECT.get(), "流血");
@@ -1442,25 +1442,37 @@
             this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader.desc", "这木头座位总比那个剑刃做的舒适，不扎屁股。");
     
             //按钮
-            this.add("quest."+ ChangShengJue.MOD_ID +".gre_button", "灰");
-            this.add("quest."+ ChangShengJue.MOD_ID +".red_button", "红");
-            this.add("quest."+ ChangShengJue.MOD_ID +".black_button", "黑");
-            this.add("quest."+ ChangShengJue.MOD_ID +".blue_button", "青");
-            this.add("quest."+ ChangShengJue.MOD_ID +".golden_button", "金");
-    
+            this.add("button."+ ChangShengJue.MOD_ID +".gre_button.tips", "灰");
+            this.add("button."+ ChangShengJue.MOD_ID +".red_button.tips", "红");
+            this.add("button."+ ChangShengJue.MOD_ID +".black_button.tips", "黑");
+            this.add("button."+ ChangShengJue.MOD_ID +".blue_button.tips", "青");
+            this.add("button."+ ChangShengJue.MOD_ID +".golden_button.tips", "金");
+            this.add("button."+ ChangShengJue.MOD_ID +".wood_button.tips", "木");
+            this.add("gui."+ ChangShengJue.MOD_ID +".trade.gre", "灰");
+            this.add("gui."+ ChangShengJue.MOD_ID +".trade.red", "红");
+            this.add("gui."+ ChangShengJue.MOD_ID +".trade.black", "黑");
+            this.add("gui."+ ChangShengJue.MOD_ID +".trade.blue", "青");
+            this.add("gui."+ ChangShengJue.MOD_ID +".trade.golden", "金");
+            this.add("gui."+ ChangShengJue.MOD_ID +".trade.wood", "木");
+
             //任务
             this.add("quest."+ ChangShengJue.MOD_ID +".button", "任务");
             this.add("quest."+ ChangShengJue.MOD_ID +".requirements", "任务需求:");
             this.add("quest."+ ChangShengJue.MOD_ID +".rewards", "任务奖励:");
             this.add("quest."+ ChangShengJue.MOD_ID +".submit.button", "提交任务");
+            this.add("quest."+ ChangShengJue.MOD_ID +".no_submit.button", "当前没有任务可以提交!");
             this.add("quest."+ ChangShengJue.MOD_ID +".accept.button", "接受任务");
             this.add("quest."+ ChangShengJue.MOD_ID +".abandon.button", "放弃任务");
-            this.add("quest."+ ChangShengJue.MOD_ID +".flushed.button", "刷新任务");
+            this.add("quest."+ ChangShengJue.MOD_ID +".no_abandon.button", "无法放弃不存在的任务!");
             this.add("quest."+ ChangShengJue.MOD_ID +".requirements.prompt", "任务需求不足!");
             this.add("quest."+ ChangShengJue.MOD_ID +".finish", "§a%s任务完成！");
             this.add("quest."+ ChangShengJue.MOD_ID +".trigger", "§a触发%s任务");
-            this.add("quest."+ ChangShengJue.MOD_ID +".fail", "§a%s任务失败！");
-    
+            this.add("quest."+ ChangShengJue.MOD_ID +".fail", "§a%s任务失败!");
+            this.add("quest."+ ChangShengJue.MOD_ID +".requires.kill.target","需要击杀: %s次");
+            this.add("quest."+ ChangShengJue.MOD_ID +".current.kill.target","当前进度: %s/%s");
+            this.add("quest." + ChangShengJue.MOD_ID + ".no_quest","当前没有正在进行的任务!");
+            this.add("quest." + ChangShengJue.MOD_ID + ".no_action_quest","当前没有可以接受的任务!");
+
             this.add("quest."+ ChangShengJue.MOD_ID +".food.questName", "收集食物");
             this.add("quest."+ ChangShengJue.MOD_ID +".food.questDescription", "首领：兄弟们的吃食又不够了，总不能饿肚子吧，兄弟你去想想办法。");
             this.add("quest."+ ChangShengJue.MOD_ID +".money.questName", "收集钱款");

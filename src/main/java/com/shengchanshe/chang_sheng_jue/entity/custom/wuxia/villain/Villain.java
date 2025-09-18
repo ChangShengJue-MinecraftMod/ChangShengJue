@@ -3,7 +3,7 @@ package com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.villain;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.AbstractWuXiaMonster;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.kungfu.externalkunfu.ExternalKungFuCapability;
-import com.shengchanshe.chang_sheng_jue.kungfu.externalkunfu.kungfu.*;
+import com.shengchanshe.chang_sheng_jue.kungfu.externalkunfu.kungfu.GoldenBlackKnifeMethod;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.entity.EntityType;

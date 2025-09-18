@@ -56,7 +56,7 @@ public class ChangShengJueCapabiliy {
         //玩家进入世界时同步能力数据
         if(!event.getLevel().isClientSide()) {
             if(event.getEntity() instanceof ServerPlayer player) {
-                QuestManager.getInstance().syncQuestsToPlayer(player); // 全量同步
+//                QuestManager.getInstance().syncQuestsToPlayer(player); // 全量同步
                 player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY)
                         .ifPresent(cap -> cap.syncToClient(player));
                 player.getCapability(KUNGFU).ifPresent(cap -> cap.syncToClient(player));

@@ -4,6 +4,7 @@
   "questDescription": "quest.chang_sheng_jue.kill.villager.questDescription",
   "questRequirementsDescription": "quest.chang_sheng_jue.kill.villager.questRequirementsDescription",
   "questType": "KILL",
+  "weight": 10,
   "targetEntity": "#chang_sheng_jue:villagers",
   "requiredKills": 1,
   "repeatable": true,

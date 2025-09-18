@@ -8,8 +8,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import static software.bernie.example.registry.SoundRegistry.SOUNDS;
-
 public class ChangShengJueSound {
     public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, ChangShengJue.MOD_ID);
 

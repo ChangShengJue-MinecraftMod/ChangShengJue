@@ -1440,24 +1440,36 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader", "头把交椅");
         this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader.desc", "这木头座位总比那个剑刃做的舒适，不扎屁股。");
         //按钮
-        this.add("quest."+ ChangShengJue.MOD_ID +".gre_button", "灰");
-        this.add("quest."+ ChangShengJue.MOD_ID +".red_button", "红");
-        this.add("quest."+ ChangShengJue.MOD_ID +".black_button", "黑");
-        this.add("quest."+ ChangShengJue.MOD_ID +".blue_button", "青");
-        this.add("quest."+ ChangShengJue.MOD_ID +".golden_button", "金");
+        this.add("button."+ ChangShengJue.MOD_ID +".gre_button.tips", "灰");
+        this.add("button."+ ChangShengJue.MOD_ID +".red_button.tips", "红");
+        this.add("button."+ ChangShengJue.MOD_ID +".black_button.tips", "黑");
+        this.add("button."+ ChangShengJue.MOD_ID +".blue_button.tips", "青");
+        this.add("button."+ ChangShengJue.MOD_ID +".golden_button.tips", "金");
+        this.add("button."+ ChangShengJue.MOD_ID +".wood_button.tips", "木");
+        this.add("gui."+ ChangShengJue.MOD_ID +".trade.gre", "灰");
+        this.add("gui."+ ChangShengJue.MOD_ID +".trade.red", "红");
+        this.add("gui."+ ChangShengJue.MOD_ID +".trade.black", "黑");
+        this.add("gui."+ ChangShengJue.MOD_ID +".trade.blue", "青");
+        this.add("gui."+ ChangShengJue.MOD_ID +".trade.golden", "金");
+        this.add("gui."+ ChangShengJue.MOD_ID +".trade.wood", "木");
 
         //任务
         this.add("quest."+ ChangShengJue.MOD_ID +".button", "任务");
         this.add("quest."+ ChangShengJue.MOD_ID +".requirements", "任务需求:");
         this.add("quest."+ ChangShengJue.MOD_ID +".rewards", "任务奖励:");
         this.add("quest."+ ChangShengJue.MOD_ID +".submit.button", "提交任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".no_submit.button", "当前没有任务可以提交");
         this.add("quest."+ ChangShengJue.MOD_ID +".accept.button", "接受任务");
         this.add("quest."+ ChangShengJue.MOD_ID +".abandon.button", "放弃任务");
-        this.add("quest."+ ChangShengJue.MOD_ID +".flushed.button", "刷新任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".no_abandon.button", "无法放弃不存在的任务");
         this.add("quest."+ ChangShengJue.MOD_ID +".requirements.prompt", "任务需求不足!");
         this.add("quest."+ ChangShengJue.MOD_ID +".finish", "§a%s任务完成！");
         this.add("quest."+ ChangShengJue.MOD_ID +".trigger", "§a触发%s任务");
-        this.add("quest."+ ChangShengJue.MOD_ID +".fail", "§a%s任务失败！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".fail", "§a%s任务失败!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".requires.kill.target","需要击杀: %s次");
+        this.add("quest."+ ChangShengJue.MOD_ID +".current.kill.target","当前进度: %s/%s");
+        this.add("quest." + ChangShengJue.MOD_ID + ".no_quest","当前没有正在进行的任务!");
+        this.add("quest." + ChangShengJue.MOD_ID + ".no_action_quest","当前没有可以接受的任务!");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".food.questName", "收集食物");
         this.add("quest."+ ChangShengJue.MOD_ID +".food.questDescription", "首领：兄弟们的吃食又不够了，总不能饿肚子吧，兄弟你去想想办法。");

@@ -2,7 +2,7 @@ package com.shengchanshe.chang_sheng_jue.datagen.loot;
 
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.block.RoofPart;
-import com.shengchanshe.chang_sheng_jue.block.cropper.*;
+import com.shengchanshe.chang_sheng_jue.block.cropper.CornBlock;
 import com.shengchanshe.chang_sheng_jue.block.custom.DoorsBlock;
 import com.shengchanshe.chang_sheng_jue.block.custom.bracket.ChineseBracketLong;
 import com.shengchanshe.chang_sheng_jue.block.custom.tile.HippedRoof;

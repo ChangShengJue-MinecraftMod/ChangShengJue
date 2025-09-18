@@ -4,7 +4,6 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.tags.CSJTags;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -1059,8 +1058,6 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .requires(Ingredient.of(Items.CLAY_BALL), 4)
                 .unlockedBy("has_clay_ball", has(Items.CLAY_BALL)).save(consumer);
 
-
-
         //烧炼配方
         //矿石
         oreSmelting(consumer, AG_SMELTABLES, RecipeCategory.MISC, ChangShengJueItems.AG_INGOT.get(), 0.25f, SMELTING_TICK, "sapphire");
@@ -1163,7 +1160,29 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .requires(ChangShengJueItems.GRAPE.get(),3).requires(ChangShengJueItems.CI_BEI.get())
                 .unlockedBy("has_cups",has(ChangShengJueItems.CI_BEI.get()))
                 .save(consumer);
-
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.BILUOCHUN_TEAS.get())
+                .requires(ChangShengJueItems.BILUOCHUN_TEA.get(),3).requires(ChangShengJueItems.CI_BEI.get())
+                .unlockedBy("has_cups",has(ChangShengJueItems.CI_BEI.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.LONG_JING_TEAS.get())
+                .requires(ChangShengJueItems.LONG_JING_TEA.get(),3).requires(ChangShengJueItems.CI_BEI.get())
+                .unlockedBy("has_cups",has(ChangShengJueItems.CI_BEI.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.FEN_JIU.get())
+                .requires(ChangShengJueItems.SORGHUM.get(),4)
+                .requires(ChangShengJueItems.HORDEUM.get()).requires(ChangShengJueItems.EMPTY_FEN_JIU.get())
+                .unlockedBy("has_cups",has(ChangShengJueItems.EMPTY_FEN_JIU.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get())
+                .requires(ChangShengJueItems.SORGHUM.get(),4)
+                .requires(Tags.Items.CROPS_WHEAT).requires(ChangShengJueItems.EMPTY_FEN_JIU.get())
+                .unlockedBy("has_cups",has(ChangShengJueItems.EMPTY_FEN_JIU.get()))
+                .save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.SHI_LI_XIANG.get())
+                .requires(ChangShengJueItems.SORGHUM.get(),4)
+                .requires(ChangShengJueItems.STICKYRICE_1.get()).requires(ChangShengJueItems.EMPTY_FEN_JIU.get())
+                .unlockedBy("has_cups",has(ChangShengJueItems.EMPTY_FEN_JIU.get()))
+                .save(consumer);
 
         foodCooking(Ingredient.of(ChangShengJueItems.CORN.get()),ChangShengJueItems.BAKED_CORN.get(),1,consumer,"baked_corn");
 

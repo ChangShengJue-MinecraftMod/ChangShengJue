@@ -1,14 +1,14 @@
 package com.shengchanshe.chang_sheng_jue.datagen;
 
 
-
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.advancement.first.MiChangSheng;
 import com.shengchanshe.chang_sheng_jue.advancement.forth.*;
+import com.shengchanshe.chang_sheng_jue.advancement.second.AccessGuildTask;
+import com.shengchanshe.chang_sheng_jue.advancement.second.HasBronzeSword;
+import com.shengchanshe.chang_sheng_jue.advancement.second.HasMiFan;
+import com.shengchanshe.chang_sheng_jue.advancement.second.HasSilverBullions;
 import com.shengchanshe.chang_sheng_jue.advancement.third.*;
-import com.shengchanshe.chang_sheng_jue.advancement.second.*;
-import com.shengchanshe.chang_sheng_jue.advancement.third.UseWaiGong;
-import com.shengchanshe.chang_sheng_jue.advancement.third.LearnGongFa;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.item.items.Parcel;

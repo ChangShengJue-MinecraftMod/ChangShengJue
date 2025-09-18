@@ -1,22 +1,18 @@
 package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.forgeblock;
 
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
-import com.shengchanshe.chang_sheng_jue.block.custom.forgeblock.ForgeBlock;
 import com.shengchanshe.chang_sheng_jue.block.custom.forgeblock.ForgeBlockEntity;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.ChangShengJueMenuTypes;
-import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.recipe.ForgeBlockRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -24,9 +20,8 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.*;
+import java.util.Arrays;
 
 public class ForgeBlockMenu extends AbstractContainerMenu {
 

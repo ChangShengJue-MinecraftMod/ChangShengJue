@@ -23,7 +23,6 @@ import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.item.combat.knife.Knife;
 import com.shengchanshe.chang_sheng_jue.item.items.Parcel;
 import com.shengchanshe.chang_sheng_jue.item.items.StructureIntelligence;
-import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
 import com.shengchanshe.chang_sheng_jue.util.TradeHelper;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.resources.ResourceLocation;
@@ -43,10 +42,7 @@ import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.*;
-import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.entity.player.TradeWithVillagerEvent;
+import net.minecraftforge.event.entity.player.*;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.level.ChunkEvent;
 import net.minecraftforge.event.level.LevelEvent;
@@ -647,15 +643,17 @@ public class CSJEvent {
 
     @SubscribeEvent
     public static void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event) {
+        KungFuEvent.onPlayerRightClickItem(event);
+    }
+
+    @SubscribeEvent
+    public static void onPlayerAttackEntity(AttackEntityEvent event){
+        KungFuEvent.onPlayerAttackEntity(event);
     }
 
     //玩家右键方块事件
     @SubscribeEvent
     public static void onPlayerEntityInteract(PlayerInteractEvent.RightClickBlock event){
-        if (event.getLevel().getBlockState(event.getPos()).getBlock() instanceof TypeBlock){
-            Player player = event.getEntity();
-
-        }
     }
 
     //玩家重生事件
@@ -717,7 +715,7 @@ public class CSJEvent {
         Player player = event.getEntity();
         // 检查是否为服务器端玩家
         if (player instanceof ServerPlayer serverPlayer) {
-            QuestManager.getInstance().syncQuestsToPlayer(serverPlayer); // 全量同步
+//            QuestManager.getInstance().syncQuestsToPlayer(serverPlayer); // 全量同步
             // 检查Patchouli是否加载
             if (!net.minecraftforge.fml.ModList.get().isLoaded("patchouli")) {
                 return;

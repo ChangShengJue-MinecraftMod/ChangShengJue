@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu;
 
+import cn.mcmod.arsenal.item.rapier.RapierItem;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.CSJDisplayHud;
@@ -25,6 +26,7 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
@@ -120,7 +122,7 @@ public class KungFuHudOverlay {
         int y = screenHeight / 2;
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        if (mainHand.getItem() instanceof Sword && mainHand.getItem() != ChangShengJueItems.SOFT_SWORD.get()) {
+        if (mainHand.getItem() instanceof SwordItem && mainHand.getItem() != ChangShengJueItems.SOFT_SWORD.get()) {
             if (KungFuClientData.get().knowsKungFu(DuguNineSwords.KUNG_FU_ID.toString())) {
                 CSJDisplayHud.displayHudPermanent(
                         getKungLevel(DuguNineSwords.KUNG_FU_ID.toString()),
@@ -263,7 +265,7 @@ public class KungFuHudOverlay {
                 CSJDisplayHud.displayHudPermanent(guiGraphics, gui.getFont(),
                         ChatFormatting.BOLD + I18n.get("item." + ChangShengJue.MOD_ID + "." + ShaolinStickMethod.KUNG_FU_ID.getPath()), x, y, ChatFormatting.RED.getColor());
             }
-        } else if (mainHand.getItem() instanceof SoftSword) {
+        } else if (mainHand.getItem() instanceof SoftSword || (net.minecraftforge.fml.ModList.get().isLoaded("arsenal_core") && mainHand.getItem() instanceof RapierItem)) {
             if (KungFuClientData.get().knowsKungFu(XuannuSwordsmanship.KUNG_FU_ID.toString())) {
                 CSJDisplayHud.displayHudPermanent(
                         getKungLevel(XuannuSwordsmanship.KUNG_FU_ID.toString()),
@@ -280,7 +282,7 @@ public class KungFuHudOverlay {
                         x, y);
                 CSJDisplayHud.displayHudPermanent(guiGraphics, gui.getFont(),
                         ChatFormatting.BOLD + I18n.get("item." + ChangShengJue.MOD_ID + "." + XuannuSwordsmanship.KUNG_FU_ID.getPath()),
-                        x, y, ChatFormatting.RED.getColor());
+                        x, y, ChatFormatting.AQUA.getColor());
             }
         } else if (mainHand.getItem() instanceof ThrowingKnives || mainHand.getItem() instanceof FlyingDaggerPouch) {
             if (KungFuClientData.get().knowsKungFu(RelentlessThrowingKnives.KUNG_FU_ID.toString())) {

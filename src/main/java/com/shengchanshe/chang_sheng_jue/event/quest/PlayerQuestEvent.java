@@ -6,7 +6,6 @@ import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityPr
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.entity.custom.tiger.Tiger;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.AbstractWuXiaMonster;
-import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.AbstractGangLeader;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.ChangShengJueVillagerEntity;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.ChangShengJueVillagers;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;
@@ -72,7 +71,7 @@ public class PlayerQuestEvent {
                     }
                     if (AO_QI_TINA_DI_JIAN_QUEST_ID.equals(quest.getQuestId())) {
                         if (!quest.canComplete(player) && quest.getQuestCurrentTime() < quest.getQuestTime()) {
-                            cap.removeQuestFromAllPlayers(quest.getQuestId());
+                            cap.removeQuestFromPlayer(player.getUUID(), quest.getQuestId());
                             player.sendSystemMessage(getColoredTranslation(
                                     "quest." + ChangShengJue.MOD_ID + ".fail",
                                     getColoredTranslation(quest.getQuestName())));
@@ -196,7 +195,18 @@ public class PlayerQuestEvent {
             cap.triggerQuest(player, CHU_QIANG_FU_RUO_QUEST_ID, 0.3F, null);
 
             if (player.getRandom().nextFloat() < 0.5) {
-                cap.triggerQuest(player, CHU_BAO_AN_LIANG_QUEST_ID, 1.0F, null);
+                // 新增首次触发状态检查
+                boolean isFirstTime = cap.isFirstChuBaoAnLiangTrigger();
+                float triggerChance = isFirstTime ? 1.0f : 0.4F;
+
+                if (player.getRandom().nextFloat() < triggerChance) {
+                    cap.triggerQuest(player, CHU_BAO_AN_LIANG_QUEST_ID, 1.0F, null);
+                    
+                    // 更新首次触发状态
+                    if (isFirstTime) {
+                        cap.setFirstChuBaoAnLiangTrigger(false);
+                    }
+                }
             } else {
                 List<Quest> quests = cap.getQuests(player.getUUID());
                 Optional<Quest> existingUncompleted = quests.stream()
@@ -206,8 +216,19 @@ public class PlayerQuestEvent {
                         .findFirst();
 
                 if (existingUncompleted.isEmpty()) {
-                    UUID newQuestId = player.getRandom().nextBoolean() ? LARGE_TRANSACTIONS_A_QUEST_ID : LARGE_TRANSACTIONS_B_QUEST_ID;
-                    cap.triggerQuest(player, newQuestId, 1.0f, null);
+                    // 新增首次触发状态检查
+                    boolean isFirstTime = cap.isFirstLargeTransactionTrigger();
+                    float triggerChance = isFirstTime ? 1.0f : 0.4F;
+
+                    if (player.getRandom().nextFloat() < triggerChance) {
+                        UUID newQuestId = player.getRandom().nextBoolean() ? LARGE_TRANSACTIONS_A_QUEST_ID : LARGE_TRANSACTIONS_B_QUEST_ID;
+                        cap.triggerQuest(player, newQuestId, 1.0f, null);
+                        
+                        // 更新首次触发状态
+                        if (isFirstTime) {
+                            cap.setFirstLargeTransactionTrigger(false);
+                        }
+                    }
                 }
             }
         });
@@ -236,13 +257,24 @@ public class PlayerQuestEvent {
         }
         if (target instanceof Tiger) {
             player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
-                cap.triggerQuest(player, WEI_MIN_CHU_HAI_QUEST_ID, 0.75F, null);
+                // 新增首次触发状态检查
+                boolean isFirstTime = cap.isFirstWeiMinChuHaiTrigger();
+                float triggerChance = isFirstTime ? 0.75F : 0.05F;
+
+                if (player.getRandom().nextFloat() < triggerChance) {
+                    cap.triggerQuest(player, WEI_MIN_CHU_HAI_QUEST_ID, 1.0f, null);
+                    
+                    // 更新首次触发状态
+                    if (isFirstTime) {
+                        cap.setFirstWeiMinChuHaiTrigger(false);
+                    }
+                }
             });
         } else if (target instanceof Zombie) {
             player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
                 if (TimeDetection.isFullNight(player.level())) {
                     if (level.isVillage(blockPos) || isPlayerInVillage(player)) {
-                        cap.triggerQuest(player, MARTIAL_ARTS_QUEST_ID, 0.75F, null);
+                        cap.triggerQuest(player, MARTIAL_ARTS_QUEST_ID, 0.25F, null);
                     }
                 }
             });
@@ -289,9 +321,18 @@ public class PlayerQuestEvent {
         if (event.getEntity() instanceof Player player) {
             if (event.getSource().getEntity() instanceof Mob mob && !(mob instanceof AbstractWuXiaMonster)
                     && !(mob instanceof Creeper) && !(mob instanceof Spider) && !(mob instanceof Silverfish) && !(mob instanceof Endermite)) {
-                player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
-                    cap.triggerQuest(player, KUAI_YI_EN_CHOU_QUEST_ID, 0.2F, mob.getUUID());
-                });
+                // 获取当前游戏天数
+                long currentDay = player.level().getDayTime() / 24000;
+                // 从玩家NBT中获取最后触发天数
+                long lastTriggerDay = player.getPersistentData().getLong("KuaiYiEnChouQuestLastTriggerDay");
+                
+                if (currentDay != lastTriggerDay) {
+                    player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
+                        cap.triggerQuest(player, KUAI_YI_EN_CHOU_QUEST_ID, 0.05F, mob.getUUID());
+                        // 更新最后触发天数
+                        player.getPersistentData().putLong("KuaiYiEnChouQuestLastTriggerDay", currentDay);
+                    });
+                }
             }
         }
 

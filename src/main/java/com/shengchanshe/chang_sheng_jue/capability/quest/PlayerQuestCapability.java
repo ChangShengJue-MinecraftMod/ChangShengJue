@@ -2,7 +2,9 @@ package com.shengchanshe.chang_sheng_jue.capability.quest;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.AbstractGangLeader;
+import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.GangleaderVariant2;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeader;
+import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.other.GangLeader;
 import com.shengchanshe.chang_sheng_jue.event.quest.PlayerQuestEvent;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.SyncQuestDataPacket;
@@ -25,14 +27,22 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import static com.shengchanshe.chang_sheng_jue.event.quest.PlayerQuestEvent.getColoredTranslation;
 
 public class PlayerQuestCapability {
-    // 简化为只保存玩家任务列表和完成次数
+
     private final Map<UUID, List<Quest>> playerQuests = new ConcurrentHashMap<>();
 
     private final Map<UUID, Integer> questCompletionCounts = new ConcurrentHashMap<>();
-    // 新增字段（使用ConcurrentHashMap保证线程安全）
+
     private final Set<UUID> completedQuests = ConcurrentHashMap.newKeySet();
     private final Set<UUID> acceptedQuests = ConcurrentHashMap.newKeySet();
 
+    // 新增大额交易首次触发状态
+    private boolean firstLargeTransactionTrigger = true;
+
+    // 新增除暴安良任务首次触发状态
+    private boolean firstChuBaoAnLiangTrigger = true;
+
+    // 新增为民除害任务首次触发状态
+    private boolean firstWeiMinChuHaiTrigger = true;
 
     public void copyFrom(PlayerQuestCapability source) {
         this.playerQuests.clear();
@@ -46,7 +56,7 @@ public class PlayerQuestCapability {
     public CompoundTag serializeNBT() {
         CompoundTag tag = new CompoundTag();
 
-        // 保存玩家任务列表（添加null检查）
+        // 保存玩家任务列表
         ListTag playersTag = new ListTag();
         playerQuests.forEach((uuid, quests) -> {
             // 跳过空玩家ID或空任务列表
@@ -57,7 +67,7 @@ public class PlayerQuestCapability {
 
             ListTag questsTag = new ListTag();
             quests.stream()
-                    .filter(Objects::nonNull) // 过滤掉null任务
+                    .filter(Objects::nonNull)
                     .forEach(quest -> {
                         CompoundTag questTag = quest.toNbt();
                         if (questTag != null) { // 额外检查NBT转换结果
@@ -70,10 +80,10 @@ public class PlayerQuestCapability {
         });
         tag.put("PlayerQuests", playersTag);
 
-        // 保存任务完成次数（添加null检查）
+        // 保存任务完成次数
         CompoundTag countsTag = new CompoundTag();
         questCompletionCounts.forEach((uuid, count) -> {
-            if (uuid != null) { // 跳过null任务ID
+            if (uuid != null) {
                 countsTag.putInt(uuid.toString(), count);
             }
         });
@@ -95,7 +105,7 @@ public class PlayerQuestCapability {
     }
 
     public void deserializeNBT(CompoundTag tag) {
-        // 加载玩家任务（添加null检查）
+        // 加载玩家任务
         if (tag.contains("PlayerQuests", Tag.TAG_LIST)) {
             ListTag playersTag = tag.getList("PlayerQuests", Tag.TAG_COMPOUND);
             for (Tag t : playersTag) {
@@ -111,7 +121,7 @@ public class PlayerQuestCapability {
                     for (Tag q : questsTag) {
                         if (q instanceof CompoundTag questTag) {
                             Quest quest = new Quest(questTag);
-                            if (quest.isValid()) { // 假设Quest类有验证方法
+                            if (quest.isValid()) {
                                 quests.add(quest);
                             }
                         }
@@ -131,7 +141,7 @@ public class PlayerQuestCapability {
             }
         }
 
-        // 加载任务完成次数（添加null检查）
+        // 加载任务完成次数
         if (tag.contains("QuestCompletionCounts", Tag.TAG_COMPOUND)) {
             CompoundTag countsTag = tag.getCompound("QuestCompletionCounts");
             for (String key : countsTag.getAllKeys()) {
@@ -152,21 +162,21 @@ public class PlayerQuestCapability {
         }
     }
 
-    public Quest triggerGangQuest(Player player, AbstractGangLeader questNpc, Float triggerChance) {
-        // 1. 前置校验
+    public List<Quest> triggerGangQuest(Player player, AbstractGangLeader questNpc, Float triggerChance) {
+        // 前置校验
         if (!validateTriggerConditions(player, questNpc.getUUID(), triggerChance)) {
             return null;
         }
-        // 2. 获取或创建任务列表
+        // 获取或创建任务列表
         List<Quest> quests = playerQuests.computeIfAbsent(player.getUUID(),
                 k -> new CopyOnWriteArrayList<>());
-        // 3. 检查现有任务
+        // 检查现有任务
         Optional<Quest> existingQuest = findExistingQuest(quests, questNpc.getUUID());
-        // 4. 处理任务触发
+        // 处理任务触发
         if (existingQuest.isEmpty()) {
-            return tryCreateNewQuest(player, questNpc, triggerChance, quests);
+            return tryCreateNewQuests(player, questNpc, triggerChance, quests);
         } else {
-            return handleExistingQuest(player, questNpc, triggerChance, quests, existingQuest.get());
+            return handleExistingQuests(player, questNpc, triggerChance, quests);
         }
     }
 
@@ -185,31 +195,46 @@ public class PlayerQuestCapability {
                 .findFirst();
     }
 
-    private Quest tryCreateNewQuest(Player player, AbstractGangLeader questNpc, float chance, List<Quest> quests) {
-        Quest newQuest = QuestLoader.loadQuest(questNpc.getUUID(), completedQuests);
-        if (newQuest == null) {
-            ChangShengJue.LOGGER.error("任务加载失败: {}", questNpc.getUUID());
-            return null;
+    private List<Quest> tryCreateNewQuests(Player player, AbstractGangLeader questNpc, float chance, List<Quest> existingQuests) {
+        List<Quest> newQuests = new ArrayList<>();
+
+        // 获取所有可用的任务
+        List<Quest> allAvailableQuests = QuestLoader.loadAllAvailableQuests(questNpc.getUUID(), completedQuests);
+        if (allAvailableQuests.isEmpty()) {
+            ChangShengJue.LOGGER.error("没有可用的任务: {}", questNpc.getUUID());
+            return newQuests;
         }
 
-        if (!validateNewQuest(player, newQuest, questNpc)) {
-            return tryCreateNewQuest(player, questNpc, chance, quests);
+        // 过滤出有效的任务
+        List<Quest> validQuests = new ArrayList<>();
+        for (Quest quest : allAvailableQuests) {
+            if (validateNewQuest(player, quest, questNpc)) {
+                validQuests.add(quest);
+            }
         }
+
+        newQuests.addAll(validQuests);
 
         syncToClient((ServerPlayer) player);
-        return newQuest;
+        return newQuests;
     }
 
     private boolean validateNewQuest(Player player, Quest quest, AbstractGangLeader questNpc) {
         // 前置任务检查
         if (quest.isNeedCompletePreQuest() && !quest.checkPrerequisiteQuests(this)) {
             return false;
-        } else if (quest.isConflictQuest() && quest.checkConflictQuests(this)) {
+        }
+        if (quest.isConflictQuest() && quest.checkConflictQuests(this)) {
             return false;
         }
 
-        if (quest.getQuestId().equals(PlayerQuestEvent.VEGETARIAN_FOOD_QUEST_ID) && !(questNpc instanceof ClubbedGangLeader)){
-            return false;
+        if (quest.getQuestId().equals(PlayerQuestEvent.VEGETARIAN_FOOD_QUEST_ID)){
+            if (questNpc instanceof GangLeader gangLeader) {
+                GangleaderVariant2 variant = gangLeader.getVariant();
+                if (variant != GangleaderVariant2.TEXTURES_0) return false;
+            } else if (!(questNpc instanceof ClubbedGangLeader)) {
+                return false;
+            }
         }
 
         //任务条件检查
@@ -230,13 +255,23 @@ public class PlayerQuestCapability {
 //        QuestManager.getInstance().spawnTargetForQuest(player, quest, killCount);
 //    }
 
-    private Quest handleExistingQuest(Player player, AbstractGangLeader questNpc, float chance,
-                                     List<Quest> quests, Quest existingQuest) {
-        if (!questNpc.getUUID().equals(existingQuest.getQuestNpcId())) {
-            return tryCreateNewQuest(player, questNpc, chance, quests);
-        }else {
-            return existingQuest;
+    private List<Quest> handleExistingQuests(Player player, AbstractGangLeader questNpc, float chance,
+                                             List<Quest> quests) {
+        List<Quest> validQuests = new ArrayList<>();
+
+        // 筛选出属于当前NPC的有效任务
+        for (Quest existingQuest : quests) {
+            if (existingQuest != null && questNpc.getUUID().equals(existingQuest.getQuestNpcId())) {
+                validQuests.add(existingQuest);
+            }
         }
+
+        // 如果现有任务不足，创建新任务补充
+        if (validQuests.isEmpty()) {
+            return tryCreateNewQuests(player, questNpc, chance, quests); // 生成3个新任务
+        }
+
+        return validQuests;
     }
 
     public void triggerQuest(Player player, UUID questId, Float f, UUID mobId){
@@ -320,20 +355,23 @@ public class PlayerQuestCapability {
     }
 
     /**
-     * 从所有玩家的任务列表中删除指定任务ID的任务
+     * 从当前玩家的任务列表中删除指定任务ID的任务
+     * @param playerId 当前玩家ID
      * @param questId 要删除的任务ID
      */
-    public void removeQuestFromAllPlayers(UUID questId) {
-        playerQuests.forEach((playerId, quests) -> {
-            // 使用removeIf移除匹配的任务
-            quests.removeIf(quest -> quest.getQuestId().equals(questId));
+    public void removeQuestFromPlayer(UUID playerId, UUID questId) {
+        // 获取当前玩家的任务列表
+        List<Quest> playerQuestList = playerQuests.get(playerId);
 
-            // 如果玩家的任务列表为空，可以选择移除该玩家的条目
-            if (quests.isEmpty()) {
+        if (playerQuestList != null) {
+            // 使用removeIf移除匹配的任务
+            playerQuestList.removeIf(quest -> quest.getQuestId().equals(questId));
+
+            // 如果玩家的任务列表为空，移除该玩家的条目
+            if (playerQuestList.isEmpty()) {
                 playerQuests.remove(playerId);
             }
-
-        });
+        }
     }
 
     public List<Quest> getQuests(UUID playerId) {
@@ -344,6 +382,13 @@ public class PlayerQuestCapability {
     public void setQuests(Quest quest, UUID playerId) {
         List<Quest> quests = playerQuests.computeIfAbsent(playerId,
                 k -> new CopyOnWriteArrayList<>());
+        for (int i = 0; i < quests.size(); i++) {
+            Quest existingQuest = quests.get(i);
+            if (existingQuest != null && existingQuest.getQuestId().equals(quest.getQuestId())) {
+                quests.set(i, quest);
+                return;
+            }
+        }
         quests.add(quest);
     }
 
@@ -393,4 +438,27 @@ public class PlayerQuestCapability {
         }
     }
 
+    public boolean isFirstLargeTransactionTrigger() {
+        return firstLargeTransactionTrigger;
+    }
+
+    public void setFirstLargeTransactionTrigger(boolean firstLargeTransactionTrigger) {
+        this.firstLargeTransactionTrigger = firstLargeTransactionTrigger;
+    }
+
+    public boolean isFirstChuBaoAnLiangTrigger() {
+        return firstChuBaoAnLiangTrigger;
+    }
+
+    public void setFirstChuBaoAnLiangTrigger(boolean firstChuBaoAnLiangTrigger) {
+        this.firstChuBaoAnLiangTrigger = firstChuBaoAnLiangTrigger;
+    }
+
+    public boolean isFirstWeiMinChuHaiTrigger() {
+        return firstWeiMinChuHaiTrigger;
+    }
+
+    public void setFirstWeiMinChuHaiTrigger(boolean firstWeiMinChuHaiTrigger) {
+        this.firstWeiMinChuHaiTrigger = firstWeiMinChuHaiTrigger;
+    }
 }

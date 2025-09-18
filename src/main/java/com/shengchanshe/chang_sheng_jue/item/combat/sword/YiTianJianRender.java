@@ -2,7 +2,6 @@ package com.shengchanshe.chang_sheng_jue.item.combat.sword;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.item.combat.knife.LargeKnife;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;

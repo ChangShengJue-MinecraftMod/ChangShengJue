@@ -3,6 +3,7 @@
   "questName": "quest.chang_sheng_jue.treat.village.questName",
   "questDescription": "quest.chang_sheng_jue.treat.village.questDescription",
   "questRequirementsDescription": "quest.chang_sheng_jue.treat.village.questRequirementsDescription",
+  "weight": 10,
   "questType": "TREAT",
   "requiredKills": 1,
   "repeatable": false,

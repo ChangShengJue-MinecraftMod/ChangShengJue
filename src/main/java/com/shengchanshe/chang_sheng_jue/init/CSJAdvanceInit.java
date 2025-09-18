@@ -1,11 +1,12 @@
 package com.shengchanshe.chang_sheng_jue.init;
 
-import com.shengchanshe.chang_sheng_jue.advancement.forth.*;
 import com.shengchanshe.chang_sheng_jue.advancement.first.MiChangSheng;
-import com.shengchanshe.chang_sheng_jue.advancement.second.*;
+import com.shengchanshe.chang_sheng_jue.advancement.forth.*;
+import com.shengchanshe.chang_sheng_jue.advancement.second.AccessGuildTask;
+import com.shengchanshe.chang_sheng_jue.advancement.second.HasBronzeSword;
+import com.shengchanshe.chang_sheng_jue.advancement.second.HasMiFan;
+import com.shengchanshe.chang_sheng_jue.advancement.second.HasSilverBullions;
 import com.shengchanshe.chang_sheng_jue.advancement.third.*;
-import com.shengchanshe.chang_sheng_jue.advancement.third.LearnGongFa;
-import com.shengchanshe.chang_sheng_jue.advancement.third.UseWaiGong;
 import net.minecraft.advancements.CriteriaTriggers;
 
 public class CSJAdvanceInit {
