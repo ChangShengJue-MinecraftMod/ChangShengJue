@@ -2,22 +2,14 @@ package com.shengchanshe.chang_sheng_jue.entity.custom.xpord;
 
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
-import com.shengchanshe.chang_sheng_jue.kungfu.internalkungfu.InternalKungFuCapability;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IKungFuUpgradable;
-import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.CapabilityToken;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
-import net.minecraft.network.chat.Component;
 
 import java.util.ArrayList;
 import java.util.Comparator;

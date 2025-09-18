@@ -2,6 +2,7 @@ package com.shengchanshe.chang_sheng_jue.event;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.button.TexturedButtonWithText;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.ClientQuestDataCache;
 import com.shengchanshe.chang_sheng_jue.event.kungfu.TreadTheSnowWithoutTraceClientEvent;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.OpenPlayerQuestScreenPacket;
@@ -42,19 +43,21 @@ public class CSJEventClientEvents {
         if (event.getScreen() instanceof InventoryScreen screen) {
             // 检查合成书是否可见
             boolean isRecipeBookVisible = screen.getRecipeBookComponent().isVisible();
-            TexturedButtonWithText customButton = new TexturedButtonWithText(
-                    screen.leftPos - (!isRecipeBookVisible ? 15 : 92),
-                    screen.height / 2 - 80,
-                    15, 24,
-                    75, 0, 24,
-                    BUTTON_TEXTURE,
-                    256, 256,
-                    (button) -> {
-                        ChangShengJueMessages.sendToServer(new OpenPlayerQuestScreenPacket(0, Component.translatable("quest."+ ChangShengJue.MOD_ID +".button")));
-                    },
-                    Component.translatable("quest."+ ChangShengJue.MOD_ID +".button"),0x000,0x000,1.0F
-            );
-            event.addListener(customButton);
+            if (mc.player != null && !ClientQuestDataCache.get().getPlayerQuests(mc.player.getUUID()).isEmpty()) {
+                TexturedButtonWithText customButton = new TexturedButtonWithText(
+                        screen.leftPos - (!isRecipeBookVisible ? 15 : 92),
+                        screen.height / 2 - 80,
+                        15, 24,
+                        75, 0, 24,
+                        BUTTON_TEXTURE,
+                        256, 256,
+                        (button) -> {
+                            ChangShengJueMessages.sendToServer(new OpenPlayerQuestScreenPacket(0, Component.translatable("quest." + ChangShengJue.MOD_ID + ".button")));
+                        },
+                        Component.translatable("quest." + ChangShengJue.MOD_ID + ".button"), 0x000, 0x000, 1.0F
+                );
+                event.addListener(customButton);
+            }
         }
     }
 

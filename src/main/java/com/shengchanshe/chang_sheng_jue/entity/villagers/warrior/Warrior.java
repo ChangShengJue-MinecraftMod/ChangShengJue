@@ -1,7 +1,8 @@
 package com.shengchanshe.chang_sheng_jue.entity.villagers.warrior;
 
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
-import com.shengchanshe.chang_sheng_jue.kungfu.externalkunfu.*;
+import com.shengchanshe.chang_sheng_jue.kungfu.externalkunfu.ExternalKungFuCapability;
+import com.shengchanshe.chang_sheng_jue.kungfu.externalkunfu.ExternalKungFuManager;
 import com.shengchanshe.chang_sheng_jue.kungfu.externalkunfu.kungfu.*;
 import com.shengchanshe.chang_sheng_jue.kungfu.internalkungfu.InterfaceKungFuManager;
 import com.shengchanshe.chang_sheng_jue.kungfu.internalkungfu.InternalKungFuCapability;
@@ -22,7 +23,10 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
-import net.minecraft.world.entity.ai.goal.target.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.TargetGoal;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.animal.Animal;

@@ -1440,30 +1440,38 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader", "Top Seat");
         this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader.desc", "This wooden seat is far more comfortable than that blade-edged one—no more sore buttocks.");
         //按钮
-        this.add ("quest."+ ChangShengJue.MOD_ID +".gre_button", "Gray");
-        this.add ("quest."+ ChangShengJue.MOD_ID +".red_button", "Red");
-        this.add ("quest."+ ChangShengJue.MOD_ID +".black_button", "Black");
-        this.add ("quest."+ ChangShengJue.MOD_ID +".blue_button", "Cyan");
-        this.add ("quest."+ ChangShengJue.MOD_ID +".golden_button", "Golden");
+
+        this.add("button."+ ChangShengJue.MOD_ID +".gre_button.tips", "灰");
+        this.add("button."+ ChangShengJue.MOD_ID +".red_button.tips", "红");
+        this.add("button."+ ChangShengJue.MOD_ID +".black_button.tips", "黑");
+        this.add("button."+ ChangShengJue.MOD_ID +".blue_button.tips", "青");
+        this.add("button."+ ChangShengJue.MOD_ID +".golden_button.tips", "金");
+        this.add("button."+ ChangShengJue.MOD_ID +".wood_button.tips", "木");
+        this.add("gui."+ ChangShengJue.MOD_ID +".trade.gre", "灰");
+        this.add("gui."+ ChangShengJue.MOD_ID +".trade.red", "红");
+        this.add("gui."+ ChangShengJue.MOD_ID +".trade.black", "黑");
+        this.add("gui."+ ChangShengJue.MOD_ID +".trade.blue", "青");
+        this.add("gui."+ ChangShengJue.MOD_ID +".trade.golden", "金");
+        this.add("gui."+ ChangShengJue.MOD_ID +".trade.wood", "木");
 
         //任务
-        this.add("quest." + ChangShengJue.MOD_ID + ".button", "Quest");
-        this.add("quest." + ChangShengJue.MOD_ID + ".requirements", "Quest Requirements:");
-        this.add("quest." + ChangShengJue.MOD_ID + ".rewards", "Quest Rewards:");
-        this.add("quest." + ChangShengJue.MOD_ID + ".submit.button", "Submit Quest");
-        this.add("quest." + ChangShengJue.MOD_ID + ".accept.button", "Accept Quest");
-        this.add("quest." + ChangShengJue.MOD_ID + ".abandon.button", "Abandon Quest");
-        this.add("quest." + ChangShengJue.MOD_ID + ".flushed.button", "Flush Quest");
-        this.add("quest." + ChangShengJue.MOD_ID + ".requirements.prompt", "Insufficient Quest Requirements!");
-        this.add("quest." + ChangShengJue.MOD_ID + ".finish", "§a%s Quest Completed!");
-        this.add("quest." + ChangShengJue.MOD_ID + ".trigger", "§aTrigger %s Quest");
-        this.add("quest." + ChangShengJue.MOD_ID + ".fail", "§a%s Quest Failed!");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".food.questName", "Gather Food");
-        this.add("quest."+ ChangShengJue.MOD_ID +".food.questDescription", "Gang Leader: Our brothers are running out of food supplies—we can't let everyone go hungry! Go find a way to get more.");
-        this.add("quest."+ ChangShengJue.MOD_ID +".money.questName", "Gather Money");
-        this.add("quest."+ ChangShengJue.MOD_ID +".money.questDescription", "Gang Leader: Everything costs money these days—even a hero can be stumped by a single coin. Brother, can you collect some gang funds?");
-
+        this.add("quest."+ ChangShengJue.MOD_ID +".button", "任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".requirements", "任务需求:");
+        this.add("quest."+ ChangShengJue.MOD_ID +".rewards", "任务奖励:");
+        this.add("quest."+ ChangShengJue.MOD_ID +".submit.button", "提交任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".no_submit.button", "当前没有任务可以提交");
+        this.add("quest."+ ChangShengJue.MOD_ID +".accept.button", "接受任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".abandon.button", "放弃任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".no_abandon.button", "无法放弃不存在的任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".requirements.prompt", "任务需求不足!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".finish", "§a%s任务完成！");
+        this.add("quest."+ ChangShengJue.MOD_ID +".trigger", "§a触发%s任务");
+        this.add("quest."+ ChangShengJue.MOD_ID +".fail", "§a%s任务失败!");
+        this.add("quest."+ ChangShengJue.MOD_ID +".requires.kill.target","需要击杀: %s次");
+        this.add("quest."+ ChangShengJue.MOD_ID +".current.kill.target","当前进度: %s/%s");
+        this.add("quest." + ChangShengJue.MOD_ID + ".no_quest","当前没有正在进行的任务!");
+        this.add("quest." + ChangShengJue.MOD_ID + ".no_action_quest","当前没有可以接受的任务!");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questName", "Challenge the Gang Turf");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questDescription", "Gang Leader: Dammit! This is the second gang to invade our turf while I'm ill—they think we have no capable men? Go teach them a lesson!");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questRequirementsDescription", "Kill any enemy gang leader");

@@ -5,7 +5,6 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJueConfig;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.bandit.Bandit;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.challenger.Challenger;
-import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.villain.Villain;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;

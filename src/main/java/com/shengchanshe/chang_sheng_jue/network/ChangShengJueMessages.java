@@ -93,34 +93,12 @@ public class ChangShengJueMessages {
                 .encoder(AcceptGangQuestsPacket::encode)
                 .consumerMainThread(AcceptGangQuestsPacket::handle)
                 .add();
-        net.messageBuilder(SubmitGangQuestsPacket.class, id())
-                .decoder(SubmitGangQuestsPacket::decode)
-                .encoder(SubmitGangQuestsPacket::encode)
-                .consumerMainThread(SubmitGangQuestsPacket::handle)
-                .add();
-        net.messageBuilder(AbandonGangQuestPacket.class, id())
-                .decoder(AbandonGangQuestPacket::decode)
-                .encoder(AbandonGangQuestPacket::encode)
-                .consumerMainThread(AbandonGangQuestPacket::handle)
-                .add();
-        net.messageBuilder(RefreshGangQuestPacket.class, id())
-                .decoder(RefreshGangQuestPacket::decode)
-                .encoder(RefreshGangQuestPacket::encode)
-                .consumerMainThread(RefreshGangQuestPacket::handle)
-                .add();
 
-        // 1. 服务端→客户端同步包（任务数据下发）
+        // 服务端→客户端同步包（任务数据下发）
         net.messageBuilder(SyncQuestDataPacket.class, id())
                 .decoder(SyncQuestDataPacket::decode)
                 .encoder(SyncQuestDataPacket::encode)
                 .consumerMainThread(SyncQuestDataPacket::handle)
-                .add();
-
-        // 2. 客户端→服务端请求包（数据请求）
-        net.messageBuilder(RequestQuestsPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(RequestQuestsPacket::new)
-                .encoder(RequestQuestsPacket::encode)
-                .consumerMainThread(RequestQuestsPacket::handle)
                 .add();
 
         // 背包任务按钮
@@ -157,8 +135,6 @@ public class ChangShengJueMessages {
                 .encoder(RefreshPlayerQuestScreenPacket::encode)
                 .consumerMainThread(RefreshPlayerQuestScreenPacket::handle)
                 .add();
-
-
 
         net.messageBuilder(TailoringCraftPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(TailoringCraftPacket::fromBytes)

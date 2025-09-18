@@ -4,7 +4,6 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.DefaultedBlockGeoModel;
-import software.bernie.geckolib.model.GeoModel;
 
 public class GongEntityModel extends DefaultedBlockGeoModel<GongEntity> {
 

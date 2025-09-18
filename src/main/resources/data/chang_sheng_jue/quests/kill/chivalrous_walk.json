@@ -4,6 +4,7 @@
   "questDescription": "quest.chang_sheng_jue.kill.pillager.questDescription",
   "questRequirementsDescription": "quest.chang_sheng_jue.kill.pillager.questRequirementsDescription",
   "questType": "KILL",
+  "weight": 15,
   "targetEntity": "#chang_sheng_jue:pillager",
   "requiredKills": 1,
   "repeatable": true,

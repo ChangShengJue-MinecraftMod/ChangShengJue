@@ -1,8 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.glove;
 
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
-import com.shengchanshe.chang_sheng_jue.item.combat.book.HerculesBook;
-import com.shengchanshe.chang_sheng_jue.martial_arts.IExternalKunfu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IInteranlKungFu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.GeShanDaNiu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.SunflowerPointCaveman;
@@ -13,7 +11,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;

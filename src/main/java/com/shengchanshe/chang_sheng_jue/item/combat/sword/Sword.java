@@ -5,17 +5,12 @@ import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.yi_tian_jian.YiTianJianAttackEntity;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.DuguNineSwords;
-import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.XuannuSwordsmanship;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.animal.AbstractGolem;
-import net.minecraft.world.entity.animal.horse.SkeletonHorse;
-import net.minecraft.world.entity.monster.AbstractSkeleton;
-import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
@@ -62,8 +57,7 @@ public class Sword extends SwordItem implements GeoItem {
                 if (!pPlayer.level().isClientSide){
                     pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                         if (cap.getCooldownTick(DuguNineSwords.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(DuguNineSwords.KUNG_FU_ID.toString()) >= 1) {
-                            // 检查是否按住至少 0.3 秒（6 tick）
-                            pPlayer.startUsingItem(pUsedHand); // 开始记录按住时间
+                            pPlayer.startUsingItem(pUsedHand);
                         }
                     });
                 }

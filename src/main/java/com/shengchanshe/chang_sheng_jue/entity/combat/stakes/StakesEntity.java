@@ -3,7 +3,6 @@ package com.shengchanshe.chang_sheng_jue.entity.combat.stakes;
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
-import com.shengchanshe.chang_sheng_jue.item.combat.book.TreadTheSnowWithoutTraceBook;
 import com.shengchanshe.chang_sheng_jue.item.combat.glove.GoldThreadGlove;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.GeShanDaNiu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.SunflowerPointCaveman;

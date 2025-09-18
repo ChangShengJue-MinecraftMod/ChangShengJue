@@ -1,8 +1,8 @@
 package com.shengchanshe.chang_sheng_jue.datagen;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.datagen.language.CSJUSLanguageProvider;
 import com.shengchanshe.chang_sheng_jue.datagen.language.CSJCNLanguageProvider;
+import com.shengchanshe.chang_sheng_jue.datagen.language.CSJUSLanguageProvider;
 import com.shengchanshe.chang_sheng_jue.datagen.loot.CSJGlobalLootModifiersProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;

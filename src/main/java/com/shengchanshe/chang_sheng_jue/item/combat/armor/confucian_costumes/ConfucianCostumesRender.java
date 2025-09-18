@@ -1,9 +1,7 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.armor.confucian_costumes;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.confucian_costumes.layer.ConfucianCostumesLayer;
-import com.shengchanshe.chang_sheng_jue.item.combat.armor.cotton.CottonArmor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import software.bernie.geckolib.model.DefaultedItemGeoModel;

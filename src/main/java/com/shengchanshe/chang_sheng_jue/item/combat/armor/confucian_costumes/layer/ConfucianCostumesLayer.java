@@ -5,8 +5,6 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.confucian_costumes.ConfucianCostumes;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.confucian_costumes.ConfucianCostumesRender;
-import com.shengchanshe.chang_sheng_jue.item.combat.armor.cotton.CottonArmor;
-import com.shengchanshe.chang_sheng_jue.item.combat.armor.cotton.CottonArmorRender;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;

@@ -2,11 +2,8 @@ package com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.challenger;
 
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.AbstractWuXia;
-import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;
-import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;

@@ -2,27 +2,14 @@ package com.shengchanshe.chang_sheng_jue.entity.custom.xpord;
 
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
-import com.shengchanshe.chang_sheng_jue.kungfu.externalkunfu.ExternalKungFuCapability;
-import com.shengchanshe.chang_sheng_jue.kungfu.internalkungfu.InternalKungFuCapability;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IKungFuUpgradable;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Items;
-import net.minecraftforge.event.entity.player.PlayerXpEvent;
-import net.minecraftforge.common.MinecraftForge;
-
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.CapabilityManager;
-import net.minecraftforge.common.capabilities.CapabilityToken;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import java.util.ArrayList;
 import java.util.Comparator;

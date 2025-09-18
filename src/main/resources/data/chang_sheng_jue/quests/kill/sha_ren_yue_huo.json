@@ -4,6 +4,7 @@
   "questDescription": "quest.chang_sheng_jue.kill.wandering_trader.questDescription",
   "questRequirementsDescription": "quest.chang_sheng_jue.kill.wandering_trader.questRequirementsDescription",
   "questType": "KILL",
+  "weight": 13,
   "targetEntity": "minecraft:wandering_trader",
   "requiredKills": 1,
   "repeatable": true,

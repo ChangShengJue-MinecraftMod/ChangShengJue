@@ -1,7 +1,7 @@
 package com.shengchanshe.chang_sheng_jue.quest;
 
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapability;
-import com.shengchanshe.chang_sheng_jue.entity.custom.xpord.XpOrdType1;  // 新增的import语句
+import com.shengchanshe.chang_sheng_jue.entity.custom.xpord.XpOrdType1;
 import com.shengchanshe.chang_sheng_jue.entity.custom.xpord.XpOrdType2;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -18,7 +18,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 public class Quest {
     private UUID questId;
@@ -54,6 +57,7 @@ public class Quest {
     private List<UUID> conflictQuestIds;
     private boolean isConflictQuest;//是否有冲突任务
     private int needCompletionCount;// 完成任务次数
+    private int weight; // 任务权重
 
     /**
      * 全参数构造方法
@@ -81,7 +85,8 @@ public class Quest {
                  QuestType questType, String targetEntity, boolean isEntityTag, int requiredKills,
                  boolean repeatable, String questRequirementsDescription, boolean questGenerateTarget,
                  int questDay, int questTargetCount, int questTime, List<QuestEffectEntry> effects, boolean isAcceptQuestEffects,
-                 List<UUID> limitQuestIds,boolean isNeedCompletePreQuest, List<UUID> conflictQuestIds, boolean isConflictQuest, int needCompletionCount) {
+                 List<UUID> limitQuestIds,boolean isNeedCompletePreQuest, List<UUID> conflictQuestIds, boolean isConflictQuest,
+                 int needCompletionCount,int weight) {
         this.questId = Objects.requireNonNull(questId, "任务ID不能为null");
         this.questNpcId = questNpcId;
         this.questName = questName;
@@ -111,9 +116,9 @@ public class Quest {
         this.conflictQuestIds = conflictQuestIds != null ? conflictQuestIds : new ArrayList<>();;
         this.isConflictQuest = isConflictQuest;
         this.needCompletionCount = needCompletionCount;
+        this.weight = weight;
     }
 
-    // 更新当前任务数据（从另一个Quest实例复制）
     public void updateFrom(Quest newQuest) {
         this.questId = newQuest.questId;
         this.questName = newQuest.questName;
@@ -144,9 +149,9 @@ public class Quest {
         this.conflictQuestIds = newQuest.conflictQuestIds;
         this.isConflictQuest = newQuest.isConflictQuest;
         this.needCompletionCount = newQuest.needCompletionCount;
+        this.weight = newQuest.weight;
     }
 
-    // 从NBT读取任务
     public Quest(CompoundTag tag) {
         this.questId = tag.hasUUID("QuestId") ? tag.getUUID("QuestId") : UUID.randomUUID();
         this.questName = tag.contains("QuestName") ? tag.getString("QuestName") : "当前未接取任务";
@@ -261,6 +266,9 @@ public class Quest {
         if (tag.contains("NeedCompletionCount")){
             this.needCompletionCount = tag.getInt("NeedCompletionCount");
         }
+        if (tag.contains("Weight")) {
+            this.weight = tag.getInt("Weight");
+        }
     }
 
     // 将任务写入NBT
@@ -340,7 +348,7 @@ public class Quest {
         }
         tag.putInt("SecondKills", this.secondRequiredKills);
         tag.putInt("SecondCurrentKills", this.secondCurrentKills);
-
+        tag.putInt("Weight", this.weight);
         return tag;
     }
 
@@ -413,6 +421,7 @@ public class Quest {
         }
         compound.putInt("SecondKills", this.secondRequiredKills);
         compound.putInt("SecondCurrentKills", this.secondCurrentKills);
+        compound.putInt("Weight", this.weight);
 
     }
     public void loadNBTData(CompoundTag tag) {
@@ -520,6 +529,9 @@ public class Quest {
         }
         if (tag.contains("SecondCurrentKills")) {
             this.secondCurrentKills = tag.getInt("SecondCurrentKills");
+        }
+        if (tag.contains("Weight")) {
+            this.weight = tag.getInt("Weight");
         }
     }
     public boolean isValid() {
@@ -713,6 +725,15 @@ public class Quest {
     public List<UUID> getLimitQuestIds() {
         return limitQuestIds;
     }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
     // 检查玩家是否满足任务需求
     public boolean canComplete(Player player) {
         if (questType == QuestType.GATHER) {
@@ -907,9 +928,7 @@ public class Quest {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Quest)) return false;
-        Quest quest = (Quest) o;
-        // 根据实际业务需求定义关键字段
+        if (!(o instanceof Quest quest)) return false;
         return Objects.equals(questId, quest.questId) // 任务ID必须相同
                 && Objects.equals(questNpcId, quest.questNpcId) // 发布NPC必须相同
                 && questType == quest.questType; // 任务类型必须相同
@@ -917,10 +936,8 @@ public class Quest {
 
     @Override
     public int hashCode() {
-        return Objects.hash(questId, questNpcId, questType); // 必须与equals()字段一致
+        return Objects.hash(questId, questNpcId, questType);
     }
-
-
     public enum QuestType {
         GATHER,  // 收集物品
         KILL,     // 击杀生物
@@ -928,6 +945,5 @@ public class Quest {
         TREAT,
         AUTOMATIC
     }
-
 
 }

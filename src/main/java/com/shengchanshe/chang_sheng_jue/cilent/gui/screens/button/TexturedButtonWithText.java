@@ -18,14 +18,15 @@ import java.util.List;
 public class TexturedButtonWithText extends ImageButton {
     private int originalX;
     private int originalY;
-    private float currentScale = 1.0f;
-    private float targetScale = 1.0f;
-    private final float hoverScale = 1.1f;
+    private float currentScale;
+    private final float targetScale;
+    private final float hoverScale;
     private final float animationSpeed = 0.1f;
     private final Component buttonText;
     private final int textColor;
     private final int hoverTextColor;
-    private float textScale;
+    private final float textScale;
+    private final boolean pDropShadow;
 
     public TexturedButtonWithText(int x, int y, int width, int height,
                                   int xTexStart, int yTexStart, int yDiffTex,
@@ -37,24 +38,68 @@ public class TexturedButtonWithText extends ImageButton {
                 resourceLocation, textureWidth, textureHeight, onPress, text);
         this.originalX = x;
         this.originalY = y;
+        this.currentScale = 1.0f;
+        this.targetScale = 1.0f;
+        this.hoverScale = 1.1f;
         this.buttonText = text;
         this.textColor = textColor;
         this.hoverTextColor = hoverTextColor;
         this.textScale = textScale;
+        this.pDropShadow = false;
     }
+
+    public TexturedButtonWithText(int x, int y, int width, int height,
+                                  int xTexStart, int yTexStart, int yDiffTex,
+                                  ResourceLocation resourceLocation,
+                                  int textureWidth, int textureHeight,
+                                  OnPress onPress, Component text,
+                                  int textColor, int hoverTextColor, float textScale,boolean pDropShadow) {
+        super(x, y, width, height, xTexStart, yTexStart, yDiffTex,
+                resourceLocation, textureWidth, textureHeight, onPress, text);
+        this.originalX = x;
+        this.originalY = y;
+        this.currentScale = 1.0f;
+        this.targetScale = 1.0f;
+        this.hoverScale = 1.1f;
+        this.buttonText = text;
+        this.textColor = textColor;
+        this.hoverTextColor = hoverTextColor;
+        this.textScale = textScale;
+        this.pDropShadow = pDropShadow;
+    }
+
+    public TexturedButtonWithText(int x, int y, int width, int height,
+                                  int xTexStart, int yTexStart, int yDiffTex,
+                                  ResourceLocation resourceLocation,
+                                  int textureWidth, int textureHeight,
+                                  OnPress onPress, Component text,
+                                  int textColor, int hoverTextColor, float textScale,
+                                  float currentScale, float targetScale, float hoverScale) {
+        super(x, y, width, height, xTexStart, yTexStart, yDiffTex,
+                resourceLocation, textureWidth, textureHeight, onPress, text);
+        this.originalX = x;
+        this.originalY = y;
+        this.currentScale = currentScale;
+        this.targetScale = targetScale;
+        this.hoverScale = hoverScale;
+        this.buttonText = text;
+        this.textColor = textColor;
+        this.hoverTextColor = hoverTextColor;
+        this.textScale = textScale;
+        this.pDropShadow = false;
+    }
+
     @Override
     public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        targetScale = this.isHoveredOrFocused() ? hoverScale : 1.0f;
-        currentScale = Mth.lerp(animationSpeed, currentScale, targetScale);
+        currentScale = Mth.lerp(animationSpeed, currentScale, this.isHoveredOrFocused() ? hoverScale : targetScale);
 
-        int renderX = this.isHoveredOrFocused() ? originalX - 1 : originalX;
-        this.setX(renderX);
+        this.setX(originalX);
         this.setY(originalY);
 
         PoseStack poseStack = guiGraphics.pose();
         poseStack.pushPose();
 
-        float centerX = renderX + this.width / 2f;
+        float centerX = originalX + this.width / 2f;
         float centerY = originalY + this.height / 2f;
         poseStack.translate(centerX, centerY, 0);
         poseStack.scale(currentScale, currentScale, 1);
@@ -94,7 +139,7 @@ public class TexturedButtonWithText extends ImageButton {
                     (int)Math.round(x),
                     (int)Math.round(y),
                     color,
-                    false
+                    pDropShadow
             );
         }
         poseStack.popPose();

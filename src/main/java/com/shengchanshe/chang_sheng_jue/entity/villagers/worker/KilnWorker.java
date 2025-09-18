@@ -98,6 +98,7 @@ public class KilnWorker extends AbstractVillager {
             case BLACK -> WuXiaMerahantTrades.KILN_WORKER_TRADES.get(3);
             case BLUE -> WuXiaMerahantTrades.KILN_WORKER_TRADES.get(4);
             case GOLDEN -> WuXiaMerahantTrades.KILN_WORKER_TRADES.get(5);
+            case WOOD -> WuXiaMerahantTrades.KILN_WORKER_TRADES.get(6);
         };
 
         if (listings != null) {

@@ -60,10 +60,16 @@ public class PlayerQuestMenu extends AbstractContainerMenu {
 
     // 获取当前页任务
     public Optional<Quest> getCurrentQuest(int page) {
-        if (quests.isEmpty() || page < 0 || page >= quests.size() || quests.get(page).getAcceptedBy() == null) {
+        if (quests.isEmpty() || page < 0 || page >= quests.size()) {
             return Optional.empty();
         }
-        return Optional.of(quests.get(page));
+
+        Quest quest = quests.get(page);
+        if (quest.getAcceptedBy() == null) {
+            return Optional.empty();
+        }
+
+        return Optional.of(quest);
     }
 
 
@@ -79,15 +85,78 @@ public class PlayerQuestMenu extends AbstractContainerMenu {
 
     // 翻页方法
     public void nextPage() {
-        if (hasNextPage()) currentPage++;
+        if (hasNextPage()) {
+            currentPage++;
+        } else {
+            currentPage = 0;
+        }
     }
 
     public void prevPage() {
-        if (hasPrevPage()) currentPage--;
+        if (hasPrevPage()) {
+            currentPage--;
+        } else {
+            currentPage = quests.size() - 1;
+        }
+    }
+
+    // 在放弃任务后调用此方法来调整页码
+    public void adjustPageAfterQuestRemoval() {
+        refreshQuests(); // 刷新任务列表
+
+        if (quests.isEmpty()) {
+            currentPage = 0;
+            return;
+        }
+
+        // 如果当前页码超出了新列表的范围，调整到最后一页
+        if (currentPage >= quests.size()) {
+            currentPage = quests.size() - 1;
+        }
+
+        // 如果当前页的任务已被移除或被别人接受，找到最近的有效页面
+        if (currentPage >= 0 && currentPage < quests.size()) {
+            Quest currentQuest = quests.get(currentPage);
+            if (currentQuest.getAcceptedBy() == null) {
+                // 当前页任务无效，需要找到最近的有效页面
+                findNearestValidPage();
+            }
+        }
+    }
+
+    // 找到最近的有效任务页面
+    private void findNearestValidPage() {
+        if (quests.isEmpty()) {
+            currentPage = 0;
+            return;
+        }
+
+        // 向前查找
+        for (int i = currentPage; i >= 0; i--) {
+            if (i < quests.size() && quests.get(i).getAcceptedBy() != null) {
+                currentPage = i;
+                return;
+            }
+        }
+
+        // 向后查找
+        for (int i = currentPage; i < quests.size(); i++) {
+            if (quests.get(i).getAcceptedBy() != null) {
+                currentPage = i;
+                return;
+            }
+        }
+
+        // 如果没有找到有效任务，重置到第一页
+        currentPage = 0;
     }
 
     public int getCurrentPage() {
         return currentPage;
+    }
+
+    public int getTotalPages() {
+        return Math.max(1, quests.size());
     }
 
     public Player getPlayer() {
