@@ -69,7 +69,7 @@ public class KungFuEvent {
                 }
             }
             if (event.getEntity() instanceof Player player && event.getSource().getEntity() != null) {
-                if ((player.getFoodData().getFoodLevel() > 8 && player.getFoodData().getSaturationLevel() > 0)) {
+                if ((player.getFoodData().getFoodLevel() > 8)) {
                     player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                         cap.getAllLearned().forEach(id -> {
                             if (!id.getId().equals(QianKunDaNuoYi.KUNG_FU_ID.toString())) {
@@ -84,7 +84,7 @@ public class KungFuEvent {
 
     public static void onEntityHurt(LivingAttackEvent event) {
         if (event.getEntity() instanceof Player player && event.getSource().getEntity() != null) {
-            if ((player.getFoodData().getFoodLevel() > 8 && player.getFoodData().getSaturationLevel() > 0)) {
+            if ((player.getFoodData().getFoodLevel() > 8)) {
                 player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                     cap.getKungFu(QianKunDaNuoYi.KUNG_FU_ID.toString())
                             .filter(kungFu -> kungFu instanceof IKungFu)

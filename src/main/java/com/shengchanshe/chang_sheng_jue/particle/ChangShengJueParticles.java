@@ -42,6 +42,11 @@ public class ChangShengJueParticles {
     public static final RegistryObject<SimpleParticleType> WU_GANG_CUT_GUI_PARTICLE_1 =
             PARTICLE_TYPES.register("wu_gang_cut_gui_particle_1", () -> new SimpleParticleType(false));
 
+    public static final RegistryObject<SimpleParticleType> EXTERNAL_KUN_FU_XP_PARTICLE =
+            PARTICLE_TYPES.register("external_kun_fu_xp_particle", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> INTERNAL_KUNG_FU_XP_PARTICLE =
+            PARTICLE_TYPES.register("internal_kung_fu_xp_particle", () -> new SimpleParticleType(false));
+
 //    public static final RegistryObject<SimpleParticleType> GOLDEN_BELL_JAR_PARTICLE =
 //            PARTICLE_TYPES.register("golden_bell_jar_particle", () -> new SimpleParticleType(false));
 

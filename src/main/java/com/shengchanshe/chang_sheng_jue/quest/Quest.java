@@ -1,8 +1,12 @@
 package com.shengchanshe.chang_sheng_jue.quest;
 
+import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapability;
-import com.shengchanshe.chang_sheng_jue.entity.custom.xpord.XpOrdType1;
-import com.shengchanshe.chang_sheng_jue.entity.custom.xpord.XpOrdType2;
+import com.shengchanshe.chang_sheng_jue.event.quest.PlayerQuestEvent;
+import com.shengchanshe.chang_sheng_jue.item.kungfuxp.ExternalKungfuXp;
+import com.shengchanshe.chang_sheng_jue.item.kungfuxp.InternalkungfuXp;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.AbstractionExternalKunfu;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.AbstractionInternalkungfu;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
@@ -18,10 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class Quest {
     private UUID questId;
@@ -164,6 +165,7 @@ public class Quest {
                 questRewards.add(ItemStack.of(rewardList.getCompound(i)));
             }
         }
+
         if (tag.hasUUID("AcceptedBy")) {
             this.acceptedBy = tag.getUUID("AcceptedBy");
         }
@@ -189,7 +191,7 @@ public class Quest {
         if (tag.contains("QuestType")) {
             this.questType = QuestType.valueOf(tag.getString("QuestType"));
         }
-        this.questRequirementsDescription = tag.contains("QuestRequirementsDescription") ? tag.getString("QuestRequirementsDescription") : "当前未接取任务";
+        this.questRequirementsDescription = tag.contains("QuestRequirementsDescription") ? tag.getString("QuestRequirementsDescription") : "";
         if (tag.hasUUID("QuestNpcId")) {
             this.questNpcId = tag.getUUID("QuestNpcId");
         }
@@ -290,6 +292,7 @@ public class Quest {
             }
             tag.put("QuestRewards", rewardList);
         }
+
         if (this.acceptedBy != null) {
             tag.putUUID("AcceptedBy", this.acceptedBy);
         }
@@ -436,6 +439,7 @@ public class Quest {
                 questRewards.add(ItemStack.of(rewardList.getCompound(i)));
             }
         }
+        this.questRequirementsDescription = tag.contains("QuestRequirementsDescription") ? tag.getString("QuestRequirementsDescription") : "";
         if (tag.hasUUID("AcceptedBy")) {
             this.acceptedBy = tag.getUUID("AcceptedBy");
         }
@@ -556,6 +560,10 @@ public class Quest {
 
     public List<ItemStack> getQuestRewards() {
         return questRewards;
+    }
+
+    public void setQuestRewards(List<ItemStack> questRewards) {
+        this.questRewards = questRewards;
     }
 
     public boolean isNeedRefresh() {
@@ -846,34 +854,65 @@ public class Quest {
     // 给予玩家奖励
     public void giveRewards(Player player) {
         // 特定任务奖励逻辑
-        if (this.questId.equals(UUID.fromString("dab3e694-291c-4b58-8ed2-4b215fbcf543"))) {
-            // "ren_wo_xing"任务：生成5个value=1的经验球
-            for (int i = 0; i < 5; i++) {
-                XpOrdType1 xpOrb = new XpOrdType1(
-                    player.level(), 
-                    player.getX(), 
-                    player.getY(), 
-                    player.getZ(),
-                    1  // 固定value为1
-                );
-                player.level().addFreshEntity(xpOrb);
-            }
+        if (this.questId.equals(PlayerQuestEvent.REN_WO_XING_QUEST_ID)) {
+            player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                List<AbstractionInternalkungfu> kungFus = new ArrayList<>();
+                cap.getAllLearned().forEach(kungFu -> {
+                    if (kungFu instanceof AbstractionInternalkungfu upgradable) {
+                        kungFus.add(upgradable);
+                    }
+                });
+                kungFus.sort(Comparator.comparingInt(kf -> kf.getMaxExp() - kf.getExp()));
+                for (AbstractionInternalkungfu kungFu : kungFus) {
+                    if (kungFu.getLevel() < kungFu.getMaxLevel()) {
+                        for (ItemStack reward : questRewards) {
+                            if (reward.getItem() instanceof InternalkungfuXp) {
+                                player.getInventory().add(reward.copy());
+                                return;
+                            }
+                        }
+                    } else {
+                        for (ItemStack reward : questRewards) {
+                            if (!(reward.getItem() instanceof InternalkungfuXp)) {
+                                player.getInventory().add(reward.copy());
+                                return;
+                            }
+                        }
+                    }
+                }
+            });
             return;
         }
-        if (this.questId.equals(UUID.fromString("584DF3EE-BD1A-44C1-B66D-5F1015AF8A0E"))) {
-            //生成五个value=1的XP球
-            for (int i = 0; i < 5; i++) {
-                XpOrdType2 xpOrb = new XpOrdType2(
-                    player.level(),
-                    player.getX(),
-                    player.getY(),
-                    player.getZ(),
-                    1  // 默认value为1
-                );
-                player.level().addFreshEntity(xpOrb);
-            }
-        }
+        if (this.questId.equals(PlayerQuestEvent.KUAI_YI_EN_CHOU_QUEST_ID)) {
+            player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                List<AbstractionExternalKunfu> kungFus = new ArrayList<>();
+                cap.getAllLearned().forEach(kungFu -> {
+                    if (kungFu instanceof AbstractionExternalKunfu upgradable) {
+                        kungFus.add(upgradable);
+                    }
+                });
+                kungFus.sort(Comparator.comparingInt(kf -> kf.getMaxExp() - kf.getExp()));
 
+                for (AbstractionExternalKunfu kungFu : kungFus) {
+                    if (kungFu.getLevel() < kungFu.getMaxLevel()) {
+                        for (ItemStack reward : questRewards) {
+                            if (reward.getItem() instanceof ExternalKungfuXp) {
+                                player.getInventory().add(reward.copy());
+                                return;
+                            }
+                        }
+                    } else {
+                        for (ItemStack reward : questRewards) {
+                            if (!(reward.getItem() instanceof ExternalKungfuXp)) {
+                                player.getInventory().add(reward.copy());
+                                return;
+                            }
+                        }
+                    }
+                }
+            });
+            return;
+        }
         // 默认奖励逻辑
         for (ItemStack reward : questRewards) {
             player.getInventory().add(reward.copy());

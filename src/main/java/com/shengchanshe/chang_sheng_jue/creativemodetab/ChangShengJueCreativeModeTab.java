@@ -729,6 +729,8 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.LIME_SLURRY_BARRELS.get());
                 output.accept(ChangShengJueItems.WARM_LIME_SLURRY_BARRELS.get());
                 output.accept(ChangShengJueItems.COOL_LIME_SLURRY_BARRELS.get());
+                output.accept(ChangShengJueItems.EXTERNAL_KUNG_FU_XP.get());
+                output.accept(ChangShengJueItems.INTERNAL_KUNG_FU_XP.get());
 
                 output.accept(ChangShengJueItems.DUGU_NINE_SWORDS.get());
                 output.accept(ChangShengJueItems.GAO_MARKSMANSHIP.get());

@@ -102,7 +102,9 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.COOKED_PEACOCK);
         simpleItem(ChangShengJueItems.CROC);
         simpleItem(ChangShengJueItems.COOKED_CROC);
-
+        //武功经验
+        simpleItem(ChangShengJueItems.EXTERNAL_KUNG_FU_XP);
+        simpleItem(ChangShengJueItems.INTERNAL_KUNG_FU_XP);
         //武功秘籍
         simpleItem(ChangShengJueItems.IMMORTAL_MIRACLE);
         simpleItem(ChangShengJueItems.HERCULES);

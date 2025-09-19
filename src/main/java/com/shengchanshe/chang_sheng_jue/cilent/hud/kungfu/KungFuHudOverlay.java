@@ -122,7 +122,11 @@ public class KungFuHudOverlay {
         int y = screenHeight / 2;
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        if (mainHand.getItem() instanceof SwordItem && mainHand.getItem() != ChangShengJueItems.SOFT_SWORD.get()) {
+        if (mainHand.getItem() instanceof SwordItem && mainHand.getItem() != ChangShengJueItems.SOFT_SWORD.get()
+                && !(mainHand.getItem() instanceof Lance)
+                && !(mainHand.getItem() instanceof Knife)
+                && !(mainHand.getItem() instanceof GoldThreadGlove)
+                && !(mainHand.getItem() instanceof Clubbed)) {
             if (KungFuClientData.get().knowsKungFu(DuguNineSwords.KUNG_FU_ID.toString())) {
                 CSJDisplayHud.displayHudPermanent(
                         getKungLevel(DuguNineSwords.KUNG_FU_ID.toString()),

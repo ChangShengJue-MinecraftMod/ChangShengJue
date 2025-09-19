@@ -37,6 +37,8 @@ import com.shengchanshe.chang_sheng_jue.item.combat.throwingknives.FlyingDaggerP
 import com.shengchanshe.chang_sheng_jue.item.combat.throwingknives.ThrowingKnives;
 import com.shengchanshe.chang_sheng_jue.item.foods.*;
 import com.shengchanshe.chang_sheng_jue.item.items.*;
+import com.shengchanshe.chang_sheng_jue.item.kungfuxp.ExternalKungfuXp;
+import com.shengchanshe.chang_sheng_jue.item.kungfuxp.InternalkungfuXp;
 import com.shengchanshe.chang_sheng_jue.item.tool.KaishanPickaxe;
 import com.shengchanshe.chang_sheng_jue.item.tool.XuanhuaAxe;
 import net.minecraft.ChatFormatting;
@@ -619,6 +621,12 @@ public class ChangShengJueItems {
     //锣
     public static final RegistryObject<Item> GONG = ITEMS.register("gong",
             () -> new GongItem(ChangShengJueBlocks.GONG.get() , new Item.Properties()));
+
+    //经验书
+    public static final RegistryObject<Item> EXTERNAL_KUNG_FU_XP = ITEMS.register("external_kung_fu_xp",
+            () -> new ExternalKungfuXp((new Item.Properties())));
+    public static final RegistryObject<Item> INTERNAL_KUNG_FU_XP = ITEMS.register("internal_kung_fu_xp",
+            () -> new InternalkungfuXp((new Item.Properties())));
 
     //手册
     public static final RegistryObject<Item> WU_FANG_LU = ITEMS.register("wu_fang_lu", ()-> new Item(new Item.Properties()));

@@ -599,8 +599,6 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.SPRUCE_DOUGONG.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.GREEN_DOUGONG.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ChangShengJueBlocks.BLUE_DOUGONG.get(), RenderType.cutout());
-        EntityRenderers.register(ChangShengJueEntity.XP_ORD_TYPE1.get(), ExperienceOrbRenderer::new);
-        EntityRenderers.register(ChangShengJueEntity.XP_ORD_TYPE2.get(), ExperienceOrbRenderer::new);
         ItemColors itemColors = Minecraft.getInstance().getItemColors();
         // 为每个物品注册颜色渲染器
         for (Supplier<? extends Item> itemSupplier : ARMOR_ITEMS) {

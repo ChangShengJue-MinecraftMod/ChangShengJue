@@ -4,17 +4,14 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.PlayerQuestMenu;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.AbstractGangLeader;
-import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.event.quest.PlayerQuestEvent;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.RefreshPlayerQuestScreenPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.SyncQuestDataPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.quest.RefreshQuestScreenPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -133,10 +130,6 @@ public class QuestManager {
                 clashQuest.ifPresent(value -> cap.removeQuestFromPlayer(player.getUUID(), value.getQuestId()));
                 cap.removeQuestFromPlayer(player.getUUID(), actualQuest.getQuestId());
 
-                // 特殊任务处理
-                if (actualQuest.getQuestId().equals(UUID.fromString("dab3e694-291c-4b58-8ed2-4b215fbcf543"))) {
-                    this.addKungFuCount(player, 25);
-                }
                 if (player instanceof ServerPlayer serverPlayer) {
                     cap.syncToClient(serverPlayer);
 

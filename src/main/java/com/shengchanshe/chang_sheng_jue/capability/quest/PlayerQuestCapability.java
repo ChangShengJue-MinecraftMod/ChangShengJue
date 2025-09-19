@@ -35,6 +35,7 @@ public class PlayerQuestCapability {
     private final Set<UUID> completedQuests = ConcurrentHashMap.newKeySet();
     private final Set<UUID> acceptedQuests = ConcurrentHashMap.newKeySet();
 
+
     // 新增大额交易首次触发状态
     private boolean firstLargeTransactionTrigger = true;
 
@@ -265,10 +266,8 @@ public class PlayerQuestCapability {
                 validQuests.add(existingQuest);
             }
         }
-
-        // 如果现有任务不足，创建新任务补充
         if (validQuests.isEmpty()) {
-            return tryCreateNewQuests(player, questNpc, chance, quests); // 生成3个新任务
+            return tryCreateNewQuests(player, questNpc, chance, quests);
         }
 
         return validQuests;
@@ -301,7 +300,7 @@ public class PlayerQuestCapability {
                             return;
                         }
                         if (newQuest.isValid()) {
-                            if (newQuest.getQuestType() == Quest.QuestType.AUTOMATIC){
+                            if (newQuest.getQuestType() == Quest.QuestType.AUTOMATIC && !newQuest.getQuestId().equals(PlayerQuestEvent.REN_WO_XING_QUEST_ID)) {
                                 newQuest.setComplete(true);
                             }
                             if (mobId != null) {

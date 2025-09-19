@@ -195,7 +195,7 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
             var lines = font.split(Component.translatable(quest.getQuestDescription()), imageWidth - 50);
             for (int i = 0; i < lines.size(); i++) {
                 int descX = i == 0 ? 20 + 17 : 20;
-                guiGraphics.drawString(font, lines.get(i), descX, 35 + i * font.lineHeight, 0x404040, false);
+                guiGraphics.drawString(font, lines.get(i), descX,35 + i * font.lineHeight,0x404040, false);
             }
 
             var lines1 = font.split(Component.translatable(quest.getQuestRequirementsDescription()), imageWidth - 50);
@@ -203,9 +203,9 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 guiGraphics.drawString(font, lines1.get(i), !quest.getTargetEntity().isEmpty() ? REQ_SLOTS_X + 60 : REQ_SLOTS_X + 40,
                         73 + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
             }
+
             guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".requirements"), REQ_SLOTS_X, REQ_SLOTS_Y - 6, ChatFormatting.RED.getColor(), false);
             guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".rewards"), REQ_SLOTS_X, REWARD_SLOTS_Y - 3, ChatFormatting.YELLOW.getColor(), false);
-
         } else {
             guiGraphics.drawString(font, Component.translatable("quest." + ChangShengJue.MOD_ID + ".no_quest"),
                     (this.imageWidth - font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".no_quest")))

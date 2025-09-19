@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-07T19:01:13.0017487	Item Models: chang_sheng_jue
+// 1.20.1	2025-09-19T09:08:40.8081238	Item Models: chang_sheng_jue
 b3bd262eb0ad48ac4f7c465406471cf989163c19 assets/chang_sheng_jue/models/item/acacia_balustrade.json
 699ea304f59ef7c3527896899187498f42f98343 assets/chang_sheng_jue/models/item/acacia_bench.json
 7e0aa720a11c379083904f12e4722cca0ff34a77 assets/chang_sheng_jue/models/item/acacia_book_desk.json
@@ -124,6 +124,7 @@ f7ac951621aa1123966fae87f51e53ef96561384 assets/chang_sheng_jue/models/item/dark
 0c9b2e524eaebbbd4cec8e8c7124f41925fd9a06 assets/chang_sheng_jue/models/item/dugu_nine_swords.json
 c3afcf17575a2e8f7cdc3db64e9a00b629c81754 assets/chang_sheng_jue/models/item/durian_sapling.json
 2b4fbbe8d9a0f974c5574f4ed934e0737cfdf706 assets/chang_sheng_jue/models/item/empty_fen_jiu.json
+ab98dc204ce62c43dbac5c93e16b8a7bfe5cfbed assets/chang_sheng_jue/models/item/external_kung_fu_xp.json
 c9affea17aeb93bdb226b816e990ff5c7144544f assets/chang_sheng_jue/models/item/female_chinese_wedding_dress_phoenix_coronet.json
 9796884aaec478855628c29b42d1cca21b931c83 assets/chang_sheng_jue/models/item/female_chinese_wedding_dress_queen_clothing.json
 65483dc30b1561280bbd965ef98b931f91dd4a22 assets/chang_sheng_jue/models/item/female_taoist_chestplate.json
@@ -219,6 +220,7 @@ b7d5f79f6c75890a55f6aa557e5f777f02995235 assets/chang_sheng_jue/models/item/huan
 91353aa23a0bceafd5a97b9b4f55f03d336f5c83 assets/chang_sheng_jue/models/item/huang_hua_li_teapoy.json
 2798337e4c24cda77b9fa1abb098aa11a57c4191 assets/chang_sheng_jue/models/item/huang_hua_li_wine_table.json
 1d1dca130ab90ab33ce67f31dd16825fd2adb080 assets/chang_sheng_jue/models/item/immortal_miracle.json
+acf3ef353826b634c102613a50d17173ad73937e assets/chang_sheng_jue/models/item/internal_kung_fu_xp.json
 d4c69a9ef6ef33eceacb16910eaeb59d63eb5f51 assets/chang_sheng_jue/models/item/ji_chi_mu_bench.json
 3928f4f11ea5b1af43550a749a419bc32626dfd9 assets/chang_sheng_jue/models/item/ji_chi_mu_book_desk.json
 ba8aac0023e5e7a817c8148f26ba5c70b2327f65 assets/chang_sheng_jue/models/item/ji_chi_mu_drinking_table_and_chairs.json

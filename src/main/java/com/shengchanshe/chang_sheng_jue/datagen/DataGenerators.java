@@ -2,7 +2,7 @@ package com.shengchanshe.chang_sheng_jue.datagen;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.datagen.language.CSJCNLanguageProvider;
-import com.shengchanshe.chang_sheng_jue.datagen.language.CSJUSLanguageProvider;
+import com.shengchanshe.chang_sheng_jue.datagen.language.CSJENLanguageProvider;
 import com.shengchanshe.chang_sheng_jue.datagen.loot.CSJGlobalLootModifiersProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -35,7 +35,7 @@ public class DataGenerators {
 
         event.getGenerator().addProvider(
                 event.includeClient(),
-               new CSJUSLanguageProvider(packOutput, ChangShengJue.MOD_ID, "en_us"));
+               new CSJENLanguageProvider(packOutput, ChangShengJue.MOD_ID, "en_us"));
         event.getGenerator().addProvider(
                 event.includeClient(),
                 new CSJCNLanguageProvider(packOutput, ChangShengJue.MOD_ID, "zh_cn"));

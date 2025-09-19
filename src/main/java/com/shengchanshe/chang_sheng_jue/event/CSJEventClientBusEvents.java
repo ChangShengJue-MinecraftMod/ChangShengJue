@@ -45,6 +45,8 @@ import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.throwingkni
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceParticle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.wu_gang_cut_gui.WuGangCutGuiParticle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.wu_gang_cut_gui.WuGangCutGuiParticle1;
+import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.xp.ExternalKunfuXpParticle;
+import com.shengchanshe.chang_sheng_jue.particle.custom.martial_arts.xp.InternalkungfuXpParticle;
 import com.shengchanshe.chang_sheng_jue.util.KeyBinding;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraftforge.api.distmarker.Dist;
@@ -131,6 +133,9 @@ public class CSJEventClientBusEvents {
         event.registerSpriteSet(ChangShengJueParticles.WU_GANG_CUT_GUI_PARTICLE.get(), WuGangCutGuiParticle.Provider::new);
         event.registerSpriteSet(ChangShengJueParticles.WU_GANG_CUT_GUI_PARTICLE_1.get(), WuGangCutGuiParticle1.Provider::new);
 
+        event.registerSpriteSet(ChangShengJueParticles.EXTERNAL_KUN_FU_XP_PARTICLE.get(), ExternalKunfuXpParticle.Provider::new);
+
+        event.registerSpriteSet(ChangShengJueParticles.INTERNAL_KUNG_FU_XP_PARTICLE.get(), InternalkungfuXpParticle.Provider::new);
 
         event.registerSpriteSet(ChangShengJueParticles.TREAD_THE_SNOW_WITHOUT_TRACE_PARTICLE.get(), TreadTheSnowWithoutTraceParticle.Provider::new);
 
@@ -141,7 +146,6 @@ public class CSJEventClientBusEvents {
         event.registerSpriteSet(ChangShengJueParticles.FORGE_BLOCK_PARTCLE.get(), ForgeBlockPartcle.Provider::new);
 
         event.registerSpriteSet(ChangShengJueParticles.STAKES_PARTICLE.get(), StakesParticle.Provider::new);
-
     }
 
     @SubscribeEvent

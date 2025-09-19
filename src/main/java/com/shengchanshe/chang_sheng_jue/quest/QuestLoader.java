@@ -174,6 +174,7 @@ public class QuestLoader {
                     parseItemList(json.getAsJsonArray("questRequirements")) : Collections.emptyList();
             List<ItemStack> rewards = json.has("questRewards") ?
                     parseItemList(json.getAsJsonArray("questRewards")) : Collections.emptyList();
+
             int questDay = json.has("qusetDay") ? json.get("questDay").getAsInt() : 0;
 
             String targetEntity = json.has("targetEntity") ? json.get("targetEntity").getAsString() : "";
@@ -244,8 +245,8 @@ public class QuestLoader {
     }
 
     private static int getrequiredKills(JsonObject json) {
-        int minKills = 0;
-        int maxKills = 0;
+        int minKills;
+        int maxKills;
         if (json.has("minKills") && json.has("maxKills")) {
             minKills = json.get("minKills").getAsInt();
             maxKills = json.get("maxKills").getAsInt();
@@ -256,7 +257,6 @@ public class QuestLoader {
         }
     }
 
-    // 根据任务内容生成确定性ID
     private static UUID generateDeterministicId(UUID npcId, JsonObject json) {
         String uniqueKey = String.format("%s|%s|%s",
                 npcId,

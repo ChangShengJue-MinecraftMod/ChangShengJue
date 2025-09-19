@@ -37,7 +37,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class PlayerQuestEvent {
-    // 存储已触发自动任务的玩家
     public static final UUID FIRST_VILLAGER_QUEST_ID = UUID.fromString("2b0fedb0-2b4d-4b24-81fb-c4b6c8a47fa7");
     public static final UUID KUAI_YI_EN_CHOU_QUEST_ID = UUID.fromString("584DF3EE-BD1A-44C1-B66D-5F1015AF8A0E");
     private static final UUID WEI_MIN_CHU_HAI_QUEST_ID = UUID.fromString("3A54CDE8-91B4-42A8-9F37-9C40934A15C8");
@@ -321,43 +320,11 @@ public class PlayerQuestEvent {
         if (event.getEntity() instanceof Player player) {
             if (event.getSource().getEntity() instanceof Mob mob && !(mob instanceof AbstractWuXiaMonster)
                     && !(mob instanceof Creeper) && !(mob instanceof Spider) && !(mob instanceof Silverfish) && !(mob instanceof Endermite)) {
-                // 获取当前游戏天数
-                long currentDay = player.level().getDayTime() / 24000;
-                // 从玩家NBT中获取最后触发天数
-                long lastTriggerDay = player.getPersistentData().getLong("KuaiYiEnChouQuestLastTriggerDay");
-                
-                if (currentDay != lastTriggerDay) {
-                    player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
-                        cap.triggerQuest(player, KUAI_YI_EN_CHOU_QUEST_ID, 0.05F, mob.getUUID());
-                        // 更新最后触发天数
-                        player.getPersistentData().putLong("KuaiYiEnChouQuestLastTriggerDay", currentDay);
-                    });
-                }
+                player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
+                    cap.triggerQuest(player, KUAI_YI_EN_CHOU_QUEST_ID, 0.05F, mob.getUUID());
+                });
             }
         }
-
-//        if (!(event.getEntity() instanceof Player) && event.getSource().getEntity() instanceof Player player1) {
-//            LivingEntity mob = event.getEntity();
-//            List<Quest> kuaiYiEnChouQuest = QuestManager.getInstance().getPlayerQuests(player1.getUUID());
-//            Optional.ofNullable(kuaiYiEnChouQuest)
-//                    .orElse(Collections.emptyList())
-//                    .stream()
-//                    .filter(Objects::nonNull)
-//                    .filter(quest -> quest.getQuestId().equals(KUAI_YI_EN_CHOU_QUEST_ID))
-//                    .filter(quest -> quest.getQuestNpcId() != null)
-//                    .filter(quest -> !quest.isComplete())
-//                    .findFirst()
-//                    .ifPresent(quest -> {
-//                        if (mob.getUUID().equals(quest.getQuestNpcId()) &&
-//                                event.getAmount() > mob.getHealth()) {
-//                            quest.setComplete(true);
-//                            if (quest.canComplete(player1)) {
-//                                player1.sendSystemMessage(getColoredTranslation(
-//                                        "quest." + ChangShengJue.MOD_ID + ".finish", getColoredTranslation(quest.getQuestName())));
-//                            }
-//                        }
-//                    });
-//        }
     }
 
     // 获取带颜色的翻译文本

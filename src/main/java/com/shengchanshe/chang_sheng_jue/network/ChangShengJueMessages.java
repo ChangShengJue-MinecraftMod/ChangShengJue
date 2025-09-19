@@ -81,6 +81,11 @@ public class ChangShengJueMessages {
                 .encoder(TreadTheSnowWithoutTraceParticlePacket::encode)
                 .consumerMainThread(TreadTheSnowWithoutTraceParticlePacket::handle)
                 .add();
+        net.messageBuilder(XpParticlePacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(XpParticlePacket::decode)
+                .encoder(XpParticlePacket::encode)
+                .consumerMainThread(XpParticlePacket::handle)
+                .add();
         // 按钮切换交易类型
         net.messageBuilder(KilnWorkerSetTradeTypePacket.class, id())
                 .decoder(KilnWorkerSetTradeTypePacket::decode)

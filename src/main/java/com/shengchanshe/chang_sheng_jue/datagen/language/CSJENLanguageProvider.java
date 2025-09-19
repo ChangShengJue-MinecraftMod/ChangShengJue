@@ -10,8 +10,8 @@ import com.shengchanshe.chang_sheng_jue.item.items.StructureIntelligence;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 
-public class CSJUSLanguageProvider extends LanguageProvider {
-    public CSJUSLanguageProvider(PackOutput output, String modid, String locale) {
+public class CSJENLanguageProvider extends LanguageProvider {
+    public CSJENLanguageProvider(PackOutput output, String modid, String locale) {
         super(output, modid, locale);
     }
 
@@ -149,7 +149,8 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get(), "Crucible (Liquid Gold)");
 
         this.add(ChangShengJueItems.GANG_TOKEN.get(),"Gang Token");
-
+        this.add(ChangShengJueItems.EXTERNAL_KUNG_FU_XP.get(), "External KunFu Xp");
+        this.add(ChangShengJueItems.INTERNAL_KUNG_FU_XP.get(), "Internal KungFu Xp");
 
         this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.PIT_YARD_TYPE, "%s" + "information");
         this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SANDSTONE_CASTLE_TYPE, "%s" + "information");
@@ -427,6 +428,9 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.unload","Unloaded from equipment");
         this.add("tooltip."+ ChangShengJue.MOD_ID + ".damage_reduction","External damage reduction: +%s%%");
         this.add("tooltip."+ ChangShengJue.MOD_ID + ".trauma","Chance of sustaining external injuries: -%s%%");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.EXTERNAL_KUNG_FU_XP.get()+".tooltip","External KungFu Xp +5, If the current External KungFu Xp has reached the maximum, it cannot be used");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.INTERNAL_KUNG_FU_XP.get()+".tooltip","Internal KungFu Xp +5, If the current Internal KungFu Xp has reached the maximum, it cannot be used");
 
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "pit_yard.tooltip", "Underground Cave Dwelling");
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "sandstone_castle.tooltip","Sandstone Fort");
@@ -1522,6 +1526,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questName", "Act on Grievances Boldly");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questDescription", "If you don't settle grievances clearly, you're not worthy of being a true man under heaven.");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questRequirementsDescription", "Defeat enemies that attack you");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questRewardsDescription", "外功经验+5,如果外功经验都已满则发放铜钱奖励");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questName", "Eliminate Harm for the People");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questDescription", "This fierce tiger preys on villagers—be careful, great hero!");
@@ -1548,6 +1553,7 @@ public class CSJUSLanguageProvider extends LanguageProvider {
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questName", "Ren Woxing (Unrestrained Wanderer)");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questDescription", "The sea is vast and the sky is wide—where can't a man reside freely?");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questRequirementsDescription",  "Less than 1 death within 7 in-game days");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questRewardsDescription", "内功经验+5,如果没有内功或内功经验都已满则发放铜钱奖励");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questName", "Suppress the Strong, Aid the Weak");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questDescription", "Villagers not only face zombie attacks—they're also threatened by bandit gangs!");

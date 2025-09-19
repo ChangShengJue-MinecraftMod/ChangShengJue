@@ -148,6 +148,8 @@
             this.add(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get(), "坩埚(金水)");
 
             this.add(ChangShengJueItems.GANG_TOKEN.get(),"帮派令牌");
+            this.add(ChangShengJueItems.EXTERNAL_KUNG_FU_XP.get(), "外功经验簇");
+            this.add(ChangShengJueItems.INTERNAL_KUNG_FU_XP.get(), "内功经验簇");
 
             this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.PIT_YARD_TYPE, "%s情报");
             this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SANDSTONE_CASTLE_TYPE, "%s情报");
@@ -430,6 +432,9 @@
     
             this.add("tooltip."+ ChangShengJue.MOD_ID + ".damage_reduction","外功伤害减免: +%s%%");
             this.add("tooltip."+ ChangShengJue.MOD_ID + ".trauma","受到外伤的概率: -%s%%");
+
+            this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.EXTERNAL_KUNG_FU_XP.get()+".tooltip","使用后外功经验+5,若当前习得的外功经验已达到最高,则无法使用");
+            this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.INTERNAL_KUNG_FU_XP.get()+".tooltip","使用后内功经验+5,若当前习得的内功经验已达到最高,则无法使用");
     
             this.add("tooltip." + ChangShengJue.MOD_ID + "." + "pit_yard.tooltip", "地下窑洞");
             this.add("tooltip." + ChangShengJue.MOD_ID + "." + "sandstone_castle.tooltip","沙石堡");
@@ -1470,8 +1475,8 @@
             this.add("quest."+ ChangShengJue.MOD_ID +".fail", "§a%s任务失败!");
             this.add("quest."+ ChangShengJue.MOD_ID +".requires.kill.target","需要击杀: %s次");
             this.add("quest."+ ChangShengJue.MOD_ID +".current.kill.target","当前进度: %s/%s");
-            this.add("quest." + ChangShengJue.MOD_ID + ".no_quest","当前没有正在进行的任务!");
-            this.add("quest." + ChangShengJue.MOD_ID + ".no_action_quest","当前没有可以接受的任务!");
+            this.add("quest."+ ChangShengJue.MOD_ID +".no_quest","当前没有正在进行的任务!");
+            this.add("quest."+ ChangShengJue.MOD_ID +".no_action_quest","当前没有可以接受的任务!");
 
             this.add("quest."+ ChangShengJue.MOD_ID +".food.questName", "收集食物");
             this.add("quest."+ ChangShengJue.MOD_ID +".food.questDescription", "首领：兄弟们的吃食又不够了，总不能饿肚子吧，兄弟你去想想办法。");
@@ -1704,9 +1709,6 @@
             this.add(ChangShengJue.MOD_ID +".village.villages.cave_dwelling.page1.title", "窑洞村庄");
             this.add(ChangShengJue.MOD_ID +".village.villages.cave_dwelling.page1.text", "常生成在高原群系，通过下挖泥土建造窑洞，冬暖夏凉，是一种特殊的建筑。其中常有作物：甘蔗、胡椒、芒果、菠萝。");
 
-
-
-
             this.add(ChangShengJue.MOD_ID +".xiake", "侠客");
             this.add(ChangShengJue.MOD_ID +".xiake.desc", "不知从什么时候，这里的情况发生了变化。自称要行侠仗义的人多了起来，他们多喜欢称呼自己为“侠客”。");
             this.add(ChangShengJue.MOD_ID +".xiake.equipment", "装备");
@@ -1763,11 +1765,5 @@
             this.add(ChangShengJue.MOD_ID +".wufanglu", "五方汇录");
             this.add(ChangShengJue.MOD_ID +".wufanglu.desc", "“天若有情天亦老，人间正道是沧桑。”$(br)长生之道，岂可无知？通晓天地，百科全解。");
             this.add(ChangShengJue.MOD_ID +".wufanglu.desc2", "长生诀百科全书");
-
-
-
-
-
-
         }
     }
