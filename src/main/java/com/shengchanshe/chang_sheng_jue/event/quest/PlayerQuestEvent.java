@@ -97,9 +97,9 @@ public class PlayerQuestEvent {
             if (!ChangShengJueConfig.ENABLE_QUESTS.get()) return;
             cap.triggerQuest(player, JIANG_HU_ZHUI_SHA_LING_QUEST_ID, 0.1F, null);
 
-            if (TimeDetection.isFullNight(player.level())) {
-                cap.triggerQuest(player, AO_QI_TINA_DI_JIAN_QUEST_ID, 0.1F, null);
-            }
+//            if (TimeDetection.isFullNight(player.level())) {
+//                cap.triggerQuest(player, AO_QI_TINA_DI_JIAN_QUEST_ID, 0.1F, null);
+//            }
 
             cap.triggerQuest(player, REN_WO_XING_QUEST_ID, 1.0F, null);
 
@@ -133,26 +133,26 @@ public class PlayerQuestEvent {
         if (player.level().isClientSide) return;
         if (event.phase != TickEvent.Phase.END) return;
         player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
-            List<Quest> quests = cap.getQuests(player.getUUID());
-            Optional<Quest> existingUncompleted = quests.stream()
-                    .filter(Objects::nonNull)
-                    .filter(quest -> quest.getQuestId().equals(AO_QI_TINA_DI_JIAN_QUEST_ID))
-                    .findFirst();
-            if (existingUncompleted.isPresent()) {
-                Quest quest = existingUncompleted.get();
-                if (quest.getQuestId().equals(AO_QI_TINA_DI_JIAN_QUEST_ID)) {
-                    if (!quest.canComplete(player)) {
-                        if (quest.getQuestCurrentTime() < quest.getQuestTime()) {
-                            quest.setQuestCurrentTime();
-                        } else {
-                            quest.setCurrentKills(100);
-                            player.sendSystemMessage(getColoredTranslation(
-                                    "quest." + ChangShengJue.MOD_ID + ".finish", getColoredTranslation(quest.getQuestName())));
-                        }
-                    }
-                }
-                entityGenerate(player, 20, AO_QI_TINA_DI_JIAN_QUEST_ID, 5);
-            }
+//            List<Quest> quests = cap.getQuests(player.getUUID());
+//            Optional<Quest> existingUncompleted = quests.stream()
+//                    .filter(Objects::nonNull)
+//                    .filter(quest -> quest.getQuestId().equals(AO_QI_TINA_DI_JIAN_QUEST_ID))
+//                    .findFirst();
+//            if (existingUncompleted.isPresent()) {
+//                Quest quest = existingUncompleted.get();
+//                if (quest.getQuestId().equals(AO_QI_TINA_DI_JIAN_QUEST_ID)) {
+//                    if (!quest.canComplete(player)) {
+//                        if (quest.getQuestCurrentTime() < quest.getQuestTime()) {
+//                            quest.setQuestCurrentTime();
+//                        } else {
+//                            quest.setCurrentKills(100);
+//                            player.sendSystemMessage(getColoredTranslation(
+//                                    "quest." + ChangShengJue.MOD_ID + ".finish", getColoredTranslation(quest.getQuestName())));
+//                        }
+//                    }
+//                }
+//                entityGenerate(player, 20, AO_QI_TINA_DI_JIAN_QUEST_ID, 5);
+//            }
         });
 
     }
@@ -164,16 +164,14 @@ public class PlayerQuestEvent {
             List<Quest> quests = cap.getQuests(player.getUUID());
             Optional<Quest> existingUncompleted = quests.stream()
                     .filter(Objects::nonNull)
-                    .filter(quest -> quest.getQuestId().equals(AO_QI_TINA_DI_JIAN_QUEST_ID))
+                    .filter(quest -> quest.getQuestId().equals(questUUID))
                     .findFirst();
             if (existingUncompleted.isPresent()) {
                 Quest quest = existingUncompleted.get();
-                if (quest.getQuestId().equals(questUUID)) {
-                    if (quest.getQuestCurrentTargetCount() < quest.getQuestTargetCount()) {
-                        if (!quest.canComplete(player) && quest.isComplete()) {
-                            instance.spawnTargetForQuest((ServerPlayer) player, quest, ((quest.getRequiredKills()) / count));
-                            quest.setQuestCurrentTargetCount(quest.getQuestCurrentTargetCount() + 1);
-                        }
+                if (quest.getQuestCurrentTargetCount() < quest.getQuestTargetCount()) {
+                    if (!quest.canComplete(player) && quest.isComplete()) {
+                        instance.spawnTargetForQuest((ServerPlayer) player, quest, ((quest.getRequiredKills()) / count));
+                        quest.setQuestCurrentTargetCount(quest.getQuestCurrentTargetCount() + 1);
                     }
                 }
             }

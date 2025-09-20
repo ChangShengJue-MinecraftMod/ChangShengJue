@@ -38,10 +38,11 @@ public class Quest {
     private String targetEntity;  // 要击杀的生物ID
     private int requiredKills; // 需要击杀的数量
     private int currentKills; // 当前已击杀数量
-    String secondTargetEntity = "";  // 第二个目标实体
-    int secondRequiredKills; // 第二个目标需要击杀的数量
+    private String secondTargetEntity;  // 第二个目标实体
+    private int secondRequiredKills; // 第二个目标需要击杀的数量
     private int secondCurrentKills; // 第二个目标当前击杀数量
     private boolean isEntityTag; // 标记是否是标签
+    private boolean isSecondEntityTag;
     private String questRequirementsDescription; // 任务目标描述
     private boolean questGenerateTarget; // 是否需要生成目标
     private int questTargetCount; // 生成任务目标次数
@@ -71,6 +72,7 @@ public class Quest {
      * @param questType 任务类型
      * @param targetEntity 目标实体ID（击杀任务用）
      * @param isEntityTag 目标是否为标签
+     * @param isSecondEntityTag 第二个目标是否为标签
      * @param requiredKills 需要击杀数量
      * @param repeatable 是否可重复
      * @param questRequirementsDescription 任务需求描述
@@ -84,6 +86,7 @@ public class Quest {
     public Quest(UUID questId, UUID questNpcId, String questName, String questDescription,boolean needRefresh,
                  List<ItemStack> questRequirements, List<ItemStack> questRewards,
                  QuestType questType, String targetEntity, boolean isEntityTag, int requiredKills,
+                 String secondTargetEntity, int secondRequiredKills, boolean isSecondEntityTag,
                  boolean repeatable, String questRequirementsDescription, boolean questGenerateTarget,
                  int questDay, int questTargetCount, int questTime, List<QuestEffectEntry> effects, boolean isAcceptQuestEffects,
                  List<UUID> limitQuestIds,boolean isNeedCompletePreQuest, List<UUID> conflictQuestIds, boolean isConflictQuest,
@@ -101,9 +104,13 @@ public class Quest {
         this.effects = effects != null ? effects : new ArrayList<>();
         this.limitQuestIds = limitQuestIds != null ? limitQuestIds : new ArrayList<>();;
         this.targetEntity = targetEntity;
-        this.isEntityTag = isEntityTag;
         this.requiredKills = requiredKills;
         this.currentKills = 0;
+        this.isEntityTag = isEntityTag;
+        this.secondTargetEntity = secondTargetEntity;
+        this.secondRequiredKills = secondRequiredKills;
+        this.secondCurrentKills = 0;
+        this.isSecondEntityTag = isSecondEntityTag;
         this.questGenerateTarget = questGenerateTarget;
         this.questDay = questDay;
         this.questCurrentDay = 0;
@@ -134,6 +141,10 @@ public class Quest {
         this.requiredKills = newQuest.requiredKills;
         this.currentKills = newQuest.currentKills;
         this.isEntityTag = newQuest.isEntityTag;
+        this.secondTargetEntity = newQuest.secondTargetEntity;
+        this.secondRequiredKills = newQuest.secondRequiredKills;
+        this.secondCurrentKills = newQuest.secondCurrentKills;
+        this.isSecondEntityTag = newQuest.isSecondEntityTag;
         this.repeatable = newQuest.repeatable;
         this.questRequirementsDescription = newQuest.questRequirementsDescription;
         this.questGenerateTarget = newQuest.questGenerateTarget;
@@ -213,8 +224,20 @@ public class Quest {
         if (tag.contains("CurrentKills")) {
             this.currentKills = tag.getInt("CurrentKills");
         }
+        if (tag.contains("SecondTargetEntity")) {
+            this.secondTargetEntity = tag.getString("SecondTargetEntity");
+        }
+        if (tag.contains("SecondRequiredKills")) {
+            this.secondRequiredKills = tag.getInt("SecondRequiredKills");
+        }
+        if (tag.contains("SecondCurrentKills")) {
+            this.secondCurrentKills = tag.getInt("SecondCurrentKills");
+        }
         if (tag.contains("IsEntityTag")) {
             this.isEntityTag = tag.getBoolean("IsEntityTag");
+        }
+        if (tag.contains("IsSecondEntityTag")) {
+            this.isSecondEntityTag = tag.getBoolean("IsSecondEntityTag");
         }
         if (tag.contains("QuestGenerateTarget")) {
             this.questGenerateTarget = tag.getBoolean("QuestGenerateTarget");
@@ -326,6 +349,7 @@ public class Quest {
         tag.putInt("RequiredKills", this.requiredKills);
         tag.putInt("CurrentKills", this.currentKills);
         tag.putBoolean("IsEntityTag", this.isEntityTag);
+        tag.putBoolean("IsSecondEntityTag", this.isSecondEntityTag);
         tag.putBoolean("QuestGenerateTarget", this.questGenerateTarget);
         tag.putBoolean("IsComplete", this.isComplete);
         tag.putInt("QuestDay", this.questDay);
@@ -349,7 +373,7 @@ public class Quest {
         if (this.secondTargetEntity != null) {
             tag.putString("SecondTargetEntity", this.secondTargetEntity);
         }
-        tag.putInt("SecondKills", this.secondRequiredKills);
+        tag.putInt("SecondRequiredKills", this.secondRequiredKills);
         tag.putInt("SecondCurrentKills", this.secondCurrentKills);
         tag.putInt("Weight", this.weight);
         return tag;
@@ -402,6 +426,7 @@ public class Quest {
         compound.putInt("RequiredKills", this.requiredKills);
         compound.putInt("CurrentKills", this.currentKills);
         compound.putBoolean("IsEntityTag", this.isEntityTag);
+        compound.putBoolean("IsSecondEntityTag", this.isSecondEntityTag);
         compound.putBoolean("QuestGenerateTarget", this.questGenerateTarget);
         compound.putBoolean("IsComplete", this.isComplete);
         compound.putInt("QuestDay", this.questDay);
@@ -422,7 +447,7 @@ public class Quest {
         if (this.secondTargetEntity != null) {
             compound.putString("SecondTargetEntity", this.secondTargetEntity);
         }
-        compound.putInt("SecondKills", this.secondRequiredKills);
+        compound.putInt("SecondRequiredKills", this.secondRequiredKills);
         compound.putInt("SecondCurrentKills", this.secondCurrentKills);
         compound.putInt("Weight", this.weight);
 
@@ -473,6 +498,9 @@ public class Quest {
         }
         if (tag.contains("IsEntityTag")) {
             this.isEntityTag = tag.getBoolean("IsEntityTag");
+        }
+        if (tag.contains("IsSecondEntityTag")) {
+            this.isSecondEntityTag = tag.getBoolean("IsSecondEntityTag");
         }
         if (tag.contains("QuestGenerateTarget")) {
             this.questGenerateTarget = tag.getBoolean("QuestGenerateTarget");
@@ -528,8 +556,8 @@ public class Quest {
         if (tag.contains("SecondTargetEntity")) {
             this.secondTargetEntity = tag.getString("SecondTargetEntity");
         }
-        if (tag.contains("SecondKills")) {
-            this.secondRequiredKills = tag.getInt("SecondKills");
+        if (tag.contains("SecondRequiredKills")) {
+            this.secondRequiredKills = tag.getInt("SecondRequiredKills");
         }
         if (tag.contains("SecondCurrentKills")) {
             this.secondCurrentKills = tag.getInt("SecondCurrentKills");
@@ -616,10 +644,10 @@ public class Quest {
 
     public void incrementKills() {
         this.currentKills++;
-        // 使用原生方法进行null安全检查
-        if (this.secondTargetEntity != null && !this.secondTargetEntity.isEmpty() && this.currentKills > requiredKills) {
-            this.secondCurrentKills++;
-        }
+    }
+
+    public void secondIncrementKills() {
+        this.secondCurrentKills++;
     }
 
     public boolean isRepeatable() {
@@ -698,6 +726,10 @@ public class Quest {
         return isEntityTag;
     }
 
+    public boolean isSecondEntityTag() {
+        return isSecondEntityTag;
+    }
+
     public String getSecondTargetEntity() {
         return secondTargetEntity;
     }
@@ -752,11 +784,14 @@ public class Quest {
             }
             return true;
         } else if (questType == QuestType.KILL) {
-            // 检查第一个目标
-            boolean firstTargetComplete = currentKills >= requiredKills;
-            // 检查第二个目标（如果存在）
-            boolean secondTargetComplete = (secondTargetEntity == null || secondTargetEntity.isEmpty()) || secondCurrentKills >= secondRequiredKills;
-            return firstTargetComplete && secondTargetComplete;
+            if (secondTargetEntity.isEmpty()) {
+                return currentKills >= requiredKills;
+            } else {
+                boolean firstTargetComplete = currentKills >= requiredKills;
+                boolean secondTargetComplete = secondCurrentKills >= secondRequiredKills;
+                return firstTargetComplete && secondTargetComplete;
+            }
+
         } else if (questType == QuestType.RAID || questType == QuestType.TREAT || questType == QuestType.AUTOMATIC) {
             return this.isComplete;
         }
@@ -777,20 +812,13 @@ public class Quest {
 
     // 添加方法检查实体是否匹配
     public boolean matchesEntity(Entity entity) {
-        // 检查第一个目标
-        boolean firstMatch = isEntityTag ? matchesEntityTag(entity) : matchesEntityId(entity);
-        // 检查第二个目标（如果存在）
-        if (secondTargetEntity != null && !secondTargetEntity.isEmpty()) {
-            boolean secondMatch = secondTargetEntity.startsWith("#") 
-                ? matchesSecondEntityTag(entity) 
-                : matchesSecondEntityId(entity);
-            return firstMatch || secondMatch;
-        }
-        return firstMatch;
+        return isEntityTag ? matchesEntityTag(entity, targetEntity) : matchesEntityId(entity, targetEntity);
+    }
+    public boolean matchesSecondEntity(Entity entity) {
+        return isSecondEntityTag ? matchesEntityTag(entity, secondTargetEntity) : matchesEntityId(entity, secondTargetEntity);
     }
 
-    private boolean matchesEntityTag(Entity entity) {
-        ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
+    private boolean matchesEntityTag(Entity entity, String targetEntity) {
         TagKey<EntityType<?>> tag = TagKey.create(
             ForgeRegistries.ENTITY_TYPES.getRegistryKey(),
             new ResourceLocation(targetEntity.substring(1)) // 去掉#
@@ -798,24 +826,11 @@ public class Quest {
         return entity.getType().is(tag);
     }
 
-    private boolean matchesEntityId(Entity entity) {
+    private boolean matchesEntityId(Entity entity, String targetEntity) {
         ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
         return entityId.toString().equals(targetEntity);
     }
 
-    private boolean matchesSecondEntityTag(Entity entity) {
-        ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
-        TagKey<EntityType<?>> tag = TagKey.create(
-            ForgeRegistries.ENTITY_TYPES.getRegistryKey(),
-            new ResourceLocation(secondTargetEntity.substring(1)) // 去掉#
-        );
-        return entity.getType().is(tag);
-    }
-
-    private boolean matchesSecondEntityId(Entity entity) {
-        ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
-        return entityId.toString().equals(secondTargetEntity);
-    }
     /**
      * 检查玩家是否完成过冲突的任务
      */
@@ -848,7 +863,8 @@ public class Quest {
     }
     // 检查是否从未接受过所有前置任务
     private boolean checkNeverAcceptedPrerequisites(PlayerQuestCapability capability) {
-        return limitQuestIds.stream().anyMatch(capability::isQuestAccepted);
+        boolean b = limitQuestIds.stream().anyMatch(capability::isQuestAccepted);
+        return b;
     }
 
     // 给予玩家奖励

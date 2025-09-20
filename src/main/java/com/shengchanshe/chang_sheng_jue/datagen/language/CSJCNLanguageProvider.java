@@ -1557,9 +1557,9 @@
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questName", "江湖追杀令");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questDescription", "你帮助村庄对抗帮派，各大势力都以你武林公敌的借口对你进行了追杀！");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questRequirementsDescription", "杀死袭击你的人");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questName", "傲气天地间");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questDescription", "我有百般力，何向弱者使？天地不平，我自平之！虽百人，有所可惧，智勇以对。");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questRequirementsDescription", "击杀100只僵尸");
+            this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tina_di_jian.questName", "傲气天地间");
+            this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tina_di_jian.questDescription", "我有百般力，何向弱者使？天地不平，我自平之！虽百人，有所可惧，智勇以对。");
+            this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tina_di_jian.questRequirementsDescription", "击杀恶徒与杀手");
             this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questName", "天若有情天亦老");
             this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questDescription", "人间正道是沧桑。");
             this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questRequirementsDescription", "完成两次江湖追杀令");

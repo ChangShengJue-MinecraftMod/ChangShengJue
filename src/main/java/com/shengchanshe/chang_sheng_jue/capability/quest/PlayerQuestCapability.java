@@ -427,7 +427,7 @@ public class PlayerQuestCapability {
 
     // 检查是否已接受过任务
     public boolean isQuestAccepted(UUID questId) {
-        return questId != null && acceptedQuests.contains(questId);
+        return questId != null && !acceptedQuests.contains(questId);
     }
 
     // 重置任务接受状态（用于任务重置）

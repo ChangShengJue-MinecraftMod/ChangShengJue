@@ -1563,9 +1563,9 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questDescription", "You helped the village fight against gangs—now all major forces have labeled you a 'public enemy of Wulin' and sent assassins after you!");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questRequirementsDescription", "Kill the assassins sent to attack you");
 
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questName", "Pride Between Heaven and Earth");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questDescription", "I have a hundred strengths—why use them on the weak? If heaven and earth are unjust, I shall right it myself! Even facing a hundred foes, though daunting, counter with wisdom and courage.");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombies.questRequirementsDescription", "Kill 100 Zombies");
+        this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tina_di_jian.questName", "Pride Between Heaven and Earth");
+        this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tina_di_jian.questDescription", "I have a hundred strengths—why use them on the weak? If heaven and earth are unjust, I shall right it myself! Even facing a hundred foes, though daunting, counter with wisdom and courage.");
+        this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tina_di_jian.questRequirementsDescription", "Kill the villains and assassins");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questName", "If Heaven Had Affections, It Would Grow Old");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questDescription", "The right path under heaven is full of vicissitudes.");

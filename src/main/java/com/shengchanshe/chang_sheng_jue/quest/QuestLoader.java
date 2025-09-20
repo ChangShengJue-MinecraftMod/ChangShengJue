@@ -180,7 +180,7 @@ public class QuestLoader {
             String targetEntity = json.has("targetEntity") ? json.get("targetEntity").getAsString() : "";
             boolean isEntityTag = targetEntity.startsWith("#");
 
-            int requiredKills = getrequiredKills(json);
+            int requiredKills = getRequiredKills(json);
 
             boolean questGenerateTarget = json.has("questGenerateTarget") && json.get("questGenerateTarget").getAsBoolean();
 
@@ -218,39 +218,40 @@ public class QuestLoader {
 
             boolean isConflictQuest = json.has("isConflictQuest") && json.get("isConflictQuest").getAsBoolean();
 
-
             int needCompletionCount = json.has("needCompletionCount") ? json.get("needCompletionCount").getAsInt() : 0;
 
             boolean needRefresh = json.has("needRefresh") && json.get("needRefresh").getAsBoolean();
 
             int weight = json.has("weight") ? json.get("weight").getAsInt() : 1;
+            String secondTargetEntity = json.has("secondTargetEntity") ? json.get("secondTargetEntity").getAsString() : "";
+            boolean isSecondEntityTag = targetEntity.startsWith("#");
 
-            Quest quest = new Quest(questId,npcId, title, description, needRefresh, requirements, rewards,
-                    type, targetEntity, isEntityTag, requiredKills, repeatable, questRequirementsDescription, questGenerateTarget, questDay,
+            int secondRequiredKills = getSecondRequiredKills(json);
+
+            return new Quest(questId,npcId, title, description, needRefresh, requirements, rewards,
+                    type, targetEntity, isEntityTag, requiredKills,secondTargetEntity, secondRequiredKills, isSecondEntityTag, repeatable, questRequirementsDescription, questGenerateTarget, questDay,
                     questTargetCount, questTime, effects, isAcceptQuestEffects, limitQuestIds,isNeedCompletePreQuest,conflictQuestIds,
                     isConflictQuest,needCompletionCount, weight);
-
-            if (json.has("secondTargetEntity")) {
-                quest.secondTargetEntity = json.get("secondTargetEntity").getAsString();
-            }
-            if (json.has("SecondKills")) {
-                quest.secondRequiredKills = json.get("SecondKills").getAsInt();
-            }
-            return quest;
-
         } catch (Exception e) {
             ChangShengJue.LOGGER.error("解析任务JSON失败", e);
             return null;
         }
     }
 
-    private static int getrequiredKills(JsonObject json) {
-        int minKills;
-        int maxKills;
+    private static int getSecondRequiredKills(JsonObject json) {
+        if (json.has("minSecondKills") && json.has("maxSecondKills")) {
+            int minKills = json.get("minSecondKills").getAsInt();
+            int maxKills = json.get("maxSecondKills").getAsInt();
+            return Math.toIntExact(Math.round(Math.random() * (maxKills - minKills) + minKills));
+        } else {
+            return json.has("secondRequiredKills") ? json.get("secondRequiredKills").getAsInt() : 0;
+        }
+    }
+
+    private static int getRequiredKills(JsonObject json) {
         if (json.has("minKills") && json.has("maxKills")) {
-            minKills = json.get("minKills").getAsInt();
-            maxKills = json.get("maxKills").getAsInt();
-            //输出min到max之间的随机数使用math
+            int minKills = json.get("minKills").getAsInt();
+            int maxKills = json.get("maxKills").getAsInt();
             return Math.toIntExact(Math.round(Math.random() * (maxKills - minKills) + minKills));
         } else {
             return json.has("requiredKills") ? json.get("requiredKills").getAsInt() : 0;

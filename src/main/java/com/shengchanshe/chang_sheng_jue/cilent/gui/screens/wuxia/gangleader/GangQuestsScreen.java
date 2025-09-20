@@ -68,9 +68,9 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight,TEXTURE_WIDTH,TEXTURE_HEIGHT);
-
-        String pageInfo = String.format("%d/%d", menu.getCurrentPage() + 1, menu.getTotalPages());
-        guiGraphics.drawString(font, pageInfo, x + imageWidth - 25, y + 50, 0xFFFFFF, false);
+        int currentPage = menu.getCurrentPage() + 1;
+        String pageInfo = String.format("%d/%d", currentPage, menu.getTotalPages());
+        guiGraphics.drawString(font, pageInfo, x + imageWidth - (currentPage >= 10 ? 35 : 30), y + 52, 0x404040, false);
     }
 
     @Override
@@ -87,8 +87,13 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
 
             var lines1 = font.split(Component.translatable(currentQuest.getQuestRequirementsDescription()), imageWidth - 50);
             for (int i = 0; i < lines1.size(); i++) {
-                guiGraphics.drawString(font, lines1.get(i), currentQuest.getTargetEntity().isEmpty() ? 28 + 40 : 28 + 60,
-                        (150 - 9) + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
+                if (currentQuest.getTargetEntity().isEmpty()) {
+                    guiGraphics.drawString(font, lines1.get(i), 68,
+                            (150 - 9) + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
+                }else if ((currentQuest.getTargetEntity() != null)) {
+                    guiGraphics.drawString(font, lines1.get(i), currentQuest.getSecondTargetEntity().isEmpty() ? 88 : 108,
+                            (150 - 9) + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
+                }
             }
 
             guiGraphics.drawString(font, Component.translatable("quest." + ChangShengJue.MOD_ID + ".requirements"), 28, 150 - 9, ChatFormatting.RED.getColor(), false);
@@ -113,7 +118,14 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
             // 根据任务类型决定渲染内容
             if (currentQuest.getQuestType() == Quest.QuestType.KILL) {
                 // 渲染击杀任务的目标生物
-                GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).renderKillTargetHead(guiGraphics, x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y - 3, currentQuest);
+                GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
+                        renderKillTargetHead(guiGraphics, x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y - 3,
+                                currentQuest.getTargetEntity(), currentQuest.getCurrentKills(), currentQuest.getRequiredKills());
+                if (!currentQuest.getSecondTargetEntity().isEmpty()) {
+                    GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
+                            renderKillTargetHead(guiGraphics, x + REQ_SLOTS_X + 60, y + REQ_SLOTS_Y - 3,
+                                    currentQuest.getSecondTargetEntity(), currentQuest.getSecondCurrentKills(), currentQuest.getSecondRequiredKills());
+                }
             } else if (currentQuest.getQuestType() == Quest.QuestType.GATHER) {
                 // 渲染需求物品
                 var reqs = currentQuest.getQuestRequirements();
@@ -169,21 +181,6 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
                 return;
             }
         }
-        // 击杀任务目标提示
-        if (quest.getQuestType() == Quest.QuestType.KILL &&
-                isMouseOverSlot(mouseX, mouseY,
-                        x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y - 9, HEAD_SIZE, HEAD_SIZE)) {
-            renderKillTargetTooltip(guiGraphics, mouseX, mouseY, quest);
-        }
-    }
-    // 击杀目标特殊提示
-    private void renderKillTargetTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, Quest quest) {
-        List<Component> tooltip = List.of(
-                Component.translatable("quest."+ ChangShengJue.MOD_ID +".requires.kill.target", quest.getRequiredKills()),
-                Component.translatable("quest."+ ChangShengJue.MOD_ID +".current.kill.target", quest.getCurrentKills(), quest.getRequiredKills())
-                        .withStyle(ChatFormatting.YELLOW)
-        );
-        guiGraphics.renderTooltip(font, tooltip, Optional.empty(), mouseX, mouseY);
     }
 
     private boolean isMouseOverSlot(int mouseX, int mouseY, int slotX, int slotY, int width, int height) {

@@ -1,8 +1,8 @@
 {
   "questId": "edd0cd54-c00c-43b7-aa4c-105e949cf883",
-  "questName": "quest.chang_sheng_jue.kill.zombies.questName",
-  "questDescription": "quest.chang_sheng_jue.kill.zombies.questDescription",
-  "questRequirementsDescription": "quest.chang_sheng_jue.kill.zombies.questRequirementsDescription",
+  "questName": "quest.chang_sheng_jue.ao_qi_tina_di_jian.questName",
+  "questDescription": "quest.chang_sheng_jue.ao_qi_tina_di_jian.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.ao_qi_tina_di_jian.questRequirementsDescription",
   "questType": "KILL",
   "weight": 23,
   "targetEntity": "chang_sheng_jue:villain",
@@ -11,8 +11,6 @@
   "secondTargetEntity": "chang_sheng_jue:assassin",
   "minSecondKills": 1,
   "maxSecondKills": 2,
-  "questTargetCount" : 5,
-  "questTime": 140,
   "repeatable": false,
   "questGenerateTarget" : true,
   "limitQuestIds" : [

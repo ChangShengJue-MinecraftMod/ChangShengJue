@@ -159,8 +159,14 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 renderItemAt(guiGraphics, x + REQ_SLOTS_X + 40 + i * SLOT_SIZE, y + REWARD_SLOTS_Y - 7, stack);
             }
             if (!quest.getTargetEntity().isEmpty()){
-                GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE)
-                        .renderKillTargetHead(guiGraphics,x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y, quest);
+                GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
+                        renderKillTargetHead(guiGraphics, x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y,
+                                quest.getTargetEntity(), quest.getCurrentKills(), quest.getRequiredKills());
+                if (!quest.getSecondTargetEntity().isEmpty()) {
+                    GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
+                            renderKillTargetHead(guiGraphics, x + REQ_SLOTS_X + 60, y + REQ_SLOTS_Y,
+                                    quest.getSecondTargetEntity(), quest.getSecondCurrentKills(), quest.getSecondRequiredKills());
+                }
             }
             this.renderTooltips(guiGraphics, mouseX, mouseY, x, y, quest);
         });
@@ -176,9 +182,9 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight,TEXTURE_WIDTH,TEXTURE_HEIGHT);
-
-        String pageInfo = String.format("%d/%d", menu.getCurrentPage() + 1, menu.getTotalPages());
-        guiGraphics.drawString(font, pageInfo, x + imageWidth - 25, y + 10, 0xFFFFFF, false);
+        int currentPage = menu.getCurrentPage() + 1;
+        String pageInfo = String.format("%d/%d", currentPage, menu.getTotalPages());
+        guiGraphics.drawString(font, pageInfo, x + imageWidth - (currentPage >= 10 ? 35 : 30), y + 10, 0x404040, false);
     }
 
     @Override
@@ -197,11 +203,20 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 int descX = i == 0 ? 20 + 17 : 20;
                 guiGraphics.drawString(font, lines.get(i), descX,35 + i * font.lineHeight,0x404040, false);
             }
-
+//            var lines1 = font.split(Component.translatable(quest.getQuestRequirementsDescription()), imageWidth - 50);
+//            for (int i = 0; i < lines1.size(); i++) {
+//                guiGraphics.drawString(font, lines1.get(i), !quest.getTargetEntity().isEmpty() ? REQ_SLOTS_X + 60 : REQ_SLOTS_X + 40,
+//                        73 + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
+//            }
             var lines1 = font.split(Component.translatable(quest.getQuestRequirementsDescription()), imageWidth - 50);
             for (int i = 0; i < lines1.size(); i++) {
-                guiGraphics.drawString(font, lines1.get(i), !quest.getTargetEntity().isEmpty() ? REQ_SLOTS_X + 60 : REQ_SLOTS_X + 40,
-                        73 + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
+                if (quest.getTargetEntity().isEmpty()) {
+                    guiGraphics.drawString(font, lines1.get(i),REQ_SLOTS_X + 40,
+                            73 + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
+                }else if ((quest.getTargetEntity() != null)) {
+                    guiGraphics.drawString(font, lines1.get(i), quest.getSecondTargetEntity().isEmpty() ? REQ_SLOTS_X + 60 : REQ_SLOTS_X + 80,
+                            73 + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
+                }
             }
 
             guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".requirements"), REQ_SLOTS_X, REQ_SLOTS_Y - 6, ChatFormatting.RED.getColor(), false);
@@ -236,20 +251,6 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 return;
             }
         }
-        // 击杀任务目标提示
-        if (quest.getQuestType() == Quest.QuestType.KILL &&
-                isMouseOverSlot(mouseX, mouseY,
-                        x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y - 9, HEAD_SIZE, HEAD_SIZE)) {
-            renderKillTargetTooltip(guiGraphics, mouseX, mouseY, quest);
-        }
-    }
-    // 击杀目标特殊提示
-    private void renderKillTargetTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, Quest quest) {
-        List<Component> tooltip = List.of(
-                Component.literal("需要击杀: " + quest.getRequiredKills() + "次"),
-                Component.literal("当前进度: " + quest.getCurrentKills() + "/" + quest.getRequiredKills()).withStyle(ChatFormatting.YELLOW)
-        );
-        guiGraphics.renderTooltip(font, tooltip, Optional.empty(), mouseX, mouseY);
     }
 
     private boolean isMouseOverSlot(int mouseX, int mouseY, int slotX, int slotY, int width, int height) {
