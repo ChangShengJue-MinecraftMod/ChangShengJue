@@ -35,15 +35,8 @@ public class PlayerQuestCapability {
     private final Set<UUID> completedQuests = ConcurrentHashMap.newKeySet();
     private final Set<UUID> acceptedQuests = ConcurrentHashMap.newKeySet();
 
-
     // 新增大额交易首次触发状态
     private boolean firstLargeTransactionTrigger = true;
-
-    // 新增除暴安良任务首次触发状态
-    private boolean firstChuBaoAnLiangTrigger = true;
-
-    // 新增为民除害任务首次触发状态
-    private boolean firstWeiMinChuHaiTrigger = true;
 
     public void copyFrom(PlayerQuestCapability source) {
         this.playerQuests.clear();
@@ -295,7 +288,9 @@ public class PlayerQuestCapability {
                     if (player.level().getDifficulty() == Difficulty.PEACEFUL && newQuest.getQuestType() == Quest.QuestType.KILL) {
                         return;
                     }
-                    if (newQuest.checkPrerequisiteQuests(this) && !newQuest.checkConflictQuests(this)) {
+                    boolean checkConflictQuests = newQuest.checkConflictQuests(this);
+                    boolean checkPrerequisiteQuests = newQuest.checkPrerequisiteQuests(this);
+                    if (checkPrerequisiteQuests && !checkConflictQuests) {
                         if (isQuestCompleted(questId) && !newQuest.isRepeatable()) {
                             return;
                         }
@@ -308,6 +303,7 @@ public class PlayerQuestCapability {
                             }
                             newQuest.setAcceptedBy(player.getUUID());
                             quests.add(newQuest);
+                            markQuestAccepted(newQuest.getQuestId());
                             QuestManager.getInstance().spawnTargetForQuest((ServerPlayer) player, newQuest, newQuest.getRequiredKills());
                             player.sendSystemMessage(getColoredTranslation(
                                     "quest." + ChangShengJue.MOD_ID + ".trigger", getColoredTranslation(newQuest.getQuestName())));
@@ -430,7 +426,7 @@ public class PlayerQuestCapability {
         return questId != null && !acceptedQuests.contains(questId);
     }
 
-    // 重置任务接受状态（用于任务重置）
+    // 重置任务接受状态
     public void resetQuestAcceptance(UUID questId) {
         if (questId != null) {
             acceptedQuests.remove(questId);
@@ -445,19 +441,4 @@ public class PlayerQuestCapability {
         this.firstLargeTransactionTrigger = firstLargeTransactionTrigger;
     }
 
-    public boolean isFirstChuBaoAnLiangTrigger() {
-        return firstChuBaoAnLiangTrigger;
-    }
-
-    public void setFirstChuBaoAnLiangTrigger(boolean firstChuBaoAnLiangTrigger) {
-        this.firstChuBaoAnLiangTrigger = firstChuBaoAnLiangTrigger;
-    }
-
-    public boolean isFirstWeiMinChuHaiTrigger() {
-        return firstWeiMinChuHaiTrigger;
-    }
-
-    public void setFirstWeiMinChuHaiTrigger(boolean firstWeiMinChuHaiTrigger) {
-        this.firstWeiMinChuHaiTrigger = firstWeiMinChuHaiTrigger;
-    }
 }

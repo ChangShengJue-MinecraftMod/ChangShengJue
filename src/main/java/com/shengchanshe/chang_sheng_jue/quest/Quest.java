@@ -863,8 +863,7 @@ public class Quest {
     }
     // 检查是否从未接受过所有前置任务
     private boolean checkNeverAcceptedPrerequisites(PlayerQuestCapability capability) {
-        boolean b = limitQuestIds.stream().anyMatch(capability::isQuestAccepted);
-        return b;
+        return limitQuestIds.stream().anyMatch(capability::isQuestAccepted);
     }
 
     // 给予玩家奖励

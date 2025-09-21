@@ -547,7 +547,6 @@ public class CSJEvent {
         // 任务
         PlayerQuestEvent.onPlayerTick(event);
         PlayerQuestEvent.onEntityGenerate(event);
-        PlayerQuestEvent.onZombieGenerate(event);
     }
     @SubscribeEvent
     public static void onAttachChunkCapabilities(AttachCapabilitiesEvent<LevelChunk> event) {
