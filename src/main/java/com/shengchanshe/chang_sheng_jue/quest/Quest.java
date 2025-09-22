@@ -881,8 +881,9 @@ public class Quest {
                 for (AbstractionInternalkungfu kungFu : kungFus) {
                     if (kungFu.getLevel() < kungFu.getMaxLevel()) {
                         for (ItemStack reward : questRewards) {
-                            if (reward.getItem() instanceof InternalkungfuXp) {
-                                player.getInventory().add(reward.copy());
+                            if (reward.getItem() instanceof InternalkungfuXp internalkungfuXp) {
+                                internalkungfuXp.use(player.level(),player, player.getUsedItemHand());
+//                                player.getInventory().add(reward.copy());
                                 return;
                             }
                         }
@@ -911,8 +912,9 @@ public class Quest {
                 for (AbstractionExternalKunfu kungFu : kungFus) {
                     if (kungFu.getLevel() < kungFu.getMaxLevel()) {
                         for (ItemStack reward : questRewards) {
-                            if (reward.getItem() instanceof ExternalKungfuXp) {
-                                player.getInventory().add(reward.copy());
+                            if (reward.getItem() instanceof ExternalKungfuXp externalKungfuXp) {
+//                                player.getInventory().add(reward.copy());
+                                externalKungfuXp.use(player.level(),player, player.getUsedItemHand());
                                 return;
                             }
                         }

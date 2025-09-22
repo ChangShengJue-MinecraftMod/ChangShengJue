@@ -148,8 +148,8 @@
             this.add(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get(), "坩埚(金水)");
 
             this.add(ChangShengJueItems.GANG_TOKEN.get(),"帮派令牌");
-            this.add(ChangShengJueItems.EXTERNAL_KUNG_FU_XP.get(), "外功经验簇");
-            this.add(ChangShengJueItems.INTERNAL_KUNG_FU_XP.get(), "内功经验簇");
+            this.add(ChangShengJueItems.EXTERNAL_KUNG_FU_XP.get(), "外功经验+5");
+            this.add(ChangShengJueItems.INTERNAL_KUNG_FU_XP.get(), "内功经验+5");
 
             this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.PIT_YARD_TYPE, "%s情报");
             this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SANDSTONE_CASTLE_TYPE, "%s情报");
@@ -433,9 +433,6 @@
             this.add("tooltip."+ ChangShengJue.MOD_ID + ".damage_reduction","外功伤害减免: +%s%%");
             this.add("tooltip."+ ChangShengJue.MOD_ID + ".trauma","受到外伤的概率: -%s%%");
 
-            this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.EXTERNAL_KUNG_FU_XP.get()+".tooltip","使用后外功经验+5,若当前习得的外功经验已达到最高,则无法使用");
-            this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.INTERNAL_KUNG_FU_XP.get()+".tooltip","使用后内功经验+5,若当前习得的内功经验已达到最高,则无法使用");
-    
             this.add("tooltip." + ChangShengJue.MOD_ID + "." + "pit_yard.tooltip", "地下窑洞");
             this.add("tooltip." + ChangShengJue.MOD_ID + "." + "sandstone_castle.tooltip","沙石堡");
             this.add("tooltip." + ChangShengJue.MOD_ID + "." + "si_he_yuan.tooltip","四合院");

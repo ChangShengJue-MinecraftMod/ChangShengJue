@@ -149,8 +149,8 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get(), "Crucible (Liquid Gold)");
 
         this.add(ChangShengJueItems.GANG_TOKEN.get(),"Gang Token");
-        this.add(ChangShengJueItems.EXTERNAL_KUNG_FU_XP.get(), "External KunFu Xp");
-        this.add(ChangShengJueItems.INTERNAL_KUNG_FU_XP.get(), "Internal KungFu Xp");
+        this.add(ChangShengJueItems.EXTERNAL_KUNG_FU_XP.get(), "External KunFu Xp+5");
+        this.add(ChangShengJueItems.INTERNAL_KUNG_FU_XP.get(), "Internal KungFu Xp+5");
 
         this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.PIT_YARD_TYPE, "%s" + "information");
         this.add("item." + ChangShengJue.MOD_ID + "." + ChangShengJueItems.STRUCTURE_INTELLIGENCE.get() + "." + StructureIntelligence.SANDSTONE_CASTLE_TYPE, "%s" + "information");
@@ -428,9 +428,6 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.unload","Unloaded from equipment");
         this.add("tooltip."+ ChangShengJue.MOD_ID + ".damage_reduction","External damage reduction: +%s%%");
         this.add("tooltip."+ ChangShengJue.MOD_ID + ".trauma","Chance of sustaining external injuries: -%s%%");
-
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.EXTERNAL_KUNG_FU_XP.get()+".tooltip","External KungFu Xp +5, If the current External KungFu Xp has reached the maximum, it cannot be used");
-        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.INTERNAL_KUNG_FU_XP.get()+".tooltip","Internal KungFu Xp +5, If the current Internal KungFu Xp has reached the maximum, it cannot be used");
 
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "pit_yard.tooltip", "Underground Cave Dwelling");
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "sandstone_castle.tooltip","Sandstone Fort");
