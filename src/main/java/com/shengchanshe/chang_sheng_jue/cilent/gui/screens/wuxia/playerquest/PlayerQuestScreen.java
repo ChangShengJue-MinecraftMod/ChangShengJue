@@ -162,7 +162,7 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
                         renderKillTargetHead(guiGraphics, x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y,
                                 quest.getTargetEntity(), quest.getCurrentKills(), quest.getRequiredKills());
-                if (!quest.getSecondTargetEntity().isEmpty()) {
+                if (quest.getSecondTargetEntity() != null && !quest.getSecondTargetEntity().isEmpty()) {
                     GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
                             renderKillTargetHead(guiGraphics, x + REQ_SLOTS_X + 60, y + REQ_SLOTS_Y,
                                     quest.getSecondTargetEntity(), quest.getSecondCurrentKills(), quest.getSecondRequiredKills());

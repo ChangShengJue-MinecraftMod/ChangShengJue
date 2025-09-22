@@ -194,7 +194,7 @@ public class QuestManager {
             quest.applyEffects(player);
         }
         if (quest.isQuestGenerateTarget()){
-            if (!secondTargetId.isEmpty()) {
+            if (secondTargetId != null && !secondTargetId.isEmpty()) {
                 if (secondTargetId.startsWith("#")) {
                     ResourceLocation tagId = new ResourceLocation(secondTargetId.substring(1));
                     TagKey<EntityType<?>> entityTag = TagKey.create(Registries.ENTITY_TYPE, tagId);

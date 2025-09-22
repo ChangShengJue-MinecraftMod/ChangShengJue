@@ -46,7 +46,7 @@ public class QuestEvent {
                 List<Quest> currentQuest = cap.getQuests(playerId);
                 for (Quest quest : currentQuest) {
                     if (quest != null && quest.getQuestType() == Quest.QuestType.KILL) {
-                        if (!quest.getSecondTargetEntity().isEmpty()) {
+                        if (quest.getSecondTargetEntity() != null && !quest.getSecondTargetEntity().isEmpty()) {
                             if (quest.getCurrentKills() < quest.getRequiredKills()) {
                                 if (quest.matchesEntity(entity)) {
                                     if (quest.getQuestId().equals(PlayerQuestEvent.MARTIAL_ARTS_QUEST_ID)){

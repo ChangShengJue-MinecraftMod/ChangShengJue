@@ -121,7 +121,7 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
                 GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
                         renderKillTargetHead(guiGraphics, x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y - 3,
                                 currentQuest.getTargetEntity(), currentQuest.getCurrentKills(), currentQuest.getRequiredKills());
-                if (!currentQuest.getSecondTargetEntity().isEmpty()) {
+                if (currentQuest.getSecondTargetEntity() != null && !currentQuest.getSecondTargetEntity().isEmpty()) {
                     GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
                             renderKillTargetHead(guiGraphics, x + REQ_SLOTS_X + 60, y + REQ_SLOTS_Y - 3,
                                     currentQuest.getSecondTargetEntity(), currentQuest.getSecondCurrentKills(), currentQuest.getSecondRequiredKills());

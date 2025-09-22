@@ -784,7 +784,7 @@ public class Quest {
             }
             return true;
         } else if (questType == QuestType.KILL) {
-            if (secondTargetEntity.isEmpty()) {
+            if (secondTargetEntity == null) {
                 return currentKills >= requiredKills;
             } else {
                 boolean firstTargetComplete = currentKills >= requiredKills;
