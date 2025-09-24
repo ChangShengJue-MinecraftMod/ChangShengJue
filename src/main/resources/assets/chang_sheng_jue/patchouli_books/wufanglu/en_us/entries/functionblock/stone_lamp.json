@@ -5,7 +5,7 @@
   "icon": "chang_sheng_jue:stone_lamps_block",
   "pages": [
     {
-      "title": "chang_sheng_jue.function.stone_lamp.page1.title",
+      "title": "chang_sheng_jue.function.stone_lamp",
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:stone_lamps_base_block",
       "text": "chang_sheng_jue.function.stone_lamp.page1.text"

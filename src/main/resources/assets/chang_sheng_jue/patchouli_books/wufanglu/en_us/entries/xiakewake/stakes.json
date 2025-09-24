@@ -5,7 +5,7 @@
   "icon": "chang_sheng_jue:stakes",
   "pages": [
     {
-      "title": "chang_sheng_jue.xiake.stakes.page1.title",
+      "title": "chang_sheng_jue.xiake.stakes",
       "type": "patchouli:crafting",
       "recipe": "chang_sheng_jue:stakes",
       "text": "chang_sheng_jue.xiake.stakes.page1.text"

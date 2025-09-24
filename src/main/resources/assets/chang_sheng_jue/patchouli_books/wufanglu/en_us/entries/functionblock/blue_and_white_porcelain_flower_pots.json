@@ -5,7 +5,7 @@
   "icon": "chang_sheng_jue:blue_and_white_porcelain_flower_pots",
   "pages": [
     {
-      "title": "chang_sheng_jue.function.blue_and_white_porcelain_flower_pots.page1.title",
+      "title": "chang_sheng_jue.function.blue_and_white_porcelain_flower_pots",
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:blue_and_white_porcelain_flower_pots",
       "text": "chang_sheng_jue.function.blue_and_white_porcelain_flower_pots.page1.text"

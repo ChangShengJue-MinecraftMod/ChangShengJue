@@ -39,13 +39,13 @@ public class RelentlessThrowingKnivesBook extends Item {
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if (Screen.hasShiftDown()) {
             Component fullDesc = Component.translatable("tooltip." + ChangShengJue.MOD_ID + "."
-                    + this + ".hold_shift.tooltip", Component.translatable(KungFuConfig.RELENTLESS_THROWING_KNIVES_MAX_EXP.get().toString())).withStyle(ChatFormatting.AQUA);
+                    + this + ".hold_shift.tooltip", Component.translatable(KungFuConfig.RELENTLESS_THROWING_KNIVES_MAX_EXP.get().toString())).withStyle(ChatFormatting.BLUE);
             String formattedText = fullDesc.getString();
             Arrays.stream(formattedText.split("\\u000A|\\\\n"))
                     .map(line -> Component.literal(line).withStyle(fullDesc.getStyle()))
                     .forEach(pTooltipComponents::add);
         } else {
-            pTooltipComponents.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + "." + this + ".tooltip").withStyle(ChatFormatting.AQUA));
+            pTooltipComponents.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + "." + this + ".tooltip").withStyle(ChatFormatting.BLUE));
             // 提示按住Shift
             pTooltipComponents.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID +".hold_shift.tooltip"));
         }

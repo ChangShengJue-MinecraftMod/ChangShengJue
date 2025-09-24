@@ -1,8 +1,8 @@
 {
   "questId": "edd0cd54-c00c-43b7-aa4c-105e949cf883",
-  "questName": "quest.chang_sheng_jue.ao_qi_tina_di_jian.questName",
-  "questDescription": "quest.chang_sheng_jue.ao_qi_tina_di_jian.questDescription",
-  "questRequirementsDescription": "quest.chang_sheng_jue.ao_qi_tina_di_jian.questRequirementsDescription",
+  "questName": "quest.chang_sheng_jue.ao_qi_tian_di_jian.questName",
+  "questDescription": "quest.chang_sheng_jue.ao_qi_tian_di_jian.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.ao_qi_tian_di_jian.questRequirementsDescription",
   "questType": "KILL",
   "weight": 23,
   "targetEntity": "chang_sheng_jue:villain",

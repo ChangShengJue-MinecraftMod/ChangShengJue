@@ -5,7 +5,7 @@
   "icon": "chang_sheng_jue:confucian_ink_chestplate",
   "pages": [
     {
-      "title": "chang_sheng_jue.xiake.equipment.page1.title",
+      "title": "chang_sheng_jue.xiake.equipment",
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:confucian_ink_chestplate",
       "text": "chang_sheng_jue.xiake.equipment.page1.text"

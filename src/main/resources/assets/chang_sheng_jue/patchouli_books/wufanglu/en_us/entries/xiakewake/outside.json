@@ -5,7 +5,7 @@
   "icon": "chang_sheng_jue:textures/mob_effect/trauma_effect.png",
   "pages": [
     {
-      "title": "chang_sheng_jue.xiake.trauma.page1.title",
+      "title": "chang_sheng_jue.xiake.trauma",
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:trauma_effect",
       "text": "chang_sheng_jue.xiake.trauma.page1.text"

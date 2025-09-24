@@ -5,7 +5,7 @@
   "icon": "chang_sheng_jue:natural_silk",
   "pages": [
     {
-      "title": "chang_sheng_jue.village.villager.seamstress.page1.title",
+      "title": "chang_sheng_jue.village.villager.seamstress",
       "type": "patchouli:entity",
       "entity": "minecraft:villager{VillagerData: {profession: \"chang_sheng_jue:chang_sheng_jue_seamstress\"}}"
     },

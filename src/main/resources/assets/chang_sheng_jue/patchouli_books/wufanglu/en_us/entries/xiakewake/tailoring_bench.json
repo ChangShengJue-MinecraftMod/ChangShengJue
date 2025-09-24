@@ -5,7 +5,7 @@
   "icon": "chang_sheng_jue:tailoring_case",
   "pages": [
     {
-      "title": "chang_sheng_jue.xiake.tailoring_case.page1.title",
+      "title": "chang_sheng_jue.xiake.tailoring_case",
       "type": "patchouli:crafting",
       "recipe": "chang_sheng_jue:tailoring_case",
       "text": "chang_sheng_jue.xiake.tailoring_case.page1.text"

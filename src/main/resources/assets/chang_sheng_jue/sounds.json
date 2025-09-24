@@ -266,18 +266,6 @@
       "chang_sheng_jue:martial_arts/throwing_knives_sound"
     ]
   },
-  "three_throwing_knives_sound": {
-    "subtitle": "sounds.chang_sheng_jue.three_throwing_knives_sound",
-    "sounds": [
-      "chang_sheng_jue:martial_arts/three_throwing_knives_sound"
-    ]
-  },
-  "seven_throwing_knives_sound": {
-    "subtitle": "sounds.chang_sheng_jue.seven_throwing_knives_sound",
-    "sounds": [
-      "chang_sheng_jue:martial_arts/seven_throwing_knives_sound"
-    ]
-  },
   "wu_gang_cut_gui_sound": {
     "subtitle": "sounds.chang_sheng_jue.wu_gang_cut_gui_sound",
     "sounds": [

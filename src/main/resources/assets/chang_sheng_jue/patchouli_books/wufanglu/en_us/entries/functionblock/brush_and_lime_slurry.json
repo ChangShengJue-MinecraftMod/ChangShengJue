@@ -5,7 +5,7 @@
   "icon": "chang_sheng_jue:paint_brush",
   "pages": [
     {
-      "title": "chang_sheng_jue.function.brush_and_lime_slurry.page1.title",
+      "title": "chang_sheng_jue.function.brush_and_lime_slurry",
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:paint_brush",
       "text": "chang_sheng_jue.function.brush_and_lime_slurry.page1.text"

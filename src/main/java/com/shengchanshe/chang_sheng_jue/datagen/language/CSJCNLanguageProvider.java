@@ -360,7 +360,7 @@
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".tooltip","学向勤中得，萤窗万卷书。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get()+".hold_shift.tooltip",
-                    "未大成前施展效果:每次交易有25%%概率获得5点经验\\n大成后施展效果:每次交易有35%概率获得10点经验\\n经验到达30级后武功大成");
+                    "未大成前施展效果:每次交易有25%%概率获得5点经验\\n大成后施展效果:每次交易有35%%概率获得10点经验\\n经验到达30级后武功大成");
     
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".tooltip","龟虽有鼻，而息之以耳。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.TURTLE_BREATH_WORK.get()+".hold_shift.tooltip",
@@ -453,8 +453,6 @@
             this.add("sounds."+ChangShengJue.MOD_ID + ".shaolin_stick_method_sound","武功 : 少林棍法");
             this.add("sounds."+ChangShengJue.MOD_ID + ".tread_the_snow_without_trace_sound","武功 : 踏雪无痕");
             this.add("sounds."+ChangShengJue.MOD_ID + ".throwing_knives_sound","飞刀 : 飞出");
-            this.add("sounds."+ChangShengJue.MOD_ID + ".three_throwing_knives_sound","飞刀 : 飞出");
-            this.add("sounds."+ChangShengJue.MOD_ID + ".seven_throwing_knives_sound","飞刀 : 飞出");
             this.add("sounds."+ChangShengJue.MOD_ID + ".throwing_knives_hit","飞刀 : 命中");
             this.add("sounds."+ChangShengJue.MOD_ID + ".throwing_knives_hit_ground","飞刀 : 命中");
             this.add("sounds."+ChangShengJue.MOD_ID + ".wu_gang_cut_gui_sound","武功 : 吴刚伐桂");
@@ -630,9 +628,7 @@
     
             this.add(ChangShengJueBlocks.EMPTY_SHI_LI_XIANG.get(), "空十里香杯");
             this.add(ChangShengJueBlocks.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get(), "空麦块贡酒杯");
-    
-    
-    
+
             this.add(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get(),"青花瓷花盆");
     
             this.add(ChangShengJueBlocks.MUGWORT_BLOCK.get(),"艾蒿");
@@ -1277,10 +1273,7 @@
             //配置文件信息
             this.add("config."+ ChangShengJue.MOD_ID +".reload", "配置已重新加载");
             this.add("config."+ ChangShengJue.MOD_ID +".enable_quests", "是否启用自动接受类型任务。");
-            this.add("config."+ ChangShengJue.MOD_ID +".spirit_recovery_amount", "自然恢复的灵气值。");
-            this.add("config."+ ChangShengJue.MOD_ID +".spirit_recovery_interval", "灵气自然恢复间隔(游戏刻)。");
-            this.add("config."+ ChangShengJue.MOD_ID +".spirit_root_ju_qi_efficiency", "化神期后灵根数量影响聚气效率");
-    
+
             this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_level", "独孤九剑最大等级上限");
             this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_exp", "独孤九剑突破所需的成功释放次数");
             this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_cooldown", "独孤九剑最大冷却时间");
@@ -1349,9 +1342,7 @@
     
             this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_max_exp", "张门心学突破所需的交易成功次数");
             this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_extra_probability", "张门心学大成后交易不消耗物品的概率");
-    
-            this.add("config."+ ChangShengJue.MOD_ID +".tun_na_particle", "是否显示吐纳粒子");
-            this.add("config."+ ChangShengJue.MOD_ID +".breakthrough_particle", "是否显示突破粒子");
+
             //普通信息
             this.add("block.changshengjue.fen_jiu.no_wine","已经没有酒了！");
             this.add("tooltip.changshengjue.natural_silk", "通过挖掘桑叶获得");
@@ -1360,7 +1351,6 @@
             // 一级进度
             this.add("advancement." + ChangShengJue.MOD_ID + ".begin", "长生诀");
             this.add("advancement." + ChangShengJue.MOD_ID + ".begin.desc", "大千世界，无奇不有");
-    
             // 二级进度
             this.add("advancement." + ChangShengJue.MOD_ID + ".hasmifan", "人是铁饭是钢");
             this.add("advancement." + ChangShengJue.MOD_ID + ".hasmifan.desc", "人靠饭，铁靠钢，一顿不吃饿得慌。");
@@ -1376,7 +1366,6 @@
     
             this.add("advancement." + ChangShengJue.MOD_ID + ".accessguildtask", "帮会？");
             this.add("advancement." + ChangShengJue.MOD_ID + ".accessguildtask.desc", "且看小爷我叱咤风云，搅动天下！");
-    
             // 三级进度
             this.add("advancement." + ChangShengJue.MOD_ID + ".haslichee", "妃子笑");
             this.add("advancement." + ChangShengJue.MOD_ID + ".haslichee.desc", "一骑红尘妃子笑，无人知是荔枝来。");
@@ -1433,13 +1422,13 @@
             //五级进度
             this.add("advancement." + ChangShengJue.MOD_ID + ".hasqitian", "未竟");
             this.add("advancement." + ChangShengJue.MOD_ID + ".hasqitian.desc", "齐天大圣在何处？长生之路又在何处？未来在何处？");
-    
+
             this.add("advancement." + ChangShengJue.MOD_ID + ".gongfadone", "一代宗师");
             this.add("advancement." + ChangShengJue.MOD_ID + ".gongfadone.desc", "人有情欲，剑没有，武功没有。紫禁之巅，谁能与我争高低？");
-    
+
             this.add("advancement." + ChangShengJue.MOD_ID + ".donefinaltask", "隐世大侠");
             this.add("advancement." + ChangShengJue.MOD_ID + ".donefinaltask.desc", "既是有情有欲人，天地不平心何甘？");
-    
+
             this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader", "头把交椅");
             this.add("advancement." + ChangShengJue.MOD_ID + ".beatleader.desc", "这木头座位总比那个剑刃做的舒适，不扎屁股。");
     
@@ -1554,9 +1543,9 @@
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questName", "江湖追杀令");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questDescription", "你帮助村庄对抗帮派，各大势力都以你武林公敌的借口对你进行了追杀！");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questRequirementsDescription", "杀死袭击你的人");
-            this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tina_di_jian.questName", "傲气天地间");
-            this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tina_di_jian.questDescription", "我有百般力，何向弱者使？天地不平，我自平之！虽百人，有所可惧，智勇以对。");
-            this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tina_di_jian.questRequirementsDescription", "击杀恶徒与杀手");
+            this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tian_di_jian.questName", "傲气天地间");
+            this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tian_di_jian.questDescription", "我有百般力，何向弱者使？天地不平，我自平之！虽百人，有所可惧，智勇以对。");
+            this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tian_di_jian.questRequirementsDescription", "击杀恶徒与杀手");
             this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questName", "天若有情天亦老");
             this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questDescription", "人间正道是沧桑。");
             this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questRequirementsDescription", "完成两次江湖追杀令");
@@ -1572,47 +1561,36 @@
             this.add(ChangShengJue.MOD_ID +".function", "功能物品");
             this.add(ChangShengJue.MOD_ID +".function.desc", "从那个空间裂缝来了很多奇怪的人，他们不仅会舞火为凤，飞天遁地。也带来了很多奇怪的东西。听说他们是从东方来的？");
             this.add(ChangShengJue.MOD_ID +".function.blue_and_white_porcelain_flower_pots", "青花瓷花盆");
-            this.add(ChangShengJue.MOD_ID +".function.blue_and_white_porcelain_flower_pots.page1.title", "青花瓷花盆");
             this.add(ChangShengJue.MOD_ID +".function.blue_and_white_porcelain_flower_pots.page1.text", "作用等同于原版花盆");
             this.add(ChangShengJue.MOD_ID +".function.brush_and_lime_slurry", "刷子和石灰浆");
-            this.add(ChangShengJue.MOD_ID +".function.brush_and_lime_slurry.page1.title", "刷子和石灰浆");
             this.add(ChangShengJue.MOD_ID +".function.brush_and_lime_slurry.page1.text", "将任意石灰浆桶放副手，主手持刷子就可以将整块红砖刷成对应色系白墙。石灰浆桶使用12次后会变成空桶。");
             this.add(ChangShengJue.MOD_ID +".function.bullions_casting_molds", "元宝铸造模具");
             this.add(ChangShengJue.MOD_ID +".function.bullions_casting_molds.page1.text", "将模具右键放置在地面，手持【坩埚（金/银液）】右键倒入");
             this.add(ChangShengJue.MOD_ID +".function.casting_molds", "铜钱铸造模具");
             this.add(ChangShengJue.MOD_ID +".function.casting_molds.page1.text", "用于铸造铜钱，将模具右键放置在地面，手持【坩埚（铜液）】右键倒入");
             this.add(ChangShengJue.MOD_ID +".function.crucible", "坩埚");
-            this.add(ChangShengJue.MOD_ID +".function.crucible.page1.title", "坩埚");
             this.add(ChangShengJue.MOD_ID +".function.crucible.page1.text", "是制作铜钱、元宝的重要道具$(br)可与8个铜/银/金合成为 坩埚（碎铜/银/金）$(br)【坩埚（碎铜/银/金）】在熔炉中烧制可获得【坩埚（铜/银/金液）】");
             this.add(ChangShengJue.MOD_ID +".function.crucible.page3.text", "坩埚（碎铜/银/金）在熔炉中烧制可获得坩埚（铜/银/金液）");
             this.add(ChangShengJue.MOD_ID +".function.crucible.page5.text", "坩埚（铜/银/金液）可放入模具中制作：铜钱/金银元宝");
             this.add(ChangShengJue.MOD_ID +".function.ladder", "扶梯");
-            this.add(ChangShengJue.MOD_ID +".function.ladder.page1.title", "扶梯");
             this.add(ChangShengJue.MOD_ID +".function.ladder.page1.text", "梯子有三格高，并且可以向上继续拼接增高。（当玩家处于方块边缘时向前一格放置扶梯会被压趴下）");
             this.add(ChangShengJue.MOD_ID +".function.painting_scroll", "画轴");
-            this.add(ChangShengJue.MOD_ID +".function.painting_scroll.page1.title", "画轴");
             this.add(ChangShengJue.MOD_ID +".function.painting_scroll.page1.text", "分为（1x1、2x1、1x2、2x2）四种，作用同原版画，有多种图案。");
             this.add(ChangShengJue.MOD_ID +".function.plaque", "牌匾");
-            this.add(ChangShengJue.MOD_ID +".function.plaque.page1.title", "牌匾");
             this.add(ChangShengJue.MOD_ID +".function.plaque.page1.text", "右键牌匾可以写入内容。侧面放置于方块上，作用同告示牌（可左右连接调整牌匾长度）");
             this.add(ChangShengJue.MOD_ID +".function.stone_lamp", "石灯");
-            this.add(ChangShengJue.MOD_ID +".function.stone_lamp.page1.title", "石灯");
             this.add(ChangShengJue.MOD_ID +".function.stone_lamp.page1.text", "石灯分为点燃和未燃两个状态$(br)使用打火石进行点燃，用作光源，光照亮度等同于烛台");
             this.add(ChangShengJue.MOD_ID +".function.stone_lamp.page2.title", "石灯底座");
             this.add(ChangShengJue.MOD_ID +".function.stone_lamp.page2.text", "石灯的底座，除装饰外无其他作用");
             this.add(ChangShengJue.MOD_ID +".function.zhu_tai", "烛台");
             this.add(ChangShengJue.MOD_ID +".function.zhu_tai.page1.text", "作用同火把，照亮半径12格范围。");
 
-
-
-
-
             this.add(ChangShengJue.MOD_ID +".village", "村落");
             this.add(ChangShengJue.MOD_ID +".village.desc", "大大小小的中式村庄坐落在麦块大陆上，他们带来了许多新奇玩意儿…");
             this.add(ChangShengJue.MOD_ID +".village.tool.chang_sheng_jue_loom", "织布机");
             this.add(ChangShengJue.MOD_ID +".village.tool.chang_sheng_jue_loom.page1.text", "使用说明：主手持$(item)蚕丝$()右键织布机可织成$(item)丝绸$()$(br)产出比例：2蚕丝 → 1丝绸");
             this.add(ChangShengJue.MOD_ID +".village.tool.pig_trough", "牲畜食槽");
-            this.add(ChangShengJue.MOD_ID +".village.tool.pig_trough.page1.text", "加速生长：$(li)可放置$(item)小麦$()$(br)效果：提升附近动物20%生长速度");
+            this.add(ChangShengJue.MOD_ID +".village.tool.pig_trough.page1.text", "加速生长：$(li)可放置$(item)小麦$()$(br)效果：提升附近动物20%%生长速度");
             this.add(ChangShengJue.MOD_ID +".village.tool.pig_trough.page2.text", "牲畜食槽合成配方");
             this.add(ChangShengJue.MOD_ID +".village.tool.pottery_wheel", "陶轮");
             this.add(ChangShengJue.MOD_ID +".village.tool.pottery_wheel.page1.text", "交互功能：$(li)1个粘土 → 制造$(item)瓷杯$()$(li)2个粘土 → 制造$(item)瓷碗$()$(li)3个粘土 → 制造$(item)瓷盘$()");
@@ -1620,12 +1598,11 @@
             this.add(ChangShengJue.MOD_ID +".village.tool.tool_table.page1.text", "维护功能：主手持$(item)弓$()右键工具台可快速修复工具耐久");
             this.add(ChangShengJue.MOD_ID +".village.tool.tool_table.page2.text", "工具台合成配方");
             this.add(ChangShengJue.MOD_ID +".village.villager.chief", "村长");
-            this.add(ChangShengJue.MOD_ID +".village.villager.chief.page1.title", "村长");
-            this.add(ChangShengJue.MOD_ID +".village.villager.chief.page1.text", "右键村长时有50%概率会触发村庄任务[除暴安良]，完成可获得一定奖励。");
+            this.add(ChangShengJue.MOD_ID +".village.villager.chief.page1.text", "右键村长时有50%%概率会触发村庄任务[除暴安良]，完成可获得一定奖励。");
             this.add(ChangShengJue.MOD_ID +".village.villager.chief.page2.title", "村长交易列表-新手");
             this.add(ChangShengJue.MOD_ID +".village.villager.chief.page2.text", "$(br)$(li)1x 银元宝 → 6x 一贯铜钱$(br)$(li)1x 金元宝 → 6x 银元宝$(br)$(li)7x 一贯铜钱 → 1x 银元宝$(br2)");
             this.add(ChangShengJue.MOD_ID +".village.villager.chief.page3.title", "村长交易列表-学徒");
-            this.add(ChangShengJue.MOD_ID +".village.villager.chief.page3.text", "$(br)$(li)1x 钻石 → 4x 一贯铜钱$(br)$(li)4x 一贯铜钱 → 2x 油灯$(br)$(li)7x 银元宝 → 1x 金元宝$(br2)");
+            this.add(ChangShengJue.MOD_ID +".village.villager.chief.page3.text", "$(br)$(li)1x 钻石 → 4x 一贯铜钱$(br)$(li)4x 一贯铜钱 → 2x 烛台$(br)$(li)7x 银元宝 → 1x 金元宝$(br2)");
             this.add(ChangShengJue.MOD_ID +".village.villager.chief.page4.title", "村长交易列表-老手");
             this.add(ChangShengJue.MOD_ID +".village.villager.chief.page4.text", "$(br)$(li)1x 指南针 → 4x 一贯铜钱$(br)$(li)4x 一贯铜钱 → 1x 绿宝石$(br2)");
             this.add(ChangShengJue.MOD_ID +".village.villager.chief.page5.title", "村长交易列表-专家与大师");
@@ -1635,7 +1612,6 @@
             this.add(ChangShengJue.MOD_ID +".village.villager.chief.page4.anchor", "村长-老手");
             this.add(ChangShengJue.MOD_ID +".village.villager.chief.page5.anchor", "村长-专家");
             this.add(ChangShengJue.MOD_ID +".village.villager.farmer", "农民");
-            this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page1.title", "农民");
             this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page2.anchor", "农民-新手");
             this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page2.title", "农民交易列表-新手");
             this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page2.text", "$(br)$(li)20x 玉米 → 4x 一贯铜钱$(br)$(li)20x 水稻 → 4x 一贯铜钱$(br)$(li)22x 番茄 → 4x 一贯铜钱$(br)$(li)22x 花生 → 4x 一贯铜钱$(br)$(li)4x 一贯铜钱 → 4x 米饭");
@@ -1647,9 +1623,8 @@
             this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page4.text", "$(br)$(li)4x 桂花糖藕 → 4x 一贯铜钱$(br)$(li)4x 一贯铜钱 → 4x 猪肚鸡");
             this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page5.anchor", "农民-专家");
             this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page5.title", "农民交易列表-专家与大师");
-            this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page5.text", "专家:$(br)$(li) 4x 一贯铜钱 → 1x 谜之炖菜（夜视，失明，饱和，虚弱，跳跃提升，中毒中1-2种）$(br2)大师:$(br)$(li)4x 一贯铜钱 → 4x 番茄炒蛋 $(br)$(li)8x 一贯铜钱 → 8x 肉沫茄子 $(br)$(li)8x 一贯铜钱 → 8x 八宝粥");
+            this.add(ChangShengJue.MOD_ID +".village.villager.farmer.page5.text", "专家:$(br)$(li) 4x 一贯铜钱 → 1x 谜之炖菜（夜视，失明，饱和，虚弱，跳跃提升，中毒中1-2种）$(br2)大师:$(br)$(li)4x 一贯铜钱 → 4x 番茄炒蛋$(br)$(li)8x 一贯铜钱 → 8x 肉沫茄子$(br)$(li)8x 一贯铜钱 → 8x 八宝粥");
             this.add(ChangShengJue.MOD_ID +".village.villager.hunter", "猎人");
-            this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page1.title", "猎人");
             this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page2.anchor", "猎人-新手");
             this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page2.title", "猎人交易列表-新手");
             this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page2.text", "$(br)$(li)14x 生鸡肉 → 4x 一贯铜钱$(br)$(li)4x 生兔肉 → 4x 一贯铜钱$(br)$(li)7x 生猪排 → 4x 一贯铜钱$(br)$(li)4x 一贯铜钱 → 1x 孔雀蛋$(br2)");
@@ -1663,13 +1638,12 @@
             this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page5.title", "猎人交易列表-专家与大师");
             this.add(ChangShengJue.MOD_ID +".village.villager.hunter.page5.text", "专家:$(br)$(li)7x 鹿茸 → 14x 一贯铜钱$(br2)大师:$(br)$(li)5x 虎皮 → 15x 一贯铜钱");
             this.add(ChangShengJue.MOD_ID +".village.villager.potter", "窑工");
-            this.add(ChangShengJue.MOD_ID +".village.villager.potter.page1.title", "窑工");
             this.add(ChangShengJue.MOD_ID +".village.villager.potter.page2.anchor", "窑工-新手");
             this.add(ChangShengJue.MOD_ID +".village.villager.potter.page2.title", "窑工交易列表-新手");
-            this.add(ChangShengJue.MOD_ID +".village.villager.potter.page2.text", "$(br)$(li)8x 一贯铜钱 → 32x 青石砖块$(br)$(li)8x 一贯铜钱 → 32x 青石细砖块$(br)$(li)8x 一贯铜钱 → 32x 青石砖楼梯$(br)$(li)8x 一贯铜钱 → 32x 青石台阶$(br)$(li)8x 一贯铜钱 → 32x 青石竖墙$(br2)");
+            this.add(ChangShengJue.MOD_ID +".village.villager.potter.page2.text", "$(br)$(li)8x 一贯铜钱 → 32x 青石砖$(br)$(li)8x 一贯铜钱 → 32x 青石细砖$(br)$(li)8x 一贯铜钱 → 32x 青石砖楼梯$(br)$(li)8x 一贯铜钱 → 32x 青石台阶$(br)$(li)8x 一贯铜钱 → 32x 青石竖墙$(br2)");
             this.add(ChangShengJue.MOD_ID +".village.villager.potter.page3.anchor", "窑工-学徒");
             this.add(ChangShengJue.MOD_ID +".village.villager.potter.page3.title", "窑工交易列表-学徒");
-            this.add(ChangShengJue.MOD_ID +".village.villager.potter.page3.text", "$(br)$(li)8x 一贯铜钱 → 32x 青石地砖$(br)$(li)8x 一贯铜钱 → 32x 深色青石地砖$(br)$(li)8x 一贯铜钱 → 32x 沥青地砖$(br2)");
+            this.add(ChangShengJue.MOD_ID +".village.villager.potter.page3.text", "$(br)$(li)8x 一贯铜钱 → 32x 青石地砖$(br)$(li)8x 一贯铜钱 → 32x 黑石地砖$(br)$(li)8x 一贯铜钱 → 32x 沥青地砖$(br2)");
             this.add(ChangShengJue.MOD_ID +".village.villager.potter.page4.anchor", "窑工-老手");
             this.add(ChangShengJue.MOD_ID +".village.villager.potter.page4.title", "窑工交易列表-老手");
             this.add(ChangShengJue.MOD_ID +".village.villager.potter.page4.text", "$(br)$(li)4x 一贯铜钱 → 8x 瓷碗$(br)$(li)4x 一贯铜钱 → 8x 瓷杯$(br)$(li)4x 一贯铜钱 → 4x 酒坛$(br2)");
@@ -1677,86 +1651,70 @@
             this.add(ChangShengJue.MOD_ID +".village.villager.potter.page5.title", "窑工交易列表-专家与大师");
             this.add(ChangShengJue.MOD_ID +".village.villager.potter.page5.text", "专家:$(br)$(li)4x 一贯铜钱 → 1x 青花瓷花盆$(br2)大师:$(br)$(li)4x 一贯铜钱 → 1x 黄色石狮子$(br)$(li)4x 一贯铜钱 → 1x 灰色石狮子$(br2)");
             this.add(ChangShengJue.MOD_ID +".village.villager.seamstress", "缝工");
-            this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page1.title", "缝工");
             this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page2.anchor", "缝工-新手");
             this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page2.title", "缝工交易列表-新手");
             this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page2.text", "$(br)$(li)6x 蚕丝 → 4x 一贯铜钱$(br)$(li)22x 棉花 → 4x 一贯铜钱$(br2)");
             this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page3.anchor", "缝工-学徒");
             this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page3.title", "缝工交易列表-学徒");
-            this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page3.text", "$(br)$(li)5x 鹿皮 → 10x 一贯铜钱$(br)$(li)4x 一贯铜钱 → 4x 丝绸$(br2)");
+            this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page3.text", "$(br)$(li)4x 一贯铜钱 → 4x 丝绸$(br2)");
             this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page4.anchor", "缝工-老手");
             this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page4.title", "缝工交易列表-老手");
-            this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page4.text", "$(br)$(li)28x 一贯铜钱 → 1x 男道袍包裹$(br)$(li)28x 一贯铜钱 → 1x 女道袍包裹$(br2)");
+            this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page4.text", "$(br)$(li)28x 一贯铜钱 → 1x 道服包裹$(br)$(li)28x 一贯铜钱 → 1x 道袍包裹$(br2)");
             this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page5.anchor", "缝工-专家");
             this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page5.title", "缝工交易列表-专家与大师");
-            this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page5.text", "专家:$(br)$(li)6x 银元宝 → 1x 婚服包裹$(br)$(li)6x 银元宝 → 1x 嫁衣包裹$(br)$(li)6x 银元宝 → 1x 行者装包裹$(br)$(li)6x 银元宝 → 1x 儒装包裹$(br2)大师:$(br)$(li)8x 银元宝 → 1x 金色棉甲包裹$(br2)");
+            this.add(ChangShengJue.MOD_ID +".village.villager.seamstress.page5.text", "专家:$(br)$(li)6x 银元宝 → 1x 麒麟补服包裹$(br)$(li)6x 银元宝 → 1x 袆衣包裹$(br)$(li)6x 银元宝 → 1x 行者装包裹$(br)$(li)6x 银元宝 → 1x 儒装包裹$(br2)大师:$(br)$(li)8x 银元宝 → 1x 金色棉甲包裹$(br2)");
+
             this.add(ChangShengJue.MOD_ID +".village.villages.sandstone_castle", "沙石堡");
-            this.add(ChangShengJue.MOD_ID +".village.villages.sandstone_castle.page1.title", "沙石堡");
             this.add(ChangShengJue.MOD_ID +".village.villages.sandstone_castle.page1.text", "常生成在沙漠群系，用砂岩构筑的堡垒式村庄，储备充足、抗袭击，仿佛沙漠中的明珠。其中常有作物：棉花、番茄、葡萄、哈密瓜。");
             this.add(ChangShengJue.MOD_ID +".village.villages.courtyard", "四合院");
-            this.add(ChangShengJue.MOD_ID +".village.villages.courtyard.page1.title", "四合院村庄");
             this.add(ChangShengJue.MOD_ID +".village.villages.courtyard.page1.text", "常生成在草原群系，一个院子四面建有房屋，从四面将庭院合围在中间，故名四合院。其中常有作物：高粱、玉米、小麦、大豆、谷子。");
             this.add(ChangShengJue.MOD_ID +".village.villages.huizhou", "徽式村庄");
-            this.add(ChangShengJue.MOD_ID +".village.villages.huizhou.page1.title", "徽式村庄");
             this.add(ChangShengJue.MOD_ID +".village.villages.huizhou.page1.text", "常生成在森林群系，徽州民居以白墙黛瓦、马头墙闻名。看那雕花门窗多精致！其中常有作物：莲藕、花生、茄子、梨子。");
             this.add(ChangShengJue.MOD_ID +".village.villages.suzhou", "苏式村庄");
-            this.add(ChangShengJue.MOD_ID +".village.villages.suzhou.page1.title", "苏式村庄");
             this.add(ChangShengJue.MOD_ID +".village.villages.suzhou.page1.text", "常生成在丛林群系，白墙黑瓦那朴素典雅的风格与脊角高翘的屋顶，是苏派建筑的艺术典范。其中常有作物：荔枝、香蕉、榴莲、水稻。");
             this.add(ChangShengJue.MOD_ID +".village.villages.cave_dwelling", "窑洞");
-            this.add(ChangShengJue.MOD_ID +".village.villages.cave_dwelling.page1.title", "窑洞村庄");
             this.add(ChangShengJue.MOD_ID +".village.villages.cave_dwelling.page1.text", "常生成在高原群系，通过下挖泥土建造窑洞，冬暖夏凉，是一种特殊的建筑。其中常有作物：甘蔗、胡椒、芒果、菠萝。");
 
             this.add(ChangShengJue.MOD_ID +".xiake", "侠客");
             this.add(ChangShengJue.MOD_ID +".xiake.desc", "不知从什么时候，这里的情况发生了变化。自称要行侠仗义的人多了起来，他们多喜欢称呼自己为“侠客”。");
-            this.add(ChangShengJue.MOD_ID +".xiake.equipment", "装备");
-            this.add(ChangShengJue.MOD_ID +".xiake.equipment.page1.title", "装备");
-            this.add(ChangShengJue.MOD_ID +".xiake.equipment.page1.text", "武侠装备除了像原版装备可以给你提供盔甲值或盔甲韧性等外，还可以减少他人对你造成的外功伤害。装备可以自己制作也可以在新城的铁匠铺内使用货币兑换。大部分盔甲是支持颜色改变外观的，可以试试。$(br)当你初次合成或使用长生诀服装的胸甲时，会为其生成随机的化解外功效果与减少受到外伤概率。");
+            this.add(ChangShengJue.MOD_ID +".xiake.equipment", "盔甲");
+            this.add(ChangShengJue.MOD_ID +".xiake.equipment.page1.text", "武侠装备除了像原版盔甲可以给你提供盔甲值或盔甲韧性等外，还可以减少他人对你造成的外功伤害。盔甲可以自己制作也可以在古城的铁匠铺内使用货币兑换。大部分盔甲是支持颜色改变外观的，可以试试。$(br)当你初次合成或使用长生诀服装的胸甲时，会为其生成随机的化解外功效果与减少受到外伤概率。");
             this.add(ChangShengJue.MOD_ID +".xiake.equipment.page2.title", "内甲");
             this.add(ChangShengJue.MOD_ID +".xiake.equipment.page2.text", "内甲可以内衬在长生诀服装的胸甲里，提高胸甲的盔甲值或韧性。$(br)完成胸甲内衬有两种方式：1.先穿戴内甲然后穿戴打算进行内衬的胸甲就可以完成胸甲内衬。2.也可以副手持内甲，主手持打算进行内衬的胸甲按SHIFT+右键完成胸甲内衬。$(br)内甲也可单独穿戴同一般胸甲。$(br)");
             this.add(ChangShengJue.MOD_ID +".xiake.forge_block", "锻造炉");
-            this.add(ChangShengJue.MOD_ID +".xiake.forge_block.page1.title", "锻造炉");
             this.add(ChangShengJue.MOD_ID +".xiake.forge_block.page1.text", "锻造炉合成表");
             this.add(ChangShengJue.MOD_ID +".xiake.forge_block.page2.text", "用于制作武器、盔甲等，可于锻造炉内查看选中物品，制作会自动从背包扣除对应所需材料。");
             this.add(ChangShengJue.MOD_ID +".xiake.internal_injury", "内伤");
-            this.add(ChangShengJue.MOD_ID +".xiake.internal_injury.page1.title", "内伤");
-            this.add(ChangShengJue.MOD_ID +".xiake.internal_injury.page1.text", "每层内伤效果影响：受到伤害增加5%，已穿戴的盔甲效果降低5%，每秒5%的概率会眩晕，持续15秒；已被施加这个效果的目标再次空手攻击他可使内伤效果叠加1层并延长2秒持续时间；内伤效果最大是5级，每等级效果提升1倍。");
+            this.add(ChangShengJue.MOD_ID +".xiake.internal_injury.page1.text", "每层内伤效果影响：受到伤害增加5%%，已穿戴的盔甲效果降低5%%，每秒5%%的概率会眩晕，持续15秒；已被施加这个效果的目标再次空手攻击他可使内伤效果叠加1层并延长2秒持续时间；内伤效果最大是5级，每等级效果提升1倍。");
             this.add(ChangShengJue.MOD_ID +".xiake.internal_injury.page2.text", "当正在运转空手类外功时，空手攻击目标向对方造成1级内伤，使用空手类外功攻击目标则造成2级内伤。$(br)主手持金丝手套也视为空手攻击。");
 
             this.add(ChangShengJue.MOD_ID +".xiake.martial_arts_manual", "武功秘籍");
-            this.add(ChangShengJue.MOD_ID +".xiake.martial_arts_manual.page1.title", "武功秘籍");
             this.add(ChangShengJue.MOD_ID +".xiake.martial_arts_manual.page1.text", "通过完成帮派任务、村庄任务有概率会获取到武功秘籍；击杀会武功的NPC也有概率掉落武功秘籍。");
             this.add(ChangShengJue.MOD_ID +".xiake.martial_arts_manual.page2.text", "武功秘籍分为外功类（主要是主动类武功），内功类（主要是被动类武功），轻功类（主要影响移动等效果），心法（提供一些特殊加成）。武功秘境具体效果可以从武功秘籍描述看出。武功秘籍上有清楚的说明，右键它可获取如何领悟及施展武功。");
-            this.add(ChangShengJue.MOD_ID +".xiake.martial_arts_manual.page3.text", "习得剑类外功后使用剑攻击目标有15%概率让敌人受到流血效果（每0.5秒流失1血量，持续1秒），习得刀类外功后使用刀攻击目标有15%概率触发重击效果（重击额外造成15%伤害），习得棍类外功后使用棍攻击目标有15%概率打晕目标（打晕目标0.5秒），习得枪类外功后使用枪攻击目标有15%概率挑飞目标（挑飞目标0.7秒）。");
+            this.add(ChangShengJue.MOD_ID +".xiake.martial_arts_manual.page3.text", "习得剑类外功后使用剑攻击目标有15%%概率让敌人受到流血效果（每0.5秒流失1血量，持续1秒），习得刀类外功后使用刀攻击目标有15%%概率触发重击效果（重击额外造成15%%伤害），习得棍类外功后使用棍攻击目标有15%%概率打晕目标（打晕目标0.5秒），习得枪类外功后使用枪攻击目标有15%%概率挑飞目标（挑飞目标0.7秒）。");
 
             this.add(ChangShengJue.MOD_ID +".xiake.trauma", "外伤");
-            this.add(ChangShengJue.MOD_ID +".xiake.trauma.page1.title", "外伤");
-            this.add(ChangShengJue.MOD_ID +".xiake.trauma.page1.text", "每层外伤效果影响：造成伤害降低5%，速度降低5%，每秒流失1%血量，持续7秒；已被施加这个效果的目标再次使用对应兵器攻击他可使外伤效果持续时间延长1秒(若此次攻击造成更大级别外伤效果则会覆盖前效果)；外伤效果最大是5级，每等级效果提升1倍。");
-            this.add(ChangShengJue.MOD_ID +".xiake.trauma.page2.text", "当正在运转兵器类外功时，使用对应武器攻击目标有25%概率向对方造成1~2级外伤，使用(兵器)类外功攻击目标则有100%概率造成1~5级外伤。");
+            this.add(ChangShengJue.MOD_ID +".xiake.trauma.page1.text", "每层外伤效果影响：造成伤害降低5%%，速度降低5%%，每秒流失1%%血量，持续7秒；已被施加这个效果的目标再次使用对应兵器攻击他可使外伤效果持续时间延长1秒(若此次攻击造成更大级别外伤效果则会覆盖前效果)；外伤效果最大是5级，每等级效果提升1倍。");
+            this.add(ChangShengJue.MOD_ID +".xiake.trauma.page2.text", "当正在运转兵器类外功时，使用对应武器攻击目标有25%%概率向对方造成1~2级外伤，使用(兵器)类外功攻击目标则有100%%概率造成1~5级外伤。");
 
             this.add(ChangShengJue.MOD_ID +".xiake.stakes", "木桩");
-            this.add(ChangShengJue.MOD_ID +".xiake.stakes.page1.title", "木桩");
             this.add(ChangShengJue.MOD_ID +".xiake.stakes.page1.text", "木桩合成表");
-            this.add(ChangShengJue.MOD_ID +".xiake.stakes.page2.text", "内功、轻功、外功(空手)类功法可以通过打击木桩练习领悟，每次打击领悟概率为15%。");
+            this.add(ChangShengJue.MOD_ID +".xiake.stakes.page2.text", "内功、轻功、外功(空手)类功法可以通过打击木桩练习领悟，每次打击领悟概率为15%%。");
 
             this.add(ChangShengJue.MOD_ID +".xiake.tailoring_case", "裁衣案");
-            this.add(ChangShengJue.MOD_ID +".xiake.tailoring_case.page1.title", "裁衣案");
             this.add(ChangShengJue.MOD_ID +".xiake.tailoring_case.page1.text", "裁衣案合成表");
             this.add(ChangShengJue.MOD_ID +".xiake.tailoring_case.page2.text", "用于制作服装（盔甲）等，可于裁衣案内查看选中物品，制作会自动从背包扣除对应所需材料。");
 
             this.add(ChangShengJue.MOD_ID +".xiake.quest", "任务");
-            this.add(ChangShengJue.MOD_ID +".xiake.quest.page1.title", "任务");
             this.add(ChangShengJue.MOD_ID +".xiake.quest.page1.text", "右键帮派首领可以在任务页面领取帮派任务，完成帮派任务可以获取帮派令牌、武功秘籍、货币等物品。游玩时也有概率自动触发一些其他任务（大部分是自动领取的，符合完成条件会自动完成），奖励会有武功秘籍、货币等物品。");
 
             this.add(ChangShengJue.MOD_ID +".xiake.tea", "茶");
-            this.add(ChangShengJue.MOD_ID +".xiake.tea.page1.title", "茶");
             this.add(ChangShengJue.MOD_ID +".xiake.tea.page1.text", "喝茶可以让你更快恢复血量或饥饿度，详细效果可以看茶的描述。");
 
             this.add(ChangShengJue.MOD_ID +".xiake.weapon", "武器");
-            this.add(ChangShengJue.MOD_ID +".xiake.weapon.page1.title", "武器");
             this.add(ChangShengJue.MOD_ID +".xiake.weapon.page1.text", "部分外功需要武器作为媒介进行施展，所以拥有对应武器很重要。可以自己制作武器，也可以在帮派使用帮派令牌兑换武器，完成帮派任务则可以解锁绝世兵器的兑换。");
 
             this.add(ChangShengJue.MOD_ID +".xiake.wine", "酒");
-            this.add(ChangShengJue.MOD_ID +".xiake.wine.page1.title", "酒");
             this.add(ChangShengJue.MOD_ID +".xiake.wine.page1.text", "喝酒可以让你武功更快冷却、减少施展武功的饥饿度消耗、增加武功伤害等，详细效果可以看酒的描述。不要贪杯，喝多会醉~");
 
             this.add(ChangShengJue.MOD_ID +".wufanglu", "五方汇录");

@@ -5,7 +5,7 @@
   "icon": "chang_sheng_jue:yi_tian_jian",
   "pages": [
     {
-      "title": "chang_sheng_jue.xiake.weapon.page1.title",
+      "title": "chang_sheng_jue.xiake.weapon",
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:yi_tian_jian",
       "text": "chang_sheng_jue.xiake.weapon.page1.text"

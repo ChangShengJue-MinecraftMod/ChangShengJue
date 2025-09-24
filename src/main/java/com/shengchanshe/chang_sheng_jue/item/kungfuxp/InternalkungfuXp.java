@@ -94,10 +94,4 @@ public class InternalkungfuXp extends Item {
             }
         }
     }
-
-    @Override
-    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        pTooltipComponents.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + "." + this + ".tooltip").withStyle(ChatFormatting.GRAY));
-        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
-    }
 }

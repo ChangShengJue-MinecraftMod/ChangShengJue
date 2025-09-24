@@ -5,7 +5,7 @@
   "icon": "chang_sheng_jue:tiger_skin",
   "pages": [
     {
-      "title": "chang_sheng_jue.village.villager.hunter.page1.title",
+      "title": "chang_sheng_jue.village.villager.hunter",
       "type": "patchouli:entity",
       "entity": "minecraft:villager{VillagerData: {profession: \"chang_sheng_jue:chang_sheng_jue_hunter\"}}"
     },

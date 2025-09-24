@@ -5,7 +5,7 @@
   "icon": "chang_sheng_jue:crucible",
   "pages": [
     {
-      "title": "chang_sheng_jue.function.crucible.page1.title",
+      "title": "chang_sheng_jue.function.crucible",
       "type": "patchouli:crafting",
       "recipe": "chang_sheng_jue:crucible",
       "text": "chang_sheng_jue.function.crucible.page1.text"

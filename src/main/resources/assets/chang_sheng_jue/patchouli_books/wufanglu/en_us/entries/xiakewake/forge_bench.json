@@ -5,7 +5,7 @@
   "icon": "chang_sheng_jue:forge_block",
   "pages": [
     {
-      "title": "chang_sheng_jue.xiake.forge_block.page1.title",
+      "title": "chang_sheng_jue.xiake.forge_block",
       "type": "patchouli:crafting",
       "recipe": "chang_sheng_jue:forge_block",
       "text": "chang_sheng_jue.xiake.forge_block.page1.text"

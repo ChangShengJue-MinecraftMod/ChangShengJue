@@ -5,7 +5,7 @@
   "icon": "chang_sheng_jue:gold_bullions",
   "pages": [
     {
-      "title": "chang_sheng_jue.village.villager.chief.page1.title",
+      "title": "chang_sheng_jue.village.villager.chief",
       "type": "patchouli:entity",
       "entity": "minecraft:villager{VillagerData: {profession: \"chang_sheng_jue:chang_sheng_jue_chief\"}}",
       "text": "chang_sheng_jue.village.villager.chief.page1.text"
