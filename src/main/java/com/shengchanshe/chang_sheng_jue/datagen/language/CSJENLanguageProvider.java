@@ -1476,10 +1476,10 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("quest."+ ChangShengJue.MOD_ID +".button", "Quest");
         this.add("quest."+ ChangShengJue.MOD_ID +".requirements", "Requirements:");
         this.add("quest."+ ChangShengJue.MOD_ID +".rewards", "rewards:");
-        this.add("quest."+ ChangShengJue.MOD_ID +".submit.button", "Submit Quest");
+        this.add("quest."+ ChangShengJue.MOD_ID +".submit.button", "Submit");
         this.add("quest."+ ChangShengJue.MOD_ID +".no_submit.button", "No quest available to submit");
-        this.add("quest."+ ChangShengJue.MOD_ID +".accept.button", "Accept Quest");
-        this.add("quest."+ ChangShengJue.MOD_ID +".abandon.button", "Abandon Quest");
+        this.add("quest."+ ChangShengJue.MOD_ID +".accept.button", "Accept");
+        this.add("quest."+ ChangShengJue.MOD_ID +".abandon.button", "Abandon");
         this.add("quest."+ ChangShengJue.MOD_ID +".no_abandon.button", "Cannot abandon a quest that doesn't exist");
         this.add("quest."+ ChangShengJue.MOD_ID +".requirements.prompt", "Quest requirements not met!");
         this.add("quest."+ ChangShengJue.MOD_ID +".finish", "§a%s quest completed!");
@@ -1498,70 +1498,70 @@ public class CSJENLanguageProvider extends LanguageProvider {
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questName", "Challenge the Dojo");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questDescription", "Gang Leader: Damn it! This is the second time this year someone's come to challenge our dojo while I'm ill. They think our gang has no capable members? Go teach them a lesson!");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questRequirementsDescription", "Defeat any gang leader");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questRequirementsDescription", "Defeat any gang leader.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questName", "The Wanderer's Path");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questDescription", "Gang Leader: The ill-omened patrols keep clashing with us, they're asking for trouble! Take them out!");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questRequirementsDescription", "Kill pillagers");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questRequirementsDescription", "Kill pillagers.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questName", "Kill the Chicken to Scare the Monkey");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questDescription", "Gang Leader: These troublesome villagers have some nerve! They've rejected our collectors several times. Go give them a warning they won't forget!");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questRequirementsDescription", "Kill any villager");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questRequirementsDescription", "Kill any villager.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questName", "The Oath of Allegiance");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questDescription", "Gang Leader: Brother, if you wish to join our gang, you must first prove your loyalty with an oath of allegiance!");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questRequirementsDescription", "Kill any humanoid creature");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questRequirementsDescription", "Kill any humanoid creature.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questName", "Duel Challenge");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questDescription", "Gang Leader: Some brothers have heard of your martial prowess and wish to test their skills against you. What do you say?");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questRequirementsDescription", "Defeat or kill the challenger");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questRequirementsDescription", "Defeat or kill the challenger.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia.questName", "The World's Best");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_1.questDescription", "Gang Leader: Although the current world's best is the Staff King, Dong Daxia, with your skills you could challenge him for the title!");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_2.questDescription", "Gang Leader: Although the current world's best is the Blade Sage, Xu Daxia, with your skills you could challenge him for the title!");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_3.questDescription", "Gang Leader: Although the current world's best is the Northern Fist, Xiao Daxia, with your skills you could challenge him for the title!");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_4.questDescription", "Gang Leader: Although the current world's best is the Sword Immortal, Zhang Daxia, with your skills you could challenge him for the title!");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia.questRequirementsDescription", "Kill one of the Four Great Daxia");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia.questRequirementsDescription", "Kill one of the Four Great Daxia.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questName", "Protect the Village");
         this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questDescription", "Gang Leader: A village under our gang's protection is under attack! Hurry and defend our granary!");
-        this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questRequirementsDescription", "Achieve victory in the raid");
+        this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questRequirementsDescription", "Achieve victory in the raid.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questName", "The Healing Hero");
         this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questDescription", "Gang Leader: A nearby village was attacked by zombies, and many villagers have turned into zombie villagers. I heard you have some medical skills, brother. Would you go check it out?");
-        this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questRequirementsDescription", "Cure one zombie villager");
+        this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questRequirementsDescription", "Cure one zombie villager.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questName", "Vegetarian Meal");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questDescription", "Gang Leader: With a compassionate heart, refrain from taking life.");
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questRequirementsDescription", "Do not kill any creatures for 2 in-game days");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questRequirementsDescription", "Do not kill any creatures for 2 in-game days.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questName", "Uphold Justice and Chivalry");
         this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questDescription", "A nearby village is being invaded by a horde of zombies. Would you be willing to risk yourself to help?");
-        this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questRequirementsDescription", "Remain in the village and assist the villagers in resisting the zombies");
+        this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questRequirementsDescription", "Remain in the village and assist the villagers in resisting the zombies.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questName", "The Rural Hero");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questDescription", "Because of you, no one dares to bully the villagers here, and you have also settled down to a peaceful life.");
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questRequirementsDescription", "Encounter a villager by chance");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questRequirementsDescription", "Encounter a villager by chance.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questName", "Swift Vengeance");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questDescription", "If grievances are not clearly repaid, one lives in vain as a true man.");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questRequirementsDescription", "Kill enemies who attack you");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questRequirementsDescription", "Kill enemies who attack you.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questName", "Eliminate the Scourge for the People");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questDescription", "This great beast always preys on the villagers. Be careful, hero!");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questRequirementsDescription", "Kill 1 tiger");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questRequirementsDescription", "Kill 1 tiger.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questName", "Suppress Tyrants and Pacify the People");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questDescription", "Village Chief: A villain in the village is plundering everywhere. Great hero, can you help us?!");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questRequirementsDescription", "Kill 1 villain");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questRequirementsDescription", "Kill 1 villain.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questName", "Martial Hero");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questDescription", "Seeing injustice on the road, drawing the sword to help – only this merits the title of a true hero.");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questRequirementsDescription", "Kill 1 zombie inside the village at night");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questRequirementsDescription", "Kill 1 zombie inside the village at night.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questName", "Kill and Plunder");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questDescription", "Since you flaunt your treasures, don't blame me for being ruthless! Hehehe...");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questRequirementsDescription", "Kill 1 Wandering Trader");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questRequirementsDescription", "Kill 1 Wandering Trader.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".gather.food.questName", "Large Transaction");
         this.add("quest."+ ChangShengJue.MOD_ID +".gather.food.questDescription", "Village Chief: The recent harvest is poor, and winter will be hard. Great hero, can you help us gather some food to get through this difficult time?");
@@ -1570,23 +1570,23 @@ public class CSJENLanguageProvider extends LanguageProvider {
 
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questName", "Roam Freely");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questDescription", "The world is vast; where can it not accommodate a person?");
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questRequirementsDescription", "Die less than 1 time in 7 days");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questRequirementsDescription", "Die less than 1 time in 7 days.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questName", "Crush the Strong and Aid the Weak");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questDescription", "Villagers face not only zombie attacks but also threats from gangs!");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questRequirementsDescription", "Kill 3 bandits");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questRequirementsDescription", "Kill 3 bandits.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questName", "Jianghu Bounty");
         this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questDescription", "You helped the village resist the gangs. Now major factions have made you a public enemy of the martial world and placed a bounty on you!");
-        this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questRequirementsDescription", "Kill those who assault you");
+        this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questRequirementsDescription", "Kill those who assault you.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tian_di_jian.questName", "Proud Spirit Between Heaven and Earth");
         this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tian_di_jian.questDescription", "I possess great strength; why use it against the weak? If the world is unjust, I shall rectify it! Even against a hundred, what is there to fear? Face them with wisdom and courage.");
-        this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tian_di_jian.questRequirementsDescription", "Kill villains and assassins");
+        this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tian_di_jian.questRequirementsDescription", "Kill villains and assassins.");
 
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questName", "If Heaven Had Feelings, It Too Would Age");
         this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questDescription", "The true path in the human world is fraught with hardship.");
-        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questRequirementsDescription", "Complete the 'Jianghu Bounty' quest twice");
+        this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questRequirementsDescription", "Complete the 'Jianghu Bounty' quest twice.");
 
         //裁衣案"container.tailoring_case.json"
         this.add("container."+ ChangShengJue.MOD_ID +".tailoring_case", "tailoring case");

@@ -148,18 +148,20 @@ public class InnkeeperScreen extends AbstractContainerScreen<InnkeeperMenu> {
     private void renderScroller(GuiGraphics transform, int x, int y, MerchantOffers offers) {
         int overSize = offers.size() + 1 - NUMBER_OF_OFFER_BUTTONS;
         if (overSize > 1) {
-            int overHeight = SCROLL_BAR_HEIGHT - (27 + (overSize - 1) * SCROLL_BAR_HEIGHT / overSize);
-            int index = 1 + overHeight / overSize + SCROLL_BAR_HEIGHT / overSize;
-            int scrollY = Math.min(113, this.scrollOff * index);
-            if (this.scrollOff == overSize - 1) {
-                scrollY = 113;
-            }
+            int scrollableRange = SCROLL_BAR_HEIGHT - SCROLLER_HEIGHT;
 
-            transform.blit(VILLAGER_LOCATION, x + SCROLL_BAR_START_X, y + SCROLL_BAR_TOP_POS_Y + scrollY, 0, 0.0F, 247.0F, SCROLLER_WIDTH, SCROLLER_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+            float scrollProgress = (float) this.scrollOff / (float) (overSize - 1);
+
+            int scrollY = (int) (scrollProgress * scrollableRange);
+
+            scrollY = Mth.clamp(scrollY, 0, scrollableRange);
+
+            transform.blit(VILLAGER_LOCATION, x + SCROLL_BAR_START_X, y + SCROLL_BAR_TOP_POS_Y + scrollY,
+                    0, 0.0F, 210.0F, SCROLLER_WIDTH, SCROLLER_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         } else {
-            transform.blit(VILLAGER_LOCATION, x + SCROLL_BAR_START_X, y + SCROLL_BAR_TOP_POS_Y, 0, 6.0F, 247.0F, SCROLLER_WIDTH, SCROLLER_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+            transform.blit(VILLAGER_LOCATION, x + SCROLL_BAR_START_X, y + SCROLL_BAR_TOP_POS_Y,
+                    0, 6.0F, 210.0F, SCROLLER_WIDTH, SCROLLER_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
-
     }
 
     @Override
@@ -262,9 +264,8 @@ public class InnkeeperScreen extends AbstractContainerScreen<InnkeeperMenu> {
         int size = this.menu.getOffers().size();
         if (this.canScroll(size)) {
             int overSize = size - NUMBER_OF_OFFER_BUTTONS;
-            this.scrollOff = Mth.clamp((int)((double)this.scrollOff - delta), 0, overSize);
+            this.scrollOff = Mth.clamp((int) (this.scrollOff - delta), 0, overSize);
         }
-
         return true;
     }
 
@@ -273,11 +274,18 @@ public class InnkeeperScreen extends AbstractContainerScreen<InnkeeperMenu> {
         int size = this.menu.getOffers().size();
         if (this.isDragging) {
             int scrollTop = this.topPos + SCROLL_BAR_TOP_POS_Y;
-            int scrollBottom = scrollTop + SCROLL_BAR_HEIGHT;
             int overSize = size - NUMBER_OF_OFFER_BUTTONS;
-            float scrollIndex = ((float)fromY - (float)scrollTop - 13.5F) / ((float)(scrollBottom - scrollTop) - 27.0F);
-            scrollIndex = scrollIndex * (float)overSize + 0.5F;
-            this.scrollOff = Mth.clamp((int)scrollIndex, 0, overSize);
+
+            if (overSize > 0) {
+                float relativeY = (float) (fromY - scrollTop - SCROLLER_HEIGHT / 2.0);
+                float scrollableHeight = SCROLL_BAR_HEIGHT - SCROLLER_HEIGHT;
+
+                float scrollProgress = Mth.clamp(relativeY / scrollableHeight, 0.0f, 1.0f);
+
+                this.scrollOff = (int) (scrollProgress * overSize);
+                this.scrollOff = Mth.clamp(this.scrollOff, 0, overSize);
+            }
+
             return true;
         }
         return super.mouseDragged(fromX, fromY, activeButton, toX, toY);

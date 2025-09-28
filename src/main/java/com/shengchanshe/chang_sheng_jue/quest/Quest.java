@@ -202,7 +202,7 @@ public class Quest {
         if (tag.contains("QuestType")) {
             this.questType = QuestType.valueOf(tag.getString("QuestType"));
         }
-        this.questRequirementsDescription = tag.contains("QuestRequirementsDescription") ? tag.getString("QuestRequirementsDescription") : "";
+        this.questRequirementsDescription = tag.contains("QuestRequirementsDescription") ? tag.getString("QuestRequirementsDescription") : "当前未接取任务";
         if (tag.hasUUID("QuestNpcId")) {
             this.questNpcId = tag.getUUID("QuestNpcId");
         }
@@ -464,7 +464,6 @@ public class Quest {
                 questRewards.add(ItemStack.of(rewardList.getCompound(i)));
             }
         }
-        this.questRequirementsDescription = tag.contains("QuestRequirementsDescription") ? tag.getString("QuestRequirementsDescription") : "";
         if (tag.hasUUID("AcceptedBy")) {
             this.acceptedBy = tag.getUUID("AcceptedBy");
         }

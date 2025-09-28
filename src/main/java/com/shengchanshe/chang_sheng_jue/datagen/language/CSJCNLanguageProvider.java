@@ -1471,84 +1471,84 @@
     
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questName", "踢馆");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questDescription", "首领：可恶！这是今年第二个趁我病期来踢馆的了，欺我帮派无人，你去回敬下吧！");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questRequirementsDescription", "击杀任意帮派首领");
+            this.add("quest."+ ChangShengJue.MOD_ID +".kill.gang_leader.questRequirementsDescription", "击杀任意帮派首领。");
     
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questName", "侠客行");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questDescription", "首领：灾厄巡逻队总是与我们发生冲突，不知死活！做掉他们！");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questRequirementsDescription", "击杀掠夺者");
+            this.add("quest."+ ChangShengJue.MOD_ID +".kill.pillager.questRequirementsDescription", "击杀掠夺者。");
     
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questName", "杀鸡儆猴");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questDescription", "首领：这群刁民真是有够胆大的，去收帮费的人拒了我们几波，你去给他们点颜色看看！");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questRequirementsDescription", "击杀任意村民");
+            this.add("quest."+ ChangShengJue.MOD_ID +".kill.villager.questRequirementsDescription", "击杀任意村民。");
     
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questName", "投名状");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questDescription", "首领：这位兄弟，想入我们帮派，你需要先纳投名状！");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questRequirementsDescription", "击杀任意人型生物");
+            this.add("quest."+ ChangShengJue.MOD_ID +".kill.arbitrarily.questRequirementsDescription", "击杀任意人型生物。");
     
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questName", "挑战");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questDescription", "首领：有兄弟听说你武功高强，想和你较量一番，你意下如何？");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questRequirementsDescription", "击败或者击杀前来的挑战者");
+            this.add("quest."+ ChangShengJue.MOD_ID +".kill.challenger.questRequirementsDescription", "击败或者击杀前来的挑战者。");
     
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia.questName", "天下第一");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_1.questDescription", "首领：虽说现在天下第一是棍王董大侠，但以兄台的实力也能与其一争啊！");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_2.questDescription", "首领：虽说现在天下第一是刀圣徐大侠，但以兄台的实力也能与其一争啊！");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_3.questDescription", "首领：虽说现在天下第一是北拳萧大侠，但以兄台的实力也能与其一争啊！");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia_4.questDescription", "首领：虽说现在天下第一是剑仙张大侠，但以兄台的实力也能与其一争啊！");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia.questRequirementsDescription", "击杀四大名侠之一");
+            this.add("quest."+ ChangShengJue.MOD_ID +".kill.ming_xia.questRequirementsDescription", "击杀四大名侠之一。");
     
             this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questName", "保护村庄");
             this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questDescription", "首领：我们帮派名下的村庄被入侵了，快去保护咱们的粮仓！");
-            this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questRequirementsDescription", "在袭击中胜利");
+            this.add("quest."+ ChangShengJue.MOD_ID +".raid.village.questRequirementsDescription", "在袭击中胜利。");
     
             this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questName", "救民侠医");
             this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questDescription", "首领：附近的村庄被僵尸袭击，好多村民变成了僵尸村民，听说兄弟你会些医术，去看看吧？");
-            this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questRequirementsDescription", "救治一名僵尸村民");
+            this.add("quest."+ ChangShengJue.MOD_ID +".treat.village.questRequirementsDescription", "救治一名僵尸村民。");
     
             this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questName", "斋饭");
             this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questDescription", "首领：心念慈悲，不犯杀戒。");
-            this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questRequirementsDescription", "2个游戏日内不杀死生物");
+            this.add("quest."+ ChangShengJue.MOD_ID +".automatic.vegetarian_food.questRequirementsDescription", "2个游戏日内不杀死生物。");
     
             this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questName", "行侠仗义");
             this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questDescription", "附近一村庄被乌泱泱的僵尸入侵了，君愿舍身以助吗？");
-            this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questRequirementsDescription", "留在村庄内协助村民抵御僵尸");
+            this.add("quest."+ ChangShengJue.MOD_ID +".raid.xing_xia_zhang_yi.questRequirementsDescription", "留在村庄内协助村民抵御僵尸。");
     
             this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questName", "田园侠客");
             this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questDescription", "因为有你，这里的村民没人敢欺负，你也在这里安居乐业。");
-            this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questRequirementsDescription", "偶遇村民");
+            this.add("quest."+ ChangShengJue.MOD_ID +".automatic.village.questRequirementsDescription", "偶遇村民。");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questName", "快意恩仇");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questDescription", "冤仇若不分明报，枉做人间大丈夫。");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questRequirementsDescription", "击败攻击你的敌人");
+            this.add("quest."+ ChangShengJue.MOD_ID +".kill.mob.questRequirementsDescription", "击败攻击你的敌人。");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questName", "为民除害");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questDescription", "这一大虫总拿村民当食吃，大侠小心！");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questRequirementsDescription", "击杀1只老虎");
+            this.add("quest."+ ChangShengJue.MOD_ID +".kill.tiger.questRequirementsDescription", "击杀1只老虎。");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questName", "除暴安良");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questDescription", "村长：村里有一恶人到处抢掠，大侠可能帮帮我们？！");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questRequirementsDescription", "击杀1个恶徒");
+            this.add("quest."+ ChangShengJue.MOD_ID +".kill.villain.questRequirementsDescription", "击杀1个恶徒。");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questName", "武侠");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questDescription", "路见不平，拔刀相助，才堪侠客。");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questRequirementsDescription", "夜间村庄内击杀1只僵尸");
+            this.add("quest."+ ChangShengJue.MOD_ID +".kill.zombie.questRequirementsDescription", "夜间村庄内击杀1只僵尸。");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questName", "杀人越货");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questDescription", "你即以财宝显漏，就别怪我了下手狠了！嘿嘿嘿...");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questRequirementsDescription", "击杀1个流浪商人");
+            this.add("quest."+ ChangShengJue.MOD_ID +".kill.wandering_trader.questRequirementsDescription", "击杀1个流浪商人。");
             this.add("quest."+ ChangShengJue.MOD_ID +".gather.food.questName", "大额交易");
             this.add("quest."+ ChangShengJue.MOD_ID +".gather.food.questDescription", "村长：最近庄稼减收冬天怕是不好过了，大侠可以帮我们收集些食物度过难关吗？");
             this.add("quest."+ ChangShengJue.MOD_ID +".gather.money.questName", "大额交易");
             this.add("quest."+ ChangShengJue.MOD_ID +".gather.money.questDescription", "村长：这次真是大丰收！但是如此多粮食放久了会坏，大侠你能帮我们想想办法吗？");
             this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questName", "任我行");
             this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questDescription", "海阔天空，何处不容人。");
-            this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questRequirementsDescription", "7天内死亡次数小于1");
+            this.add("quest."+ ChangShengJue.MOD_ID +".automatic.death.questRequirementsDescription", "7天内死亡次数小于1。");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questName", "锄强扶弱");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questDescription", "村民不光要面对僵尸的袭击，竟还有帮派的威胁！");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questRequirementsDescription", "击杀3个强盗");
+            this.add("quest."+ ChangShengJue.MOD_ID +".kill.bandit.questRequirementsDescription", "击杀3个强盗。");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questName", "江湖追杀令");
             this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questDescription", "你帮助村庄对抗帮派，各大势力都以你武林公敌的借口对你进行了追杀！");
-            this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questRequirementsDescription", "杀死袭击你的人");
+            this.add("quest."+ ChangShengJue.MOD_ID +".kill.assassin.questRequirementsDescription", "杀死袭击你的人。");
             this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tian_di_jian.questName", "傲气天地间");
             this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tian_di_jian.questDescription", "我有百般力，何向弱者使？天地不平，我自平之！虽百人，有所可惧，智勇以对。");
-            this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tian_di_jian.questRequirementsDescription", "击杀恶徒与杀手");
+            this.add("quest."+ ChangShengJue.MOD_ID +".ao_qi_tian_di_jian.questRequirementsDescription", "击杀恶徒与杀手。");
             this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questName", "天若有情天亦老");
             this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questDescription", "人间正道是沧桑。");
-            this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questRequirementsDescription", "完成两次江湖追杀令");
+            this.add("quest."+ ChangShengJue.MOD_ID +".automatic.tian_ruo_you_qing.questRequirementsDescription", "完成两次江湖追杀令。");
     
             //裁衣案"container.tailoring_case.json"
             this.add("container."+ ChangShengJue.MOD_ID +".tailoring_case", "裁衣案");

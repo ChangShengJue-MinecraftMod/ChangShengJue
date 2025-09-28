@@ -2,6 +2,7 @@ package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.worker;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.button.TexturedButtonWithText;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.KilnWorkerSetTradeTypePacket;
@@ -25,8 +26,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
-    private static final ResourceLocation VILLAGER_LOCATION = new ResourceLocation(ChangShengJue.MOD_ID,"textures/gui/container/worker_trading.png");
-    private static final ResourceLocation BOTTON = new ResourceLocation(ChangShengJue.MOD_ID,"textures/gui/botton.png");
+    private static final ResourceLocation VILLAGER_LOCATION = new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/container/worker_trading.png");
+    private static final ResourceLocation BOTTON = new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/botton.png");
     //整张纹理的宽和高
     private static final int TEXTURE_WIDTH = 512;
     private static final int TEXTURE_HEIGHT = 512;
@@ -89,10 +90,10 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
         int top = (this.height - this.imageHeight) / 2;
         int buttonY = top + PROGRESS_BAR_Y + 2;
 
-        for(int i = 0; i < NUMBER_OF_OFFER_BUTTONS; ++i) {
+        for (int i = 0; i < NUMBER_OF_OFFER_BUTTONS; ++i) {
             this.tradeOfferButtons[i] = this.addRenderableWidget(new TradeOfferButton(left + TRADE_BUTTON_X, buttonY, i, button -> {
                 if (button instanceof TradeOfferButton) {
-                    this.shopItem = ((TradeOfferButton)button).getIndex() + this.scrollOff;
+                    this.shopItem = ((TradeOfferButton) button).getIndex() + this.scrollOff;
                     this.postButtonClick();
                 }
 
@@ -100,30 +101,54 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
             buttonY += TRADE_BUTTON_HEIGHT;
         }
 
-        this.greButton = this.addRenderableWidget(new TexturedButtonWithText(left - 15, top + 45, 15, 24, 30, 0, 24, BOTTON, 256, 256,button -> {
-            this.setCurrentTradeType(TradeType.GRE);
-            this.sendTradeTypeUpdate(TradeType.GRE); // 发送网络数据包
-        },Component.translatable("button."+ ChangShengJue.MOD_ID +".gre_button.tips"),0x000,0x000,1.0F));
-        this.redButton = this.addRenderableWidget(new TexturedButtonWithText(left - 15, (top + 45) + 24, 15, 24, 60, 0, 24, BOTTON,256, 256, button -> {
-            this.setCurrentTradeType(TradeType.RED);
-            this.sendTradeTypeUpdate(TradeType.RED); // 发送网络数据包
-        },Component.translatable("button."+ ChangShengJue.MOD_ID +".red_button.tips"),0x000,0x000,1.0F));
-        this.blackButton = this.addRenderableWidget(new TexturedButtonWithText(left - 15, (top + 45) + (24 * 2),15, 24, 45, 0, 24, BOTTON,256, 256,button -> {
-            this.setCurrentTradeType(TradeType.BLACK);
-            this.sendTradeTypeUpdate(TradeType.BLACK); // 发送网络数据包
-        },Component.translatable("button."+ ChangShengJue.MOD_ID +".black_button.tips"),0x000,0x000,1.0F));
-        this.blueButton = this.addRenderableWidget(new TexturedButtonWithText(left - 15, (top + 45) + (24 * 3),15, 24, 15, 0, 24, BOTTON,256, 256,button -> {
-            this.setCurrentTradeType(TradeType.BLUE);
-            this.sendTradeTypeUpdate(TradeType.BLUE); // 发送网络数据包
-        },Component.translatable("button."+ ChangShengJue.MOD_ID +".blue_button.tips"),0x000,0x000,1.0F));
-        this.goldenButton = this.addRenderableWidget(new TexturedButtonWithText(left - 15, (top + 45) + (24 * 4),15, 24, 0, 0, 24, BOTTON,256, 256,button -> {
-            this.setCurrentTradeType(TradeType.GOLDEN);
-            this.sendTradeTypeUpdate(TradeType.GOLDEN); // 发送网络数据包
-        },Component.translatable("button."+ ChangShengJue.MOD_ID +".golden_button.tips"),0x000,0x000,1.0F));
-        this.goldenButton = this.addRenderableWidget(new TexturedButtonWithText(left - 15, (top + 45) + (24 * 5),15, 24, 90, 0, 24, BOTTON,256, 256,button -> {
-            this.setCurrentTradeType(TradeType.WOOD);
-            this.sendTradeTypeUpdate(TradeType.WOOD); // 发送网络数据包
-        },Component.translatable("button."+ ChangShengJue.MOD_ID +".wood_button.tips"),0x000,0x000,1.0F));
+        this.greButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, top + 48, 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
+                    this.setCurrentTradeType(TradeType.GRE);
+                    this.sendTradeTypeUpdate(TradeType.GRE);
+                }, Component.translatable("button." + ChangShengJue.MOD_ID + ".gre_button.tips"),
+                        0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
+                        .setItemIcon(new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_2.get())))
+                .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
+                .setItemIconScale(1.2f);
+        this.redButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + 25, 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
+                    this.setCurrentTradeType(TradeType.RED);
+                    this.sendTradeTypeUpdate(TradeType.RED);
+                }, Component.translatable("button." + ChangShengJue.MOD_ID + ".red_button.tips"),
+                        0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
+                        .setItemIcon(new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_2.get())))
+                .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
+                .setItemIconScale(1.2f);
+        this.blackButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + (25 * 2), 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
+                    this.setCurrentTradeType(TradeType.BLACK);
+                    this.sendTradeTypeUpdate(TradeType.BLACK);
+                }, Component.translatable("button." + ChangShengJue.MOD_ID + ".black_button.tips"),
+                        0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
+                        .setItemIcon(new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_2.get())))
+                .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
+                .setItemIconScale(1.2f);
+        this.blueButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + (25 * 3), 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
+                    this.setCurrentTradeType(TradeType.BLUE);
+                    this.sendTradeTypeUpdate(TradeType.BLUE);
+                }, Component.translatable("button." + ChangShengJue.MOD_ID + ".blue_button.tips"),
+                        0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
+                        .setItemIcon(new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get())))
+                .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
+                .setItemIconScale(1.2f);
+        this.goldenButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + (25 * 4), 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
+                    this.setCurrentTradeType(TradeType.GOLDEN);
+                    this.sendTradeTypeUpdate(TradeType.GOLDEN);
+                }, Component.translatable("button." + ChangShengJue.MOD_ID + ".golden_button.tips"),
+                        0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
+                        .setItemIcon(new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_2.get())))
+                .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
+                .setItemIconScale(1.2f);
+        this.goldenButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + (25 * 5), 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
+                    this.setCurrentTradeType(TradeType.WOOD);
+                    this.sendTradeTypeUpdate(TradeType.WOOD);
+                }, Component.translatable("button." + ChangShengJue.MOD_ID + ".wood_button.tips"),
+                        0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
+                        .setItemIcon(new ItemStack(ChangShengJueBlocks.OAK_BALUSTRADE.get())))
+                .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
+                .setItemIconScale(1.2f);
     }
 
     private void sendTradeTypeUpdate(TradeType tradeType) {
@@ -194,12 +219,12 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
             transform.blit(VILLAGER_LOCATION, x + PROGRESS_BAR_X, y + PROGRESS_BAR_Y, 0, 0.0F, 186.0F, 102, 5, TEXTURE_WIDTH, TEXTURE_HEIGHT);
             int k = 15;
             if (xp >= k && level > 1) {
-                float f = 100.0F / (float)(300 - k);
-                int progress = Math.min(Mth.floor(f * (float)(xp - k)), 100);
+                float f = 100.0F / (float) (300 - k);
+                int progress = Math.min(Mth.floor(f * (float) (xp - k)), 100);
                 transform.blit(VILLAGER_LOCATION, x + PROGRESS_BAR_X, y + PROGRESS_BAR_Y, 0, 0.0F, 191.0F, progress + 1, 5, TEXTURE_WIDTH, TEXTURE_HEIGHT);
                 int addXp = this.menu.getFutureTraderXp();
                 if (addXp > 0) {
-                    int addProgress = Math.min(Mth.floor((float)addXp * f), 100 - progress);
+                    int addProgress = Math.min(Mth.floor((float) addXp * f), 100 - progress);
                     transform.blit(VILLAGER_LOCATION, x + PROGRESS_BAR_X + progress + 1, y + PROGRESS_BAR_Y + 1, 0, 2.0F, 182.0F, addProgress, 3, TEXTURE_WIDTH, TEXTURE_HEIGHT);
                 }
 
@@ -210,18 +235,24 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
     private void renderScroller(GuiGraphics transform, int x, int y, MerchantOffers offers) {
         int overSize = offers.size() + 1 - NUMBER_OF_OFFER_BUTTONS;
         if (overSize > 1) {
-            int overHeight = SCROLL_BAR_HEIGHT - (27 + (overSize - 1) * SCROLL_BAR_HEIGHT / overSize);
-            int index = 1 + overHeight / overSize + SCROLL_BAR_HEIGHT / overSize;
-            int scrollY = Math.min(113, this.scrollOff * index);
-            if (this.scrollOff == overSize - 1) {
-                scrollY = 113;
-            }
+            // 计算可滚动范围
+            int scrollableRange = SCROLL_BAR_HEIGHT - SCROLLER_HEIGHT;
 
-            transform.blit(VILLAGER_LOCATION, x + SCROLL_BAR_START_X, y + SCROLL_BAR_TOP_POS_Y + scrollY, 0, 0.0F, 210.0F, SCROLLER_WIDTH, SCROLLER_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+            // 计算滚动位置比例
+            float scrollProgress = (float) this.scrollOff / (float) (overSize - 1);
+
+            // 计算滚动条位置
+            int scrollY = (int) (scrollProgress * scrollableRange);
+
+            // 确保滚动条在有效范围内
+            scrollY = Mth.clamp(scrollY, 0, scrollableRange);
+
+            transform.blit(VILLAGER_LOCATION, x + SCROLL_BAR_START_X, y + SCROLL_BAR_TOP_POS_Y + scrollY,
+                    0, 0.0F, 210.0F, SCROLLER_WIDTH, SCROLLER_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         } else {
-            transform.blit(VILLAGER_LOCATION, x + SCROLL_BAR_START_X, y + SCROLL_BAR_TOP_POS_Y, 0, 6.0F, 210.0F, SCROLLER_WIDTH, SCROLLER_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+            transform.blit(VILLAGER_LOCATION, x + SCROLL_BAR_START_X, y + SCROLL_BAR_TOP_POS_Y,
+                    0, 6.0F, 210.0F, SCROLLER_WIDTH, SCROLLER_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
-
     }
 
     @Override
@@ -237,7 +268,7 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
             this.renderScroller(transform, left, top, merchantoffers);
             int index = 0;
 
-            for(MerchantOffer merchantoffer : merchantoffers) {
+            for (MerchantOffer merchantoffer : merchantoffers) {
                 if (!this.canScroll(merchantoffers.size()) || index >= this.scrollOff && index < 7 + this.scrollOff) {
                     ItemStack baseCostA = merchantoffer.getBaseCostA();
                     ItemStack costA = merchantoffer.getCostA();
@@ -270,7 +301,7 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
                 transform.renderTooltip(this.font, DEPRECATED_TOOLTIP, x, y);
             }
 
-            for(TradeOfferButton tradeOfferButton : this.tradeOfferButtons) {
+            for (TradeOfferButton tradeOfferButton : this.tradeOfferButtons) {
                 if (tradeOfferButton.isHoveredOrFocused()) {
                     tradeOfferButton.renderToolTip(transform, x, y);
                 }
@@ -302,8 +333,8 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
             transform.pose().translate(0.0F, 0.0F, 200.0F);
             String count = baseCostA.getCount() == 1 ? "1" : String.valueOf(baseCostA.getCount());
             this.font.drawInBatch(
-                    count, (float)(x + 14) + 19.0F - 2.0F - (float)this.font.width(count),
-                    (float)(y + LABEL_Y) + 3.0F, 0xFFFFFF, true,
+                    count, (float) (x + 14) + 19.0F - 2.0F - (float) this.font.width(count),
+                    (float) (y + LABEL_Y) + 3.0F, 0xFFFFFF, true,
                     transform.pose().last().pose(), transform.bufferSource(),
                     Font.DisplayMode.NORMAL, 0, 15728880, false
             );
@@ -324,9 +355,8 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
         int size = this.menu.getOffers().size();
         if (this.canScroll(size)) {
             int overSize = size - NUMBER_OF_OFFER_BUTTONS;
-            this.scrollOff = Mth.clamp((int)((double)this.scrollOff - delta), 0, overSize);
+            this.scrollOff = Mth.clamp((int) (this.scrollOff - delta), 0, overSize);
         }
-
         return true;
     }
 
@@ -335,11 +365,21 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
         int size = this.menu.getOffers().size();
         if (this.isDragging) {
             int scrollTop = this.topPos + SCROLL_BAR_TOP_POS_Y;
-            int scrollBottom = scrollTop + SCROLL_BAR_HEIGHT;
             int overSize = size - NUMBER_OF_OFFER_BUTTONS;
-            float scrollIndex = ((float)fromY - (float)scrollTop - 13.5F) / ((float)(scrollBottom - scrollTop) - 27.0F);
-            scrollIndex = scrollIndex * (float)overSize + 0.5F;
-            this.scrollOff = Mth.clamp((int)scrollIndex, 0, overSize);
+
+            if (overSize > 0) {
+                // 计算鼠标位置在滚动条区域内的相对位置
+                float relativeY = (float) (fromY - scrollTop - SCROLLER_HEIGHT / 2.0);
+                float scrollableHeight = SCROLL_BAR_HEIGHT - SCROLLER_HEIGHT;
+
+                // 计算滚动比例
+                float scrollProgress = Mth.clamp(relativeY / scrollableHeight, 0.0f, 1.0f);
+
+                // 根据比例计算滚动偏移
+                this.scrollOff = (int) (scrollProgress * overSize);
+                this.scrollOff = Mth.clamp(this.scrollOff, 0, overSize);
+            }
+
             return true;
         }
         return super.mouseDragged(fromX, fromY, activeButton, toX, toY);
@@ -351,8 +391,8 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
         int left = (this.width - this.imageWidth) / 2;
         int top = (this.height - this.imageHeight) / 2;
         if (this.canScroll(this.menu.getOffers().size()) &&
-                x > (double)(left + SCROLL_BAR_START_X) && x < (double)(left + SCROLL_BAR_START_X + SCROLLER_WIDTH) &&
-                y > (double)(top + SCROLL_BAR_TOP_POS_Y) && y <= (double)(top + SCROLL_BAR_TOP_POS_Y + SCROLL_BAR_HEIGHT + 1)) {
+                x > (double) (left + SCROLL_BAR_START_X) && x < (double) (left + SCROLL_BAR_START_X + SCROLLER_WIDTH) &&
+                y > (double) (top + SCROLL_BAR_TOP_POS_Y) && y <= (double) (top + SCROLL_BAR_TOP_POS_Y + SCROLL_BAR_HEIGHT + 1)) {
             this.isDragging = true;
         }
 
@@ -415,12 +455,12 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
     }
 
     public enum TradeType {
-        GRE(Component.translatable("gui."+ ChangShengJue.MOD_ID +".trade.gre")),
-        RED(Component.translatable("gui."+ ChangShengJue.MOD_ID +".trade.red")),
-        BLACK(Component.translatable("gui."+ ChangShengJue.MOD_ID +".trade.black")),
-        BLUE(Component.translatable("gui."+ ChangShengJue.MOD_ID +".trade.blue")),
-        GOLDEN(Component.translatable("gui."+ ChangShengJue.MOD_ID +".trade.golden")),
-        WOOD(Component.translatable("gui."+ ChangShengJue.MOD_ID +".trade.wood"));
+        GRE(Component.translatable("gui." + ChangShengJue.MOD_ID + ".trade.gre")),
+        RED(Component.translatable("gui." + ChangShengJue.MOD_ID + ".trade.red")),
+        BLACK(Component.translatable("gui." + ChangShengJue.MOD_ID + ".trade.black")),
+        BLUE(Component.translatable("gui." + ChangShengJue.MOD_ID + ".trade.blue")),
+        GOLDEN(Component.translatable("gui." + ChangShengJue.MOD_ID + ".trade.golden")),
+        WOOD(Component.translatable("gui." + ChangShengJue.MOD_ID + ".trade.wood"));
 
         private final Component displayName;
 

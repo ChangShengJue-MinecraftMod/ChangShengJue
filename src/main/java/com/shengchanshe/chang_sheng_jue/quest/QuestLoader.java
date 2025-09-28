@@ -140,10 +140,10 @@ public class QuestLoader {
                     ? UUID.fromString(json.get("questId").getAsString()) // 从配置读取
                     : generateDeterministicId(npcId, json); // 根据内容生成
 
-            String titleKey = json.has("questName") ? json.get("questName").getAsString() : "";
-            String descriptionKey = json.has("questDescription") ? json.get("questDescription").getAsString() : "";
-            String title = Component.translatable(titleKey).getString();
-            String description = Component.translatable(descriptionKey).getString();
+            String title = json.has("questName") ? json.get("questName").getAsString() : "";
+            String description = json.has("questDescription") ? json.get("questDescription").getAsString() : "";
+//            String title = Component.translatable(titleKey).getString();
+//            String description = Component.translatable(descriptionKey).getString();
 
             // 获取任务类型，默认为 GATHER
             String typeStr = json.has("questType") ? json.get("questType").getAsString() : "GATHER";
@@ -151,8 +151,9 @@ public class QuestLoader {
 
             boolean repeatable = json.has("repeatable") &&  json.get("repeatable").getAsBoolean();
 
-            String questRequirementsDescription = json.has("questRequirementsDescription") ?
-                    Component.translatable(json.get("questRequirementsDescription").getAsString()).getString() : "";
+            String questRequirementsDescription = json.has("questRequirementsDescription") ? json.get("questRequirementsDescription").getAsString() : "";
+//            String questRequirementsDescription = json.has("questRequirementsDescription") ?
+//                    Component.translatable(json.get("questRequirementsDescription").getAsString()).getString() : "";
 
             List<QuestEffectEntry> effects = new ArrayList<>();
             if (json.has("effects")) {
