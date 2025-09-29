@@ -78,6 +78,11 @@ public class ToolTable extends BaseEntityBlock {
     }
 
     @Override
+    public VoxelShape getCollisionShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
+        return Block.box(0, 0, 0, 16, 16, 16);
+    }
+
+    @Override
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
     }

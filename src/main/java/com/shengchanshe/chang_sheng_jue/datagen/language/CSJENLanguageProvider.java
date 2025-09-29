@@ -241,10 +241,10 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.WALKER_CHESTPLATE.get(), "Xingzhe Zhuang");
         this.add(ChangShengJueItems.WALKER_TIGER_SKIN_SKIRT.get(), "Tiger skin skirt");
         this.add(ChangShengJueItems.WALKER_SHORT_BOOTS.get(), "Short Boots");
-        this.add(ChangShengJueItems.PHOENIX_FEATHER_CAP.get(),"Phoenix-Feather Purple-Gold Crown");
-        this.add(ChangShengJueItems.OLDEN_CHAIN_MAIL_SHIRT.get(),"Golden Chainmail Armor");
+        this.add(ChangShengJueItems.PHOENIX_FEATHER_CAP.get(),"Feng Chi Zi Jin Guan");
+        this.add(ChangShengJueItems.OLDEN_CHAIN_MAIL_SHIRT.get(),"Suo Zi Huang Jin Jia");
         this.add(ChangShengJueItems.TIGER_SKIN_GARMENT.get(),"Tiger Skin Lower Garment");
-        this.add(ChangShengJueItems.CLOUD_WALKING_BOOTS.get(),"Lotus-Silk Cloud-Stepping Boots");
+        this.add(ChangShengJueItems.CLOUD_WALKING_BOOTS.get(),"Ou Si Bu Yun Lv");
         this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_PHOENIX_WINGS_HELMET.get(), "Phoenix Winged Helmet");
         this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get(), "Bright Light Armor");
         this.add(ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LAZULI_KNEE_PADS.get(), "Lapis Knee Pads");
@@ -262,7 +262,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("item."+ ChangShengJue.MOD_ID +".armor_parcel." + "cotton_armor", "Cotton armor Parcel");
         this.add("item."+ ChangShengJue.MOD_ID +".armor_parcel." + "mountain_pattern", "Mountain pattern Parcel");
         this.add("item."+ ChangShengJue.MOD_ID +".armor_parcel." + "mingguang_armor", "General Mingguang armor Parcel");
-        this.add("item."+ ChangShengJue.MOD_ID +".armor_parcel." + "qi_tian_da_sheng", "大圣甲胄包裹");
+        this.add("item."+ ChangShengJue.MOD_ID +".armor_parcel." + "qi_tian_da_sheng", "Da Sheng Jia Zhou Parcel");
         this.add("item."+ ChangShengJue.MOD_ID +".armor_parcel." + "male_taoist", "Taoist Parcel");
         this.add("item."+ ChangShengJue.MOD_ID +".armor_parcel." + "female_taoist", "Taoist robe Parcel");
         this.add("item."+ ChangShengJue.MOD_ID +".armor_parcel." + "male_wedding_dress", "Kirin supplementary clothing Parcel");

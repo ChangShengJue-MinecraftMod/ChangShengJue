@@ -75,7 +75,7 @@ public class PotteryWheel extends BaseEntityBlock {
 
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        return Block.box(1, 0, 1, 15, 16, 15);
+        return Block.box(0, 0, 0, 16, 16, 16);
     }
 
     @Override

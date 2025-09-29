@@ -1263,22 +1263,22 @@ public class ChangShengJueBlocks {
 
     //织布机
     public static final RegistryObject<Block> CHANG_SHENG_JUE_LOOM = registerBlock("chang_sheng_jue_loom",
-            ()-> new ChangShengJueLoomBlock(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+            ()-> new ChangShengJueLoomBlock(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).noOcclusion()));
     //工作方块
     public static final RegistryObject<Block> POTTERY_WHEEL = registerBlock("pottery_wheel",
-            ()-> new PotteryWheel(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+            ()-> new PotteryWheel(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).noOcclusion()));
 
     public static final RegistryObject<Block> TOOL_TABLE = registerBlock("tool_table",
-            ()-> new ToolTable(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+            ()-> new ToolTable(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).noOcclusion()));
 
     public static final RegistryObject<Block> WEAPON_RACK = registerBlock("weapon_rack",
-            ()-> new WeaponRack(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+            ()-> new WeaponRack(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).noOcclusion()));
 
     public static final RegistryObject<Block> DESK = registerBlock("desk",
-            ()-> new Desk(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+            ()-> new Desk(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).noOcclusion()));
 
     public static final RegistryObject<Block> PIG_TROUGH = registerBlock("pig_trough",
-            ()-> new PigTrough(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASEDRUM).strength(0.6F).sound(SoundType.WOOD).ignitedByLava()));
+            ()-> new PigTrough(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASEDRUM).strength(0.6F).sound(SoundType.WOOD).ignitedByLava().noOcclusion()));
 
     //大门
     public static final RegistryObject<Block> SHING_MUN_LEFT = registerBlock("shing_mun_left",
