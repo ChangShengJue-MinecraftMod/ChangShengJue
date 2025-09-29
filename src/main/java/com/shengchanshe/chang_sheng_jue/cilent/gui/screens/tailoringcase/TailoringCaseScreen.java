@@ -3,13 +3,17 @@ package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.button.TexturedButtonWithText;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
+import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.ForgeCraftPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.TailoringCraftPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.TailoringSyncRecipePacket;
 import com.shengchanshe.chang_sheng_jue.recipe.TailoringCaseRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.TextAndImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -30,11 +34,12 @@ import java.util.*;
 public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/tailoring_case_menu.png");
+    private static final ResourceLocation BOTTON = new ResourceLocation(ChangShengJue.MOD_ID,"textures/gui/botton.png");
     private final List<CustomButton> customButtons = new ArrayList<>();
     private ItemStack currentSelectedItem = ItemStack.EMPTY;
     private ArmorStand armorStandEntity;
     private float rotation = 0;
-    private Button craftButton;
+    private TexturedButtonWithText craftButton;
 
     private int scrollOffset = 0;
     private static final int VISIBLE_ROWS = 8;
@@ -84,20 +89,21 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
 
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        craftButton = Button.builder(Component.translatable("gui."+ ChangShengJue.MOD_ID + ".tailoring_case.craft"), button -> {
+        this.craftButton = this.addRenderableWidget(new TexturedButtonWithText(
+                x + 192, y + 95, 55, 17,
+                0, 106, 17,
+                BOTTON, 256, 256,
+                button -> {
                     // 发送制作请求到服务端
                     ChangShengJueMessages.sendToServer(
                             new TailoringCraftPacket(menu.getBlockPos())
                     );
-                    
                     // 立即停止轮播
                     isCarouselPaused = true;
                     carouselTick = 0;
-                })
-                .bounds(x + 200, y + 95, 35, 15)
-                .build();
-
-        addRenderableWidget(craftButton);
+                },
+                Component.translatable("gui."+ ChangShengJue.MOD_ID + ".tailoring_case.craft"),0xFFFFFF,0xFFFFFF,1.0F,true
+        ));
     }
 
     // 刷新配方列表
@@ -569,10 +575,14 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         poseStack.popPose();
     }
 
-    // 渲染标签
     @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        // 保持原样
+    protected void renderLabels(GuiGraphics transform, int x, int y) {
+        boolean isChinese = Minecraft.getInstance().options.languageCode.startsWith("zh_");
+        if (!isChinese) {
+            int fontWidth = this.font.width(Component.translatable(ChangShengJueBlocks.TAILORING_CASE.get().getDescriptionId()));
+            int k = 25 + this.imageWidth / 2 - fontWidth / 2;
+            transform.drawString(this.font, Component.translatable(ChangShengJueBlocks.TAILORING_CASE.get().getDescriptionId()), k, 35, 0x404040, false);
+        }
     }
 
     // 渲染主界面
@@ -580,7 +590,7 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
         renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, delta);
-        // 渲染按钮工具提示（确保在最上层）
+        // 渲染按钮工具提示
         for (CustomButton button : customButtons) {
             if (button.isHovered() && !button.getItemStack().isEmpty()) {
                 renderToolTip(guiGraphics, mouseX, mouseY, button.getItemStack());
@@ -600,7 +610,6 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
             refreshItemButtons();
         }
         
-        // 处理配方轮播 (1秒自动轮播)
         // 只有在非制作状态且有配方组时才进行轮播
         if (!currentRecipeGroup.isEmpty() && !menu.isCrafting()) {
             carouselTick++;

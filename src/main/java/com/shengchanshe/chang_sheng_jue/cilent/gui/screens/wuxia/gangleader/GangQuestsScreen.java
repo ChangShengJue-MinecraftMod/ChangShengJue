@@ -86,10 +86,8 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
             for (int i = 0; i < lines.size(); i++) {
                 guiGraphics.drawString(font, lines.get(i), 28, 95 + i * font.lineHeight, 0x404040, false);
             }
-
             // 获取需求标题的宽度
             int requirementsTitleWidth = font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".requirements"));
-
             // 计算需求描述应该开始的位置
             int descriptionStartX = 28 + requirementsTitleWidth + (currentQuest.getSecondTargetEntity() != null && !currentQuest.getSecondTargetEntity().isEmpty() ? 30
                     : (currentQuest.getTargetEntity() != null && !currentQuest.getTargetEntity().isEmpty() ? 20 : 5));
@@ -99,17 +97,13 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
             String requirementsText = currentQuest.getQuestRequirementsDescription();
             Component fullDescriptionComponent = Component.translatable(requirementsText);
             int fullTextWidth = font.width(fullDescriptionComponent);
-
             // 计算可用宽度
             int maxAvailableWidth = imageWidth - 50 - descriptionStartX;
-
             // 检查是否需要滚动
             if (fullTextWidth > maxAvailableWidth && maxAvailableWidth > 0) {
                 scrollTick++;
-
                 // 每8帧移动一个字符
                 String visibleText = getString(fullDescriptionComponent);
-
                 // 渲染文本
                 guiGraphics.drawString(font, Component.literal(visibleText), descriptionStartX,
                         150 - 9, ChatFormatting.RED.getColor(), false);

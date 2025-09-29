@@ -1476,10 +1476,10 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("quest."+ ChangShengJue.MOD_ID +".button", "Quest");
         this.add("quest."+ ChangShengJue.MOD_ID +".requirements", "Requirements:");
         this.add("quest."+ ChangShengJue.MOD_ID +".rewards", "rewards:");
-        this.add("quest."+ ChangShengJue.MOD_ID +".submit.button", "Submit");
+        this.add("quest."+ ChangShengJue.MOD_ID +".submit.button", "Submit Quest");
         this.add("quest."+ ChangShengJue.MOD_ID +".no_submit.button", "No quest available to submit");
-        this.add("quest."+ ChangShengJue.MOD_ID +".accept.button", "Accept");
-        this.add("quest."+ ChangShengJue.MOD_ID +".abandon.button", "Abandon");
+        this.add("quest."+ ChangShengJue.MOD_ID +".accept.button", "Accept Quest");
+        this.add("quest."+ ChangShengJue.MOD_ID +".abandon.button", "Abandon Quest");
         this.add("quest."+ ChangShengJue.MOD_ID +".no_abandon.button", "Cannot abandon a quest that doesn't exist");
         this.add("quest."+ ChangShengJue.MOD_ID +".requirements.prompt", "Quest requirements not met!");
         this.add("quest."+ ChangShengJue.MOD_ID +".finish", "§a%s quest completed!");

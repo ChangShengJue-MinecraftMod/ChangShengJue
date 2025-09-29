@@ -40,7 +40,7 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
 
     private static final int REWARD_SLOTS_Y = 99;
 
-    private static final int BUTTON_WIDTH = 77;
+    private static final int BUTTON_WIDTH = 89;
     private static final int BUTTON_HEIGHT = 17;
     private static final int BUTTON_SPACING = 50;
 

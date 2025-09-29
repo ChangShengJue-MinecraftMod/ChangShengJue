@@ -163,14 +163,12 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
         if (offers != null) {
             this.shopItem = 0; // 重置选中项
             this.scrollOff = 0; // 重置滚动位置
-
             // 强制重新渲染
             for (TradeOfferButton button : this.tradeOfferButtons) {
                 button.visible = false;
             }
         }
     }
-
     // 修改setCurrentTradeType方法
     public void setCurrentTradeType(TradeType currentTradeType) {
         this.currentTradeType = currentTradeType;
@@ -179,15 +177,18 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
 
     @Override
     protected void renderLabels(GuiGraphics transform, int x, int y) {
-//        int level = this.menu.getTraderLevel();
-//        if (level > 0 && level <= 5 && this.menu.showProgressBar()) {
-//            Component component = this.title.copy().append(LEVEL_SEPARATOR).append(Component.translatable("merchant.level." + level));
-//            int fontWidth = this.font.width(component);
-//            int k = 49 + this.imageWidth / 2 - fontWidth / 2;
-//            transform.drawString(this.font, component, k, 6, 0x404040, false);
-//        } else {
-//            transform.drawString(this.font, this.title, 49 + this.imageWidth / 2 - this.font.width(this.title) / 2, 48, 0x404040, false);
-//        }
+        boolean isChinese = Minecraft.getInstance().options.languageCode.startsWith("zh_");
+        if (!isChinese) {
+            int level = this.menu.getTraderLevel();
+            if (level > 0 && level <= 5 && this.menu.showProgressBar()) {
+                Component component = this.title.copy().append(LEVEL_SEPARATOR).append(Component.translatable("merchant.level." + level));
+                int fontWidth = this.font.width(component);
+                int k = 49 + this.imageWidth / 2 - fontWidth / 2;
+                transform.drawString(this.font, component, k, 6, 0x404040, false);
+            } else {
+                transform.drawString(this.font, this.title, 49 + this.imageWidth / 2 - this.font.width(this.title) / 2, 48, 0x404040, false);
+            }
+        }
         transform.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 0x404040, false);
         int l = this.font.width(TRADES_LABEL);
         transform.drawString(this.font, TRADES_LABEL, 5 - l / 2 + 48, 48, 0x404040, false);

@@ -3,6 +3,8 @@ package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.forgeblock;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.button.TexturedButtonWithText;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.ForgeCraftPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.ForgeSyncRecipePacket;
@@ -30,11 +32,12 @@ import java.util.*;
 public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/forge_block_menu.png");
+    private static final ResourceLocation BOTTON = new ResourceLocation(ChangShengJue.MOD_ID,"textures/gui/botton.png");
     private final List<CustomButton> customButtons = new ArrayList<>();
     private ItemStack currentSelectedItem = ItemStack.EMPTY;
     private ArmorStand armorStandEntity;
     private float rotation = 0;
-    private Button craftButton;
+    private TexturedButtonWithText craftButton;
 
     private int scrollOffset = 0;
     private static final int VISIBLE_ROWS = 8;
@@ -82,20 +85,21 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
 
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        craftButton = Button.builder(Component.translatable("gui."+ ChangShengJue.MOD_ID + ".forge_block.craft"), button -> {
+        this.craftButton = this.addRenderableWidget(new TexturedButtonWithText(
+                x + 192, y + 95, 55, 17,
+                0, 106, 17,
+                BOTTON, 256, 256,
+                button -> {
                     // 发送制作请求到服务端
                     ChangShengJueMessages.sendToServer(
                             new ForgeCraftPacket(menu.getBlockPos())
                     );
-                    
                     // 立即停止轮播
                     isCarouselPaused = true;
                     carouselTick = 0;
-                })
-                .bounds(x + 200, y + 95, 35, 15)
-                .build();
-
-        addRenderableWidget(craftButton);
+                },
+                Component.translatable("gui."+ ChangShengJue.MOD_ID + ".forge_block.craft"),0xFFFFFF,0xFFFFFF,1.0F,true
+        ));
     }
 
     // 刷新配方列表
@@ -563,10 +567,14 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         poseStack.popPose();
     }
 
-    // 渲染标签
     @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        // 保持原样
+    protected void renderLabels(GuiGraphics transform, int x, int y) {
+        boolean isChinese = Minecraft.getInstance().options.languageCode.startsWith("zh_");
+        if (!isChinese) {
+            int fontWidth = this.font.width(Component.translatable(ChangShengJueBlocks.FORGE_BLOCK.get().getDescriptionId()));
+            int k = 25 + this.imageWidth / 2 - fontWidth / 2;
+            transform.drawString(this.font, Component.translatable(ChangShengJueBlocks.FORGE_BLOCK.get().getDescriptionId()), k, 35, 0x404040, false);
+        }
     }
 
     // 渲染主界面
