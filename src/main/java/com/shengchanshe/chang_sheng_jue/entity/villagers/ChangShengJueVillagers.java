@@ -3,30 +3,41 @@ package com.shengchanshe.chang_sheng_jue.entity.villagers;
 import com.google.common.collect.ImmutableSet;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.ai.village.poi.PoiType;
 import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.Set;
+import java.util.function.Supplier;
+
 public class ChangShengJueVillagers {
 
-    public static final DeferredRegister<PoiType> POT_TYPES = DeferredRegister.create(ForgeRegistries.POI_TYPES, ChangShengJue.MOD_ID);
+    public static final DeferredRegister<PoiType> POI_TYPES = DeferredRegister.create(ForgeRegistries.POI_TYPES, ChangShengJue.MOD_ID);
     public static final DeferredRegister<VillagerProfession> VILLAGER_PROFESSION = DeferredRegister.create(ForgeRegistries.VILLAGER_PROFESSIONS,ChangShengJue.MOD_ID);
 
+    public static final RegistryObject<PoiType> GONG_MEETING = POI_TYPES.register("gong_meeting",
+            () -> new PoiType(getGongBlockStates(), 1, 1));
 
-    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_FARMER_POT = POT_TYPES.register("chang_sheng_jue_farmer_pot",
+    // 创建 Holder 引用
+    public static final Supplier<Holder<PoiType>> GONG_MEETING_HOLDER =
+            () -> Holder.direct(GONG_MEETING.get());
+
+    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_FARMER_POT = POI_TYPES.register("chang_sheng_jue_farmer_pot",
             ()-> new PoiType(ImmutableSet.copyOf(ChangShengJueBlocks.PIG_TROUGH.get().getStateDefinition().getPossibleStates()),1,1));
-    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_POTTER_POT = POT_TYPES.register("chang_sheng_jue_potter_pot",
+    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_POTTER_POT = POI_TYPES.register("chang_sheng_jue_potter_pot",
             ()-> new PoiType(ImmutableSet.copyOf(ChangShengJueBlocks.POTTERY_WHEEL.get().getStateDefinition().getPossibleStates()),1,1));
-    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_HUNTER_POT = POT_TYPES.register("chang_sheng_jue_hunter_pot",
+    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_HUNTER_POT = POI_TYPES.register("chang_sheng_jue_hunter_pot",
             ()-> new PoiType(ImmutableSet.copyOf(ChangShengJueBlocks.TOOL_TABLE.get().getStateDefinition().getPossibleStates()),1,1));
-    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_CHIEF_POT = POT_TYPES.register("chang_sheng_jue_chief_pot",
+    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_CHIEF_POT = POI_TYPES.register("chang_sheng_jue_chief_pot",
             ()-> new PoiType(ImmutableSet.copyOf(ChangShengJueBlocks.DESK.get().getStateDefinition().getPossibleStates()),1,1));
 
-    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_SEAMSTRESS_POT = POT_TYPES.register("chang_sheng_jue_seamstress_pot",
+    public static final RegistryObject<PoiType> CHANG_SHENG_JUE_SEAMSTRESS_POT = POI_TYPES.register("chang_sheng_jue_seamstress_pot",
             ()-> new PoiType(ImmutableSet.copyOf(ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get().getStateDefinition().getPossibleStates()),1,1));
 
     public static final RegistryObject<VillagerProfession> CHANG_SHENG_JUE_FARMER = VILLAGER_PROFESSION.register("chang_sheng_jue_farmer",
@@ -59,8 +70,12 @@ public class ChangShengJueVillagers {
                     poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_SEAMSTRESS_POT.get(), poiTypeHolder -> poiTypeHolder.get() == CHANG_SHENG_JUE_SEAMSTRESS_POT.get(),
                     ImmutableSet.of(),ImmutableSet.of(), SoundEvents.VILLAGER_WORK_CARTOGRAPHER));
 
+    private static Set<BlockState> getGongBlockStates() {
+        return ImmutableSet.copyOf(ChangShengJueBlocks.GONG.get().getStateDefinition().getPossibleStates());
+    }
+
     public static void register(IEventBus eventBus){
-        POT_TYPES.register(eventBus);
+        POI_TYPES.register(eventBus);
         VILLAGER_PROFESSION.register(eventBus);
     }
 }

@@ -1,0 +1,18 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 42419871,
+    "separation": 8,
+    "spacing": 34
+  },
+  "structures": [
+    {
+      "structure": "chang_sheng_jue:village_hui_pai",
+      "weight": 1
+    },
+    {
+      "structure": "chang_sheng_jue:village_su_pai",
+      "weight": 1
+    }
+  ]
+}

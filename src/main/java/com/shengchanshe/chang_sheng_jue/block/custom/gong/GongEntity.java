@@ -62,7 +62,7 @@ public class GongEntity extends BlockEntity implements GeoBlockEntity {
             ++pBlockEntity.ticks;
         }
 
-        if (pBlockEntity.ticks >= 50) {
+        if (pBlockEntity.ticks >= 40) {
             pBlockEntity.shaking = false;
             pBlockEntity.ticks = 0;
         }
