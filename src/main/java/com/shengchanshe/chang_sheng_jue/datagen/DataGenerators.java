@@ -3,6 +3,8 @@ package com.shengchanshe.chang_sheng_jue.datagen;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.datagen.language.CSJCNLanguageProvider;
 import com.shengchanshe.chang_sheng_jue.datagen.language.CSJENLanguageProvider;
+import com.shengchanshe.chang_sheng_jue.datagen.language.CSJHKLanguageProvider;
+import com.shengchanshe.chang_sheng_jue.datagen.language.CSJTWLanguageProvider;
 import com.shengchanshe.chang_sheng_jue.datagen.loot.CSJGlobalLootModifiersProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -24,7 +26,7 @@ public class DataGenerators {
         PackOutput packOutput = generator.getPackOutput();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
-        generator.addProvider(event.includeServer(),new CSJRecipesProvider(packOutput));
+        generator.addProvider(event.includeServer(), new CSJRecipesProvider(packOutput));
         generator.addProvider(event.includeServer(), new CSJWorldGenProvider(packOutput, lookupProvider));
 
         generator.addProvider(event.includeClient(), new CSJBlockStateProvider(packOutput,existingFileHelper));
@@ -33,13 +35,10 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), CSJLootTableProvider.create(packOutput));
         generator.addProvider(event.includeServer(), new CSJGlobalLootModifiersProvider(packOutput));
 
-        event.getGenerator().addProvider(
-                event.includeClient(),
-               new CSJENLanguageProvider(packOutput, ChangShengJue.MOD_ID, "en_us"));
-        event.getGenerator().addProvider(
-                event.includeClient(),
-                new CSJCNLanguageProvider(packOutput, ChangShengJue.MOD_ID, "zh_cn"));
-
+        event.getGenerator().addProvider(event.includeClient(), new CSJENLanguageProvider(packOutput, ChangShengJue.MOD_ID, "en_us"));
+        event.getGenerator().addProvider(event.includeClient(), new CSJCNLanguageProvider(packOutput, ChangShengJue.MOD_ID, "zh_cn"));
+        event.getGenerator().addProvider(event.includeClient(), new CSJTWLanguageProvider(packOutput, ChangShengJue.MOD_ID, "zh_tw"));
+        event.getGenerator().addProvider(event.includeClient(), new CSJHKLanguageProvider(packOutput, ChangShengJue.MOD_ID, "zh_hk"));
 
         generator.addProvider(event.includeServer(),new CSJPoiTypeTagsProvider(packOutput,lookupProvider,existingFileHelper));
 
@@ -48,11 +47,7 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new CSJItemTagGenerator(packOutput, lookupProvider, blockTagGenerator.contentsGetter(), existingFileHelper));
         generator.addProvider(event.includeServer(), new CSJEntityTypeTagsProvider(packOutput, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new CSJStructureTagProvider(packOutput, lookupProvider, existingFileHelper));
-        generator.addProvider(event.includeServer(), new AdvancementProvider(packOutput, lookupProvider,
-                List.of(
-                        new CSJAdvanceProvider()
-                ))
-        );
+        generator.addProvider(event.includeServer(), new AdvancementProvider(packOutput, lookupProvider, List.of(new CSJAdvanceProvider())));
 //            generator.addProvider(new CSJLootTableProvider(generator));
 //            BlockSta blockTags = new TutBlockTags(generator, event.getExistingFileHelper());
 //            generator.addProvider(blockTags);

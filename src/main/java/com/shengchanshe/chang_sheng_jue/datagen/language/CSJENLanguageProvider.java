@@ -1289,7 +1289,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEffects.INSTANT_DISFAVOR_EFFECT.get(), "Instant Villager Reputation Reduction");
 
         //群系
-        this.add("biome."+ ChangShengJue.MOD_ID +".chang_shen_jue_prairie", "Muran Prairie");
+        this.add("biome."+ ChangShengJue.MOD_ID +".chang_sheng_jue_prairie", "Muran Prairie");
 
         //存储
         this.add("container.hercules", "Hercules' Might Method");

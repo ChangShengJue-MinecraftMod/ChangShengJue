@@ -7,7 +7,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching"
       },
-      "weight": 2
+      "weight": 1
     },
     {
       "element": {
@@ -16,7 +16,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching"
       },
-      "weight": 2
+      "weight": 1
     },
     {
       "element": {
@@ -25,7 +25,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching"
       },
-      "weight": 2
+      "weight": 1
     },
     {
       "element": {
@@ -34,7 +34,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching"
       },
-      "weight": 10
+      "weight": 4
     },
     {
       "element": {
@@ -43,7 +43,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching"
       },
-      "weight": 3
+      "weight": 4
     },
     {
       "element": {
@@ -52,7 +52,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching"
       },
-      "weight": 4
+      "weight": 6
     },
     {
       "element": {
@@ -61,7 +61,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching"
       },
-      "weight": 4
+      "weight": 6
     },
     {
       "element": {
@@ -79,7 +79,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching"
       },
-      "weight": 3
+      "weight": 4
     },
     {
       "element": {
@@ -88,7 +88,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching"
       },
-      "weight": 2
+      "weight": 1
     },
     {
       "element": {
@@ -97,7 +97,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching"
       },
-      "weight": 2
+      "weight": 1
     },
     {
       "element": {
@@ -115,7 +115,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching"
       },
-      "weight": 2
+      "weight": 1
     },
     {
       "element": {
@@ -124,7 +124,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching"
       },
-      "weight": 2
+      "weight": 1
     },
     {
       "element": {
@@ -133,7 +133,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching"
       },
-      "weight": 2
+      "weight": 1
     },
     {
       "element": {
@@ -142,7 +142,7 @@
         "processors": "minecraft:empty",
         "projection": "terrain_matching"
       },
-      "weight": 2
+      "weight": 1
     }
   ],
   "fallback": "chang_sheng_jue:village/su_pai/terminators"

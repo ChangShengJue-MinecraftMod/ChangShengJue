@@ -1,7 +1,7 @@
-// 1.20.1	2025-07-16T17:15:10.3411253	Tags for minecraft:worldgen/structure mod id chang_sheng_jue
+// 1.20.1	2025-10-07T17:14:03.7017999	Tags for minecraft:worldgen/structure mod id chang_sheng_jue
 3789a0a9c425a6d4543abacf98510cb2e445937f data/chang_sheng_jue/tags/worldgen/structure/fortresses.json
-8cd449f1b479a403a0ef219606fe4fcea4bf5634 data/chang_sheng_jue/tags/worldgen/structure/hui_pai_village.json
+22659d6f91198a35a2a8434961f377a16f8bed6e data/chang_sheng_jue/tags/worldgen/structure/hui_pai_village.json
 d77e13233fc255e89fb8c75e55f21076374056e6 data/chang_sheng_jue/tags/worldgen/structure/pit_yard.json
 3019ed59e49071ccbd033cf5cff06e50d6ed4973 data/chang_sheng_jue/tags/worldgen/structure/sandstone_castle.json
-36611e46ccadd23b4257ac2c7f930175f5b21ebb data/chang_sheng_jue/tags/worldgen/structure/si_he_yuan.json
-94528f1dba840f9207da4c8e2a2898da84d493f7 data/chang_sheng_jue/tags/worldgen/structure/su_pai_village.json
+085b01c536d4055549831e62b5487f7b97178831 data/chang_sheng_jue/tags/worldgen/structure/si_he_yuan.json
+53b810927c47fcfef7bb2030cfbc2b278c7fdd24 data/chang_sheng_jue/tags/worldgen/structure/su_pai_village.json

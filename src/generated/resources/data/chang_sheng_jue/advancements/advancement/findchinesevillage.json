@@ -41,7 +41,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "structure": "chang_sheng_jue:si_he_yuan"
+                "structure": "chang_sheng_jue:village_si_he_yuan"
               }
             }
           }
@@ -57,7 +57,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "structure": "chang_sheng_jue:su_pai_village"
+                "structure": "chang_sheng_jue:village_su_pai"
               }
             }
           }
@@ -73,7 +73,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "structure": "chang_sheng_jue:hui_pai_village"
+                "structure": "chang_sheng_jue:village_hui_pai"
               }
             }
           }

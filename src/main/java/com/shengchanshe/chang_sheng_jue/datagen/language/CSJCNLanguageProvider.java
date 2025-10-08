@@ -1260,7 +1260,7 @@
             this.add(ChangShengJueEffects.INSTANT_DISFAVOR_EFFECT.get(), "瞬间降低村民声望");
     
             //群系
-            this.add("biome."+ ChangShengJue.MOD_ID +".chang_shen_jue_prairie", "慕然草原");
+            this.add("biome."+ ChangShengJue.MOD_ID +".chang_sheng_jue_prairie", "慕然草原");
     
             //存储
             this.add("container.hercules", "大力神功");
