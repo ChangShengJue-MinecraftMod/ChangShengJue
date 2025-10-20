@@ -3,7 +3,6 @@ package com.shengchanshe.chang_sheng_jue.item.combat.armor.taoistrobes;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.ChangShengJueArmorItem;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.DyeableItem;
 import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.ItemStack;
 
 public class TaoistRobes extends ChangShengJueArmorItem implements DyeableItem {
 
@@ -11,8 +10,4 @@ public class TaoistRobes extends ChangShengJueArmorItem implements DyeableItem {
         super(pMaterial, pType, pProperties);
     }
 
-    @Override
-    public int getColor(ItemStack pStack) {
-        return DyeableItem.super.getColor(pStack) != -1 ? DyeableItem.super.getColor(pStack) : 0x0000FF;
-    }
 }

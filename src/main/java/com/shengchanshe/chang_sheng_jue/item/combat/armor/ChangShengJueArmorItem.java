@@ -24,12 +24,20 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.constant.DefaultAnimations;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ChangShengJueArmorItem extends ArmorItem {
+public class ChangShengJueArmorItem extends ArmorItem implements DyeableItem, GeoItem {
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
     // 替换原有的 itemstack 字段和相关方法
     private static final String INNER_ARMOR_TAG = "InnerArmorData";
     private static final String DAMAGE_REDUCTION_TAG = "DamageReduction";
@@ -37,6 +45,16 @@ public class ChangShengJueArmorItem extends ArmorItem {
     private final RandomSource RANDOM_SOURCE = RandomSource.create();
     public ChangShengJueArmorItem(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
+    }
+
+    @Override
+    public int getEnchantmentValue() {
+        return 15;
+    }
+
+    @Override
+    public int getColor(ItemStack pStack) {
+        return DyeableItem.super.getColor(pStack) != -1 ? DyeableItem.super.getColor(pStack) : 0x0000FF;
     }
 
     @Override
@@ -236,4 +254,14 @@ public class ChangShengJueArmorItem extends ArmorItem {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(((new AnimationController<>(this, 0, (state) ->
+                state.setAndContinue(DefaultAnimations.IDLE)))));
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
+    }
 }

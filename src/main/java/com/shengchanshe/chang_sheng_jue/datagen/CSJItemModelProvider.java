@@ -180,6 +180,29 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleArmorItem(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS);
         simpleArmorItem(ChangShengJueItems.CONFUCIAN_INK_BOOTS);
 
+        //斗笠
+        simpleArmorItem(ChangShengJueItems.HATS_WITH_VEIL_HELMET);
+        simpleArmorItem(ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE);
+
+        simpleArmorItem(ChangShengJueItems.HATS_BLACK_ROBE_HELMET);
+        simpleArmorItem(ChangShengJueItems.HATS_BLACK_ROBE_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.HATS_BLACK_ROBE_LEGGINGS);
+
+        simpleArmorItem(ChangShengJueItems.DUAN_DA_CHESTPLATE);
+
+        simpleArmorItem(ChangShengJueItems.BUDDHIST_ROBE_CHESTPLATE);
+
+        simpleArmorItem(ChangShengJueItems.NIGHT_SUIT_HELMET);
+        simpleArmorItem(ChangShengJueItems.NIGHT_SUIT_CHESTPLATE);
+
+        simpleArmorItem(ChangShengJueItems.LONG_GOWN_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.NIGHT_SUIT_LEGGINGS);
+
+        simpleItem(ChangShengJueItems.FOREHEAD_BAND_HELMET1);
+        simpleItem(ChangShengJueItems.FOREHEAD_BAND_HELMET2);
+        simpleItem(ChangShengJueItems.HAIR_CROWN_HELMET1);
+        simpleItem(ChangShengJueItems.HAIR_CROWN_HELMET2);
+
         trimmedArmorItem(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR);
         trimmedArmorItem(ChangShengJueItems.LEATHER_INNER_ARMOR);
         //武器

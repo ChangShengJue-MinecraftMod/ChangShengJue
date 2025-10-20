@@ -820,8 +820,30 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get());
                 output.accept(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get());
 
+                output.accept(ChangShengJueItems.HATS_WITH_VEIL_HELMET.get());
+                output.accept(ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE.get().getDefaultInstance());
+
+                output.accept(ChangShengJueItems.HATS_BLACK_ROBE_HELMET.get());
+                output.accept(ChangShengJueItems.HATS_BLACK_ROBE_CHESTPLATE.get().getDefaultInstance());
+                output.accept(ChangShengJueItems.HATS_BLACK_ROBE_LEGGINGS.get());
+
+                output.accept(ChangShengJueItems.DUAN_DA_CHESTPLATE.get().getDefaultInstance());
+
+                output.accept(ChangShengJueItems.BUDDHIST_ROBE_CHESTPLATE.get().getDefaultInstance());
+
+                output.accept(ChangShengJueItems.NIGHT_SUIT_HELMET.get());
+                output.accept(ChangShengJueItems.NIGHT_SUIT_CHESTPLATE.get().getDefaultInstance());
+                output.accept(ChangShengJueItems.NIGHT_SUIT_LEGGINGS.get());
+
+                output.accept(ChangShengJueItems.LONG_GOWN_CHESTPLATE.get().getDefaultInstance());
+
                 output.accept(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR.get());
                 output.accept(ChangShengJueItems.LEATHER_INNER_ARMOR.get());
+
+                output.accept(ChangShengJueItems.FOREHEAD_BAND_HELMET1.get());
+                output.accept(ChangShengJueItems.FOREHEAD_BAND_HELMET2.get());
+                output.accept(ChangShengJueItems.HAIR_CROWN_HELMET1.get());
+                output.accept(ChangShengJueItems.HAIR_CROWN_HELMET2.get());
             }).build());
     //工具
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_TOOL = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_tool",()-> CreativeModeTab.builder()

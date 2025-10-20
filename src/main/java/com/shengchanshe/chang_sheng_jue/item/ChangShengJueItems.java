@@ -5,12 +5,22 @@ import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.block.custom.gong.GongItem;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.ChangShengJueArmorMaterials;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.buddhist_robe.BuddhistRobe;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.confucian_costumes.ConfucianCostumes;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.cotton.CottonArmor;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.duanda.DuanDa;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.flying_fish_robe.FlyingFishRobe;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.hats.black_robe.HatsBlackRobe;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.hats.with_veil.HatsWithVeil;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.headdress.forehead_band.ForeheadBand;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.headdress.forehead_band.ForeheadBand2;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.headdress.hair_crown.HairCrown;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.headdress.hair_crown.HairCrown2;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.inner_armor.GoldSilkSoftArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.inner_armor.LeatherInnerArmor;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.long_gown.LongGown;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.mountain_pattern_armor.MountainPatternArmor;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.night_suit.NightSuit;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.qi_tian_da_sheng.QiTianDaSheng;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.taoistrobes.FemaleTaoistRobes;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.taoistrobes.MaleTaoistRobes;
@@ -537,6 +547,43 @@ public class ChangShengJueItems {
             ()-> new ConfucianCostumes(ChangShengJueArmorMaterials.INK,ArmorItem.Type.LEGGINGS,new Item.Properties()));
     public static final RegistryObject<Item> CONFUCIAN_INK_BOOTS = ITEMS.register("confucian_ink_boots",
             ()-> new ConfucianCostumes(ChangShengJueArmorMaterials.INK,ArmorItem.Type.BOOTS,new Item.Properties()));
+    // 斗笠垂纱套
+    public static final RegistryObject<Item> HATS_WITH_VEIL_HELMET = ITEMS.register("hats_with_veil_helmet",
+            ()-> new HatsWithVeil(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> HATS_WITH_VEIL_CHESTPLATE = ITEMS.register("hats_with_veil_chestplate",
+            ()-> new HatsWithVeil(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    //斗笠玄衣套
+    public static final RegistryObject<Item> HATS_BLACK_ROBE_HELMET = ITEMS.register("hats_black_robe_helmet",
+            ()-> new HatsBlackRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> HATS_BLACK_ROBE_CHESTPLATE = ITEMS.register("hats_black_robe_chestplate",
+            ()-> new HatsBlackRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    public static final RegistryObject<Item> HATS_BLACK_ROBE_LEGGINGS = ITEMS.register("hats_black_robe_leggings",
+            ()-> new HatsBlackRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.LEGGINGS,new Item.Properties()));
+    //短打套
+    public static final RegistryObject<Item> DUAN_DA_CHESTPLATE = ITEMS.register("duan_da_chestplate",
+            ()-> new DuanDa(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    //头饰
+    public static final RegistryObject<Item> FOREHEAD_BAND_HELMET1 = ITEMS.register("forehead_band_helmet1",
+            ()-> new ForeheadBand(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> FOREHEAD_BAND_HELMET2 = ITEMS.register("forehead_band_helmet2",
+            ()-> new ForeheadBand2(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> HAIR_CROWN_HELMET1 = ITEMS.register("hair_crown_helmet1",
+            ()-> new HairCrown(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> HAIR_CROWN_HELMET2 = ITEMS.register("hair_crown_helmet2",
+            ()-> new HairCrown2(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    //僧袍
+    public static final RegistryObject<Item> BUDDHIST_ROBE_CHESTPLATE = ITEMS.register("buddhist_robe_chestplate",
+            ()-> new BuddhistRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    //夜行衣
+    public static final RegistryObject<Item> NIGHT_SUIT_HELMET = ITEMS.register("night_suit_helmet",
+            ()-> new NightSuit(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> NIGHT_SUIT_CHESTPLATE = ITEMS.register("night_suit_chestplate",
+            ()-> new NightSuit(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    public static final RegistryObject<Item> NIGHT_SUIT_LEGGINGS = ITEMS.register("night_suit_leggings",
+            ()-> new NightSuit(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.LEGGINGS,new Item.Properties()));
+    //长衫
+    public static final RegistryObject<Item> LONG_GOWN_CHESTPLATE = ITEMS.register("long_gown_chestplate",
+            ()-> new LongGown(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
 
     //打狗棒
     public static final RegistryObject<Item> BEAT_DOG_STICK = ITEMS.register("beat_dog_stick", BeatDogStick::new);

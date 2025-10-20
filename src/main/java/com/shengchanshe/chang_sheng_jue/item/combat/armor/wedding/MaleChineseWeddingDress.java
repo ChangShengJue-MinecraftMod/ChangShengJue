@@ -16,10 +16,6 @@ public class MaleChineseWeddingDress extends ChineseWeddingDress{
     public MaleChineseWeddingDress(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
     }
-    @Override
-    public int getEnchantmentValue() {
-        return 15;
-    }
 
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {

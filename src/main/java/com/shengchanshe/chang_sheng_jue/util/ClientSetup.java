@@ -67,7 +67,6 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
-import net.minecraft.client.renderer.entity.ExperienceOrbRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -109,7 +108,26 @@ public class ClientSetup {
             ChangShengJueItems.CONFUCIAN_HELMET,
             ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE,
             ChangShengJueItems.CONFUCIAN_INK_LEGGINGS,
-            ChangShengJueItems.CONFUCIAN_INK_BOOTS
+            ChangShengJueItems.CONFUCIAN_INK_BOOTS,
+
+            ChangShengJueItems.HATS_WITH_VEIL_HELMET,
+            ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE,
+
+            ChangShengJueItems.HATS_BLACK_ROBE_HELMET,
+            ChangShengJueItems.HATS_BLACK_ROBE_CHESTPLATE,
+            ChangShengJueItems.HATS_BLACK_ROBE_LEGGINGS,
+
+            ChangShengJueItems.DUAN_DA_CHESTPLATE,
+            ChangShengJueItems.BUDDHIST_ROBE_CHESTPLATE,
+
+            ChangShengJueItems.FOREHEAD_BAND_HELMET1,
+            ChangShengJueItems.FOREHEAD_BAND_HELMET2,
+            ChangShengJueItems.HAIR_CROWN_HELMET1,
+            ChangShengJueItems.HAIR_CROWN_HELMET2,
+            ChangShengJueItems.NIGHT_SUIT_HELMET,
+            ChangShengJueItems.NIGHT_SUIT_CHESTPLATE,
+            ChangShengJueItems.LONG_GOWN_CHESTPLATE,
+            ChangShengJueItems.NIGHT_SUIT_LEGGINGS
     );
 
 

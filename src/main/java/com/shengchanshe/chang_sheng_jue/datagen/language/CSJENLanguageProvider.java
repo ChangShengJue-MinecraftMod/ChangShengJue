@@ -254,6 +254,25 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get(), "Silk Trousers");
         this.add(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get(), "Light Silk Shoes");
 
+        this.add(ChangShengJueItems.HATS_WITH_VEIL_HELMET.get(), "Bamboo Hat with Veil");
+        this.add(ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE.get(), "Plain White Long Dress");
+
+        this.add(ChangShengJueItems.HATS_BLACK_ROBE_HELMET.get(), "斗笠");
+        this.add(ChangShengJueItems.HATS_BLACK_ROBE_CHESTPLATE.get(), "玄衣");
+        this.add(ChangShengJueItems.HATS_BLACK_ROBE_LEGGINGS.get(), "玄衣下裳");
+
+        this.add(ChangShengJueItems.DUAN_DA_CHESTPLATE.get(), "短打上衣");
+        this.add(ChangShengJueItems.BUDDHIST_ROBE_CHESTPLATE.get(), "念珠僧袍");
+        this.add(ChangShengJueItems.NIGHT_SUIT_HELMET.get(), "蒙面头巾");
+        this.add(ChangShengJueItems.NIGHT_SUIT_CHESTPLATE.get(), "夜行衣");
+        this.add(ChangShengJueItems.LONG_GOWN_CHESTPLATE.get(), "窄袖长衫");
+        this.add(ChangShengJueItems.NIGHT_SUIT_LEGGINGS.get(), "绑腿");
+
+        this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET1.get(), "额带");
+        this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET2.get(), "额带");
+        this.add(ChangShengJueItems.HAIR_CROWN_HELMET1.get(), "束发冠");
+        this.add(ChangShengJueItems.HAIR_CROWN_HELMET2.get(), "束发冠");
+
         this.add(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR.get(), "Gold Silk Soft Armor");
         this.add(ChangShengJueItems.LEATHER_INNER_ARMOR.get(), "Leather Inner Armor");
 
