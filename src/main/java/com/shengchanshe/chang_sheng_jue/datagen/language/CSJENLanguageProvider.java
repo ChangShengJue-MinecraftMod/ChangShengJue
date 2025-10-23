@@ -1215,6 +1215,8 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.WIND_CHIME.get(), "Wind Chime");
         this.add(ChangShengJueBlocks.TAILORING_CASE.get(), "Tailoring Table");
         this.add(ChangShengJueBlocks.FORGE_BLOCK.get(), "Forge Furnace");
+        this.add(ChangShengJueBlocks.WOOD_WORKING_BENCH.get(), "Wood Working Bench");
+        this.add(ChangShengJueBlocks.BRICK_KILN.get(), "Brick Kiln");
         //实体生物
         this.add(ChangShengJueEntity.BUTTERFLY.get(), "Butterfly");
         this.add(ChangShengJueEntity.MONKEY.get(), "Monkey");
@@ -1613,6 +1615,11 @@ public class CSJENLanguageProvider extends LanguageProvider {
         //锻台“forgeblock”
         this.add("container."+ ChangShengJue.MOD_ID +".forge_block", "forge block");
         this.add("gui."+ ChangShengJue.MOD_ID + ".forge_block.craft", "forge");
+
+        this.add("container."+ ChangShengJue.MOD_ID +".wood_working_bench", "Woodworking Bench");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.craft", "Make");
+        this.add("container."+ ChangShengJue.MOD_ID +".brick_kiln", "Brick Kiln");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.craft", "Fired");
 
         this.add(ChangShengJue.MOD_ID +".function", "Functional Items");
         this.add(ChangShengJue.MOD_ID +".function.desc", "Many strange people have come from that spatial rift. They can not only dance with fire to create phoenixes and fly through the skies, but they have also brought many peculiar objects. Rumor has it they come from the East?");

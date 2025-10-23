@@ -1,6 +1,5 @@
 package com.shengchanshe.chang_sheng_jue.util;
 
-import com.shengchanshe.chang_sheng_jue.quest.Quest;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;

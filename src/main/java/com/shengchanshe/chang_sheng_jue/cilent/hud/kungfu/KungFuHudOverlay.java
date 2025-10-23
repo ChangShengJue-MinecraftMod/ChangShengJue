@@ -10,7 +10,6 @@ import com.shengchanshe.chang_sheng_jue.item.combat.glove.GoldThreadGlove;
 import com.shengchanshe.chang_sheng_jue.item.combat.knife.Knife;
 import com.shengchanshe.chang_sheng_jue.item.combat.lance.Lance;
 import com.shengchanshe.chang_sheng_jue.item.combat.sword.SoftSword;
-import com.shengchanshe.chang_sheng_jue.item.combat.sword.Sword;
 import com.shengchanshe.chang_sheng_jue.item.combat.throwingknives.FlyingDaggerPouch;
 import com.shengchanshe.chang_sheng_jue.item.combat.throwingknives.ThrowingKnives;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.*;

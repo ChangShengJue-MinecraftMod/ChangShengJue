@@ -1,10 +1,8 @@
 package com.shengchanshe.chang_sheng_jue.util.particle;
 
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.client.event.sound.SoundEvent;
 
 public class XpParatice {
     public static void XpParaticeParticle(SimpleParticleType simpleParticleType,Player player, Level level, float tick){

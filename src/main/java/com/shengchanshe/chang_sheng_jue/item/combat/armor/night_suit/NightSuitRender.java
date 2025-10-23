@@ -1,8 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.armor.night_suit;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.item.combat.armor.buddhist_robe.BuddhistRobe;
-import com.shengchanshe.chang_sheng_jue.item.combat.armor.buddhist_robe.layer.BuddhistRobeRenderLayer;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.night_suit.layer.NightSuitRenderLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;

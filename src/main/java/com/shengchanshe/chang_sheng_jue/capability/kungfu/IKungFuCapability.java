@@ -3,7 +3,6 @@ package com.shengchanshe.chang_sheng_jue.capability.kungfu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IKungFu;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;

@@ -1189,6 +1189,8 @@
             this.add(ChangShengJueBlocks.WIND_CHIME.get(), "风铃");
             this.add(ChangShengJueBlocks.TAILORING_CASE.get(), "裁衣案");
             this.add(ChangShengJueBlocks.FORGE_BLOCK.get(), "锻造炉");
+            this.add(ChangShengJueBlocks.WOOD_WORKING_BENCH.get(), "木工台");
+            this.add(ChangShengJueBlocks.BRICK_KILN.get(), "砖窑炉");
             //实体生物
             this.add(ChangShengJueEntity.BUTTERFLY.get(), "蝴蝶");
             this.add(ChangShengJueEntity.MONKEY.get(), "猴");
@@ -1579,6 +1581,10 @@
             this.add("container."+ ChangShengJue.MOD_ID +".forge_block", "锻造炉");
             this.add("gui."+ ChangShengJue.MOD_ID + ".forge_block.craft", "锻造");
 
+            this.add("container."+ ChangShengJue.MOD_ID +".wood_working_bench", "木工台");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.craft", "制作");
+            this.add("container."+ ChangShengJue.MOD_ID +".brick_kiln", "砖窑");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.craft", "烧制");
             //帕秋莉
             this.add(ChangShengJue.MOD_ID +".function", "功能物品");
             this.add(ChangShengJue.MOD_ID +".function.desc", "从那个空间裂缝来了很多奇怪的人，他们不仅会舞火为凤，飞天遁地。也带来了很多奇怪的东西。听说他们是从东方来的？");

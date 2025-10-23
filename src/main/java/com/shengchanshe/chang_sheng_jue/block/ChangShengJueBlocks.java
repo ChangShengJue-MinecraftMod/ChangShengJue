@@ -7,6 +7,7 @@ import com.shengchanshe.chang_sheng_jue.block.custom.balustrade.Balustrade;
 import com.shengchanshe.chang_sheng_jue.block.custom.balustrade.Guardrail;
 import com.shengchanshe.chang_sheng_jue.block.custom.balustrade.Wooden_Balustrade;
 import com.shengchanshe.chang_sheng_jue.block.custom.bracket.*;
+import com.shengchanshe.chang_sheng_jue.block.custom.brick_kiln.BrickKiln;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.BullionsCastingMolds;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.CastingMolds;
 import com.shengchanshe.chang_sheng_jue.block.custom.eescalator.Eescalator;
@@ -30,6 +31,7 @@ import com.shengchanshe.chang_sheng_jue.block.custom.tool_table.ToolTable;
 import com.shengchanshe.chang_sheng_jue.block.custom.weaponrack.WeaponRack;
 import com.shengchanshe.chang_sheng_jue.block.custom.window.HighWindows;
 import com.shengchanshe.chang_sheng_jue.block.custom.window.Windows;
+import com.shengchanshe.chang_sheng_jue.block.custom.workbench.WoodworkingBench;
 import com.shengchanshe.chang_sheng_jue.block.decoration.LeavesDefoliation;
 import com.shengchanshe.chang_sheng_jue.block.decoration.flowerpot.BlueAndWhitePorcelainFlowerPots;
 import com.shengchanshe.chang_sheng_jue.block.decoration.windchime.WindChime;
@@ -66,6 +68,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -80,6 +83,7 @@ import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 
 public class ChangShengJueBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ChangShengJue.MOD_ID);
@@ -1279,7 +1283,9 @@ public class ChangShengJueBlocks {
 
     public static final RegistryObject<Block> PIG_TROUGH = registerBlock("pig_trough",
             ()-> new PigTrough(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASEDRUM).strength(0.6F).sound(SoundType.WOOD).ignitedByLava().noOcclusion()));
-
+    //砖窑炉
+    public static final RegistryObject<Block> BRICK_KILN = registerBlock("brick_kiln",
+            ()-> new BrickKiln(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.5F).lightLevel(litBlockEmission(13)).noOcclusion()));
     //大门
     public static final RegistryObject<Block> SHING_MUN_LEFT = registerBlock("shing_mun_left",
             ()-> new ShingMunLeft(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
@@ -1477,6 +1483,9 @@ public class ChangShengJueBlocks {
     //锻台
     public static final RegistryObject<Block> FORGE_BLOCK = registerBlock("forge_block",
             () -> new ForgeBlock(BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.CHAIN).noOcclusion()));
+    //木工台
+    public static final RegistryObject<Block> WOOD_WORKING_BENCH = registerBlockWithoutBlockItem("wood_working_bench",
+            ()-> new WoodworkingBench(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).noOcclusion()));
     //锣
     public static final RegistryObject<Block> GONG = registerBlockWithoutBlockItem("gong",
             () -> new Gong(BlockBehaviour.Properties.copy(Blocks.BELL)));
@@ -1647,6 +1656,12 @@ public class ChangShengJueBlocks {
                 return burnTime;
             }
         });
+    }
+
+    private static ToIntFunction<BlockState> litBlockEmission(int pLightValue) {
+        return (p_50763_) -> {
+            return (Boolean)p_50763_.getValue(BlockStateProperties.LIT) ? pLightValue : 0;
+        };
     }
 
     public static void register(IEventBus eventBus){

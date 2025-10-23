@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-07T11:33:20.424582	Block States: chang_sheng_jue
+// 1.20.1	2025-10-21T08:37:27.0310667	Block States: chang_sheng_jue
 64c14f6f5a6e28fc387e1a21cb92369b93add4e5 assets/chang_sheng_jue/blockstates/acacia_drinking_table_and_chairs.json
 d2d524076462c21b5b747eb1bfa9b8fcb09b09ca assets/chang_sheng_jue/blockstates/ag_ore.json
 8148f76cde2efc7822dccdfb6234989a87272b34 assets/chang_sheng_jue/blockstates/animals_black_ridge_tile.json
@@ -22,6 +22,7 @@ c6951567c3c930f4c7ffa634c02992f793623a58 assets/chang_sheng_jue/blockstates/blue
 0c149153bc25efe4c2bbdca9c299a1b4828109af assets/chang_sheng_jue/blockstates/blue_high_cylinder_tile_side.json
 3f251f414adb262bef04b1bc8873ef10c38fabf9 assets/chang_sheng_jue/blockstates/blue_octagonal_gable_ridge_cylinder_tile.json
 d00bcc7d327eaf2c15b8c17533a5c57fcfd269d4 assets/chang_sheng_jue/blockstates/blue_roof_ridge.json
+c52d9a17efe12af250077574918bd7624a05c9f3 assets/chang_sheng_jue/blockstates/brick_kiln.json
 ce81698613b128e325b1d322582270c1e0560951 assets/chang_sheng_jue/blockstates/cherry_drinking_table_and_chairs.json
 cec67e5d1435ff5fcfdd20e69add2a856885e0f5 assets/chang_sheng_jue/blockstates/crimson_drinking_table_and_chairs.json
 0cc032dc86a0ebc3f01b62198cbd088518748779 assets/chang_sheng_jue/blockstates/cylinder_tile_black.json

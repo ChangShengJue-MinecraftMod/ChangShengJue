@@ -2,6 +2,7 @@ package com.shengchanshe.chang_sheng_jue.event;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
+import com.shengchanshe.chang_sheng_jue.block.custom.brick_kiln.BrickKilnEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.BullionsCastingMoldsBlockEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.CastingMoldsBlockEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.forgeblock.ForgeBlockEntityRender;
@@ -17,6 +18,7 @@ import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.right.entity.Shin
 import com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase.TailoringCaseEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.tool_table.ToolTableEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.custom.weaponrack.WeaponRackRender;
+import com.shengchanshe.chang_sheng_jue.block.custom.workbench.WoodworkingBenchEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.decoration.flowerpot.BlueAndWhitePorcelainFlowerPotsEntityRender;
 import com.shengchanshe.chang_sheng_jue.block.decoration.windchime.WindChimeEntityRender;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu.KungFuHudOverlay;
@@ -74,6 +76,8 @@ public class CSJEventClientBusEvents {
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.CASTING_MOLDS_BLOCK_ENTITY.get(), (BlockEntityRendererProvider.Context context) -> new CastingMoldsBlockEntityRender());
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.BULLIONS_CASTING_MOLDS_BLOCK_ENTITY.get(), (BlockEntityRendererProvider.Context context) -> new BullionsCastingMoldsBlockEntityRender());
 
+        event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.BRICK_KILN_ENTITY.get(), BrickKilnEntityRender::new);
+
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.DESK.get(), DesksEntityRender::new);
 
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.SHING_MUN_LEFT_ENTITY.get(),
@@ -103,6 +107,9 @@ public class CSJEventClientBusEvents {
 
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.FORGE_BLOCK_ENTITY.get(),
                 (BlockEntityRendererProvider.Context context) -> new ForgeBlockEntityRender());
+
+        event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.WOOD_WORKING_BENCH_ENTITY.get(),
+                (BlockEntityRendererProvider.Context context) -> new WoodworkingBenchEntityRender());
     }
 
     @SubscribeEvent

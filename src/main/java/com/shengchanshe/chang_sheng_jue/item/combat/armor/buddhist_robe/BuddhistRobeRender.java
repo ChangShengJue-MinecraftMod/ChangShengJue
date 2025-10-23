@@ -2,8 +2,6 @@ package com.shengchanshe.chang_sheng_jue.item.combat.armor.buddhist_robe;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.buddhist_robe.layer.BuddhistRobeRenderLayer;
-import com.shengchanshe.chang_sheng_jue.item.combat.armor.hats.with_veil.HatsWithVeil;
-import com.shengchanshe.chang_sheng_jue.item.combat.armor.hats.with_veil.layer.HatsWithVeilRenderLayer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import software.bernie.geckolib.model.DefaultedItemGeoModel;

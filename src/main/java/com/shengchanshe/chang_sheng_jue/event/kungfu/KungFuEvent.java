@@ -3,7 +3,6 @@ package com.shengchanshe.chang_sheng_jue.event.kungfu;
 import cn.mcmod.arsenal.item.rapier.RapierItem;
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu.KungFuClientData;
-import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.item.combat.clubbed.Clubbed;
 import com.shengchanshe.chang_sheng_jue.item.combat.glove.GoldThreadGlove;
 import com.shengchanshe.chang_sheng_jue.item.combat.knife.Knife;

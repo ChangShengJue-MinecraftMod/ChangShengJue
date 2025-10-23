@@ -3,8 +3,6 @@ package com.shengchanshe.chang_sheng_jue.item.combat.armor.night_suit.layer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.item.combat.armor.buddhist_robe.BuddhistRobe;
-import com.shengchanshe.chang_sheng_jue.item.combat.armor.buddhist_robe.BuddhistRobeRender;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.night_suit.NightSuit;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.night_suit.NightSuitRender;
 import net.minecraft.client.renderer.MultiBufferSource;

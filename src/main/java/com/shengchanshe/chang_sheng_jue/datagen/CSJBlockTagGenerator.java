@@ -461,6 +461,7 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get(),
                 ChangShengJueBlocks.POTTERY_WHEEL.get(),
                 ChangShengJueBlocks.TOOL_TABLE.get(),
+                ChangShengJueBlocks.WOOD_WORKING_BENCH.get(),
                 ChangShengJueBlocks.WEAPON_RACK.get(),
                 ChangShengJueBlocks.DESK.get(),
                 ChangShengJueBlocks.SHING_MUN_LEFT.get(),
@@ -524,6 +525,7 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                         ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get(),
                         ChangShengJueBlocks.WIND_CHIME.get(),
                         ChangShengJueBlocks.GONG.get(),
+                        ChangShengJueBlocks.BRICK_KILN.get(),
                         ChangShengJueBlocks.FORGE_BLOCK.get());
 
 

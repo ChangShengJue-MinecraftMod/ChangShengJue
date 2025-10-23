@@ -2,9 +2,11 @@ package com.shengchanshe.chang_sheng_jue.util;
 
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.ChangShengJueMenuTypes;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.brick_kiln.BrickKilnScreen;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.forgeblock.ForgeBlockScreen;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.plaque.PlaqueScreen;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase.TailoringCaseScreen;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.workbench.WoodworkingBenchScreen;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.blacksmith.BlacksmithScreen;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.GangQuestsScreen;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingScreen;
@@ -640,6 +642,9 @@ public class ClientSetup {
         MenuScreens.register(ChangShengJueMenuTypes.TAILORING_CASE_MENU.get(), TailoringCaseScreen::new);
         //ForgeBlockScreen
         MenuScreens.register(ChangShengJueMenuTypes.FORGE_BLOCK_MENU.get(), ForgeBlockScreen::new);
+
+        MenuScreens.register(ChangShengJueMenuTypes.WOOD_WORKING_BENCH_MENU.get(), WoodworkingBenchScreen::new);
+        MenuScreens.register(ChangShengJueMenuTypes.BRICK_KILN_MENU.get(), BrickKilnScreen::new);
 
         EntityRenderers.register(ChangShengJueEntity.BUTTERFLY.get(), ButterflyRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.MONKEY.get(), MonkeyRenderer::new);

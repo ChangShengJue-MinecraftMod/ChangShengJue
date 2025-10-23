@@ -799,6 +799,10 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         //裁衣案
         this.dropSelf(ChangShengJueBlocks.TAILORING_CASE.get());
         this.dropSelf(ChangShengJueBlocks.FORGE_BLOCK.get());
+        //木工台
+        this.dropSelf(ChangShengJueBlocks.WOOD_WORKING_BENCH.get());
+        //砖窑炉
+        this.dropSelf(ChangShengJueBlocks.BRICK_KILN.get());
         this.add(ChangShengJueBlocks.EMPTY_FEN_JIU.get(),
                 LootTable.lootTable()
                         .withPool(LootPool.lootPool()

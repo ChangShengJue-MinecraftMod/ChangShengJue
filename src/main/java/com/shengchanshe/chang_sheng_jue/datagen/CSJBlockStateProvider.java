@@ -5,7 +5,10 @@ import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.block.cropper.HordeumBlock;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -237,6 +240,7 @@ public class CSJBlockStateProvider extends BlockStateProvider {
 
         horizontalBlock(ChangShengJueBlocks.TOOL_TABLE.get(), new ModelFile.UncheckedModelFile(modLoc("block/tool_table")));
         horizontalBlock(ChangShengJueBlocks.DESK.get(), new ModelFile.UncheckedModelFile(modLoc("block/desk")));
+        horizontalBlock(ChangShengJueBlocks.BRICK_KILN.get(), new ModelFile.UncheckedModelFile(modLoc("block/brick_kiln")));
         //酒桌椅
         horizontalBlock(ChangShengJueBlocks.BIRCH_DRINKING_TABLE_AND_CHAIRS.get(), new ModelFile.UncheckedModelFile(modLoc("block/birch_drinking_table_and_chairs")));
         horizontalBlock(ChangShengJueBlocks.CRIMSON_DRINKING_TABLE_AND_CHAIRS.get(), new ModelFile.UncheckedModelFile(modLoc("block/crimson_drinking_table_and_chairs")));

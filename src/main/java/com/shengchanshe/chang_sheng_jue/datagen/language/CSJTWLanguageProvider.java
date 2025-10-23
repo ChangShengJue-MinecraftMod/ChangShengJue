@@ -1179,6 +1179,8 @@
             this.add(ChangShengJueBlocks.WIND_CHIME.get(), "風鈴");
             this.add(ChangShengJueBlocks.TAILORING_CASE.get(), "裁衣案");
             this.add(ChangShengJueBlocks.FORGE_BLOCK.get(), "鍛造爐");
+            this.add(ChangShengJueBlocks.WOOD_WORKING_BENCH.get(), "木工臺");
+            this.add(ChangShengJueBlocks.BRICK_KILN.get(), "磚窯爐");
             //实体生物
             this.add(ChangShengJueEntity.BUTTERFLY.get(), "蝴蝶");
             this.add(ChangShengJueEntity.MONKEY.get(), "猴");
@@ -1567,6 +1569,11 @@
             //锻台
             this.add("container."+ ChangShengJue.MOD_ID +".forge_block", "鍛造爐");
             this.add("gui."+ ChangShengJue.MOD_ID + ".forge_block.craft", "鍛造");
+
+            this.add("container."+ ChangShengJue.MOD_ID +".wood_working_bench", "木工臺");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.craft", "製作");
+            this.add("container."+ ChangShengJue.MOD_ID +".brick_kiln", "磚窯");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.craft", "燒制");
 
             //帕秋莉
             this.add(ChangShengJue.MOD_ID +".function", "功能物品");

@@ -3,7 +3,6 @@ package com.shengchanshe.chang_sheng_jue.event;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.ChangShengJueConfig;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
-import com.shengchanshe.chang_sheng_jue.block.food.TypeBlock;
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu.KungFuClientData;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;

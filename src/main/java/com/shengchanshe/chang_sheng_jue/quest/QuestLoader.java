@@ -2,7 +2,6 @@ package com.shengchanshe.chang_sheng_jue.quest;
 
 import com.google.gson.*;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;

@@ -616,6 +616,8 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get());
                 output.accept(ChangShengJueBlocks.TAILORING_CASE.get());
                 output.accept(ChangShengJueBlocks.FORGE_BLOCK.get());
+                output.accept(ChangShengJueItems.WOOD_WORKING_BENCH.get());
+                output.accept(ChangShengJueBlocks.BRICK_KILN.get());
                 output.accept(ChangShengJueItems.PAINT_BRUSH.get());
                 output.accept(ChangShengJueItems.CRUCIBLE.get());
                 output.accept(ChangShengJueItems.CRUCIBLE_CRUSHED_COPPER.get());

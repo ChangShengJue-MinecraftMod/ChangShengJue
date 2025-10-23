@@ -1,4 +1,4 @@
-// 1.20.1	2025-09-18T14:04:55.5731131	Loot Tables
+// 1.20.1	2025-10-21T08:37:27.0335341	Loot Tables
 7a6edc76141fa6f7dd0df0f746f55b8c0bcdfe60 data/chang_sheng_jue/loot_tables/blocks/acacia_balustrade.json
 d516f4a29d40770cbbc430275a25288af1bb5af3 data/chang_sheng_jue/loot_tables/blocks/acacia_bench.json
 ad4cf4b39a7d51e5a89dc61dc94d61b791098ae1 data/chang_sheng_jue/loot_tables/blocks/acacia_book_desk.json
@@ -100,6 +100,7 @@ dfec32baa57a937ee39d56b18a7b9ce86c474290 data/chang_sheng_jue/loot_tables/blocks
 8ae539630d13fddea40047b87e57c09c4495ade2 data/chang_sheng_jue/loot_tables/blocks/blue_stone_bricks_stairs.json
 30aa556d1d7bdc9c1a5f6ebc7d22886b9db54ed6 data/chang_sheng_jue/loot_tables/blocks/blue_stone_fine_bricks.json
 ac1e5a9b10ed05cfeab001bf348c34eb84d24319 data/chang_sheng_jue/loot_tables/blocks/blue_stone_vertical_walls.json
+e22eb926f3576fed7895fa035ca8790f0207aab5 data/chang_sheng_jue/loot_tables/blocks/brick_kiln.json
 2aa1f51d5fde0fb4e5483d23c732e15f3f03e781 data/chang_sheng_jue/loot_tables/blocks/brinjal_block.json
 6f466a8f5659469d86defc2b6a93d5cf33e17865 data/chang_sheng_jue/loot_tables/blocks/bullions_casting_molds.json
 7599d3fcdb86816f66b44a3675b621928e531d0d data/chang_sheng_jue/loot_tables/blocks/cantaloupe_block.json
@@ -583,6 +584,7 @@ ddb5cfc000e24b86038a88781e4b31728304da1d data/chang_sheng_jue/loot_tables/blocks
 ee4224def6619583b47b2c9492357f194e8c639d data/chang_sheng_jue/loot_tables/blocks/windows_spruce_block.json
 fa0ebd616f733b3a3a551007be699363e31b1c8d data/chang_sheng_jue/loot_tables/blocks/windows_spruce_block_1.json
 611b14f685e27d3148e7c30a0ae02ff078c69885 data/chang_sheng_jue/loot_tables/blocks/wind_chime.json
+c83117e189fd28b266879a17e9acb9466dadef0d data/chang_sheng_jue/loot_tables/blocks/wood_working_bench.json
 653ade357799e7f24bda12aa32c64c5732f29ccb data/chang_sheng_jue/loot_tables/blocks/xiao_mi_fan_pan.json
 d29a824e7322df734aa0ea9773efad4328b4f754 data/chang_sheng_jue/loot_tables/blocks/xiao_mi_fan_wan.json
 6ba67c212ffc409040f03d2a7b3c1488f48ef94a data/chang_sheng_jue/loot_tables/blocks/yellow_stone_lion_block.json

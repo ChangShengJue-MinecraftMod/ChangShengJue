@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue.item;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.block.custom.gong.GongItem;
+import com.shengchanshe.chang_sheng_jue.block.custom.workbench.WoodworkingBenchItem;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.ChangShengJueArmorMaterials;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.buddhist_robe.BuddhistRobe;
@@ -668,6 +669,9 @@ public class ChangShengJueItems {
     //锣
     public static final RegistryObject<Item> GONG = ITEMS.register("gong",
             () -> new GongItem(ChangShengJueBlocks.GONG.get() , new Item.Properties()));
+    //木工台
+    public static final RegistryObject<Item> WOOD_WORKING_BENCH = ITEMS.register("wood_working_bench",
+            () -> new WoodworkingBenchItem(ChangShengJueBlocks.WOOD_WORKING_BENCH.get() , new Item.Properties()));
 
     //经验书
     public static final RegistryObject<Item> EXTERNAL_KUNG_FU_XP = ITEMS.register("external_kung_fu_xp",

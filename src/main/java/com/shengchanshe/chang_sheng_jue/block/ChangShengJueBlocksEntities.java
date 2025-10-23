@@ -1,6 +1,7 @@
 package com.shengchanshe.chang_sheng_jue.block;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import com.shengchanshe.chang_sheng_jue.block.custom.brick_kiln.BrickKilnEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.BullionsCastingMoldsBlockEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.CastingMoldsBlockEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.forgeblock.ForgeBlockEntity;
@@ -16,6 +17,7 @@ import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.right.entity.Shin
 import com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase.TailoringCaseEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.tool_table.ToolTableEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.weaponrack.WeaponRackEntity;
+import com.shengchanshe.chang_sheng_jue.block.custom.workbench.WoodworkingBenchEntity;
 import com.shengchanshe.chang_sheng_jue.block.decoration.flowerpot.BlueAndWhitePorcelainFlowerPotsEntity;
 import com.shengchanshe.chang_sheng_jue.block.decoration.windchime.WindChimeEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -88,6 +90,15 @@ public class ChangShengJueBlocksEntities {
     public static final RegistryObject<BlockEntityType<GongEntity>> GONG_ENTITY =
             BLOCK_ENTITYES.register("gong_entity", ()-> BlockEntityType.Builder.of(
                     GongEntity::new, ChangShengJueBlocks.GONG.get()).build(null));
+    //木工台
+    public static final RegistryObject<BlockEntityType<WoodworkingBenchEntity>> WOOD_WORKING_BENCH_ENTITY =
+            BLOCK_ENTITYES.register("wood_working_bench_entity",
+                    ()-> BlockEntityType.Builder.of(WoodworkingBenchEntity::new, ChangShengJueBlocks.WOOD_WORKING_BENCH.get()).build(null));
+    //砖窑炉
+    public static final RegistryObject<BlockEntityType<BrickKilnEntity>> BRICK_KILN_ENTITY =
+            BLOCK_ENTITYES.register("brick_kiln_entity",
+                    ()-> BlockEntityType.Builder.of(BrickKilnEntity::new,
+                            ChangShengJueBlocks.BRICK_KILN.get()).build(null));
 
     //桌子
     public static final RegistryObject<BlockEntityType<DesksEntity>> DESK =

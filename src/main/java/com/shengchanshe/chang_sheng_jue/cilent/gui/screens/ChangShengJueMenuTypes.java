@@ -1,9 +1,11 @@
 package com.shengchanshe.chang_sheng_jue.cilent.gui.screens;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.brick_kiln.BrickKilnMenu;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.forgeblock.ForgeBlockMenu;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.plaque.PlaqueMenu;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase.TailoringCaseMenu;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.workbench.WoodworkingBenchMenu;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.blacksmith.BlacksmithMenu;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.GangQuestsMenu;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.GangleaderTradingMenu;
@@ -47,6 +49,12 @@ public class ChangShengJueMenuTypes {
 
     public static final RegistryObject<MenuType<GangleaderTradingMenu>> GANGLEADER_MENU = MENUS.register(
             "gangleader_menu", () -> new MenuType<>(GangleaderTradingMenu::new, FeatureFlags.VANILLA_SET));
+
+    public static final RegistryObject<MenuType<WoodworkingBenchMenu>> WOOD_WORKING_BENCH_MENU =
+            registerMenuType("wood_working_bench_menu", WoodworkingBenchMenu::new);
+
+    public static final RegistryObject<MenuType<BrickKilnMenu>> BRICK_KILN_MENU =
+            registerMenuType("brick_kiln_menu", BrickKilnMenu::new);
 
 //    public static final RegistryObject<MenuType<GangQuestsMenu>> GANG_QUESTS_MENU = MENUS.register("gang_quests_menu",
 //            () -> new MenuType<>(GangQuestsMenu::new,FeatureFlags.VANILLA_SET));

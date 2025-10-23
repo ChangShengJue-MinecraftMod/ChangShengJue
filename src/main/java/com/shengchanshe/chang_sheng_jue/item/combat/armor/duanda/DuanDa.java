@@ -1,7 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.armor.duanda;
 
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.ChangShengJueArmorItem;
-import com.shengchanshe.chang_sheng_jue.item.combat.armor.hats.black_robe.HatsBlackRobeRender;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
