@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class Wooden_Balustrade extends  Balustrade{
+public class WoodenBalustrade extends  Balustrade{
     private final VoxelShape[] occlusionByIndex;
 
-    public Wooden_Balustrade(Properties p_53302_) {
+    public WoodenBalustrade(Properties p_53302_) {
         super(p_53302_);
         this.occlusionByIndex = this.makeShapes(2.5F, 2.5F, 21.0F, 6.0F, 14.0F);
 

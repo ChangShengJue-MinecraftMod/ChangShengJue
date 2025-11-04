@@ -177,6 +177,7 @@ dependencies {
     implementation fg.deobf("blank:jei-${minecraft_version}:15")
     implementation fg.deobf("blank:constructionwand-${minecraft_version}:2.11")
     implementation fg.deobf("blank:appleskin-${minecraft_version}:2.5.1")
+    implementation fg.deobf("blank:Xaeros_Minimap-${minecraft_version}:25.2.10")
 
 
     // For more info:

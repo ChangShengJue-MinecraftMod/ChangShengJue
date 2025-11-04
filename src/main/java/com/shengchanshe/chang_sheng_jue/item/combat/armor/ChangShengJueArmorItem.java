@@ -42,7 +42,6 @@ public class ChangShengJueArmorItem extends ArmorItem implements DyeableItem, Ge
     private static final String INNER_ARMOR_TAG = "InnerArmorData";
     private static final String DAMAGE_REDUCTION_TAG = "DamageReduction";
     private static final String TRAUMA = "Trauma";
-    private final RandomSource RANDOM_SOURCE = RandomSource.create();
     public ChangShengJueArmorItem(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
     }
@@ -78,9 +77,10 @@ public class ChangShengJueArmorItem extends ArmorItem implements DyeableItem, Ge
     private void ensureDamageReduction(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
         if (!tag.contains(DAMAGE_REDUCTION_TAG)) {
-            float newReduction = (150 + RANDOM_SOURCE.nextInt(151)) / 10f;
+            // 使用线程安全的随机数生成方式
+            float newReduction = getThreadSafeRandomReduction(stack);
             if (this.getEquipmentSlot() == EquipmentSlot.CHEST) {
-                tag.putFloat(DAMAGE_REDUCTION_TAG, Math.max(tag.getFloat(DAMAGE_REDUCTION_TAG), newReduction));
+                tag.putFloat(DAMAGE_REDUCTION_TAG, newReduction);
             }
         }
     }
@@ -88,17 +88,42 @@ public class ChangShengJueArmorItem extends ArmorItem implements DyeableItem, Ge
     private void ensureTrauma(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
         if (!tag.contains(TRAUMA)) {
-            float newReduction = (50 + RANDOM_SOURCE.nextInt(51)) / 10f;
+            // 使用线程安全的随机数生成方式
+            float newTrauma = getThreadSafeRandomTrauma(stack);
             if (this.getEquipmentSlot() == EquipmentSlot.CHEST) {
-                tag.putFloat(TRAUMA, Math.max(tag.getFloat(TRAUMA), newReduction));
+                tag.putFloat(TRAUMA, newTrauma);
             }
         }
     }
 
+    /**
+     * 线程安全的随机伤害减免值生成
+     */
+    private float getThreadSafeRandomReduction(ItemStack stack) {
+        // 方法1: 使用物品的NBT数据作为随机种子
+        long seed = stack.hasTag() ? stack.getTag().hashCode() : System.currentTimeMillis();
+        RandomSource random = RandomSource.create(seed);
+        return (150 + random.nextInt(151)) / 10f;
+    }
+
+    /**
+     * 线程安全的随机创伤值生成
+     */
+    private float getThreadSafeRandomTrauma(ItemStack stack) {
+        // 方法1: 使用物品的NBT数据作为随机种子
+        long seed = stack.hasTag() ? stack.getTag().hashCode() : System.currentTimeMillis();
+        RandomSource random = RandomSource.create(seed);
+        return (50 + random.nextInt(51)) / 10f;
+    }
+
     @Override
     public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
-        ensureDamageReduction(stack);
-        ensureTrauma(stack);
+        if (!stack.hasTag() || !stack.getTag().contains(DAMAGE_REDUCTION_TAG)) {
+            ensureDamageReduction(stack);
+        }
+        if (!stack.hasTag() || !stack.getTag().contains(TRAUMA)) {
+            ensureTrauma(stack);
+        }
         return super.initCapabilities(stack, nbt);
     }
 

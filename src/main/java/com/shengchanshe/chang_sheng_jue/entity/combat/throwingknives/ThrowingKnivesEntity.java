@@ -17,6 +17,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -90,7 +91,7 @@ public class ThrowingKnivesEntity extends AbstractArrow {
         }
         if (this.level().isClientSide && !this.inGround){
             int numParticles = 1;  // 可以根据需要调整数量
-            Random random = new Random();
+            RandomSource random = this.level().random;
 
             for (int j = 0; j < numParticles; ++j) {
                 // 使用球坐标系生成球形范围内的粒子位置
@@ -179,11 +180,13 @@ public class ThrowingKnivesEntity extends AbstractArrow {
     protected void onHitEntity(EntityHitResult pResult) {
         Entity entity = pResult.getEntity();
         final float[] f = {4.0F};
-        if (entity instanceof LivingEntity livingentity) {
-            f[0] += EnchantmentHelper.getDamageBonus(this.throwingKnivesItem, livingentity.getMobType());
+        if (entity instanceof LivingEntity livingEntity) {
+            f[0] += EnchantmentHelper.getDamageBonus(this.throwingKnivesItem, livingEntity.getMobType());
+            livingEntity.invulnerableTime = 1;
         }
 
         Entity entity1 = this.getOwner();
+
         DamageSource damagesource = this.damageSources().trident(this, entity1 == null ? this : entity1);
         if (entity1 != null && !entity1.level().isClientSide && entity1 instanceof Player player){
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
@@ -204,6 +207,7 @@ public class ThrowingKnivesEntity extends AbstractArrow {
         }
         this.dealtDamage = true;
         SoundEvent soundevent = ChangShengJueSound.THROWING_KNIVES_HIT.get();
+
         if (entity.hurt(damagesource, f[0])) {
             if (entity.getType() == EntityType.ENDERMAN) {
                 return;
