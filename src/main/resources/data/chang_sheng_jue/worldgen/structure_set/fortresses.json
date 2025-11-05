@@ -2,14 +2,8 @@
   "placement": {
     "type": "minecraft:random_spread",
     "exclusion_zone": {
-      "chunk_count": 16,
-      "other_set": [
-        "minecraft:villages",
-        "chang_sheng_jue:village_si_he_yuan",
-        "chang_sheng_jue:village_hui_pai",
-        "chang_sheng_jue:pit_yard",
-        "chang_sheng_jue:village_su_pai"
-      ]
+      "other_set": "#chang_sheng_jue:exclusionzone",
+      "chunk_count": 16
     },
     "frequency": 0.2,
     "frequency_reduction_method": "legacy_type_1",
