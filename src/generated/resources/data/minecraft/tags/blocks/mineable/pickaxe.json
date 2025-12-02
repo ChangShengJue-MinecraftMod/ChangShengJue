@@ -47,6 +47,9 @@
     "chang_sheng_jue:wind_chime",
     "chang_sheng_jue:gong",
     "chang_sheng_jue:brick_kiln",
-    "chang_sheng_jue:forge_block"
+    "chang_sheng_jue:forge_block",
+    "chang_sheng_jue:stone_bench",
+    "chang_sheng_jue:stone_table",
+    "chang_sheng_jue:stone_balustrade"
   ]
 }

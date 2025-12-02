@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=east,half=lower,has_armor=false": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_bottom",
+      "y": 90
+    },
+    "facing=east,half=lower,has_armor=true": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_bottom",
+      "y": 90
+    },
+    "facing=east,half=upper,has_armor=false": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_top",
+      "y": 90
+    },
+    "facing=east,half=upper,has_armor=true": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_top",
+      "y": 90
+    },
+    "facing=north,half=lower,has_armor=false": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_bottom"
+    },
+    "facing=north,half=lower,has_armor=true": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_bottom"
+    },
+    "facing=north,half=upper,has_armor=false": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_top"
+    },
+    "facing=north,half=upper,has_armor=true": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_top"
+    },
+    "facing=south,half=lower,has_armor=false": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_bottom",
+      "y": 180
+    },
+    "facing=south,half=lower,has_armor=true": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_bottom",
+      "y": 180
+    },
+    "facing=south,half=upper,has_armor=false": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_top",
+      "y": 180
+    },
+    "facing=south,half=upper,has_armor=true": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_top",
+      "y": 180
+    },
+    "facing=west,half=lower,has_armor=false": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_bottom",
+      "y": 270
+    },
+    "facing=west,half=lower,has_armor=true": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_bottom",
+      "y": 270
+    },
+    "facing=west,half=upper,has_armor=false": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_top",
+      "y": 270
+    },
+    "facing=west,half=upper,has_armor=true": {
+      "model": "chang_sheng_jue:block/mangrove_clothes_rack_top",
+      "y": 270
+    }
+  }
+}

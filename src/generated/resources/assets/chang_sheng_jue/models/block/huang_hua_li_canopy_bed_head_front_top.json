@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/canopy_bed_head_front_top",
+  "textures": {
+    "1": "chang_sheng_jue:block/huang_hua_li_canopy_bed",
+    "particle": "chang_sheng_jue:block/huang_hua_li_canopy_bed"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/cornices_tile",
+  "textures": {
+    "1": "chang_sheng_jue:block/golden_tile_block",
+    "particle": "chang_sheng_jue:block/golden_tile_block"
+  }
+}

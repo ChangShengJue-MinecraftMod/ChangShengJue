@@ -160,6 +160,9 @@ dependencies {
     compileOnly fg.deobf("curse.maven:arsenal_core-506064:6556122")
     runtimeOnly fg.deobf("curse.maven:arsenal_core-506064:6556122")
 
+//    compileOnly fg.deobf("curse.maven:epic-fight-405076:6145747")
+//    runtimeOnly fg.deobf("curse.maven:epic-fight-405076:6145747")
+
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
@@ -178,7 +181,7 @@ dependencies {
     implementation fg.deobf("blank:constructionwand-${minecraft_version}:2.11")
     implementation fg.deobf("blank:appleskin-${minecraft_version}:2.5.1")
     implementation fg.deobf("blank:Xaeros_Minimap-${minecraft_version}:25.2.10")
-
+    implementation fg.deobf("blank:I18nUpdateMod-${minecraft_version}:3.7.0")
 
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html

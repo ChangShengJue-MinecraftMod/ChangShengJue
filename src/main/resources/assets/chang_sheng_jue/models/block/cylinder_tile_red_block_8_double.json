@@ -1,8 +1,0 @@
-{
-  "parent": "chang_sheng_jue:block/cylindertile/cylinder_tile_block_8_double",
-  "textures": {
-    "bottom": "chang_sheng_jue:block/animals_red_roof_ridge",
-    "side": "chang_sheng_jue:block/animals_red_roof_ridge",
-    "top": "chang_sheng_jue:block/animals_red_roof_ridge"
-  }
-}

@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/gable_ridge_cylinder_tile_bottom_left",
+  "textures": {
+    "1": "chang_sheng_jue:block/cyan_cylinder_tile",
+    "particle": "chang_sheng_jue:block/cyan_cylinder_tile"
+  }
+}

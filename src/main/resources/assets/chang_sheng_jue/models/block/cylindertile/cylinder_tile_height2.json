@@ -1,0 +1,72 @@
+{
+  "ambientocclusion": false,
+  "parent": "minecraft:block/slab",
+  "elements": [
+    {
+      "from": [4, 8, 0],
+      "to": [12, 12, 16],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 5, 8]},
+      "faces": {
+        "north": {"uv": [1, 5, 3, 6], "texture": "#1"},
+        "east": {"uv": [5, 0, 6, 4], "rotation": 90, "texture": "#1"},
+        "south": {"uv": [1, 5, 3, 6], "texture": "#1"},
+        "west": {"uv": [5, 0, 6, 4], "rotation": 90, "texture": "#1"},
+        "up": {"uv": [5, 0, 7, 4], "texture": "#1"},
+        "down": {"uv": [5, 0, 7, 4], "texture": "#1"}
+      }
+    },
+    {
+      "from": [0, 0, 0],
+      "to": [16, 8, 16],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 5, 8]},
+      "faces": {
+        "north": {"uv": [0, 6, 4, 8], "texture": "#1"},
+        "east": {"uv": [0, 2, 4, 4], "texture": "#1"},
+        "south": {"uv": [0, 6, 4, 8], "texture": "#1"},
+        "west": {"uv": [0, 2, 4, 4], "texture": "#1"},
+        "up": {"uv": [4, 4, 8, 8], "texture": "#1"},
+        "down": {"uv": [4, 4, 8, 8], "texture": "#1"}
+      }
+    }
+  ],
+
+  "groups": [
+    {
+      "name": "group",
+      "origin": [8, 8, 8],
+      "color": 0,
+      "children": [
+        {
+          "name": "1",
+          "origin": [4, 8, 0],
+          "color": 0,
+          "children": []
+        },
+        {
+          "name": "3",
+          "origin": [8, 8, 8],
+          "color": 0,
+          "children": []
+        },
+        {
+          "name": "4",
+          "origin": [8, 8, 8],
+          "color": 0,
+          "children": []
+        },
+        {
+          "name": "5",
+          "origin": [8, 8, 8],
+          "color": 0,
+          "children": []
+        },
+        {
+          "name": "2",
+          "origin": [4, 8, 0],
+          "color": 0,
+          "children": [0, 1]
+        }
+      ]
+    }
+  ]
+}

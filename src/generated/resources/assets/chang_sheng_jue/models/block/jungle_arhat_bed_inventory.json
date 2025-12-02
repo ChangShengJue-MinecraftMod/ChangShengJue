@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/arhat_bed_inventory",
+  "textures": {
+    "1": "chang_sheng_jue:block/jungle_arhat_bed",
+    "particle": "chang_sheng_jue:block/jungle_arhat_bed"
+  }
+}

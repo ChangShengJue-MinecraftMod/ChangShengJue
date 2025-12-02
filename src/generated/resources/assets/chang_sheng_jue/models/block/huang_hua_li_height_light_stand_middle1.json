@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/height_light_stand_middle1",
+  "textures": {
+    "1": "chang_sheng_jue:block/huang_hua_li_light_stand",
+    "particle": "chang_sheng_jue:block/huang_hua_li_light_stand"
+  }
+}

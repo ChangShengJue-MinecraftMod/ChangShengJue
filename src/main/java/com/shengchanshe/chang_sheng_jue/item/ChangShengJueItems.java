@@ -2,6 +2,7 @@ package com.shengchanshe.chang_sheng_jue.item;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
+import com.shengchanshe.chang_sheng_jue.block.custom.furniture.bamboo_mat.BambooMatItem;
 import com.shengchanshe.chang_sheng_jue.block.custom.gong.GongItem;
 import com.shengchanshe.chang_sheng_jue.block.custom.workbench.WoodworkingBenchItem;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
@@ -678,7 +679,9 @@ public class ChangShengJueItems {
             () -> new ExternalKungfuXp((new Item.Properties())));
     public static final RegistryObject<Item> INTERNAL_KUNG_FU_XP = ITEMS.register("internal_kung_fu_xp",
             () -> new InternalkungfuXp((new Item.Properties())));
-
+    //竹席
+    public static final RegistryObject<Item> BAMBOO_MAT = ITEMS.register("bamboo_mat",
+            () -> new BambooMatItem(ChangShengJueBlocks.BAMBOO_MAT.get() , new Item.Properties()));
     //手册
     public static final RegistryObject<Item> WU_FANG_LU = ITEMS.register("wu_fang_lu", ()-> new Item(new Item.Properties()));
 

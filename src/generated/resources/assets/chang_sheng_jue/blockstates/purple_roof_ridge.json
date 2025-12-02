@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "chang_sheng_jue:block/purple_roof_ridge",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "chang_sheng_jue:block/purple_roof_ridge"
+    },
+    "facing=south": {
+      "model": "chang_sheng_jue:block/purple_roof_ridge",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "chang_sheng_jue:block/purple_roof_ridge",
+      "y": 270
+    }
+  }
+}

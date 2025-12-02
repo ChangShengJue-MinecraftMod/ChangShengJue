@@ -188,16 +188,16 @@ public class CSJEvent {
             ItemStack[] stack2 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.BLUE_FLOOR_TILES_BLOCK.get(), 32),
                     new ItemStack(ChangShengJueBlocks.BLACK_FLOOR_TILES_BLOCK.get(), 32),
                     new ItemStack(ChangShengJueBlocks.BITUMEN_FLOOR_TILES_BLOCK.get(), 32)};
-            ItemStack[] stack3 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_1.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_2.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_3.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_4.get(), 32)};
-            ItemStack[] stack4 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_1.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_2.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_3.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get(), 32)};
+            ItemStack[] stack3 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.GRE_EAVES_TILE.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.GRE_SMALL_DEMON_MASK.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.GRE_RIDGE_TILE.get(), 32)};
+            ItemStack[] stack4 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.BLACK_EAVES_TILE.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.BLACK_SMALL_DEMON_MASK.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.BLACK_RIDGE_TILE.get(), 32)};
             ItemStack[] stack5 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.YELLOW_STONE_LION_BLOCK.get(), 1),
                     new ItemStack(ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get(), 1)};
             // 存储第一个交易的索引

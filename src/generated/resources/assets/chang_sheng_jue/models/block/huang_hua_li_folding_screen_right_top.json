@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/folding_screen_right_top",
+  "textures": {
+    "1": "chang_sheng_jue:block/huang_hua_li_folding_screen",
+    "particle": "chang_sheng_jue:block/huang_hua_li_folding_screen"
+  }
+}

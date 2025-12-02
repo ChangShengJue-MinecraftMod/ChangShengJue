@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "hanging=false,lay=false,waterlogged=false": {
+      "model": "chang_sheng_jue:block/lime_lantern"
+    },
+    "hanging=false,lay=false,waterlogged=true": {
+      "model": "chang_sheng_jue:block/lime_lantern"
+    },
+    "hanging=false,lay=true,waterlogged=false": {
+      "model": "chang_sheng_jue:block/lime_lantern_lay"
+    },
+    "hanging=false,lay=true,waterlogged=true": {
+      "model": "chang_sheng_jue:block/lime_lantern_lay"
+    },
+    "hanging=true,lay=false,waterlogged=false": {
+      "model": "chang_sheng_jue:block/lime_lantern_hanging"
+    },
+    "hanging=true,lay=false,waterlogged=true": {
+      "model": "chang_sheng_jue:block/lime_lantern_hanging"
+    },
+    "hanging=true,lay=true,waterlogged=false": {
+      "model": "chang_sheng_jue:block/lime_lantern_hanging"
+    },
+    "hanging=true,lay=true,waterlogged=true": {
+      "model": "chang_sheng_jue:block/lime_lantern_hanging"
+    }
+  }
+}

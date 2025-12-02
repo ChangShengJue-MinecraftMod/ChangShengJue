@@ -1,7 +1,0 @@
-{
-	"parent": "chang_sheng_jue:block/character_plaque_pavilion",
-	"textures": {
-		"0": "chang_sheng_jue:block/blue_character_plaque_pavilion",
-		"particle": "chang_sheng_jue:block/blue_character_plaque_pavilion"
-	}
-}

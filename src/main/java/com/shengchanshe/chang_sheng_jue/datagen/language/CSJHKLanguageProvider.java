@@ -793,227 +793,269 @@
             this.add(ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get(),"白樺扶梯");
             this.add(ChangShengJueBlocks.YUN_SHAN_FU_TI_BLOCK.get(),"雲杉扶梯");
 
-            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE.get(),"灰色筒瓦塊");
-            this.add(ChangShengJueBlocks.RED_CYLINDER_TILE.get(),"紅色琉璃瓦塊");
-            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get(),"黑色筒瓦塊");
-            this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get(),"金色琉璃瓦塊");
-            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get(),"青色琉璃瓦塊");
+            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(),"灰色琉璃塊");
+            this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(),"紅色琉璃瓦塊");
+            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(),"黑色琉璃塊");
+            this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get(),"金色琉璃瓦塊");
+            this.add(ChangShengJueBlocks.CYAN_CYLINDER_TILE_BLOCK.get(),"青色琉璃瓦塊");
+            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(),"蓝色琉璃瓦塊");
+            this.add(ChangShengJueBlocks.PURPLE_CYLINDER_TILE_BLOCK.get(),"紫色琉璃瓦塊");
 
-            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(),"灰色筒瓦台階");
-            this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get(),"紅色琉璃瓦台階");
-            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(),"黑色筒瓦台階");
-            this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(),"金色琉璃瓦台階");
-            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),"青色琉璃瓦台階");
+            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(),"灰色琉璃半磚");
+            this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get(),"紅色琉璃瓦半磚");
+            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(),"黑色琉璃半磚");
+            this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(),"金色琉璃瓦半磚");
+            this.add(ChangShengJueBlocks.CYAN_CYLINDER_TILE_SLAB.get(),"青色琉璃瓦半磚");
+            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),"蓝色琉璃瓦半磚");
+            this.add(ChangShengJueBlocks.PURPLE_CYLINDER_TILE_SLAB.get(),"蓝色琉璃瓦半磚");
 
-            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SIDE.get(),"灰色側向筒瓦");
+            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SIDE.get(),"灰色側向琉璃");
             this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SIDE.get(),"紅色側向琉璃瓦");
-            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SIDE.get(),"黑色側向筒瓦");
+            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SIDE.get(),"黑色側向琉璃");
             this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SIDE.get(),"金色側向琉璃瓦");
-            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SIDE.get(),"青色側向琉璃瓦");
+            this.add(ChangShengJueBlocks.CYAN_CYLINDER_TILE_SIDE.get(),"青色側向琉璃瓦");
+            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SIDE.get(),"蓝色侧向琉璃瓦");
+            this.add(ChangShengJueBlocks.PURPLE_CYLINDER_TILE_SIDE.get(),"紫色侧向琉璃瓦");
 
             this.add(ChangShengJueBlocks.GRE_OCTAGONAL_UPTURNED_EAVES.get(),"灰色側向飛簷");
             this.add(ChangShengJueBlocks.RED_OCTAGONAL_UPTURNED_EAVES.get(),"紅色側向飛簷");
             this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_UPTURNED_EAVES.get(),"黑色側向飛簷");
             this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_UPTURNED_EAVES.get(),"金色側向飛簷");
-            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES.get(),"青色側向飛簷");
+            this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_UPTURNED_EAVES.get(),"青色側向飛簷");
+            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES.get(),"蓝色側向飛簷");
+            this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_UPTURNED_EAVES.get(),"紫色側向飛簷");
 
             this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"灰色側向矮脊瓦(前)");
             this.add(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"紅色側向矮脊瓦(前)");
             this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"黑色側向矮脊瓦(前)");
             this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"金色側向矮脊瓦(前)");
-            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"青色側向矮脊瓦(前)");
+            this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"青色側向矮脊瓦(前)");
+            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"蓝色側向矮脊瓦(前)");
+            this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"紫色側向矮脊瓦(前)");
 
             this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"灰色側向矮脊瓦(後)");
             this.add(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"紅色側向矮脊瓦(後)");
             this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"黑色側向矮脊瓦(後)");
             this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"金色側向矮脊瓦(後)");
-            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"青色側向矮脊瓦(後)");
+            this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"青色側向矮脊瓦(後)");
+            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"蓝色側向矮脊瓦(後)");
+            this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"紫色側向矮脊瓦(後)");
 
             this.add(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"灰色側向高脊瓦(前)");
             this.add(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"紅色側向高脊瓦(前)");
             this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"黑色側向高脊瓦(前)");
             this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"金色側向高脊瓦(前)");
-            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"青色側向高脊瓦(前)");
+            this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"青色側向高脊瓦(前)");
+            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"蓝色側向高脊瓦(前)");
+            this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"紫色側向高脊瓦(前)");
 
             this.add(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"灰色側向高脊瓦(後)");
             this.add(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"紅色側向高脊瓦(後)");
             this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"黑色側向高脊瓦(後)");
             this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"金色側向高脊瓦(後)");
-            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"青色側向高脊瓦(後)");
+            this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"青色側向高脊瓦(後)");
+            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"蓝色側向高脊瓦(後)");
+            this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"紫色側向高脊瓦(後)");
 
             this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"灰色側向雙層脊瓦(前)");
             this.add(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"紅色側向雙層脊瓦(前)");
             this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"黑色側向雙層脊瓦(前)");
             this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"金色側向雙層脊瓦(前)");
-            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"青色側向雙層脊瓦(前)");
+            this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"青色側向雙層脊瓦(前)");
+            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"蓝色側向雙層脊瓦(前)");
+            this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"紫色側向雙層脊瓦(前)");
 
             this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"灰色側向雙層脊瓦(後)");
             this.add(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"紅色側向雙層脊瓦(後)");
             this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"黑色側向雙層脊瓦(後)");
             this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"金色側向雙層脊瓦(後)");
-            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"青色側向雙層脊瓦(後)");
+            this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"青色側向雙層脊瓦(後)");
+            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"蓝色側向雙層脊瓦(後)");
+            this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"紫色側向雙層脊瓦(後)");
 
             this.add(ChangShengJueBlocks.GRE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"灰色側向脊瓦屋頂");
             this.add(ChangShengJueBlocks.RED_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"紅色側向脊瓦屋頂");
             this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"黑色側向脊瓦屋頂");
             this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"金色側向脊瓦屋頂");
-            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"青色側向脊瓦屋頂");
+            this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"青色側向脊瓦屋頂");
+            this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"蓝色側向脊瓦屋頂");
+            this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"紫色側向脊瓦屋頂");
 
-            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(),"灰色筒瓦");
-            this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(),"紅色琉璃瓦");
-            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(),"黑色筒瓦");
-            this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get(),"金色琉璃瓦");
-            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(),"青色琉璃瓦");
+            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE.get(),"灰色琉璃");
+            this.add(ChangShengJueBlocks.RED_CYLINDER_TILE.get(),"紅色琉璃瓦");
+            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get(),"黑色琉璃");
+            this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get(),"金色琉璃瓦");
+            this.add(ChangShengJueBlocks.CYAN_CYLINDER_TILE.get(),"青色琉璃瓦");
+            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get(),"蓝色琉璃瓦");
+            this.add(ChangShengJueBlocks.PURPLE_CYLINDER_TILE.get(),"紫色琉璃瓦");
 
-            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_1.get(),"灰色瓦當");
-            this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_1.get(),"紅色瓦當");
-            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_1.get(),"黑色瓦當");
-            this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_1.get(),"金色瓦當");
-            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_1.get(),"青色瓦當");
+            this.add(ChangShengJueBlocks.GRE_EAVES_TILE.get(),"灰色瓦當");
+            this.add(ChangShengJueBlocks.RED_EAVES_TILE.get(),"紅色瓦當");
+            this.add(ChangShengJueBlocks.BLACK_EAVES_TILE.get(),"黑色瓦當");
+            this.add(ChangShengJueBlocks.GOLDEN_EAVES_TILE.get(),"金色瓦當");
+            this.add(ChangShengJueBlocks.CYAN_EAVES_TILE.get(),"青色瓦當");
+            this.add(ChangShengJueBlocks.BLUE_EAVES_TILE.get(),"蓝色瓦當");
+            this.add(ChangShengJueBlocks.PURPLE_EAVES_TILE.get(),"紫色瓦當");
 
-            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get(),"青色雙層琉璃瓦");
-            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_2.get(),"灰色雙層筒瓦");
-            this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_2.get(),"紅色雙層琉璃瓦");
-            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_2.get(),"黑色雙層筒瓦");
-            this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_2.get(),"金色雙層琉璃瓦");
+            this.add(ChangShengJueBlocks.CYAN_DOUBLE_CYLINDER_TILE.get(),"青色雙層琉璃瓦");
+            this.add(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE.get(),"灰色雙層琉璃瓦");
+            this.add(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE.get(),"紅色雙層琉璃瓦");
+            this.add(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE.get(),"黑色雙層琉璃");
+            this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE.get(),"金色雙層琉璃瓦");
+            this.add(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE.get(),"蓝色雙層琉璃瓦");
+            this.add(ChangShengJueBlocks.PURPLE_DOUBLE_CYLINDER_TILE.get(),"紫色雙層琉璃瓦");
 
-            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_3.get(),"青色小鴟吻");
-            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_3.get(),"灰色小鴟吻");
-            this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_3.get(),"紅色小鴟吻");
-            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_3.get(),"黑色小鴟吻");
-            this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_3.get(),"金色小鴟吻");
+            this.add(ChangShengJueBlocks.CYAN_SMALL_DEMON_MASK.get(),"青色小鴟吻");
+            this.add(ChangShengJueBlocks.GRE_SMALL_DEMON_MASK.get(),"灰色小鴟吻");
+            this.add(ChangShengJueBlocks.RED_SMALL_DEMON_MASK.get(),"紅色小鴟吻");
+            this.add(ChangShengJueBlocks.BLACK_SMALL_DEMON_MASK.get(),"黑色小鴟吻");
+            this.add(ChangShengJueBlocks.GOLDEN_SMALL_DEMON_MASK.get(),"金色小鴟吻");
+            this.add(ChangShengJueBlocks.BLUE_SMALL_DEMON_MASK.get(),"蓝色小鴟吻");
+            this.add(ChangShengJueBlocks.PURPLE_SMALL_DEMON_MASK.get(),"紫色小鴟吻");
 
-            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get(),"青色高脊瓦");
-            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_4.get(),"灰色高脊瓦");
-            this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_4.get(),"紅色高脊瓦");
-            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get(),"黑色高脊瓦");
-            this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get(),"金色高脊瓦");
+            this.add(ChangShengJueBlocks.CYAN_RIDGE_TILE.get(),"青色脊瓦");
+            this.add(ChangShengJueBlocks.GRE_RIDGE_TILE.get(),"灰色脊瓦");
+            this.add(ChangShengJueBlocks.RED_RIDGE_TILE.get(),"紅色脊瓦");
+            this.add(ChangShengJueBlocks.BLACK_RIDGE_TILE.get(),"黑色脊瓦");
+            this.add(ChangShengJueBlocks.GOLDEN_RIDGE_TILE.get(),"金色脊瓦");
+            this.add(ChangShengJueBlocks.BLUE_RIDGE_TILE.get(),"蓝色脊瓦");
+            this.add(ChangShengJueBlocks.PURPLE_RIDGE_TILE.get(),"紫色脊瓦");
 
-            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_5.get(),"青色高琉璃瓦");
-            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get(),"灰色高筒瓦");
-            this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_5.get(),"紅色高琉璃瓦");
-            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_5.get(),"黑色高筒瓦");
-            this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_5.get(),"金色高琉璃瓦");
+            this.add(ChangShengJueBlocks.CYAN_DOUBLE_RIDGE_TILE.get(),"青色雙層脊瓦");
+            this.add(ChangShengJueBlocks.GRE_DOUBLE_RIDGE_TILE.get(),"灰色雙層脊瓦");
+            this.add(ChangShengJueBlocks.RED_DOUBLE_RIDGE_TILE.get(),"紅色雙層脊瓦");
+            this.add(ChangShengJueBlocks.BLACK_DOUBLE_RIDGE_TILE.get(),"黑色雙層脊瓦");
+            this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_RIDGE_TILE.get(),"金色雙層脊瓦");
+            this.add(ChangShengJueBlocks.BLUE_DOUBLE_RIDGE_TILE.get(),"蓝色雙層脊瓦");
+            this.add(ChangShengJueBlocks.PURPLE_DOUBLE_RIDGE_TILE.get(),"蓝色雙層脊瓦");
 
-            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_6.get(),"青色雙層脊瓦");
-            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_6.get(),"灰色雙層脊瓦");
-            this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_6.get(),"紅色雙層脊瓦");
-            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_6.get(),"黑色雙層脊瓦");
-            this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_6.get(),"金色雙層脊瓦");
+            this.add(ChangShengJueBlocks.CYAN_EAVES_CYLINDER_TILE.get(),"青色飛簷琉璃瓦");
+            this.add(ChangShengJueBlocks.GRE_EAVES_CYLINDER_TILE.get(),"灰色飛簷琉璃");
+            this.add(ChangShengJueBlocks.RED_EAVES_CYLINDER_TILE.get(),"紅色飛簷琉璃瓦");
+            this.add(ChangShengJueBlocks.BLACK_EAVES_CYLINDER_TILE.get(),"黑色飛簷琉璃");
+            this.add(ChangShengJueBlocks.GOLDEN_EAVES_CYLINDER_TILE.get(),"金色飛簷琉璃瓦");
+            this.add(ChangShengJueBlocks.BLUE_EAVES_CYLINDER_TILE.get(),"蓝色飛簷琉璃瓦");
+            this.add(ChangShengJueBlocks.PURPLE_EAVES_CYLINDER_TILE.get(),"紫色飛簷琉璃瓦");
 
-            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get(),"青色飛簷琉璃瓦");
-            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7.get(),"灰色飛簷筒瓦");
-            this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_7.get(),"紅色飛簷琉璃瓦");
-            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get(),"黑色飛簷筒瓦");
-            this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get(),"金色飛簷琉璃瓦");
+            this.add(ChangShengJueBlocks.ANIMALS_CYAN_RIDGE_TILE.get(),"青色脊獸脊瓦");
+            this.add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE.get(),"灰色脊獸脊瓦");
+            this.add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE.get(),"紅色脊獸脊瓦");
+            this.add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE.get(),"黑色脊獸脊瓦");
+            this.add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE.get(),"金色脊獸脊瓦");
+            this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get(),"蓝色脊獸脊瓦");
+            this.add(ChangShengJueBlocks.ANIMALS_PURPLE_RIDGE_TILE.get(),"紫色脊獸脊瓦");
 
-            this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get(),"青色脊瓦");
-            this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8.get(),"灰色脊瓦");
-            this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8.get(),"紅色脊瓦");
-            this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get(),"黑色脊瓦");
-            this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get(),"金色脊瓦");
-
-            this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get(),"青色雙層脊獸脊瓦");
-            this.add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE.get(),"灰色雙層脊獸脊瓦");
-            this.add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE.get(),"紅色雙層脊獸脊瓦");
-            this.add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE.get(),"黑色雙層脊獸脊瓦");
-            this.add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE.get(),"金色雙層脊獸脊瓦");
-
-            this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE_1.get(),"青色脊獸脊瓦");
-            this.add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE_1.get(),"灰色脊獸脊瓦");
-            this.add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE_1.get(),"紅色脊獸脊瓦");
-            this.add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE_1.get(),"黑色脊獸脊瓦");
-            this.add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE_1.get(),"金色脊獸脊瓦");
-
-            this.add(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get(),"青色垂獸脊瓦");
+            this.add(ChangShengJueBlocks.HANGING_BEAST_CYAN_RIDGE_TILE.get(),"青色垂獸脊瓦");
             this.add(ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE.get(),"灰色垂獸脊瓦");
             this.add(ChangShengJueBlocks.HANGING_BEAST_RED_RIDGE_TILE.get(),"紅色垂獸脊瓦");
             this.add(ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE.get(),"黑色垂獸脊瓦");
             this.add(ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE.get(),"金色垂獸脊瓦");
+            this.add(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get(),"蓝色垂獸脊瓦");
+            this.add(ChangShengJueBlocks.HANGING_BEAST_PURPLE_RIDGE_TILE.get(),"紫色垂獸脊瓦");
 
-            this.add(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get(),"青色屋脊");
+            this.add(ChangShengJueBlocks.CYAN_ROOF_RIDGE.get(),"青色屋脊");
             this.add(ChangShengJueBlocks.GRE_ROOF_RIDGE.get(),"灰色屋脊");
             this.add(ChangShengJueBlocks.RED_ROOF_RIDGE.get(),"紅色屋脊");
             this.add(ChangShengJueBlocks.BLACK_ROOF_RIDGE.get(),"黑色屋脊");
             this.add(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE.get(),"金色屋脊");
+            this.add(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get(),"蓝色屋脊");
+            this.add(ChangShengJueBlocks.PURPLE_ROOF_RIDGE.get(),"紫色屋脊");
 
-            this.add(ChangShengJueBlocks.BLUE_DEMON_MASK.get(), "青色鴟吻");
+            this.add(ChangShengJueBlocks.CYAN_DEMON_MASK.get(), "青色鴟吻");
             this.add(ChangShengJueBlocks.GRE_DEMON_MASK.get(), "灰色鴟吻");
             this.add(ChangShengJueBlocks.RED_DEMON_MASK.get(), "紅色鴟吻");
             this.add(ChangShengJueBlocks.BLACK_DEMON_MASK.get(), "黑色鴟吻");
             this.add(ChangShengJueBlocks.GOLDEN_DEMON_MASK.get(), "金色鴟吻");
+            this.add(ChangShengJueBlocks.BLUE_DEMON_MASK.get(), "蓝色鴟吻");
+            this.add(ChangShengJueBlocks.PURPLE_DEMON_MASK.get(), "紫色鴟吻");
 
-            this.add(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION.get(), "青色樓閣脊剎");
+            this.add(ChangShengJueBlocks.CYAN_RIDGE_FINIAL_PAVILION.get(), "青色樓閣脊剎");
             this.add(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION.get(), "灰色樓閣脊剎");
             this.add(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION.get(), "紅色樓閣脊剎");
             this.add(ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION.get(), "黑色樓閣脊剎");
             this.add(ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION.get(), "金色樓閣脊剎");
+            this.add(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION.get(), "蓝色樓閣脊剎");
+            this.add(ChangShengJueBlocks.PURPLE_RIDGE_FINIAL_PAVILION.get(), "紫色樓閣脊剎");
 
-            this.add(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION.get(), "青色字牌脊剎");
+            this.add(ChangShengJueBlocks.CYAN_CHARACTER_PLAQUE_PAVILION.get(), "青色字牌脊剎");
             this.add(ChangShengJueBlocks.GRE_CHARACTER_PLAQUE_PAVILION.get(), "灰色字牌脊剎");
             this.add(ChangShengJueBlocks.RED_CHARACTER_PLAQUE_PAVILION.get(), "紅色字牌脊剎");
             this.add(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION.get(), "黑色字牌脊剎");
             this.add(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION.get(), "金色字牌脊剎");
+            this.add(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION.get(), "蓝色字牌脊剎");
+            this.add(ChangShengJueBlocks.PURPLE_CHARACTER_PLAQUE_PAVILION.get(), "紫色字牌脊剎");
 
-            this.add(ChangShengJueBlocks.BLUE_HIPPED_ROOF.get(), "青色攢尖");
+            this.add(ChangShengJueBlocks.CYAN_HIPPED_ROOF.get(), "青色攢尖");
             this.add(ChangShengJueBlocks.GRE_HIPPED_ROOF.get(), "灰色攢尖");
             this.add(ChangShengJueBlocks.RED_HIPPED_ROOF.get(), "紅色攢尖");
             this.add(ChangShengJueBlocks.BLACK_HIPPED_ROOF.get(), "黑色攢尖");
             this.add(ChangShengJueBlocks.GOLDEN_HIPPED_ROOF.get(), "金色攢尖");
+            this.add(ChangShengJueBlocks.BLUE_HIPPED_ROOF.get(), "蓝色攢尖");
+            this.add(ChangShengJueBlocks.PURPLE_HIPPED_ROOF.get(), "紫色攢尖");
 
-            this.add(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get(), "青色齊瓦當");
+            this.add(ChangShengJueBlocks.CYAN_GABLE_RIDGE_CYLINDER_TILE.get(), "青色齊瓦當");
             this.add(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.get(), "灰色齊瓦當");
             this.add(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get(), "紅色齊瓦當");
             this.add(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.get(), "黑色齊瓦當");
             this.add(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get(), "金色齊瓦當");
+            this.add(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get(), "蓝色齊瓦當");
+            this.add(ChangShengJueBlocks.PURPLE_GABLE_RIDGE_CYLINDER_TILE.get(), "紫色齊瓦當");
 
-            this.add(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "青色雙層脊瓦");
+            this.add(ChangShengJueBlocks.CYAN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "青色雙層脊瓦");
             this.add(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "灰色雙層脊瓦");
             this.add(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "紅色雙層脊瓦");
             this.add(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "黑色雙層脊瓦");
             this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "金色雙層脊瓦");
+            this.add(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "蓝色雙層脊瓦");
+            this.add(ChangShengJueBlocks.PURPLE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "紫色雙層脊瓦");
 
-            this.add(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "青色雙層垂獸脊瓦");
+            this.add(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "蓝色雙層垂獸脊瓦");
             this.add(ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "灰色雙層垂獸脊瓦");
             this.add(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "紅色雙層垂獸脊瓦");
             this.add(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "黑色雙層垂獸脊瓦");
             this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "金色雙層垂獸脊瓦");
+            this.add(ChangShengJueBlocks.CYAN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "青色雙層垂獸脊瓦");
+            this.add(ChangShengJueBlocks.PURPLE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(), "青色雙層垂獸脊瓦");
 
-            this.add(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get(), "青色短琉璃瓦");
-            this.add(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get(), "灰色短筒瓦");
+            this.add(ChangShengJueBlocks.CYAN_SHORT_CYLINDER_TILE.get(), "青色短琉璃瓦");
+            this.add(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get(), "灰色短琉璃");
             this.add(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get(), "紅色短琉璃瓦");
-            this.add(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get(), "黑色短筒瓦");
+            this.add(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get(), "黑色短琉璃");
             this.add(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get(), "金色短琉璃瓦");
+            this.add(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get(), "蓝色短琉璃瓦");
+            this.add(ChangShengJueBlocks.PURPLE_SHORT_CYLINDER_TILE.get(), "紫色短琉璃瓦");
 
-            this.add(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE.get(), "青色側向雙層琉璃瓦");
-            this.add(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE.get(), "灰色側向雙層筒瓦");
+            this.add(ChangShengJueBlocks.CYAN_DOUBLE_CYLINDER_TILE_SIDE.get(), "青色側向雙層琉璃瓦");
+            this.add(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE.get(), "灰色側向雙層琉璃");
             this.add(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE_SIDE.get(), "紅色側向雙層琉璃瓦");
-            this.add(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE.get(), "黑色側向雙層筒瓦");
+            this.add(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE.get(), "黑色側向雙層琉璃");
             this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE_SIDE.get(), "金色側向雙層琉璃瓦");
+            this.add(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE.get(), "蓝色側向雙層琉璃瓦");
+            this.add(ChangShengJueBlocks.PURPLE_DOUBLE_CYLINDER_TILE_SIDE.get(), "紫色側向雙層琉璃瓦");
 
-            this.add(ChangShengJueBlocks.BLUE_HIGH_CYLINDER_TILE_SIDE.get(), "青色側向高琉璃瓦");
-            this.add(ChangShengJueBlocks.GRE_HIGH_CYLINDER_TILE_SIDE.get(), "灰色側向高筒瓦");
-            this.add(ChangShengJueBlocks.RED_HIGH_CYLINDER_TILE_SIDE.get(), "紅色側向高琉璃瓦");
-            this.add(ChangShengJueBlocks.BLACK_HIGH_CYLINDER_TILE_SIDE.get(), "黑色側向高筒瓦");
-            this.add(ChangShengJueBlocks.GOLDEN_HIGH_CYLINDER_TILE_SIDE.get(), "金色側向高琉璃瓦");
-
-            this.add(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE.get(), "青色側向瓦當");
+            this.add(ChangShengJueBlocks.CYAN_EAVES_TILE_SIDE.get(), "青色側向瓦當");
             this.add(ChangShengJueBlocks.GRE_EAVES_TILE_SIDE.get(), "灰色側向瓦當");
             this.add(ChangShengJueBlocks.RED_EAVES_TILE_SIDE.get(), "紅色側向瓦當");
             this.add(ChangShengJueBlocks.BLACK_EAVES_TILE_SIDE.get(), "黑色側向瓦當");
             this.add(ChangShengJueBlocks.GOLDEN_EAVES_TILE_SIDE.get(), "金色側向瓦當");
+            this.add(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE.get(), "蓝色側向瓦當");
+            this.add(ChangShengJueBlocks.PURPLE_EAVES_TILE_SIDE.get(), "紫色側向瓦當");
 
-            this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get(), "金色瓦片");
-            this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get(), "金色瓦片");
-            this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_2.get(), "金色瓦片");
-            this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_3.get(), "金色瓦片");
-            this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_4.get(), "金色瓦片");
+            this.add(ChangShengJueBlocks.GOLDEN_TILE.get(), "金色瓦");
+            this.add(ChangShengJueBlocks.GOLDEN_GENTLE_TILE.get(), "金色平緩瓦");
+            this.add(ChangShengJueBlocks.GOLDEN_CORNICES.get(), "金色飛簷瓦");
+            this.add(ChangShengJueBlocks.GOLDEN_GENTLE_CORNICES.get(), "金色平緩飛簷瓦");
+            this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_2.get(), "金色瓦");
+            this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_3.get(), "金色瓦");
+            this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_4.get(), "金色瓦");
 
-            this.add(ChangShengJueBlocks.TILE_BLOCK.get(), "瓦片");
-            this.add(ChangShengJueBlocks.TILE_BLOCK_1.get(), "瓦片");
-            this.add(ChangShengJueBlocks.TILE_BLOCK_2.get(), "瓦片");
-            this.add(ChangShengJueBlocks.TILE_BLOCK_3.get(), "瓦片");
-            this.add(ChangShengJueBlocks.TILE_BLOCK_4.get(), "瓦片");
+            this.add(ChangShengJueBlocks.BLACK_TILE.get(), "瓦");
+            this.add(ChangShengJueBlocks.BLACK_GENTLE_TILE.get(), "平緩瓦");
+            this.add(ChangShengJueBlocks.BLACK_CORNICES.get(), "飛簷瓦");
+            this.add(ChangShengJueBlocks.BLACK_GENTLE_CORNICES.get(), "平缓飛簷瓦");
+            this.add(ChangShengJueBlocks.TILE_BLOCK_2.get(), "瓦");
+            this.add(ChangShengJueBlocks.TILE_BLOCK_3.get(), "瓦");
+            this.add(ChangShengJueBlocks.TILE_BLOCK_4.get(), "瓦");
 
             this.add(ChangShengJueBlocks.BITUMEN_FLOOR_TILES_BLOCK.get(), "瀝青地磚");
             this.add(ChangShengJueBlocks.BLUE_FLOOR_TILES_BLOCK.get(), "青石地磚");
@@ -1054,6 +1096,7 @@
             this.add(ChangShengJueBlocks.MEI_REN_KAO_WARPED_BLOCK.get(), "詭異木美人靠");
 
             this.add(ChangShengJueBlocks.BIRCH_BENCH.get(), "白樺木長凳");
+            this.add(ChangShengJueBlocks.JUNGLE_BENCH.get(), "叢林木長凳");
             this.add(ChangShengJueBlocks.CRIMSON_BENCH.get(), "緋紅木長凳");
             this.add(ChangShengJueBlocks.WARPED_BENCH.get(), "詭異木長凳");
             this.add(ChangShengJueBlocks.MANGROVE_BENCH.get(), "紅樹長凳");
@@ -1067,6 +1110,7 @@
             this.add(ChangShengJueBlocks.ZI_TAN_BENCH.get(), "紫檀木長凳");
 
             this.add(ChangShengJueBlocks.BIRCH_DRINKING_TABLE_AND_CHAIRS.get(), "白樺木酒桌椅");
+            this.add(ChangShengJueBlocks.JUNGLE_DRINKING_TABLE_AND_CHAIRS.get(), "叢林木酒桌椅");
             this.add(ChangShengJueBlocks.CRIMSON_DRINKING_TABLE_AND_CHAIRS.get(), "緋紅木酒桌椅");
             this.add(ChangShengJueBlocks.WARPED_DRINKING_TABLE_AND_CHAIRS.get(), "詭異木酒桌椅");
             this.add(ChangShengJueBlocks.MANGROVE_DRINKING_TABLE_AND_CHAIRS.get(), "紅樹酒桌椅");
@@ -1080,6 +1124,7 @@
             this.add(ChangShengJueBlocks.ZI_TAN_DRINKING_TABLE_AND_CHAIRS.get(), "紫檀木酒桌椅");
 
             this.add(ChangShengJueBlocks.BIRCH_BOOK_DESK.get(), "白樺木書桌");
+            this.add(ChangShengJueBlocks.JUNGLE_BOOK_DESK.get(), "叢林木書桌");
             this.add(ChangShengJueBlocks.CRIMSON_BOOK_DESK.get(), "緋紅木書桌");
             this.add(ChangShengJueBlocks.WARPED_BOOK_DESK.get(), "詭異木書桌");
             this.add(ChangShengJueBlocks.MANGROVE_BOOK_DESK.get(), "紅樹書桌");
@@ -1092,19 +1137,50 @@
             this.add(ChangShengJueBlocks.SPRUCE_BOOK_DESK.get(), "雲杉木書桌");
             this.add(ChangShengJueBlocks.ZI_TAN_BOOK_DESK.get(), "紫檀木書桌");
 
+            this.add(ChangShengJueBlocks.BIRCH_TEAPOY.get(), "白樺木茶几");
+            this.add(ChangShengJueBlocks.JUNGLE_TEAPOY.get(), "叢林木茶几");
+            this.add(ChangShengJueBlocks.CRIMSON_TEAPOY.get(), "緋紅木茶几");
+            this.add(ChangShengJueBlocks.WARPED_TEAPOY.get(), "詭異木茶几");
+            this.add(ChangShengJueBlocks.MANGROVE_TEAPOY.get(), "紅木茶几");
             this.add(ChangShengJueBlocks.HUANG_HUA_LI_TEAPOY.get(), "黃花梨茶几");
-            this.add(ChangShengJueBlocks.JI_CHI_MU_TEAPOY.get(), "雞翅木茶几");
+            this.add(ChangShengJueBlocks.WENGE_TEAPOY.get(), "雞翅木茶几");
+            this.add(ChangShengJueBlocks.ACACIA_TEAPOY.get(), "金合歡茶几");
+            this.add(ChangShengJueBlocks.DARK_OAK_TEAPOY.get(), "深色橡木茶几");
+            this.add(ChangShengJueBlocks.OAK_TEAPOY.get(), "橡木茶几");
+            this.add(ChangShengJueBlocks.CHERRY_TEAPOY.get(), "樱花木茶几");
+            this.add(ChangShengJueBlocks.SPRUCE_TEAPOY.get(), "雲杉木茶几");
             this.add(ChangShengJueBlocks.ZI_TAN_TEAPOY.get(), "紫檀木茶几");
 
+            this.add(ChangShengJueBlocks.BIRCH_TAISHI_CHAIR.get(), "白樺木太師椅");
+            this.add(ChangShengJueBlocks.JUNGLE_TAISHI_CHAIR.get(), "叢林木太師椅");
+            this.add(ChangShengJueBlocks.CRIMSON_TAISHI_CHAIR.get(), "緋紅木太師椅");
+            this.add(ChangShengJueBlocks.WARPED_TAISHI_CHAIR.get(), "詭異木太師椅");
+            this.add(ChangShengJueBlocks.MANGROVE_TAISHI_CHAIR.get(), "紅木太師椅");
             this.add(ChangShengJueBlocks.HUANG_HUA_LI_TAISHI_CHAIR.get(), "黃花梨太師椅");
-            this.add(ChangShengJueBlocks.JI_CHI_MU_TAISHI_CHAIR.get(), "雞翅木太師椅");
+            this.add(ChangShengJueBlocks.WENGE_TAISHI_CHAIR.get(), "雞翅木太師椅");
+            this.add(ChangShengJueBlocks.ACACIA_TAISHI_CHAIR.get(), "金合歡太師椅");
+            this.add(ChangShengJueBlocks.DARK_OAK_TAISHI_CHAIR.get(), "深色橡木太師椅");
+            this.add(ChangShengJueBlocks.OAK_TAISHI_CHAIR.get(), "橡木太師椅");
+            this.add(ChangShengJueBlocks.CHERRY_TAISHI_CHAIR.get(), "樱花木太師椅");
+            this.add(ChangShengJueBlocks.SPRUCE_TAISHI_CHAIR.get(), "雲杉木太師椅");
             this.add(ChangShengJueBlocks.ZI_TAN_TAISHI_CHAIR.get(), "紫檀木太師椅");
 
+            this.add(ChangShengJueBlocks.BIRCH_FIVE_SCREEN_THRONE.get(), "白樺木五圍屏寶座");
+            this.add(ChangShengJueBlocks.JUNGLE_FIVE_SCREEN_THRONE.get(), "叢林木五圍屏寶座");
+            this.add(ChangShengJueBlocks.CRIMSON_FIVE_SCREEN_THRONE.get(), "緋紅木五圍屏寶座");
+            this.add(ChangShengJueBlocks.WARPED_FIVE_SCREEN_THRONE.get(), "詭異木五圍屏寶座");
+            this.add(ChangShengJueBlocks.MANGROVE_FIVE_SCREEN_THRONE.get(), "紅木五圍屏寶座");
             this.add(ChangShengJueBlocks.HUANG_HUA_LI_FIVE_SCREEN_THRONE.get(), "黃花梨五圍屏寶座");
-            this.add(ChangShengJueBlocks.JI_CHI_MU_FIVE_SCREEN_THRONE.get(), "雞翅木五圍屏寶座");
+            this.add(ChangShengJueBlocks.WENGE_FIVE_SCREEN_THRONE.get(), "雞翅木五圍屏寶座");
+            this.add(ChangShengJueBlocks.ACACIA_FIVE_SCREEN_THRONE.get(), "金合歡五圍屏寶座");
+            this.add(ChangShengJueBlocks.DARK_OAK_FIVE_SCREEN_THRONE.get(), "深色橡木五圍屏寶座");
+            this.add(ChangShengJueBlocks.OAK_FIVE_SCREEN_THRONE.get(), "橡木五圍屏寶座");
+            this.add(ChangShengJueBlocks.CHERRY_FIVE_SCREEN_THRONE.get(), "樱花木五圍屏寶座");
+            this.add(ChangShengJueBlocks.SPRUCE_FIVE_SCREEN_THRONE.get(), "雲杉木五圍屏寶座");
             this.add(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get(), "紫檀木五圍屏寶座");
 
             this.add(ChangShengJueBlocks.BIRCH_LOW_DESK.get(), "白樺木席桌");
+            this.add(ChangShengJueBlocks.JUNGLE_LOW_DESK.get(), "叢林木席桌");
             this.add(ChangShengJueBlocks.CRIMSON_LOW_DESK.get(), "緋紅木席桌");
             this.add(ChangShengJueBlocks.WARPED_LOW_DESK.get(), "詭異木席桌");
             this.add(ChangShengJueBlocks.MANGROVE_LOW_DESK.get(), "紅樹席桌");
@@ -1117,9 +1193,230 @@
             this.add(ChangShengJueBlocks.SPRUCE_LOW_DESK.get(), "雲杉木席桌");
             this.add(ChangShengJueBlocks.ZI_TAN_LOW_DESK.get(), "紫檀木席桌");
 
+            this.add(ChangShengJueBlocks.BIRCH_SQUARE_STOOL.get(), "白樺木方凳");
+            this.add(ChangShengJueBlocks.JUNGLE_SQUARE_STOOL.get(), "叢林木方凳");
+            this.add(ChangShengJueBlocks.CRIMSON_SQUARE_STOOL.get(), "緋紅木方凳");
+            this.add(ChangShengJueBlocks.WARPED_SQUARE_STOOL.get(), "詭異木方凳");
+            this.add(ChangShengJueBlocks.MANGROVE_SQUARE_STOOL.get(), "紅木方凳");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_SQUARE_STOOL.get(), "黃花梨方凳");
+            this.add(ChangShengJueBlocks.WENGE_SQUARE_STOOL.get(), "雞翅木方凳");
+            this.add(ChangShengJueBlocks.ACACIA_SQUARE_STOOL.get(), "金合歡方凳");
+            this.add(ChangShengJueBlocks.DARK_OAK_SQUARE_STOOL.get(), "深色橡木方凳");
+            this.add(ChangShengJueBlocks.OAK_SQUARE_STOOL.get(), "橡木方凳");
+            this.add(ChangShengJueBlocks.CHERRY_SQUARE_STOOL.get(), "樱花木方凳");
+            this.add(ChangShengJueBlocks.SPRUCE_SQUARE_STOOL.get(), "雲杉木方凳");
+            this.add(ChangShengJueBlocks.ZI_TAN_SQUARE_STOOL.get(), "紫檀木方凳");
+
+            this.add(ChangShengJueBlocks.BIRCH_FRETWORK_OPENWORK_PANEL.get(), "白樺木回紋亮格");
+            this.add(ChangShengJueBlocks.JUNGLE_FRETWORK_OPENWORK_PANEL.get(), "叢林木回紋亮格");
+            this.add(ChangShengJueBlocks.CRIMSON_FRETWORK_OPENWORK_PANEL.get(), "緋紅木回紋亮格");
+            this.add(ChangShengJueBlocks.WARPED_FRETWORK_OPENWORK_PANEL.get(), "詭異木回紋亮格");
+            this.add(ChangShengJueBlocks.MANGROVE_FRETWORK_OPENWORK_PANEL.get(), "紅木回紋亮格");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_FRETWORK_OPENWORK_PANEL.get(), "黄花梨回紋亮格");
+            this.add(ChangShengJueBlocks.WENGE_FRETWORK_OPENWORK_PANEL.get(), "雞翅木回紋亮格");
+            this.add(ChangShengJueBlocks.ACACIA_FRETWORK_OPENWORK_PANEL.get(), "金合歡回紋亮格");
+            this.add(ChangShengJueBlocks.DARK_OAK_FRETWORK_OPENWORK_PANEL.get(), "深色橡木回紋亮格");
+            this.add(ChangShengJueBlocks.OAK_FRETWORK_OPENWORK_PANEL.get(), "橡木回紋亮格");
+            this.add(ChangShengJueBlocks.CHERRY_FRETWORK_OPENWORK_PANEL.get(), "樱花木回紋亮格");
+            this.add(ChangShengJueBlocks.SPRUCE_FRETWORK_OPENWORK_PANEL.get(), "雲杉木回紋亮格");
+            this.add(ChangShengJueBlocks.ZI_TAN_FRETWORK_OPENWORK_PANEL.get(), "紫檀木回紋亮格");
+
+            this.add(ChangShengJueBlocks.BIRCH_BOOK_GRID.get(), "白樺木書格");
+            this.add(ChangShengJueBlocks.JUNGLE_BOOK_GRID.get(), "叢林木書格");
+            this.add(ChangShengJueBlocks.CRIMSON_BOOK_GRID.get(), "緋紅木書格");
+            this.add(ChangShengJueBlocks.WARPED_BOOK_GRID.get(), "詭異木書格");
+            this.add(ChangShengJueBlocks.MANGROVE_BOOK_GRID.get(), "紅木書格");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_BOOK_GRID.get(), "黄花梨書格");
+            this.add(ChangShengJueBlocks.WENGE_BOOK_GRID.get(), "雞翅木書格");
+            this.add(ChangShengJueBlocks.ACACIA_BOOK_GRID.get(), "金合歡書格");
+            this.add(ChangShengJueBlocks.DARK_OAK_BOOK_GRID.get(), "深色橡木書格");
+            this.add(ChangShengJueBlocks.OAK_BOOK_GRID.get(), "橡木書格");
+            this.add(ChangShengJueBlocks.CHERRY_BOOK_GRID.get(), "樱花木書格");
+            this.add(ChangShengJueBlocks.SPRUCE_BOOK_GRID.get(), "雲杉木書格");
+            this.add(ChangShengJueBlocks.ZI_TAN_BOOK_GRID.get(), "紫檀木書格");
+
+            this.add(ChangShengJueBlocks.BIRCH_CABINET.get(), "白樺木櫃子");
+            this.add(ChangShengJueBlocks.JUNGLE_CABINET.get(), "叢林木櫃子");
+            this.add(ChangShengJueBlocks.CRIMSON_CABINET.get(), "緋紅木櫃子");
+            this.add(ChangShengJueBlocks.WARPED_CABINET.get(), "詭異木櫃子");
+            this.add(ChangShengJueBlocks.MANGROVE_CABINET.get(), "紅木櫃子");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_CABINET.get(), "黄花梨櫃子");
+            this.add(ChangShengJueBlocks.WENGE_CABINET.get(), "雞翅木櫃子");
+            this.add(ChangShengJueBlocks.ACACIA_CABINET.get(), "金合歡櫃子");
+            this.add(ChangShengJueBlocks.DARK_OAK_CABINET.get(), "深色橡木櫃子");
+            this.add(ChangShengJueBlocks.OAK_CABINET.get(), "橡木櫃子");
+            this.add(ChangShengJueBlocks.CHERRY_CABINET.get(), "樱花木櫃子");
+            this.add(ChangShengJueBlocks.SPRUCE_CABINET.get(), "雲杉木櫃子");
+            this.add(ChangShengJueBlocks.ZI_TAN_CABINET.get(), "紫檀木櫃子");
+
+            this.add(ChangShengJueBlocks.BIRCH_LARGE_CABINET.get(), "白樺木立櫃");
+            this.add(ChangShengJueBlocks.JUNGLE_LARGE_CABINET.get(), "叢林木立櫃");
+            this.add(ChangShengJueBlocks.CRIMSON_LARGE_CABINET.get(), "緋紅木立櫃");
+            this.add(ChangShengJueBlocks.WARPED_LARGE_CABINET.get(), "詭異木立櫃");
+            this.add(ChangShengJueBlocks.MANGROVE_LARGE_CABINET.get(), "紅木立櫃");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_LARGE_CABINET.get(), "黄花梨立櫃");
+            this.add(ChangShengJueBlocks.WENGE_LARGE_CABINET.get(), "雞翅木立櫃");
+            this.add(ChangShengJueBlocks.ACACIA_LARGE_CABINET.get(), "金合歡立櫃");
+            this.add(ChangShengJueBlocks.DARK_OAK_LARGE_CABINET.get(), "深色橡木立櫃");
+            this.add(ChangShengJueBlocks.OAK_LARGE_CABINET.get(), "橡木立櫃");
+            this.add(ChangShengJueBlocks.CHERRY_LARGE_CABINET.get(), "樱花木立櫃");
+            this.add(ChangShengJueBlocks.SPRUCE_LARGE_CABINET.get(), "雲杉木立櫃");
+            this.add(ChangShengJueBlocks.ZI_TAN_LARGE_CABINET.get(), "紫檀木立櫃");
+
+            this.add(ChangShengJueBlocks.BIRCH_DRYING_RAIL.get(), "白樺木晾衣桿");
+            this.add(ChangShengJueBlocks.JUNGLE_DRYING_RAIL.get(), "叢林木晾衣桿");
+            this.add(ChangShengJueBlocks.CRIMSON_DRYING_RAIL.get(), "緋紅木晾衣桿");
+            this.add(ChangShengJueBlocks.WARPED_DRYING_RAIL.get(), "詭異木晾衣桿");
+            this.add(ChangShengJueBlocks.MANGROVE_DRYING_RAIL.get(), "紅木晾衣桿");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_DRYING_RAIL.get(), "黄花梨晾衣桿");
+            this.add(ChangShengJueBlocks.WENGE_DRYING_RAIL.get(), "雞翅木晾衣桿");
+            this.add(ChangShengJueBlocks.ACACIA_DRYING_RAIL.get(), "金合歡晾衣桿");
+            this.add(ChangShengJueBlocks.DARK_OAK_DRYING_RAIL.get(), "深色橡木晾衣桿");
+            this.add(ChangShengJueBlocks.OAK_DRYING_RAIL.get(), "橡木晾衣桿");
+            this.add(ChangShengJueBlocks.CHERRY_DRYING_RAIL.get(), "樱花木晾衣桿");
+            this.add(ChangShengJueBlocks.SPRUCE_DRYING_RAIL.get(), "雲杉木晾衣桿");
+            this.add(ChangShengJueBlocks.ZI_TAN_DRYING_RAIL.get(), "紫檀木晾衣桿");
+
+            this.add(ChangShengJueBlocks.BIRCH_CLOTHES_RACK.get(), "白樺木衣架");
+            this.add(ChangShengJueBlocks.JUNGLE_CLOTHES_RACK.get(), "叢林木衣架");
+            this.add(ChangShengJueBlocks.CRIMSON_CLOTHES_RACK.get(), "緋紅木衣架");
+            this.add(ChangShengJueBlocks.WARPED_CLOTHES_RACK.get(), "詭異木衣架");
+            this.add(ChangShengJueBlocks.MANGROVE_CLOTHES_RACK.get(), "紅木衣架");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_CLOTHES_RACK.get(), "黄花梨衣架");
+            this.add(ChangShengJueBlocks.WENGE_CLOTHES_RACK.get(), "雞翅木衣架");
+            this.add(ChangShengJueBlocks.ACACIA_CLOTHES_RACK.get(), "金合歡衣架");
+            this.add(ChangShengJueBlocks.DARK_OAK_CLOTHES_RACK.get(), "深色橡木衣架");
+            this.add(ChangShengJueBlocks.OAK_CLOTHES_RACK.get(), "橡木衣架");
+            this.add(ChangShengJueBlocks.CHERRY_CLOTHES_RACK.get(), "樱花木衣架");
+            this.add(ChangShengJueBlocks.SPRUCE_CLOTHES_RACK.get(), "雲杉木衣架");
+            this.add(ChangShengJueBlocks.ZI_TAN_CLOTHES_RACK.get(), "紫檀木衣架");
+
+            this.add(ChangShengJueBlocks.BIRCH_CHEST_OF_DRAWERS.get(), "白樺木屜櫃");
+            this.add(ChangShengJueBlocks.JUNGLE_CHEST_OF_DRAWERS.get(), "叢林木屜櫃");
+            this.add(ChangShengJueBlocks.CRIMSON_CHEST_OF_DRAWERS.get(), "緋紅木屜櫃");
+            this.add(ChangShengJueBlocks.WARPED_CHEST_OF_DRAWERS.get(), "詭異木屜櫃");
+            this.add(ChangShengJueBlocks.MANGROVE_CHEST_OF_DRAWERS.get(), "紅木屜櫃");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_CHEST_OF_DRAWERS.get(), "黄花梨屜櫃");
+            this.add(ChangShengJueBlocks.WENGE_CHEST_OF_DRAWERS.get(), "雞翅木屜櫃");
+            this.add(ChangShengJueBlocks.ACACIA_CHEST_OF_DRAWERS.get(), "金合歡屜櫃");
+            this.add(ChangShengJueBlocks.DARK_OAK_CHEST_OF_DRAWERS.get(), "深色橡木屜櫃");
+            this.add(ChangShengJueBlocks.OAK_CHEST_OF_DRAWERS.get(), "橡木屜櫃");
+            this.add(ChangShengJueBlocks.CHERRY_CHEST_OF_DRAWERS.get(), "樱花木屜櫃");
+            this.add(ChangShengJueBlocks.SPRUCE_CHEST_OF_DRAWERS.get(), "雲杉木屜櫃");
+            this.add(ChangShengJueBlocks.ZI_TAN_CHEST_OF_DRAWERS.get(), "紫檀木屜櫃");
+
+            this.add(ChangShengJueBlocks.BIRCH_LIANGGE.get(), "白樺木亮格");
+            this.add(ChangShengJueBlocks.JUNGLE_LIANGGE.get(), "叢林木亮格");
+            this.add(ChangShengJueBlocks.CRIMSON_LIANGGE.get(), "緋紅木亮格");
+            this.add(ChangShengJueBlocks.WARPED_LIANGGE.get(), "詭異木亮格");
+            this.add(ChangShengJueBlocks.MANGROVE_LIANGGE.get(), "紅木亮格");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_LIANGGE.get(), "黄花梨亮格");
+            this.add(ChangShengJueBlocks.WENGE_LIANGGE.get(), "雞翅木亮格");
+            this.add(ChangShengJueBlocks.ACACIA_LIANGGE.get(), "金合歡亮格");
+            this.add(ChangShengJueBlocks.DARK_OAK_LIANGGE.get(), "深色橡木亮格");
+            this.add(ChangShengJueBlocks.OAK_LIANGGE.get(), "橡木亮格");
+            this.add(ChangShengJueBlocks.CHERRY_LIANGGE.get(), "樱花木亮格");
+            this.add(ChangShengJueBlocks.SPRUCE_LIANGGE.get(), "雲杉木亮格");
+            this.add(ChangShengJueBlocks.ZI_TAN_LIANGGE.get(), "紫檀木亮格");
+
+            this.add(ChangShengJueBlocks.STONE_BENCH.get(), "石凳");
+            this.add(ChangShengJueBlocks.STONE_TABLE.get(), "石桌");
+            this.add(ChangShengJueBlocks.STONE_BALUSTRADE.get(),"石欄杆");
+
             this.add(ChangShengJueBlocks.ZAFU.get(), "蒲團");
 
+            this.add(ChangShengJueBlocks.BIRCH_FOLDING_SCREEN.get(), "白樺木折屏");
+            this.add(ChangShengJueBlocks.JUNGLE_FOLDING_SCREEN.get(), "叢林木折屏");
+            this.add(ChangShengJueBlocks.CRIMSON_FOLDING_SCREEN.get(), "緋紅木折屏");
+            this.add(ChangShengJueBlocks.WARPED_FOLDING_SCREEN.get(), "詭異木折屏");
+            this.add(ChangShengJueBlocks.MANGROVE_FOLDING_SCREEN.get(), "紅木折屏");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_FOLDING_SCREEN.get(), "黃花梨折屏");
+            this.add(ChangShengJueBlocks.WENGE_FOLDING_SCREEN.get(), "雞翅木折屏");
+            this.add(ChangShengJueBlocks.ACACIA_FOLDING_SCREEN.get(), "金合歡折屏");
+            this.add(ChangShengJueBlocks.DARK_OAK_FOLDING_SCREEN.get(), "深色橡木折屏");
+            this.add(ChangShengJueBlocks.OAK_FOLDING_SCREEN.get(), "橡木折屏");
+            this.add(ChangShengJueBlocks.CHERRY_FOLDING_SCREEN.get(), "樱花木折屏");
+            this.add(ChangShengJueBlocks.SPRUCE_FOLDING_SCREEN.get(), "雲杉木折屏");
+            this.add(ChangShengJueBlocks.ZI_TAN_FOLDING_SCREEN.get(), "紫檀木折屏");
+
+            this.add(ChangShengJueBlocks.BIRCH_ARHAT_BED.get(), "白樺木藤面羅漢床");
+            this.add(ChangShengJueBlocks.JUNGLE_ARHAT_BED.get(), "叢林木藤面羅漢床");
+            this.add(ChangShengJueBlocks.CRIMSON_ARHAT_BED.get(), "緋紅木藤面羅漢床");
+            this.add(ChangShengJueBlocks.WARPED_ARHAT_BED.get(), "詭異木藤面羅漢床");
+            this.add(ChangShengJueBlocks.MANGROVE_ARHAT_BED.get(), "紅木藤面羅漢床");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_ARHAT_BED.get(), "黃花梨藤面羅漢床");
+            this.add(ChangShengJueBlocks.WENGE_ARHAT_BED.get(), "雞翅木藤面羅漢床");
+            this.add(ChangShengJueBlocks.ACACIA_ARHAT_BED.get(), "金合歡藤面羅漢床");
+            this.add(ChangShengJueBlocks.DARK_OAK_ARHAT_BED.get(), "深色橡木藤面羅漢床");
+            this.add(ChangShengJueBlocks.OAK_ARHAT_BED.get(), "橡木藤面羅漢床");
+            this.add(ChangShengJueBlocks.CHERRY_ARHAT_BED.get(), "櫻花木藤面羅漢床");
+            this.add(ChangShengJueBlocks.SPRUCE_ARHAT_BED.get(), "雲杉木藤面羅漢床");
+            this.add(ChangShengJueBlocks.ZI_TAN_ARHAT_BED.get(), "紫檀木藤面羅漢床");
+
+            this.add(ChangShengJueBlocks.BIRCH_CANOPY_BED.get(), "白樺木架子床");
+            this.add(ChangShengJueBlocks.JUNGLE_CANOPY_BED.get(), "叢林木架子床");
+            this.add(ChangShengJueBlocks.CRIMSON_CANOPY_BED.get(), "緋紅木架子床");
+            this.add(ChangShengJueBlocks.WARPED_CANOPY_BED.get(), "詭異木架子床");
+            this.add(ChangShengJueBlocks.MANGROVE_CANOPY_BED.get(), "紅木架子床");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_CANOPY_BED.get(), "黃花梨架子床");
+            this.add(ChangShengJueBlocks.WENGE_CANOPY_BED.get(), "雞翅木架子床");
+            this.add(ChangShengJueBlocks.ACACIA_CANOPY_BED.get(), "金合歡架子床");
+            this.add(ChangShengJueBlocks.DARK_OAK_CANOPY_BED.get(), "深色橡木架子床");
+            this.add(ChangShengJueBlocks.OAK_CANOPY_BED.get(), "橡木架子床");
+            this.add(ChangShengJueBlocks.CHERRY_CANOPY_BED.get(), "櫻花木架子床");
+            this.add(ChangShengJueBlocks.SPRUCE_CANOPY_BED.get(), "雲杉木架子床");
+            this.add(ChangShengJueBlocks.ZI_TAN_CANOPY_BED.get(), "紫檀木架子床");
+
+            this.add(ChangShengJueBlocks.LANTERN.get(), "白色燈籠");
+            this.add(ChangShengJueBlocks.WHITE_LANTERN.get(), "白色燈籠");
+            this.add(ChangShengJueBlocks.ORANGE_LANTERN.get(), "橙色燈籠");
+            this.add(ChangShengJueBlocks.MAGENTA_LANTERN.get(), "品红色燈籠");
+            this.add(ChangShengJueBlocks.LIGHT_BLUE_LANTERN.get(), "浅蓝色燈籠");
+            this.add(ChangShengJueBlocks.YELLOW_LANTERN.get(), "黄色燈籠");
+            this.add(ChangShengJueBlocks.LIME_LANTERN.get(), "黄绿色燈籠");
+            this.add(ChangShengJueBlocks.PINK_LANTERN.get(), "粉红色燈籠");
+            this.add(ChangShengJueBlocks.GRAY_LANTERN.get(), "灰色燈籠");
+            this.add(ChangShengJueBlocks.LIGHT_GRAY_LANTERN.get(), "浅灰色燈籠");
+            this.add(ChangShengJueBlocks.CYAN_LANTERN.get(), "青色燈籠");
+            this.add(ChangShengJueBlocks.PURPLE_LANTERN.get(), "紫色燈籠");
+            this.add(ChangShengJueBlocks.BLUE_LANTERN.get(), "蓝色燈籠");
+            this.add(ChangShengJueBlocks.BROWN_LANTERN.get(), "棕色燈籠");
+            this.add(ChangShengJueBlocks.GREEN_LANTERN.get(), "绿色燈籠");
+            this.add(ChangShengJueBlocks.RED_LANTERN.get(), "红色燈籠");
+            this.add(ChangShengJueBlocks.BLACK_LANTERN.get(), "黑色燈籠");
+
+            this.add(ChangShengJueBlocks.BIRCH_LIGHT_STAND.get(), "白樺木獨柱燭台");
+            this.add(ChangShengJueBlocks.JUNGLE_LIGHT_STAND.get(), "叢林木白獨柱燭台");
+            this.add(ChangShengJueBlocks.CRIMSON_LIGHT_STAND.get(), "緋紅木白獨柱燭台");
+            this.add(ChangShengJueBlocks.WARPED_LIGHT_STAND.get(), "詭異木白獨柱燭台");
+            this.add(ChangShengJueBlocks.MANGROVE_LIGHT_STAND.get(), "紅木白獨柱燭台");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_LIGHT_STAND.get(), "黃花梨白獨柱燭台");
+            this.add(ChangShengJueBlocks.WENGE_LIGHT_STAND.get(), "雞翅木白獨柱燭台");
+            this.add(ChangShengJueBlocks.ACACIA_LIGHT_STAND.get(), "金合歡白獨柱燭台");
+            this.add(ChangShengJueBlocks.DARK_OAK_LIGHT_STAND.get(), "深色橡木白獨柱燭台");
+            this.add(ChangShengJueBlocks.OAK_LIGHT_STAND.get(), "橡木白獨柱燭台");
+            this.add(ChangShengJueBlocks.CHERRY_LIGHT_STAND.get(), "櫻花木白獨柱燭台");
+            this.add(ChangShengJueBlocks.SPRUCE_LIGHT_STAND.get(), "雲杉木白獨柱燭台");
+            this.add(ChangShengJueBlocks.ZI_TAN_LIGHT_STAND.get(), "紫檀木白獨柱燭台");
+
+            this.add(ChangShengJueBlocks.BIRCH_HEIGHT_LIGHT_STAND.get(), "白樺木燈掛架");
+            this.add(ChangShengJueBlocks.JUNGLE_HEIGHT_LIGHT_STAND.get(), "叢林木白燈掛架");
+            this.add(ChangShengJueBlocks.CRIMSON_HEIGHT_LIGHT_STAND.get(), "緋紅木白燈掛架");
+            this.add(ChangShengJueBlocks.WARPED_HEIGHT_LIGHT_STAND.get(), "詭異木白燈掛架");
+            this.add(ChangShengJueBlocks.MANGROVE_HEIGHT_LIGHT_STAND.get(), "紅木白燈掛架");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_HEIGHT_LIGHT_STAND.get(), "黃花梨白燈掛架");
+            this.add(ChangShengJueBlocks.WENGE_HEIGHT_LIGHT_STAND.get(), "雞翅木白燈掛架");
+            this.add(ChangShengJueBlocks.ACACIA_HEIGHT_LIGHT_STAND.get(), "金合歡白燈掛架");
+            this.add(ChangShengJueBlocks.DARK_OAK_HEIGHT_LIGHT_STAND.get(), "深色橡木白燈掛架");
+            this.add(ChangShengJueBlocks.OAK_HEIGHT_LIGHT_STAND.get(), "橡木白燈掛架");
+            this.add(ChangShengJueBlocks.CHERRY_HEIGHT_LIGHT_STAND.get(), "櫻花木白燈掛架");
+            this.add(ChangShengJueBlocks.SPRUCE_HEIGHT_LIGHT_STAND.get(), "雲杉木白燈掛架");
+            this.add(ChangShengJueBlocks.ZI_TAN_HEIGHT_LIGHT_STAND.get(), "紫檀木白燈掛架");
+
+            this.add(ChangShengJueBlocks.BAMBOO_MAT.get(), "竹席");
+
             this.add(ChangShengJueBlocks.BIRCH_WINE_TABLE.get(), "白樺木酒桌");
+            this.add(ChangShengJueBlocks.JUNGLE_WINE_TABLE.get(), "叢林木酒桌");
             this.add(ChangShengJueBlocks.CRIMSON_WINE_TABLE.get(), "緋紅木酒桌");
             this.add(ChangShengJueBlocks.WARPED_WINE_TABLE.get(), "詭異木酒桌");
             this.add(ChangShengJueBlocks.MANGROVE_WINE_TABLE.get(), "紅樹酒桌");
@@ -1277,6 +1574,7 @@
 
             //存储
             this.add("container.hercules", "大力神功");
+            this.add("container."+ ChangShengJue.MOD_ID +".cabinet", "櫃子");
 
             /*信息*/
             //死亡信息

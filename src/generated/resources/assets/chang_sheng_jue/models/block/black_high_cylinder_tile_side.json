@@ -1,7 +1,0 @@
-{
-  "parent": "chang_sheng_jue:block/high_cylinder_tile_side",
-  "textures": {
-    "1": "chang_sheng_jue:block/cylinder_tile_black_block",
-    "particle": "chang_sheng_jue:block/cylinder_tile_black_block"
-  }
-}

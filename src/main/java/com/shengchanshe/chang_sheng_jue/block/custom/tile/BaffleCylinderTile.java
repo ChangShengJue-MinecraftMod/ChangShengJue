@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.Mirror;
@@ -14,6 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
@@ -30,18 +32,15 @@ public class BaffleCylinderTile extends CylinderTile {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context) {
         Direction value = state.getValue(FACING);
-        if (state.is(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get()) || state.is(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_5.get())
-                || state.is(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_5.get()) || state.is(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_5.get())
-                || state.is(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_5.get())){
-            return Block.box(0, 0, 0, 16, 16, 16);
-        }if (state.is(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_2.get()) || state.is(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_2.get())
-                || state.is(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_2.get()) || state.is(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_2.get())
-                || state.is(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get())){
+        if (state.is(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE.get()) || state.is(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE.get())
+                || state.is(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE.get()) || state.is(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE.get())
+                || state.is(ChangShengJueBlocks.CYAN_DOUBLE_CYLINDER_TILE.get()) || state.is(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE.get())
+                || state.is(ChangShengJueBlocks.PURPLE_DOUBLE_CYLINDER_TILE.get())){
             return switch (value){
-                case NORTH -> state.getValue(BAFFLE) ? ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_2_B : ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_2;
-                case SOUTH -> state.getValue(BAFFLE) ? ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_2_B : ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_2;
-                case EAST -> state.getValue(BAFFLE) ? ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_2_B : ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_2;
-                default ->  state.getValue(BAFFLE) ? ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_2_B : ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_2;
+                case NORTH -> state.getValue(BAFFLE) ? ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_2 : ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_N_2_B;
+                case SOUTH -> state.getValue(BAFFLE) ? ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_2 : ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_S_2_B;
+                case EAST -> state.getValue(BAFFLE) ? ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_2 : ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_E_2_B;
+                default ->  state.getValue(BAFFLE) ? ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_2 : ChangShengJueVoxelShape.CYLINDER_TILE_BLOCK_W_2_B;
             };
         }else {
             return AABB;
@@ -51,11 +50,18 @@ public class BaffleCylinderTile extends CylinderTile {
 
     @Nullable
     @Override
-    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        Direction direction = pContext.getClickedFace();
-        BlockState blockstate = this.defaultBlockState().setValue(FACING,pContext.getHorizontalDirection().getOpposite())
-                .setValue(BAFFLE, direction == Direction.NORTH || direction == Direction.EAST || direction == Direction.WEST || direction == Direction.SOUTH);
-        return blockstate;
+    public BlockState getStateForPlacement(BlockPlaceContext placeContext) {
+        BlockPos clickedPos = placeContext.getClickedPos();
+        Level level = placeContext.getLevel();
+
+        Direction facing = placeContext.getHorizontalDirection().getOpposite();
+        BlockPos oppositePos = clickedPos.relative(facing.getOpposite());
+        BlockState oppositeState = level.getBlockState(oppositePos);
+        boolean hasBaffle = oppositeState.getBlock() instanceof CylinderTile;
+
+        return this.defaultBlockState()
+                .setValue(FACING, facing)
+                .setValue(BAFFLE, !hasBaffle);
     }
 
     @Override

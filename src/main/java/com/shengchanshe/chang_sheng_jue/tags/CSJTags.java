@@ -35,6 +35,9 @@ public class CSJTags {
         public static final TagKey<Block> PAINTING = tag("painting");
         public static final TagKey<Block> BENCH  = tag("bench");
         public static final TagKey<Block> DRINKING_TABLE_AND_CHAIRS  = tag("drinking_table_and_chairs");
+        public static final TagKey<Block> SQUARE_STOOL  = tag("square_stool");
+        public static final TagKey<Block> FOLDING_SCREEN  = tag("folding_screen");
+        public static final TagKey<Block> ARHAT_BED  = tag("arhat_bed");
         public static final TagKey<Block> BOOK_DESK = tag("book_desk");
         public static final TagKey<Block> TEAPOY = tag("teapoy");
         public static final TagKey<Block> TAISHI_CHAIR = tag("taishi_chair");

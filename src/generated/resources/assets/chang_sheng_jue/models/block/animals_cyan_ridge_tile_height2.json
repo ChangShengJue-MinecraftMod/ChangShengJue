@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/cylindertile/animals_ridge_tile_height2",
+  "textures": {
+    "1": "chang_sheng_jue:block/animals_cyan_roof_ridge",
+    "particle": "chang_sheng_jue:block/animals_cyan_roof_ridge"
+  }
+}

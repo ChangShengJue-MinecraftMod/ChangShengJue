@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/fretwork_openwork_panel",
+  "textures": {
+    "1": "chang_sheng_jue:block/cherry_storage_compartment",
+    "particle": "chang_sheng_jue:block/cherry_storage_compartment"
+  }
+}

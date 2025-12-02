@@ -812,224 +812,266 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get(),"Birch Ladder");
         this.add(ChangShengJueBlocks.YUN_SHAN_FU_TI_BLOCK.get(),"Spruce Ladder");
 
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE.get(),"Gray Tube Tile Block");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE.get(),"Red Glazed Tile Block");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get(),"Black Tube Tile Block");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get(),"Golden Glazed Tile Block");
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get(),"Cyan Glazed Tile Block");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(),"Gray Glazed Tile Block");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(),"Red Glazed Tile Block");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(),"Black Glazed Tile Block");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get(),"Golden Glazed Tile Block");
+        this.add(ChangShengJueBlocks.CYAN_CYLINDER_TILE_BLOCK.get(),"Cyan Glazed Tile Block");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(),"Blue Glazed Tile Block");
+        this.add(ChangShengJueBlocks.PURPLE_CYLINDER_TILE_BLOCK.get(),"Purple Glazed Tile Block");
 
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(),"Gray Tube Tile Slab");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(),"Gray Glazed Tile Slab");
         this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get(),"Red Glazed Tile Slab");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(),"Black Tube Tile Slab");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(),"Black Glazed Tile Slab");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(),"Golden Glazed Tile Slab");
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),"Cyan Glazed Tile Slab");
+        this.add(ChangShengJueBlocks.CYAN_CYLINDER_TILE_SLAB.get(),"Cyan Glazed Tile Slab");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),"Blue Glazed Tile Slab");
+        this.add(ChangShengJueBlocks.PURPLE_CYLINDER_TILE_SLAB.get(),"Purple Glazed Tile Slab");
 
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SIDE.get(),"Gray Tube Tile Side");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SIDE.get(),"Gray Glazed Tile Side");
         this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_SIDE.get(),"Red Glazed Tile Side");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SIDE.get(),"Black Tube Tile Side");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SIDE.get(),"Black Glazed Tile Side");
         this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SIDE.get(),"Golden Glazed Tile Side");
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SIDE.get(),"Cyan Glazed Tile Side");
+        this.add(ChangShengJueBlocks.CYAN_CYLINDER_TILE_SIDE.get(),"Cyan Glazed Tile Side");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SIDE.get(),"Blue Glazed Tile Side");
+        this.add(ChangShengJueBlocks.PURPLE_CYLINDER_TILE_SIDE.get(),"Purple Glazed Tile Side");
 
         this.add(ChangShengJueBlocks.GRE_OCTAGONAL_UPTURNED_EAVES.get(),"Gray Side Octagonal Upturned Eaves");
         this.add(ChangShengJueBlocks.RED_OCTAGONAL_UPTURNED_EAVES.get(),"Red Side Octagonal Upturned Eaves");
         this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_UPTURNED_EAVES.get(),"Black Side Octagonal Upturned Eaves");
         this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_UPTURNED_EAVES.get(),"Golden Side Octagonal Upturned Eaves");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES.get(),"Cyan Side Octagonal Upturned Eaves");
+        this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_UPTURNED_EAVES.get(),"Cyan Side Octagonal Upturned Eaves");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES.get(),"Blue Side Octagonal Upturned Eaves");
+        this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_UPTURNED_EAVES.get(),"Purple Side Octagonal Upturned Eaves");
 
         this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"Gray Side Octagonal Low Ridge Tiles (Front)");
         this.add(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"Red Side Octagonal Low Ridge Tiles (Front)");
         this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"Black Side Octagonal Low Ridge Tiles (Front)");
         this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"Golden Side Octagonal Low Ridge Tiles (Front)");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"Cyan Side Octagonal Low Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"Cyan Side Octagonal Low Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"Blue Side Octagonal Low Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get(),"Purple Side Octagonal Low Ridge Tiles (Front)");
 
         this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"Gray Side Octagonal Low Ridge Tiles (Behind)");
         this.add(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"Red Side Octagonal Low Ridge Tiles (Behind)");
         this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"Black Side Octagonal Low Ridge Tiles (Behind)");
         this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"Golden Side Octagonal Low Ridge Tiles (Behind)");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"Cyan Side Octagonal Low Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"Cyan Side Octagonal Low Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"Blue Side Octagonal Low Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get(),"Purple Side Octagonal Low Ridge Tiles (Behind)");
 
         this.add(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"Gray Side High Ridge Tiles (Front)");
         this.add(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"Red Side High Ridge Tiles (Front)");
         this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"Black Side High Ridge Tiles (Front)");
         this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"Golden Side High Ridge Tiles (Front)");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"Cyan Side High Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"Cyan Side High Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"Blue Side High Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get(),"Purple Side High Ridge Tiles (Front)");
 
         this.add(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"Gray Side High Ridge Tiles (Behind)");
         this.add(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"Red Side High Ridge Tiles (Behind)");
         this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"Black Side High Ridge Tiles (Behind)");
         this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"Golden Side High Ridge Tiles (Behind)");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"Cyan Side High Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"Cyan Side High Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"Blue Side High Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get(),"Purple Side High Ridge Tiles (Behind)");
 
         this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"Gray Side Double Ridge Tiles (Front)");
         this.add(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"Red Side Double Ridge Tiles (Front)");
         this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"Black Side Double Ridge Tiles (Front)");
         this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"Golden Side Double Ridge Tiles (Front)");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"Cyan Side Double Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"Cyan Side Double Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"Blue Side Double Ridge Tiles (Front)");
+        this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get(),"Purple Side Double Ridge Tiles (Front)");
 
         this.add(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"Gray Side Double Ridge Tiles (Behind)");
         this.add(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"Red Side Double Ridge Tiles (Behind)");
         this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"Black Side Double Ridge Tiles (Behind)");
         this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"Golden Side Double Ridge Tiles (Behind)");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"Cyan Side Double Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"Cyan Side Double Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"Blue Side Double Ridge Tiles (Behind)");
+        this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get(),"Purple Side Double Ridge Tiles (Behind)");
 
         this.add(ChangShengJueBlocks.GRE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"Gray Side Ridge Tile Roof");
         this.add(ChangShengJueBlocks.RED_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"Red Side Ridge Tile Roof");
         this.add(ChangShengJueBlocks.BLACK_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"Black Side Ridge Tile Roof");
         this.add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"Golden Side Ridge Tile Roof");
-        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"Cyan Side Ridge Tile Roof");
+        this.add(ChangShengJueBlocks.CYAN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"Cyan Side Ridge Tile Roof");
+        this.add(ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"Blue Side Ridge Tile Roof");
+        this.add(ChangShengJueBlocks.PURPLE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),"Purple Side Ridge Tile Roof");
 
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(),"Gray Tube Tile");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get(),"Red Glazed Tile");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(),"Black Tube Tile");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get(),"Golden Glazed Tile");
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get(),"Cyan Glazed Tile");
+        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE.get(),"Gray Glazed Tile");
+        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE.get(),"Red Glazed Tile");
+        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get(),"Black Glazed Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get(),"Golden Glazed Tile");
+        this.add(ChangShengJueBlocks.CYAN_CYLINDER_TILE.get(),"Cyan Glazed Tile");
+        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get(),"Blue Glazed Tile");
+        this.add(ChangShengJueBlocks.PURPLE_CYLINDER_TILE.get(),"Purple Glazed Tile");
 
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_1.get(),"Gray Eaves Tile");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_1.get(),"Red Eaves Tile");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_1.get(),"Black Eaves Tile");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_1.get(),"Golden Eaves Tile");
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_1.get(),"Cyan Eaves Tile");
+        this.add(ChangShengJueBlocks.GRE_EAVES_TILE.get(),"Gray Eaves Tile");
+        this.add(ChangShengJueBlocks.RED_EAVES_TILE.get(),"Red Eaves Tile");
+        this.add(ChangShengJueBlocks.BLACK_EAVES_TILE.get(),"Black Eaves Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_EAVES_TILE.get(),"Golden Eaves Tile");
+        this.add(ChangShengJueBlocks.CYAN_EAVES_TILE.get(),"Cyan Eaves Tile");
+        this.add(ChangShengJueBlocks.BLUE_EAVES_TILE.get(),"Blue Eaves Tile");
+        this.add(ChangShengJueBlocks.PURPLE_EAVES_TILE.get(),"Purple Eaves Tile");
 
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get(),"Double Cyan Glazed Tile");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_2.get(),"Double Gray Tube Tile");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_2.get(),"Double Red Glazed Tile");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_2.get(),"Double Black Tube Tile");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_2.get(),"Double Golden Glazed Tile");
+        this.add(ChangShengJueBlocks.CYAN_DOUBLE_CYLINDER_TILE.get(),"Double Cyan Glazed Tile");
+        this.add(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE.get(),"Double Gray Glazed Tile");
+        this.add(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE.get(),"Double Red Glazed Tile");
+        this.add(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE.get(),"Double Black Glazed Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE.get(),"Double Golden Glazed Tile");
+        this.add(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE.get(),"Double Blue Glazed Tile");
+        this.add(ChangShengJueBlocks.PURPLE_DOUBLE_CYLINDER_TILE.get(),"Double Purple Glazed Tile");
 
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_3.get(),"Cyan Small Chiwen");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_3.get(),"Gray Small Chiwen");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_3.get(),"Red Small Chiwen");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_3.get(),"Black Small Chiwen");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_3.get(),"Golden Small Chiwen");
+        this.add(ChangShengJueBlocks.CYAN_SMALL_DEMON_MASK.get(),"Cyan Small Chiwen");
+        this.add(ChangShengJueBlocks.GRE_SMALL_DEMON_MASK.get(),"Gray Small Chiwen");
+        this.add(ChangShengJueBlocks.RED_SMALL_DEMON_MASK.get(),"Red Small Chiwen");
+        this.add(ChangShengJueBlocks.BLACK_SMALL_DEMON_MASK.get(),"Black Small Chiwen");
+        this.add(ChangShengJueBlocks.GOLDEN_SMALL_DEMON_MASK.get(),"Golden Small Chiwen");
+        this.add(ChangShengJueBlocks.BLUE_SMALL_DEMON_MASK.get(),"Blue Small Chiwen");
+        this.add(ChangShengJueBlocks.PURPLE_SMALL_DEMON_MASK.get(),"Purple Small Chiwen");
 
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get(),"Cyan High Ridge Tile");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_4.get(),"Gray High Ridge Tile");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_4.get(),"Red High Ridge Tile");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get(),"Black High Ridge Tile");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get(),"Golden High Ridge Tile");
+        this.add(ChangShengJueBlocks.CYAN_RIDGE_TILE.get(),"Cyan Ridge Tile");
+        this.add(ChangShengJueBlocks.GRE_RIDGE_TILE.get(),"Gray Ridge Tile");
+        this.add(ChangShengJueBlocks.RED_RIDGE_TILE.get(),"Red Ridge Tile");
+        this.add(ChangShengJueBlocks.BLACK_RIDGE_TILE.get(),"Black Ridge Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_RIDGE_TILE.get(),"Golden Ridge Tile");
+        this.add(ChangShengJueBlocks.BLUE_RIDGE_TILE.get(),"Blue Ridge Tile");
+        this.add(ChangShengJueBlocks.PURPLE_RIDGE_TILE.get(),"Purple Ridge Tile");
 
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_5.get(),"Cyan High Glazed Tile");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get(),"Gray High Tube Tile");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_5.get(),"Red High Glazed Tile");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_5.get(),"Black High Tube Tile");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_5.get(),"Golden High Glazed Tile");
+        this.add(ChangShengJueBlocks.CYAN_DOUBLE_RIDGE_TILE.get(),"Double Cyan Ridge Tile");
+        this.add(ChangShengJueBlocks.GRE_DOUBLE_RIDGE_TILE.get(),"Double Gray Ridge Tile");
+        this.add(ChangShengJueBlocks.RED_DOUBLE_RIDGE_TILE.get(),"Double Red Ridge Tile");
+        this.add(ChangShengJueBlocks.BLACK_DOUBLE_RIDGE_TILE.get(),"Double Black Ridge Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_RIDGE_TILE.get(),"Double Golden Ridge Tile");
+        this.add(ChangShengJueBlocks.BLUE_DOUBLE_RIDGE_TILE.get(),"Double Blue Ridge Tile");
+        this.add(ChangShengJueBlocks.PURPLE_DOUBLE_RIDGE_TILE.get(),"Purple Blue Ridge Tile");
 
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_6.get(),"Double Cyan Ridge Tile");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_6.get(),"Double Gray Ridge Tile");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_6.get(),"Double Red Ridge Tile");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_6.get(),"Double Black Ridge Tile");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_6.get(),"Double Golden Ridge Tile");
+        this.add(ChangShengJueBlocks.CYAN_EAVES_CYLINDER_TILE.get(),"Cyan Upturned Eaves Glazed Tile");
+        this.add(ChangShengJueBlocks.GRE_EAVES_CYLINDER_TILE.get(),"Gray Upturned Eaves Glazed Tile");
+        this.add(ChangShengJueBlocks.RED_EAVES_CYLINDER_TILE.get(),"Red Upturned Eaves Glazed Tile");
+        this.add(ChangShengJueBlocks.BLACK_EAVES_CYLINDER_TILE.get(),"Black Upturned Eaves Glazed Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_EAVES_CYLINDER_TILE.get(),"Golden Upturned Eaves Glazed Tile");
+        this.add(ChangShengJueBlocks.BLUE_EAVES_CYLINDER_TILE.get(),"Blue Upturned Eaves Glazed Tile");
+        this.add(ChangShengJueBlocks.PURPLE_EAVES_CYLINDER_TILE.get(),"Purple Upturned Eaves Glazed Tile");
 
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get(),"Cyan Upturned Eaves Glazed Tile");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7.get(),"Gray Upturned Eaves Tube Tile");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_7.get(),"Red Upturned Eaves Glazed Tile");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get(),"Black Upturned Eaves Tube Tile");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get(),"Golden Upturned Eaves Glazed Tile");
-
-        this.add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get(),"Cyan Ridge Tile");
-        this.add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8.get(),"Gray Ridge Tile");
-        this.add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8.get(),"Red Ridge Tile");
-        this.add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get(),"Black Ridge Tile");
-        this.add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get(),"Golden Ridge Tile");
-
-        this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get(),"Cyan Double-Ridge Ornamental Tile");
+        this.add(ChangShengJueBlocks.ANIMALS_CYAN_RIDGE_TILE.get(),"Cyan Double-Ridge Ornamental Tile");
         this.add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE.get(),"Gray Double-Ridge Ornamental Tile");
         this.add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE.get(),"Red Double-Ridge Ornamental Tile");
         this.add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE.get(),"Black Double-Ridge Ornamental Tile");
         this.add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE.get(),"Golden Double-Ridge Ornamental Tile");
+        this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get(),"Blue Double-Ridge Ornamental Tile");
+        this.add(ChangShengJueBlocks.ANIMALS_PURPLE_RIDGE_TILE.get(),"Purple Double-Ridge Ornamental Tile");
 
-        this.add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE_1.get(),"Cyan Ridge Ornamental Tile");
-        this.add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE_1.get(),"Gray Ridge Ornamental Tile");
-        this.add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE_1.get(),"Red Ridge Ornamental Tile");
-        this.add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE_1.get(),"Black Ridge Ornamental Tile");
-        this.add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE_1.get(),"Golden Ridge Ornamental Tile");
-
-        this.add(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get(),"Cyan Hanging Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.HANGING_BEAST_CYAN_RIDGE_TILE.get(),"Cyan Hanging Beast Ridge Tile");
         this.add(ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE.get(),"Gray Hanging Beast Ridge Tile");
         this.add(ChangShengJueBlocks.HANGING_BEAST_RED_RIDGE_TILE.get(),"Red Hanging Beast Ridge Tile");
         this.add(ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE.get(),"Black Hanging Beast Ridge Tile");
         this.add(ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE.get(),"Golden Hanging Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get(),"Blue Hanging Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.HANGING_BEAST_PURPLE_RIDGE_TILE.get(),"Purple Hanging Beast Ridge Tile");
 
-        this.add(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get(),"Cyan Roof Ridge");
+        this.add(ChangShengJueBlocks.CYAN_ROOF_RIDGE.get(),"Cyan Roof Ridge");
         this.add(ChangShengJueBlocks.GRE_ROOF_RIDGE.get(),"Gray Roof Ridge");
         this.add(ChangShengJueBlocks.RED_ROOF_RIDGE.get(),"Red Roof Ridge");
         this.add(ChangShengJueBlocks.BLACK_ROOF_RIDGE.get(),"Black Roof Ridge");
         this.add(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE.get(),"Golden Roof Ridge");
+        this.add(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get(),"Blue Roof Ridge");
+        this.add(ChangShengJueBlocks.PURPLE_ROOF_RIDGE.get(),"Purple Roof Ridge");
 
-        this.add(ChangShengJueBlocks.BLUE_DEMON_MASK.get(), "Cyan Chiwen");
+        this.add(ChangShengJueBlocks.CYAN_DEMON_MASK.get(), "Cyan Chiwen");
         this.add(ChangShengJueBlocks.GRE_DEMON_MASK.get(), "Gray Chiwen");
         this.add(ChangShengJueBlocks.RED_DEMON_MASK.get(), "Red Chiwen");
         this.add(ChangShengJueBlocks.BLACK_DEMON_MASK.get(), "Black Chiwen");
         this.add(ChangShengJueBlocks.GOLDEN_DEMON_MASK.get(), "Golden Chiwen");
+        this.add(ChangShengJueBlocks.BLUE_DEMON_MASK.get(), "Blue Chiwen");
+        this.add(ChangShengJueBlocks.PURPLE_DEMON_MASK.get(), "Purple Chiwen");
 
-        this.add(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION.get(), "Cyan Pavilion Ridge Finial");
+        this.add(ChangShengJueBlocks.CYAN_RIDGE_FINIAL_PAVILION.get(), "Cyan Pavilion Ridge Finial");
         this.add(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION.get(), "Gray Pavilion Ridge Finial");
         this.add(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION.get(), "Red Pavilion Ridge Finial");
         this.add(ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION.get(), "Black Pavilion Ridge Finial");
         this.add(ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION.get(), "Golden Pavilion Ridge Finial");
+        this.add(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION.get(), "Blue Pavilion Ridge Finial");
+        this.add(ChangShengJueBlocks.PURPLE_RIDGE_FINIAL_PAVILION.get(), "Purple Pavilion Ridge Finial");
 
-        this.add(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION.get(), "Cyan Plaque Ridge Finial");
+        this.add(ChangShengJueBlocks.CYAN_CHARACTER_PLAQUE_PAVILION.get(), "Cyan Plaque Ridge Finial");
         this.add(ChangShengJueBlocks.GRE_CHARACTER_PLAQUE_PAVILION.get(), "Gray Plaque Ridge Finial");
         this.add(ChangShengJueBlocks.RED_CHARACTER_PLAQUE_PAVILION.get(), "Red Plaque Ridge Finial");
         this.add(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION.get(), "Black Plaque Ridge Finial");
         this.add(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION.get(), "Golden Plaque Ridge Finial");
+        this.add(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION.get(), "Blue Plaque Ridge Finial");
+        this.add(ChangShengJueBlocks.PURPLE_CHARACTER_PLAQUE_PAVILION.get(), "Purple Plaque Ridge Finial");
 
-        this.add(ChangShengJueBlocks.BLUE_HIPPED_ROOF.get(), "Cyan Pyramidal Roof");
+        this.add(ChangShengJueBlocks.CYAN_HIPPED_ROOF.get(), "Cyan Pyramidal Roof");
         this.add(ChangShengJueBlocks.GRE_HIPPED_ROOF.get(), "Gray Pyramidal Roof");
         this.add(ChangShengJueBlocks.RED_HIPPED_ROOF.get(), "Red Pyramidal Roof");
         this.add(ChangShengJueBlocks.BLACK_HIPPED_ROOF.get(), "Black Pyramidal Roof");
         this.add(ChangShengJueBlocks.GOLDEN_HIPPED_ROOF.get(), "Golden Pyramidal Roof");
+        this.add(ChangShengJueBlocks.BLUE_HIPPED_ROOF.get(), "Blue Pyramidal Roof");
+        this.add(ChangShengJueBlocks.PURPLE_HIPPED_ROOF.get(), "Purple Pyramidal Roof");
 
-        this.add(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get(), "Cyan Aligned Eaves Tile");
+        this.add(ChangShengJueBlocks.CYAN_GABLE_RIDGE_CYLINDER_TILE.get(), "Cyan Aligned Eaves Tile");
         this.add(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.get(), "Gray Aligned Eaves Tile");
         this.add(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get(), "Red Aligned Eaves Tile");
         this.add(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.get(), "Black Aligned Eaves Tile");
         this.add(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get(), "Golden Aligned Eaves Tile");
+        this.add(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get(), "Blue Aligned Eaves Tile");
+        this.add(ChangShengJueBlocks.PURPLE_GABLE_RIDGE_CYLINDER_TILE.get(), "Purple Aligned Eaves Tile");
 
-        this.add(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "Double Cyan Ridge Tile");
+        this.add(ChangShengJueBlocks.CYAN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "Double Cyan Ridge Tile");
         this.add(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "Double Gray Ridge Tile");
         this.add(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "Double Red Ridge Tile");
         this.add(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "Double Black Ridge Tile");
         this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "Double Golden Ridge Tile");
+        this.add(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "Double Blue Ridge Tile");
+        this.add(ChangShengJueBlocks.PURPLE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(), "Purple Blue Ridge Tile");
 
-        this.add(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),"Cyan Double Hanging Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),"Blue Double Hanging Beast Ridge Tile");
         this.add(ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),"Gray Double Hanging Beast Ridge Tile");
         this.add(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),"Red Double Hanging Beast Ridge Tile");
         this.add(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),"Black Double Hanging Beast Ridge Tile");
         this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),"Golden Double Hanging Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.CYAN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),"Cyan Double Hanging Beast Ridge Tile");
+        this.add(ChangShengJueBlocks.PURPLE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),"Purple Double Hanging Beast Ridge Tile");
 
-        this.add(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get(), "Cyan Short Glazed Tile");
-        this.add(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get(), "Gray Short Tube Tile");
+        this.add(ChangShengJueBlocks.CYAN_SHORT_CYLINDER_TILE.get(), "Cyan Short Glazed Tile");
+        this.add(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get(), "Gray Short Glazed Tile");
         this.add(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get(), "Red Short Glazed Tile");
-        this.add(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get(), "Black Short Tube Tile");
+        this.add(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get(), "Black Short Glazed Tile");
         this.add(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get(), "Golden Short Glazed Tile");
+        this.add(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get(), "Blue Short Glazed Tile");
+        this.add(ChangShengJueBlocks.PURPLE_SHORT_CYLINDER_TILE.get(), "Purple Short Glazed Tile");
 
-        this.add(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE.get(), "Cyan Double Glazed Tile Side");
-        this.add(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE.get(), "Gray Double Tube Tile Side");
+        this.add(ChangShengJueBlocks.CYAN_DOUBLE_CYLINDER_TILE_SIDE.get(), "Cyan Double Glazed Tile Side");
+        this.add(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE.get(), "Gray Double Glazed Tile Side");
         this.add(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE_SIDE.get(), "Red Double Glazed Tile Side");
-        this.add(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE.get(), "Black Double Tube Tile Side");
+        this.add(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE.get(), "Black Double Glazed Tile Side");
         this.add(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE_SIDE.get(), "Golden Double Glazed Tile Side");
+        this.add(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE.get(), "Blue Double Glazed Tile Side");
+        this.add(ChangShengJueBlocks.PURPLE_DOUBLE_CYLINDER_TILE_SIDE.get(), "Purple Double Glazed Tile Side");
 
-        this.add(ChangShengJueBlocks.BLUE_HIGH_CYLINDER_TILE_SIDE.get(), "Cyan High Glazed Tile Side");
-        this.add(ChangShengJueBlocks.GRE_HIGH_CYLINDER_TILE_SIDE.get(), "Gray High Tube Tile Side");
-        this.add(ChangShengJueBlocks.RED_HIGH_CYLINDER_TILE_SIDE.get(), "Red High Glazed Tile Side");
-        this.add(ChangShengJueBlocks.BLACK_HIGH_CYLINDER_TILE_SIDE.get(), "Black High Tube Tile Side");
-        this.add(ChangShengJueBlocks.GOLDEN_HIGH_CYLINDER_TILE_SIDE.get(), "Golden High Glazed Tile Side");
-
-        this.add(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE.get(), "Cyan Side Eaves Tile");
+        this.add(ChangShengJueBlocks.CYAN_EAVES_TILE_SIDE.get(), "Cyan Side Eaves Tile");
         this.add(ChangShengJueBlocks.GRE_EAVES_TILE_SIDE.get(), "Gray Side Eaves Tile");
         this.add(ChangShengJueBlocks.RED_EAVES_TILE_SIDE.get(), "Red Side Eaves Tile");
         this.add(ChangShengJueBlocks.BLACK_EAVES_TILE_SIDE.get(), "Black Side Eaves Tile");
         this.add(ChangShengJueBlocks.GOLDEN_EAVES_TILE_SIDE.get(), "Golden Side Eaves Tile");
+        this.add(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE.get(), "Blue Side Eaves Tile");
+        this.add(ChangShengJueBlocks.PURPLE_EAVES_TILE_SIDE.get(), "Purple Side Eaves Tile");
 
-        this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get(), "Golden Tile");
-        this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get(), "Golden Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_TILE.get(), "Golden Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_GENTLE_TILE.get(), "Golden Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_CORNICES.get(), "Golden Tile");
+        this.add(ChangShengJueBlocks.GOLDEN_GENTLE_CORNICES.get(), "Golden Tile");
         this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_2.get(), "Golden Tile");
         this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_3.get(), "Golden Tile");
         this.add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_4.get(), "Golden Tile");
 
-        this.add(ChangShengJueBlocks.TILE_BLOCK.get(), "Tile");
-        this.add(ChangShengJueBlocks.TILE_BLOCK_1.get(), "Tile");
+        this.add(ChangShengJueBlocks.BLACK_TILE.get(), "Tile");
+        this.add(ChangShengJueBlocks.BLACK_GENTLE_TILE.get(), "Tile");
+        this.add(ChangShengJueBlocks.BLACK_CORNICES.get(), "Tile");
+        this.add(ChangShengJueBlocks.BLACK_GENTLE_CORNICES.get(), "Tile");
         this.add(ChangShengJueBlocks.TILE_BLOCK_2.get(), "Tile");
         this.add(ChangShengJueBlocks.TILE_BLOCK_3.get(), "Tile");
         this.add(ChangShengJueBlocks.TILE_BLOCK_4.get(), "Tile");
@@ -1073,6 +1115,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.MEI_REN_KAO_WARPED_BLOCK.get(), "Warped Meiren Kao");
 
         this.add(ChangShengJueBlocks.BIRCH_BENCH.get(), "Birch Bench");
+        this.add(ChangShengJueBlocks.JUNGLE_BENCH.get(), "Jungle Bench");
         this.add(ChangShengJueBlocks.CRIMSON_BENCH.get(), "Crimson Bench");
         this.add(ChangShengJueBlocks.WARPED_BENCH.get(), "Warped Bench");
         this.add(ChangShengJueBlocks.MANGROVE_BENCH.get(), "Mangrove Bench");
@@ -1086,6 +1129,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.ZI_TAN_BENCH.get(), "Zitan Bench");
 
         this.add(ChangShengJueBlocks.BIRCH_DRINKING_TABLE_AND_CHAIRS.get(), "Birch Wine table and chairs");
+        this.add(ChangShengJueBlocks.JUNGLE_DRINKING_TABLE_AND_CHAIRS.get(), "Jungle Wine table and chairs");
         this.add(ChangShengJueBlocks.CRIMSON_DRINKING_TABLE_AND_CHAIRS.get(), "Crimson Wine table and chairs");
         this.add(ChangShengJueBlocks.WARPED_DRINKING_TABLE_AND_CHAIRS.get(), "Warped Wine table and chairs");
         this.add(ChangShengJueBlocks.MANGROVE_DRINKING_TABLE_AND_CHAIRS.get(), "Mangrove Wine table and chairs");
@@ -1099,6 +1143,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.ZI_TAN_DRINKING_TABLE_AND_CHAIRS.get(), "Zitan Wine table and chairs");
 
         this.add(ChangShengJueBlocks.BIRCH_BOOK_DESK.get(), "Birch Writing Desk");
+        this.add(ChangShengJueBlocks.JUNGLE_BOOK_DESK.get(), "Jungle Writing Desk");
         this.add(ChangShengJueBlocks.CRIMSON_BOOK_DESK.get(), "Crimson Writing Desk");
         this.add(ChangShengJueBlocks.WARPED_BOOK_DESK.get(), "Warped Writing Desk");
         this.add(ChangShengJueBlocks.MANGROVE_BOOK_DESK.get(), "Mangrove Writing Desk");
@@ -1111,19 +1156,50 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.SPRUCE_BOOK_DESK.get(), "Spruce Writing Desk");
         this.add(ChangShengJueBlocks.ZI_TAN_BOOK_DESK.get(), "Zitan Writing Desk");
 
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_TEAPOY.get(), "Huanghuali Teapoy");
-        this.add(ChangShengJueBlocks.JI_CHI_MU_TEAPOY.get(), "Wenge Teapoy");
-        this.add(ChangShengJueBlocks.ZI_TAN_TEAPOY.get(), "Zitan Teapoy");
+        this.add(ChangShengJueBlocks.BIRCH_TEAPOY.get(), "Birch Teapoy");
+        this.add(ChangShengJueBlocks.JUNGLE_TEAPOY.get(),"Jungle Teapoy");
+        this.add(ChangShengJueBlocks.CRIMSON_TEAPOY.get(),"Crimson Teapoy");
+        this.add(ChangShengJueBlocks.WARPED_TEAPOY.get(),"Warped Teapoy");
+        this.add(ChangShengJueBlocks.MANGROVE_TEAPOY.get(),"Mangrove Teapoy");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_TEAPOY.get(),"Huanghuali Teapoy");
+        this.add(ChangShengJueBlocks.WENGE_TEAPOY.get(),"Wenge Teapoy");
+        this.add(ChangShengJueBlocks.ACACIA_TEAPOY.get(),"Acacia Teapoy");
+        this.add(ChangShengJueBlocks.DARK_OAK_TEAPOY.get(),"Dark Oak Teapoy");
+        this.add(ChangShengJueBlocks.OAK_TEAPOY.get(),"Oak Teapoy");
+        this.add(ChangShengJueBlocks.CHERRY_TEAPOY.get(),"Cherry Teapoy");
+        this.add(ChangShengJueBlocks.SPRUCE_TEAPOY.get(),"Spruce Teapoy");
+        this.add(ChangShengJueBlocks.ZI_TAN_TEAPOY.get(),"Zitan Teapoy");
 
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_TAISHI_CHAIR.get(), "Huanghuali Taishi Chair");
-        this.add(ChangShengJueBlocks.JI_CHI_MU_TAISHI_CHAIR.get(), "Wenge Taishi Chair");
-        this.add(ChangShengJueBlocks.ZI_TAN_TAISHI_CHAIR.get(), "Zitan Taishi Chair");
+        this.add(ChangShengJueBlocks.BIRCH_TAISHI_CHAIR.get(), "Birch Taishi Chair");
+        this.add(ChangShengJueBlocks.JUNGLE_TAISHI_CHAIR.get(),"Jungle Taishi Chair");
+        this.add(ChangShengJueBlocks.CRIMSON_TAISHI_CHAIR.get(),"Crimson Taishi Chair");
+        this.add(ChangShengJueBlocks.WARPED_TAISHI_CHAIR.get(),"Warped Taishi Chair");
+        this.add(ChangShengJueBlocks.MANGROVE_TAISHI_CHAIR.get(),"Mangrove Taishi Chair");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_TAISHI_CHAIR.get(),"Huanghuali Taishi Chair");
+        this.add(ChangShengJueBlocks.WENGE_TAISHI_CHAIR.get(),"Wenge Taishi Chair");
+        this.add(ChangShengJueBlocks.ACACIA_TAISHI_CHAIR.get(),"Acacia Taishi Chair");
+        this.add(ChangShengJueBlocks.DARK_OAK_TAISHI_CHAIR.get(),"Dark Oak Taishi Chair");
+        this.add(ChangShengJueBlocks.OAK_TAISHI_CHAIR.get(),"Oak Taishi Chair");
+        this.add(ChangShengJueBlocks.CHERRY_TAISHI_CHAIR.get(),"Cherry Taishi Chair");
+        this.add(ChangShengJueBlocks.SPRUCE_TAISHI_CHAIR.get(),"Spruce Taishi Chair");
+        this.add(ChangShengJueBlocks.ZI_TAN_TAISHI_CHAIR.get(),"Zitan Taishi Chair");
 
-        this.add(ChangShengJueBlocks.HUANG_HUA_LI_FIVE_SCREEN_THRONE.get(), "Huanghuali Five-screen Throne");
-        this.add(ChangShengJueBlocks.JI_CHI_MU_FIVE_SCREEN_THRONE.get(), "Wenge Five-screen Throne");
-        this.add(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get(), "Zitan Five-screen Throne");
+        this.add(ChangShengJueBlocks.BIRCH_FIVE_SCREEN_THRONE.get(), "Birch Five-screen Throne");
+        this.add(ChangShengJueBlocks.JUNGLE_FIVE_SCREEN_THRONE.get(),"Jungle Five-screen Throne");
+        this.add(ChangShengJueBlocks.CRIMSON_FIVE_SCREEN_THRONE.get(),"Crimson Five-screen Throne");
+        this.add(ChangShengJueBlocks.WARPED_FIVE_SCREEN_THRONE.get(),"Warped Five-screen Throne");
+        this.add(ChangShengJueBlocks.MANGROVE_FIVE_SCREEN_THRONE.get(),"Mangrove Five-screen Throne");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_FIVE_SCREEN_THRONE.get(),"Huanghuali Five-screen Throne");
+        this.add(ChangShengJueBlocks.WENGE_FIVE_SCREEN_THRONE.get(),"Wenge Five-screen Throne");
+        this.add(ChangShengJueBlocks.ACACIA_FIVE_SCREEN_THRONE.get(),"Acacia Five-screen Throne");
+        this.add(ChangShengJueBlocks.DARK_OAK_FIVE_SCREEN_THRONE.get(),"Dark Oak Five-screen Throne");
+        this.add(ChangShengJueBlocks.OAK_FIVE_SCREEN_THRONE.get(),"Oak Five-screen Throne");
+        this.add(ChangShengJueBlocks.CHERRY_FIVE_SCREEN_THRONE.get(),"Cherry Five-screen Throne");
+        this.add(ChangShengJueBlocks.SPRUCE_FIVE_SCREEN_THRONE.get(),"Spruce Five-screen Throne");
+        this.add(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get(),"Zitan Five-screen Throne");
 
         this.add(ChangShengJueBlocks.BIRCH_LOW_DESK.get(), "Birch Low Desk");
+        this.add(ChangShengJueBlocks.JUNGLE_LOW_DESK.get(), "Jungle Low Desk");
         this.add(ChangShengJueBlocks.CRIMSON_LOW_DESK.get(), "Crimson Low Desk");
         this.add(ChangShengJueBlocks.WARPED_LOW_DESK.get(), "Warped Low Desk");
         this.add(ChangShengJueBlocks.MANGROVE_LOW_DESK.get(), "Mangrove Low Desk");
@@ -1136,7 +1212,227 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.SPRUCE_LOW_DESK.get(), "Spruce Low Desk");
         this.add(ChangShengJueBlocks.ZI_TAN_LOW_DESK.get(), "Zitan Low Desk");
 
+        this.add(ChangShengJueBlocks.BIRCH_SQUARE_STOOL.get(), "Birch Square Stool");
+        this.add(ChangShengJueBlocks.JUNGLE_SQUARE_STOOL.get(),"Jungle Square Stool");
+        this.add(ChangShengJueBlocks.CRIMSON_SQUARE_STOOL.get(),"Crimson Square Stool");
+        this.add(ChangShengJueBlocks.WARPED_SQUARE_STOOL.get(),"Warped Square Stool");
+        this.add(ChangShengJueBlocks.MANGROVE_SQUARE_STOOL.get(),"Mangrove Square Stool");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_SQUARE_STOOL.get(),"Huanghuali Square Stool");
+        this.add(ChangShengJueBlocks.WENGE_SQUARE_STOOL.get(),"Wenge Square Stool");
+        this.add(ChangShengJueBlocks.ACACIA_SQUARE_STOOL.get(),"Acacia Square Stool");
+        this.add(ChangShengJueBlocks.DARK_OAK_SQUARE_STOOL.get(),"Dark Oak Square Stool");
+        this.add(ChangShengJueBlocks.OAK_SQUARE_STOOL.get(),"Oak Square Stool");
+        this.add(ChangShengJueBlocks.CHERRY_SQUARE_STOOL.get(),"Cherry Square Stool");
+        this.add(ChangShengJueBlocks.SPRUCE_SQUARE_STOOL.get(),"Spruce Square Stool");
+        this.add(ChangShengJueBlocks.ZI_TAN_SQUARE_STOOL.get(),"Zitan Square Stool");
+
+        this.add(ChangShengJueBlocks.BIRCH_FRETWORK_OPENWORK_PANEL.get(), "Birch Fretwork Openwork Panel");
+        this.add(ChangShengJueBlocks.JUNGLE_FRETWORK_OPENWORK_PANEL.get(), "Jungle Fretwork Openwork Panel");
+        this.add(ChangShengJueBlocks.CRIMSON_FRETWORK_OPENWORK_PANEL.get(), "Crimson Fretwork Openwork Panel");
+        this.add(ChangShengJueBlocks.WARPED_FRETWORK_OPENWORK_PANEL.get(), "Warped Fretwork Openwork Panel");
+        this.add(ChangShengJueBlocks.MANGROVE_FRETWORK_OPENWORK_PANEL.get(), "Mangrove Fretwork Openwork Panel");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_FRETWORK_OPENWORK_PANEL.get(), "Huanghuali Fretwork Openwork Panel");
+        this.add(ChangShengJueBlocks.WENGE_FRETWORK_OPENWORK_PANEL.get(), "Wenge Fretwork Openwork Panel");
+        this.add(ChangShengJueBlocks.ACACIA_FRETWORK_OPENWORK_PANEL.get(), "Acacia Fretwork Openwork Panel");
+        this.add(ChangShengJueBlocks.DARK_OAK_FRETWORK_OPENWORK_PANEL.get(), "Dark Oak Fretwork Openwork Panel");
+        this.add(ChangShengJueBlocks.OAK_FRETWORK_OPENWORK_PANEL.get(), "Oak Fretwork Openwork Panel");
+        this.add(ChangShengJueBlocks.CHERRY_FRETWORK_OPENWORK_PANEL.get(), "Cherry Fretwork Openwork Panel");
+        this.add(ChangShengJueBlocks.SPRUCE_FRETWORK_OPENWORK_PANEL.get(), "Spruce Fretwork Openwork Panel");
+        this.add(ChangShengJueBlocks.ZI_TAN_FRETWORK_OPENWORK_PANEL.get(), "Zitan Fretwork Openwork Panel");
+
+        this.add(ChangShengJueBlocks.BIRCH_BOOK_GRID.get(), "Birch Book Grid");
+        this.add(ChangShengJueBlocks.JUNGLE_BOOK_GRID.get(), "Jungle Book Grid");
+        this.add(ChangShengJueBlocks.CRIMSON_BOOK_GRID.get(), "Crimson Book Grid");
+        this.add(ChangShengJueBlocks.WARPED_BOOK_GRID.get(), "Warped Book Grid");
+        this.add(ChangShengJueBlocks.MANGROVE_BOOK_GRID.get(), "Mangrove Book Grid");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_BOOK_GRID.get(), "Huanghuali Book Grid");
+        this.add(ChangShengJueBlocks.WENGE_BOOK_GRID.get(), "Wenge Book Grid");
+        this.add(ChangShengJueBlocks.ACACIA_BOOK_GRID.get(), "Acacia Book Grid");
+        this.add(ChangShengJueBlocks.DARK_OAK_BOOK_GRID.get(), "Dark Oak Book Grid");
+        this.add(ChangShengJueBlocks.OAK_BOOK_GRID.get(), "Oak Book Grid");
+        this.add(ChangShengJueBlocks.CHERRY_BOOK_GRID.get(), "Cherry Book Grid");
+        this.add(ChangShengJueBlocks.SPRUCE_BOOK_GRID.get(), "Spruce Book Grid");
+        this.add(ChangShengJueBlocks.ZI_TAN_BOOK_GRID.get(), "Zitan Book Grid");
+
+        this.add(ChangShengJueBlocks.BIRCH_CABINET.get(), "Birch Cabinet");
+        this.add(ChangShengJueBlocks.JUNGLE_CABINET.get(), "Jungle Cabinet");
+        this.add(ChangShengJueBlocks.CRIMSON_CABINET.get(), "Crimson Cabinet");
+        this.add(ChangShengJueBlocks.WARPED_CABINET.get(), "Warped Cabinet");
+        this.add(ChangShengJueBlocks.MANGROVE_CABINET.get(), "Mangrove Cabinet");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_CABINET.get(), "Huanghuali Cabinet");
+        this.add(ChangShengJueBlocks.WENGE_CABINET.get(), "Wenge Cabinet");
+        this.add(ChangShengJueBlocks.ACACIA_CABINET.get(), "Acacia Cabinet");
+        this.add(ChangShengJueBlocks.DARK_OAK_CABINET.get(), "Dark Oak Cabinet");
+        this.add(ChangShengJueBlocks.OAK_CABINET.get(), "Oak Cabinet");
+        this.add(ChangShengJueBlocks.CHERRY_CABINET.get(), "Cherry Cabinet");
+        this.add(ChangShengJueBlocks.SPRUCE_CABINET.get(), "Spruce Cabinet");
+        this.add(ChangShengJueBlocks.ZI_TAN_CABINET.get(), "Zitan Cabinet");
+
+        this.add(ChangShengJueBlocks.BIRCH_LARGE_CABINET.get(), "Birch LargeCabinet");
+        this.add(ChangShengJueBlocks.JUNGLE_LARGE_CABINET.get(), "Jungle LargeCabinet");
+        this.add(ChangShengJueBlocks.CRIMSON_LARGE_CABINET.get(), "Crimson LargeCabinet");
+        this.add(ChangShengJueBlocks.WARPED_LARGE_CABINET.get(), "Warped LargeCabinet");
+        this.add(ChangShengJueBlocks.MANGROVE_LARGE_CABINET.get(), "Mangrove LargeCabinet");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_LARGE_CABINET.get(), "Huanghuali LargeCabinet");
+        this.add(ChangShengJueBlocks.WENGE_LARGE_CABINET.get(), "Wenge LargeCabinet");
+        this.add(ChangShengJueBlocks.ACACIA_LARGE_CABINET.get(), "Acacia LargeCabinet");
+        this.add(ChangShengJueBlocks.DARK_OAK_LARGE_CABINET.get(), "Dark Oak LargeCabinet");
+        this.add(ChangShengJueBlocks.OAK_LARGE_CABINET.get(), "Oak LargeCabinet");
+        this.add(ChangShengJueBlocks.CHERRY_LARGE_CABINET.get(), "Cherry LargeCabinet");
+        this.add(ChangShengJueBlocks.SPRUCE_LARGE_CABINET.get(), "Spruce LargeCabinet");
+        this.add(ChangShengJueBlocks.ZI_TAN_LARGE_CABINET.get(), "Zitan LargeCabinet");
+
+        this.add(ChangShengJueBlocks.BIRCH_DRYING_RAIL.get(), "Birch Drying Rail");
+        this.add(ChangShengJueBlocks.JUNGLE_DRYING_RAIL.get(), "Jungle Drying Rail");
+        this.add(ChangShengJueBlocks.CRIMSON_DRYING_RAIL.get(), "Crimson Drying Rail");
+        this.add(ChangShengJueBlocks.WARPED_DRYING_RAIL.get(), "Warped Drying Rail");
+        this.add(ChangShengJueBlocks.MANGROVE_DRYING_RAIL.get(), "Mangrove Drying Rail");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_DRYING_RAIL.get(), "Huanghuali Drying Rail");
+        this.add(ChangShengJueBlocks.WENGE_DRYING_RAIL.get(), "Wenge Drying Rail");
+        this.add(ChangShengJueBlocks.ACACIA_DRYING_RAIL.get(), "Acacia Drying Rail");
+        this.add(ChangShengJueBlocks.DARK_OAK_DRYING_RAIL.get(), "Dark Oak Drying Rail");
+        this.add(ChangShengJueBlocks.OAK_DRYING_RAIL.get(), "Oak Drying Rail");
+        this.add(ChangShengJueBlocks.CHERRY_DRYING_RAIL.get(), "Cherry Drying Rail");
+        this.add(ChangShengJueBlocks.SPRUCE_DRYING_RAIL.get(), "Spruce Drying Rail");
+        this.add(ChangShengJueBlocks.ZI_TAN_DRYING_RAIL.get(), "Zitan Drying Rail");
+
+        this.add(ChangShengJueBlocks.BIRCH_CLOTHES_RACK.get(), "Birch Clothes Rack");
+        this.add(ChangShengJueBlocks.JUNGLE_CLOTHES_RACK.get(), "Jungle Clothes Rack");
+        this.add(ChangShengJueBlocks.CRIMSON_CLOTHES_RACK.get(), "Crimson Clothes Rack");
+        this.add(ChangShengJueBlocks.WARPED_CLOTHES_RACK.get(), "Warped Clothes Rack");
+        this.add(ChangShengJueBlocks.MANGROVE_CLOTHES_RACK.get(), "Mangrove Clothes Rack");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_CLOTHES_RACK.get(), "Huanghuali Clothes Rack");
+        this.add(ChangShengJueBlocks.WENGE_CLOTHES_RACK.get(), "Wenge Clothes Rack");
+        this.add(ChangShengJueBlocks.ACACIA_CLOTHES_RACK.get(), "Acacia Clothes Rack");
+        this.add(ChangShengJueBlocks.DARK_OAK_CLOTHES_RACK.get(), "Dark Oak Clothes Rack");
+        this.add(ChangShengJueBlocks.OAK_CLOTHES_RACK.get(), "Oak Clothes Rack");
+        this.add(ChangShengJueBlocks.CHERRY_CLOTHES_RACK.get(), "Cherry Clothes Rack");
+        this.add(ChangShengJueBlocks.SPRUCE_CLOTHES_RACK.get(), "Spruce Clothes Rack");
+        this.add(ChangShengJueBlocks.ZI_TAN_CLOTHES_RACK.get(), "Zitan Clothes Rack");
+
+        this.add(ChangShengJueBlocks.BIRCH_CHEST_OF_DRAWERS.get(), "Birch Chest Of Drawers");
+        this.add(ChangShengJueBlocks.JUNGLE_CHEST_OF_DRAWERS.get(), "Jungle Chest Of Drawers");
+        this.add(ChangShengJueBlocks.CRIMSON_CHEST_OF_DRAWERS.get(), "Crimson Chest Of Drawers");
+        this.add(ChangShengJueBlocks.WARPED_CHEST_OF_DRAWERS.get(), "Warped Chest Of Drawers");
+        this.add(ChangShengJueBlocks.MANGROVE_CHEST_OF_DRAWERS.get(), "Mangrove Chest Of Drawers");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_CHEST_OF_DRAWERS.get(), "Huanghuali Chest Of Drawers");
+        this.add(ChangShengJueBlocks.WENGE_CHEST_OF_DRAWERS.get(), "Wenge Chest Of Drawers");
+        this.add(ChangShengJueBlocks.ACACIA_CHEST_OF_DRAWERS.get(), "Acacia Chest Of Drawers");
+        this.add(ChangShengJueBlocks.DARK_OAK_CHEST_OF_DRAWERS.get(), "Dark Oak Chest Of Drawers");
+        this.add(ChangShengJueBlocks.OAK_CHEST_OF_DRAWERS.get(), "Oak Chest Of Drawers");
+        this.add(ChangShengJueBlocks.CHERRY_CHEST_OF_DRAWERS.get(), "Cherry Chest Of Drawers");
+        this.add(ChangShengJueBlocks.SPRUCE_CHEST_OF_DRAWERS.get(), "Spruce Chest Of Drawers");
+        this.add(ChangShengJueBlocks.ZI_TAN_CHEST_OF_DRAWERS.get(), "Zitan Chest Of Drawers");
+
+        this.add(ChangShengJueBlocks.BIRCH_LIANGGE.get(), "Birch Liangge");
+        this.add(ChangShengJueBlocks.JUNGLE_LIANGGE.get(), "Jungle Liangge");
+        this.add(ChangShengJueBlocks.CRIMSON_LIANGGE.get(), "Crimson Liangge");
+        this.add(ChangShengJueBlocks.WARPED_LIANGGE.get(), "Warped Liangge");
+        this.add(ChangShengJueBlocks.MANGROVE_LIANGGE.get(), "Mangrove Liangge");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_LIANGGE.get(), "Huanghuali Liangge");
+        this.add(ChangShengJueBlocks.WENGE_LIANGGE.get(), "Wenge Liangge");
+        this.add(ChangShengJueBlocks.ACACIA_LIANGGE.get(), "Acacia Liangge");
+        this.add(ChangShengJueBlocks.DARK_OAK_LIANGGE.get(), "Dark Oak Liangge");
+        this.add(ChangShengJueBlocks.OAK_LIANGGE.get(), "Oak Liangge");
+        this.add(ChangShengJueBlocks.CHERRY_LIANGGE.get(), "Cherry Liangge");
+        this.add(ChangShengJueBlocks.SPRUCE_LIANGGE.get(), "Spruce Liangge");
+        this.add(ChangShengJueBlocks.ZI_TAN_LIANGGE.get(), "Zitan Liangge");
+
+        this.add(ChangShengJueBlocks.STONE_BENCH.get(), "Stone Bench");
+        this.add(ChangShengJueBlocks.STONE_TABLE.get(), "Stone Table");
+        this.add(ChangShengJueBlocks.STONE_BALUSTRADE.get(),"Stone Balustrade");
+
         this.add(ChangShengJueBlocks.ZAFU.get(), "Futon");
+
+        this.add(ChangShengJueBlocks.BIRCH_FOLDING_SCREEN.get(), "Birch Folding Screen");
+        this.add(ChangShengJueBlocks.JUNGLE_FOLDING_SCREEN.get(),"Jungle Folding Screen");
+        this.add(ChangShengJueBlocks.CRIMSON_FOLDING_SCREEN.get(),"Crimson Folding Screen");
+        this.add(ChangShengJueBlocks.WARPED_FOLDING_SCREEN.get(),"Warped Folding Screen");
+        this.add(ChangShengJueBlocks.MANGROVE_FOLDING_SCREEN.get(),"Mangrove Folding Screen");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_FOLDING_SCREEN.get(),"Huanghuali Folding Screen");
+        this.add(ChangShengJueBlocks.WENGE_FOLDING_SCREEN.get(),"Wenge Folding Screen");
+        this.add(ChangShengJueBlocks.ACACIA_FOLDING_SCREEN.get(),"Acacia Folding Screen");
+        this.add(ChangShengJueBlocks.DARK_OAK_FOLDING_SCREEN.get(),"Dark Oak Folding Screen");
+        this.add(ChangShengJueBlocks.OAK_FOLDING_SCREEN.get(),"Oak Folding Screen");
+        this.add(ChangShengJueBlocks.CHERRY_FOLDING_SCREEN.get(),"Cherry Folding Screen");
+        this.add(ChangShengJueBlocks.SPRUCE_FOLDING_SCREEN.get(),"Spruce Folding Screen");
+        this.add(ChangShengJueBlocks.ZI_TAN_FOLDING_SCREEN.get(),"Zitan Folding Screen");
+
+        this.add(ChangShengJueBlocks.BIRCH_ARHAT_BED.get(),"Birch Vine Arhat bed");
+        this.add(ChangShengJueBlocks.JUNGLE_ARHAT_BED.get(),"Jungle Vine Arhat bed");
+        this.add(ChangShengJueBlocks.CRIMSON_ARHAT_BED.get(),"Crimson Vine Arhat bed");
+        this.add(ChangShengJueBlocks.WARPED_ARHAT_BED.get(),"Warped Vine Arhat bed");
+        this.add(ChangShengJueBlocks.MANGROVE_ARHAT_BED.get(),"Mangrove Vine Arhat bed");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_ARHAT_BED.get(),"Huanghuali Vine Arhat bed");
+        this.add(ChangShengJueBlocks.WENGE_ARHAT_BED.get(),"Wenge Vine Arhat bed");
+        this.add(ChangShengJueBlocks.ACACIA_ARHAT_BED.get(),"Acacia Vine Arhat bed");
+        this.add(ChangShengJueBlocks.DARK_OAK_ARHAT_BED.get(),"Dark Oak Vine Arhat bed");
+        this.add(ChangShengJueBlocks.OAK_ARHAT_BED.get(),"Oak Vine Arhat bed");
+        this.add(ChangShengJueBlocks.CHERRY_ARHAT_BED.get(),"Cherry Vine Arhat bed");
+        this.add(ChangShengJueBlocks.SPRUCE_ARHAT_BED.get(),"Spruce Vine Arhat bed");
+        this.add(ChangShengJueBlocks.ZI_TAN_ARHAT_BED.get(),"Zitan Vine Arhat bed");
+
+        this.add(ChangShengJueBlocks.BIRCH_CANOPY_BED.get(),"Birch Canopy Bed");
+        this.add(ChangShengJueBlocks.JUNGLE_CANOPY_BED.get(),"Jungle Canopy Bed");
+        this.add(ChangShengJueBlocks.CRIMSON_CANOPY_BED.get(),"Crimson Canopy Bed");
+        this.add(ChangShengJueBlocks.WARPED_CANOPY_BED.get(),"Warped Canopy Bed");
+        this.add(ChangShengJueBlocks.MANGROVE_CANOPY_BED.get(),"Mangrove Canopy Bed");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_CANOPY_BED.get(),"Huanghuali Canopy Bed");
+        this.add(ChangShengJueBlocks.WENGE_CANOPY_BED.get(),"Wenge Canopy Bed");
+        this.add(ChangShengJueBlocks.ACACIA_CANOPY_BED.get(),"Acacia Canopy Bed");
+        this.add(ChangShengJueBlocks.DARK_OAK_CANOPY_BED.get(),"Dark Oak Canopy Bed");
+        this.add(ChangShengJueBlocks.OAK_CANOPY_BED.get(),"Oak Canopy Bed");
+        this.add(ChangShengJueBlocks.CHERRY_CANOPY_BED.get(),"Cherry Canopy Bed");
+        this.add(ChangShengJueBlocks.SPRUCE_CANOPY_BED.get(),"Spruce Canopy Bed");
+        this.add(ChangShengJueBlocks.ZI_TAN_CANOPY_BED.get(),"Zitan Canopy Bed");
+
+        this.add(ChangShengJueBlocks.LANTERN.get(), "Lanterns");
+        this.add(ChangShengJueBlocks.WHITE_LANTERN.get(), "White Lanterns");
+        this.add(ChangShengJueBlocks.ORANGE_LANTERN.get(), "Orange Lanterns");
+        this.add(ChangShengJueBlocks.MAGENTA_LANTERN.get(), "Magenta Lanterns");
+        this.add(ChangShengJueBlocks.LIGHT_BLUE_LANTERN.get(), "Light Blue Lanterns");
+        this.add(ChangShengJueBlocks.YELLOW_LANTERN.get(), "Yellow Lanterns");
+        this.add(ChangShengJueBlocks.LIME_LANTERN.get(), "Lime Lanterns");
+        this.add(ChangShengJueBlocks.PINK_LANTERN.get(), "Pink Lanterns");
+        this.add(ChangShengJueBlocks.GRAY_LANTERN.get(), "Gray Lanterns");
+        this.add(ChangShengJueBlocks.LIGHT_GRAY_LANTERN.get(), "Light Gray Lanterns");
+        this.add(ChangShengJueBlocks.CYAN_LANTERN.get(), "Cyan Lanterns");
+        this.add(ChangShengJueBlocks.PURPLE_LANTERN.get(), "Purple Lanterns");
+        this.add(ChangShengJueBlocks.BLUE_LANTERN.get(), "Blue Lanterns");
+        this.add(ChangShengJueBlocks.BROWN_LANTERN.get(), "Brown Lanterns");
+        this.add(ChangShengJueBlocks.GREEN_LANTERN.get(), "Green Lanterns");
+        this.add(ChangShengJueBlocks.RED_LANTERN.get(), "Red Lanterns");
+        this.add(ChangShengJueBlocks.BLACK_LANTERN.get(), "Black Lanterns");
+
+        this.add(ChangShengJueBlocks.BIRCH_LIGHT_STAND.get(),"Birch Light Stand");
+        this.add(ChangShengJueBlocks.JUNGLE_LIGHT_STAND.get(),"Jungle Light Stand");
+        this.add(ChangShengJueBlocks.CRIMSON_LIGHT_STAND.get(),"Crimson Light Stand");
+        this.add(ChangShengJueBlocks.WARPED_LIGHT_STAND.get(),"Warped Light Stand");
+        this.add(ChangShengJueBlocks.MANGROVE_LIGHT_STAND.get(),"Mangrove Light Stand");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_LIGHT_STAND.get(),"Huanghuali Light Stand");
+        this.add(ChangShengJueBlocks.WENGE_LIGHT_STAND.get(),"Wenge Light Stand");
+        this.add(ChangShengJueBlocks.ACACIA_LIGHT_STAND.get(),"Acacia Light Stand");
+        this.add(ChangShengJueBlocks.DARK_OAK_LIGHT_STAND.get(),"Dark Oak Light Stand");
+        this.add(ChangShengJueBlocks.OAK_LIGHT_STAND.get(),"Oak Light Stand");
+        this.add(ChangShengJueBlocks.CHERRY_LIGHT_STAND.get(),"Cherry Light Stand");
+        this.add(ChangShengJueBlocks.SPRUCE_LIGHT_STAND.get(),"Spruce Light Stand");
+        this.add(ChangShengJueBlocks.ZI_TAN_LIGHT_STAND.get(),"Zitan Light Stand");
+
+        this.add(ChangShengJueBlocks.BIRCH_HEIGHT_LIGHT_STAND.get(),"Birch Height Light Stand");
+        this.add(ChangShengJueBlocks.JUNGLE_HEIGHT_LIGHT_STAND.get(),"Jungle Height Light Stand");
+        this.add(ChangShengJueBlocks.CRIMSON_HEIGHT_LIGHT_STAND.get(),"Crimson Height Light Stand");
+        this.add(ChangShengJueBlocks.WARPED_HEIGHT_LIGHT_STAND.get(),"Warped Height Light Stand");
+        this.add(ChangShengJueBlocks.MANGROVE_HEIGHT_LIGHT_STAND.get(),"Mangrove Height Light Stand");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_HEIGHT_LIGHT_STAND.get(),"Huanghuali Height Light Stand");
+        this.add(ChangShengJueBlocks.WENGE_HEIGHT_LIGHT_STAND.get(),"Wenge Height Light Stand");
+        this.add(ChangShengJueBlocks.ACACIA_HEIGHT_LIGHT_STAND.get(),"Acacia Height Light Stand");
+        this.add(ChangShengJueBlocks.DARK_OAK_HEIGHT_LIGHT_STAND.get(),"Dark Oak Height Light Stand");
+        this.add(ChangShengJueBlocks.OAK_HEIGHT_LIGHT_STAND.get(),"Oak Height Light Stand");
+        this.add(ChangShengJueBlocks.CHERRY_HEIGHT_LIGHT_STAND.get(),"Cherry Height Light Stand");
+        this.add(ChangShengJueBlocks.SPRUCE_HEIGHT_LIGHT_STAND.get(),"Spruce Height Light Stand");
+        this.add(ChangShengJueBlocks.ZI_TAN_HEIGHT_LIGHT_STAND.get(),"Zitan Height Light Stand");
+
+        this.add(ChangShengJueBlocks.BAMBOO_MAT.get(), "Bamboo Mat");
 
         this.add(ChangShengJueBlocks.WHITE_JADE_BLOCK.get(),  "White Jade");
         this.add(ChangShengJueBlocks.WHITE_JADE_STAIRS.get(), "White Jade Stairs");
@@ -1173,6 +1469,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.EMPTY_WHEAT_NUGGETS_TRIBUTE_WINE.get(), "Empty Wheat Nuggets Tribute Wine Jar");
 
         this.add(ChangShengJueBlocks.BIRCH_WINE_TABLE.get(), "Birch Wine Table");
+        this.add(ChangShengJueBlocks.JUNGLE_WINE_TABLE.get(), "Jungle Wine Table");
         this.add(ChangShengJueBlocks.CRIMSON_WINE_TABLE.get(), "Crimson Wine Table");
         this.add(ChangShengJueBlocks.WARPED_WINE_TABLE.get(), "Warped Wine Table");
         this.add(ChangShengJueBlocks.MANGROVE_WINE_TABLE.get(), "Mangrove Wine Table");
@@ -1314,7 +1611,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
 
         //存储
         this.add("container.hercules", "Hercules' Might Method");
-
+        this.add("container."+ ChangShengJue.MOD_ID +".cabinet", "Cabinet");
         /*信息*/
         //死亡信息
         this.add("death.attack." + CSJDamageTypes.BLEED.location().getPath(), "%1$s bled to death.");

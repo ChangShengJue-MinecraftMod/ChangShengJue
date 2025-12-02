@@ -1,0 +1,259 @@
+{
+  "variants": {
+    "facing=east,section=body_front_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_front_bottom",
+      "y": 90
+    },
+    "facing=east,section=body_front_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_front_top",
+      "y": 90
+    },
+    "facing=east,section=body_rear_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_rear_bottom",
+      "y": 90
+    },
+    "facing=east,section=body_rear_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_rear_middle",
+      "y": 90
+    },
+    "facing=east,section=body_rear_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_rear_top",
+      "y": 90
+    },
+    "facing=east,section=foot_front_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_front_bottom",
+      "y": 90
+    },
+    "facing=east,section=foot_front_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_front_middle",
+      "y": 90
+    },
+    "facing=east,section=foot_front_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_front_top",
+      "y": 90
+    },
+    "facing=east,section=foot_rear_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_rear_bottom",
+      "y": 90
+    },
+    "facing=east,section=foot_rear_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_rear_middle",
+      "y": 90
+    },
+    "facing=east,section=foot_rear_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_rear_top",
+      "y": 90
+    },
+    "facing=east,section=head_front_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_front_bottom",
+      "y": 90
+    },
+    "facing=east,section=head_front_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_front_middle",
+      "y": 90
+    },
+    "facing=east,section=head_front_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_front_top",
+      "y": 90
+    },
+    "facing=east,section=head_rear_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_rear_bottom",
+      "y": 90
+    },
+    "facing=east,section=head_rear_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_rear_middle",
+      "y": 90
+    },
+    "facing=east,section=head_rear_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_rear_top",
+      "y": 90
+    },
+    "facing=north,section=body_front_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_front_bottom"
+    },
+    "facing=north,section=body_front_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_front_top"
+    },
+    "facing=north,section=body_rear_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_rear_bottom"
+    },
+    "facing=north,section=body_rear_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_rear_middle"
+    },
+    "facing=north,section=body_rear_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_rear_top"
+    },
+    "facing=north,section=foot_front_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_front_bottom"
+    },
+    "facing=north,section=foot_front_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_front_middle"
+    },
+    "facing=north,section=foot_front_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_front_top"
+    },
+    "facing=north,section=foot_rear_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_rear_bottom"
+    },
+    "facing=north,section=foot_rear_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_rear_middle"
+    },
+    "facing=north,section=foot_rear_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_rear_top"
+    },
+    "facing=north,section=head_front_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_front_bottom"
+    },
+    "facing=north,section=head_front_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_front_middle"
+    },
+    "facing=north,section=head_front_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_front_top"
+    },
+    "facing=north,section=head_rear_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_rear_bottom"
+    },
+    "facing=north,section=head_rear_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_rear_middle"
+    },
+    "facing=north,section=head_rear_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_rear_top"
+    },
+    "facing=south,section=body_front_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_front_bottom",
+      "y": 180
+    },
+    "facing=south,section=body_front_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_front_top",
+      "y": 180
+    },
+    "facing=south,section=body_rear_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_rear_bottom",
+      "y": 180
+    },
+    "facing=south,section=body_rear_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_rear_middle",
+      "y": 180
+    },
+    "facing=south,section=body_rear_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_rear_top",
+      "y": 180
+    },
+    "facing=south,section=foot_front_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_front_bottom",
+      "y": 180
+    },
+    "facing=south,section=foot_front_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_front_middle",
+      "y": 180
+    },
+    "facing=south,section=foot_front_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_front_top",
+      "y": 180
+    },
+    "facing=south,section=foot_rear_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_rear_bottom",
+      "y": 180
+    },
+    "facing=south,section=foot_rear_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_rear_middle",
+      "y": 180
+    },
+    "facing=south,section=foot_rear_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_rear_top",
+      "y": 180
+    },
+    "facing=south,section=head_front_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_front_bottom",
+      "y": 180
+    },
+    "facing=south,section=head_front_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_front_middle",
+      "y": 180
+    },
+    "facing=south,section=head_front_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_front_top",
+      "y": 180
+    },
+    "facing=south,section=head_rear_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_rear_bottom",
+      "y": 180
+    },
+    "facing=south,section=head_rear_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_rear_middle",
+      "y": 180
+    },
+    "facing=south,section=head_rear_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_rear_top",
+      "y": 180
+    },
+    "facing=west,section=body_front_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_front_bottom",
+      "y": 270
+    },
+    "facing=west,section=body_front_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_front_top",
+      "y": 270
+    },
+    "facing=west,section=body_rear_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_rear_bottom",
+      "y": 270
+    },
+    "facing=west,section=body_rear_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_rear_middle",
+      "y": 270
+    },
+    "facing=west,section=body_rear_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_body_rear_top",
+      "y": 270
+    },
+    "facing=west,section=foot_front_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_front_bottom",
+      "y": 270
+    },
+    "facing=west,section=foot_front_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_front_middle",
+      "y": 270
+    },
+    "facing=west,section=foot_front_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_front_top",
+      "y": 270
+    },
+    "facing=west,section=foot_rear_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_rear_bottom",
+      "y": 270
+    },
+    "facing=west,section=foot_rear_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_rear_middle",
+      "y": 270
+    },
+    "facing=west,section=foot_rear_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_foot_rear_top",
+      "y": 270
+    },
+    "facing=west,section=head_front_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_front_bottom",
+      "y": 270
+    },
+    "facing=west,section=head_front_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_front_middle",
+      "y": 270
+    },
+    "facing=west,section=head_front_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_front_top",
+      "y": 270
+    },
+    "facing=west,section=head_rear_bottom": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_rear_bottom",
+      "y": 270
+    },
+    "facing=west,section=head_rear_middle": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_rear_middle",
+      "y": 270
+    },
+    "facing=west,section=head_rear_top": {
+      "model": "chang_sheng_jue:block/cherry_canopy_bed_head_rear_top",
+      "y": 270
+    }
+  }
+}

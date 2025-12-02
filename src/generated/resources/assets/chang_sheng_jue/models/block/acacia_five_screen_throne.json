@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/five_screen_throne",
+  "textures": {
+    "1": "chang_sheng_jue:block/acacia_five_screen_throne",
+    "particle": "chang_sheng_jue:block/acacia_five_screen_throne"
+  }
+}

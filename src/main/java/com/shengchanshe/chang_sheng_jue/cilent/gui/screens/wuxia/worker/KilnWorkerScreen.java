@@ -106,7 +106,7 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
                     this.sendTradeTypeUpdate(TradeType.GRE);
                 }, Component.translatable("button." + ChangShengJue.MOD_ID + ".gre_button.tips"),
                         0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
-                        .setItemIcon(new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_2.get())))
+                        .setItemIcon(new ItemStack(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE.get())))
                 .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
                 .setItemIconScale(1.2f);
         this.redButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + 25, 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
@@ -114,7 +114,7 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
                     this.sendTradeTypeUpdate(TradeType.RED);
                 }, Component.translatable("button." + ChangShengJue.MOD_ID + ".red_button.tips"),
                         0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
-                        .setItemIcon(new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_2.get())))
+                        .setItemIcon(new ItemStack(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE.get())))
                 .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
                 .setItemIconScale(1.2f);
         this.blackButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + (25 * 2), 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
@@ -122,7 +122,7 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
                     this.sendTradeTypeUpdate(TradeType.BLACK);
                 }, Component.translatable("button." + ChangShengJue.MOD_ID + ".black_button.tips"),
                         0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
-                        .setItemIcon(new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_2.get())))
+                        .setItemIcon(new ItemStack(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE.get())))
                 .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
                 .setItemIconScale(1.2f);
         this.blueButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + (25 * 3), 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
@@ -130,7 +130,7 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
                     this.sendTradeTypeUpdate(TradeType.BLUE);
                 }, Component.translatable("button." + ChangShengJue.MOD_ID + ".blue_button.tips"),
                         0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
-                        .setItemIcon(new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get())))
+                        .setItemIcon(new ItemStack(ChangShengJueBlocks.CYAN_DOUBLE_CYLINDER_TILE.get())))
                 .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
                 .setItemIconScale(1.2f);
         this.goldenButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + (25 * 4), 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
@@ -138,7 +138,7 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
                     this.sendTradeTypeUpdate(TradeType.GOLDEN);
                 }, Component.translatable("button." + ChangShengJue.MOD_ID + ".golden_button.tips"),
                         0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
-                        .setItemIcon(new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_2.get())))
+                        .setItemIcon(new ItemStack(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE.get())))
                 .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
                 .setItemIconScale(1.2f);
         this.goldenButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + (25 * 5), 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {

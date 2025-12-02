@@ -16,6 +16,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fml.ModList;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -62,6 +63,9 @@ public class ThrowingKnives extends SwordItem {
 
     @Override
     public int getUseDuration(ItemStack stack) {
+        if (ModList.get().isLoaded("epicfight")) {
+            return Integer.MAX_VALUE;
+        }
         return 72000; // 最大持续时间（实际由逻辑控制）
     }
 

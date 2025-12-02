@@ -56,7 +56,7 @@ public class HippedRoof extends CylinderTile {
                                   LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
         RoofPart part = state.getValue(PART);
 
-        // 只在垂直方向检查（性能优化）
+        // 只在垂直方向检查
         if (direction.getAxis() != Direction.Axis.Y) {
             return state;
         }

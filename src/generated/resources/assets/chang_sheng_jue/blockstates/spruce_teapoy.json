@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "chang_sheng_jue:block/spruce_teapoy",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "chang_sheng_jue:block/spruce_teapoy"
+    },
+    "facing=south": {
+      "model": "chang_sheng_jue:block/spruce_teapoy",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "chang_sheng_jue:block/spruce_teapoy",
+      "y": 270
+    }
+  }
+}

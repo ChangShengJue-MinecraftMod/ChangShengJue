@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/gentle_tile_height1",
+  "textures": {
+    "1": "chang_sheng_jue:block/golden_tile_block",
+    "particle": "chang_sheng_jue:block/golden_tile_block"
+  }
+}

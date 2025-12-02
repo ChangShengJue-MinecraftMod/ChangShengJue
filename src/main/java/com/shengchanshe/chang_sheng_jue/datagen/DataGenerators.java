@@ -29,8 +29,8 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new CSJRecipesProvider(packOutput));
         generator.addProvider(event.includeServer(), new CSJWorldGenProvider(packOutput, lookupProvider));
 
-        generator.addProvider(event.includeClient(), new CSJBlockStateProvider(packOutput,existingFileHelper));
         generator.addProvider(event.includeClient(), new CSJBlockModelProvider(packOutput,existingFileHelper));
+        generator.addProvider(event.includeClient(), new CSJBlockStateProvider(packOutput,existingFileHelper));
         generator.addProvider(event.includeClient(), new CSJItemModelProvider(packOutput,existingFileHelper));
         generator.addProvider(event.includeServer(), CSJLootTableProvider.create(packOutput));
         generator.addProvider(event.includeServer(), new CSJGlobalLootModifiersProvider(packOutput));

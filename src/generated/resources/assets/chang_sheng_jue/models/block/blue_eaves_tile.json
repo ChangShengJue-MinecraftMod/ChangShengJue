@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/cylindertile/eaves_tile",
+  "textures": {
+    "1": "chang_sheng_jue:block/blue_cylinder_tile",
+    "particle": "chang_sheng_jue:block/blue_cylinder_tile"
+  }
+}

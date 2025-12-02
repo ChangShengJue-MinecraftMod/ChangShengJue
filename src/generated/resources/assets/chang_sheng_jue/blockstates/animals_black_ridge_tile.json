@@ -1,18 +1,243 @@
 {
   "variants": {
-    "facing=east": {
-      "model": "chang_sheng_jue:block/animals_black_ridge_tile",
+    "facing=east,layers=1,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
       "y": 90
     },
-    "facing=north": {
-      "model": "chang_sheng_jue:block/animals_black_ridge_tile"
+    "facing=east,layers=1,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 90
     },
-    "facing=south": {
-      "model": "chang_sheng_jue:block/animals_black_ridge_tile",
+    "facing=east,layers=2,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height2",
+      "y": 90
+    },
+    "facing=east,layers=2,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height2",
+      "y": 90
+    },
+    "facing=east,layers=3,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height3",
+      "y": 90
+    },
+    "facing=east,layers=3,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height3",
+      "y": 90
+    },
+    "facing=east,layers=4,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 90
+    },
+    "facing=east,layers=4,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 90
+    },
+    "facing=east,layers=5,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 90
+    },
+    "facing=east,layers=5,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 90
+    },
+    "facing=east,layers=6,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 90
+    },
+    "facing=east,layers=6,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 90
+    },
+    "facing=east,layers=7,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 90
+    },
+    "facing=east,layers=7,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 90
+    },
+    "facing=east,layers=8,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 90
+    },
+    "facing=east,layers=8,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 90
+    },
+    "facing=north,layers=1,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1"
+    },
+    "facing=north,layers=1,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1"
+    },
+    "facing=north,layers=2,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height2"
+    },
+    "facing=north,layers=2,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height2"
+    },
+    "facing=north,layers=3,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height3"
+    },
+    "facing=north,layers=3,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height3"
+    },
+    "facing=north,layers=4,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1"
+    },
+    "facing=north,layers=4,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1"
+    },
+    "facing=north,layers=5,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1"
+    },
+    "facing=north,layers=5,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1"
+    },
+    "facing=north,layers=6,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1"
+    },
+    "facing=north,layers=6,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1"
+    },
+    "facing=north,layers=7,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1"
+    },
+    "facing=north,layers=7,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1"
+    },
+    "facing=north,layers=8,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1"
+    },
+    "facing=north,layers=8,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1"
+    },
+    "facing=south,layers=1,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
       "y": 180
     },
-    "facing=west": {
-      "model": "chang_sheng_jue:block/animals_black_ridge_tile",
+    "facing=south,layers=1,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 180
+    },
+    "facing=south,layers=2,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height2",
+      "y": 180
+    },
+    "facing=south,layers=2,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height2",
+      "y": 180
+    },
+    "facing=south,layers=3,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height3",
+      "y": 180
+    },
+    "facing=south,layers=3,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height3",
+      "y": 180
+    },
+    "facing=south,layers=4,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 180
+    },
+    "facing=south,layers=4,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 180
+    },
+    "facing=south,layers=5,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 180
+    },
+    "facing=south,layers=5,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 180
+    },
+    "facing=south,layers=6,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 180
+    },
+    "facing=south,layers=6,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 180
+    },
+    "facing=south,layers=7,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 180
+    },
+    "facing=south,layers=7,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 180
+    },
+    "facing=south,layers=8,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 180
+    },
+    "facing=south,layers=8,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 180
+    },
+    "facing=west,layers=1,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 270
+    },
+    "facing=west,layers=1,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 270
+    },
+    "facing=west,layers=2,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height2",
+      "y": 270
+    },
+    "facing=west,layers=2,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height2",
+      "y": 270
+    },
+    "facing=west,layers=3,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height3",
+      "y": 270
+    },
+    "facing=west,layers=3,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height3",
+      "y": 270
+    },
+    "facing=west,layers=4,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 270
+    },
+    "facing=west,layers=4,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 270
+    },
+    "facing=west,layers=5,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 270
+    },
+    "facing=west,layers=5,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 270
+    },
+    "facing=west,layers=6,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 270
+    },
+    "facing=west,layers=6,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 270
+    },
+    "facing=west,layers=7,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 270
+    },
+    "facing=west,layers=7,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 270
+    },
+    "facing=west,layers=8,waterlogged=false": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
+      "y": 270
+    },
+    "facing=west,layers=8,waterlogged=true": {
+      "model": "chang_sheng_jue:block/animals_black_ridge_tile_height1",
       "y": 270
     }
   }

@@ -4,7 +4,7 @@
       "model": "chang_sheng_jue:block/red_cylinder_tile_slab"
     },
     "type=double": {
-      "model": "chang_sheng_jue:block/cylinder_tile_red"
+      "model": "chang_sheng_jue:block/red_cylinder_tile_block"
     },
     "type=top": {
       "model": "chang_sheng_jue:block/red_cylinder_tile_slab_top"

@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.fml.ModList;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
 import software.bernie.geckolib.constant.DefaultAnimations;
@@ -100,7 +101,8 @@ public class Knife extends SwordItem implements GeoItem {
     @Override
     public void releaseUsing(ItemStack stack, Level world, LivingEntity user, int remainingUseDuration) {
         if (user instanceof Player player && !world.isClientSide) {
-            int usedTicks = this.getUseDuration(stack) - remainingUseDuration;
+            int useDuration = this.getUseDuration(stack);
+            int usedTicks = useDuration - remainingUseDuration;
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                 if (cap.getCooldownTick(GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(GoldenBlackKnifeMethod.KUNG_FU_ID.toString()) >= 1) {
                     // 检查是否按住至少 0.3 秒（6 tick）
@@ -114,7 +116,10 @@ public class Knife extends SwordItem implements GeoItem {
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        return 72000; // 最大持续时间（实际由逻辑控制）
+        if (ModList.get().isLoaded("epicfight")) {
+            return Integer.MAX_VALUE;
+        }
+        return 72000;
     }
 
     @Override
