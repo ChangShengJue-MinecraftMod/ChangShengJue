@@ -50,6 +50,9 @@
     "chang_sheng_jue:forge_block",
     "chang_sheng_jue:stone_bench",
     "chang_sheng_jue:stone_table",
-    "chang_sheng_jue:stone_balustrade"
+    "chang_sheng_jue:stone_balustrade",
+    "chang_sheng_jue:stone_sharpening_stone",
+    "chang_sheng_jue:diamond_sharpening_stone",
+    "chang_sheng_jue:netherite_sharpening_stone"
   ]
 }

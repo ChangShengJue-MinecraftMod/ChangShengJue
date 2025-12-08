@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "forehead_band_helmet1",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 2
+    },
+    {
+      "item": "minecraft:emerald",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:forehead_band_helmet1"
+  }
+}

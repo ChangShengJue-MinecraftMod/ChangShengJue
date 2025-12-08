@@ -1,6 +1,7 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.sword;
 
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
+import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.yi_tian_jian.YiTianJianAttackEntity;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
@@ -9,8 +10,13 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.AbstractGolem;
+import net.minecraft.world.entity.animal.horse.SkeletonHorse;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
+import net.minecraft.world.entity.monster.Slime;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
@@ -37,7 +43,19 @@ public class Sword extends SwordItem implements GeoItem {
             if (!player.getMainHandItem().is(ChangShengJueItems.SOFT_SWORD.get())){
                 player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                     cap.comprehendKungFu((ServerPlayer) player, DuguNineSwords.KUNG_FU_ID.toString(), player);
-                    cap.attack((ServerPlayer) player,DuguNineSwords.KUNG_FU_ID.toString(),player,entity);
+                    boolean attack = cap.attack((ServerPlayer) player, DuguNineSwords.KUNG_FU_ID.toString(), player, entity);
+                    if (!attack) {
+                        if (entity instanceof LivingEntity livingEntity) {
+                            if (entity != player) {
+                                if (player.level().random.nextFloat() < cap.getEffectProbability(DuguNineSwords.KUNG_FU_ID.toString())) {
+                                    if (!isLivingSkeletonAndGolemAndSlime(player)) {
+                                        livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(),
+                                                30, 1, false, true), player);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 });
             }
             if (player.getMainHandItem().is(ChangShengJueItems.YI_TIAN_JIAN.get())){
@@ -48,6 +66,10 @@ public class Sword extends SwordItem implements GeoItem {
             }
         }
         return super.onLeftClickEntity(stack, player, entity);
+    }
+
+    public boolean isLivingSkeletonAndGolemAndSlime(LivingEntity pLivingEntity) {
+        return pLivingEntity instanceof AbstractSkeleton || pLivingEntity instanceof AbstractGolem || pLivingEntity instanceof Slime || pLivingEntity instanceof SkeletonHorse;
     }
 
     @Override

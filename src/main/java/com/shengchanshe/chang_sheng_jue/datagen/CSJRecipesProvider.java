@@ -161,6 +161,25 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("XXX")
                 .pattern("#X#")
                 .unlockedBy("has_sand", has(Tags.Items.SAND)).save(consumer);
+        //磨刀石
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.STONE_SHARPENING_STONE.get(),1)
+                .define('#', Ingredient.of(Tags.Items.COBBLESTONE))
+                .define('X', Ingredient.of(Items.STICK))
+                .pattern("###")
+                .pattern("X X")
+                .unlockedBy("has_sand", has(Tags.Items.COBBLESTONE)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DIAMOND_SHARPENING_STONE.get(),1)
+                .define('#', Ingredient.of(Tags.Items.GEMS_DIAMOND))
+                .define('X', Ingredient.of(Items.STICK))
+                .pattern("###")
+                .pattern("X X")
+                .unlockedBy("has_sand", has(Tags.Items.GEMS_DIAMOND)).save(consumer);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.NETHERITE_SHARPENING_STONE.get(),1)
+                .define('#', Ingredient.of(Tags.Items.INGOTS_NETHERITE))
+                .define('X', Ingredient.of(Items.STICK))
+                .pattern("###")
+                .pattern("X X")
+                .unlockedBy("has_sand", has(Tags.Items.INGOTS_NETHERITE)).save(consumer);
 
         //刷子
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueItems.PAINT_BRUSH.get(),1)

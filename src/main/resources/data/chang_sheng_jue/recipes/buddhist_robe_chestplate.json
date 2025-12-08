@@ -1,0 +1,16 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "buddhist_robe_chestplate",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 7
+    },
+    {
+      "tag": "minecraft:planks"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:buddhist_robe_chestplate"
+  }
+}

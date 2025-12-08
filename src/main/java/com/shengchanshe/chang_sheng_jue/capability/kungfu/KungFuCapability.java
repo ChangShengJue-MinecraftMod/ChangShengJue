@@ -157,7 +157,6 @@ public class KungFuCapability implements IKungFuCapability {
         return getKungFu(kungFuId)
                 .filter(kungFu -> kungFu instanceof IExternalKunfu)
                 .map(kungFu -> (IExternalKunfu)kungFu)
-                .filter(IExternalKunfu::isAttackReday)
                 .map(active -> {
                     active.attackEffect(source, target);
                     syncToClient(player);
@@ -165,14 +164,13 @@ public class KungFuCapability implements IKungFuCapability {
                 }).orElse(false);
     }
 
-
     @Override
     public float getEffectProbability(String kungFuId) {
         return getKungFu(kungFuId)
                 .filter(kungFu -> kungFu instanceof IExternalKunfu)
                 .map(kungFu -> (IExternalKunfu)kungFu)
                 .filter(IExternalKunfu::isAttackReday)
-                .map(IExternalKunfu::getEffectProbability).orElse(1.0f);
+                .map(IExternalKunfu::getEffectProbability).orElse(0.1f);
     }
 
     @Override

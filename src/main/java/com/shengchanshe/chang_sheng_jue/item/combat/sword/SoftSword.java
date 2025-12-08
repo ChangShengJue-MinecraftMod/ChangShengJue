@@ -1,6 +1,8 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.sword;
 
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
+import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.DuguNineSwords;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.XuannuSwordsmanship;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -8,6 +10,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -38,7 +41,19 @@ public class SoftSword extends Sword implements GeoItem {
         if (!player.level().isClientSide) {
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                 cap.comprehendKungFu((ServerPlayer) player, XuannuSwordsmanship.KUNG_FU_ID.toString(), player);
-                cap.attack((ServerPlayer) player, XuannuSwordsmanship.KUNG_FU_ID.toString(),player,entity);
+                boolean attack = cap.attack((ServerPlayer) player, XuannuSwordsmanship.KUNG_FU_ID.toString(), player, entity);
+                if (!attack) {
+                    if (entity instanceof LivingEntity livingEntity) {
+                        if (entity != player) {
+                            if (player.level().random.nextFloat() < cap.getEffectProbability(DuguNineSwords.KUNG_FU_ID.toString())) {
+                                if (!isLivingSkeletonAndGolemAndSlime(player)) {
+                                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(),
+                                            30, 1, false, true), player);
+                                }
+                            }
+                        }
+                    }
+                }
             });
         }
         return super.onLeftClickEntity(stack, player, entity);

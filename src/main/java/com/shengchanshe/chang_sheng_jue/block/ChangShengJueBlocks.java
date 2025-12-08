@@ -31,6 +31,9 @@ import com.shengchanshe.chang_sheng_jue.block.custom.plaque.Plaque;
 import com.shengchanshe.chang_sheng_jue.block.custom.pottery.PotteryWheel;
 import com.shengchanshe.chang_sheng_jue.block.custom.racks.ClothesRack;
 import com.shengchanshe.chang_sheng_jue.block.custom.racks.DryingRail;
+import com.shengchanshe.chang_sheng_jue.block.custom.sharpening_stone.DiamondSharpeningStone;
+import com.shengchanshe.chang_sheng_jue.block.custom.sharpening_stone.NetheriteSharpeningStone;
+import com.shengchanshe.chang_sheng_jue.block.custom.sharpening_stone.StoneSharpeningStone;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigleft.BigShingMunLeft;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigright.BigShingMunRight;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.left.ShingMunLeft;
@@ -2042,7 +2045,10 @@ public class ChangShengJueBlocks {
             ()-> new HeightLightStand(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> ZI_TAN_HEIGHT_LIGHT_STAND = registerBlock("zi_tan_height_light_stand",
             ()-> new HeightLightStand(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion()));
-
+    // 磨刀石
+    public static final RegistryObject<Block> STONE_SHARPENING_STONE = registerBlock("stone_sharpening_stone", StoneSharpeningStone::new);
+    public static final RegistryObject<Block> DIAMOND_SHARPENING_STONE = registerBlock("diamond_sharpening_stone", DiamondSharpeningStone::new);
+    public static final RegistryObject<Block> NETHERITE_SHARPENING_STONE = registerBlock("netherite_sharpening_stone", NetheriteSharpeningStone::new);
     //蒲团
     public static final RegistryObject<Block> ZAFU = registerBlock("zafu",
             ()-> new Zafu(BlockBehaviour.Properties.copy(Blocks.HAY_BLOCK).noOcclusion()));

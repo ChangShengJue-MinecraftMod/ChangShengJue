@@ -254,10 +254,10 @@
             this.add(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get(), "丝执裤");
             this.add(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get(), "轻丝履");
 
-            this.add(ChangShengJueItems.HATS_WITH_VEIL_HELMET.get(), "斗笠垂纱");
-            this.add(ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE.get(), "素白长裙");
+            this.add(ChangShengJueItems.HATS_WITH_VEIL_HELMET.get(), "垂纱斗笠");
+            this.add(ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE.get(), "素雅长裙");
 
-            this.add(ChangShengJueItems.HATS_BLACK_ROBE_HELMET.get(), "斗笠");
+            this.add(ChangShengJueItems.HATS_BLACK_ROBE_HELMET.get(), "竹斗笠");
             this.add(ChangShengJueItems.HATS_BLACK_ROBE_CHESTPLATE.get(), "玄衣");
             this.add(ChangShengJueItems.HATS_BLACK_ROBE_LEGGINGS.get(), "玄衣下裳");
 
@@ -269,12 +269,12 @@
             this.add(ChangShengJueItems.NIGHT_SUIT_CHESTPLATE.get(), "夜行衣");
 
             this.add(ChangShengJueItems.LONG_GOWN_CHESTPLATE.get(), "窄袖长衫");
-            this.add(ChangShengJueItems.NIGHT_SUIT_LEGGINGS.get(), "绑腿");
+            this.add(ChangShengJueItems.NIGHT_SUIT_LEGGINGS.get(), "丝绸绑腿");
 
-            this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET1.get(), "额带");
-            this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET2.get(), "额带");
-            this.add(ChangShengJueItems.HAIR_CROWN_HELMET1.get(), "束发冠");
-            this.add(ChangShengJueItems.HAIR_CROWN_HELMET2.get(), "束发冠");
+            this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET1.get(), "额头链");
+            this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET2.get(), "红玉金抹额");
+            this.add(ChangShengJueItems.HAIR_CROWN_HELMET1.get(), "雪银束发冠");
+            this.add(ChangShengJueItems.HAIR_CROWN_HELMET2.get(), "红玉束发冠");
 
             this.add(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR.get(), "金丝软甲");
             this.add(ChangShengJueItems.LEATHER_INNER_ARMOR.get(), "皮内甲");
@@ -1459,6 +1459,10 @@
             this.add(ChangShengJueBlocks.LIMESTONE.get(), "石灰岩");
             this.add(ChangShengJueBlocks.SYDEROLIFE_ORE.get(), "陶土矿");
 
+            this.add(ChangShengJueBlocks.STONE_SHARPENING_STONE.get(), "圆石磨刀石");
+            this.add(ChangShengJueBlocks.DIAMOND_SHARPENING_STONE.get(), "钻石磨刀石");
+            this.add(ChangShengJueBlocks.NETHERITE_SHARPENING_STONE.get(), "下界合金磨刀石");
+
             this.add(ChangShengJueBlocks.CASTING_MOLDS.get(), "铜钱模具");
             this.add(ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get(), "元宝模具");
 
@@ -1666,6 +1670,10 @@
             //普通信息
             this.add("block.changshengjue.fen_jiu.no_wine","已经没有酒了！");
             this.add("tooltip.changshengjue.natural_silk", "通过挖掘桑叶获得");
+
+            this.add("message.sharpening_stone.sharpened", "§a武器已打磨！本次增加：");
+            this.add("message.sharpening_stone.total_damage", "§a，当前攻击力：");
+            this.add("message.sharpening_stone.max_damage", "§c武器已打磨到上限");
 
             //进度
             // 一级进度

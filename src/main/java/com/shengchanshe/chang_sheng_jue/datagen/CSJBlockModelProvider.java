@@ -1526,6 +1526,10 @@ public class CSJBlockModelProvider extends BlockModelProvider {
         parentInventoryBlock(ChangShengJueBlocks.CHERRY_CANOPY_BED,"canopy_bed_inventory");
         parentInventoryBlock(ChangShengJueBlocks.SPRUCE_CANOPY_BED,"canopy_bed_inventory");
         parentInventoryBlock(ChangShengJueBlocks.ZI_TAN_CANOPY_BED,"canopy_bed_inventory");
+        //磨刀石
+        parentBlock(ChangShengJueBlocks.STONE_SHARPENING_STONE,"sharpening_stone");
+        parentBlock(ChangShengJueBlocks.DIAMOND_SHARPENING_STONE,"sharpening_stone");
+        parentBlock(ChangShengJueBlocks.NETHERITE_SHARPENING_STONE,"sharpening_stone");
     }
 
     //自定义方块模型

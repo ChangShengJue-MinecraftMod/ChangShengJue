@@ -255,18 +255,18 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get(), "Light Silk Shoes");
 
         this.add(ChangShengJueItems.HATS_WITH_VEIL_HELMET.get(), "Bamboo Hat with Veil");
-        this.add(ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE.get(), "Plain White Long Dress");
+        this.add(ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE.get(), "Plain and elegant long skirt");
 
-        this.add(ChangShengJueItems.HATS_BLACK_ROBE_HELMET.get(), "斗笠");
-        this.add(ChangShengJueItems.HATS_BLACK_ROBE_CHESTPLATE.get(), "玄衣");
-        this.add(ChangShengJueItems.HATS_BLACK_ROBE_LEGGINGS.get(), "玄衣下裳");
+        this.add(ChangShengJueItems.HATS_BLACK_ROBE_HELMET.get(), "Bamboo Hat");
+        this.add(ChangShengJueItems.HATS_BLACK_ROBE_CHESTPLATE.get(), "Xuanyi");
+        this.add(ChangShengJueItems.HATS_BLACK_ROBE_LEGGINGS.get(), "Xuanyi Leggings");
 
-        this.add(ChangShengJueItems.DUAN_DA_CHESTPLATE.get(), "短打上衣");
-        this.add(ChangShengJueItems.BUDDHIST_ROBE_CHESTPLATE.get(), "念珠僧袍");
-        this.add(ChangShengJueItems.NIGHT_SUIT_HELMET.get(), "蒙面头巾");
-        this.add(ChangShengJueItems.NIGHT_SUIT_CHESTPLATE.get(), "夜行衣");
-        this.add(ChangShengJueItems.LONG_GOWN_CHESTPLATE.get(), "窄袖长衫");
-        this.add(ChangShengJueItems.NIGHT_SUIT_LEGGINGS.get(), "绑腿");
+        this.add(ChangShengJueItems.DUAN_DA_CHESTPLATE.get(), "Duan Da Chestplate");
+        this.add(ChangShengJueItems.BUDDHIST_ROBE_CHESTPLATE.get(), "Rosary monk's robe");
+        this.add(ChangShengJueItems.NIGHT_SUIT_HELMET.get(), "Masked Headscarf");
+        this.add(ChangShengJueItems.NIGHT_SUIT_CHESTPLATE.get(), "Night-running suit");
+        this.add(ChangShengJueItems.LONG_GOWN_CHESTPLATE.get(), "Narrow Sleeved Long Shirt");
+        this.add(ChangShengJueItems.NIGHT_SUIT_LEGGINGS.get(), "Silk Leggings");
 
         this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET1.get(), "额带");
         this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET2.get(), "额带");
@@ -1482,6 +1482,10 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.SPRUCE_WINE_TABLE.get(), "Spruce Wine Table");
         this.add(ChangShengJueBlocks.ZI_TAN_WINE_TABLE.get(), "Zitan Wine Table");
 
+        this.add(ChangShengJueBlocks.STONE_SHARPENING_STONE.get(), "Stone Sharpening Stone");
+        this.add(ChangShengJueBlocks.DIAMOND_SHARPENING_STONE.get(), "Diamond Sharpening Stone");
+        this.add(ChangShengJueBlocks.NETHERITE_SHARPENING_STONE.get(), "Netherite Sharpening Stone");
+
         this.add(ChangShengJueBlocks.AG_ORE.get(), "Silver Ore");
         this.add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get(), "Deepslate Silver Ore");
         this.add(ChangShengJueBlocks.KAOLIN_ORE.get(), "Kaolin Ore");
@@ -1692,6 +1696,10 @@ public class CSJENLanguageProvider extends LanguageProvider {
 
         this.add("block.changshengjue.fen_jiu.no_wine","There's no wine left!");
         this.add("tooltip.changshengjue.natural_silk", "Obtained by mining mulberry leaves");
+
+        this.add("message.sharpening_stone.sharpened", "§aWeapons polished! This increase:");
+        this.add("message.sharpening_stone.total_damage", "§a,current attack power:");
+        this.add("message.sharpening_stone.max_damage", "§cThe weapon has been polished to the maximum limit");
         //进度
         // 一级进度
         this.add("advancement." + ChangShengJue.MOD_ID + ".begin", "Chang Sheng Jue");

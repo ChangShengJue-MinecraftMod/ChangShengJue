@@ -975,6 +975,10 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.CHERRY_CHEST_OF_DRAWERS.get());
         this.dropSelf(ChangShengJueBlocks.SPRUCE_CHEST_OF_DRAWERS.get());
         this.dropSelf(ChangShengJueBlocks.ZI_TAN_CHEST_OF_DRAWERS.get());
+        //磨刀石
+        this.dropSelf(ChangShengJueBlocks.STONE_SHARPENING_STONE.get());
+        this.dropSelf(ChangShengJueBlocks.DIAMOND_SHARPENING_STONE.get());
+        this.dropSelf(ChangShengJueBlocks.NETHERITE_SHARPENING_STONE.get());
         //石凳
         this.dropSelf(ChangShengJueBlocks.STONE_BENCH.get());
         //石桌

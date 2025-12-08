@@ -500,6 +500,10 @@ public class CSJItemModelProvider extends ItemModelProvider {
         parentItem(ChangShengJueBlocks.STONE_BENCH);
         //石桌
         parentItem(ChangShengJueBlocks.STONE_TABLE);
+        //磨刀石
+        parentItem(ChangShengJueBlocks.STONE_SHARPENING_STONE);
+        parentItem(ChangShengJueBlocks.DIAMOND_SHARPENING_STONE);
+        parentItem(ChangShengJueBlocks.NETHERITE_SHARPENING_STONE);
         //衣架
         parentItem(ChangShengJueBlocks.BIRCH_CLOTHES_RACK,ChangShengJueBlocks.BIRCH_CLOTHES_RACK.getId().getPath() + "_inventory");
         parentItem(ChangShengJueBlocks.JUNGLE_CLOTHES_RACK,ChangShengJueBlocks.JUNGLE_CLOTHES_RACK.getId().getPath() + "_inventory");

@@ -17,6 +17,7 @@ import com.shengchanshe.chang_sheng_jue.block.custom.plaque.PlaqueEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.pottery.PotteryWheelEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.racks.ClothesRackEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.racks.DryingRailEntity;
+import com.shengchanshe.chang_sheng_jue.block.custom.sharpening_stone.SharpeningStoneEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigleft.entity.BigShingMunLeftEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigright.entity.BigShingMunRightEntity;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.left.entity.ShingMunLeftEntity;
@@ -91,6 +92,15 @@ public class ChangShengJueBlocksEntities {
     public static final RegistryObject<BlockEntityType<BigShingMunRightEntity>> BIG_SHING_MUN_RIGHT_ENTITY =
             BLOCK_ENTITYES.register("big_shing_mun_right_entity", ()-> BlockEntityType.Builder.of(BigShingMunRightEntity::new,
                     ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get()).build(null));
+    //磨刀石
+    public static final RegistryObject<BlockEntityType<SharpeningStoneEntity>>
+            SHARPENING_STONE_BLOCK_ENTITY = BLOCK_ENTITYES.register("sharpening_stone",
+            () -> BlockEntityType.Builder.of(SharpeningStoneEntity::create,
+                        ChangShengJueBlocks.STONE_SHARPENING_STONE.get(),
+                        ChangShengJueBlocks.DIAMOND_SHARPENING_STONE.get(),
+                        ChangShengJueBlocks.NETHERITE_SHARPENING_STONE.get()
+            ).build(null)
+    );
 
     //风铃
     public static final RegistryObject<BlockEntityType<WindChimeEntity>> WIND_CHIME_ENTITY =

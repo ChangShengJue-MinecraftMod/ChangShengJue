@@ -809,7 +809,11 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                         ChangShengJueBlocks.FORGE_BLOCK.get(),
                         ChangShengJueBlocks.STONE_BENCH.get(),
                         ChangShengJueBlocks.STONE_TABLE.get(),
-                        ChangShengJueBlocks.STONE_BALUSTRADE.get());
+                        ChangShengJueBlocks.STONE_BALUSTRADE.get(),
+                        ChangShengJueBlocks.STONE_SHARPENING_STONE.get(),
+                        ChangShengJueBlocks.DIAMOND_SHARPENING_STONE.get(),
+                        ChangShengJueBlocks.NETHERITE_SHARPENING_STONE.get()
+                        );
 
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL)

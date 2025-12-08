@@ -90,19 +90,18 @@ public class ShaolinStickMethod extends AbstractionExternalKunfu {
 
     @Override
     public void attackEffect(LivingEntity source, Entity target) {
-        super.attackEffect(source, target);
         if (target instanceof LivingEntity livingEntity) {
-            if (isStart) {
+            if (target != source) {
+                if (randomSource.nextFloat() < getEffectProbability()) {
+                    livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(),
+                            20, 1, false, true), source);
+                }
                 if (isComprehend && level > 0) {
-                    if (target != source) {
-                        if (randomSource.nextFloat() < getEffectProbability()) {
-                            livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(),
-                                    20, 1, false, true), source);
-                        }
-                        EffectUtils.setTrauma(source, livingEntity, 2,140,traumaProbability);
-                    }
+                    super.attackEffect(source, target);
+                    EffectUtils.setTrauma(source, livingEntity, 2,140,traumaProbability);
                 }
             }
+
         }
     }
 

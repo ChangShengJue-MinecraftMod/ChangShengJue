@@ -655,6 +655,10 @@ public class CSJBlockStateProvider extends BlockStateProvider {
         horizontalBlock(ChangShengJueBlocks.CYAN_EAVES_CYLINDER_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/cyan_eaves_cylinder_tile")));
         horizontalBlock(ChangShengJueBlocks.BLUE_EAVES_CYLINDER_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/blue_eaves_cylinder_tile")));
         horizontalBlock(ChangShengJueBlocks.PURPLE_EAVES_CYLINDER_TILE.get(), new ModelFile.UncheckedModelFile(modLoc("block/purple_eaves_cylinder_tile")));
+        //磨刀石
+        horizontalBlock(ChangShengJueBlocks.STONE_SHARPENING_STONE.get(), new ModelFile.UncheckedModelFile(modLoc("block/stone_sharpening_stone")));
+        horizontalBlock(ChangShengJueBlocks.DIAMOND_SHARPENING_STONE.get(), new ModelFile.UncheckedModelFile(modLoc("block/diamond_sharpening_stone")));
+        horizontalBlock(ChangShengJueBlocks.NETHERITE_SHARPENING_STONE.get(), new ModelFile.UncheckedModelFile(modLoc("block/netherite_sharpening_stone")));
         //脊瓦
         createTileSideBlock(ChangShengJueBlocks.GRE_RIDGE_TILE.get(), HalfAnimalsCylinderTile.FACING, HalfAnimalsCylinderTile.LAYERS);
         createTileSideBlock(ChangShengJueBlocks.RED_RIDGE_TILE.get(), HalfAnimalsCylinderTile.FACING, HalfAnimalsCylinderTile.LAYERS);

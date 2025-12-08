@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "night_suit_helmet",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 5
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:night_suit_helmet"
+  }
+}

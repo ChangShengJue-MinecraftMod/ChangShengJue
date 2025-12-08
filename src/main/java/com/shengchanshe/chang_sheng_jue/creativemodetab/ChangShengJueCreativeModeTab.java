@@ -931,6 +931,9 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get());
                 output.accept(ChangShengJueItems.STAKES.get());
                 output.accept(ChangShengJueItems.GONG.get());
+                output.accept(ChangShengJueBlocks.STONE_SHARPENING_STONE.get());
+                output.accept(ChangShengJueBlocks.DIAMOND_SHARPENING_STONE.get());
+                output.accept(ChangShengJueBlocks.NETHERITE_SHARPENING_STONE.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_FOOD_AND_DRINK = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_food_and_drink",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_food_and_drink")).icon(() ->

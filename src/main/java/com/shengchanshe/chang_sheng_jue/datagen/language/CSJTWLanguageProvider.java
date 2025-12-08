@@ -254,19 +254,19 @@
             this.add(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get(), "絲執褲");
             this.add(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get(), "輕絲履");
 
-            this.add(ChangShengJueItems.HATS_WITH_VEIL_HELMET.get(), "斗笠垂纱");
-            this.add(ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE.get(), "素白长裙");
+            this.add(ChangShengJueItems.HATS_WITH_VEIL_HELMET.get(), "垂紗鬥笠");
+            this.add(ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE.get(), "素雅長裙");
 
-            this.add(ChangShengJueItems.HATS_BLACK_ROBE_HELMET.get(), "斗笠");
+            this.add(ChangShengJueItems.HATS_BLACK_ROBE_HELMET.get(), "竹鬥笠");
             this.add(ChangShengJueItems.HATS_BLACK_ROBE_CHESTPLATE.get(), "玄衣");
             this.add(ChangShengJueItems.HATS_BLACK_ROBE_LEGGINGS.get(), "玄衣下裳");
 
             this.add(ChangShengJueItems.DUAN_DA_CHESTPLATE.get(), "短打上衣");
             this.add(ChangShengJueItems.BUDDHIST_ROBE_CHESTPLATE.get(), "念珠僧袍");
-            this.add(ChangShengJueItems.NIGHT_SUIT_HELMET.get(), "蒙面头巾");
+            this.add(ChangShengJueItems.NIGHT_SUIT_HELMET.get(), "蒙面頭巾");
             this.add(ChangShengJueItems.NIGHT_SUIT_CHESTPLATE.get(), "夜行衣");
-            this.add(ChangShengJueItems.LONG_GOWN_CHESTPLATE.get(), "窄袖长衫");
-            this.add(ChangShengJueItems.NIGHT_SUIT_LEGGINGS.get(), "绑腿");
+            this.add(ChangShengJueItems.LONG_GOWN_CHESTPLATE.get(), "窄袖長衫");
+            this.add(ChangShengJueItems.NIGHT_SUIT_LEGGINGS.get(), "絲綢綁腿");
 
             this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET1.get(), "额带");
             this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET2.get(), "额带");
@@ -1452,6 +1452,10 @@
             this.add(ChangShengJueBlocks.LIMESTONE.get(), "石灰岩");
             this.add(ChangShengJueBlocks.SYDEROLIFE_ORE.get(), "陶土礦");
 
+            this.add(ChangShengJueBlocks.STONE_SHARPENING_STONE.get(), "圓石磨刀石");
+            this.add(ChangShengJueBlocks.DIAMOND_SHARPENING_STONE.get(), "鑽石磨刀石");
+            this.add(ChangShengJueBlocks.NETHERITE_SHARPENING_STONE.get(), "下界合金磨刀石");
+
             this.add(ChangShengJueBlocks.CASTING_MOLDS.get(), "銅錢模具");
             this.add(ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get(), "元寶模具");
 
@@ -1575,7 +1579,11 @@
             //存储
             this.add("container.hercules", "大力神功");
             this.add("container."+ ChangShengJue.MOD_ID +".cabinet", "櫃子");
-    
+
+            this.add("message.sharpening_stone.sharpened", "§a武器已打磨！ 本次增加：");
+            this.add("message.sharpening_stone.total_damage", "§a，當前攻擊力：");
+            this.add("message.sharpening_stone.max_damage", "§c武器已打磨到上限");
+
             /*信息*/
             //死亡信息
             this.add("death.attack." + CSJDamageTypes.BLEED.location().getPath(), "%1$s失血過多。");

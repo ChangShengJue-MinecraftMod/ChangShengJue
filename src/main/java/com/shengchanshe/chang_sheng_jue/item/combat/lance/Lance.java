@@ -1,15 +1,18 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.lance;
 
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
+import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.beat_dog_stick.BeatDogStickAttackEntity;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.DuguNineSwords;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.GaoMarksmanship;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -37,7 +40,17 @@ public class Lance extends SwordItem implements GeoItem, Vanishable {
         if (!pPlayer.level().isClientSide) {
             pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                 cap.comprehendKungFu((ServerPlayer) pPlayer, GaoMarksmanship.KUNG_FU_ID.toString(), pPlayer);
-                cap.attack((ServerPlayer) pPlayer,GaoMarksmanship.KUNG_FU_ID.toString(),pPlayer,entity);
+                boolean attack = cap.attack((ServerPlayer) pPlayer, GaoMarksmanship.KUNG_FU_ID.toString(), pPlayer, entity);
+                if (!attack) {
+                    if (entity instanceof LivingEntity livingEntity) {
+                        if (entity != pPlayer) {
+                            if (pPlayer.level().random.nextFloat() < cap.getEffectProbability(GaoMarksmanship.KUNG_FU_ID.toString())) {
+                                livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.AIRBORNE_EFFECT.get(),
+                                        30, 1, false, true), pPlayer);
+                            }
+                        }
+                    }
+                }
             });
             if (pPlayer.getMainHandItem().is(ChangShengJueItems.BA_WANG_QIANG.get())){
                 BeatDogStickAttackEntity beatDogStickAttack = new BeatDogStickAttackEntity(ChangShengJueEntity.BA_WANG_QIANG_ATTACK.get(), pPlayer.level());

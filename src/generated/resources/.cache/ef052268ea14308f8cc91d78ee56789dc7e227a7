@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-27T19:29:35.4278569	Tags for minecraft:block mod id chang_sheng_jue
+// 1.20.1	2025-12-04T13:52:29.2470869	Tags for minecraft:block mod id chang_sheng_jue
 f95548502f10c4db74417e07058576558071c13a data/chang_sheng_jue/tags/blocks/arhat_bed.json
 c94f4cad24addac0b3d5321b038cdebee043c274 data/chang_sheng_jue/tags/blocks/bench.json
 a51e5c4fa28d20b6f49daddaf99f465cee14c1b0 data/chang_sheng_jue/tags/blocks/book_desk.json
@@ -35,7 +35,7 @@ ff3f27392f0f5079b01c75bf6968fca3a5e01af0 data/minecraft/tags/blocks/logs.json
 7a6ec220e5fc18713f07bac2f4ef3226d34d3fcc data/minecraft/tags/blocks/logs_that_burn.json
 c4bf5586306595a429bf9722fc655309c056e32e data/minecraft/tags/blocks/mineable/axe.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/minecraft/tags/blocks/mineable/hoe.json
-9a9bd6b2535330cb59611ba46dc70a98bc16617b data/minecraft/tags/blocks/mineable/pickaxe.json
+51747b54d671e6d6e126272da412b8bc1087d710 data/minecraft/tags/blocks/mineable/pickaxe.json
 67d2e76e7129049f92d956c69d9d7d577b86bcbc data/minecraft/tags/blocks/mineable/shovel.json
 cb2af440e3f1959f7c79ac86e9b2d8a57691106e data/minecraft/tags/blocks/needs_iron_tool.json
 2ab69f9f62a692fb434d61080e9ad48a2beb3428 data/minecraft/tags/blocks/planks.json

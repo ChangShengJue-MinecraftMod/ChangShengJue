@@ -1,4 +1,4 @@
-// 1.20.1	2025-11-27T19:29:35.4399958	Item Models: chang_sheng_jue
+// 1.20.1	2025-12-04T13:52:29.2581853	Item Models: chang_sheng_jue
 10c5c7abe71c096a22fcdab57141eaf5702b3e88 assets/chang_sheng_jue/models/item/acacia_arhat_bed.json
 b3bd262eb0ad48ac4f7c465406471cf989163c19 assets/chang_sheng_jue/models/item/acacia_balustrade.json
 699ea304f59ef7c3527896899187498f42f98343 assets/chang_sheng_jue/models/item/acacia_bench.json
@@ -239,6 +239,7 @@ a89e3e168a651e4f9244de0a1415a49d6416418a assets/chang_sheng_jue/models/item/dark
 97e20822008fed30fc722f592c51cf4264ed48f9 assets/chang_sheng_jue/models/item/dark_oak_taishi_chair.json
 1d881b765293f91b26eb0e8c6b21593437a8623c assets/chang_sheng_jue/models/item/dark_oak_teapoy.json
 f7ac951621aa1123966fae87f51e53ef96561384 assets/chang_sheng_jue/models/item/dark_oak_wine_table.json
+7c2f56bce792d618d3c9bac04e19d4ec08e8bac3 assets/chang_sheng_jue/models/item/diamond_sharpening_stone.json
 6d542db229b7257409bc41d8b193242098ffd904 assets/chang_sheng_jue/models/item/duan_da_chestplate.json
 0c9b2e524eaebbbd4cec8e8c7124f41925fd9a06 assets/chang_sheng_jue/models/item/dugu_nine_swords.json
 c3afcf17575a2e8f7cdc3db64e9a00b629c81754 assets/chang_sheng_jue/models/item/durian_sapling.json
@@ -469,6 +470,7 @@ b7b4a175227ab30b41d13e5b376421ca0c16e8ee assets/chang_sheng_jue/models/item/mulb
 c8e761357507656db28a05ec920fc59dc610d2fa assets/chang_sheng_jue/models/item/mulberry_juice.json
 5a14ec1e5713488c95a3257c91d8993f08203d96 assets/chang_sheng_jue/models/item/mulberry_sapling.json
 53520ee7061e89d47b18b08069da86f6d9ce83c0 assets/chang_sheng_jue/models/item/natural_silk.json
+1434426b48ef718daa2b76c6bb10dbf06accfc44 assets/chang_sheng_jue/models/item/netherite_sharpening_stone.json
 89c50d641f83da14ec1578d7e017dfce51324385 assets/chang_sheng_jue/models/item/night_suit_chestplate.json
 632d4e715aacf67bf075a57da199258850b63868 assets/chang_sheng_jue/models/item/night_suit_helmet.json
 2c84cbadf9e332b306e32e9180476be61a92833f assets/chang_sheng_jue/models/item/night_suit_leggings.json
@@ -596,6 +598,7 @@ c456f616bd94a32f5bd598f411d248024eb2e7b4 assets/chang_sheng_jue/models/item/spru
 4b2f08739a7490e47b4be860a3d227840e7698cf assets/chang_sheng_jue/models/item/spruce_teapoy.json
 36a74270af5c49e759ba31ff74f0461ff4762d69 assets/chang_sheng_jue/models/item/spruce_wine_table.json
 a05004d77f3ac5574ea4675009263a0414344883 assets/chang_sheng_jue/models/item/stone_bench.json
+82ac9f4d0ef5d98d521f22999202e02f1d8a4ac1 assets/chang_sheng_jue/models/item/stone_sharpening_stone.json
 cf7d37ca512d302cd31999275b343eaa6a7ce66f assets/chang_sheng_jue/models/item/stone_table.json
 efb8bf9b08cce9a2f6286b797a5872cd5e112d96 assets/chang_sheng_jue/models/item/structure_intelligence.json
 0849288dca2c5f1d1ee81cb63a5bde5bd69d1067 assets/chang_sheng_jue/models/item/sunflower_point_caveman.json

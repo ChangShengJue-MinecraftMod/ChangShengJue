@@ -1,0 +1,21 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "forehead_band_helmet2",
+  "ingredients": [
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 1
+    },
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 2
+    },
+    {
+      "item": "minecraft:redstone",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:forehead_band_helmet2"
+  }
+}

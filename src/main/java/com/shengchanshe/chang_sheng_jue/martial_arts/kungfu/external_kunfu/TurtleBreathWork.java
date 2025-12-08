@@ -51,11 +51,11 @@ public class TurtleBreathWork extends AbstractionExternalKunfu {
 
     @Override
     public void attackEffect(LivingEntity source, Entity target) {
-        super.attackEffect(source, target);
         if (target instanceof LivingEntity livingEntity) {
             if (isStart) {
                 if (isComprehend && level > 0) {
                     if (target != source) {
+                        super.attackEffect(source, target);
                         EffectUtils.setInternal(source, livingEntity, 0,300, traumaProbability);
                     }
                 }
