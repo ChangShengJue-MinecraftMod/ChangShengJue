@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "book_grid",
+  "ingredients": [
+    {
+      "item": "minecraft:mangrove_planks",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:mangrove_book_grid"
+  }
+}

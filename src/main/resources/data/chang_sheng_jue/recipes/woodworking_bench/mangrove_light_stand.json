@@ -1,0 +1,18 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "light_stand",
+  "ingredients": [
+    {
+      "item": "minecraft:mangrove_planks",
+      "count": 3
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:mangrove_light_stand",
+    "count": 3
+  }
+}

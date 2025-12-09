@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "long_back_bracket",
+  "ingredients": [
+    {
+      "item": "minecraft:oak_planks",
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:long_oak_back_bracket"
+  }
+}

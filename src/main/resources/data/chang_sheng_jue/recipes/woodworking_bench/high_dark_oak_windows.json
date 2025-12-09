@@ -1,0 +1,14 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "high_windows",
+  "ingredients": [
+    {
+      "item": "minecraft:dark_oak_planks",
+      "count": 6
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:high_dark_oak_windows",
+    "count": 3
+  }
+}

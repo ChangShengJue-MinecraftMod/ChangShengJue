@@ -1,0 +1,16 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "dougong",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_mangrove_log",
+      "count": 2
+    },
+    {
+      "item": "minecraft:cyan_dye"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:blue_dougong"
+  }
+}

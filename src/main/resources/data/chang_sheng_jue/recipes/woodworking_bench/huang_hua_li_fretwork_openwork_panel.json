@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "fretwork_openwork_panel",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:huang_hua_li_planks",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:huang_hua_li_fretwork_openwork_panel"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "long_flower_bracket",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_crimson_stem",
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:long_crimson_flower_bracket"
+  }
+}

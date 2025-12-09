@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "long_flower_bracket",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_mangrove_log",
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:long_mangrove_flower_bracket"
+  }
+}

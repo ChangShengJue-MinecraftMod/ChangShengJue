@@ -1685,60 +1685,6 @@ public class ChangShengJueBlocks {
             ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
     public static final RegistryObject<Block> ZI_TAN_CABINET = registerBlock("zi_tan_cabinet",
             ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
-    //晾衣杆
-    public static final RegistryObject<Block> BIRCH_DRYING_RAIL = registerBlock("birch_drying_rail",
-            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.BIRCH_FENCE).noOcclusion().strength(0.5f)));
-    public static final RegistryObject<Block> JUNGLE_DRYING_RAIL = registerBlock("jungle_drying_rail",
-            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.JUNGLE_FENCE).noOcclusion().strength(0.5f)));
-    public static final RegistryObject<Block> CRIMSON_DRYING_RAIL = registerBlock("crimson_drying_rail",
-            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.CRIMSON_FENCE).noOcclusion().strength(0.5f)));
-    public static final RegistryObject<Block> WARPED_DRYING_RAIL = registerBlock("warped_drying_rail",
-            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.WARPED_FENCE).noOcclusion().strength(0.5f)));
-    public static final RegistryObject<Block> MANGROVE_DRYING_RAIL = registerBlock("mangrove_drying_rail",
-            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.MANGROVE_FENCE).noOcclusion().strength(0.5f)));
-    public static final RegistryObject<Block> HUANG_HUA_LI_DRYING_RAIL = registerBlock("huang_hua_li_drying_rail",
-            ()-> new DryingRail(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion().strength(0.5f)));
-    public static final RegistryObject<Block> WENGE_DRYING_RAIL = registerBlock("wenge_drying_rail",
-            ()-> new DryingRail(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion().strength(0.5f)));
-    public static final RegistryObject<Block> ACACIA_DRYING_RAIL = registerBlock("acacia_drying_rail",
-            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.ACACIA_FENCE).noOcclusion().strength(0.5f)));
-    public static final RegistryObject<Block> DARK_OAK_DRYING_RAIL = registerBlock("dark_oak_drying_rail",
-            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_FENCE).noOcclusion().strength(0.5f)));
-    public static final RegistryObject<Block> OAK_DRYING_RAIL = registerBlock("oak_drying_rail",
-            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).noOcclusion().strength(0.5f)));
-    public static final RegistryObject<Block> CHERRY_DRYING_RAIL = registerBlock("cherry_drying_rail",
-            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.CHERRY_FENCE).noOcclusion().strength(0.5f)));
-    public static final RegistryObject<Block> SPRUCE_DRYING_RAIL = registerBlock("spruce_drying_rail",
-            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.SPRUCE_FENCE).noOcclusion().strength(0.5f)));
-    public static final RegistryObject<Block> ZI_TAN_DRYING_RAIL = registerBlock("zi_tan_drying_rail",
-            ()-> new DryingRail(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion().strength(0.5f)));
-    //衣架
-    public static final RegistryObject<Block> BIRCH_CLOTHES_RACK = registerBlock("birch_clothes_rack",
-            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.BIRCH_FENCE).noOcclusion()));
-    public static final RegistryObject<Block> JUNGLE_CLOTHES_RACK = registerBlock("jungle_clothes_rack",
-            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.JUNGLE_FENCE).noOcclusion()));
-    public static final RegistryObject<Block> CRIMSON_CLOTHES_RACK = registerBlock("crimson_clothes_rack",
-            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.CRIMSON_FENCE).noOcclusion()));
-    public static final RegistryObject<Block> WARPED_CLOTHES_RACK = registerBlock("warped_clothes_rack",
-            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.WARPED_FENCE).noOcclusion()));
-    public static final RegistryObject<Block> MANGROVE_CLOTHES_RACK = registerBlock("mangrove_clothes_rack",
-            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.MANGROVE_FENCE).noOcclusion()));
-    public static final RegistryObject<Block> HUANG_HUA_LI_CLOTHES_RACK = registerBlock("huang_hua_li_clothes_rack",
-            ()-> new ClothesRack(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion()));
-    public static final RegistryObject<Block> WENGE_CLOTHES_RACK = registerBlock("wenge_clothes_rack",
-            ()-> new ClothesRack(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion()));
-    public static final RegistryObject<Block> ACACIA_CLOTHES_RACK = registerBlock("acacia_clothes_rack",
-            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.ACACIA_FENCE).noOcclusion()));
-    public static final RegistryObject<Block> DARK_OAK_CLOTHES_RACK = registerBlock("dark_oak_clothes_rack",
-            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_FENCE).noOcclusion()));
-    public static final RegistryObject<Block> OAK_CLOTHES_RACK = registerBlock("oak_clothes_rack",
-            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).noOcclusion()));
-    public static final RegistryObject<Block> CHERRY_CLOTHES_RACK = registerBlock("cherry_clothes_rack",
-            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.CHERRY_FENCE).noOcclusion()));
-    public static final RegistryObject<Block> SPRUCE_CLOTHES_RACK = registerBlock("spruce_clothes_rack",
-            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.SPRUCE_FENCE).noOcclusion()));
-    public static final RegistryObject<Block> ZI_TAN_CLOTHES_RACK = registerBlock("zi_tan_clothes_rack",
-            ()-> new ClothesRack(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion()));
 
     public static final RegistryObject<Block> BIRCH_LARGE_CABINET = registerBlock("birch_large_cabinet",
             ()-> new LargeCabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
@@ -1793,6 +1739,60 @@ public class ChangShengJueBlocks {
             ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
     public static final RegistryObject<Block> ZI_TAN_CHEST_OF_DRAWERS = registerBlock("zi_tan_chest_of_drawers",
             ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    //晾衣杆
+    public static final RegistryObject<Block> BIRCH_DRYING_RAIL = registerBlock("birch_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.BIRCH_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> JUNGLE_DRYING_RAIL = registerBlock("jungle_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.JUNGLE_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> CRIMSON_DRYING_RAIL = registerBlock("crimson_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.CRIMSON_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> WARPED_DRYING_RAIL = registerBlock("warped_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.WARPED_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> MANGROVE_DRYING_RAIL = registerBlock("mangrove_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.MANGROVE_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> HUANG_HUA_LI_DRYING_RAIL = registerBlock("huang_hua_li_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> WENGE_DRYING_RAIL = registerBlock("wenge_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> ACACIA_DRYING_RAIL = registerBlock("acacia_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.ACACIA_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> DARK_OAK_DRYING_RAIL = registerBlock("dark_oak_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> OAK_DRYING_RAIL = registerBlock("oak_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> CHERRY_DRYING_RAIL = registerBlock("cherry_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.CHERRY_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> SPRUCE_DRYING_RAIL = registerBlock("spruce_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.SPRUCE_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> ZI_TAN_DRYING_RAIL = registerBlock("zi_tan_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion().strength(0.5f)));
+    //衣架
+    public static final RegistryObject<Block> BIRCH_CLOTHES_RACK = registerBlock("birch_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.BIRCH_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_CLOTHES_RACK = registerBlock("jungle_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.JUNGLE_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_CLOTHES_RACK = registerBlock("crimson_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.CRIMSON_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_CLOTHES_RACK = registerBlock("warped_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.WARPED_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_CLOTHES_RACK = registerBlock("mangrove_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.MANGROVE_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> HUANG_HUA_LI_CLOTHES_RACK = registerBlock("huang_hua_li_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> WENGE_CLOTHES_RACK = registerBlock("wenge_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_CLOTHES_RACK = registerBlock("acacia_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.ACACIA_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_CLOTHES_RACK = registerBlock("dark_oak_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> OAK_CLOTHES_RACK = registerBlock("oak_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_CLOTHES_RACK = registerBlock("cherry_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.CHERRY_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_CLOTHES_RACK = registerBlock("spruce_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.SPRUCE_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> ZI_TAN_CLOTHES_RACK = registerBlock("zi_tan_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion()));
 
     //长凳
     public static final RegistryObject<Block> BIRCH_BENCH = registerBlock("birch_bench",

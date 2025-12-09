@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "chest_of_drawers",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:wenge_planks",
+      "count": 8
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:wenge_chest_of_drawers"
+  }
+}

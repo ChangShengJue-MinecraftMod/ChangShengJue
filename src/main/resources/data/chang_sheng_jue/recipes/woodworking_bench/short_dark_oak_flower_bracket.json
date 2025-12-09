@@ -1,0 +1,12 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "short_flower_bracket",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_dark_oak_log"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:short_dark_oak_flower_bracket"
+  }
+}

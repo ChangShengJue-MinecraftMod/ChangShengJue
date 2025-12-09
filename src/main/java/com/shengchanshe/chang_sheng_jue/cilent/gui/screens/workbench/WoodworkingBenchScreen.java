@@ -15,10 +15,14 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.*;
 
@@ -32,14 +36,12 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
     private static final int CAROUSEL_INTERVAL = 20;
 
     private final List<CustomButton> customButtons = new ArrayList<>();
-    private final List<ItemStack> currentMaterials = new ArrayList<>();
     private final Map<String, List<WoodworkingBenchRecipe>> recipesByGroup = new HashMap<>();
 
     private List<WoodworkingBenchRecipe> cachedRecipes = new ArrayList<>();
     private List<WoodworkingBenchRecipe> currentRecipeGroup = new ArrayList<>();
 
     private ItemStack currentSelectedItem = ItemStack.EMPTY;
-//    private ArmorStand armorStandEntity;
     private TexturedButtonWithText craftButton;
     private WoodworkingBenchRecipe localCurrentRecipe = null;
 
@@ -53,7 +55,18 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
     private int lastCraftTimes = 1;
     private WoodworkingBenchRecipe lastRecipe = null;
 
-    private float rotation = 0;
+    // 材料充足状态缓存
+    private boolean[] materialSufficiencyCache;
+    private boolean materialCacheValid = false;
+
+    // 材料tag轮播相关
+    private int[] materialCarouselIndex;
+    private int materialCarouselTick = 0;
+    private static final int MATERIAL_CAROUSEL_INTERVAL = 30;
+
+    // 制作时使用的实际材料
+    private ItemStack[] craftingMaterials;
+
     private int scrollOffset = 0;
     private int carouselTick = 0;
     private int currentRecipeIndex = 0;
@@ -80,12 +93,10 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
 
         WoodworkingBenchRecipe serverRecipe = menu.getCurrentRecipe();
         if (serverRecipe != null || menu.isCrafting()) {
-            currentMaterials.clear();
-            ItemStack[] materials = getMaterialsFromRecipe(serverRecipe);
-            if (materials != null) {
-                currentMaterials.addAll(Arrays.asList(materials));
-            }
             currentSelectedItem = serverRecipe.getResultItem(getRegistryAccess());
+            localCurrentRecipe = serverRecipe;
+            materialCarouselIndex = new int[serverRecipe.getIngredientCount()];
+            materialCarouselTick = 0;
         }
 
         int x = (width - imageWidth) / 2;
@@ -197,33 +208,192 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
     // 更新按钮状态
     private void updateTimesButtons() {
         int currentTimes = menu.getCraftTimes();
-
+        boolean isCrafting = menu.isCrafting();
         // 单个增减按钮
-        decreaseButton.active = currentTimes > 1 && !menu.isCrafting();
-        increaseButton.active = currentTimes < 64 && !menu.isCrafting();
-
+        decreaseButton.active = currentTimes > 1;
+        increaseButton.active = currentTimes < 64 || !isCrafting;
         // 批量增减按钮
-        batchDecreaseButton.active = currentTimes > 4 && !menu.isCrafting();
-        batchIncreaseButton.active = currentTimes <= 60 && !menu.isCrafting(); // 64-4=60
+        batchDecreaseButton.active = currentTimes > 4;
+        batchIncreaseButton.active = currentTimes <= 60 || !isCrafting; // 64-4=60
     }
     // 更新材料显示
     private void updateMaterialsDisplay() {
         if (localCurrentRecipe != null) {
-            currentMaterials.clear();
-            // 使用总材料进行显示
-            ItemStack[] materials = menu.getMaterialsFromRecipe(localCurrentRecipe);
-            if (materials != null) {
-                currentMaterials.addAll(Arrays.asList(materials));
+            materialCacheValid = false;
+            materialCarouselIndex = new int[localCurrentRecipe.getIngredientCount()];
+            materialCarouselTick = 0;
+        }
+    }
 
-//                // 调试：检查材料数量
-//                if (!currentMaterials.isEmpty() && !currentMaterials.get(0).isEmpty()) {
-//                    System.out.println("材料显示更新 - 单次需求: " +
-//                            menu.getSingleMaterialsFromRecipe(localCurrentRecipe)[0].getCount() +
-//                            ", 制作次数: " + menu.getCraftTimes() +
-//                            ", 总需求: " + currentMaterials.get(0).getCount());
-//                }
+    // 更新材料显示但不重置轮播索引
+    private void updateMaterialsDisplayWithoutResetCarousel() {
+        if (localCurrentRecipe != null) {
+            materialCacheValid = false;
+            if (materialCarouselIndex == null || materialCarouselIndex.length != localCurrentRecipe.getIngredientCount()) {
+                materialCarouselIndex = new int[localCurrentRecipe.getIngredientCount()];
+                materialCarouselTick = 0;
             }
         }
+    }
+
+    /**
+     * 更新材料充足状态缓存
+     */
+    private void updateMaterialSufficiencyCache() {
+        if (materialCacheValid || minecraft == null || minecraft.player == null || localCurrentRecipe == null) {
+            return;
+        }
+
+        int size = localCurrentRecipe.getIngredientCount();
+        if (materialSufficiencyCache == null || materialSufficiencyCache.length != size) {
+            materialSufficiencyCache = new boolean[size];
+        }
+
+        var ingredients = localCurrentRecipe.getIngredients();
+        int[] requiredCounts = localCurrentRecipe.getCachedRequiredCounts();
+        int craftTimes = menu.getCraftTimes();
+
+        for (int i = 0; i < size && i < ingredients.size(); i++) {
+            var ingredient = ingredients.get(i);
+            if (ingredient.isEmpty()) {
+                materialSufficiencyCache[i] = true;
+                continue;
+            }
+            int needed = (i < requiredCounts.length ? requiredCounts[i] : 1) * craftTimes;
+            int found = 0;
+            var playerInventory = minecraft.player.getInventory();
+            for (int j = 0; j < playerInventory.getContainerSize(); j++) {
+                ItemStack stack = playerInventory.getItem(j);
+                if (!stack.isEmpty() && ingredient.test(stack)) {
+                    found += stack.getCount();
+                    if (found >= needed) break;
+                }
+            }
+            materialSufficiencyCache[i] = found >= needed;
+        }
+        materialCacheValid = true;
+    }
+
+    /**
+     * 检查指定槽位材料是否充足
+     */
+    private boolean isMaterialSufficient(int slotIndex) {
+        if (!materialCacheValid) {
+            updateMaterialSufficiencyCache();
+        }
+        if (materialSufficiencyCache != null && slotIndex < materialSufficiencyCache.length) {
+            return materialSufficiencyCache[slotIndex];
+        }
+        return true;
+    }
+
+    /**
+     * 缓存制作时实际使用的材料类型
+     * 在制作开始时调用，记录每个槽位实际使用的材料物品类型
+     */
+    private void cacheCraftingMaterials() {
+        if (localCurrentRecipe == null || minecraft == null || minecraft.player == null) {
+            craftingMaterials = null;
+            return;
+        }
+
+        var ingredients = localCurrentRecipe.getIngredients();
+        craftingMaterials = new ItemStack[ingredients.size()];
+        var playerInventory = minecraft.player.getInventory();
+
+        for (int i = 0; i < ingredients.size(); i++) {
+            var ingredient = ingredients.get(i);
+            craftingMaterials[i] = ItemStack.EMPTY;
+
+            if (ingredient.isEmpty()) continue;
+
+            // 查找背包中第一个匹配的物品类型
+            for (int j = 0; j < playerInventory.getContainerSize(); j++) {
+                ItemStack stack = playerInventory.getItem(j);
+                if (!stack.isEmpty() && ingredient.test(stack)) {
+                    craftingMaterials[i] = new ItemStack(stack.getItem());
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * 获取指定槽位当前应显示的材料物品
+     */
+    private ItemStack getDisplayMaterialForSlot(int slotIndex) {
+        if (localCurrentRecipe == null || slotIndex >= localCurrentRecipe.getIngredientCount()) {
+            return ItemStack.EMPTY;
+        }
+
+        var ingredients = localCurrentRecipe.getIngredients();
+        if (slotIndex >= ingredients.size()) {
+            return ItemStack.EMPTY;
+        }
+
+        var ingredient = ingredients.get(slotIndex);
+
+        ItemStack[] items = getItemsForIngredient(ingredient);
+
+        if (items.length == 0) {
+            return ItemStack.EMPTY;
+        }
+
+        int craftTimes = menu.getCraftTimes();
+        int[] requiredCounts = localCurrentRecipe.getCachedRequiredCounts();
+        int baseCount = slotIndex < requiredCounts.length ? requiredCounts[slotIndex] : 1;
+
+        // 如果正在制作，优先使用缓存的材料类型
+        if (menu.isCrafting()) {
+            if (craftingMaterials != null && slotIndex < craftingMaterials.length
+                    && !craftingMaterials[slotIndex].isEmpty()) {
+                ItemStack displayStack = craftingMaterials[slotIndex].copy();
+                displayStack.setCount(baseCount * craftTimes);
+                return displayStack;
+            }
+        }
+
+        int carouselIdx = 0;
+        if (materialCarouselIndex != null && slotIndex < materialCarouselIndex.length) {
+            carouselIdx = materialCarouselIndex[slotIndex] % items.length;
+        }
+
+        ItemStack displayStack = items[carouselIdx].copy();
+        displayStack.setCount(baseCount * craftTimes);
+
+        return displayStack;
+    }
+
+    /**
+     * 获取Ingredient对应的所有物品
+     */
+    private ItemStack[] getItemsForIngredient(Ingredient ingredient) {
+        int count = 1;
+        String tagId = null;
+
+        if (ingredient instanceof WoodworkingBenchRecipe.CountedIngredient counted) {
+            count = counted.requiredCount;
+            tagId = counted.tagId;
+        }
+
+        if (tagId != null && minecraft != null && minecraft.level != null) {
+            ResourceLocation tagLocation = new ResourceLocation(tagId);
+            TagKey<Item> tag = TagKey.create(Registries.ITEM, tagLocation);
+            List<ItemStack> items = new ArrayList<>();
+            final int finalCount = count;
+
+            var registry = minecraft.level.registryAccess().registryOrThrow(Registries.ITEM);
+            registry.getTagOrEmpty(tag).forEach(holder -> {
+                ItemStack stack = new ItemStack(holder.value());
+                stack.setCount(finalCount);
+                items.add(stack);
+            });
+
+            if (!items.isEmpty()) {
+                return items.toArray(new ItemStack[0]);
+            }
+        }
+        return ingredient.getItems();
     }
 
     private void refreshRecipes() {
@@ -231,7 +401,12 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
             try {
                 var recipeManager = minecraft.level.getRecipeManager();
                 var recipeType = WoodworkingBenchRecipe.Type.INSTANCE;
-                cachedRecipes = recipeManager.getAllRecipesFor(recipeType);
+                cachedRecipes = new ArrayList<>(recipeManager.getAllRecipesFor(recipeType));
+
+                // 按配方ID排序，确保每次显示顺序一致
+                // 首先按group分组排序
+                // 同组内按配方ID排序
+                cachedRecipes.sort(Comparator.comparing(WoodworkingBenchRecipe::getGroup).thenComparing(a -> a.getId().toString()));
 
                 recipesByGroup.clear();
                 for (WoodworkingBenchRecipe recipe : cachedRecipes) {
@@ -346,8 +521,14 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
         customButtons.add(button);
     }
 
-    private void updateSlotsForSelectedItem(WoodworkingBenchRecipe recipe) {
-        if (menu.isCrafting()) {
+    /**
+     * 统一的配方更新方法
+     * @param recipe 要设置的配方
+     * @param checkCrafting 是否检查制作状态（true则制作中不更新）
+     * @param resetCarousel 是否重置材料轮播索引
+     */
+    private void updateRecipeSlots(WoodworkingBenchRecipe recipe, boolean checkCrafting, boolean resetCarousel) {
+        if (checkCrafting && menu.isCrafting()) {
             return;
         }
 
@@ -364,44 +545,30 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
         this.localCurrentRecipe = recipe;
         this.lastRecipe = recipe;
 
-        updateMaterialsDisplay();
+        if (resetCarousel) {
+            updateMaterialsDisplay();
+        } else {
+            updateMaterialsDisplayWithoutResetCarousel();
+        }
 
         ChangShengJueMessages.sendToServer(new WoodworkingBenchSyncRecipePacket(menu.getBlockPos(), recipe));
         menu.updateRecipeSlots();
     }
 
+    private void updateSlotsForSelectedItem(WoodworkingBenchRecipe recipe) {
+        updateRecipeSlots(recipe, true, true);
+    }
+
+    private void updateSlotsForRecipeGroupCarousel(WoodworkingBenchRecipe recipe) {
+        updateRecipeSlots(recipe, true, false);
+    }
+
     private void updateSlotsForCraftingRecipe(WoodworkingBenchRecipe recipe) {
-        String group = recipe.getGroup();
-        if (!group.isEmpty() && recipesByGroup.containsKey(group)) {
-            currentRecipeGroup = new ArrayList<>(recipesByGroup.get(group));
-            currentRecipeIndex = currentRecipeGroup.indexOf(recipe);
-        } else {
-            currentRecipeGroup.clear();
-            currentRecipeIndex = 0;
-        }
-
-        menu.setCurrentRecipe(recipe);
-        this.localCurrentRecipe = recipe;
-        this.lastRecipe = recipe;
-
-        updateMaterialsDisplay();
-
-        ChangShengJueMessages.sendToServer(new WoodworkingBenchSyncRecipePacket(menu.getBlockPos(), recipe));
-        menu.updateRecipeSlots();
+        updateRecipeSlots(recipe, false, true);
     }
 
     private RegistryAccess getRegistryAccess() {
         return minecraft.level.registryAccess();
-    }
-
-    // 获取材料方法 - 确保始终显示最终材料
-    private ItemStack[] getMaterialsFromRecipe(WoodworkingBenchRecipe recipe) {
-        if (recipe == null) {
-            return new ItemStack[0];
-        }
-
-        // 确保使用总材料方法
-        return menu.getMaterialsFromRecipe(recipe);
     }
 
     @Override
@@ -419,20 +586,19 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
         scrollBarY = y + 45;
         scrollBarHeight = VISIBLE_ROWS * 18;
 
-        // 渲染材料槽位背景
+        // 渲染材料槽位背景（使用缓存的材料充足状态）
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 int slotIndex = row * 3 + col;
                 int slotX = x + 112 + col * 18;
                 int slotY = y + 45 + row * 18;
 
-                if (slotIndex < currentMaterials.size()) {
-                    ItemStack required = currentMaterials.get(slotIndex);
-                    if (!required.isEmpty()) {
-                        boolean isMaterialEnough = menu.hasEnoughOfMaterial(minecraft.player.getInventory(), required);
-                        int textureV = isMaterialEnough ? 217 : 235;
-                        guiGraphics.blit(TEXTURE, slotX, slotY, 18, textureV, 18, 18, 512, 512);
-                    }
+                // 使用轮播显示的材料来判断
+                ItemStack required = getDisplayMaterialForSlot(slotIndex);
+                if (!required.isEmpty()) {
+                    boolean isMaterialEnough = isMaterialSufficient(slotIndex);
+                    int textureV = isMaterialEnough ? 217 : 235;
+                    guiGraphics.blit(TEXTURE, slotX, slotY, 18, textureV, 18, 18, 512, 512);
                 }
             }
         }
@@ -543,6 +709,9 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
         renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, delta);
 
+        // 渲染轮播的材料物品（覆盖槽位中的显示）
+        renderCarouselMaterials(guiGraphics);
+
         for (CustomButton button : customButtons) {
             if (button.isHovered() && !button.getItemStack().isEmpty()) {
                 renderToolTip(guiGraphics, mouseX, mouseY, button.getItemStack());
@@ -551,28 +720,97 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
         renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
+    /**
+     * 渲染轮播的材料物品
+     */
+    private void renderCarouselMaterials(GuiGraphics guiGraphics) {
+        if (localCurrentRecipe == null) return;
+
+        int guiLeft = (width - imageWidth) / 2;
+        int guiTop = (height - imageHeight) / 2;
+
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                int slotIndex = row * 3 + col;
+                int slotX = guiLeft + 112 + col * 18 + 1; // +1 是槽位内边距
+                int slotY = guiTop + 45 + row * 18 + 1;
+
+                ItemStack displayStack = getDisplayMaterialForSlot(slotIndex);
+                if (!displayStack.isEmpty()) {
+                    // 渲染物品
+                    guiGraphics.renderItem(displayStack, slotX, slotY);
+                    // 渲染物品数量
+                    guiGraphics.renderItemDecorations(font, displayStack, slotX, slotY);
+                }
+            }
+        }
+    }
+
     @Override
     public void containerTick() {
         super.containerTick();
+
+        // 检测制作状态变化，缓存/清除制作材料
+        if (menu.isCrafting() && craftingMaterials == null) {
+            cacheCraftingMaterials();
+        } else if (!menu.isCrafting() && craftingMaterials != null) {
+            craftingMaterials = null;
+        }
+
+        // 每10 tick刷新一次材料充足状态缓存
+        if (carouselTick % 10 == 0) {
+            materialCacheValid = false;
+        }
+
+        // 材料tag轮播逻辑
+        if (localCurrentRecipe != null && materialCarouselIndex != null) {
+            materialCarouselTick++;
+            if (materialCarouselTick >= MATERIAL_CAROUSEL_INTERVAL) {
+                materialCarouselTick = 0;
+                var ingredients = localCurrentRecipe.getIngredients();
+                for (int i = 0; i < materialCarouselIndex.length && i < ingredients.size(); i++) {
+                    // 使用getItemsForIngredient而不是ingredient.getItems()
+                    ItemStack[] items = getItemsForIngredient(ingredients.get(i));
+                    if (items.length > 1) {
+                        // 只有当tag有多个物品时才轮播
+                        materialCarouselIndex[i] = (materialCarouselIndex[i] + 1) % items.length;
+                    }
+                }
+            }
+        }
 
         // 检查制作次数是否变化
         int currentTimes = menu.getCraftTimes();
         if (currentTimes != lastCraftTimes) {
             lastCraftTimes = currentTimes;
             if (localCurrentRecipe != null) {
-                updateMaterialsDisplay();
+                updateMaterialsDisplayWithoutResetCarousel();
             }
         }
+        updateTimesButtons();
 
-        // 检查当前配方是否变化
+        // 检查当前配方是否变化（使用ID比较而不是对象引用）
         WoodworkingBenchRecipe currentRecipe = menu.getCurrentRecipe();
-        if (currentRecipe != lastRecipe) {
+        boolean recipeChanged = false;
+        if (currentRecipe == null && lastRecipe != null) {
+            recipeChanged = true;
+        } else if (currentRecipe != null && lastRecipe == null) {
+            recipeChanged = true;
+        } else if (currentRecipe != null && lastRecipe != null) {
+            // 使用配方ID比较
+            recipeChanged = !currentRecipe.getId().equals(lastRecipe.getId());
+        }
+
+        if (recipeChanged) {
             lastRecipe = currentRecipe;
             if (currentRecipe != null) {
                 this.localCurrentRecipe = currentRecipe;
                 updateMaterialsDisplay();
             }
         }
+
+        // 更新合成按钮状态
+        updateCraftButtonState();
 
         // 轮播逻辑
         if (!currentRecipeGroup.isEmpty() && !menu.isCrafting() && !isCarouselPaused) {
@@ -594,9 +832,12 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
                         !currentRecipeGroup.isEmpty() &&
                         ItemStack.isSameItemSameTags(selectedButton.itemStack,
                                 currentRecipeGroup.get(currentRecipeIndex).getResultItem(getRegistryAccess()))) {
-                    updateSlotsForSelectedItem(currentRecipeGroup.get(currentRecipeIndex));
+                    // 使用不重置材料轮播索引的方法，避免材料轮播被配方组轮播打断
+                    updateSlotsForRecipeGroupCarousel(currentRecipeGroup.get(currentRecipeIndex));
                 }
             }
+        } else {
+            carouselTick++;
         }
 
         if (menu.isCrafting()) {
@@ -609,6 +850,18 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
                 updateSlotsForCraftingRecipe(localCurrentRecipe);
             }
         }
+    }
+
+    /**
+     * 更新合成按钮状态
+     */
+    private void updateCraftButtonState() {
+        if (craftButton == null) return;
+
+        boolean isCrafting = menu.isCrafting();
+
+        craftButton.active = !isCrafting;
+        craftButton.visible = !isCrafting;
     }
 
     @Override
@@ -625,22 +878,14 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
                 int slotY = guiTop + 45 + row * 18;
 
                 if (x >= slotX && x < slotX + 18 && y >= slotY && y < slotY + 18) {
-                    if (slotIndex < currentMaterials.size()) {
-                        ItemStack required = currentMaterials.get(slotIndex);
-                        if (!required.isEmpty()) {
-                            guiGraphics.renderTooltip(font, required, x, y);
-                        }
+                    // 使用轮播显示的材料
+                    ItemStack required = getDisplayMaterialForSlot(slotIndex);
+                    if (!required.isEmpty()) {
+                        guiGraphics.renderTooltip(font, required, x, y);
                     }
                 }
             }
         }
-
-        // 次数显示区域的工具提示
-//        int timesX = guiLeft + 190;
-//        int timesY = guiTop + 85;
-//        if (x >= timesX && x < timesX + 40 && y >= timesY && y < timesY + 20) {
-//            guiGraphics.renderTooltip(font, Component.translatable("gui." + ChangShengJue.MOD_ID + ".wood_working_bench.craft_times"), x, y);
-//        }
     }
 
     private void renderCustomProgressBar(GuiGraphics guiGraphics, int x, int y) {
@@ -675,11 +920,6 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
         return super.keyPressed(keyCode, scanCode, modifiers);
     }
 
-    @Override
-    public void mouseMoved(double mouseX, double mouseY) {
-        super.mouseMoved(mouseX, mouseY);
-    }
-
     private class CustomButton extends Button {
         private ItemStack itemStack;
         private static final int TEXTURE_Y_NORMAL = 217;
@@ -712,14 +952,8 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
                 ItemStack displayStack = itemStack.copy();
                 guiGraphics.renderItem(displayStack, this.getX() + 1, this.getY() + 1);
 
-                if (!itemStack.isEmpty() && isAir(this.getX(),this.getY(),mouseX,mouseY)) {
+                if (!itemStack.isEmpty() && isMouseInArea(this.getX(),this.getY(),mouseX,mouseY)) {
                     renderToolTip(guiGraphics, mouseX, mouseY, displayStack);
-                }
-
-                if (craftButton != null) {
-                    boolean isCrafting = menu.isCrafting();
-                    craftButton.active = !isCrafting;
-                    craftButton.visible = !isCrafting;
                 }
             }
         }
@@ -738,7 +972,7 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
         }
     }
 
-    private boolean isAir(int guix,int guiy,int mouseX, int mouseY) {
+    private boolean isMouseInArea(int guix,int guiy,int mouseX, int mouseY) {
         return mouseX >= guix && mouseX < guix + 18 && mouseY >= guiy && mouseY < guiy + 18;
     }
 

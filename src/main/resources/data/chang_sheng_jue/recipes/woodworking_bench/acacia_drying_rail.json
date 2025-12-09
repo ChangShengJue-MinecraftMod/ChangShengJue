@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "drying_rail",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_acacia_log"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:acacia_drying_rail",
+    "count": 8
+  }
+}

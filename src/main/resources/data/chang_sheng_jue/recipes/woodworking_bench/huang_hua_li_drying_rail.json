@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "drying_rail",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:stripped_huang_hua_li_log"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:huang_hua_li_drying_rail",
+    "count": 8
+  }
+}

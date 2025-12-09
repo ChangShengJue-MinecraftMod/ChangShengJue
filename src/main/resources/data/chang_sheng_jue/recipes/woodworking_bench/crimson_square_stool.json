@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "square_stool",
+  "ingredients": [
+    {
+      "item": "minecraft:crimson_planks",
+      "count": 3
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:crimson_square_stool"
+  }
+}

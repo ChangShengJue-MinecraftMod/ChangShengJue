@@ -1,0 +1,20 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "taishi_chair",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:wenge_planks",
+      "count": 3
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 2
+    },
+    {
+      "tag": "forge:ingots/silver"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:wenge_taishi_chair"
+  }
+}

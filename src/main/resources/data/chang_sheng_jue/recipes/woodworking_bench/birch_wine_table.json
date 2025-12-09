@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "wine_table",
+  "ingredients": [
+    {
+      "item": "minecraft:birch_planks",
+      "count": 4
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:birch_wine_table"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "large_cabinet",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:zi_tan_planks",
+      "count": 42
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:zi_tan_large_cabinet"
+  }
+}

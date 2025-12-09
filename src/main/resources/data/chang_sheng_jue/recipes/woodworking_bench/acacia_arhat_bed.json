@@ -1,0 +1,23 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "arhat_bed",
+  "ingredients": [
+    {
+      "item": "minecraft:acacia_planks",
+      "count": 5
+    },
+    {
+      "tag": "forge:ingots/silver",
+      "count": 2
+    },
+    {
+      "item": "minecraft:hay_block"
+    },
+    {
+      "item": "chang_sheng_jue:silk"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:acacia_arhat_bed"
+  }
+}

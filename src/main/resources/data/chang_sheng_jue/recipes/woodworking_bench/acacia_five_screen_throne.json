@@ -1,0 +1,26 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "five_screen_throne",
+  "ingredients": [
+    {
+      "item": "minecraft:acacia_planks",
+      "count": 4
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 2
+    },
+    {
+      "tag": "forge:ingots/gold"
+    },
+    {
+      "item": "minecraft:hay_block"
+    },
+    {
+      "item": "chang_sheng_jue:silk"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:acacia_five_screen_throne"
+  }
+}

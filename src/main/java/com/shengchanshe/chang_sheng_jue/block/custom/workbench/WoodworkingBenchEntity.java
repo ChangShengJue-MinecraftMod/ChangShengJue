@@ -43,20 +43,12 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 
-/**
- * 木工台方块实体类
- * 负责处理木工台的合成逻辑、物品存储和动画效果
- */
 public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider, GeoBlockEntity {
 
-    // ========== 常量定义 ==========
-
-    /** 动画实例缓存 */
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-
-    /** 方块朝向属性 */
     public static final DirectionProperty FACING = WoodworkingBench.FACING;
 
     /** 输出槽位索引 */
@@ -70,8 +62,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
 
     /** 最大合成进度 */
     private static final int DEFAULT_MAX_PROGRESS = 100;
-
-    // ========== 成员变量 ==========
 
     /** 物品处理器：9个输入槽，1个输出槽 */
     private final ItemStackHandler itemHandler = new ItemStackHandler(TOTAL_SLOT_COUNT);
@@ -99,8 +89,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
 
     /** 制作次数 */
     private int craftTimes = 1;
-
-    // ========== 构造方法 ==========
 
     /**
      * 构造方法
@@ -138,8 +126,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
         };
     }
 
-    // ========== 物品掉落相关方法 ==========
-
     /**
      * 当方块被破坏时掉落所有物品
      */
@@ -150,8 +136,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
         }
         Containers.dropContents(this.level, worldPosition, inventory);
     }
-
-    // ========== MenuProvider 接口实现 ==========
 
     /**
      * 获取显示名称
@@ -193,8 +177,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
             currentUser = null;
         }
     }
-
-    // ========== 数据持久化方法 ==========
 
     /**
      * 保存额外数据到NBT
@@ -256,8 +238,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
         }
     }
 
-    // ========== 能力系统相关方法 ==========
-
     /**
      * 获取能力支持
      * @param cap 能力类型
@@ -290,8 +270,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
         itemHandlerLazy.invalidate();
     }
 
-    // ========== 网络同步相关方法 ==========
-
     /**
      * 获取更新标签（客户端同步）
      * @return 包含同步数据的NBT标签
@@ -310,7 +288,7 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
      */
     @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-        load(pkt.getTag());
+        load(Objects.requireNonNull(pkt.getTag()));
     }
 
     /**
@@ -333,8 +311,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    // ========== 物品处理器访问方法 ==========
-
     /**
      * 获取物品处理器
      * @return 物品处理器实例
@@ -342,8 +318,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
     public ItemStackHandler getItemHandler() {
         return itemHandler;
     }
-
-    // ========== 制作次数相关方法 ==========
 
     /**
      * 获取制作次数
@@ -364,8 +338,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
         }
     }
-
-    // ========== 合成逻辑相关方法 ==========
 
     /**
      * 每tick更新处理
@@ -503,23 +475,26 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
     }
 
     /**
-     * 检查玩家是否有足够材料
+     * 检查玩家是否有足够材料（支持Tag标签匹配）
      * @param playerInventory 玩家背包
      * @param recipe 要检查的配方
      * @return 材料是否足够
      */
     private boolean hasEnoughMaterials(Inventory playerInventory, WoodworkingBenchRecipe recipe) {
-        ItemStack[] requiredMaterials = getMaterialsFromRecipe(recipe);
+        NonNullList<Ingredient> ingredients = recipe.getIngredients();
+        int[] requiredCounts = recipe.getCachedRequiredCounts();
 
-        for (ItemStack required : requiredMaterials) {
-            if (required.isEmpty()) continue;
+        for (int idx = 0; idx < ingredients.size(); idx++) {
+            Ingredient ingredient = ingredients.get(idx);
+            if (ingredient.isEmpty()) continue;
 
-            int needed = required.getCount() * craftTimes; // 乘以制作次数
+            int needed = requiredCounts[idx] * craftTimes; // 乘以制作次数
             int found = 0;
 
             for (int i = 0; i < playerInventory.getContainerSize() && found < needed; i++) {
                 ItemStack stack = playerInventory.getItem(i);
-                if (ItemStack.isSameItemSameTags(stack, required)) {
+                // 使用ingredient.test()支持Tag标签匹配
+                if (!stack.isEmpty() && ingredient.test(stack)) {
                     found += stack.getCount();
                 }
             }
@@ -530,20 +505,23 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
     }
 
     /**
-     * 消耗玩家材料
+     * 消耗玩家材料（支持Tag标签匹配）
      * @param playerInventory 玩家背包
      * @param recipe 要消耗材料的配方
      */
     private void consumeMaterials(Inventory playerInventory, WoodworkingBenchRecipe recipe) {
-        ItemStack[] requiredMaterials = getMaterialsFromRecipe(recipe);
+        NonNullList<Ingredient> ingredients = recipe.getIngredients();
+        int[] requiredCounts = recipe.getCachedRequiredCounts();
 
-        for (ItemStack required : requiredMaterials) {
-            if (required.isEmpty()) continue;
+        for (int idx = 0; idx < ingredients.size(); idx++) {
+            Ingredient ingredient = ingredients.get(idx);
+            if (ingredient.isEmpty()) continue;
 
-            int needed = required.getCount() * craftTimes; // 乘以制作次数
+            int needed = requiredCounts[idx] * craftTimes; // 乘以制作次数
             for (int i = 0; i < playerInventory.getContainerSize() && needed > 0; i++) {
                 ItemStack stack = playerInventory.getItem(i);
-                if (ItemStack.isSameItemSameTags(stack, required)) {
+                // 使用ingredient.test()支持Tag标签匹配
+                if (!stack.isEmpty() && ingredient.test(stack)) {
                     int take = Math.min(needed, stack.getCount());
                     stack.shrink(take);
                     needed -= take;
@@ -584,7 +562,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
 
         // 清空输入槽并设置新的配方材料
         clearInputSlots();
-        setupRecipeIngredients(recipe);
 
         setChanged();
         if (level != null) {
@@ -598,23 +575,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
     private void clearInputSlots() {
         for (int i = 0; i < INPUT_SLOT_COUNT; i++) {
             itemHandler.setStackInSlot(i, ItemStack.EMPTY);
-        }
-    }
-
-    /**
-     * 设置配方材料到输入槽
-     * @param recipe 配方实例
-     */
-    private void setupRecipeIngredients(WoodworkingBenchRecipe recipe) {
-        if (recipe != null) {
-            NonNullList<Ingredient> ingredients = recipe.getIngredients();
-            for (int i = 0; i < ingredients.size() && i < INPUT_SLOT_COUNT; i++) {
-                ItemStack[] matchingStacks = ingredients.get(i).getItems();
-                if (matchingStacks.length > 0) {
-                    // 使用单次材料用于槽位显示
-                    itemHandler.setStackInSlot(i, matchingStacks[0].copy());
-                }
-            }
         }
     }
 
@@ -637,8 +597,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
         return ItemStack.EMPTY;
     }
 
-    // ========== 数据变更通知 ==========
-
     /**
      * 标记数据已变更
      */
@@ -650,12 +608,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
         }
     }
 
-    // ========== GeckoLib 动画相关方法 ==========
-
-    /**
-     * 注册动画控制器
-     * @param controllerRegistrar 控制器注册器
-     */
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
         controllerRegistrar.add(new AnimationController<>(this, "idle", 0, (state) -> {
@@ -668,11 +620,6 @@ public class WoodworkingBenchEntity extends BlockEntity implements MenuProvider,
         }));
     }
 
-    /**
-     * 获取动画实例缓存
-     * @return 动画实例缓存
-     */
-    @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.cache;
     }

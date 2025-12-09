@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "overlord_fist",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_cherry_log",
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:cherry_overlord_fist"
+  }
+}

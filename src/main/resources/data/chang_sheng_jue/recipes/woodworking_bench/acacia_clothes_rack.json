@@ -1,0 +1,18 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "clothes_rack",
+  "ingredients": [
+    {
+      "item": "minecraft:acacia_planks",
+      "count": 2
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:acacia_clothes_rack",
+    "count" : 3
+  }
+}

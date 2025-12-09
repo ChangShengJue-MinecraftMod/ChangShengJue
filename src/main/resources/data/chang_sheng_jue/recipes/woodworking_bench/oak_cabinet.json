@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "cabinet",
+  "ingredients": [
+    {
+      "item": "minecraft:oak_planks",
+      "count": 8
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:oak_cabinet"
+  }
+}

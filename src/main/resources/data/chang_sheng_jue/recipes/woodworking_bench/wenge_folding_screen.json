@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "folding_screen",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:stripped_wenge_log",
+      "count": 3
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:wenge_folding_screen"
+  }
+}

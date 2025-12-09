@@ -1,0 +1,12 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "short_back_bracket",
+  "ingredients": [
+    {
+      "item": "minecraft:warped_planks"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:short_warped_back_bracket"
+  }
+}
