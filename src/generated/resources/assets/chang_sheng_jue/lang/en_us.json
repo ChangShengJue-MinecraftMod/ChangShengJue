@@ -343,6 +343,7 @@
   "block.chang_sheng_jue.empty_shi_li_xiang": "Empty Shi Li Xiang Jar",
   "block.chang_sheng_jue.empty_wheat_nuggets_tribute_wine": "Empty Wheat Nuggets Tribute Wine Jar",
   "block.chang_sheng_jue.fen_jiu": "Fenjiu",
+  "block.chang_sheng_jue.fen_jiu.no_wine": "There's no wine left!",
   "block.chang_sheng_jue.forge_block": "Forge Furnace",
   "block.chang_sheng_jue.geum_triflorum": "Geum Aleppicum",
   "block.chang_sheng_jue.golden_character_plaque_pavilion": "Golden Plaque Ridge Finial",
@@ -928,7 +929,6 @@
   "block.chang_sheng_jue.zi_tan_teapoy": "Zitan Teapoy",
   "block.chang_sheng_jue.zi_tan_wine_table": "Zitan Wine Table",
   "block.chang_sheng_jue.zi_tan_wood": "Zitan Wood",
-  "block.changshengjue.fen_jiu.no_wine": "There's no wine left!",
   "button.chang_sheng_jue.black_button.tips": "black",
   "button.chang_sheng_jue.blue_button.tips": "blue",
   "button.chang_sheng_jue.golden_button.tips": "golden",
@@ -1483,6 +1483,7 @@
   "itemGroup.chang_sheng_jue_natural_blocks": "ChangShengJue Natural Blocks",
   "itemGroup.chang_sheng_jue_spawn_eggs": "ChangShengJue Spawn Eggs",
   "itemGroup.chang_sheng_jue_tool": "ChangShengJue Tool & Utilities",
+  "jei.chang_sheng_jue.woodworking_bench.usage": "Craft the item in the woodworking table",
   "message.chang_sheng_jue.dagger_pouch.empty": "§cNo weapons left",
   "message.kungfu.chang_sheng_jue.clubbed.type": "clubbed",
   "message.kungfu.chang_sheng_jue.external_kunfu.fales.comprehend": "Still need to attack targets with %s to gain practical comprehension!",
@@ -1693,6 +1694,7 @@
   "tooltip.chang_sheng_jue.inner_armor_data.no.lining": "This armor cannot be lined",
   "tooltip.chang_sheng_jue.inner_armor_data.no.lining1": "Please use a chestplate for lining",
   "tooltip.chang_sheng_jue.inner_armor_data.no.unload": "Unloaded from equipment",
+  "tooltip.chang_sheng_jue.natural_silk": "Obtained by mining mulberry leaves",
   "tooltip.chang_sheng_jue.null.structure.tooltip": "Unknown Structure",
   "tooltip.chang_sheng_jue.paoding.hold_shift.tooltip": "Before Mastery: 50%% chance to drop extra meat when killing animals with a Cleaver in the main hand.\\nAfter Mastery: 75%% chance to drop extra meat.\\nMastery: Achieved after successfully unleashing %s times.",
   "tooltip.chang_sheng_jue.paoding.tooltip": "With repeated practice, one masters the principle; thus, it becomes effortless and natural.",
@@ -1726,6 +1728,5 @@
   "tooltip.chang_sheng_jue.yugong_moves_mountains.hold_shift.tooltip": "Before Mastery: Using a Mountain-Pickaxe increases mining area to 2x2.\\nAfter Mastery: Mining area increased to 3x3.\\nMastery: Achieved after successfully unleashing %s times.",
   "tooltip.chang_sheng_jue.yugong_moves_mountains.tooltip": "Endless and unceasing, until the mountains are flat.",
   "tooltip.chang_sheng_jue.zhang_men_xin_xue.hold_shift.tooltip": "Before Mastery: A single trade with a Villager promotes them to Apprentice level.\\nAfter Mastery: Additionally, 10%% chance not to consume the traded item.\\nMastery: Achieved after trading with villagers %s times.",
-  "tooltip.chang_sheng_jue.zhang_men_xin_xue.tooltip": "The world of Jianghu isn't about killing; it's about human relationships and worldly wisdom!",
-  "tooltip.changshengjue.natural_silk": "Obtained by mining mulberry leaves"
+  "tooltip.chang_sheng_jue.zhang_men_xin_xue.tooltip": "The world of Jianghu isn't about killing; it's about human relationships and worldly wisdom!"
 }

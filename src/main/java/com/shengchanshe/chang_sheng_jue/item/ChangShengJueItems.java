@@ -403,7 +403,7 @@ public class ChangShengJueItems {
         @Override
         public void appendHoverText(ItemStack stack, @Nullable Level level,
                                     List<Component> tooltip, TooltipFlag flag) {
-            tooltip.add(Component.translatable("tooltip.changshengjue.natural_silk")
+            tooltip.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID +".natural_silk")
                     .withStyle(ChatFormatting.GRAY));
             super.appendHoverText(stack, level, tooltip, flag);
         }

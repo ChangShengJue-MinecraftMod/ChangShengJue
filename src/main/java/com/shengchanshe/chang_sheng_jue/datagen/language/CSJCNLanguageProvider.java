@@ -1668,8 +1668,8 @@
             this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_extra_probability", "张门心学大成后交易不消耗物品的概率");
 
             //普通信息
-            this.add("block.changshengjue.fen_jiu.no_wine","已经没有酒了！");
-            this.add("tooltip.changshengjue.natural_silk", "通过挖掘桑叶获得");
+            this.add("block."+ ChangShengJue.MOD_ID +".fen_jiu.no_wine","已经没有酒了！");
+            this.add("tooltip."+ ChangShengJue.MOD_ID +".natural_silk", "通过挖掘桑叶获得");
 
             this.add("message.sharpening_stone.sharpened", "§a武器已打磨！本次增加：");
             this.add("message.sharpening_stone.total_damage", "§a，当前攻击力：");
@@ -1889,6 +1889,8 @@
             this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.craft", "制作");
             this.add("container."+ ChangShengJue.MOD_ID +".brick_kiln", "砖窑");
             this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.craft", "烧制");
+            //jei
+            this.add("jei."+ ChangShengJue.MOD_ID +".woodworking_bench.usage", "在木工台中制作该物品");
             //帕秋莉
             this.add(ChangShengJue.MOD_ID +".function", "功能物品");
             this.add(ChangShengJue.MOD_ID +".function.desc", "从那个空间裂缝来了很多奇怪的人，他们不仅会舞火为凤，飞天遁地。也带来了很多奇怪的东西。听说他们是从东方来的？");

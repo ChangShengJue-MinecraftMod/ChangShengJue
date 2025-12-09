@@ -1694,8 +1694,8 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_max_exp", "Successful Trades Required for Zhang Men Xin Xue Breakthrough");
         this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_extra_probability", "Probability of Trading Without Consuming Items after Zhang Men Xin Xue Mastery");
 
-        this.add("block.changshengjue.fen_jiu.no_wine","There's no wine left!");
-        this.add("tooltip.changshengjue.natural_silk", "Obtained by mining mulberry leaves");
+        this.add("block."+ ChangShengJue.MOD_ID +".fen_jiu.no_wine","There's no wine left!");
+        this.add("tooltip."+ ChangShengJue.MOD_ID +".natural_silk", "Obtained by mining mulberry leaves");
 
         this.add("message.sharpening_stone.sharpened", "§aWeapons polished! This increase:");
         this.add("message.sharpening_stone.total_damage", "§a,current attack power:");
@@ -1925,6 +1925,8 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.craft", "Make");
         this.add("container."+ ChangShengJue.MOD_ID +".brick_kiln", "Brick Kiln");
         this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.craft", "Fired");
+
+        this.add("jei."+ ChangShengJue.MOD_ID +".woodworking_bench.usage", "Craft the item in the woodworking table");
 
         this.add(ChangShengJue.MOD_ID +".function", "Functional Items");
         this.add(ChangShengJue.MOD_ID +".function.desc", "Many strange people have come from that spatial rift. They can not only dance with fire to create phoenixes and fly through the skies, but they have also brought many peculiar objects. Rumor has it they come from the East?");

@@ -2,20 +2,20 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
+    "$": {
+      "tag": "forge:ingots/iron"
     },
     "X": {
-      "item": "minecraft:paper"
+      "tag": "minecraft:planks"
     }
   },
   "pattern": [
-    "###",
-    "#X#",
-    "###"
+    "$X$",
+    "X X",
+    "XXX"
   ],
   "result": {
-    "item": "chang_sheng_jue:plaque"
+    "item": "chang_sheng_jue:wood_working_bench"
   },
   "show_notification": true
 }

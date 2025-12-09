@@ -343,6 +343,7 @@
   "block.chang_sheng_jue.empty_shi_li_xiang": "空十里香杯",
   "block.chang_sheng_jue.empty_wheat_nuggets_tribute_wine": "空麦块贡酒杯",
   "block.chang_sheng_jue.fen_jiu": "汾酒",
+  "block.chang_sheng_jue.fen_jiu.no_wine": "已经没有酒了！",
   "block.chang_sheng_jue.forge_block": "锻造炉",
   "block.chang_sheng_jue.geum_triflorum": "三花路边青",
   "block.chang_sheng_jue.golden_character_plaque_pavilion": "金色字牌脊刹",
@@ -928,7 +929,6 @@
   "block.chang_sheng_jue.zi_tan_teapoy": "紫檀木茶几",
   "block.chang_sheng_jue.zi_tan_wine_table": "紫檀木酒桌",
   "block.chang_sheng_jue.zi_tan_wood": "紫檀木",
-  "block.changshengjue.fen_jiu.no_wine": "已经没有酒了！",
   "button.chang_sheng_jue.black_button.tips": "黑",
   "button.chang_sheng_jue.blue_button.tips": "青",
   "button.chang_sheng_jue.golden_button.tips": "金",
@@ -1483,6 +1483,7 @@
   "itemGroup.chang_sheng_jue_natural_blocks": "长生诀 自然方块",
   "itemGroup.chang_sheng_jue_spawn_eggs": "长生诀 刷怪蛋",
   "itemGroup.chang_sheng_jue_tool": "长生诀 工具与实用物品",
+  "jei.chang_sheng_jue.woodworking_bench.usage": "在木工台中制作该物品",
   "message.chang_sheng_jue.dagger_pouch.empty": "§c没有武器了",
   "message.kungfu.chang_sheng_jue.clubbed.type": "棍",
   "message.kungfu.chang_sheng_jue.external_kunfu.fales.comprehend": "还需用%s攻击目标来实战领悟!",
@@ -1693,6 +1694,7 @@
   "tooltip.chang_sheng_jue.inner_armor_data.no.lining": "此铠甲不可内衬",
   "tooltip.chang_sheng_jue.inner_armor_data.no.lining1": "请使用胸甲内衬",
   "tooltip.chang_sheng_jue.inner_armor_data.no.unload": "已从装备中卸下",
+  "tooltip.chang_sheng_jue.natural_silk": "通过挖掘桑叶获得",
   "tooltip.chang_sheng_jue.null.structure.tooltip": "未知结构",
   "tooltip.chang_sheng_jue.paoding.hold_shift.tooltip": "未大成前施展效果:主手持菜刀杀死动物有50%%概率额外掉落肉\\n大成后施展效果:主手持菜刀杀死动物有75%%概率额外掉落肉\\n成功施展%s次后武功大成",
   "tooltip.chang_sheng_jue.paoding.tooltip": "若反复实践，掌握规律；便得心应手，运用自如。",
@@ -1726,6 +1728,5 @@
   "tooltip.chang_sheng_jue.yugong_moves_mountains.hold_shift.tooltip": "未大成前施展效果:使用开山镐的挖掘面积扩大为2x2\\n大成后施展效果:挖掘面积扩大为3x3\\n成功施展%s次后武功大成",
   "tooltip.chang_sheng_jue.yugong_moves_mountains.tooltip": "生生不息，直至山平。",
   "tooltip.chang_sheng_jue.zhang_men_xin_xue.hold_shift.tooltip": "未大成前施展效果:与村民的交易一次即可将村民等级提升至学徒\\n大成后施展效果:额外有10%%概率不消耗物品交易\\n与村民交易%s次后武功大成",
-  "tooltip.chang_sheng_jue.zhang_men_xin_xue.tooltip": "江湖不是打打杀杀，那是人情世故!",
-  "tooltip.changshengjue.natural_silk": "通过挖掘桑叶获得"
+  "tooltip.chang_sheng_jue.zhang_men_xin_xue.tooltip": "江湖不是打打杀杀，那是人情世故!"
 }

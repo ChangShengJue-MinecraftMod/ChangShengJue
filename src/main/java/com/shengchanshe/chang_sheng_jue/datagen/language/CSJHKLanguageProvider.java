@@ -1662,8 +1662,8 @@
             this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_extra_probability", "張門心學大成後交易不消耗物品的概率");
 
             //普通信息
-            this.add("block.changshengjue.fen_jiu.no_wine","已經沒有酒了！");
-            this.add("tooltip.changshengjue.natural_silk", "透過挖掘桑葉獲得");
+            this.add("block."+ ChangShengJue.MOD_ID +".fen_jiu.no_wine","已經沒有酒了！");
+            this.add("tooltip."+ ChangShengJue.MOD_ID +".natural_silk", "透過挖掘桑葉獲得");
 
             //进度
             // 一级进度
@@ -1879,6 +1879,8 @@
             this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.craft", "製作");
             this.add("container."+ ChangShengJue.MOD_ID +".brick_kiln", "磚窯");
             this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.craft", "燒制");
+
+            this.add("jei."+ ChangShengJue.MOD_ID +".woodworking_bench.usage", "在木工台中製作該物品");
 
             //帕秋莉
             this.add(ChangShengJue.MOD_ID +".function", "功能物品");

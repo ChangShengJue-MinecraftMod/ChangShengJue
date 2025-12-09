@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.block.food.wine;
 
+import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.block.food.TypeBlock;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
@@ -39,7 +40,7 @@ public class WineBlock extends TypeBlock {
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
         int types = state.getValue(getTYPE());
         if(fed == 0 && fedpro == 0){
-            player.displayClientMessage(Component.translatable("block.changshengjue.fen_jiu.no_wine"), true);
+            player.displayClientMessage(Component.translatable("block."+ ChangShengJue.MOD_ID +".fen_jiu.no_wine"), true);
         }
         if(fed != 0 && fedpro != 0) {
             if (types > 0) {
@@ -52,7 +53,7 @@ public class WineBlock extends TypeBlock {
                     level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);
                 }
             } else if (types == 0) {
-                player.displayClientMessage(Component.translatable("block.changshengjue.fen_jiu.no_wine"), true);
+                player.displayClientMessage(Component.translatable("block."+ ChangShengJue.MOD_ID +".fen_jiu.no_wine"), true);
                 return InteractionResult.SUCCESS;
             }
             if (!level.isClientSide) {
