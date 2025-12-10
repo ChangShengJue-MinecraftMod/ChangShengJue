@@ -47,6 +47,7 @@ import net.minecraftforge.event.level.ChunkEvent;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import vazkii.patchouli.api.PatchouliAPI;
 
@@ -713,33 +714,25 @@ public class CSJEvent {
         Player player = event.getEntity();
         // 检查是否为服务器端玩家
         if (player instanceof ServerPlayer serverPlayer) {
-//            QuestManager.getInstance().syncQuestsToPlayer(serverPlayer); // 全量同步
-            // 检查Patchouli是否加载
-            if (!net.minecraftforge.fml.ModList.get().isLoaded("patchouli")) {
-                return;
-            }
             // 判断是否为首次加入 - 通过检查玩家是否有统计数据
             boolean isFirstJoin;
             //如果玩家刚进入游戏，则修改为true
             isFirstJoin = !(serverPlayer.getStats().getValue(Stats.CUSTOM.get(Stats.LEAVE_GAME)) > 0);
 
-            // 如果是首次加入才执行书籍检查和赠送
+            // 如果是首次加入才执行
             if (isFirstJoin) {
+                String playerName = player.getGameProfile().getName();
+                if ("Peng_Fan".equals(playerName)) {
+                    ItemStack longYuanSword = new ItemStack(ChangShengJueItems.LONG_YUAN_SWORD.get());
+                    player.getInventory().add(longYuanSword);
+                }
+
+                // 检查Patchouli是否加载
+                if (!ModList.get().isLoaded("patchouli")) {
+                    return;
+                }
                 ItemStack book = PatchouliAPI.get().getBookStack(new ResourceLocation("chang_sheng_jue", "wufanglu"));
-                boolean hasBook = false;
-
-                // 遍历玩家背包检查是否已有书籍
-                for (ItemStack itemStack : player.getInventory().items) {
-                    if (itemStack.getItem() == book.getItem()) {
-                        hasBook = true;
-                        break; // 发现书籍后立即终止循环
-                    }
-                }
-
-                // 未找到书籍时执行赠送
-                if (!hasBook) {
-                    player.getInventory().add(book);
-                }
+                player.getInventory().add(book);
             }
         }
     }

@@ -198,6 +198,7 @@
             this.add(ChangShengJueItems.KAISHAN_PICKAXE.get(),"開山鎬");
             this.add(ChangShengJueItems.XUANHUA_AXE.get(),"萱花斧");
             this.add(ChangShengJueItems.BRONZE_SWORD.get(),"青銅劍");
+            this.add(ChangShengJueItems.LONG_YUAN_SWORD.get(),"龍淵劍");
             this.add(ChangShengJueItems.HAN_JIAN.get(),"漢劍");
             this.add(ChangShengJueItems.HENG_DAO.get(),"橫刀");
             this.add(ChangShengJueItems.LARGE_KNIFE.get(),"大刀");

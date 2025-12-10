@@ -222,6 +222,7 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
 
         this.tag(ItemTags.SWORDS)
                 .add(ChangShengJueItems.BRONZE_SWORD.get(),
+                        ChangShengJueItems.LONG_YUAN_SWORD.get(),
                         ChangShengJueItems.HAN_JIAN.get(),
                         ChangShengJueItems.HENG_DAO.get(),
                         ChangShengJueItems.LARGE_KNIFE.get(),

@@ -41,10 +41,7 @@ import com.shengchanshe.chang_sheng_jue.item.combat.knife.TuLongDao;
 import com.shengchanshe.chang_sheng_jue.item.combat.lance.BaWangQiang;
 import com.shengchanshe.chang_sheng_jue.item.combat.lance.RedTasselledSpear;
 import com.shengchanshe.chang_sheng_jue.item.combat.stakes.Stakes;
-import com.shengchanshe.chang_sheng_jue.item.combat.sword.BronzeSword;
-import com.shengchanshe.chang_sheng_jue.item.combat.sword.HanJian;
-import com.shengchanshe.chang_sheng_jue.item.combat.sword.SoftSword;
-import com.shengchanshe.chang_sheng_jue.item.combat.sword.YiTianJian;
+import com.shengchanshe.chang_sheng_jue.item.combat.sword.*;
 import com.shengchanshe.chang_sheng_jue.item.combat.throwingknives.FlyingDaggerPouch;
 import com.shengchanshe.chang_sheng_jue.item.combat.throwingknives.ThrowingKnives;
 import com.shengchanshe.chang_sheng_jue.item.foods.*;
@@ -447,6 +444,7 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> KITCHEN_KNIFE = ITEMS.register("kitchen_knife", KitchenKnife::new);
     public static final RegistryObject<Item> THROWING_KNIVES = ITEMS.register("throwing_knives", ThrowingKnives::new);
     public static final RegistryObject<Item> FLYING_DAGGER_POUCH = ITEMS.register("flying_dagger_pouch", FlyingDaggerPouch::new);
+    public static final RegistryObject<Item> LONG_YUAN_SWORD = ITEMS.register("long_yuan_sword", LongYuanSword::new);
     //金丝软甲
     public static final RegistryObject<Item> GOLD_SILK_SOFT_ARMOR = ITEMS.register("gold_silk_soft_armor",
             ()-> new GoldSilkSoftArmor(ChangShengJueArmorMaterials.GOLD_SILK,

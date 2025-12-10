@@ -197,6 +197,7 @@
             //工具武器和盔甲物品
             this.add(ChangShengJueItems.KAISHAN_PICKAXE.get(),"开山镐");
             this.add(ChangShengJueItems.XUANHUA_AXE.get(),"萱花斧");
+            this.add(ChangShengJueItems.LONG_YUAN_SWORD.get(),"龙渊剑");
             this.add(ChangShengJueItems.BRONZE_SWORD.get(),"青铜剑");
             this.add(ChangShengJueItems.HAN_JIAN.get(),"汉剑");
             this.add(ChangShengJueItems.HENG_DAO.get(),"横刀");

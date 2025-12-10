@@ -89,7 +89,7 @@ public class DryingRailRenderer implements BlockEntityRenderer<DryingRailEntity>
         poseStack.pushPose();
         poseStack.translate(0.5, 0.5, 0.5);
 
-        float rotation = -direction.toYRot();
+        float rotation = -direction.toYRot() + 90;
         poseStack.mulPose(Axis.YP.rotationDegrees(rotation));
 
         if (armorItem.getItem() instanceof ArmorItem armor) {

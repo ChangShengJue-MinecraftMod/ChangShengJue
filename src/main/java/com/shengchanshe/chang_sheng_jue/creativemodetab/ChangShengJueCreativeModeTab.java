@@ -1064,6 +1064,7 @@ public class ChangShengJueCreativeModeTab {
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_COMBAT = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("cahng_sheng_jue_combat",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_combat")).icon(() ->
                     ChangShengJueItems.TU_LONG_DAO.get().getDefaultInstance()).displayItems((parameters,output)->{
+                output.accept(ChangShengJueItems.LONG_YUAN_SWORD.get().getDefaultInstance());
                 output.accept(ChangShengJueItems.BEAT_DOG_STICK.get().getDefaultInstance());
                 output.accept(ChangShengJueItems.YI_TIAN_JIAN.get().getDefaultInstance());
                 output.accept(ChangShengJueItems.TU_LONG_DAO.get().getDefaultInstance());

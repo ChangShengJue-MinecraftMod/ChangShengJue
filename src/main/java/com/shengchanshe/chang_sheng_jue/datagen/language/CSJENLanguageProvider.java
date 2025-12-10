@@ -198,6 +198,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.KAISHAN_PICKAXE.get(),"Kaishan Pickaxe");
         this.add(ChangShengJueItems.XUANHUA_AXE.get(),"Xuanhua Axe");
         this.add(ChangShengJueItems.BRONZE_SWORD.get(),"Bronze Sword");
+        this.add(ChangShengJueItems.LONG_YUAN_SWORD.get(),"Long Yuan Sword");
         this.add(ChangShengJueItems.HAN_JIAN.get(),"Han Sword");
         this.add(ChangShengJueItems.HENG_DAO.get(),"Hengdao");
         this.add(ChangShengJueItems.LARGE_KNIFE.get(),"Large Knife");
