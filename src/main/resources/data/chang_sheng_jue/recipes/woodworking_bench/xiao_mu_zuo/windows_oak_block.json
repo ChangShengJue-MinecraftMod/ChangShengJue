@@ -1,0 +1,18 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "xiao_mu_zuo:windows",
+  "ingredients": [
+    {
+      "item": "minecraft:oak_planks",
+      "count": 4
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:windows_oak_block",
+    "count": 3
+  }
+}

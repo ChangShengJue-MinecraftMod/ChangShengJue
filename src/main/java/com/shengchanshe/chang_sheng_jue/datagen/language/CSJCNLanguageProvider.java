@@ -451,6 +451,7 @@
             this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.lining","此铠甲不可内衬");
             this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.lining1","请使用胸甲内衬");
             this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.unload","已从装备中卸下");
+            this.add("tooltip." + ChangShengJue.MOD_ID + ".dyeing","可染色");
 
             this.add("tooltip."+ ChangShengJue.MOD_ID + ".damage_reduction","外功伤害减免: +%s%%");
             this.add("tooltip."+ ChangShengJue.MOD_ID + ".trauma","受到外伤的概率: -%s%%");
@@ -1887,10 +1888,17 @@
 
             this.add("container."+ ChangShengJue.MOD_ID +".wood_working_bench", "木工台");
             this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.craft", "制作");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.all", "全部");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.da_mu_zuo", "大木作");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.xiao_mu_zuo", "小木作");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.chen_she", "陈设");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.furniture", "家具");
             this.add("container."+ ChangShengJue.MOD_ID +".brick_kiln", "砖窑");
             this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.craft", "烧制");
             //jei
             this.add("jei."+ ChangShengJue.MOD_ID +".woodworking_bench.usage", "在木工台中制作该物品");
+            this.add("jei."+ ChangShengJue.MOD_ID +".tailoring_case.usage", "在裁衣案中制作该物品");
+            this.add("jei."+ ChangShengJue.MOD_ID +".forge_block.usage", "在锻造炉中制作该物品");
             //帕秋莉
             this.add(ChangShengJue.MOD_ID +".function", "功能物品");
             this.add(ChangShengJue.MOD_ID +".function.desc", "从那个空间裂缝来了很多奇怪的人，他们不仅会舞火为凤，飞天遁地。也带来了很多奇怪的东西。听说他们是从东方来的？");

@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "furniture:fretwork_openwork_panel",
+  "ingredients": [
+    {
+      "item": "minecraft:spruce_planks",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:spruce_fretwork_openwork_panel"
+  }
+}

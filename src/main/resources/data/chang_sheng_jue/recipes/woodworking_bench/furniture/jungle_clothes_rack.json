@@ -1,0 +1,18 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "furniture:clothes_rack",
+  "ingredients": [
+    {
+      "item": "minecraft:jungle_planks",
+      "count": 2
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:jungle_clothes_rack",
+    "count" : 3
+  }
+}

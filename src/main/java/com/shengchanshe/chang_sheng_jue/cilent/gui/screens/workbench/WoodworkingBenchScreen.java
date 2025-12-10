@@ -35,8 +35,18 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
     private static final int VISIBLE_ROWS = 8;
     private static final int CAROUSEL_INTERVAL = 20;
 
+    // 分类常量
+    private static final String[] CATEGORIES = {"all", "da_mu_zuo", "xiao_mu_zuo", "chen_she", "furniture"};
+    private static final String CATEGORY_KEY_PREFIX = "gui." + ChangShengJue.MOD_ID + ".wood_working_bench.category.";
+
     private final List<CustomButton> customButtons = new ArrayList<>();
     private final Map<String, List<WoodworkingBenchRecipe>> recipesByGroup = new HashMap<>();
+
+    // 分类相关
+    private final List<TexturedButtonWithText> categoryButtons = new ArrayList<>();
+    private String currentCategory = "all"; // 当前选中的分类
+    private List<WoodworkingBenchRecipe> filteredRecipes = new ArrayList<>(); // 过滤后的配方列表
+    private int uniqueItemCount = 0; // 去重后的物品数量（用于滚动条计算）
 
     private List<WoodworkingBenchRecipe> cachedRecipes = new ArrayList<>();
     private List<WoodworkingBenchRecipe> currentRecipeGroup = new ArrayList<>();
@@ -144,6 +154,9 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
                 Component.translatable("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.craft"),0xFFFFFF,0xFFFFFF,1.0F,true
         ));
 
+        // 创建分类按钮
+        createCategoryButtons(x, y);
+
         updateTimesButtons();
 
         // 初始化状态跟踪
@@ -209,13 +222,152 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
     private void updateTimesButtons() {
         int currentTimes = menu.getCraftTimes();
         boolean isCrafting = menu.isCrafting();
-        // 单个增减按钮
-        decreaseButton.active = currentTimes > 1;
-        increaseButton.active = currentTimes < 64 || !isCrafting;
+
+        boolean canDecrease = currentTimes > 1;
+        decreaseButton.active = canDecrease;
+        decreaseButton.visible = canDecrease;
+
+        boolean canIncrease = currentTimes < 64 || !isCrafting;
+        increaseButton.active = canIncrease;
+        increaseButton.visible = canIncrease;
+
         // 批量增减按钮
-        batchDecreaseButton.active = currentTimes > 4;
-        batchIncreaseButton.active = currentTimes <= 60 || !isCrafting; // 64-4=60
+        boolean canBatchDecrease = currentTimes > 4;
+        batchDecreaseButton.active = canBatchDecrease;
+        batchDecreaseButton.visible = canBatchDecrease;
+
+        boolean canBatchIncrease = currentTimes <= 60 || !isCrafting;
+        batchIncreaseButton.active = canBatchIncrease;
+        batchIncreaseButton.visible = canBatchIncrease;
     }
+
+    // 创建分类按钮
+    private void createCategoryButtons(int guiX, int guiY) {
+        categoryButtons.clear();
+
+        int buttonWidth = 37;
+        int buttonHeight = 26;
+        int buttonX = guiX - 56; // 在物品列表左侧
+        int startY = guiY + 45; // 与物品列表顶部对齐
+        int buttonSpacing = 30; // 按钮间距
+
+        // 每个分类对应的代表物品
+        ItemStack[] categoryIcons = {
+                new ItemStack(ChangShengJueBlocks.WOOD_WORKING_BENCH.get()),
+                new ItemStack(ChangShengJueBlocks.OAK_DOUGONG.get()),
+                new ItemStack(ChangShengJueBlocks.OAK_BALUSTRADE.get()),
+                new ItemStack(ChangShengJueBlocks.OAK_FOLDING_SCREEN.get()),
+                new ItemStack(ChangShengJueBlocks.OAK_WINE_TABLE.get())
+        };
+
+        for (int i = 0; i < CATEGORIES.length; i++) {
+            String category = CATEGORIES[i];
+            int buttonY = startY + i * buttonSpacing;
+
+            TexturedButtonWithText categoryButton = new TexturedButtonWithText(
+                    buttonX, buttonY, buttonWidth, buttonHeight,
+                    0, 160, buttonHeight,
+                    BOTTON, 256, 256,
+                    button -> onCategoryButtonClicked(category),
+                    Component.empty(), 0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F
+            );
+
+            // 设置分类对应的物品图标
+            categoryButton.setItemIcon(categoryIcons[i])
+                    .setItemIconScale(1.0F)
+                    .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER);
+
+            this.addRenderableWidget(categoryButton);
+            categoryButtons.add(categoryButton);
+        }
+
+        updateCategoryButtonStates();
+    }
+
+    // 分类按钮点击事件
+    private void onCategoryButtonClicked(String category) {
+        if (menu.isCrafting()) return; // 制作中不允许切换分类
+
+        currentCategory = category;
+        scrollOffset = 0;
+        filterRecipesByCategory();
+        refreshItemButtons();
+        updateCategoryButtonStates();
+    }
+
+    // 更新分类按钮状态
+    private void updateCategoryButtonStates() {
+        for (int i = 0; i < categoryButtons.size() && i < CATEGORIES.length; i++) {
+            TexturedButtonWithText button = categoryButtons.get(i);
+            boolean isSelected = CATEGORIES[i].equals(currentCategory);
+            button.active = !menu.isCrafting();
+        }
+    }
+
+    // 根据分类过滤配方
+    private void filterRecipesByCategory() {
+        if ("all".equals(currentCategory)) {
+            filteredRecipes = new ArrayList<>(cachedRecipes);
+        } else {
+            filteredRecipes = new ArrayList<>();
+            for (WoodworkingBenchRecipe recipe : cachedRecipes) {
+                String group = recipe.getGroup();
+                // 根据group字段判断配方属于哪个分类
+                if (matchesCategory(group, currentCategory)) {
+                    filteredRecipes.add(recipe);
+                }
+            }
+        }
+
+        // 计算去重后的物品数量（用于滚动条）
+        updateUniqueItemCount();
+    }
+
+    // 计算去重后的物品数量
+    private void updateUniqueItemCount() {
+        List<ItemStack> uniqueItems = new ArrayList<>();
+        for (WoodworkingBenchRecipe recipe : filteredRecipes) {
+            ItemStack resultItem = recipe.getResultItem(getRegistryAccess());
+            boolean alreadyAdded = false;
+            for (ItemStack item : uniqueItems) {
+                if (ItemStack.isSameItemSameTags(item, resultItem)) {
+                    alreadyAdded = true;
+                    break;
+                }
+            }
+            if (!alreadyAdded) {
+                uniqueItems.add(resultItem);
+            }
+        }
+        uniqueItemCount = uniqueItems.size();
+    }
+
+    // 判断配方的group是否匹配当前分类
+    private boolean matchesCategory(String group, String category) {
+        if (group == null || group.isEmpty()) {
+            return false;
+        }
+        // group字段格式: "分类:子分组" 或直接 "分类"
+        String lowerGroup = group.toLowerCase();
+        // 只匹配以分类名开头的group（精确匹配分类前缀）
+        return lowerGroup.equals(category) || lowerGroup.startsWith(category + ":");
+    }
+
+    /**
+     * 获取当前分类的最大滚动偏移量
+     */
+    private int getMaxScrollOffset() {
+        return Math.max(0, (uniqueItemCount + 4) / 5 - VISIBLE_ROWS);
+    }
+
+    /**
+     * 获取滚动条滑块高度
+     */
+    private int getSliderHeight() {
+        int totalRows = Math.max(1, (uniqueItemCount + 4) / 5);
+        return Math.max(15, (int) (VISIBLE_ROWS * 1.0f / totalRows * scrollBarHeight));
+    }
+
     // 更新材料显示
     private void updateMaterialsDisplay() {
         if (localCurrentRecipe != null) {
@@ -424,6 +576,9 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
             cachedRecipes.clear();
             recipesByGroup.clear();
         }
+
+        // 根据当前分类过滤配方
+        filterRecipesByCategory();
     }
 
     private void refreshItemButtons() {
@@ -434,41 +589,47 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
         }
         customButtons.clear();
 
-        int row = 0;
-        int col = 0;
-        int startIndex = scrollOffset * 5;
-        int maxScrollOffset = Math.max(0, (cachedRecipes.size() + 4) / 5 - VISIBLE_ROWS);
+        // 先构建去重后的物品列表和对应配方
+        List<ItemStack> uniqueItems = new ArrayList<>();
+        List<WoodworkingBenchRecipe> uniqueRecipes = new ArrayList<>();
+        for (WoodworkingBenchRecipe recipe : filteredRecipes) {
+            ItemStack resultItem = recipe.getResultItem(getRegistryAccess());
+            boolean alreadyAdded = false;
+            for (ItemStack item : uniqueItems) {
+                if (ItemStack.isSameItemSameTags(item, resultItem)) {
+                    alreadyAdded = true;
+                    break;
+                }
+            }
+            if (!alreadyAdded) {
+                uniqueItems.add(resultItem);
+                uniqueRecipes.add(recipe);
+            }
+        }
+
+        // 同步更新 uniqueItemCount，确保与渲染一致
+        uniqueItemCount = uniqueItems.size();
+
+        int maxScrollOffset = getMaxScrollOffset();
 
         if (scrollOffset > maxScrollOffset) {
             scrollOffset = maxScrollOffset;
         }
 
-        List<ItemStack> addedItems = new ArrayList<>();
-        for (int i = startIndex; i < cachedRecipes.size() && row < VISIBLE_ROWS; i++) {
-            WoodworkingBenchRecipe recipe = cachedRecipes.get(i);
-            ItemStack resultItem = recipe.getResultItem(getRegistryAccess());
+        int startIndex = scrollOffset * 5;
+        int row = 0;
+        int col = 0;
 
-            boolean alreadyAdded = false;
-            for (ItemStack addedItem : addedItems) {
-                if (ItemStack.isSameItemSameTags(addedItem, resultItem)) {
-                    alreadyAdded = true;
-                    break;
-                }
-            }
-
-            if (!alreadyAdded) {
-                addedItems.add(resultItem);
-                createButton(col, row, resultItem, recipe);
-
-                col++;
-                if (col >= 5) {
-                    col = 0;
-                    row++;
-                }
+        for (int i = startIndex; i < uniqueItems.size() && row < VISIBLE_ROWS; i++) {
+            createButton(col, row, uniqueItems.get(i), uniqueRecipes.get(i));
+            col++;
+            if (col >= 5) {
+                col = 0;
+                row++;
             }
         }
 
-        if (cachedRecipes.isEmpty()) {
+        if (filteredRecipes.isEmpty() && cachedRecipes.isEmpty()) {
             refreshRecipes();
         }
 
@@ -611,9 +772,9 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
         guiGraphics.drawString(font, timesText, textX, textY, 0x404040, false);
 
         // 渲染滚动条
-        int maxScrollOffset = Math.max(0, (cachedRecipes.size() + 4) / 5 - VISIBLE_ROWS);
+        int maxScrollOffset = getMaxScrollOffset();
         float scrollProgress = maxScrollOffset > 0 ? (float) scrollOffset / maxScrollOffset : 0;
-        int sliderHeight = Math.max(15, (int) (VISIBLE_ROWS * 1.0f / Math.max(1, (cachedRecipes.size() + 4) / 5) * scrollBarHeight));
+        int sliderHeight = getSliderHeight();
         int sliderY = scrollBarY + (int) (scrollProgress * (scrollBarHeight - sliderHeight));
 
         int scrollerTextureV = isDragging ? 6 : 0;
@@ -622,7 +783,7 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
-        int maxScrollOffset = Math.max(0, (cachedRecipes.size() + 4) / 5 - VISIBLE_ROWS);
+        int maxScrollOffset = getMaxScrollOffset();
 
         if (delta > 0 && scrollOffset > 0) {
             scrollOffset--;
@@ -638,10 +799,10 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        int maxScrollOffset = Math.max(0, (cachedRecipes.size() + 4) / 5 - VISIBLE_ROWS);
+        int maxScrollOffset = getMaxScrollOffset();
         if (maxScrollOffset > 0) {
             float scrollProgress = maxScrollOffset > 0 ? (float) scrollOffset / maxScrollOffset : 0;
-            int sliderHeight = Math.max(15, (int) (VISIBLE_ROWS * 1.0f / Math.max(1, (cachedRecipes.size() + 4) / 5) * scrollBarHeight));
+            int sliderHeight = getSliderHeight();
             int sliderY = scrollBarY + (int) (scrollProgress * (scrollBarHeight - sliderHeight));
 
             if (mouseX >= scrollBarX && mouseX <= scrollBarX + 6 &&
@@ -673,14 +834,20 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
     }
 
     private void updateScrollFromMousePos(double mouseY) {
-        int maxScrollOffset = Math.max(0, (cachedRecipes.size() + 4) / 5 - VISIBLE_ROWS);
+        int maxScrollOffset = getMaxScrollOffset();
         if (maxScrollOffset <= 0) return;
 
-        float scrollSensitivity = 0.2f;
-        float relativeY = (float) (mouseY - scrollBarY) / (scrollBarHeight * scrollSensitivity);
+        // 计算滑块高度
+        int sliderHeight = getSliderHeight();
+        // 计算可滑动区域
+        int scrollableHeight = scrollBarHeight - sliderHeight;
+        if (scrollableHeight <= 0) return;
+
+        // 根据鼠标位置计算滚动进度
+        float relativeY = (float) (mouseY - scrollBarY - sliderHeight / 2.0f) / scrollableHeight;
         relativeY = Math.max(0, Math.min(1, relativeY));
 
-        scrollOffset = (int) (relativeY * maxScrollOffset);
+        scrollOffset = Math.round(relativeY * maxScrollOffset);
         scrollOffset = Math.max(0, Math.min(scrollOffset, maxScrollOffset));
         refreshItemButtons();
     }
@@ -713,8 +880,9 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
         renderCarouselMaterials(guiGraphics);
 
         for (CustomButton button : customButtons) {
-            if (button.isHovered() && !button.getItemStack().isEmpty()) {
+            if (!button.getItemStack().isEmpty() && isMouseInArea(button.getX(), button.getY(), mouseX, mouseY)) {
                 renderToolTip(guiGraphics, mouseX, mouseY, button.getItemStack());
+                break;
             }
         }
         renderTooltip(guiGraphics, mouseX, mouseY);
@@ -920,12 +1088,12 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
         return super.keyPressed(keyCode, scanCode, modifiers);
     }
 
-    private class CustomButton extends Button {
-        private ItemStack itemStack;
+    private static class CustomButton extends Button {
+        private final ItemStack itemStack;
         private static final int TEXTURE_Y_NORMAL = 217;
         private static final int TEXTURE_Y_PRESS = 235;
         int COUNT = 0;
-        private WoodworkingBenchRecipe recipe;
+        private final WoodworkingBenchRecipe recipe;
         private float alpha = 1.0f;
 
         protected CustomButton(int pX, int pY, int pWidth, int pHeight, Component pMessage, OnPress pOnPress,
@@ -951,9 +1119,9 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
 
                 ItemStack displayStack = itemStack.copy();
                 guiGraphics.renderItem(displayStack, this.getX() + 1, this.getY() + 1);
-
-                if (!itemStack.isEmpty() && isMouseInArea(this.getX(),this.getY(),mouseX,mouseY)) {
-                    renderToolTip(guiGraphics, mouseX, mouseY, displayStack);
+                // 渲染物品数量（如果数量大于1）
+                if (displayStack.getCount() > 1) {
+                    guiGraphics.renderItemDecorations(Minecraft.getInstance().font, displayStack, this.getX() + 1, this.getY() + 1);
                 }
             }
         }

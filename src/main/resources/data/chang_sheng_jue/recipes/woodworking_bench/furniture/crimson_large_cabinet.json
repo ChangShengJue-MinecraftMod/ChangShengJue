@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "furniture:large_cabinet",
+  "ingredients": [
+    {
+      "item": "minecraft:crimson_planks",
+      "count": 42
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:crimson_large_cabinet"
+  }
+}

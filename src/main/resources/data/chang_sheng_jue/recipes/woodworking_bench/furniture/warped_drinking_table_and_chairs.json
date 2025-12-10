@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "furniture:chairs",
+  "ingredients": [
+    {
+      "item": "minecraft:warped_planks",
+      "count": 4
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:warped_drinking_table_and_chairs"
+  }
+}

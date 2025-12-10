@@ -4,8 +4,11 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.cotton.CottonArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.inner_armor.GoldSilkSoftArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.inner_armor.InnerArmorInterface;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.walker_set.WalkerSet;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -182,7 +185,6 @@ public class ChangShengJueArmorItem extends ArmorItem implements DyeableItem, Ge
                         pPlayer.displayClientMessage(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.lining1").append(stack.getHoverName().copy()), true);
                     }
                 } else if (hasInnerArmor(armorStack)){
-                    // 移除内甲
                     getInnerArmorStack(armorStack).ifPresent(innerStack -> {
                         pPlayer.displayClientMessage(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.unload").append(innerStack.getHoverName().copy()), true);
                         if (!pPlayer.getInventory().add(innerStack)) {
@@ -195,7 +197,11 @@ public class ChangShengJueArmorItem extends ArmorItem implements DyeableItem, Ge
                 }
             } else {
                 ItemStack itemBySlot = pPlayer.getItemBySlot(EquipmentSlot.CHEST);
-                if (itemBySlot.getItem() instanceof InnerArmorInterface && this.getEquipmentSlot() == EquipmentSlot.CHEST) {
+                if (!hasInnerArmor(armorStack) && !itemBySlot.isEmpty() && itemBySlot.getItem() instanceof InnerArmorInterface && this.getEquipmentSlot() == EquipmentSlot.CHEST) {
+                    if (itemBySlot.getItem() instanceof GoldSilkSoftArmor && armorStack.getItem() instanceof ArmorInterface){
+                        pPlayer.displayClientMessage(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.lining").append(itemBySlot.getHoverName().copy()), true);
+                        return super.use(pLevel, pPlayer, pHand);
+                    }
                     installInnerArmor(armorStack, itemBySlot.copyWithCount(1));
                     pPlayer.displayClientMessage(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data").append(itemBySlot.getHoverName().copy()), true);
                     if (!pPlayer.getAbilities().instabuild) {
@@ -230,15 +236,6 @@ public class ChangShengJueArmorItem extends ArmorItem implements DyeableItem, Ge
                         totalToughness = totalToughness + 4;
                     }
 
-//                    // 清除旧修饰符
-//                    modifiers.removeAll(Attributes.ARMOR);
-//                    modifiers.put(Attributes.ARMOR, new AttributeModifier(
-//                            slotUUID,
-//                            "Custom Armor Modifier",
-//                            totalArmor,
-//                            AttributeModifier.Operation.ADDITION
-//                    ));
-                    // 替换原有修饰符（避免叠加）
                     modifiers.replaceValues(Attributes.ARMOR, ImmutableList.of(
                             new AttributeModifier(
                                     slotUUID,
@@ -263,6 +260,13 @@ public class ChangShengJueArmorItem extends ArmorItem implements DyeableItem, Ge
     }
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        if (!(pStack.getItem() instanceof ArmorInterface) || pStack.getItem() instanceof CottonArmor) {
+            if (!(pStack.getItem() instanceof WalkerSet) && !pStack.is(ChangShengJueItems.FLY_FISH_IRON_HAT.get())
+                && !pStack.is(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET.get())
+                    && !pStack.is(ChangShengJueItems.FEMALE_TAOIST_HELMET.get())) {
+                pTooltipComponents.add(Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".dyeing").withStyle(ChatFormatting.GRAY));
+            }
+        }
         if (hasInnerArmor(pStack)){
             // 获取内甲ItemStack
             ItemStack innerArmor = ItemStack.of(pStack.getTag().getCompound(INNER_ARMOR_TAG));

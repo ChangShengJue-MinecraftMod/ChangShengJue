@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.armor.headdress.hair_crown;
 
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.ArmorInterface;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.ChangShengJueArmorItem;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -12,7 +13,7 @@ import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 import java.util.function.Consumer;
 
-public class HairCrown extends ChangShengJueArmorItem {
+public class HairCrown extends ChangShengJueArmorItem implements ArmorInterface {
     public HairCrown(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
     }

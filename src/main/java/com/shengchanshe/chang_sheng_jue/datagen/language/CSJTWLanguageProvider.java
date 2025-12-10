@@ -447,6 +447,7 @@
             this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.lining","此鎧甲不可內襯");
             this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.lining1","請使用胸甲內襯");
             this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.unload","已從裝備中卸下");
+            this.add("tooltip." + ChangShengJue.MOD_ID + ".dyeing","可染色");
 
             this.add("tooltip."+ ChangShengJue.MOD_ID + ".damage_reduction","外功傷害減免: +%s%%");
             this.add("tooltip."+ ChangShengJue.MOD_ID + ".trauma","受到外傷的概率: -%s%%");
@@ -1878,10 +1879,17 @@
 
             this.add("container."+ ChangShengJue.MOD_ID +".wood_working_bench", "木工臺");
             this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.craft", "製作");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.all", "全部");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.da_mu_zuo", "大木作");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.xiao_mu_zuo", "小木作");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.chen_she", "陳設");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.furniture", "傢俱");
             this.add("container."+ ChangShengJue.MOD_ID +".brick_kiln", "磚窯");
             this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.craft", "燒制");
 
             this.add("jei."+ ChangShengJue.MOD_ID +".woodworking_bench.usage", "在木工台中製作該物品");
+            this.add("jei."+ ChangShengJue.MOD_ID +".tailoring_case.usage", "在裁衣案中製作該物品");
+            this.add("jei."+ ChangShengJue.MOD_ID +".forge_block.usage", "在鍛造爐中製作該物品");
 
             //帕秋莉
             this.add(ChangShengJue.MOD_ID +".function", "功能物品");

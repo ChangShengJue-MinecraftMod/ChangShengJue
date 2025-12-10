@@ -1,0 +1,12 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "da_mu_zuo:short_flower_bracket",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_mangrove_log"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:short_mangrove_flower_bracket"
+  }
+}

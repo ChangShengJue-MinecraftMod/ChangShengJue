@@ -54,17 +54,6 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
         planksFromLog(consumer, ChangShengJueBlocks.MULBERRY_PLANKS.get(), CSJTags.Items.MULBERRY_LOG, 4);
         planksFromLog(consumer, ChangShengJueBlocks.ZI_TAN_PLANKS.get(), CSJTags.Items.ZI_TAN_LOG, 4);
 
-        ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.BLUE_DOUGONG.get())
-                .requires(ChangShengJueBlocks.GREEN_DOUGONG.get())
-                .requires(Tags.Items.DYES_BLUE)
-                .unlockedBy("has_green_dougong", has(ChangShengJueBlocks.GREEN_DOUGONG.get()))
-                .save(consumer);
-
-        ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.GREEN_DOUGONG.get())
-                .requires(ChangShengJueBlocks.BLUE_DOUGONG.get())
-                .requires(Tags.Items.DYES_GREEN)
-                .unlockedBy("has_blue_dougong", has(ChangShengJueBlocks.BLUE_DOUGONG.get()))
-                .save(consumer);
         //建筑方块
         ShapelessRecipeBuilder.shapeless(MISC, ChangShengJueBlocks.HANG_TU_BLOCK.get(),6).requires(Blocks.DIRT,9).unlockedBy("has_dirt",has(Blocks.DIRT)).save(consumer);
         stairBuilder(ChangShengJueBlocks.HANG_TU_STAIRS.get(), Ingredient.of(ChangShengJueBlocks.HANG_TU_BLOCK.get())).unlockedBy("has_hang_tu_block", has(ChangShengJueBlocks.HANG_TU_BLOCK.get())).save(consumer);
@@ -197,113 +186,6 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("X")
                 .pattern("&")
                 .unlockedBy("has_string", has(Items.STRING)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get(),1)
-                .define('#', Ingredient.of(Items.STICK))
-                .define('X', Ingredient.of(Items.BIRCH_PLANKS))
-                .pattern("X#X")
-                .pattern("X#X")
-                .pattern("X#X")
-                .unlockedBy("has_sand", has(Items.STICK)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.YUN_SHAN_FU_TI_BLOCK.get(),1)
-                .define('#', Ingredient.of(Items.STICK))
-                .define('X', Ingredient.of(Items.SPRUCE_PLANKS))
-                .pattern("X#X")
-                .pattern("X#X")
-                .pattern("X#X")
-                .unlockedBy("has_sand", has(Items.STICK)).save(consumer);
-        //门
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_OAK.get(),2)
-                .define('#', Ingredient.of(Items.OAK_PLANKS))
-                .pattern("###")
-                .pattern("# #")
-                .pattern("# #")
-                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_BIRCH.get(),2)
-                .define('#', Ingredient.of(Items.BIRCH_PLANKS))
-                .pattern("###")
-                .pattern("# #")
-                .pattern("# #")
-                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_DARK_OAK.get(),2)
-                .define('#', Ingredient.of(Items.DARK_OAK_PLANKS))
-                .pattern("###")
-                .pattern("# #")
-                .pattern("# #")
-                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_SPRUCE.get(),2)
-                .define('#', Ingredient.of(Items.SPRUCE_PLANKS))
-                .pattern("###")
-                .pattern("# #")
-                .pattern("# #")
-                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.DOOR_ACACIA.get(),2)
-                .define('#', Ingredient.of(Items.ACACIA_PLANKS))
-                .pattern("###")
-                .pattern("# #")
-                .pattern("# #")
-                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        //窗户
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.HIGH_OAK_WINDOWS.get(),3)
-                .define('#', Ingredient.of(Items.OAK_PLANKS))
-                .pattern("# #")
-                .pattern("# #")
-                .pattern("# #")
-                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.HIGH_BIRCH_WINDOWS.get(),3)
-                .define('#', Ingredient.of(Items.BIRCH_PLANKS))
-                .pattern("# #")
-                .pattern("# #")
-                .pattern("# #")
-                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.HIGH_DARK_OAK_WINDOWS.get(),3)
-                .define('#', Ingredient.of(Items.DARK_OAK_PLANKS))
-                .pattern("# #")
-                .pattern("# #")
-                .pattern("# #")
-                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.HIGH_SPRUCE_WINDOWS.get(),3)
-                .define('#', Ingredient.of(Items.SPRUCE_PLANKS))
-                .pattern("# #")
-                .pattern("# #")
-                .pattern("# #")
-                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.HIGH_ACACIA_WINDOWS.get(),3)
-                .define('#', Ingredient.of(Items.ACACIA_PLANKS))
-                .pattern("# #")
-                .pattern("# #")
-                .pattern("# #")
-                .unlockedBy("has_planks", has(ItemTags.PLANKS)).save(consumer);
-        //窗户板
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_OAK_BLOCK.get(),3)
-                .define('#', Ingredient.of(Items.STICK))
-                .define('X', Ingredient.of(Items.OAK_PLANKS))
-                .pattern("X#X")
-                .pattern("X X")
-                .unlockedBy("has_sand", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_BIRCH_BLOCK.get(),3)
-                .define('#', Ingredient.of(Items.STICK))
-                .define('X', Ingredient.of(Items.BIRCH_PLANKS))
-                .pattern("X#X")
-                .pattern("X X")
-                .unlockedBy("has_sand", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_DARK_OAK_BLOCK.get(),3)
-                .define('#', Ingredient.of(Items.STICK))
-                .define('X', Ingredient.of(Items.DARK_OAK_PLANKS))
-                .pattern("X#X")
-                .pattern("X X")
-                .unlockedBy("has_sand", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_SPRUCE_BLOCK.get(),3)
-                .define('#', Ingredient.of(Items.STICK))
-                .define('X', Ingredient.of(Items.SPRUCE_PLANKS))
-                .pattern("X#X")
-                .pattern("X X")
-                .unlockedBy("has_sand", has(ItemTags.PLANKS)).save(consumer);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WINDOWS_ACACIA_BLOCK.get(),3)
-                .define('#', Ingredient.of(Items.STICK))
-                .define('X', Ingredient.of(Items.ACACIA_PLANKS))
-                .pattern("X#X")
-                .pattern("X X")
-                .unlockedBy("has_sand", has(ItemTags.PLANKS)).save(consumer);
         //石灯
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.STONE_LAMPS_BASE_BLOCK.get(),1)
                 .define('#', Ingredient.of(Items.STONE))

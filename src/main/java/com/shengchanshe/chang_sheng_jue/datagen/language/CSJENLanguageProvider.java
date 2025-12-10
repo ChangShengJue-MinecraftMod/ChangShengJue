@@ -481,6 +481,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.lining","This armor cannot be lined");
         this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.lining1","Please use a chestplate for lining");
         this.add("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.unload","Unloaded from equipment");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".dyeing","Can be dyed");
         this.add("tooltip."+ ChangShengJue.MOD_ID + ".damage_reduction","External damage reduction: +%s%%");
         this.add("tooltip."+ ChangShengJue.MOD_ID + ".trauma","Chance of sustaining external injuries: -%s%%");
 
@@ -1923,10 +1924,17 @@ public class CSJENLanguageProvider extends LanguageProvider {
 
         this.add("container."+ ChangShengJue.MOD_ID +".wood_working_bench", "Woodworking Bench");
         this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.craft", "Make");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.all", "All");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.da_mu_zuo", "Major");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.xiao_mu_zuo", "Minor");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.chen_she", "Decor");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".wood_working_bench.category.furniture", "Furniture");
         this.add("container."+ ChangShengJue.MOD_ID +".brick_kiln", "Brick Kiln");
         this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.craft", "Fired");
 
         this.add("jei."+ ChangShengJue.MOD_ID +".woodworking_bench.usage", "Craft the item in the woodworking table");
+        this.add("jei."+ ChangShengJue.MOD_ID +".tailoring_case.usage", "Craft the item in the tailoring case");
+        this.add("jei."+ ChangShengJue.MOD_ID +".forge_block.usage", "Craft the item in the Forge Block");
 
         this.add(ChangShengJue.MOD_ID +".function", "Functional Items");
         this.add(ChangShengJue.MOD_ID +".function.desc", "Many strange people have come from that spatial rift. They can not only dance with fire to create phoenixes and fly through the skies, but they have also brought many peculiar objects. Rumor has it they come from the East?");

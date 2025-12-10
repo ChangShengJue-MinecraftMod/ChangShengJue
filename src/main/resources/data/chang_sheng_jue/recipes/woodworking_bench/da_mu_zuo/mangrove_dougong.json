@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "da_mu_zuo:dougong",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_mangrove_log",
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:mangrove_dougong"
+  }
+}

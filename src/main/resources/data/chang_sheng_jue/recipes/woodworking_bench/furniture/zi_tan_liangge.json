@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "furniture:liangge",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:zi_tan_planks",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:zi_tan_liangge"
+  }
+}

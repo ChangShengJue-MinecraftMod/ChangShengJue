@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "furniture:drying_rail",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:stripped_zi_tan_log"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:zi_tan_drying_rail",
+    "count": 8
+  }
+}

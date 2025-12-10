@@ -19,6 +19,7 @@ import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.decoration.ArmorStand;
@@ -520,18 +521,27 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
 
     // 更新盔甲架装备
     private void updateArmorStandEquipment() {
-        for (EquipmentSlot slot : EquipmentSlot.values()) {
-            armorStandEntity.setItemSlot(slot, ItemStack.EMPTY);
-        }
-        armorStandEntity.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+        EquipmentSlot targetSlot = null;
+        InteractionHand targetHand = null;
 
         if (currentSelectedItem.getItem() instanceof ArmorItem armor) {
-            armorStandEntity.setItemSlot(armor.getEquipmentSlot(), currentSelectedItem);
+            targetSlot = armor.getEquipmentSlot();
         } else {
-            armorStandEntity.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, currentSelectedItem);
+            targetHand = InteractionHand.MAIN_HAND;
+        }
+
+        if (targetSlot != null) {
+            ItemStack currentInSlot = armorStandEntity.getItemBySlot(targetSlot);
+            if (!ItemStack.matches(currentSelectedItem, currentInSlot)) {
+                armorStandEntity.setItemSlot(targetSlot, currentSelectedItem);
+            }
+        } else {
+            ItemStack currentInHand = armorStandEntity.getItemInHand(targetHand);
+            if (!ItemStack.matches(currentSelectedItem, currentInHand)) {
+                armorStandEntity.setItemInHand(targetHand, currentSelectedItem);
+            }
         }
     }
-
     // 在GUI中渲染实体
     private void renderEntityInInventory(
             GuiGraphics guiGraphics,
@@ -590,8 +600,9 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         super.render(guiGraphics, mouseX, mouseY, delta);
         // 渲染按钮工具提示
         for (CustomButton button : customButtons) {
-            if (button.isHovered() && !button.getItemStack().isEmpty()) {
+            if (!button.getItemStack().isEmpty() && isMouseInArea(button.getX(), button.getY(), mouseX, mouseY)) {
                 renderToolTip(guiGraphics, mouseX, mouseY, button.getItemStack());
+                break;
             }
         }
         renderTooltip(guiGraphics, mouseX, mouseY);
@@ -683,10 +694,6 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
                 ItemStack displayStack = itemStack.copy();
 
                 guiGraphics.renderItem(displayStack, this.getX() + 1, this.getY() + 1);
-                if ( !itemStack.isEmpty() && isAir(this.getX(),this.getY(),mouseX,mouseY)) {
-                    // 渲染物品提示
-                    renderToolTip(guiGraphics, mouseX, mouseY, displayStack);
-                }
 
                 // 更新合成按钮状态
                 if (craftButton != null) {
@@ -768,7 +775,10 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         }
         return super.keyPressed(keyCode, scanCode, modifiers);
     }
-    
+
+    private boolean isMouseInArea(int guix,int guiy,int mouseX, int mouseY) {
+        return mouseX >= guix && mouseX < guix + 18 && mouseY >= guiy && mouseY < guiy + 18;
+    }
     // 处理鼠标移动，恢复轮播
     @Override
     public void mouseMoved(double mouseX, double mouseY) {
