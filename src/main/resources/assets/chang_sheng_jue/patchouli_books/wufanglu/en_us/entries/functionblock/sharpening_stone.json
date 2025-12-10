@@ -1,0 +1,24 @@
+{
+  "name": "chang_sheng_jue.function.sharpening_stone",
+  "category": "chang_sheng_jue:function",
+  "sortnum": 10,
+  "icon": "chang_sheng_jue:stone_sharpening_stone",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "chang_sheng_jue.function.sharpening_stone",
+      "item": "chang_sheng_jue:stone_sharpening_stone",
+      "text": "chang_sheng_jue.function.sharpening_stone.page1.text"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:stone_sharpening_stone",
+      "recipe2": "chang_sheng_jue:diamond_sharpening_stone"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:netherite_sharpening_stone"
+    }
+  ]
+}
+

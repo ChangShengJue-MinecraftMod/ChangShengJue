@@ -2024,9 +2024,6 @@
             this.add(ChangShengJue.MOD_ID +".xiake.equipment.page1.text", "武侠装备除了像原版盔甲可以给你提供盔甲值或盔甲韧性等外，还可以减少他人对你造成的外功伤害。盔甲可以自己制作也可以在古城的铁匠铺内使用货币兑换。大部分盔甲是支持颜色改变外观的，可以试试。$(br)当你初次合成或使用长生诀服装的胸甲时，会为其生成随机的化解外功效果与减少受到外伤概率。");
             this.add(ChangShengJue.MOD_ID +".xiake.equipment.page2.title", "内甲");
             this.add(ChangShengJue.MOD_ID +".xiake.equipment.page2.text", "内甲可以内衬在长生诀服装的胸甲里，提高胸甲的盔甲值或韧性。$(br)完成胸甲内衬有两种方式：1.先穿戴内甲然后穿戴打算进行内衬的胸甲就可以完成胸甲内衬。2.也可以副手持内甲，主手持打算进行内衬的胸甲按SHIFT+右键完成胸甲内衬。$(br)内甲也可单独穿戴同一般胸甲。$(br)");
-            this.add(ChangShengJue.MOD_ID +".xiake.forge_block", "锻造炉");
-            this.add(ChangShengJue.MOD_ID +".xiake.forge_block.page1.text", "锻造炉合成表");
-            this.add(ChangShengJue.MOD_ID +".xiake.forge_block.page2.text", "用于制作武器、盔甲等，可于锻造炉内查看选中物品，制作会自动从背包扣除对应所需材料。");
             this.add(ChangShengJue.MOD_ID +".xiake.internal_injury", "内伤");
             this.add(ChangShengJue.MOD_ID +".xiake.internal_injury.page1.text", "每层内伤效果影响：受到伤害增加5%%，已穿戴的盔甲效果降低5%%，每秒5%%的概率会眩晕，持续15秒；已被施加这个效果的目标再次空手攻击他可使内伤效果叠加1层并延长2秒持续时间；内伤效果最大是5级，每等级效果提升1倍。");
             this.add(ChangShengJue.MOD_ID +".xiake.internal_injury.page2.text", "当正在运转空手类外功时，空手攻击目标向对方造成1级内伤，使用空手类外功攻击目标则造成2级内伤。$(br)主手持金丝手套也视为空手攻击。");
@@ -2044,9 +2041,20 @@
             this.add(ChangShengJue.MOD_ID +".xiake.stakes.page1.text", "木桩合成表");
             this.add(ChangShengJue.MOD_ID +".xiake.stakes.page2.text", "内功、轻功、外功(空手)类功法可以通过打击木桩练习领悟，每次打击领悟概率为15%%。");
 
-            this.add(ChangShengJue.MOD_ID +".xiake.tailoring_case", "裁衣案");
-            this.add(ChangShengJue.MOD_ID +".xiake.tailoring_case.page1.text", "裁衣案合成表");
-            this.add(ChangShengJue.MOD_ID +".xiake.tailoring_case.page2.text", "用于制作服装（盔甲）等，可于裁衣案内查看选中物品，制作会自动从背包扣除对应所需材料。");
+            this.add(ChangShengJue.MOD_ID +".function.tailoring_case", "裁衣案");
+            this.add(ChangShengJue.MOD_ID +".function.tailoring_case.page1.text", "裁衣案合成表");
+            this.add(ChangShengJue.MOD_ID +".function.tailoring_case.page2.text", "用于制作服装（盔甲）等，可于裁衣案内查看选中物品，制作会自动从背包扣除对应所需材料。");
+
+            this.add(ChangShengJue.MOD_ID +".function.forge_block", "锻造炉");
+            this.add(ChangShengJue.MOD_ID +".function.forge_block.page1.text", "锻造炉合成表");
+            this.add(ChangShengJue.MOD_ID +".function.forge_block.page2.text", "用于制作武器、盔甲等，可于锻造炉内查看选中物品，制作会自动从背包扣除对应所需材料。");
+
+            this.add(ChangShengJue.MOD_ID +".function.wood_working_bench", "木工台");
+            this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page1.text", "木工台合成表");
+            this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page2.text", "用于快速制作各种家具与木制建筑构件，可以批量制作（点击数字旁的图标增加或减少制作次数，最大次数为64次），制作会自动从背包扣除对应所需材料。");
+
+            this.add(ChangShengJue.MOD_ID +".function.sharpening_stone", "磨刀石");
+            this.add(ChangShengJue.MOD_ID +".function.sharpening_stone.page1.text", "通过磨刀石你可以强化你的武器，圆石磨刀石最高可以将武器伤害提升6点，钻石磨刀石则是最高提升至8点，下界合金磨刀石最高提升10点。注意！打磨后武器的耐久消耗也会对应提高。");
 
             this.add(ChangShengJue.MOD_ID +".xiake.quest", "任务");
             this.add(ChangShengJue.MOD_ID +".xiake.quest.page1.text", "右键帮派首领可以在任务页面领取帮派任务，完成帮派任务可以获取帮派令牌、武功秘籍、货币等物品。游玩时也有概率自动触发一些其他任务（大部分是自动领取的，符合完成条件会自动完成），奖励会有武功秘籍、货币等物品。");
