@@ -106,12 +106,16 @@ public class ClientSetup {
             ChangShengJueItems.FLY_FISH_CHESTPLATE,
             ChangShengJueItems.FLY_FISH_LONG_BOOTS,
 
-            ChangShengJueItems.HENG_DAO,
-
             ChangShengJueItems.CONFUCIAN_HELMET,
             ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE,
             ChangShengJueItems.CONFUCIAN_INK_LEGGINGS,
             ChangShengJueItems.CONFUCIAN_INK_BOOTS,
+
+            ChangShengJueItems.CONSTABLE_UNIFORM_HELMET,
+            ChangShengJueItems.CONSTABLE_UNIFORM_CHESTPLATE,
+            ChangShengJueItems.CONSTABLE_UNIFORM_LEGGINGS,
+            ChangShengJueItems.CONSTABLE_UNIFORM_BOOTS,
+
 
             ChangShengJueItems.HATS_WITH_VEIL_HELMET,
             ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE,

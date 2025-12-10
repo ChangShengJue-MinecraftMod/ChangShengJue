@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "chang_sheng_jue:item/constable_uniform_leggings",
+    "layer1": "chang_sheng_jue:item/constable_uniform_leggings_overlay"
+  }
+}

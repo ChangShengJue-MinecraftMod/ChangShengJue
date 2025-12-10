@@ -255,6 +255,11 @@
             this.add(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get(), "絲執褲");
             this.add(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get(), "輕絲履");
 
+            this.add(ChangShengJueItems.CONSTABLE_UNIFORM_HELMET.get(), "玄紋束髮冠");
+            this.add(ChangShengJueItems.CONSTABLE_UNIFORM_CHESTPLATE.get(), "雲紋暗繡氅衣");
+            this.add(ChangShengJueItems.CONSTABLE_UNIFORM_LEGGINGS.get(), "蟒紋綴穗下裳");
+            this.add(ChangShengJueItems.CONSTABLE_UNIFORM_BOOTS.get(), "玄革踏雲靴");
+
             this.add(ChangShengJueItems.HATS_WITH_VEIL_HELMET.get(), "垂紗鬥笠");
             this.add(ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE.get(), "素雅長裙");
 

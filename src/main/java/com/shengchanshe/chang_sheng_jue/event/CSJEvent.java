@@ -723,8 +723,7 @@ public class CSJEvent {
             if (isFirstJoin) {
                 String playerName = player.getGameProfile().getName();
                 if ("Peng_Fan".equals(playerName)) {
-                    ItemStack longYuanSword = new ItemStack(ChangShengJueItems.LONG_YUAN_SWORD.get());
-                    player.getInventory().add(longYuanSword);
+                    player.getInventory().add(ChangShengJueItems.LONG_YUAN_SWORD.get().getDefaultInstance());
                 }
 
                 // 检查Patchouli是否加载

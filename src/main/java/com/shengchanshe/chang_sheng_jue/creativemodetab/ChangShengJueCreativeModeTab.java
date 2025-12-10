@@ -1152,6 +1152,12 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.FOREHEAD_BAND_HELMET2.get());
                 output.accept(ChangShengJueItems.HAIR_CROWN_HELMET1.get());
                 output.accept(ChangShengJueItems.HAIR_CROWN_HELMET2.get());
+
+                output.accept(ChangShengJueItems.CONSTABLE_UNIFORM_HELMET.get());
+                output.accept(ChangShengJueItems.CONSTABLE_UNIFORM_CHESTPLATE.get().getDefaultInstance());
+                output.accept(ChangShengJueItems.CONSTABLE_UNIFORM_LEGGINGS.get());
+                output.accept(ChangShengJueItems.CONSTABLE_UNIFORM_BOOTS.get());
+
             }).build());
     //工具
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_TOOL = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_tool",()-> CreativeModeTab.builder()

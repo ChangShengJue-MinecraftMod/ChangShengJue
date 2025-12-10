@@ -179,6 +179,11 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleArmorItem(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE);
         simpleArmorItem(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS);
         simpleArmorItem(ChangShengJueItems.CONFUCIAN_INK_BOOTS);
+        //捕快套
+        simpleArmorItem(ChangShengJueItems.CONSTABLE_UNIFORM_HELMET);
+        simpleArmorItem(ChangShengJueItems.CONSTABLE_UNIFORM_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.CONSTABLE_UNIFORM_LEGGINGS);
+        simpleArmorItem(ChangShengJueItems.CONSTABLE_UNIFORM_BOOTS);
 
         //斗笠
         simpleArmorItem(ChangShengJueItems.HATS_WITH_VEIL_HELMET);

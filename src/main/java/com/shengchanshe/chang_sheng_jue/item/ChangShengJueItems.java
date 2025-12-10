@@ -9,6 +9,7 @@ import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.ChangShengJueArmorMaterials;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.buddhist_robe.BuddhistRobe;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.confucian_costumes.ConfucianCostumes;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.constable_uniform.ConstableUniform;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.cotton.CottonArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.duanda.DuanDa;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.flying_fish_robe.FlyingFishRobe;
@@ -562,6 +563,15 @@ public class ChangShengJueItems {
     //短打套
     public static final RegistryObject<Item> DUAN_DA_CHESTPLATE = ITEMS.register("duan_da_chestplate",
             ()-> new DuanDa(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    //捕快套
+    public static final RegistryObject<Item> CONSTABLE_UNIFORM_HELMET = ITEMS.register("constable_uniform_helmet",
+            ()-> new ConstableUniform(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> CONSTABLE_UNIFORM_CHESTPLATE = ITEMS.register("constable_uniform_chestplate",
+            ()-> new ConstableUniform(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    public static final RegistryObject<Item> CONSTABLE_UNIFORM_LEGGINGS = ITEMS.register("constable_uniform_leggings",
+            ()-> new ConstableUniform(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.LEGGINGS,new Item.Properties()));
+    public static final RegistryObject<Item> CONSTABLE_UNIFORM_BOOTS = ITEMS.register("constable_uniform_boots",
+            ()-> new ConstableUniform(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.BOOTS,new Item.Properties()));
     //头饰
     public static final RegistryObject<Item> FOREHEAD_BAND_HELMET1 = ITEMS.register("forehead_band_helmet1",
             ()-> new ForeheadBand(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));

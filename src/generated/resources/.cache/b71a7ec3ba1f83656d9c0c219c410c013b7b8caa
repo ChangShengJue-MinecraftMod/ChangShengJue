@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-04T13:52:29.2581853	Item Models: chang_sheng_jue
+// 1.20.1	2025-12-10T17:14:40.7699844	Item Models: chang_sheng_jue
 10c5c7abe71c096a22fcdab57141eaf5702b3e88 assets/chang_sheng_jue/models/item/acacia_arhat_bed.json
 b3bd262eb0ad48ac4f7c465406471cf989163c19 assets/chang_sheng_jue/models/item/acacia_balustrade.json
 699ea304f59ef7c3527896899187498f42f98343 assets/chang_sheng_jue/models/item/acacia_bench.json
@@ -151,6 +151,10 @@ c0806fcfe272763c99f1def135930a31018fe011 assets/chang_sheng_jue/models/item/conf
 8af32a5ef9eeb3e963a875abf559bf3a299df1f9 assets/chang_sheng_jue/models/item/confucian_ink_boots.json
 cd5938a21a2998e62686c8ba914f095eb9af1ead assets/chang_sheng_jue/models/item/confucian_ink_chestplate.json
 b04f587003e8456fddb8a87749ee2085054d81b6 assets/chang_sheng_jue/models/item/confucian_ink_leggings.json
+b04fa9ac01f4ccb5110accd3bfa8aca9667f9bb4 assets/chang_sheng_jue/models/item/constable_uniform_boots.json
+2c08b51621db30d784dee51aab3340a489a439d8 assets/chang_sheng_jue/models/item/constable_uniform_chestplate.json
+1e4f41e45bcd2195445d623d9bf712a5731714e7 assets/chang_sheng_jue/models/item/constable_uniform_helmet.json
+42990fc18fc96bd419e174c3d253da30064f9bf3 assets/chang_sheng_jue/models/item/constable_uniform_leggings.json
 d0cd3ed850f200369eeade9c8256282b5c7636c0 assets/chang_sheng_jue/models/item/cooked_croc.json
 596b52c6bcdc9a127284f5b7ec84d9aef1d43b95 assets/chang_sheng_jue/models/item/cooked_peacock.json
 efa90d526ea7829ca0444ee54035fe8224cb2fc0 assets/chang_sheng_jue/models/item/cool_lime_slurry_barrels.json

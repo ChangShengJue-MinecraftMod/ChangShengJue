@@ -255,6 +255,11 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get(), "Silk Trousers");
         this.add(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get(), "Light Silk Shoes");
 
+        this.add(ChangShengJueItems.CONSTABLE_UNIFORM_HELMET.get(), "Constable Uniform Helmet");
+        this.add(ChangShengJueItems.CONSTABLE_UNIFORM_CHESTPLATE.get(), "Constable Uniform Chestplate");
+        this.add(ChangShengJueItems.CONSTABLE_UNIFORM_LEGGINGS.get(), "Constable Uniform Leggings");
+        this.add(ChangShengJueItems.CONSTABLE_UNIFORM_BOOTS.get(), "Constable Uniform Boots");
+
         this.add(ChangShengJueItems.HATS_WITH_VEIL_HELMET.get(), "Bamboo Hat with Veil");
         this.add(ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE.get(), "Plain and elegant long skirt");
 
