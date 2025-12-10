@@ -972,6 +972,7 @@
   "chang_sheng_jue.function.wood_working_bench.page2.text": "It is used to quickly craft various furniture and wooden building components, which can be made in batches (click the icon next to the number to increase or decrease the number of productions, the maximum number is 64), and the corresponding materials will be automatically deducted from the backpack.",
   "chang_sheng_jue.function.zhu_tai": "Candlestick",
   "chang_sheng_jue.function.zhu_tai.page1.text": "Functions like a torch, illuminating a 12-block radius.",
+  "chang_sheng_jue.thanks": "Thanks",
   "chang_sheng_jue.village": "Villages",
   "chang_sheng_jue.village.desc": "Chinese-style villages of all sizes are scattered across the Minecraft continent, bringing many novelties with them...",
   "chang_sheng_jue.village.tool.chang_sheng_jue_loom": "Loom",

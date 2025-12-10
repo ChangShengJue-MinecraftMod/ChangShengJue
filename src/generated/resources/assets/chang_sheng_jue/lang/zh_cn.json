@@ -972,6 +972,8 @@
   "chang_sheng_jue.function.wood_working_bench.page2.text": "用于快速制作各种家具与木制建筑构件，可以批量制作（点击数字旁的图标增加或减少制作次数，最大次数为64次），制作会自动从背包扣除对应所需材料。",
   "chang_sheng_jue.function.zhu_tai": "烛台",
   "chang_sheng_jue.function.zhu_tai.page1.text": "作用同火把，照亮半径12格范围。",
+  "chang_sheng_jue.thanks": "致谢",
+  "chang_sheng_jue.thanks.long_yuan_sword": "以此剑特别感谢Peng_Fan在$(br)模组测试期间提供的帮助！",
   "chang_sheng_jue.village": "村落",
   "chang_sheng_jue.village.desc": "大大小小的中式村庄坐落在麦块大陆上，他们带来了许多新奇玩意儿…",
   "chang_sheng_jue.village.tool.chang_sheng_jue_loom": "织布机",

@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "constable_uniform_chestplate",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 7
+    },
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:constable_uniform_chestplate"
+  }
+}

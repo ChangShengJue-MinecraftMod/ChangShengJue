@@ -2113,6 +2113,9 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJue.MOD_ID +".xiake.wine", "Wine");
         this.add(ChangShengJue.MOD_ID +".xiake.wine.page1.text", "Drinking wine can reduce skill cooldowns, decrease hunger cost for skills, increase skill damage, etc. Check the wine's description for details. Don't overindulge—you might get drunk!");
 
+        this.add(ChangShengJue.MOD_ID +".thanks", "Thanks");
+        this.add(ChangShengJue.MOD_ID +".thanks.long_yuan_sword", "Special thanks to Peng_Fan for your help during the mod test!");
+
         this.add(ChangShengJue.MOD_ID +".wufanglu", "Compendium of the Five Realms");
         this.add(ChangShengJue.MOD_ID +".wufanglu.desc", "\"If Heaven had feelings, Heaven too would grow old; The rightful path on earth is full of strife and change.\"$(br)How can one seek longevity without knowledge? Understand heaven and earth, comprehend all things.");
         this.add(ChangShengJue.MOD_ID +".wufanglu.desc2", "ChangShengJue Encyclopedia");

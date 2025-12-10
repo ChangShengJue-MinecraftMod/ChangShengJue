@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "constable_uniform_boots",
+  "ingredients": [
+    {
+      "item": "minecraft:leather",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:constable_uniform_boots"
+  }
+}

@@ -1054,6 +1054,16 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
                 }
             }
         }
+
+        // 渲染分类按钮的tooltip
+        for (int i = 0; i < categoryButtons.size() && i < CATEGORIES.length; i++) {
+            TexturedButtonWithText button = categoryButtons.get(i);
+            if (button.isHovered()) {
+                Component categoryName = Component.translatable(CATEGORY_KEY_PREFIX + CATEGORIES[i]);
+                guiGraphics.renderTooltip(font, categoryName, x, y);
+                break;
+            }
+        }
     }
 
     private void renderCustomProgressBar(GuiGraphics guiGraphics, int x, int y) {
