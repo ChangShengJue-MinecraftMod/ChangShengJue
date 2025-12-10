@@ -263,7 +263,8 @@ public class ChangShengJueArmorItem extends ArmorItem implements DyeableItem, Ge
         if (!(pStack.getItem() instanceof ArmorInterface) || pStack.getItem() instanceof CottonArmor) {
             if (!(pStack.getItem() instanceof WalkerSet) && !pStack.is(ChangShengJueItems.FLY_FISH_IRON_HAT.get())
                 && !pStack.is(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET.get())
-                    && !pStack.is(ChangShengJueItems.FEMALE_TAOIST_HELMET.get())) {
+                    && !pStack.is(ChangShengJueItems.FEMALE_TAOIST_HELMET.get())
+                    && !hasCustomColor(pStack)) {
                 pTooltipComponents.add(Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".dyeing").withStyle(ChatFormatting.GRAY));
             }
         }

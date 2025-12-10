@@ -2067,6 +2067,8 @@
 
             this.add(ChangShengJue.MOD_ID +".thanks", "致謝");
             this.add(ChangShengJue.MOD_ID +".thanks.long_yuan_sword", "以此劍特別感謝Peng_Fan在模組測試期間提供的幫助！");
+            this.add(ChangShengJue.MOD_ID +".thanks.desc", "這不僅是我們的創作，更是與你共度的時光。 由衷感謝。 $（br2）致謝名單：$（br）ID： Peng_Fan");
+            this.add(ChangShengJue.MOD_ID +".thanks.long_yuan_sword.name", "龍淵劍");
 
             this.add(ChangShengJue.MOD_ID +".wufanglu", "五方匯錄");
             this.add(ChangShengJue.MOD_ID +".wufanglu.desc", "「天若有情天亦老，人間正道是滄桑。」$(br)長生之道，豈可無知？通曉天地，百科全解。");

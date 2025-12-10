@@ -80,9 +80,9 @@ public class DryingRail extends HorizontalDirectionalBlock implements EntityBloc
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         if (pState.getValue(FACING) == Direction.NORTH || pState.getValue(FACING) == Direction.SOUTH) {
-            return Block.box(7, 0, 0, 9, 16, 16);
+            return Block.box(7, 14, 0, 9, 16, 16);
         } else {
-            return Block.box(0, 0, 7, 16, 16, 9);
+            return Block.box(0, 14, 7, 16, 16, 9);
         }
     }
 
