@@ -66,9 +66,37 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
         slabBuilder(RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.TU_PEI_SLAB.get(),
                 Ingredient.of(Blocks.DIRT)).unlockedBy("has_dirt", has(Blocks.DIRT)).save(consumer);
         wall(consumer,RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.TU_PEI_WALL.get(),Blocks.DIRT);
+        // 汉白玉
+        stairBuilder(ChangShengJueBlocks.WHITE_JADE_STAIRS.get(),
+                Ingredient.of(ChangShengJueBlocks.WHITE_JADE_BLOCK.get()))
+                .unlockedBy("has_white_jade", has(ChangShengJueBlocks.WHITE_JADE_BLOCK.get()))
+                .save(consumer);
+        slabBuilder(RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.WHITE_JADE_SLAB.get(),
+                Ingredient.of(ChangShengJueBlocks.WHITE_JADE_BLOCK.get()))
+                .unlockedBy("has_white_jade", has(ChangShengJueBlocks.WHITE_JADE_BLOCK.get()))
+                .save(consumer);
+        wall(consumer,RecipeCategory.BUILDING_BLOCKS,ChangShengJueBlocks.WHITE_JADE_WALL.get(),ChangShengJueBlocks.WHITE_JADE_BLOCK.get());
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get(),5)
+                .define('#', Ingredient.of(ChangShengJueBlocks.WHITE_JADE_BLOCK.get()))
+                .pattern("###")
+                .pattern("# #")
+                .unlockedBy("has_white_jade", has(ChangShengJueBlocks.WHITE_JADE_BLOCK.get()))
+                .save(consumer);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get(),5)
+                .define('#', Ingredient.of(ChangShengJueBlocks.WHITE_JADE_BLOCK.get()))
+                .pattern("# #")
+                .pattern("###")
+                .unlockedBy("has_white_jade", has(ChangShengJueBlocks.WHITE_JADE_BLOCK.get()))
+                .save(consumer);
+
         //石灰浆
-        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.LIME_SLURRY_BARRELS.get()).requires(ChangShengJueItems.QUICKLIME.get()).requires(Items.WATER_BUCKET)
-                .unlockedBy("has_water_bucket",has(Items.WATER_BUCKET)).save(consumer);
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.LIME_SLURRY_BARRELS.get())
+                .requires(ChangShengJueItems.QUICKLIME.get())
+                .requires(Items.WATER_BUCKET)
+                .unlockedBy("has_water_bucket",has(Items.WATER_BUCKET))
+                .save(consumer);
 
         ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.COOL_LIME_SLURRY_BARRELS.get()).requires(ChangShengJueItems.LIME_SLURRY_BARRELS.get()).requires(Items.LIGHT_BLUE_DYE)
                 .unlockedBy("has_lime_slurry_barrels",has(ChangShengJueItems.LIME_SLURRY_BARRELS.get())).save(consumer);

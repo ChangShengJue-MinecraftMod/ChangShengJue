@@ -33,6 +33,9 @@ public class CSJBiomeModifiers {
 
     public static final ResourceKey<BiomeModifier> ADD_NATURAL_ASPHALT_ORE_UPPER  = registerKey("add_natural_asphalt_ore_upper");
     public static final ResourceKey<BiomeModifier> ADD_NATURAL_ASPHALT_ORE_LOWER = registerKey("add_natural_asphalt_ore_lower");
+
+    public static final ResourceKey<BiomeModifier> ADD_WHITE_JADE_BLOCK_UPPER  = registerKey("add_white_jade_block_upper");
+    public static final ResourceKey<BiomeModifier> ADD_WHITE_JADE_BLOCK_LOWER = registerKey("add_white_jade_block_lower");
     //树生成
     public static final ResourceKey<BiomeModifier> ADD_TREE_MANGO = registerKey("add_tree_mango");
     public static final ResourceKey<BiomeModifier> ADD_TREE_BANANA = registerKey("add_tree_banana");
@@ -122,6 +125,15 @@ public class CSJBiomeModifiers {
         context.register(ADD_NATURAL_ASPHALT_ORE_LOWER, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.ORE_NATURAL_ASPHALT_ORE_LOWER)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        context.register(ADD_WHITE_JADE_BLOCK_UPPER, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.ORE_WHITE_JADE_BLOCK_UPPER)),
+                GenerationStep.Decoration.UNDERGROUND_ORES));
+        context.register(ADD_WHITE_JADE_BLOCK_LOWER, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
+                HolderSet.direct(placedFeatures.getOrThrow(CSJPlacedFeatures.ORE_WHITE_JADE_BLOCK_LOWER)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
 
 
