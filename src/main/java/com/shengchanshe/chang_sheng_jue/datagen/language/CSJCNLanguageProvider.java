@@ -1470,6 +1470,7 @@
             this.add(ChangShengJueBlocks.KAOLIN_ORE.get(), "高岭土矿");
             this.add(ChangShengJueBlocks.LIMESTONE.get(), "石灰岩");
             this.add(ChangShengJueBlocks.SYDEROLIFE_ORE.get(), "陶土矿");
+            this.add(ChangShengJueBlocks.NATURAL_ASPHALT_ORE.get(), "天然沥青块");
 
             this.add(ChangShengJueBlocks.STONE_SHARPENING_STONE.get(), "圆石磨刀石");
             this.add(ChangShengJueBlocks.DIAMOND_SHARPENING_STONE.get(), "钻石磨刀石");

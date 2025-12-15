@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-14T15:50:47.9174568	Loot Tables
+// 1.20.1	2025-12-15T15:23:02.629264	Loot Tables
 540a939421098421d52ac7e530e38c471c75aa70 data/chang_sheng_jue/loot_tables/blocks/acacia_arhat_bed.json
 7a6edc76141fa6f7dd0df0f746f55b8c0bcdfe60 data/chang_sheng_jue/loot_tables/blocks/acacia_balustrade.json
 d516f4a29d40770cbbc430275a25288af1bb5af3 data/chang_sheng_jue/loot_tables/blocks/acacia_bench.json
@@ -539,6 +539,7 @@ c1e30f200139854dfb5e782b56dd66b8f16c94c0 data/chang_sheng_jue/loot_tables/blocks
 2b7e0e3b48b200030f9ac0f2e325e451bdd34e7b data/chang_sheng_jue/loot_tables/blocks/mulberry_planks.json
 aad3f3757a830047ce041b8534183ba13c670080 data/chang_sheng_jue/loot_tables/blocks/mulberry_sapling.json
 48bda4d535ae6c3f9e08fd7d6b855238dc2c94fe data/chang_sheng_jue/loot_tables/blocks/mulberry_wood.json
+83148ccc0595327b5e0f3a80a8dd9d0c1b7d9e43 data/chang_sheng_jue/loot_tables/blocks/natural_asphalt_ore.json
 a2622ada890ac5e8eba26648e1c83d70d1e4dc15 data/chang_sheng_jue/loot_tables/blocks/netherite_sharpening_stone.json
 752f57b10aeae09afb6965e2b2b5ed645dc9e07f data/chang_sheng_jue/loot_tables/blocks/oak_arhat_bed.json
 65e5041462e65ae720d25fc4c040daf245d2790a data/chang_sheng_jue/loot_tables/blocks/oak_balustrade.json

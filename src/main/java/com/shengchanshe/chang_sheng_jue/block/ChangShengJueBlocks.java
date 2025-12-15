@@ -1334,6 +1334,8 @@ public class ChangShengJueBlocks {
             ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().mapColor(MapColor.STONE).strength(1.5F, 6.0F)));
     public static final RegistryObject<Block> SYDEROLIFE_ORE = registerBlock("syderolife_ore",
             ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().mapColor(MapColor.STONE).strength(1.5F, 6.0F)));
+    public static final RegistryObject<Block> NATURAL_ASPHALT_ORE = registerBlock("natural_asphalt_ore",
+            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().mapColor(MapColor.STONE).strength(1.5F, 6.0F)));
 
     //织布机
     public static final RegistryObject<Block> CHANG_SHENG_JUE_LOOM = registerBlock("chang_sheng_jue_loom",

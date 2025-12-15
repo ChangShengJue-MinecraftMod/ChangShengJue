@@ -790,6 +790,7 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                         ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get(),
                         ChangShengJueBlocks.CASTING_MOLDS.get(),
                         ChangShengJueBlocks.SYDEROLIFE_ORE.get(),
+                        ChangShengJueBlocks.NATURAL_ASPHALT_ORE.get(),
                         ChangShengJueBlocks.WHITE_JADE_BLOCK.get(),
                         ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get(),
                         ChangShengJueBlocks.OAK_BALUSTRADE.get(),
@@ -881,8 +882,13 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.RAPE_FLOWERS.get());
 
         //Forge矿石标签
-        this.tag(Tags.Blocks.ORES).add(ChangShengJueBlocks.AG_ORE.get()).add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get())
-                .add(ChangShengJueBlocks.KAOLIN_ORE.get()).add(ChangShengJueBlocks.LIMESTONE.get()).add(ChangShengJueBlocks.SYDEROLIFE_ORE.get());
+        this.tag(Tags.Blocks.ORES)
+                .add(ChangShengJueBlocks.AG_ORE.get(),
+                        ChangShengJueBlocks.DEEPSLATE_AG_ORE.get(),
+                        ChangShengJueBlocks.KAOLIN_ORE.get(),
+                        ChangShengJueBlocks.LIMESTONE.get(),
+                        ChangShengJueBlocks.NATURAL_ASPHALT_ORE.get(),
+                        ChangShengJueBlocks.SYDEROLIFE_ORE.get());
         //工具等级
         this.tag(BlockTags.NEEDS_IRON_TOOL).add(ChangShengJueBlocks.AG_ORE.get()).add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get());
 

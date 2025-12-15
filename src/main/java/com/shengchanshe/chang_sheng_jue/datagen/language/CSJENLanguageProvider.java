@@ -1503,6 +1503,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.KAOLIN_ORE.get(), "Kaolin Ore");
         this.add(ChangShengJueBlocks.LIMESTONE.get(), "Limestone");
         this.add(ChangShengJueBlocks.SYDEROLIFE_ORE.get(), "Syderolife Ore");
+        this.add(ChangShengJueBlocks.NATURAL_ASPHALT_ORE.get(), "Natural Asphalt Ore");
 
         this.add(ChangShengJueBlocks.CASTING_MOLDS.get(), "Copper Coin Mold");
         this.add(ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get(), "Bullions Casting Mold");

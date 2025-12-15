@@ -44,6 +44,7 @@ public class CSJBlockStateProvider extends BlockStateProvider {
         blockWithItem(ChangShengJueBlocks.LIMESTONE);
 
         blockWithItem(ChangShengJueBlocks.SYDEROLIFE_ORE);
+        blockWithItem(ChangShengJueBlocks.NATURAL_ASPHALT_ORE);
 
         //瓦
         blockWithItem(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK);

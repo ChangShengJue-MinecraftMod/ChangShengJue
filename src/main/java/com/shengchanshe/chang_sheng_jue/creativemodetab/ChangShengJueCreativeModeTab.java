@@ -94,6 +94,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.KAOLIN_ORE.get());
                 output.accept(ChangShengJueBlocks.LIMESTONE.get());
                 output.accept(ChangShengJueBlocks.SYDEROLIFE_ORE.get());
+                output.accept(ChangShengJueBlocks.NATURAL_ASPHALT_ORE.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_BUILDING_BLOCK = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("chang_sheng_jue_building_block",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_building_block")).icon(() ->

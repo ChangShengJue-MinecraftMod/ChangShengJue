@@ -29,6 +29,8 @@ public class CSJPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> ORE_SYDEROLIFE_ORE_UPPER = registerKey("ore_syderolife_ore_upper");
     public static final ResourceKey<PlacedFeature> ORE_SYDEROLIFE_ORE_LOWER = registerKey("ore_syderolife_ore_lower");
+    public static final ResourceKey<PlacedFeature> ORE_NATURAL_ASPHALT_ORE_UPPER = registerKey("ore_natural_asphalt_ore_upper");
+    public static final ResourceKey<PlacedFeature> ORE_NATURAL_ASPHALT_ORE_LOWER = registerKey("ore_natural_asphalt_ore_lower");
 
     //树木
     public static final ResourceKey<PlacedFeature> MANGO_TREE_PLACED_KEY =registerKey("mango_tree_placed_key");
@@ -82,6 +84,11 @@ public class CSJPlacedFeatures {
         register(context, ORE_SYDEROLIFE_ORE_UPPER, configuredFeature.getOrThrow(CSJConfiguredFeatures.SYDEROLIFE_ORE),
                 CSJOrePlacement.commonOrePlacement(6, HeightRangePlacement.uniform(VerticalAnchor.absolute(64), VerticalAnchor.absolute(128))));
         register(context, ORE_SYDEROLIFE_ORE_LOWER, configuredFeature.getOrThrow(CSJConfiguredFeatures.SYDEROLIFE_ORE),
+                CSJOrePlacement.commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(60))));
+
+        register(context, ORE_NATURAL_ASPHALT_ORE_UPPER, configuredFeature.getOrThrow(CSJConfiguredFeatures.NATURAL_ASPHALT_ORE),
+                CSJOrePlacement.commonOrePlacement(6, HeightRangePlacement.uniform(VerticalAnchor.absolute(64), VerticalAnchor.absolute(128))));
+        register(context, ORE_NATURAL_ASPHALT_ORE_LOWER, configuredFeature.getOrThrow(CSJConfiguredFeatures.NATURAL_ASPHALT_ORE),
                 CSJOrePlacement.commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(60))));
 
         //树木
