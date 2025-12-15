@@ -131,8 +131,13 @@ public class CSJENLanguageProvider extends LanguageProvider {
 
         this.add(ChangShengJueItems.PAINT_BRUSH.get(), "Paint Brush");
         this.add(ChangShengJueItems.BLACK_BRICKS.get(), "Black Bricks");
+        this.add(ChangShengJueItems.CYAN_BRICKS.get(), "Cyan Bricks");
         this.add(ChangShengJueItems.WHITE_BRICKS_ITEM.get(), "White Bricks");
         this.add(ChangShengJueItems.GOLD_BRICKS.get(), "Golden Brick");
+
+        this.add(ChangShengJueItems.SYDEROLIFE_BALL.get(), "Syderolife Ball");
+        this.add(ChangShengJueItems.KAOLIN_BALL.get(), "Kaolin Ball");
+        this.add(ChangShengJueItems.NATURAL_ASPHALT.get(), "Natural Asphalt");
 
         this.add(ChangShengJueItems.TONG_QIAN.get(), "Ancient Coin");
         this.add(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), "A String of Ancient Coin");
@@ -1938,9 +1943,23 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("container."+ ChangShengJue.MOD_ID +".brick_kiln", "Brick Kiln");
         this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.craft", "Fired");
 
+        this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.all", "All");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.wa_zuo", "Tile");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.shi_zuo", "Stone");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.za_lei", "Misc");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color", "Color");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color.gray", "Gray");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color.red", "Red");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color.black", "Black");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color.gold", "Gold");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color.cyan", "Cyan");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color.purple", "Purple");
+        this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color.blue", "Blue");
+
         this.add("jei."+ ChangShengJue.MOD_ID +".woodworking_bench.usage", "Craft the item in the woodworking table");
         this.add("jei."+ ChangShengJue.MOD_ID +".tailoring_case.usage", "Craft the item in the tailoring case");
         this.add("jei."+ ChangShengJue.MOD_ID +".forge_block.usage", "Craft the item in the Forge Block");
+        this.add("jei."+ ChangShengJue.MOD_ID +".brick_kiln.usage", "Craft the item in the Brick Kiln");
 
         this.add(ChangShengJue.MOD_ID +".function", "Functional Items");
         this.add(ChangShengJue.MOD_ID +".function.desc", "Many strange people have come from that spatial rift. They can not only dance with fire to create phoenixes and fly through the skies, but they have also brought many peculiar objects. Rumor has it they come from the East?");

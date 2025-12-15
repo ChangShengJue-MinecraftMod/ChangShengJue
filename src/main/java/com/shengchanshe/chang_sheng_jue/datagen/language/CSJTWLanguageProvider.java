@@ -131,8 +131,13 @@
 
             this.add(ChangShengJueItems.PAINT_BRUSH.get(), "刷子");
             this.add(ChangShengJueItems.BLACK_BRICKS.get(), "黑磚");
+            this.add(ChangShengJueItems.CYAN_BRICKS.get(), "青磚");
             this.add(ChangShengJueItems.WHITE_BRICKS_ITEM.get(), "白磚");
             this.add(ChangShengJueItems.GOLD_BRICKS.get(), "金磚");
+
+            this.add(ChangShengJueItems.SYDEROLIFE_BALL.get(), "陶土球");
+            this.add(ChangShengJueItems.KAOLIN_BALL.get(), "高嶺土球");
+            this.add(ChangShengJueItems.NATURAL_ASPHALT.get(), "天然瀝青");
 
             this.add(ChangShengJueItems.TONG_QIAN.get(), "銅錢");
             this.add(ChangShengJueItems.YI_GUAN_TONG_QIAN.get(), "一貫銅錢");
@@ -1893,9 +1898,23 @@
             this.add("container."+ ChangShengJue.MOD_ID +".brick_kiln", "磚窯");
             this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.craft", "燒制");
 
+            this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.all", "全部");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.wa_zuo", "瓦作");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.shi_zuo", "石作");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.za_lei", "雜類");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color", "顏色");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color.gray", "灰");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color.red", "紅");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color.black", "黑");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color.gold", "金");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color.cyan", "青");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color.purple", "紫");
+            this.add("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.category.color.blue", "藍");
+
             this.add("jei."+ ChangShengJue.MOD_ID +".woodworking_bench.usage", "在木工台中製作該物品");
             this.add("jei."+ ChangShengJue.MOD_ID +".tailoring_case.usage", "在裁衣案中製作該物品");
             this.add("jei."+ ChangShengJue.MOD_ID +".forge_block.usage", "在鍛造爐中製作該物品");
+            this.add("jei."+ ChangShengJue.MOD_ID +".brick_kiln.usage", "在窯爐中製作該物品");
 
             //帕秋莉
             this.add(ChangShengJue.MOD_ID +".function", "功能物品");

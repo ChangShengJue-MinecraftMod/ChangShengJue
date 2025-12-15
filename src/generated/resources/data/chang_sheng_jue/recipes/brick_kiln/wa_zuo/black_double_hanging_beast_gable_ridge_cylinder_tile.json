@@ -1,0 +1,16 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:black",
+  "ingredients": [
+    {
+      "count": 4,
+      "item": "chang_sheng_jue:kaolin_ball"
+    },
+    {
+      "item": "minecraft:black_dye"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:black_double_hanging_beast_gable_ridge_cylinder_tile"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:cyan",
+  "ingredients": [
+    {
+      "count": 3,
+      "item": "chang_sheng_jue:blue_stone_fine_bricks"
+    }
+  ],
+  "result": {
+    "count": 6,
+    "item": "chang_sheng_jue:blue_stone_vertical_walls"
+  }
+}

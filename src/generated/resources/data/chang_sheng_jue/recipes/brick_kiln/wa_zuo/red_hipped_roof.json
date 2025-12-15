@@ -1,0 +1,16 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:red",
+  "ingredients": [
+    {
+      "count": 6,
+      "item": "chang_sheng_jue:kaolin_ball"
+    },
+    {
+      "item": "minecraft:red_dye"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:red_hipped_roof"
+  }
+}

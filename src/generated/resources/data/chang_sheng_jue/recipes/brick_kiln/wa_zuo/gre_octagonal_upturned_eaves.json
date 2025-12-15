@@ -1,0 +1,16 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:gray",
+  "ingredients": [
+    {
+      "count": 2,
+      "item": "chang_sheng_jue:kaolin_ball"
+    },
+    {
+      "item": "minecraft:gray_dye"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:gre_octagonal_upturned_eaves"
+  }
+}

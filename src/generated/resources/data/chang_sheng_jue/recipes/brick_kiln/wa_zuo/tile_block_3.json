@@ -1,0 +1,14 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:black",
+  "ingredients": [
+    {
+      "count": 6,
+      "item": "chang_sheng_jue:gold_bricks"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "chang_sheng_jue:tile_block_3"
+  }
+}

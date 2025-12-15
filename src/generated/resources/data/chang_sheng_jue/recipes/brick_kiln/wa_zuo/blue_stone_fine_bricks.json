@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:cyan",
+  "ingredients": [
+    {
+      "count": 4,
+      "item": "chang_sheng_jue:cyan_bricks"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:blue_stone_fine_bricks"
+  }
+}

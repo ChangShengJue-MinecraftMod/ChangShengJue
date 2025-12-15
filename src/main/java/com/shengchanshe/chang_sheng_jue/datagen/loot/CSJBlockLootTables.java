@@ -182,11 +182,13 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get(),
                 (block -> createOreDrop(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get(), ChangShengJueItems.RAW_AG.get())));
 
-        this.dropSelf(ChangShengJueBlocks.KAOLIN_ORE.get());
+        this.add(ChangShengJueBlocks.KAOLIN_ORE.get(),
+                (p_251028_) -> this.createSingleItemTableWithSilkTouch(p_251028_, ChangShengJueItems.KAOLIN_BALL.get(), ConstantValue.exactly(4.0F)));
 
         this.dropSelf(ChangShengJueBlocks.LIMESTONE.get());
 
-        this.dropSelf(ChangShengJueBlocks.SYDEROLIFE_ORE.get());
+        this.add(ChangShengJueBlocks.SYDEROLIFE_ORE.get(),
+                (p_251028_) -> this.createSingleItemTableWithSilkTouch(p_251028_, ChangShengJueItems.SYDEROLIFE_BALL.get(), ConstantValue.exactly(4.0F)));
 
         //农作物
         LootItemCondition.Builder pineapple = cropDrop(ChangShengJueBlocks.PINEAPPLE_BLOCK.get(), 7);

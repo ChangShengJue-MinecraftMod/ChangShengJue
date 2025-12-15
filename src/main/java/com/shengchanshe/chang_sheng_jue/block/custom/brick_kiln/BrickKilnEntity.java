@@ -37,6 +37,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
+import java.util.Objects;
 import java.util.Optional;
 
 public class BrickKilnEntity extends BlockEntity implements MenuProvider {
@@ -252,7 +253,7 @@ public class BrickKilnEntity extends BlockEntity implements MenuProvider {
      */
     @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-        load(pkt.getTag());
+        load(Objects.requireNonNull(pkt.getTag()));
     }
     /**
      * 处理更新标签
@@ -279,16 +280,6 @@ public class BrickKilnEntity extends BlockEntity implements MenuProvider {
         if (currentRecipe != null) {
             tag.putString("current_recipe", currentRecipe.getId().toString());
         }
-    }
-    /**
-     * 当方块被破坏时掉落所有物品
-     */
-    public void drops() {
-        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
-        }
-        Containers.dropContents(this.level, worldPosition, inventory);
     }
 
     /**
@@ -491,23 +482,26 @@ public class BrickKilnEntity extends BlockEntity implements MenuProvider {
     }
 
     /**
-     * 检查玩家是否有足够材料
+     * 检查玩家是否有足够材料（支持Tag标签匹配）
      * @param playerInventory 玩家背包
      * @param recipe 要检查的配方
      * @return 材料是否足够
      */
     private boolean hasEnoughMaterials(Inventory playerInventory, BrickKilnRecipe recipe) {
-        ItemStack[] requiredMaterials = getMaterialsFromRecipe(recipe);
+        NonNullList<Ingredient> ingredients = recipe.getIngredients();
+        int[] requiredCounts = recipe.getCachedRequiredCounts();
 
-        for (ItemStack required : requiredMaterials) {
-            if (required.isEmpty()) continue;
+        for (int idx = 0; idx < ingredients.size(); idx++) {
+            Ingredient ingredient = ingredients.get(idx);
+            if (ingredient.isEmpty()) continue;
 
-            int needed = required.getCount() * craftTimes; // 乘以制作次数
+            int needed = requiredCounts[idx] * craftTimes; // 乘以制作次数
             int found = 0;
 
             for (int i = 0; i < playerInventory.getContainerSize() && found < needed; i++) {
                 ItemStack stack = playerInventory.getItem(i);
-                if (ItemStack.isSameItemSameTags(stack, required)) {
+                // 使用ingredient.test()支持Tag标签匹配
+                if (!stack.isEmpty() && ingredient.test(stack)) {
                     found += stack.getCount();
                 }
             }
@@ -518,20 +512,23 @@ public class BrickKilnEntity extends BlockEntity implements MenuProvider {
     }
 
     /**
-     * 消耗玩家材料
+     * 消耗玩家材料（支持Tag标签匹配）
      * @param playerInventory 玩家背包
      * @param recipe 要消耗材料的配方
      */
     private void consumeMaterials(Inventory playerInventory, BrickKilnRecipe recipe) {
-        ItemStack[] requiredMaterials = getMaterialsFromRecipe(recipe);
+        NonNullList<Ingredient> ingredients = recipe.getIngredients();
+        int[] requiredCounts = recipe.getCachedRequiredCounts();
 
-        for (ItemStack required : requiredMaterials) {
-            if (required.isEmpty()) continue;
+        for (int idx = 0; idx < ingredients.size(); idx++) {
+            Ingredient ingredient = ingredients.get(idx);
+            if (ingredient.isEmpty()) continue;
 
-            int needed = required.getCount() * craftTimes; // 乘以制作次数
+            int needed = requiredCounts[idx] * craftTimes; // 乘以制作次数
             for (int i = 0; i < playerInventory.getContainerSize() && needed > 0; i++) {
                 ItemStack stack = playerInventory.getItem(i);
-                if (ItemStack.isSameItemSameTags(stack, required)) {
+                // 使用ingredient.test()支持Tag标签匹配
+                if (!stack.isEmpty() && ingredient.test(stack)) {
                     int take = Math.min(needed, stack.getCount());
                     stack.shrink(take);
                     needed -= take;
@@ -572,7 +569,6 @@ public class BrickKilnEntity extends BlockEntity implements MenuProvider {
 
         // 清空输入槽并设置新的配方材料
         clearInputSlots();
-        setupRecipeIngredients(recipe);
 
         setChanged();
         if (level != null) {
@@ -586,23 +582,6 @@ public class BrickKilnEntity extends BlockEntity implements MenuProvider {
     private void clearInputSlots() {
         for (int i = 0; i < INPUT_SLOT_COUNT; i++) {
             itemHandler.setStackInSlot(i, ItemStack.EMPTY);
-        }
-    }
-
-    /**
-     * 设置配方材料到输入槽
-     * @param recipe 配方实例
-     */
-    private void setupRecipeIngredients(BrickKilnRecipe recipe) {
-        if (recipe != null) {
-            NonNullList<Ingredient> ingredients = recipe.getIngredients();
-            for (int i = 0; i < ingredients.size() && i < INPUT_SLOT_COUNT; i++) {
-                ItemStack[] matchingStacks = ingredients.get(i).getItems();
-                if (matchingStacks.length > 0) {
-                    // 使用单次材料用于槽位显示
-                    itemHandler.setStackInSlot(i, matchingStacks[0].copy());
-                }
-            }
         }
     }
 

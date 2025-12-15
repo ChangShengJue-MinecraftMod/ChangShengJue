@@ -1,0 +1,12 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "shi_zuo:stone_table",
+  "ingredients": [
+    {
+      "item": "minecraft:stone"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:stone_table"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:black",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:syderolife_ball"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:black_bricks"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:blue_stone_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:blue_stone_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:blue_stone_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:blue_stone_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:blue_stone_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:blue_stone_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:blue_stone_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:blue_stone_bricks"
+    },
+    {
+      "item": "chang_sheng_jue:blue_stone_bricks"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "chang_sheng_jue:blue_stone_fine_bricks"
+  }
+}

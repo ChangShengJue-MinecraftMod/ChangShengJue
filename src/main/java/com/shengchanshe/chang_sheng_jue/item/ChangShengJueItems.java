@@ -430,7 +430,13 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> BLACK_BRICKS = ITEMS.register("black_bricks", ()-> new Item((new Item.Properties())));
     public static final RegistryObject<Item> WHITE_BRICKS_ITEM = ITEMS.register("white_bricks_item", ()-> new Item((new Item.Properties())));
     public static final RegistryObject<Item> GOLD_BRICKS = ITEMS.register("gold_bricks", ()-> new Item((new Item.Properties())));
-
+    public static final RegistryObject<Item> CYAN_BRICKS = ITEMS.register("cyan_bricks", ()-> new Item((new Item.Properties())));
+    //陶土球
+    public static final RegistryObject<Item> SYDEROLIFE_BALL = ITEMS.register("syderolife_ball", ()-> new Item((new Item.Properties())));
+    //高岭土球
+    public static final RegistryObject<Item> KAOLIN_BALL = ITEMS.register("kaolin_ball", ()-> new Item((new Item.Properties())));
+    //天然沥青
+    public static final RegistryObject<Item> NATURAL_ASPHALT = ITEMS.register("natural_asphalt", ()-> new Item((new Item.Properties())));
     //工具
     public static final RegistryObject<Item> KAISHAN_PICKAXE = ITEMS.register("kaishan_pickaxe", KaishanPickaxe::new);
     public static final RegistryObject<Item> XUANHUA_AXE = ITEMS.register("xuanhua_axe", XuanhuaAxe::new);

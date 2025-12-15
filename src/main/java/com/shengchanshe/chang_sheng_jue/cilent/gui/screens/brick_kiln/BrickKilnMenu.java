@@ -39,8 +39,15 @@ public class BrickKilnMenu extends AbstractContainerMenu {
 
     public final BrickKilnEntity blockEntity;
     public final Level level;
+
     public final ContainerData data;
     public BrickKilnRecipe currentRecipe = null;
+
+    // 材料缓存，避免重复创建
+    private ItemStack[] cachedSingleMaterials;
+    private ItemStack[] cachedTotalMaterials;
+    private int lastCachedCraftTimes = -1;
+    private BrickKilnRecipe lastCachedRecipe = null;
 
     public BrickKilnMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3)); // 改为3个数据
@@ -90,6 +97,7 @@ public class BrickKilnMenu extends AbstractContainerMenu {
 
     public void setCurrentRecipe(BrickKilnRecipe recipe) {
         this.currentRecipe = recipe;
+        invalidateMaterialCache();
         updateRecipeSlots();
 
         // 只有服务端才更新实体
@@ -97,6 +105,16 @@ public class BrickKilnMenu extends AbstractContainerMenu {
             blockEntity.setCurrentRecipe(recipe);
             blockEntity.setChanged();
         }
+    }
+
+    /**
+     * 使材料缓存失效
+     */
+    private void invalidateMaterialCache() {
+        cachedSingleMaterials = null;
+        cachedTotalMaterials = null;
+        lastCachedCraftTimes = -1;
+        lastCachedRecipe = null;
     }
 
     public BrickKilnRecipe getCurrentRecipe() {
@@ -110,39 +128,20 @@ public class BrickKilnMenu extends AbstractContainerMenu {
     }
 
     void updateRecipeSlots() {
+        // 清空槽位，材料显示由Screen的renderCarouselMaterials处理
         clearAllSlots();
-
-        if (currentRecipe != null) {
-            // 这里应该放置单次材料用于显示
-            ItemStack[] singleMaterials = getSingleMaterialsFromRecipe(currentRecipe);
-
-            // 将单次材料放入对应的槽位
-            for (int i = 0; i < singleMaterials.length && i < 9; i++) {
-                final int slotIndex = i;
-                ItemStack material = singleMaterials[i].copy();
-                blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-                    handler.insertItem(slotIndex, material, false);
-                });
-            }
-        }
     }
 
+    /**
+     * 获取单次合成所需材料（使用缓存）
+     */
     public ItemStack[] getSingleMaterialsFromRecipe(BrickKilnRecipe recipe) {
         if (recipe == null) {
             return new ItemStack[0];
         }
 
-        ItemStack[] materials = new ItemStack[recipe.getIngredients().size()];
-
-        for (int i = 0; i < recipe.getIngredients().size(); i++) {
-            Ingredient ingredient = recipe.getIngredients().get(i);
-            if (ingredient.getItems().length > 0) {
-                materials[i] = ingredient.getItems()[0].copy();
-            } else {
-                materials[i] = ItemStack.EMPTY;
-            }
-        }
-        return materials;
+        // 使用配方内置的缓存
+        return recipe.getCachedMaterials();
     }
 
     @Override
@@ -167,26 +166,29 @@ public class BrickKilnMenu extends AbstractContainerMenu {
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
 
+    /**
+     * 获取总材料需求（使用缓存）
+     */
     public ItemStack[] getMaterialsFromRecipe(BrickKilnRecipe recipe) {
         if (recipe == null) {
             return new ItemStack[0];
         }
 
-        ItemStack[] singleMaterials = getSingleMaterialsFromRecipe(recipe);
         int craftTimes = getCraftTimes();
 
-        // 复制单次材料并乘以制作次数
-        ItemStack[] totalMaterials = new ItemStack[singleMaterials.length];
-        for (int i = 0; i < singleMaterials.length; i++) {
-            if (!singleMaterials[i].isEmpty()) {
-                totalMaterials[i] = singleMaterials[i].copy();
-                totalMaterials[i].setCount(singleMaterials[i].getCount() * craftTimes);
-            } else {
-                totalMaterials[i] = ItemStack.EMPTY;
-            }
+        // 检查缓存是否有效
+        if (cachedTotalMaterials != null &&
+                lastCachedRecipe == recipe &&
+                lastCachedCraftTimes == craftTimes) {
+            return cachedTotalMaterials;
         }
 
-        return totalMaterials;
+        // 使用配方的优化方法
+        cachedTotalMaterials = recipe.getMaterialsForCraftTimes(craftTimes);
+        lastCachedRecipe = recipe;
+        lastCachedCraftTimes = craftTimes;
+
+        return cachedTotalMaterials;
     }
 
     void clearAllSlots() {
@@ -217,49 +219,35 @@ public class BrickKilnMenu extends AbstractContainerMenu {
         return false;
     }
 
+    /**
+     * 检查玩家是否有足够材料（优化版）
+     */
     boolean hasEnoughMaterials(Inventory playerInventory) {
         if (currentRecipe == null) return false;
 
-        IItemHandler playerItems = new InvWrapper(playerInventory);
-        ItemStack[] requiredMaterials = getMaterialsFromRecipe(currentRecipe);
-        int craftTimes = getCraftTimes();
-
-        for (ItemStack required : requiredMaterials) {
-            if (required.isEmpty()) continue;
-
-            int needed = required.getCount();
-            int found = 0;
-
-            for (int i = 0; i < playerItems.getSlots(); i++) {
-                ItemStack stack = playerItems.getStackInSlot(i);
-                if (ItemStack.isSameItemSameTags(stack, required)) {
-                    found += stack.getCount();
-                    if (found >= needed) break;
-                }
-            }
-
-            if (found < needed) return false;
-        }
-        return true;
+        // 使用配方内置的优化方法
+        return currentRecipe.hasEnoughMaterials(playerInventory, getCraftTimes());
     }
 
     void consumeMaterials(Inventory playerInventory) {
         if (currentRecipe == null) return;
 
-        ItemStack[] requiredMaterials = getMaterialsFromRecipe(currentRecipe);
+        var ingredients = currentRecipe.getIngredients();
+        int[] requiredCounts = currentRecipe.getCachedRequiredCounts();
         int craftTimes = getCraftTimes();
 
-        for (ItemStack required : requiredMaterials) {
-            if (required.isEmpty()) continue;
+        for (int idx = 0; idx < ingredients.size(); idx++) {
+            Ingredient ingredient = ingredients.get(idx);
+            if (ingredient.isEmpty()) continue;
 
-            int needed = required.getCount();
-            for (int i = 0; i < playerInventory.getContainerSize(); i++) {
+            int needed = requiredCounts[idx] * craftTimes;
+            for (int i = 0; i < playerInventory.getContainerSize() && needed > 0; i++) {
                 ItemStack stack = playerInventory.getItem(i);
-                if (ItemStack.isSameItemSameTags(stack, required)) {
+                // 使用ingredient.test()支持tag标签匹配
+                if (!stack.isEmpty() && ingredient.test(stack)) {
                     int take = Math.min(needed, stack.getCount());
                     stack.shrink(take);
                     needed -= take;
-                    if (needed <= 0) break;
                 }
             }
         }
@@ -332,15 +320,67 @@ public class BrickKilnMenu extends AbstractContainerMenu {
         }
     }
 
-    public boolean hasEnoughOfMaterial(Inventory playerInventory, ItemStack required) {
+    /**
+     * 检查玩家是否有足够的指定材料（支持tag标签）
+     * @param playerInventory 玩家背包
+     * @param required 需要的材料物品
+     * @param ingredientIndex 材料在配方中的索引（用于获取对应的Ingredient进行tag匹配）
+     */
+    public boolean hasEnoughOfMaterial(Inventory playerInventory, ItemStack required, int ingredientIndex) {
         if (required.isEmpty()) return true;
+        if (currentRecipe == null) return false;
 
-        IItemHandler playerItems = new InvWrapper(playerInventory);
+        var ingredients = currentRecipe.getIngredients();
+        if (ingredientIndex < 0 || ingredientIndex >= ingredients.size()) {
+            return hasEnoughOfMaterialExact(playerInventory, required);
+        }
+
+        Ingredient ingredient = ingredients.get(ingredientIndex);
         int needed = required.getCount();
         int found = 0;
 
-        for (int i = 0; i < playerItems.getSlots(); i++) {
-            ItemStack stack = playerItems.getStackInSlot(i);
+        for (int i = 0; i < playerInventory.getContainerSize(); i++) {
+            ItemStack stack = playerInventory.getItem(i);
+            if (!stack.isEmpty() && ingredient.test(stack)) {
+                found += stack.getCount();
+                if (found >= needed) return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 检查玩家是否有足够的指定材料（精确匹配，兼容旧调用）
+     */
+    public boolean hasEnoughOfMaterial(Inventory playerInventory, ItemStack required) {
+        if (required.isEmpty()) return true;
+        if (currentRecipe == null) return hasEnoughOfMaterialExact(playerInventory, required);
+
+        // 尝试找到对应的ingredient进行tag匹配
+        var ingredients = currentRecipe.getIngredients();
+        ItemStack[] cachedMaterials = currentRecipe.getCachedMaterials();
+
+        for (int i = 0; i < cachedMaterials.length && i < ingredients.size(); i++) {
+            if (ItemStack.isSameItemSameTags(cachedMaterials[i], required)) {
+                return hasEnoughOfMaterial(playerInventory, required, i);
+            }
+        }
+
+        // 找不到对应的ingredient，使用精确匹配
+        return hasEnoughOfMaterialExact(playerInventory, required);
+    }
+
+    /**
+     * 精确匹配检查材料是否充足
+     */
+    private boolean hasEnoughOfMaterialExact(Inventory playerInventory, ItemStack required) {
+        if (required.isEmpty()) return true;
+
+        int needed = required.getCount();
+        int found = 0;
+
+        for (int i = 0; i < playerInventory.getContainerSize(); i++) {
+            ItemStack stack = playerInventory.getItem(i);
             if (ItemStack.isSameItemSameTags(stack, required)) {
                 found += stack.getCount();
                 if (found >= needed) return true;

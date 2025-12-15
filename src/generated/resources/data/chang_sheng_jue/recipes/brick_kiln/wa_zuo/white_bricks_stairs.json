@@ -1,0 +1,14 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:bricks",
+  "ingredients": [
+    {
+      "count": 6,
+      "item": "chang_sheng_jue:white_fine_bricks"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "chang_sheng_jue:white_bricks_stairs"
+  }
+}

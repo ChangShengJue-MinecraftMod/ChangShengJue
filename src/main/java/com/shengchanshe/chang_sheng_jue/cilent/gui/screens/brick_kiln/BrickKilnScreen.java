@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.button.TexturedButtonWithText;
+import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.BrickKilnPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.BrickKilnSetAmountPacket;
@@ -15,10 +16,15 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.*;
 
@@ -31,15 +37,29 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
     private static final int VISIBLE_ROWS = 8;
     private static final int CAROUSEL_INTERVAL = 20;
 
+    // 分类常量 - 瓦作、石作、杂类
+    private static final String[] MAIN_CATEGORIES = {"all", "wa_zuo", "shi_zuo", "za_lei"};
+    // 颜色子分类
+    private static final String[] COLOR_CATEGORIES = {"gray", "red", "black", "gold", "cyan", "purple", "blue"};
+    private static final String CATEGORY_KEY_PREFIX = "gui." + ChangShengJue.MOD_ID + ".brick_kiln.category.";
+
     private final List<CustomButton> customButtons = new ArrayList<>();
-    private final List<ItemStack> currentMaterials = new ArrayList<>();
     private final Map<String, List<BrickKilnRecipe>> recipesByGroup = new HashMap<>();
+
+    // 分类相关
+    private final List<TexturedButtonWithText> mainCategoryButtons = new ArrayList<>();
+    private TexturedButtonWithText colorToggleButton; // 颜色折叠按钮
+    private final List<TexturedButtonWithText> colorCategoryButtons = new ArrayList<>();
+    private boolean colorButtonsExpanded = false; // 颜色按钮是否展开
+    private String currentMainCategory = "all"; // 当前选中的主分类
+    private String currentColorCategory = "all"; // 当前选中的颜色子分类
+    private List<BrickKilnRecipe> filteredRecipes = new ArrayList<>(); // 过滤后的配方列表
+    private int uniqueItemCount = 0; // 去重后的物品数量（用于滚动条计算）
 
     private List<BrickKilnRecipe> cachedRecipes = new ArrayList<>();
     private List<BrickKilnRecipe> currentRecipeGroup = new ArrayList<>();
 
     private ItemStack currentSelectedItem = ItemStack.EMPTY;
-//    private ArmorStand armorStandEntity;
     private TexturedButtonWithText craftButton;
     private BrickKilnRecipe localCurrentRecipe = null;
 
@@ -53,7 +73,18 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
     private int lastCraftTimes = 1;
     private BrickKilnRecipe lastRecipe = null;
 
-    private float rotation = 0;
+    // 材料充足状态缓存
+    private boolean[] materialSufficiencyCache;
+    private boolean materialCacheValid = false;
+
+    // 材料tag轮播相关
+    private int[] materialCarouselIndex;
+    private int materialCarouselTick = 0;
+    private static final int MATERIAL_CAROUSEL_INTERVAL = 30;
+
+    // 制作时使用的实际材料
+    private ItemStack[] craftingMaterials;
+
     private int scrollOffset = 0;
     private int carouselTick = 0;
     private int currentRecipeIndex = 0;
@@ -80,12 +111,10 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
 
         BrickKilnRecipe serverRecipe = menu.getCurrentRecipe();
         if (serverRecipe != null || menu.isCrafting()) {
-            currentMaterials.clear();
-            ItemStack[] materials = getMaterialsFromRecipe(serverRecipe);
-            if (materials != null) {
-                currentMaterials.addAll(Arrays.asList(materials));
-            }
             currentSelectedItem = serverRecipe.getResultItem(getRegistryAccess());
+            localCurrentRecipe = serverRecipe;
+            materialCarouselIndex = new int[serverRecipe.getIngredientCount()];
+            materialCarouselTick = 0;
         }
 
         int x = (width - imageWidth) / 2;
@@ -133,6 +162,9 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
                 },
                 Component.translatable("gui."+ ChangShengJue.MOD_ID + ".brick_kiln.craft"),0xFFFFFF,0xFFFFFF,1.0F,true
         ));
+
+        // 创建分类按钮
+        createCategoryButtons(x, y);
 
         updateTimesButtons();
 
@@ -198,31 +230,284 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
     // 更新按钮状态
     private void updateTimesButtons() {
         int currentTimes = menu.getCraftTimes();
+        boolean isCrafting = menu.isCrafting();
 
-        // 单个增减按钮
-        decreaseButton.active = currentTimes > 1 && !menu.isCrafting();
-        increaseButton.active = currentTimes < 64 && !menu.isCrafting();
+        boolean canDecrease = currentTimes > 1;
+        decreaseButton.active = canDecrease;
+        decreaseButton.visible = canDecrease;
+
+        boolean canIncrease = currentTimes < 64 || !isCrafting;
+        increaseButton.active = canIncrease;
+        increaseButton.visible = canIncrease;
 
         // 批量增减按钮
-        batchDecreaseButton.active = currentTimes > 4 && !menu.isCrafting();
-        batchIncreaseButton.active = currentTimes <= 60 && !menu.isCrafting(); // 64-4=60
+        boolean canBatchDecrease = currentTimes > 4;
+        batchDecreaseButton.active = canBatchDecrease;
+        batchDecreaseButton.visible = canBatchDecrease;
+
+        boolean canBatchIncrease = currentTimes <= 60 || !isCrafting;
+        batchIncreaseButton.active = canBatchIncrease;
+        batchIncreaseButton.visible = canBatchIncrease;
     }
+
+    // 创建分类按钮
+    private void createCategoryButtons(int guiX, int guiY) {
+        mainCategoryButtons.clear();
+        colorCategoryButtons.clear();
+
+        int buttonWidth = 37;
+        int buttonHeight = 26;
+        int buttonX = guiX - 56; // 在物品列表左侧
+        int startY = guiY + 45; // 与物品列表顶部对齐
+        int buttonSpacing = 30; // 按钮间距
+
+        ItemStack[] mainCategoryIcons = {
+                new ItemStack(ChangShengJueBlocks.BRICK_KILN.get()),
+                new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get()), // 瓦作代表
+                new ItemStack(ChangShengJueBlocks.STONE_BENCH.get()), // 石作代表
+                new ItemStack(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get()) // 杂类代表
+        };
+
+        for (int i = 0; i < MAIN_CATEGORIES.length; i++) {
+            String category = MAIN_CATEGORIES[i];
+            int buttonY = startY + i * buttonSpacing;
+
+            TexturedButtonWithText categoryButton = new TexturedButtonWithText(
+                    buttonX, buttonY, buttonWidth, buttonHeight,
+                    0, 160, buttonHeight,
+                    BOTTON, 256, 256,
+                    button -> onMainCategoryButtonClicked(category),
+                    Component.empty(), 0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F
+            );
+
+            categoryButton.setItemIcon(mainCategoryIcons[i])
+                    .setItemIconScale(1.0F)
+                    .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER);
+
+            this.addRenderableWidget(categoryButton);
+            mainCategoryButtons.add(categoryButton);
+        }
+
+        // 创建颜色折叠按钮（在杂类按钮下方）
+        int colorToggleY = startY + MAIN_CATEGORIES.length * buttonSpacing;
+        colorToggleButton = new TexturedButtonWithText(
+                buttonX, colorToggleY, buttonWidth, buttonHeight,
+                0, 160, buttonHeight,
+                BOTTON, 256, 256,
+                button -> toggleColorButtons(),
+                Component.empty(), 0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F
+        );
+        colorToggleButton.setItemIcon(new ItemStack(Items.PURPLE_CONCRETE))
+                .setItemIconScale(1.0F)
+                .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER);
+        this.addRenderableWidget(colorToggleButton);
+
+        // 颜色子分类按钮（7个：灰、红、黑、金、青、紫、蓝）
+        int colorButtonWidth = 18;
+        int colorButtonHeight = 18;
+        int colorStartX = buttonX - 20; // 在颜色折叠按钮左侧展开
+        int colorStartY = colorToggleY + 4; // 与折叠按钮同一水平线
+        int colorButtonSpacing = 20;
+
+        ItemStack[] colorIcons = {
+                new ItemStack(Items.LIGHT_GRAY_CONCRETE), // 灰
+                new ItemStack(Items.RED_CONCRETE), // 红
+                new ItemStack(Items.BLACK_CONCRETE), // 黑
+                new ItemStack(Items.YELLOW_CONCRETE), // 金
+                new ItemStack(Items.CYAN_CONCRETE), // 青
+                new ItemStack(Items.PURPLE_CONCRETE), // 紫
+                new ItemStack(Items.BLUE_CONCRETE) // 蓝
+        };
+
+        for (int i = 0; i < COLOR_CATEGORIES.length; i++) {
+            String color = COLOR_CATEGORIES[i];
+            int buttonXPos = colorStartX - i * colorButtonSpacing; // 向左展开
+
+            TexturedButtonWithText colorButton = new TexturedButtonWithText(
+                    buttonXPos, colorStartY, colorButtonWidth, colorButtonHeight,
+                    0, 217, 18,
+                    TEXTURE, 512, 512,
+                    button -> onColorCategoryButtonClicked(color),
+                    Component.empty(), 0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F
+            );
+
+            colorButton.setItemIcon(colorIcons[i])
+                    .setItemIconScale(0.8F)
+                    .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER);
+            colorButton.visible = false; // 初始隐藏
+
+            this.addRenderableWidget(colorButton);
+            colorCategoryButtons.add(colorButton);
+        }
+
+        updateCategoryButtonStates();
+    }
+
+    // 主分类按钮点击事件
+    private void onMainCategoryButtonClicked(String category) {
+        if (menu.isCrafting()) return;
+
+        currentMainCategory = category;
+        scrollOffset = 0;
+        filterRecipesByCategory();
+        refreshItemButtons();
+        updateCategoryButtonStates();
+    }
+
+    // 颜色折叠按钮点击事件
+    private void toggleColorButtons() {
+        if (menu.isCrafting()) return;
+        
+        colorButtonsExpanded = !colorButtonsExpanded;
+        updateColorButtonsVisibility();
+    }
+
+    // 更新颜色按钮的可见性
+    private void updateColorButtonsVisibility() {
+        for (TexturedButtonWithText button : colorCategoryButtons) {
+            button.visible = colorButtonsExpanded;
+        }
+    }
+
+    // 颜色分类按钮点击事件
+    private void onColorCategoryButtonClicked(String color) {
+        if (menu.isCrafting()) return;
+
+        // 切换颜色分类（点击同一个颜色则取消筛选）
+        if (color.equals(currentColorCategory)) {
+            currentColorCategory = "all";
+        } else {
+            currentColorCategory = color;
+        }
+
+        scrollOffset = 0;
+        filterRecipesByCategory();
+        refreshItemButtons();
+        updateCategoryButtonStates();
+        
+        // 选中颜色后可以选择性地收起颜色按钮
+        // colorButtonsExpanded = false;
+        // updateColorButtonsVisibility();
+    }
+
+    // 更新分类按钮状态
+    private void updateCategoryButtonStates() {
+        for (int i = 0; i < mainCategoryButtons.size() && i < MAIN_CATEGORIES.length; i++) {
+            TexturedButtonWithText button = mainCategoryButtons.get(i);
+            button.active = !menu.isCrafting();
+        }
+
+        if (colorToggleButton != null) {
+            colorToggleButton.active = !menu.isCrafting();
+        }
+
+        for (int i = 0; i < colorCategoryButtons.size() && i < COLOR_CATEGORIES.length; i++) {
+            TexturedButtonWithText button = colorCategoryButtons.get(i);
+            button.active = !menu.isCrafting();
+        }
+    }
+
+    // 根据分类过滤配方
+    private void filterRecipesByCategory() {
+        if ("all".equals(currentMainCategory) && "all".equals(currentColorCategory)) {
+            filteredRecipes = new ArrayList<>(cachedRecipes);
+        } else {
+            filteredRecipes = new ArrayList<>();
+            for (BrickKilnRecipe recipe : cachedRecipes) {
+                String group = recipe.getGroup();
+                if (matchesCategory(group, currentMainCategory, currentColorCategory)) {
+                    filteredRecipes.add(recipe);
+                }
+            }
+        }
+
+        // 计算去重后的物品数量（用于滚动条）
+        updateUniqueItemCount();
+    }
+
+    // 计算去重后的物品数量
+    private void updateUniqueItemCount() {
+        List<ItemStack> uniqueItems = new ArrayList<>();
+        for (BrickKilnRecipe recipe : filteredRecipes) {
+            ItemStack resultItem = recipe.getResultItem(getRegistryAccess());
+            boolean alreadyAdded = false;
+            for (ItemStack item : uniqueItems) {
+                if (ItemStack.isSameItemSameTags(item, resultItem)) {
+                    alreadyAdded = true;
+                    break;
+                }
+            }
+            if (!alreadyAdded) {
+                uniqueItems.add(resultItem);
+            }
+        }
+        uniqueItemCount = uniqueItems.size();
+    }
+
+    // 判断配方的group是否匹配当前分类
+    // group格式: "主分类:颜色:其他" 或 "主分类:颜色" 或 "主分类"
+    private boolean matchesCategory(String group, String mainCategory, String colorCategory) {
+        if (group == null || group.isEmpty()) {
+            return false;
+        }
+
+        String lowerGroup = group.toLowerCase();
+
+        // 检查主分类
+        boolean mainMatches = "all".equals(mainCategory) || 
+                              lowerGroup.equals(mainCategory) || 
+                              lowerGroup.startsWith(mainCategory + ":");
+
+        if (!mainMatches) {
+            return false;
+        }
+
+        // 如果没有选择颜色筛选，只检查主分类
+        if ("all".equals(colorCategory)) {
+            return true;
+        }
+
+        // 检查颜色分类
+        // group格式示例: "wa_zuo:hei" 或 "wa_zuo:hei:brick"
+        String[] parts = lowerGroup.split(":");
+        if (parts.length >= 2) {
+            return parts[1].equals(colorCategory);
+        }
+
+        return false;
+    }
+
+    /**
+     * 获取当前分类的最大滚动偏移量
+     */
+    private int getMaxScrollOffset() {
+        return Math.max(0, (uniqueItemCount + 4) / 5 - VISIBLE_ROWS);
+    }
+
+    /**
+     * 获取滚动条滑块高度
+     */
+    private int getSliderHeight() {
+        int totalRows = Math.max(1, (uniqueItemCount + 4) / 5);
+        return Math.max(15, (int) (VISIBLE_ROWS * 1.0f / totalRows * scrollBarHeight));
+    }
+
     // 更新材料显示
     private void updateMaterialsDisplay() {
         if (localCurrentRecipe != null) {
-            currentMaterials.clear();
-            // 使用总材料进行显示
-            ItemStack[] materials = menu.getMaterialsFromRecipe(localCurrentRecipe);
-            if (materials != null) {
-                currentMaterials.addAll(Arrays.asList(materials));
+            materialCacheValid = false;
+            materialCarouselIndex = new int[localCurrentRecipe.getIngredientCount()];
+            materialCarouselTick = 0;
+        }
+    }
 
-//                // 调试：检查材料数量
-//                if (!currentMaterials.isEmpty() && !currentMaterials.get(0).isEmpty()) {
-//                    System.out.println("材料显示更新 - 单次需求: " +
-//                            menu.getSingleMaterialsFromRecipe(localCurrentRecipe)[0].getCount() +
-//                            ", 制作次数: " + menu.getCraftTimes() +
-//                            ", 总需求: " + currentMaterials.get(0).getCount());
-//                }
+    // 更新材料显示但不重置轮播索引
+    private void updateMaterialsDisplayWithoutResetCarousel() {
+        if (localCurrentRecipe != null) {
+            materialCacheValid = false;
+            if (materialCarouselIndex == null || materialCarouselIndex.length != localCurrentRecipe.getIngredientCount()) {
+                materialCarouselIndex = new int[localCurrentRecipe.getIngredientCount()];
+                materialCarouselTick = 0;
             }
         }
     }
@@ -232,7 +517,12 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
             try {
                 var recipeManager = minecraft.level.getRecipeManager();
                 var recipeType = BrickKilnRecipe.Type.INSTANCE;
-                cachedRecipes = recipeManager.getAllRecipesFor(recipeType);
+                cachedRecipes = new ArrayList<>(recipeManager.getAllRecipesFor(recipeType));
+
+                // 按配方ID排序，确保每次显示顺序一致
+                // 首先按group分组排序
+                // 同组内按配方ID排序
+                cachedRecipes.sort(Comparator.comparing(BrickKilnRecipe::getGroup).thenComparing(a -> a.getId().toString()));
 
                 recipesByGroup.clear();
                 for (BrickKilnRecipe recipe : cachedRecipes) {
@@ -250,6 +540,9 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
             cachedRecipes.clear();
             recipesByGroup.clear();
         }
+
+        // 根据当前分类过滤配方
+        filterRecipesByCategory();
     }
 
     private void refreshItemButtons() {
@@ -260,41 +553,47 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         }
         customButtons.clear();
 
-        int row = 0;
-        int col = 0;
-        int startIndex = scrollOffset * 5;
-        int maxScrollOffset = Math.max(0, (cachedRecipes.size() + 4) / 5 - VISIBLE_ROWS);
+        // 先构建去重后的物品列表和对应配方
+        List<ItemStack> uniqueItems = new ArrayList<>();
+        List<BrickKilnRecipe> uniqueRecipes = new ArrayList<>();
+        for (BrickKilnRecipe recipe : filteredRecipes) {
+            ItemStack resultItem = recipe.getResultItem(getRegistryAccess());
+            boolean alreadyAdded = false;
+            for (ItemStack item : uniqueItems) {
+                if (ItemStack.isSameItemSameTags(item, resultItem)) {
+                    alreadyAdded = true;
+                    break;
+                }
+            }
+            if (!alreadyAdded) {
+                uniqueItems.add(resultItem);
+                uniqueRecipes.add(recipe);
+            }
+        }
+
+        // 同步更新 uniqueItemCount，确保与渲染一致
+        uniqueItemCount = uniqueItems.size();
+
+        int maxScrollOffset = getMaxScrollOffset();
 
         if (scrollOffset > maxScrollOffset) {
             scrollOffset = maxScrollOffset;
         }
 
-        List<ItemStack> addedItems = new ArrayList<>();
-        for (int i = startIndex; i < cachedRecipes.size() && row < VISIBLE_ROWS; i++) {
-            BrickKilnRecipe recipe = cachedRecipes.get(i);
-            ItemStack resultItem = recipe.getResultItem(getRegistryAccess());
+        int startIndex = scrollOffset * 5;
+        int row = 0;
+        int col = 0;
 
-            boolean alreadyAdded = false;
-            for (ItemStack addedItem : addedItems) {
-                if (ItemStack.isSameItemSameTags(addedItem, resultItem)) {
-                    alreadyAdded = true;
-                    break;
-                }
-            }
-
-            if (!alreadyAdded) {
-                addedItems.add(resultItem);
-                createButton(col, row, resultItem, recipe);
-
-                col++;
-                if (col >= 5) {
-                    col = 0;
-                    row++;
-                }
+        for (int i = startIndex; i < uniqueItems.size() && row < VISIBLE_ROWS; i++) {
+            createButton(col, row, uniqueItems.get(i), uniqueRecipes.get(i));
+            col++;
+            if (col >= 5) {
+                col = 0;
+                row++;
             }
         }
 
-        if (cachedRecipes.isEmpty()) {
+        if (filteredRecipes.isEmpty() && cachedRecipes.isEmpty()) {
             refreshRecipes();
         }
 
@@ -347,8 +646,14 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         customButtons.add(button);
     }
 
-    private void updateSlotsForSelectedItem(BrickKilnRecipe recipe) {
-        if (menu.isCrafting()) {
+    /**
+     * 统一的配方更新方法
+     * @param recipe 要设置的配方
+     * @param checkCrafting 是否检查制作状态（true则制作中不更新）
+     * @param resetCarousel 是否重置材料轮播索引
+     */
+    private void updateRecipeSlots(BrickKilnRecipe recipe, boolean checkCrafting, boolean resetCarousel) {
+        if (checkCrafting && menu.isCrafting()) {
             return;
         }
 
@@ -365,44 +670,190 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         this.localCurrentRecipe = recipe;
         this.lastRecipe = recipe;
 
-        updateMaterialsDisplay();
+        if (resetCarousel) {
+            updateMaterialsDisplay();
+        } else {
+            updateMaterialsDisplayWithoutResetCarousel();
+        }
 
         ChangShengJueMessages.sendToServer(new BrickKilnSyncRecipePacket(menu.getBlockPos(), recipe));
         menu.updateRecipeSlots();
     }
 
+    private void updateSlotsForSelectedItem(BrickKilnRecipe recipe) {
+        updateRecipeSlots(recipe, true, true);
+    }
+
+    private void updateSlotsForRecipeGroupCarousel(BrickKilnRecipe recipe) {
+        updateRecipeSlots(recipe, true, false);
+    }
+
     private void updateSlotsForCraftingRecipe(BrickKilnRecipe recipe) {
-        String group = recipe.getGroup();
-        if (!group.isEmpty() && recipesByGroup.containsKey(group)) {
-            currentRecipeGroup = new ArrayList<>(recipesByGroup.get(group));
-            currentRecipeIndex = currentRecipeGroup.indexOf(recipe);
-        } else {
-            currentRecipeGroup.clear();
-            currentRecipeIndex = 0;
-        }
-
-        menu.setCurrentRecipe(recipe);
-        this.localCurrentRecipe = recipe;
-        this.lastRecipe = recipe;
-
-        updateMaterialsDisplay();
-
-        ChangShengJueMessages.sendToServer(new BrickKilnSyncRecipePacket(menu.getBlockPos(), recipe));
-        menu.updateRecipeSlots();
+        updateRecipeSlots(recipe, false, true);
     }
 
     private RegistryAccess getRegistryAccess() {
         return minecraft.level.registryAccess();
     }
 
-    // 获取材料方法 - 确保始终显示最终材料
-    private ItemStack[] getMaterialsFromRecipe(BrickKilnRecipe recipe) {
-        if (recipe == null) {
-            return new ItemStack[0];
+    /**
+     * 更新材料充足状态缓存
+     */
+    private void updateMaterialSufficiencyCache() {
+        if (materialCacheValid || minecraft == null || minecraft.player == null || localCurrentRecipe == null) {
+            return;
         }
 
-        // 确保使用总材料方法
-        return menu.getMaterialsFromRecipe(recipe);
+        int size = localCurrentRecipe.getIngredientCount();
+        if (materialSufficiencyCache == null || materialSufficiencyCache.length != size) {
+            materialSufficiencyCache = new boolean[size];
+        }
+
+        var ingredients = localCurrentRecipe.getIngredients();
+        int[] requiredCounts = localCurrentRecipe.getCachedRequiredCounts();
+        int craftTimes = menu.getCraftTimes();
+
+        for (int i = 0; i < size && i < ingredients.size(); i++) {
+            var ingredient = ingredients.get(i);
+            if (ingredient.isEmpty()) {
+                materialSufficiencyCache[i] = true;
+                continue;
+            }
+            int needed = (i < requiredCounts.length ? requiredCounts[i] : 1) * craftTimes;
+            int found = 0;
+            var playerInventory = minecraft.player.getInventory();
+            for (int j = 0; j < playerInventory.getContainerSize(); j++) {
+                ItemStack stack = playerInventory.getItem(j);
+                if (!stack.isEmpty() && ingredient.test(stack)) {
+                    found += stack.getCount();
+                    if (found >= needed) break;
+                }
+            }
+            materialSufficiencyCache[i] = found >= needed;
+        }
+        materialCacheValid = true;
+    }
+
+    /**
+     * 检查指定槽位材料是否充足
+     */
+    private boolean isMaterialSufficient(int slotIndex) {
+        if (!materialCacheValid) {
+            updateMaterialSufficiencyCache();
+        }
+        if (materialSufficiencyCache != null && slotIndex < materialSufficiencyCache.length) {
+            return materialSufficiencyCache[slotIndex];
+        }
+        return true;
+    }
+
+    /**
+     * 缓存制作时实际使用的材料类型
+     * 在制作开始时调用，记录每个槽位实际使用的材料物品类型
+     */
+    private void cacheCraftingMaterials() {
+        if (localCurrentRecipe == null || minecraft == null || minecraft.player == null) {
+            craftingMaterials = null;
+            return;
+        }
+
+        var ingredients = localCurrentRecipe.getIngredients();
+        craftingMaterials = new ItemStack[ingredients.size()];
+        var playerInventory = minecraft.player.getInventory();
+
+        for (int i = 0; i < ingredients.size(); i++) {
+            var ingredient = ingredients.get(i);
+            craftingMaterials[i] = ItemStack.EMPTY;
+
+            if (ingredient.isEmpty()) continue;
+
+            // 查找背包中第一个匹配的物品类型
+            for (int j = 0; j < playerInventory.getContainerSize(); j++) {
+                ItemStack stack = playerInventory.getItem(j);
+                if (!stack.isEmpty() && ingredient.test(stack)) {
+                    craftingMaterials[i] = new ItemStack(stack.getItem());
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * 获取指定槽位当前应显示的材料物品
+     */
+    private ItemStack getDisplayMaterialForSlot(int slotIndex) {
+        if (localCurrentRecipe == null || slotIndex >= localCurrentRecipe.getIngredientCount()) {
+            return ItemStack.EMPTY;
+        }
+
+        var ingredients = localCurrentRecipe.getIngredients();
+        if (slotIndex >= ingredients.size()) {
+            return ItemStack.EMPTY;
+        }
+
+        var ingredient = ingredients.get(slotIndex);
+
+        ItemStack[] items = getItemsForIngredient(ingredient);
+
+        if (items.length == 0) {
+            return ItemStack.EMPTY;
+        }
+
+        int craftTimes = menu.getCraftTimes();
+        int[] requiredCounts = localCurrentRecipe.getCachedRequiredCounts();
+        int baseCount = slotIndex < requiredCounts.length ? requiredCounts[slotIndex] : 1;
+
+        // 如果正在制作，优先使用缓存的材料类型
+        if (menu.isCrafting()) {
+            if (craftingMaterials != null && slotIndex < craftingMaterials.length
+                    && !craftingMaterials[slotIndex].isEmpty()) {
+                ItemStack displayStack = craftingMaterials[slotIndex].copy();
+                displayStack.setCount(baseCount * craftTimes);
+                return displayStack;
+            }
+        }
+
+        int carouselIdx = 0;
+        if (materialCarouselIndex != null && slotIndex < materialCarouselIndex.length) {
+            carouselIdx = materialCarouselIndex[slotIndex] % items.length;
+        }
+
+        ItemStack displayStack = items[carouselIdx].copy();
+        displayStack.setCount(baseCount * craftTimes);
+
+        return displayStack;
+    }
+
+    /**
+     * 获取Ingredient对应的所有物品
+     */
+    private ItemStack[] getItemsForIngredient(Ingredient ingredient) {
+        int count = 1;
+        String tagId = null;
+
+        if (ingredient instanceof BrickKilnRecipe.CountedIngredient counted) {
+            count = counted.requiredCount;
+            tagId = counted.tagId;
+        }
+
+        if (tagId != null && minecraft != null && minecraft.level != null) {
+            ResourceLocation tagLocation = new ResourceLocation(tagId);
+            TagKey<Item> tag = TagKey.create(Registries.ITEM, tagLocation);
+            List<ItemStack> items = new ArrayList<>();
+            final int finalCount = count;
+
+            var registry = minecraft.level.registryAccess().registryOrThrow(Registries.ITEM);
+            registry.getTagOrEmpty(tag).forEach(holder -> {
+                ItemStack stack = new ItemStack(holder.value());
+                stack.setCount(finalCount);
+                items.add(stack);
+            });
+
+            if (!items.isEmpty()) {
+                return items.toArray(new ItemStack[0]);
+            }
+        }
+        return ingredient.getItems();
     }
 
     @Override
@@ -420,20 +871,19 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         scrollBarY = y + 45;
         scrollBarHeight = VISIBLE_ROWS * 18;
 
-        // 渲染材料槽位背景
+        // 渲染材料槽位背景（使用缓存的材料充足状态）
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 int slotIndex = row * 3 + col;
                 int slotX = x + 112 + col * 18;
                 int slotY = y + 45 + row * 18;
 
-                if (slotIndex < currentMaterials.size()) {
-                    ItemStack required = currentMaterials.get(slotIndex);
-                    if (!required.isEmpty()) {
-                        boolean isMaterialEnough = menu.hasEnoughOfMaterial(minecraft.player.getInventory(), required);
-                        int textureV = isMaterialEnough ? 217 : 235;
-                        guiGraphics.blit(TEXTURE, slotX, slotY, 18, textureV, 18, 18, 512, 512);
-                    }
+                // 使用轮播显示的材料来判断
+                ItemStack required = getDisplayMaterialForSlot(slotIndex);
+                if (!required.isEmpty()) {
+                    boolean isMaterialEnough = isMaterialSufficient(slotIndex);
+                    int textureV = isMaterialEnough ? 217 : 235;
+                    guiGraphics.blit(TEXTURE, slotX, slotY, 18, textureV, 18, 18, 512, 512);
                 }
             }
         }
@@ -446,9 +896,9 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         guiGraphics.drawString(font, timesText, textX, textY, 0x404040, false);
 
         // 渲染滚动条
-        int maxScrollOffset = Math.max(0, (cachedRecipes.size() + 4) / 5 - VISIBLE_ROWS);
+        int maxScrollOffset = getMaxScrollOffset();
         float scrollProgress = maxScrollOffset > 0 ? (float) scrollOffset / maxScrollOffset : 0;
-        int sliderHeight = Math.max(15, (int) (VISIBLE_ROWS * 1.0f / Math.max(1, (cachedRecipes.size() + 4) / 5) * scrollBarHeight));
+        int sliderHeight = getSliderHeight();
         int sliderY = scrollBarY + (int) (scrollProgress * (scrollBarHeight - sliderHeight));
 
         int scrollerTextureV = isDragging ? 6 : 0;
@@ -457,7 +907,7 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
-        int maxScrollOffset = Math.max(0, (cachedRecipes.size() + 4) / 5 - VISIBLE_ROWS);
+        int maxScrollOffset = getMaxScrollOffset();
 
         if (delta > 0 && scrollOffset > 0) {
             scrollOffset--;
@@ -473,10 +923,10 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        int maxScrollOffset = Math.max(0, (cachedRecipes.size() + 4) / 5 - VISIBLE_ROWS);
+        int maxScrollOffset = getMaxScrollOffset();
         if (maxScrollOffset > 0) {
             float scrollProgress = maxScrollOffset > 0 ? (float) scrollOffset / maxScrollOffset : 0;
-            int sliderHeight = Math.max(15, (int) (VISIBLE_ROWS * 1.0f / Math.max(1, (cachedRecipes.size() + 4) / 5) * scrollBarHeight));
+            int sliderHeight = getSliderHeight();
             int sliderY = scrollBarY + (int) (scrollProgress * (scrollBarHeight - sliderHeight));
 
             if (mouseX >= scrollBarX && mouseX <= scrollBarX + 6 &&
@@ -508,14 +958,19 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
     }
 
     private void updateScrollFromMousePos(double mouseY) {
-        int maxScrollOffset = Math.max(0, (cachedRecipes.size() + 4) / 5 - VISIBLE_ROWS);
+        int maxScrollOffset = getMaxScrollOffset();
         if (maxScrollOffset <= 0) return;
 
-        float scrollSensitivity = 0.2f;
-        float relativeY = (float) (mouseY - scrollBarY) / (scrollBarHeight * scrollSensitivity);
+        int sliderHeight = getSliderHeight();
+        // 计算可拖动范围（滚动条总高度 - 滑块高度）
+        int draggableRange = scrollBarHeight - sliderHeight;
+        if (draggableRange <= 0) return;
+
+        // 计算鼠标在可拖动范围内的相对位置
+        float relativeY = (float) (mouseY - scrollBarY) / draggableRange;
         relativeY = Math.max(0, Math.min(1, relativeY));
 
-        scrollOffset = (int) (relativeY * maxScrollOffset);
+        scrollOffset = Math.round(relativeY * maxScrollOffset);
         scrollOffset = Math.max(0, Math.min(scrollOffset, maxScrollOffset));
         refreshItemButtons();
     }
@@ -533,9 +988,9 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
     protected void renderLabels(GuiGraphics transform, int x, int y) {
         boolean isChinese = Minecraft.getInstance().options.languageCode.startsWith("zh_");
         if (!isChinese) {
-            int fontWidth = this.font.width(Component.translatable(ChangShengJueBlocks.WOOD_WORKING_BENCH.get().getDescriptionId()));
+            int fontWidth = this.font.width(Component.translatable(ChangShengJueBlocks.BRICK_KILN.get().getDescriptionId()));
             int k = 25 + this.imageWidth / 2 - fontWidth / 2;
-            transform.drawString(this.font, Component.translatable(ChangShengJueBlocks.WOOD_WORKING_BENCH.get().getDescriptionId()), k, 35, 0x404040, false);
+            transform.drawString(this.font, Component.translatable(ChangShengJueBlocks.BRICK_KILN.get().getDescriptionId()), k, 35, 0x404040, false);
         }
     }
 
@@ -544,36 +999,109 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, delta);
 
+        // 渲染轮播的材料物品（覆盖槽位中的显示）
+        renderCarouselMaterials(guiGraphics);
+
         for (CustomButton button : customButtons) {
-            if (button.isHovered() && !button.getItemStack().isEmpty()) {
+            if (!button.getItemStack().isEmpty() && isMouseInArea(button.getX(), button.getY(), mouseX, mouseY)) {
                 renderToolTip(guiGraphics, mouseX, mouseY, button.getItemStack());
+                break;
             }
         }
         renderTooltip(guiGraphics, mouseX, mouseY);
+    }
+
+    /**
+     * 渲染轮播的材料物品
+     */
+    private void renderCarouselMaterials(GuiGraphics guiGraphics) {
+        if (localCurrentRecipe == null) return;
+
+        int guiLeft = (width - imageWidth) / 2;
+        int guiTop = (height - imageHeight) / 2;
+
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                int slotIndex = row * 3 + col;
+                int slotX = guiLeft + 112 + col * 18 + 1; // +1 是槽位内边距
+                int slotY = guiTop + 45 + row * 18 + 1;
+
+                ItemStack displayStack = getDisplayMaterialForSlot(slotIndex);
+                if (!displayStack.isEmpty()) {
+                    // 渲染物品
+                    guiGraphics.renderItem(displayStack, slotX, slotY);
+                    // 渲染物品数量
+                    guiGraphics.renderItemDecorations(font, displayStack, slotX, slotY);
+                }
+            }
+        }
     }
 
     @Override
     public void containerTick() {
         super.containerTick();
 
+        // 检测制作状态变化，缓存/清除制作材料
+        if (menu.isCrafting() && craftingMaterials == null) {
+            cacheCraftingMaterials();
+        } else if (!menu.isCrafting() && craftingMaterials != null) {
+            craftingMaterials = null;
+        }
+
+        // 每10 tick刷新一次材料充足状态缓存
+        if (carouselTick % 10 == 0) {
+            materialCacheValid = false;
+        }
+
+        // 材料tag轮播逻辑
+        if (localCurrentRecipe != null && materialCarouselIndex != null) {
+            materialCarouselTick++;
+            if (materialCarouselTick >= MATERIAL_CAROUSEL_INTERVAL) {
+                materialCarouselTick = 0;
+                var ingredients = localCurrentRecipe.getIngredients();
+                for (int i = 0; i < materialCarouselIndex.length && i < ingredients.size(); i++) {
+                    // 使用getItemsForIngredient而不是ingredient.getItems()
+                    ItemStack[] items = getItemsForIngredient(ingredients.get(i));
+                    if (items.length > 1) {
+                        // 只有当tag有多个物品时才轮播
+                        materialCarouselIndex[i] = (materialCarouselIndex[i] + 1) % items.length;
+                    }
+                }
+            }
+        }
+
         // 检查制作次数是否变化
         int currentTimes = menu.getCraftTimes();
         if (currentTimes != lastCraftTimes) {
             lastCraftTimes = currentTimes;
             if (localCurrentRecipe != null) {
-                updateMaterialsDisplay();
+                updateMaterialsDisplayWithoutResetCarousel();
             }
         }
+        updateTimesButtons();
 
-        // 检查当前配方是否变化
+        // 检查当前配方是否变化（使用ID比较而不是对象引用）
         BrickKilnRecipe currentRecipe = menu.getCurrentRecipe();
-        if (currentRecipe != lastRecipe) {
+        boolean recipeChanged = false;
+        if (currentRecipe == null && lastRecipe != null) {
+            recipeChanged = true;
+        } else if (currentRecipe != null && lastRecipe == null) {
+            recipeChanged = true;
+        } else if (currentRecipe != null && lastRecipe != null) {
+            // 使用配方ID比较
+            recipeChanged = !currentRecipe.getId().equals(lastRecipe.getId());
+        }
+
+        if (recipeChanged) {
             lastRecipe = currentRecipe;
             if (currentRecipe != null) {
                 this.localCurrentRecipe = currentRecipe;
                 updateMaterialsDisplay();
             }
         }
+
+        // 更新合成按钮状态
+        updateCraftButtonState();
 
         // 轮播逻辑
         if (!currentRecipeGroup.isEmpty() && !menu.isCrafting() && !isCarouselPaused) {
@@ -595,9 +1123,12 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
                         !currentRecipeGroup.isEmpty() &&
                         ItemStack.isSameItemSameTags(selectedButton.itemStack,
                                 currentRecipeGroup.get(currentRecipeIndex).getResultItem(getRegistryAccess()))) {
-                    updateSlotsForSelectedItem(currentRecipeGroup.get(currentRecipeIndex));
+                    // 使用不重置材料轮播索引的方法，避免材料轮播被配方组轮播打断
+                    updateSlotsForRecipeGroupCarousel(currentRecipeGroup.get(currentRecipeIndex));
                 }
             }
+        } else {
+            carouselTick++;
         }
 
         if (menu.isCrafting()) {
@@ -610,6 +1141,18 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
                 updateSlotsForCraftingRecipe(localCurrentRecipe);
             }
         }
+    }
+
+    /**
+     * 更新合成按钮状态
+     */
+    private void updateCraftButtonState() {
+        if (craftButton == null) return;
+
+        boolean isCrafting = menu.isCrafting();
+
+        craftButton.active = !isCrafting;
+        craftButton.visible = !isCrafting;
     }
 
     @Override
@@ -626,22 +1169,40 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
                 int slotY = guiTop + 45 + row * 18;
 
                 if (x >= slotX && x < slotX + 18 && y >= slotY && y < slotY + 18) {
-                    if (slotIndex < currentMaterials.size()) {
-                        ItemStack required = currentMaterials.get(slotIndex);
-                        if (!required.isEmpty()) {
-                            guiGraphics.renderTooltip(font, required, x, y);
-                        }
+                    // 使用轮播显示的材料
+                    ItemStack required = getDisplayMaterialForSlot(slotIndex);
+                    if (!required.isEmpty()) {
+                        guiGraphics.renderTooltip(font, required, x, y);
                     }
                 }
             }
         }
 
-        // 次数显示区域的工具提示
-//        int timesX = guiLeft + 190;
-//        int timesY = guiTop + 85;
-//        if (x >= timesX && x < timesX + 40 && y >= timesY && y < timesY + 20) {
-//            guiGraphics.renderTooltip(font, Component.translatable("gui." + ChangShengJue.MOD_ID + ".wood_working_bench.craft_times"), x, y);
-//        }
+        // 渲染主分类按钮的tooltip
+        for (int i = 0; i < mainCategoryButtons.size() && i < MAIN_CATEGORIES.length; i++) {
+            TexturedButtonWithText button = mainCategoryButtons.get(i);
+            if (button.isHovered()) {
+                Component categoryName = Component.translatable(CATEGORY_KEY_PREFIX + MAIN_CATEGORIES[i]);
+                guiGraphics.renderTooltip(font, categoryName, x, y);
+                break;
+            }
+        }
+
+        // 渲染颜色折叠按钮的tooltip
+        if (colorToggleButton != null && colorToggleButton.isHovered()) {
+            Component toggleName = Component.translatable(CATEGORY_KEY_PREFIX + "color");
+            guiGraphics.renderTooltip(font, toggleName, x, y);
+        }
+
+        // 渲染颜色分类按钮的tooltip
+        for (int i = 0; i < colorCategoryButtons.size() && i < COLOR_CATEGORIES.length; i++) {
+            TexturedButtonWithText button = colorCategoryButtons.get(i);
+            if (button.isHovered() && button.visible) {
+                Component colorName = Component.translatable(CATEGORY_KEY_PREFIX + "color." + COLOR_CATEGORIES[i]);
+                guiGraphics.renderTooltip(font, colorName, x, y);
+                break;
+            }
+        }
     }
 
     private void renderCustomProgressBar(GuiGraphics guiGraphics, int x, int y) {
@@ -712,15 +1273,9 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
 
                 ItemStack displayStack = itemStack.copy();
                 guiGraphics.renderItem(displayStack, this.getX() + 1, this.getY() + 1);
-
-                if (!itemStack.isEmpty() && isAir(this.getX(),this.getY(),mouseX,mouseY)) {
-                    renderToolTip(guiGraphics, mouseX, mouseY, displayStack);
-                }
-
-                if (craftButton != null) {
-                    boolean isCrafting = menu.isCrafting();
-                    craftButton.active = !isCrafting;
-                    craftButton.visible = !isCrafting;
+                // 渲染物品数量（如果数量大于1）
+                if (displayStack.getCount() > 1) {
+                    guiGraphics.renderItemDecorations(Minecraft.getInstance().font, displayStack, this.getX() + 1, this.getY() + 1);
                 }
             }
         }
@@ -739,7 +1294,7 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         }
     }
 
-    private boolean isAir(int guix,int guiy,int mouseX, int mouseY) {
+    private boolean isMouseInArea(int guix,int guiy,int mouseX, int mouseY) {
         return mouseX >= guix && mouseX < guix + 18 && mouseY >= guiy && mouseY < guiy + 18;
     }
 

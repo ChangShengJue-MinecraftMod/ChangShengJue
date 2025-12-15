@@ -1011,6 +1011,9 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.DEER_BLOOD.get());
                 output.accept(ChangShengJueItems.TIGER_SKIN.get());
                 output.accept(ChangShengJueItems.CROC_SKIN.get());
+                output.accept(ChangShengJueItems.SYDEROLIFE_BALL.get());
+                output.accept(ChangShengJueItems.KAOLIN_BALL.get());
+                output.accept(ChangShengJueItems.NATURAL_ASPHALT.get());
                 output.accept(ChangShengJueItems.TONG_QIAN.get());
                 output.accept(ChangShengJueItems.YI_GUAN_TONG_QIAN.get());
                 output.accept(ChangShengJueItems.SILVER_BULLIONS.get());
@@ -1021,6 +1024,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.BLACK_BRICKS.get());
                 output.accept(ChangShengJueItems.WHITE_BRICKS_ITEM.get());
                 output.accept(ChangShengJueItems.GOLD_BRICKS.get());
+                output.accept(ChangShengJueItems.CYAN_BRICKS.get());
                 output.accept(ChangShengJueItems.SILK.get());
                 output.accept(ChangShengJueItems.NATURAL_SILK.get());
                 output.accept(ChangShengJueItems.SILKWORM.get());

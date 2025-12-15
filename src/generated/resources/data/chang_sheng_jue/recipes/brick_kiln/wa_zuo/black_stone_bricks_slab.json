@@ -1,0 +1,14 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:black",
+  "ingredients": [
+    {
+      "count": 3,
+      "item": "chang_sheng_jue:black_stone_fine_bricks"
+    }
+  ],
+  "result": {
+    "count": 6,
+    "item": "chang_sheng_jue:black_stone_bricks_slab"
+  }
+}

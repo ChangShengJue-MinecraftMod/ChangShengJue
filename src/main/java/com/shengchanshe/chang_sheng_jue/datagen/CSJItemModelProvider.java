@@ -72,6 +72,11 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.BLACK_BRICKS);
         simpleItem(ChangShengJueItems.WHITE_BRICKS_ITEM);
         simpleItem(ChangShengJueItems.GOLD_BRICKS);
+        simpleItem(ChangShengJueItems.CYAN_BRICKS);
+
+        simpleItem(ChangShengJueItems.SYDEROLIFE_BALL);
+        simpleItem(ChangShengJueItems.KAOLIN_BALL);
+        simpleItem(ChangShengJueItems.NATURAL_ASPHALT);
 
         simpleItem(ChangShengJueItems.CRUCIBLE);
         simpleItem(ChangShengJueItems.CRUCIBLE_CRUSHED_COPPER);
