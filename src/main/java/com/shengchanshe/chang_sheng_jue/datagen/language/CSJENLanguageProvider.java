@@ -569,6 +569,8 @@ public class CSJENLanguageProvider extends LanguageProvider {
 
         this.add("sounds."+ChangShengJue.MOD_ID + ".forge_block_sound", "Forge Hammer clanging");
 
+        this.add("sounds."+ChangShengJue.MOD_ID + ".taxation_sound", "Taxation");
+
         this.add("sounds."+ChangShengJue.MOD_ID + ".stakes_hit_sound", "Practice stake being struck");
 
         //方块

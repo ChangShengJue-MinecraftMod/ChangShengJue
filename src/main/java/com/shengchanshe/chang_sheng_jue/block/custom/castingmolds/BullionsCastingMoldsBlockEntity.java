@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue.block.custom.castingmolds;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
+import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -11,6 +12,7 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.inventory.ContainerData;
@@ -250,26 +252,24 @@ public class BullionsCastingMoldsBlockEntity extends BlockEntity implements GeoB
      */
     private void spawnTaxParticles(ServerLevel level, boolean isGold) {
         double x = this.worldPosition.getX() + 0.5;
-        double y = this.worldPosition.getY() + 2.0;
+        double y = this.worldPosition.getY() + 1.5;
         double z = this.worldPosition.getZ() + 0.5;
 
         // 铸币税粒子显示一个在方块正上方
         level.sendParticles(
             isGold ? ChangShengJueParticles.GOLD_BULLIONS_MINTING_PARTCLE.get()
-                   : ChangShengJueParticles.SILVER_BULLIONS_MINTING_PARTCLE.get(),
-            x, y, z,
+                   : ChangShengJueParticles.SILVER_BULLIONS_MINTING_PARTCLE.get(), x, y, z,
             1, 0.0, 0.0, 0.0, 0.0);
 
-        // 元宝粒子在方块范围内随机生成一个
-        double bullionX = this.worldPosition.getX() + level.random.nextDouble();
-        double bullionY = this.worldPosition.getY() + level.random.nextDouble();
-        double bullionZ = this.worldPosition.getZ() + level.random.nextDouble();
+        double bullionX = this.worldPosition.getX() + 0.25 + level.random.nextDouble() * 0.5;
+        double bullionY = this.worldPosition.getY() + 0.25 + level.random.nextDouble() * 0.5;
+        double bullionZ = this.worldPosition.getZ() + 0.25 + level.random.nextDouble() * 0.5;
 
         level.sendParticles(
-            isGold ? ChangShengJueParticles.GOLD_BULLIONS_PARTCLE.get()
-                   : ChangShengJueParticles.SILVER_BULLIONS_PARTCLE.get(),
-            bullionX, bullionY, bullionZ,
-            1, 0.0, 0.0, 0.0, 0.0);
+            isGold ? ChangShengJueParticles.GOLD_BULLIONS_PARTCLE.get() : ChangShengJueParticles.SILVER_BULLIONS_PARTCLE.get(),
+            bullionX, bullionY, bullionZ, 1, 0.0, 0.0, 0.0, 0.0);
+            
+        level.playSound(null, this.worldPosition, ChangShengJueSound.TAXATION_SOUND.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
     }
 
     private boolean hasRecipe() {

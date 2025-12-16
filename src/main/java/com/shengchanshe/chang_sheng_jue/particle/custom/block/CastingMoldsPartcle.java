@@ -13,7 +13,7 @@ public class CastingMoldsPartcle  extends SimpleAnimatedParticle {
     protected CastingMoldsPartcle(ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed, SpriteSet pSprites) {
         super(pLevel, pX, pY, pZ, pSprites, 0.0f);
         this.lifetime = 40;     // 粒子的生命周期
-        this.quadSize *= 2.0F;  // 可以调整尺寸
+        this.quadSize = 0.5F;  // 可以调整尺寸
         this.xd = pXSpeed;
         this.yd = pYSpeed;
         this.zd = pZSpeed;
@@ -22,8 +22,8 @@ public class CastingMoldsPartcle  extends SimpleAnimatedParticle {
 
     protected CastingMoldsPartcle(ClientLevel pLevel, double pX, double pY, double pZ, double pXSpeed, double pYSpeed, double pZSpeed, SpriteSet pSprites, float pGravity) {
         super(pLevel, pX, pY, pZ, pSprites, pGravity);
-        this.lifetime = 10;     // 粒子的生命周期
-        this.quadSize *= 1.0F;  // 可以调整尺寸
+        this.lifetime = 20;     // 粒子的生命周期
+        this.quadSize = 0.1F;  // 可以调整尺寸
         this.xd = pXSpeed;
         this.yd = pYSpeed;
         this.zd = pZSpeed;

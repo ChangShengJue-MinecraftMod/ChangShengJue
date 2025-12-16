@@ -536,6 +536,8 @@
 
             this.add("sounds."+ChangShengJue.MOD_ID + ".forge_block_sound", "鍛錘 : 錘擊");
 
+            this.add("sounds."+ChangShengJue.MOD_ID + ".taxation_sound", "鑄幣稅");
+
             this.add("sounds."+ChangShengJue.MOD_ID + ".stakes_hit_sound", "練功木樁 : 被擊打");
     
             //方块

@@ -540,6 +540,8 @@
 
             this.add("sounds."+ChangShengJue.MOD_ID + ".forge_block_sound", "锻锤 : 锤击");
 
+            this.add("sounds."+ChangShengJue.MOD_ID + ".taxation_sound", "铸币税");
+
             this.add("sounds."+ChangShengJue.MOD_ID + ".stakes_hit_sound", "练功木桩 : 被击打");
 
             //方块

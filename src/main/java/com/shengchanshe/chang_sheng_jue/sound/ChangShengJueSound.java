@@ -105,6 +105,10 @@ public class ChangShengJueSound {
     //锻造炉
     public static final RegistryObject<SoundEvent> FORGE_BLOCK_SOUND = registerSoundEvent("forge_block_sound");
 
+    //窑炉
+    public static final RegistryObject<SoundEvent> TAXATION_SOUND = registerSoundEvent("taxation_sound");
+
+
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(ChangShengJue.MOD_ID, name)));
     }
