@@ -48,11 +48,9 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
 
     // 分类相关
     private final List<TexturedButtonWithText> mainCategoryButtons = new ArrayList<>();
-    private TexturedButtonWithText colorToggleButton; // 颜色折叠按钮
     private final List<TexturedButtonWithText> colorCategoryButtons = new ArrayList<>();
-    private boolean colorButtonsExpanded = false; // 颜色按钮是否展开
     private String currentMainCategory = "all"; // 当前选中的主分类
-    private String currentColorCategory = "all"; // 当前选中的颜色子分类
+    private String currentColorCategory = "all"; // 当前选中的颜色子分类（仅对瓦作有效）
     private List<BrickKilnRecipe> filteredRecipes = new ArrayList<>(); // 过滤后的配方列表
     private int uniqueItemCount = 0; // 去重后的物品数量（用于滚动条计算）
 
@@ -288,43 +286,28 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
             mainCategoryButtons.add(categoryButton);
         }
 
-        // 创建颜色折叠按钮（在杂类按钮下方）
-        int colorToggleY = startY + MAIN_CATEGORIES.length * buttonSpacing;
-        colorToggleButton = new TexturedButtonWithText(
-                buttonX, colorToggleY, buttonWidth, buttonHeight,
-                0, 160, buttonHeight,
-                BOTTON, 256, 256,
-                button -> toggleColorButtons(),
-                Component.empty(), 0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F
-        );
-        colorToggleButton.setItemIcon(new ItemStack(Items.PURPLE_CONCRETE))
-                .setItemIconScale(1.0F)
-                .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER);
-        this.addRenderableWidget(colorToggleButton);
-
-        // 颜色子分类按钮（7个：灰、红、黑、金、青、紫、蓝）
+        // 颜色子分类按钮
         int colorButtonWidth = 18;
         int colorButtonHeight = 18;
-        int colorStartX = buttonX - 20; // 在颜色折叠按钮左侧展开
-        int colorStartY = colorToggleY + 4; // 与折叠按钮同一水平线
-        int colorButtonSpacing = 20;
+        int wazuoButtonY = startY + buttonSpacing; // 瓦作是第二个按钮（索引1）
+        int colorStartX = buttonX - buttonWidth + 10; // 在瓦作按钮右侧
+        int colorButtonSpacing = 20; // 按钮之间的垂直间距
 
         ItemStack[] colorIcons = {
-                new ItemStack(Items.LIGHT_GRAY_CONCRETE), // 灰
-                new ItemStack(Items.RED_CONCRETE), // 红
-                new ItemStack(Items.BLACK_CONCRETE), // 黑
-                new ItemStack(Items.YELLOW_CONCRETE), // 金
-                new ItemStack(Items.CYAN_CONCRETE), // 青
-                new ItemStack(Items.PURPLE_CONCRETE), // 紫
-                new ItemStack(Items.BLUE_CONCRETE) // 蓝
-        };
+                new ItemStack(Items.LIGHT_GRAY_CONCRETE),
+                new ItemStack(Items.RED_CONCRETE),
+                new ItemStack(Items.BLACK_CONCRETE),
+                new ItemStack(Items.YELLOW_CONCRETE),
+                new ItemStack(Items.CYAN_CONCRETE),
+                new ItemStack(Items.PURPLE_CONCRETE),
+                new ItemStack(Items.BLUE_CONCRETE)};
 
         for (int i = 0; i < COLOR_CATEGORIES.length; i++) {
             String color = COLOR_CATEGORIES[i];
-            int buttonXPos = colorStartX - i * colorButtonSpacing; // 向左展开
+            int buttonYPos = wazuoButtonY + i * colorButtonSpacing; // 向下展开
 
             TexturedButtonWithText colorButton = new TexturedButtonWithText(
-                    buttonXPos, colorStartY, colorButtonWidth, colorButtonHeight,
+                    colorStartX, buttonYPos, colorButtonWidth, colorButtonHeight,
                     0, 217, 18,
                     TEXTURE, 512, 512,
                     button -> onColorCategoryButtonClicked(color),
@@ -334,7 +317,7 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
             colorButton.setItemIcon(colorIcons[i])
                     .setItemIconScale(0.8F)
                     .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER);
-            colorButton.visible = false; // 初始隐藏
+            colorButton.visible = false; // 初始隐藏，只在瓦作分类被选中时显示
 
             this.addRenderableWidget(colorButton);
             colorCategoryButtons.add(colorButton);
@@ -348,24 +331,24 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         if (menu.isCrafting()) return;
 
         currentMainCategory = category;
+
+        // 如果切换到非瓦作分类，重置颜色筛选并隐藏颜色按钮
+        if (!"wa_zuo".equals(category)) {
+            currentColorCategory = "all";
+        }
+
         scrollOffset = 0;
+        updateColorButtonsVisibility();
         filterRecipesByCategory();
         refreshItemButtons();
         updateCategoryButtonStates();
     }
 
-    // 颜色折叠按钮点击事件
-    private void toggleColorButtons() {
-        if (menu.isCrafting()) return;
-        
-        colorButtonsExpanded = !colorButtonsExpanded;
-        updateColorButtonsVisibility();
-    }
-
-    // 更新颜色按钮的可见性
+    // 更新颜色按钮的可见性（只在瓦作分类时显示）
     private void updateColorButtonsVisibility() {
+        boolean shouldShowColorButtons = "wa_zuo".equals(currentMainCategory);
         for (TexturedButtonWithText button : colorCategoryButtons) {
-            button.visible = colorButtonsExpanded;
+            button.visible = shouldShowColorButtons;
         }
     }
 
@@ -373,21 +356,13 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
     private void onColorCategoryButtonClicked(String color) {
         if (menu.isCrafting()) return;
 
-        // 切换颜色分类（点击同一个颜色则取消筛选）
-        if (color.equals(currentColorCategory)) {
-            currentColorCategory = "all";
-        } else {
-            currentColorCategory = color;
-        }
+        // 切换颜色分类
+        currentColorCategory = color;
 
         scrollOffset = 0;
         filterRecipesByCategory();
         refreshItemButtons();
         updateCategoryButtonStates();
-        
-        // 选中颜色后可以选择性地收起颜色按钮
-        // colorButtonsExpanded = false;
-        // updateColorButtonsVisibility();
     }
 
     // 更新分类按钮状态
@@ -395,10 +370,6 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         for (int i = 0; i < mainCategoryButtons.size() && i < MAIN_CATEGORIES.length; i++) {
             TexturedButtonWithText button = mainCategoryButtons.get(i);
             button.active = !menu.isCrafting();
-        }
-
-        if (colorToggleButton != null) {
-            colorToggleButton.active = !menu.isCrafting();
         }
 
         for (int i = 0; i < colorCategoryButtons.size() && i < COLOR_CATEGORIES.length; i++) {
@@ -445,7 +416,6 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
     }
 
     // 判断配方的group是否匹配当前分类
-    // group格式: "主分类:颜色:其他" 或 "主分类:颜色" 或 "主分类"
     private boolean matchesCategory(String group, String mainCategory, String colorCategory) {
         if (group == null || group.isEmpty()) {
             return false;
@@ -454,20 +424,21 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         String lowerGroup = group.toLowerCase();
 
         // 检查主分类
-        boolean mainMatches = "all".equals(mainCategory) || 
-                              lowerGroup.equals(mainCategory) || 
+        boolean mainMatches = "all".equals(mainCategory) ||
+                              lowerGroup.equals(mainCategory) ||
                               lowerGroup.startsWith(mainCategory + ":");
 
         if (!mainMatches) {
             return false;
         }
 
-        // 如果没有选择颜色筛选，只检查主分类
-        if ("all".equals(colorCategory)) {
+        // 只在瓦作分类下应用颜色筛选
+        // 如果不是瓦作分类，或没有选择颜色筛选，只检查主分类
+        if (!"wa_zuo".equals(mainCategory) || "all".equals(colorCategory)) {
             return true;
         }
 
-        // 检查颜色分类
+        // 检查颜色分类（只对瓦作有效）
         // group格式示例: "wa_zuo:hei" 或 "wa_zuo:hei:brick"
         String[] parts = lowerGroup.split(":");
         if (parts.length >= 2) {
@@ -1188,13 +1159,7 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
             }
         }
 
-        // 渲染颜色折叠按钮的tooltip
-        if (colorToggleButton != null && colorToggleButton.isHovered()) {
-            Component toggleName = Component.translatable(CATEGORY_KEY_PREFIX + "color");
-            guiGraphics.renderTooltip(font, toggleName, x, y);
-        }
-
-        // 渲染颜色分类按钮的tooltip
+        // 渲染颜色分类按钮的tooltip（仅在瓦作分类时显示）
         for (int i = 0; i < colorCategoryButtons.size() && i < COLOR_CATEGORIES.length; i++) {
             TexturedButtonWithText button = colorCategoryButtons.get(i);
             if (button.isHovered() && button.visible) {

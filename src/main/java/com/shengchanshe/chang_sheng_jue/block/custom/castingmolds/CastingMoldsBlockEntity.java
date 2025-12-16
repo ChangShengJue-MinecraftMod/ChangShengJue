@@ -279,7 +279,7 @@ public class CastingMoldsBlockEntity extends BlockEntity implements GeoBlockEnti
      */
     private void spawnTaxParticles(ServerLevel level) {
         double x = this.worldPosition.getX() + 0.5;
-        double y = this.worldPosition.getY() + 1.0;
+        double y = this.worldPosition.getY() + 2.0;
         double z = this.worldPosition.getZ() + 0.5;
 
         // 铸币税粒子显示一个在方块正上方

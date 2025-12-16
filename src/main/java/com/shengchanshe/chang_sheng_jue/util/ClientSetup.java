@@ -889,20 +889,24 @@ public class ClientSetup {
         EntityRenderers.register(ChangShengJueEntity.ASSASSIN.get(), AssassinRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.PIGLIN_WU_XIA.get(), PiglinWuXiaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.WITCH_WU_XIA.get(), WitchWuXiaRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.WITCH_WU_XIA.get(), WitchWuXiaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.EVOKER_WU_XIA.get(), EvokerWuXiaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.VINDICATOR_WU_XIA.get(), VindicatorWuXiaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.PILLAGER_WU_XIA.get(), PillagerWuXiaRenderer::new);
-
+ 
         EntityRenderers.register(ChangShengJueEntity.CLUBBED_MING_XIA.get(), ClubbedMingXiaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.SWORD_MING_XIA.get(), SwordMingXiaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.KNIFE_MING_XIA.get(), KnifeMingXiaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.FIST_MING_XIA.get(), FistMingXiaRenderer::new);
 
-        ItemProperties.register(ChangShengJueItems.BA_WANG_QIANG.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) ->
-                livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack
-                        && stack.getItem() instanceof Lance lance && lance.isThrowing ? 1.0F : 0.0F);
-        ItemProperties.register(ChangShengJueItems.RED_TASSELLED_SPEAR.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) ->
-                livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack
-                        && stack.getItem() instanceof Lance lance && lance.isThrowing ? 1.0F : 0.0F);
+        // 使用enqueueWork确保在主线程中执行物品属性注册，避免并发修改异常
+        event.enqueueWork(() -> {
+            ItemProperties.register(ChangShengJueItems.BA_WANG_QIANG.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) ->
+                    livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack
+                            && stack.getItem() instanceof Lance lance && lance.isThrowing ? 1.0F : 0.0F);
+            ItemProperties.register(ChangShengJueItems.RED_TASSELLED_SPEAR.get(),new ResourceLocation("throwing"),(stack, clientLevel, livingEntity, i) ->
+                    livingEntity != null && livingEntity.isUsingItem() && livingEntity.getUseItem() == stack
+                            && stack.getItem() instanceof Lance lance && lance.isThrowing ? 1.0F : 0.0F);
+        });
     }
 }
