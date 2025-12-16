@@ -37,6 +37,7 @@ import com.shengchanshe.chang_sheng_jue.entity.decoration.seat.SeatRender;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.warrior.WarriorModel;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.worker.KilnWorkerModel;
 import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
+import com.shengchanshe.chang_sheng_jue.particle.custom.block.CastingMoldsPartcle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.block.ForgeBlockPartcle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.block.LeavesDefoliationParticle;
 import com.shengchanshe.chang_sheng_jue.particle.custom.block.StakesParticle;
@@ -169,6 +170,13 @@ public class CSJEventClientBusEvents {
         event.registerSpriteSet(ChangShengJueParticles.THROWING_KNIVES_PARTICLE.get(), ThrowingknivesParticle.Provider::new);
 
         event.registerSpriteSet(ChangShengJueParticles.FORGE_BLOCK_PARTCLE.get(), ForgeBlockPartcle.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.MINTING_PARTCLE.get(), CastingMoldsPartcle.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.GOLD_BULLIONS_MINTING_PARTCLE.get(), CastingMoldsPartcle.Provider::new);
+        event.registerSpriteSet(ChangShengJueParticles.SILVER_BULLIONS_MINTING_PARTCLE.get(), CastingMoldsPartcle.Provider::new);
+
+        event.registerSpriteSet(ChangShengJueParticles.TONG_QIAN_PARTCLE.get(), CastingMoldsPartcle.Provider1::new);
+        event.registerSpriteSet(ChangShengJueParticles.GOLD_BULLIONS_PARTCLE.get(), CastingMoldsPartcle.Provider1::new);
+        event.registerSpriteSet(ChangShengJueParticles.SILVER_BULLIONS_PARTCLE.get(), CastingMoldsPartcle.Provider1::new);
 
         event.registerSpriteSet(ChangShengJueParticles.STAKES_PARTICLE.get(), StakesParticle.Provider::new);
     }
