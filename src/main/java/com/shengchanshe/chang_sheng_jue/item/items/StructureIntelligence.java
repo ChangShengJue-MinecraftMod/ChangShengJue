@@ -72,10 +72,7 @@ public class StructureIntelligence extends Item {
         if (entity instanceof Player player) {
             player.displayClientMessage(
                     Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".structural_location",
-                            pos.getX(),
-                            pos.getZ(),
-                            structureName
-                    ).withStyle(ChatFormatting.AQUA), true);
+                            pos.getX(), pos.getZ(), structureName).withStyle(ChatFormatting.AQUA),false);
         }
     }
 

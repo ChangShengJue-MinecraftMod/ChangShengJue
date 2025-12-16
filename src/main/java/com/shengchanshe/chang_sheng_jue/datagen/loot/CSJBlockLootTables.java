@@ -47,7 +47,6 @@ import java.util.Set;
 public class CSJBlockLootTables extends BlockLootSubProvider {
     private static final LootItemCondition.Builder HAS_SHEARS_OR_SILK_TOUCH = HAS_SHEARS.or(HAS_SILK_TOUCH);
     private static final LootItemCondition.Builder HAS_NO_SHEARS_OR_SILK_TOUCH = HAS_SHEARS_OR_SILK_TOUCH.invert();
-
     public CSJBlockLootTables() {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags());
     }
@@ -1606,7 +1605,7 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         return this.createLeavesDrops(pOakLeavesBlock, pSaplingBlock, pChances)
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_NO_SHEARS_OR_SILK_TOUCH)
                         .add(((LootPoolSingletonContainer.Builder<?>)this.applyExplosionCondition(pOakLeavesBlock, LootItem.lootTableItem(fruitsItem)))
-                                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
+                                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.0055555557F, 0.00625F, 0.008333334F, 0.015F, 0.025F))));
     }
     public void createMulberryLeavesDrops(Block leavesBlock, Item fruitsItem, Block sapling, Item stateItem, Item stateItem1) {
         LootPoolEntryContainer.Builder<?> leaves = LootItem.lootTableItem(leavesBlock)

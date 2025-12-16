@@ -1,39 +1,67 @@
 package com.shengchanshe.chang_sheng_jue.event.combat;
 
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.event.ItemAttributeModifierEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 @Mod.EventBusSubscriber
 public class SharpeningEventHandler {
-    private static final UUID SHARPENING_UUID = UUID.fromString("d8a5d8c5-8b8a-4f8a-8d8c-5a8b8f8a8d8c");
     private static final Random RANDOM = new Random();
 
+    /**
+     * 在物品工具提示中添加打磨加成显示
+     */
     @SubscribeEvent
-    public static void onItemAttributeModifier(ItemAttributeModifierEvent event) {
+    public static void onItemTooltip(ItemTooltipEvent event) {
         ItemStack itemStack = event.getItemStack();
 
         if (itemStack.getTag() != null && itemStack.hasTag() && itemStack.getTag().contains("SharpeningBonus")) {
             float sharpeningBonus = itemStack.getTag().getFloat("SharpeningBonus");
 
             if (sharpeningBonus > 0) {
-                if (event.getSlotType() == EquipmentSlot.MAINHAND) {
-                    AttributeModifier modifier = new AttributeModifier(
-                            SHARPENING_UUID, "sharpening_damage_bonus",
-                            sharpeningBonus, AttributeModifier.Operation.ADDITION);
+                List<Component> tooltip = event.getToolTip();
 
-                    event.addModifier(Attributes.ATTACK_DAMAGE, modifier);
-                }
+                Component bonusText = Component.literal(" ")
+                    .append(Component.translatable("attribute.modifier.plus.0",
+                        ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(sharpeningBonus),
+                        Component.translatable("attribute.name.generic.attack_damage"))
+                        .withStyle(ChatFormatting.BLUE));
+
+                tooltip.add(bonusText);
+            }
+        }
+    }
+
+    /**
+     * 在造成伤害时应用打磨加成
+     */
+    @SubscribeEvent
+    public static void onLivingDamage(LivingDamageEvent event) {
+        if (!(event.getSource().getEntity() instanceof Player player)) {
+            return;
+        }
+
+        ItemStack weapon = player.getMainHandItem();
+        if (weapon.isEmpty()) {
+            return;
+        }
+
+        if (weapon.getTag() != null && weapon.hasTag() && weapon.getTag().contains("SharpeningBonus")) {
+            float sharpeningBonus = weapon.getTag().getFloat("SharpeningBonus");
+
+            if (sharpeningBonus > 0) {
+                // 增加伤害
+                event.setAmount(event.getAmount() + sharpeningBonus);
             }
         }
     }
