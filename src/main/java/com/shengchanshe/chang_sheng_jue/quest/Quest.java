@@ -878,11 +878,10 @@ public class Quest {
                 });
                 kungFus.sort(Comparator.comparingInt(kf -> kf.getMaxExp() - kf.getExp()));
                 for (AbstractionInternalkungfu kungFu : kungFus) {
-                    if (kungFu.getLevel() < kungFu.getMaxLevel()) {
+                    if (kungFu.getLevel() < kungFu.getMaxLevel() && kungFu.isComprehend()) {
                         for (ItemStack reward : questRewards) {
                             if (reward.getItem() instanceof InternalkungfuXp internalkungfuXp) {
                                 internalkungfuXp.use(player.level(),player, player.getUsedItemHand());
-//                                player.getInventory().add(reward.copy());
                                 return;
                             }
                         }
@@ -896,7 +895,6 @@ public class Quest {
                     }
                 }
             });
-            return;
         }
         if (this.questId.equals(PlayerQuestEvent.KUAI_YI_EN_CHOU_QUEST_ID)) {
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
@@ -909,10 +907,9 @@ public class Quest {
                 kungFus.sort(Comparator.comparingInt(kf -> kf.getMaxExp() - kf.getExp()));
 
                 for (AbstractionExternalKunfu kungFu : kungFus) {
-                    if (kungFu.getLevel() < kungFu.getMaxLevel()) {
+                    if (kungFu.getLevel() < kungFu.getMaxLevel() && kungFu.isAttackReday()) {
                         for (ItemStack reward : questRewards) {
                             if (reward.getItem() instanceof ExternalKungfuXp externalKungfuXp) {
-//                                player.getInventory().add(reward.copy());
                                 externalKungfuXp.use(player.level(),player, player.getUsedItemHand());
                                 return;
                             }
@@ -927,11 +924,13 @@ public class Quest {
                     }
                 }
             });
-            return;
         }
         // 默认奖励逻辑
         for (ItemStack reward : questRewards) {
-            player.getInventory().add(reward.copy());
+            if (!(reward.getItem() instanceof ExternalKungfuXp) && !(reward.getItem() instanceof InternalkungfuXp)) {
+                player.getInventory().add(reward.copy());
+                return;
+            }
         }
     }
 

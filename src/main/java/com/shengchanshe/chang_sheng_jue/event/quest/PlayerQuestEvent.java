@@ -249,7 +249,7 @@ public class PlayerQuestEvent {
             if (event.getSource().getEntity() instanceof Mob mob && !(mob instanceof AbstractWuXiaMonster)
                     && !(mob instanceof Creeper) && !(mob instanceof Spider) && !(mob instanceof Silverfish) && !(mob instanceof Endermite)) {
                 player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
-                    cap.triggerQuest(player, KUAI_YI_EN_CHOU_QUEST_ID, 0.05F, mob.getUUID());
+                    cap.triggerQuest(player, KUAI_YI_EN_CHOU_QUEST_ID, 1.0F, mob.getUUID());
                 });
             }
         }

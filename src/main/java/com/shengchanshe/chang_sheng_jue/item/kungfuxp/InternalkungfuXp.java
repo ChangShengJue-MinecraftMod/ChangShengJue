@@ -63,7 +63,6 @@ public class InternalkungfuXp extends Item {
             });
 
             if (totalExpUsed[0] > 0) {
-                itemStack.shrink(1);
                 useOn = true;
                 xpParticleTick = 1;
                 return InteractionResultHolder.consume(itemStack);
