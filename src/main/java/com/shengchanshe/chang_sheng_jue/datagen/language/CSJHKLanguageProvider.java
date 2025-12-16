@@ -2071,6 +2071,10 @@
             this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page1.text", "木工臺合成表");
             this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page2.text", "用於快速製作各種傢俱與木製建築構件，可以批量製作（點擊數位旁的圖示增加或減少製作次數，最大次數為64次），製作會自動從背包扣除對應所需材料。");
 
+            this.add(ChangShengJue.MOD_ID +".function.brick_kiln", "磚窯爐");
+            this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page1.text", "磚窯爐合成表");
+            this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page2.text", "用於快速製作各種石製建築構件（琉璃瓦、片瓦等），可以批量製作（點擊數位旁的圖示增加或減少製作數量，最大數量為64個），製作會自動從背包扣除對應所需材料。");
+
             this.add(ChangShengJue.MOD_ID +".function.sharpening_stone", "磨刀石");
             this.add(ChangShengJue.MOD_ID +".function.sharpening_stone.page1.text", "通過磨刀石你可以強化你的武器，圓石磨刀石最高可以將武器傷害提升6點，鑽石磨刀石則是最高提升至8點，下界合金磨刀石最高提升10點。 注意！ 打磨後武器的耐久消耗也會對應提高。");
 

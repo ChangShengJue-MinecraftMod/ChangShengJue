@@ -2116,9 +2116,13 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page1.text", "Wood Working Bench Crafting Recipe");
         this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page2.text", "It is used to quickly craft various furniture and wooden building components, which can be made in batches (click the icon next to the number to increase or decrease the number of productions, the maximum number is 64), and the corresponding materials will be automatically deducted from the backpack.");
 
-        this.add(ChangShengJue.MOD_ID +".function.forge_block", "Forge furnace");
-        this.add(ChangShengJue.MOD_ID +".function.forge_block.page1.text", "Forge furnace Crafting Recipe");
+        this.add(ChangShengJue.MOD_ID +".function.forge_block", "Forge Block");
+        this.add(ChangShengJue.MOD_ID +".function.forge_block.page1.text", "Forge Block Crafting Recipe");
         this.add(ChangShengJue.MOD_ID +".function.forge_block.page2.text", "Used for crafting weapons, armor, etc. View selected items within the forge interface. Crafting automatically consumes required materials from your inventory.");
+
+        this.add(ChangShengJue.MOD_ID +".function.brick_kiln", "Brick Kiln");
+        this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page1.text", "Brick kiln synthesis table");
+        this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page2.text", "It is used to quickly make various stone building components (glazed tiles, tiles, etc.), and can be made in batches (click the icon next to the number to increase or decrease the number of pieces, the maximum number is 64), and the corresponding materials will be automatically deducted from the backpack.");
 
         this.add(ChangShengJue.MOD_ID +".function.sharpening_stone", "Sharpening Stone");
         this.add(ChangShengJue.MOD_ID +".function.sharpening_stone.page1.text", "You can strengthen your weapons with whetstones, with cobblestone whetstones increasing weapon damage by up to 6 points, diamond whetstones up to 8 points, and netherite whetstones increasing up to 10 points. Note! The durability consumption of the weapon after grinding will also be increased accordingly.");

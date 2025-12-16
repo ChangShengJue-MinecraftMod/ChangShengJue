@@ -1926,7 +1926,7 @@
             this.add("jei."+ ChangShengJue.MOD_ID +".woodworking_bench.usage", "在木工台中制作该物品");
             this.add("jei."+ ChangShengJue.MOD_ID +".tailoring_case.usage", "在裁衣案中制作该物品");
             this.add("jei."+ ChangShengJue.MOD_ID +".forge_block.usage", "在锻造炉中制作该物品");
-            this.add("jei."+ ChangShengJue.MOD_ID +".brick_kiln.usage", "在窑炉中制作该物品");
+            this.add("jei."+ ChangShengJue.MOD_ID +".brick_kiln.usage", "在砖窑炉中制作该物品");
             //帕秋莉
             this.add(ChangShengJue.MOD_ID +".function", "功能物品");
             this.add(ChangShengJue.MOD_ID +".function.desc", "从那个空间裂缝来了很多奇怪的人，他们不仅会舞火为凤，飞天遁地。也带来了很多奇怪的东西。听说他们是从东方来的？");
@@ -2079,6 +2079,10 @@
             this.add(ChangShengJue.MOD_ID +".function.wood_working_bench", "木工台");
             this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page1.text", "木工台合成表");
             this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page2.text", "用于快速制作各种家具与木制建筑构件，可以批量制作（点击数字旁的图标增加或减少制作次数，最大次数为64次），制作会自动从背包扣除对应所需材料。");
+
+            this.add(ChangShengJue.MOD_ID +".function.brick_kiln", "砖窑炉");
+            this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page1.text", "砖窑炉合成表");
+            this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page2.text", "用于快速制作各种石制建筑构件（琉璃瓦、片瓦等），可以批量制作（点击数字旁的图标增加或减少制作数量，最大数量为64个），制作会自动从背包扣除对应所需材料。");
 
             this.add(ChangShengJue.MOD_ID +".function.sharpening_stone", "磨刀石");
             this.add(ChangShengJue.MOD_ID +".function.sharpening_stone.page1.text", "通过磨刀石你可以强化你的武器，圆石磨刀石最高可以将武器伤害提升6点，钻石磨刀石则是最高提升至8点，下界合金磨刀石最高提升10点。注意！打磨后武器的耐久消耗也会对应提高。");
