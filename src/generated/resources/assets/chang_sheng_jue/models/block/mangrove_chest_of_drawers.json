@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/chest_of_drawers",
+  "textures": {
+    "1": "chang_sheng_jue:block/mangrove_cabinet",
+    "particle": "chang_sheng_jue:block/mangrove_cabinet"
+  }
+}

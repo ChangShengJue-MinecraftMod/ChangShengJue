@@ -62,6 +62,22 @@
     "facing=west,right=false,left=true,middle=false": {
       "model": "chang_sheng_jue:block/plaque_left",
       "y": 270
+    },
+
+    "facing=east,right=true,left=true,middle=false": {
+      "model": "chang_sheng_jue:block/plaque",
+      "y": 90
+    },
+    "facing=north,right=true,left=true,middle=false": {
+      "model": "chang_sheng_jue:block/plaque"
+    },
+    "facing=south,right=true,left=true,middle=false": {
+      "model": "chang_sheng_jue:block/plaque",
+      "y": 180
+    },
+    "facing=west,right=true,left=true,middle=false": {
+      "model": "chang_sheng_jue:block/plaque",
+      "y": 270
     }
   }
 }

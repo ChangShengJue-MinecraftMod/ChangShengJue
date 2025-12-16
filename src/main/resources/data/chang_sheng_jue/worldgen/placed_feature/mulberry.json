@@ -1,0 +1,17 @@
+{
+  "feature": "chang_sheng_jue:mulberry",
+  "placement": [
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:would_survive",
+        "state": {
+          "Name": "chang_sheng_jue:mulberry_sapling",
+          "Properties": {
+            "stage": "0"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -144,6 +144,16 @@
             }
           ],
           "weight": 3
+        },
+        {
+          "type": "item",
+          "name": "chang_sheng_jue:long_yuan_sword",
+          "functions": [
+            {
+              "function": "set_count"
+            }
+          ],
+          "weight": 1
         }
       ]
     }

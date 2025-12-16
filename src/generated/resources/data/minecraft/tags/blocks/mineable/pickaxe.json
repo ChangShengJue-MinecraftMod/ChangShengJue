@@ -31,6 +31,7 @@
     "chang_sheng_jue:bullions_casting_molds",
     "chang_sheng_jue:casting_molds",
     "chang_sheng_jue:syderolife_ore",
+    "chang_sheng_jue:natural_asphalt_ore",
     "chang_sheng_jue:white_jade_block",
     "chang_sheng_jue:white_jade_balustrade",
     "chang_sheng_jue:oak_balustrade",
@@ -46,6 +47,13 @@
     "chang_sheng_jue:white_jade_guardrail",
     "chang_sheng_jue:wind_chime",
     "chang_sheng_jue:gong",
-    "chang_sheng_jue:forge_block"
+    "chang_sheng_jue:brick_kiln",
+    "chang_sheng_jue:forge_block",
+    "chang_sheng_jue:stone_bench",
+    "chang_sheng_jue:stone_table",
+    "chang_sheng_jue:stone_balustrade",
+    "chang_sheng_jue:stone_sharpening_stone",
+    "chang_sheng_jue:diamond_sharpening_stone",
+    "chang_sheng_jue:netherite_sharpening_stone"
   ]
 }

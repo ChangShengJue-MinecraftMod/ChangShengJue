@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/cylindertile/double_cylinder_tile_baffle",
+  "textures": {
+    "1": "chang_sheng_jue:block/blue_cylinder_tile",
+    "particle": "chang_sheng_jue:block/blue_cylinder_tile"
+  }
+}

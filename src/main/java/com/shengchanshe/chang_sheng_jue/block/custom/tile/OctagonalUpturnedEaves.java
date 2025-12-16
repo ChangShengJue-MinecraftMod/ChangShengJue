@@ -36,10 +36,10 @@ public class OctagonalUpturnedEaves extends CylinderTile{
         Direction value = state.getValue(FACING);
         Boolean value1 = state.getValue(LEFT);
         return switch (value){
-            case NORTH -> value1 ? CYLINDER_TILE_LEFT_N : CYLINDER_TILE_RIGHT_N;
-            case EAST -> value1 ? CYLINDER_TILE_LEFT_E : CYLINDER_TILE_RIGHT_E;
-            case SOUTH -> value1 ? CYLINDER_TILE_LEFT_S : CYLINDER_TILE_RIGHT_S;
-            default -> value1 ? CYLINDER_TILE_LEFT_W : CYLINDER_TILE_RIGHT_W;
+            case NORTH -> !value1 ? CYLINDER_TILE_LEFT_N : CYLINDER_TILE_RIGHT_N;
+            case EAST -> !value1 ? CYLINDER_TILE_LEFT_E : CYLINDER_TILE_RIGHT_E;
+            case SOUTH -> !value1 ? CYLINDER_TILE_LEFT_S : CYLINDER_TILE_RIGHT_S;
+            default -> !value1 ? CYLINDER_TILE_LEFT_W : CYLINDER_TILE_RIGHT_W;
         };
     }
 

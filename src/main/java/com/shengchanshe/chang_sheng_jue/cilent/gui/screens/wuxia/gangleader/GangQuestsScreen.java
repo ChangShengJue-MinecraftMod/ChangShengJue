@@ -19,11 +19,11 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @OnlyIn(Dist.CLIENT)
 public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
@@ -52,7 +52,9 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
     private TexturedButtonWithText onPageButton;
     private TexturedButtonWithText nextPageButton;
 
-    private static final int HEAD_SIZE = 9;
+    private int scrollTick = 0;
+
+    private static final int HEAD_SIZE = 8;
     private static final int MAX_VISIBLE_HEADS = 5;
 
     private static final Map<EntityType<?>, Entity> ENTITY_CACHE = new HashMap<>();
@@ -68,30 +70,52 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight,TEXTURE_WIDTH,TEXTURE_HEIGHT);
-
-        String pageInfo = String.format("%d/%d", menu.getCurrentPage() + 1, menu.getTotalPages());
-        guiGraphics.drawString(font, pageInfo, x + imageWidth - 25, y + 50, 0xFFFFFF, false);
+        int currentPage = menu.getCurrentPage() + 1;
+        String pageInfo = String.format("%d/%d", currentPage, menu.getTotalPages());
+        guiGraphics.drawString(font, pageInfo, x + imageWidth - (currentPage >= 10 ? 35 : 30), y + 52, 0x404040, false);
     }
 
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         Quest currentQuest = menu.getCurrentQuest();
         if (currentQuest != null) {
-            guiGraphics.drawString(font, currentQuest.getQuestName(),
-                    (imageWidth - font.width(currentQuest.getQuestName())) / 2, 67, 0x404040, false);
+            guiGraphics.drawString(font, Component.translatable(currentQuest.getQuestName()),
+                    (imageWidth - font.width(Component.translatable(currentQuest.getQuestName()))) / 2, 67, 0x404040, false);
 
-            var lines = font.split(Component.translatable(currentQuest.getQuestDescription()), imageWidth - 50);
+            var lines = font.split(Component.translatable(currentQuest.getQuestDescription()), imageWidth - 45);
             for (int i = 0; i < lines.size(); i++) {
-                guiGraphics.drawString(font, lines.get(i), 28, 101 + i * font.lineHeight, 0x404040, false);
+                guiGraphics.drawString(font, lines.get(i), 28, 95 + i * font.lineHeight, 0x404040, false);
             }
-
-            var lines1 = font.split(Component.translatable(currentQuest.getQuestRequirementsDescription()), imageWidth - 50);
-            for (int i = 0; i < lines1.size(); i++) {
-                guiGraphics.drawString(font, lines1.get(i), currentQuest.getTargetEntity().isEmpty() ? 28 + 40 : 28 + 60,
-                        (150 - 9) + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
-            }
+            // 获取需求标题的宽度
+            int requirementsTitleWidth = font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".requirements"));
+            // 计算需求描述应该开始的位置
+            int descriptionStartX = 28 + requirementsTitleWidth + (currentQuest.getSecondTargetEntity() != null && !currentQuest.getSecondTargetEntity().isEmpty() ? 30
+                    : (currentQuest.getTargetEntity() != null && !currentQuest.getTargetEntity().isEmpty() ? 20 : 5));
 
             guiGraphics.drawString(font, Component.translatable("quest." + ChangShengJue.MOD_ID + ".requirements"), 28, 150 - 9, ChatFormatting.RED.getColor(), false);
+
+            String requirementsText = currentQuest.getQuestRequirementsDescription();
+            Component fullDescriptionComponent = Component.translatable(requirementsText);
+            int fullTextWidth = font.width(fullDescriptionComponent);
+            // 计算可用宽度
+            int maxAvailableWidth = imageWidth - 50 - descriptionStartX;
+            // 检查是否需要滚动
+            if (fullTextWidth > maxAvailableWidth && maxAvailableWidth > 0) {
+                scrollTick++;
+                // 每8帧移动一个字符
+                String visibleText = getString(fullDescriptionComponent);
+                // 渲染文本
+                guiGraphics.drawString(font, Component.literal(visibleText), descriptionStartX,
+                        150 - 9, ChatFormatting.RED.getColor(), false);
+
+            } else {
+                var lines1 = font.split(fullDescriptionComponent, imageWidth - 50);
+                for (int i = 0; i < lines1.size(); i++) {
+                    guiGraphics.drawString(font, lines1.get(i), descriptionStartX,
+                            (150 - 9) + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
+                }
+            }
+
             guiGraphics.drawString(font, Component.translatable("quest." + ChangShengJue.MOD_ID + ".rewards"), 28, 170 - 9, ChatFormatting.YELLOW.getColor(), false);
         } else {
             guiGraphics.drawString(font, Component.translatable("quest." + ChangShengJue.MOD_ID + ".no_action_quest"),
@@ -100,6 +124,27 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
         }
     }
 
+    private @NotNull String getString(Component requirementsText) {
+        int scrollSpeed = 15;
+        int visibleChars = Math.min(30, requirementsText.getString().length()); // 最多显示30个字符
+
+        // 在文本末尾添加间隔
+        String textWithSpacing = requirementsText.getString() + "    ";
+
+        int totalLength = textWithSpacing.length();
+        int startPos = (scrollTick / scrollSpeed) % totalLength;
+
+        String visibleText;
+        if (startPos + visibleChars <= totalLength) {
+            visibleText = textWithSpacing.substring(startPos, startPos + visibleChars);
+        } else {
+            // 文本到达末尾，衔接开头部分
+            int part1Length = totalLength - startPos;
+            int part2Length = visibleChars - part1Length;
+            visibleText = textWithSpacing.substring(startPos) + textWithSpacing.substring(0, part2Length);
+        }
+        return visibleText;
+    }
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
@@ -110,16 +155,27 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
         if (currentQuest != null) {
             int x = (width - imageWidth) / 2;
             int y = (height - imageHeight) / 2;
-            // 根据任务类型决定渲染内容
+            int requirementsTitleWidth = font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".requirements"));
+            int descriptionStartX = x + 28 + requirementsTitleWidth + 5;
+
+            int rewardsTitleWidth = font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".rewards"));
+            int rewardsDescriptionStartX = x + 28 + rewardsTitleWidth + 5;
+
             if (currentQuest.getQuestType() == Quest.QuestType.KILL) {
-                // 渲染击杀任务的目标生物
-                GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).renderKillTargetHead(guiGraphics, x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y - 3, currentQuest);
+                GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
+                        renderKillTargetHead(guiGraphics, descriptionStartX, y + REQ_SLOTS_Y - 2,
+                                currentQuest.getTargetEntity(), currentQuest.getCurrentKills(), currentQuest.getRequiredKills());
+                if (currentQuest.getSecondTargetEntity() != null && !currentQuest.getSecondTargetEntity().isEmpty()) {
+                    GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
+                            renderKillTargetHead(guiGraphics, descriptionStartX + 15, y + REQ_SLOTS_Y - 2,
+                                    currentQuest.getSecondTargetEntity(), currentQuest.getSecondCurrentKills(), currentQuest.getSecondRequiredKills());
+                }
             } else if (currentQuest.getQuestType() == Quest.QuestType.GATHER) {
                 // 渲染需求物品
                 var reqs = currentQuest.getQuestRequirements();
                 for (int i = 0; i < Math.min(3, reqs.size()); i++) {
                     ItemStack stack = reqs.get(i);
-                    renderItemAt(guiGraphics, x + REQ_SLOTS_X + 40 + i * SLOT_SIZE, y + REQ_SLOTS_Y - 13, stack);
+                    renderItemAt(guiGraphics, descriptionStartX + i * SLOT_SIZE, y + REQ_SLOTS_Y - 13, stack);
                 }
             }
 
@@ -127,7 +183,7 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
             var rewards = currentQuest.getQuestRewards();
             for (int i = 0; i < Math.min(3, rewards.size()); i++) {
                 ItemStack stack = rewards.get(i);
-                renderItemAt(guiGraphics, x + REWARD_SLOTS_X + 40 + i * SLOT_SIZE, y + REWARD_SLOTS_Y - 13, stack);
+                renderItemAt(guiGraphics, rewardsDescriptionStartX + i * SLOT_SIZE, y + REWARD_SLOTS_Y - 13, stack);
             }
 
             this.renderTooltips(guiGraphics, mouseX, mouseY, x, y, currentQuest);
@@ -145,11 +201,16 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
     }
 
     private void renderTooltips(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y, Quest quest) {
+        int requirementsTitleWidth = font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".requirements"));
+        int descriptionStartX = x + 28 + requirementsTitleWidth + 5;
+
+        int rewardsTitleWidth = font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".rewards"));
+        int rewardsDescriptionStartX = x + 28 + rewardsTitleWidth + 5;
         // 检查需求物品提示
         List<ItemStack> reqs = quest.getQuestRequirements();
         for (int i = 0; i < Math.min(3, reqs.size()); i++) {
             if (isMouseOverSlot(mouseX, mouseY,
-                    x + REQ_SLOTS_X + 40 + i * SLOT_SIZE,
+                    descriptionStartX + i * SLOT_SIZE,
                     y + REQ_SLOTS_Y - 13,
                     SLOT_SIZE, SLOT_SIZE)) {
 
@@ -161,7 +222,7 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
         List<ItemStack> rewards = quest.getQuestRewards();
         for (int i = 0; i < Math.min(3, rewards.size()); i++) {
             if (isMouseOverSlot(mouseX, mouseY,
-                    x + REWARD_SLOTS_X + 40 + i * SLOT_SIZE,
+                    rewardsDescriptionStartX + i * SLOT_SIZE,
                     y + REWARD_SLOTS_Y - 13,
                     SLOT_SIZE, SLOT_SIZE)) {
 
@@ -169,21 +230,6 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
                 return;
             }
         }
-        // 击杀任务目标提示
-        if (quest.getQuestType() == Quest.QuestType.KILL &&
-                isMouseOverSlot(mouseX, mouseY,
-                        x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y - 9, HEAD_SIZE, HEAD_SIZE)) {
-            renderKillTargetTooltip(guiGraphics, mouseX, mouseY, quest);
-        }
-    }
-    // 击杀目标特殊提示
-    private void renderKillTargetTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, Quest quest) {
-        List<Component> tooltip = List.of(
-                Component.translatable("quest."+ ChangShengJue.MOD_ID +".requires.kill.target", quest.getRequiredKills()),
-                Component.translatable("quest."+ ChangShengJue.MOD_ID +".current.kill.target", quest.getCurrentKills(), quest.getRequiredKills())
-                        .withStyle(ChatFormatting.YELLOW)
-        );
-        guiGraphics.renderTooltip(font, tooltip, Optional.empty(), mouseX, mouseY);
     }
 
     private boolean isMouseOverSlot(int mouseX, int mouseY, int slotX, int slotY, int width, int height) {
@@ -210,8 +256,7 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
             this.actionButton = this.addRenderableWidget(new TexturedButtonWithText(
                     buttonX, buttonY, BUTTON_WIDTH, BUTTON_HEIGHT,
                     0, 66, 20,
-                    BOTTON,
-                    256, 256,
+                    BOTTON, 256, 256,
                     this::handleActionButtonClick,
                     Component.translatable("quest."+ ChangShengJue.MOD_ID + ".accept.button"),0xFFFFFF,0xFFFFFF,1.0F,true
             ));
@@ -220,7 +265,7 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
         int pageButtonY = top + 65;
         int pageButtonX = left + (this.imageWidth - PAGE_BUTTON_WIDTH) / 2;
         this.onPageButton = this.addRenderableWidget(new TexturedButtonWithText(
-                pageButtonX - 70, pageButtonY, PAGE_BUTTON_WIDTH, PAGE_BUTTON_HEIGHT,
+                pageButtonX - 108, pageButtonY, PAGE_BUTTON_WIDTH, PAGE_BUTTON_HEIGHT,
                 14, 211, 11,
                 TEXTURE, TEXTURE_WIDTH, TEXTURE_HEIGHT,
                 button -> menu.previousPage(),
@@ -228,7 +273,7 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
         ));
 
         this.nextPageButton = this.addRenderableWidget(new TexturedButtonWithText(
-                pageButtonX + 72, pageButtonY, PAGE_BUTTON_WIDTH, PAGE_BUTTON_HEIGHT,
+                pageButtonX + 112, pageButtonY, PAGE_BUTTON_WIDTH, PAGE_BUTTON_HEIGHT,
                 0, 211, 11,
                 TEXTURE, TEXTURE_WIDTH, TEXTURE_HEIGHT,
                 button -> menu.nextPage(),

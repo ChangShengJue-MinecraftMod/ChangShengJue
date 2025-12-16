@@ -6,7 +6,6 @@ import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IKungFuUpgradable;
 import com.shengchanshe.chang_sheng_jue.martial_arts.ILightKungfu;
-import com.shengchanshe.chang_sheng_jue.martial_arts.IMentalKungfu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuType;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.ChatFormatting;
@@ -23,7 +22,6 @@ import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.trading.MerchantOffer;
 
 public abstract class AbstractionLightKungfu implements ILightKungfu, IKungFuUpgradable {
     protected String id;

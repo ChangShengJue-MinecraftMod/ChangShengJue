@@ -46,32 +46,73 @@ public class QuestEvent {
                 List<Quest> currentQuest = cap.getQuests(playerId);
                 for (Quest quest : currentQuest) {
                     if (quest != null && quest.getQuestType() == Quest.QuestType.KILL) {
-                        if (quest.getCurrentKills() < quest.getRequiredKills()){
-                            if (quest.matchesEntity(entity)) {
-                                if (quest.getQuestId().equals(PlayerQuestEvent.MARTIAL_ARTS_QUEST_ID)){
-                                    BlockPos blockpos = player.blockPosition();
-                                    ServerLevel level = (ServerLevel) player.level();
-                                    if (level.isVillage(blockpos) && TimeDetection.isFullNight(player.level())) {
+                        if (quest.getSecondTargetEntity() != null && !quest.getSecondTargetEntity().isEmpty()) {
+                            if (quest.getCurrentKills() < quest.getRequiredKills()) {
+                                if (quest.matchesEntity(entity)) {
+                                    if (quest.getQuestId().equals(PlayerQuestEvent.MARTIAL_ARTS_QUEST_ID)){
+                                        BlockPos blockpos = player.blockPosition();
+                                        ServerLevel level = (ServerLevel) player.level();
+                                        if (level.isVillage(blockpos) && TimeDetection.isFullNight(player.level())) {
+                                            quest.incrementKills();
+                                        }
+                                    } else {
                                         quest.incrementKills();
                                     }
-                                } else {
-                                    quest.incrementKills();
+                                } else if(quest.getQuestId().equals(PlayerQuestEvent.KUAI_YI_EN_CHOU_QUEST_ID)) {
+                                    if (quest.getQuestNpcId() != null && entity.getUUID().equals(quest.getQuestNpcId())) {
+                                        quest.incrementKills();
+                                    }
                                 }
-                            } else if(quest.getQuestId().equals(PlayerQuestEvent.KUAI_YI_EN_CHOU_QUEST_ID)) {
-                                if (quest.getQuestNpcId() != null && entity.getUUID().equals(quest.getQuestNpcId())) {
-                                    quest.incrementKills();
+                                if (quest.canComplete(player)) {
+                                    player.sendSystemMessage(getColoredTranslation(
+                                            "quest." + ChangShengJue.MOD_ID + ".finish",
+                                            getColoredTranslation(quest.getQuestName())));
+                                    if(Objects.equals(quest.getQuestName(), "救民侠医") && Objects.equals(quest.getQuestName(), "投名状") && Objects.equals(quest.getQuestName(), "斋饭")){
+                                        if(player instanceof ServerPlayer serverPlayer) {
+                                            CSJAdvanceInit.FINISH_TASK.trigger(serverPlayer);
+                                        }
+                                    }
+                                }
+                            } else if (quest.getSecondCurrentKills() < quest.getSecondRequiredKills()) {
+                                if (quest.matchesSecondEntity(entity)) {
+                                    quest.secondIncrementKills();
+                                }
+                                if (quest.canComplete(player)) {
+                                    player.sendSystemMessage(getColoredTranslation(
+                                            "quest." + ChangShengJue.MOD_ID + ".finish",
+                                            getColoredTranslation(quest.getQuestName())));
                                 }
                             }
-                            if (quest.canComplete(player)) {
-                                player.sendSystemMessage(Component.literal(
-                                        "§a"+ quest.getQuestName()+ "任务进度: " + quest.getCurrentKills() + "/" + quest.getRequiredKills()));
-                                if(Objects.equals(quest.getQuestName(), "救民侠医") && Objects.equals(quest.getQuestName(), "投名状") && Objects.equals(quest.getQuestName(), "斋饭")){
-                                    if(player instanceof ServerPlayer serverPlayer) {
-                                        CSJAdvanceInit.FINISH_TASK.trigger(serverPlayer);
+                        } else {
+                            if (quest.getCurrentKills() < quest.getRequiredKills()){
+                                if (quest.matchesEntity(entity)) {
+                                    if (quest.getQuestId().equals(PlayerQuestEvent.MARTIAL_ARTS_QUEST_ID)){
+                                        BlockPos blockpos = player.blockPosition();
+                                        ServerLevel level = (ServerLevel) player.level();
+                                        if (level.isVillage(blockpos) && TimeDetection.isFullNight(player.level())) {
+                                            quest.incrementKills();
+                                        }
+                                    } else {
+                                        quest.incrementKills();
+                                    }
+                                } else if(quest.getQuestId().equals(PlayerQuestEvent.KUAI_YI_EN_CHOU_QUEST_ID)) {
+                                    if (quest.getQuestNpcId() != null && entity.getUUID().equals(quest.getQuestNpcId())) {
+                                        quest.incrementKills();
+                                    }
+                                }
+                                if (quest.canComplete(player)) {
+                                    player.sendSystemMessage(getColoredTranslation(
+                                            "quest." + ChangShengJue.MOD_ID + ".finish",
+                                            getColoredTranslation(quest.getQuestName())));
+                                    if(Objects.equals(quest.getQuestName(), "救民侠医") && Objects.equals(quest.getQuestName(), "投名状") && Objects.equals(quest.getQuestName(), "斋饭")){
+                                        if(player instanceof ServerPlayer serverPlayer) {
+                                            CSJAdvanceInit.FINISH_TASK.trigger(serverPlayer);
+                                        }
                                     }
                                 }
                             }
                         }
+
                     }
                 }
 
@@ -124,7 +165,9 @@ public class QuestEvent {
                         if (raid != null && raid.isVictory() && !quest.isComplete()) {
                             quest.setComplete(true);
                             if (quest.canComplete(player)) {
-                                player.sendSystemMessage(Component.literal("§a" + quest.getQuestName() + "任务已完成"));
+                                player.sendSystemMessage(getColoredTranslation(
+                                        "quest." + ChangShengJue.MOD_ID + ".finish",
+                                        getColoredTranslation(quest.getQuestName())));
                             }
                         }
                     }else if (quest.getQuestId().equals(XING_XIA_ZHANG_YI_QUEST_ID) && quest.getAcceptedBy() != null
@@ -137,7 +180,7 @@ public class QuestEvent {
                                     if ((double) f >= 0.5 && f < 0.503) {
                                         siege.siegeState = VillageSiege.State.SIEGE_TONIGHT;
                                     }
-                                    siege.tick(level, true, false); // 参数：世界、是否生成敌对生物、是否生成友好生物
+                                    siege.tick(level, true, false); // 世界、是否生成敌对生物、是否生成友好生物
                                 }
                             } else if (!quest.isComplete()) {
                                 float f = level.getTimeOfDay(0.0F);
@@ -146,7 +189,9 @@ public class QuestEvent {
                                     quest.setComplete(true);
                                 }
                                 if (quest.canComplete(player)) {
-                                    player.sendSystemMessage(Component.literal("§a" + quest.getQuestName() + "任务已完成"));
+                                    player.sendSystemMessage(getColoredTranslation(
+                                            "quest." + ChangShengJue.MOD_ID + ".finish",
+                                            getColoredTranslation(quest.getQuestName())));
                                 }
                             }
                         }
@@ -192,7 +237,9 @@ public class QuestEvent {
                         if (quest.getQuestType() == Quest.QuestType.TREAT && quest.getAcceptedBy() != null && quest.getAcceptedBy().equals(player.getUUID())) {
                             quest.setComplete(true);
                             if (quest.canComplete(player)) {
-                                player.sendSystemMessage(Component.literal("§a" + quest.getQuestName() + "任务已完成"));
+                                player.sendSystemMessage(getColoredTranslation(
+                                        "quest." + ChangShengJue.MOD_ID + ".finish",
+                                        getColoredTranslation(quest.getQuestName())));
                             }
                         }
                     }
@@ -205,4 +252,9 @@ public class QuestEvent {
         ClientQuestDataCache.get().clear();
     }
 
+    // 获取带颜色的翻译文本
+    public static Component getColoredTranslation(String key, Object... args) {
+        String raw = Component.translatable(key, args).getString();
+        return Component.literal(raw);
+    }
 }

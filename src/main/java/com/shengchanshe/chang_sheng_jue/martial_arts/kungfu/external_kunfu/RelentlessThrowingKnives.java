@@ -2,9 +2,6 @@ package com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
-import com.shengchanshe.chang_sheng_jue.item.combat.clubbed.Clubbed;
-import com.shengchanshe.chang_sheng_jue.item.combat.knife.Knife;
-import com.shengchanshe.chang_sheng_jue.item.combat.lance.Lance;
 import com.shengchanshe.chang_sheng_jue.item.combat.throwingknives.FlyingDaggerPouch;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuType;
@@ -15,7 +12,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.SwordItem;
 
 public class RelentlessThrowingKnives extends AbstractionExternalKunfu {
     public static final ResourceLocation KUNG_FU_ID = new ResourceLocation(ChangShengJue.MOD_ID, "relentless_throwing_knives");
@@ -55,11 +51,9 @@ public class RelentlessThrowingKnives extends AbstractionExternalKunfu {
     @Override
     public void attackEffect(LivingEntity source, Entity target) {
         if (target instanceof LivingEntity livingEntity) {
-            if (isStart) {
-                if (isComprehend && level > 0) {
-                    if (target != source) {
-                        EffectUtils.setTrauma(source, livingEntity, 2,140,traumaProbability);
-                    }
+            if (isComprehend && level > 0) {
+                if (target != source) {
+                    EffectUtils.setTrauma(source, livingEntity, 2,140,traumaProbability);
                 }
             }
         }

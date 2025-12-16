@@ -1,14 +1,12 @@
 package com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IExternalKunfu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IKungFuUpgradable;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuType;
-import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.QianKunDaNuoYi;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;

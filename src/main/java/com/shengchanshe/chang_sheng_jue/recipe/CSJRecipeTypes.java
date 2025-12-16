@@ -18,6 +18,12 @@ public class CSJRecipeTypes {
     public static final RegistryObject<RecipeSerializer<TailoringCaseRecipe>> TAILORING_CASE_SERIALIZERS =
             SERIALIZERS.register("tailoring_case", () -> TailoringCaseRecipe.Serializer.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<WoodworkingBenchRecipe>> WOOD_WORKING_BENCH_SERIALIZERS =
+            SERIALIZERS.register("wood_working_bench", () -> WoodworkingBenchRecipe.Serializer.INSTANCE);
+
+    public static final RegistryObject<RecipeSerializer<BrickKilnRecipe>> BRICK_KILN_SERIALIZERS =
+            SERIALIZERS.register("brick_kiln", () -> BrickKilnRecipe.Serializer.INSTANCE);
+
     // 注册配方类型和序列化器
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

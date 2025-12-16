@@ -1,0 +1,18 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "furniture:height_light_stand",
+  "ingredients": [
+    {
+      "item": "minecraft:jungle_planks",
+      "count": 4
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:jungle_height_light_stand",
+    "count": 3
+  }
+}

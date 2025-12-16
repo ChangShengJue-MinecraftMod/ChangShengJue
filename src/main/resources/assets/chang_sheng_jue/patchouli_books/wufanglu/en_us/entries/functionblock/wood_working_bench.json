@@ -1,0 +1,19 @@
+{
+  "name": "chang_sheng_jue.function.wood_working_bench",
+  "category": "chang_sheng_jue:function",
+  "sortnum": 4,
+  "icon": "chang_sheng_jue:wood_working_bench",
+  "pages": [
+    {
+      "title": "chang_sheng_jue.function.wood_working_bench",
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:wood_working_bench",
+      "text": "chang_sheng_jue.function.wood_working_bench.page1.text"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:wood_working_bench",
+      "text": "chang_sheng_jue.function.wood_working_bench.page2.text"
+    }
+  ]
+}

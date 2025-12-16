@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab",
   "textures": {
-    "bottom": "chang_sheng_jue:block/cylinder_tile_gre",
-    "side": "chang_sheng_jue:block/cylinder_tile_gre",
-    "top": "chang_sheng_jue:block/cylinder_tile_gre"
+    "bottom": "chang_sheng_jue:block/gre_cylinder_tile_block",
+    "side": "chang_sheng_jue:block/gre_cylinder_tile_block",
+    "top": "chang_sheng_jue:block/gre_cylinder_tile_block"
   }
 }

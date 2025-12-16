@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/folding_screen_right_middle",
+  "textures": {
+    "1": "chang_sheng_jue:block/birch_folding_screen",
+    "particle": "chang_sheng_jue:block/birch_folding_screen"
+  }
+}

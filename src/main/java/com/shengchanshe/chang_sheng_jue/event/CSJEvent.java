@@ -3,7 +3,6 @@ package com.shengchanshe.chang_sheng_jue.event;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.ChangShengJueConfig;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
-import com.shengchanshe.chang_sheng_jue.block.food.TypeBlock;
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu.KungFuClientData;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
@@ -48,6 +47,7 @@ import net.minecraftforge.event.level.ChunkEvent;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import vazkii.patchouli.api.PatchouliAPI;
 
@@ -189,16 +189,16 @@ public class CSJEvent {
             ItemStack[] stack2 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.BLUE_FLOOR_TILES_BLOCK.get(), 32),
                     new ItemStack(ChangShengJueBlocks.BLACK_FLOOR_TILES_BLOCK.get(), 32),
                     new ItemStack(ChangShengJueBlocks.BITUMEN_FLOOR_TILES_BLOCK.get(), 32)};
-            ItemStack[] stack3 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_1.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_2.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_3.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_4.get(), 32)};
-            ItemStack[] stack4 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_1.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_2.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_3.get(), 32),
-                    new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get(), 32)};
+            ItemStack[] stack3 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.GRE_EAVES_TILE.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.GRE_SMALL_DEMON_MASK.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.GRE_RIDGE_TILE.get(), 32)};
+            ItemStack[] stack4 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.BLACK_EAVES_TILE.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.BLACK_SMALL_DEMON_MASK.get(), 32),
+                    new ItemStack(ChangShengJueBlocks.BLACK_RIDGE_TILE.get(), 32)};
             ItemStack[] stack5 = new ItemStack[]{new ItemStack(ChangShengJueBlocks.YELLOW_STONE_LION_BLOCK.get(), 1),
                     new ItemStack(ChangShengJueBlocks.GRE_STONE_LION_BLOCK.get(), 1)};
             // 存储第一个交易的索引
@@ -547,7 +547,6 @@ public class CSJEvent {
         // 任务
         PlayerQuestEvent.onPlayerTick(event);
         PlayerQuestEvent.onEntityGenerate(event);
-        PlayerQuestEvent.onZombieGenerate(event);
     }
     @SubscribeEvent
     public static void onAttachChunkCapabilities(AttachCapabilitiesEvent<LevelChunk> event) {
@@ -715,33 +714,24 @@ public class CSJEvent {
         Player player = event.getEntity();
         // 检查是否为服务器端玩家
         if (player instanceof ServerPlayer serverPlayer) {
-//            QuestManager.getInstance().syncQuestsToPlayer(serverPlayer); // 全量同步
-            // 检查Patchouli是否加载
-            if (!net.minecraftforge.fml.ModList.get().isLoaded("patchouli")) {
-                return;
-            }
             // 判断是否为首次加入 - 通过检查玩家是否有统计数据
             boolean isFirstJoin;
             //如果玩家刚进入游戏，则修改为true
             isFirstJoin = !(serverPlayer.getStats().getValue(Stats.CUSTOM.get(Stats.LEAVE_GAME)) > 0);
 
-            // 如果是首次加入才执行书籍检查和赠送
+            // 如果是首次加入才执行
             if (isFirstJoin) {
+                String playerName = player.getGameProfile().getName();
+                if ("Peng_Fan".equals(playerName)) {
+                    player.getInventory().add(ChangShengJueItems.LONG_YUAN_SWORD.get().getDefaultInstance());
+                }
+
+                // 检查Patchouli是否加载
+                if (!ModList.get().isLoaded("patchouli")) {
+                    return;
+                }
                 ItemStack book = PatchouliAPI.get().getBookStack(new ResourceLocation("chang_sheng_jue", "wufanglu"));
-                boolean hasBook = false;
-
-                // 遍历玩家背包检查是否已有书籍
-                for (ItemStack itemStack : player.getInventory().items) {
-                    if (itemStack.getItem() == book.getItem()) {
-                        hasBook = true;
-                        break; // 发现书籍后立即终止循环
-                    }
-                }
-
-                // 未找到书籍时执行赠送
-                if (!hasBook) {
-                    player.getInventory().add(book);
-                }
+                player.getInventory().add(book);
             }
         }
     }

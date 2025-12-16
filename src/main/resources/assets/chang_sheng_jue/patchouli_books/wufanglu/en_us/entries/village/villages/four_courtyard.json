@@ -1,13 +1,13 @@
 {
-  "name": "四合院",
+  "name": "chang_sheng_jue.village.villages.courtyard",
   "category": "chang_sheng_jue:village",
   "sortnum": 0,
   "icon": "chang_sheng_jue:textures/gui/patchouli/si_he_yuan.png",
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "四合院村庄",
-      "text": "常生成在草原群系，一个院子四面建有房屋，从四面将庭院合围在中间，故名四合院。其中常有作物：高粱、玉米、小麦、大豆、谷子。"
+      "title": "chang_sheng_jue.village.villages.courtyard",
+      "text": "chang_sheng_jue.village.villages.courtyard.page1.text"
     }
   ]
 }

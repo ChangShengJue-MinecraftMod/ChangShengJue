@@ -1,0 +1,184 @@
+{
+  "variants": {
+    "bed_section=body,facing=east,occupied=false,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body",
+      "y": 90
+    },
+    "bed_section=body,facing=east,occupied=false,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body",
+      "y": 90
+    },
+    "bed_section=body,facing=east,occupied=true,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body",
+      "y": 90
+    },
+    "bed_section=body,facing=east,occupied=true,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body",
+      "y": 90
+    },
+    "bed_section=body,facing=north,occupied=false,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body"
+    },
+    "bed_section=body,facing=north,occupied=false,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body"
+    },
+    "bed_section=body,facing=north,occupied=true,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body"
+    },
+    "bed_section=body,facing=north,occupied=true,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body"
+    },
+    "bed_section=body,facing=south,occupied=false,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body",
+      "y": 180
+    },
+    "bed_section=body,facing=south,occupied=false,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body",
+      "y": 180
+    },
+    "bed_section=body,facing=south,occupied=true,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body",
+      "y": 180
+    },
+    "bed_section=body,facing=south,occupied=true,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body",
+      "y": 180
+    },
+    "bed_section=body,facing=west,occupied=false,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body",
+      "y": 270
+    },
+    "bed_section=body,facing=west,occupied=false,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body",
+      "y": 270
+    },
+    "bed_section=body,facing=west,occupied=true,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body",
+      "y": 270
+    },
+    "bed_section=body,facing=west,occupied=true,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_body",
+      "y": 270
+    },
+    "bed_section=foot,facing=east,occupied=false,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot",
+      "y": 90
+    },
+    "bed_section=foot,facing=east,occupied=false,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot",
+      "y": 90
+    },
+    "bed_section=foot,facing=east,occupied=true,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot",
+      "y": 90
+    },
+    "bed_section=foot,facing=east,occupied=true,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot",
+      "y": 90
+    },
+    "bed_section=foot,facing=north,occupied=false,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot"
+    },
+    "bed_section=foot,facing=north,occupied=false,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot"
+    },
+    "bed_section=foot,facing=north,occupied=true,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot"
+    },
+    "bed_section=foot,facing=north,occupied=true,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot"
+    },
+    "bed_section=foot,facing=south,occupied=false,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot",
+      "y": 180
+    },
+    "bed_section=foot,facing=south,occupied=false,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot",
+      "y": 180
+    },
+    "bed_section=foot,facing=south,occupied=true,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot",
+      "y": 180
+    },
+    "bed_section=foot,facing=south,occupied=true,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot",
+      "y": 180
+    },
+    "bed_section=foot,facing=west,occupied=false,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot",
+      "y": 270
+    },
+    "bed_section=foot,facing=west,occupied=false,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot",
+      "y": 270
+    },
+    "bed_section=foot,facing=west,occupied=true,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot",
+      "y": 270
+    },
+    "bed_section=foot,facing=west,occupied=true,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_foot",
+      "y": 270
+    },
+    "bed_section=head,facing=east,occupied=false,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head",
+      "y": 90
+    },
+    "bed_section=head,facing=east,occupied=false,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head",
+      "y": 90
+    },
+    "bed_section=head,facing=east,occupied=true,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head",
+      "y": 90
+    },
+    "bed_section=head,facing=east,occupied=true,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head",
+      "y": 90
+    },
+    "bed_section=head,facing=north,occupied=false,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head"
+    },
+    "bed_section=head,facing=north,occupied=false,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head"
+    },
+    "bed_section=head,facing=north,occupied=true,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head"
+    },
+    "bed_section=head,facing=north,occupied=true,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head"
+    },
+    "bed_section=head,facing=south,occupied=false,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head",
+      "y": 180
+    },
+    "bed_section=head,facing=south,occupied=false,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head",
+      "y": 180
+    },
+    "bed_section=head,facing=south,occupied=true,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head",
+      "y": 180
+    },
+    "bed_section=head,facing=south,occupied=true,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head",
+      "y": 180
+    },
+    "bed_section=head,facing=west,occupied=false,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head",
+      "y": 270
+    },
+    "bed_section=head,facing=west,occupied=false,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head",
+      "y": 270
+    },
+    "bed_section=head,facing=west,occupied=true,part=foot": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head",
+      "y": 270
+    },
+    "bed_section=head,facing=west,occupied=true,part=head": {
+      "model": "chang_sheng_jue:block/huang_hua_li_arhat_bed_head",
+      "y": 270
+    }
+  }
+}

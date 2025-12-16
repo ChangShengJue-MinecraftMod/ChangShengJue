@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/clothes_rack_inventory",
+  "textures": {
+    "1": "chang_sheng_jue:block/warped_clothes_rack",
+    "particle": "chang_sheng_jue:block/warped_clothes_rack"
+  }
+}

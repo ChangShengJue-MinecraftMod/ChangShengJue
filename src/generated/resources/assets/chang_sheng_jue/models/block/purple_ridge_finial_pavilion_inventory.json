@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/ridge_finial_pavilion",
+  "textures": {
+    "1": "chang_sheng_jue:block/purple_ridge_finial_pavilion",
+    "particle": "chang_sheng_jue:block/purple_ridge_finial_pavilion"
+  }
+}

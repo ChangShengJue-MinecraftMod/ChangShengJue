@@ -1,0 +1,14 @@
+{
+  "elements": [
+    {
+      "weight": 10,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty",
+        "location": "chang_sheng_jue:village/si_he_yuan/streets/street"
+      }
+    }
+  ],
+  "fallback": "minecraft:empty"
+}

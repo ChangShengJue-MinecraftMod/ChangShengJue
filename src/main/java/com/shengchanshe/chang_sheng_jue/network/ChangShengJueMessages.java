@@ -3,12 +3,11 @@ package com.shengchanshe.chang_sheng_jue.network;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.plaque.UpdatePlaqueTextPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.KilnWorkerSetTradeTypePacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.ForgeCraftPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.ForgeSyncRecipePacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.TailoringCraftPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.TailoringSyncRecipePacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.*;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.*;
-import com.shengchanshe.chang_sheng_jue.network.packet.gui.quest.*;
+import com.shengchanshe.chang_sheng_jue.network.packet.gui.quest.AcceptGangQuestsPacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.gui.quest.OpenGangQuestScreenPacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.gui.quest.RefreshQuestScreenPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.SyncKungFuCapabilityPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.particle.kungfu.*;
@@ -80,6 +79,11 @@ public class ChangShengJueMessages {
                 .decoder(TreadTheSnowWithoutTraceParticlePacket::decode)
                 .encoder(TreadTheSnowWithoutTraceParticlePacket::encode)
                 .consumerMainThread(TreadTheSnowWithoutTraceParticlePacket::handle)
+                .add();
+        net.messageBuilder(XpParticlePacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(XpParticlePacket::decode)
+                .encoder(XpParticlePacket::encode)
+                .consumerMainThread(XpParticlePacket::handle)
                 .add();
         // 按钮切换交易类型
         net.messageBuilder(KilnWorkerSetTradeTypePacket.class, id())
@@ -162,6 +166,41 @@ public class ChangShengJueMessages {
                 .consumerMainThread(ForgeSyncRecipePacket::handle)
                 .add();
 
+        net.messageBuilder(WoodworkingBenchPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(WoodworkingBenchPacket::fromBytes)
+                .encoder(WoodworkingBenchPacket::toBytes)
+                .consumerMainThread(WoodworkingBenchPacket::handle)
+                .add();
+
+        net.messageBuilder(WoodworkingBenchSyncRecipePacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(WoodworkingBenchSyncRecipePacket::fromBytes)
+                .encoder(WoodworkingBenchSyncRecipePacket::toBytes)
+                .consumerMainThread(WoodworkingBenchSyncRecipePacket::handle)
+                .add();
+
+        net.messageBuilder(WoodworkingBenchSetAmountPacket.class, id())
+                .decoder(WoodworkingBenchSetAmountPacket::new)
+                .encoder(WoodworkingBenchSetAmountPacket::toBytes)
+                .consumerMainThread(WoodworkingBenchSetAmountPacket::handle)
+                .add();
+
+        net.messageBuilder(BrickKilnPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(BrickKilnPacket::fromBytes)
+                .encoder(BrickKilnPacket::toBytes)
+                .consumerMainThread(BrickKilnPacket::handle)
+                .add();
+
+        net.messageBuilder(BrickKilnSyncRecipePacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(BrickKilnSyncRecipePacket::fromBytes)
+                .encoder(BrickKilnSyncRecipePacket::toBytes)
+                .consumerMainThread(BrickKilnSyncRecipePacket::handle)
+                .add();
+
+        net.messageBuilder(BrickKilnSetAmountPacket.class, id())
+                .decoder(BrickKilnSetAmountPacket::new)
+                .encoder(BrickKilnSetAmountPacket::toBytes)
+                .consumerMainThread(BrickKilnSetAmountPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message) {

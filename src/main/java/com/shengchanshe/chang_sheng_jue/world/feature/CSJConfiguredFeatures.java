@@ -175,6 +175,8 @@ public class CSJConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> LIMESTONE = registerKey("limestone");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> SYDEROLIFE_ORE = registerKey("syderolife_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> NATURAL_ASPHALT_ORE = registerKey("natural_asphalt_ore");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> WHITE_JADE_BLOCK = registerKey("white_jade_block");
     //树
     public static final ResourceKey<ConfiguredFeature<?, ?>> MANGO_TREE = registerKey("mango_tree");
     public static final ResourceKey<ConfiguredFeature<?, ?>> BANANA_TREE = registerKey("banana_tree");
@@ -218,6 +220,9 @@ public class CSJConfiguredFeatures {
         register(context,KAOLIN_ORE,Feature.ORE,new OreConfiguration(overworldSapphireOres(ChangShengJueBlocks.KAOLIN_ORE.get().defaultBlockState(),null),9));
         register(context,LIMESTONE, Feature.ORE, new OreConfiguration(ruletest, ChangShengJueBlocks.LIMESTONE.get().defaultBlockState(), 16));
         register(context,SYDEROLIFE_ORE, Feature.ORE, new OreConfiguration(ruletest, ChangShengJueBlocks.SYDEROLIFE_ORE.get().defaultBlockState(), 16));
+        register(context,NATURAL_ASPHALT_ORE, Feature.ORE, new OreConfiguration(ruletest, ChangShengJueBlocks.NATURAL_ASPHALT_ORE.get().defaultBlockState(), 16));
+
+        register(context,WHITE_JADE_BLOCK, Feature.ORE, new OreConfiguration(ruletest, ChangShengJueBlocks.WHITE_JADE_BLOCK.get().defaultBlockState(), 16));
 
         register(context,MANGO_TREE,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ChangShengJueBlocks.MANGO_LOG.get()),

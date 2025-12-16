@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "sapphire",
+  "ingredient": {
+    "item": "chang_sheng_jue:syderolife_ball"
+  },
+  "result": "chang_sheng_jue:black_bricks"
+}

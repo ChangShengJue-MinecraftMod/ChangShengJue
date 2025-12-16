@@ -1,0 +1,29 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "furniture:canopy_bed",
+  "ingredients": [
+    {
+      "item": "minecraft:spruce_planks",
+      "count": 18
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 8
+    },
+    {
+      "item": "minecraft:white_wool",
+      "count": 6
+    },
+    {
+      "item": "minecraft:hay_block",
+      "count": 2
+    },
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 6
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:spruce_canopy_bed"
+  }
+}

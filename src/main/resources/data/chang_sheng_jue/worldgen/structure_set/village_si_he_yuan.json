@@ -1,0 +1,20 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "exclusion_zone": {
+      "other_set": "#chang_sheng_jue:exclusionzone",
+      "chunk_count": 16
+    },
+    "frequency": 0.2,
+    "frequency_reduction_method": "legacy_type_1",
+    "salt": 4241983,
+    "separation": 8,
+    "spacing": 32
+  },
+  "structures": [
+    {
+      "structure": "chang_sheng_jue:village_si_he_yuan",
+      "weight": 1
+    }
+  ]
+}

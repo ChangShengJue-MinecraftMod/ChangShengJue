@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/large_cabinet",
+  "textures": {
+    "1": "chang_sheng_jue:block/warped_large_cabinet",
+    "particle": "chang_sheng_jue:block/warped_large_cabinet"
+  }
+}

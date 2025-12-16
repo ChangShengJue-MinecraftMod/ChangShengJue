@@ -1,0 +1,14 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "xiao_mu_zuo:door",
+  "ingredients": [
+    {
+      "item": "minecraft:birch_planks",
+      "count": 7
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:door_birch",
+    "count": 2
+  }
+}

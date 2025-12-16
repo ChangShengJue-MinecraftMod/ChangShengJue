@@ -93,13 +93,11 @@ public class GoldenBlackKnifeMethod extends AbstractionExternalKunfu {
 
     @Override
     public void attackEffect(LivingEntity source, Entity target) {
-        super.attackEffect(source, target);
         if (target instanceof LivingEntity livingEntity) {
-            if (isStart) {
-                if (isComprehend && level > 0) {
-                    if (target != source) {
-                        EffectUtils.setTrauma(source, livingEntity, 2,140, traumaProbability);
-                    }
+            if (isComprehend && level > 0) {
+                if (target != source) {
+                    super.attackEffect(source, target);
+                    EffectUtils.setTrauma(source, livingEntity, 2,140, traumaProbability);
                 }
             }
         }

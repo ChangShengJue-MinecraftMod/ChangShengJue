@@ -31,11 +31,6 @@ public class ComprehendParticle2 extends SimpleAnimatedParticle {
         this.setSpriteFromAge(pSprites);
     }
 
-    public void move(double pX, double pY, double pZ) {
-        this.setBoundingBox(this.getBoundingBox().move(pX, pY, pZ));
-        this.setLocationFromBoundingbox();
-    }
-
     @Override
     public void tick() {
         super.tick();
@@ -43,17 +38,11 @@ public class ComprehendParticle2 extends SimpleAnimatedParticle {
             this.remove();
         } else {
             float f = (float)this.age / (float)this.lifetime;
-            // 让摩擦力随着寿命的减少而减少
             this.friction = this.friction * f;
-
-//            if (this.age > 25){
-                // 根据生命周期进度插值计算颜色
-                float red = this.rCol + f * (endRed - 0.05F);
-                float green = this.gCol + f * (endGreen - this.gCol);
-                float blue = this.bCol + f * (endBlue - 0.05F);
-                // 设置当前颜色
-                this.setColor(red, green, blue);
-//            }
+            float red = this.rCol + f * (endRed - 0.05F);
+            float green = this.gCol + f * (endGreen - this.gCol);
+            float blue = this.bCol + f * (endBlue - 0.05F);
+            this.setColor(red, green, blue);
         }
     }
 

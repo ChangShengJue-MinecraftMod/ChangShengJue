@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:bricks",
+  "ingredients": [
+    {
+      "count": 6,
+      "item": "chang_sheng_jue:white_bricks_item"
+    },
+    {
+      "count": 2,
+      "item": "chang_sheng_jue:natural_asphalt"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:bitumen_floor_tiles_block"
+  }
+}

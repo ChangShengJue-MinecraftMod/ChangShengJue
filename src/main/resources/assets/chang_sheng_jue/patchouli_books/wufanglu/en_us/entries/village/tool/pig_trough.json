@@ -1,5 +1,5 @@
 {
-  "name": "牲畜食槽",
+  "name": "chang_sheng_jue.village.tool.pig_trough",
   "category": "chang_sheng_jue:village",
   "sortnum": 2,
   "icon": "chang_sheng_jue:pig_trough",
@@ -7,12 +7,12 @@
     {
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:pig_trough",
-      "text": "加速生长：$(li)可放置$(item)小麦$()$(br)效果：提升附近动物20%生长速度"
+      "text": "chang_sheng_jue.village.tool.pig_trough.page1.text"
     },
     {
       "type": "patchouli:crafting",
       "recipe": "chang_sheng_jue:pig_trough_recipe",
-      "text": "牲畜食槽合成配方"
+      "text": "chang_sheng_jue.village.tool.pig_trough.page2.text"
     }
 
   ]

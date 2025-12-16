@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/taishi_chair",
+  "textures": {
+    "1": "chang_sheng_jue:block/cherry_taishi_chair",
+    "particle": "chang_sheng_jue:block/cherry_taishi_chair"
+  }
+}

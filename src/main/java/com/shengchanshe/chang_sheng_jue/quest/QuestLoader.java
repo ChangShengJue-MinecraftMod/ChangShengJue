@@ -2,7 +2,6 @@ package com.shengchanshe.chang_sheng_jue.quest;
 
 import com.google.gson.*;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -140,10 +139,10 @@ public class QuestLoader {
                     ? UUID.fromString(json.get("questId").getAsString()) // 从配置读取
                     : generateDeterministicId(npcId, json); // 根据内容生成
 
-            String titleKey = json.has("questName") ? json.get("questName").getAsString() : "";
-            String descriptionKey = json.has("questDescription") ? json.get("questDescription").getAsString() : "";
-            String title = Component.translatable(titleKey).getString();
-            String description = Component.translatable(descriptionKey).getString();
+            String title = json.has("questName") ? json.get("questName").getAsString() : "";
+            String description = json.has("questDescription") ? json.get("questDescription").getAsString() : "";
+//            String title = Component.translatable(titleKey).getString();
+//            String description = Component.translatable(descriptionKey).getString();
 
             // 获取任务类型，默认为 GATHER
             String typeStr = json.has("questType") ? json.get("questType").getAsString() : "GATHER";
@@ -151,8 +150,9 @@ public class QuestLoader {
 
             boolean repeatable = json.has("repeatable") &&  json.get("repeatable").getAsBoolean();
 
-            String questRequirementsDescription = json.has("questRequirementsDescription") ?
-                    Component.translatable(json.get("questRequirementsDescription").getAsString()).getString() : "";
+            String questRequirementsDescription = json.has("questRequirementsDescription") ? json.get("questRequirementsDescription").getAsString() : "";
+//            String questRequirementsDescription = json.has("questRequirementsDescription") ?
+//                    Component.translatable(json.get("questRequirementsDescription").getAsString()).getString() : "";
 
             List<QuestEffectEntry> effects = new ArrayList<>();
             if (json.has("effects")) {
@@ -174,12 +174,13 @@ public class QuestLoader {
                     parseItemList(json.getAsJsonArray("questRequirements")) : Collections.emptyList();
             List<ItemStack> rewards = json.has("questRewards") ?
                     parseItemList(json.getAsJsonArray("questRewards")) : Collections.emptyList();
+
             int questDay = json.has("qusetDay") ? json.get("questDay").getAsInt() : 0;
 
             String targetEntity = json.has("targetEntity") ? json.get("targetEntity").getAsString() : "";
             boolean isEntityTag = targetEntity.startsWith("#");
 
-            int requiredKills = getrequiredKills(json);
+            int requiredKills = getRequiredKills(json);
 
             boolean questGenerateTarget = json.has("questGenerateTarget") && json.get("questGenerateTarget").getAsBoolean();
 
@@ -217,46 +218,46 @@ public class QuestLoader {
 
             boolean isConflictQuest = json.has("isConflictQuest") && json.get("isConflictQuest").getAsBoolean();
 
-
             int needCompletionCount = json.has("needCompletionCount") ? json.get("needCompletionCount").getAsInt() : 0;
 
             boolean needRefresh = json.has("needRefresh") && json.get("needRefresh").getAsBoolean();
 
             int weight = json.has("weight") ? json.get("weight").getAsInt() : 1;
+            String secondTargetEntity = json.has("secondTargetEntity") ? json.get("secondTargetEntity").getAsString() : "";
+            boolean isSecondEntityTag = targetEntity.startsWith("#");
 
-            Quest quest = new Quest(questId,npcId, title, description, needRefresh, requirements, rewards,
-                    type, targetEntity, isEntityTag, requiredKills, repeatable, questRequirementsDescription, questGenerateTarget, questDay,
+            int secondRequiredKills = getSecondRequiredKills(json);
+
+            return new Quest(questId,npcId, title, description, needRefresh, requirements, rewards,
+                    type, targetEntity, isEntityTag, requiredKills,secondTargetEntity, secondRequiredKills, isSecondEntityTag, repeatable, questRequirementsDescription, questGenerateTarget, questDay,
                     questTargetCount, questTime, effects, isAcceptQuestEffects, limitQuestIds,isNeedCompletePreQuest,conflictQuestIds,
                     isConflictQuest,needCompletionCount, weight);
-
-            if (json.has("secondTargetEntity")) {
-                quest.secondTargetEntity = json.get("secondTargetEntity").getAsString();
-            }
-            if (json.has("SecondKills")) {
-                quest.secondRequiredKills = json.get("SecondKills").getAsInt();
-            }
-            return quest;
-
         } catch (Exception e) {
             ChangShengJue.LOGGER.error("解析任务JSON失败", e);
             return null;
         }
     }
 
-    private static int getrequiredKills(JsonObject json) {
-        int minKills = 0;
-        int maxKills = 0;
+    private static int getSecondRequiredKills(JsonObject json) {
+        if (json.has("minSecondKills") && json.has("maxSecondKills")) {
+            int minKills = json.get("minSecondKills").getAsInt();
+            int maxKills = json.get("maxSecondKills").getAsInt();
+            return Math.toIntExact(Math.round(Math.random() * (maxKills - minKills) + minKills));
+        } else {
+            return json.has("secondRequiredKills") ? json.get("secondRequiredKills").getAsInt() : 0;
+        }
+    }
+
+    private static int getRequiredKills(JsonObject json) {
         if (json.has("minKills") && json.has("maxKills")) {
-            minKills = json.get("minKills").getAsInt();
-            maxKills = json.get("maxKills").getAsInt();
-            //输出min到max之间的随机数使用math
+            int minKills = json.get("minKills").getAsInt();
+            int maxKills = json.get("maxKills").getAsInt();
             return Math.toIntExact(Math.round(Math.random() * (maxKills - minKills) + minKills));
         } else {
             return json.has("requiredKills") ? json.get("requiredKills").getAsInt() : 0;
         }
     }
 
-    // 根据任务内容生成确定性ID
     private static UUID generateDeterministicId(UUID npcId, JsonObject json) {
         String uniqueKey = String.format("%s|%s|%s",
                 npcId,

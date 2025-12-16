@@ -1,6 +1,5 @@
 package com.shengchanshe.chang_sheng_jue.util;
 
-import com.shengchanshe.chang_sheng_jue.quest.Quest;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -28,21 +27,21 @@ public record GuiEntityGraphics(Font font, int headSize, int maxVisibleHeads, Ma
         return instance;
     }
 
-    public void renderKillTargetHead(GuiGraphics guiGraphics, int x, int y, Quest quest) {
+    public void renderKillTargetHead(GuiGraphics guiGraphics, int x, int y, String questEntity, int currentKillsCount, int requiredKillsCount) {
         // 判断是否是标签目标
-        if (quest.getTargetEntity().startsWith("#")) {
+        if (questEntity.startsWith("#")) {
             // 处理生物标签
-            renderTaggedEntities(guiGraphics, x, y, quest);
+            renderTaggedEntities(guiGraphics, x, y, questEntity);
         } else {
             // 处理单个生物
-            renderSingleEntity(guiGraphics, x, y, quest);
+            renderSingleEntity(guiGraphics, x, y, questEntity);
         }
         // 渲染击杀数量
-        renderScaledKillCount(guiGraphics, x, y, quest);
+        renderScaledKillCount(guiGraphics, x, y, currentKillsCount, requiredKillsCount);
     }
 
-    private void renderScaledKillCount(GuiGraphics guiGraphics, int x, int y, Quest quest) {
-        String killText = quest.getCurrentKills() + "/" + quest.getRequiredKills();
+    private void renderScaledKillCount(GuiGraphics guiGraphics, int x, int y, int currentKillsCount, int requiredKillsCount) {
+        String killText = currentKillsCount + "/" + requiredKillsCount;
         int textWidth = font.width(killText);
 
         // 计算缩放比例（最大宽度为headSize的80%）
@@ -59,14 +58,12 @@ public record GuiEntityGraphics(Font font, int headSize, int maxVisibleHeads, Ma
         guiGraphics.pose().scale(scale, scale, 1.0f);
 
         // 渐变色文本（当前数黄色，总数白色）
-        int currentKills = quest.getCurrentKills();
-        int requiredKills = quest.getRequiredKills();
         String[] parts = killText.split("/");
 
         font.drawInBatch(
                 parts[0],
                 0, 0,
-                currentKills >= requiredKills ? 0x00FF00 : 0xFFD700, // 绿色/金色
+                currentKillsCount >= requiredKillsCount ? 0x00FF00 : 0xFFD700, // 绿色/金色
                 true,
                 guiGraphics.pose().last().pose(),
                 guiGraphics.bufferSource(),
@@ -89,11 +86,11 @@ public record GuiEntityGraphics(Font font, int headSize, int maxVisibleHeads, Ma
     }
 
 
-    public void renderTaggedEntities(GuiGraphics guiGraphics, int x, int y, Quest quest) {
+    public void renderTaggedEntities(GuiGraphics guiGraphics, int x, int y, String questEntity) {
         // 获取生物标签
         TagKey<EntityType<?>> tag = TagKey.create(
                 ForgeRegistries.ENTITY_TYPES.getRegistryKey(),
-                new ResourceLocation(quest.getTargetEntity().substring(1))
+                new ResourceLocation(questEntity.substring(1))
         );
 
         // 获取所有带标签的生物
@@ -136,9 +133,9 @@ public record GuiEntityGraphics(Font font, int headSize, int maxVisibleHeads, Ma
 //        return entities.get(random.nextInt(entities.size()));
 //    }
 
-    public void renderSingleEntity(GuiGraphics guiGraphics, int x, int y, Quest quest) {
+    public void renderSingleEntity(GuiGraphics guiGraphics, int x, int y, String questEntity) {
         EntityType<?> entityType = ForgeRegistries.ENTITY_TYPES.getValue(
-                new ResourceLocation(quest.getTargetEntity())
+                new ResourceLocation(questEntity)
         );
 
         if (entityType != null) {

@@ -20,6 +20,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,11 +36,11 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
     private static final int SLOT_SIZE = 18;
 
     private static final int REQ_SLOTS_X = 18;
-    private static final int REQ_SLOTS_Y = 79;
+    private static final int REQ_SLOTS_Y = 95;
 
     private static final int REWARD_SLOTS_Y = 99;
 
-    private static final int BUTTON_WIDTH = 51;
+    private static final int BUTTON_WIDTH = 89;
     private static final int BUTTON_HEIGHT = 17;
     private static final int BUTTON_SPACING = 50;
 
@@ -51,6 +52,8 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
     private static final int MAX_VISIBLE_HEADS = 5; // 最多显示的头像数量
     private static final Map<EntityType<?>, Entity> ENTITY_CACHE = new HashMap<>();
 
+    private int scrollTick = 0;
+
     private TexturedButtonWithLabel peviousButton;
     private TexturedButtonWithLabel nextButton;
 
@@ -59,7 +62,7 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
 
     public PlayerQuestScreen(PlayerQuestMenu menu, Inventory inv, Component title) {
         super(menu, inv, title);
-        this.imageWidth = 175;
+        this.imageWidth = 255;
         this.imageHeight = 165;
     }
 
@@ -71,27 +74,24 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
         // 动态按钮位置计算
         int arrowButtonY = top + SLOT_SIZE - 5;
         int arrowButtonX = left + (this.imageWidth - (ARROW_BUTTON_WIDTH * 2 + ARROW_BUTTON_SPACING)) / 2;
-        int buttonY = top + REWARD_SLOTS_Y + 15;
+        int buttonY = top + REWARD_SLOTS_Y + 31;
         int buttonX = left + (this.imageWidth - (BUTTON_WIDTH * 2 + BUTTON_SPACING)) / 2;
         // 上一页按钮
         peviousButton = this.addRenderableWidget(new TexturedButtonWithLabel(
-                arrowButtonX, arrowButtonY,
+                arrowButtonX - ARROW_BUTTON_SPACING + 15, arrowButtonY,
                 ARROW_BUTTON_WIDTH, ARROW_BUTTON_HEIGHT,
-                68, 170, 17,
+                7, 202, 11,
                 TEXTURE, TEXTURE_WIDTH, TEXTURE_HEIGHT,
-                (button) -> {
-                    this.menu.prevPage();
-
-                },
+                (button) -> this.menu.prevPage(),
                 Component.empty()
         ));
 
         nextButton = this.addRenderableWidget(new TexturedButtonWithLabel(
-                arrowButtonX + ARROW_BUTTON_WIDTH + ARROW_BUTTON_SPACING, arrowButtonY, ARROW_BUTTON_WIDTH, ARROW_BUTTON_HEIGHT,
-                55, 170, 17, TEXTURE, TEXTURE_WIDTH, TEXTURE_HEIGHT,
-                (button) -> {
-                    this.menu.nextPage();
-                },
+                arrowButtonX + ARROW_BUTTON_WIDTH + (ARROW_BUTTON_SPACING * 2) - 15, arrowButtonY,
+                ARROW_BUTTON_WIDTH, ARROW_BUTTON_HEIGHT,
+                0, 202, 11,
+                TEXTURE, TEXTURE_WIDTH, TEXTURE_HEIGHT,
+                (button) -> this.menu.nextPage(),
                 Component.empty()
         ));
 
@@ -147,20 +147,31 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
         int y = (height - imageHeight) / 2;
 
         menu.getCurrentQuest(this.getMenu().getCurrentPage()).ifPresent(quest -> {
+            int requirementsTitleWidth = font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".requirements"));
+            int descriptionStartX = x + REQ_SLOTS_X + requirementsTitleWidth + 5;
+
+            int rewardsTitleWidth = font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".rewards"));
+            int rewardsDescriptionStartX = x + REQ_SLOTS_X + rewardsTitleWidth + 5;
             // 渲染需求物品
             var reqs = quest.getQuestRequirements();
             for (int i = 0; i < Math.min(3, reqs.size()); i++) {
                 ItemStack stack = reqs.get(i);
-                renderItemAt(guiGraphics, x + REQ_SLOTS_X + 40 + i * SLOT_SIZE, y + REQ_SLOTS_Y - 10, stack);
+                renderItemAt(guiGraphics, descriptionStartX + i * SLOT_SIZE, y + REQ_SLOTS_Y - 8, stack);
             }
             var rewards = quest.getQuestRewards();
             for (int i = 0; i < Math.min(6, rewards.size()); i++) {
                 ItemStack stack = rewards.get(i);
-                renderItemAt(guiGraphics, x + REQ_SLOTS_X + 40 + i * SLOT_SIZE, y + REWARD_SLOTS_Y - 7, stack);
+                renderItemAt(guiGraphics, rewardsDescriptionStartX + i * SLOT_SIZE, y + REWARD_SLOTS_Y + 8, stack);
             }
             if (!quest.getTargetEntity().isEmpty()){
-                GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE)
-                        .renderKillTargetHead(guiGraphics,x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y, quest);
+                GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
+                        renderKillTargetHead(guiGraphics, descriptionStartX, y + REQ_SLOTS_Y ,
+                                quest.getTargetEntity(), quest.getCurrentKills(), quest.getRequiredKills());
+                if (quest.getSecondTargetEntity() != null && !quest.getSecondTargetEntity().isEmpty()) {
+                    GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
+                            renderKillTargetHead(guiGraphics, descriptionStartX + 15, y + REQ_SLOTS_Y,
+                                    quest.getSecondTargetEntity(), quest.getSecondCurrentKills(), quest.getSecondRequiredKills());
+                }
             }
             this.renderTooltips(guiGraphics, mouseX, mouseY, x, y, quest);
         });
@@ -176,9 +187,9 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight,TEXTURE_WIDTH,TEXTURE_HEIGHT);
-
-        String pageInfo = String.format("%d/%d", menu.getCurrentPage() + 1, menu.getTotalPages());
-        guiGraphics.drawString(font, pageInfo, x + imageWidth - 25, y + 10, 0xFFFFFF, false);
+        int currentPage = menu.getCurrentPage() + 1;
+        String pageInfo = String.format("%d/%d", currentPage, menu.getTotalPages());
+        guiGraphics.drawString(font, pageInfo, x + imageWidth - (currentPage >= 10 ? 35 : 30), y + 150, 0x404040, false);
     }
 
     @Override
@@ -192,20 +203,40 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
             guiGraphics.drawString(font, Component.translatable(quest.getQuestName()),
                     (this.imageWidth - font.width(Component.translatable(quest.getQuestName()))) / 2, 14, 0x404040, false);
             // 任务描述
-            var lines = font.split(Component.translatable(quest.getQuestDescription()), imageWidth - 50);
+            var lines = font.split(Component.translatable(quest.getQuestDescription()), imageWidth - 45);
             for (int i = 0; i < lines.size(); i++) {
                 int descX = i == 0 ? 20 + 17 : 20;
-                guiGraphics.drawString(font, lines.get(i), descX, 35 + i * font.lineHeight, 0x404040, false);
+                guiGraphics.drawString(font, lines.get(i), descX,35 + i * font.lineHeight,0x404040, false);
+            }
+            // 获取需求标题的宽度
+            int requirementsTitleWidth = font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".requirements"));
+            int descriptionStartX = REQ_SLOTS_X + requirementsTitleWidth + (quest.getSecondTargetEntity() != null && !quest.getSecondTargetEntity().isEmpty() ? 30
+                    : (quest.getTargetEntity() != null && !quest.getTargetEntity().isEmpty() ? 20 : 5));
+
+            guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".requirements"), REQ_SLOTS_X, REQ_SLOTS_Y - 4, ChatFormatting.RED.getColor(), false);
+
+            String requirementsText = quest.getQuestRequirementsDescription();
+            Component fullDescriptionComponent = Component.translatable(requirementsText);
+            int fullTextWidth = font.width(fullDescriptionComponent);
+
+            // 计算可用宽度
+            int maxAvailableWidth = imageWidth - 50 - descriptionStartX;
+            if (fullTextWidth > maxAvailableWidth && maxAvailableWidth > 0) {
+                scrollTick++;
+                // 每8帧移动一个字符
+                String visibleText = getString(fullDescriptionComponent);
+                // 渲染文本
+                guiGraphics.drawString(font, Component.literal(visibleText), descriptionStartX,
+                        REQ_SLOTS_Y - 4, ChatFormatting.RED.getColor(), false);
+            } else {
+                var lines1 = font.split(fullDescriptionComponent, imageWidth - 50);
+                for (int i = 0; i < lines1.size(); i++) {
+                    guiGraphics.drawString(font, lines1.get(i), descriptionStartX,
+                            REQ_SLOTS_Y - 4 + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
+                }
             }
 
-            var lines1 = font.split(Component.translatable(quest.getQuestRequirementsDescription()), imageWidth - 50);
-            for (int i = 0; i < lines1.size(); i++) {
-                guiGraphics.drawString(font, lines1.get(i), !quest.getTargetEntity().isEmpty() ? REQ_SLOTS_X + 60 : REQ_SLOTS_X + 40,
-                        73 + i * font.lineHeight, ChatFormatting.RED.getColor(), false);
-            }
-            guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".requirements"), REQ_SLOTS_X, REQ_SLOTS_Y - 6, ChatFormatting.RED.getColor(), false);
-            guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".rewards"), REQ_SLOTS_X, REWARD_SLOTS_Y - 3, ChatFormatting.YELLOW.getColor(), false);
-
+            guiGraphics.drawString(font, Component.translatable("quest."+ ChangShengJue.MOD_ID +".rewards"), REQ_SLOTS_X,REWARD_SLOTS_Y + 13, ChatFormatting.YELLOW.getColor(), false);
         } else {
             guiGraphics.drawString(font, Component.translatable("quest." + ChangShengJue.MOD_ID + ".no_quest"),
                     (this.imageWidth - font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".no_quest")))
@@ -213,14 +244,38 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
         }
     }
 
+    private @NotNull String getString(Component requirementsText) {
+        int scrollSpeed = 15;
+        int visibleChars = Math.min(30, requirementsText.getString().length()); // 最多显示50个字符
+
+        // 在文本末尾添加间隔
+        String textWithSpacing = requirementsText.getString() + "    ";
+
+        int totalLength = textWithSpacing.length();
+        int startPos = (scrollTick / scrollSpeed) % totalLength;
+
+        String visibleText;
+        if (startPos + visibleChars <= totalLength) {
+            visibleText = textWithSpacing.substring(startPos, startPos + visibleChars);
+        } else {
+            // 文本到达末尾，衔接开头部分
+            int part1Length = totalLength - startPos;
+            int part2Length = visibleChars - part1Length;
+            visibleText = textWithSpacing.substring(startPos) + textWithSpacing.substring(0, part2Length);
+        }
+        return visibleText;
+    }
+
     private void renderTooltips(GuiGraphics guiGraphics, int mouseX, int mouseY, int x, int y, Quest quest) {
+        int requirementsTitleWidth = font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".requirements"));
+        int descriptionStartX = x + REQ_SLOTS_X + requirementsTitleWidth + 5;
+
+        int rewardsTitleWidth = font.width(Component.translatable("quest." + ChangShengJue.MOD_ID + ".rewards"));
+        int rewardsDescriptionStartX = x + REQ_SLOTS_X + rewardsTitleWidth + 5;
         // 检查需求物品提示
         List<ItemStack> reqs = quest.getQuestRequirements();
         for (int i = 0; i < Math.min(3, reqs.size()); i++) {
-            if (isMouseOverSlot(mouseX, mouseY,
-                    x + REQ_SLOTS_X + 40 + i * SLOT_SIZE, y + REQ_SLOTS_Y - 10,
-                    SLOT_SIZE, SLOT_SIZE)) {
-
+            if (isMouseOverSlot(mouseX, mouseY,descriptionStartX + i * SLOT_SIZE,y + REQ_SLOTS_Y - 8, SLOT_SIZE, SLOT_SIZE)) {
                 guiGraphics.renderTooltip(font, reqs.get(i), mouseX, mouseY);
                 return;
             }
@@ -228,28 +283,11 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
         // 检查奖励物品提示
         List<ItemStack> rewards = quest.getQuestRewards();
         for (int i = 0; i < Math.min(3, rewards.size()); i++) {
-            if (isMouseOverSlot(mouseX, mouseY,
-                    x + REQ_SLOTS_X + 40 + i * SLOT_SIZE, y + REWARD_SLOTS_Y - 7,
-                    SLOT_SIZE, SLOT_SIZE)) {
-
+            if (isMouseOverSlot(mouseX, mouseY,rewardsDescriptionStartX + i * SLOT_SIZE,y + REWARD_SLOTS_Y + 8, SLOT_SIZE, SLOT_SIZE)) {
                 guiGraphics.renderTooltip(font, rewards.get(i), mouseX, mouseY);
                 return;
             }
         }
-        // 击杀任务目标提示
-        if (quest.getQuestType() == Quest.QuestType.KILL &&
-                isMouseOverSlot(mouseX, mouseY,
-                        x + REQ_SLOTS_X + 40, y + REQ_SLOTS_Y - 9, HEAD_SIZE, HEAD_SIZE)) {
-            renderKillTargetTooltip(guiGraphics, mouseX, mouseY, quest);
-        }
-    }
-    // 击杀目标特殊提示
-    private void renderKillTargetTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY, Quest quest) {
-        List<Component> tooltip = List.of(
-                Component.literal("需要击杀: " + quest.getRequiredKills() + "次"),
-                Component.literal("当前进度: " + quest.getCurrentKills() + "/" + quest.getRequiredKills()).withStyle(ChatFormatting.YELLOW)
-        );
-        guiGraphics.renderTooltip(font, tooltip, Optional.empty(), mouseX, mouseY);
     }
 
     private boolean isMouseOverSlot(int mouseX, int mouseY, int slotX, int slotY, int width, int height) {

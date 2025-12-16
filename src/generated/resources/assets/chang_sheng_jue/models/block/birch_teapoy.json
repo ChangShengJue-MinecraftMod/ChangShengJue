@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/teapoy",
+  "textures": {
+    "1": "chang_sheng_jue:block/birch_teapoy",
+    "particle": "chang_sheng_jue:block/birch_teapoy"
+  }
+}

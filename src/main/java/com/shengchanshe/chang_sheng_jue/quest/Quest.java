@@ -1,8 +1,12 @@
 package com.shengchanshe.chang_sheng_jue.quest;
 
+import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapability;
-import com.shengchanshe.chang_sheng_jue.entity.custom.xpord.XpOrdType1;
-import com.shengchanshe.chang_sheng_jue.entity.custom.xpord.XpOrdType2;
+import com.shengchanshe.chang_sheng_jue.event.quest.PlayerQuestEvent;
+import com.shengchanshe.chang_sheng_jue.item.kungfuxp.ExternalKungfuXp;
+import com.shengchanshe.chang_sheng_jue.item.kungfuxp.InternalkungfuXp;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.AbstractionExternalKunfu;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.AbstractionInternalkungfu;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
@@ -18,10 +22,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class Quest {
     private UUID questId;
@@ -37,10 +38,11 @@ public class Quest {
     private String targetEntity;  // 要击杀的生物ID
     private int requiredKills; // 需要击杀的数量
     private int currentKills; // 当前已击杀数量
-    String secondTargetEntity = "";  // 第二个目标实体
-    int secondRequiredKills; // 第二个目标需要击杀的数量
+    private String secondTargetEntity;  // 第二个目标实体
+    private int secondRequiredKills; // 第二个目标需要击杀的数量
     private int secondCurrentKills; // 第二个目标当前击杀数量
     private boolean isEntityTag; // 标记是否是标签
+    private boolean isSecondEntityTag;
     private String questRequirementsDescription; // 任务目标描述
     private boolean questGenerateTarget; // 是否需要生成目标
     private int questTargetCount; // 生成任务目标次数
@@ -70,6 +72,7 @@ public class Quest {
      * @param questType 任务类型
      * @param targetEntity 目标实体ID（击杀任务用）
      * @param isEntityTag 目标是否为标签
+     * @param isSecondEntityTag 第二个目标是否为标签
      * @param requiredKills 需要击杀数量
      * @param repeatable 是否可重复
      * @param questRequirementsDescription 任务需求描述
@@ -83,6 +86,7 @@ public class Quest {
     public Quest(UUID questId, UUID questNpcId, String questName, String questDescription,boolean needRefresh,
                  List<ItemStack> questRequirements, List<ItemStack> questRewards,
                  QuestType questType, String targetEntity, boolean isEntityTag, int requiredKills,
+                 String secondTargetEntity, int secondRequiredKills, boolean isSecondEntityTag,
                  boolean repeatable, String questRequirementsDescription, boolean questGenerateTarget,
                  int questDay, int questTargetCount, int questTime, List<QuestEffectEntry> effects, boolean isAcceptQuestEffects,
                  List<UUID> limitQuestIds,boolean isNeedCompletePreQuest, List<UUID> conflictQuestIds, boolean isConflictQuest,
@@ -100,9 +104,13 @@ public class Quest {
         this.effects = effects != null ? effects : new ArrayList<>();
         this.limitQuestIds = limitQuestIds != null ? limitQuestIds : new ArrayList<>();;
         this.targetEntity = targetEntity;
-        this.isEntityTag = isEntityTag;
         this.requiredKills = requiredKills;
         this.currentKills = 0;
+        this.isEntityTag = isEntityTag;
+        this.secondTargetEntity = secondTargetEntity;
+        this.secondRequiredKills = secondRequiredKills;
+        this.secondCurrentKills = 0;
+        this.isSecondEntityTag = isSecondEntityTag;
         this.questGenerateTarget = questGenerateTarget;
         this.questDay = questDay;
         this.questCurrentDay = 0;
@@ -133,6 +141,10 @@ public class Quest {
         this.requiredKills = newQuest.requiredKills;
         this.currentKills = newQuest.currentKills;
         this.isEntityTag = newQuest.isEntityTag;
+        this.secondTargetEntity = newQuest.secondTargetEntity;
+        this.secondRequiredKills = newQuest.secondRequiredKills;
+        this.secondCurrentKills = newQuest.secondCurrentKills;
+        this.isSecondEntityTag = newQuest.isSecondEntityTag;
         this.repeatable = newQuest.repeatable;
         this.questRequirementsDescription = newQuest.questRequirementsDescription;
         this.questGenerateTarget = newQuest.questGenerateTarget;
@@ -164,6 +176,7 @@ public class Quest {
                 questRewards.add(ItemStack.of(rewardList.getCompound(i)));
             }
         }
+
         if (tag.hasUUID("AcceptedBy")) {
             this.acceptedBy = tag.getUUID("AcceptedBy");
         }
@@ -211,8 +224,20 @@ public class Quest {
         if (tag.contains("CurrentKills")) {
             this.currentKills = tag.getInt("CurrentKills");
         }
+        if (tag.contains("SecondTargetEntity")) {
+            this.secondTargetEntity = tag.getString("SecondTargetEntity");
+        }
+        if (tag.contains("SecondRequiredKills")) {
+            this.secondRequiredKills = tag.getInt("SecondRequiredKills");
+        }
+        if (tag.contains("SecondCurrentKills")) {
+            this.secondCurrentKills = tag.getInt("SecondCurrentKills");
+        }
         if (tag.contains("IsEntityTag")) {
             this.isEntityTag = tag.getBoolean("IsEntityTag");
+        }
+        if (tag.contains("IsSecondEntityTag")) {
+            this.isSecondEntityTag = tag.getBoolean("IsSecondEntityTag");
         }
         if (tag.contains("QuestGenerateTarget")) {
             this.questGenerateTarget = tag.getBoolean("QuestGenerateTarget");
@@ -290,6 +315,7 @@ public class Quest {
             }
             tag.put("QuestRewards", rewardList);
         }
+
         if (this.acceptedBy != null) {
             tag.putUUID("AcceptedBy", this.acceptedBy);
         }
@@ -323,6 +349,7 @@ public class Quest {
         tag.putInt("RequiredKills", this.requiredKills);
         tag.putInt("CurrentKills", this.currentKills);
         tag.putBoolean("IsEntityTag", this.isEntityTag);
+        tag.putBoolean("IsSecondEntityTag", this.isSecondEntityTag);
         tag.putBoolean("QuestGenerateTarget", this.questGenerateTarget);
         tag.putBoolean("IsComplete", this.isComplete);
         tag.putInt("QuestDay", this.questDay);
@@ -346,7 +373,7 @@ public class Quest {
         if (this.secondTargetEntity != null) {
             tag.putString("SecondTargetEntity", this.secondTargetEntity);
         }
-        tag.putInt("SecondKills", this.secondRequiredKills);
+        tag.putInt("SecondRequiredKills", this.secondRequiredKills);
         tag.putInt("SecondCurrentKills", this.secondCurrentKills);
         tag.putInt("Weight", this.weight);
         return tag;
@@ -399,6 +426,7 @@ public class Quest {
         compound.putInt("RequiredKills", this.requiredKills);
         compound.putInt("CurrentKills", this.currentKills);
         compound.putBoolean("IsEntityTag", this.isEntityTag);
+        compound.putBoolean("IsSecondEntityTag", this.isSecondEntityTag);
         compound.putBoolean("QuestGenerateTarget", this.questGenerateTarget);
         compound.putBoolean("IsComplete", this.isComplete);
         compound.putInt("QuestDay", this.questDay);
@@ -419,7 +447,7 @@ public class Quest {
         if (this.secondTargetEntity != null) {
             compound.putString("SecondTargetEntity", this.secondTargetEntity);
         }
-        compound.putInt("SecondKills", this.secondRequiredKills);
+        compound.putInt("SecondRequiredKills", this.secondRequiredKills);
         compound.putInt("SecondCurrentKills", this.secondCurrentKills);
         compound.putInt("Weight", this.weight);
 
@@ -469,6 +497,9 @@ public class Quest {
         }
         if (tag.contains("IsEntityTag")) {
             this.isEntityTag = tag.getBoolean("IsEntityTag");
+        }
+        if (tag.contains("IsSecondEntityTag")) {
+            this.isSecondEntityTag = tag.getBoolean("IsSecondEntityTag");
         }
         if (tag.contains("QuestGenerateTarget")) {
             this.questGenerateTarget = tag.getBoolean("QuestGenerateTarget");
@@ -524,8 +555,8 @@ public class Quest {
         if (tag.contains("SecondTargetEntity")) {
             this.secondTargetEntity = tag.getString("SecondTargetEntity");
         }
-        if (tag.contains("SecondKills")) {
-            this.secondRequiredKills = tag.getInt("SecondKills");
+        if (tag.contains("SecondRequiredKills")) {
+            this.secondRequiredKills = tag.getInt("SecondRequiredKills");
         }
         if (tag.contains("SecondCurrentKills")) {
             this.secondCurrentKills = tag.getInt("SecondCurrentKills");
@@ -556,6 +587,10 @@ public class Quest {
 
     public List<ItemStack> getQuestRewards() {
         return questRewards;
+    }
+
+    public void setQuestRewards(List<ItemStack> questRewards) {
+        this.questRewards = questRewards;
     }
 
     public boolean isNeedRefresh() {
@@ -608,10 +643,10 @@ public class Quest {
 
     public void incrementKills() {
         this.currentKills++;
-        // 使用原生方法进行null安全检查
-        if (this.secondTargetEntity != null && !this.secondTargetEntity.isEmpty() && this.currentKills > requiredKills) {
-            this.secondCurrentKills++;
-        }
+    }
+
+    public void secondIncrementKills() {
+        this.secondCurrentKills++;
     }
 
     public boolean isRepeatable() {
@@ -690,6 +725,10 @@ public class Quest {
         return isEntityTag;
     }
 
+    public boolean isSecondEntityTag() {
+        return isSecondEntityTag;
+    }
+
     public String getSecondTargetEntity() {
         return secondTargetEntity;
     }
@@ -744,11 +783,14 @@ public class Quest {
             }
             return true;
         } else if (questType == QuestType.KILL) {
-            // 检查第一个目标
-            boolean firstTargetComplete = currentKills >= requiredKills;
-            // 检查第二个目标（如果存在）
-            boolean secondTargetComplete = (secondTargetEntity == null || secondTargetEntity.isEmpty()) || secondCurrentKills >= secondRequiredKills;
-            return firstTargetComplete && secondTargetComplete;
+            if (secondTargetEntity == null) {
+                return currentKills >= requiredKills;
+            } else {
+                boolean firstTargetComplete = currentKills >= requiredKills;
+                boolean secondTargetComplete = secondCurrentKills >= secondRequiredKills;
+                return firstTargetComplete && secondTargetComplete;
+            }
+
         } else if (questType == QuestType.RAID || questType == QuestType.TREAT || questType == QuestType.AUTOMATIC) {
             return this.isComplete;
         }
@@ -769,20 +811,13 @@ public class Quest {
 
     // 添加方法检查实体是否匹配
     public boolean matchesEntity(Entity entity) {
-        // 检查第一个目标
-        boolean firstMatch = isEntityTag ? matchesEntityTag(entity) : matchesEntityId(entity);
-        // 检查第二个目标（如果存在）
-        if (secondTargetEntity != null && !secondTargetEntity.isEmpty()) {
-            boolean secondMatch = secondTargetEntity.startsWith("#") 
-                ? matchesSecondEntityTag(entity) 
-                : matchesSecondEntityId(entity);
-            return firstMatch || secondMatch;
-        }
-        return firstMatch;
+        return isEntityTag ? matchesEntityTag(entity, targetEntity) : matchesEntityId(entity, targetEntity);
+    }
+    public boolean matchesSecondEntity(Entity entity) {
+        return isSecondEntityTag ? matchesEntityTag(entity, secondTargetEntity) : matchesEntityId(entity, secondTargetEntity);
     }
 
-    private boolean matchesEntityTag(Entity entity) {
-        ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
+    private boolean matchesEntityTag(Entity entity, String targetEntity) {
         TagKey<EntityType<?>> tag = TagKey.create(
             ForgeRegistries.ENTITY_TYPES.getRegistryKey(),
             new ResourceLocation(targetEntity.substring(1)) // 去掉#
@@ -790,24 +825,11 @@ public class Quest {
         return entity.getType().is(tag);
     }
 
-    private boolean matchesEntityId(Entity entity) {
+    private boolean matchesEntityId(Entity entity, String targetEntity) {
         ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
         return entityId.toString().equals(targetEntity);
     }
 
-    private boolean matchesSecondEntityTag(Entity entity) {
-        ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
-        TagKey<EntityType<?>> tag = TagKey.create(
-            ForgeRegistries.ENTITY_TYPES.getRegistryKey(),
-            new ResourceLocation(secondTargetEntity.substring(1)) // 去掉#
-        );
-        return entity.getType().is(tag);
-    }
-
-    private boolean matchesSecondEntityId(Entity entity) {
-        ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
-        return entityId.toString().equals(secondTargetEntity);
-    }
     /**
      * 检查玩家是否完成过冲突的任务
      */
@@ -846,34 +868,67 @@ public class Quest {
     // 给予玩家奖励
     public void giveRewards(Player player) {
         // 特定任务奖励逻辑
-        if (this.questId.equals(UUID.fromString("dab3e694-291c-4b58-8ed2-4b215fbcf543"))) {
-            // "ren_wo_xing"任务：生成5个value=1的经验球
-            for (int i = 0; i < 5; i++) {
-                XpOrdType1 xpOrb = new XpOrdType1(
-                    player.level(), 
-                    player.getX(), 
-                    player.getY(), 
-                    player.getZ(),
-                    1  // 固定value为1
-                );
-                player.level().addFreshEntity(xpOrb);
-            }
+        if (this.questId.equals(PlayerQuestEvent.REN_WO_XING_QUEST_ID)) {
+            player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                List<AbstractionInternalkungfu> kungFus = new ArrayList<>();
+                cap.getAllLearned().forEach(kungFu -> {
+                    if (kungFu instanceof AbstractionInternalkungfu upgradable) {
+                        kungFus.add(upgradable);
+                    }
+                });
+                kungFus.sort(Comparator.comparingInt(kf -> kf.getMaxExp() - kf.getExp()));
+                for (AbstractionInternalkungfu kungFu : kungFus) {
+                    if (kungFu.getLevel() < kungFu.getMaxLevel()) {
+                        for (ItemStack reward : questRewards) {
+                            if (reward.getItem() instanceof InternalkungfuXp internalkungfuXp) {
+                                internalkungfuXp.use(player.level(),player, player.getUsedItemHand());
+//                                player.getInventory().add(reward.copy());
+                                return;
+                            }
+                        }
+                    } else {
+                        for (ItemStack reward : questRewards) {
+                            if (!(reward.getItem() instanceof InternalkungfuXp)) {
+                                player.getInventory().add(reward.copy());
+                                return;
+                            }
+                        }
+                    }
+                }
+            });
             return;
         }
-        if (this.questId.equals(UUID.fromString("584DF3EE-BD1A-44C1-B66D-5F1015AF8A0E"))) {
-            //生成五个value=1的XP球
-            for (int i = 0; i < 5; i++) {
-                XpOrdType2 xpOrb = new XpOrdType2(
-                    player.level(),
-                    player.getX(),
-                    player.getY(),
-                    player.getZ(),
-                    1  // 默认value为1
-                );
-                player.level().addFreshEntity(xpOrb);
-            }
-        }
+        if (this.questId.equals(PlayerQuestEvent.KUAI_YI_EN_CHOU_QUEST_ID)) {
+            player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                List<AbstractionExternalKunfu> kungFus = new ArrayList<>();
+                cap.getAllLearned().forEach(kungFu -> {
+                    if (kungFu instanceof AbstractionExternalKunfu upgradable) {
+                        kungFus.add(upgradable);
+                    }
+                });
+                kungFus.sort(Comparator.comparingInt(kf -> kf.getMaxExp() - kf.getExp()));
 
+                for (AbstractionExternalKunfu kungFu : kungFus) {
+                    if (kungFu.getLevel() < kungFu.getMaxLevel()) {
+                        for (ItemStack reward : questRewards) {
+                            if (reward.getItem() instanceof ExternalKungfuXp externalKungfuXp) {
+//                                player.getInventory().add(reward.copy());
+                                externalKungfuXp.use(player.level(),player, player.getUsedItemHand());
+                                return;
+                            }
+                        }
+                    } else {
+                        for (ItemStack reward : questRewards) {
+                            if (!(reward.getItem() instanceof ExternalKungfuXp)) {
+                                player.getInventory().add(reward.copy());
+                                return;
+                            }
+                        }
+                    }
+                }
+            });
+            return;
+        }
         // 默认奖励逻辑
         for (ItemStack reward : questRewards) {
             player.getInventory().add(reward.copy());

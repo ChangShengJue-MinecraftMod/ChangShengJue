@@ -1,37 +1,37 @@
 {
-  "name": "缝工",
+  "name": "chang_sheng_jue.village.villager.seamstress",
   "category": "chang_sheng_jue:village",
   "sortnum": 1,
   "icon": "chang_sheng_jue:natural_silk",
   "pages": [
     {
-      "title": "缝工",
+      "title": "chang_sheng_jue.village.villager.seamstress",
       "type": "patchouli:entity",
       "entity": "minecraft:villager{VillagerData: {profession: \"chang_sheng_jue:chang_sheng_jue_seamstress\"}}"
     },
     {
-      "anchor": "缝工-新手",
-      "title": "缝工交易列表-新手",
+      "anchor": "chang_sheng_jue.village.villager.seamstress.page2.anchor",
+      "title": "chang_sheng_jue.village.villager.seamstress.page2.title",
       "type": "patchouli:text",
-      "text": "$(br)$(li)6x 蚕丝 → 4x 一贯铜钱$(br)$(li)22x 棉花 → 4x 一贯铜钱$(br2)"
+      "text": "chang_sheng_jue.village.villager.seamstress.page2.text"
     },
     {
-      "anchor": "缝工-学徒",
-      "title": "缝工交易列表-学徒",
+      "anchor": "chang_sheng_jue.village.villager.seamstress.page3.anchor",
+      "title": "chang_sheng_jue.village.villager.seamstress.page3.title",
       "type": "patchouli:text",
-      "text": "$(br)$(li)5x 鹿皮 → 10x 一贯铜钱$(br)$(li)4x 一贯铜钱 → 4x 丝绸$(br2)"
+      "text": "chang_sheng_jue.village.villager.seamstress.page3.text"
     },
     {
-      "anchor": "缝工-老手",
-      "title": "缝工交易列表-老手",
+      "anchor": "chang_sheng_jue.village.villager.seamstress.page4.anchor",
+      "title": "chang_sheng_jue.village.villager.seamstress.page4.title",
       "type": "patchouli:text",
-      "text": "$(br)$(li)28x 一贯铜钱 → 1x 男道袍包裹$(br)$(li)28x 一贯铜钱 → 1x 女道袍包裹$(br2)"
+      "text": "chang_sheng_jue.village.villager.seamstress.page4.text"
     },
     {
-      "anchor": "缝工-专家",
-      "title": "缝工交易列表-专家与大师",
+      "anchor": "chang_sheng_jue.village.villager.seamstress.page5.anchor",
+      "title": "chang_sheng_jue.village.villager.seamstress.page5.title",
       "type": "patchouli:text",
-      "text": "专家:$(br)$(li)6x 银元宝 → 1x 婚服包裹$(br)$(li)6x 银元宝 → 1x 嫁衣包裹$(br)$(li)6x 银元宝 → 1x 行者装包裹$(br)$(li)6x 银元宝 → 1x 儒装包裹$(br2)大师:$(br)$(li)8x 银元宝 → 1x 金色棉甲包裹$(br2)"
+      "text": "chang_sheng_jue.village.villager.seamstress.page5.text"
     }
   ]
 }

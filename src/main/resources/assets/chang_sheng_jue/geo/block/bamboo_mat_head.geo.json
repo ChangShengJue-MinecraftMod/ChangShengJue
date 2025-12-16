@@ -1,0 +1,54 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.unknown",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 1.5,
+				"visible_bounds_offset": [0, 0.25, 0]
+			},
+			"bones": [
+				{
+					"name": "zhuxi",
+					"pivot": [0, 0, 0],
+					"rotation": [0, 90, 0]
+				},
+				{
+					"name": "bone22",
+					"parent": "zhuxi",
+					"pivot": [-8, 0.1, 0],
+					"cubes": [
+						{"origin": [-8, 0.1, -8], "size": [4, 0, 16], "inflate": 0.03, "uv": [19, 16]}
+					]
+				},
+				{
+					"name": "bone23",
+					"parent": "bone22",
+					"pivot": [-4, 0.1, 0],
+					"cubes": [
+						{"origin": [-4, 0.1, -8], "size": [4, 0, 16], "inflate": 0.03, "uv": [27, 16]}
+					]
+				},
+				{
+					"name": "bone24",
+					"parent": "bone23",
+					"pivot": [0, 0.1, 0],
+					"cubes": [
+						{"origin": [0, 0.1, -8], "size": [4, 0, 16], "inflate": 0.03, "uv": [35, 16]}
+					]
+				},
+				{
+					"name": "bone25",
+					"parent": "bone24",
+					"pivot": [4, 0.1, 0],
+					"cubes": [
+						{"origin": [4, 0.1, -8], "size": [4, 0, 16], "inflate": 0.03, "uv": [43, 16]}
+					]
+				}
+			]
+		}
+	]
+}

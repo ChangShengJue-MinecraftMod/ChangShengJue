@@ -1,0 +1,12 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "da_mu_zuo:short_back_bracket",
+  "ingredients": [
+    {
+      "item": "minecraft:birch_planks"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:short_birch_back_bracket"
+  }
+}

@@ -1,37 +1,37 @@
 {
-  "name": "农民",
+  "name": "chang_sheng_jue.village.villager.farmer",
   "category": "chang_sheng_jue:village",
   "sortnum": 1,
   "icon": "chang_sheng_jue:yi_guan_tong_qian",
   "pages": [
     {
-      "title": "农民",
+      "title": "chang_sheng_jue.village.villager.farmer",
       "type": "patchouli:entity",
       "entity": "minecraft:villager{VillagerData: {profession: \"chang_sheng_jue:chang_sheng_jue_farmer\"}}"
     },
     {
-      "anchor": "农民-新手",
-      "title": "农民交易列表-新手",
+      "anchor": "chang_sheng_jue.village.villager.farmer.page2.anchor",
+      "title": "chang_sheng_jue.village.villager.farmer.page2.title",
       "type": "patchouli:text",
-      "text": "$(br)$(li)20x 玉米 → 4x 一贯铜钱$(br)$(li)20x 水稻 → 4x 一贯铜钱$(br)$(li)22x 番茄 → 4x 一贯铜钱$(br)$(li)22x 花生 → 4x 一贯铜钱$(br)$(li)4x 一贯铜钱 → 4x 米饭"
+      "text": "chang_sheng_jue.village.villager.farmer.page2.text"
     },
     {
-      "anchor": "农民-学徒",
-      "title": "农民交易列表-学徒",
+      "anchor": "chang_sheng_jue.village.villager.farmer.page3.anchor",
+      "title": "chang_sheng_jue.village.villager.farmer.page3.title",
       "type": "patchouli:text",
-      "text": "$(br)$(li)22x 葡萄 → 4x 一贯铜钱$(br)$(li)4x 一贯铜钱 → 4x 蒸菜$(br)$(li)4x 一贯铜钱 → 4x 青团"
+      "text": "chang_sheng_jue.village.villager.farmer.page3.text"
     },
     {
-      "anchor": "农民-老手",
-      "title": "农民交易列表-老手",
+      "anchor": "chang_sheng_jue.village.villager.farmer.page4.anchor",
+      "title": "chang_sheng_jue.village.villager.farmer.page4.title",
       "type": "patchouli:text",
-      "text": "$(br)$(li)4x 桂花糖藕 → 4x 一贯铜钱$(br)$(li)4x 一贯铜钱 → 4x 猪肚鸡"
+      "text": "chang_sheng_jue.village.villager.farmer.page4.text"
     },
     {
-      "anchor": "农民-专家",
-      "title": "农民交易列表-专家与大师",
+      "anchor": "chang_sheng_jue.village.villager.farmer.page5.anchor",
+      "title": "chang_sheng_jue.village.villager.farmer.page5.title",
       "type": "patchouli:text",
-      "text": "专家:$(br)$(li) 4x 一贯铜钱 → 1x 谜之炖菜（夜视，失明，饱和，虚弱，跳跃提升，中毒中1-2种）$(br2)大师:$(br)$(li)4x 一贯铜钱 → 4x 番茄炒蛋 $(br)$(li)8x 一贯铜钱 → 8x 肉沫茄子 $(br)$(li)8x 一贯铜钱 → 8x 八宝粥"
+      "text": "chang_sheng_jue.village.villager.farmer.page5.text"
     }
   ]
 }

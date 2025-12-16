@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/drying_rail",
+  "textures": {
+    "1": "chang_sheng_jue:block/mangrove_clothes_rack",
+    "particle": "chang_sheng_jue:block/mangrove_clothes_rack"
+  }
+}

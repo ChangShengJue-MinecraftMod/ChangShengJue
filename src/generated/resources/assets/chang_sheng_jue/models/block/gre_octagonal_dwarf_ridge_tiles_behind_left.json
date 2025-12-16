@@ -1,7 +1,7 @@
 {
   "parent": "chang_sheng_jue:block/octagonal_dwarf_ridge_tiles_behind_left",
   "textures": {
-    "1": "chang_sheng_jue:block/cylinder_tile_gre_block",
-    "particle": "chang_sheng_jue:block/cylinder_tile_gre_block"
+    "1": "chang_sheng_jue:block/gre_cylinder_tile",
+    "particle": "chang_sheng_jue:block/gre_cylinder_tile"
   }
 }

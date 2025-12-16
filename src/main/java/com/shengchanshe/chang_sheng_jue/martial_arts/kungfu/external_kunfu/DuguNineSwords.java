@@ -108,19 +108,17 @@ public class DuguNineSwords extends AbstractionExternalKunfu {
 
     @Override
     public void attackEffect(LivingEntity source, Entity target) {
-        super.attackEffect(source, target);
         if (target instanceof LivingEntity livingEntity) {
-            if (isStart) {
-                if (isComprehend && level > 0) {
-                    if (target != source) {
-                        if (randomSource.nextFloat() < getEffectProbability()) {
-                            if (!isLivingSkeletonAndGolemAndSlime(source)) {
-                                livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(),
-                                        30, 1, false, true), source);
-                            }
-                        }
-                        EffectUtils.setTrauma(source, livingEntity, 2,140,traumaProbability);
+            if (target != source) {
+                if (randomSource.nextFloat() < getEffectProbability()) {
+                    if (!isLivingSkeletonAndGolemAndSlime(source)) {
+                        livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.BLEED_EFFECT.get(),
+                                30, 1, false, true), source);
                     }
+                }
+                if (isAttackReday()) {
+                    super.attackEffect(source, target);
+                    EffectUtils.setTrauma(source, livingEntity, 2,140,traumaProbability);
                 }
             }
         }

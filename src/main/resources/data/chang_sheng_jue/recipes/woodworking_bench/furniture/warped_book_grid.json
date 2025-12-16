@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "furniture:book_grid",
+  "ingredients": [
+    {
+      "item": "minecraft:warped_planks",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:warped_book_grid"
+  }
+}

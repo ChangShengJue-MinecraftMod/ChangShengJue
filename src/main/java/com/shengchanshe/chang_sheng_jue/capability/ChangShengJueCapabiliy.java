@@ -4,7 +4,6 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.kungfu.IKungFuCapability;
 import com.shengchanshe.chang_sheng_jue.capability.kungfu.KungFuCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;

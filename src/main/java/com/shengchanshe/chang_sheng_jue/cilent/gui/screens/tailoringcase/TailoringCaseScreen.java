@@ -3,6 +3,8 @@ package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.button.TexturedButtonWithText;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.TailoringCraftPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.TailoringSyncRecipePacket;
@@ -17,6 +19,7 @@ import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.decoration.ArmorStand;
@@ -30,11 +33,12 @@ import java.util.*;
 public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/tailoring_case_menu.png");
+    private static final ResourceLocation BOTTON = new ResourceLocation(ChangShengJue.MOD_ID,"textures/gui/botton.png");
     private final List<CustomButton> customButtons = new ArrayList<>();
     private ItemStack currentSelectedItem = ItemStack.EMPTY;
     private ArmorStand armorStandEntity;
     private float rotation = 0;
-    private Button craftButton;
+    private TexturedButtonWithText craftButton;
 
     private int scrollOffset = 0;
     private static final int VISIBLE_ROWS = 8;
@@ -84,20 +88,21 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
 
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        craftButton = Button.builder(Component.translatable("gui."+ ChangShengJue.MOD_ID + ".tailoring_case.craft"), button -> {
+        this.craftButton = this.addRenderableWidget(new TexturedButtonWithText(
+                x + 192, y + 95, 55, 17,
+                0, 106, 17,
+                BOTTON, 256, 256,
+                button -> {
                     // 发送制作请求到服务端
                     ChangShengJueMessages.sendToServer(
                             new TailoringCraftPacket(menu.getBlockPos())
                     );
-                    
                     // 立即停止轮播
                     isCarouselPaused = true;
                     carouselTick = 0;
-                })
-                .bounds(x + 200, y + 95, 35, 15)
-                .build();
-
-        addRenderableWidget(craftButton);
+                },
+                Component.translatable("gui."+ ChangShengJue.MOD_ID + ".tailoring_case.craft"),0xFFFFFF,0xFFFFFF,1.0F,true
+        ));
     }
 
     // 刷新配方列表
@@ -516,18 +521,27 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
 
     // 更新盔甲架装备
     private void updateArmorStandEquipment() {
-        for (EquipmentSlot slot : EquipmentSlot.values()) {
-            armorStandEntity.setItemSlot(slot, ItemStack.EMPTY);
-        }
-        armorStandEntity.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+        EquipmentSlot targetSlot = null;
+        InteractionHand targetHand = null;
 
         if (currentSelectedItem.getItem() instanceof ArmorItem armor) {
-            armorStandEntity.setItemSlot(armor.getEquipmentSlot(), currentSelectedItem);
+            targetSlot = armor.getEquipmentSlot();
         } else {
-            armorStandEntity.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND, currentSelectedItem);
+            targetHand = InteractionHand.MAIN_HAND;
+        }
+
+        if (targetSlot != null) {
+            ItemStack currentInSlot = armorStandEntity.getItemBySlot(targetSlot);
+            if (!ItemStack.matches(currentSelectedItem, currentInSlot)) {
+                armorStandEntity.setItemSlot(targetSlot, currentSelectedItem);
+            }
+        } else {
+            ItemStack currentInHand = armorStandEntity.getItemInHand(targetHand);
+            if (!ItemStack.matches(currentSelectedItem, currentInHand)) {
+                armorStandEntity.setItemInHand(targetHand, currentSelectedItem);
+            }
         }
     }
-
     // 在GUI中渲染实体
     private void renderEntityInInventory(
             GuiGraphics guiGraphics,
@@ -569,10 +583,14 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         poseStack.popPose();
     }
 
-    // 渲染标签
     @Override
-    protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
-        // 保持原样
+    protected void renderLabels(GuiGraphics transform, int x, int y) {
+        boolean isChinese = Minecraft.getInstance().options.languageCode.startsWith("zh_");
+        if (!isChinese) {
+            int fontWidth = this.font.width(Component.translatable(ChangShengJueBlocks.TAILORING_CASE.get().getDescriptionId()));
+            int k = 25 + this.imageWidth / 2 - fontWidth / 2;
+            transform.drawString(this.font, Component.translatable(ChangShengJueBlocks.TAILORING_CASE.get().getDescriptionId()), k, 35, 0x404040, false);
+        }
     }
 
     // 渲染主界面
@@ -580,10 +598,11 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
         renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, delta);
-        // 渲染按钮工具提示（确保在最上层）
+        // 渲染按钮工具提示
         for (CustomButton button : customButtons) {
-            if (button.isHovered() && !button.getItemStack().isEmpty()) {
+            if (!button.getItemStack().isEmpty() && isMouseInArea(button.getX(), button.getY(), mouseX, mouseY)) {
                 renderToolTip(guiGraphics, mouseX, mouseY, button.getItemStack());
+                break;
             }
         }
         renderTooltip(guiGraphics, mouseX, mouseY);
@@ -600,7 +619,6 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
             refreshItemButtons();
         }
         
-        // 处理配方轮播 (1秒自动轮播)
         // 只有在非制作状态且有配方组时才进行轮播
         if (!currentRecipeGroup.isEmpty() && !menu.isCrafting()) {
             carouselTick++;
@@ -676,10 +694,6 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
                 ItemStack displayStack = itemStack.copy();
 
                 guiGraphics.renderItem(displayStack, this.getX() + 1, this.getY() + 1);
-                if ( !itemStack.isEmpty() && isAir(this.getX(),this.getY(),mouseX,mouseY)) {
-                    // 渲染物品提示
-                    renderToolTip(guiGraphics, mouseX, mouseY, displayStack);
-                }
 
                 // 更新合成按钮状态
                 if (craftButton != null) {
@@ -761,7 +775,10 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         }
         return super.keyPressed(keyCode, scanCode, modifiers);
     }
-    
+
+    private boolean isMouseInArea(int guix,int guiy,int mouseX, int mouseY) {
+        return mouseX >= guix && mouseX < guix + 18 && mouseY >= guiy && mouseY < guiy + 18;
+    }
     // 处理鼠标移动，恢复轮播
     @Override
     public void mouseMoved(double mouseX, double mouseY) {

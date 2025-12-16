@@ -29,6 +29,10 @@ public class CSJPlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> ORE_SYDEROLIFE_ORE_UPPER = registerKey("ore_syderolife_ore_upper");
     public static final ResourceKey<PlacedFeature> ORE_SYDEROLIFE_ORE_LOWER = registerKey("ore_syderolife_ore_lower");
+    public static final ResourceKey<PlacedFeature> ORE_NATURAL_ASPHALT_ORE_UPPER = registerKey("ore_natural_asphalt_ore_upper");
+    public static final ResourceKey<PlacedFeature> ORE_NATURAL_ASPHALT_ORE_LOWER = registerKey("ore_natural_asphalt_ore_lower");
+    public static final ResourceKey<PlacedFeature> ORE_WHITE_JADE_BLOCK_UPPER = registerKey("ore_white_jade_block_upper");
+    public static final ResourceKey<PlacedFeature> ORE_WHITE_JADE_BLOCK_LOWER = registerKey("ore_white_jade_block_lower");
 
     //树木
     public static final ResourceKey<PlacedFeature> MANGO_TREE_PLACED_KEY =registerKey("mango_tree_placed_key");
@@ -82,6 +86,16 @@ public class CSJPlacedFeatures {
         register(context, ORE_SYDEROLIFE_ORE_UPPER, configuredFeature.getOrThrow(CSJConfiguredFeatures.SYDEROLIFE_ORE),
                 CSJOrePlacement.commonOrePlacement(6, HeightRangePlacement.uniform(VerticalAnchor.absolute(64), VerticalAnchor.absolute(128))));
         register(context, ORE_SYDEROLIFE_ORE_LOWER, configuredFeature.getOrThrow(CSJConfiguredFeatures.SYDEROLIFE_ORE),
+                CSJOrePlacement.commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(60))));
+
+        register(context, ORE_NATURAL_ASPHALT_ORE_UPPER, configuredFeature.getOrThrow(CSJConfiguredFeatures.NATURAL_ASPHALT_ORE),
+                CSJOrePlacement.commonOrePlacement(6, HeightRangePlacement.uniform(VerticalAnchor.absolute(64), VerticalAnchor.absolute(128))));
+        register(context, ORE_NATURAL_ASPHALT_ORE_LOWER, configuredFeature.getOrThrow(CSJConfiguredFeatures.NATURAL_ASPHALT_ORE),
+                CSJOrePlacement.commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(60))));
+
+        register(context, ORE_WHITE_JADE_BLOCK_UPPER, configuredFeature.getOrThrow(CSJConfiguredFeatures.WHITE_JADE_BLOCK),
+                CSJOrePlacement.commonOrePlacement(6, HeightRangePlacement.uniform(VerticalAnchor.absolute(64), VerticalAnchor.absolute(128))));
+        register(context, ORE_WHITE_JADE_BLOCK_LOWER, configuredFeature.getOrThrow(CSJConfiguredFeatures.WHITE_JADE_BLOCK),
                 CSJOrePlacement.commonOrePlacement(2, HeightRangePlacement.uniform(VerticalAnchor.absolute(0), VerticalAnchor.absolute(60))));
 
         //树木

@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/arhat_bed_foot",
+  "textures": {
+    "1": "chang_sheng_jue:block/wenge_arhat_bed",
+    "particle": "chang_sheng_jue:block/wenge_arhat_bed"
+  }
+}

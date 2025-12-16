@@ -1,0 +1,12 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:cyan",
+  "ingredients": [
+    {
+      "item": "minecraft:clay_ball"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:cyan_bricks"
+  }
+}

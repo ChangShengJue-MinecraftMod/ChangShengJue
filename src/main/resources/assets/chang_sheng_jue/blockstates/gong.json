@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "chang_sheng_jue:block/gong",
+      "y": 90
+    },
+    "facing=north": {
       "model": "chang_sheng_jue:block/gong"
+    },
+    "facing=south": {
+      "model": "chang_sheng_jue:block/gong",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "chang_sheng_jue:block/gong",
+      "y": 270
     }
   }
 }

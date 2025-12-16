@@ -1,0 +1,35 @@
+{
+  "questId": "edd0cd54-c00c-43b7-aa4c-105e949cf883",
+  "questName": "quest.chang_sheng_jue.ao_qi_tian_di_jian.questName",
+  "questDescription": "quest.chang_sheng_jue.ao_qi_tian_di_jian.questDescription",
+  "questRequirementsDescription": "quest.chang_sheng_jue.ao_qi_tian_di_jian.questRequirementsDescription",
+  "questType": "KILL",
+  "weight": 23,
+  "targetEntity": "chang_sheng_jue:villain",
+  "minKills": 3,
+  "maxKills": 5,
+  "secondTargetEntity": "chang_sheng_jue:assassin",
+  "minSecondKills": 1,
+  "maxSecondKills": 2,
+  "repeatable": false,
+  "questGenerateTarget" : true,
+  "limitQuestIds" : [
+    "bfbac359-a2cd-488b-9c75-b6dc10c96eed"
+  ],
+  "isNeedCompletePreQuest" : true,
+  "needCompletionCount" : 1,
+  "questRewards": [
+    {
+      "item": "chang_sheng_jue:gold_bullions",
+      "count": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 1.0
+      }
+    },
+    {
+      "item": "chang_sheng_jue:gang_token",
+      "count": 5
+    }
+  ]
+}

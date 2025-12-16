@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/low_desk_middle",
+  "textures": {
+    "1": "chang_sheng_jue:block/jungle_low_desk",
+    "particle": "chang_sheng_jue:block/jungle_low_desk"
+  }
+}

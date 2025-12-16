@@ -17,10 +17,6 @@ public class FemaleChineseWeddingDress extends ChineseWeddingDress {
         super(pMaterial, pType, pProperties);
     }
     @Override
-    public int getEnchantmentValue() {
-        return 15;
-    }
-    @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
             private GeoArmorRenderer<?> renderer;

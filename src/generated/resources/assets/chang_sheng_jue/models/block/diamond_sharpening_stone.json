@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/sharpening_stone",
+  "textures": {
+    "1": "chang_sheng_jue:block/diamond_sharpening_stone",
+    "particle": "chang_sheng_jue:block/diamond_sharpening_stone"
+  }
+}

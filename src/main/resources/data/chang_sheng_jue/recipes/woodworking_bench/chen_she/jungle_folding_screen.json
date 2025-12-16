@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "chen_she:folding_screen",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_jungle_log",
+      "count": 3
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:jungle_folding_screen"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:purple",
+  "ingredients": [
+    {
+      "count": 4,
+      "item": "chang_sheng_jue:kaolin_ball"
+    },
+    {
+      "item": "minecraft:purple_dye"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:purple_cylinder_tile_side"
+  }
+}

@@ -2,7 +2,6 @@ package com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest;
 
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.PlayerQuestMenu;
-import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;

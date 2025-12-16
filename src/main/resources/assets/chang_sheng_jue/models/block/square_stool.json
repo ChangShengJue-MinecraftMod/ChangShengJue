@@ -1,0 +1,119 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"parent": "minecraft:block/cube",
+	"elements": [
+		{
+			"from": [3.5, 8, 3.5],
+			"to": [12.5, 9, 12.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [2.25, 2.25, 4.5, 2.5], "texture": "#1"},
+				"east": {"uv": [0, 2.25, 2.25, 2.5], "texture": "#1"},
+				"south": {"uv": [6.75, 2.25, 9, 2.5], "texture": "#1"},
+				"west": {"uv": [4.5, 2.25, 6.75, 2.5], "texture": "#1"},
+				"up": {"uv": [4.5, 2.25, 2.25, 0], "texture": "#1"},
+				"down": {"uv": [6.75, 0, 4.5, 2.25], "texture": "#1"}
+			}
+		},
+		{
+			"from": [4, 6, 4],
+			"to": [12, 7, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 6, 8]},
+			"faces": {
+				"north": {"uv": [2, 4.5, 4, 4.75], "texture": "#1"},
+				"east": {"uv": [0, 4.5, 2, 4.75], "texture": "#1"},
+				"south": {"uv": [6, 4.5, 8, 4.75], "texture": "#1"},
+				"west": {"uv": [4, 4.5, 6, 4.75], "texture": "#1"},
+				"up": {"uv": [4, 4.5, 2, 2.5], "texture": "#1"},
+				"down": {"uv": [6, 2.5, 4, 4.5], "texture": "#1"}
+			}
+		},
+		{
+			"from": [4.5, 7, 4.5],
+			"to": [11.5, 8, 11.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 7, 8]},
+			"faces": {
+				"north": {"uv": [8.75, 6.5, 10.5, 6.75], "texture": "#1"},
+				"east": {"uv": [7, 6.5, 8.75, 6.75], "texture": "#1"},
+				"south": {"uv": [12.25, 6.5, 14, 6.75], "texture": "#1"},
+				"west": {"uv": [10.5, 6.5, 12.25, 6.75], "texture": "#1"},
+				"up": {"uv": [10.5, 6.5, 8.75, 4.75], "texture": "#1"},
+				"down": {"uv": [12.25, 4.75, 10.5, 6.5], "texture": "#1"}
+			}
+		},
+		{
+			"from": [4.5, 0, 4.5],
+			"to": [11.5, 6, 11.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 8]},
+			"faces": {
+				"north": {"uv": [3.5, 6.5, 1.75, 8], "texture": "#1"},
+				"east": {"uv": [5.25, 6.5, 3.5, 8], "texture": "#1"},
+				"south": {"uv": [7, 6.5, 5.25, 8], "texture": "#1"},
+				"west": {"uv": [1.75, 6.5, 0, 8], "texture": "#1"},
+				"up": {"uv": [1.75, 6.5, 3.5, 4.75], "texture": "#1"},
+				"down": {"uv": [3.5, 4.75, 5.25, 6.5], "texture": "#1"}
+			}
+		},
+		{
+			"from": [4, 0, 4],
+			"to": [5, 6, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [5, 0, 5]},
+			"faces": {
+				"north": {"uv": [7.25, 7, 7.5, 8.5], "texture": "#1"},
+				"east": {"uv": [7, 7, 7.25, 8.5], "texture": "#1"},
+				"south": {"uv": [7.75, 7, 8, 8.5], "texture": "#1"},
+				"west": {"uv": [7.5, 7, 7.75, 8.5], "texture": "#1"},
+				"up": {"uv": [7.5, 7, 7.25, 6.75], "texture": "#1"},
+				"down": {"uv": [7.75, 6.75, 7.5, 7], "texture": "#1"}
+			}
+		},
+		{
+			"from": [11, 0, 4],
+			"to": [12, 6, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [11, 0, 5]},
+			"faces": {
+				"north": {"uv": [7.5, 7, 7.25, 8.5], "texture": "#1"},
+				"east": {"uv": [7.75, 7, 7.5, 8.5], "texture": "#1"},
+				"south": {"uv": [8, 7, 7.75, 8.5], "texture": "#1"},
+				"west": {"uv": [7.25, 7, 7, 8.5], "texture": "#1"},
+				"up": {"uv": [7.25, 7, 7.5, 6.75], "texture": "#1"},
+				"down": {"uv": [7.5, 6.75, 7.75, 7], "texture": "#1"}
+			}
+		},
+		{
+			"from": [11, 0, 11],
+			"to": [12, 6, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [11, 0, 11]},
+			"faces": {
+				"north": {"uv": [7.5, 7, 7.25, 8.5], "texture": "#1"},
+				"east": {"uv": [7.75, 7, 7.5, 8.5], "texture": "#1"},
+				"south": {"uv": [8, 7, 7.75, 8.5], "texture": "#1"},
+				"west": {"uv": [7.25, 7, 7, 8.5], "texture": "#1"},
+				"up": {"uv": [7.25, 7, 7.5, 6.75], "texture": "#1"},
+				"down": {"uv": [7.5, 6.75, 7.75, 7], "texture": "#1"}
+			}
+		},
+		{
+			"from": [4, 0, 11],
+			"to": [5, 6, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [5, 0, 11]},
+			"faces": {
+				"north": {"uv": [7.25, 7, 7.5, 8.5], "texture": "#1"},
+				"east": {"uv": [7, 7, 7.25, 8.5], "texture": "#1"},
+				"south": {"uv": [7.75, 7, 8, 8.5], "texture": "#1"},
+				"west": {"uv": [7.5, 7, 7.75, 8.5], "texture": "#1"},
+				"up": {"uv": [7.5, 7, 7.25, 6.75], "texture": "#1"},
+				"down": {"uv": [7.75, 6.75, 7.5, 7], "texture": "#1"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "VoxelShapes",
+			"origin": [-48, 0, 0],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5, 6, 7]
+		}
+	]
+}

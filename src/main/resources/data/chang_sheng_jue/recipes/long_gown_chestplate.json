@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "long_gown_chestplate",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 7
+    },
+    {
+      "item": "minecraft:red_dye",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:long_gown_chestplate"
+  }
+}

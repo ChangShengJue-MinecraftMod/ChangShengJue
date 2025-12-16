@@ -1,0 +1,16 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "za_lei:blue_and_white_porcelain_flower_pots",
+  "ingredients": [
+    {
+      "count": 2,
+      "item": "chang_sheng_jue:kaolin_ball"
+    },
+    {
+      "tag": "forge:gems/lapis"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:blue_and_white_porcelain_flower_pots"
+  }
+}

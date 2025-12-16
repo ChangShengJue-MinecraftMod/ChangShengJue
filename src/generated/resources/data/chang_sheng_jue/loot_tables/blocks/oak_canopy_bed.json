@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "chang_sheng_jue:oak_canopy_bed",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "section": "foot_front_bottom"
+              }
+            }
+          ],
+          "name": "chang_sheng_jue:oak_canopy_bed"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "chang_sheng_jue:blocks/oak_canopy_bed"
+}

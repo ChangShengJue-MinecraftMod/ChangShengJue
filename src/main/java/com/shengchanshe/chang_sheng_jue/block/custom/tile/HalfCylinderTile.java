@@ -5,78 +5,98 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Mirror;
-import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.SlabType;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class HalfCylinderTile extends SlabBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+public class HalfCylinderTile extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty BAFFLE = BooleanProperty.create("baffle");
+    public static final BooleanProperty WATERLOGGED;
+    public static final int MAX_HEIGHT = 3;
+    public static final IntegerProperty LAYERS;
 
     public HalfCylinderTile(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM)
-                .setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH).setValue(BAFFLE, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(LAYERS, 1)
+                .setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH).setValue(BAFFLE, true));
+    }
+
+    public boolean placeLiquid(LevelAccessor pLevel, BlockPos pPos, BlockState pState, FluidState pFluidState) {
+        return SimpleWaterloggedBlock.super.placeLiquid(pLevel, pPos, pState, pFluidState);
+    }
+
+    public boolean canPlaceLiquid(BlockGetter pLevel, BlockPos pPos, BlockState pState, Fluid pFluid) {
+        return SimpleWaterloggedBlock.super.canPlaceLiquid(pLevel, pPos, pState, pFluid);
     }
 
     @Override
     public boolean useShapeForLightOcclusion(BlockState pState) {
-        return pState.getValue(TYPE) != SlabType.DOUBLE;
+        return true;
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
-    {
-        SlabType value1 = state.getValue(TYPE);
-        return value1 == SlabType.DOUBLE ? Block.box(0, 0, 0, 16, 16, 16)
-                : value1 == SlabType.BOTTOM ? Block.box(0, 0, 0, 16, 8, 16)
-                : Block.box(0, 8, 0, 16, 16, 16);
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context) {
+        int value1 = state.getValue(LAYERS);
+        return value1 == 2 ? Block.box(0, 0, 0, 16, 12, 16)
+                : value1 == 1 ? Block.box(0, 0, 0, 16, 8, 16)
+                : Block.box(0, 0, 0, 16, 16, 16);
+    }
+
+    public boolean canBeReplaced(BlockState pState, BlockPlaceContext pContext) {
+        int layers = pState.getValue(LAYERS);
+        if (pContext.getItemInHand().is(this.asItem()) && layers < MAX_HEIGHT) {
+            if (pContext.replacingClickedOnBlock()) {
+                return pContext.getClickedFace() == Direction.UP;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext placeContext) {
         BlockPos clickedPos = placeContext.getClickedPos();
-        BlockState blockState = placeContext.getLevel().getBlockState(clickedPos);
+        Level level = placeContext.getLevel();
+        BlockState blockState = level.getBlockState(clickedPos);
+
         if (blockState.is(this)) {
-            return blockState.setValue(TYPE, SlabType.DOUBLE).setValue(WATERLOGGED, false).setValue(FACING,placeContext.getHorizontalDirection().getOpposite());
+            int existingLayers = blockState.getValue(LAYERS);
+            Direction facing = placeContext.getHorizontalDirection().getOpposite();
+            BlockPos oppositePos = clickedPos.relative(facing.getOpposite());
+            BlockState oppositeState = level.getBlockState(oppositePos);
+            boolean hasBaffle = oppositeState.is(this);
+
+            return blockState.setValue(LAYERS, Math.min(MAX_HEIGHT, existingLayers + 1))
+                    .setValue(WATERLOGGED, false)
+                    .setValue(FACING, facing)
+                    .setValue(BAFFLE, !hasBaffle);
         } else {
-            FluidState fluidState = placeContext.getLevel().getFluidState(clickedPos);
-            BlockState blockState1 = this.defaultBlockState().setValue(TYPE, SlabType.BOTTOM).setValue(FACING,placeContext.getHorizontalDirection().getOpposite())
-                    .setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER).setValue(FACING,placeContext.getHorizontalDirection().getOpposite());
-            Direction clickedFace = placeContext.getClickedFace();
-            return clickedFace != Direction.DOWN && (clickedFace == Direction.UP || !(placeContext.getClickLocation().y - (double)clickedPos.getY() > 0.5)) ?
-                    blockState1 : blockState1.setValue(TYPE, SlabType.TOP).setValue(FACING,placeContext.getHorizontalDirection().getOpposite());
-        }
-    }
+            Direction facing = placeContext.getHorizontalDirection().getOpposite();
+            BlockPos oppositePos = clickedPos.relative(facing.getOpposite());
+            BlockState oppositeState = level.getBlockState(oppositePos);
+            boolean hasBaffle = oppositeState.is(this);
 
-    @Override
-    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
-        // 获取放置方块和触发事件的方块的状态
-        BlockState fromState = level.getBlockState(fromPos);
-
-        // 如果放置的方块和触发事件的方块是相同的
-        if (state.getBlock() == fromState.getBlock() && state.getValue(TYPE) == fromState.getValue(TYPE) && state.getValue(FACING) == fromState.getValue(FACING)) {
-            // 更改放置方块的BAFFLE属性
-            level.setBlock(fromPos, state.setValue(BAFFLE, true), 3);
+            return this.defaultBlockState()
+                    .setValue(FACING, facing)
+                    .setValue(BAFFLE, !hasBaffle)
+                    .setValue(WATERLOGGED, level.getFluidState(clickedPos).getType() == Fluids.WATER);
         }
     }
 
     @Override
     public BlockState rotate(BlockState blockState, Rotation rotation) {
-        return blockState.setValue(FACING,rotation.rotate(blockState.getValue(FACING)));
+        return super.rotate(blockState,rotation);
     }
 
     @Override
@@ -86,6 +106,11 @@ public class HalfCylinderTile extends SlabBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING,TYPE, WATERLOGGED,BAFFLE);
+        builder.add(FACING, WATERLOGGED,BAFFLE,LAYERS);
+    }
+
+    static {
+        LAYERS = BlockStateProperties.LAYERS;
+        WATERLOGGED = BlockStateProperties.WATERLOGGED;
     }
 }

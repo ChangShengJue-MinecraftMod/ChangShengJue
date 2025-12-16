@@ -1,20 +1,24 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.clubbed;
 
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
+import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.beat_dog_stick.BeatDogStickAttackEntity;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.GaoMarksmanship;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.ShaolinStickMethod;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fml.ModList;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.animatable.SingletonGeoAnimatable;
 import software.bernie.geckolib.constant.DefaultAnimations;
@@ -37,7 +41,17 @@ public class Clubbed extends SwordItem implements GeoItem {
         if (!pPlayer.level().isClientSide) {
             pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                 cap.comprehendKungFu((ServerPlayer) pPlayer, ShaolinStickMethod.KUNG_FU_ID.toString(), pPlayer);
-                cap.attack((ServerPlayer) pPlayer,ShaolinStickMethod.KUNG_FU_ID.toString(),pPlayer,entity);
+                boolean attack = cap.attack((ServerPlayer) pPlayer, ShaolinStickMethod.KUNG_FU_ID.toString(), pPlayer, entity);
+                if (!attack) {
+                    if (entity instanceof LivingEntity livingEntity) {
+                        if (entity != pPlayer) {
+                            if (pPlayer.level().random.nextFloat() < cap.getEffectProbability(ShaolinStickMethod.KUNG_FU_ID.toString())) {
+                                livingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(),
+                                        30, 1, false, true), pPlayer);
+                            }
+                        }
+                    }
+                }
             });
             if (pPlayer.getMainHandItem().is(ChangShengJueItems.BEAT_DOG_STICK.get())){
                 BeatDogStickAttackEntity beatDogStickEntity = new BeatDogStickAttackEntity(ChangShengJueEntity.BEAT_DOG_STICK_ATTACK.get(), pPlayer.level());
@@ -102,6 +116,9 @@ public class Clubbed extends SwordItem implements GeoItem {
 
     @Override
     public int getUseDuration(ItemStack stack) {
+        if (ModList.get().isLoaded("epicfight")) {
+            return Integer.MAX_VALUE;
+        }
         return 72000; // 最大持续时间（实际由逻辑控制）
     }
 

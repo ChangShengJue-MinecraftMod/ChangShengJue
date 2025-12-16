@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "furniture:low_desk",
+  "ingredients": [
+    {
+      "item": "minecraft:dark_oak_planks",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:dark_oak_low_desk"
+  }
+}

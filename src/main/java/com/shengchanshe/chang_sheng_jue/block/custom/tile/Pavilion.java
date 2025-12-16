@@ -32,9 +32,7 @@ public class Pavilion extends CylinderTile {
 
     @Override
     public void setPlacedBy(Level pLevel, BlockPos pPos, BlockState pState, @Nullable LivingEntity pPlacer, ItemStack pStack) {
-        if (!pLevel.isClientSide) {
-            pLevel.setBlock(pPos.above(), pState.setValue(HALF, DoubleBlockHalf.UPPER), 3);
-        }
+        pLevel.setBlock(pPos.above(), pState.setValue(HALF, DoubleBlockHalf.UPPER), 3);
     }
 
     @Override
@@ -58,15 +56,17 @@ public class Pavilion extends CylinderTile {
 
         if (pState.is(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION.get()) || pState.is(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION.get()) ||
                 pState.is(ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION.get()) || pState.is(ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION.get()) ||
-                    pState.is(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION.get())){
-            return switch (value){
-                case WEST,EAST ->  flag1 ? Block.box(3, 0, 3, 13, 16, 13) : ChangShengJueVoxelShape.RIDGE_FINIAL_PAVILION_BOTTOM_EW;
+                pState.is(ChangShengJueBlocks.CYAN_RIDGE_FINIAL_PAVILION.get()) || pState.is(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION.get()) ||
+                pState.is(ChangShengJueBlocks.PURPLE_RIDGE_FINIAL_PAVILION.get())){
+            return switch (value) {
+                case WEST, EAST->  flag1 ? Block.box(3, 0, 3, 13, 16, 13) : ChangShengJueVoxelShape.RIDGE_FINIAL_PAVILION_BOTTOM_EW;
                 default -> flag1 ? Block.box(3, 0, 3, 13, 16, 13) : ChangShengJueVoxelShape.RIDGE_FINIAL_PAVILION_BOTTOM_NS;
             };
         }else {
             return AABB;
         }
     }
+
 
     @Nullable
     @Override

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "block": "chang_sheng_jue:wenge_arhat_bed",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "bed_section": "foot"
+              }
+            }
+          ],
+          "name": "chang_sheng_jue:wenge_arhat_bed"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "chang_sheng_jue:blocks/wenge_arhat_bed"
+}

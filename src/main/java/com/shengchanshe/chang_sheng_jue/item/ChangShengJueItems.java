@@ -2,15 +2,28 @@ package com.shengchanshe.chang_sheng_jue.item;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
+import com.shengchanshe.chang_sheng_jue.block.custom.furniture.bamboo_mat.BambooMatItem;
 import com.shengchanshe.chang_sheng_jue.block.custom.gong.GongItem;
+import com.shengchanshe.chang_sheng_jue.block.custom.workbench.WoodworkingBenchItem;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.ChangShengJueArmorMaterials;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.buddhist_robe.BuddhistRobe;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.confucian_costumes.ConfucianCostumes;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.constable_uniform.ConstableUniform;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.cotton.CottonArmor;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.duanda.DuanDa;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.flying_fish_robe.FlyingFishRobe;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.hats.black_robe.HatsBlackRobe;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.hats.with_veil.HatsWithVeil;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.headdress.forehead_band.ForeheadBand;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.headdress.forehead_band.ForeheadBand2;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.headdress.hair_crown.HairCrown;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.headdress.hair_crown.HairCrown2;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.inner_armor.GoldSilkSoftArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.inner_armor.LeatherInnerArmor;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.long_gown.LongGown;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.mountain_pattern_armor.MountainPatternArmor;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.night_suit.NightSuit;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.qi_tian_da_sheng.QiTianDaSheng;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.taoistrobes.FemaleTaoistRobes;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.taoistrobes.MaleTaoistRobes;
@@ -29,14 +42,13 @@ import com.shengchanshe.chang_sheng_jue.item.combat.knife.TuLongDao;
 import com.shengchanshe.chang_sheng_jue.item.combat.lance.BaWangQiang;
 import com.shengchanshe.chang_sheng_jue.item.combat.lance.RedTasselledSpear;
 import com.shengchanshe.chang_sheng_jue.item.combat.stakes.Stakes;
-import com.shengchanshe.chang_sheng_jue.item.combat.sword.BronzeSword;
-import com.shengchanshe.chang_sheng_jue.item.combat.sword.HanJian;
-import com.shengchanshe.chang_sheng_jue.item.combat.sword.SoftSword;
-import com.shengchanshe.chang_sheng_jue.item.combat.sword.YiTianJian;
+import com.shengchanshe.chang_sheng_jue.item.combat.sword.*;
 import com.shengchanshe.chang_sheng_jue.item.combat.throwingknives.FlyingDaggerPouch;
 import com.shengchanshe.chang_sheng_jue.item.combat.throwingknives.ThrowingKnives;
 import com.shengchanshe.chang_sheng_jue.item.foods.*;
 import com.shengchanshe.chang_sheng_jue.item.items.*;
+import com.shengchanshe.chang_sheng_jue.item.kungfuxp.ExternalKungfuXp;
+import com.shengchanshe.chang_sheng_jue.item.kungfuxp.InternalkungfuXp;
 import com.shengchanshe.chang_sheng_jue.item.tool.KaishanPickaxe;
 import com.shengchanshe.chang_sheng_jue.item.tool.XuanhuaAxe;
 import net.minecraft.ChatFormatting;
@@ -389,7 +401,7 @@ public class ChangShengJueItems {
         @Override
         public void appendHoverText(ItemStack stack, @Nullable Level level,
                                     List<Component> tooltip, TooltipFlag flag) {
-            tooltip.add(Component.translatable("tooltip.changshengjue.natural_silk")
+            tooltip.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID +".natural_silk")
                     .withStyle(ChatFormatting.GRAY));
             super.appendHoverText(stack, level, tooltip, flag);
         }
@@ -418,7 +430,13 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> BLACK_BRICKS = ITEMS.register("black_bricks", ()-> new Item((new Item.Properties())));
     public static final RegistryObject<Item> WHITE_BRICKS_ITEM = ITEMS.register("white_bricks_item", ()-> new Item((new Item.Properties())));
     public static final RegistryObject<Item> GOLD_BRICKS = ITEMS.register("gold_bricks", ()-> new Item((new Item.Properties())));
-
+    public static final RegistryObject<Item> CYAN_BRICKS = ITEMS.register("cyan_bricks", ()-> new Item((new Item.Properties())));
+    //陶土球
+    public static final RegistryObject<Item> SYDEROLIFE_BALL = ITEMS.register("syderolife_ball", ()-> new Item((new Item.Properties())));
+    //高岭土球
+    public static final RegistryObject<Item> KAOLIN_BALL = ITEMS.register("kaolin_ball", ()-> new Item((new Item.Properties())));
+    //天然沥青
+    public static final RegistryObject<Item> NATURAL_ASPHALT = ITEMS.register("natural_asphalt", ()-> new Item((new Item.Properties())));
     //工具
     public static final RegistryObject<Item> KAISHAN_PICKAXE = ITEMS.register("kaishan_pickaxe", KaishanPickaxe::new);
     public static final RegistryObject<Item> XUANHUA_AXE = ITEMS.register("xuanhua_axe", XuanhuaAxe::new);
@@ -433,6 +451,7 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> KITCHEN_KNIFE = ITEMS.register("kitchen_knife", KitchenKnife::new);
     public static final RegistryObject<Item> THROWING_KNIVES = ITEMS.register("throwing_knives", ThrowingKnives::new);
     public static final RegistryObject<Item> FLYING_DAGGER_POUCH = ITEMS.register("flying_dagger_pouch", FlyingDaggerPouch::new);
+    public static final RegistryObject<Item> LONG_YUAN_SWORD = ITEMS.register("long_yuan_sword", LongYuanSword::new);
     //金丝软甲
     public static final RegistryObject<Item> GOLD_SILK_SOFT_ARMOR = ITEMS.register("gold_silk_soft_armor",
             ()-> new GoldSilkSoftArmor(ChangShengJueArmorMaterials.GOLD_SILK,
@@ -535,6 +554,52 @@ public class ChangShengJueItems {
             ()-> new ConfucianCostumes(ChangShengJueArmorMaterials.INK,ArmorItem.Type.LEGGINGS,new Item.Properties()));
     public static final RegistryObject<Item> CONFUCIAN_INK_BOOTS = ITEMS.register("confucian_ink_boots",
             ()-> new ConfucianCostumes(ChangShengJueArmorMaterials.INK,ArmorItem.Type.BOOTS,new Item.Properties()));
+    // 斗笠垂纱套
+    public static final RegistryObject<Item> HATS_WITH_VEIL_HELMET = ITEMS.register("hats_with_veil_helmet",
+            ()-> new HatsWithVeil(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> HATS_WITH_VEIL_CHESTPLATE = ITEMS.register("hats_with_veil_chestplate",
+            ()-> new HatsWithVeil(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    //斗笠玄衣套
+    public static final RegistryObject<Item> HATS_BLACK_ROBE_HELMET = ITEMS.register("hats_black_robe_helmet",
+            ()-> new HatsBlackRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> HATS_BLACK_ROBE_CHESTPLATE = ITEMS.register("hats_black_robe_chestplate",
+            ()-> new HatsBlackRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    public static final RegistryObject<Item> HATS_BLACK_ROBE_LEGGINGS = ITEMS.register("hats_black_robe_leggings",
+            ()-> new HatsBlackRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.LEGGINGS,new Item.Properties()));
+    //短打套
+    public static final RegistryObject<Item> DUAN_DA_CHESTPLATE = ITEMS.register("duan_da_chestplate",
+            ()-> new DuanDa(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    //捕快套
+    public static final RegistryObject<Item> CONSTABLE_UNIFORM_HELMET = ITEMS.register("constable_uniform_helmet",
+            ()-> new ConstableUniform(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> CONSTABLE_UNIFORM_CHESTPLATE = ITEMS.register("constable_uniform_chestplate",
+            ()-> new ConstableUniform(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    public static final RegistryObject<Item> CONSTABLE_UNIFORM_LEGGINGS = ITEMS.register("constable_uniform_leggings",
+            ()-> new ConstableUniform(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.LEGGINGS,new Item.Properties()));
+    public static final RegistryObject<Item> CONSTABLE_UNIFORM_BOOTS = ITEMS.register("constable_uniform_boots",
+            ()-> new ConstableUniform(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.BOOTS,new Item.Properties()));
+    //头饰
+    public static final RegistryObject<Item> FOREHEAD_BAND_HELMET1 = ITEMS.register("forehead_band_helmet1",
+            ()-> new ForeheadBand(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> FOREHEAD_BAND_HELMET2 = ITEMS.register("forehead_band_helmet2",
+            ()-> new ForeheadBand2(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> HAIR_CROWN_HELMET1 = ITEMS.register("hair_crown_helmet1",
+            ()-> new HairCrown(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> HAIR_CROWN_HELMET2 = ITEMS.register("hair_crown_helmet2",
+            ()-> new HairCrown2(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    //僧袍
+    public static final RegistryObject<Item> BUDDHIST_ROBE_CHESTPLATE = ITEMS.register("buddhist_robe_chestplate",
+            ()-> new BuddhistRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    //夜行衣
+    public static final RegistryObject<Item> NIGHT_SUIT_HELMET = ITEMS.register("night_suit_helmet",
+            ()-> new NightSuit(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> NIGHT_SUIT_CHESTPLATE = ITEMS.register("night_suit_chestplate",
+            ()-> new NightSuit(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    public static final RegistryObject<Item> NIGHT_SUIT_LEGGINGS = ITEMS.register("night_suit_leggings",
+            ()-> new NightSuit(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.LEGGINGS,new Item.Properties()));
+    //长衫
+    public static final RegistryObject<Item> LONG_GOWN_CHESTPLATE = ITEMS.register("long_gown_chestplate",
+            ()-> new LongGown(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
 
     //打狗棒
     public static final RegistryObject<Item> BEAT_DOG_STICK = ITEMS.register("beat_dog_stick", BeatDogStick::new);
@@ -619,7 +684,18 @@ public class ChangShengJueItems {
     //锣
     public static final RegistryObject<Item> GONG = ITEMS.register("gong",
             () -> new GongItem(ChangShengJueBlocks.GONG.get() , new Item.Properties()));
+    //木工台
+    public static final RegistryObject<Item> WOOD_WORKING_BENCH = ITEMS.register("wood_working_bench",
+            () -> new WoodworkingBenchItem(ChangShengJueBlocks.WOOD_WORKING_BENCH.get() , new Item.Properties()));
 
+    //经验书
+    public static final RegistryObject<Item> EXTERNAL_KUNG_FU_XP = ITEMS.register("external_kung_fu_xp",
+            () -> new ExternalKungfuXp((new Item.Properties())));
+    public static final RegistryObject<Item> INTERNAL_KUNG_FU_XP = ITEMS.register("internal_kung_fu_xp",
+            () -> new InternalkungfuXp((new Item.Properties())));
+    //竹席
+    public static final RegistryObject<Item> BAMBOO_MAT = ITEMS.register("bamboo_mat",
+            () -> new BambooMatItem(ChangShengJueBlocks.BAMBOO_MAT.get() , new Item.Properties()));
     //手册
     public static final RegistryObject<Item> WU_FANG_LU = ITEMS.register("wu_fang_lu", ()-> new Item(new Item.Properties()));
 

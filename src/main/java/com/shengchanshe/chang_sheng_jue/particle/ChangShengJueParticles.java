@@ -42,6 +42,11 @@ public class ChangShengJueParticles {
     public static final RegistryObject<SimpleParticleType> WU_GANG_CUT_GUI_PARTICLE_1 =
             PARTICLE_TYPES.register("wu_gang_cut_gui_particle_1", () -> new SimpleParticleType(false));
 
+    public static final RegistryObject<SimpleParticleType> EXTERNAL_KUN_FU_XP_PARTICLE =
+            PARTICLE_TYPES.register("external_kun_fu_xp_particle", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> INTERNAL_KUNG_FU_XP_PARTICLE =
+            PARTICLE_TYPES.register("internal_kung_fu_xp_particle", () -> new SimpleParticleType(false));
+
 //    public static final RegistryObject<SimpleParticleType> GOLDEN_BELL_JAR_PARTICLE =
 //            PARTICLE_TYPES.register("golden_bell_jar_particle", () -> new SimpleParticleType(false));
 
@@ -57,6 +62,21 @@ public class ChangShengJueParticles {
     //锻造炉
     public static final RegistryObject<SimpleParticleType> FORGE_BLOCK_PARTCLE =
             PARTICLE_TYPES.register("forge_block_partcle", () -> new SimpleParticleType(false));
+    // 铸币税 (铜钱)
+    public static final RegistryObject<SimpleParticleType> MINTING_PARTCLE =
+            PARTICLE_TYPES.register("minting_partcle", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> TONG_QIAN_PARTCLE =
+            PARTICLE_TYPES.register("tong_qian_partcle", () -> new SimpleParticleType(false));
+    // 铸币税 (金元宝)
+    public static final RegistryObject<SimpleParticleType> GOLD_BULLIONS_MINTING_PARTCLE =
+            PARTICLE_TYPES.register("gold_bullions_minting_partcle", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> GOLD_BULLIONS_PARTCLE =
+            PARTICLE_TYPES.register("gold_bullions_partcle", () -> new SimpleParticleType(false));
+    // 铸币税 (银元宝)
+    public static final RegistryObject<SimpleParticleType> SILVER_BULLIONS_MINTING_PARTCLE =
+            PARTICLE_TYPES.register("silver_bullions_minting_partcle", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> SILVER_BULLIONS_PARTCLE =
+            PARTICLE_TYPES.register("silver_bullions_partcle", () -> new SimpleParticleType(false));
 
     //木桩
     public static final RegistryObject<SimpleParticleType> STAKES_PARTICLE =

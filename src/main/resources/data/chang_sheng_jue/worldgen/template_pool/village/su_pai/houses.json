@@ -1,0 +1,67 @@
+{
+  "elements": [
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:village/su_pai/houses/su_pai_small_house_1",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 5
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:village/su_pai/houses/su_pai_small_house_2",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 5
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:village/su_pai/houses/su_pai_small_house_3",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 5
+    },
+    {
+      "weight": 3,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty",
+        "location": "chang_sheng_jue:village/su_pai/houses/farmland"
+      }
+    },
+    {
+      "weight": 3,
+      "element": {
+        "projection": "rigid",
+        "element_type": "minecraft:single_pool_element",
+        "processors": "minecraft:empty",
+        "location": "chang_sheng_jue:village/su_pai/houses/farmland_1"
+      }
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "chang_sheng_jue:village/su_pai/houses/su_pai_animal_pen_1",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      },
+      "weight": 3
+    },
+    {
+      "element": {
+        "element_type": "minecraft:empty_pool_element"
+      },
+      "weight": 2
+    }
+  ],
+  "fallback": "chang_sheng_jue:village/su_pai/terminators"
+}

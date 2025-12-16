@@ -1,0 +1,18 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "xiao_mu_zuo:balustrade",
+  "ingredients": [
+    {
+      "item": "minecraft:spruce_planks",
+      "count": 4
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:spruce_balustrade",
+    "count": 3
+  }
+}

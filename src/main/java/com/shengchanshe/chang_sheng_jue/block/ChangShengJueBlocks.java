@@ -5,31 +5,49 @@ import com.shengchanshe.chang_sheng_jue.block.cropper.*;
 import com.shengchanshe.chang_sheng_jue.block.custom.*;
 import com.shengchanshe.chang_sheng_jue.block.custom.balustrade.Balustrade;
 import com.shengchanshe.chang_sheng_jue.block.custom.balustrade.Guardrail;
-import com.shengchanshe.chang_sheng_jue.block.custom.balustrade.Wooden_Balustrade;
+import com.shengchanshe.chang_sheng_jue.block.custom.balustrade.StoneBalustrade;
+import com.shengchanshe.chang_sheng_jue.block.custom.balustrade.WoodenBalustrade;
 import com.shengchanshe.chang_sheng_jue.block.custom.bracket.*;
+import com.shengchanshe.chang_sheng_jue.block.custom.brick_kiln.BrickKiln;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.BullionsCastingMolds;
 import com.shengchanshe.chang_sheng_jue.block.custom.castingmolds.CastingMolds;
 import com.shengchanshe.chang_sheng_jue.block.custom.eescalator.Eescalator;
 import com.shengchanshe.chang_sheng_jue.block.custom.forgeblock.ForgeBlock;
+import com.shengchanshe.chang_sheng_jue.block.custom.furniture.bed.ArhatBed;
+import com.shengchanshe.chang_sheng_jue.block.custom.furniture.bamboo_mat.BambooMat;
+import com.shengchanshe.chang_sheng_jue.block.custom.furniture.bed.CanopyBed;
 import com.shengchanshe.chang_sheng_jue.block.custom.furniture.chair.*;
-import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.BookDesk;
-import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.LowDesk;
-import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.Teapoy;
-import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.WineTable;
+import com.shengchanshe.chang_sheng_jue.block.custom.furniture.desk.*;
+import com.shengchanshe.chang_sheng_jue.block.custom.furniture.folding_screen.FoldingScreen;
 import com.shengchanshe.chang_sheng_jue.block.custom.gong.Gong;
+import com.shengchanshe.chang_sheng_jue.block.custom.lantern.HeightLightStand;
+import com.shengchanshe.chang_sheng_jue.block.custom.lantern.Lantern;
+import com.shengchanshe.chang_sheng_jue.block.custom.lantern.LightStand;
+import com.shengchanshe.chang_sheng_jue.block.custom.lockers.Cabinet;
+import com.shengchanshe.chang_sheng_jue.block.custom.lockers.ChestOfDrawers;
+import com.shengchanshe.chang_sheng_jue.block.custom.lockers.LargeCabinet;
 import com.shengchanshe.chang_sheng_jue.block.custom.loom.ChangShengJueLoomBlock;
 import com.shengchanshe.chang_sheng_jue.block.custom.plaque.Plaque;
 import com.shengchanshe.chang_sheng_jue.block.custom.pottery.PotteryWheel;
+import com.shengchanshe.chang_sheng_jue.block.custom.racks.ClothesRack;
+import com.shengchanshe.chang_sheng_jue.block.custom.racks.DryingRail;
+import com.shengchanshe.chang_sheng_jue.block.custom.sharpening_stone.DiamondSharpeningStone;
+import com.shengchanshe.chang_sheng_jue.block.custom.sharpening_stone.NetheriteSharpeningStone;
+import com.shengchanshe.chang_sheng_jue.block.custom.sharpening_stone.StoneSharpeningStone;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigleft.BigShingMunLeft;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.bigright.BigShingMunRight;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.left.ShingMunLeft;
 import com.shengchanshe.chang_sheng_jue.block.custom.shing_mun.right.ShingMunRight;
+import com.shengchanshe.chang_sheng_jue.block.custom.storage.BookGrid;
+import com.shengchanshe.chang_sheng_jue.block.custom.storage.FretworkOpenworkPanel;
+import com.shengchanshe.chang_sheng_jue.block.custom.storage.Liangge;
 import com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase.TailoringCase;
 import com.shengchanshe.chang_sheng_jue.block.custom.tile.*;
 import com.shengchanshe.chang_sheng_jue.block.custom.tool_table.ToolTable;
 import com.shengchanshe.chang_sheng_jue.block.custom.weaponrack.WeaponRack;
 import com.shengchanshe.chang_sheng_jue.block.custom.window.HighWindows;
 import com.shengchanshe.chang_sheng_jue.block.custom.window.Windows;
+import com.shengchanshe.chang_sheng_jue.block.custom.workbench.WoodworkingBench;
 import com.shengchanshe.chang_sheng_jue.block.decoration.LeavesDefoliation;
 import com.shengchanshe.chang_sheng_jue.block.decoration.flowerpot.BlueAndWhitePorcelainFlowerPots;
 import com.shengchanshe.chang_sheng_jue.block.decoration.windchime.WindChime;
@@ -55,17 +73,16 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
@@ -80,6 +97,7 @@ import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 
 public class ChangShengJueBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, ChangShengJue.MOD_ID);
@@ -227,7 +245,7 @@ public class ChangShengJueBlocks {
             ()-> new GuiHuaLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> OSMANTHUS_SAPLING = registerBlock("osmanthus_sapling",
             ()-> new SaplingBlock(new GuiHuaTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
-    public static final RegistryObject<Block> OSMANTHUS_DEFOLIATION = registerBlock( "osmanthus_defoliation",
+    public static final RegistryObject<Block> OSMANTHUS_DEFOLIATION = registerBlock("osmanthus_defoliation",
             ()-> new LeavesDefoliation(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable()
                     .noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY)));
 
@@ -245,7 +263,7 @@ public class ChangShengJueBlocks {
             ()-> new MeiHuaLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> PLUM_SAPLING = registerBlock("plum_sapling",
             ()-> new SaplingBlock(new MeiHuaTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
-    public static final RegistryObject<Block> PLUM_DEFOLIATION = registerBlock( "plum_defoliation",
+    public static final RegistryObject<Block> PLUM_DEFOLIATION = registerBlock("plum_defoliation",
             ()-> new LeavesDefoliation(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable()
                     .noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY)));
     //黄花梨
@@ -329,7 +347,7 @@ public class ChangShengJueBlocks {
 
     //花盆和花花草草
     public static final RegistryObject<Block> BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS = registerBlock("blue_and_white_porcelain_flower_pots",
-            ()-> new BlueAndWhitePorcelainFlowerPots(BlockBehaviour.Properties.of().noOcclusion().instabreak().pushReaction(PushReaction.DESTROY)));
+            ()-> new BlueAndWhitePorcelainFlowerPots(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).noOcclusion().instabreak().pushReaction(PushReaction.DESTROY)));
     //艾蒿
     public static final RegistryObject<Block> MUGWORT_BLOCK = registerBlock("mugwort_block",
             ()-> new FlowerBlock(()-> MobEffects.LEVITATION,8,
@@ -467,7 +485,7 @@ public class ChangShengJueBlocks {
                 }
             });
     public static final RegistryObject<Block> STONE_LAMPS_LIANG_BLOCK = registerBlock("stone_lamps_liang_block",
-            ()-> new StoneLampsBlock(BlockBehaviour.Properties.of().instabreak().noOcclusion().lightLevel((state) -> 15).sound(SoundType.STONE), ParticleTypes.FLAME));
+            ()-> new StoneLampsBlock(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instabreak().noOcclusion().lightLevel((state) -> 15).sound(SoundType.STONE), ParticleTypes.FLAME));
 
     public static final RegistryObject<Block> YELLOW_STONE_LION_BLOCK = registerBlock("yellow_stone_lion_block",
             ()-> new StoneLionBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
@@ -475,185 +493,100 @@ public class ChangShengJueBlocks {
             ()-> new StoneLionBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
     //扶梯
     public static final RegistryObject<Block> BAI_HUA_FU_TI_BLOCK = registerBlock("bai_hua_fu_ti_block",
-            ()-> new Eescalator(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1.0F, 6.0F).noOcclusion()));
+            ()-> new Eescalator(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> YUN_SHAN_FU_TI_BLOCK = registerBlock("yun_shan_fu_ti_block",
-            ()-> new Eescalator(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1.0F, 6.0F).noOcclusion()));
+            ()-> new Eescalator(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
 
-    //筒瓦
-    public static final RegistryObject<Block> GRE_CYLINDER_TILE = registerBlock("cylinder_tile_gre",
+    //琉璃瓦
+    public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK = registerBlock("gre_cylinder_tile_block",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK = registerBlock("cylinder_tile_gre_block",
+    public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK = registerBlock("red_cylinder_tile_block",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK = registerBlock("black_cylinder_tile_block",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK = registerBlock("golden_cylinder_tile_block",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_CYLINDER_TILE_BLOCK = registerBlock("cyan_cylinder_tile_block",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK = registerBlock("blue_cylinder_tile_block",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_CYLINDER_TILE_BLOCK = registerBlock("purple_cylinder_tile_block",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+
+    public static final RegistryObject<Block> GRE_CYLINDER_TILE = registerBlock("gre_cylinder_tile",
             ()-> new HalfCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK_1 = registerBlock("cylinder_tile_gre_block_1",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK_2 = registerBlock("cylinder_tile_gre_block_2",
-            ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK_3 = registerBlock("cylinder_tile_gre_block_3",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK_4 = registerBlock("cylinder_tile_gre_block_4",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK_5 = registerBlock("cylinder_tile_gre_block_5",
-            ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK_6 = registerBlock("cylinder_tile_gre_block_6",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK_7 = registerBlock("cylinder_tile_gre_block_7",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GRE_CYLINDER_TILE_BLOCK_8 = registerBlock("cylinder_tile_gre_block_8",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-
-    public static final RegistryObject<Block> RED_CYLINDER_TILE = registerBlock("cylinder_tile_red",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK = registerBlock("cylinder_tile_red_block",
+    public static final RegistryObject<Block> RED_CYLINDER_TILE = registerBlock("red_cylinder_tile",
             ()-> new HalfCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK_1 = registerBlock("cylinder_tile_red_block_1",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK_2 = registerBlock("cylinder_tile_red_block_2",
-            ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK_3 = registerBlock("cylinder_tile_red_block_3",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK_4 = registerBlock("cylinder_tile_red_block_4",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK_5 = registerBlock("cylinder_tile_red_block_5",
-            ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK_6 = registerBlock("cylinder_tile_red_block_6",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK_7 = registerBlock("cylinder_tile_red_block_7",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_CYLINDER_TILE_BLOCK_8 = registerBlock("cylinder_tile_red_block_8",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-
-    public static final RegistryObject<Block> BLACK_CYLINDER_TILE = registerBlock("cylinder_tile_black",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK = registerBlock("cylinder_tile_black_block",
+    public static final RegistryObject<Block> BLACK_CYLINDER_TILE = registerBlock("black_cylinder_tile",
             ()-> new HalfCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK_1 = registerBlock("cylinder_tile_black_block_1",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK_2 = registerBlock("cylinder_tile_black_block_2",
-            ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK_3 = registerBlock("cylinder_tile_black_block_3",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK_4 = registerBlock("cylinder_tile_black_block_4",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK_5 = registerBlock("cylinder_tile_black_block_5",
-            ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK_6 = registerBlock("cylinder_tile_black_block_6",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK_7 = registerBlock("cylinder_tile_black_block_7",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_BLOCK_8 = registerBlock("cylinder_tile_black_block_8",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-
-    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE = registerBlock("cylinder_tile_golden",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK = registerBlock("cylinder_tile_golden_block",
+    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE = registerBlock("golden_cylinder_tile",
             ()-> new HalfCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK_1 = registerBlock("cylinder_tile_golden_block_1",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK_2 = registerBlock("cylinder_tile_golden_block_2",
-            ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK_3 = registerBlock("cylinder_tile_golden_block_3",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK_4 = registerBlock("cylinder_tile_golden_block_4",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK_5 = registerBlock("cylinder_tile_golden_block_5",
-            ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK_6 = registerBlock("cylinder_tile_golden_block_6",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK_7 = registerBlock("cylinder_tile_golden_block_7",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_BLOCK_8 = registerBlock("cylinder_tile_golden_block_8",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-
-    public static final RegistryObject<Block> BLUE_CYLINDER_TILE = registerBlock("cylinder_tile_blue",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK = registerBlock("cylinder_tile_blue_block",
+    public static final RegistryObject<Block> CYAN_CYLINDER_TILE = registerBlock("cyan_cylinder_tile",
             ()-> new HalfCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK_1 = registerBlock("cylinder_tile_blue_block_1",
+    public static final RegistryObject<Block> BLUE_CYLINDER_TILE = registerBlock("blue_cylinder_tile",
+            ()-> new HalfCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_CYLINDER_TILE = registerBlock("purple_cylinder_tile",
+            ()-> new HalfCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //瓦当
+    public static final RegistryObject<Block> GRE_EAVES_TILE = registerBlock("gre_eaves_tile",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK_2 = registerBlock("cylinder_tile_blue_block_2",
+    public static final RegistryObject<Block> RED_EAVES_TILE = registerBlock("red_eaves_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLACK_EAVES_TILE = registerBlock("black_eaves_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> GOLDEN_EAVES_TILE = registerBlock("golden_eaves_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_EAVES_TILE = registerBlock("cyan_eaves_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLUE_EAVES_TILE = registerBlock("blue_eaves_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_EAVES_TILE = registerBlock("purple_eaves_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //侧瓦当
+    public static final RegistryObject<Block> GRE_EAVES_TILE_SIDE = registerBlock("gre_eaves_tile_side",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> RED_EAVES_TILE_SIDE = registerBlock("red_eaves_tile_side",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLACK_EAVES_TILE_SIDE = registerBlock("black_eaves_tile_side",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> GOLDEN_EAVES_TILE_SIDE = registerBlock("golden_eaves_tile_side",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_EAVES_TILE_SIDE = registerBlock("cyan_eaves_tile_side",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLUE_EAVES_TILE_SIDE = registerBlock("blue_eaves_tile_side",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_EAVES_TILE_SIDE = registerBlock("purple_eaves_tile_side",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //双层琉璃瓦
+    public static final RegistryObject<Block> GRE_DOUBLE_CYLINDER_TILE = registerBlock("gre_double_cylinder_tile",
             ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK_3 = registerBlock("cylinder_tile_blue_block_3",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK_4 = registerBlock("cylinder_tile_blue_block_4",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK_5 = registerBlock("cylinder_tile_blue_block_5",
+    public static final RegistryObject<Block> RED_DOUBLE_CYLINDER_TILE = registerBlock("red_double_cylinder_tile",
             ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK_6 = registerBlock("cylinder_tile_blue_block_6",
+    public static final RegistryObject<Block> BLACK_DOUBLE_CYLINDER_TILE = registerBlock("black_double_cylinder_tile",
+            ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> GOLDEN_DOUBLE_CYLINDER_TILE = registerBlock("golden_double_cylinder_tile",
+            ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_DOUBLE_CYLINDER_TILE = registerBlock("cyan_double_cylinder_tile",
+            ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLUE_DOUBLE_CYLINDER_TILE = registerBlock("blue_double_cylinder_tile",
+            ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_DOUBLE_CYLINDER_TILE = registerBlock("purple_double_cylinder_tile",
+            ()-> new BaffleCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //小鸱吻
+    public static final RegistryObject<Block> GRE_SMALL_DEMON_MASK = registerBlock("gre_small_demon_mask",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK_7 = registerBlock("cylinder_tile_blue_block_7",
+    public static final RegistryObject<Block> RED_SMALL_DEMON_MASK = registerBlock("red_small_demon_mask",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_BLOCK_8 = registerBlock("cylinder_tile_blue_block_8",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-
-    //筒瓦块台阶
-    public static final RegistryObject<Block> GRE_CYLINDER_TILE_SLAB = registerBlock("gre_cylinder_tile_slab",
-            ()-> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_CYLINDER_TILE_SLAB = registerBlock("red_cylinder_tile_slab",
-            ()-> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_SLAB = registerBlock("black_cylinder_tile_slab",
-            ()-> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_SLAB = registerBlock("golden_cylinder_tile_slab",
-            ()-> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_SLAB = registerBlock("blue_cylinder_tile_slab",
-            ()-> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    //侧筒瓦
-    public static final RegistryObject<Block> GRE_CYLINDER_TILE_SIDE = registerBlock("gre_cylinder_tile_side",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_CYLINDER_TILE_SIDE = registerBlock("red_cylinder_tile_side",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_SIDE = registerBlock("black_cylinder_tile_side",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_SIDE = registerBlock("golden_cylinder_tile_side",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_SIDE = registerBlock("blue_cylinder_tile_side",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    //蹲兽脊瓦
-    public static final RegistryObject<Block> ANIMALS_GRE_RIDGE_TILE = registerBlock("animals_gre_ridge_tile",
+    public static final RegistryObject<Block> BLACK_SMALL_DEMON_MASK = registerBlock("black_small_demon_mask",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> ANIMALS_RED_RIDGE_TILE = registerBlock("animals_red_ridge_tile",
+    public static final RegistryObject<Block> GOLDEN_SMALL_DEMON_MASK = registerBlock("golden_small_demon_mask",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> ANIMALS_BLACK_RIDGE_TILE = registerBlock("animals_black_ridge_tile",
+    public static final RegistryObject<Block> CYAN_SMALL_DEMON_MASK = registerBlock("cyan_small_demon_mask",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> ANIMALS_GOLDEN_RIDGE_TILE = registerBlock("animals_golden_ridge_tile",
+    public static final RegistryObject<Block> BLUE_SMALL_DEMON_MASK = registerBlock("blue_small_demon_mask",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> ANIMALS_BLUE_RIDGE_TILE = registerBlock("animals_blue_ridge_tile",
+    public static final RegistryObject<Block> PURPLE_SMALL_DEMON_MASK = registerBlock("purple_small_demon_mask",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-
-    public static final RegistryObject<Block> ANIMALS_GRE_RIDGE_TILE_1 = registerBlock("animals_gre_ridge_tile_1",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> ANIMALS_RED_RIDGE_TILE_1 = registerBlock("animals_red_ridge_tile_1",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> ANIMALS_BLACK_RIDGE_TILE_1 = registerBlock("animals_black_ridge_tile_1",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> ANIMALS_GOLDEN_RIDGE_TILE_1 = registerBlock("animals_golden_ridge_tile_1",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> ANIMALS_BLUE_RIDGE_TILE_1 = registerBlock("animals_blue_ridge_tile_1",
-            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-
-    //垂兽脊瓦
-    public static final RegistryObject<Block> HANGING_BEAST_GRE_RIDGE_TILE = registerBlock("hanging_beast_gre_ridge_tile",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> HANGING_BEAST_RED_RIDGE_TILE = registerBlock("hanging_beast_red_ridge_tile",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> HANGING_BEAST_BLACK_RIDGE_TILE = registerBlock("hanging_beast_black_ridge_tile",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> HANGING_BEAST_GOLDEN_RIDGE_TILE = registerBlock("hanging_beast_golden_ridge_tile",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> HANGING_BEAST_BLUE_RIDGE_TILE = registerBlock("hanging_beast_blue_ridge_tile",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-
-    //屋脊
-    public static final RegistryObject<Block> GRE_ROOF_RIDGE = registerBlock("gre_roof_ridge",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_ROOF_RIDGE = registerBlock("red_roof_ridge",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_ROOF_RIDGE = registerBlock("black_roof_ridge",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_ROOF_RIDGE = registerBlock("golden_roof_ridge",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_ROOF_RIDGE = registerBlock("blue_roof_ridge",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-
     //鸱吻
     public static final RegistryObject<Block> GRE_DEMON_MASK = registerBlock("gre_demon_mask",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
@@ -663,9 +596,147 @@ public class ChangShengJueBlocks {
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_DEMON_MASK = registerBlock("golden_demon_mask",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_DEMON_MASK = registerBlock("cyan_demon_mask",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_DEMON_MASK = registerBlock("blue_demon_mask",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-
+    public static final RegistryObject<Block> PURPLE_DEMON_MASK = registerBlock("purple_demon_mask",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //脊瓦
+    public static final RegistryObject<Block> GRE_RIDGE_TILE = registerBlock("gre_ridge_tile",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> RED_RIDGE_TILE = registerBlock("red_ridge_tile",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLACK_RIDGE_TILE = registerBlock("black_ridge_tile",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> GOLDEN_RIDGE_TILE = registerBlock("golden_ridge_tile",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_RIDGE_TILE = registerBlock("cyan_ridge_tile",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLUE_RIDGE_TILE = registerBlock("blue_ridge_tile",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_RIDGE_TILE = registerBlock("purple_ridge_tile",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //双层脊瓦
+    public static final RegistryObject<Block> GRE_DOUBLE_RIDGE_TILE = registerBlock("gre_double_ridge_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> RED_DOUBLE_RIDGE_TILE = registerBlock("red_double_ridge_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLACK_DOUBLE_RIDGE_TILE = registerBlock("black_double_ridge_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> GOLDEN_DOUBLE_RIDGE_TILE = registerBlock("golden_double_ridge_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_DOUBLE_RIDGE_TILE = registerBlock("cyan_double_ridge_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLUE_DOUBLE_RIDGE_TILE = registerBlock("blue_double_ridge_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_DOUBLE_RIDGE_TILE = registerBlock("purple_double_ridge_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //侧向飞檐
+    public static final RegistryObject<Block> GRE_OCTAGONAL_UPTURNED_EAVES = registerBlock("gre_octagonal_upturned_eaves",
+            ()-> new OctagonalUpturnedEaves(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> RED_OCTAGONAL_UPTURNED_EAVES = registerBlock("red_octagonal_upturned_eaves",
+            ()-> new OctagonalUpturnedEaves(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLACK_OCTAGONAL_UPTURNED_EAVES = registerBlock("black_octagonal_upturned_eaves",
+            ()-> new OctagonalUpturnedEaves(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> GOLDEN_OCTAGONAL_UPTURNED_EAVES = registerBlock("golden_octagonal_upturned_eaves",
+            ()-> new OctagonalUpturnedEaves(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_OCTAGONAL_UPTURNED_EAVES = registerBlock("cyan_octagonal_upturned_eaves",
+            ()-> new OctagonalUpturnedEaves(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLUE_OCTAGONAL_UPTURNED_EAVES = registerBlock("blue_octagonal_upturned_eaves",
+            ()-> new OctagonalUpturnedEaves(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_OCTAGONAL_UPTURNED_EAVES = registerBlock("purple_octagonal_upturned_eaves",
+            ()-> new OctagonalUpturnedEaves(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //飞檐
+    public static final RegistryObject<Block> GRE_EAVES_CYLINDER_TILE = registerBlock("gre_eaves_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> RED_EAVES_CYLINDER_TILE = registerBlock("red_eaves_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLACK_EAVES_CYLINDER_TILE = registerBlock("black_eaves_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> GOLDEN_EAVES_CYLINDER_TILE = registerBlock("golden_eaves_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_EAVES_CYLINDER_TILE = registerBlock("cyan_eaves_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLUE_EAVES_CYLINDER_TILE = registerBlock("blue_eaves_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_EAVES_CYLINDER_TILE = registerBlock("purple_eaves_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //琉璃瓦块台阶
+    public static final RegistryObject<Block> GRE_CYLINDER_TILE_SLAB = registerBlock("gre_cylinder_tile_slab",
+            ()-> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> RED_CYLINDER_TILE_SLAB = registerBlock("red_cylinder_tile_slab",
+            ()-> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_SLAB = registerBlock("black_cylinder_tile_slab",
+            ()-> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_SLAB = registerBlock("golden_cylinder_tile_slab",
+            ()-> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_CYLINDER_TILE_SLAB = registerBlock("cyan_cylinder_tile_slab",
+            ()-> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_SLAB = registerBlock("blue_cylinder_tile_slab",
+            ()-> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_CYLINDER_TILE_SLAB = registerBlock("purple_cylinder_tile_slab",
+            ()-> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //侧琉璃瓦
+    public static final RegistryObject<Block> GRE_CYLINDER_TILE_SIDE = registerBlock("gre_cylinder_tile_side",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> RED_CYLINDER_TILE_SIDE = registerBlock("red_cylinder_tile_side",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLACK_CYLINDER_TILE_SIDE = registerBlock("black_cylinder_tile_side",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> GOLDEN_CYLINDER_TILE_SIDE = registerBlock("golden_cylinder_tile_side",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_CYLINDER_TILE_SIDE = registerBlock("cyan_cylinder_tile_side",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLUE_CYLINDER_TILE_SIDE = registerBlock("blue_cylinder_tile_side",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_CYLINDER_TILE_SIDE = registerBlock("purple_cylinder_tile_side",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //蹲兽脊瓦
+    public static final RegistryObject<Block> ANIMALS_GRE_RIDGE_TILE = registerBlock("animals_gre_ridge_tile",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> ANIMALS_RED_RIDGE_TILE = registerBlock("animals_red_ridge_tile",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> ANIMALS_BLACK_RIDGE_TILE = registerBlock("animals_black_ridge_tile",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> ANIMALS_GOLDEN_RIDGE_TILE = registerBlock("animals_golden_ridge_tile",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> ANIMALS_CYAN_RIDGE_TILE = registerBlock("animals_cyan_ridge_tile",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> ANIMALS_BLUE_RIDGE_TILE = registerBlock("animals_blue_ridge_tile",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> ANIMALS_PURPLE_RIDGE_TILE = registerBlock("animals_purple_ridge_tile",
+            ()-> new HalfAnimalsCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //垂兽脊瓦
+    public static final RegistryObject<Block> HANGING_BEAST_GRE_RIDGE_TILE = registerBlock("hanging_beast_gre_ridge_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> HANGING_BEAST_RED_RIDGE_TILE = registerBlock("hanging_beast_red_ridge_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> HANGING_BEAST_BLACK_RIDGE_TILE = registerBlock("hanging_beast_black_ridge_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> HANGING_BEAST_GOLDEN_RIDGE_TILE = registerBlock("hanging_beast_golden_ridge_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> HANGING_BEAST_CYAN_RIDGE_TILE = registerBlock("hanging_beast_cyan_ridge_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> HANGING_BEAST_BLUE_RIDGE_TILE = registerBlock("hanging_beast_blue_ridge_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> HANGING_BEAST_PURPLE_RIDGE_TILE = registerBlock("hanging_beast_purple_ridge_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //屋脊
+    public static final RegistryObject<Block> GRE_ROOF_RIDGE = registerBlock("gre_roof_ridge",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> RED_ROOF_RIDGE = registerBlock("red_roof_ridge",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLACK_ROOF_RIDGE = registerBlock("black_roof_ridge",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> GOLDEN_ROOF_RIDGE = registerBlock("golden_roof_ridge",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_ROOF_RIDGE = registerBlock("cyan_roof_ridge",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> BLUE_ROOF_RIDGE = registerBlock("blue_roof_ridge",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_ROOF_RIDGE = registerBlock("purple_roof_ridge",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     //脊刹
     public static final RegistryObject<Block> GRE_RIDGE_FINIAL_PAVILION = registerBlock("gre_ridge_finial_pavilion",
             ()-> new Pavilion(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
@@ -675,7 +746,11 @@ public class ChangShengJueBlocks {
             ()-> new Pavilion(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_RIDGE_FINIAL_PAVILION = registerBlock("golden_ridge_finial_pavilion",
             ()-> new Pavilion(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_RIDGE_FINIAL_PAVILION = registerBlock("cyan_ridge_finial_pavilion",
+            ()-> new Pavilion(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_RIDGE_FINIAL_PAVILION = registerBlock("blue_ridge_finial_pavilion",
+            ()-> new Pavilion(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_RIDGE_FINIAL_PAVILION = registerBlock("purple_ridge_finial_pavilion",
             ()-> new Pavilion(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
 
     public static final RegistryObject<Block> GRE_CHARACTER_PLAQUE_PAVILION = registerBlock("gre_character_plaque_pavilion",
@@ -686,7 +761,11 @@ public class ChangShengJueBlocks {
             ()-> new Pavilion(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_CHARACTER_PLAQUE_PAVILION = registerBlock("golden_character_plaque_pavilion",
             ()-> new Pavilion(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_CHARACTER_PLAQUE_PAVILION = registerBlock("cyan_character_plaque_pavilion",
+            ()-> new Pavilion(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_CHARACTER_PLAQUE_PAVILION = registerBlock("blue_character_plaque_pavilion",
+            ()-> new Pavilion(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_CHARACTER_PLAQUE_PAVILION = registerBlock("purple_character_plaque_pavilion",
             ()-> new Pavilion(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
 
     //攒尖
@@ -698,10 +777,14 @@ public class ChangShengJueBlocks {
             ()-> new HippedRoof(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_HIPPED_ROOF = registerBlock("golden_hipped_roof",
             ()-> new HippedRoof(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_HIPPED_ROOF = registerBlock("cyan_hipped_roof",
+            ()-> new HippedRoof(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_HIPPED_ROOF = registerBlock("blue_hipped_roof",
             ()-> new HippedRoof(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_HIPPED_ROOF = registerBlock("purple_hipped_roof",
+            ()-> new HippedRoof(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
 
-    //垂脊筒瓦
+    //垂脊琉璃瓦
     public static final RegistryObject<Block> GRE_GABLE_RIDGE_CYLINDER_TILE = registerBlock("gre_gable_ridge_cylinder_tile",
             ()-> new GableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> RED_GABLE_RIDGE_CYLINDER_TILE = registerBlock("red_gable_ridge_cylinder_tile",
@@ -710,20 +793,12 @@ public class ChangShengJueBlocks {
             ()-> new GableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_GABLE_RIDGE_CYLINDER_TILE = registerBlock("golden_gable_ridge_cylinder_tile",
             ()-> new GableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_GABLE_RIDGE_CYLINDER_TILE = registerBlock("cyan_gable_ridge_cylinder_tile",
+            ()-> new GableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_GABLE_RIDGE_CYLINDER_TILE = registerBlock("blue_gable_ridge_cylinder_tile",
             ()-> new GableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-
-    //八角飞檐
-    public static final RegistryObject<Block> GRE_OCTAGONAL_UPTURNED_EAVES = registerBlock("gre_octagonal_upturned_eaves",
-            ()-> new OctagonalUpturnedEaves(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_OCTAGONAL_UPTURNED_EAVES = registerBlock("red_octagonal_upturned_eaves",
-            ()-> new OctagonalUpturnedEaves(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_OCTAGONAL_UPTURNED_EAVES = registerBlock("black_octagonal_upturned_eaves",
-            ()-> new OctagonalUpturnedEaves(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_OCTAGONAL_UPTURNED_EAVES = registerBlock("golden_octagonal_upturned_eaves",
-            ()-> new OctagonalUpturnedEaves(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_OCTAGONAL_UPTURNED_EAVES = registerBlock("blue_octagonal_upturned_eaves",
-            ()-> new OctagonalUpturnedEaves(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_GABLE_RIDGE_CYLINDER_TILE = registerBlock("purple_gable_ridge_cylinder_tile",
+            ()-> new GableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
 
     //八角矮垂脊(前)
     public static final RegistryObject<Block> GRE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT = registerBlock("gre_octagonal_dwarf_ridge_tiles_front",
@@ -734,7 +809,11 @@ public class ChangShengJueBlocks {
             ()-> new OctagonalDwarfRidgeTiles(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT = registerBlock("golden_octagonal_dwarf_ridge_tiles_front",
             ()-> new OctagonalDwarfRidgeTiles(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT = registerBlock("cyan_octagonal_dwarf_ridge_tiles_front",
+            ()-> new OctagonalDwarfRidgeTiles(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT = registerBlock("blue_octagonal_dwarf_ridge_tiles_front",
+            ()-> new OctagonalDwarfRidgeTiles(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT = registerBlock("purple_octagonal_dwarf_ridge_tiles_front",
             ()-> new OctagonalDwarfRidgeTiles(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
 
     public static final RegistryObject<Block> GRE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND = registerBlock("gre_octagonal_dwarf_ridge_tiles_behind",
@@ -745,7 +824,11 @@ public class ChangShengJueBlocks {
             ()-> new OctagonalDwarfRidgeTiles(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND = registerBlock("golden_octagonal_dwarf_ridge_tiles_behind",
             ()-> new OctagonalDwarfRidgeTiles(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND = registerBlock("cyan_octagonal_dwarf_ridge_tiles_behind",
+            ()-> new OctagonalDwarfRidgeTiles(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND = registerBlock("blue_octagonal_dwarf_ridge_tiles_behind",
+            ()-> new OctagonalDwarfRidgeTiles(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND = registerBlock("purple_octagonal_dwarf_ridge_tiles_behind",
             ()-> new OctagonalDwarfRidgeTiles(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
 
     //八角高垂脊(前)
@@ -757,7 +840,11 @@ public class ChangShengJueBlocks {
             ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT = registerBlock("golden_octagonal_high_ridge_tiles_front",
             ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT = registerBlock("cyan_octagonal_high_ridge_tiles_front",
+            ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT = registerBlock("blue_octagonal_high_ridge_tiles_front",
+            ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT = registerBlock("purple_octagonal_high_ridge_tiles_front",
             ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     //八角高垂脊(后)
     public static final RegistryObject<Block> GRE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND = registerBlock("gre_octagonal_high_ridge_tiles_behind",
@@ -768,31 +855,57 @@ public class ChangShengJueBlocks {
             ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND = registerBlock("golden_octagonal_high_ridge_tiles_behind",
             ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND = registerBlock("cyan_octagonal_high_ridge_tiles_behind",
+            ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND = registerBlock("blue_octagonal_high_ridge_tiles_behind",
+            ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND = registerBlock("purple_octagonal_high_ridge_tiles_behind",
             ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
 
     //八角双层垂脊
     public static final RegistryObject<Block> GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT =
-            registerBlock("gre_octagonal_double_gable_ridge_cylinder_tile_front", ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+            registerBlock("gre_octagonal_double_gable_ridge_cylinder_tile_front",
+                    ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT =
-            registerBlock("red_octagonal_double_gable_ridge_cylinder_tile_front", ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+            registerBlock("red_octagonal_double_gable_ridge_cylinder_tile_front",
+                    ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT =
-            registerBlock("black_octagonal_double_gable_ridge_cylinder_tile_front", ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+            registerBlock("black_octagonal_double_gable_ridge_cylinder_tile_front",
+                    ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT =
-            registerBlock("golden_octagonal_double_gable_ridge_cylinder_tile_front", ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+            registerBlock("golden_octagonal_double_gable_ridge_cylinder_tile_front",
+                    ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT =
+            registerBlock("cyan_octagonal_double_gable_ridge_cylinder_tile_front",
+                    ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT =
-            registerBlock("blue_octagonal_double_gable_ridge_cylinder_tile_front", ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+            registerBlock("blue_octagonal_double_gable_ridge_cylinder_tile_front",
+                    ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT =
+            registerBlock("purple_octagonal_double_gable_ridge_cylinder_tile_front",
+                    ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
 
     public static final RegistryObject<Block> GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND =
-            registerBlock("gre_octagonal_double_gable_ridge_cylinder_tile_behind", ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+            registerBlock("gre_octagonal_double_gable_ridge_cylinder_tile_behind",
+                    ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND =
-            registerBlock("red_octagonal_double_gable_ridge_cylinder_tile_behind", ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+            registerBlock("red_octagonal_double_gable_ridge_cylinder_tile_behind",
+                    ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND =
-            registerBlock("black_octagonal_double_gable_ridge_cylinder_tile_behind", ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+            registerBlock("black_octagonal_double_gable_ridge_cylinder_tile_behind",
+                    ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND =
-            registerBlock("golden_octagonal_double_gable_ridge_cylinder_tile_behind", ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+            registerBlock("golden_octagonal_double_gable_ridge_cylinder_tile_behind",
+                    ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND =
+            registerBlock("cyan_octagonal_double_gable_ridge_cylinder_tile_behind",
+                    ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND =
-            registerBlock("blue_octagonal_double_gable_ridge_cylinder_tile_behind", ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+            registerBlock("blue_octagonal_double_gable_ridge_cylinder_tile_behind",
+                    ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND =
+            registerBlock("purple_octagonal_double_gable_ridge_cylinder_tile_behind",
+                    ()-> new OctagonalDoubleGableRidgeCylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
 
     //八角垂脊
     public static final RegistryObject<Block> GRE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE = registerBlock("gre_octagonal_gable_ridge_cylinder_tile",
@@ -803,9 +916,12 @@ public class ChangShengJueBlocks {
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE = registerBlock("golden_octagonal_gable_ridge_cylinder_tile",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE = registerBlock("cyan_octagonal_gable_ridge_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE = registerBlock("blue_octagonal_gable_ridge_cylinder_tile",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-
+    public static final RegistryObject<Block> PURPLE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE = registerBlock("purple_octagonal_gable_ridge_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     //双层垂脊
     public static final RegistryObject<Block> GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE = registerBlock("gre_double_gable_ridge_cylinder_tile",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
@@ -815,7 +931,11 @@ public class ChangShengJueBlocks {
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE = registerBlock("golden_double_gable_ridge_cylinder_tile",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE = registerBlock("cyan_double_gable_ridge_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE = registerBlock("blue_double_gable_ridge_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE = registerBlock("purple_double_gable_ridge_cylinder_tile",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
 
     public static final RegistryObject<Block> GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE = registerBlock("gre_double_hanging_beast_gable_ridge_cylinder_tile",
@@ -826,9 +946,13 @@ public class ChangShengJueBlocks {
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE = registerBlock("golden_double_hanging_beast_gable_ridge_cylinder_tile",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE = registerBlock("cyan_double_hanging_beast_gable_ridge_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE = registerBlock("blue_double_hanging_beast_gable_ridge_cylinder_tile",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    //短筒瓦
+    public static final RegistryObject<Block> PURPLE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE = registerBlock("purple_double_hanging_beast_gable_ridge_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //短琉璃瓦
     public static final RegistryObject<Block> GRE_SHORT_CYLINDER_TILE = registerBlock("gre_short_cylinder_tile",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> RED_SHORT_CYLINDER_TILE = registerBlock("red_short_cylinder_tile",
@@ -837,10 +961,13 @@ public class ChangShengJueBlocks {
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_SHORT_CYLINDER_TILE = registerBlock("golden_short_cylinder_tile",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_SHORT_CYLINDER_TILE = registerBlock("cyan_short_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_SHORT_CYLINDER_TILE = registerBlock("blue_short_cylinder_tile",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-
-    //侧双层筒瓦
+    public static final RegistryObject<Block> PURPLE_SHORT_CYLINDER_TILE = registerBlock("purple_short_cylinder_tile",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    //侧双层琉璃瓦
     public static final RegistryObject<Block> GRE_DOUBLE_CYLINDER_TILE_SIDE = registerBlock("gre_double_cylinder_tile_side",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> RED_DOUBLE_CYLINDER_TILE_SIDE = registerBlock("red_double_cylinder_tile_side",
@@ -849,35 +976,20 @@ public class ChangShengJueBlocks {
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_DOUBLE_CYLINDER_TILE_SIDE = registerBlock("golden_double_cylinder_tile_side",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> CYAN_DOUBLE_CYLINDER_TILE_SIDE = registerBlock("cyan_double_cylinder_tile_side",
+            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> BLUE_DOUBLE_CYLINDER_TILE_SIDE = registerBlock("blue_double_cylinder_tile_side",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    //侧高筒瓦
-    public static final RegistryObject<Block> GRE_HIGH_CYLINDER_TILE_SIDE = registerBlock("gre_high_cylinder_tile_side",
+    public static final RegistryObject<Block> PURPLE_DOUBLE_CYLINDER_TILE_SIDE = registerBlock("purple_double_cylinder_tile_side",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_HIGH_CYLINDER_TILE_SIDE = registerBlock("red_high_cylinder_tile_side",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_HIGH_CYLINDER_TILE_SIDE = registerBlock("black_high_cylinder_tile_side",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_HIGH_CYLINDER_TILE_SIDE = registerBlock("golden_high_cylinder_tile_side",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_HIGH_CYLINDER_TILE_SIDE = registerBlock("blue_high_cylinder_tile_side",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    //侧瓦当
-    public static final RegistryObject<Block> GRE_EAVES_TILE_SIDE = registerBlock("gre_eaves_tile_side",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> RED_EAVES_TILE_SIDE = registerBlock("red_eaves_tile_side",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLACK_EAVES_TILE_SIDE = registerBlock("black_eaves_tile_side",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_EAVES_TILE_SIDE = registerBlock("golden_eaves_tile_side",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> BLUE_EAVES_TILE_SIDE = registerBlock("blue_eaves_tile_side",
-            ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-
     //瓦片
-    public static final RegistryObject<Block> GOLDEN_TILE_BLOCK = registerBlock("golden_tile_block",
+    public static final RegistryObject<Block> GOLDEN_TILE = registerBlock("golden_tile",
+            ()-> new SheetTiles(Blocks.STONE_STAIRS.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+    public static final RegistryObject<Block> GOLDEN_GENTLE_TILE = registerBlock("golden_gentle_tile",
+            ()-> new SheetGentleTiles(Blocks.STONE_STAIRS.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+    public static final RegistryObject<Block> GOLDEN_CORNICES = registerBlock("golden_cornices",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> GOLDEN_TILE_BLOCK_1 = registerBlock("golden_tile_block_1",
+    public static final RegistryObject<Block> GOLDEN_GENTLE_CORNICES = registerBlock("golden_gentle_cornices",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_TILE_BLOCK_2 = registerBlock("golden_tile_block_2",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
@@ -885,9 +997,14 @@ public class ChangShengJueBlocks {
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> GOLDEN_TILE_BLOCK_4 = registerBlock("golden_tile_block_4",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> TILE_BLOCK = registerBlock("tile_block",
+
+    public static final RegistryObject<Block> BLACK_TILE = registerBlock("black_tile",
+            ()-> new SheetTiles(Blocks.STONE_STAIRS.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+    public static final RegistryObject<Block> BLACK_GENTLE_TILE = registerBlock("black_gentle_tile",
+            ()-> new SheetGentleTiles(Blocks.STONE_STAIRS.defaultBlockState(), BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+    public static final RegistryObject<Block> BLACK_CORNICES = registerBlock("black_cornices",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
-    public static final RegistryObject<Block> TILE_BLOCK_1 = registerBlock("tile_block_1",
+    public static final RegistryObject<Block> BLACK_GENTLE_CORNICES = registerBlock("black_gentle_cornices",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
     public static final RegistryObject<Block> TILE_BLOCK_2 = registerBlock("tile_block_2",
             ()-> new CylinderTile(BlockBehaviour.Properties.copy(Blocks.STONE).requiresCorrectToolForDrops().noOcclusion()));
@@ -941,25 +1058,25 @@ public class ChangShengJueBlocks {
 
     //窗户
     public static final RegistryObject<Block> WINDOWS_BIRCH_BLOCK = registerBlock("windows_birch_block",
-            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).strength(0.5F).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_BIRCH_BLOCK_1 = registerBlock("windows_birch_block_1",
-            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).strength(0.5F).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_ACACIA_BLOCK = registerBlock("windows_acacia_block",
-            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS).strength(0.5F).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_ACACIA_BLOCK_1 = registerBlock("windows_acacia_block_1",
-            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS).strength(0.5F).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_DARK_OAK_BLOCK = registerBlock("windows_dark_oak_block",
-            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS).strength(0.5F).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_DARK_OAK_BLOCK_1 = registerBlock("windows_dark_oak_block_1",
-            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS).strength(0.5F).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_OAK_BLOCK = registerBlock("windows_oak_block",
-            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).strength(0.5F).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_OAK_BLOCK_1 = registerBlock("windows_oak_block_1",
-            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).strength(0.5F).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_SPRUCE_BLOCK = registerBlock("windows_spruce_block",
-            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).strength(0.5F).noOcclusion()));
     public static final RegistryObject<Block> WINDOWS_SPRUCE_BLOCK_1 = registerBlock("windows_spruce_block_1",
-            ()-> new Windows(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.WOOD).noOcclusion()));
+            ()-> new Windows(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).strength(0.5F).noOcclusion()));
 
     public static final RegistryObject<Block> HIGH_BIRCH_WINDOWS = registerBlock("high_birch_windows",
             ()-> new HighWindows(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR), BlockSetType.BIRCH));
@@ -973,40 +1090,25 @@ public class ChangShengJueBlocks {
             ()-> new HighWindows(BlockBehaviour.Properties.copy(Blocks.OAK_DOOR),BlockSetType.SPRUCE));
 
     //方块
-    public static final RegistryObject<Block> WHITE_JADE_WALL = registerBlock("white_jade_wall",
-            ()-> new WallBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> HANG_TU_WALL = registerBlock("hang_tu_wall",
-            ()-> new WallBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.STONE)));
+            ()-> new WallBlock(BlockBehaviour.Properties.copy(HANG_TU_BLOCK.get()).forceSolidOn()));
     public static final RegistryObject<Block> TU_PEI_WALL = registerBlock("tu_pei_wall",
-            ()-> new WallBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> WHITE_WALLS_BLOCK = registerBlock("white_walls_block",
-            ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> COOL_WHITE_WALLS_BLOCK = registerBlock("cool_white_walls_block",
-            ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> WARM_WHITE_WALLS_BLOCK = registerBlock("warm_white_walls_block",
-            ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> WHITE_FINE_BRICKS = registerBlock("white_fine_bricks",
-            ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> WHITE_BRICKS = registerBlock("white_bricks",
-            ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> BLACK_STONE_FINE_BRICKS = registerBlock("black_stone_fine_bricks",
-            ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> BLACK_STONE_BRICKS = registerBlock("black_stone_bricks",
-            ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> BLUE_STONE_FINE_BRICKS = registerBlock("blue_stone_fine_bricks",
-            ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> BLUE_STONE_BRICKS = registerBlock("blue_stone_bricks",
-            ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> WHITE_JADE_BLOCK = registerBlock("white_jade_block",
-            ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+            ()-> new WallBlock(BlockBehaviour.Properties.copy(TU_PEI_BLOCK.get()).forceSolidOn()));
+    public static final RegistryObject<Block> WHITE_WALLS_BLOCK = registerBlock("white_walls_block", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS).forceSolidOn()));
+    public static final RegistryObject<Block> COOL_WHITE_WALLS_BLOCK = registerBlock("cool_white_walls_block", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS).forceSolidOn()));
+    public static final RegistryObject<Block> WARM_WHITE_WALLS_BLOCK = registerBlock("warm_white_walls_block", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS).forceSolidOn()));
+    public static final RegistryObject<Block> WHITE_FINE_BRICKS = registerBlock("white_fine_bricks", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS).forceSolidOn()));
+    public static final RegistryObject<Block> WHITE_BRICKS = registerBlock("white_bricks", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS).forceSolidOn()));
+    public static final RegistryObject<Block> BLACK_STONE_FINE_BRICKS = registerBlock("black_stone_fine_bricks", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS).forceSolidOn()));
+    public static final RegistryObject<Block> BLACK_STONE_BRICKS = registerBlock("black_stone_bricks", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS).forceSolidOn()));
+    public static final RegistryObject<Block> BLUE_STONE_FINE_BRICKS = registerBlock("blue_stone_fine_bricks", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS).forceSolidOn()));
+    public static final RegistryObject<Block> BLUE_STONE_BRICKS = registerBlock("blue_stone_bricks", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS).forceSolidOn()));
+    public static final RegistryObject<Block> WHITE_JADE_BLOCK = registerBlock("white_jade_block", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS).forceSolidOn()));
+    public static final RegistryObject<Block> WHITE_JADE_WALL = registerBlock("white_jade_wall", ()-> new WallBlock(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WHITE_JADE_BLOCK.get())));
 
-
-    public static final RegistryObject<Block> BITUMEN_FLOOR_TILES_BLOCK = registerBlock("bitumen_floor_tiles_block",
-            ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> BLUE_FLOOR_TILES_BLOCK = registerBlock("blue_floor_tiles_block",
-            ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> BLACK_FLOOR_TILES_BLOCK = registerBlock("black_floor_tiles_block",
-            ()-> new Block(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> BITUMEN_FLOOR_TILES_BLOCK = registerBlock("bitumen_floor_tiles_block", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS).forceSolidOn()));
+    public static final RegistryObject<Block> BLUE_FLOOR_TILES_BLOCK = registerBlock("blue_floor_tiles_block", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS).forceSolidOn()));
+    public static final RegistryObject<Block> BLACK_FLOOR_TILES_BLOCK = registerBlock("black_floor_tiles_block", ()-> new Block(BlockBehaviour.Properties.copy(Blocks.BRICKS).forceSolidOn()));
     //楼梯
     public static final RegistryObject<Block> WHITE_JADE_STAIRS = registerBlock("white_jade_stairs",
             ()-> new StairBlock(()-> ChangShengJueBlocks.WHITE_JADE_BLOCK.get().defaultBlockState(),
@@ -1029,281 +1131,259 @@ public class ChangShengJueBlocks {
 
     //栏杆
     public static final RegistryObject<Block> WHITE_JADE_BALUSTRADE = registerBlock("white_jade_balustrade",
-            ()-> new Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
-                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+            ()-> new Balustrade(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WHITE_JADE_BLOCK.get()).instrument(NoteBlockInstrument.BASEDRUM)));
+    public static final RegistryObject<Block> WHITE_JADE_GUARDRAIL = registerBlock("white_jade_guardrail",
+            ()-> new Guardrail(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WHITE_JADE_BLOCK.get()).instrument(NoteBlockInstrument.BASEDRUM)));
+
+    public static final RegistryObject<Block> STONE_BALUSTRADE = registerBlock("stone_balustrade",
+            ()-> new StoneBalustrade(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().instrument(NoteBlockInstrument.BASEDRUM)));
 
     public static final RegistryObject<Block> OAK_BALUSTRADE = registerBlock("oak_balustrade",
-            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
-                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+            ()-> new WoodenBalustrade(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE_GATE)));
 
     public static final RegistryObject<Block> SPRUCE_BALUSTRADE = registerBlock("spruce_balustrade",
-            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
-                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+            ()-> new WoodenBalustrade(BlockBehaviour.Properties.copy(Blocks.SPRUCE_FENCE_GATE)));
 
     public static final RegistryObject<Block> BIRCH_BALUSTRADE = registerBlock("birch_balustrade",
-            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
-                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+            ()-> new WoodenBalustrade(BlockBehaviour.Properties.copy(Blocks.BIRCH_FENCE_GATE)));
 
     public static final RegistryObject<Block> JUNGLE_BALUSTRADE = registerBlock("jungle_balustrade",
-            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
-                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+            ()-> new WoodenBalustrade(BlockBehaviour.Properties.copy(Blocks.JUNGLE_FENCE_GATE)));
 
     public static final RegistryObject<Block> ACACIA_BALUSTRADE = registerBlock("acacia_balustrade",
-            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
-                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+            ()-> new WoodenBalustrade(BlockBehaviour.Properties.copy(Blocks.ACACIA_FENCE_GATE)));
 
     public static final RegistryObject<Block> MANGROVE_BALUSTRADE = registerBlock("mangrove_balustrade",
-            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
-                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+            ()-> new WoodenBalustrade(BlockBehaviour.Properties.copy(Blocks.MANGROVE_FENCE_GATE)));
 
     public static final RegistryObject<Block> CHERRY_BALUSTRADE = registerBlock("cherry_balustrade",
-            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
-                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+            ()-> new WoodenBalustrade(BlockBehaviour.Properties.copy(Blocks.CHERRY_FENCE_GATE)));
 
     public static final RegistryObject<Block> DARK_OAK_BALUSTRADE = registerBlock("dark_oak_balustrade",
-            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
-                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+            ()-> new WoodenBalustrade(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_FENCE_GATE)));
 
     public static final RegistryObject<Block> CRIMSON_BALUSTRADE = registerBlock("crimson_balustrade",
-            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
-                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+            ()-> new WoodenBalustrade(BlockBehaviour.Properties.copy(Blocks.CRIMSON_FENCE_GATE)));
 
     public static final RegistryObject<Block> WARPED_BALUSTRADE = registerBlock("warped_balustrade",
-            ()-> new Wooden_Balustrade(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
-                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
-
-
-
-    //增加
-    public static final RegistryObject<Block> WHITE_JADE_GUARDRAIL = registerBlock("white_jade_guardrail",
-            ()-> new Guardrail(BlockBehaviour.Properties.of().mapColor(MapColor.NETHER)
-                    .instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops()
-                    .strength(2.0F, 6.0F).sound(SoundType.NETHER_BRICKS)));
+            ()-> new WoodenBalustrade(BlockBehaviour.Properties.copy(Blocks.WARPED_FENCE_GATE)));
 
     //台阶
     public static final RegistryObject<Block> WHITE_JADE_SLAB =  registerBlock("white_jade_slab",
-            ()-> new SlabBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
+            ()-> new SlabBlock(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WHITE_JADE_BLOCK.get())));
     public static final RegistryObject<Block> HANG_TU_SLAB = registerBlock("hang_tu_slab",
-            ()-> new SlabBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
+            ()-> new SlabBlock(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HANG_TU_BLOCK.get())));
     public static final RegistryObject<Block> TU_PEI_SLAB = registerBlock("tu_pei_slab",
-            ()-> new SlabBlock(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.GRAVEL)));
+            ()-> new SlabBlock(BlockBehaviour.Properties.copy(ChangShengJueBlocks.TU_PEI_BLOCK.get())));
     public static final RegistryObject<Block> WHITE_BRICKS_SLAB = registerBlock("white_bricks_slab",
-            ()-> new SlabBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().sound(SoundType.STONE).strength(1.5F, 6.0F)));
+            ()-> new SlabBlock(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WHITE_BRICKS.get())));
     public static final RegistryObject<Block> BLACK_STONE_BRICKS_SLAB = registerBlock("black_stone_bricks_slab",
-            ()-> new SlabBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().sound(SoundType.STONE).strength(1.5F, 6.0F)));
+            ()-> new SlabBlock(BlockBehaviour.Properties.copy(ChangShengJueBlocks.BLACK_STONE_BRICKS.get())));
     public static final RegistryObject<Block> BLUE_STONE_BRICKS_SLAB = registerBlock("blue_stone_bricks_slab",
-            ()-> new SlabBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().sound(SoundType.STONE).strength(1.5F, 6.0F)));
+            ()-> new SlabBlock(BlockBehaviour.Properties.copy(ChangShengJueBlocks.BLUE_STONE_BRICKS.get())));
 
     //竖墙
     public static final RegistryObject<Block> WHITE_BRICKS_VERTICAL_WALLS = registerBlock("white_bricks_vertical_walls",
-            ()-> new VerticalWalls(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().sound(SoundType.STONE).strength(1.5F, 6.0F).noOcclusion()));
+            ()-> new VerticalWalls(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WHITE_BRICKS.get()).noOcclusion()));
     public static final RegistryObject<Block> BLACK_STONE_VERTICAL_WALLS = registerBlock("black_stone_vertical_walls",
-            ()-> new VerticalWalls(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().sound(SoundType.STONE).strength(1.5F, 6.0F).noOcclusion()));
+            ()-> new VerticalWalls(BlockBehaviour.Properties.copy(ChangShengJueBlocks.BLACK_STONE_BRICKS.get()).noOcclusion()));
     public static final RegistryObject<Block> BLUE_STONE_VERTICAL_WALLS = registerBlock("blue_stone_vertical_walls",
-            ()-> new VerticalWalls(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().sound(SoundType.STONE).strength(1.5F, 6.0F).noOcclusion()));
+            ()-> new VerticalWalls(BlockBehaviour.Properties.copy(ChangShengJueBlocks.BLUE_STONE_BRICKS.get()).noOcclusion()));
 
     //霸王拳
     public static final RegistryObject<Block> MANGROVE_OVERLORD_FIST = registerBlock("mangrove_overlord_fist",
-            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.MANGROVE_PLANKS).noCollission()));
     public static final RegistryObject<Block> BIRCH_OVERLORD_FIST = registerBlock("birch_overlord_fist",
-            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.BIRCH_PLANKS).noCollission()));
     public static final RegistryObject<Block> JUNGLE_OVERLORD_FIST = registerBlock("jungle_overlord_fist",
-            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.JUNGLE_PLANKS).noCollission()));
     public static final RegistryObject<Block> CRIMSON_OVERLORD_FIST = registerBlock("crimson_overlord_fist",
-            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.CRIMSON_PLANKS).noCollission()));
     public static final RegistryObject<Block> WARPED_OVERLORD_FIST = registerBlock("warped_overlord_fist",
-            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.WARPED_PLANKS).noCollission()));
     public static final RegistryObject<Block> ACACIA_OVERLORD_FIST = registerBlock("acacia_overlord_fist",
-            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.ACACIA_PLANKS).noCollission()));
     public static final RegistryObject<Block> DARK_OAK_OVERLORD_FIST = registerBlock("dark_oak_overlord_fist",
-            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.DARK_OAK_PLANKS).noCollission()));
     public static final RegistryObject<Block> OAK_OVERLORD_FIST = registerBlock("oak_overlord_fist",
-            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.OAK_PLANKS).noCollission()));
     public static final RegistryObject<Block> CHERRY_OVERLORD_FIST = registerBlock("cherry_overlord_fist",
-            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.CHERRY_PLANKS).noCollission()));
     public static final RegistryObject<Block> SPRUCE_OVERLORD_FIST = registerBlock("spruce_overlord_fist",
-            ()-> new OverLordFist(Block.Properties.copy(Blocks.STONE)));
+            ()-> new OverLordFist(Block.Properties.copy(Blocks.SPRUCE_PLANKS).noCollission()));
     /*雀替-短*/
     //回纹雀替
-    public static final RegistryObject<Block> SHORT_MANGROVE_BACK_BRACKET = registerBlock( "short_mangrove_back_bracket",
-            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_BIRCH_BACK_BRACKET = registerBlock( "short_birch_back_bracket",
-            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_JUNGLE_BACK_BRACKET = registerBlock( "short_jungle_back_bracket",
-            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_CRIMSON_BACK_BRACKET = registerBlock( "short_crimson_back_bracket",
-            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_WARPED_BACK_BRACKET = registerBlock( "short_warped_back_bracket",
-            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_ACACIA_BACK_BRACKET = registerBlock( "short_acacia_back_bracket",
-            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_DARK_OAK_BACK_BRACKET = registerBlock( "short_dark_oak_back_bracket",
-            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_OAK_BACK_BRACKET = registerBlock( "short_oak_back_bracket",
-            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_CHERRY_BACK_BRACKET = registerBlock( "short_cherry_back_bracket",
-            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_SPRUCE_BACK_BRACKET = registerBlock( "short_spruce_back_bracket",
-            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_MANGROVE_BACK_BRACKET = registerBlock("short_mangrove_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.MANGROVE_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_BIRCH_BACK_BRACKET = registerBlock("short_birch_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.BIRCH_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_JUNGLE_BACK_BRACKET = registerBlock("short_jungle_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.JUNGLE_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_CRIMSON_BACK_BRACKET = registerBlock("short_crimson_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.CRIMSON_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_WARPED_BACK_BRACKET = registerBlock("short_warped_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.WARPED_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_ACACIA_BACK_BRACKET = registerBlock("short_acacia_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.ACACIA_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_DARK_OAK_BACK_BRACKET = registerBlock("short_dark_oak_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.DARK_OAK_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_OAK_BACK_BRACKET = registerBlock("short_oak_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.OAK_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_CHERRY_BACK_BRACKET = registerBlock("short_cherry_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.CHERRY_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_SPRUCE_BACK_BRACKET = registerBlock("short_spruce_back_bracket",
+            ()-> new ChineseBracketShort(Block.Properties.copy(Blocks.SPRUCE_PLANKS).noCollission()));
     //花牙子雀替
-    public static final RegistryObject<Block> SHORT_MANGROVE_FLOWER_BRACKET = registerBlock( "short_mangrove_flower_bracket",
-            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_BIRCH_FLOWER_BRACKET = registerBlock( "short_birch_flower_bracket",
-            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_JUNGLE_FLOWER_BRACKET = registerBlock( "short_jungle_flower_bracket",
-            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_CRIMSON_FLOWER_BRACKET = registerBlock( "short_crimson_flower_bracket",
-            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_WARPED_FLOWER_BRACKET = registerBlock( "short_warped_flower_bracket",
-            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_ACACIA_FLOWER_BRACKET = registerBlock( "short_acacia_flower_bracket",
-            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_DARK_OAK_FLOWER_BRACKET = registerBlock( "short_dark_oak_flower_bracket",
-            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_OAK_FLOWER_BRACKET = registerBlock( "short_oak_flower_bracket",
-            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_CHERRY_FLOWER_BRACKET = registerBlock( "short_cherry_flower_bracket",
-            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SHORT_SPRUCE_FLOWER_BRACKET = registerBlock( "short_spruce_flower_bracket",
-            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> SHORT_MANGROVE_FLOWER_BRACKET = registerBlock("short_mangrove_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.MANGROVE_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_BIRCH_FLOWER_BRACKET = registerBlock("short_birch_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.BIRCH_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_JUNGLE_FLOWER_BRACKET = registerBlock("short_jungle_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.JUNGLE_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_CRIMSON_FLOWER_BRACKET = registerBlock("short_crimson_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.CRIMSON_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_WARPED_FLOWER_BRACKET = registerBlock("short_warped_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.WARPED_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_ACACIA_FLOWER_BRACKET = registerBlock("short_acacia_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.ACACIA_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_DARK_OAK_FLOWER_BRACKET = registerBlock("short_dark_oak_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.DARK_OAK_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_OAK_FLOWER_BRACKET = registerBlock("short_oak_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.OAK_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_CHERRY_FLOWER_BRACKET = registerBlock("short_cherry_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.CHERRY_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SHORT_SPRUCE_FLOWER_BRACKET = registerBlock("short_spruce_flower_bracket",
+            ()-> new ChineseFlowerBracketShort(Block.Properties.copy(Blocks.SPRUCE_PLANKS).noCollission()));
     /*雀替-长*/
-    public static final RegistryObject<Block> LONG_MANGROVE_BACK_BRACKET = registerBlock( "long_mangrove_back_bracket",
-            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_BIRCH_BACK_BRACKET = registerBlock( "long_birch_back_bracket",
-            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_JUNGLE_BACK_BRACKET = registerBlock( "long_jungle_back_bracket",
-            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_CRIMSON_BACK_BRACKET = registerBlock( "long_crimson_back_bracket",
-            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_WARPED_BACK_BRACKET = registerBlock( "long_warped_back_bracket",
-            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_ACACIA_BACK_BRACKET = registerBlock( "long_acacia_back_bracket",
-            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_DARK_OAK_BACK_BRACKET = registerBlock( "long_dark_oak_back_bracket",
-            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_OAK_BACK_BRACKET = registerBlock( "long_oak_back_bracket",
-            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_CHERRY_BACK_BRACKET = registerBlock( "long_cherry_back_bracket",
-            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_SPRUCE_BACK_BRACKET = registerBlock( "long_spruce_back_bracket",
-            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_MANGROVE_BACK_BRACKET = registerBlock("long_mangrove_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.MANGROVE_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_BIRCH_BACK_BRACKET = registerBlock("long_birch_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.BIRCH_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_JUNGLE_BACK_BRACKET = registerBlock("long_jungle_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.JUNGLE_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_CRIMSON_BACK_BRACKET = registerBlock("long_crimson_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.CRIMSON_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_WARPED_BACK_BRACKET = registerBlock("long_warped_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.WARPED_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_ACACIA_BACK_BRACKET = registerBlock("long_acacia_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.ACACIA_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_DARK_OAK_BACK_BRACKET = registerBlock("long_dark_oak_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.DARK_OAK_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_OAK_BACK_BRACKET = registerBlock("long_oak_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.OAK_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_CHERRY_BACK_BRACKET = registerBlock("long_cherry_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.CHERRY_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_SPRUCE_BACK_BRACKET = registerBlock("long_spruce_back_bracket",
+            ()-> new ChineseBracketLong(Block.Properties.copy(Blocks.SPRUCE_PLANKS).noCollission()));
     //花牙子雀替
-    public static final RegistryObject<Block> LONG_MANGROVE_FLOWER_BRACKET = registerBlock( "long_mangrove_flower_bracket",
-            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_BIRCH_FLOWER_BRACKET = registerBlock( "long_birch_flower_bracket",
-            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_JUNGLE_FLOWER_BRACKET = registerBlock( "long_jungle_flower_bracket",
-            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_CRIMSON_FLOWER_BRACKET = registerBlock( "long_crimson_flower_bracket",
-            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_WARPED_FLOWER_BRACKET = registerBlock( "long_warped_flower_bracket",
-            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_ACACIA_FLOWER_BRACKET = registerBlock( "long_acacia_flower_bracket",
-            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_DARK_OAK_FLOWER_BRACKET = registerBlock( "long_dark_oak_flower_bracket",
-            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_OAK_FLOWER_BRACKET = registerBlock( "long_oak_flower_bracket",
-            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_CHERRY_FLOWER_BRACKET = registerBlock( "long_cherry_flower_bracket",
-            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> LONG_SPRUCE_FLOWER_BRACKET = registerBlock( "long_spruce_flower_bracket",
-            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> LONG_MANGROVE_FLOWER_BRACKET = registerBlock("long_mangrove_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.MANGROVE_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_BIRCH_FLOWER_BRACKET = registerBlock("long_birch_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.BIRCH_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_JUNGLE_FLOWER_BRACKET = registerBlock("long_jungle_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.JUNGLE_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_CRIMSON_FLOWER_BRACKET = registerBlock("long_crimson_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.CRIMSON_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_WARPED_FLOWER_BRACKET = registerBlock("long_warped_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.WARPED_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_ACACIA_FLOWER_BRACKET = registerBlock("long_acacia_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.ACACIA_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_DARK_OAK_FLOWER_BRACKET = registerBlock("long_dark_oak_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.DARK_OAK_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_OAK_FLOWER_BRACKET = registerBlock("long_oak_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.OAK_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_CHERRY_FLOWER_BRACKET = registerBlock("long_cherry_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.CHERRY_PLANKS).noCollission()));
+    public static final RegistryObject<Block> LONG_SPRUCE_FLOWER_BRACKET = registerBlock("long_spruce_flower_bracket",
+            ()-> new ChineseFlowerBracketLong(Block.Properties.copy(Blocks.SPRUCE_PLANKS).noCollission()));
     //斗拱
-    public static final RegistryObject<Block> MANGROVE_DOUGONG = registerBlock( "mangrove_dougong",
-            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> BIRCH_DOUGONG = registerBlock( "birch_dougong",
-            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> JUNGLE_DOUGONG = registerBlock( "jungle_dougong",
-            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> CRIMSON_DOUGONG = registerBlock( "crimson_dougong",
-            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> WARPED_DOUGONG = registerBlock( "warped_dougong",
-            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> ACACIA_DOUGONG = registerBlock( "acacia_dougong",
-            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> DARK_OAK_DOUGONG = registerBlock( "dark_oak_dougong",
-            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> OAK_DOUGONG = registerBlock( "oak_dougong",
-            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> CHERRY_DOUGONG = registerBlock( "cherry_dougong",
-            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> SPRUCE_DOUGONG = registerBlock( "spruce_dougong",
-            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
+    public static final RegistryObject<Block> MANGROVE_DOUGONG = registerBlock("mangrove_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.MANGROVE_PLANKS).noCollission()));
+    public static final RegistryObject<Block> BIRCH_DOUGONG = registerBlock("birch_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.BIRCH_PLANKS).noCollission()));
+    public static final RegistryObject<Block> JUNGLE_DOUGONG = registerBlock("jungle_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.JUNGLE_PLANKS).noCollission()));
+    public static final RegistryObject<Block> CRIMSON_DOUGONG = registerBlock("crimson_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.CRIMSON_PLANKS).noCollission()));
+    public static final RegistryObject<Block> WARPED_DOUGONG = registerBlock("warped_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.WARPED_PLANKS).noCollission()));
+    public static final RegistryObject<Block> ACACIA_DOUGONG = registerBlock("acacia_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.ACACIA_PLANKS).noCollission()));
+    public static final RegistryObject<Block> DARK_OAK_DOUGONG = registerBlock("dark_oak_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.DARK_OAK_PLANKS).noCollission()));
+    public static final RegistryObject<Block> OAK_DOUGONG = registerBlock("oak_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.OAK_PLANKS).noCollission()));
+    public static final RegistryObject<Block> CHERRY_DOUGONG = registerBlock("cherry_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.CHERRY_PLANKS).noCollission()));
+    public static final RegistryObject<Block> SPRUCE_DOUGONG = registerBlock("spruce_dougong",
+            ()-> new Dougong(Block.Properties.copy(Blocks.SPRUCE_PLANKS).noCollission()));
     //绿、青斗拱
-    public static final RegistryObject<Block> GREEN_DOUGONG = registerBlock( "green_dougong",
-            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> BLUE_DOUGONG = registerBlock( "blue_dougong",
-            ()-> new Dougong(Block.Properties.copy(Blocks.STONE)));
-
+    public static final RegistryObject<Block> GREEN_DOUGONG = registerBlock("green_dougong", ()-> new Dougong(Block.Properties.copy(Blocks.STONE).noCollission()));
+    public static final RegistryObject<Block> BLUE_DOUGONG = registerBlock("blue_dougong", ()-> new Dougong(Block.Properties.copy(Blocks.STONE).noCollission()));
 
     //矿石
     public static final RegistryObject<Block> AG_ORE = registerBlock("ag_ore",
-            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(3.0F, 6.0F)));
+            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().mapColor(MapColor.STONE).strength(3.0F, 6.0F)));
     public static final RegistryObject<Block> DEEPSLATE_AG_ORE = registerBlock("deepslate_ag_ore",
             ()-> new DropExperienceBlock(BlockBehaviour.Properties.copy(ChangShengJueBlocks.AG_ORE.get().defaultBlockState().getBlock()).mapColor(MapColor.DEEPSLATE).
                     strength(4.5F, 6.0F).sound(SoundType.DEEPSLATE)));
     public static final RegistryObject<Block> KAOLIN_ORE = registerBlock("kaolin_ore",
-            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
+            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F).mapColor(MapColor.STONE)));
 
     public static final RegistryObject<Block> LIMESTONE = registerBlock("limestone",
-            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
+            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().mapColor(MapColor.STONE).strength(1.5F, 6.0F)));
     public static final RegistryObject<Block> SYDEROLIFE_ORE = registerBlock("syderolife_ore",
-            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
+            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().mapColor(MapColor.STONE).strength(1.5F, 6.0F)));
+    public static final RegistryObject<Block> NATURAL_ASPHALT_ORE = registerBlock("natural_asphalt_ore",
+            ()-> new DropExperienceBlock(BlockBehaviour.Properties.of().requiresCorrectToolForDrops().mapColor(MapColor.STONE).strength(1.5F, 6.0F)));
 
     //织布机
     public static final RegistryObject<Block> CHANG_SHENG_JUE_LOOM = registerBlock("chang_sheng_jue_loom",
-            ()-> new ChangShengJueLoomBlock(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+            ()-> new ChangShengJueLoomBlock(BlockBehaviour.Properties.copy(Blocks.LOOM).noOcclusion()));
     //工作方块
     public static final RegistryObject<Block> POTTERY_WHEEL = registerBlock("pottery_wheel",
-            ()-> new PotteryWheel(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+            ()-> new PotteryWheel(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).mapColor(MapColor.WOOD).noOcclusion()));
 
     public static final RegistryObject<Block> TOOL_TABLE = registerBlock("tool_table",
-            ()-> new ToolTable(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+            ()-> new ToolTable(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).mapColor(MapColor.WOOD).noOcclusion()));
 
     public static final RegistryObject<Block> WEAPON_RACK = registerBlock("weapon_rack",
-            ()-> new WeaponRack(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+            ()-> new WeaponRack(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).mapColor(MapColor.WOOD).noOcclusion()));
 
     public static final RegistryObject<Block> DESK = registerBlock("desk",
-            ()-> new Desk(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+            ()-> new Desk(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).mapColor(MapColor.WOOD).noOcclusion()));
 
     public static final RegistryObject<Block> PIG_TROUGH = registerBlock("pig_trough",
-            ()-> new PigTrough(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASEDRUM).strength(0.6F).sound(SoundType.WOOD).ignitedByLava()));
-
+            ()-> new PigTrough(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(0.6F).sound(SoundType.WOOD).ignitedByLava().noOcclusion()));
+    //砖窑炉
+    public static final RegistryObject<Block> BRICK_KILN = registerBlock("brick_kiln",
+            ()-> new BrickKiln(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(3.5F).lightLevel(litBlockEmission(13)).noOcclusion()));
     //大门
     public static final RegistryObject<Block> SHING_MUN_LEFT = registerBlock("shing_mun_left",
-            ()-> new ShingMunLeft(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+            ()-> new ShingMunLeft(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).mapColor(MapColor.COLOR_RED)));
 
     public static final RegistryObject<Block> SHING_MUN_RIGHT = registerBlock("shing_mun_right",
-            ()-> new ShingMunRight(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+            ()-> new ShingMunRight(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).mapColor(MapColor.COLOR_RED)));
 
     public static final RegistryObject<Block> BIG_SHING_MUN_LEFT = registerBlock("big_shing_mun_left",
-            ()-> new BigShingMunLeft(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+            ()-> new BigShingMunLeft(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).mapColor(MapColor.COLOR_RED)));
 
     public static final RegistryObject<Block> BIG_SHING_MUN_RIGHT = registerBlock("big_shing_mun_right",
-            ()-> new BigShingMunRight(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD)));
+            ()-> new BigShingMunRight(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).mapColor(MapColor.COLOR_RED)));
 
     //浇铸模具
     public static final RegistryObject<Block> CASTING_MOLDS = registerBlock("casting_molds",
-            ()-> new CastingMolds(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.STONE)));
+            ()-> new CastingMolds(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.STONE).mapColor(MapColor.STONE)));
 
     public static final RegistryObject<Block> BULLIONS_CASTING_MOLDS = registerBlock("bullions_casting_molds",
-            ()-> new BullionsCastingMolds(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.STONE)));
+            ()-> new BullionsCastingMolds(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.STONE).mapColor(MapColor.STONE)));
 
     //家具
     //酒桌
     public static final RegistryObject<Block> BIRCH_WINE_TABLE = registerBlock("birch_wine_table",
             ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_WINE_TABLE = registerBlock("jungle_wine_table",
+            ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> CRIMSON_WINE_TABLE = registerBlock("crimson_wine_table",
             ()-> new WineTable(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> WARPED_WINE_TABLE = registerBlock("warped_wine_table",
@@ -1329,6 +1409,8 @@ public class ChangShengJueBlocks {
     //酒桌椅
     public static final RegistryObject<Block> BIRCH_DRINKING_TABLE_AND_CHAIRS = registerBlock("birch_drinking_table_and_chairs",
             ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_DRINKING_TABLE_AND_CHAIRS = registerBlock("jungle_drinking_table_and_chairs",
+            ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> CRIMSON_DRINKING_TABLE_AND_CHAIRS = registerBlock("crimson_drinking_table_and_chairs",
             ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> WARPED_DRINKING_TABLE_AND_CHAIRS = registerBlock("warped_drinking_table_and_chairs",
@@ -1351,9 +1433,374 @@ public class ChangShengJueBlocks {
             ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> ZI_TAN_DRINKING_TABLE_AND_CHAIRS = registerBlock("zi_tan_drinking_table_and_chairs",
             ()-> new DrinkingTableAndChairs(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    //方凳
+    public static final RegistryObject<Block> BIRCH_SQUARE_STOOL = registerBlock("birch_square_stool",
+            ()-> new SquareStool(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_SQUARE_STOOL = registerBlock("jungle_square_stool",
+            ()-> new SquareStool(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_SQUARE_STOOL = registerBlock("crimson_square_stool",
+            ()-> new SquareStool(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_SQUARE_STOOL = registerBlock("warped_square_stool",
+            ()-> new SquareStool(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_SQUARE_STOOL = registerBlock("mangrove_square_stool",
+            ()-> new SquareStool(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> HUANG_HUA_LI_SQUARE_STOOL = registerBlock("huang_hua_li_square_stool",
+            ()-> new SquareStool(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> WENGE_SQUARE_STOOL = registerBlock("wenge_square_stool",
+            ()-> new SquareStool(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_SQUARE_STOOL = registerBlock("acacia_square_stool",
+            ()-> new SquareStool(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_SQUARE_STOOL = registerBlock("dark_oak_square_stool",
+            ()-> new SquareStool(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> OAK_SQUARE_STOOL = registerBlock("oak_square_stool",
+            ()-> new SquareStool(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_SQUARE_STOOL = registerBlock("cherry_square_stool",
+            ()-> new SquareStool(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_SQUARE_STOOL = registerBlock("spruce_square_stool",
+            ()-> new SquareStool(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> ZI_TAN_SQUARE_STOOL = registerBlock("zi_tan_square_stool",
+            ()-> new SquareStool(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion()));
+    //折屏
+    public static final RegistryObject<Block> BIRCH_FOLDING_SCREEN = registerBlock("birch_folding_screen",
+            ()-> new FoldingScreen(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_FOLDING_SCREEN = registerBlock("jungle_folding_screen",
+            ()-> new FoldingScreen(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_FOLDING_SCREEN = registerBlock("crimson_folding_screen",
+            ()-> new FoldingScreen(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_FOLDING_SCREEN = registerBlock("warped_folding_screen",
+            ()-> new FoldingScreen(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_FOLDING_SCREEN = registerBlock("mangrove_folding_screen",
+            ()-> new FoldingScreen(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> HUANG_HUA_LI_FOLDING_SCREEN = registerBlock("huang_hua_li_folding_screen",
+            ()-> new FoldingScreen(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> WENGE_FOLDING_SCREEN = registerBlock("wenge_folding_screen",
+            ()-> new FoldingScreen(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_FOLDING_SCREEN = registerBlock("acacia_folding_screen",
+            ()-> new FoldingScreen(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_FOLDING_SCREEN = registerBlock("dark_oak_folding_screen",
+            ()-> new FoldingScreen(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> OAK_FOLDING_SCREEN = registerBlock("oak_folding_screen",
+            ()-> new FoldingScreen(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_FOLDING_SCREEN = registerBlock("cherry_folding_screen",
+            ()-> new FoldingScreen(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_FOLDING_SCREEN = registerBlock("spruce_folding_screen",
+            ()-> new FoldingScreen(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> ZI_TAN_FOLDING_SCREEN = registerBlock("zi_tan_folding_screen",
+            ()-> new FoldingScreen(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion()));
+    //竹席
+    public static final RegistryObject<Block> BAMBOO_MAT = registerBlockWithoutBlockItem("bamboo_mat",
+            ()->   new BambooMat(DyeColor.YELLOW, BlockBehaviour.Properties.of().mapColor((p_284863_) ->
+                    p_284863_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.YELLOW.getMapColor() : MapColor.WOOL).sound(SoundType.WOOD)
+                    .strength(0.2F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY).forceSolidOn()));
+
+    //罗汉床
+    public static final RegistryObject<Block> BIRCH_ARHAT_BED = registerBlock("birch_arhat_bed",
+            ()-> new ArhatBed(DyeColor.YELLOW, BlockBehaviour.Properties.of().mapColor((p_284863_) ->
+                            p_284863_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.YELLOW.getMapColor() : MapColor.WOOL).sound(SoundType.WOOD)
+                    .strength(0.2F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> JUNGLE_ARHAT_BED = registerBlock("jungle_arhat_bed",
+            ()-> new ArhatBed(DyeColor.YELLOW, BlockBehaviour.Properties.of().mapColor((p_284863_) ->
+                            p_284863_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.YELLOW.getMapColor() : MapColor.WOOL).sound(SoundType.WOOD)
+                    .strength(0.2F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> CRIMSON_ARHAT_BED = registerBlock("crimson_arhat_bed",
+            ()-> new ArhatBed(DyeColor.YELLOW, BlockBehaviour.Properties.of().mapColor((p_284863_) ->
+                            p_284863_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.YELLOW.getMapColor() : MapColor.WOOL).sound(SoundType.WOOD)
+                    .strength(0.2F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> WARPED_ARHAT_BED = registerBlock("warped_arhat_bed",
+            ()-> new ArhatBed(DyeColor.YELLOW, BlockBehaviour.Properties.of().mapColor((p_284863_) ->
+                            p_284863_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.YELLOW.getMapColor() : MapColor.WOOL).sound(SoundType.WOOD)
+                    .strength(0.2F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> MANGROVE_ARHAT_BED = registerBlock("mangrove_arhat_bed",
+            ()-> new ArhatBed(DyeColor.YELLOW, BlockBehaviour.Properties.of().mapColor((p_284863_) ->
+                            p_284863_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.YELLOW.getMapColor() : MapColor.WOOL).sound(SoundType.WOOD)
+                    .strength(0.2F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> HUANG_HUA_LI_ARHAT_BED = registerBlock("huang_hua_li_arhat_bed",
+            ()-> new ArhatBed(DyeColor.YELLOW, BlockBehaviour.Properties.of().mapColor((p_284863_) ->
+                            p_284863_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.YELLOW.getMapColor() : MapColor.WOOL).sound(SoundType.WOOD)
+                    .strength(0.2F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> WENGE_ARHAT_BED = registerBlock("wenge_arhat_bed",
+            ()-> new ArhatBed(DyeColor.YELLOW, BlockBehaviour.Properties.of().mapColor((p_284863_) ->
+                            p_284863_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.YELLOW.getMapColor() : MapColor.WOOL).sound(SoundType.WOOD)
+                    .strength(0.2F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> ACACIA_ARHAT_BED = registerBlock("acacia_arhat_bed",
+            ()-> new ArhatBed(DyeColor.YELLOW, BlockBehaviour.Properties.of().mapColor((p_284863_) ->
+                            p_284863_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.YELLOW.getMapColor() : MapColor.WOOL).sound(SoundType.WOOD)
+                    .strength(0.2F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> DARK_OAK_ARHAT_BED = registerBlock("dark_oak_arhat_bed",
+            ()-> new ArhatBed(DyeColor.YELLOW, BlockBehaviour.Properties.of().mapColor((p_284863_) ->
+                            p_284863_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.YELLOW.getMapColor() : MapColor.WOOL).sound(SoundType.WOOD)
+                    .strength(0.2F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> OAK_ARHAT_BED = registerBlock("oak_arhat_bed",
+            ()-> new ArhatBed(DyeColor.YELLOW, BlockBehaviour.Properties.of().mapColor((p_284863_) ->
+                            p_284863_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.YELLOW.getMapColor() : MapColor.WOOL).sound(SoundType.WOOD)
+                    .strength(0.2F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> CHERRY_ARHAT_BED = registerBlock("cherry_arhat_bed",
+            ()-> new ArhatBed(DyeColor.YELLOW, BlockBehaviour.Properties.of().mapColor((p_284863_) ->
+                            p_284863_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.YELLOW.getMapColor() : MapColor.WOOL).sound(SoundType.WOOD)
+                    .strength(0.2F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> SPRUCE_ARHAT_BED = registerBlock("spruce_arhat_bed",
+            ()-> new ArhatBed(DyeColor.YELLOW, BlockBehaviour.Properties.of().mapColor((p_284863_) ->
+                            p_284863_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.YELLOW.getMapColor() : MapColor.WOOL).sound(SoundType.WOOD)
+                    .strength(0.2F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    public static final RegistryObject<Block> ZI_TAN_ARHAT_BED = registerBlock("zi_tan_arhat_bed",
+            ()-> new ArhatBed(DyeColor.YELLOW, BlockBehaviour.Properties.of().mapColor((p_284863_) ->
+                            p_284863_.getValue(BedBlock.PART) == BedPart.FOOT ? DyeColor.YELLOW.getMapColor() : MapColor.WOOL).sound(SoundType.WOOD)
+                    .strength(0.2F).noOcclusion().ignitedByLava().pushReaction(PushReaction.DESTROY)));
+    //架子床
+    public static final RegistryObject<Block> BIRCH_CANOPY_BED = registerBlock("birch_canopy_bed",
+            ()-> new CanopyBed(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_CANOPY_BED = registerBlock("jungle_canopy_bed",
+            ()-> new CanopyBed(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_CANOPY_BED = registerBlock("crimson_canopy_bed",
+            ()-> new CanopyBed(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_CANOPY_BED = registerBlock("warped_canopy_bed",
+            ()-> new CanopyBed(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_CANOPY_BED = registerBlock("mangrove_canopy_bed",
+            ()-> new CanopyBed(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> HUANG_HUA_LI_CANOPY_BED = registerBlock("huang_hua_li_canopy_bed",
+            ()-> new CanopyBed(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> WENGE_CANOPY_BED = registerBlock("wenge_canopy_bed",
+            ()-> new CanopyBed(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_CANOPY_BED = registerBlock("acacia_canopy_bed",
+            ()-> new CanopyBed(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_CANOPY_BED = registerBlock("dark_oak_canopy_bed",
+            ()-> new CanopyBed(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> OAK_CANOPY_BED = registerBlock("oak_canopy_bed",
+            ()-> new CanopyBed(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_CANOPY_BED = registerBlock("cherry_canopy_bed",
+            ()-> new CanopyBed(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_CANOPY_BED = registerBlock("spruce_canopy_bed",
+            ()-> new CanopyBed(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> ZI_TAN_CANOPY_BED = registerBlock("zi_tan_canopy_bed",
+            ()-> new CanopyBed(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion()));
+    //石凳
+    public static final RegistryObject<Block> STONE_BENCH = registerBlock("stone_bench",
+            ()-> new StoneBench(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+    //石桌
+    public static final RegistryObject<Block> STONE_TABLE = registerBlock("stone_table",
+            ()-> new StoneTable(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion()));
+    //回纹亮格
+    public static final RegistryObject<Block> BIRCH_FRETWORK_OPENWORK_PANEL = registerBlock("birch_fretwork_openwork_panel",
+            ()-> new FretworkOpenworkPanel(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_FRETWORK_OPENWORK_PANEL = registerBlock("jungle_fretwork_openwork_panel",
+            ()-> new FretworkOpenworkPanel(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_FRETWORK_OPENWORK_PANEL = registerBlock("crimson_fretwork_openwork_panel",
+            ()-> new FretworkOpenworkPanel(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_FRETWORK_OPENWORK_PANEL = registerBlock("warped_fretwork_openwork_panel",
+            ()-> new FretworkOpenworkPanel(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_FRETWORK_OPENWORK_PANEL = registerBlock("mangrove_fretwork_openwork_panel",
+            ()-> new FretworkOpenworkPanel(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> HUANG_HUA_LI_FRETWORK_OPENWORK_PANEL = registerBlock("huang_hua_li_fretwork_openwork_panel",
+            ()-> new FretworkOpenworkPanel(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> WENGE_FRETWORK_OPENWORK_PANEL = registerBlock("wenge_fretwork_openwork_panel",
+            ()-> new FretworkOpenworkPanel(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_FRETWORK_OPENWORK_PANEL = registerBlock("acacia_fretwork_openwork_panel",
+            ()-> new FretworkOpenworkPanel(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_FRETWORK_OPENWORK_PANEL = registerBlock("dark_oak_fretwork_openwork_panel",
+            ()-> new FretworkOpenworkPanel(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> OAK_FRETWORK_OPENWORK_PANEL = registerBlock("oak_fretwork_openwork_panel",
+            ()-> new FretworkOpenworkPanel(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_FRETWORK_OPENWORK_PANEL = registerBlock("cherry_fretwork_openwork_panel",
+            ()-> new FretworkOpenworkPanel(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_FRETWORK_OPENWORK_PANEL = registerBlock("spruce_fretwork_openwork_panel",
+            ()-> new FretworkOpenworkPanel(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> ZI_TAN_FRETWORK_OPENWORK_PANEL = registerBlock("zi_tan_fretwork_openwork_panel",
+            ()-> new FretworkOpenworkPanel(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion()));
+    //书格
+    public static final RegistryObject<Block> BIRCH_BOOK_GRID = registerBlock("birch_book_grid",
+            ()-> new BookGrid(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_BOOK_GRID = registerBlock("jungle_book_grid",
+            ()-> new BookGrid(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_BOOK_GRID = registerBlock("crimson_book_grid",
+            ()-> new BookGrid(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_BOOK_GRID = registerBlock("warped_book_grid",
+            ()-> new BookGrid(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_BOOK_GRID = registerBlock("mangrove_book_grid",
+            ()-> new BookGrid(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> HUANG_HUA_LI_BOOK_GRID = registerBlock("huang_hua_li_book_grid",
+            ()-> new BookGrid(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> WENGE_BOOK_GRID = registerBlock("wenge_book_grid",
+            ()-> new BookGrid(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_BOOK_GRID = registerBlock("acacia_book_grid",
+            ()-> new BookGrid(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_BOOK_GRID = registerBlock("dark_oak_book_grid",
+            ()-> new BookGrid(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> OAK_BOOK_GRID = registerBlock("oak_book_grid",
+            ()-> new BookGrid(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_BOOK_GRID = registerBlock("cherry_book_grid",
+            ()-> new BookGrid(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_BOOK_GRID = registerBlock("spruce_book_grid",
+            ()-> new BookGrid(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> ZI_TAN_BOOK_GRID = registerBlock("zi_tan_book_grid",
+            ()-> new BookGrid(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion()));
+    //亮格
+    public static final RegistryObject<Block> BIRCH_LIANGGE = registerBlock("birch_liangge",
+            ()-> new Liangge(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_LIANGGE = registerBlock("jungle_liangge",
+            ()-> new Liangge(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_LIANGGE = registerBlock("crimson_liangge",
+            ()-> new Liangge(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_LIANGGE = registerBlock("warped_liangge",
+            ()-> new Liangge(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_LIANGGE = registerBlock("mangrove_liangge",
+            ()-> new Liangge(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> HUANG_HUA_LI_LIANGGE = registerBlock("huang_hua_li_liangge",
+            ()-> new Liangge(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> WENGE_LIANGGE = registerBlock("wenge_liangge",
+            ()-> new Liangge(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_LIANGGE = registerBlock("acacia_liangge",
+            ()-> new Liangge(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_LIANGGE = registerBlock("dark_oak_liangge",
+            ()-> new Liangge(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> OAK_LIANGGE = registerBlock("oak_liangge",
+            ()-> new Liangge(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_LIANGGE = registerBlock("cherry_liangge",
+            ()-> new Liangge(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_LIANGGE = registerBlock("spruce_liangge",
+            ()-> new Liangge(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> ZI_TAN_LIANGGE = registerBlock("zi_tan_liangge",
+            ()-> new Liangge(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion()));
+    //柜子
+    public static final RegistryObject<Block> BIRCH_CABINET = registerBlock("birch_cabinet",
+            ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_CABINET = registerBlock("jungle_cabinet",
+            ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_CABINET = registerBlock("crimson_cabinet",
+            ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_CABINET = registerBlock("warped_cabinet",
+            ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_CABINET = registerBlock("mangrove_cabinet",
+            ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> HUANG_HUA_LI_CABINET = registerBlock("huang_hua_li_cabinet",
+            ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> WENGE_CABINET = registerBlock("wenge_cabinet",
+            ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_CABINET = registerBlock("acacia_cabinet",
+            ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_CABINET = registerBlock("dark_oak_cabinet",
+            ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> OAK_CABINET = registerBlock("oak_cabinet",
+            ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_CABINET = registerBlock("cherry_cabinet",
+            ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_CABINET = registerBlock("spruce_cabinet",
+            ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> ZI_TAN_CABINET = registerBlock("zi_tan_cabinet",
+            ()-> new Cabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+
+    public static final RegistryObject<Block> BIRCH_LARGE_CABINET = registerBlock("birch_large_cabinet",
+            ()-> new LargeCabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_LARGE_CABINET = registerBlock("jungle_large_cabinet",
+            ()-> new LargeCabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_LARGE_CABINET = registerBlock("crimson_large_cabinet",
+            ()-> new LargeCabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_LARGE_CABINET = registerBlock("warped_large_cabinet",
+            ()-> new LargeCabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_LARGE_CABINET = registerBlock("mangrove_large_cabinet",
+            ()-> new LargeCabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> HUANG_HUA_LI_LARGE_CABINET = registerBlock("huang_hua_li_large_cabinet",
+            ()-> new LargeCabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> WENGE_LARGE_CABINET = registerBlock("wenge_large_cabinet",
+            ()-> new LargeCabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_LARGE_CABINET = registerBlock("acacia_large_cabinet",
+            ()-> new LargeCabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_LARGE_CABINET = registerBlock("dark_oak_large_cabinet",
+            ()-> new LargeCabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> OAK_LARGE_CABINET = registerBlock("oak_large_cabinet",
+            ()-> new LargeCabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_LARGE_CABINET = registerBlock("cherry_large_cabinet",
+            ()-> new LargeCabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_LARGE_CABINET = registerBlock("spruce_large_cabinet",
+            ()-> new LargeCabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> ZI_TAN_LARGE_CABINET = registerBlock("zi_tan_large_cabinet",
+            ()-> new LargeCabinet(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+
+    public static final RegistryObject<Block> BIRCH_CHEST_OF_DRAWERS = registerBlock("birch_chest_of_drawers",
+            ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_CHEST_OF_DRAWERS = registerBlock("jungle_chest_of_drawers",
+            ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_CHEST_OF_DRAWERS = registerBlock("crimson_chest_of_drawers",
+            ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_CHEST_OF_DRAWERS = registerBlock("warped_chest_of_drawers",
+            ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_CHEST_OF_DRAWERS = registerBlock("mangrove_chest_of_drawers",
+            ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> HUANG_HUA_LI_CHEST_OF_DRAWERS = registerBlock("huang_hua_li_chest_of_drawers",
+            ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> WENGE_CHEST_OF_DRAWERS = registerBlock("wenge_chest_of_drawers",
+            ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_CHEST_OF_DRAWERS = registerBlock("acacia_chest_of_drawers",
+            ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_CHEST_OF_DRAWERS = registerBlock("dark_oak_chest_of_drawers",
+            ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> OAK_CHEST_OF_DRAWERS = registerBlock("oak_chest_of_drawers",
+            ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_CHEST_OF_DRAWERS = registerBlock("cherry_chest_of_drawers",
+            ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_CHEST_OF_DRAWERS = registerBlock("spruce_chest_of_drawers",
+            ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    public static final RegistryObject<Block> ZI_TAN_CHEST_OF_DRAWERS = registerBlock("zi_tan_chest_of_drawers",
+            ()-> new ChestOfDrawers(BlockBehaviour.Properties.copy(Blocks.CHEST).strength(2.5f).noOcclusion()));
+    //晾衣杆
+    public static final RegistryObject<Block> BIRCH_DRYING_RAIL = registerBlock("birch_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.BIRCH_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> JUNGLE_DRYING_RAIL = registerBlock("jungle_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.JUNGLE_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> CRIMSON_DRYING_RAIL = registerBlock("crimson_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.CRIMSON_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> WARPED_DRYING_RAIL = registerBlock("warped_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.WARPED_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> MANGROVE_DRYING_RAIL = registerBlock("mangrove_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.MANGROVE_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> HUANG_HUA_LI_DRYING_RAIL = registerBlock("huang_hua_li_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> WENGE_DRYING_RAIL = registerBlock("wenge_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> ACACIA_DRYING_RAIL = registerBlock("acacia_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.ACACIA_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> DARK_OAK_DRYING_RAIL = registerBlock("dark_oak_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> OAK_DRYING_RAIL = registerBlock("oak_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> CHERRY_DRYING_RAIL = registerBlock("cherry_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.CHERRY_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> SPRUCE_DRYING_RAIL = registerBlock("spruce_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(Blocks.SPRUCE_FENCE).noOcclusion().strength(0.5f)));
+    public static final RegistryObject<Block> ZI_TAN_DRYING_RAIL = registerBlock("zi_tan_drying_rail",
+            ()-> new DryingRail(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion().strength(0.5f)));
+    //衣架
+    public static final RegistryObject<Block> BIRCH_CLOTHES_RACK = registerBlock("birch_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.BIRCH_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_CLOTHES_RACK = registerBlock("jungle_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.JUNGLE_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_CLOTHES_RACK = registerBlock("crimson_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.CRIMSON_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_CLOTHES_RACK = registerBlock("warped_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.WARPED_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_CLOTHES_RACK = registerBlock("mangrove_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.MANGROVE_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> HUANG_HUA_LI_CLOTHES_RACK = registerBlock("huang_hua_li_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> WENGE_CLOTHES_RACK = registerBlock("wenge_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_CLOTHES_RACK = registerBlock("acacia_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.ACACIA_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_CLOTHES_RACK = registerBlock("dark_oak_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> OAK_CLOTHES_RACK = registerBlock("oak_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.OAK_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_CLOTHES_RACK = registerBlock("cherry_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.CHERRY_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_CLOTHES_RACK = registerBlock("spruce_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(Blocks.SPRUCE_FENCE).noOcclusion()));
+    public static final RegistryObject<Block> ZI_TAN_CLOTHES_RACK = registerBlock("zi_tan_clothes_rack",
+            ()-> new ClothesRack(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion()));
+
     //长凳
     public static final RegistryObject<Block> BIRCH_BENCH = registerBlock("birch_bench",
             ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_BENCH = registerBlock("jungle_bench",
+            ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> CRIMSON_BENCH = registerBlock("crimson_bench",
             ()-> new Bench(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> WARPED_BENCH = registerBlock("warped_bench",
@@ -1379,6 +1826,8 @@ public class ChangShengJueBlocks {
     //书桌
     public static final RegistryObject<Block> BIRCH_BOOK_DESK = registerBlock("birch_book_desk",
             ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_BOOK_DESK = registerBlock("jungle_book_desk",
+            ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> CRIMSON_BOOK_DESK = registerBlock("crimson_book_desk",
             ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> WARPED_BOOK_DESK = registerBlock("warped_book_desk",
@@ -1402,31 +1851,91 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> ZI_TAN_BOOK_DESK = registerBlock("zi_tan_book_desk",
             ()-> new BookDesk(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
     //茶几
+    public static final RegistryObject<Block> BIRCH_TEAPOY = registerBlock("birch_teapoy",
+            ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_TEAPOY = registerBlock("jungle_teapoy",
+            ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_TEAPOY = registerBlock("crimson_teapoy",
+            ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_TEAPOY = registerBlock("warped_teapoy",
+            ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_TEAPOY = registerBlock("mangrove_teapoy",
+            ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> HUANG_HUA_LI_TEAPOY = registerBlock("huang_hua_li_teapoy",
             ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
-    public static final RegistryObject<Block> JI_CHI_MU_TEAPOY = registerBlock("ji_chi_mu_teapoy",
+    public static final RegistryObject<Block> WENGE_TEAPOY = registerBlock("wenge_teapoy",
             ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_TEAPOY = registerBlock("acacia_teapoy",
+            ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_TEAPOY = registerBlock("dark_oak_teapoy",
+            ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> OAK_TEAPOY = registerBlock("oak_teapoy",
+            ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_TEAPOY = registerBlock("cherry_teapoy",
+            ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_TEAPOY = registerBlock("spruce_teapoy",
+            ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> ZI_TAN_TEAPOY = registerBlock("zi_tan_teapoy",
             ()-> new Teapoy(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
-
     //太师椅
+    public static final RegistryObject<Block> BIRCH_TAISHI_CHAIR = registerBlock("birch_taishi_chair",
+            ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_TAISHI_CHAIR = registerBlock("jungle_taishi_chair",
+            ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_TAISHI_CHAIR = registerBlock("crimson_taishi_chair",
+            ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_TAISHI_CHAIR = registerBlock("warped_taishi_chair",
+            ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_TAISHI_CHAIR = registerBlock("mangrove_taishi_chair",
+            ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> HUANG_HUA_LI_TAISHI_CHAIR = registerBlock("huang_hua_li_taishi_chair",
             ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
-    public static final RegistryObject<Block> JI_CHI_MU_TAISHI_CHAIR = registerBlock("ji_chi_mu_taishi_chair",
+    public static final RegistryObject<Block> WENGE_TAISHI_CHAIR = registerBlock("wenge_taishi_chair",
             ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_TAISHI_CHAIR = registerBlock("acacia_taishi_chair",
+            ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_TAISHI_CHAIR = registerBlock("dark_oak_taishi_chair",
+            ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> OAK_TAISHI_CHAIR = registerBlock("oak_taishi_chair",
+            ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_TAISHI_CHAIR = registerBlock("cherry_taishi_chair",
+            ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_TAISHI_CHAIR = registerBlock("spruce_taishi_chair",
+            ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> ZI_TAN_TAISHI_CHAIR = registerBlock("zi_tan_taishi_chair",
             ()-> new TaishiChair(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
-
     //五围屏宝座
+    public static final RegistryObject<Block> BIRCH_FIVE_SCREEN_THRONE = registerBlock("birch_five_screen_throne",
+            ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_FIVE_SCREEN_THRONE = registerBlock("jungle_five_screen_throne",
+            ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_FIVE_SCREEN_THRONE = registerBlock("crimson_five_screen_throne",
+            ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_FIVE_SCREEN_THRONE = registerBlock("warped_five_screen_throne",
+            ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_FIVE_SCREEN_THRONE = registerBlock("mangrove_five_screen_throne",
+            ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> HUANG_HUA_LI_FIVE_SCREEN_THRONE = registerBlock("huang_hua_li_five_screen_throne",
             ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
-    public static final RegistryObject<Block> JI_CHI_MU_FIVE_SCREEN_THRONE = registerBlock("ji_chi_mu_five_screen_throne",
+    public static final RegistryObject<Block> WENGE_FIVE_SCREEN_THRONE = registerBlock("wenge_five_screen_throne",
             ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_FIVE_SCREEN_THRONE = registerBlock("acacia_five_screen_throne",
+            ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_FIVE_SCREEN_THRONE = registerBlock("dark_oak_five_screen_throne",
+            ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> OAK_FIVE_SCREEN_THRONE = registerBlock("oak_five_screen_throne",
+            ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_FIVE_SCREEN_THRONE = registerBlock("cherry_five_screen_throne",
+            ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_FIVE_SCREEN_THRONE = registerBlock("spruce_five_screen_throne",
+            ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> ZI_TAN_FIVE_SCREEN_THRONE = registerBlock("zi_tan_five_screen_throne",
             ()-> new FiveScreenThrone(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
     //席桌
     public static final RegistryObject<Block> BIRCH_LOW_DESK = registerBlock("birch_low_desk",
             ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_LOW_DESK = registerBlock("jungle_low_desk",
+            ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> CRIMSON_LOW_DESK = registerBlock("crimson_low_desk",
             ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> WARPED_LOW_DESK = registerBlock("warped_low_desk",
@@ -1449,23 +1958,114 @@ public class ChangShengJueBlocks {
             ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> ZI_TAN_LOW_DESK = registerBlock("zi_tan_low_desk",
             ()-> new LowDesk(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    //灯笼
+    public static final RegistryObject<Block> LANTERN = registerBlock("lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.WOOL).noOcclusion()));
+    public static final RegistryObject<Block> WHITE_LANTERN = registerBlock("white_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.WOOL).noOcclusion()));
+    public static final RegistryObject<Block> ORANGE_LANTERN  = registerBlock("orange_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_ORANGE).noOcclusion()));
+    public static final RegistryObject<Block> MAGENTA_LANTERN  = registerBlock("magenta_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_MAGENTA).noOcclusion()));
+    public static final RegistryObject<Block> LIGHT_BLUE_LANTERN  = registerBlock("light_blue_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_LIGHT_BLUE).noOcclusion()));
+    public static final RegistryObject<Block> YELLOW_LANTERN  = registerBlock("yellow_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_YELLOW).noOcclusion()));
+    public static final RegistryObject<Block> LIME_LANTERN  = registerBlock("lime_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_LIGHT_GREEN).noOcclusion()));
+    public static final RegistryObject<Block> PINK_LANTERN  = registerBlock("pink_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_PINK).noOcclusion()));
+    public static final RegistryObject<Block> GRAY_LANTERN  = registerBlock("gray_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_GRAY).noOcclusion()));
+    public static final RegistryObject<Block> LIGHT_GRAY_LANTERN  = registerBlock("light_gray_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_LIGHT_GRAY).noOcclusion()));
+    public static final RegistryObject<Block> CYAN_LANTERN  = registerBlock("cyan_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_CYAN).noOcclusion()));
+    public static final RegistryObject<Block> PURPLE_LANTERN  = registerBlock("purple_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_PURPLE).noOcclusion()));
+    public static final RegistryObject<Block> BLUE_LANTERN  = registerBlock("blue_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_BLUE).noOcclusion()));
+    public static final RegistryObject<Block> BROWN_LANTERN  = registerBlock("brown_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_BROWN).noOcclusion()));
+    public static final RegistryObject<Block> GREEN_LANTERN  = registerBlock("green_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_GREEN).noOcclusion()));
+    public static final RegistryObject<Block> RED_LANTERN  = registerBlock("red_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_RED).noOcclusion()));
+    public static final RegistryObject<Block> BLACK_LANTERN  = registerBlock("black_lantern",
+            () -> new Lantern(BlockBehaviour.Properties.copy(Blocks.LANTERN).sound(SoundType.WOOD).mapColor(MapColor.COLOR_BLACK).noOcclusion()));
 
+    public static final RegistryObject<Block> BIRCH_LIGHT_STAND = registerBlock("birch_light_stand",
+            ()-> new LightStand(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_LIGHT_STAND = registerBlock("jungle_light_stand",
+            ()-> new LightStand(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_LIGHT_STAND = registerBlock("crimson_light_stand",
+            ()-> new LightStand(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_LIGHT_STAND = registerBlock("warped_light_stand",
+            ()-> new LightStand(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_LIGHT_STAND = registerBlock("mangrove_light_stand",
+            ()-> new LightStand(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> HUANG_HUA_LI_LIGHT_STAND = registerBlock("huang_hua_li_light_stand",
+            ()-> new LightStand(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> WENGE_LIGHT_STAND = registerBlock("wenge_light_stand",
+            ()-> new LightStand(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_LIGHT_STAND = registerBlock("acacia_light_stand",
+            ()-> new LightStand(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_LIGHT_STAND = registerBlock("dark_oak_light_stand",
+            ()-> new LightStand(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> OAK_LIGHT_STAND = registerBlock("oak_light_stand",
+            ()-> new LightStand(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_LIGHT_STAND = registerBlock("cherry_light_stand",
+            ()-> new LightStand(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_LIGHT_STAND = registerBlock("spruce_light_stand",
+            ()-> new LightStand(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> ZI_TAN_LIGHT_STAND = registerBlock("zi_tan_light_stand",
+            ()-> new LightStand(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion()));
+
+    public static final RegistryObject<Block> BIRCH_HEIGHT_LIGHT_STAND = registerBlock("birch_height_light_stand",
+            ()-> new HeightLightStand(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_HEIGHT_LIGHT_STAND = registerBlock("jungle_height_light_stand",
+            ()-> new HeightLightStand(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_HEIGHT_LIGHT_STAND = registerBlock("crimson_height_light_stand",
+            ()-> new HeightLightStand(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_HEIGHT_LIGHT_STAND = registerBlock("warped_height_light_stand",
+            ()-> new HeightLightStand(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_HEIGHT_LIGHT_STAND = registerBlock("mangrove_height_light_stand",
+            ()-> new HeightLightStand(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> HUANG_HUA_LI_HEIGHT_LIGHT_STAND = registerBlock("huang_hua_li_height_light_stand",
+            ()-> new HeightLightStand(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> WENGE_HEIGHT_LIGHT_STAND = registerBlock("wenge_height_light_stand",
+            ()-> new HeightLightStand(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_HEIGHT_LIGHT_STAND = registerBlock("acacia_height_light_stand",
+            ()-> new HeightLightStand(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_HEIGHT_LIGHT_STAND = registerBlock("dark_oak_height_light_stand",
+            ()-> new HeightLightStand(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> OAK_HEIGHT_LIGHT_STAND = registerBlock("oak_height_light_stand",
+            ()-> new HeightLightStand(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_HEIGHT_LIGHT_STAND = registerBlock("cherry_height_light_stand",
+            ()-> new HeightLightStand(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_HEIGHT_LIGHT_STAND = registerBlock("spruce_height_light_stand",
+            ()-> new HeightLightStand(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> ZI_TAN_HEIGHT_LIGHT_STAND = registerBlock("zi_tan_height_light_stand",
+            ()-> new HeightLightStand(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion()));
+    // 磨刀石
+    public static final RegistryObject<Block> STONE_SHARPENING_STONE = registerBlock("stone_sharpening_stone", StoneSharpeningStone::new);
+    public static final RegistryObject<Block> DIAMOND_SHARPENING_STONE = registerBlock("diamond_sharpening_stone", DiamondSharpeningStone::new);
+    public static final RegistryObject<Block> NETHERITE_SHARPENING_STONE = registerBlock("netherite_sharpening_stone", NetheriteSharpeningStone::new);
     //蒲团
     public static final RegistryObject<Block> ZAFU = registerBlock("zafu",
             ()-> new Zafu(BlockBehaviour.Properties.copy(Blocks.HAY_BLOCK).noOcclusion()));
-
     //风铃
     public static final RegistryObject<Block> WIND_CHIME = registerBlock("wind_chime",
-            ()-> new WindChime(BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.CHAIN).noOcclusion()));
+            ()-> new WindChime(BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.CHAIN).noOcclusion().mapColor(MapColor.STONE)));
     //画轴
     public static final RegistryObject<Block> PAINTING_SCROLL = registerBlock("painting_scroll",
-            ()-> new PaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY)));
+            ()-> new PaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY).mapColor(MapColor.COLOR_GRAY)));
     public static final RegistryObject<Block> HIGH_PAINTING_SCROLL = registerBlock("high_painting_scroll",
-            ()-> new HighPaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY)));
+            ()-> new HighPaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY).mapColor(MapColor.COLOR_GRAY)));
     public static final RegistryObject<Block> WIDTH_PAINTING_SCROLL = registerBlock("width_painting_scroll",
-            ()-> new WidthPaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY)));
+            ()-> new WidthPaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY).mapColor(MapColor.COLOR_GRAY)));
     public static final RegistryObject<Block> BIG_PAINTING_SCROLL = registerBlock("big_painting_scroll",
-            ()-> new BigPaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY)));
+            ()-> new BigPaintingScroll(BlockBehaviour.Properties.of().replaceable().noCollission().instabreak().pushReaction(PushReaction.DESTROY).mapColor(MapColor.COLOR_GRAY)));
 
     //牌匾
     public static final RegistryObject<Block> PLAQUE = registerBlock("plaque",
@@ -1476,7 +2076,10 @@ public class ChangShengJueBlocks {
             ()-> new TailoringCase(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).noOcclusion()));
     //锻台
     public static final RegistryObject<Block> FORGE_BLOCK = registerBlock("forge_block",
-            () -> new ForgeBlock(BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.CHAIN).noOcclusion()));
+            () -> new ForgeBlock(BlockBehaviour.Properties.of().strength(1.5F).mapColor(MapColor.COLOR_BLUE).sound(SoundType.CHAIN).noOcclusion()));
+    //木工台
+    public static final RegistryObject<Block> WOOD_WORKING_BENCH = registerBlockWithoutBlockItem("wood_working_bench",
+            ()-> new WoodworkingBench(BlockBehaviour.Properties.copy(Blocks.CRAFTING_TABLE).noOcclusion()));
     //锣
     public static final RegistryObject<Block> GONG = registerBlockWithoutBlockItem("gong",
             () -> new Gong(BlockBehaviour.Properties.copy(Blocks.BELL)));
@@ -1616,8 +2219,6 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> WHEAT_NUGGETS_TRIBUTE_WINE = registerBlockWithoutBlockItem("wheat_nuggets_tribute_wine",
             ()-> new WheatNuggetsTributeWine(Block.Properties.copy(Blocks.CAKE), true, 1, 1.0f));
 
-
-
     private static <T extends Block> RegistryObject<T> registerBlockWithoutBlockItem(String name,Supplier<T> block){
         return BLOCKS.register(name,block);
     }
@@ -1640,13 +2241,19 @@ public class ChangShengJueBlocks {
         });
     }
 
-    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, int burnTime) {
-        return ChangShengJueItems.ITEMS.register(name, () -> new BlockItem(block.get(),new Item.Properties()){
-            @Override
-            public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
-                return burnTime;
-            }
-        });
+//    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, int burnTime) {
+//        return ChangShengJueItems.ITEMS.register(name, () -> new BlockItem(block.get(),new Item.Properties()){
+//            @Override
+//            public int getBurnTime(ItemStack itemStack, @Nullable RecipeType<?> recipeType) {
+//                return burnTime;
+//            }
+//        });
+//    }
+
+    private static ToIntFunction<BlockState> litBlockEmission(int pLightValue) {
+        return (p_50763_) -> {
+            return (Boolean)p_50763_.getValue(BlockStateProperties.LIT) ? pLightValue : 0;
+        };
     }
 
     public static void register(IEventBus eventBus){

@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:cyan",
+  "ingredients": [
+    {
+      "count": 4,
+      "item": "chang_sheng_jue:kaolin_ball"
+    },
+    {
+      "item": "minecraft:cyan_dye"
+    }
+  ],
+  "result": {
+    "count": 2,
+    "item": "chang_sheng_jue:cyan_cylinder_tile_slab"
+  }
+}

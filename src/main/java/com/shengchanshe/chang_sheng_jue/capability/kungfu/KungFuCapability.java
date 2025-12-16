@@ -5,7 +5,6 @@ import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.martial_arts.*;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuType;
-import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.AbstractionExternalKunfu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.RelentlessThrowingKnives;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.Hercules;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.TheClassicsOfTendonChanging;
@@ -17,11 +16,9 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
@@ -160,7 +157,6 @@ public class KungFuCapability implements IKungFuCapability {
         return getKungFu(kungFuId)
                 .filter(kungFu -> kungFu instanceof IExternalKunfu)
                 .map(kungFu -> (IExternalKunfu)kungFu)
-                .filter(IExternalKunfu::isAttackReday)
                 .map(active -> {
                     active.attackEffect(source, target);
                     syncToClient(player);
@@ -168,14 +164,13 @@ public class KungFuCapability implements IKungFuCapability {
                 }).orElse(false);
     }
 
-
     @Override
     public float getEffectProbability(String kungFuId) {
         return getKungFu(kungFuId)
                 .filter(kungFu -> kungFu instanceof IExternalKunfu)
                 .map(kungFu -> (IExternalKunfu)kungFu)
                 .filter(IExternalKunfu::isAttackReday)
-                .map(IExternalKunfu::getEffectProbability).orElse(1.0f);
+                .map(IExternalKunfu::getEffectProbability).orElse(0.1f);
     }
 
     @Override

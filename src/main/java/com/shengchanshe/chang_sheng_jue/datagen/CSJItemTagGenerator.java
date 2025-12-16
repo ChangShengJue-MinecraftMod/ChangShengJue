@@ -222,6 +222,7 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
 
         this.tag(ItemTags.SWORDS)
                 .add(ChangShengJueItems.BRONZE_SWORD.get(),
+                        ChangShengJueItems.LONG_YUAN_SWORD.get(),
                         ChangShengJueItems.HAN_JIAN.get(),
                         ChangShengJueItems.HENG_DAO.get(),
                         ChangShengJueItems.LARGE_KNIFE.get(),
@@ -300,7 +301,9 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
         this.tag(ItemTags.SLABS)
                 .add(Item.byBlock(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.BLACK_STONE_BRICKS_SLAB.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.CYAN_CYLINDER_TILE_SLAB.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get()))
+                .add(Item.byBlock(ChangShengJueBlocks.PURPLE_CYLINDER_TILE_SLAB.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.BLUE_STONE_BRICKS_SLAB.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get()))
                 .add(Item.byBlock(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get()))

@@ -1,0 +1,16 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:blue",
+  "ingredients": [
+    {
+      "count": 8,
+      "item": "chang_sheng_jue:kaolin_ball"
+    },
+    {
+      "item": "minecraft:blue_dye"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:blue_character_plaque_pavilion"
+  }
+}

@@ -24,8 +24,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderTradingMenu> {
-    private static final ResourceLocation VILLAGER_LOCATION = new ResourceLocation(ChangShengJue.MOD_ID,"textures/gui/container/gangleader_trading.png");
-    private static final ResourceLocation BOTTON = new ResourceLocation(ChangShengJue.MOD_ID,"textures/gui/botton.png");
+    private static final ResourceLocation VILLAGER_LOCATION = new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/container/gangleader_trading.png");
+    private static final ResourceLocation BOTTON = new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/botton.png");
     //整张纹理的宽和高
     private static final int TEXTURE_WIDTH = 512;
     private static final int TEXTURE_HEIGHT = 512;
@@ -73,6 +73,7 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
         this.menu.tryMoveItems(this.shopItem);
         this.minecraft.getConnection().send(new ServerboundSelectTradePacket(this.shopItem));
     }
+
     @Override
     protected void init() {
         super.init();
@@ -80,10 +81,10 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
         int top = (this.height - this.imageHeight) / 2;
         int buttonY = top + PROGRESS_BAR_Y + 2;
 
-        for(int i = 0; i < NUMBER_OF_OFFER_BUTTONS; ++i) {
+        for (int i = 0; i < NUMBER_OF_OFFER_BUTTONS; ++i) {
             this.tradeOfferButtons[i] = this.addRenderableWidget(new TradeOfferButton(left + TRADE_BUTTON_X, buttonY, i, button -> {
                 if (button instanceof TradeOfferButton) {
-                    this.shopItem = ((TradeOfferButton)button).getIndex() + this.scrollOff;
+                    this.shopItem = ((TradeOfferButton) button).getIndex() + this.scrollOff;
                     this.postButtonClick();
                 }
 
@@ -92,19 +93,22 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
         }
 
         this.questButton = this.addRenderableWidget(new TexturedButtonWithText(
-                left - 15,
-                top + 46,
-                15,
-                24,
-                75, 0, 24,
+                left - 32,
+                top + 48,
+                35,
+                25,
+                0, 0, 0,
                 BOTTON,
                 256, 256,
                 button -> {
                     this.openQuestScreen();
                 },
-                Component.translatable("quest."+ ChangShengJue.MOD_ID +".button"),0x000,0x000,1.0F
-        ));
+                Component.translatable("quest." + ChangShengJue.MOD_ID + ".button"), 0x000, 0x000, 1.0F
+        ).setIcon(new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/container/quests.png"), 0, 0, 16, 16, 16, 16)
+                .setIconPosition(TexturedButtonWithText.IconPosition.CENTER)
+                .setIconScale(1.0f));
     }
+
     private void openQuestScreen() {
         if (minecraft != null && minecraft.player != null) {
             // 发送网络数据包到服务器
@@ -114,15 +118,18 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
 
     @Override
     protected void renderLabels(GuiGraphics transform, int x, int y) {
-//        int level = this.menu.getTraderLevel();
-//        if (level > 0 && level <= 5 && this.menu.showProgressBar()) {
-//            Component component = this.title.copy().append(LEVEL_SEPARATOR).append(Component.translatable("merchant.level." + level));
-//            int fontWidth = this.font.width(component);
-//            int k = 49 + this.imageWidth / 2 - fontWidth / 2;
-//            transform.drawString(this.font, component, k, 6, 0x404040, false);
-//        } else {
-//            transform.drawString(this.font, this.title, 49 + this.imageWidth / 2 - this.font.width(this.title) / 2, 48, 0x404040, false);
-//        }
+        boolean isChinese = Minecraft.getInstance().options.languageCode.startsWith("zh_");
+        if (!isChinese) {
+            int level = this.menu.getTraderLevel();
+            if (level > 0 && level <= 5 && this.menu.showProgressBar()) {
+                Component component = this.title.copy().append(LEVEL_SEPARATOR).append(Component.translatable("merchant.level." + level));
+                int fontWidth = this.font.width(component);
+                int k = 49 + this.imageWidth / 2 - fontWidth / 2;
+                transform.drawString(this.font, component, k, 6, 0x404040, false);
+            } else {
+                transform.drawString(this.font, this.title, 49 + this.imageWidth / 2 - this.font.width(this.title) / 2, 48, 0x404040, false);
+            }
+        }
         transform.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 0x404040, false);
         int l = this.font.width(TRADES_LABEL);
         transform.drawString(this.font, TRADES_LABEL, 5 - l / 2 + 48, 48, 0x404040, false);
@@ -154,12 +161,12 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
             transform.blit(VILLAGER_LOCATION, x + PROGRESS_BAR_X, y + PROGRESS_BAR_Y, 0, 0.0F, 186.0F, 102, 5, TEXTURE_WIDTH, TEXTURE_HEIGHT);
             int k = 15;
             if (xp >= k && level > 1) {
-                float f = 100.0F / (float)(300 - k);
-                int progress = Math.min(Mth.floor(f * (float)(xp - k)), 100);
+                float f = 100.0F / (float) (300 - k);
+                int progress = Math.min(Mth.floor(f * (float) (xp - k)), 100);
                 transform.blit(VILLAGER_LOCATION, x + PROGRESS_BAR_X, y + PROGRESS_BAR_Y, 0, 0.0F, 191.0F, progress + 1, 5, TEXTURE_WIDTH, TEXTURE_HEIGHT);
                 int addXp = this.menu.getFutureTraderXp();
                 if (addXp > 0) {
-                    int addProgress = Math.min(Mth.floor((float)addXp * f), 100 - progress);
+                    int addProgress = Math.min(Mth.floor((float) addXp * f), 100 - progress);
                     transform.blit(VILLAGER_LOCATION, x + PROGRESS_BAR_X + progress + 1, y + PROGRESS_BAR_Y + 1, 0, 2.0F, 182.0F, addProgress, 3, TEXTURE_WIDTH, TEXTURE_HEIGHT);
                 }
 
@@ -170,18 +177,20 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
     private void renderScroller(GuiGraphics transform, int x, int y, MerchantOffers offers) {
         int overSize = offers.size() + 1 - NUMBER_OF_OFFER_BUTTONS;
         if (overSize > 1) {
-            int overHeight = SCROLL_BAR_HEIGHT - (27 + (overSize - 1) * SCROLL_BAR_HEIGHT / overSize);
-            int index = 1 + overHeight / overSize + SCROLL_BAR_HEIGHT / overSize;
-            int scrollY = Math.min(113, this.scrollOff * index);
-            if (this.scrollOff == overSize - 1) {
-                scrollY = 113;
-            }
+            int scrollableRange = SCROLL_BAR_HEIGHT - SCROLLER_HEIGHT;
 
-            transform.blit(VILLAGER_LOCATION, x + SCROLL_BAR_START_X, y + SCROLL_BAR_TOP_POS_Y + scrollY, 0, 0.0F, 224.0F, SCROLLER_WIDTH, SCROLLER_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+            float scrollProgress = (float) this.scrollOff / (float) (overSize - 1);
+
+            int scrollY = (int) (scrollProgress * scrollableRange);
+
+            scrollY = Mth.clamp(scrollY, 0, scrollableRange);
+
+            transform.blit(VILLAGER_LOCATION, x + SCROLL_BAR_START_X, y + SCROLL_BAR_TOP_POS_Y + scrollY,
+                    0, 0.0F, 210.0F, SCROLLER_WIDTH, SCROLLER_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         } else {
-            transform.blit(VILLAGER_LOCATION, x + SCROLL_BAR_START_X, y + SCROLL_BAR_TOP_POS_Y, 0, 6.0F, 224.0F, SCROLLER_WIDTH, SCROLLER_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT);
+            transform.blit(VILLAGER_LOCATION, x + SCROLL_BAR_START_X, y + SCROLL_BAR_TOP_POS_Y,
+                    0, 6.0F, 210.0F, SCROLLER_WIDTH, SCROLLER_HEIGHT, TEXTURE_WIDTH, TEXTURE_HEIGHT);
         }
-
     }
 
     @Override
@@ -197,7 +206,7 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
             this.renderScroller(transform, left, top, merchantoffers);
             int index = 0;
 
-            for(MerchantOffer merchantoffer : merchantoffers) {
+            for (MerchantOffer merchantoffer : merchantoffers) {
                 if (!this.canScroll(merchantoffers.size()) || index >= this.scrollOff && index < 7 + this.scrollOff) {
                     ItemStack baseCostA = merchantoffer.getBaseCostA();
                     ItemStack costA = merchantoffer.getCostA();
@@ -230,7 +239,7 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
                 transform.renderTooltip(this.font, DEPRECATED_TOOLTIP, x, y);
             }
 
-            for(TradeOfferButton tradeOfferButton : this.tradeOfferButtons) {
+            for (TradeOfferButton tradeOfferButton : this.tradeOfferButtons) {
                 if (tradeOfferButton.isHoveredOrFocused()) {
                     tradeOfferButton.renderToolTip(transform, x, y);
                 }
@@ -262,8 +271,8 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
             transform.pose().translate(0.0F, 0.0F, 200.0F);
             String count = baseCostA.getCount() == 1 ? "1" : String.valueOf(baseCostA.getCount());
             this.font.drawInBatch(
-                    count, (float)(x + 14) + 19.0F - 2.0F - (float)this.font.width(count),
-                    (float)(y + LABEL_Y) + 3.0F, 0xFFFFFF, true,
+                    count, (float) (x + 14) + 19.0F - 2.0F - (float) this.font.width(count),
+                    (float) (y + LABEL_Y) + 3.0F, 0xFFFFFF, true,
                     transform.pose().last().pose(), transform.bufferSource(),
                     Font.DisplayMode.NORMAL, 0, 15728880, false
             );
@@ -284,9 +293,8 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
         int size = this.menu.getOffers().size();
         if (this.canScroll(size)) {
             int overSize = size - NUMBER_OF_OFFER_BUTTONS;
-            this.scrollOff = Mth.clamp((int)((double)this.scrollOff - delta), 0, overSize);
+            this.scrollOff = Mth.clamp((int) (this.scrollOff - delta), 0, overSize);
         }
-
         return true;
     }
 
@@ -295,11 +303,18 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
         int size = this.menu.getOffers().size();
         if (this.isDragging) {
             int scrollTop = this.topPos + SCROLL_BAR_TOP_POS_Y;
-            int scrollBottom = scrollTop + SCROLL_BAR_HEIGHT;
             int overSize = size - NUMBER_OF_OFFER_BUTTONS;
-            float scrollIndex = ((float)fromY - (float)scrollTop - 13.5F) / ((float)(scrollBottom - scrollTop) - 27.0F);
-            scrollIndex = scrollIndex * (float)overSize + 0.5F;
-            this.scrollOff = Mth.clamp((int)scrollIndex, 0, overSize);
+
+            if (overSize > 0) {
+                float relativeY = (float) (fromY - scrollTop - SCROLLER_HEIGHT / 2.0);
+                float scrollableHeight = SCROLL_BAR_HEIGHT - SCROLLER_HEIGHT;
+
+                float scrollProgress = Mth.clamp(relativeY / scrollableHeight, 0.0f, 1.0f);
+
+                this.scrollOff = (int) (scrollProgress * overSize);
+                this.scrollOff = Mth.clamp(this.scrollOff, 0, overSize);
+            }
+
             return true;
         }
         return super.mouseDragged(fromX, fromY, activeButton, toX, toY);
@@ -311,8 +326,8 @@ public class GangleaderTradingScreen extends AbstractContainerScreen<GangleaderT
         int left = (this.width - this.imageWidth) / 2;
         int top = (this.height - this.imageHeight) / 2;
         if (this.canScroll(this.menu.getOffers().size()) &&
-                x > (double)(left + SCROLL_BAR_START_X) && x < (double)(left + SCROLL_BAR_START_X + SCROLLER_WIDTH) &&
-                y > (double)(top + SCROLL_BAR_TOP_POS_Y) && y <= (double)(top + SCROLL_BAR_TOP_POS_Y + SCROLL_BAR_HEIGHT + 1)) {
+                x > (double) (left + SCROLL_BAR_START_X) && x < (double) (left + SCROLL_BAR_START_X + SCROLLER_WIDTH) &&
+                y > (double) (top + SCROLL_BAR_TOP_POS_Y) && y <= (double) (top + SCROLL_BAR_TOP_POS_Y + SCROLL_BAR_HEIGHT + 1)) {
             this.isDragging = true;
         }
 

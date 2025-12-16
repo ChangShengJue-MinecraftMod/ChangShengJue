@@ -1,4 +1,4 @@
-// 1.20.1	2025-08-07T11:33:20.4337609	Tags for minecraft:item mod id chang_sheng_jue
+// 1.20.1	2025-12-10T14:50:27.1185161	Tags for minecraft:item mod id chang_sheng_jue
 cc5dd550d43d528b509db78c5b51b23885f33a25 data/chang_sheng_jue/tags/items/artifact.json
 1f5ad366b60e566ba56034c25b8479c2fa18b0f7 data/chang_sheng_jue/tags/items/crucible.json
 f4b622de2b66643dd46c9a175231f6cd7c67daba data/chang_sheng_jue/tags/items/doors.json
@@ -37,6 +37,6 @@ dbd40628e302cc213132694c541b780b9097debc data/minecraft/tags/items/logs_that_bur
 8c58fd159b0d57ec71e1dfdfad642e205b0ba090 data/minecraft/tags/items/pickaxes.json
 2ab69f9f62a692fb434d61080e9ad48a2beb3428 data/minecraft/tags/items/planks.json
 c8fc05f9abb49326506e9e7790db5c6a45a0c979 data/minecraft/tags/items/saplings.json
-de7e746589cb0814d18dad94b499d63194056d35 data/minecraft/tags/items/slabs.json
-0f49db754c19c500da9822e03fb5f700d9ab5fb0 data/minecraft/tags/items/swords.json
+595b2a3203d658341f61c36583f4b72ec5fda8d5 data/minecraft/tags/items/slabs.json
+9f7464d4986ebd004accc5a192ca6a4aad27255c data/minecraft/tags/items/swords.json
 42f6c3235ba4b62065cea2552d2c834c294d146c data/minecraft/tags/items/trimmable_armor.json

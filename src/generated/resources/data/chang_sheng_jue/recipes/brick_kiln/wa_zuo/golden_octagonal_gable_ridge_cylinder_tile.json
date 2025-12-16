@@ -1,0 +1,16 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "wa_zuo:gold",
+  "ingredients": [
+    {
+      "count": 2,
+      "item": "chang_sheng_jue:kaolin_ball"
+    },
+    {
+      "item": "minecraft:yellow_dye"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:golden_octagonal_gable_ridge_cylinder_tile"
+  }
+}

@@ -1,6 +1,7 @@
 package com.shengchanshe.chang_sheng_jue.entity.custom.wuxia;
 
 import com.shengchanshe.chang_sheng_jue.entity.custom.goal.WuXiaAttackGoalMonster;
+import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.assassin.Assassin;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.bandit.Bandit;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.kungfu.externalkunfu.ExternalKungFuCapability;
@@ -63,7 +64,7 @@ public class AbstractWuXiaMonster extends Monster {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractWuXia.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractWuXia.class, 15, true, false, (entity) -> !(entity instanceof Assassin)));
     }
 
     @Override

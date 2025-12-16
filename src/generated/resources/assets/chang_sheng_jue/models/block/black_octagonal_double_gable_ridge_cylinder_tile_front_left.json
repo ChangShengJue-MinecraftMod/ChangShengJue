@@ -1,7 +1,7 @@
 {
   "parent": "chang_sheng_jue:block/octagonal_double_gable_ridge_cylinder_tile_front_left",
   "textures": {
-    "1": "chang_sheng_jue:block/cylinder_tile_black_block",
-    "particle": "chang_sheng_jue:block/cylinder_tile_black_block"
+    "1": "chang_sheng_jue:block/black_cylinder_tile",
+    "particle": "chang_sheng_jue:block/black_cylinder_tile"
   }
 }

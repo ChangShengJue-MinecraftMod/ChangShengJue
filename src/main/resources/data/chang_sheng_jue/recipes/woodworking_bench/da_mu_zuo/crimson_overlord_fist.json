@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "da_mu_zuo:overlord_fist",
+  "ingredients": [
+    {
+      "item": "minecraft:stripped_crimson_stem",
+      "count": 2
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:crimson_overlord_fist"
+  }
+}

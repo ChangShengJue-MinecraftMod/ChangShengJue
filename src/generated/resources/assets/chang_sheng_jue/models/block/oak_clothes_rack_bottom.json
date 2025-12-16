@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/clothes_rack_bottom",
+  "textures": {
+    "1": "chang_sheng_jue:block/oak_clothes_rack",
+    "particle": "chang_sheng_jue:block/oak_clothes_rack"
+  }
+}

@@ -1,14 +1,14 @@
 {
-  "name": "坩埚",
+  "name": "chang_sheng_jue.function.crucible",
   "category": "chang_sheng_jue:function",
   "sortnum": 0,
   "icon": "chang_sheng_jue:crucible",
   "pages": [
     {
-      "title": "坩埚",
+      "title": "chang_sheng_jue.function.crucible",
       "type": "patchouli:crafting",
       "recipe": "chang_sheng_jue:crucible",
-      "text": "是制作铜钱、元宝的重要道具$(br)可与8个铜/银/金合成为 坩埚（碎铜/银/金）$(br)【坩埚（碎铜/银/金）】在熔炉中烧制可获得【坩埚（铜/银/金液）】"
+      "text": "chang_sheng_jue.function.crucible.page1.text"
     },
     {
       "type": "patchouli:crafting",
@@ -18,7 +18,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "chang_sheng_jue:crucible_crushed_gold",
-      "text": "坩埚（碎铜/银/金）在熔炉中烧制可获得坩埚（铜/银/金液）"
+      "text": "chang_sheng_jue.function.crucible.page3.text"
     },
     {
       "type": "patchouli:smelting",
@@ -28,7 +28,7 @@
     {
       "type": "patchouli:smelting",
       "recipe": "minecraft:crucible_liquid_gold_from_smelting_crucible_crushed_gold",
-      "text": "坩埚（铜/银/金水）可放入模具中制作：铜钱/金银元宝"
+      "text": "chang_sheng_jue.function.crucible.page5.text"
     }
   ]
 }

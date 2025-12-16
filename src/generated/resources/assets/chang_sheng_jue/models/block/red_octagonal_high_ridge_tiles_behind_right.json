@@ -1,7 +1,7 @@
 {
   "parent": "chang_sheng_jue:block/octagonal_high_ridge_tiles_behind_right",
   "textures": {
-    "1": "chang_sheng_jue:block/cylinder_tile_red_block",
-    "particle": "chang_sheng_jue:block/cylinder_tile_red_block"
+    "1": "chang_sheng_jue:block/red_cylinder_tile",
+    "particle": "chang_sheng_jue:block/red_cylinder_tile"
   }
 }

@@ -1,0 +1,94 @@
+{
+  "variants": {
+    "facing=east,part=bottom,right=false": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_left_bottom",
+      "y": 90
+    },
+    "facing=east,part=bottom,right=true": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_right_bottom",
+      "y": 90
+    },
+    "facing=east,part=middle,right=false": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_left_middle",
+      "y": 90
+    },
+    "facing=east,part=middle,right=true": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_right_middle",
+      "y": 90
+    },
+    "facing=east,part=top,right=false": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_left_top",
+      "y": 90
+    },
+    "facing=east,part=top,right=true": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_right_top",
+      "y": 90
+    },
+    "facing=north,part=bottom,right=false": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_left_bottom"
+    },
+    "facing=north,part=bottom,right=true": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_right_bottom"
+    },
+    "facing=north,part=middle,right=false": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_left_middle"
+    },
+    "facing=north,part=middle,right=true": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_right_middle"
+    },
+    "facing=north,part=top,right=false": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_left_top"
+    },
+    "facing=north,part=top,right=true": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_right_top"
+    },
+    "facing=south,part=bottom,right=false": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_left_bottom",
+      "y": 180
+    },
+    "facing=south,part=bottom,right=true": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_right_bottom",
+      "y": 180
+    },
+    "facing=south,part=middle,right=false": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_left_middle",
+      "y": 180
+    },
+    "facing=south,part=middle,right=true": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_right_middle",
+      "y": 180
+    },
+    "facing=south,part=top,right=false": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_left_top",
+      "y": 180
+    },
+    "facing=south,part=top,right=true": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_right_top",
+      "y": 180
+    },
+    "facing=west,part=bottom,right=false": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_left_bottom",
+      "y": 270
+    },
+    "facing=west,part=bottom,right=true": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_right_bottom",
+      "y": 270
+    },
+    "facing=west,part=middle,right=false": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_left_middle",
+      "y": 270
+    },
+    "facing=west,part=middle,right=true": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_right_middle",
+      "y": 270
+    },
+    "facing=west,part=top,right=false": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_left_top",
+      "y": 270
+    },
+    "facing=west,part=top,right=true": {
+      "model": "chang_sheng_jue:block/mangrove_folding_screen_right_top",
+      "y": 270
+    }
+  }
+}

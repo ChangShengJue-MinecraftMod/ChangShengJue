@@ -101,222 +101,248 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.MEI_REN_KAO_WARPED_BLOCK.get());
 
         this.tag(CSJTags.Blocks.TILE)
-                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.RED_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE.get())
-
-                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get())
-                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get())
-                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get())
-                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get())
-                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get())
-
-                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SIDE.get())
-
                 .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get())
                 .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get())
                 .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get())
                 .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get())
+                .add(ChangShengJueBlocks.CYAN_CYLINDER_TILE_BLOCK.get())
                 .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get())
-                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_1.get())
-                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_1.get())
-                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_1.get())
-                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_1.get())
-                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_1.get())
-                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_2.get())
-                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_2.get())
-                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_2.get())
-                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_2.get())
-                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_2.get())
-                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_3.get())
-                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_3.get())
-                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_3.get())
-                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_3.get())
-                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_3.get())
-                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_4.get())
-                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_4.get())
-                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_4.get())
-                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_4.get())
-                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_4.get())
+                .add(ChangShengJueBlocks.PURPLE_CYLINDER_TILE_BLOCK.get(),
+                        ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(),
+                        ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get(),
+                        ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(),
+                        ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(),
+                        ChangShengJueBlocks.CYAN_CYLINDER_TILE_SLAB.get(),
+                        ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),
+                        ChangShengJueBlocks.PURPLE_CYLINDER_TILE_SLAB.get(),
+                        ChangShengJueBlocks.GRE_CYLINDER_TILE_SIDE.get(),
+                        ChangShengJueBlocks.RED_CYLINDER_TILE_SIDE.get(),
+                        ChangShengJueBlocks.BLACK_CYLINDER_TILE_SIDE.get(),
+                        ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SIDE.get(),
+                        ChangShengJueBlocks.CYAN_CYLINDER_TILE_SIDE.get(),
+                        ChangShengJueBlocks.BLUE_CYLINDER_TILE_SIDE.get(),
+                        ChangShengJueBlocks.PURPLE_CYLINDER_TILE_SIDE.get(),
+                        ChangShengJueBlocks.GRE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.RED_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLACK_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GOLDEN_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.CYAN_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLUE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.PURPLE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GRE_EAVES_TILE.get(),
+                        ChangShengJueBlocks.RED_EAVES_TILE.get(),
+                        ChangShengJueBlocks.BLACK_EAVES_TILE.get(),
+                        ChangShengJueBlocks.GOLDEN_EAVES_TILE.get(),
+                        ChangShengJueBlocks.CYAN_EAVES_TILE.get(),
+                        ChangShengJueBlocks.BLUE_EAVES_TILE.get(),
+                        ChangShengJueBlocks.PURPLE_EAVES_TILE.get(),
+                        ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.CYAN_DOUBLE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.PURPLE_DOUBLE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GRE_SMALL_DEMON_MASK.get(),
+                        ChangShengJueBlocks.RED_SMALL_DEMON_MASK.get(),
+                        ChangShengJueBlocks.BLACK_SMALL_DEMON_MASK.get(),
+                        ChangShengJueBlocks.GOLDEN_SMALL_DEMON_MASK.get(),
+                        ChangShengJueBlocks.CYAN_SMALL_DEMON_MASK.get(),
+                        ChangShengJueBlocks.BLUE_SMALL_DEMON_MASK.get(),
+                        ChangShengJueBlocks.PURPLE_SMALL_DEMON_MASK.get(),
+                        ChangShengJueBlocks.GRE_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.RED_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.BLACK_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.GOLDEN_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.CYAN_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.BLUE_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.PURPLE_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.ANIMALS_CYAN_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.ANIMALS_PURPLE_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.GRE_DOUBLE_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.RED_DOUBLE_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.BLACK_DOUBLE_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.GOLDEN_DOUBLE_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.CYAN_DOUBLE_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.BLUE_DOUBLE_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.PURPLE_DOUBLE_RIDGE_TILE.get(),
 
-                .add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE.get())
-                .add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE.get())
-                .add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE.get())
-                .add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE.get())
-                .add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE.get())
+                        ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.HANGING_BEAST_RED_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.HANGING_BEAST_CYAN_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get(),
+                        ChangShengJueBlocks.HANGING_BEAST_PURPLE_RIDGE_TILE.get(),
 
-                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_5.get())
-                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_5.get())
-                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_5.get())
-                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_5.get())
-                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_5.get())
-
-                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_6.get())
-                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_6.get())
-                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_6.get())
-                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_6.get())
-                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_6.get())
-
-                .add(ChangShengJueBlocks.HANGING_BEAST_GRE_RIDGE_TILE.get())
-                .add(ChangShengJueBlocks.HANGING_BEAST_RED_RIDGE_TILE.get())
-                .add(ChangShengJueBlocks.HANGING_BEAST_BLACK_RIDGE_TILE.get())
-                .add(ChangShengJueBlocks.HANGING_BEAST_GOLDEN_RIDGE_TILE.get())
-                .add(ChangShengJueBlocks.HANGING_BEAST_BLUE_RIDGE_TILE.get())
-
-                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_7.get())
-                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_7.get())
-                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_7.get())
-                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_7.get())
-                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_7.get())
-
-                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK_8.get())
-                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK_8.get())
-                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK_8.get())
-                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK_8.get())
-                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK_8.get())
-
-                .add(ChangShengJueBlocks.GRE_OCTAGONAL_UPTURNED_EAVES.get())
-                .add(ChangShengJueBlocks.RED_OCTAGONAL_UPTURNED_EAVES.get())
-                .add(ChangShengJueBlocks.BLACK_OCTAGONAL_UPTURNED_EAVES.get())
-                .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_UPTURNED_EAVES.get())
-                .add(ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES.get())
+                        ChangShengJueBlocks.GRE_EAVES_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.RED_EAVES_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLACK_EAVES_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GOLDEN_EAVES_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.CYAN_EAVES_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLUE_EAVES_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.PURPLE_EAVES_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GRE_OCTAGONAL_UPTURNED_EAVES.get(),
+                        ChangShengJueBlocks.RED_OCTAGONAL_UPTURNED_EAVES.get(),
+                        ChangShengJueBlocks.BLACK_OCTAGONAL_UPTURNED_EAVES.get(),
+                        ChangShengJueBlocks.GOLDEN_OCTAGONAL_UPTURNED_EAVES.get(),
+                        ChangShengJueBlocks.CYAN_OCTAGONAL_UPTURNED_EAVES.get(),
+                        ChangShengJueBlocks.BLUE_OCTAGONAL_UPTURNED_EAVES.get(),
+                        ChangShengJueBlocks.PURPLE_OCTAGONAL_UPTURNED_EAVES.get())
 
                 .add(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get())
                 .add(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get())
                 .add(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get())
                 .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get())
+                .add(ChangShengJueBlocks.CYAN_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get())
                 .add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get())
+                .add(ChangShengJueBlocks.PURPLE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.get())
 
                 .add(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get())
                 .add(ChangShengJueBlocks.RED_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get())
                 .add(ChangShengJueBlocks.BLACK_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get())
                 .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get())
+                .add(ChangShengJueBlocks.CYAN_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get())
                 .add(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get())
+                .add(ChangShengJueBlocks.PURPLE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.get())
 
                 .add(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get())
                 .add(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get())
                 .add(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get())
                 .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get())
+                .add(ChangShengJueBlocks.CYAN_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get())
                 .add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get())
+                .add(ChangShengJueBlocks.PURPLE_OCTAGONAL_HIGH_RIDGE_TILES_FRONT.get())
 
                 .add(ChangShengJueBlocks.GRE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get())
                 .add(ChangShengJueBlocks.RED_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get())
                 .add(ChangShengJueBlocks.BLACK_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get())
                 .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get())
+                .add(ChangShengJueBlocks.CYAN_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get())
                 .add(ChangShengJueBlocks.BLUE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get())
+                .add(ChangShengJueBlocks.PURPLE_OCTAGONAL_HIGH_RIDGE_TILES_BEHIND.get())
 
                 .add(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get())
                 .add(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get())
                 .add(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get())
                 .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get())
+                .add(ChangShengJueBlocks.CYAN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get())
                 .add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get())
+                .add(ChangShengJueBlocks.PURPLE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_FRONT.get())
 
                 .add(ChangShengJueBlocks.GRE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get())
                 .add(ChangShengJueBlocks.RED_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get())
                 .add(ChangShengJueBlocks.BLACK_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get())
                 .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get())
+                .add(ChangShengJueBlocks.CYAN_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get())
                 .add(ChangShengJueBlocks.BLUE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get())
+                .add(ChangShengJueBlocks.PURPLE_OCTAGONAL_DOUBLE_GABLE_RIDGE_CYLINDER_TILE_BEHIND.get())
 
-                .add(ChangShengJueBlocks.ANIMALS_GRE_RIDGE_TILE_1.get())
-                .add(ChangShengJueBlocks.ANIMALS_RED_RIDGE_TILE_1.get())
-                .add(ChangShengJueBlocks.ANIMALS_BLACK_RIDGE_TILE_1.get())
-                .add(ChangShengJueBlocks.ANIMALS_GOLDEN_RIDGE_TILE_1.get())
-                .add(ChangShengJueBlocks.ANIMALS_BLUE_RIDGE_TILE_1.get())
+                .add(ChangShengJueBlocks.GRE_ROOF_RIDGE.get(),
+                        ChangShengJueBlocks.RED_ROOF_RIDGE.get(),
+                        ChangShengJueBlocks.BLACK_ROOF_RIDGE.get(),
+                        ChangShengJueBlocks.GOLDEN_ROOF_RIDGE.get(),
+                        ChangShengJueBlocks.CYAN_ROOF_RIDGE.get(),
+                        ChangShengJueBlocks.BLUE_ROOF_RIDGE.get(),
+                        ChangShengJueBlocks.PURPLE_ROOF_RIDGE.get(),
+                        ChangShengJueBlocks.GRE_DEMON_MASK.get(),
+                        ChangShengJueBlocks.RED_DEMON_MASK.get(),
+                        ChangShengJueBlocks.BLACK_DEMON_MASK.get(),
+                        ChangShengJueBlocks.GOLDEN_DEMON_MASK.get(),
+                        ChangShengJueBlocks.CYAN_DEMON_MASK.get(),
+                        ChangShengJueBlocks.BLUE_DEMON_MASK.get(),
+                        ChangShengJueBlocks.PURPLE_DEMON_MASK.get(),
 
-                .add(ChangShengJueBlocks.GRE_ROOF_RIDGE.get())
-                .add(ChangShengJueBlocks.RED_ROOF_RIDGE.get())
-                .add(ChangShengJueBlocks.BLACK_ROOF_RIDGE.get())
-                .add(ChangShengJueBlocks.GOLDEN_ROOF_RIDGE.get())
-                .add(ChangShengJueBlocks.BLUE_ROOF_RIDGE.get())
+                        ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION.get(),
+                        ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION.get(),
+                        ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION.get(),
+                        ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION.get(),
+                        ChangShengJueBlocks.CYAN_RIDGE_FINIAL_PAVILION.get(),
+                        ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION.get(),
+                        ChangShengJueBlocks.PURPLE_RIDGE_FINIAL_PAVILION.get(),
+                        ChangShengJueBlocks.GRE_CHARACTER_PLAQUE_PAVILION.get(),
+                        ChangShengJueBlocks.RED_CHARACTER_PLAQUE_PAVILION.get(),
+                        ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION.get(),
+                        ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION.get(),
+                        ChangShengJueBlocks.CYAN_CHARACTER_PLAQUE_PAVILION.get(),
+                        ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION.get(),
+                        ChangShengJueBlocks.PURPLE_CHARACTER_PLAQUE_PAVILION.get(),
+                        ChangShengJueBlocks.GRE_HIPPED_ROOF.get(),
+                        ChangShengJueBlocks.RED_HIPPED_ROOF.get(),
+                        ChangShengJueBlocks.BLACK_HIPPED_ROOF.get(),
+                        ChangShengJueBlocks.GOLDEN_HIPPED_ROOF.get(),
+                        ChangShengJueBlocks.CYAN_HIPPED_ROOF.get(),
+                        ChangShengJueBlocks.BLUE_HIPPED_ROOF.get(),
+                        ChangShengJueBlocks.PURPLE_HIPPED_ROOF.get(),
+                        ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.CYAN_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.PURPLE_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.CYAN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.PURPLE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.CYAN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.PURPLE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.CYAN_SHORT_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.PURPLE_SHORT_CYLINDER_TILE.get(),
 
-                .add(ChangShengJueBlocks.GRE_DEMON_MASK.get())
-                .add(ChangShengJueBlocks.RED_DEMON_MASK.get())
-                .add(ChangShengJueBlocks.BLACK_DEMON_MASK.get())
-                .add(ChangShengJueBlocks.GOLDEN_DEMON_MASK.get())
-                .add(ChangShengJueBlocks.BLUE_DEMON_MASK.get())
-
-                .add(ChangShengJueBlocks.GRE_RIDGE_FINIAL_PAVILION.get())
-                .add(ChangShengJueBlocks.RED_RIDGE_FINIAL_PAVILION.get())
-                .add(ChangShengJueBlocks.BLACK_RIDGE_FINIAL_PAVILION.get())
-                .add(ChangShengJueBlocks.GOLDEN_RIDGE_FINIAL_PAVILION.get())
-                .add(ChangShengJueBlocks.BLUE_RIDGE_FINIAL_PAVILION.get())
-
-                .add(ChangShengJueBlocks.GRE_CHARACTER_PLAQUE_PAVILION.get())
-                .add(ChangShengJueBlocks.RED_CHARACTER_PLAQUE_PAVILION.get())
-                .add(ChangShengJueBlocks.BLACK_CHARACTER_PLAQUE_PAVILION.get())
-                .add(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION.get())
-                .add(ChangShengJueBlocks.BLUE_CHARACTER_PLAQUE_PAVILION.get())
-
-                .add(ChangShengJueBlocks.GRE_HIPPED_ROOF.get())
-                .add(ChangShengJueBlocks.RED_HIPPED_ROOF.get())
-                .add(ChangShengJueBlocks.BLACK_HIPPED_ROOF.get())
-                .add(ChangShengJueBlocks.GOLDEN_HIPPED_ROOF.get())
-                .add(ChangShengJueBlocks.BLUE_HIPPED_ROOF.get())
-
-                .add(ChangShengJueBlocks.GRE_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.RED_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.BLACK_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.GOLDEN_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.BLUE_GABLE_RIDGE_CYLINDER_TILE.get())
-
-                .add(ChangShengJueBlocks.GRE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.RED_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.BLACK_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.GOLDEN_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.BLUE_DOUBLE_GABLE_RIDGE_CYLINDER_TILE.get())
-
-                .add(ChangShengJueBlocks.GRE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE.get())
-
-                .add(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.BLUE_SHORT_CYLINDER_TILE.get())
-
-                .add(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE.get())
-
-                .add(ChangShengJueBlocks.GRE_HIGH_CYLINDER_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.RED_HIGH_CYLINDER_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.BLACK_HIGH_CYLINDER_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.GOLDEN_HIGH_CYLINDER_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.BLUE_HIGH_CYLINDER_TILE_SIDE.get())
-
-                .add(ChangShengJueBlocks.GRE_EAVES_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.RED_EAVES_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.BLACK_EAVES_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.GOLDEN_EAVES_TILE_SIDE.get())
-                .add(ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE.get())
-
-                .add(ChangShengJueBlocks.GRE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.RED_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.BLACK_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.GOLDEN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get())
-                .add(ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get())
-
-                .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK.get())
-                .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_1.get())
-                .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_2.get())
-                .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_3.get())
-                .add(ChangShengJueBlocks.GOLDEN_TILE_BLOCK_4.get())
-                .add(ChangShengJueBlocks.TILE_BLOCK.get())
-                .add(ChangShengJueBlocks.TILE_BLOCK_1.get())
-                .add(ChangShengJueBlocks.TILE_BLOCK_2.get())
-                .add(ChangShengJueBlocks.TILE_BLOCK_3.get())
-                .add(ChangShengJueBlocks.TILE_BLOCK_4.get());
+                        ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE_SIDE.get(),
+                        ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE_SIDE.get(),
+                        ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE_SIDE.get(),
+                        ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE_SIDE.get(),
+                        ChangShengJueBlocks.CYAN_DOUBLE_CYLINDER_TILE_SIDE.get(),
+                        ChangShengJueBlocks.BLUE_DOUBLE_CYLINDER_TILE_SIDE.get(),
+                        ChangShengJueBlocks.PURPLE_DOUBLE_CYLINDER_TILE_SIDE.get(),
+                        ChangShengJueBlocks.GRE_EAVES_TILE_SIDE.get(),
+                        ChangShengJueBlocks.RED_EAVES_TILE_SIDE.get(),
+                        ChangShengJueBlocks.BLACK_EAVES_TILE_SIDE.get(),
+                        ChangShengJueBlocks.GOLDEN_EAVES_TILE_SIDE.get(),
+                        ChangShengJueBlocks.CYAN_EAVES_TILE_SIDE.get(),
+                        ChangShengJueBlocks.BLUE_EAVES_TILE_SIDE.get(),
+                        ChangShengJueBlocks.PURPLE_EAVES_TILE_SIDE.get(),
+                        ChangShengJueBlocks.GRE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.RED_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLACK_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GOLDEN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.CYAN_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.BLUE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.PURPLE_OCTAGONAL_GABLE_RIDGE_CYLINDER_TILE.get(),
+                        ChangShengJueBlocks.GOLDEN_TILE.get(),
+                        ChangShengJueBlocks.GOLDEN_GENTLE_TILE.get(),
+                        ChangShengJueBlocks.GOLDEN_CORNICES.get(),
+                        ChangShengJueBlocks.GOLDEN_GENTLE_CORNICES.get(),
+                        ChangShengJueBlocks.GOLDEN_TILE_BLOCK_2.get(),
+                        ChangShengJueBlocks.GOLDEN_TILE_BLOCK_3.get(),
+                        ChangShengJueBlocks.GOLDEN_TILE_BLOCK_4.get(),
+                        ChangShengJueBlocks.BLACK_TILE.get(),
+                        ChangShengJueBlocks.BLACK_GENTLE_TILE.get(),
+                        ChangShengJueBlocks.BLACK_CORNICES.get(),
+                        ChangShengJueBlocks.BLACK_GENTLE_CORNICES.get(),
+                        ChangShengJueBlocks.TILE_BLOCK_2.get(),
+                        ChangShengJueBlocks.TILE_BLOCK_3.get(),
+                        ChangShengJueBlocks.TILE_BLOCK_4.get());
 
         this.tag(CSJTags.Blocks.WINDOWS)
                 .add(ChangShengJueBlocks.WINDOWS_BIRCH_BLOCK.get())
@@ -342,21 +368,23 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.BIG_PAINTING_SCROLL.get());
 
         this.tag(CSJTags.Blocks.BENCH)
-                .add(ChangShengJueBlocks.BIRCH_BENCH.get())
-                .add(ChangShengJueBlocks.CRIMSON_BENCH.get())
-                .add(ChangShengJueBlocks.WARPED_BENCH.get())
-                .add(ChangShengJueBlocks.MANGROVE_BENCH.get())
-                .add(ChangShengJueBlocks.HUANG_HUA_LI_BENCH.get())
-                .add(ChangShengJueBlocks.JI_CHI_MU_BENCH.get())
-                .add(ChangShengJueBlocks.ACACIA_BENCH.get())
-                .add(ChangShengJueBlocks.DARK_OAK_BENCH.get())
-                .add(ChangShengJueBlocks.OAK_BENCH.get())
-                .add(ChangShengJueBlocks.CHERRY_BENCH.get())
-                .add(ChangShengJueBlocks.SPRUCE_BENCH.get())
-                .add(ChangShengJueBlocks.ZI_TAN_BENCH.get());
+                .add(ChangShengJueBlocks.BIRCH_BENCH.get(),
+                        ChangShengJueBlocks.JUNGLE_BENCH.get(),
+                        ChangShengJueBlocks.CRIMSON_BENCH.get(),
+                        ChangShengJueBlocks.WARPED_BENCH.get(),
+                        ChangShengJueBlocks.MANGROVE_BENCH.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_BENCH.get(),
+                        ChangShengJueBlocks.JI_CHI_MU_BENCH.get(),
+                        ChangShengJueBlocks.ACACIA_BENCH.get(),
+                        ChangShengJueBlocks.DARK_OAK_BENCH.get(),
+                        ChangShengJueBlocks.OAK_BENCH.get(),
+                        ChangShengJueBlocks.CHERRY_BENCH.get(),
+                        ChangShengJueBlocks.SPRUCE_BENCH.get(),
+                        ChangShengJueBlocks.ZI_TAN_BENCH.get());
 
         this.tag(CSJTags.Blocks.WINE_TABLE)
                 .add(ChangShengJueBlocks.BIRCH_WINE_TABLE.get(),
+                ChangShengJueBlocks.JUNGLE_WINE_TABLE.get(),
                 ChangShengJueBlocks.CRIMSON_WINE_TABLE.get(),
                 ChangShengJueBlocks.WARPED_WINE_TABLE.get(),
                 ChangShengJueBlocks.MANGROVE_WINE_TABLE.get(),
@@ -370,62 +398,139 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 ChangShengJueBlocks.ZI_TAN_WINE_TABLE.get());
 
         this.tag(CSJTags.Blocks.DRINKING_TABLE_AND_CHAIRS)
-                .add(ChangShengJueBlocks.BIRCH_DRINKING_TABLE_AND_CHAIRS.get())
-                .add(ChangShengJueBlocks.CRIMSON_DRINKING_TABLE_AND_CHAIRS.get())
-                .add(ChangShengJueBlocks.WARPED_DRINKING_TABLE_AND_CHAIRS.get())
-                .add(ChangShengJueBlocks.MANGROVE_DRINKING_TABLE_AND_CHAIRS.get())
-                .add(ChangShengJueBlocks.HUANG_HUA_LI_DRINKING_TABLE_AND_CHAIRS.get())
-                .add(ChangShengJueBlocks.JI_CHI_MU_DRINKING_TABLE_AND_CHAIRS.get())
-                .add(ChangShengJueBlocks.ACACIA_DRINKING_TABLE_AND_CHAIRS.get())
-                .add(ChangShengJueBlocks.DARK_OAK_DRINKING_TABLE_AND_CHAIRS.get())
-                .add(ChangShengJueBlocks.OAK_DRINKING_TABLE_AND_CHAIRS.get())
-                .add(ChangShengJueBlocks.CHERRY_DRINKING_TABLE_AND_CHAIRS.get())
-                .add(ChangShengJueBlocks.SPRUCE_DRINKING_TABLE_AND_CHAIRS.get())
-                .add(ChangShengJueBlocks.ZI_TAN_DRINKING_TABLE_AND_CHAIRS.get());
+                .add(ChangShengJueBlocks.BIRCH_DRINKING_TABLE_AND_CHAIRS.get(),
+                        ChangShengJueBlocks.JUNGLE_DRINKING_TABLE_AND_CHAIRS.get(),
+                        ChangShengJueBlocks.CRIMSON_DRINKING_TABLE_AND_CHAIRS.get(),
+                        ChangShengJueBlocks.WARPED_DRINKING_TABLE_AND_CHAIRS.get(),
+                        ChangShengJueBlocks.MANGROVE_DRINKING_TABLE_AND_CHAIRS.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_DRINKING_TABLE_AND_CHAIRS.get(),
+                        ChangShengJueBlocks.JI_CHI_MU_DRINKING_TABLE_AND_CHAIRS.get(),
+                        ChangShengJueBlocks.ACACIA_DRINKING_TABLE_AND_CHAIRS.get(),
+                        ChangShengJueBlocks.DARK_OAK_DRINKING_TABLE_AND_CHAIRS.get(),
+                        ChangShengJueBlocks.OAK_DRINKING_TABLE_AND_CHAIRS.get(),
+                        ChangShengJueBlocks.CHERRY_DRINKING_TABLE_AND_CHAIRS.get(),
+                        ChangShengJueBlocks.SPRUCE_DRINKING_TABLE_AND_CHAIRS.get(),
+                        ChangShengJueBlocks.ZI_TAN_DRINKING_TABLE_AND_CHAIRS.get());
+
+        this.tag(CSJTags.Blocks.SQUARE_STOOL)
+                .add(ChangShengJueBlocks.BIRCH_SQUARE_STOOL.get())
+                .add(ChangShengJueBlocks.CRIMSON_SQUARE_STOOL.get())
+                .add(ChangShengJueBlocks.JUNGLE_SQUARE_STOOL.get())
+                .add(ChangShengJueBlocks.WARPED_SQUARE_STOOL.get())
+                .add(ChangShengJueBlocks.MANGROVE_SQUARE_STOOL.get())
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_SQUARE_STOOL.get())
+                .add(ChangShengJueBlocks.WENGE_SQUARE_STOOL.get())
+                .add(ChangShengJueBlocks.ACACIA_SQUARE_STOOL.get())
+                .add(ChangShengJueBlocks.DARK_OAK_SQUARE_STOOL.get())
+                .add(ChangShengJueBlocks.OAK_SQUARE_STOOL.get())
+                .add(ChangShengJueBlocks.CHERRY_SQUARE_STOOL.get())
+                .add(ChangShengJueBlocks.SPRUCE_SQUARE_STOOL.get())
+                .add(ChangShengJueBlocks.ZI_TAN_SQUARE_STOOL.get());
+
+        this.tag(CSJTags.Blocks.FOLDING_SCREEN)
+                .add(ChangShengJueBlocks.BIRCH_FOLDING_SCREEN.get())
+                .add(ChangShengJueBlocks.CRIMSON_FOLDING_SCREEN.get())
+                .add(ChangShengJueBlocks.JUNGLE_FOLDING_SCREEN.get())
+                .add(ChangShengJueBlocks.WARPED_FOLDING_SCREEN.get())
+                .add(ChangShengJueBlocks.MANGROVE_FOLDING_SCREEN.get())
+                .add(ChangShengJueBlocks.HUANG_HUA_LI_FOLDING_SCREEN.get())
+                .add(ChangShengJueBlocks.WENGE_FOLDING_SCREEN.get())
+                .add(ChangShengJueBlocks.ACACIA_FOLDING_SCREEN.get())
+                .add(ChangShengJueBlocks.DARK_OAK_FOLDING_SCREEN.get())
+                .add(ChangShengJueBlocks.OAK_FOLDING_SCREEN.get())
+                .add(ChangShengJueBlocks.CHERRY_FOLDING_SCREEN.get())
+                .add(ChangShengJueBlocks.SPRUCE_FOLDING_SCREEN.get())
+                .add(ChangShengJueBlocks.ZI_TAN_FOLDING_SCREEN.get());
+
+        this.tag(CSJTags.Blocks.ARHAT_BED)
+                .add(ChangShengJueBlocks.BIRCH_ARHAT_BED.get(),
+                        ChangShengJueBlocks.CRIMSON_ARHAT_BED.get(),
+                        ChangShengJueBlocks.JUNGLE_ARHAT_BED.get(),
+                        ChangShengJueBlocks.WARPED_ARHAT_BED.get(),
+                        ChangShengJueBlocks.MANGROVE_ARHAT_BED.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_ARHAT_BED.get(),
+                        ChangShengJueBlocks.WENGE_ARHAT_BED.get(),
+                        ChangShengJueBlocks.ACACIA_ARHAT_BED.get(),
+                        ChangShengJueBlocks.DARK_OAK_ARHAT_BED.get(),
+                        ChangShengJueBlocks.OAK_ARHAT_BED.get(),
+                        ChangShengJueBlocks.CHERRY_ARHAT_BED.get(),
+                        ChangShengJueBlocks.SPRUCE_ARHAT_BED.get(),
+                        ChangShengJueBlocks.ZI_TAN_ARHAT_BED.get());
 
         this.tag(CSJTags.Blocks.BOOK_DESK)
-                .add(ChangShengJueBlocks.BIRCH_BOOK_DESK.get())
-                .add(ChangShengJueBlocks.CRIMSON_BOOK_DESK.get())
-                .add(ChangShengJueBlocks.WARPED_BOOK_DESK.get())
-                .add(ChangShengJueBlocks.MANGROVE_BOOK_DESK.get())
-                .add(ChangShengJueBlocks.HUANG_HUA_LI_BOOK_DESK.get())
-                .add(ChangShengJueBlocks.JI_CHI_MU_BOOK_DESK.get())
-                .add(ChangShengJueBlocks.ACACIA_BOOK_DESK.get())
-                .add(ChangShengJueBlocks.DARK_OAK_BOOK_DESK.get())
-                .add(ChangShengJueBlocks.OAK_BOOK_DESK.get())
-                .add(ChangShengJueBlocks.CHERRY_BOOK_DESK.get())
-                .add(ChangShengJueBlocks.SPRUCE_BOOK_DESK.get())
-                .add(ChangShengJueBlocks.ZI_TAN_BOOK_DESK.get());
+                .add(ChangShengJueBlocks.BIRCH_BOOK_DESK.get(),
+                        ChangShengJueBlocks.JUNGLE_BOOK_DESK.get(),
+                        ChangShengJueBlocks.CRIMSON_BOOK_DESK.get(),
+                        ChangShengJueBlocks.WARPED_BOOK_DESK.get(),
+                        ChangShengJueBlocks.MANGROVE_BOOK_DESK.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_BOOK_DESK.get(),
+                        ChangShengJueBlocks.JI_CHI_MU_BOOK_DESK.get(),
+                        ChangShengJueBlocks.ACACIA_BOOK_DESK.get(),
+                        ChangShengJueBlocks.DARK_OAK_BOOK_DESK.get(),
+                        ChangShengJueBlocks.OAK_BOOK_DESK.get(),
+                        ChangShengJueBlocks.CHERRY_BOOK_DESK.get(),
+                        ChangShengJueBlocks.SPRUCE_BOOK_DESK.get(),
+                        ChangShengJueBlocks.ZI_TAN_BOOK_DESK.get());
 
         this.tag(CSJTags.Blocks.TEAPOY)
-                .add(ChangShengJueBlocks.HUANG_HUA_LI_TEAPOY.get())
-                .add(ChangShengJueBlocks.JI_CHI_MU_TEAPOY.get())
-                .add(ChangShengJueBlocks.ZI_TAN_TEAPOY.get());
+                .add(ChangShengJueBlocks.BIRCH_TEAPOY.get(),
+                        ChangShengJueBlocks.JUNGLE_TEAPOY.get(),
+                        ChangShengJueBlocks.CRIMSON_TEAPOY.get(),
+                        ChangShengJueBlocks.WARPED_TEAPOY.get(),
+                        ChangShengJueBlocks.MANGROVE_TEAPOY.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_TEAPOY.get(),
+                        ChangShengJueBlocks.WENGE_TEAPOY.get(),
+                        ChangShengJueBlocks.ACACIA_TEAPOY.get(),
+                        ChangShengJueBlocks.DARK_OAK_TEAPOY.get(),
+                        ChangShengJueBlocks.OAK_TEAPOY.get(),
+                        ChangShengJueBlocks.CHERRY_TEAPOY.get(),
+                        ChangShengJueBlocks.SPRUCE_TEAPOY.get(),
+                        ChangShengJueBlocks.ZI_TAN_TEAPOY.get());
 
         this.tag(CSJTags.Blocks.TAISHI_CHAIR)
-                .add(ChangShengJueBlocks.HUANG_HUA_LI_TAISHI_CHAIR.get())
-                .add(ChangShengJueBlocks.JI_CHI_MU_TAISHI_CHAIR.get())
-                .add(ChangShengJueBlocks.ZI_TAN_TAISHI_CHAIR.get());
+                .add(ChangShengJueBlocks.BIRCH_TAISHI_CHAIR.get(),
+                        ChangShengJueBlocks.JUNGLE_TAISHI_CHAIR.get(),
+                        ChangShengJueBlocks.CRIMSON_TAISHI_CHAIR.get(),
+                        ChangShengJueBlocks.WARPED_TAISHI_CHAIR.get(),
+                        ChangShengJueBlocks.MANGROVE_TAISHI_CHAIR.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_TAISHI_CHAIR.get(),
+                        ChangShengJueBlocks.WENGE_TAISHI_CHAIR.get(),
+                        ChangShengJueBlocks.ACACIA_TAISHI_CHAIR.get(),
+                        ChangShengJueBlocks.DARK_OAK_TAISHI_CHAIR.get(),
+                        ChangShengJueBlocks.OAK_TAISHI_CHAIR.get(),
+                        ChangShengJueBlocks.CHERRY_TAISHI_CHAIR.get(),
+                        ChangShengJueBlocks.SPRUCE_TAISHI_CHAIR.get(),
+                        ChangShengJueBlocks.ZI_TAN_TAISHI_CHAIR.get());
 
         this.tag(CSJTags.Blocks.FIVE_SCREEN_THRONE)
-                .add(ChangShengJueBlocks.HUANG_HUA_LI_FIVE_SCREEN_THRONE.get())
-                .add(ChangShengJueBlocks.JI_CHI_MU_FIVE_SCREEN_THRONE.get())
-                .add(ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get());
+                .add(ChangShengJueBlocks.BIRCH_FIVE_SCREEN_THRONE.get(),
+                        ChangShengJueBlocks.JUNGLE_FIVE_SCREEN_THRONE.get(),
+                        ChangShengJueBlocks.CRIMSON_FIVE_SCREEN_THRONE.get(),
+                        ChangShengJueBlocks.WARPED_FIVE_SCREEN_THRONE.get(),
+                        ChangShengJueBlocks.MANGROVE_FIVE_SCREEN_THRONE.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_FIVE_SCREEN_THRONE.get(),
+                        ChangShengJueBlocks.WENGE_FIVE_SCREEN_THRONE.get(),
+                        ChangShengJueBlocks.ACACIA_FIVE_SCREEN_THRONE.get(),
+                        ChangShengJueBlocks.DARK_OAK_FIVE_SCREEN_THRONE.get(),
+                        ChangShengJueBlocks.OAK_FIVE_SCREEN_THRONE.get(),
+                        ChangShengJueBlocks.CHERRY_FIVE_SCREEN_THRONE.get(),
+                        ChangShengJueBlocks.SPRUCE_FIVE_SCREEN_THRONE.get(),
+                        ChangShengJueBlocks.ZI_TAN_FIVE_SCREEN_THRONE.get());
 
         this.tag(CSJTags.Blocks.LOW_DESK)
-                .add(ChangShengJueBlocks.BIRCH_LOW_DESK.get())
-                .add(ChangShengJueBlocks.CRIMSON_LOW_DESK.get())
-                .add(ChangShengJueBlocks.WARPED_LOW_DESK.get())
-                .add(ChangShengJueBlocks.MANGROVE_LOW_DESK.get())
-                .add(ChangShengJueBlocks.HUANG_HUA_LI_LOW_DESK.get())
-                .add(ChangShengJueBlocks.JI_CHI_MU_LOW_DESK.get())
-                .add(ChangShengJueBlocks.ACACIA_LOW_DESK.get())
-                .add(ChangShengJueBlocks.DARK_OAK_LOW_DESK.get())
-                .add(ChangShengJueBlocks.OAK_LOW_DESK.get())
-                .add(ChangShengJueBlocks.CHERRY_LOW_DESK.get())
-                .add(ChangShengJueBlocks.SPRUCE_LOW_DESK.get())
-                .add(ChangShengJueBlocks.ZI_TAN_LOW_DESK.get());
-
+                .add(ChangShengJueBlocks.BIRCH_LOW_DESK.get(),
+                        ChangShengJueBlocks.JUNGLE_LOW_DESK.get(),
+                        ChangShengJueBlocks.CRIMSON_LOW_DESK.get(),
+                        ChangShengJueBlocks.WARPED_LOW_DESK.get(),
+                        ChangShengJueBlocks.MANGROVE_LOW_DESK.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_LOW_DESK.get(),
+                        ChangShengJueBlocks.JI_CHI_MU_LOW_DESK.get(),
+                        ChangShengJueBlocks.ACACIA_LOW_DESK.get(),
+                        ChangShengJueBlocks.DARK_OAK_LOW_DESK.get(),
+                        ChangShengJueBlocks.OAK_LOW_DESK.get(),
+                        ChangShengJueBlocks.CHERRY_LOW_DESK.get(),
+                        ChangShengJueBlocks.SPRUCE_LOW_DESK.get(),
+                        ChangShengJueBlocks.ZI_TAN_LOW_DESK.get());
         //砖
         this.tag(CSJTags.Blocks.BRICKS)
                 .add(ChangShengJueBlocks.WHITE_FINE_BRICKS.get())
@@ -454,23 +559,199 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
         //原版工具
         this.tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(ChangShengJueBlocks.BAI_HUA_FU_TI_BLOCK.get(),
-                ChangShengJueBlocks.YUN_SHAN_FU_TI_BLOCK.get(),
-                ChangShengJueBlocks.CANTALOUPE_STEM.get(),
-                ChangShengJueBlocks.ATTACHED_CANTALOUPE_STEM.get(),
-                ChangShengJueBlocks.CANTALOUPE_BLOCK.get(),
-                ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get(),
-                ChangShengJueBlocks.POTTERY_WHEEL.get(),
-                ChangShengJueBlocks.TOOL_TABLE.get(),
-                ChangShengJueBlocks.WEAPON_RACK.get(),
-                ChangShengJueBlocks.DESK.get(),
-                ChangShengJueBlocks.SHING_MUN_LEFT.get(),
-                ChangShengJueBlocks.SHING_MUN_RIGHT.get(),
-                ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get(),
-                ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get(),ChangShengJueBlocks.TAILORING_CASE.get())
+                        ChangShengJueBlocks.YUN_SHAN_FU_TI_BLOCK.get(),
+                        ChangShengJueBlocks.CANTALOUPE_STEM.get(),
+                        ChangShengJueBlocks.ATTACHED_CANTALOUPE_STEM.get(),
+                        ChangShengJueBlocks.CANTALOUPE_BLOCK.get(),
+                        ChangShengJueBlocks.CHANG_SHENG_JUE_LOOM.get(),
+                        ChangShengJueBlocks.POTTERY_WHEEL.get(),
+                        ChangShengJueBlocks.TOOL_TABLE.get(),
+                        ChangShengJueBlocks.WOOD_WORKING_BENCH.get(),
+                        ChangShengJueBlocks.WEAPON_RACK.get(),
+                        ChangShengJueBlocks.DESK.get(),
+                        ChangShengJueBlocks.SHING_MUN_LEFT.get(),
+                        ChangShengJueBlocks.SHING_MUN_RIGHT.get(),
+                        ChangShengJueBlocks.BIG_SHING_MUN_LEFT.get(),
+                        ChangShengJueBlocks.BIG_SHING_MUN_RIGHT.get(),
+                        ChangShengJueBlocks.TAILORING_CASE.get(),
+                        ChangShengJueBlocks.LANTERN.get(),
+                        ChangShengJueBlocks.WHITE_LANTERN.get(),
+                        ChangShengJueBlocks.ORANGE_LANTERN.get(),
+                        ChangShengJueBlocks.MAGENTA_LANTERN.get(),
+                        ChangShengJueBlocks.LIGHT_BLUE_LANTERN.get(),
+                        ChangShengJueBlocks.YELLOW_LANTERN.get(),
+                        ChangShengJueBlocks.LIME_LANTERN.get(),
+                        ChangShengJueBlocks.PINK_LANTERN.get(),
+                        ChangShengJueBlocks.GRAY_LANTERN.get(),
+                        ChangShengJueBlocks.LIGHT_GRAY_LANTERN.get(),
+                        ChangShengJueBlocks.CYAN_LANTERN.get(),
+                        ChangShengJueBlocks.PURPLE_LANTERN.get(),
+                        ChangShengJueBlocks.BLUE_LANTERN.get(),
+                        ChangShengJueBlocks.BROWN_LANTERN.get(),
+                        ChangShengJueBlocks.GREEN_LANTERN.get(),
+                        ChangShengJueBlocks.RED_LANTERN.get(),
+                        ChangShengJueBlocks.BLACK_LANTERN.get(),
+
+                        ChangShengJueBlocks.BIRCH_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.JUNGLE_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.CRIMSON_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.WARPED_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.MANGROVE_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.WENGE_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.ACACIA_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.DARK_OAK_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.OAK_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.CHERRY_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.SPRUCE_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.ZI_TAN_LIGHT_STAND.get(),
+
+                        ChangShengJueBlocks.BIRCH_HEIGHT_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.JUNGLE_HEIGHT_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.CRIMSON_HEIGHT_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.WARPED_HEIGHT_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.MANGROVE_HEIGHT_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_HEIGHT_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.WENGE_HEIGHT_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.ACACIA_HEIGHT_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.DARK_OAK_HEIGHT_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.OAK_HEIGHT_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.CHERRY_HEIGHT_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.SPRUCE_HEIGHT_LIGHT_STAND.get(),
+                        ChangShengJueBlocks.ZI_TAN_HEIGHT_LIGHT_STAND.get(),
+
+                        ChangShengJueBlocks.BIRCH_BOOK_GRID.get(),
+                        ChangShengJueBlocks.JUNGLE_BOOK_GRID.get(),
+                        ChangShengJueBlocks.CRIMSON_BOOK_GRID.get(),
+                        ChangShengJueBlocks.WARPED_BOOK_GRID.get(),
+                        ChangShengJueBlocks.MANGROVE_BOOK_GRID.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_BOOK_GRID.get(),
+                        ChangShengJueBlocks.WENGE_BOOK_GRID.get(),
+                        ChangShengJueBlocks.ACACIA_BOOK_GRID.get(),
+                        ChangShengJueBlocks.DARK_OAK_BOOK_GRID.get(),
+                        ChangShengJueBlocks.OAK_BOOK_GRID.get(),
+                        ChangShengJueBlocks.CHERRY_BOOK_GRID.get(),
+                        ChangShengJueBlocks.SPRUCE_BOOK_GRID.get(),
+                        ChangShengJueBlocks.ZI_TAN_BOOK_GRID.get(),
+
+                        ChangShengJueBlocks.BIRCH_FRETWORK_OPENWORK_PANEL.get(),
+                        ChangShengJueBlocks.JUNGLE_FRETWORK_OPENWORK_PANEL.get(),
+                        ChangShengJueBlocks.CRIMSON_FRETWORK_OPENWORK_PANEL.get(),
+                        ChangShengJueBlocks.WARPED_FRETWORK_OPENWORK_PANEL.get(),
+                        ChangShengJueBlocks.MANGROVE_FRETWORK_OPENWORK_PANEL.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_FRETWORK_OPENWORK_PANEL.get(),
+                        ChangShengJueBlocks.WENGE_FRETWORK_OPENWORK_PANEL.get(),
+                        ChangShengJueBlocks.ACACIA_FRETWORK_OPENWORK_PANEL.get(),
+                        ChangShengJueBlocks.DARK_OAK_FRETWORK_OPENWORK_PANEL.get(),
+                        ChangShengJueBlocks.OAK_FRETWORK_OPENWORK_PANEL.get(),
+                        ChangShengJueBlocks.CHERRY_FRETWORK_OPENWORK_PANEL.get(),
+                        ChangShengJueBlocks.SPRUCE_FRETWORK_OPENWORK_PANEL.get(),
+                        ChangShengJueBlocks.ZI_TAN_FRETWORK_OPENWORK_PANEL.get(),
+
+                        ChangShengJueBlocks.BIRCH_LIANGGE.get(),
+                        ChangShengJueBlocks.JUNGLE_LIANGGE.get(),
+                        ChangShengJueBlocks.CRIMSON_LIANGGE.get(),
+                        ChangShengJueBlocks.WARPED_LIANGGE.get(),
+                        ChangShengJueBlocks.MANGROVE_LIANGGE.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_LIANGGE.get(),
+                        ChangShengJueBlocks.WENGE_LIANGGE.get(),
+                        ChangShengJueBlocks.ACACIA_LIANGGE.get(),
+                        ChangShengJueBlocks.DARK_OAK_LIANGGE.get(),
+                        ChangShengJueBlocks.OAK_LIANGGE.get(),
+                        ChangShengJueBlocks.CHERRY_LIANGGE.get(),
+                        ChangShengJueBlocks.SPRUCE_LIANGGE.get(),
+                        ChangShengJueBlocks.ZI_TAN_LIANGGE.get(),
+
+                        ChangShengJueBlocks.BIRCH_DRYING_RAIL.get(),
+                        ChangShengJueBlocks.JUNGLE_DRYING_RAIL.get(),
+                        ChangShengJueBlocks.CRIMSON_DRYING_RAIL.get(),
+                        ChangShengJueBlocks.WARPED_DRYING_RAIL.get(),
+                        ChangShengJueBlocks.MANGROVE_DRYING_RAIL.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_DRYING_RAIL.get(),
+                        ChangShengJueBlocks.WENGE_DRYING_RAIL.get(),
+                        ChangShengJueBlocks.ACACIA_DRYING_RAIL.get(),
+                        ChangShengJueBlocks.DARK_OAK_DRYING_RAIL.get(),
+                        ChangShengJueBlocks.OAK_DRYING_RAIL.get(),
+                        ChangShengJueBlocks.CHERRY_DRYING_RAIL.get(),
+                        ChangShengJueBlocks.SPRUCE_DRYING_RAIL.get(),
+                        ChangShengJueBlocks.ZI_TAN_DRYING_RAIL.get(),
+
+                        ChangShengJueBlocks.BIRCH_LARGE_CABINET.get(),
+                        ChangShengJueBlocks.JUNGLE_LARGE_CABINET.get(),
+                        ChangShengJueBlocks.CRIMSON_LARGE_CABINET.get(),
+                        ChangShengJueBlocks.WARPED_LARGE_CABINET.get(),
+                        ChangShengJueBlocks.MANGROVE_LARGE_CABINET.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_LARGE_CABINET.get(),
+                        ChangShengJueBlocks.WENGE_LARGE_CABINET.get(),
+                        ChangShengJueBlocks.ACACIA_LARGE_CABINET.get(),
+                        ChangShengJueBlocks.DARK_OAK_LARGE_CABINET.get(),
+                        ChangShengJueBlocks.OAK_LARGE_CABINET.get(),
+                        ChangShengJueBlocks.CHERRY_LARGE_CABINET.get(),
+                        ChangShengJueBlocks.SPRUCE_LARGE_CABINET.get(),
+                        ChangShengJueBlocks.ZI_TAN_LARGE_CABINET.get(),
+
+                        ChangShengJueBlocks.BIRCH_CHEST_OF_DRAWERS.get(),
+                        ChangShengJueBlocks.JUNGLE_CHEST_OF_DRAWERS.get(),
+                        ChangShengJueBlocks.CRIMSON_CHEST_OF_DRAWERS.get(),
+                        ChangShengJueBlocks.WARPED_CHEST_OF_DRAWERS.get(),
+                        ChangShengJueBlocks.MANGROVE_CHEST_OF_DRAWERS.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_CHEST_OF_DRAWERS.get(),
+                        ChangShengJueBlocks.WENGE_CHEST_OF_DRAWERS.get(),
+                        ChangShengJueBlocks.ACACIA_CHEST_OF_DRAWERS.get(),
+                        ChangShengJueBlocks.DARK_OAK_CHEST_OF_DRAWERS.get(),
+                        ChangShengJueBlocks.OAK_CHEST_OF_DRAWERS.get(),
+                        ChangShengJueBlocks.CHERRY_CHEST_OF_DRAWERS.get(),
+                        ChangShengJueBlocks.SPRUCE_CHEST_OF_DRAWERS.get(),
+                        ChangShengJueBlocks.ZI_TAN_CHEST_OF_DRAWERS.get(),
+
+                        ChangShengJueBlocks.BIRCH_CLOTHES_RACK.get(),
+                        ChangShengJueBlocks.JUNGLE_CLOTHES_RACK.get(),
+                        ChangShengJueBlocks.CRIMSON_CLOTHES_RACK.get(),
+                        ChangShengJueBlocks.WARPED_CLOTHES_RACK.get(),
+                        ChangShengJueBlocks.MANGROVE_CLOTHES_RACK.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_CLOTHES_RACK.get(),
+                        ChangShengJueBlocks.WENGE_CLOTHES_RACK.get(),
+                        ChangShengJueBlocks.ACACIA_CLOTHES_RACK.get(),
+                        ChangShengJueBlocks.DARK_OAK_CLOTHES_RACK.get(),
+                        ChangShengJueBlocks.OAK_CLOTHES_RACK.get(),
+                        ChangShengJueBlocks.CHERRY_CLOTHES_RACK.get(),
+                        ChangShengJueBlocks.SPRUCE_CLOTHES_RACK.get(),
+                        ChangShengJueBlocks.ZI_TAN_CLOTHES_RACK.get(),
+
+                        ChangShengJueBlocks.BIRCH_CANOPY_BED.get(),
+                        ChangShengJueBlocks.JUNGLE_CANOPY_BED.get(),
+                        ChangShengJueBlocks.CRIMSON_CANOPY_BED.get(),
+                        ChangShengJueBlocks.WARPED_CANOPY_BED.get(),
+                        ChangShengJueBlocks.MANGROVE_CANOPY_BED.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_CANOPY_BED.get(),
+                        ChangShengJueBlocks.WENGE_CANOPY_BED.get(),
+                        ChangShengJueBlocks.ACACIA_CANOPY_BED.get(),
+                        ChangShengJueBlocks.DARK_OAK_CANOPY_BED.get(),
+                        ChangShengJueBlocks.OAK_CANOPY_BED.get(),
+                        ChangShengJueBlocks.CHERRY_CANOPY_BED.get(),
+                        ChangShengJueBlocks.SPRUCE_CANOPY_BED.get(),
+                        ChangShengJueBlocks.ZI_TAN_CANOPY_BED.get(),
+
+                        ChangShengJueBlocks.BIRCH_CABINET.get(),
+                        ChangShengJueBlocks.JUNGLE_CABINET.get(),
+                        ChangShengJueBlocks.CRIMSON_CABINET.get(),
+                        ChangShengJueBlocks.WARPED_CABINET.get(),
+                        ChangShengJueBlocks.MANGROVE_CABINET.get(),
+                        ChangShengJueBlocks.HUANG_HUA_LI_CABINET.get(),
+                        ChangShengJueBlocks.WENGE_CABINET.get(),
+                        ChangShengJueBlocks.ACACIA_CABINET.get(),
+                        ChangShengJueBlocks.DARK_OAK_CABINET.get(),
+                        ChangShengJueBlocks.OAK_CABINET.get(),
+                        ChangShengJueBlocks.CHERRY_CABINET.get(),
+                        ChangShengJueBlocks.SPRUCE_CABINET.get(),
+                        ChangShengJueBlocks.ZI_TAN_CABINET.get())
                 .addTag(CSJTags.Blocks.WINDOWS)
                 .addTag(CSJTags.Blocks.MEI_REN_KAO)
                 .addTag(CSJTags.Blocks.BENCH)
                 .addTag(CSJTags.Blocks.DRINKING_TABLE_AND_CHAIRS)
+                .addTag(CSJTags.Blocks.SQUARE_STOOL)
+                .addTag(CSJTags.Blocks.FOLDING_SCREEN)
+                .addTag(CSJTags.Blocks.ARHAT_BED)
                 .addTag(CSJTags.Blocks.BOOK_DESK)
                 .addTag(CSJTags.Blocks.WINE_TABLE)
                 .addTag(CSJTags.Blocks.TEAPOY)
@@ -509,6 +790,7 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                         ChangShengJueBlocks.BULLIONS_CASTING_MOLDS.get(),
                         ChangShengJueBlocks.CASTING_MOLDS.get(),
                         ChangShengJueBlocks.SYDEROLIFE_ORE.get(),
+                        ChangShengJueBlocks.NATURAL_ASPHALT_ORE.get(),
                         ChangShengJueBlocks.WHITE_JADE_BLOCK.get(),
                         ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.get(),
                         ChangShengJueBlocks.OAK_BALUSTRADE.get(),
@@ -524,7 +806,15 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                         ChangShengJueBlocks.WHITE_JADE_GUARDRAIL.get(),
                         ChangShengJueBlocks.WIND_CHIME.get(),
                         ChangShengJueBlocks.GONG.get(),
-                        ChangShengJueBlocks.FORGE_BLOCK.get());
+                        ChangShengJueBlocks.BRICK_KILN.get(),
+                        ChangShengJueBlocks.FORGE_BLOCK.get(),
+                        ChangShengJueBlocks.STONE_BENCH.get(),
+                        ChangShengJueBlocks.STONE_TABLE.get(),
+                        ChangShengJueBlocks.STONE_BALUSTRADE.get(),
+                        ChangShengJueBlocks.STONE_SHARPENING_STONE.get(),
+                        ChangShengJueBlocks.DIAMOND_SHARPENING_STONE.get(),
+                        ChangShengJueBlocks.NETHERITE_SHARPENING_STONE.get()
+                        );
 
 
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL)
@@ -565,11 +855,14 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                         ChangShengJueBlocks.MULBERRY_PLANKS.get());
         //台阶
         this.tag(BlockTags.SLABS)
-                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get())
-                .add(ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get())
-                .add(ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get())
-                .add(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get())
-                .add(ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get());
+                .add(ChangShengJueBlocks.GRE_CYLINDER_TILE_SLAB.get(),
+                        ChangShengJueBlocks.RED_CYLINDER_TILE_SLAB.get(),
+                        ChangShengJueBlocks.BLACK_CYLINDER_TILE_SLAB.get(),
+                        ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_SLAB.get(),
+                        ChangShengJueBlocks.CYAN_CYLINDER_TILE_SLAB.get(),
+                        ChangShengJueBlocks.BLUE_CYLINDER_TILE_SLAB.get(),
+                        ChangShengJueBlocks.PURPLE_CYLINDER_TILE_SLAB.get()
+                        );
 
         //花
         this.tag(BlockTags.FLOWERS)
@@ -589,18 +882,24 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
                 .add(ChangShengJueBlocks.RAPE_FLOWERS.get());
 
         //Forge矿石标签
-        this.tag(Tags.Blocks.ORES).add(ChangShengJueBlocks.AG_ORE.get()).add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get())
-                .add(ChangShengJueBlocks.KAOLIN_ORE.get()).add(ChangShengJueBlocks.LIMESTONE.get()).add(ChangShengJueBlocks.SYDEROLIFE_ORE.get());
+        this.tag(Tags.Blocks.ORES)
+                .add(ChangShengJueBlocks.AG_ORE.get(),
+                        ChangShengJueBlocks.DEEPSLATE_AG_ORE.get(),
+                        ChangShengJueBlocks.KAOLIN_ORE.get(),
+                        ChangShengJueBlocks.LIMESTONE.get(),
+                        ChangShengJueBlocks.NATURAL_ASPHALT_ORE.get(),
+                        ChangShengJueBlocks.SYDEROLIFE_ORE.get());
         //工具等级
         this.tag(BlockTags.NEEDS_IRON_TOOL).add(ChangShengJueBlocks.AG_ORE.get()).add(ChangShengJueBlocks.DEEPSLATE_AG_ORE.get());
 
         this.tag(BlockTags.WALLS)
-                .add(ChangShengJueBlocks.HANG_TU_WALL.get())
-                .add(ChangShengJueBlocks.TU_PEI_WALL.get())
-                .add(ChangShengJueBlocks.WHITE_JADE_WALL.get())
-                .add(ChangShengJueBlocks.WHITE_BRICKS_VERTICAL_WALLS.get())
-                .add(ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get())
-                .add(ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get());
+                .add(ChangShengJueBlocks.HANG_TU_WALL.get(),
+                        ChangShengJueBlocks.TU_PEI_WALL.get(),
+                        ChangShengJueBlocks.WHITE_JADE_WALL.get(),
+                        ChangShengJueBlocks.WHITE_BRICKS_VERTICAL_WALLS.get(),
+                        ChangShengJueBlocks.BLACK_STONE_VERTICAL_WALLS.get(),
+                        ChangShengJueBlocks.BLUE_STONE_VERTICAL_WALLS.get(),
+                        ChangShengJueBlocks.STONE_BALUSTRADE.get());
         //门
         this.tag(BlockTags.WOODEN_DOORS).addTag(CSJTags.Blocks.DOORS)
                 .add(ChangShengJueBlocks.DOOR_BIRCH.get())

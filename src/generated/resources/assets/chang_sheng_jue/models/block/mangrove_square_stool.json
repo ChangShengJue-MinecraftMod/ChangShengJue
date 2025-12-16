@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/square_stool",
+  "textures": {
+    "1": "chang_sheng_jue:block/mangrove_square_stool",
+    "particle": "chang_sheng_jue:block/mangrove_square_stool"
+  }
+}

@@ -4,8 +4,11 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.Multimap;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.cotton.CottonArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.inner_armor.GoldSilkSoftArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.inner_armor.InnerArmorInterface;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.walker_set.WalkerSet;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -24,19 +27,36 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import org.jetbrains.annotations.Nullable;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.constant.DefaultAnimations;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ChangShengJueArmorItem extends ArmorItem {
+public class ChangShengJueArmorItem extends ArmorItem implements DyeableItem, GeoItem {
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+
     // 替换原有的 itemstack 字段和相关方法
     private static final String INNER_ARMOR_TAG = "InnerArmorData";
     private static final String DAMAGE_REDUCTION_TAG = "DamageReduction";
     private static final String TRAUMA = "Trauma";
-    private final RandomSource RANDOM_SOURCE = RandomSource.create();
     public ChangShengJueArmorItem(ArmorMaterial pMaterial, Type pType, Properties pProperties) {
         super(pMaterial, pType, pProperties);
+    }
+
+    @Override
+    public int getEnchantmentValue() {
+        return 15;
+    }
+
+    @Override
+    public int getColor(ItemStack pStack) {
+        return DyeableItem.super.getColor(pStack) != -1 ? DyeableItem.super.getColor(pStack) : 0x0000FF;
     }
 
     @Override
@@ -60,9 +80,10 @@ public class ChangShengJueArmorItem extends ArmorItem {
     private void ensureDamageReduction(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
         if (!tag.contains(DAMAGE_REDUCTION_TAG)) {
-            float newReduction = (150 + RANDOM_SOURCE.nextInt(151)) / 10f;
+            // 使用线程安全的随机数生成方式
+            float newReduction = getThreadSafeRandomReduction(stack);
             if (this.getEquipmentSlot() == EquipmentSlot.CHEST) {
-                tag.putFloat(DAMAGE_REDUCTION_TAG, Math.max(tag.getFloat(DAMAGE_REDUCTION_TAG), newReduction));
+                tag.putFloat(DAMAGE_REDUCTION_TAG, newReduction);
             }
         }
     }
@@ -70,17 +91,42 @@ public class ChangShengJueArmorItem extends ArmorItem {
     private void ensureTrauma(ItemStack stack) {
         CompoundTag tag = stack.getOrCreateTag();
         if (!tag.contains(TRAUMA)) {
-            float newReduction = (50 + RANDOM_SOURCE.nextInt(51)) / 10f;
+            // 使用线程安全的随机数生成方式
+            float newTrauma = getThreadSafeRandomTrauma(stack);
             if (this.getEquipmentSlot() == EquipmentSlot.CHEST) {
-                tag.putFloat(TRAUMA, Math.max(tag.getFloat(TRAUMA), newReduction));
+                tag.putFloat(TRAUMA, newTrauma);
             }
         }
     }
 
+    /**
+     * 线程安全的随机伤害减免值生成
+     */
+    private float getThreadSafeRandomReduction(ItemStack stack) {
+        // 方法1: 使用物品的NBT数据作为随机种子
+        long seed = stack.hasTag() ? stack.getTag().hashCode() : System.currentTimeMillis();
+        RandomSource random = RandomSource.create(seed);
+        return (150 + random.nextInt(151)) / 10f;
+    }
+
+    /**
+     * 线程安全的随机创伤值生成
+     */
+    private float getThreadSafeRandomTrauma(ItemStack stack) {
+        // 方法1: 使用物品的NBT数据作为随机种子
+        long seed = stack.hasTag() ? stack.getTag().hashCode() : System.currentTimeMillis();
+        RandomSource random = RandomSource.create(seed);
+        return (50 + random.nextInt(51)) / 10f;
+    }
+
     @Override
     public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt) {
-        ensureDamageReduction(stack);
-        ensureTrauma(stack);
+        if (!stack.hasTag() || !stack.getTag().contains(DAMAGE_REDUCTION_TAG)) {
+            ensureDamageReduction(stack);
+        }
+        if (!stack.hasTag() || !stack.getTag().contains(TRAUMA)) {
+            ensureTrauma(stack);
+        }
         return super.initCapabilities(stack, nbt);
     }
 
@@ -139,7 +185,6 @@ public class ChangShengJueArmorItem extends ArmorItem {
                         pPlayer.displayClientMessage(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.lining1").append(stack.getHoverName().copy()), true);
                     }
                 } else if (hasInnerArmor(armorStack)){
-                    // 移除内甲
                     getInnerArmorStack(armorStack).ifPresent(innerStack -> {
                         pPlayer.displayClientMessage(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.unload").append(innerStack.getHoverName().copy()), true);
                         if (!pPlayer.getInventory().add(innerStack)) {
@@ -152,7 +197,11 @@ public class ChangShengJueArmorItem extends ArmorItem {
                 }
             } else {
                 ItemStack itemBySlot = pPlayer.getItemBySlot(EquipmentSlot.CHEST);
-                if (itemBySlot.getItem() instanceof InnerArmorInterface && this.getEquipmentSlot() == EquipmentSlot.CHEST) {
+                if (!hasInnerArmor(armorStack) && !itemBySlot.isEmpty() && itemBySlot.getItem() instanceof InnerArmorInterface && this.getEquipmentSlot() == EquipmentSlot.CHEST) {
+                    if (itemBySlot.getItem() instanceof GoldSilkSoftArmor && armorStack.getItem() instanceof ArmorInterface){
+                        pPlayer.displayClientMessage(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data.no.lining").append(itemBySlot.getHoverName().copy()), true);
+                        return super.use(pLevel, pPlayer, pHand);
+                    }
                     installInnerArmor(armorStack, itemBySlot.copyWithCount(1));
                     pPlayer.displayClientMessage(Component.translatable("tooltip."+ ChangShengJue.MOD_ID + ".inner_armor_data").append(itemBySlot.getHoverName().copy()), true);
                     if (!pPlayer.getAbilities().instabuild) {
@@ -187,15 +236,6 @@ public class ChangShengJueArmorItem extends ArmorItem {
                         totalToughness = totalToughness + 4;
                     }
 
-//                    // 清除旧修饰符
-//                    modifiers.removeAll(Attributes.ARMOR);
-//                    modifiers.put(Attributes.ARMOR, new AttributeModifier(
-//                            slotUUID,
-//                            "Custom Armor Modifier",
-//                            totalArmor,
-//                            AttributeModifier.Operation.ADDITION
-//                    ));
-                    // 替换原有修饰符（避免叠加）
                     modifiers.replaceValues(Attributes.ARMOR, ImmutableList.of(
                             new AttributeModifier(
                                     slotUUID,
@@ -220,6 +260,14 @@ public class ChangShengJueArmorItem extends ArmorItem {
     }
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        if (!(pStack.getItem() instanceof ArmorInterface) || pStack.getItem() instanceof CottonArmor) {
+            if (!(pStack.getItem() instanceof WalkerSet) && !pStack.is(ChangShengJueItems.FLY_FISH_IRON_HAT.get())
+                && !pStack.is(ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET.get())
+                    && !pStack.is(ChangShengJueItems.FEMALE_TAOIST_HELMET.get())
+                    && !hasCustomColor(pStack)) {
+                pTooltipComponents.add(Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".dyeing").withStyle(ChatFormatting.GRAY));
+            }
+        }
         if (hasInnerArmor(pStack)){
             // 获取内甲ItemStack
             ItemStack innerArmor = ItemStack.of(pStack.getTag().getCompound(INNER_ARMOR_TAG));
@@ -236,4 +284,14 @@ public class ChangShengJueArmorItem extends ArmorItem {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(((new AnimationController<>(this, 0, (state) ->
+                state.setAndContinue(DefaultAnimations.IDLE)))));
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
+    }
 }

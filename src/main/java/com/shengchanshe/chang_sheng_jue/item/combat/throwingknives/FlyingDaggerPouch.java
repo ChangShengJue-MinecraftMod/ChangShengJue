@@ -28,6 +28,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fml.ModList;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -71,6 +72,9 @@ public class FlyingDaggerPouch extends Item {
 
     @Override
     public int getUseDuration(ItemStack stack) {
+        if (ModList.get().isLoaded("epicfight")) {
+            return Integer.MAX_VALUE;
+        }
         return 72000; // 最大持续时间（实际由逻辑控制）
     }
 

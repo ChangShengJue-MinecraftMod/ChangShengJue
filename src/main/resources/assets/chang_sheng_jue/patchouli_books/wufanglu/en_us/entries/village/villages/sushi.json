@@ -1,13 +1,13 @@
 {
-  "name": "苏式村庄",
+  "name": "chang_sheng_jue.village.villages.suzhou",
   "category": "chang_sheng_jue:village",
   "sortnum": 0,
   "icon": "chang_sheng_jue:textures/gui/patchouli/su_shi.png",
   "pages": [
     {
       "type": "patchouli:text",
-      "title": "苏式村庄",
-      "text": "常生成在丛林群系，白墙黑瓦那朴素典雅的风格与脊角高翘的屋顶，是苏派建筑的艺术典范。其中常有作物：荔枝、香蕉、榴莲、水稻。"
+      "title": "chang_sheng_jue.village.villages.suzhou",
+      "text": "chang_sheng_jue.village.villages.suzhou.page1.text"
     }
   ]
 }

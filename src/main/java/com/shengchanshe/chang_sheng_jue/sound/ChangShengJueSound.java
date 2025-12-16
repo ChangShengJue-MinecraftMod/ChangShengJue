@@ -77,8 +77,6 @@ public class ChangShengJueSound {
     public static final RegistryObject<SoundEvent> TREAD_THE_SNOW_WITHOUT_TRACE_SOUND = registerSoundEvent("tread_the_snow_without_trace_sound");
     //无情飞刀
     public static final RegistryObject<SoundEvent> THROWING_KNIVES_SOUND = registerSoundEvent("throwing_knives_sound");
-    public static final RegistryObject<SoundEvent> THREE_THROWING_KNIVES_SOUND = registerSoundEvent("three_throwing_knives_sound");
-    public static final RegistryObject<SoundEvent> SEVEN_THROWING_KNIVES_SOUND = registerSoundEvent("seven_throwing_knives_sound");
     public static final RegistryObject<SoundEvent> THROWING_KNIVES_HIT = registerSoundEvent("throwing_knives_hit");
     public static final RegistryObject<SoundEvent> THROWING_KNIVES_HIT_GROUND = registerSoundEvent("throwing_knives_hit_ground");
     //吴刚伐桂

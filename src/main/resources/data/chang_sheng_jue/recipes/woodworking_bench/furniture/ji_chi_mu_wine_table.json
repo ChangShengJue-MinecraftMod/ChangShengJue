@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "furniture:wine_table",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:wenge_planks",
+      "count": 4
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:ji_chi_mu_wine_table"
+  }
+}

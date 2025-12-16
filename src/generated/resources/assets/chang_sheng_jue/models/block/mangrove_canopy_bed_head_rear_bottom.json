@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/canopy_bed_head_rear_bottom",
+  "textures": {
+    "1": "chang_sheng_jue:block/mangrove_canopy_bed",
+    "particle": "chang_sheng_jue:block/mangrove_canopy_bed"
+  }
+}

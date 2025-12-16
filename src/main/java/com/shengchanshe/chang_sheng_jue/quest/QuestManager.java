@@ -4,17 +4,14 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.PlayerQuestMenu;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.AbstractGangLeader;
-import com.shengchanshe.chang_sheng_jue.event.CSJAdvanceEvent;
 import com.shengchanshe.chang_sheng_jue.event.quest.PlayerQuestEvent;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.RefreshPlayerQuestScreenPacket;
-import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.SyncQuestDataPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.quest.RefreshQuestScreenPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -74,6 +71,7 @@ public class QuestManager {
                 // 设置任务为已接受
                 targetQuest.setAcceptedBy(player.getUUID());
                 cap.setQuests(targetQuest, player.getUUID());
+                cap.markQuestAccepted(targetQuest.getQuestId());
                 gangLeader.addQuestForPlayer(player.getUUID(), targetQuest);
                 int requiredKills = targetQuest.getRequiredKills();
 
@@ -133,10 +131,6 @@ public class QuestManager {
                 clashQuest.ifPresent(value -> cap.removeQuestFromPlayer(player.getUUID(), value.getQuestId()));
                 cap.removeQuestFromPlayer(player.getUUID(), actualQuest.getQuestId());
 
-                // 特殊任务处理
-                if (actualQuest.getQuestId().equals(UUID.fromString("dab3e694-291c-4b58-8ed2-4b215fbcf543"))) {
-                    this.addKungFuCount(player, 25);
-                }
                 if (player instanceof ServerPlayer serverPlayer) {
                     cap.syncToClient(serverPlayer);
 
@@ -194,12 +188,51 @@ public class QuestManager {
         Level level = player.level();
         RandomSource rand = player.getRandom();
         String targetId = quest.getTargetEntity();
+        String secondTargetId = quest.getSecondTargetEntity();
 
         if (quest.isAcceptQuestEffects()){
             quest.applyEffects(player);
         }
-
         if (quest.isQuestGenerateTarget()){
+            if (secondTargetId != null && !secondTargetId.isEmpty()) {
+                if (secondTargetId.startsWith("#")) {
+                    ResourceLocation tagId = new ResourceLocation(secondTargetId.substring(1));
+                    TagKey<EntityType<?>> entityTag = TagKey.create(Registries.ENTITY_TYPE, tagId);
+
+                    List<EntityType<?>> possibleTypes = ForgeRegistries.ENTITY_TYPES.getValues()
+                            .stream()
+                            .filter(type -> {
+                                Optional<Holder<EntityType<?>>> holder = ForgeRegistries.ENTITY_TYPES.getHolder(type);
+                                return holder.map(h -> level.registryAccess()
+                                                .registryOrThrow(Registries.ENTITY_TYPE)
+                                                .getTag(entityTag)
+                                                .map(tag -> tag.contains(h))
+                                                .orElse(false))
+                                        .orElse(false);
+                            })
+                            .toList();
+
+                    if (!possibleTypes.isEmpty()) {
+                        EntityType<?> selectedType = possibleTypes.get(rand.nextInt(possibleTypes.size()));
+                        for (int i = 0; i < count; i++){
+                            LivingEntity entity = spawnEntityAtValidPosition(level, player, selectedType);
+                            if (entity != null) {
+                                setAttackTarget(entity, player);  // 设置攻击目标
+                            }
+                        }
+                    }
+                } else {
+                    EntityType<?> type = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(secondTargetId));
+                    if (type != null) {
+                        for (int i = 0; i < count; i++){
+                            LivingEntity entity = spawnEntityAtValidPosition(level, player, type);
+                            if (entity != null) {
+                                setAttackTarget(entity, player);  // 设置攻击目标
+                            }
+                        }
+                    }
+                }
+            }
             if (targetId.startsWith("#")) {
                 ResourceLocation tagId = new ResourceLocation(targetId.substring(1));
                 TagKey<EntityType<?>> entityTag = TagKey.create(Registries.ENTITY_TYPE, tagId);

@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/cylindertile/ridge_tile_height1",
+  "textures": {
+    "1": "chang_sheng_jue:block/gre_cylinder_tile",
+    "particle": "chang_sheng_jue:block/gre_cylinder_tile"
+  }
+}

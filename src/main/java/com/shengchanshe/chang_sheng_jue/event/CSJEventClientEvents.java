@@ -45,17 +45,16 @@ public class CSJEventClientEvents {
             boolean isRecipeBookVisible = screen.getRecipeBookComponent().isVisible();
             if (mc.player != null && !ClientQuestDataCache.get().getPlayerQuests(mc.player.getUUID()).isEmpty()) {
                 TexturedButtonWithText customButton = new TexturedButtonWithText(
-                        screen.leftPos - (!isRecipeBookVisible ? 15 : 92),
+                        screen.leftPos - (!isRecipeBookVisible ? 32 : 109),
                         screen.height / 2 - 80,
-                        15, 24,
-                        75, 0, 24,
-                        BUTTON_TEXTURE,
-                        256, 256,
-                        (button) -> {
-                            ChangShengJueMessages.sendToServer(new OpenPlayerQuestScreenPacket(0, Component.translatable("quest." + ChangShengJue.MOD_ID + ".button")));
-                        },
-                        Component.translatable("quest." + ChangShengJue.MOD_ID + ".button"), 0x000, 0x000, 1.0F
-                );
+                        35, 25,
+                        35, 0, 0,
+                        BUTTON_TEXTURE,256,256,
+                        (button) -> ChangShengJueMessages.sendToServer(new OpenPlayerQuestScreenPacket(0, Component.translatable("quest." + ChangShengJue.MOD_ID + ".button"))),
+                        Component.translatable("quest." + ChangShengJue.MOD_ID + ".button"), 0x000, 0x000, 1.0F)
+                        .setIcon(new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/container/quests.png"),0,0,16,16,16,16)
+                        .setIconPosition(TexturedButtonWithText.IconPosition.CENTER)
+                        .setIconScale(1.0f);
                 event.addListener(customButton);
             }
         }

@@ -1,0 +1,79 @@
+{
+  "variants": {
+    "facing=east,part=bottom": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_bottom",
+      "y": 90
+    },
+    "facing=east,part=middle1": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_middle1",
+      "y": 90
+    },
+    "facing=east,part=middle2": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_middle2",
+      "y": 90
+    },
+    "facing=east,part=top": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_top",
+      "y": 90
+    },
+    "facing=east,part=top_left": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_top_left",
+      "y": 90
+    },
+    "facing=north,part=bottom": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_bottom"
+    },
+    "facing=north,part=middle1": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_middle1"
+    },
+    "facing=north,part=middle2": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_middle2"
+    },
+    "facing=north,part=top": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_top"
+    },
+    "facing=north,part=top_left": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_top_left"
+    },
+    "facing=south,part=bottom": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_bottom",
+      "y": 180
+    },
+    "facing=south,part=middle1": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_middle1",
+      "y": 180
+    },
+    "facing=south,part=middle2": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_middle2",
+      "y": 180
+    },
+    "facing=south,part=top": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_top",
+      "y": 180
+    },
+    "facing=south,part=top_left": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_top_left",
+      "y": 180
+    },
+    "facing=west,part=bottom": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_bottom",
+      "y": 270
+    },
+    "facing=west,part=middle1": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_middle1",
+      "y": 270
+    },
+    "facing=west,part=middle2": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_middle2",
+      "y": 270
+    },
+    "facing=west,part=top": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_top",
+      "y": 270
+    },
+    "facing=west,part=top_left": {
+      "model": "chang_sheng_jue:block/acacia_height_light_stand_top_left",
+      "y": 270
+    }
+  }
+}

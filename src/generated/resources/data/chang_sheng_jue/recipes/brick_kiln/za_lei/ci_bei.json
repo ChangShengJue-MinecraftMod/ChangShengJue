@@ -1,0 +1,12 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "za_lei:porcelain",
+  "ingredients": [
+    {
+      "item": "minecraft:clay_ball"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:ci_bei"
+  }
+}

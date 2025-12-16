@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "chang_sheng_jue:block/diamond_sharpening_stone",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "chang_sheng_jue:block/diamond_sharpening_stone"
+    },
+    "facing=south": {
+      "model": "chang_sheng_jue:block/diamond_sharpening_stone",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "chang_sheng_jue:block/diamond_sharpening_stone",
+      "y": 270
+    }
+  }
+}

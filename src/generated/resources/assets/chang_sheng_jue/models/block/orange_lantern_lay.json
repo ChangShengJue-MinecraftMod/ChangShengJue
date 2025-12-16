@@ -1,0 +1,7 @@
+{
+  "parent": "chang_sheng_jue:block/lanterns_lay",
+  "textures": {
+    "1": "chang_sheng_jue:block/orange_lantern",
+    "particle": "chang_sheng_jue:block/orange_lantern"
+  }
+}

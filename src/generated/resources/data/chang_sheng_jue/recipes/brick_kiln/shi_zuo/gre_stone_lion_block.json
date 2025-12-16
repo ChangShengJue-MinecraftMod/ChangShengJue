@@ -1,0 +1,15 @@
+{
+  "type": "chang_sheng_jue:brick_kiln",
+  "group": "shi_zuo:stone_lion_block",
+  "ingredients": [
+    {
+      "item": "minecraft:stone"
+    },
+    {
+      "item": "minecraft:gray_dye"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:gre_stone_lion_block"
+  }
+}
