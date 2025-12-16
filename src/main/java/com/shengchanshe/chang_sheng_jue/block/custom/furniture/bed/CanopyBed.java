@@ -341,6 +341,67 @@ public class CanopyBed extends HorizontalDirectionalBlock {
         return boxes.reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).orElse(Shapes.empty());
     }
 
+    /**
+     * 将 VoxelShape 从北方向旋转到指定方向
+     * @param northShape 北方向的碰撞箱
+     * @param direction 目标方向（EAST, SOUTH, WEST）
+     * @return 旋转后的碰撞箱
+     */
+    private static VoxelShape rotateShape(VoxelShape northShape, Direction direction) {
+        if (direction == Direction.NORTH) {
+            return northShape;
+        }
+
+        return northShape.toAabbs().stream()
+                .map(aabb -> {
+                    double x1 = aabb.minX * 16;
+                    double y1 = aabb.minY * 16;
+                    double z1 = aabb.minZ * 16;
+                    double x2 = aabb.maxX * 16;
+                    double y2 = aabb.maxY * 16;
+                    double z2 = aabb.maxZ * 16;
+
+                    double nx1, nz1, nx2, nz2;
+
+                    switch (direction) {
+                        case EAST -> {
+                            // (x, y, z) → (z, y, 16-x)
+                            nx1 = z1;
+                            nz1 = 16 - x1;
+                            nx2 = z2;
+                            nz2 = 16 - x2;
+                        }
+                        case SOUTH -> {
+                            // (x, y, z) → (16-x, y, 16-z)
+                            nx1 = 16 - x1;
+                            nz1 = 16 - z1;
+                            nx2 = 16 - x2;
+                            nz2 = 16 - z2;
+                        }
+                        case WEST -> {
+                            // (x, y, z) → (16-z, y, x)
+                            nx1 = 16 - z1;
+                            nz1 = x1;
+                            nx2 = 16 - z2;
+                            nz2 = x2;
+                        }
+                        default -> {
+                            return Block.box(x1, y1, z1, x2, y2, z2);
+                        }
+                    }
+
+                    // 确保最小值和最大值正确
+                    double minX = Math.min(nx1, nx2);
+                    double maxX = Math.max(nx1, nx2);
+                    double minZ = Math.min(nz1, nz2);
+                    double maxZ = Math.max(nz1, nz2);
+
+                    return Block.box(minX, y1, minZ, maxX, y2, maxZ);
+                })
+                .reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR))
+                .orElse(Shapes.empty());
+    }
+
     @Override
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         Direction facing = pState.getValue(FACING);
@@ -360,151 +421,12 @@ public class CanopyBed extends HorizontalDirectionalBlock {
     }
     private Map<CanopyBedSection, Supplier<VoxelShape>> createWestShapes() {
         Map<CanopyBedSection, Supplier<VoxelShape>> shapes = new HashMap<>();
+        Map<CanopyBedSection, Supplier<VoxelShape>> northShapes = createNorthShapes();
 
-        shapes.put(CanopyBedSection.BODY_REAR_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(0, 7, 2, 16, 8, 16),
-                Block.box(0, 8, 1, 16, 9, 16),
-                Block.box(0, 6, 1, 16, 7, 16),
-                Block.box(0, 9, 2, 16, 10, 16)
-        )));
-
-        shapes.put(CanopyBedSection.BODY_REAR_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(0, 8, 1, 16, 9, 16),
-                Block.box(-0.03, 2.97, 1.97, 16.03, 8.03, 2.03),
-                Block.box(0, -3, 3, 16, 8, 3)
-        )));
-
-        shapes.put(CanopyBedSection.BODY_FRONT_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(0, 7, 0, 16, 8, 14),
-                Block.box(0, 9, 0, 16, 10, 14),
-                Block.box(0, 8, 0, 16, 9, 15),
-                Block.box(0, 6, 0, 16, 7, 15),
-                Block.box(-0.03, 8.97, 13.97, 16.03, 16.03, 14.03)
-        )));
-
-        shapes.put(CanopyBedSection.BODY_REAR_MIDDLE, () -> Block.box(0, -6, 13, 16, 16, 14));
-
-        shapes.put(CanopyBedSection.BODY_FRONT_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(0, 8, 0, 16, 9, 15),
-                Block.box(-0.03, 2.97, 13.97, 16.03, 8.03, 14.03),
-                Block.box(0, 0, 13, 16, 8, 13)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_REAR_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(12, 0, 1, 15, 2, 4),
-                Block.box(12.5, 2, 0.5, 15.5, 6, 3.5),
-                Block.box(0, 7, 2, 14, 8, 16),
-                Block.box(0, 9, 2, 14, 10, 16),
-                Block.box(0, 8, 1, 15, 9, 16),
-                Block.box(13, 9, 1, 15, 16, 3),
-                Block.box(4, 9, 1, 5, 16, 2),
-                Block.box(4.97, 8.97, 1.97, 13.03, 16.03, 2.03),
-                Block.box(13.97, 8.97, 2.97, 14.03, 16.03, 16.03),
-                Block.box(0, 6, 1, 15, 7, 16)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_REAR_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 1, 15, 16, 3),
-                Block.box(4, 0, 1, 5, 16, 2),
-                Block.box(13, -6, 3, 14, 16, 16),
-                Block.box(0, -6, 2, 13, 16, 3)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_REAR_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 1, 15, 8, 3),
-                Block.box(0, 8, 1, 15, 9, 16),
-                Block.box(-0.03, 2.97, 1.97, 13.03, 8.03, 2.03),
-                Block.box(4, 0, 1, 5, 8, 2),
-                Block.box(13.97, 2.97, 2.97, 14.03, 8.03, 16.03),
-                Block.box(13, 0, 3, 13, 8, 16),
-                Block.box(0, 0, 3, 13, 8, 3)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_FRONT_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(12, 0, 12, 15, 2, 15),
-                Block.box(12.75, 2, 12.5, 15.75, 6, 15.5),
-                Block.box(0, 7, 0, 14, 8, 14),
-                Block.box(0, 9, 0, 14, 10, 14),
-                Block.box(0, 8, 0, 15, 9, 15),
-                Block.box(13, 9, 13, 15, 16, 15),
-                Block.box(-0.03, 8.97, 13.97, 13.03, 16.03, 14.03),
-                Block.box(13.97, 8.97, -0.03, 14.03, 16.03, 13.03),
-                Block.box(0, 6, 0, 15, 7, 15)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_FRONT_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 13, 15, 16, 15),
-                Block.box(0, -6, 13, 13, 16, 14),
-                Block.box(13, -6, 0, 14, 16, 13)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_FRONT_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 13, 15, 8, 15),
-                Block.box(13.97, 2.97, -0.03, 14.03, 8.03, 13.03),
-                Block.box(0, 8, 0, 15, 9, 15),
-                Block.box(-0.03, 2.97, 13.97, 13.03, 8.03, 14.03),
-                Block.box(0, 0, 13, 13, 8, 13),
-                Block.box(13, 0, 0, 13, 8, 13)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_REAR_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 1, 4, 2, 4),
-                Block.box(0.5, 2, 0.5, 3.5, 6, 3.5),
-                Block.box(2, 7, 2, 16, 8, 16),
-                Block.box(2, 9, 2, 16, 10, 16),
-                Block.box(1, 8, 1, 16, 9, 16),
-                Block.box(1, 9, 1, 3, 16, 3),
-                Block.box(11, 9, 1, 12, 16, 2),
-                Block.box(2.97, 8.97, 1.97, 11.03, 16.03, 2.03),
-                Block.box(1.97, 8.97, 2.97, 2.03, 16.03, 16.03),
-                Block.box(1, 6, 1, 16, 7, 16),
-                Block.box(5, 10, 4, 9, 14, 16)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_REAR_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 1, 3, 16, 3),
-                Block.box(11, 0, 1, 12, 16, 2),
-                Block.box(2, -6, 3, 3, 16, 16),
-                Block.box(3, -6, 2, 16, 16, 3)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_REAR_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 1, 3, 8, 3),
-                Block.box(1, 8, 1, 16, 9, 16),
-                Block.box(3, 0, 3, 3, 8, 16),
-                Block.box(11, 0, 1, 12, 8, 2),
-                Block.box(2, 3, 3, 2, 8, 16),
-                Block.box(2.97, 2.97, 1.97, 16.03, 8.03, 2.03),
-                Block.box(3, 0, 3, 16, 8, 3)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_FRONT_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 12, 4, 2, 15),
-                Block.box(0.25, 2, 12.5, 3.25, 6, 15.5),
-                Block.box(2, 7, 0, 16, 8, 14),
-                Block.box(2, 9, 0, 16, 10, 14),
-                Block.box(1, 8, 0, 16, 9, 15),
-                Block.box(1, 9, 13, 3, 16, 15),
-                Block.box(2.97, 8.97, 13.97, 16.03, 16.03, 14.03),
-                Block.box(1.97, 8.97, -0.03, 2.03, 16.03, 13.03),
-                Block.box(1, 6, 0, 16, 7, 15),
-                Block.box(5, 10, 0.75, 9, 14, 12.75)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_FRONT_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 13, 3, 16, 15),
-                Block.box(2, -6, 0, 3, 16, 13),
-                Block.box(3, -6, 13, 16, 16, 14)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_FRONT_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 13, 3, 8, 15),
-                Block.box(2, 3, 0, 2, 8, 13),
-                Block.box(1, 8, 0, 16, 9, 15),
-                Block.box(2.97, 2.97, 13.97, 16.03, 8.03, 14.03),
-                Block.box(3, 0, 0, 3, 8, 13),
-                Block.box(3, 0, 13, 16, 8, 13)
-        )));
+        for (Map.Entry<CanopyBedSection, Supplier<VoxelShape>> entry : northShapes.entrySet()) {
+            CanopyBedSection section = entry.getKey();
+            shapes.put(section, () -> rotateShape(entry.getValue().get(), Direction.EAST));
+        }
 
         return shapes;
     }
@@ -512,28 +434,10 @@ public class CanopyBed extends HorizontalDirectionalBlock {
     private Map<CanopyBedSection, Supplier<VoxelShape>> createNorthShapes() {
         Map<CanopyBedSection, Supplier<VoxelShape>> shapes = new HashMap<>();
 
-        shapes.put(CanopyBedSection.BODY_REAR_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(0, 7, 0, 14, 8, 16),
-                Block.box(0, 8, 0, 15, 9, 16),
-                Block.box(0, 6, 0, 15, 7, 16),
-                Block.box(0, 9, 0, 14, 10, 16)
-        )));
-
-        shapes.put(CanopyBedSection.BODY_REAR_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(0, 8, 0, 15, 9, 16),
-                Block.box(13.97, 2.97, -0.03, 14.03, 8.03, 16.03),
-                Block.box(13, -3, 0, 13, 8, 16)
-        )));
-
         shapes.put(CanopyBedSection.BODY_FRONT_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(2, 7, 0, 16, 8, 16),
-                Block.box(2, 9, 0, 16, 10, 16),
-                Block.box(1, 8, 0, 16, 9, 16),
-                Block.box(1, 6, 0, 16, 7, 16),
-                Block.box(1.9700000000000006, 8.97, -0.02999999999999936, 2.0299999999999994, 16.03, 16.03)
+                Block.box(1, 6, 0, 16, 10, 16),
+                Block.box(0.97, 8.97, -0.03, 2.03, 16.03, 16.03)
         )));
-
-        shapes.put(CanopyBedSection.BODY_REAR_MIDDLE, () -> Block.box(2, -6, 0, 3, 16, 16));
 
         shapes.put(CanopyBedSection.BODY_FRONT_TOP, () -> createShapeFromStream(Stream.of(
                 Block.box(1, 8, 0, 16, 9, 16),
@@ -541,120 +445,89 @@ public class CanopyBed extends HorizontalDirectionalBlock {
                 Block.box(3, 0, 0, 3, 8, 16)
         )));
 
-        shapes.put(CanopyBedSection.FOOT_REAR_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(12, 0, 12, 15, 2, 15),
-                Block.box(12.5, 2, 12.5, 15.5, 6, 15.5),
-                Block.box(0, 7, 0, 14, 8, 14),
-                Block.box(0, 9, 0, 14, 10, 14),
-                Block.box(0, 8, 0, 15, 9, 15),
-                Block.box(13, 9, 13, 15, 16, 15),
-                Block.box(14, 9, 4, 15, 16, 5),
-                Block.box(13.97, 8.97, 4.97, 14.030000000000001, 16.03, 13.03),
-                Block.box(-0.030000000000001137, 8.97, 13.97, 13.03, 16.03, 14.03),
-                Block.box(0, 6, 0, 15, 7, 15)
-        )));
+        shapes.put(CanopyBedSection.BODY_REAR_BOTTOM, () -> Block.box(0, 6, 0, 15, 10, 16));
 
-        shapes.put(CanopyBedSection.FOOT_REAR_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 13, 15, 16, 15),
-                Block.box(14, 0, 4, 15, 16, 5),
-                Block.box(0, -6, 13, 13, 16, 14),
-                Block.box(13, -6, 0, 14, 16, 13)
-        )));
+        shapes.put(CanopyBedSection.BODY_REAR_MIDDLE, () -> Block.box(2, -6, 0, 3, 16, 16));
 
-        shapes.put(CanopyBedSection.FOOT_REAR_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 13, 15, 8, 15),
-                Block.box(0, 8, 0, 15, 9, 15),
-                Block.box(13.97, 2.97, -0.02999999999999936, 14.030000000000001, 8.03, 13.03),
-                Block.box(14, 0, 4, 15, 8, 5),
-                Block.box(-0.030000000000001137, 2.97, 13.97, 13.03, 8.03, 14.03),
-                Block.box(0, 0, 13, 13, 8, 13),
-                Block.box(13, 0, 0, 13, 8, 13)
+        shapes.put(CanopyBedSection.BODY_REAR_TOP, () -> createShapeFromStream(Stream.of(
+                Block.box(12.97, 2.97, -0.03, 14.03, 8.03, 16.03),
+                Block.box(0, 8, 0, 15, 9, 16)
         )));
 
         shapes.put(CanopyBedSection.FOOT_FRONT_BOTTOM, () -> createShapeFromStream(Stream.of(
+                Block.box(1, 6, 0, 16, 10, 15),
                 Block.box(1, 0, 12, 4, 2, 15),
                 Block.box(0.5, 2, 12.75, 3.5, 6, 15.75),
-                Block.box(2, 7, 0, 16, 8, 14),
-                Block.box(2, 9, 0, 16, 10, 14),
-                Block.box(1, 8, 0, 16, 9, 15),
-                Block.box(1, 9, 13, 3, 16, 15),
-                Block.box(1.9700000000000006, 8.97, -0.02999999999999936, 2.0299999999999994, 16.03, 13.03),
-                Block.box(2.9700000000000006, 8.97, 13.97, 16.03, 16.03, 14.03),
-                Block.box(1, 6, 0, 16, 7, 15)
+                Block.box(1, 9, 13, 16, 16, 15),
+                Block.box(1, 9, 0, 3, 16, 15)
         )));
 
         shapes.put(CanopyBedSection.FOOT_FRONT_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 13, 3, 16, 15),
-                Block.box(2, -6, 0, 3, 16, 13),
-                Block.box(3, -6, 13, 16, 16, 14)
+                Block.box(1, 0, 13, 16, 16, 15),
+                Block.box(1, 0, 0, 3, 16, 15)
         )));
 
         shapes.put(CanopyBedSection.FOOT_FRONT_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 13, 3, 8, 15),
-                Block.box(2.9700000000000006, 2.97, 13.97, 16.03, 8.03, 14.03),
                 Block.box(1, 8, 0, 16, 9, 15),
-                Block.box(1.9700000000000006, 2.97, -0.02999999999999936, 2.0299999999999994, 8.03, 13.03),
-                Block.box(3, 0, 0, 3, 8, 13),
-                Block.box(3, 0, 13, 16, 8, 13)
+                Block.box(1, 0, 0, 3, 8, 15),
+                Block.box(1, 0, 13, 16, 8, 15)
+        )));
+
+        shapes.put(CanopyBedSection.FOOT_REAR_BOTTOM, () -> createShapeFromStream(Stream.of(
+                Block.box(12.5, 2, 12.5, 15.5, 6, 15.5),
+                Block.box(12, 0, 12, 15, 2, 15),
+                Block.box(0, 6, 0, 15, 10, 15),
+                Block.box(13, 9, 4, 15, 16, 15),
+                Block.box(0, 9, 13, 15, 16, 15)
+        )));
+
+        shapes.put(CanopyBedSection.FOOT_REAR_MIDDLE, () -> createShapeFromStream(Stream.of(
+                Block.box(13, 0, 0, 15, 16, 15),
+                Block.box(0, 0, 13, 15, 16, 15)
+        )));
+
+        shapes.put(CanopyBedSection.FOOT_REAR_TOP, () -> createShapeFromStream(Stream.of(
+                Block.box(0, 8, 0, 15, 9, 15),
+                Block.box(13, 0, 0, 15, 8, 15),
+                Block.box(0, 0, 13, 15, 8, 15)
+        )));
+
+        shapes.put(CanopyBedSection.HEAD_FRONT_BOTTOM, () -> createShapeFromStream(Stream.of(
+                Block.box(0.5, 2, 0.25, 3.5, 6, 3.25),
+                Block.box(1, 0, 1, 4, 2, 4),
+                Block.box(1, 6, 1, 16, 10, 16),
+                Block.box(1, 9, 1, 16, 16, 3),
+                Block.box(1, 9, 1, 3, 16, 16)
+        )));
+
+        shapes.put(CanopyBedSection.HEAD_FRONT_MIDDLE, () -> createShapeFromStream(Stream.of(
+                Block.box(1, 0, 1, 3, 16, 16),
+                Block.box(1, 0, 1, 16, 16, 3)
+        )));
+
+        shapes.put(CanopyBedSection.HEAD_FRONT_TOP, () -> createShapeFromStream(Stream.of(
+                Block.box(1, 8, 1, 16, 9, 16),
+                Block.box(1, 0, 1, 16, 8, 3),
+                Block.box(1, 0, 1, 3, 8, 16)
         )));
 
         shapes.put(CanopyBedSection.HEAD_REAR_BOTTOM, () -> createShapeFromStream(Stream.of(
                 Block.box(12, 0, 1, 15, 2, 4),
                 Block.box(12.5, 2, 0.5, 15.5, 6, 3.5),
-                Block.box(0, 7, 2, 14, 8, 16),
-                Block.box(0, 9, 2, 14, 10, 16),
-                Block.box(0, 8, 1, 15, 9, 16),
-                Block.box(13, 9, 1, 15, 16, 3),
-                Block.box(14, 9, 11, 15, 16, 12),
-                Block.box(13.97, 8.97, 2.9700000000000006, 14.030000000000001, 16.03, 11.03),
-                Block.box(-0.030000000000001137, 8.97, 1.9699999999999998, 13.03, 16.03, 2.0299999999999994),
-                Block.box(0, 6, 1, 15, 7, 16),
-                Block.box(0, 10, 5, 12, 14, 9)
+                Block.box(0, 6, 1, 15, 10, 16),
+                Block.box(13, 9, 1, 15, 16, 12),
+                Block.box(0, 9, 1, 15, 16, 3)
         )));
 
         shapes.put(CanopyBedSection.HEAD_REAR_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 1, 15, 16, 3),
-                Block.box(14, 0, 11, 15, 16, 12),
-                Block.box(0, -6, 2, 13, 16, 3),
-                Block.box(13, -6, 3, 14, 16, 16)
+                Block.box(13, 0, 1, 15, 16, 16),
+                Block.box(0, 0, 1, 15, 16, 3)
         )));
 
         shapes.put(CanopyBedSection.HEAD_REAR_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 1, 15, 8, 3),
-                Block.box(0, 8, 1, 15, 9, 16),
-                Block.box(0, 0, 3, 13, 8, 3),
-                Block.box(14, 0, 11, 15, 8, 12),
-                Block.box(0, 3, 2, 13, 8, 2),
-                Block.box(13.97, 2.97, 2.9700000000000006, 14.030000000000001, 8.03, 16.03),
-                Block.box(13, 0, 3, 13, 8, 16)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_FRONT_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 1, 4, 2, 4),
-                Block.box(0.5, 2, 0.25, 3.5, 6, 3.25),
-                Block.box(2, 7, 2, 16, 8, 16),
-                Block.box(2, 9, 2, 16, 10, 16),
-                Block.box(1, 8, 1, 16, 9, 16),
-                Block.box(1, 9, 1, 3, 16, 3),
-                Block.box(1.9700000000000006, 8.97, 2.9700000000000006, 2.0299999999999994, 16.03, 16.03),
-                Block.box(2.9700000000000006, 8.97, 1.9699999999999998, 16.03, 16.03, 2.0299999999999994),
-                Block.box(1, 6, 1, 16, 7, 16),
-                Block.box(3.25, 10, 5, 15.25, 14, 9)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_FRONT_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 1, 3, 16, 3),
-                Block.box(3, -6, 2, 16, 16, 3),
-                Block.box(2, -6, 3, 3, 16, 16)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_FRONT_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 1, 3, 8, 3),
-                Block.box(3, 3, 2, 16, 8, 2),
-                Block.box(1, 8, 1, 16, 9, 16),
-                Block.box(1.9700000000000006, 2.97, 2.9700000000000006, 2.0299999999999994, 8.03, 16.03),
-                Block.box(3, 0, 3, 16, 8, 3),
-                Block.box(3, 0, 3, 3, 8, 16)
+                Block.box(13, 0, 1, 15, 8, 16),
+                Block.box(0, 0, 1, 15, 8, 3),
+                Block.box(0, 8, 1, 15, 9, 16)
         )));
 
         return shapes;
@@ -662,300 +535,25 @@ public class CanopyBed extends HorizontalDirectionalBlock {
 
     private Map<CanopyBedSection, Supplier<VoxelShape>> createEastShapes() {
         Map<CanopyBedSection, Supplier<VoxelShape>> shapes = new HashMap<>();
+        Map<CanopyBedSection, Supplier<VoxelShape>> northShapes = createNorthShapes();
 
-        shapes.put(CanopyBedSection.BODY_REAR_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(0, 7, 0, 16, 8, 14),
-                Block.box(0, 8, 0, 16, 9, 15),
-                Block.box(0, 6, 0, 16, 7, 15),
-                Block.box(0, 9, 0, 16, 10, 14)
-        )));
-
-        shapes.put(CanopyBedSection.BODY_REAR_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(0, 8, 0, 16, 9, 15),
-                Block.box(-0.030000000000001137, 2.97, 13.97, 16.03, 8.03, 14.030000000000001),
-                Block.box(0, -3, 13, 16, 8, 13)
-        )));
-
-        shapes.put(CanopyBedSection.BODY_FRONT_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(0, 7, 2, 16, 8, 16),
-                Block.box(0, 9, 2, 16, 10, 16),
-                Block.box(0, 8, 1, 16, 9, 16),
-                Block.box(0, 6, 1, 16, 7, 16),
-                Block.box(-0.030000000000001137, 8.97, 1.9700000000000006, 16.03, 16.03, 2.0299999999999994)
-        )));
-
-        shapes.put(CanopyBedSection.BODY_REAR_MIDDLE, () -> Block.box(0, -6, 2, 16, 16, 3));
-
-        shapes.put(CanopyBedSection.BODY_FRONT_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(0, 8, 1, 16, 9, 16),
-                Block.box(-0.030000000000001137, 2.97, 1.9700000000000006, 16.03, 8.03, 2.0299999999999994),
-                Block.box(0, 0, 3, 16, 8, 3)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_REAR_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 12, 4, 2, 15),
-                Block.box(0.5, 2, 12.5, 3.5, 6, 15.5),
-                Block.box(2, 7, 0, 16, 8, 14),
-                Block.box(2, 9, 0, 16, 10, 14),
-                Block.box(1, 8, 0, 16, 9, 15),
-                Block.box(1, 9, 13, 3, 16, 15),
-                Block.box(11, 9, 14, 12, 16, 15),
-                Block.box(2.9700000000000006, 8.97, 13.97, 11.030000000000001, 16.03, 14.030000000000001),
-                Block.box(1.9700000000000006, 8.97, -0.030000000000001137, 2.0299999999999994, 16.03, 13.03),
-                Block.box(1, 6, 0, 16, 7, 15)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_REAR_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 13, 3, 16, 15),
-                Block.box(11, 0, 14, 12, 16, 15),
-                Block.box(2, -6, 0, 3, 16, 13),
-                Block.box(3, -6, 13, 16, 16, 14)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_REAR_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 13, 3, 8, 15),
-                Block.box(1, 8, 0, 16, 9, 15),
-                Block.box(2.9700000000000006, 2.97, 13.97, 16.03, 8.03, 14.030000000000001),
-                Block.box(11, 0, 14, 12, 8, 15),
-                Block.box(1.9700000000000006, 2.97, -0.030000000000001137, 2.0299999999999994, 8.03, 13.03),
-                Block.box(3, 0, 0, 3, 8, 13),
-                Block.box(3, 0, 13, 16, 8, 13)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_FRONT_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 1, 4, 2, 4),
-                Block.box(0.25, 2, 0.5, 3.25, 6, 3.5),
-                Block.box(2, 7, 2, 16, 8, 16),
-                Block.box(2, 9, 2, 16, 10, 16),
-                Block.box(1, 8, 1, 16, 9, 16),
-                Block.box(1, 9, 1, 3, 16, 3),
-                Block.box(2.9700000000000006, 8.97, 1.9700000000000006, 16.03, 16.03, 2.0299999999999994),
-                Block.box(1.9700000000000006, 8.97, 2.9700000000000006, 2.0299999999999994, 16.03, 16.03),
-                Block.box(1, 6, 1, 16, 7, 16)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_FRONT_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 1, 3, 16, 3),
-                Block.box(3, -6, 2, 16, 16, 3),
-                Block.box(2, -6, 3, 3, 16, 16)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_FRONT_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 1, 3, 8, 3),
-                Block.box(1.9700000000000006, 2.97, 2.9700000000000006, 2.0299999999999994, 8.03, 16.03),
-                Block.box(1, 8, 1, 16, 9, 16),
-                Block.box(2.9700000000000006, 2.97, 1.9700000000000006, 16.03, 8.03, 2.0299999999999994),
-                Block.box(3, 0, 3, 16, 8, 3),
-                Block.box(3, 0, 3, 3, 8, 16)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_REAR_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(12, 0, 12, 15, 2, 15),
-                Block.box(12.5, 2, 12.5, 15.5, 6, 15.5),
-                Block.box(0, 7, 0, 14, 8, 14),
-                Block.box(0, 9, 0, 14, 10, 14),
-                Block.box(0, 8, 0, 15, 9, 15),
-                Block.box(13, 9, 13, 15, 16, 15),
-                Block.box(4, 9, 14, 5, 16, 15),
-                Block.box(4.970000000000001, 8.97, 13.97, 13.03, 16.03, 14.030000000000001),
-                Block.box(13.97, 8.97, -0.030000000000001137, 14.030000000000001, 16.03, 13.03),
-                Block.box(0, 6, 0, 15, 7, 15),
-                Block.box(7, 10, 0, 11, 14, 12)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_REAR_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 13, 15, 16, 15),
-                Block.box(4, 0, 14, 5, 16, 15),
-                Block.box(13, -6, 0, 14, 16, 13),
-                Block.box(0, -6, 13, 13, 16, 14)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_REAR_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 13, 15, 8, 15),
-                Block.box(0, 8, 0, 15, 9, 15),
-                Block.box(13, 0, 0, 13, 8, 13),
-                Block.box(4, 0, 14, 5, 8, 15),
-                Block.box(14, 3, 0, 14, 8, 13),
-                Block.box(-0.030000000000001137, 2.97, 13.97, 13.03, 8.03, 14.030000000000001),
-                Block.box(0, 0, 13, 13, 8, 13)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_FRONT_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(12, 0, 1, 15, 2, 4),
-                Block.box(12.75, 2, 0.5, 15.75, 6, 3.5),
-                Block.box(0, 7, 2, 14, 8, 16),
-                Block.box(0, 9, 2, 14, 10, 16),
-                Block.box(0, 8, 1, 15, 9, 16),
-                Block.box(13, 9, 1, 15, 16, 3),
-                Block.box(-0.030000000000001137, 8.97, 1.9700000000000006, 13.03, 16.03, 2.0299999999999994),
-                Block.box(13.97, 8.97, 2.9700000000000006, 14.030000000000001, 16.03, 16.03),
-                Block.box(0, 6, 1, 15, 7, 16),
-                Block.box(7, 10, 3.25, 11, 14, 15.25)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_FRONT_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 1, 15, 16, 3),
-                Block.box(13, -6, 3, 14, 16, 16),
-                Block.box(0, -6, 2, 13, 16, 3)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_FRONT_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 1, 15, 8, 3),
-                Block.box(14, 3, 3, 14, 8, 16),
-                Block.box(0, 8, 1, 15, 9, 16),
-                Block.box(-0.030000000000001137, 2.97, 1.9700000000000006, 13.03, 8.03, 2.0299999999999994),
-                Block.box(13, 0, 3, 13, 8, 16),
-                Block.box(0, 0, 3, 13, 8, 3)
-        )));
+        for (Map.Entry<CanopyBedSection, Supplier<VoxelShape>> entry : northShapes.entrySet()) {
+            CanopyBedSection section = entry.getKey();
+            shapes.put(section, () -> rotateShape(entry.getValue().get(), Direction.WEST));
+        }
 
         return shapes;
     }
 
     private Map<CanopyBedSection, Supplier<VoxelShape>> createSouthShapes() {
         Map<CanopyBedSection, Supplier<VoxelShape>> shapes = new HashMap<>();
+        Map<CanopyBedSection, Supplier<VoxelShape>> northShapes = createNorthShapes();
 
-        shapes.put(CanopyBedSection.BODY_REAR_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(2, 7, 0, 16, 8, 16),
-                Block.box(1, 8, 0, 16, 9, 16),
-                Block.box(1, 6, 0, 16, 7, 16),
-                Block.box(2, 9, 0, 16, 10, 16)
-        )));
+        for (Map.Entry<CanopyBedSection, Supplier<VoxelShape>> entry : northShapes.entrySet()) {
+            CanopyBedSection section = entry.getKey();
+            shapes.put(section, () -> rotateShape(entry.getValue().get(), Direction.SOUTH));
+        }
 
-        shapes.put(CanopyBedSection.BODY_REAR_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 8, 0, 16, 9, 16),
-                Block.box(1.9699999999999989, 2.97, -0.030000000000001137, 2.0299999999999994, 8.03, 16.03),
-                Block.box(3, -3, 0, 3, 8, 16)
-        )));
-
-        shapes.put(CanopyBedSection.BODY_REAR_MIDDLE, () -> Block.box(13, -6, 0, 14, 16, 16));
-
-        shapes.put(CanopyBedSection.BODY_FRONT_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(0, 7, 0, 14, 8, 16),
-                Block.box(0, 9, 0, 14, 10, 16),
-                Block.box(0, 8, 0, 15, 9, 16),
-                Block.box(0, 6, 0, 15, 7, 16),
-                Block.box(13.97, 8.97, -0.030000000000001137, 14.03, 16.03, 16.03)
-        )));
-
-        shapes.put(CanopyBedSection.BODY_FRONT_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(0, 8, 0, 15, 9, 16),
-                Block.box(13.97, 2.97, -0.030000000000001137, 14.03, 8.03, 16.03),
-                Block.box(13, 0, 0, 13, 8, 16)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_REAR_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 1, 4, 2, 4),
-                Block.box(0.5, 2, 0.5, 3.5, 6, 3.5),
-                Block.box(2, 7, 2, 16, 8, 16),
-                Block.box(2, 9, 2, 16, 10, 16),
-                Block.box(1, 8, 1, 16, 9, 16),
-                Block.box(1, 9, 1, 3, 16, 3),
-                Block.box(1, 9, 11, 2, 16, 12),
-                Block.box(1.9699999999999989, 8.97, 2.9700000000000006, 2.0299999999999994, 16.03, 11.030000000000001),
-                Block.box(2.9700000000000006, 8.97, 1.9700000000000006, 16.03, 16.03, 2.0299999999999994),
-                Block.box(1, 6, 1, 16, 7, 16)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_REAR_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 1, 3, 16, 3),
-                Block.box(1, 0, 11, 2, 16, 12),
-                Block.box(3, -6, 2, 16, 16, 3),
-                Block.box(2, -6, 3, 3, 16, 16)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_REAR_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 1, 3, 8, 3),
-                Block.box(1, 8, 1, 16, 9, 16),
-                Block.box(1.9699999999999989, 2.97, 2.9700000000000006, 2.0299999999999994, 8.03, 16.03),
-                Block.box(1, 0, 11, 2, 8, 12),
-                Block.box(2.9700000000000006, 2.97, 1.9700000000000006, 16.03, 8.03, 2.0299999999999994),
-                Block.box(3, 0, 3, 16, 8, 3),
-                Block.box(3, 0, 3, 3, 8, 16)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_FRONT_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(12, 0, 1, 15, 2, 4),
-                Block.box(12.5, 2, 0.25, 15.5, 6, 3.25),
-                Block.box(0, 7, 2, 14, 8, 16),
-                Block.box(0, 9, 2, 14, 10, 16),
-                Block.box(0, 8, 1, 15, 9, 16),
-                Block.box(13, 9, 1, 15, 16, 3),
-                Block.box(13.97, 8.97, 2.9700000000000006, 14.03, 16.03, 16.03),
-                Block.box(-0.030000000000001137, 8.97, 1.9700000000000006, 13.03, 16.03, 2.0299999999999994),
-                Block.box(0, 6, 1, 15, 7, 16)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_FRONT_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 1, 15, 16, 3),
-                Block.box(13, -6, 3, 14, 16, 16),
-                Block.box(0, -6, 2, 13, 16, 3)
-        )));
-
-        shapes.put(CanopyBedSection.FOOT_FRONT_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 1, 15, 8, 3),
-                Block.box(-0.030000000000001137, 2.97, 1.9700000000000006, 13.03, 8.03, 2.0299999999999994),
-                Block.box(0, 8, 1, 15, 9, 16),
-                Block.box(13.97, 2.97, 2.9700000000000006, 14.03, 8.03, 16.03),
-                Block.box(13, 0, 3, 13, 8, 16),
-                Block.box(0, 0, 3, 13, 8, 3)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_REAR_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 12, 4, 2, 15),
-                Block.box(0.5, 2, 12.5, 3.5, 6, 15.5),
-                Block.box(2, 7, 0, 16, 8, 14),
-                Block.box(2, 9, 0, 16, 10, 14),
-                Block.box(1, 8, 0, 16, 9, 15),
-                Block.box(1, 9, 13, 3, 16, 15),
-                Block.box(1, 9, 4, 2, 16, 5),
-                Block.box(1.9699999999999989, 8.97, 4.970000000000001, 2.0299999999999994, 16.03, 13.03),
-                Block.box(2.9700000000000006, 8.97, 13.97, 16.03, 16.03, 14.030000000000001),
-                Block.box(1, 6, 0, 16, 7, 15),
-                Block.box(4, 10, 7, 16, 14, 11)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_REAR_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 13, 3, 16, 15),
-                Block.box(1, 0, 4, 2, 16, 5),
-                Block.box(3, -6, 13, 16, 16, 14),
-                Block.box(2, -6, 0, 3, 16, 13)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_REAR_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(1, 0, 13, 3, 8, 15),
-                Block.box(1, 8, 0, 16, 9, 15),
-                Block.box(3, 0, 13, 16, 8, 13),
-                Block.box(1, 0, 4, 2, 8, 5),
-                Block.box(3, 3, 14, 16, 8, 14),
-                Block.box(1.9699999999999989, 2.97, -0.030000000000001137, 2.0299999999999994, 8.03, 13.03),
-                Block.box(3, 0, 0, 3, 8, 13)
-        )));
-
-        shapes.put(CanopyBedSection.HEAD_FRONT_BOTTOM, () -> createShapeFromStream(Stream.of(
-                Block.box(12, 0, 12, 15, 2, 15),
-                Block.box(12.5, 2, 12.75, 15.5, 6, 15.75),
-                Block.box(0, 7, 0, 14, 8, 14),
-                Block.box(0, 9, 0, 14, 10, 14),
-                Block.box(0, 8, 0, 15, 9, 15),
-                Block.box(13, 9, 13, 15, 16, 15),
-                Block.box(13.97, 8.97, -0.030000000000001137, 14.03, 16.03, 13.03),
-                Block.box(-0.030000000000001137, 8.97, 13.97, 13.03, 16.03, 14.030000000000001),
-                Block.box(0, 6, 0, 15, 7, 15),
-                Block.box(0.75, 10, 7, 12.75, 14, 11)
-        )));
-        shapes.put(CanopyBedSection.HEAD_FRONT_MIDDLE, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 13, 15, 16, 15),
-                Block.box(0, -6, 13, 13, 16, 14),
-                Block.box(13, -6, 0, 14, 16, 13)
-        )));
-        shapes.put(CanopyBedSection.HEAD_FRONT_TOP, () -> createShapeFromStream(Stream.of(
-                Block.box(13, 0, 13, 15, 8, 15),
-                Block.box(0, 3, 14, 13, 8, 14),
-                Block.box(0, 8, 0, 15, 9, 15),
-                Block.box(13.97, 2.97, -0.030000000000001137, 14.03, 8.03, 13.03),
-                Block.box(0, 0, 13, 13, 8, 13),
-                Block.box(13, 0, 0, 13, 8, 13)
-        )));
         return shapes;
     }
 
