@@ -1611,7 +1611,7 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         return this.createLeavesDrops(pOakLeavesBlock, pSaplingBlock, pChances)
                 .withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).when(HAS_NO_SHEARS_OR_SILK_TOUCH)
                         .add(((LootPoolSingletonContainer.Builder<?>)this.applyExplosionCondition(pOakLeavesBlock, LootItem.lootTableItem(fruitsItem)))
-                                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.0055555557F, 0.00625F, 0.008333334F, 0.015F, 0.025F))));
+                                .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.1F, 0.1111111F, 0.125F, 0.1666667F, 0.5F))));
     }
     public void createMulberryLeavesDrops(Block leavesBlock, Item fruitsItem, Block sapling, Item stateItem, Item stateItem1) {
         LootPoolEntryContainer.Builder<?> leaves = LootItem.lootTableItem(leavesBlock)
