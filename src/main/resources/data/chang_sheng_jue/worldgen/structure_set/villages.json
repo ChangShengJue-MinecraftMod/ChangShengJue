@@ -2,8 +2,12 @@
   "placement": {
     "type": "minecraft:random_spread",
     "salt": 42419871,
-    "separation": 8,
-    "spacing": 34
+    "separation": 16,
+    "spacing": 48,
+    "exclusion_zone": {
+      "other_set": "#chang_sheng_jue:exclusionzone",
+      "chunk_count": 32
+    }
   },
   "structures": [
     {
