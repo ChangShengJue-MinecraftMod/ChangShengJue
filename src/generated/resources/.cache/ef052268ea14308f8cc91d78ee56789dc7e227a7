@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-15T15:23:02.6238745	Tags for minecraft:block mod id chang_sheng_jue
+// 1.20.1	2025-12-17T09:58:12.0570096	Tags for minecraft:block mod id chang_sheng_jue
 f95548502f10c4db74417e07058576558071c13a data/chang_sheng_jue/tags/blocks/arhat_bed.json
 c94f4cad24addac0b3d5321b038cdebee043c274 data/chang_sheng_jue/tags/blocks/bench.json
 a51e5c4fa28d20b6f49daddaf99f465cee14c1b0 data/chang_sheng_jue/tags/blocks/book_desk.json
@@ -30,7 +30,7 @@ efe0e7884b3f9331fa7ef7da00613142e565d14a data/chang_sheng_jue/tags/blocks/wine_t
 d6c89e28f75db56e18f8fd1013b7adfb690b7601 data/chang_sheng_jue/tags/blocks/zi_tan_log.json
 63f84173a9f25003820c1bfbea8a2fe205598dc2 data/forge/tags/blocks/ores.json
 76c09b2efab3ba4831c2d6102f92e45d5660e776 data/minecraft/tags/blocks/flowers.json
-0528191d521ea046a8e412a93b05d5eb0cf7c1a7 data/minecraft/tags/blocks/leaves.json
+684fb2335eef85de3432f71f57f05a8acbd5c6dd data/minecraft/tags/blocks/leaves.json
 ff3f27392f0f5079b01c75bf6968fca3a5e01af0 data/minecraft/tags/blocks/logs.json
 7a6ec220e5fc18713f07bac2f4ef3226d34d3fcc data/minecraft/tags/blocks/logs_that_burn.json
 c4bf5586306595a429bf9722fc655309c056e32e data/minecraft/tags/blocks/mineable/axe.json

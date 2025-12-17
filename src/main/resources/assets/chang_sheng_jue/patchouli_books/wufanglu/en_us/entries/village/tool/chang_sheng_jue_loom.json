@@ -11,7 +11,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "chang_sheng_jue:loom_recipe"
+      "recipe": "chang_sheng_jue:chang_sheng_jue_loom"
     }
   ]
 }

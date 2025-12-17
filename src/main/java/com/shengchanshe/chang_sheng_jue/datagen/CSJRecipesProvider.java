@@ -275,7 +275,7 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("###")
                 .pattern("###")
                 .unlockedBy("has_planks", has(ItemTags.PLANKS))
-                .save(consumer, new ResourceLocation(ChangShengJue.MOD_ID, "loom_recipe"));
+                .save(consumer);
         // 陶轮
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChangShengJueBlocks.POTTERY_WHEEL.get(), 1)
                 .define('#', Ingredient.of(Items.COBBLESTONE))
@@ -283,7 +283,7 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("###")
                 .pattern("###")
                 .unlockedBy("has_planks",has(ItemTags.PLANKS))
-                .save(consumer, new ResourceLocation(ChangShengJue.MOD_ID, "pottery_wheel_recipe"));
+                .save(consumer);
         //工具台
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChangShengJueBlocks.TOOL_TABLE.get(), 1)
                 .define('#', Ingredient.of(ItemTags.PLANKS))
@@ -292,7 +292,7 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("###")
                 .pattern("X X")
                 .unlockedBy("has_planks", has(ItemTags.PLANKS))
-                .save(consumer, new ResourceLocation(ChangShengJue.MOD_ID, "tool_table_recipe"));
+                .save(consumer);
         //牲畜食槽
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ChangShengJueBlocks.PIG_TROUGH.get(), 1)
                 .define('#', Ingredient.of(Items.COBBLESTONE))
@@ -300,7 +300,7 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("# #")
                 .pattern("###")
                 .unlockedBy("has_planks", has(ItemTags.PLANKS))
-                .save(consumer, new ResourceLocation(ChangShengJue.MOD_ID, "pig_trough_recipe"));
+                .save(consumer);
         //丝绸
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueItems.SILK.get(), 1)
                 .define('#', Ingredient.of(ChangShengJueItems.NATURAL_SILK.get()))
@@ -308,7 +308,7 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("###")
                 .pattern("###")
                 .unlockedBy("has_planks", has(ItemTags.PLANKS))
-                .save(consumer, new ResourceLocation(ChangShengJue.MOD_ID, "silk_recipe"));
+                .save(consumer);
 
 
         /**

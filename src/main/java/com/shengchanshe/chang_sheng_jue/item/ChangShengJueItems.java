@@ -397,15 +397,7 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> PAINT_BRUSH = ITEMS.register("paint_brush", PaintBrush::new);
 
     //蚕丝
-    public static final RegistryObject<Item> NATURAL_SILK = ITEMS.register("natural_silk", ()-> new Item(new Item.Properties()){
-        @Override
-        public void appendHoverText(ItemStack stack, @Nullable Level level,
-                                    List<Component> tooltip, TooltipFlag flag) {
-            tooltip.add(Component.translatable("tooltip."+ ChangShengJue.MOD_ID +".natural_silk")
-                    .withStyle(ChatFormatting.GRAY));
-            super.appendHoverText(stack, level, tooltip, flag);
-        }
-    });
+    public static final RegistryObject<Item> NATURAL_SILK = ITEMS.register("natural_silk", ()-> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> SILKWORM = ITEMS.register("silkworm", ()-> new Silkworm(new Item.Properties()));
 

@@ -174,7 +174,13 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.dropSelf(ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD.get());
         this.dropSelf(ChangShengJueBlocks.MULBERRY_PLANKS.get());
         this.dropSelf(ChangShengJueBlocks.MULBERRY_SAPLING.get());
-        this.createMulberryLeavesDrops(ChangShengJueBlocks.MULBERRY_LEAVES.get(),ChangShengJueItems.MULBERRY.get(),ChangShengJueBlocks.MULBERRY_SAPLING.get(),ChangShengJueItems.NATURAL_SILK.get(),ChangShengJueItems.SILKWORM.get());
+        this.createMulberryLeavesDrops(ChangShengJueBlocks.MULBERRY_LEAVES.get(),
+                ChangShengJueItems.MULBERRY.get(),ChangShengJueBlocks.MULBERRY_SAPLING.get(),
+                ChangShengJueItems.NATURAL_SILK.get(),ChangShengJueItems.SILKWORM.get());
+
+        this.createMulberryLeavesDrops(ChangShengJueBlocks.MULBERRY_LEAVES_FRUITS.get(),
+                ChangShengJueItems.MULBERRY.get(),ChangShengJueBlocks.MULBERRY_SAPLING.get(),
+                ChangShengJueItems.NATURAL_SILK.get(),ChangShengJueItems.SILKWORM.get());
         //矿石
         this.add(ChangShengJueBlocks.AG_ORE.get(),
                 (block -> createOreDrop(ChangShengJueBlocks.AG_ORE.get(), ChangShengJueItems.RAW_AG.get())));

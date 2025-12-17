@@ -11,7 +11,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "chang_sheng_jue:pig_trough_recipe",
+      "recipe": "chang_sheng_jue:pig_trough",
       "text": "chang_sheng_jue.village.tool.pig_trough.page2.text"
     }
 

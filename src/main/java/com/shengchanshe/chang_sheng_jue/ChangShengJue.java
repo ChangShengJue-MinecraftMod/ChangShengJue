@@ -77,7 +77,7 @@ public class ChangShengJue {
         GeckoLib.initialize();
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ChangShengJueConfig.SPEC, MOD_ID + "/" + MOD_ID + ".toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, KungFuConfig.SPEC, MOD_ID + "/" + MOD_ID + ".kung_fu.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, KungFuConfig.SPEC, MOD_ID + "/" + "kung_fu.toml");
 
         MinecraftForge.EVENT_BUS.register(this);
     }

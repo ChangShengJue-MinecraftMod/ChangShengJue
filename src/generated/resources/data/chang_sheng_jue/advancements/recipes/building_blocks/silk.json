@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "chang_sheng_jue:silk_recipe"
+        "recipe": "chang_sheng_jue:silk"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "chang_sheng_jue:silk_recipe"
+      "chang_sheng_jue:silk"
     ]
   },
   "sends_telemetry_event": false

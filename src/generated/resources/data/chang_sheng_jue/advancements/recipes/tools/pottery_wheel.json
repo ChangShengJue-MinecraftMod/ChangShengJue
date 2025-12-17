@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "chang_sheng_jue:tool_table_recipe"
+        "recipe": "chang_sheng_jue:pottery_wheel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "chang_sheng_jue:tool_table_recipe"
+      "chang_sheng_jue:pottery_wheel"
     ]
   },
   "sends_telemetry_event": false

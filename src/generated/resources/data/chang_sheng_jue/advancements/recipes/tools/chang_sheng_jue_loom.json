@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "chang_sheng_jue:loom_recipe"
+        "recipe": "chang_sheng_jue:chang_sheng_jue_loom"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "chang_sheng_jue:loom_recipe"
+      "chang_sheng_jue:chang_sheng_jue_loom"
     ]
   },
   "sends_telemetry_event": false

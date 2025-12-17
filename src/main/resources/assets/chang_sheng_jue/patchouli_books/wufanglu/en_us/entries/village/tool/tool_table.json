@@ -11,7 +11,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "chang_sheng_jue:tool_table_recipe",
+      "recipe": "chang_sheng_jue:tool_table",
       "text": "chang_sheng_jue.village.tool.tool_table.page2.text"
     }
   ]

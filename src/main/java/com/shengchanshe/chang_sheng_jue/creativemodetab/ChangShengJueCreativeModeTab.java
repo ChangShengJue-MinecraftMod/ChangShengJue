@@ -42,6 +42,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.POPLAR_DEFOLIATION.get());
                 output.accept(ChangShengJueBlocks.OSMANTHUS_DEFOLIATION.get());
                 output.accept(ChangShengJueBlocks.MULBERRY_LEAVES.get());
+                output.accept(ChangShengJueBlocks.MULBERRY_LEAVES_FRUITS.get());
                 output.accept(ChangShengJueBlocks.MULBERRY_SAPLING.get());
                 output.accept(ChangShengJueBlocks.HUANG_HUA_LI_LEAVES.get());
                 output.accept(ChangShengJueBlocks.HUANG_HUA_LI_SAPLING.get());

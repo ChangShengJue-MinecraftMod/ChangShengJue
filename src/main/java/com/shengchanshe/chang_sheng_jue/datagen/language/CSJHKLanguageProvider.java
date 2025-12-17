@@ -641,6 +641,7 @@
             this.add(ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD.get(),"去皮桑樹木");
             this.add(ChangShengJueBlocks.MULBERRY_PLANKS.get(),"桑樹木板");
             this.add(ChangShengJueBlocks.MULBERRY_LEAVES.get(),"桑樹樹葉");
+            this.add(ChangShengJueBlocks.MULBERRY_LEAVES_FRUITS.get(),"有蠶的桑葉");
             this.add(ChangShengJueBlocks.MULBERRY_SAPLING.get(),"桑樹樹苗");
 
             // 食物容器类方块
@@ -1678,7 +1679,6 @@
 
             //普通信息
             this.add("block."+ ChangShengJue.MOD_ID +".fen_jiu.no_wine","已經沒有酒了！");
-            this.add("tooltip."+ ChangShengJue.MOD_ID +".natural_silk", "透過挖掘桑葉獲得");
 
             //进度
             // 一级进度
@@ -2056,24 +2056,37 @@
             this.add(ChangShengJue.MOD_ID +".xiake.trauma.page2.text", "當正在運轉兵器類外功時，使用對應武器攻擊目標有25%%概率向對方造成1~2級外傷，使用(兵器)類外功攻擊目標則有100%%概率造成1~5級外傷。");
 
             this.add(ChangShengJue.MOD_ID +".xiake.stakes", "木樁");
-            this.add(ChangShengJue.MOD_ID +".xiake.stakes.page1.text", "木樁合成表");
+            this.add(ChangShengJue.MOD_ID +".xiake.stakes.page1.text", "木樁合成配方");
             this.add(ChangShengJue.MOD_ID +".xiake.stakes.page2.text", "內功、輕功、外功(空手)類功法可以通過打擊木樁練習領悟，每次打擊領悟概率為15%%。");
 
             this.add(ChangShengJue.MOD_ID +".function.tailoring_case", "裁衣案");
-            this.add(ChangShengJue.MOD_ID +".function.tailoring_case.page1.text", "裁衣案合成表");
+            this.add(ChangShengJue.MOD_ID +".function.tailoring_case.page1.text", "裁衣案合成配方");
             this.add(ChangShengJue.MOD_ID +".function.tailoring_case.page2.text", "用於製作服裝（盔甲）等，可於裁衣案內查看選中物品，製作會自動從背包扣除對應所需材料。");
 
             this.add(ChangShengJue.MOD_ID +".function.forge_block", "鍛造爐");
-            this.add(ChangShengJue.MOD_ID +".function.forge_block.page1.text", "鍛造爐合成表");
+            this.add(ChangShengJue.MOD_ID +".function.forge_block.page1.text", "鍛造爐合成配方");
             this.add(ChangShengJue.MOD_ID +".function.forge_block.page2.text", "用於製作武器、盔甲等，可於鍛造爐內查看選中物品，製作會自動從背包扣除對應所需材料。");
 
             this.add(ChangShengJue.MOD_ID +".function.wood_working_bench", "木工臺");
-            this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page1.text", "木工臺合成表");
+            this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page1.text", "木工臺合成配方");
             this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page2.text", "用於快速製作各種傢俱與木製建築構件，可以批量製作（點擊數位旁的圖示增加或減少製作次數，最大次數為64次），製作會自動從背包扣除對應所需材料。");
 
             this.add(ChangShengJue.MOD_ID +".function.brick_kiln", "磚窯爐");
-            this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page1.text", "磚窯爐合成表");
+            this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page1.text", "磚窯爐合成配方");
             this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page2.text", "用於快速製作各種石製建築構件（琉璃瓦、片瓦等），可以批量製作（點擊數位旁的圖示增加或減少製作數量，最大數量為64個），製作會自動從背包扣除對應所需材料。");
+
+            this.add(ChangShengJue.MOD_ID +".village.tool.silkworm_and_natural_silk", "蠶與蠶絲");
+            this.add(ChangShengJue.MOD_ID +".village.tool.silkworm_and_natural_silk.page1.text", "絲綢合成配方");
+            this.add(ChangShengJue.MOD_ID +".village.tool.silkworm_and_natural_silk.page2.text", "破壞「有蠶的桑葉」有一定概率掉落蠶與蠶絲，蠶可以放在正常桑葉使其變化為「有蠶的桑葉」; 蠶絲可以合成絲綢來製作各種衣物。 $（br）$(br)桑樹會在森林群系和其變種群系自然生成$（br）徽派村莊的道路旁也有概率會生成一些桑樹");
+
+            this.add(ChangShengJue.MOD_ID +".village.tool.kaolin_ball", "高嶺土球");
+            this.add(ChangShengJue.MOD_ID +".village.tool.kaolin_ball.page1.text", "挖掘高嶺土礦會掉落4個高嶺土球，高嶺土球可以製作琉璃瓦等石質建築材料。");
+
+            this.add(ChangShengJue.MOD_ID +".village.tool.syderolife_ball", "陶土球");
+            this.add(ChangShengJue.MOD_ID +".village.tool.syderolife_ball.page1.text", "挖掘陶土礦會掉落4個陶土球，陶土球可以製作黑磚等石質建築材料。");
+
+            this.add(ChangShengJue.MOD_ID +".village.tool.natural_asphalt", "天然瀝青");
+            this.add(ChangShengJue.MOD_ID +".village.tool.natural_asphalt.page1.text", "挖掘天然瀝青塊會掉落4個天然瀝青，天然瀝青可以製作瀝青磚等。");
 
             this.add(ChangShengJue.MOD_ID +".function.sharpening_stone", "磨刀石");
             this.add(ChangShengJue.MOD_ID +".function.sharpening_stone.page1.text", "通過磨刀石你可以強化你的武器，圓石磨刀石最高可以將武器傷害提升6點，鑽石磨刀石則是最高提升至8點，下界合金磨刀石最高提升10點。 注意！ 打磨後武器的耐久消耗也會對應提高。");
