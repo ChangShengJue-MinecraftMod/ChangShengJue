@@ -449,6 +449,8 @@
 
             this.add("message." + ChangShengJue.MOD_ID + ".dagger_pouch.empty", "§c没有武器了");
 
+            this.add("message." + ChangShengJue.MOD_ID + ".install_patchouli_for_guide", "提示：您可以安装帕秋莉手册(Patchouli)模组来获取长生诀模组的游戏引导书《五方汇录》");
+
             this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.count","飞刀囊容量 %s / %s");
             this.add("tooltip." + ChangShengJue.MOD_ID + ".flying_dagger_pouch.right_click.tooltip","在背包内拿起并右键飞刀可将飞刀放入飞刀囊中");
             this.add("tooltip." + ChangShengJue.MOD_ID + ".throwing_knives.right_click.tooltip","在背包内拿起并右键飞刀囊可将飞刀放入飞刀囊中");

@@ -479,12 +479,13 @@ public class CSJENLanguageProvider extends LanguageProvider {
 
         this.add("message." + ChangShengJue.MOD_ID + ".dagger_pouch.empty", "§cNo weapons left");
 
+        this.add("message." + ChangShengJue.MOD_ID + ".install_patchouli_for_guide", "Tip: You can install the Patchouli mod to get the game guide book \"Five Directions Collection\" of the Longevity Mod");
+
         this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.count","Throwing Knives Pouch Capacity %s / %s");
         this.add("tooltip." + ChangShengJue.MOD_ID + ".flying_dagger_pouch.right_click.tooltip","Pick up and right-click a throwing knives Pouch in inventory to store throwing daggers");
         this.add("tooltip." + ChangShengJue.MOD_ID + ".throwing_knives.right_click.tooltip","Pick up and right-click throwing knives in inventory to store them in the pouch");
         this.add("tooltip." + ChangShengJue.MOD_ID + ".durability","Durability %s / %s");
         this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.contents","Contents of Throwing Knives Pouch");
-
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DURIAN.get()+".tooltip","Please use an axe to split it open");
         this.add("tooltip."+ChangShengJue.MOD_ID+".hold_shift.tooltip","Press §eShift§r to view more information");
@@ -2160,5 +2161,6 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJue.MOD_ID +".wufanglu", "Compendium of the Five Realms");
         this.add(ChangShengJue.MOD_ID +".wufanglu.desc", "\"If Heaven had feelings, Heaven too would grow old; The rightful path on earth is full of strife and change.\"$(br)How can one seek longevity without knowledge? Understand heaven and earth, comprehend all things.");
         this.add(ChangShengJue.MOD_ID +".wufanglu.desc2", "ChangShengJue Encyclopedia");
+        
     }
 }
