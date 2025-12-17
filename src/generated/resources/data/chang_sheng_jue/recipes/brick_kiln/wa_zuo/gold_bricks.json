@@ -1,6 +1,6 @@
 {
   "type": "chang_sheng_jue:brick_kiln",
-  "group": "wa_zuo:gold",
+  "group": "shi_zuo:bricks",
   "ingredients": [
     {
       "item": "chang_sheng_jue:kaolin_ball"

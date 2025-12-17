@@ -1,6 +1,6 @@
 {
   "type": "chang_sheng_jue:brick_kiln",
-  "group": "wa_zuo:bricks",
+  "group": "shi_zuo:bricks",
   "ingredients": [
     {
       "count": 4,

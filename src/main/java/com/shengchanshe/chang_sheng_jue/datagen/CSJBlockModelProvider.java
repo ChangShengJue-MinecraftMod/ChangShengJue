@@ -388,7 +388,7 @@ public class CSJBlockModelProvider extends BlockModelProvider {
         parentBlock(ChangShengJueBlocks.BLUE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_right",
                 "octagonal_dwarf_ridge_tiles_front_right","blue_cylinder_tile");
         parentBlock(ChangShengJueBlocks.PURPLE_OCTAGONAL_DWARF_RIDGE_TILES_FRONT.getId().getPath() + "_right",
-                "octagonal_dwarf_ridge_tiles_front_right","blue_cylinder_tile");
+                "octagonal_dwarf_ridge_tiles_front_right","purple_cylinder_tile");
 
         parentBlock(ChangShengJueBlocks.GRE_OCTAGONAL_DWARF_RIDGE_TILES_BEHIND.getId().getPath() + "_left",
                 "octagonal_dwarf_ridge_tiles_behind_left","gre_cylinder_tile");
@@ -564,7 +564,7 @@ public class CSJBlockModelProvider extends BlockModelProvider {
         parentBlock(ChangShengJueBlocks.RED_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE,"double_hanging_beast_gable_ridge_cylinder_tile","red_double_gable_ridge_cylinder_tile");
         parentBlock(ChangShengJueBlocks.BLACK_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE,"double_hanging_beast_gable_ridge_cylinder_tile","black_double_gable_ridge_cylinder_tile");
         parentBlock(ChangShengJueBlocks.GOLDEN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE,"double_hanging_beast_gable_ridge_cylinder_tile","golden_double_gable_ridge_cylinder_tile");
-        parentBlock(ChangShengJueBlocks.CYAN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE,"double_hanging_beast_gable_ridge_cylinder_tile","golden_double_gable_ridge_cylinder_tile");
+        parentBlock(ChangShengJueBlocks.CYAN_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE,"double_hanging_beast_gable_ridge_cylinder_tile","cyan_double_gable_ridge_cylinder_tile");
         parentBlock(ChangShengJueBlocks.BLUE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE,"double_hanging_beast_gable_ridge_cylinder_tile","blue_double_gable_ridge_cylinder_tile");
         parentBlock(ChangShengJueBlocks.PURPLE_DOUBLE_HANGING_BEAST_GABLE_RIDGE_CYLINDER_TILE,"double_hanging_beast_gable_ridge_cylinder_tile","purple_double_gable_ridge_cylinder_tile");
 

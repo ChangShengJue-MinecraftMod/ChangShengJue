@@ -261,8 +261,8 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
 
         ItemStack[] mainCategoryIcons = {
                 new ItemStack(ChangShengJueBlocks.BRICK_KILN.get()),
-                new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE.get()), // 瓦作代表
-                new ItemStack(ChangShengJueBlocks.STONE_BENCH.get()), // 石作代表
+                new ItemStack(ChangShengJueBlocks.GOLDEN_CHARACTER_PLAQUE_PAVILION.get()), // 瓦作代表
+                new ItemStack(ChangShengJueBlocks.STONE_TABLE.get()), // 石作代表
                 new ItemStack(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get()) // 杂类代表
         };
 
@@ -294,13 +294,13 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         int colorButtonSpacing = 20; // 按钮之间的垂直间距
 
         ItemStack[] colorIcons = {
-                new ItemStack(Items.LIGHT_GRAY_CONCRETE),
-                new ItemStack(Items.RED_CONCRETE),
-                new ItemStack(Items.BLACK_CONCRETE),
-                new ItemStack(Items.YELLOW_CONCRETE),
-                new ItemStack(Items.CYAN_CONCRETE),
-                new ItemStack(Items.PURPLE_CONCRETE),
-                new ItemStack(Items.BLUE_CONCRETE)};
+                new ItemStack(ChangShengJueBlocks.GRE_CYLINDER_TILE_BLOCK.get()),
+                new ItemStack(ChangShengJueBlocks.RED_CYLINDER_TILE_BLOCK.get()),
+                new ItemStack(ChangShengJueBlocks.BLACK_CYLINDER_TILE_BLOCK.get()),
+                new ItemStack(ChangShengJueBlocks.GOLDEN_CYLINDER_TILE_BLOCK.get()),
+                new ItemStack(ChangShengJueBlocks.CYAN_CYLINDER_TILE_BLOCK.get()),
+                new ItemStack(ChangShengJueBlocks.PURPLE_CYLINDER_TILE_BLOCK.get()),
+                new ItemStack(ChangShengJueBlocks.BLUE_CYLINDER_TILE_BLOCK.get())};
 
         for (int i = 0; i < COLOR_CATEGORIES.length; i++) {
             String color = COLOR_CATEGORIES[i];
