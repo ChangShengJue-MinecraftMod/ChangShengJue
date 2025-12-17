@@ -1506,7 +1506,7 @@
             this.add(ChangShengJueBlocks.TAILORING_CASE.get(), "裁衣案");
             this.add(ChangShengJueBlocks.FORGE_BLOCK.get(), "锻造炉");
             this.add(ChangShengJueBlocks.WOOD_WORKING_BENCH.get(), "木工台");
-            this.add(ChangShengJueBlocks.BRICK_KILN.get(), "砖窑炉");
+            this.add(ChangShengJueBlocks.BRICK_KILN.get(), "窑炉");
             //实体生物
             this.add(ChangShengJueEntity.BUTTERFLY.get(), "蝴蝶");
             this.add(ChangShengJueEntity.MONKEY.get(), "猴");
@@ -1928,7 +1928,7 @@
             this.add("jei."+ ChangShengJue.MOD_ID +".woodworking_bench.usage", "在木工台中制作该物品");
             this.add("jei."+ ChangShengJue.MOD_ID +".tailoring_case.usage", "在裁衣案中制作该物品");
             this.add("jei."+ ChangShengJue.MOD_ID +".forge_block.usage", "在锻造炉中制作该物品");
-            this.add("jei."+ ChangShengJue.MOD_ID +".brick_kiln.usage", "在砖窑炉中制作该物品");
+            this.add("jei."+ ChangShengJue.MOD_ID +".brick_kiln.usage", "在窑炉中制作该物品");
             //帕秋莉
             this.add(ChangShengJue.MOD_ID +".function", "功能物品");
             this.add(ChangShengJue.MOD_ID +".function.desc", "从那个空间裂缝来了很多奇怪的人，他们不仅会舞火为凤，飞天遁地。也带来了很多奇怪的东西。听说他们是从东方来的？");
@@ -2082,8 +2082,8 @@
             this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page1.text", "木工台合成配方");
             this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page2.text", "用于快速制作各种家具与木制建筑构件，可以批量制作（点击数字旁的图标增加或减少制作次数，最大次数为64次），制作会自动从背包扣除对应所需材料。");
 
-            this.add(ChangShengJue.MOD_ID +".function.brick_kiln", "砖窑炉");
-            this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page1.text", "砖窑炉合成配方");
+            this.add(ChangShengJue.MOD_ID +".function.brick_kiln", "窑炉");
+            this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page1.text", "窑炉合成配方");
             this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page2.text", "用于快速制作各种石制建筑构件（琉璃瓦、片瓦等），可以批量制作（点击数字旁的图标增加或减少制作数量，最大数量为64个），制作会自动从背包扣除对应所需材料。");
 
             this.add(ChangShengJue.MOD_ID +".village.tool.silkworm_and_natural_silk", "蚕与蚕丝");

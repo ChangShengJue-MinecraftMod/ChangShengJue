@@ -290,7 +290,7 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         int colorButtonWidth = 18;
         int colorButtonHeight = 18;
         int wazuoButtonY = startY + buttonSpacing; // 瓦作是第二个按钮（索引1）
-        int colorStartX = buttonX - buttonWidth + 10; // 在瓦作按钮右侧
+        int colorStartX = buttonX - buttonWidth + 18; // 在瓦作按钮右侧
         int colorButtonSpacing = 20; // 按钮之间的垂直间距
 
         ItemStack[] colorIcons = {

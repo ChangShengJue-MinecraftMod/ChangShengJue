@@ -1499,7 +1499,7 @@
             this.add(ChangShengJueBlocks.TAILORING_CASE.get(), "裁衣案");
             this.add(ChangShengJueBlocks.FORGE_BLOCK.get(), "鍛造爐");
             this.add(ChangShengJueBlocks.WOOD_WORKING_BENCH.get(), "木工臺");
-            this.add(ChangShengJueBlocks.BRICK_KILN.get(), "磚窯爐");
+            this.add(ChangShengJueBlocks.BRICK_KILN.get(), "窯爐");
             //实体生物
             this.add(ChangShengJueEntity.BUTTERFLY.get(), "蝴蝶");
             this.add(ChangShengJueEntity.MONKEY.get(), "猴");
@@ -2074,8 +2074,8 @@
             this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page1.text", "木工臺合成配方");
             this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page2.text", "用於快速製作各種傢俱與木製建築構件，可以批量製作（點擊數位旁的圖示增加或減少製作次數，最大次數為64次），製作會自動從背包扣除對應所需材料。");
 
-            this.add(ChangShengJue.MOD_ID +".function.brick_kiln", "磚窯爐");
-            this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page1.text", "磚窯爐合成配方");
+            this.add(ChangShengJue.MOD_ID +".function.brick_kiln", "窯爐");
+            this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page1.text", "窯爐合成配方");
             this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page2.text", "用於快速製作各種石製建築構件（琉璃瓦、片瓦等），可以批量製作（點擊數位旁的圖示增加或減少製作數量，最大數量為64個），製作會自動從背包扣除對應所需材料。");
 
             this.add(ChangShengJue.MOD_ID +".village.tool.silkworm_and_natural_silk", "蠶與蠶絲");

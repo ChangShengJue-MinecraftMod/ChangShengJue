@@ -1199,7 +1199,7 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .unlockedBy("has_bricks", has(ChangShengJueItems.CYAN_BRICKS.get()))
                 .group("shi_zuo:bricks")
                 .save(consumer, new ResourceLocation(ChangShengJue.MOD_ID, "brick_kiln/wa_zuo/" + ChangShengJueBlocks.BLUE_FLOOR_TILES_BLOCK.getId().getPath()));
-        BrickKilnRecipeBuilder.brickKiln(ChangShengJueBlocks.BITUMEN_FLOOR_TILES_BLOCK.get())
+        BrickKilnRecipeBuilder.brickKiln(ChangShengJueBlocks.BITUMEN_FLOOR_TILES_BLOCK.get(),2)
                 .requires(ChangShengJueItems.WHITE_BRICKS_ITEM.get(),6)
                 .requires(ChangShengJueItems.NATURAL_ASPHALT.get(),2)
                 .unlockedBy("has_bricks", has(ChangShengJueItems.CYAN_BRICKS.get()))
@@ -1260,7 +1260,7 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
                 .group("shi_zuo:bricks")
                 .save(consumer, new ResourceLocation(ChangShengJue.MOD_ID, "brick_kiln/wa_zuo/" + ChangShengJueItems.WHITE_BRICKS_ITEM.getId().getPath()));
         //金砖
-        BrickKilnRecipeBuilder.brickKiln(ChangShengJueItems.GOLD_BRICKS.get())
+        BrickKilnRecipeBuilder.brickKiln(ChangShengJueItems.GOLD_BRICKS.get(),2)
                 .requires(ChangShengJueItems.KAOLIN_BALL.get())
                 .requires(Items.YELLOW_DYE)
                 .unlockedBy("has_ball", has(ChangShengJueItems.KAOLIN_BALL.get()))
