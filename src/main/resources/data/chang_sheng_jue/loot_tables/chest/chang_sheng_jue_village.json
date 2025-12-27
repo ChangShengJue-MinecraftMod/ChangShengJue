@@ -150,7 +150,8 @@
           "name": "chang_sheng_jue:long_yuan_sword",
           "functions": [
             {
-              "function": "set_count"
+              "function": "set_count",
+              "count": 1
             }
           ],
           "weight": 1
