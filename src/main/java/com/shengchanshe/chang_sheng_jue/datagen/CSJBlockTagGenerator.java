@@ -910,6 +910,7 @@ public class CSJBlockTagGenerator extends BlockTagsProvider {
         //树叶
         this.tag(BlockTags.LEAVES)
                 .add(ChangShengJueBlocks.MULBERRY_LEAVES.get())
+                .add(ChangShengJueBlocks.MULBERRY_LEAVES_FRUITS.get())
                 .add(ChangShengJueBlocks.POPLAR_LEAVES.get())
                 .add(ChangShengJueBlocks.LICHEE_LEAVES.get())
                 .add(ChangShengJueBlocks.MANGO_LEAVES.get())

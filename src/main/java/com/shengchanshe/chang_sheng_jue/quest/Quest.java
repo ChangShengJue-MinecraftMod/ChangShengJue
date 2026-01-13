@@ -895,7 +895,7 @@ public class Quest {
                     }
                 }
             });
-        }
+        } else
         if (this.questId.equals(PlayerQuestEvent.KUAI_YI_EN_CHOU_QUEST_ID)) {
             player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                 List<AbstractionExternalKunfu> kungFus = new ArrayList<>();
@@ -924,12 +924,11 @@ public class Quest {
                     }
                 }
             });
-        }
-        // 默认奖励逻辑
-        for (ItemStack reward : questRewards) {
-            if (!(reward.getItem() instanceof ExternalKungfuXp) && !(reward.getItem() instanceof InternalkungfuXp)) {
-                player.getInventory().add(reward.copy());
-                return;
+        }else {
+            for (ItemStack reward : questRewards) {
+                if (!(reward.getItem() instanceof ExternalKungfuXp) && !(reward.getItem() instanceof InternalkungfuXp)) {
+                    player.getInventory().add(reward.copy());
+                }
             }
         }
     }

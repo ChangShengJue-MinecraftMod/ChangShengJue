@@ -341,7 +341,9 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> MULBERRY_PLANKS = registerBlock("mulberry_planks",
             ()-> new Planks(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> MULBERRY_LEAVES = registerBlock("mulberry_leaves",
-            ()-> new MulberryLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
+            ()-> new MulberryLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES), MulberryLeaves.State.LEAVES));
+    public static final RegistryObject<Block> MULBERRY_LEAVES_FRUITS = registerBlock("mulberry_leaves_fruits",
+            ()-> new MulberryLeaves(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES), MulberryLeaves.State.FRUITS));
     public static final RegistryObject<Block> MULBERRY_SAPLING = registerBlock("mulberry_sapling",
             ()-> new SaplingBlock(new MulberryTreeGrower(),BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
@@ -352,7 +354,7 @@ public class ChangShengJueBlocks {
     public static final RegistryObject<Block> MUGWORT_BLOCK = registerBlock("mugwort_block",
             ()-> new FlowerBlock(()-> MobEffects.LEVITATION,8,
                     BlockBehaviour.Properties.copy(Blocks.DANDELION)){
-                protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
+                private static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D);
                 @Override
                 public VoxelShape getShape(BlockState p_53517_, BlockGetter p_53518_, BlockPos p_53519_, CollisionContext p_53520_) {
                     Vec3 vec3 = p_53517_.getOffset(p_53518_, p_53519_);

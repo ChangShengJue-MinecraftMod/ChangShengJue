@@ -1,0 +1,18 @@
+{
+  "name": "chang_sheng_jue.village.tool.silkworm_and_natural_silk",
+  "category": "chang_sheng_jue:village",
+  "sortnum": 2,
+  "icon": "chang_sheng_jue:silkworm",
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "chang_sheng_jue:silk",
+      "text": "chang_sheng_jue.village.tool.silkworm_and_natural_silk.page1.text"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:mulberry_leaves_fruits",
+      "text": "chang_sheng_jue.village.tool.silkworm_and_natural_silk.page2.text"
+    }
+  ]
+}

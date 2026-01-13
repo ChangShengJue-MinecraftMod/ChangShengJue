@@ -2,13 +2,11 @@
   "placement": {
     "type": "minecraft:random_spread",
     "salt": 4241984,
-    "separation": 8,
-    "spacing": 32,
+    "separation": 16,
+    "spacing": 48,
     "exclusion_zone": {
-      "chunk_count": 64,
-      "other_set": [
-        "minecraft:villages"
-      ]
+      "other_set": "#chang_sheng_jue:exclusionzone",
+      "chunk_count": 32
     }
   },
   "structures": [

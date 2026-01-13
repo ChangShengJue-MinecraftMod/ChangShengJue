@@ -24,6 +24,8 @@ import com.shengchanshe.chang_sheng_jue.item.items.Parcel;
 import com.shengchanshe.chang_sheng_jue.item.items.StructureIntelligence;
 import com.shengchanshe.chang_sheng_jue.util.TradeHelper;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
@@ -728,6 +730,7 @@ public class CSJEvent {
 
                 // 检查Patchouli是否加载
                 if (!ModList.get().isLoaded("patchouli")) {
+                    player.sendSystemMessage(Component.translatable("message." + ChangShengJue.MOD_ID + ".install_patchouli_for_guide").withStyle(ChatFormatting.YELLOW));
                     return;
                 }
                 ItemStack book = PatchouliAPI.get().getBookStack(new ResourceLocation("chang_sheng_jue", "wufanglu"));

@@ -1,6 +1,6 @@
 {
   "type": "chang_sheng_jue:brick_kiln",
-  "group": "wa_zuo:bricks",
+  "group": "shi_zuo:bricks",
   "ingredients": [
     {
       "count": 6,
@@ -12,6 +12,7 @@
     }
   ],
   "result": {
+    "count": 2,
     "item": "chang_sheng_jue:bitumen_floor_tiles_block"
   }
 }

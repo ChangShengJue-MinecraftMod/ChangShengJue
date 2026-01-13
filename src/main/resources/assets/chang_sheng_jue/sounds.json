@@ -343,5 +343,11 @@
     "sounds": [
       "chang_sheng_jue:block/forge_block_sound"
     ]
+  },
+  "taxation_sound": {
+    "subtitle": "sounds.chang_sheng_jue.taxation_sound",
+    "sounds": [
+      "chang_sheng_jue:block/taxation_sound"
+    ]
   }
 }

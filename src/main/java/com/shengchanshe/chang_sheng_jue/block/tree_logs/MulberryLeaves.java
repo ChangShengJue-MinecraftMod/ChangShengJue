@@ -11,14 +11,18 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraftforge.common.ForgeHooks;
 
 import java.util.Locale;
 
 public class MulberryLeaves extends LeavesBlock {
     public static final EnumProperty<State> STATE = EnumProperty.create("type", State.class);
-    public MulberryLeaves(Properties pProperties) {
+    public MulberryLeaves(Properties pProperties,MulberryLeaves.State state) {
         super(pProperties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(DISTANCE, 7)
+                .setValue(PERSISTENT, false).setValue(WATERLOGGED, false).setValue(STATE, state));
+
     }
 
     @Override
@@ -78,8 +82,7 @@ public class MulberryLeaves extends LeavesBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(STATE);
-        super.createBlockStateDefinition(pBuilder);
+        pBuilder.add(DISTANCE, PERSISTENT, WATERLOGGED,STATE);
     }
 
     public enum State implements StringRepresentable {

@@ -449,6 +449,8 @@
 
             this.add("message." + ChangShengJue.MOD_ID + ".dagger_pouch.empty", "§c没有武器了");
 
+            this.add("message." + ChangShengJue.MOD_ID + ".install_patchouli_for_guide", "提示：您可以安装帕秋莉手册(Patchouli)模组来获取长生诀模组的游戏引导书《五方汇录》");
+
             this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.count","飞刀囊容量 %s / %s");
             this.add("tooltip." + ChangShengJue.MOD_ID + ".flying_dagger_pouch.right_click.tooltip","在背包内拿起并右键飞刀可将飞刀放入飞刀囊中");
             this.add("tooltip." + ChangShengJue.MOD_ID + ".throwing_knives.right_click.tooltip","在背包内拿起并右键飞刀囊可将飞刀放入飞刀囊中");
@@ -539,6 +541,8 @@
             this.add("sounds."+ChangShengJue.MOD_ID + ".tailoring_case_sound", "裁衣案 : 裁剪");
 
             this.add("sounds."+ChangShengJue.MOD_ID + ".forge_block_sound", "锻锤 : 锤击");
+
+            this.add("sounds."+ChangShengJue.MOD_ID + ".taxation_sound", "铸币税");
 
             this.add("sounds."+ChangShengJue.MOD_ID + ".stakes_hit_sound", "练功木桩 : 被击打");
 
@@ -643,6 +647,7 @@
             this.add(ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD.get(),"去皮桑树木");
             this.add(ChangShengJueBlocks.MULBERRY_PLANKS.get(),"桑树木板");
             this.add(ChangShengJueBlocks.MULBERRY_LEAVES.get(),"桑树树叶");
+            this.add(ChangShengJueBlocks.MULBERRY_LEAVES_FRUITS.get(),"有蚕的桑叶");
             this.add(ChangShengJueBlocks.MULBERRY_SAPLING.get(),"桑树树苗");
 
             // 食物容器类方块
@@ -1501,7 +1506,7 @@
             this.add(ChangShengJueBlocks.TAILORING_CASE.get(), "裁衣案");
             this.add(ChangShengJueBlocks.FORGE_BLOCK.get(), "锻造炉");
             this.add(ChangShengJueBlocks.WOOD_WORKING_BENCH.get(), "木工台");
-            this.add(ChangShengJueBlocks.BRICK_KILN.get(), "砖窑炉");
+            this.add(ChangShengJueBlocks.BRICK_KILN.get(), "窑炉");
             //实体生物
             this.add(ChangShengJueEntity.BUTTERFLY.get(), "蝴蝶");
             this.add(ChangShengJueEntity.MONKEY.get(), "猴");
@@ -1682,7 +1687,6 @@
 
             //普通信息
             this.add("block."+ ChangShengJue.MOD_ID +".fen_jiu.no_wine","已经没有酒了！");
-            this.add("tooltip."+ ChangShengJue.MOD_ID +".natural_silk", "通过挖掘桑叶获得");
 
             this.add("message.sharpening_stone.sharpened", "§a武器已打磨！本次增加：");
             this.add("message.sharpening_stone.total_damage", "§a，当前攻击力：");
@@ -2063,20 +2067,37 @@
             this.add(ChangShengJue.MOD_ID +".xiake.trauma.page2.text", "当正在运转兵器类外功时，使用对应武器攻击目标有25%%概率向对方造成1~2级外伤，使用(兵器)类外功攻击目标则有100%%概率造成1~5级外伤。");
 
             this.add(ChangShengJue.MOD_ID +".xiake.stakes", "木桩");
-            this.add(ChangShengJue.MOD_ID +".xiake.stakes.page1.text", "木桩合成表");
+            this.add(ChangShengJue.MOD_ID +".xiake.stakes.page1.text", "木桩合成配方");
             this.add(ChangShengJue.MOD_ID +".xiake.stakes.page2.text", "内功、轻功、外功(空手)类功法可以通过打击木桩练习领悟，每次打击领悟概率为15%%。");
 
             this.add(ChangShengJue.MOD_ID +".function.tailoring_case", "裁衣案");
-            this.add(ChangShengJue.MOD_ID +".function.tailoring_case.page1.text", "裁衣案合成表");
+            this.add(ChangShengJue.MOD_ID +".function.tailoring_case.page1.text", "裁衣案合成配方");
             this.add(ChangShengJue.MOD_ID +".function.tailoring_case.page2.text", "用于制作服装（盔甲）等，可于裁衣案内查看选中物品，制作会自动从背包扣除对应所需材料。");
 
             this.add(ChangShengJue.MOD_ID +".function.forge_block", "锻造炉");
-            this.add(ChangShengJue.MOD_ID +".function.forge_block.page1.text", "锻造炉合成表");
+            this.add(ChangShengJue.MOD_ID +".function.forge_block.page1.text", "锻造炉合成配方");
             this.add(ChangShengJue.MOD_ID +".function.forge_block.page2.text", "用于制作武器、盔甲等，可于锻造炉内查看选中物品，制作会自动从背包扣除对应所需材料。");
 
             this.add(ChangShengJue.MOD_ID +".function.wood_working_bench", "木工台");
-            this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page1.text", "木工台合成表");
+            this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page1.text", "木工台合成配方");
             this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page2.text", "用于快速制作各种家具与木制建筑构件，可以批量制作（点击数字旁的图标增加或减少制作次数，最大次数为64次），制作会自动从背包扣除对应所需材料。");
+
+            this.add(ChangShengJue.MOD_ID +".function.brick_kiln", "窑炉");
+            this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page1.text", "窑炉合成配方");
+            this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page2.text", "用于快速制作各种石制建筑构件（琉璃瓦、片瓦等），可以批量制作（点击数字旁的图标增加或减少制作数量，最大数量为64个），制作会自动从背包扣除对应所需材料。");
+
+            this.add(ChangShengJue.MOD_ID +".village.tool.silkworm_and_natural_silk", "蚕与蚕丝");
+            this.add(ChangShengJue.MOD_ID +".village.tool.silkworm_and_natural_silk.page1.text", "丝绸合成配方");
+            this.add(ChangShengJue.MOD_ID +".village.tool.silkworm_and_natural_silk.page2.text", "破坏“有蚕的桑叶”有一定概率掉落蚕与蚕丝，蚕可以放在正常桑叶使其变化为“有蚕的桑叶”；蚕丝可以合成丝绸来制作各种衣物。$(br)$(br)桑树会在森林群系和其变种群系自然生成$(br)徽派村庄的道路旁也有概率会生成一些桑树");
+
+            this.add(ChangShengJue.MOD_ID +".village.tool.kaolin_ball", "高岭土球");
+            this.add(ChangShengJue.MOD_ID +".village.tool.kaolin_ball.page1.text", "挖掘高岭土矿会掉落4个高岭土球，高岭土球可以制作琉璃瓦等石质建筑材料。");
+
+            this.add(ChangShengJue.MOD_ID +".village.tool.syderolife_ball", "陶土球");
+            this.add(ChangShengJue.MOD_ID +".village.tool.syderolife_ball.page1.text", "挖掘陶土矿会掉落4个陶土球，陶土球可以制作黑砖等石质建筑材料。");
+
+            this.add(ChangShengJue.MOD_ID +".village.tool.natural_asphalt", "天然沥青");
+            this.add(ChangShengJue.MOD_ID +".village.tool.natural_asphalt.page1.text", "挖掘天然沥青块会掉落4个天然沥青，天然沥青可以制作沥青砖等。");
 
             this.add(ChangShengJue.MOD_ID +".function.sharpening_stone", "磨刀石");
             this.add(ChangShengJue.MOD_ID +".function.sharpening_stone.page1.text", "通过磨刀石你可以强化你的武器，圆石磨刀石最高可以将武器伤害提升6点，钻石磨刀石则是最高提升至8点，下界合金磨刀石最高提升10点。注意！打磨后武器的耐久消耗也会对应提高。");

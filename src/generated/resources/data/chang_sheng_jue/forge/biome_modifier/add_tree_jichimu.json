@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
-  "biomes": "#minecraft:is_savanna",
+  "biomes": "#minecraft:is_forest",
   "features": "chang_sheng_jue:jichimu_tree_placed_key",
   "step": "vegetal_decoration"
 }

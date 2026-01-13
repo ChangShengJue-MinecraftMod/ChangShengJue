@@ -479,12 +479,13 @@ public class CSJENLanguageProvider extends LanguageProvider {
 
         this.add("message." + ChangShengJue.MOD_ID + ".dagger_pouch.empty", "§cNo weapons left");
 
+        this.add("message." + ChangShengJue.MOD_ID + ".install_patchouli_for_guide", "Tip: You can install the Patchouli mod to get the game guide book \"Five Directions Collection\" of the Longevity Mod");
+
         this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.count","Throwing Knives Pouch Capacity %s / %s");
         this.add("tooltip." + ChangShengJue.MOD_ID + ".flying_dagger_pouch.right_click.tooltip","Pick up and right-click a throwing knives Pouch in inventory to store throwing daggers");
         this.add("tooltip." + ChangShengJue.MOD_ID + ".throwing_knives.right_click.tooltip","Pick up and right-click throwing knives in inventory to store them in the pouch");
         this.add("tooltip." + ChangShengJue.MOD_ID + ".durability","Durability %s / %s");
         this.add("tooltip." + ChangShengJue.MOD_ID + ".dagger_pouch.contents","Contents of Throwing Knives Pouch");
-
 
         this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.DURIAN.get()+".tooltip","Please use an axe to split it open");
         this.add("tooltip."+ChangShengJue.MOD_ID+".hold_shift.tooltip","Press §eShift§r to view more information");
@@ -568,6 +569,8 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("sounds."+ChangShengJue.MOD_ID + ".tailoring_case_sound", "Tailoring Table cutting");
 
         this.add("sounds."+ChangShengJue.MOD_ID + ".forge_block_sound", "Forge Hammer clanging");
+
+        this.add("sounds."+ChangShengJue.MOD_ID + ".taxation_sound", "Taxation");
 
         this.add("sounds."+ChangShengJue.MOD_ID + ".stakes_hit_sound", "Practice stake being struck");
 
@@ -671,6 +674,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.STRIPPED_MULBERRY_WOOD.get(),"Stripped Mulberry Wood");
         this.add(ChangShengJueBlocks.MULBERRY_PLANKS.get(),"Mulberry Planks");
         this.add(ChangShengJueBlocks.MULBERRY_LEAVES.get(),"Mulberry Leaves");
+        this.add(ChangShengJueBlocks.MULBERRY_LEAVES_FRUITS.get(),"There are mulberry leaves of silkworms");
         this.add(ChangShengJueBlocks.MULBERRY_SAPLING.get(),"Mulberry Sapling");
 
         this.add(ChangShengJueBlocks.BLUE_AND_WHITE_PORCELAIN_FLOWER_POTS.get(),"Blue and White Porcelain Flower Pots");
@@ -1708,7 +1712,6 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_extra_probability", "Probability of Trading Without Consuming Items after Zhang Men Xin Xue Mastery");
 
         this.add("block."+ ChangShengJue.MOD_ID +".fen_jiu.no_wine","There's no wine left!");
-        this.add("tooltip."+ ChangShengJue.MOD_ID +".natural_silk", "Obtained by mining mulberry leaves");
 
         this.add("message.sharpening_stone.sharpened", "§aWeapons polished! This increase:");
         this.add("message.sharpening_stone.total_damage", "§a,current attack power:");
@@ -2114,9 +2117,26 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page1.text", "Wood Working Bench Crafting Recipe");
         this.add(ChangShengJue.MOD_ID +".function.wood_working_bench.page2.text", "It is used to quickly craft various furniture and wooden building components, which can be made in batches (click the icon next to the number to increase or decrease the number of productions, the maximum number is 64), and the corresponding materials will be automatically deducted from the backpack.");
 
-        this.add(ChangShengJue.MOD_ID +".function.forge_block", "Forge furnace");
-        this.add(ChangShengJue.MOD_ID +".function.forge_block.page1.text", "Forge furnace Crafting Recipe");
+        this.add(ChangShengJue.MOD_ID +".function.forge_block", "Forge Block");
+        this.add(ChangShengJue.MOD_ID +".function.forge_block.page1.text", "Forge Block Crafting Recipe");
         this.add(ChangShengJue.MOD_ID +".function.forge_block.page2.text", "Used for crafting weapons, armor, etc. View selected items within the forge interface. Crafting automatically consumes required materials from your inventory.");
+
+        this.add(ChangShengJue.MOD_ID +".function.brick_kiln", "Brick Kiln");
+        this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page1.text", "Brick kiln Crafting Recipe");
+        this.add(ChangShengJue.MOD_ID +".function.brick_kiln.page2.text", "It is used to quickly make various stone building components (glazed tiles, tiles, etc.), and can be made in batches (click the icon next to the number to increase or decrease the number of pieces, the maximum number is 64), and the corresponding materials will be automatically deducted from the backpack.");
+
+        this.add(ChangShengJue.MOD_ID +".village.tool.silkworm_and_natural_silk", "Silkworms and silk");
+        this.add(ChangShengJue.MOD_ID +".village.tool.silkworm_and_natural_silk.page1.text", "Silk Crafting Recipe");
+        this.add(ChangShengJue.MOD_ID +".village.tool.silkworm_and_natural_silk.page2.text", "Breaking 'Mulberry Leaves with Silkworms' has a chance to drop silkworms and silk fibers. Silkworms can be placed on normal mulberry leaves to turn them into 'Mulberry Leaves with Silkworms.' Silk fibers can be crafted into silk fabric to make various clothing items. $(br)$(br)Mulberry trees naturally generate in forest biomes and their variant biomes. $(br)Some mulberry trees may also generate along the roads in Huizhou-style villages.");
+
+        this.add(ChangShengJue.MOD_ID +".village.tool.kaolin_ball", "Kaolin Ball");
+        this.add(ChangShengJue.MOD_ID +".village.tool.kaolin_ball.page1.text", "Digging Kaolin Ore will drop 4 kaolin balls, which can be used to make glazed tiles and other stone building materials.");
+
+        this.add(ChangShengJue.MOD_ID +".village.tool.syderolife_ball", "Syderolife Ball");
+        this.add(ChangShengJue.MOD_ID +".village.tool.syderolife_ball.page1.text", "Digging into the syderolife ore will drop 4 syderolife balls, which can be used to craft stone building materials such as black bricks.");
+
+        this.add(ChangShengJue.MOD_ID +".village.tool.natural_asphalt", "Natural Asphalt");
+        this.add(ChangShengJue.MOD_ID +".village.tool.natural_asphalt.page1.text", "Digging up natural asphalt blocks will drop 4 natural asphalt, natural asphalt can make asphalt bricks, etc.");
 
         this.add(ChangShengJue.MOD_ID +".function.sharpening_stone", "Sharpening Stone");
         this.add(ChangShengJue.MOD_ID +".function.sharpening_stone.page1.text", "You can strengthen your weapons with whetstones, with cobblestone whetstones increasing weapon damage by up to 6 points, diamond whetstones up to 8 points, and netherite whetstones increasing up to 10 points. Note! The durability consumption of the weapon after grinding will also be increased accordingly.");
@@ -2141,5 +2161,6 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJue.MOD_ID +".wufanglu", "Compendium of the Five Realms");
         this.add(ChangShengJue.MOD_ID +".wufanglu.desc", "\"If Heaven had feelings, Heaven too would grow old; The rightful path on earth is full of strife and change.\"$(br)How can one seek longevity without knowledge? Understand heaven and earth, comprehend all things.");
         this.add(ChangShengJue.MOD_ID +".wufanglu.desc2", "ChangShengJue Encyclopedia");
+        
     }
 }

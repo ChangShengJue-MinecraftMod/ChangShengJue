@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue.block.custom.castingmolds;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
+import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -10,7 +11,9 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.inventory.ContainerData;
@@ -37,8 +40,8 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class CastingMoldsBlockEntity extends BlockEntity implements GeoBlockEntity {
-    private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private ItemStackHandler inventory = new ItemStackHandler(2){
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private final ItemStackHandler inventory = new ItemStackHandler(2){
         @Override
         protected int getStackLimit(int slot, @NotNull ItemStack stack) {
             return 1;
@@ -58,6 +61,11 @@ public class CastingMoldsBlockEntity extends BlockEntity implements GeoBlockEnti
     private boolean isEmpty = false;
     private final int INPUT_SLOT = 0;
     private final int OUTPUT_SLOT = 1;
+    
+    // 粒子生成相关变量
+    private int particleSpawnTimer = 0;
+    private int particlesToSpawn = 0;
+    private int particleSpawnDelay = 3; // 每个粒子间隔3 tick生成
 
     public CastingMoldsBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ChangShengJueBlocksEntities.CASTING_MOLDS_BLOCK_ENTITY.get(), pPos, pBlockState);
@@ -150,13 +158,6 @@ public class CastingMoldsBlockEntity extends BlockEntity implements GeoBlockEnti
             Containers.dropContents(this.level, this.worldPosition, simpleContainer);
         }
     }
-    @Override
-    public void load(CompoundTag pTag) {
-        super.load(pTag);
-        this.inventory.deserializeNBT(pTag.getCompound("CastingMoldsInventory"));
-        progress = pTag.getInt("CastingMoldsProgress");
-        open = pTag.getBoolean("CastingMoldsOpen");
-    }
 
     @Override
     public void invalidateCaps() {
@@ -169,8 +170,23 @@ public class CastingMoldsBlockEntity extends BlockEntity implements GeoBlockEnti
         compoundTag.put("CastingMoldsInventory",this.inventory.serializeNBT());
         compoundTag.putInt("CastingMoldsProgress",progress);
         compoundTag.putBoolean("CastingMoldsOpen", open);
+        // 保存粒子生成状态
+        compoundTag.putInt("ParticleSpawnTimer", particleSpawnTimer);
+        compoundTag.putInt("ParticlesToSpawn", particlesToSpawn);
         return compoundTag;
     }
+    
+    @Override
+    public void load(CompoundTag pTag) {
+        super.load(pTag);
+        this.inventory.deserializeNBT(pTag.getCompound("CastingMoldsInventory"));
+        progress = pTag.getInt("CastingMoldsProgress");
+        open = pTag.getBoolean("CastingMoldsOpen");
+        // 加载粒子生成状态
+        particleSpawnTimer = pTag.getInt("ParticleSpawnTimer");
+        particlesToSpawn = pTag.getInt("ParticlesToSpawn");
+    }
+
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         this.writeItems(pTag);
@@ -213,6 +229,17 @@ public class CastingMoldsBlockEntity extends BlockEntity implements GeoBlockEnti
             }
         }else {
             this.resrtProgress();
+        }
+        
+        // 处理粒子生成
+        if (particlesToSpawn > 0 && level instanceof ServerLevel serverLevel) {
+            if (particleSpawnTimer >= particleSpawnDelay) {
+                // 生成一个铜钱粒子
+                spawnSingleCoinParticle(serverLevel);
+                particlesToSpawn--;
+                particleSpawnTimer = 0;
+            }
+            particleSpawnTimer++;
         }
     }
 
@@ -279,22 +306,30 @@ public class CastingMoldsBlockEntity extends BlockEntity implements GeoBlockEnti
      */
     private void spawnTaxParticles(ServerLevel level) {
         double x = this.worldPosition.getX() + 0.5;
-        double y = this.worldPosition.getY() + 1.0;
+        double y = this.worldPosition.getY() + 1.5;
         double z = this.worldPosition.getZ() + 0.5;
 
         // 铸币税粒子显示一个在方块正上方
         level.sendParticles(ChangShengJueParticles.MINTING_PARTCLE.get(),
-            x, y, z,
-            1, 0.0, 0.0, 0.0, 0.0);
+            x, y, z, 1, 0.0, 0.0, 0.0, 0.0);
 
-        // 铜钱粒子在方块范围内随机生成一个
-        double coinX = this.worldPosition.getX() + level.random.nextDouble();
-        double coinY = this.worldPosition.getY() + level.random.nextDouble();
-        double coinZ = this.worldPosition.getZ() + level.random.nextDouble();
+        level.playSound(null, this.worldPosition, ChangShengJueSound.TAXATION_SOUND.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+        // 初始化铜钱粒子生成计数器
+        particlesToSpawn = 5;
+        particleSpawnTimer = 3;
+    }
+    
+    /**
+     * 生成单个铜钱粒子
+     */
+    private void spawnSingleCoinParticle(ServerLevel level) {
+        // 将粒子生成范围缩小一半（从0-1缩小到0.25-0.75）
+        double coinX = this.worldPosition.getX() + 0.25 + level.random.nextDouble() * 0.5;
+        double coinY = this.worldPosition.getY() + 0.25 + level.random.nextDouble() * 0.5;
+        double coinZ = this.worldPosition.getZ() + 0.25 + level.random.nextDouble() * 0.5;
 
         level.sendParticles(ChangShengJueParticles.TONG_QIAN_PARTCLE.get(),
-            coinX, coinY, coinZ,
-            1, 0.0, 0.0, 0.0, 0.0);
+            coinX, coinY, coinZ, 1, 0.0, 0.0, 0.0, 0.0);
     }
 
     private boolean hasRecipe() {
@@ -303,6 +338,7 @@ public class CastingMoldsBlockEntity extends BlockEntity implements GeoBlockEnti
 
         return hasCraftingItem && canInsertItemIntoOutputSlot(itemStack.getItem()) && canInsertAmountIntoOutputSlot(itemStack.getCount());
     }
+    
     private boolean canInsertItemIntoOutputSlot(Item item) {
         return this.inventory.getStackInSlot(OUTPUT_SLOT).isEmpty() || this.inventory.getStackInSlot(OUTPUT_SLOT).is(item);
     }
