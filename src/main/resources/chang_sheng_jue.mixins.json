@@ -4,6 +4,7 @@
   "package": "com.shengchanshe.chang_sheng_jue.mixin",
   "compatibilityLevel": "JAVA_17",
   "refmap": "chang_sheng_jue.refmap.json",
+  "priority": 900,
   "mixins": [
     "MixinAnimal",
     "MixinFoodData",

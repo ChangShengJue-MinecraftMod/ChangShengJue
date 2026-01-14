@@ -118,7 +118,7 @@ public class KilnWorker extends AbstractVillager {
                             originalOffer.getDemand()
                     );
                     // 特殊价格处理（如果需要）
-                    setSpecialPriceThroughReflection(newOffer, originalOffer.getSpecialPriceDiff());
+//                    setSpecialPriceThroughReflection(newOffer, originalOffer.getSpecialPriceDiff());
                     newOffers.add(newOffer);
                 }
             }

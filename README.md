@@ -5,6 +5,9 @@
 ***
 
 ## 模组更新日志
+### **0.7.7-beta**
+* 修复了本模组和Dramatic Doors、Sleep Tights和Amendments模组的兼容性问题
+* 修复了服务器后台频繁发送 Could not set special price for merchant offer日志的问题
 ### **0.7.6-beta**
 #### 修复
 * 修复了村庄中的战利品箱子没有战利品的问题
