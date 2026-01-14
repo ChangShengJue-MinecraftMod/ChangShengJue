@@ -6,6 +6,9 @@
 
 ## 模组更新日志
 ### **0.7.7-beta**
+#### 新增
+* 新增了俄语翻译,在此特别感谢 Staszii 为模组提供了俄语翻译！
+#### 修复
 * 修复了本模组和Dramatic Doors、Sleep Tights和Amendments模组的兼容性问题
 * 修复了服务器后台频繁发送 Could not set special price for merchant offer日志的问题
 ### **0.7.6-beta**
