@@ -11,11 +11,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Animal.class)
 public class MixinAnimal {
-    @Inject(method = "isFood", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "isFood(Lnet/minecraft/world/item/ItemStack;)Z", at = @At("HEAD"), cancellable = true)
     public void isFood(ItemStack pStack, CallbackInfoReturnable<Boolean> cir) {
         if (pStack.is(Items.WHEAT) || pStack.is(ChangShengJueItems.THATCH.get())) {
             cir.setReturnValue(true);
-            cir.cancel();
         }
     }
 }

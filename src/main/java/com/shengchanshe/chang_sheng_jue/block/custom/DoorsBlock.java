@@ -20,7 +20,9 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluids;
@@ -36,12 +38,31 @@ public class DoorsBlock extends DoorBlock {
     public DoorsBlock(Properties pProperties, BlockSetType pType) {
         super(pProperties, pType);
         this.type = pType;
-        this.registerDefaultState(this.stateDefinition.any()
-                .setValue(FACING, Direction.NORTH)
-                .setValue(OPEN, false)
-                .setValue(HINGE, DoorHingeSide.LEFT)
-                .setValue(POWERED, false)
-                .setValue(PART, RoofPart.BOTTOM));
+        // 基于父类的默认状态，只添加我们自定义的PART属性
+        BlockState defaultState = this.stateDefinition.any().setValue(PART, RoofPart.BOTTOM);
+
+        // 设置其他属性（如果存在的话）
+        if (defaultState.hasProperty(FACING)) {
+            defaultState = defaultState.setValue(FACING, Direction.NORTH);
+        }
+        if (defaultState.hasProperty(OPEN)) {
+            defaultState = defaultState.setValue(OPEN, false);
+        }
+        if (defaultState.hasProperty(HINGE)) {
+            defaultState = defaultState.setValue(HINGE, DoorHingeSide.LEFT);
+        }
+        if (defaultState.hasProperty(POWERED)) {
+            defaultState = defaultState.setValue(POWERED, false);
+        }
+        if (defaultState.hasProperty(HALF)) {
+            defaultState = defaultState.setValue(HALF, DoubleBlockHalf.LOWER);
+        }
+
+        if (defaultState.hasProperty(BlockStateProperties.WATERLOGGED)) {
+            defaultState = defaultState.setValue(BlockStateProperties.WATERLOGGED, false);
+        }
+
+        this.registerDefaultState(defaultState);
     }
 
     public @NotNull BlockSetType type() {
@@ -260,6 +281,7 @@ public class DoorsBlock extends DoorBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(PART,HALF, FACING, OPEN, HINGE, POWERED);
+        super.createBlockStateDefinition(pBuilder);
+        pBuilder.add(PART);
     }
 }

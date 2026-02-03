@@ -2155,10 +2155,10 @@ public class CSJENLanguageProvider extends LanguageProvider {
 
         this.add(ChangShengJue.MOD_ID +".thanks", "Thanks");
         this.add(ChangShengJue.MOD_ID +".thanks.long_yuan_sword", "Special thanks to Peng_Fan for your help during the mod test!");
-        this.add(ChangShengJue.MOD_ID +".thanks.desc", "This is not only our creation, but also the time we spend with you. Thank you from the bottom of my heart. $(br2) Acknowledgment List: $(br)ID: Peng_Fan");
+        this.add(ChangShengJue.MOD_ID +".thanks.desc", "This is not only our creation, but also the time we spend with you. Thank you from the bottom of my heart.$(br2)Acknowledgment List: $(br)ID：Peng_Fan$(br)ID：Staszii");
         this.add(ChangShengJue.MOD_ID +".thanks.long_yuan_sword.name", "Long Yuan Sword");
-
-        this.add(ChangShengJue.MOD_ID +".wufanglu", "Compendium of the Five Realms");
+        this.add(ChangShengJue.MOD_ID +".thanks.russian_translation.name", "Russian Language Translation");
+        this.add(ChangShengJue.MOD_ID +".thanks.russian_translation", "Special thanks to Staszii for providing the Russian translation of the mod!$(br2)Спасибо за ваш вклад!");        this.add(ChangShengJue.MOD_ID +".wufanglu", "Compendium of the Five Realms");
         this.add(ChangShengJue.MOD_ID +".wufanglu.desc", "\"If Heaven had feelings, Heaven too would grow old; The rightful path on earth is full of strife and change.\"$(br)How can one seek longevity without knowledge? Understand heaven and earth, comprehend all things.");
         this.add(ChangShengJue.MOD_ID +".wufanglu.desc2", "ChangShengJue Encyclopedia");
         

@@ -2115,9 +2115,11 @@
             this.add(ChangShengJue.MOD_ID +".xiake.wine.page1.text", "喝酒可以让你武功更快冷却、减少施展武功的饥饿度消耗、增加武功伤害等，详细效果可以看酒的描述。不要贪杯，喝多会醉~");
 
             this.add(ChangShengJue.MOD_ID +".thanks", "致谢");
-            this.add(ChangShengJue.MOD_ID +".thanks.desc", "这不仅是我们的创作，更是与你共度的时光。由衷感谢。$(br2)致谢名单：$(br)ID：Peng_Fan");
+            this.add(ChangShengJue.MOD_ID +".thanks.desc", "这不仅是我们的创作，更是与你共度的时光。由衷感谢。$(br2)致谢名单：$(br)ID：Peng_Fan$(br)ID：Staszii");
             this.add(ChangShengJue.MOD_ID +".thanks.long_yuan_sword.name", "龙渊剑");
             this.add(ChangShengJue.MOD_ID +".thanks.long_yuan_sword", "以此剑特别感谢Peng_Fan在模组测试期间提供的帮助！");
+            this.add(ChangShengJue.MOD_ID +".thanks.russian_translation.name", "俄语翻译");
+            this.add(ChangShengJue.MOD_ID +".thanks.russian_translation", "特别感谢 Staszii 为模组提供了俄语翻译！$(br2)Спасибо за ваш вклад!");
 
             this.add(ChangShengJue.MOD_ID +".wufanglu", "五方汇录");
             this.add(ChangShengJue.MOD_ID +".wufanglu.desc", "“天若有情天亦老，人间正道是沧桑。”$(br)长生之道，岂可无知？通晓天地，百科全解。");
