@@ -14,6 +14,7 @@ import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.Gang
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.innkeeper.InnkeeperScreen;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.PlayerQuestScreen;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.worker.KilnWorkerScreen;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.checkin.CheckInScreen;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.beat_dog_stick.BeatDogStickAttackEntityRender;
 import com.shengchanshe.chang_sheng_jue.entity.combat.dugu_nine_swords.DuguNineSwordsEntityRender;
@@ -61,6 +62,7 @@ import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.xia.sword.SwordMingX
 import com.shengchanshe.chang_sheng_jue.entity.villagers.render.ChangShengJueVillagerRender;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.warrior.WarriorRenderer;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.worker.KilnWorkerRenderer;
+import com.shengchanshe.chang_sheng_jue.entity.custom.checkin.CheckInNPCRenderer;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.DyeableItem;
 import com.shengchanshe.chang_sheng_jue.item.combat.lance.Lance;
@@ -846,6 +848,7 @@ public class ClientSetup {
 
         MenuScreens.register(ChangShengJueMenuTypes.WOOD_WORKING_BENCH_MENU.get(), WoodworkingBenchScreen::new);
         MenuScreens.register(ChangShengJueMenuTypes.BRICK_KILN_MENU.get(), BrickKilnScreen::new);
+        MenuScreens.register(ChangShengJueMenuTypes.CHECKIN_MENU.get(), CheckInScreen::new);
 
         EntityRenderers.register(ChangShengJueEntity.BUTTERFLY.get(), ButterflyRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.MONKEY.get(), MonkeyRenderer::new);
@@ -899,6 +902,7 @@ public class ClientSetup {
         EntityRenderers.register(ChangShengJueEntity.SWORD_MING_XIA.get(), SwordMingXiaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.KNIFE_MING_XIA.get(), KnifeMingXiaRenderer::new);
         EntityRenderers.register(ChangShengJueEntity.FIST_MING_XIA.get(), FistMingXiaRenderer::new);
+        EntityRenderers.register(ChangShengJueEntity.CHECKIN_NPC.get(), CheckInNPCRenderer::new);
 
         // 使用enqueueWork确保在主线程中执行物品属性注册，避免并发修改异常
         event.enqueueWork(() -> {

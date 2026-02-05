@@ -334,6 +334,9 @@ public class ChangShengJueItems {
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.VINDICATOR_WU_XIA,9804699, 2580065,  new Item.Properties()));
     public static final RegistryObject<Item> PILLAGER_WU_XIA_EGG = ITEMS.register("pillager_wu_xia_egg",
             ()-> new ForgeSpawnEggItem(ChangShengJueEntity.PILLAGER_WU_XIA,5451574, 9804699,  new Item.Properties()));
+    //签到npc
+    public static final RegistryObject<Item> CHECKIN_NPC_EGG = ITEMS.register("checkin_npc_egg",
+            ()-> new ForgeSpawnEggItem(ChangShengJueEntity.CHECKIN_NPC, ChatFormatting.WHITE.getColor(), ChatFormatting.YELLOW.getColor(), new Item.Properties()));
 
     public static final RegistryObject<Item> ZHU_TAI = ITEMS.register("zhu_tai",
             ()-> new StandingAndWallBlockItem(ChangShengJueBlocks.ZHU_TAI.get(),ChangShengJueBlocks.WALL_ZHU_TAI.get(), new Item.Properties(), Direction.DOWN));

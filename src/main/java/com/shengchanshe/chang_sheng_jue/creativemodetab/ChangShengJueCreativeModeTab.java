@@ -1214,6 +1214,7 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.SWORD_MING_XIA_EGG.get());
                 output.accept(ChangShengJueItems.KNIFE_MING_XIA_EGG.get());
                 output.accept(ChangShengJueItems.FIST_MING_XIA_EGG.get());
+                output.accept(ChangShengJueItems.CHECKIN_NPC_EGG.get());
                 output.accept(ChangShengJueItems.PIGLIN_WU_XIA_EGG.get());
                 output.accept(ChangShengJueItems.WITCH_WU_XIA_EGG.get());
                 output.accept(ChangShengJueItems.EVOKER_WU_XIA_EGG.get());

@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-17T19:46:03.3312877	Loot Tables
+// 1.20.1	2026-02-02T16:33:22.6543112	Loot Tables
 540a939421098421d52ac7e530e38c471c75aa70 data/chang_sheng_jue/loot_tables/blocks/acacia_arhat_bed.json
 7a6edc76141fa6f7dd0df0f746f55b8c0bcdfe60 data/chang_sheng_jue/loot_tables/blocks/acacia_balustrade.json
 d516f4a29d40770cbbc430275a25288af1bb5af3 data/chang_sheng_jue/loot_tables/blocks/acacia_bench.json
@@ -900,6 +900,7 @@ d1e49a52dd6ae9b33e7ee470e099a27bd0224d44 data/chang_sheng_jue/loot_tables/blocks
 a0df6504071ba738c7e6d77a7ec2e78d013e5263 data/chang_sheng_jue/loot_tables/entities/blacksmith.json
 cef5612598e9f1fbd4f27199d01c9fdfcf1b2480 data/chang_sheng_jue/loot_tables/entities/butterfly.json
 c361b47a5c5dd58a257424bde0e92720712c4074 data/chang_sheng_jue/loot_tables/entities/challenger.json
+45a27e4028fad9b8a31ad7f75250e3a67ae77d1a data/chang_sheng_jue/loot_tables/entities/checkin_npc.json
 2d2924db09ce94f96b1bfed2765a440b20c0492a data/chang_sheng_jue/loot_tables/entities/cicada.json
 19a110108fd6839bc8db6156a66ad83b5cae7d4e data/chang_sheng_jue/loot_tables/entities/clubbed_gang_leader.json
 306376a4af271412f61b7143ccfc50e80e0555f7 data/chang_sheng_jue/loot_tables/entities/clubbed_ming_xia.json

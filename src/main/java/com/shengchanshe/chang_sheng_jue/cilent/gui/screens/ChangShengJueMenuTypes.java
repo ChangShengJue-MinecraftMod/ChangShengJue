@@ -12,6 +12,7 @@ import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.Gang
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.innkeeper.InnkeeperMenu;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.PlayerQuestMenu;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.worker.KilnWorkerMenu;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.checkin.CheckInMenu;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -64,6 +65,13 @@ public class ChangShengJueMenuTypes {
     public static final RegistryObject<MenuType<PlayerQuestMenu>> PLAYER_QUEST_MENU = MENUS.register("player_quest_menu",
             () -> new MenuType<>((containerId, inv) ->
                     new PlayerQuestMenu(containerId, inv, inv.player), // 直接传入Player
+                    FeatureFlagSet.of()
+            ));
+
+    // 签到菜单
+    public static final RegistryObject<MenuType<CheckInMenu>> CHECKIN_MENU = MENUS.register("checkin_menu",
+            () -> new MenuType<>((containerId, inv) ->
+                    new CheckInMenu(containerId, inv, inv.player),
                     FeatureFlagSet.of()
             ));
 

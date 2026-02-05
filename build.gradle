@@ -191,6 +191,8 @@ dependencies {
     implementation fg.deobf("blank:Xaeros_Minimap-${minecraft_version}:25.2.10")
     implementation fg.deobf("blank:I18nUpdateMod-${minecraft_version}:3.7.0")
     implementation fg.deobf("blank:amendments-${minecraft_version}:2.2.3")
+    implementation fg.deobf("blank:allthingsflying-${minecraft_version}:0.0.2-beta")
+    implementation fg.deobf("blank:PlayerAnimation-${minecraft_version}:1.0.2")
 
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html

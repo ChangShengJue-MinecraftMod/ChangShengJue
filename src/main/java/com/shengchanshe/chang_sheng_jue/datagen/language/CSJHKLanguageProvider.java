@@ -194,6 +194,7 @@
             this.add(ChangShengJueItems.SWORD_MING_XIA_EGG.get(), "劍仙刷怪蛋");
             this.add(ChangShengJueItems.KNIFE_MING_XIA_EGG.get(), "刀聖刷怪蛋");
             this.add(ChangShengJueItems.FIST_MING_XIA_EGG.get(), "北拳刷怪蛋");
+            this.add(ChangShengJueItems.CHECKIN_NPC_EGG.get(), "雲遊道人刷怪蛋");
             this.add(ChangShengJueItems.PIGLIN_WU_XIA_EGG.get(), "功夫豬靈刷怪蛋");
             this.add(ChangShengJueItems.WITCH_WU_XIA_EGG.get(), "功夫女巫刷怪蛋");
             this.add(ChangShengJueItems.EVOKER_WU_XIA_EGG.get(), "功夫喚魔者刷怪蛋");
@@ -1535,6 +1536,7 @@
             this.add(ChangShengJueEntity.EVOKER_WU_XIA.get(), "功夫喚魔者");
             this.add(ChangShengJueEntity.VINDICATOR_WU_XIA.get(), "功夫衛道士");
             this.add(ChangShengJueEntity.PILLAGER_WU_XIA.get(), "功夫掠奪者");
+            this.add(ChangShengJueEntity.CHECKIN_NPC.get(), "雲遊道人");
 
             this.add(ChangShengJueEntity.STAKES.get(), "練功木樁");
             this.add(ChangShengJueEntity.GE_SHAN_DA_NIU.get(), "隔山打牛");
@@ -2115,5 +2117,24 @@
             this.add(ChangShengJue.MOD_ID +".wufanglu", "五方匯錄");
             this.add(ChangShengJue.MOD_ID +".wufanglu.desc", "「天若有情天亦老，人間正道是滄桑。」$(br)長生之道，豈可無知？通曉天地，百科全解。");
             this.add(ChangShengJue.MOD_ID +".wufanglu.desc2", "長生訣百科全書");
+
+            // 簽到系統
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.title", "每日簽到");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.button", "簽到");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.total_days", "累計簽到: %s 日");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.total_days_label", "累計簽到");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.total_check_in", "已累計簽到");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.days_count", "%s日");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.tomorrow_reward", "明日預計可獲得獎勵");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.bonus_hint", "連續簽到獎勵翻倍(x2)");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.already_checked_in_hint", "今日已簽到,明日再來");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.available", "可領取");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.day_1", "第一日");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.day_2", "第二日");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.day_3", "第三日");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.day_4", "第四日");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.day_5", "第五日");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.day_6", "第六日");
+            this.add("gui." + ChangShengJue.MOD_ID + ".checkin.day_7", "第七日");
         }
     }

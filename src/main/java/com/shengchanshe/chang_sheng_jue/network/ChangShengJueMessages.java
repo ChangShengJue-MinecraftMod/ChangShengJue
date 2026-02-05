@@ -8,6 +8,8 @@ import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.*;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.quest.AcceptGangQuestsPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.quest.OpenGangQuestScreenPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.quest.RefreshQuestScreenPacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.checkin.CheckInPacket;
+import com.shengchanshe.chang_sheng_jue.network.packet.checkin.SyncCheckInDataPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.SyncKungFuCapabilityPacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTracePacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.particle.kungfu.*;
@@ -200,6 +202,19 @@ public class ChangShengJueMessages {
                 .decoder(BrickKilnSetAmountPacket::new)
                 .encoder(BrickKilnSetAmountPacket::toBytes)
                 .consumerMainThread(BrickKilnSetAmountPacket::handle)
+                .add();
+
+        // 签到系统
+        net.messageBuilder(CheckInPacket.class, id())
+                .decoder(CheckInPacket::decode)
+                .encoder(CheckInPacket::encode)
+                .consumerMainThread(CheckInPacket::handle)
+                .add();
+
+        net.messageBuilder(SyncCheckInDataPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(SyncCheckInDataPacket::decode)
+                .encoder(SyncCheckInDataPacket::encode)
+                .consumerMainThread(SyncCheckInDataPacket::handle)
                 .add();
     }
 

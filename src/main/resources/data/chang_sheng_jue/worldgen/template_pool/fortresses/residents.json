@@ -99,6 +99,17 @@
         },
         "projection": "rigid"
       }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "location": "chang_sheng_jue:fortresses/residents/residents_9",
+        "processors": {
+          "processors": []
+        },
+        "projection": "rigid"
+      }
     }
   ],
   "fallback": "minecraft:empty"

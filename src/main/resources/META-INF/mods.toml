@@ -28,3 +28,10 @@ description='''${mod_description}'''
     versionRange="${terrablender_version_range}"
     ordering="NONE"
     side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="allthingsflying"
+    mandatory=false
+    versionRange="[0.0.2-beta,)"
+    ordering="NONE"
+    side="BOTH"

@@ -194,6 +194,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.SWORD_MING_XIA_EGG.get(), "Sword Immortal Spawn Egg");
         this.add(ChangShengJueItems.KNIFE_MING_XIA_EGG.get(), "Blade Sage Spawn Egg");
         this.add(ChangShengJueItems.FIST_MING_XIA_EGG.get(), "Northern Fist Spawn Egg");
+        this.add(ChangShengJueItems.CHECKIN_NPC_EGG.get(), "Wandering Taoist Spawn Egg");
         this.add(ChangShengJueItems.PIGLIN_WU_XIA_EGG.get(), "Kungfu Piglin Spawn Egg");
         this.add(ChangShengJueItems.WITCH_WU_XIA_EGG.get(), "Kungfu Witch Spawn Egg");
         this.add(ChangShengJueItems.EVOKER_WU_XIA_EGG.get(), "Kungfu Evoker Spawn Egg");
@@ -1570,6 +1571,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEntity.EVOKER_WU_XIA.get(), "Kungfu Evoker");
         this.add(ChangShengJueEntity.VINDICATOR_WU_XIA.get(), "Kungfu Vindicator");
         this.add(ChangShengJueEntity.PILLAGER_WU_XIA.get(), "Kungfu Pillager");
+        this.add(ChangShengJueEntity.CHECKIN_NPC.get(), "Wandering Taoist");
 
         this.add(ChangShengJueEntity.STAKES.get(), "Practice stake");
         this.add(ChangShengJueEntity.GE_SHAN_DA_NIU.get(), "Ge Shan Da Niu");
@@ -2161,6 +2163,25 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJue.MOD_ID +".thanks.russian_translation", "Special thanks to Staszii for providing the Russian translation of the mod!$(br2)Спасибо за ваш вклад!");        this.add(ChangShengJue.MOD_ID +".wufanglu", "Compendium of the Five Realms");
         this.add(ChangShengJue.MOD_ID +".wufanglu.desc", "\"If Heaven had feelings, Heaven too would grow old; The rightful path on earth is full of strife and change.\"$(br)How can one seek longevity without knowledge? Understand heaven and earth, comprehend all things.");
         this.add(ChangShengJue.MOD_ID +".wufanglu.desc2", "ChangShengJue Encyclopedia");
-        
+
+        // Check-in System
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.title", "Daily Check-in");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.button", "Check-in");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.total_days", "Total Days: %s");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.total_days_label", "Total Check-ins");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.total_check_in", "Total Check-ins");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.days_count", "%s Days");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.tomorrow_reward", "Tomorrow's Rewards");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.bonus_hint", "Consecutive Check-in Bonus (x2)");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.already_checked_in_hint", "Already checked in today, come back tomorrow");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.available", "Available");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.day_1", "Day 1");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.day_2", "Day 2");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.day_3", "Day 3");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.day_4", "Day 4");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.day_5", "Day 5");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.day_6", "Day 6");
+        this.add("gui." + ChangShengJue.MOD_ID + ".checkin.day_7", "Day 7");
+
     }
 }
