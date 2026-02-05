@@ -637,6 +637,20 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueBlocks.SPRUCE_HEIGHT_LIGHT_STAND.get());
                 output.accept(ChangShengJueBlocks.ZI_TAN_HEIGHT_LIGHT_STAND.get());
 
+                output.accept(ChangShengJueBlocks.BIRCH_PILLAR.get());
+                output.accept(ChangShengJueBlocks.JUNGLE_PILLAR.get());
+                output.accept(ChangShengJueBlocks.CRIMSON_PILLAR.get());
+                output.accept(ChangShengJueBlocks.WARPED_PILLAR.get());
+                output.accept(ChangShengJueBlocks.MANGROVE_PILLAR.get());
+                output.accept(ChangShengJueBlocks.HUANG_HUA_LI_PILLAR.get());
+                output.accept(ChangShengJueBlocks.WENGE_PILLAR.get());
+                output.accept(ChangShengJueBlocks.ACACIA_PILLAR.get());
+                output.accept(ChangShengJueBlocks.DARK_OAK_PILLAR.get());
+                output.accept(ChangShengJueBlocks.OAK_PILLAR.get());
+                output.accept(ChangShengJueBlocks.CHERRY_PILLAR.get());
+                output.accept(ChangShengJueBlocks.SPRUCE_PILLAR.get());
+                output.accept(ChangShengJueBlocks.ZI_TAN_PILLAR.get());
+
                 output.accept(ChangShengJueBlocks.BIRCH_SQUARE_STOOL.get());
                 output.accept(ChangShengJueBlocks.JUNGLE_SQUARE_STOOL.get());
                 output.accept(ChangShengJueBlocks.CRIMSON_SQUARE_STOOL.get());

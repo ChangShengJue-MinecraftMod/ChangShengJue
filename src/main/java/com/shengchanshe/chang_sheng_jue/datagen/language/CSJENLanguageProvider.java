@@ -1457,6 +1457,20 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.SPRUCE_HEIGHT_LIGHT_STAND.get(),"Spruce Height Light Stand");
         this.add(ChangShengJueBlocks.ZI_TAN_HEIGHT_LIGHT_STAND.get(),"Zitan Height Light Stand");
 
+        this.add(ChangShengJueBlocks.BIRCH_PILLAR.get(),"Birch Pillar");
+        this.add(ChangShengJueBlocks.JUNGLE_PILLAR.get(),"Jungle Pillar");
+        this.add(ChangShengJueBlocks.CRIMSON_PILLAR.get(),"Crimson Pillar");
+        this.add(ChangShengJueBlocks.WARPED_PILLAR.get(),"Warped Pillar");
+        this.add(ChangShengJueBlocks.MANGROVE_PILLAR.get(),"Mangrove Pillar");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_PILLAR.get(),"Huanghuali Pillar");
+        this.add(ChangShengJueBlocks.WENGE_PILLAR.get(),"Wenge Pillar");
+        this.add(ChangShengJueBlocks.ACACIA_PILLAR.get(),"Acacia Pillar");
+        this.add(ChangShengJueBlocks.DARK_OAK_PILLAR.get(),"Dark Oak Pillar");
+        this.add(ChangShengJueBlocks.OAK_PILLAR.get(),"Oak Pillar");
+        this.add(ChangShengJueBlocks.CHERRY_PILLAR.get(),"Cherry Pillar");
+        this.add(ChangShengJueBlocks.SPRUCE_PILLAR.get(),"Spruce Pillar");
+        this.add(ChangShengJueBlocks.ZI_TAN_PILLAR.get(),"Zitan Pillar");
+
         this.add(ChangShengJueBlocks.BAMBOO_MAT.get(), "Bamboo Mat");
 
         this.add(ChangShengJueBlocks.WHITE_JADE_BLOCK.get(),  "White Jade");

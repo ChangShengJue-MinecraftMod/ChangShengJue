@@ -1446,6 +1446,20 @@
             this.add(ChangShengJueBlocks.SPRUCE_HEIGHT_LIGHT_STAND.get(), "云杉木灯挂架");
             this.add(ChangShengJueBlocks.ZI_TAN_HEIGHT_LIGHT_STAND.get(), "紫檀木灯挂架");
 
+            this.add(ChangShengJueBlocks.BIRCH_PILLAR.get(), "白桦木支柱");
+            this.add(ChangShengJueBlocks.JUNGLE_PILLAR.get(), "丛林木支柱");
+            this.add(ChangShengJueBlocks.CRIMSON_PILLAR.get(), "绯红木支柱");
+            this.add(ChangShengJueBlocks.WARPED_PILLAR.get(), "诡异木支柱");
+            this.add(ChangShengJueBlocks.MANGROVE_PILLAR.get(), "红木支柱");
+            this.add(ChangShengJueBlocks.HUANG_HUA_LI_PILLAR.get(), "黄花梨支柱");
+            this.add(ChangShengJueBlocks.WENGE_PILLAR.get(), "鸡翅木支柱");
+            this.add(ChangShengJueBlocks.ACACIA_PILLAR.get(), "金合欢支柱");
+            this.add(ChangShengJueBlocks.DARK_OAK_PILLAR.get(), "深色橡木支柱");
+            this.add(ChangShengJueBlocks.OAK_PILLAR.get(), "橡木支柱");
+            this.add(ChangShengJueBlocks.CHERRY_PILLAR.get(), "樱花木支柱");
+            this.add(ChangShengJueBlocks.SPRUCE_PILLAR.get(), "云杉木支柱");
+            this.add(ChangShengJueBlocks.ZI_TAN_PILLAR.get(), "紫檀木支柱");
+
             this.add(ChangShengJueBlocks.BAMBOO_MAT.get(), "竹席");
 
             this.add(ChangShengJueBlocks.BIRCH_WINE_TABLE.get(), "白桦木酒桌");

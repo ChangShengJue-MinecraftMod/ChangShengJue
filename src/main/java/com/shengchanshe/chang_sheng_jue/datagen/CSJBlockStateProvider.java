@@ -789,6 +789,20 @@ public class CSJBlockStateProvider extends BlockStateProvider {
         createHeightLightStandBlock(ChangShengJueBlocks.CHERRY_HEIGHT_LIGHT_STAND.get(), HeightLightStand.FACING, HeightLightStand.PART);
         createHeightLightStandBlock(ChangShengJueBlocks.SPRUCE_HEIGHT_LIGHT_STAND.get(), HeightLightStand.FACING, HeightLightStand.PART);
         createHeightLightStandBlock(ChangShengJueBlocks.ZI_TAN_HEIGHT_LIGHT_STAND.get(), HeightLightStand.FACING, HeightLightStand.PART);
+        //支柱
+        createPillarBlock(ChangShengJueBlocks.BIRCH_PILLAR.get());
+        createPillarBlock(ChangShengJueBlocks.JUNGLE_PILLAR.get());
+        createPillarBlock(ChangShengJueBlocks.CRIMSON_PILLAR.get());
+        createPillarBlock(ChangShengJueBlocks.WARPED_PILLAR.get());
+        createPillarBlock(ChangShengJueBlocks.MANGROVE_PILLAR.get());
+        createPillarBlock(ChangShengJueBlocks.HUANG_HUA_LI_PILLAR.get());
+        createPillarBlock(ChangShengJueBlocks.WENGE_PILLAR.get());
+        createPillarBlock(ChangShengJueBlocks.ACACIA_PILLAR.get());
+        createPillarBlock(ChangShengJueBlocks.DARK_OAK_PILLAR.get());
+        createPillarBlock(ChangShengJueBlocks.OAK_PILLAR.get());
+        createPillarBlock(ChangShengJueBlocks.CHERRY_PILLAR.get());
+        createPillarBlock(ChangShengJueBlocks.SPRUCE_PILLAR.get());
+        createPillarBlock(ChangShengJueBlocks.ZI_TAN_PILLAR.get());
         //衣架
         createClothesRackBlock(ChangShengJueBlocks.BIRCH_CLOTHES_RACK.get(), ClothesRack.FACING, ClothesRack.HALF);
         createClothesRackBlock(ChangShengJueBlocks.JUNGLE_CLOTHES_RACK.get(), ClothesRack.FACING, ClothesRack.HALF);
@@ -1077,6 +1091,22 @@ public class CSJBlockStateProvider extends BlockStateProvider {
     private void leavesBlock(RegistryObject<Block> blockRegistryObject){
         simpleBlockWithItem(blockRegistryObject.get(),models().singleTexture(ForgeRegistries.BLOCKS.getKey(blockRegistryObject.get()).getPath(),
                 new ResourceLocation("block/leaves"), "all", blockTexture(blockRegistryObject.get())).renderType("cutout"));
+    }
+
+    private void createPillarBlock(Block block) {
+        String blockName = this.key(block).getPath();
+        String woodType = blockName.replace("_pillar", "");
+
+        models().withExistingParent(blockName, modLoc("block/height_light_stand_bottom"))
+                .texture("1", modLoc("block/" + woodType + "_light_stand"))
+                .texture("particle", modLoc("block/" + woodType + "_light_stand"));
+
+        getVariantBuilder(block)
+                .forAllStates(state -> {
+                    ModelFile model = new ModelFile.UncheckedModelFile(modLoc("block/" + blockName));
+                    Direction facing = state.getValue(HorizontalDirectionalBlock.FACING);
+                    return ConfiguredModel.builder().modelFile(model).rotationY(getRotationY(facing)).build();
+                });
     }
 
     public void blockWithItem(RegistryObject<Block> block){

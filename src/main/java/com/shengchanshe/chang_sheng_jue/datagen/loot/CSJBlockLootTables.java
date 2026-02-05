@@ -1104,6 +1104,21 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(ChangShengJueBlocks.ZI_TAN_HEIGHT_LIGHT_STAND.get(),
                 block -> this.createSinglePropConditionTable(ChangShengJueBlocks.ZI_TAN_HEIGHT_LIGHT_STAND.get(), HeightLightStand.PART, HeightLightStand.HeightLightStandSection.BOTTOM));
 
+        //支柱
+        this.dropSelf(ChangShengJueBlocks.BIRCH_PILLAR.get());
+        this.dropSelf(ChangShengJueBlocks.JUNGLE_PILLAR.get());
+        this.dropSelf(ChangShengJueBlocks.CRIMSON_PILLAR.get());
+        this.dropSelf(ChangShengJueBlocks.WARPED_PILLAR.get());
+        this.dropSelf(ChangShengJueBlocks.MANGROVE_PILLAR.get());
+        this.dropSelf(ChangShengJueBlocks.HUANG_HUA_LI_PILLAR.get());
+        this.dropSelf(ChangShengJueBlocks.WENGE_PILLAR.get());
+        this.dropSelf(ChangShengJueBlocks.ACACIA_PILLAR.get());
+        this.dropSelf(ChangShengJueBlocks.DARK_OAK_PILLAR.get());
+        this.dropSelf(ChangShengJueBlocks.OAK_PILLAR.get());
+        this.dropSelf(ChangShengJueBlocks.CHERRY_PILLAR.get());
+        this.dropSelf(ChangShengJueBlocks.SPRUCE_PILLAR.get());
+        this.dropSelf(ChangShengJueBlocks.ZI_TAN_PILLAR.get());
+
         //衣架
         this.add(ChangShengJueBlocks.BIRCH_CLOTHES_RACK.get(),
                 block -> this.createSinglePropConditionTable(ChangShengJueBlocks.BIRCH_CLOTHES_RACK.get(), ClothesRack.HALF, DoubleBlockHalf.LOWER));

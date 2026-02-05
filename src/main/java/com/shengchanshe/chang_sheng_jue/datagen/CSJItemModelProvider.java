@@ -592,6 +592,20 @@ public class CSJItemModelProvider extends ItemModelProvider {
         parentItem(ChangShengJueBlocks.CHERRY_HEIGHT_LIGHT_STAND,ChangShengJueBlocks.CHERRY_HEIGHT_LIGHT_STAND.getId().getPath() + "_inventory");
         parentItem(ChangShengJueBlocks.SPRUCE_HEIGHT_LIGHT_STAND,ChangShengJueBlocks.SPRUCE_HEIGHT_LIGHT_STAND.getId().getPath() + "_inventory");
         parentItem(ChangShengJueBlocks.ZI_TAN_HEIGHT_LIGHT_STAND,ChangShengJueBlocks.ZI_TAN_HEIGHT_LIGHT_STAND.getId().getPath() + "_inventory");
+        //支柱
+        parentItem(ChangShengJueBlocks.BIRCH_PILLAR);
+        parentItem(ChangShengJueBlocks.JUNGLE_PILLAR);
+        parentItem(ChangShengJueBlocks.CRIMSON_PILLAR);
+        parentItem(ChangShengJueBlocks.WARPED_PILLAR);
+        parentItem(ChangShengJueBlocks.MANGROVE_PILLAR);
+        parentItem(ChangShengJueBlocks.HUANG_HUA_LI_PILLAR);
+        parentItem(ChangShengJueBlocks.WENGE_PILLAR);
+        parentItem(ChangShengJueBlocks.ACACIA_PILLAR);
+        parentItem(ChangShengJueBlocks.DARK_OAK_PILLAR);
+        parentItem(ChangShengJueBlocks.OAK_PILLAR);
+        parentItem(ChangShengJueBlocks.CHERRY_PILLAR);
+        parentItem(ChangShengJueBlocks.SPRUCE_PILLAR);
+        parentItem(ChangShengJueBlocks.ZI_TAN_PILLAR);
         //窗户
         simpleBlockItem(ChangShengJueBlocks.HIGH_BIRCH_WINDOWS,ChangShengJueBlocks.HIGH_BIRCH_WINDOWS.getId().getPath());
         simpleBlockItem(ChangShengJueBlocks.HIGH_ACACIA_WINDOWS,ChangShengJueBlocks.HIGH_ACACIA_WINDOWS.getId().getPath());

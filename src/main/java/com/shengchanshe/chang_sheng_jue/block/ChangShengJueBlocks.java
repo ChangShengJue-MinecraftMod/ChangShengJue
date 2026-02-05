@@ -23,6 +23,7 @@ import com.shengchanshe.chang_sheng_jue.block.custom.gong.Gong;
 import com.shengchanshe.chang_sheng_jue.block.custom.lantern.HeightLightStand;
 import com.shengchanshe.chang_sheng_jue.block.custom.lantern.Lantern;
 import com.shengchanshe.chang_sheng_jue.block.custom.lantern.LightStand;
+import com.shengchanshe.chang_sheng_jue.block.custom.lantern.Pillar;
 import com.shengchanshe.chang_sheng_jue.block.custom.lockers.Cabinet;
 import com.shengchanshe.chang_sheng_jue.block.custom.lockers.ChestOfDrawers;
 import com.shengchanshe.chang_sheng_jue.block.custom.lockers.LargeCabinet;
@@ -2049,6 +2050,35 @@ public class ChangShengJueBlocks {
             ()-> new HeightLightStand(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
     public static final RegistryObject<Block> ZI_TAN_HEIGHT_LIGHT_STAND = registerBlock("zi_tan_height_light_stand",
             ()-> new HeightLightStand(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion()));
+
+    // 支柱
+    public static final RegistryObject<Block> BIRCH_PILLAR = registerBlock("birch_pillar",
+            ()-> new Pillar(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> JUNGLE_PILLAR = registerBlock("jungle_pillar",
+            ()-> new Pillar(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CRIMSON_PILLAR = registerBlock("crimson_pillar",
+            ()-> new Pillar(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> WARPED_PILLAR = registerBlock("warped_pillar",
+            ()-> new Pillar(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> MANGROVE_PILLAR = registerBlock("mangrove_pillar",
+            ()-> new Pillar(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> HUANG_HUA_LI_PILLAR = registerBlock("huang_hua_li_pillar",
+            ()-> new Pillar(BlockBehaviour.Properties.copy(ChangShengJueBlocks.HUANG_HUA_LI_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> WENGE_PILLAR = registerBlock("wenge_pillar",
+            ()-> new Pillar(BlockBehaviour.Properties.copy(ChangShengJueBlocks.WENGE_PLANKS.get()).noOcclusion()));
+    public static final RegistryObject<Block> ACACIA_PILLAR = registerBlock("acacia_pillar",
+            ()-> new Pillar(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> DARK_OAK_PILLAR = registerBlock("dark_oak_pillar",
+            ()-> new Pillar(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> OAK_PILLAR = registerBlock("oak_pillar",
+            ()-> new Pillar(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> CHERRY_PILLAR = registerBlock("cherry_pillar",
+            ()-> new Pillar(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> SPRUCE_PILLAR = registerBlock("spruce_pillar",
+            ()-> new Pillar(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS).noOcclusion()));
+    public static final RegistryObject<Block> ZI_TAN_PILLAR = registerBlock("zi_tan_pillar",
+            ()-> new Pillar(BlockBehaviour.Properties.copy(ChangShengJueBlocks.ZI_TAN_PLANKS.get()).noOcclusion()));
+
     // 磨刀石
     public static final RegistryObject<Block> STONE_SHARPENING_STONE = registerBlock("stone_sharpening_stone", StoneSharpeningStone::new);
     public static final RegistryObject<Block> DIAMOND_SHARPENING_STONE = registerBlock("diamond_sharpening_stone", DiamondSharpeningStone::new);
