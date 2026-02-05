@@ -238,6 +238,15 @@
             this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get(),"山文甲");
             this.add(ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR.get(),"鹿皮脛甲");
             this.add(ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS.get(),"雲頭烏皮靴");
+
+            this.add(ChangShengJueItems.SIDE_FASTENING_LEATHER_HELMET.get(),"絳帕");
+            this.add(ChangShengJueItems.SIDE_FASTENING_LEATHER_CHESTPLATE.get(),"皮甲");
+            this.add(ChangShengJueItems.SIDE_FASTENING_LEATHER_LEGGINGS.get(),"小口褲");
+            this.add(ChangShengJueItems.SIDE_FASTENING_LEATHER_BOOTS.get(),"方口翹尖履");
+
+            this.add(ChangShengJueItems.OUTER_ROBE_HELMET.get(),"蟬腹巾");
+            this.add(ChangShengJueItems.OUTER_ROBE_CHESTPLATE.get(),"大氅");
+
             this.add(ChangShengJueItems.FLY_FISH_IRON_HAT.get(), "鐵笠");
             this.add(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get(), "雲紗冠");
             this.add(ChangShengJueItems.FLY_FISH_CHESTPLATE.get(), "飛魚服");

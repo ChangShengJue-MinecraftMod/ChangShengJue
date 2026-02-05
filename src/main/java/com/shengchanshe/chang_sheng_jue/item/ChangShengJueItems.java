@@ -24,7 +24,9 @@ import com.shengchanshe.chang_sheng_jue.item.combat.armor.inner_armor.LeatherInn
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.long_gown.LongGown;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.mountain_pattern_armor.MountainPatternArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.night_suit.NightSuit;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.outer_robe.OuterRobe;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.qi_tian_da_sheng.QiTianDaSheng;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.side_fastening_leather.SideFasteningLeatherArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.taoistrobes.FemaleTaoistRobes;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.taoistrobes.MaleTaoistRobes;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.the_great_general_mingguang_armor.TheGreatGeneralMingguangArmor;
@@ -53,17 +55,12 @@ import com.shengchanshe.chang_sheng_jue.item.tool.KaishanPickaxe;
 import com.shengchanshe.chang_sheng_jue.item.tool.XuanhuaAxe;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 public class ChangShengJueItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, ChangShengJue.MOD_ID);
@@ -499,6 +496,20 @@ public class ChangShengJueItems {
             ()-> new MountainPatternArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.LEGGINGS,new Item.Properties()));
     public static final RegistryObject<Item> MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS = ITEMS.register("mountain_pattern_cloud_black_boots",
             ()-> new MountainPatternArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.BOOTS,new Item.Properties()));
+    //甲种侧襟皮甲
+    public static final RegistryObject<Item> SIDE_FASTENING_LEATHER_HELMET = ITEMS.register("side_fastening_leather_helmet",
+            ()-> new SideFasteningLeatherArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> SIDE_FASTENING_LEATHER_CHESTPLATE = ITEMS.register("side_fastening_leather_chestplate",
+            ()-> new SideFasteningLeatherArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    public static final RegistryObject<Item> SIDE_FASTENING_LEATHER_LEGGINGS = ITEMS.register("side_fastening_leather_leggings",
+            ()-> new SideFasteningLeatherArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.LEGGINGS,new Item.Properties()));
+    public static final RegistryObject<Item> SIDE_FASTENING_LEATHER_BOOTS = ITEMS.register("side_fastening_leather_boots",
+            ()-> new SideFasteningLeatherArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.BOOTS,new Item.Properties()));
+    // 蝉腹巾和大氅
+    public static final RegistryObject<Item> OUTER_ROBE_HELMET = ITEMS.register("outer_robe_helmet",
+            ()-> new OuterRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> OUTER_ROBE_CHESTPLATE = ITEMS.register("outer_robe_chestplate",
+            ()-> new OuterRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
     //飞鱼服
     public static final RegistryObject<Item> FLY_FISH_IRON_HAT = ITEMS.register("fly_fish_iron_hat",
             ()-> new FlyingFishRobe(ChangShengJueArmorMaterials.FLY_HAT,ArmorItem.Type.HELMET,new Item.Properties()));

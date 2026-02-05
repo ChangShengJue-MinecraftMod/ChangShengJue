@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-15T11:54:23.2495536	Item Models: chang_sheng_jue
+// 1.20.1	2026-02-05T18:22:27.6107201	Item Models: chang_sheng_jue
 10c5c7abe71c096a22fcdab57141eaf5702b3e88 assets/chang_sheng_jue/models/item/acacia_arhat_bed.json
 b3bd262eb0ad48ac4f7c465406471cf989163c19 assets/chang_sheng_jue/models/item/acacia_balustrade.json
 699ea304f59ef7c3527896899187498f42f98343 assets/chang_sheng_jue/models/item/acacia_bench.json
@@ -506,6 +506,8 @@ a3c22d88dd3eacafc0248ea493732705aecfa1a3 assets/chang_sheng_jue/models/item/oak_
 dd8c3b279e409753c6541bb50c12c64fda1649d5 assets/chang_sheng_jue/models/item/olden_chain_mail_shirt.json
 0ed60a54f473adf9af51031eccab79665f025d09 assets/chang_sheng_jue/models/item/orange_lantern.json
 9333bccac1d49968de442f93ab50506142788b71 assets/chang_sheng_jue/models/item/osmanthus_sapling.json
+49b72892d98279e9833da1b291d7e2617ff8ecd5 assets/chang_sheng_jue/models/item/outer_robe_chestplate.json
+97f85f2b2a899a958628af1559f8fc36daf5f56c assets/chang_sheng_jue/models/item/outer_robe_helmet.json
 62d25c92cd6004420743b9e95d5c1ef8a074338a assets/chang_sheng_jue/models/item/paint_brush.json
 195a1205ce8b43b50db563a2f75589c2ac6d0f53 assets/chang_sheng_jue/models/item/paoding.json
 1e30581f8c7aacffe5531f4445c2482c21162c87 assets/chang_sheng_jue/models/item/peacock.json
@@ -579,6 +581,10 @@ afc607194da45597c0e46882be8f2df493db6159 assets/chang_sheng_jue/models/item/rele
 6627f5a2abdca3fceaeba064b55b296344b15a6d assets/chang_sheng_jue/models/item/shaolin_stick_method.json
 d1f7f15124c807320f2f9b43144c9a725a1cb6f4 assets/chang_sheng_jue/models/item/shing_mun_right.json
 322f93193735216ff4af450a98f347ad04f11962 assets/chang_sheng_jue/models/item/shi_li_xiang.json
+68bc3449e893f9f7ba6ce66a72976637656e0823 assets/chang_sheng_jue/models/item/side_fastening_leather_boots.json
+17e849aace7c22ac265bd8d9dd639cbc74237588 assets/chang_sheng_jue/models/item/side_fastening_leather_chestplate.json
+ad589526bcbc92e656394226c23acdce9190c80b assets/chang_sheng_jue/models/item/side_fastening_leather_helmet.json
+323e00e582ce29d20c10d662a5392483b95b5944 assets/chang_sheng_jue/models/item/side_fastening_leather_leggings.json
 9307c7b9d9d3fbcc201577dfe240fcf8cf4071fb assets/chang_sheng_jue/models/item/silk.json
 8114a2290b8cdfc74fc55bbd9528934e812d4b41 assets/chang_sheng_jue/models/item/silkworm.json
 a9d54622dffc1873cb049f24753d99deb56857dc assets/chang_sheng_jue/models/item/silver_bullions.json

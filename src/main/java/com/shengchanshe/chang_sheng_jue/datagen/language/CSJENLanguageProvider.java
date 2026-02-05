@@ -238,6 +238,15 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get(),"Mountain Pattern Chestplate");
         this.add(ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR.get(),"Deerskin Tibial Armor");
         this.add(ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS.get(),"Cloud head black leather boots");
+
+        this.add(ChangShengJueItems.SIDE_FASTENING_LEATHER_HELMET.get(),"Side Fastening Leather Helmet");
+        this.add(ChangShengJueItems.SIDE_FASTENING_LEATHER_CHESTPLATE.get(),"Side Fastening Leather Chestplate");
+        this.add(ChangShengJueItems.SIDE_FASTENING_LEATHER_LEGGINGS.get(),"Side Fastening Leather Leggings");
+        this.add(ChangShengJueItems.SIDE_FASTENING_LEATHER_BOOTS.get(),"Side Fastening Leather Boots");
+
+        this.add(ChangShengJueItems.OUTER_ROBE_HELMET.get(),"Cicada Wing Scarf");
+        this.add(ChangShengJueItems.OUTER_ROBE_CHESTPLATE.get(),"Cloak");
+
         this.add(ChangShengJueItems.FLY_FISH_IRON_HAT.get(), "Iron Hat");
         this.add(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get(), "Cloud gauze crown");
         this.add(ChangShengJueItems.FLY_FISH_CHESTPLATE.get(), "Flying fish wear");

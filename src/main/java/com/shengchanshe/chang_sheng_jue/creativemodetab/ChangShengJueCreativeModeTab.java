@@ -1108,6 +1108,11 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR.get());
                 output.accept(ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS.get());
 
+                output.accept(ChangShengJueItems.SIDE_FASTENING_LEATHER_HELMET.get());
+                output.accept(ChangShengJueItems.SIDE_FASTENING_LEATHER_CHESTPLATE.get().getDefaultInstance());
+                output.accept(ChangShengJueItems.SIDE_FASTENING_LEATHER_LEGGINGS.get());
+                output.accept(ChangShengJueItems.SIDE_FASTENING_LEATHER_BOOTS.get());
+
                 output.accept(ChangShengJueItems.FLY_FISH_IRON_HAT.get());
                 output.accept(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get());
                 output.accept(ChangShengJueItems.FLY_FISH_CHESTPLATE.get().getDefaultInstance());
@@ -1150,6 +1155,9 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.NIGHT_SUIT_LEGGINGS.get());
 
                 output.accept(ChangShengJueItems.LONG_GOWN_CHESTPLATE.get().getDefaultInstance());
+
+                output.accept(ChangShengJueItems.OUTER_ROBE_HELMET.get());
+                output.accept(ChangShengJueItems.OUTER_ROBE_CHESTPLATE.get().getDefaultInstance());
 
                 output.accept(ChangShengJueItems.GOLD_SILK_SOFT_ARMOR.get());
                 output.accept(ChangShengJueItems.LEATHER_INNER_ARMOR.get());

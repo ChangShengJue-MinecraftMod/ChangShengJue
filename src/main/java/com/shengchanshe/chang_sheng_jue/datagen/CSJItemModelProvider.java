@@ -158,6 +158,14 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR);
         simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR);
         simpleItem(ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS);
+        //甲种侧襟皮甲
+        simpleArmorItem(ChangShengJueItems.SIDE_FASTENING_LEATHER_HELMET);
+        simpleArmorItem(ChangShengJueItems.SIDE_FASTENING_LEATHER_CHESTPLATE);
+        simpleItem(ChangShengJueItems.SIDE_FASTENING_LEATHER_LEGGINGS);
+        simpleItem(ChangShengJueItems.SIDE_FASTENING_LEATHER_BOOTS);
+        //蝉腹巾和大氅
+        simpleArmorItem(ChangShengJueItems.OUTER_ROBE_HELMET);
+        simpleArmorItem(ChangShengJueItems.OUTER_ROBE_CHESTPLATE);
         //飞鱼服
         simpleItem(ChangShengJueItems.FLY_FISH_IRON_HAT);
         simpleArmorItem(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN);
