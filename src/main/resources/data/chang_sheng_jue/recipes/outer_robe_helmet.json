@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "outer_robe_helmet",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 7
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:outer_robe_helmet"
+  }
+}

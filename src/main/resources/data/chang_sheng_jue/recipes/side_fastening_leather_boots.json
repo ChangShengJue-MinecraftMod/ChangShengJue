@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "side_fastening_leather_boots",
+  "ingredients": [
+    {
+      "item": "minecraft:leather",
+      "count": 3
+    },
+    {
+      "item": "chang_sheng_jue:cotton",
+      "count": 1
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:side_fastening_leather_boots"
+  }
+}

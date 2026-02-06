@@ -1,7 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.util;
 
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
-import com.shengchanshe.chang_sheng_jue.block.custom.lockers.LargeCabinetEntity;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.ChangShengJueMenuTypes;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.brick_kiln.BrickKilnScreen;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.forgeblock.ForgeBlockScreen;
@@ -103,6 +102,12 @@ public class ClientSetup {
             ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_PHOENIX_CORONET,
             ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING,
             ChangShengJueItems.CHINESE_WEDDING_DRESS_GOLDEN_THREAD_SHOES,
+
+            ChangShengJueItems.SIDE_FASTENING_LEATHER_HELMET,
+            ChangShengJueItems.SIDE_FASTENING_LEATHER_CHESTPLATE,
+
+            ChangShengJueItems.OUTER_ROBE_HELMET,
+            ChangShengJueItems.OUTER_ROBE_CHESTPLATE,
 
             ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN,
             ChangShengJueItems.FLY_FISH_CHESTPLATE,
