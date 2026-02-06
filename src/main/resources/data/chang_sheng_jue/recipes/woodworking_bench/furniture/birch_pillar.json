@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "furniture:birch_pillar",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:birch_pillar"
+  }
+}

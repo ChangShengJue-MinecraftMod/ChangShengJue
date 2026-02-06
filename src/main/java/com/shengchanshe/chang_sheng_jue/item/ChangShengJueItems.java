@@ -498,18 +498,18 @@ public class ChangShengJueItems {
             ()-> new MountainPatternArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.BOOTS,new Item.Properties()));
     //甲种侧襟皮甲
     public static final RegistryObject<Item> SIDE_FASTENING_LEATHER_HELMET = ITEMS.register("side_fastening_leather_helmet",
-            ()-> new SideFasteningLeatherArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.HELMET,new Item.Properties()));
+            ()-> new SideFasteningLeatherArmor(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.HELMET,new Item.Properties()));
     public static final RegistryObject<Item> SIDE_FASTENING_LEATHER_CHESTPLATE = ITEMS.register("side_fastening_leather_chestplate",
-            ()-> new SideFasteningLeatherArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+            ()-> new SideFasteningLeatherArmor(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
     public static final RegistryObject<Item> SIDE_FASTENING_LEATHER_LEGGINGS = ITEMS.register("side_fastening_leather_leggings",
-            ()-> new SideFasteningLeatherArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.LEGGINGS,new Item.Properties()));
+            ()-> new SideFasteningLeatherArmor(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.LEGGINGS,new Item.Properties()));
     public static final RegistryObject<Item> SIDE_FASTENING_LEATHER_BOOTS = ITEMS.register("side_fastening_leather_boots",
-            ()-> new SideFasteningLeatherArmor(ChangShengJueArmorMaterials.MOUNTAIN,ArmorItem.Type.BOOTS,new Item.Properties()));
+            ()-> new SideFasteningLeatherArmor(ChangShengJueArmorMaterials.COTTON,ArmorItem.Type.BOOTS,new Item.Properties()));
     // 蝉腹巾和大氅
     public static final RegistryObject<Item> OUTER_ROBE_HELMET = ITEMS.register("outer_robe_helmet",
             ()-> new OuterRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
     public static final RegistryObject<Item> OUTER_ROBE_CHESTPLATE = ITEMS.register("outer_robe_chestplate",
-            ()-> new OuterRobe(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+            ()-> new OuterRobe(ChangShengJueArmorMaterials.WALK,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
     //飞鱼服
     public static final RegistryObject<Item> FLY_FISH_IRON_HAT = ITEMS.register("fly_fish_iron_hat",
             ()-> new FlyingFishRobe(ChangShengJueArmorMaterials.FLY_HAT,ArmorItem.Type.HELMET,new Item.Properties()));
