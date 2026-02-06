@@ -1,13 +1,14 @@
 {
   "type": "chang_sheng_jue:wood_working_bench",
-  "group": "furniture:oak_pillar",
+  "group": "furniture:pillar",
   "ingredients": [
     {
-      "item": "chang_sheng_jue:silk",
+      "item": "minecraft:stick",
       "count": 4
     }
   ],
   "result": {
-    "item": "chang_sheng_jue:oak_pillar"
+    "item": "chang_sheng_jue:oak_pillar",
+    "count": 3
   }
 }
