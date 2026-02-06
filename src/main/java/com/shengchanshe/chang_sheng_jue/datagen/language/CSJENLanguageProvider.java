@@ -238,6 +238,15 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get(),"Mountain Pattern Chestplate");
         this.add(ChangShengJueItems.MOUNTAIN_PATTERN_DEERSKIN_TIBIAL_ARMOR.get(),"Deerskin Tibial Armor");
         this.add(ChangShengJueItems.MOUNTAIN_PATTERN_CLOUD_BLACK_BOOTS.get(),"Cloud head black leather boots");
+
+        this.add(ChangShengJueItems.SIDE_FASTENING_LEATHER_HELMET.get(),"Side Fastening Leather Helmet");
+        this.add(ChangShengJueItems.SIDE_FASTENING_LEATHER_CHESTPLATE.get(),"Side Fastening Leather Chestplate");
+        this.add(ChangShengJueItems.SIDE_FASTENING_LEATHER_LEGGINGS.get(),"Side Fastening Leather Leggings");
+        this.add(ChangShengJueItems.SIDE_FASTENING_LEATHER_BOOTS.get(),"Side Fastening Leather Boots");
+
+        this.add(ChangShengJueItems.OUTER_ROBE_HELMET.get(),"Cicada Wing Scarf");
+        this.add(ChangShengJueItems.OUTER_ROBE_CHESTPLATE.get(),"Cloak");
+
         this.add(ChangShengJueItems.FLY_FISH_IRON_HAT.get(), "Iron Hat");
         this.add(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get(), "Cloud gauze crown");
         this.add(ChangShengJueItems.FLY_FISH_CHESTPLATE.get(), "Flying fish wear");
@@ -1447,6 +1456,20 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueBlocks.CHERRY_HEIGHT_LIGHT_STAND.get(),"Cherry Height Light Stand");
         this.add(ChangShengJueBlocks.SPRUCE_HEIGHT_LIGHT_STAND.get(),"Spruce Height Light Stand");
         this.add(ChangShengJueBlocks.ZI_TAN_HEIGHT_LIGHT_STAND.get(),"Zitan Height Light Stand");
+
+        this.add(ChangShengJueBlocks.BIRCH_PILLAR.get(),"Birch Light Stand Pillar");
+        this.add(ChangShengJueBlocks.JUNGLE_PILLAR.get(),"Jungle Light Stand Pillar");
+        this.add(ChangShengJueBlocks.CRIMSON_PILLAR.get(),"Crimson Light Stand Pillar");
+        this.add(ChangShengJueBlocks.WARPED_PILLAR.get(),"Warped Light Stand Pillar");
+        this.add(ChangShengJueBlocks.MANGROVE_PILLAR.get(),"Mangrove Light Stand Pillar");
+        this.add(ChangShengJueBlocks.HUANG_HUA_LI_PILLAR.get(),"Huanghuali Light Stand Pillar");
+        this.add(ChangShengJueBlocks.WENGE_PILLAR.get(),"Wenge Light Stand Pillar");
+        this.add(ChangShengJueBlocks.ACACIA_PILLAR.get(),"Acacia Light Stand Pillar");
+        this.add(ChangShengJueBlocks.DARK_OAK_PILLAR.get(),"Dark Oak Light Stand Pillar");
+        this.add(ChangShengJueBlocks.OAK_PILLAR.get(),"Oak Light Stand Pillar");
+        this.add(ChangShengJueBlocks.CHERRY_PILLAR.get(),"Cherry Light Stand Pillar");
+        this.add(ChangShengJueBlocks.SPRUCE_PILLAR.get(),"Spruce Light Stand Pillar");
+        this.add(ChangShengJueBlocks.ZI_TAN_PILLAR.get(),"Zitan Light Stand Pillar");
 
         this.add(ChangShengJueBlocks.BAMBOO_MAT.get(), "Bamboo Mat");
 

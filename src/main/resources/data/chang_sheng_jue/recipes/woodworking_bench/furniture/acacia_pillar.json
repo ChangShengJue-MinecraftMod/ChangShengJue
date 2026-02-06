@@ -1,0 +1,14 @@
+{
+  "type": "chang_sheng_jue:wood_working_bench",
+  "group": "furniture:pillar",
+  "ingredients": [
+    {
+      "item": "minecraft:stick",
+      "count": 4
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:acacia_pillar",
+    "count": 3
+  }
+}

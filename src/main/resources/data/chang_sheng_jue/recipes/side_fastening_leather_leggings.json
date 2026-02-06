@@ -1,0 +1,17 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "side_fastening_leather_leggings",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 4
+    },
+    {
+      "item": "chang_sheng_jue:cotton",
+      "count": 3
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:side_fastening_leather_leggings"
+  }
+}

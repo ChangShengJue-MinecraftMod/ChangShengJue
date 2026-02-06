@@ -6,7 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.DefaultedItemGeoModel;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
-public class MountainPatternArmorRender extends GeoArmorRenderer<CottonArmor> {
+public class MountainPatternArmorRender extends GeoArmorRenderer<MountainPatternArmor> {
     public MountainPatternArmorRender() {
         super(new DefaultedItemGeoModel<>(new ResourceLocation(ChangShengJue.MOD_ID,"armor/mountain_pattern_armor")));
     }
