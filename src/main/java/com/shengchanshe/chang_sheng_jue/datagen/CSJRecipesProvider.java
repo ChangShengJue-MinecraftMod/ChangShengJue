@@ -4,7 +4,6 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.tags.CSJTags;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -103,6 +102,10 @@ public class CSJRecipesProvider extends RecipeProvider implements IConditionBuil
 
         ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.WARM_LIME_SLURRY_BARRELS.get()).requires(ChangShengJueItems.LIME_SLURRY_BARRELS.get()).requires(Items.YELLOW_DYE)
                 .unlockedBy("has_lime_slurry_barrels",has(ChangShengJueItems.LIME_SLURRY_BARRELS.get())).save(consumer);
+        //糯米
+        ShapelessRecipeBuilder.shapeless(MISC,ChangShengJueItems.STICKYRICE_1.get())
+                .requires(ChangShengJueItems.STICKYRICE.get())
+                .unlockedBy("has_stickyrice",has(ChangShengJueItems.STICKYRICE.get())).save(consumer);
         //黑砖
         ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ChangShengJueBlocks.BLACK_STONE_BRICKS.get()).define('#', ChangShengJueItems.BLACK_BRICKS.get())
                 .pattern("##").pattern("##").unlockedBy("has_bricks", has(ChangShengJueItems.BLACK_BRICKS.get())).save(consumer,"black_stone_bricks_shaped");
