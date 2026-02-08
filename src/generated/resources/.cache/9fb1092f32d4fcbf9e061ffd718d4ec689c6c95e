@@ -1,4 +1,4 @@
-// 1.20.1	2025-12-17T18:07:19.547207	Recipes
+// 1.20.1	2026-02-08T11:55:49.3587181	Recipes
 be7878fc3c7240106adf4726f0d6cdc016f5e13d data/chang_sheng_jue/advancements/recipes/brick_kiln/shi_zuo/gre_stone_lion_block.json
 1122bba2ea27cc0de4bf4c76d3d289267fed625e data/chang_sheng_jue/advancements/recipes/brick_kiln/shi_zuo/stone_balustrade.json
 e51bb0340bd73844bfedb9a2eb60030af17f117f data/chang_sheng_jue/advancements/recipes/brick_kiln/shi_zuo/stone_bench.json
@@ -351,6 +351,7 @@ e01b5b20fce9eeaf4cb18c58339d34034e5f2e78 data/chang_sheng_jue/advancements/recip
 72b57d24719479bf3ddf5469b44414045d894a57 data/chang_sheng_jue/advancements/recipes/misc/qing_tuan.json
 289469c597ac6fb57b01be14d3ef2b41a3e83e7c data/chang_sheng_jue/advancements/recipes/misc/shi_li_xiang.json
 3d0fff272f3379aae78dd463d3f499b467974429 data/chang_sheng_jue/advancements/recipes/misc/sorghum_cake.json
+5db9c82349629c190a5122074fcfbc91b7f17d22 data/chang_sheng_jue/advancements/recipes/misc/stickyrice_1.json
 9c427613f76d5f7a5a7d98784ada38a9edb21339 data/chang_sheng_jue/advancements/recipes/misc/stinky_tofu.json
 d752d0e4b44807b4f2bfca3904b110650c22d0d6 data/chang_sheng_jue/advancements/recipes/misc/tomato_egg.json
 d17882b3e922d4f141a7ff67faa2ba5a97692e12 data/chang_sheng_jue/advancements/recipes/misc/warm_lime_slurry_barrels.json
@@ -700,6 +701,7 @@ c11b862412e612eb65f4a2e726b06629e29731ba data/chang_sheng_jue/recipes/pottery_wh
 a5f5d8ff007399503c916688896c61b444d3b16d data/chang_sheng_jue/recipes/silk.json
 1713443aa0204d54789d1146011ef82f127f2429 data/chang_sheng_jue/recipes/sorghum_cake.json
 52e3b119bf9235d13ee3155f046eea03249f1c07 data/chang_sheng_jue/recipes/stakes.json
+bbe1895dc9093d6deb27538e556b81362f45d2c9 data/chang_sheng_jue/recipes/stickyrice_1.json
 9774f98d7fec81e9057a4434dacb4d0abd6b3ea8 data/chang_sheng_jue/recipes/stinky_tofu.json
 ecbefa28e77d03b6e7bf58c2679e7fc81dbac1c2 data/chang_sheng_jue/recipes/stone_lamps_base_block.json
 1549536afef7576e19239b38e88b15a1851d0f79 data/chang_sheng_jue/recipes/stone_lamps_block.json
