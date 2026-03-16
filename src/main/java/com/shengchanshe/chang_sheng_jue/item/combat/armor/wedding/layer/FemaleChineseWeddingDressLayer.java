@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.armor.wedding.layer;
 
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.render.ArmorRenderUtils;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
@@ -24,7 +25,7 @@ public class FemaleChineseWeddingDressLayer extends GeoRenderLayer<FemaleChinese
     public void render(PoseStack poseStack, FemaleChineseWeddingDress animatable, BakedGeoModel bakedModel, RenderType renderType,
                        MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
         // 获取当前的 ItemStack
-        ItemStack currentStack = ((FemaleChineseWeddingDressRender) this.getRenderer()).getCurrentStack();
+        ItemStack currentStack = ArmorRenderUtils.getEffectiveArmorStack((FemaleChineseWeddingDressRender) this.getRenderer());
         RenderType armorRenderType = RenderType.armorCutoutNoCull(TEXTURE);
 
         // 从物品堆中获取颜色
@@ -39,3 +40,7 @@ public class FemaleChineseWeddingDressLayer extends GeoRenderLayer<FemaleChinese
     }
 
 }
+
+
+
+

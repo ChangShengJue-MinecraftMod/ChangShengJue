@@ -139,7 +139,15 @@ public class ClientSetup {
             ChangShengJueItems.NIGHT_SUIT_HELMET,
             ChangShengJueItems.NIGHT_SUIT_CHESTPLATE,
             ChangShengJueItems.LONG_GOWN_CHESTPLATE,
-            ChangShengJueItems.NIGHT_SUIT_LEGGINGS
+            ChangShengJueItems.NIGHT_SUIT_LEGGINGS,
+            ChangShengJueItems.PLEATED_SKIRT_CHESTPLATE,
+            ChangShengJueItems.PLEATED_SKIRT_LEGGINGS,
+            ChangShengJueItems.MAGUA_ROBE_SUIT_HELMET,
+            ChangShengJueItems.MAGUA_ROBE_SUIT_CHESTPLATE,
+            ChangShengJueItems.QING_OFFICIAL_SUIT_HELMET,
+            ChangShengJueItems.QING_OFFICIAL_SUIT_CHESTPLATE,
+            ChangShengJueItems.QING_PRINCE_SUIT_CHESTPLATE,
+            ChangShengJueItems.QING_SOLDIER_ARMOR_CHESTPLATE
     );
 
 

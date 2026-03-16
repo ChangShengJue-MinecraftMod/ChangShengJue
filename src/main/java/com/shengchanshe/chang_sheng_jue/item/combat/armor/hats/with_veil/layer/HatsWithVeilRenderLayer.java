@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.armor.hats.with_veil.layer;
 
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.render.ArmorRenderUtils;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
@@ -23,7 +24,7 @@ public class HatsWithVeilRenderLayer extends GeoRenderLayer<HatsWithVeil> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(ChangShengJue.MOD_ID, "textures/item/armor/hats_with_veil_layer.png");
 
     public void render(PoseStack poseStack, HatsWithVeil animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
-        ItemStack currentStack = ((HatsWithVeilRender) this.getRenderer()).getCurrentStack();
+        ItemStack currentStack = ArmorRenderUtils.getEffectiveArmorStack((HatsWithVeilRender) this.getRenderer());
         RenderType armorRenderType;
         EquipmentSlot currentSlot = ((HatsWithVeilRender) this.getRenderer()).getCurrentSlot();
         float alpha = 1.0f; // 默认不透明
@@ -45,3 +46,7 @@ public class HatsWithVeilRenderLayer extends GeoRenderLayer<HatsWithVeil> {
     }
 
 }
+
+
+
+

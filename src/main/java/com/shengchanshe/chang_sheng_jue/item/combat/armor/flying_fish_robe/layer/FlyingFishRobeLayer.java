@@ -6,6 +6,7 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.flying_fish_robe.FlyingFishRobe;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.flying_fish_robe.FlyingFishRobeRender;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.render.ArmorRenderUtils;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -20,12 +21,12 @@ public class FlyingFishRobeLayer extends GeoRenderLayer<FlyingFishRobe> {
         super(entityRendererIn);
     }
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation(ChangShengJue.MOD_ID, "textures/item/armor/flying_fish_robe_layer.png");
-    private static final ResourceLocation TEXTURE_2 = new ResourceLocation(ChangShengJue.MOD_ID, "textures/item/armor/flying_fish_robe_layer_2.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(ChangShengJue.MOD_ID,"textures/item/armor/flying_fish_robe_layer_0.png");
+    private static final ResourceLocation TEXTURE_2 = new ResourceLocation(ChangShengJue.MOD_ID,"textures/item/armor/flying_fish_robe_layer_1.png");
 
     public void render(PoseStack poseStack, FlyingFishRobe animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
         // 获取当前的 ItemStack
-        ItemStack currentStack = ((FlyingFishRobeRender) this.getRenderer()).getCurrentStack();
+        ItemStack currentStack = ArmorRenderUtils.getEffectiveArmorStack((FlyingFishRobeRender) this.getRenderer());
         RenderType armorRenderType = RenderType.armorCutoutNoCull(TEXTURE);
         if (currentStack.is(ChangShengJueItems.FLY_FISH_CLOUD_VEIL_CROWN.get())){
             armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_2);
@@ -43,3 +44,7 @@ public class FlyingFishRobeLayer extends GeoRenderLayer<FlyingFishRobe> {
     }
 
 }
+
+
+
+

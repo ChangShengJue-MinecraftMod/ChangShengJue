@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "pleated_skirt_chestplate",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 8
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:pleated_skirt_chestplate"
+  }
+}

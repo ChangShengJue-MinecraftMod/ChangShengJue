@@ -288,6 +288,18 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.LONG_GOWN_CHESTPLATE.get(), "Narrow Sleeved Long Shirt");
         this.add(ChangShengJueItems.NIGHT_SUIT_LEGGINGS.get(), "Silk Leggings");
 
+        this.add(ChangShengJueItems.PLEATED_SKIRT_CHESTPLATE.get(), "Cross-collar Short Jacket");
+        this.add(ChangShengJueItems.PLEATED_SKIRT_LEGGINGS.get(), "Mamian Qun");
+
+        this.add(ChangShengJueItems.MAGUA_ROBE_SUIT_HELMET.get(), "Skullcap");
+        this.add(ChangShengJueItems.MAGUA_ROBE_SUIT_CHESTPLATE.get(), "MaguaRobe");
+
+        this.add(ChangShengJueItems.QING_OFFICIAL_SUIT_HELMET.get(), "Summer Official Hat");
+        this.add(ChangShengJueItems.QING_OFFICIAL_SUIT_CHESTPLATE.get(), "Mandarin Square Robe");
+        this.add(ChangShengJueItems.QING_PRINCE_SUIT_CHESTPLATE.get(), "Prince‘s Round Badge Robe");
+
+        this.add(ChangShengJueItems.QING_SOLDIER_ARMOR_CHESTPLATE.get(), "Qing Soldier Armor");
+
         this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET1.get(), "额带");
         this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET2.get(), "额带");
         this.add(ChangShengJueItems.HAIR_CROWN_HELMET1.get(), "束发冠");

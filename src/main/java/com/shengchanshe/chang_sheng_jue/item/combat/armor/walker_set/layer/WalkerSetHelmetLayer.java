@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.render.ArmorRenderUtils;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.walker_set.WalkerSet;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.walker_set.WalkerSetRender;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -20,13 +21,13 @@ public class WalkerSetHelmetLayer extends GeoRenderLayer<WalkerSet> {
         super(entityRendererIn);
     }
 
-    private static final ResourceLocation TEXTURE_0 = new ResourceLocation(ChangShengJue.MOD_ID, "textures/item/armor/walker_set_layer_0.png");
-    private static final ResourceLocation TEXTURE_1 = new ResourceLocation(ChangShengJue.MOD_ID, "textures/item/armor/walker_set_layer_1.png");
+    private static final ResourceLocation TEXTURE_0 = new ResourceLocation(ChangShengJue.MOD_ID, "textures/item/armor/walker_set_0_overlay.png");
+    private static final ResourceLocation TEXTURE_1 = new ResourceLocation(ChangShengJue.MOD_ID, "textures/item/armor/walker_set_1_overlay.png");
 
 
     public void render(PoseStack poseStack, WalkerSet animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
         // 获取当前的 ItemStack
-        ItemStack currentStack = ((WalkerSetRender) this.getRenderer()).getCurrentStack();
+        ItemStack currentStack = ArmorRenderUtils.getEffectiveArmorStack((WalkerSetRender) this.getRenderer());
         RenderType armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_0);
         if (currentStack.is(ChangShengJueItems.WALKER_GOLD_RING_BAND.get())){
             armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_0);
@@ -37,3 +38,7 @@ public class WalkerSetHelmetLayer extends GeoRenderLayer<WalkerSet> {
     }
 
 }
+
+
+
+

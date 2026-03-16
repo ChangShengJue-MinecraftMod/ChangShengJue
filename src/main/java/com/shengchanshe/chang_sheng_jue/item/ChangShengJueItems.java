@@ -22,10 +22,15 @@ import com.shengchanshe.chang_sheng_jue.item.combat.armor.headdress.hair_crown.H
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.inner_armor.GoldSilkSoftArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.inner_armor.LeatherInnerArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.long_gown.LongGown;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.ma_man_qun.MaMianQun;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.magua_robe_suit.MaguaRobeSuit;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.mountain_pattern_armor.MountainPatternArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.night_suit.NightSuit;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.outer_robe.OuterRobe;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.qi_tian_da_sheng.QiTianDaSheng;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.qing_official_suit.QingOfficialSuit;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.qing_prince_suit.QingPrinceSuit;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.qing_soldier_armor.QingSoldierArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.side_fastening_leather.SideFasteningLeatherArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.taoistrobes.FemaleTaoistRobes;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.taoistrobes.MaleTaoistRobes;
@@ -603,6 +608,26 @@ public class ChangShengJueItems {
     //长衫
     public static final RegistryObject<Item> LONG_GOWN_CHESTPLATE = ITEMS.register("long_gown_chestplate",
             ()-> new LongGown(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    //马面裙
+    public static final RegistryObject<Item> PLEATED_SKIRT_CHESTPLATE = ITEMS.register("pleated_skirt_chestplate",
+            ()-> new MaMianQun(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    public static final RegistryObject<Item> PLEATED_SKIRT_LEGGINGS = ITEMS.register("pleated_skirt_leggings",
+            ()-> new MaMianQun(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.LEGGINGS,new Item.Properties()));
+    //清朝常服
+    public static final RegistryObject<Item> MAGUA_ROBE_SUIT_HELMET = ITEMS.register("magua_robe_suit_helmet",
+            ()-> new MaguaRobeSuit(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> MAGUA_ROBE_SUIT_CHESTPLATE = ITEMS.register("magua_robe_suit_chestplate",
+            ()-> new MaguaRobeSuit(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    //清朝官服
+    public static final RegistryObject<Item> QING_OFFICIAL_SUIT_HELMET = ITEMS.register("qing_official_suit_helmet",
+            ()-> new QingOfficialSuit(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.HELMET,new Item.Properties()));
+    public static final RegistryObject<Item> QING_OFFICIAL_SUIT_CHESTPLATE = ITEMS.register("qing_official_suit_chestplate",
+            ()-> new QingOfficialSuit(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    public static final RegistryObject<Item> QING_PRINCE_SUIT_CHESTPLATE = ITEMS.register("qing_prince_suit_chestplate",
+            ()-> new QingPrinceSuit(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
+    //清朝兵服
+    public static final RegistryObject<Item> QING_SOLDIER_ARMOR_CHESTPLATE = ITEMS.register("qing_soldier_armor_chestplate",
+            ()-> new QingSoldierArmor(ChangShengJueArmorMaterials.FLY,ArmorItem.Type.CHESTPLATE,new Item.Properties()));
 
     //打狗棒
     public static final RegistryObject<Item> BEAT_DOG_STICK = ITEMS.register("beat_dog_stick", BeatDogStick::new);

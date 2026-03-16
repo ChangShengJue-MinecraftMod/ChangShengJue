@@ -288,6 +288,18 @@
             this.add(ChangShengJueItems.LONG_GOWN_CHESTPLATE.get(), "窄袖長衫");
             this.add(ChangShengJueItems.NIGHT_SUIT_LEGGINGS.get(), "絲綢綁腿");
 
+            this.add(ChangShengJueItems.PLEATED_SKIRT_CHESTPLATE.get(), "交領短襖");
+            this.add(ChangShengJueItems.PLEATED_SKIRT_LEGGINGS.get(), "馬面裙");
+
+            this.add(ChangShengJueItems.MAGUA_ROBE_SUIT_HELMET.get(), "瓜皮帽");
+            this.add(ChangShengJueItems.MAGUA_ROBE_SUIT_CHESTPLATE.get(), "馬褂長袍");
+
+            this.add(ChangShengJueItems.QING_OFFICIAL_SUIT_HELMET.get(), "凉官帽");
+            this.add(ChangShengJueItems.QING_OFFICIAL_SUIT_CHESTPLATE.get(), "百官補服");
+            this.add(ChangShengJueItems.QING_PRINCE_SUIT_CHESTPLATE.get(), "親王補服");
+
+            this.add(ChangShengJueItems.QING_SOLDIER_ARMOR_CHESTPLATE.get(), "侍衛官服");
+
             this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET1.get(), "额带");
             this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET2.get(), "额带");
             this.add(ChangShengJueItems.HAIR_CROWN_HELMET1.get(), "束发冠");

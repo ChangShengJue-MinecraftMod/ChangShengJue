@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.armor.outer_robe.layer;
 
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.render.ArmorRenderUtils;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
@@ -23,7 +24,7 @@ public class OuterRobeLayer extends GeoRenderLayer<OuterRobe> {
 
     public void render(PoseStack poseStack, OuterRobe animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
         // 获取当前的 ItemStack
-        ItemStack currentStack = ((OuterRobeRender) this.getRenderer()).getCurrentStack();
+        ItemStack currentStack = ArmorRenderUtils.getEffectiveArmorStack((OuterRobeRender) this.getRenderer());
         RenderType armorRenderType = RenderType.armorCutoutNoCull(TEXTURE);
         // 从物品堆中获取颜色
         int color = ((OuterRobeRender) this.getRenderer()).getArmorColor(currentStack);
@@ -37,3 +38,7 @@ public class OuterRobeLayer extends GeoRenderLayer<OuterRobe> {
     }
 
 }
+
+
+
+

@@ -1153,6 +1153,18 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get());
                 output.accept(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get());
 
+                output.accept(ChangShengJueItems.PLEATED_SKIRT_CHESTPLATE.get().getDefaultInstance());
+                output.accept(ChangShengJueItems.PLEATED_SKIRT_LEGGINGS.get());
+
+                output.accept(ChangShengJueItems.MAGUA_ROBE_SUIT_HELMET.get());
+                output.accept(ChangShengJueItems.MAGUA_ROBE_SUIT_CHESTPLATE.get().getDefaultInstance());
+
+                output.accept(ChangShengJueItems.QING_OFFICIAL_SUIT_HELMET.get());
+                output.accept(ChangShengJueItems.QING_OFFICIAL_SUIT_CHESTPLATE.get().getDefaultInstance());
+                output.accept(ChangShengJueItems.QING_PRINCE_SUIT_CHESTPLATE.get().getDefaultInstance());
+
+                output.accept(ChangShengJueItems.QING_SOLDIER_ARMOR_CHESTPLATE.get().getDefaultInstance());
+
                 output.accept(ChangShengJueItems.HATS_WITH_VEIL_HELMET.get());
                 output.accept(ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE.get().getDefaultInstance());
 

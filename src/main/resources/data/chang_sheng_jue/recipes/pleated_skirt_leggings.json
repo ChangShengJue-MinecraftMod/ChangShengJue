@@ -1,0 +1,13 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "pleated_skirt_leggings",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 7
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:pleated_skirt_leggings"
+  }
+}

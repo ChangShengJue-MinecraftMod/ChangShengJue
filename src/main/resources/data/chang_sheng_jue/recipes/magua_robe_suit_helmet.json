@@ -1,0 +1,16 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "magua_robe_suit_helmet",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 4
+    },
+    {
+      "item": "minecraft:redstone"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:magua_robe_suit_helmet"
+  }
+}
