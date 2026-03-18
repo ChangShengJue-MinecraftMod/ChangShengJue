@@ -29,13 +29,17 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.Mth;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -54,11 +58,19 @@ import net.minecraftforge.fml.common.Mod;
 import vazkii.patchouli.api.PatchouliAPI;
 
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJEvent {
 
     public static boolean hasWheatNuggetsTributeWine = false;
+    private static final String MONEY_SLAVE_END_TICK_KEY = "MoneySlaveEndTick";
+    private static final String MONEY_SLAVE_KILLER_KEY = "MoneySlaveKiller";
+    private static final String MONEY_SLAVE_NEXT_TICK_KEY = "MoneySlaveNextTick";
+    private static final int MONEY_SLAVE_DURATION_TICKS = 15 * 60 * 20;
+    private static final int MONEY_SLAVE_STEAL_INTERVAL_TICKS = 30 * 20;
 
     @SubscribeEvent
     public static void onVillagerInteract(PlayerInteractEvent.EntityInteractSpecific event) {
@@ -549,6 +561,9 @@ public class CSJEvent {
         // 任务
         PlayerQuestEvent.onPlayerTick(event);
         PlayerQuestEvent.onEntityGenerate(event);
+        if (!player.level().isClientSide && event.phase == TickEvent.Phase.END) {
+            tickMoneySlave(player);
+        }
     }
     @SubscribeEvent
     public static void onAttachChunkCapabilities(AttachCapabilitiesEvent<LevelChunk> event) {
@@ -607,6 +622,9 @@ public class CSJEvent {
                 CSJAdvanceInit.BEAT_LEADER.trigger(serverPlayer);
             }
         }
+        if (event.getSource().getEntity() instanceof Player killer && event.getEntity() instanceof Player victim) {
+            applyMoneySlaveOnDeath(killer, victim);
+        }
     }
 
     @SubscribeEvent
@@ -619,6 +637,9 @@ public class CSJEvent {
         if (event.getSource().getEntity() instanceof Croc croc && event.getEntity() instanceof Animal) {
             if (croc.getFedTime() == 0 && !croc.isTame())
                 event.getDrops().clear();
+        }
+        if (event.getSource().getEntity() instanceof Player killer && event.getEntity() instanceof Player victim) {
+            tryStealOnKill(killer, victim, event);
         }
 
     }
@@ -661,6 +682,7 @@ public class CSJEvent {
     @SubscribeEvent
     public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
         GoldenBellJarEvent.onPlayerRespawn(event);
+        applyMoneySlaveOnRespawn(event.getEntity());
     }
     //能力给予事件,给生物添加能力
     @SubscribeEvent
@@ -735,6 +757,181 @@ public class CSJEvent {
                 }
                 ItemStack book = PatchouliAPI.get().getBookStack(new ResourceLocation("chang_sheng_jue", "wufanglu"));
                 player.getInventory().add(book);
+            }
+        }
+    }
+
+    private static void applyMoneySlaveOnDeath(Player killer, Player victim) {
+        if (victim.level().isClientSide) return;
+        if (killer == victim) return;
+        long endTick = victim.level().getGameTime() + MONEY_SLAVE_DURATION_TICKS;
+        victim.getPersistentData().putLong(MONEY_SLAVE_END_TICK_KEY, endTick);
+        victim.getPersistentData().putUUID(MONEY_SLAVE_KILLER_KEY, killer.getUUID());
+        victim.getPersistentData().putLong(MONEY_SLAVE_NEXT_TICK_KEY, victim.level().getGameTime() + MONEY_SLAVE_STEAL_INTERVAL_TICKS);
+        victim.addEffect(new MobEffectInstance(
+                ChangShengJueEffects.MONEY_SLAVE_EFFECT.get(),
+                MONEY_SLAVE_DURATION_TICKS,
+                0,
+                false,
+                true,
+                true
+        ));
+    }
+
+    private static void applyMoneySlaveOnRespawn(Player player) {
+        if (player.level().isClientSide) return;
+        long endTick = player.getPersistentData().getLong(MONEY_SLAVE_END_TICK_KEY);
+        if (endTick <= 0) return;
+        long remaining = endTick - player.level().getGameTime();
+        if (remaining <= 0) {
+            player.getPersistentData().remove(MONEY_SLAVE_END_TICK_KEY);
+            player.getPersistentData().remove(MONEY_SLAVE_KILLER_KEY);
+            player.getPersistentData().remove(MONEY_SLAVE_NEXT_TICK_KEY);
+            return;
+        }
+        int duration = (int) Math.min(Integer.MAX_VALUE, remaining);
+        player.addEffect(new MobEffectInstance(
+                ChangShengJueEffects.MONEY_SLAVE_EFFECT.get(),
+                duration,
+                0,
+                false,
+                true,
+                true
+        ));
+    }
+
+    private static void tickMoneySlave(Player player) {
+        long endTick = player.getPersistentData().getLong(MONEY_SLAVE_END_TICK_KEY);
+        if (endTick <= 0) return;
+        long now = player.level().getGameTime();
+        if (now >= endTick) {
+            player.getPersistentData().remove(MONEY_SLAVE_END_TICK_KEY);
+            player.getPersistentData().remove(MONEY_SLAVE_KILLER_KEY);
+            player.getPersistentData().remove(MONEY_SLAVE_NEXT_TICK_KEY);
+            return;
+        }
+        if (!player.hasEffect(ChangShengJueEffects.MONEY_SLAVE_EFFECT.get())) return;
+        long nextTick = player.getPersistentData().getLong(MONEY_SLAVE_NEXT_TICK_KEY);
+        if (nextTick == 0) {
+            nextTick = now + MONEY_SLAVE_STEAL_INTERVAL_TICKS;
+            player.getPersistentData().putLong(MONEY_SLAVE_NEXT_TICK_KEY, nextTick);
+            return;
+        }
+        if (now < nextTick) return;
+        player.getPersistentData().putLong(MONEY_SLAVE_NEXT_TICK_KEY, now + MONEY_SLAVE_STEAL_INTERVAL_TICKS);
+        if (!player.getPersistentData().hasUUID(MONEY_SLAVE_KILLER_KEY)) return;
+        if (!(player.level() instanceof net.minecraft.server.level.ServerLevel serverLevel)) return;
+        Player killer = serverLevel.getPlayerByUUID(player.getPersistentData().getUUID(MONEY_SLAVE_KILLER_KEY));
+        if (killer == null || killer == player) return;
+        if (killer.getRandom().nextFloat() >= 0.35f) return;
+        stealRandomItems(killer, player, 1, 5);
+    }
+
+    private static void stealRandomItems(Player killer, Player victim, int minCount, int maxCount) {
+        var inventory = victim.getInventory();
+        List<ItemStack> uniqueStacks = new ArrayList<>();
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            ItemStack stack = inventory.getItem(i);
+            if (stack.isEmpty()) continue;
+            boolean exists = false;
+            for (ItemStack existing : uniqueStacks) {
+                if (ItemStack.isSameItemSameTags(existing, stack)) {
+                    exists = true;
+                    break;
+                }
+            }
+            if (!exists) {
+                uniqueStacks.add(stack.copy());
+            }
+        }
+        if (uniqueStacks.isEmpty()) return;
+        ItemStack target = uniqueStacks.get(killer.getRandom().nextInt(uniqueStacks.size()));
+        int total = 0;
+        for (int i = 0; i < inventory.getContainerSize(); i++) {
+            ItemStack stack = inventory.getItem(i);
+            if (!stack.isEmpty() && ItemStack.isSameItemSameTags(stack, target)) {
+                total += stack.getCount();
+            }
+        }
+        if (total <= 0) return;
+        float pct = 0.05f + killer.getRandom().nextFloat() * 0.30f;
+        int stealCount = (int) Math.ceil(total * pct);
+        stealCount = Mth.clamp(stealCount, minCount, maxCount);
+        if (stealCount <= 0) return;
+        int remaining = stealCount;
+        for (int i = 0; i < inventory.getContainerSize() && remaining > 0; i++) {
+            ItemStack stack = inventory.getItem(i);
+            if (stack.isEmpty() || !ItemStack.isSameItemSameTags(stack, target)) continue;
+            int take = Math.min(stack.getCount(), remaining);
+            ItemStack stolen = stack.copy();
+            stolen.setCount(take);
+            stack.shrink(take);
+            remaining -= take;
+            if (!killer.getInventory().add(stolen)) {
+                killer.drop(stolen, false);
+            }
+        }
+    }
+
+    private static void tryStealOnKill(Player killer, Player victim, LivingDropsEvent event) {
+        if (killer == victim) return;
+        if (killer.getRandom().nextFloat() >= 0.35f) return;
+        boolean keepInventory = victim.level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY);
+        if (keepInventory) {
+            stealRandomItems(killer, victim, 1, 5);
+        } else {
+            stealRandomItemsFromDrops(killer, event.getDrops(), 1, 5);
+        }
+    }
+
+    private static void stealRandomItemsFromDrops(Player killer, Collection<ItemEntity> drops, int minCount, int maxCount) {
+        if (drops == null || drops.isEmpty()) return;
+        List<ItemStack> uniqueStacks = new ArrayList<>();
+        for (ItemEntity drop : drops) {
+            ItemStack stack = drop.getItem();
+            if (stack.isEmpty()) continue;
+            boolean exists = false;
+            for (ItemStack existing : uniqueStacks) {
+                if (ItemStack.isSameItemSameTags(existing, stack)) {
+                    exists = true;
+                    break;
+                }
+            }
+            if (!exists) {
+                uniqueStacks.add(stack.copy());
+            }
+        }
+        if (uniqueStacks.isEmpty()) return;
+        ItemStack target = uniqueStacks.get(killer.getRandom().nextInt(uniqueStacks.size()));
+        int total = 0;
+        for (ItemEntity drop : drops) {
+            ItemStack stack = drop.getItem();
+            if (!stack.isEmpty() && ItemStack.isSameItemSameTags(stack, target)) {
+                total += stack.getCount();
+            }
+        }
+        if (total <= 0) return;
+        float pct = 0.05f + killer.getRandom().nextFloat() * 0.30f;
+        int stealCount = (int) Math.ceil(total * pct);
+        stealCount = Mth.clamp(stealCount, minCount, maxCount);
+        if (stealCount <= 0) return;
+        int remaining = stealCount;
+        Iterator<ItemEntity> iterator = drops.iterator();
+        while (iterator.hasNext() && remaining > 0) {
+            ItemEntity drop = iterator.next();
+            ItemStack stack = drop.getItem();
+            if (stack.isEmpty() || !ItemStack.isSameItemSameTags(stack, target)) continue;
+            int take = Math.min(stack.getCount(), remaining);
+            ItemStack stolen = stack.copy();
+            stolen.setCount(take);
+            stack.shrink(take);
+            remaining -= take;
+            if (stack.isEmpty()) {
+                iterator.remove();
+                drop.discard();
+            }
+            if (!killer.getInventory().add(stolen)) {
+                killer.drop(stolen, false);
             }
         }
     }

@@ -86,6 +86,9 @@ public class KungFuConfig {
     public static final ForgeConfigSpec.IntValue TREAD_THE_SNOW_WITHOUT_TRACE_MAX_EXP;
     public static final ForgeConfigSpec.IntValue TREAD_THE_SNOW_WITHOUT_TRACE_MAX_COOLDOWN;
 
+    public static final ForgeConfigSpec.IntValue ZA_BIGN_SHOU_CE_MAX_EXP;
+    public static final ForgeConfigSpec.IntValue QING_PING_JI_MASTERY_STEAL_COUNT;
+
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
@@ -319,6 +322,15 @@ public class KungFuConfig {
                 .comment("踏雪无痕最大冷却时间", "默认: 100(tick)")
                 .translation("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_cooldown")
                 .defineInRange("duguNineSwordsMaxCooldown", 100, 0, Integer.MAX_VALUE);
+
+        ZA_BIGN_SHOU_CE_MAX_EXP = builder
+                .comment("杂病手册突破所需的施展次数", "默认: 1000")
+                .translation("config."+ ChangShengJue.MOD_ID +".za_bign_shou_ce_max_exp")
+                .defineInRange("zhangMenXinXueMaxExp", 1000, 0, Integer.MAX_VALUE);
+        QING_PING_JI_MASTERY_STEAL_COUNT = builder
+                .comment("清平记大成所需的成功偷窃次数", "默认: 100")
+                .translation("config."+ ChangShengJue.MOD_ID +".qing_ping_ji_mastery_steal_count")
+                .defineInRange("qingPingJiMasteryStealCount", 100, 0, Integer.MAX_VALUE);
         SPEC = builder.build();
     }
 

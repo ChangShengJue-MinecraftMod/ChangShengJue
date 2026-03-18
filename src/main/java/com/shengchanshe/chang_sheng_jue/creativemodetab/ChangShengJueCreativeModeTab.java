@@ -1080,6 +1080,9 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get());
                 output.accept(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get());
                 output.accept(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get());
+                output.accept(ChangShengJueItems.WAN_XIANG_BAO_SHU.get());
+                output.accept(ChangShengJueItems.ZA_BING_SHOU_CE.get());
+                output.accept(ChangShengJueItems.QING_PING_JI.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_COMBAT = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("cahng_sheng_jue_combat",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_combat")).icon(() ->
@@ -1152,6 +1155,18 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get().getDefaultInstance());
                 output.accept(ChangShengJueItems.CONFUCIAN_INK_LEGGINGS.get());
                 output.accept(ChangShengJueItems.CONFUCIAN_INK_BOOTS.get());
+
+                output.accept(ChangShengJueItems.PLEATED_SKIRT_CHESTPLATE.get().getDefaultInstance());
+                output.accept(ChangShengJueItems.PLEATED_SKIRT_LEGGINGS.get());
+
+                output.accept(ChangShengJueItems.MAGUA_ROBE_SUIT_HELMET.get());
+                output.accept(ChangShengJueItems.MAGUA_ROBE_SUIT_CHESTPLATE.get().getDefaultInstance());
+
+                output.accept(ChangShengJueItems.QING_OFFICIAL_SUIT_HELMET.get());
+                output.accept(ChangShengJueItems.QING_OFFICIAL_SUIT_CHESTPLATE.get().getDefaultInstance());
+                output.accept(ChangShengJueItems.QING_PRINCE_SUIT_CHESTPLATE.get().getDefaultInstance());
+
+                output.accept(ChangShengJueItems.QING_SOLDIER_ARMOR_CHESTPLATE.get().getDefaultInstance());
 
                 output.accept(ChangShengJueItems.HATS_WITH_VEIL_HELMET.get());
                 output.accept(ChangShengJueItems.HATS_WITH_VEIL_CHESTPLATE.get().getDefaultInstance());

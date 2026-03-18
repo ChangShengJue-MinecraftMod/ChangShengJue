@@ -129,6 +129,9 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.XUANNU_SWORDSMANSHIP);
         simpleItem(ChangShengJueItems.YUGONG_MOVES_MOUNTAINS);
         simpleItem(ChangShengJueItems.ZHANG_MEN_XIN_XUE);
+        simpleItem(ChangShengJueItems.WAN_XIANG_BAO_SHU);
+        simpleItem(ChangShengJueItems.ZA_BING_SHOU_CE);
+        simpleItem(ChangShengJueItems.QING_PING_JI);
         simpleItem(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING);
         simpleItem(ChangShengJueItems.QIAN_KUN_DA_NUO_YI);
 
@@ -215,6 +218,18 @@ public class CSJItemModelProvider extends ItemModelProvider {
 
         simpleArmorItem(ChangShengJueItems.LONG_GOWN_CHESTPLATE);
         simpleArmorItem(ChangShengJueItems.NIGHT_SUIT_LEGGINGS);
+
+        simpleArmorItem(ChangShengJueItems.PLEATED_SKIRT_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.PLEATED_SKIRT_LEGGINGS);
+
+        simpleArmorItem(ChangShengJueItems.MAGUA_ROBE_SUIT_HELMET);
+        simpleArmorItem(ChangShengJueItems.MAGUA_ROBE_SUIT_CHESTPLATE);
+
+        simpleArmorItem(ChangShengJueItems.QING_OFFICIAL_SUIT_HELMET);
+        simpleArmorItem(ChangShengJueItems.QING_OFFICIAL_SUIT_CHESTPLATE);
+        simpleArmorItem(ChangShengJueItems.QING_PRINCE_SUIT_CHESTPLATE);
+
+        simpleArmorItem(ChangShengJueItems.QING_SOLDIER_ARMOR_CHESTPLATE);
 
         simpleItem(ChangShengJueItems.FOREHEAD_BAND_HELMET1);
         simpleItem(ChangShengJueItems.FOREHEAD_BAND_HELMET2);

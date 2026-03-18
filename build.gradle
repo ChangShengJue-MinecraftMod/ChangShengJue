@@ -92,6 +92,7 @@ minecraft {
         client {
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', mod_id
+            jvmArgs "-Dcsj.armorTintDebug=true"
         }
 
         server {
@@ -165,8 +166,8 @@ dependencies {
     compileOnly fg.deobf("curse.maven:arsenal_core-506064:6556122")
     runtimeOnly fg.deobf("curse.maven:arsenal_core-506064:6556122")
 
-//    compileOnly fg.deobf("curse.maven:epic-fight-405076:6145747")
-//    runtimeOnly fg.deobf("curse.maven:epic-fight-405076:6145747")
+    compileOnly fg.deobf("curse.maven:epic-fight-405076:6145747")
+    runtimeOnly fg.deobf("curse.maven:epic-fight-405076:6145747")
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
     runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))

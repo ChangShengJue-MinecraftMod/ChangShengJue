@@ -292,6 +292,18 @@
             this.add(ChangShengJueItems.LONG_GOWN_CHESTPLATE.get(), "窄袖长衫");
             this.add(ChangShengJueItems.NIGHT_SUIT_LEGGINGS.get(), "丝绸绑腿");
 
+            this.add(ChangShengJueItems.PLEATED_SKIRT_CHESTPLATE.get(), "交领短袄");
+            this.add(ChangShengJueItems.PLEATED_SKIRT_LEGGINGS.get(), "马面裙");
+
+            this.add(ChangShengJueItems.MAGUA_ROBE_SUIT_HELMET.get(), "瓜皮帽");
+            this.add(ChangShengJueItems.MAGUA_ROBE_SUIT_CHESTPLATE.get(), "马褂长袍");
+
+            this.add(ChangShengJueItems.QING_OFFICIAL_SUIT_HELMET.get(), "凉官帽");
+            this.add(ChangShengJueItems.QING_OFFICIAL_SUIT_CHESTPLATE.get(), "百官补服");
+            this.add(ChangShengJueItems.QING_PRINCE_SUIT_CHESTPLATE.get(), "亲王补服");
+
+            this.add(ChangShengJueItems.QING_SOLDIER_ARMOR_CHESTPLATE.get(), "侍卫官服");
+
             this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET1.get(), "额头链");
             this.add(ChangShengJueItems.FOREHEAD_BAND_HELMET2.get(), "红玉金抹额");
             this.add(ChangShengJueItems.HAIR_CROWN_HELMET1.get(), "雪银束发冠");
@@ -333,6 +345,9 @@
             this.add(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get(),"玄女剑法");
             this.add(ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get(),"愚公移山");
             this.add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get(),"张门心学");
+            this.add(ChangShengJueItems.WAN_XIANG_BAO_SHU.get(),"万象宝书");
+            this.add(ChangShengJueItems.ZA_BING_SHOU_CE.get(),"杂病手册");
+            this.add(ChangShengJueItems.QING_PING_JI.get(),"清平记");
             this.add(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get(),"易筋经");
             this.add(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get(),"乾坤大挪移");
 
@@ -416,6 +431,18 @@
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".tooltip","激发潜力，牵引挪移，其中变化莫测，匪夷所思。");
             this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get()+".hold_shift.tooltip",
                     "未大成前施展效果:有35%%概率将遭受的攻击伤害于1.0秒后以1.5倍反弹给攻击者\\n大成后施展效果:每多1点血量额外提高2%%触发概率\\n每施展1次冷却时间短期内延长2秒\\n成功施展%s次后武功大成");
+
+            this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WAN_XIANG_BAO_SHU.get()+".tooltip","武功越练越强，真理越辩越明。");
+            this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WAN_XIANG_BAO_SHU.get()+".hold_shift.tooltip",
+                    "未大成前施展效果:提高附近玩家2点攻击\\n大成后施展效果:提高附近玩家3点攻击\\n附近有超过3人领悟该武功时武功大成\\n附近有3名玩家以上启用该内功时,清平记的内功失效无法作用\\n多人效果可以叠加,但每叠加1次怪伤害也会提高2.5%%");
+
+            this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZA_BING_SHOU_CE.get()+".tooltip","不知何人何时传下的，上面记录了诸多疾病的治疗方法。");
+            this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZA_BING_SHOU_CE.get()+".hold_shift.tooltip",
+                    "未大成前施展效果:附近玩家受到伤害后恢复1点血量\\n大成后施展效果:附近玩家受到伤害后恢复2点血量\\n成功触发1000次武功大成\\n多人效果可以叠加,但每叠加1次怪伤害也会提高2.5%%");
+            this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QING_PING_JI.get()+".tooltip","君子当懂独善其身，富贾当恋财富不断");
+            this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QING_PING_JI.get()+".hold_shift.tooltip",
+                    "未大成前施展效果：让附近玩家内功失效并提高自己2点攻击，攻击有35%%概率获得其背包部分钱财\\n大成后施展效果：攻击提高至4点\\n成功获得他人100次钱财大成");
+
 
             this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu", "习得%s,可使用使用%s长按鼠标右键蓄力%s秒后施展武功!");
             this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu_glove", "习得%s,可使用%s长按鼠标右键蓄力%s秒后施展武功!");
@@ -1614,6 +1641,9 @@
             this.add(ChangShengJueEffects.TURTLE_BREATH_EFFECT.get(), "龟息");
             this.add(ChangShengJueEffects.TRAUMA_EFFECT.get(), "外伤");
             this.add(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get(), "内伤");
+            this.add(ChangShengJueEffects.WAN_XIANG_BAO_SHU_EFFECT.get(), "万象宝书");
+            this.add(ChangShengJueEffects.ZA_BING_SHOU_CE_EFFECT.get(), "杂病手册");
+            this.add(ChangShengJueEffects.MONEY_SLAVE_EFFECT.get(), "金钱奴隶");
             this.add(ChangShengJueEffects.BILUOCHUN_TEAS.get(), "碧螺春");
             this.add(ChangShengJueEffects.LONG_JING_TEAS.get(), "龙井");
             this.add(ChangShengJueEffects.FEN_JIU.get(), "汾酒");
@@ -1695,6 +1725,7 @@
             this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_extra_probability", "乾坤大挪移大成后每点血量增加反弹伤害的概率");
             this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_multiplier", "乾坤大挪移反弹伤害的倍率");
             this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_tick", "乾坤大挪移每次反弹伤害需要的时间");
+            this.add("config."+ ChangShengJue.MOD_ID +".qing_ping_ji_mastery_steal_count", "清平记大成所需的成功偷窃次数");
             this.add("config."+ ChangShengJue.MOD_ID +".qian_kun_da_nuo_yi_max_cooldown_extra_tick", "乾坤大挪移每次释放后增加的冷却恢复到默认冷却的时间");
 
             this.add("config."+ ChangShengJue.MOD_ID +".the_classics_of_tendon_changing_max_exp", "易筋经突破所需的成功释放次数");
@@ -1709,6 +1740,8 @@
 
             this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_max_exp", "张门心学突破所需的交易成功次数");
             this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_extra_probability", "张门心学大成后交易不消耗物品的概率");
+
+            this.add("config."+ ChangShengJue.MOD_ID +".za_bign_shou_ce_max_exp", "杂病手册突破所需的施展次数");
 
             //普通信息
             this.add("block."+ ChangShengJue.MOD_ID +".fen_jiu.no_wine","已经没有酒了！");

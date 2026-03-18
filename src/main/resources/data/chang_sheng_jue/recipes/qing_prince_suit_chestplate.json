@@ -1,0 +1,16 @@
+{
+  "type": "chang_sheng_jue:tailoring_case",
+  "group": "qing_prince_suit_chestplate",
+  "ingredients": [
+    {
+      "item": "chang_sheng_jue:silk",
+      "count": 7
+    },
+    {
+      "minecraft": "minecraft:gold_ingot"
+    }
+  ],
+  "result": {
+    "item": "chang_sheng_jue:qing_prince_suit_chestplate"
+  }
+}

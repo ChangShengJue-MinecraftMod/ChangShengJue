@@ -30,7 +30,7 @@
 					"pivot": [0, 24, 0]
 				},
 				{
-					"name": "bone",
+					"name": "body_dyeable",
 					"parent": "armorBody",
 					"pivot": [0, 24, 0],
 					"cubes": [
@@ -38,8 +38,8 @@
 					]
 				},
 				{
-					"name": "后下摆",
-					"parent": "bone",
+					"name": "body1_dyeable",
+					"parent": "body_dyeable",
 					"pivot": [0, 12.5, 2.5],
 					"rotation": [177.5, 0, 180],
 					"cubes": [
@@ -47,8 +47,8 @@
 					]
 				},
 				{
-					"name": "bone9",
-					"parent": "后下摆",
+					"name": "body2_dyeable",
+					"parent": "body1_dyeable",
 					"pivot": [0, 7.5, 4.5],
 					"rotation": [-1, 0, 0],
 					"cubes": [
@@ -56,8 +56,8 @@
 					]
 				},
 				{
-					"name": "前下摆",
-					"parent": "bone",
+					"name": "body3_dyeable",
+					"parent": "body_dyeable",
 					"pivot": [0, 12.5, -2.5],
 					"rotation": [-177.5, 0, 180],
 					"cubes": [
@@ -65,8 +65,8 @@
 					]
 				},
 				{
-					"name": "bone2",
-					"parent": "前下摆",
+					"name": "body4_dyeable",
+					"parent": "body3_dyeable",
 					"pivot": [0, 7.5, -4.5],
 					"rotation": [1, 0, 0],
 					"cubes": [
@@ -74,8 +74,8 @@
 					]
 				},
 				{
-					"name": "佛珠",
-					"parent": "bone",
+					"name": "3",
+					"parent": "armorBody",
 					"pivot": [0, 23.6, 0],
 					"cubes": [
 						{"origin": [-6, 23.35, -1], "size": [2, 2, 2], "inflate": -0.3, "uv": [15, 74]},
@@ -116,7 +116,7 @@
 					"pivot": [-5, 22, 0]
 				},
 				{
-					"name": "bone3",
+					"name": "rightarm_dyeable",
 					"parent": "armorRightArm",
 					"pivot": [-5, 22, 0],
 					"cubes": [
@@ -133,7 +133,7 @@
 					"pivot": [5, 22, 0]
 				},
 				{
-					"name": "bone4",
+					"name": "leftarm_dyeable",
 					"parent": "armorLeftArm",
 					"pivot": [5, 22, 0],
 					"cubes": [

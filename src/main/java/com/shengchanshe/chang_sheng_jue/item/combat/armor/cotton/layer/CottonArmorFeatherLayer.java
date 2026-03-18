@@ -6,6 +6,7 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.cotton.CottonArmor;
 import com.shengchanshe.chang_sheng_jue.item.combat.armor.cotton.CottonArmorRender;
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.render.ArmorRenderUtils;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -20,13 +21,13 @@ public class CottonArmorFeatherLayer extends GeoRenderLayer<CottonArmor> {
         super(entityRendererIn);
     }
 
-    private static final ResourceLocation TEXTURE_0 = new ResourceLocation(ChangShengJue.MOD_ID, "textures/item/armor/cotton_armor_feather_layer_0.png");
-    private static final ResourceLocation TEXTURE_1 = new ResourceLocation(ChangShengJue.MOD_ID, "textures/item/armor/cotton_armor_white_feather_layer_1.png");
+    private static final ResourceLocation TEXTURE_0 = new ResourceLocation(ChangShengJue.MOD_ID, "textures/item/armor/cotton_armor_feather_overlay.png");
+    private static final ResourceLocation TEXTURE_1 = new ResourceLocation(ChangShengJue.MOD_ID, "textures/item/armor/cotton_armor_white_feather_overlay.png");
 
 
     public void render(PoseStack poseStack, CottonArmor animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
         // 获取当前的 ItemStack
-        ItemStack currentStack = ((CottonArmorRender) this.getRenderer()).getCurrentStack();
+        ItemStack currentStack = ArmorRenderUtils.getEffectiveArmorStack((CottonArmorRender) this.getRenderer());
         RenderType armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_0);
         if (currentStack.is(ChangShengJueItems.COTTON_HELMET.get())){
             armorRenderType = RenderType.armorCutoutNoCull(TEXTURE_0);
@@ -37,3 +38,7 @@ public class CottonArmorFeatherLayer extends GeoRenderLayer<CottonArmor> {
     }
 
 }
+
+
+
+

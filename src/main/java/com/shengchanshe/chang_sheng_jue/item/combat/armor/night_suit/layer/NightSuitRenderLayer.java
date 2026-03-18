@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.item.combat.armor.night_suit.layer;
 
+import com.shengchanshe.chang_sheng_jue.item.combat.armor.render.ArmorRenderUtils;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
@@ -22,7 +23,7 @@ public class NightSuitRenderLayer extends GeoRenderLayer<NightSuit> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(ChangShengJue.MOD_ID, "textures/item/armor/night_suit_layer.png");
 
     public void render(PoseStack poseStack, NightSuit animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
-        ItemStack currentStack = ((NightSuitRender) this.getRenderer()).getCurrentStack();
+        ItemStack currentStack = ArmorRenderUtils.getEffectiveArmorStack((NightSuitRender) this.getRenderer());
         RenderType  armorRenderType = RenderType.armorCutoutNoCull(TEXTURE);
 
         int color = ((NightSuitRender) this.getRenderer()).getArmorColor(currentStack);
@@ -36,3 +37,7 @@ public class NightSuitRenderLayer extends GeoRenderLayer<NightSuit> {
     }
 
 }
+
+
+
+
