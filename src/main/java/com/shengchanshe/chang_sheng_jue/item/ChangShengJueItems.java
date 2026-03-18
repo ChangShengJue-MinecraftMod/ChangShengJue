@@ -681,6 +681,12 @@ public class ChangShengJueItems {
     public static final RegistryObject<Item> THE_CLASSICS_OF_TENDON_CHANGING = ITEMS.register("the_classics_of_tendon_changing", TheClassicsOfTendonChangingBook::new);
     //乾坤大挪移
     public static final RegistryObject<Item> QIAN_KUN_DA_NUO_YI = ITEMS.register("qian_kun_da_nuo_yi", QianKunDaNuoYiBook::new);
+    //万象宝书
+    public static final RegistryObject<Item> WAN_XIANG_BAO_SHU = ITEMS.register("wan_xiang_bao_shu", WanXiangBaoShuBook::new);
+    //杂病手册
+    public static final RegistryObject<Item> ZA_BING_SHOU_CE = ITEMS.register("za_bing_shou_ce", ZaBingShouCeBook::new);
+    //清平记
+    public static final RegistryObject<Item> QING_PING_JI = ITEMS.register("qing_ping_ji", QingPingJiBook::new);
 
     //令牌
     public static final RegistryObject<Item> GANG_TOKEN = ITEMS.register("gang_token", ()-> new Item(new Item.Properties()));

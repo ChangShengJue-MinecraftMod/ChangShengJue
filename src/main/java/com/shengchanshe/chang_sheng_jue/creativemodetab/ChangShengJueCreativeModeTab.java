@@ -1080,6 +1080,9 @@ public class ChangShengJueCreativeModeTab {
                 output.accept(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get());
                 output.accept(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get());
                 output.accept(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get());
+                output.accept(ChangShengJueItems.WAN_XIANG_BAO_SHU.get());
+                output.accept(ChangShengJueItems.ZA_BING_SHOU_CE.get());
+                output.accept(ChangShengJueItems.QING_PING_JI.get());
             }).build());
     public static final RegistryObject<CreativeModeTab> CHANG_SHENG_JUE_COMBAT = CREATIVE_MODE_TAB_DEFERRED_REGISTER.register("cahng_sheng_jue_combat",()-> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.chang_sheng_jue_combat")).icon(() ->

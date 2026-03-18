@@ -41,12 +41,24 @@ public class ChangShengJueCapabiliy {
     public static void onPlayerCloned(PlayerEvent.Clone event){
         Player oldPlayer = event.getOriginal();
         oldPlayer.reviveCaps();
+        long moneySlaveEndTick = oldPlayer.getPersistentData().getLong("MoneySlaveEndTick");
+        long moneySlaveNextTick = oldPlayer.getPersistentData().getLong("MoneySlaveNextTick");
+        boolean hasMoneySlaveKiller = oldPlayer.getPersistentData().hasUUID("MoneySlaveKiller");
         //武功
         oldPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(oldStore->
                 event.getEntity().getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(newStore->  newStore.deserializeNBT(oldStore.serializeNBT())));
         //任务
         oldPlayer.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(oldStore->
                 event.getEntity().getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(newStore-> newStore.copyFrom(oldStore)));
+        if (moneySlaveEndTick > 0) {
+            event.getEntity().getPersistentData().putLong("MoneySlaveEndTick", moneySlaveEndTick);
+        }
+        if (moneySlaveNextTick > 0) {
+            event.getEntity().getPersistentData().putLong("MoneySlaveNextTick", moneySlaveNextTick);
+        }
+        if (hasMoneySlaveKiller) {
+            event.getEntity().getPersistentData().putUUID("MoneySlaveKiller", oldPlayer.getPersistentData().getUUID("MoneySlaveKiller"));
+        }
 
         event.getOriginal().invalidateCaps();
     }

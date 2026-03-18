@@ -3,7 +3,10 @@ package com.shengchanshe.chang_sheng_jue.martial_arts;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.*;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.*;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.light_kungfu.TreadTheSnowWithoutTrace;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.QingPingJi;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.WanXiangBaoShu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.WheatNuggetEncyclopedia;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.ZaBingShouCe;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.ZhangMenXinXue;
 
 import java.util.Collections;
@@ -62,6 +65,9 @@ public class KungFuRegistry {
         register(YugongMovesMountains.KUNG_FU_ID.toString(), YugongMovesMountains::new);
         register(WheatNuggetEncyclopedia.KUNG_FU_ID.toString(), WheatNuggetEncyclopedia::new);
         register(ZhangMenXinXue.KUNG_FU_ID.toString(), ZhangMenXinXue::new);
+        register(WanXiangBaoShu.KUNG_FU_ID.toString(), WanXiangBaoShu::new);
+        register(ZaBingShouCe.KUNG_FU_ID.toString(), ZaBingShouCe::new);
+        register(QingPingJi.KUNG_FU_ID.toString(), QingPingJi::new);
         register(TreadTheSnowWithoutTrace.KUNG_FU_ID.toString(), TreadTheSnowWithoutTrace::new);
         // 其他武功...
     }

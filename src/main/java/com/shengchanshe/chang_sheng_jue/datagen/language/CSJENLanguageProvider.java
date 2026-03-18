@@ -338,6 +338,9 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get(),"Xuannu Swordsmanship");
         this.add(ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get(),"Yugong Moves Mountains");
         this.add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get(),"Zhangmen Xinxue");
+        this.add(ChangShengJueItems.WAN_XIANG_BAO_SHU.get(),"Myriad Phenomena Compendium");
+        this.add(ChangShengJueItems.ZA_BING_SHOU_CE.get(),"Miscellaneous Ailments Manual");
+        this.add(ChangShengJueItems.QING_PING_JI.get(),"Qingping Chronicles");
         this.add(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get(),"Easy tendon meridian");
         this.add(ChangShengJueItems.QIAN_KUN_DA_NUO_YI.get(),"Qiankundanuoyi");
 
@@ -460,6 +463,26 @@ public class CSJENLanguageProvider extends LanguageProvider {
                         "\\nAfter Mastery: For each additional health point, increases trigger chance by 2%%." +
                         "\\nCooldown increases by 2 seconds for a short time after each use." +
                         "\\nMastery: Achieved after successfully unleashing %s times.");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WAN_XIANG_BAO_SHU.get()+".tooltip","The more you practice martial arts, the stronger they become; the more you debate truth, the clearer it becomes.");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.WAN_XIANG_BAO_SHU.get()+".hold_shift.tooltip",
+                "Before Mastery: Grants +2 Attack to nearby players;" +
+                        "\\nAfter Mastery: Grants +3 Attack to nearby players;" +
+                        "\\nAuto-mastery when 3+ nearby players comprehend this kungfu;" +
+                        "\\nIf 3+ nearby players enable this internal skill, Qingpingji's internal skill is disabled and cannot take effect;" +
+                        "\\nEffects stack, but each stack increases monster damage taken by 2.5%%;");
+
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZA_BING_SHOU_CE.get()+".tooltip","Passed down by unknown hands, it records treatments for many ailments.");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.ZA_BING_SHOU_CE.get()+".hold_shift.tooltip",
+                "Before Mastery: Nearby players heal 1 HP after taking damage/"+
+                        "\\nAfter Mastery: Nearby players heal 2 HP after taking damage/"+
+                        "\\nMastery after 1000 successful triggers;Effects stack, but each stack increases monster damage taken by 2.5%%");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QING_PING_JI.get()+".tooltip","A gentleman cultivates himself; the wealthy cherish unending fortune.");
+        this.add("tooltip."+ChangShengJue.MOD_ID+"." + ChangShengJueItems.QING_PING_JI.get()+".hold_shift.tooltip",
+                "Before Mastery: Nearby players' internal skills are disabled and your Attack +2; attacks have a 35%% chance to steal part of their money"+
+                        "\\nAfter Mastery: Attack increases to +4"+
+                        "\\nMastery after successfully stealing from others 100 times");
+
 
         this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu", "Comprehended %s! Hold right-click with %s for %s seconds to charge and unleash the technique!");
         this.add("message.kungfu." + ChangShengJue.MOD_ID + ".succeed.comprehend.external_kunfu_glove", "Comprehended %s! Hold right-click with %s for %s seconds to charge and unleash the technique!");
@@ -1652,6 +1675,9 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueEffects.TURTLE_BREATH_EFFECT.get(), "Turtle Breath");
         this.add(ChangShengJueEffects.TRAUMA_EFFECT.get(), "Trauma");
         this.add(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get(), "Internal Injury");
+        this.add(ChangShengJueEffects.WAN_XIANG_BAO_SHU_EFFECT.get(), "Myriad Compendium");
+        this.add(ChangShengJueEffects.ZA_BING_SHOU_CE_EFFECT.get(), "Ailments Manual");
+        this.add(ChangShengJueEffects.MONEY_SLAVE_EFFECT.get(), "Money Slave");
         this.add(ChangShengJueEffects.BILUOCHUN_TEAS.get(), "Biluochun");
         this.add(ChangShengJueEffects.LONG_JING_TEAS.get(), "Longjing");
         this.add(ChangShengJueEffects.FEN_JIU.get(), "Fenjiu");
@@ -1731,6 +1757,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_extra_probability", "Extra Damage Reflection Probability per Health Point after Qian Kun Da Nuo Yi Mastery");
         this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_multiplier", "Qian Kun Da Nuo Yi Reflected Damage Multiplier");
         this.add("config."+ ChangShengJue.MOD_ID +".qi_kun_da_nuo_yi_bounce_damage_tick", "Time Required for Each Damage Reflection by Qian Kun Da Nuo Yi");
+        this.add("config."+ ChangShengJue.MOD_ID +".qing_ping_ji_mastery_steal_count", "Successful Steals Required for Qing Ping Ji Mastery");
         this.add("config."+ ChangShengJue.MOD_ID +".qian_kun_da_nuo_yi_max_cooldown_extra_tick", "Time Added to Cooldown Recovery per Cast for Qian Kun Da Nuo Yi to Return to Default Cooldown");
 
         this.add("config."+ ChangShengJue.MOD_ID +".the_classics_of_tendon_changing_max_exp", "Successful Casts Required for Easy tendon meridian Breakthrough");
@@ -1745,6 +1772,8 @@ public class CSJENLanguageProvider extends LanguageProvider {
 
         this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_max_exp", "Successful Trades Required for Zhang Men Xin Xue Breakthrough");
         this.add("config."+ ChangShengJue.MOD_ID +".zhang_men_xin_xue_extra_probability", "Probability of Trading Without Consuming Items after Zhang Men Xin Xue Mastery");
+
+        this.add("config."+ ChangShengJue.MOD_ID +".za_bign_shou_ce_max_exp", "The number of casts required for the Miscellaneous Disease Manual breakthrough");
 
         this.add("block."+ ChangShengJue.MOD_ID +".fen_jiu.no_wine","There's no wine left!");
 

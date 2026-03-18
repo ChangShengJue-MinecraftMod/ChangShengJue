@@ -96,7 +96,8 @@ public class CSJItemTagGenerator extends ItemTagsProvider {
         this.tag(CSJTags.Items.MJ_BOOK)
                 .addTag(CSJTags.Items.INTERNAL_KUNG_FU_MJ)
                 .addTag(CSJTags.Items.EXTERNAL_KUNG_FU_MJ)
-                .add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get(),ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get());
+                .add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get(), ChangShengJueItems.WHEAT_NUGGET_ENCYCLOPEDIA.get(), ChangShengJueItems.WAN_XIANG_BAO_SHU.get()
+                ,ChangShengJueItems.QING_PING_JI.get(),ChangShengJueItems.ZA_BING_SHOU_CE.get());
         this.tag(CSJTags.Items.INTERNAL_KUNG_FU_MJ)
                 .add(ChangShengJueItems.IMMORTAL_MIRACLE.get())
                 .add(ChangShengJueItems.HERCULES.get())
