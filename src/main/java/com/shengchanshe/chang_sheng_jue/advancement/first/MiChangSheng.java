@@ -25,9 +25,7 @@ public class MiChangSheng extends SimpleCriterionTrigger<MiChangSheng.TriggerIns
 
     // 触发触发器，当玩家满足条件时调用
     public void trigger(ServerPlayer player) {
-        this.trigger(player, (p_160394_) -> {
-            return true;
-        });
+        this.trigger(player, (p_160394_) -> true);
     }
 
     public static class TriggerInstance extends AbstractCriterionTriggerInstance {
