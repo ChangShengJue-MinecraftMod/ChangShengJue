@@ -16,6 +16,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.Structure;
 
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+
 public class StructureIntelligence extends Item {
     // 使用DamageValue区分结构类型
     public static final int PIT_YARD_TYPE = 0;
@@ -24,50 +29,94 @@ public class StructureIntelligence extends Item {
     public static final int SU_PAI_VILLAGE_TYPE = 3;
     public static final int HUI_PAI_VILLAGE_TYPE = 4;
     public static final int FORTRESSES_TYPE = 5;
+    private static final int SEARCH_RADIUS = 100; // 搜索半径
 
     public StructureIntelligence(Properties properties) {
         super(properties);
     }
 
-    @Override
-    public void inventoryTick(ItemStack stack, Level level, Entity entity, int slot, boolean selected) {
-        if (level.isClientSide) return;
+    private static final Map<UUID, CompletableFuture<BlockPos>> activeSearches = new ConcurrentHashMap<>();
 
-        if (entity instanceof Player player) {
-            if (player.getMainHandItem().equals(stack) || player.getOffhandItem().equals(stack)) {
-                if (!stack.hasTag() || !stack.getOrCreateTag().getBoolean("found")) {
-                    TagKey<Structure> structureTag = getStructureTag(stack);
-                    if (structureTag != null) {
-                        BlockPos pos = ((ServerLevel)level).findNearestMapStructure(
-                                structureTag, entity.blockPosition(), 100, false);
-
-                        if (pos != null) {
-                            bindPosition(stack, pos);
-                            sendDiscoveryMessage(entity, getStructureName(stack), pos);
-                        }
-                    }
-                }
-            }
+    private UUID getOrCreateItemId(ItemStack stack) {
+        var tag = stack.getOrCreateTag();
+        if (!tag.hasUUID("itemId")) {
+            tag.putUUID("itemId", UUID.randomUUID());
         }
+        return tag.getUUID("itemId");
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
-        if (!level.isClientSide && stack.hasTag()) {
-            BlockPos pos = new BlockPos(stack.getTag().getInt("posX"), player.getBlockY(), stack.getTag().getInt("posZ"));
-            sendDiscoveryMessage(player, getStructureName(stack), pos);
+
+        if (level.isClientSide) {
+            return InteractionResultHolder.success(stack);
         }
-        return InteractionResultHolder.success(stack);
+
+        var tag = stack.getOrCreateTag();
+
+        if (tag.getBoolean("found")) {
+            BlockPos pos = new BlockPos(tag.getInt("posX"), player.getBlockY(), tag.getInt("posZ"));
+            sendDiscoveryMessage(player, getStructureName(stack), pos);
+            return InteractionResultHolder.success(stack);
+        }
+
+        UUID itemId = getOrCreateItemId(stack);
+        if (activeSearches.containsKey(itemId)) {
+            player.displayClientMessage(
+                Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".searching")
+                    .withStyle(ChatFormatting.YELLOW), true);
+            return InteractionResultHolder.consume(stack);
+        }
+
+        TagKey<Structure> structureTag = getStructureTag(stack);
+        if (structureTag == null) {
+            return InteractionResultHolder.fail(stack);
+        }
+
+        player.displayClientMessage(
+            Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".search_start", getStructureName(stack))
+                .withStyle(ChatFormatting.YELLOW), true);
+
+        // 异步搜索结构
+        CompletableFuture<BlockPos> future = CompletableFuture.supplyAsync(() ->
+            ((ServerLevel)level).findNearestMapStructure(
+                structureTag, player.blockPosition(), SEARCH_RADIUS, false)
+        );
+
+        activeSearches.put(itemId, future);
+
+        future.thenAccept(pos -> {
+            level.getServer().execute(() -> {
+                if (pos != null) {
+                    bindPosition(stack, pos);
+                    sendDiscoveryMessage(player, getStructureName(stack), pos);
+                } else {
+                    player.displayClientMessage(
+                        Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".structure_not_found", getStructureName(stack))
+                            .withStyle(ChatFormatting.RED), false);
+                }
+                activeSearches.remove(itemId);
+            });
+        }).exceptionally(ex -> {
+            level.getServer().execute(() -> {
+                player.displayClientMessage(
+                    Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".search_error")
+                        .withStyle(ChatFormatting.RED), false);
+                activeSearches.remove(itemId);
+            });
+            return null;
+        });
+
+        return InteractionResultHolder.consume(stack);
     }
-    // 将结构坐标绑定到物品NBT
+
     private void bindPosition(ItemStack stack, BlockPos pos) {
         stack.getOrCreateTag().putInt("posX", pos.getX());
         stack.getOrCreateTag().putInt("posZ", pos.getZ());
         stack.getOrCreateTag().putBoolean("found", true);
     }
 
-    // 发送发现消息给玩家
     private void sendDiscoveryMessage(Entity entity, Component structureName, BlockPos pos) {
         if (entity instanceof Player player) {
             player.displayClientMessage(

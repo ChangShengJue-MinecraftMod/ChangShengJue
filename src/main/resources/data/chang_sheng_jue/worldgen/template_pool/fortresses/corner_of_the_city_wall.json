@@ -8,16 +8,7 @@
         "element_type": "minecraft:single_pool_element",
         "location": "chang_sheng_jue:fortresses/corner_of_the_city_wall/corner_of_the_city_wall",
         "projection": "rigid",
-        "processors": [
-          {
-            "processor_type": "minecraft:block_ignore",
-            "blocks": [
-              {
-                "Name": "minecraft:air"
-              }
-            ]
-          }
-        ]
+        "processors": "chang_sheng_jue:blue_stone_brick_foundation"
       }
     },
     {
@@ -26,16 +17,7 @@
         "element_type": "minecraft:single_pool_element",
         "location": "chang_sheng_jue:fortresses/corner_of_the_city_wall/corner_of_the_city_wall_1",
         "projection": "rigid",
-        "processors": [
-          {
-            "processor_type": "minecraft:block_ignore",
-            "blocks": [
-              {
-                "Name": "minecraft:air"
-              }
-            ]
-          }
-        ]
+        "processors": "chang_sheng_jue:blue_stone_brick_foundation"
       }
     },
     {
@@ -44,16 +26,7 @@
         "element_type": "minecraft:single_pool_element",
         "location": "chang_sheng_jue:fortresses/corner_of_the_city_wall/corner_of_the_city_wall_2",
         "projection": "rigid",
-        "processors": [
-          {
-            "processor_type": "minecraft:block_ignore",
-            "blocks": [
-              {
-                "Name": "minecraft:air"
-              }
-            ]
-          }
-        ]
+        "processors": "chang_sheng_jue:blue_stone_brick_foundation"
       }
     },
     {
@@ -62,16 +35,7 @@
         "element_type": "minecraft:single_pool_element",
         "location": "chang_sheng_jue:fortresses/corner_of_the_city_wall/corner_of_the_city_wall_3",
         "projection": "rigid",
-        "processors": [
-          {
-            "processor_type": "minecraft:block_ignore",
-            "blocks": [
-              {
-                "Name": "minecraft:air"
-              }
-            ]
-          }
-        ]
+        "processors": "chang_sheng_jue:blue_stone_brick_foundation"
       }
     },
     {
@@ -84,6 +48,9 @@
           {
             "processor_type": "minecraft:block_rot",
             "integrity": 0.9
+          },
+          {
+            "processor_type": "chang_sheng_jue:blue_stone_brick_foundation"
           }
         ]
       }
@@ -98,6 +65,9 @@
           {
             "processor_type": "minecraft:block_rot",
             "integrity": 0.9
+          },
+          {
+            "processor_type": "chang_sheng_jue:blue_stone_brick_foundation"
           }
         ]
       }
@@ -112,6 +82,9 @@
           {
             "processor_type": "minecraft:block_rot",
             "integrity": 0.9
+          },
+          {
+            "processor_type": "chang_sheng_jue:blue_stone_brick_foundation"
           }
         ]
       }
@@ -126,6 +99,9 @@
           {
             "processor_type": "minecraft:block_rot",
             "integrity": 0.9
+          },
+          {
+            "processor_type": "chang_sheng_jue:blue_stone_brick_foundation"
           }
         ]
       }

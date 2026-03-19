@@ -20,6 +20,9 @@ import com.shengchanshe.chang_sheng_jue.world.biome.CSJTerrablender;
 import com.shengchanshe.chang_sheng_jue.world.biome.surface.CSJSurFaceRules;
 import com.shengchanshe.chang_sheng_jue.world.feature.CSJFoliagePlacers;
 import com.shengchanshe.chang_sheng_jue.world.feature.CSJTrunkPlacerTypes;
+import com.shengchanshe.chang_sheng_jue.world.processor.CSJProcessorTypes;
+import com.shengchanshe.chang_sheng_jue.world.structure.CSJStructurePieceTypes;
+import com.shengchanshe.chang_sheng_jue.world.structure.CSJStructureTypes;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.raid.Raid;
@@ -67,6 +70,9 @@ public class ChangShengJue {
         }
         CSJFoliagePlacers.register(eventBus);
         CSJTrunkPlacerTypes.register(eventBus);
+        CSJProcessorTypes.register(eventBus);
+        CSJStructurePieceTypes.register(eventBus);
+        CSJStructureTypes.register(eventBus);
         ChangShengJueLootModifier.register(eventBus);
         CSJRecipeTypes.register(eventBus); // 确保配方类型已注册
 

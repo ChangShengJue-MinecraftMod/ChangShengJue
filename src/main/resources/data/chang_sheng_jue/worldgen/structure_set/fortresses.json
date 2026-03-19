@@ -3,12 +3,12 @@
     "type": "minecraft:random_spread",
     "exclusion_zone": {
       "other_set": "#chang_sheng_jue:exclusionzone",
-      "chunk_count": 32
+      "chunk_count": 64
     },
-    "frequency": 0.2,
+    "frequency": 0.4,
     "frequency_reduction_method": "legacy_type_1",
     "salt": 1825068955,
-    "spacing": 48,
+    "spacing": 32,
     "separation": 16,
     "spread_type": "linear"
   },

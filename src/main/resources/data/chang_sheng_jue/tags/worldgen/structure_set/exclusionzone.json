@@ -7,6 +7,15 @@
     "chang_sheng_jue:villages",
     "chang_sheng_jue:sandstone_castle",
     "minecraft:villages",
-    "minecraft:pillager_outposts"
+    "minecraft:pillager_outposts",
+    "minecraft:desert_pyramids",
+    "minecraft:igloos",
+    "minecraft:jungle_temples",
+    "minecraft:swamp_huts",
+    "minecraft:woodland_mansions",
+    "minecraft:ocean_monuments",
+    "minecraft:ocean_ruins",
+    "minecraft:shipwrecks",
+    "minecraft:ruined_portals"
   ]
 }
