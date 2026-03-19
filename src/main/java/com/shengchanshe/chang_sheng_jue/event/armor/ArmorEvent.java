@@ -15,36 +15,42 @@ import net.minecraftforge.event.entity.living.LivingDamageEvent;
 public class ArmorEvent {
 
     public static void onArmorDamage(LivingDamageEvent event){
-        Level level = event.getEntity().level();
-        if (!level.isClientSide){
-            LivingEntity entity = event.getEntity();
-            float originalDamage = event.getAmount();
-            float damageMultiplier = 1.0f;
-            DamageSource source = event.getSource();
-            if (entity != null){
-                if (itemBySlot(entity)){
-                    if (source.is(DamageTypes.ON_FIRE)){
-                        float increasedDamage = originalDamage * 2f;
-                        event.setAmount(increasedDamage);
-                    }
-                    if (event.getSource().getDirectEntity() instanceof AbstractArrow){
-                        float probability = entity.getRandom().nextFloat();
-                        if (probability < 0.05F) {
-                            event.setCanceled(true);
-                        }
-                    }
+        LivingEntity entity = event.getEntity();
+        if (entity == null) return;
+
+        Level level = entity.level();
+        if (level.isClientSide) return;
+
+        DamageSource source = event.getSource();
+        if (source == null) return;
+
+        float originalDamage = event.getAmount();
+        float damageMultiplier = 1.0f;
+
+        if (itemBySlot(entity)){
+            if (source.is(DamageTypes.ON_FIRE)){
+                float increasedDamage = originalDamage * 2f;
+                event.setAmount(increasedDamage);
+            }
+            if (source.getDirectEntity() instanceof AbstractArrow){
+                float probability = entity.getRandom().nextFloat();
+                if (probability < 0.05F) {
+                    event.setCanceled(true);
                 }
-                if (source.is(CSJDamageTypes.MARTIAL_ARTS)) {
-                    if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ChangShengJueArmorItem changShengJueArmorItem) {
-                        float damageReduction = changShengJueArmorItem.getDamageReduction(entity.getItemBySlot(EquipmentSlot.CHEST));
-                        event.setAmount(originalDamage * (damageMultiplier - damageReduction));
-                    }else if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof QiTianDaSheng qiTianDaSheng){
-                        float damageReduction = qiTianDaSheng.getDamageReduction(entity.getItemBySlot(EquipmentSlot.CHEST));
-                        event.setAmount(originalDamage * (damageMultiplier - damageReduction));
-                    }else {
-                        event.setAmount(originalDamage * damageMultiplier);
-                    }
-                }
+            }
+        }
+
+        if (source.is(CSJDamageTypes.MARTIAL_ARTS)) {
+            if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof ChangShengJueArmorItem changShengJueArmorItem) {
+                float damageReduction = changShengJueArmorItem.getDamageReduction(entity.getItemBySlot(EquipmentSlot.CHEST));
+                damageReduction = Math.min(damageReduction, 0.99f); // 防止负伤害
+                event.setAmount(originalDamage * (damageMultiplier - damageReduction));
+            }else if (entity.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof QiTianDaSheng qiTianDaSheng){
+                float damageReduction = qiTianDaSheng.getDamageReduction(entity.getItemBySlot(EquipmentSlot.CHEST));
+                damageReduction = Math.min(damageReduction, 0.99f); // 防止负伤害
+                event.setAmount(originalDamage * (damageMultiplier - damageReduction));
+            }else {
+                event.setAmount(originalDamage * damageMultiplier);
             }
         }
     }

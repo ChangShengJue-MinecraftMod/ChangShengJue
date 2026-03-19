@@ -513,6 +513,10 @@
             this.add("tooltip." + ChangShengJue.MOD_ID + "." + "fortresses_type.tooltip","古城");
             this.add("tooltip." + ChangShengJue.MOD_ID + "." + "null.structure.tooltip","未知结构");
             this.add("tooltip." + ChangShengJue.MOD_ID + ".structural_location","在 [x=%d | z=%d] 位置坐落着一处%s,去看看吧");
+            this.add("tooltip." + ChangShengJue.MOD_ID + ".searching","正在搜索...");
+            this.add("tooltip." + ChangShengJue.MOD_ID + ".search_start","开始搜索 %s");
+            this.add("tooltip." + ChangShengJue.MOD_ID + ".structure_not_found","未找到 %s");
+            this.add("tooltip." + ChangShengJue.MOD_ID + ".search_error","搜索出错");
 
             //声音
             this.add("sounds."+ChangShengJue.MOD_ID + ".ge_shan_da_niu_sound","武功 : 隔山打牛");

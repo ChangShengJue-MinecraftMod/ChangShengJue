@@ -1,0 +1,15 @@
+{
+  "processors": [
+    {
+      "processor_type": "minecraft:block_ignore",
+      "blocks": [
+        {
+          "Name": "minecraft:air"
+        }
+      ]
+    },
+    {
+      "processor_type": "chang_sheng_jue:blue_stone_brick_foundation"
+    }
+  ]
+}

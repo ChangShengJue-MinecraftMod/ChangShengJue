@@ -549,6 +549,10 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "fortresses_type.tooltip","Ancient City");
         this.add("tooltip." + ChangShengJue.MOD_ID + "." + "null.structure.tooltip","Unknown Structure");
         this.add("tooltip." + ChangShengJue.MOD_ID + ".structural_location","At [x=%d | z=%d] there stands a %s, go check it out");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".searching","Searching...");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".search_start","Searching for %s");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".structure_not_found","Could not find %s");
+        this.add("tooltip." + ChangShengJue.MOD_ID + ".search_error","Search error");
 
         //声音
         this.add("sounds."+ChangShengJue.MOD_ID + ".ge_shan_da_niu_sound","Kungfu Ge Shan Da Niu");
