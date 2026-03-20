@@ -4,6 +4,7 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.stakes.StakesEntity;
 import com.shengchanshe.chang_sheng_jue.entity.custom.butterfly.Butterfly;
+import com.shengchanshe.chang_sheng_jue.entity.custom.checkin.CheckInNPC;
 import com.shengchanshe.chang_sheng_jue.entity.custom.cicada.Cicada;
 import com.shengchanshe.chang_sheng_jue.entity.custom.crane.Crane;
 import com.shengchanshe.chang_sheng_jue.entity.custom.croc.Croc;
@@ -80,6 +81,8 @@ public class CSJEventBusEvents {
         event.put(ChangShengJueEntity.SWORD_MING_XIA.get(), AbstractMingXia.setAttributes());
         event.put(ChangShengJueEntity.KNIFE_MING_XIA.get(), AbstractMingXia.setAttributes());
         event.put(ChangShengJueEntity.FIST_MING_XIA.get(), AbstractMingXia.setAttributes());
+
+        event.put(ChangShengJueEntity.CHECKIN_NPC.get(), CheckInNPC.setAttributes());
 
         event.put(ChangShengJueEntity.STAKES.get(), StakesEntity.setAttributes());
     }

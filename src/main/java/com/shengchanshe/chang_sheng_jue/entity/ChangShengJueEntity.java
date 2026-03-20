@@ -49,6 +49,7 @@ import com.shengchanshe.chang_sheng_jue.entity.decoration.seat.SeatEntity;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.ChangShengJueVillagerEntity;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.warrior.Warrior;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.worker.KilnWorker;
+import com.shengchanshe.chang_sheng_jue.entity.custom.checkin.CheckInNPC;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -349,21 +350,13 @@ public class ChangShengJueEntity {
     public static final RegistryObject<EntityType<ThrowingKnivesEntity>> THROWING_KNIVES_ENTITY = ENTITY_TYPES.register("throwing_knives_entity",
             () -> EntityType.Builder.<ThrowingKnivesEntity>of(ThrowingKnivesEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
                     .clientTrackingRange(4).updateInterval(20).build("throwing_knives_entity"));
-//
-//    //内功经验
-//    public static final RegistryObject<EntityType<InternalkungfuXpOrd>> XP_ORD_TYPE1 = ENTITY_TYPES.register("xp_ord_type1",
-//            () -> EntityType.Builder.<InternalkungfuXpOrd>of(InternalkungfuXpOrd::new, MobCategory.MISC)
-//                    .sized(0.5F, 0.5F)
-//                    .clientTrackingRange(6)
-//                    .updateInterval(20)
-//                    .build("xp_ord_type1"));
-//    //外功
-//    public static final RegistryObject<EntityType<ExternalKunfuXpOrd>> XP_ORD_TYPE2 = ENTITY_TYPES.register("xp_ord_type2",
-//            () -> EntityType.Builder.<ExternalKunfuXpOrd>of(ExternalKunfuXpOrd::new, MobCategory.MISC)
-//                    .sized(0.5F, 0.5F)
-//                    .clientTrackingRange(6)
-//                    .updateInterval(20)
-//                    .build("xp_ord_type2"));
+
+    // 签到NPC
+    public static final RegistryObject<EntityType<CheckInNPC>> CHECKIN_NPC =
+            ENTITY_TYPES.register("checkin_npc",
+                    () -> EntityType.Builder.of(CheckInNPC::new, MobCategory.CREATURE)
+                            .sized(0.6F, 2.0F).clientTrackingRange(10)
+                            .build(new ResourceLocation(ChangShengJue.MOD_ID, "checkin_npc").toString()));
 
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String name, EntityType.Builder<T> builder) {
         return ENTITY_TYPES.register(name, () -> builder.build(name));

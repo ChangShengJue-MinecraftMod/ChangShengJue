@@ -344,6 +344,8 @@ public class CSJEntityLootTables extends EntityLootSubProvider {
         this.add(ChangShengJueEntity.PILLAGER_WU_XIA.get(), LootTable.lootTable());
         this.add(ChangShengJueEntity.KILN_WORKER.get(), LootTable.lootTable());
 
+        this.add(ChangShengJueEntity.CHECKIN_NPC.get(), LootTable.lootTable());
+
         /*无掉落*/
         // 蝴蝶掉落
         add(ChangShengJueEntity.BUTTERFLY.get(), LootTable.lootTable());
