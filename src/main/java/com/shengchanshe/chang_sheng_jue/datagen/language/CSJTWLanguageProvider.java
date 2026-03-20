@@ -340,7 +340,7 @@
             this.add(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get(),"玄女劍法");
             this.add(ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get(),"愚公移山");
             this.add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get(),"張門心學");
-            this.add(ChangShengJueItems.WAN_XIANG_BAO_SHU.get(),"萬象寶書");
+            this.add(ChangShengJueItems.WAN_XIANG_BAO_SHU.get(),"萬相寶書");
             this.add(ChangShengJueItems.ZA_BING_SHOU_CE.get(),"雜病手冊");
             this.add(ChangShengJueItems.QING_PING_JI.get(),"清平記");
             this.add(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get(),"易筋經");
@@ -1634,7 +1634,7 @@
             this.add(ChangShengJueEffects.TURTLE_BREATH_EFFECT.get(), "龜息");
             this.add(ChangShengJueEffects.TRAUMA_EFFECT.get(), "外傷");
             this.add(ChangShengJueEffects.INTERNAL_INJURY_EFFECT.get(), "內傷");
-            this.add(ChangShengJueEffects.WAN_XIANG_BAO_SHU_EFFECT.get(), "萬象寶書");
+            this.add(ChangShengJueEffects.WAN_XIANG_BAO_SHU_EFFECT.get(), "萬相寶書");
             this.add(ChangShengJueEffects.ZA_BING_SHOU_CE_EFFECT.get(), "雜病手冊");
             this.add(ChangShengJueEffects.MONEY_SLAVE_EFFECT.get(), "金錢奴隸");
             this.add(ChangShengJueEffects.BILUOCHUN_TEAS.get(), "碧螺春");

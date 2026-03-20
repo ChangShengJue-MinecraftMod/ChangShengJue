@@ -338,7 +338,7 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add(ChangShengJueItems.XUANNU_SWORDSMANSHIP.get(),"Xuannu Swordsmanship");
         this.add(ChangShengJueItems.YUGONG_MOVES_MOUNTAINS.get(),"Yugong Moves Mountains");
         this.add(ChangShengJueItems.ZHANG_MEN_XIN_XUE.get(),"Zhangmen Xinxue");
-        this.add(ChangShengJueItems.WAN_XIANG_BAO_SHU.get(),"Myriad Phenomena Compendium");
+        this.add(ChangShengJueItems.WAN_XIANG_BAO_SHU.get(),"A treasure book of all phases");
         this.add(ChangShengJueItems.ZA_BING_SHOU_CE.get(),"Miscellaneous Ailments Manual");
         this.add(ChangShengJueItems.QING_PING_JI.get(),"Qingping Chronicles");
         this.add(ChangShengJueItems.THE_CLASSICS_OF_TENDON_CHANGING.get(),"Easy tendon meridian");
