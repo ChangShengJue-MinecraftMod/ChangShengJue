@@ -146,22 +146,22 @@ public class QuestEvent {
     }
 
     public static void onServerTick(TickEvent.ServerTickEvent event) {
-        if (event.phase != TickEvent.Phase.END) return; // 只在 tick 结束时检测
+        if (event.phase != TickEvent.Phase.END) return;
 
-        // 遍历所有服务器玩家
         for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
             ServerLevel level = (ServerLevel) player.level();
             Raid raid = level.getRaidAt(player.blockPosition());
+
             player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
                 List<Quest> quests = cap.getQuests(player.getUUID());
-                Optional<Quest> existingUncompleted = quests.stream()
-                        .filter(Objects::nonNull)
-                        .findFirst();
 
-                if (existingUncompleted.isPresent()) {
-                    Quest quest = existingUncompleted.get();
-                    if (quest.getAcceptedBy() != null && quest.getAcceptedBy().equals(player.getUUID())
+                for (Quest quest : quests) {
+                    if (quest == null) continue;
+
+                    if (quest.getAcceptedBy() != null
+                            && quest.getAcceptedBy().equals(player.getUUID())
                             && quest.getQuestId().equals(PROTECT_THE_VILLAGE_QUEST_ID)) {
+
                         if (raid != null && raid.isVictory() && !quest.isComplete()) {
                             quest.setComplete(true);
                             if (quest.canComplete(player)) {
@@ -170,24 +170,33 @@ public class QuestEvent {
                                         getColoredTranslation(quest.getQuestName())));
                             }
                         }
-                    }else if (quest.getQuestId().equals(XING_XIA_ZHANG_YI_QUEST_ID) && quest.getAcceptedBy() != null
+
+                    } else if (quest.getQuestId().equals(XING_XIA_ZHANG_YI_QUEST_ID)
+                            && quest.getAcceptedBy() != null
                             && quest.getAcceptedBy().equals(player.getUUID())) {
+
                         if (!player.isSpectator()) {
                             if (!quest.isComplete() && !level.isDay()) {
-                                if (level.isVillage(player.blockPosition()) && !level.getBiome(player.blockPosition()).is(BiomeTags.WITHOUT_ZOMBIE_SIEGES)) {
+                                if (level.isVillage(player.blockPosition())
+                                        && !level.getBiome(player.blockPosition()).is(BiomeTags.WITHOUT_ZOMBIE_SIEGES)) {
+
                                     float f = level.getTimeOfDay(0.0F);
                                     VillageSiege siege = new VillageSiege();
+
                                     if ((double) f >= 0.5 && f < 0.503) {
                                         siege.siegeState = VillageSiege.State.SIEGE_TONIGHT;
                                     }
-                                    siege.tick(level, true, false); // 世界、是否生成敌对生物、是否生成友好生物
+
+                                    siege.tick(level, true, false);
                                 }
                             } else if (!quest.isComplete()) {
                                 float f = level.getTimeOfDay(0.0F);
-                                if ((double) f >= 0.0 && level.isVillage(player.blockPosition())
+                                if ((double) f >= 0.0
+                                        && level.isVillage(player.blockPosition())
                                         && !level.getBiome(player.blockPosition()).is(BiomeTags.WITHOUT_ZOMBIE_SIEGES)) {
                                     quest.setComplete(true);
                                 }
+
                                 if (quest.canComplete(player)) {
                                     player.sendSystemMessage(getColoredTranslation(
                                             "quest." + ChangShengJue.MOD_ID + ".finish",
@@ -199,7 +208,6 @@ public class QuestEvent {
                 }
             });
         }
-
     }
 
     // 在僵尸村民实体上直接标记治愈者
