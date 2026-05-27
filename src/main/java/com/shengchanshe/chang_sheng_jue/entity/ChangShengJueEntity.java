@@ -349,7 +349,7 @@ public class ChangShengJueEntity {
     public static final RegistryObject<EntityType<ThrowingKnivesEntity>> THROWING_KNIVES_ENTITY = ENTITY_TYPES.register("throwing_knives_entity",
             () -> EntityType.Builder.<ThrowingKnivesEntity>of(ThrowingKnivesEntity::new, MobCategory.MISC).sized(0.25F, 0.25F)
                     .clientTrackingRange(4).updateInterval(20).build("throwing_knives_entity"));
-//
+
 //    //内功经验
 //    public static final RegistryObject<EntityType<InternalkungfuXpOrd>> XP_ORD_TYPE1 = ENTITY_TYPES.register("xp_ord_type1",
 //            () -> EntityType.Builder.<InternalkungfuXpOrd>of(InternalkungfuXpOrd::new, MobCategory.MISC)

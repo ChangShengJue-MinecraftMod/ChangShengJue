@@ -7,7 +7,7 @@
   },
   "criteria": {
     "has_venison": {
-      "trigger": "chang_sheng_jue:inventory_changed",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
