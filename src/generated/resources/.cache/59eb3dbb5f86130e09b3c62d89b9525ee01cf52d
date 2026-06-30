@@ -1,4 +1,4 @@
-// 1.20.1	2026-03-20T10:34:31.0975449	Loot Tables
+// 1.20.1	2026-06-30T14:14:46.4384698	Loot Tables
 540a939421098421d52ac7e530e38c471c75aa70 data/chang_sheng_jue/loot_tables/blocks/acacia_arhat_bed.json
 7a6edc76141fa6f7dd0df0f746f55b8c0bcdfe60 data/chang_sheng_jue/loot_tables/blocks/acacia_balustrade.json
 d516f4a29d40770cbbc430275a25288af1bb5af3 data/chang_sheng_jue/loot_tables/blocks/acacia_bench.json
@@ -158,7 +158,7 @@ e22eb926f3576fed7895fa035ca8790f0207aab5 data/chang_sheng_jue/loot_tables/blocks
 2aa1f51d5fde0fb4e5483d23c732e15f3f03e781 data/chang_sheng_jue/loot_tables/blocks/brinjal_block.json
 7e80f67f1f471565c1370a8c48831da65238c2c1 data/chang_sheng_jue/loot_tables/blocks/brown_lantern.json
 6f466a8f5659469d86defc2b6a93d5cf33e17865 data/chang_sheng_jue/loot_tables/blocks/bullions_casting_molds.json
-7599d3fcdb86816f66b44a3675b621928e531d0d data/chang_sheng_jue/loot_tables/blocks/cantaloupe_block.json
+920adaeeb68a2e817ef7541e35797d1b6112f867 data/chang_sheng_jue/loot_tables/blocks/cantaloupe_block.json
 014802e66d5ed21bb36e217ad5e39c3e073d84e4 data/chang_sheng_jue/loot_tables/blocks/cantaloupe_stem.json
 9213ed2d3b480d25a7e1306cdde037a19b771bb5 data/chang_sheng_jue/loot_tables/blocks/capsule_block.json
 440078292cb4baaf09462e240876d7b95343dada data/chang_sheng_jue/loot_tables/blocks/capsule_jiao_zi_pan.json

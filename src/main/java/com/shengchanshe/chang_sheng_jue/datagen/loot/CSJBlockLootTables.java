@@ -278,7 +278,7 @@ public class CSJBlockLootTables extends BlockLootSubProvider {
         this.add(ChangShengJueBlocks.WILDLIFE_HORDEUM.get(), this.createCropDrops(ChangShengJueBlocks.WILDLIFE_HORDEUM.get(), ChangShengJueItems.HORDEUM.get(), ChangShengJueItems.HORDEUM_SEEDS.get(), wildlifeHordeum,2));
 
         //哈密瓜和哈密瓜藤
-        this.add(ChangShengJueBlocks.CANTALOUPE_BLOCK.get(), createSilkTouchDispatchTable(ChangShengJueBlocks.GRAPE_BLOCK.get(),
+        this.add(ChangShengJueBlocks.CANTALOUPE_BLOCK.get(), createSilkTouchDispatchTable(ChangShengJueBlocks.CANTALOUPE_BLOCK.get(),
                 LootItem.lootTableItem(ChangShengJueItems.CANTALOUPE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 7.0F)))
                         .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(LimitCount.limitCount(IntRange.upperBound(9)))));
 //        this.add(ChangShengJueBlocks.CANTALOUPE_STEM.get(),createStemDrops(ChangShengJueBlocks.CANTALOUPE_STEM.get(),ChangShengJueItems.CANTALOUPE_SEEDS.get()));
