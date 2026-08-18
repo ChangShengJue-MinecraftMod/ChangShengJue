@@ -89,8 +89,9 @@ public class QingPingJi extends AbstractionMentalKungfu {
         attackAttribute.removeModifier(modifierId);
     }
 
-    public static void updateInternalSuppression(Player target) {
+    public static boolean updateInternalSuppression(Player target) {
         boolean suppress = shouldSuppressInternal(target);
+        boolean[] changed = {false};
         if (suppress) {
             target.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                 Set<String> suppressed = SUPPRESSED_INTERNAL.computeIfAbsent(target.getUUID(), k -> new HashSet<>());
@@ -98,20 +99,27 @@ public class QingPingJi extends AbstractionMentalKungfu {
                     if (kungFu.getKungFuType() == KungFuType.INTERNAL_KUNGFU && kungFu.isStart()) {
                         kungFu.startKungFu(false);
                         suppressed.add(kungFu.getId());
+                        changed[0] = true;
                     }
                 }
             });
-            return;
+            return changed[0];
         }
 
         Set<String> suppressed = SUPPRESSED_INTERNAL.remove(target.getUUID());
         if (suppressed != null) {
             target.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                 for (String id : suppressed) {
-                    cap.getKungFu(id).ifPresent(kungFu -> kungFu.startKungFu(true));
+                    cap.getKungFu(id).ifPresent(kungFu -> {
+                        if (!kungFu.isStart()) {
+                            kungFu.startKungFu(true);
+                            changed[0] = true;
+                        }
+                    });
                 }
             });
         }
+        return changed[0];
     }
 
     private static boolean shouldSuppressInternal(Player target) {

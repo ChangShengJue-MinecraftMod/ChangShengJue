@@ -28,7 +28,7 @@ public interface IKungFuCapability {
     boolean getComprehendedKungFu(String id);
     Optional<IKungFu> getKungFu(String id);
     void syncToClient(ServerPlayer player);
-    void tick(LivingEntity entity);
+    boolean tick(LivingEntity entity);
     void onHurt(LivingDamageEvent event);
     void onAttack(LivingAttackEvent event);
     // 序列化到NBT

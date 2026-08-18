@@ -57,7 +57,7 @@ public class KungFuClientData {
 
     public Set<String> getComprehendTickKungFu() {
         return clientData.entrySet().stream()
-                .filter(entry -> entry.getValue().getLevelUpTick() >= 0)
+                .filter(entry -> entry.getValue().getLevelUpTick() > 0)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toSet());
     }
@@ -70,7 +70,7 @@ public class KungFuClientData {
 
     public Set<String> getLevelUpTickKungFu() {
         return clientData.entrySet().stream()
-                .filter(entry -> entry.getValue().getDachengTick() >= 0)
+                .filter(entry -> entry.getValue().getDachengTick() > 0)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toSet());
     }

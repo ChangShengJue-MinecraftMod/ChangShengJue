@@ -328,14 +328,20 @@ public class KungFuCapability implements IKungFuCapability {
     }
 
     @Override
-    public void tick(LivingEntity entity) {
-        learnedKungFu.values().forEach(kungFu -> {
+    public boolean tick(LivingEntity entity) {
+        boolean changed = false;
+        for (IKungFu kungFu : learnedKungFu.values()) {
+            if (kungFu.getCoolDown() > 0 || kungFu.getLevelUpTick() > 0 || kungFu.getDachengTick() > 0) {
+                changed = true;
+            }
             kungFu.tickCooldown();
             if (kungFu.getLevelUpTick() > 0) {
                 kungFu.setLevelUpTick();
+                changed = true;
             }
             if (kungFu.getDachengTick() > 0) {
                 kungFu.setDachengTick();
+                changed = true;
             }
             if (kungFu instanceof IInteranlKungFu internal) {
                 internal.onEntityTick(entity);
@@ -343,8 +349,8 @@ public class KungFuCapability implements IKungFuCapability {
             if (kungFu instanceof ILightKungfu lightKungfu){
                 lightKungfu.onEntityTick(entity);
             }
-            syncToClient((ServerPlayer) entity);
-        });
+        }
+        return changed;
     }
 
     @Override

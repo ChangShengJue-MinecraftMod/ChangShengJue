@@ -49,7 +49,7 @@ public class ChangShengJueMessages {
                 .consumerMainThread(TreadTheSnowWithoutTracePacket::handle)
                 .add();
         // 武功
-        net.messageBuilder(SyncKungFuCapabilityPacket.class, id())
+        net.messageBuilder(SyncKungFuCapabilityPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(SyncKungFuCapabilityPacket::new)
                 .encoder(SyncKungFuCapabilityPacket::encode)
                 .consumerMainThread(SyncKungFuCapabilityPacket::handle)

@@ -59,13 +59,16 @@ public class WanXiangBaoShu extends AbstractionMentalKungfu {
     /**
      * 被动心法：更新自身状态（层数、自动大成）
      */
-    public void updatePassiveState(Player player) {
+    public boolean updatePassiveState(Player player) {
         PassiveContext context = computePassiveContext(player);
+        int oldStackCount = this.stackCount;
+        int oldLevel = this.level;
         this.stackCount = context.stackCount;
         if (context.stackCount >= 3 && level < getMaxLevel()) {
             exp = getMaxExp();
             levelUp(player);
         }
+        return oldStackCount != this.stackCount || oldLevel != this.level;
     }
 
     /**

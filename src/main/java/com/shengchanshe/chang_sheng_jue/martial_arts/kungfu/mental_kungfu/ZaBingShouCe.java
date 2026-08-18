@@ -42,23 +42,28 @@ public class ZaBingShouCe extends AbstractionMentalKungfu {
         if (!isReady()) return;
     }
 
-    public void updatePassiveState(Player player) {
+    public boolean updatePassiveState(Player player) {
         PassiveContext context = computePassiveContext(player);
+        int oldStackCount = this.stackCount;
         this.stackCount = context.stackCount;
+        return oldStackCount != this.stackCount;
     }
 
-    public void applyPendingHeal(Player player) {
+    public boolean applyPendingHeal(Player player) {
         if (pendingHeal <= 0.0f || !player.isAlive()) {
             pendingHeal = 0.0f;
-            return;
+            return false;
         }
         float maxHeal = Math.max(0.0f, player.getMaxHealth() - player.getHealth());
         float healAmount = Math.min(pendingHeal, maxHeal);
+        int oldTriggerCount = this.triggerCount;
+        int oldLevel = this.level;
         if (healAmount > 0.0f) {
             player.heal(healAmount);
             recordTrigger(player);
         }
         pendingHeal = 0.0f;
+        return oldTriggerCount != this.triggerCount || oldLevel != this.level;
     }
 
     public static void applyPassiveToPlayer(Player target) {

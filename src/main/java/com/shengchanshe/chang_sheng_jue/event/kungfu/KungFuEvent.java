@@ -2,7 +2,6 @@ package com.shengchanshe.chang_sheng_jue.event.kungfu;
 
 import cn.mcmod.arsenal.item.rapier.RapierItem;
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu.KungFuClientData;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.AbstractWuXia;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.AbstractWuXiaMonster;
 import com.shengchanshe.chang_sheng_jue.item.combat.clubbed.Clubbed;
@@ -42,37 +41,44 @@ public class KungFuEvent {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
             Player player = event.player;
-            if (!player.level().isClientSide){
+            if (!player.level().isClientSide && player instanceof ServerPlayer serverPlayer){
                 // 万象宝书被动效果：对所有玩家刷新原版Buff
                 WanXiangBaoShu.applyPassiveToPlayer(player);
                 // 杂病手册被动效果：对所有玩家刷新自定义Buff
                 ZaBingShouCe.applyPassiveToPlayer(player);
                 player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                    cap.tick(player);
+                    boolean changed = false;
                     // 万象宝书被动状态更新（层数/自动大成）
-                    cap.getKungFu(WanXiangBaoShu.KUNG_FU_ID.toString())
+                    changed |= cap.getKungFu(WanXiangBaoShu.KUNG_FU_ID.toString())
                         .filter(kungFu -> kungFu instanceof WanXiangBaoShu)
-                        .ifPresent(kungFu -> ((WanXiangBaoShu) kungFu).updatePassiveState(player));
+                        .map(kungFu -> ((WanXiangBaoShu) kungFu).updatePassiveState(player))
+                        .orElse(false);
                     // 杂病手册被动状态更新（层数）
-                    cap.getKungFu(ZaBingShouCe.KUNG_FU_ID.toString())
+                    changed |= cap.getKungFu(ZaBingShouCe.KUNG_FU_ID.toString())
                         .filter(kungFu -> kungFu instanceof ZaBingShouCe)
-                        .ifPresent(kungFu -> {
+                        .map(kungFu -> {
                             ZaBingShouCe zb = (ZaBingShouCe) kungFu;
-                            zb.updatePassiveState(player);
-                            zb.applyPendingHeal(player);
-                        });
+                            return zb.updatePassiveState(player) | zb.applyPendingHeal(player);
+                        })
+                        .orElse(false);
                     cap.getKungFu(QingPingJi.KUNG_FU_ID.toString())
                         .filter(kungFu -> kungFu instanceof QingPingJi)
                         .ifPresent(kungFu -> ((QingPingJi) kungFu).updateSelfState(player));
+                    // 清平记：内功失效压制（受万象宝书启用人数影响）
+                    changed |= QingPingJi.updateInternalSuppression(player);
+                    changed |= cap.tick(player);
+                    if (changed) {
+                        cap.syncToClient(serverPlayer);
+                    }
+                    for (IKungFu kungFu : cap.getAllLearned()) {
+                        if (kungFu.getLevelUpTick() > 0) {
+                            ChangShengJueMessages.sendToPlayer(new TriggerKungFuParticlePacket(player.getUUID(), kungFu.getId()), serverPlayer);
+                        }
+                        if (kungFu.getDachengTick() > 0) {
+                            ChangShengJueMessages.sendToPlayer(new TriggerKungFuLevelUpParticlePacket(player.getUUID(), kungFu.getId()), serverPlayer);
+                        }
+                    }
                 });
-                // 清平记：内功失效压制（受万象宝书启用人数影响）
-                QingPingJi.updateInternalSuppression(player);
-                for (String kungFuId : KungFuClientData.get().getComprehendTickKungFu()) {
-                    ChangShengJueMessages.sendToPlayer(new TriggerKungFuParticlePacket(player.getUUID(), kungFuId), (ServerPlayer) player);
-                }
-                for (String kungFuId : KungFuClientData.get().getLevelUpTickKungFu()) {
-                    ChangShengJueMessages.sendToPlayer(new TriggerKungFuLevelUpParticlePacket(player.getUUID(), kungFuId), (ServerPlayer) player);
-                }
             }
         }
     }
