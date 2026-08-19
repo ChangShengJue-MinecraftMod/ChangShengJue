@@ -3,7 +3,7 @@
   "group": "furniture:fretwork_openwork_panel",
   "ingredients": [
     {
-      "item": "minecraft:zi_tan_planks",
+      "item": "chang_sheng_jue:zi_tan_planks",
       "count": 4
     }
   ],

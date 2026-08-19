@@ -257,8 +257,7 @@ public class PlayerQuestEvent {
 
     // 获取带颜色的翻译文本
     public static Component getColoredTranslation(String key, Object... args) {
-        String raw = Component.translatable(key, args).getString();
-        return Component.literal(raw);
+        return Component.translatable(key, args);
     }
 
 }

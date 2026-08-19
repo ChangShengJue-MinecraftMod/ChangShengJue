@@ -14,6 +14,8 @@
     "facing=west": {
       "model": "chang_sheng_jue:block/spruce_overlord_fist",
       "y": 270
-    }
+    },
+    "facing=up": {"model":"chang_sheng_jue:block/spruce_overlord_fist"},
+    "facing=down": {"model":"chang_sheng_jue:block/spruce_overlord_fist"}
   }
 }

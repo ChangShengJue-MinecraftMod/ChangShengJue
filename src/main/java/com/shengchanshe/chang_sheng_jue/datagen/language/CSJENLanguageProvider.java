@@ -1711,6 +1711,10 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_exp", "Successful Casts Required for Dugu Nine Swords Breakthrough");
         this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_cooldown", "Dugu Nine Swords Maximum Cooldown Time");
 
+        this.add("config."+ ChangShengJue.MOD_ID +".tread_the_snow_without_trace_max_level", "Tread the Snow Without Trace Maximum Level Cap");
+        this.add("config."+ ChangShengJue.MOD_ID +".tread_the_snow_without_trace_max_exp", "Successful Casts Required for Tread the Snow Without Trace Breakthrough");
+        this.add("config."+ ChangShengJue.MOD_ID +".tread_the_snow_without_trace_max_cooldown", "Tread the Snow Without Trace Maximum Cooldown Time");
+
         this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_level", "Gao Marksmanship Maximum Level Cap");
         this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_exp", "Successful Casts Required for Gao Marksmanship Breakthrough");
         this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_cooldown", "Gao Marksmanship Maximum Cooldown Time");
@@ -1881,6 +1885,8 @@ public class CSJENLanguageProvider extends LanguageProvider {
         this.add("gui."+ ChangShengJue.MOD_ID +".trade.blue", "blue");
         this.add("gui."+ ChangShengJue.MOD_ID +".trade.golden", "golden");
         this.add("gui."+ ChangShengJue.MOD_ID +".trade.wood", "wood");
+        this.add("gui."+ ChangShengJue.MOD_ID +".plaque.write", "Write");
+        this.add("gui."+ ChangShengJue.MOD_ID +".plaque.placeholder", "Enter text...");
 
         //任务
         this.add("quest."+ ChangShengJue.MOD_ID +".button", "Quest");

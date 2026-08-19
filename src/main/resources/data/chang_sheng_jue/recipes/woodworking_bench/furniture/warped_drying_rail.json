@@ -3,7 +3,7 @@
   "group": "furniture:drying_rail",
   "ingredients": [
     {
-      "item": "minecraft:stripped_warped_log"
+      "item": "minecraft:stripped_warped_stem"
     }
   ],
   "result": {

@@ -24,6 +24,8 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import org.joml.Quaternionf;
@@ -77,13 +79,13 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
 
         TailoringCaseRecipe serverRecipe = menu.getCurrentRecipe();
 
-        //如果处于制作状态
-        if (serverRecipe != null || menu.isCrafting()) {
-            currentMaterials.clear();
+        currentMaterials.clear();
+        currentSelectedItem = ItemStack.EMPTY;
+        localCurrentRecipe = null;
+        if (serverRecipe != null) {
             currentMaterials.addAll(Arrays.asList(getMaterialsFromRecipe(serverRecipe)));
-            if (serverRecipe != null) {
-                currentSelectedItem = serverRecipe.getResultItem(getRegistryAccess());
-            }
+            currentSelectedItem = serverRecipe.getResultItem(getRegistryAccess());
+            localCurrentRecipe = serverRecipe;
         }
 
         int x = (width - imageWidth) / 2;
@@ -255,6 +257,9 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         if (menu.isCrafting()) {
             return;
         }
+        if (recipe == null) {
+            return;
+        }
 
         // 更新当前配方组
         String group = recipe.getGroup();
@@ -272,21 +277,21 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
             currentMaterials.addAll(Arrays.asList(materials));
         }
         
-        // 立即更新客户端本地显示
-        menu.setCurrentRecipe(recipe);
         this.localCurrentRecipe = recipe;
+        this.currentSelectedItem = recipe.getResultItem(getRegistryAccess());
 
         // 发送同步包到服务端
         ChangShengJueMessages.sendToServer(
                 new TailoringSyncRecipePacket(menu.getBlockPos(), recipe)
         );
 
-        // 强制刷新UI
-        menu.updateRecipeSlots();
     }
     
     // 更新槽位显示并同步配方到服务端（重载版本，用于制作时的配方切换）
     private void updateSlotsForCraftingRecipe(TailoringCaseRecipe recipe) {
+        if (recipe == null) {
+            return;
+        }
         // 更新当前配方组
         String group = recipe.getGroup();
         if (!group.isEmpty() && recipesByGroup.containsKey(group)) {
@@ -303,17 +308,8 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
             currentMaterials.addAll(Arrays.asList(materials));
         }
         
-        // 立即更新客户端本地显示
-        menu.setCurrentRecipe(recipe);
         this.localCurrentRecipe = recipe;
-
-        // 发送同步包到服务端
-        ChangShengJueMessages.sendToServer(
-                new TailoringSyncRecipePacket(menu.getBlockPos(), recipe)
-        );
-
-        // 强制刷新UI
-        menu.updateRecipeSlots();
+        this.currentSelectedItem = recipe.getResultItem(getRegistryAccess());
     }
 
     // 获取菜单的Level对象
@@ -598,6 +594,7 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
         renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, delta);
+        renderGhostMaterials(guiGraphics);
         // 渲染按钮工具提示
         for (CustomButton button : customButtons) {
             if (!button.getItemStack().isEmpty() && isMouseInArea(button.getX(), button.getY(), mouseX, mouseY)) {
@@ -607,6 +604,29 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
         }
         renderTooltip(guiGraphics, mouseX, mouseY);
         renderArmorStandWithItem(guiGraphics);
+    }
+
+    private void renderGhostMaterials(GuiGraphics guiGraphics) {
+        int guiLeft = (width - imageWidth) / 2;
+        int guiTop = (height - imageHeight) / 2;
+        for (int index = 0; index < Math.min(9, currentMaterials.size()); index++) {
+            ItemStack material = currentMaterials.get(index);
+            if (material.isEmpty()) {
+                continue;
+            }
+            int slotX = guiLeft + 135 + index % 3 * 18;
+            int slotY = guiTop + 46 + index / 3 * 18;
+            guiGraphics.renderItem(material, slotX, slotY);
+            guiGraphics.renderItemDecorations(font, material, slotX, slotY);
+        }
+    }
+
+    @Override
+    protected void slotClicked(Slot slot, int slotId, int mouseButton, ClickType type) {
+        if (slot instanceof TailoringCaseMenu.ReadOnlySlot) {
+            return;
+        }
+        super.slotClicked(slot, slotId, mouseButton, type);
     }
 
     // 定期更新界面
@@ -652,12 +672,10 @@ public class TailoringCaseScreen extends AbstractContainerScreen<TailoringCaseMe
             
             // 检查方块实体中的当前配方是否与本地配方不同
             TailoringCaseRecipe blockEntityRecipe = menu.blockEntity.getCurrentRecipe();
-            if (blockEntityRecipe != null && localCurrentRecipe != blockEntityRecipe) {
+            if (blockEntityRecipe != null && (localCurrentRecipe == null
+                    || !blockEntityRecipe.getId().equals(localCurrentRecipe.getId()))) {
                 // 更新显示为方块实体中的当前配方
                 updateSlotsForCraftingRecipe(blockEntityRecipe);
-            } else if (localCurrentRecipe != null) {
-                // 确保显示的是当前制作的配方
-                updateSlotsForCraftingRecipe(localCurrentRecipe);
             }
         }
     }

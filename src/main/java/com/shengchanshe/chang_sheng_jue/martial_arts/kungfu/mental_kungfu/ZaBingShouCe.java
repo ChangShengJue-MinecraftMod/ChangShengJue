@@ -13,14 +13,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.AABB;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ZaBingShouCe extends AbstractionMentalKungfu {
     public static final ResourceLocation KUNG_FU_ID = new ResourceLocation(ChangShengJue.MOD_ID, "za_bing_shou_ce");
-    private static final double DETECTION_RANGE = 16.0;
     private static final int BUFF_DURATION_TICKS = 40;
     private static final int MASTERY_TRIGGER_COUNT = 1000;
     private int stackCount = 0;
@@ -42,14 +40,22 @@ public class ZaBingShouCe extends AbstractionMentalKungfu {
         if (!isReady()) return;
     }
 
-    public boolean updatePassiveState(Player player) {
+    public void updatePassiveState(Player player) {
+        updatePassiveStateAndReportChange(player);
+    }
+
+    public boolean updatePassiveStateAndReportChange(Player player) {
         PassiveContext context = computePassiveContext(player);
         int oldStackCount = this.stackCount;
         this.stackCount = context.stackCount;
         return oldStackCount != this.stackCount;
     }
 
-    public boolean applyPendingHeal(Player player) {
+    public void applyPendingHeal(Player player) {
+        applyPendingHealAndReportChange(player);
+    }
+
+    public boolean applyPendingHealAndReportChange(Player player) {
         if (pendingHeal <= 0.0f || !player.isAlive()) {
             pendingHeal = 0.0f;
             return false;
@@ -159,31 +165,13 @@ public class ZaBingShouCe extends AbstractionMentalKungfu {
     }
 
     private static PassiveContext computePassiveContext(Player player) {
-        AABB searchBox = new AABB(
-            player.getX() - DETECTION_RANGE, player.getY() - DETECTION_RANGE, player.getZ() - DETECTION_RANGE,
-            player.getX() + DETECTION_RANGE, player.getY() + DETECTION_RANGE, player.getZ() + DETECTION_RANGE
-        );
-
-        List<Player> nearbyPlayers = player.level().getEntitiesOfClass(Player.class, searchBox, p -> p.isAlive());
         int stackCount = 0;
         List<Contributor> contributors = new ArrayList<>();
-        for (Player nearbyPlayer : nearbyPlayers) {
-            ZaBingShouCe kungFu = null;
-            var capOpt = nearbyPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU);
-            if (capOpt.isPresent()) {
-                final ZaBingShouCe[] holder = new ZaBingShouCe[1];
-                capOpt.ifPresent(cap -> {
-                    var opt = cap.getKungFu(KUNG_FU_ID.toString());
-                    if (opt.isPresent() && opt.get() instanceof ZaBingShouCe) {
-                        holder[0] = (ZaBingShouCe) opt.get();
-                    }
-                });
-                kungFu = holder[0];
-            }
-            if (kungFu == null || !kungFu.isComprehend()) {
+        for (MentalKungFuNeighborhoodSnapshot.Entry entry : MentalKungFuNeighborhoodSnapshot.get(player)) {
+            if (!entry.zaBingComprehended()) {
                 continue;
             }
-            double healAmount = kungFu.getLevel() >= 2 ? 2.0 : 1.0;
+            double healAmount = entry.zaBingLevel() >= 2 ? 2.0 : 1.0;
             contributors.add(new Contributor(healAmount));
             stackCount++;
         }

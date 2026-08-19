@@ -1,7 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.network.packet.particle.kungfu;
 
-import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
-import net.minecraft.client.Minecraft;
+import com.shengchanshe.chang_sheng_jue.network.ClientPacketBridge;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -20,11 +19,7 @@ public record WuGangCutGuiParticlePacket(float x, float y, float z) {
     }
 
     public static void handle(WuGangCutGuiParticlePacket packet, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            Minecraft mc = Minecraft.getInstance();
-            if (mc.level == null) return;
-            mc.level.addParticle(ChangShengJueParticles.WU_GANG_CUT_GUI_PARTICLE_1.get(), packet.x, packet.y, packet.z, 0, 0, 0);
-        });
+        ctx.get().enqueueWork(() -> ClientPacketBridge.wuGangCutGuiParticle(packet.x(), packet.y(), packet.z()));
         ctx.get().setPacketHandled(true);
     }
 }

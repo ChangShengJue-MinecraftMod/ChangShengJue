@@ -17,6 +17,8 @@
     },
     "age=5": {
       "model": "chang_sheng_jue:block/capsule_stage7"
-    }
+    },
+    "age=6": {"model":"chang_sheng_jue:block/capsule_stage7"},
+    "age=7": {"model":"chang_sheng_jue:block/capsule_stage7"}
   }
 }

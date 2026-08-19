@@ -1,11 +1,11 @@
 package com.shengchanshe.chang_sheng_jue.network.packet.gui.quest;
 
-import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.GangQuestsScreen;
+import com.shengchanshe.chang_sheng_jue.network.ClientPacketBridge;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 
+import io.netty.handler.codec.DecoderException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,6 +22,9 @@ public record RefreshQuestScreenPacket(List<Quest> availableQuests) {
     public static RefreshQuestScreenPacket decode(FriendlyByteBuf buf) {
         List<Quest> quests = new ArrayList<>();
         int count = buf.readInt();
+        if (count < 0 || count > buf.readableBytes()) {
+            throw new DecoderException("Invalid available quest count: " + count);
+        }
         for (int i = 0; i < count; i++) {
             Quest quest = new Quest(Objects.requireNonNull(buf.readNbt()));
             quests.add(quest);
@@ -30,25 +33,7 @@ public record RefreshQuestScreenPacket(List<Quest> availableQuests) {
     }
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            // 客户端收到后更新任务数据
-            if (Minecraft.getInstance().screen instanceof GangQuestsScreen screen) {
-                List<Quest> newQuests = new ArrayList<>();
-                for (Quest questData : this.availableQuests) {
-                    Quest newData = new Quest(questData.toNbt());
-//                    newQuests.add(newData);
-//                    for (Quest quest : newQuests) {
-                    newData.updateFrom(questData);
-                    if (newData.getAcceptedBy() == null) {
-                        newQuests.add(newData);
-                    }
-//                    }
-                    // 刷新UI
-                    /*screen.updateQuestData(this.availableQuests());*/
-                }
-                screen.forceRefresh(newQuests);
-                ctx.get().setPacketHandled(true);
-            }
-        });
+        ctx.get().enqueueWork(() -> ClientPacketBridge.refreshQuestScreen(this.availableQuests));
+        ctx.get().setPacketHandled(true);
     }
 }

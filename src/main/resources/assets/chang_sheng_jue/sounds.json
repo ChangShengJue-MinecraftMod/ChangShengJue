@@ -126,10 +126,16 @@
       "chang_sheng_jue:entity/tiger_sound_1"
     ]
   },
+  "tiger_baby_sound": {
+    "subtitle": "sounds.chang_sheng_jue.tiger_sound_1",
+    "sounds": [
+      "chang_sheng_jue:entity/tiger_sound_1"
+    ]
+  },
   "tiger_hurt": {
     "subtitle": "sounds.chang_sheng_jue.tiger_hurt",
     "sounds": [
-      "chang_sheng_jue:entity/tiger_hurt"
+      "chang_sheng_jue:entity/tiger_sound_1"
     ]
   },
   "tiger_death": {

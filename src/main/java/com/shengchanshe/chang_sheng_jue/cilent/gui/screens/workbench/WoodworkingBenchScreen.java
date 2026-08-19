@@ -102,7 +102,10 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
         refreshItemButtons();
 
         WoodworkingBenchRecipe serverRecipe = menu.getCurrentRecipe();
-        if (serverRecipe != null || menu.isCrafting()) {
+        currentSelectedItem = ItemStack.EMPTY;
+        localCurrentRecipe = null;
+        materialCarouselIndex = null;
+        if (serverRecipe != null) {
             currentSelectedItem = serverRecipe.getResultItem(getRegistryAccess());
             localCurrentRecipe = serverRecipe;
             materialCarouselIndex = new int[serverRecipe.getIngredientCount()];
@@ -688,8 +691,16 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
      * @param checkCrafting 是否检查制作状态（true则制作中不更新）
      * @param resetCarousel 是否重置材料轮播索引
      */
-    private void updateRecipeSlots(WoodworkingBenchRecipe recipe, boolean checkCrafting, boolean resetCarousel) {
+    private void updateRecipeSlots(WoodworkingBenchRecipe recipe, boolean checkCrafting,
+                                   boolean resetCarousel, boolean syncToServer) {
         if (checkCrafting && menu.isCrafting()) {
+            return;
+        }
+        if (recipe == null) {
+            localCurrentRecipe = null;
+            currentSelectedItem = ItemStack.EMPTY;
+            materialCarouselIndex = null;
+            materialCacheValid = false;
             return;
         }
 
@@ -702,9 +713,9 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
             currentRecipeIndex = 0;
         }
 
-        menu.setCurrentRecipe(recipe);
         this.localCurrentRecipe = recipe;
         this.lastRecipe = recipe;
+        this.currentSelectedItem = recipe.getResultItem(getRegistryAccess());
 
         if (resetCarousel) {
             updateMaterialsDisplay();
@@ -712,20 +723,21 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
             updateMaterialsDisplayWithoutResetCarousel();
         }
 
-        ChangShengJueMessages.sendToServer(new WoodworkingBenchSyncRecipePacket(menu.getBlockPos(), recipe));
-        menu.updateRecipeSlots();
+        if (syncToServer) {
+            ChangShengJueMessages.sendToServer(new WoodworkingBenchSyncRecipePacket(menu.getBlockPos(), recipe));
+        }
     }
 
     private void updateSlotsForSelectedItem(WoodworkingBenchRecipe recipe) {
-        updateRecipeSlots(recipe, true, true);
+        updateRecipeSlots(recipe, true, true, true);
     }
 
     private void updateSlotsForRecipeGroupCarousel(WoodworkingBenchRecipe recipe) {
-        updateRecipeSlots(recipe, true, false);
+        updateRecipeSlots(recipe, true, false, true);
     }
 
     private void updateSlotsForCraftingRecipe(WoodworkingBenchRecipe recipe) {
-        updateRecipeSlots(recipe, false, true);
+        updateRecipeSlots(recipe, false, true, false);
     }
 
     private RegistryAccess getRegistryAccess() {
@@ -1012,10 +1024,9 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
             carouselTick = 0;
 
             WoodworkingBenchRecipe blockEntityRecipe = menu.blockEntity.getCurrentRecipe();
-            if (blockEntityRecipe != null && localCurrentRecipe != blockEntityRecipe) {
+            if (blockEntityRecipe != null && (localCurrentRecipe == null
+                    || !blockEntityRecipe.getId().equals(localCurrentRecipe.getId()))) {
                 updateSlotsForCraftingRecipe(blockEntityRecipe);
-            } else if (localCurrentRecipe != null) {
-                updateSlotsForCraftingRecipe(localCurrentRecipe);
             }
         }
     }

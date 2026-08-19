@@ -1,11 +1,8 @@
 package com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem;
 
-import com.shengchanshe.chang_sheng_jue.block.custom.brick_kiln.BrickKilnEntity;
+import com.shengchanshe.chang_sheng_jue.network.ServerPacketGuard;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -33,15 +30,13 @@ public class BrickKilnSetAmountPacket {
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
-            ServerPlayer player = context.getSender();
-            if (player != null) {
-                ServerLevel level = player.serverLevel();
-                BlockEntity blockEntity = level.getBlockEntity(pos);
-                if (blockEntity instanceof BrickKilnEntity benchEntity) {
-                    benchEntity.setCraftTimes(times); // 改为setCraftTimes
-                }
+            if (!ServerPacketGuard.isCraftAmountValid(times)) {
+                return;
             }
+            ServerPacketGuard.brickKiln(context.getSender(), pos)
+                    .ifPresent(entity -> entity.setCraftTimes(times));
         });
+        context.setPacketHandled(true);
         return true;
     }
 }

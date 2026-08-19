@@ -1,11 +1,12 @@
 package com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem;
 
-import com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase.TailoringCaseEntity;
+import com.shengchanshe.chang_sheng_jue.network.ServerPacketGuard;
 import com.shengchanshe.chang_sheng_jue.recipe.TailoringCaseRecipe;
+import io.netty.handler.codec.DecoderException;
+import io.netty.handler.codec.EncoderException;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -18,6 +19,7 @@ import java.util.function.Supplier;
  * 用于在客户端和服务端之间同步裁衣案当前使用的配方
  */
 public class TailoringSyncRecipePacket {
+    private static final int MAX_RECIPE_ID_LENGTH = 256;
     private final BlockPos pos;
     private final ResourceLocation recipeId; // 存储配方的唯一标识符
 
@@ -29,7 +31,6 @@ public class TailoringSyncRecipePacket {
     public TailoringSyncRecipePacket(BlockPos pos, TailoringCaseRecipe recipe) {
         this.pos = pos;
         this.recipeId = recipe != null ? recipe.getId() : null;
-        System.out.println("创建同步包，配方ID: " + (recipeId != null ? recipeId : "无"));
     }
 
     /**
@@ -40,7 +41,6 @@ public class TailoringSyncRecipePacket {
     public TailoringSyncRecipePacket(BlockPos pos, ResourceLocation recipeId) {
         this.pos = pos;
         this.recipeId = recipeId;
-        System.out.println("通过ResourceLocation创建同步包，配方ID: " + (recipeId != null ? recipeId : "无"));
     }
 
     /**
@@ -50,7 +50,6 @@ public class TailoringSyncRecipePacket {
     public TailoringSyncRecipePacket(FriendlyByteBuf buf) {
         this.pos = buf.readBlockPos();
         this.recipeId = readResourceLocationFromBuffer(buf);
-        System.out.println("解码同步包，配方ID: " + (recipeId != null ? recipeId : "无"));
     }
 
     /**
@@ -58,14 +57,8 @@ public class TailoringSyncRecipePacket {
      * @param buf 字节缓冲区
      */
     public void toBytes(FriendlyByteBuf buf) {
-        try {
-            buf.writeBlockPos(pos);
-            writeResourceLocationToBuffer(buf, recipeId);
-            System.out.println("编码同步包，配方ID: " + (recipeId != null ? recipeId : "无"));
-        } catch (Exception e) {
-            System.out.println("Error encoding recipe ID: " + (recipeId != null ? recipeId : "null"));
-            e.printStackTrace();
-        }
+        buf.writeBlockPos(pos);
+        writeResourceLocationToBuffer(buf, recipeId);
     }
 
     /**
@@ -74,21 +67,7 @@ public class TailoringSyncRecipePacket {
      * @return 新的配方同步包
      */
     public static TailoringSyncRecipePacket fromBytes(FriendlyByteBuf buf) {
-        try {
-            BlockPos pos = buf.readBlockPos();
-            ResourceLocation recipeId = readResourceLocationFromBuffer(buf);
-            return new TailoringSyncRecipePacket(pos, recipeId);
-        } catch (Exception e) {
-            System.out.println("Error decoding recipe packet");
-            e.printStackTrace();
-            // 安全跳过异常数据
-            try {
-                buf.skipBytes(buf.readableBytes());
-            } catch (Exception inner) {
-                // 忽略内部异常
-            }
-            return new TailoringSyncRecipePacket(buf.readBlockPos(), (ResourceLocation)null);
-        }
+        return new TailoringSyncRecipePacket(buf.readBlockPos(), readResourceLocationFromBuffer(buf));
     }
 
     /**
@@ -99,21 +78,21 @@ public class TailoringSyncRecipePacket {
     public void handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
-            ServerPlayer player = context.getSender();
-            if (player != null && player.level().getBlockEntity(pos) instanceof TailoringCaseEntity blockEntity) {
-                TailoringCaseRecipe recipe = null;
-                if (recipeId != null) {
-                    Optional<? extends Recipe<?>> optionalRecipe = player.level().getRecipeManager().byKey(recipeId);
-                    if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof TailoringCaseRecipe) {
-                        recipe = (TailoringCaseRecipe) optionalRecipe.get();
-                    } else {
-                        recipe = null;
-                    }
+            var player = context.getSender();
+            ServerPacketGuard.tailoringCase(player, pos).ifPresent(blockEntity -> {
+                if (recipeId == null) {
+                    blockEntity.setCurrentRecipe(null);
+                    blockEntity.setChanged();
+                    return;
                 }
 
+                Optional<? extends Recipe<?>> optionalRecipe = player.level().getRecipeManager().byKey(recipeId);
+                if (optionalRecipe.isEmpty() || !(optionalRecipe.get() instanceof TailoringCaseRecipe recipe)) {
+                    return;
+                }
                 blockEntity.setCurrentRecipe(recipe);
                 blockEntity.setChanged();
-            }
+            });
         });
         context.setPacketHandled(true);
     }
@@ -124,15 +103,20 @@ public class TailoringSyncRecipePacket {
      * @return 解析的ResourceLocation对象
      */
     private static ResourceLocation readResourceLocationFromBuffer(FriendlyByteBuf buf) {
-        if (buf.readBoolean()) {
-            int length = buf.readInt();
-            if (length >= 0) {
-                byte[] bytes = new byte[length];
-                buf.readBytes(bytes);
-                return ResourceLocation.tryParse(new String(bytes, StandardCharsets.UTF_8));
-            }
+        if (!buf.readBoolean()) {
+            return null;
         }
-        return null;
+        int length = buf.readInt();
+        if (length < 0 || length > MAX_RECIPE_ID_LENGTH) {
+            throw new DecoderException("Invalid tailoring recipe id length: " + length);
+        }
+        byte[] bytes = new byte[length];
+        buf.readBytes(bytes);
+        ResourceLocation location = ResourceLocation.tryParse(new String(bytes, StandardCharsets.UTF_8));
+        if (location == null) {
+            throw new DecoderException("Invalid recipe id in tailoring packet");
+        }
+        return location;
     }
 
     /**
@@ -143,8 +127,10 @@ public class TailoringSyncRecipePacket {
     private static void writeResourceLocationToBuffer(FriendlyByteBuf buf, ResourceLocation location) {
         buf.writeBoolean(location != null);
         if (location != null) {
-            String idString = location.toString();
-            byte[] bytes = idString.getBytes(StandardCharsets.UTF_8);
+            byte[] bytes = location.toString().getBytes(StandardCharsets.UTF_8);
+            if (bytes.length > MAX_RECIPE_ID_LENGTH) {
+                throw new EncoderException("Tailoring recipe id exceeds " + MAX_RECIPE_ID_LENGTH + " bytes");
+            }
             buf.writeInt(bytes.length);
             buf.writeBytes(bytes);
         }

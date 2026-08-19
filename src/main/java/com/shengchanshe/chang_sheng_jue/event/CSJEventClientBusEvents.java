@@ -31,7 +31,6 @@ import com.shengchanshe.chang_sheng_jue.cilent.layer.EntityExtraLayer;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import com.shengchanshe.chang_sheng_jue.entity.combat.stakes.StakesModel;
 import com.shengchanshe.chang_sheng_jue.entity.combat.throwingknives.ThrowingKnivesEntityModel;
-import com.shengchanshe.chang_sheng_jue.entity.combat.throwingknives.ThrowingKnivesEntityRender;
 import com.shengchanshe.chang_sheng_jue.entity.custom.peacock.egg.PeacockEggRender;
 import com.shengchanshe.chang_sheng_jue.entity.decoration.seat.SeatRender;
 import com.shengchanshe.chang_sheng_jue.entity.villagers.warrior.WarriorModel;
@@ -73,7 +72,6 @@ public class CSJEventClientBusEvents {
     public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
         //投掷物的渲染
         event.registerEntityRenderer(ChangShengJueEntity.PEACOCK_EGG.get(), PeacockEggRender::new);
-        event.registerEntityRenderer(ChangShengJueEntity.THROWING_KNIVES_ENTITY.get(), ThrowingKnivesEntityRender::new);
         //方块实体的渲染
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.POTTERY_WHEEL_ENTITY.get(), PotteryWheelEntityRender::new);
         event.registerBlockEntityRenderer(ChangShengJueBlocksEntities.TOOL_TABLE_ENTITY.get(), ToolTableEntityRender::new);

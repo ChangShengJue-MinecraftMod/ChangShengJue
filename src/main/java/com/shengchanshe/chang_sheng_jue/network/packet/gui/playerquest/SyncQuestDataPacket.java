@@ -1,6 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest;
 
-import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.ClientQuestDataCache;
+import com.shengchanshe.chang_sheng_jue.network.ClientPacketBridge;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
@@ -27,9 +27,7 @@ public class SyncQuestDataPacket {
     }
 
     public static void handle(SyncQuestDataPacket msg, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            ClientQuestDataCache.get().updateData(msg.playerId(), msg.questData());
-        });
+        ctx.get().enqueueWork(() -> ClientPacketBridge.syncQuestData(msg.playerId(), msg.questData()));
         ctx.get().setPacketHandled(true);
     }
 

@@ -1,11 +1,8 @@
 package com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem;
 
-import com.shengchanshe.chang_sheng_jue.block.custom.brick_kiln.BrickKilnEntity;
+import com.shengchanshe.chang_sheng_jue.network.ServerPacketGuard;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -27,18 +24,9 @@ public class BrickKilnPacket {
 
     public static void handle(BrickKilnPacket packet, Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
-
-            ServerPlayer player = ctx.get().getSender();
-            if (player == null) return;
-
-            Level level = player.level();
-            BlockPos pos = packet.pos;
-            BlockEntity entity = level.getBlockEntity(pos);
-
-            if (entity instanceof BrickKilnEntity entity1) {
-                // 调用锻造台制作逻辑
-                entity1.craftCurrentRecipe(player);
-            }
+            var player = ctx.get().getSender();
+            ServerPacketGuard.brickKiln(player, packet.pos)
+                    .ifPresent(entity -> entity.craftCurrentRecipe(player));
         });
         ctx.get().setPacketHandled(true);
     }

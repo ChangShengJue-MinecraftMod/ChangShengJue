@@ -5,7 +5,10 @@ import com.shengchanshe.chang_sheng_jue.tags.CSJTags;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -16,10 +19,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.Structure;
 
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class StructureIntelligence extends Item {
     // 使用DamageValue区分结构类型
@@ -30,12 +33,19 @@ public class StructureIntelligence extends Item {
     public static final int HUI_PAI_VILLAGE_TYPE = 4;
     public static final int FORTRESSES_TYPE = 5;
     private static final int SEARCH_RADIUS = 100; // 搜索半径
+    private static final long SEARCH_EXPIRY_TICKS = 60L * 20L;
+    private static final int MAX_ACTIVE_SEARCHES = 128;
+    private static final int MAX_ACTIVE_SEARCHES_PER_PLAYER = 2;
+    private static final int MAX_SEARCHES_PER_TICK = 1;
+    private static final int SEARCH_SUBMISSION_COOLDOWN_TICKS = 10;
+    private static final int MAX_TRACKED_PLAYER_COOLDOWNS = 1024;
 
     public StructureIntelligence(Properties properties) {
         super(properties);
     }
 
-    private static final Map<UUID, CompletableFuture<BlockPos>> activeSearches = new ConcurrentHashMap<>();
+    private static final Map<UUID, PendingSearch> activeSearches = new LinkedHashMap<>();
+    private static final LinkedHashMap<UUID, Long> lastSearchTicks = new LinkedHashMap<>(16, 0.75F, true);
 
     private UUID getOrCreateItemId(ItemStack stack) {
         var tag = stack.getOrCreateTag();
@@ -74,41 +84,126 @@ public class StructureIntelligence extends Item {
             return InteractionResultHolder.fail(stack);
         }
 
+        MinecraftServer server = level.getServer();
+        if (server == null) {
+            return InteractionResultHolder.fail(stack);
+        }
+        UUID playerId = player.getUUID();
+        long currentServerTick = server.getTickCount();
+        Long lastSearchTick = lastSearchTicks.get(playerId);
+        if (lastSearchTick != null
+                && currentServerTick >= lastSearchTick
+                && currentServerTick - lastSearchTick < SEARCH_SUBMISSION_COOLDOWN_TICKS) {
+            player.displayClientMessage(
+                    Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".searching")
+                            .withStyle(ChatFormatting.YELLOW), true);
+            return InteractionResultHolder.consume(stack);
+        }
+        if (activeSearches.size() >= MAX_ACTIVE_SEARCHES
+                || countActiveSearches(playerId) >= MAX_ACTIVE_SEARCHES_PER_PLAYER) {
+            player.displayClientMessage(
+                    Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".search_error")
+                            .withStyle(ChatFormatting.RED), true);
+            return InteractionResultHolder.consume(stack);
+        }
+
         player.displayClientMessage(
             Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".search_start", getStructureName(stack))
                 .withStyle(ChatFormatting.YELLOW), true);
 
-        // 异步搜索结构
-        CompletableFuture<BlockPos> future = CompletableFuture.supplyAsync(() ->
-            ((ServerLevel)level).findNearestMapStructure(
-                structureTag, player.blockPosition(), SEARCH_RADIUS, false)
-        );
-
-        activeSearches.put(itemId, future);
-
-        future.thenAccept(pos -> {
-            level.getServer().execute(() -> {
-                if (pos != null) {
-                    bindPosition(stack, pos);
-                    sendDiscoveryMessage(player, getStructureName(stack), pos);
-                } else {
-                    player.displayClientMessage(
-                        Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".structure_not_found", getStructureName(stack))
-                            .withStyle(ChatFormatting.RED), false);
-                }
-                activeSearches.remove(itemId);
-            });
-        }).exceptionally(ex -> {
-            level.getServer().execute(() -> {
-                player.displayClientMessage(
-                    Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".search_error")
-                        .withStyle(ChatFormatting.RED), false);
-                activeSearches.remove(itemId);
-            });
-            return null;
-        });
+        activeSearches.put(itemId, new PendingSearch(
+                playerId, level.dimension(), hand, itemId, stack.getDamageValue(), structureTag,
+                level.getGameTime(), player.blockPosition()));
+        rememberSearchSubmission(playerId, currentServerTick);
 
         return InteractionResultHolder.consume(stack);
+    }
+
+    public static void tickSearches(MinecraftServer server) {
+        if (!server.isSameThread()) {
+            throw new IllegalStateException("Structure searches must run on the server thread");
+        }
+        if (activeSearches.isEmpty()) {
+            return;
+        }
+        int searchBudget = Math.min(MAX_SEARCHES_PER_TICK, activeSearches.size());
+        Iterator<Map.Entry<UUID, PendingSearch>> iterator = activeSearches.entrySet().iterator();
+        for (int processed = 0; processed < searchBudget && iterator.hasNext(); processed++) {
+            PendingSearch pending = iterator.next().getValue();
+            iterator.remove();
+            processSearch(server, pending);
+        }
+    }
+
+    public static void clearSearches() {
+        activeSearches.clear();
+        lastSearchTicks.clear();
+    }
+
+    private static void processSearch(MinecraftServer server, PendingSearch pending) {
+        ServerLevel level = server.getLevel(pending.dimension());
+        ServerPlayer player = server.getPlayerList().getPlayer(pending.playerId());
+        if (level == null || player == null || !player.isAlive() || player.level() != level) {
+            return;
+        }
+        ItemStack stack = player.getItemInHand(pending.hand());
+        if (!matchesPendingItem(stack, pending)) {
+            return;
+        }
+        long now = level.getGameTime();
+        if (now < pending.submittedTick() || now - pending.submittedTick() > SEARCH_EXPIRY_TICKS) {
+            player.displayClientMessage(
+                    Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".search_error")
+                            .withStyle(ChatFormatting.RED), false);
+            return;
+        }
+
+        BlockPos pos = level.findNearestMapStructure(
+                pending.structureTag(), pending.origin(), SEARCH_RADIUS, false);
+        ItemStack currentStack = player.getItemInHand(pending.hand());
+        if (!matchesPendingItem(currentStack, pending)) {
+            return;
+        }
+        StructureIntelligence item = (StructureIntelligence) currentStack.getItem();
+        if (pos != null) {
+            item.bindPosition(currentStack, pos);
+            item.sendDiscoveryMessage(player, item.getStructureName(currentStack), pos);
+        } else {
+            player.displayClientMessage(
+                    Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".structure_not_found",
+                                    item.getStructureName(currentStack))
+                            .withStyle(ChatFormatting.RED), false);
+        }
+    }
+
+    private static int countActiveSearches(UUID playerId) {
+        int count = 0;
+        for (PendingSearch pending : activeSearches.values()) {
+            if (pending.playerId().equals(playerId)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private static void rememberSearchSubmission(UUID playerId, long currentServerTick) {
+        if (!lastSearchTicks.containsKey(playerId)
+                && lastSearchTicks.size() >= MAX_TRACKED_PLAYER_COOLDOWNS) {
+            Iterator<UUID> iterator = lastSearchTicks.keySet().iterator();
+            if (iterator.hasNext()) {
+                iterator.next();
+                iterator.remove();
+            }
+        }
+        lastSearchTicks.put(playerId, currentServerTick);
+    }
+
+    private static boolean matchesPendingItem(ItemStack stack, PendingSearch pending) {
+        return stack.getItem() instanceof StructureIntelligence
+                && stack.getDamageValue() == pending.damageValue()
+                && stack.getTag() != null
+                && stack.getTag().hasUUID("itemId")
+                && pending.itemId().equals(stack.getTag().getUUID("itemId"));
     }
 
     private void bindPosition(ItemStack stack, BlockPos pos) {
@@ -154,6 +249,11 @@ public class StructureIntelligence extends Item {
     public Component getName(ItemStack pStack) {
         int damage = pStack.getDamageValue();
         return Component.translatable(this.getDescriptionId() + "." + damage, getStructureName(pStack));
+    }
+
+    private record PendingSearch(UUID playerId, ResourceKey<Level> dimension, InteractionHand hand,
+                                 UUID itemId, int damageValue, TagKey<Structure> structureTag,
+                                 long submittedTick, BlockPos origin) {
     }
 
 }

@@ -20,6 +20,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
 public class ChangShengJueMessages {
+    private static final String PROTOCOL_VERSION = "1.0";
     private static SimpleChannel INSTANCE;
     private static int packetId = 0;
     private static int id() {
@@ -29,9 +30,9 @@ public class ChangShengJueMessages {
     public static void register() {
         SimpleChannel net = NetworkRegistry.ChannelBuilder
                 .named(new ResourceLocation(ChangShengJue.MOD_ID, "messages"))
-                .networkProtocolVersion(() -> "1.0")
-                .clientAcceptedVersions(s -> true)
-                .serverAcceptedVersions(s -> true)
+                .networkProtocolVersion(() -> PROTOCOL_VERSION)
+                .clientAcceptedVersions(PROTOCOL_VERSION::equals)
+                .serverAcceptedVersions(PROTOCOL_VERSION::equals)
                 .simpleChannel();
 
         INSTANCE = net;
@@ -43,7 +44,7 @@ public class ChangShengJueMessages {
                 .add();
 
         //踏雪无痕
-        net.messageBuilder(TreadTheSnowWithoutTracePacket.class, id())
+        net.messageBuilder(TreadTheSnowWithoutTracePacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(TreadTheSnowWithoutTracePacket::new)
                 .encoder(TreadTheSnowWithoutTracePacket::toBytes)
                 .consumerMainThread(TreadTheSnowWithoutTracePacket::handle)
@@ -86,44 +87,44 @@ public class ChangShengJueMessages {
                 .consumerMainThread(XpParticlePacket::handle)
                 .add();
         // 按钮切换交易类型
-        net.messageBuilder(KilnWorkerSetTradeTypePacket.class, id())
+        net.messageBuilder(KilnWorkerSetTradeTypePacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(KilnWorkerSetTradeTypePacket::decode)
                 .encoder(KilnWorkerSetTradeTypePacket::encode)
                 .consumerMainThread( KilnWorkerSetTradeTypePacket::handle)
                 .add();
         // 帮派任务按钮
-        net.messageBuilder(AcceptGangQuestsPacket.class, id())
+        net.messageBuilder(AcceptGangQuestsPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(AcceptGangQuestsPacket::decode)
                 .encoder(AcceptGangQuestsPacket::encode)
                 .consumerMainThread(AcceptGangQuestsPacket::handle)
                 .add();
 
         // 服务端→客户端同步包（任务数据下发）
-        net.messageBuilder(SyncQuestDataPacket.class, id())
+        net.messageBuilder(SyncQuestDataPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(SyncQuestDataPacket::decode)
                 .encoder(SyncQuestDataPacket::encode)
                 .consumerMainThread(SyncQuestDataPacket::handle)
                 .add();
 
         // 背包任务按钮
-        net.messageBuilder(SubmitPlayerQuestsPacket.class, id())
+        net.messageBuilder(SubmitPlayerQuestsPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(SubmitPlayerQuestsPacket::decode)
                 .encoder(SubmitPlayerQuestsPacket::encode)
                 .consumerMainThread(SubmitPlayerQuestsPacket::handle)
                 .add();
-        net.messageBuilder(AbandonPlayerQuestPacket.class, id())
+        net.messageBuilder(AbandonPlayerQuestPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(AbandonPlayerQuestPacket::decode)
                 .encoder(AbandonPlayerQuestPacket::encode)
                 .consumerMainThread(AbandonPlayerQuestPacket::handle)
                 .add();
 
         // 任务UI
-        net.messageBuilder(OpenGangQuestScreenPacket.class, id())
+        net.messageBuilder(OpenGangQuestScreenPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(OpenGangQuestScreenPacket::decode)
                 .encoder(OpenGangQuestScreenPacket::encode)
                 .consumerMainThread(OpenGangQuestScreenPacket::handle)
                 .add();
-        net.messageBuilder(OpenPlayerQuestScreenPacket.class, id())
+        net.messageBuilder(OpenPlayerQuestScreenPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(OpenPlayerQuestScreenPacket::decode)
                 .encoder(OpenPlayerQuestScreenPacket::encode)
                 .consumerMainThread(OpenPlayerQuestScreenPacket::handle)
@@ -178,7 +179,7 @@ public class ChangShengJueMessages {
                 .consumerMainThread(WoodworkingBenchSyncRecipePacket::handle)
                 .add();
 
-        net.messageBuilder(WoodworkingBenchSetAmountPacket.class, id())
+        net.messageBuilder(WoodworkingBenchSetAmountPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(WoodworkingBenchSetAmountPacket::new)
                 .encoder(WoodworkingBenchSetAmountPacket::toBytes)
                 .consumerMainThread(WoodworkingBenchSetAmountPacket::handle)
@@ -196,7 +197,7 @@ public class ChangShengJueMessages {
                 .consumerMainThread(BrickKilnSyncRecipePacket::handle)
                 .add();
 
-        net.messageBuilder(BrickKilnSetAmountPacket.class, id())
+        net.messageBuilder(BrickKilnSetAmountPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(BrickKilnSetAmountPacket::new)
                 .encoder(BrickKilnSetAmountPacket::toBytes)
                 .consumerMainThread(BrickKilnSetAmountPacket::handle)

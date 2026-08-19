@@ -13,11 +13,13 @@ import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.Container;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
@@ -776,12 +778,7 @@ public class Quest {
     // 检查玩家是否满足任务需求
     public boolean canComplete(Player player) {
         if (questType == QuestType.GATHER) {
-            for (ItemStack req : questRequirements) {
-                if (player.getInventory().countItem(req.getItem()) < req.getCount()) {
-                    return false;
-                }
-            }
-            return true;
+            return planRequirementTransaction(player).isPresent();
         } else if (questType == QuestType.KILL) {
             if (secondTargetEntity == null) {
                 return currentKills >= requiredKills;
@@ -935,10 +932,75 @@ public class Quest {
 
     // 从玩家背包中移除需求物品
     public void takeRequirements(Player player) {
-        if (questRequirements != null){
-            for (ItemStack req : questRequirements) {
-                player.getInventory().clearOrCountMatchingItems(p -> p.getItem() == req.getItem(), req.getCount(), player.inventoryMenu.getCraftSlots());
+        planRequirementTransaction(player).ifPresent(RequirementTransaction::commit);
+    }
+
+    private Optional<RequirementTransaction> planRequirementTransaction(Player player) {
+        return planRequirementTransaction(
+                List.of(player.getInventory(), player.inventoryMenu.getCraftSlots()), questRequirements);
+    }
+
+    static boolean consumeRequirements(Container inventory, List<ItemStack> requirements) {
+        Optional<RequirementTransaction> transaction = planRequirementTransaction(List.of(inventory), requirements);
+        return transaction.isPresent() && transaction.get().commit();
+    }
+
+    private static Optional<RequirementTransaction> planRequirementTransaction(
+            List<? extends Container> inventories, List<ItemStack> requirements) {
+        if (requirements == null || requirements.isEmpty()) {
+            return Optional.of(new RequirementTransaction(List.of()));
+        }
+
+        Map<Item, Long> requiredByItem = new LinkedHashMap<>();
+        for (ItemStack requirement : requirements) {
+            if (requirement == null || requirement.isEmpty() || requirement.getCount() <= 0) {
+                continue;
             }
+            long total = requiredByItem.getOrDefault(requirement.getItem(), 0L) + requirement.getCount();
+            if (total > Integer.MAX_VALUE) {
+                return Optional.empty();
+            }
+            requiredByItem.put(requirement.getItem(), total);
+        }
+
+        List<RequirementTake> takes = new ArrayList<>();
+        for (Map.Entry<Item, Long> requirement : requiredByItem.entrySet()) {
+            long remaining = requirement.getValue();
+            for (Container inventory : inventories) {
+                for (int slot = 0; slot < inventory.getContainerSize() && remaining > 0; slot++) {
+                    ItemStack available = inventory.getItem(slot);
+                    if (!available.isEmpty() && available.is(requirement.getKey())) {
+                        int take = (int) Math.min(remaining, available.getCount());
+                        takes.add(new RequirementTake(inventory, slot, requirement.getKey(), take));
+                        remaining -= take;
+                    }
+                }
+            }
+            if (remaining > 0) {
+                return Optional.empty();
+            }
+        }
+        return Optional.of(new RequirementTransaction(List.copyOf(takes)));
+    }
+
+    private record RequirementTake(Container inventory, int slot, Item item, int count) {
+    }
+
+    private record RequirementTransaction(List<RequirementTake> takes) {
+        private boolean commit() {
+            for (RequirementTake take : takes) {
+                ItemStack stack = take.inventory().getItem(take.slot());
+                if (!stack.is(take.item()) || stack.getCount() < take.count()) {
+                    return false;
+                }
+            }
+            Set<Container> changedInventories = Collections.newSetFromMap(new IdentityHashMap<>());
+            for (RequirementTake take : takes) {
+                take.inventory().getItem(take.slot()).shrink(take.count());
+                changedInventories.add(take.inventory());
+            }
+            changedInventories.forEach(Container::setChanged);
+            return true;
         }
     }
 

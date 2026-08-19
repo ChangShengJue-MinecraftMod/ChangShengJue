@@ -3,7 +3,7 @@
   "group": "furniture:liangge",
   "ingredients": [
     {
-      "item": "minecraft:huang_hua_li_planks",
+      "item": "chang_sheng_jue:huang_hua_li_planks",
       "count": 4
     }
   ],

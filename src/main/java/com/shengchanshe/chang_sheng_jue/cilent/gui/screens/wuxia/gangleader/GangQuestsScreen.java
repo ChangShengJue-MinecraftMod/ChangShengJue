@@ -57,7 +57,8 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
     private static final int HEAD_SIZE = 8;
     private static final int MAX_VISIBLE_HEADS = 5;
 
-    private static final Map<EntityType<?>, Entity> ENTITY_CACHE = new HashMap<>();
+    private final Map<EntityType<?>, Entity> entityCache = new HashMap<>();
+    private GuiEntityGraphics entityGraphics;
 
     public GangQuestsScreen(GangQuestsMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
@@ -162,12 +163,10 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
             int rewardsDescriptionStartX = x + 28 + rewardsTitleWidth + 5;
 
             if (currentQuest.getQuestType() == Quest.QuestType.KILL) {
-                GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
-                        renderKillTargetHead(guiGraphics, descriptionStartX, y + REQ_SLOTS_Y - 2,
+                this.entityGraphics.renderKillTargetHead(guiGraphics, descriptionStartX, y + REQ_SLOTS_Y - 2,
                                 currentQuest.getTargetEntity(), currentQuest.getCurrentKills(), currentQuest.getRequiredKills());
                 if (currentQuest.getSecondTargetEntity() != null && !currentQuest.getSecondTargetEntity().isEmpty()) {
-                    GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
-                            renderKillTargetHead(guiGraphics, descriptionStartX + 15, y + REQ_SLOTS_Y - 2,
+                    this.entityGraphics.renderKillTargetHead(guiGraphics, descriptionStartX + 15, y + REQ_SLOTS_Y - 2,
                                     currentQuest.getSecondTargetEntity(), currentQuest.getSecondCurrentKills(), currentQuest.getSecondRequiredKills());
                 }
             } else if (currentQuest.getQuestType() == Quest.QuestType.GATHER) {
@@ -245,6 +244,9 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
     @Override
     protected void init() {
         super.init();
+        if (this.entityGraphics == null) {
+            this.entityGraphics = new GuiEntityGraphics(this.font, HEAD_SIZE, MAX_VISIBLE_HEADS, this.entityCache);
+        }
 
         int left = (this.width - this.imageWidth) / 2;
         int top = (this.height - this.imageHeight) / 2;
@@ -295,5 +297,17 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
     public void forceRefresh(List<Quest> newQuests) {
         menu.updateAvailableQuests(newQuests);
         refreshUI();
+    }
+
+    public void clearEntityCache() {
+        if (this.entityGraphics != null) {
+            this.entityGraphics.clear();
+        }
+    }
+
+    @Override
+    public void removed() {
+        clearEntityCache();
+        super.removed();
     }
 }

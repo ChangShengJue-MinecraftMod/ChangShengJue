@@ -8,11 +8,21 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.util.FormattedCharSequence;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.List;
+
 @OnlyIn(Dist.CLIENT)
 public class PlaqueEntityRender  implements BlockEntityRenderer<PlaqueEntity> {
+    private static final int WRAP_WIDTH_PIXELS = 48;
+    private static final int MAX_RENDERED_LINES = 4;
+    private static final float BASE_SCALE = 0.065F;
+    private static final float MAX_WORLD_WIDTH = 0.72F;
+    private static final float MAX_WORLD_HEIGHT = 0.36F;
+
     public PlaqueEntityRender(BlockEntityRendererProvider.Context context) {}
 
     @Override
@@ -44,12 +54,30 @@ public class PlaqueEntityRender  implements BlockEntityRenderer<PlaqueEntity> {
             }
 //            poseStack.mulPose(Axis.YP.rotationDegrees(180F));
             poseStack.mulPose(Axis.XP.rotationDegrees(180f));
-            poseStack.translate(0.1,0.1,0);
-            poseStack.scale(0.065f, 0.065f, 0.065f); // 缩小文字尺寸
-            // 渲染文字（居中对齐）
-            float textWidth = font.width(text) / 2.0f;
-            font.drawInBatch(text, -textWidth, -5, 0x000, false, poseStack.last().pose(),
-                    bufferSource, Font.DisplayMode.POLYGON_OFFSET, 0, 0xF000F0);
+            List<FormattedCharSequence> wrappedLines = font.split(Component.literal(text), WRAP_WIDTH_PIXELS);
+            int lineCount = Math.min(MAX_RENDERED_LINES, wrappedLines.size());
+            if (lineCount == 0) {
+                poseStack.popPose();
+                return;
+            }
+
+            int maxLineWidth = 1;
+            for (int index = 0; index < lineCount; index++) {
+                maxLineWidth = Math.max(maxLineWidth, font.width(wrappedLines.get(index)));
+            }
+            float scale = Math.min(BASE_SCALE, Math.min(
+                    MAX_WORLD_WIDTH / maxLineWidth,
+                    MAX_WORLD_HEIGHT / (font.lineHeight * (float) lineCount)
+            ));
+
+            poseStack.scale(scale, scale, scale);
+            float startY = -(font.lineHeight * lineCount) / 2.0F;
+            for (int index = 0; index < lineCount; index++) {
+                FormattedCharSequence line = wrappedLines.get(index);
+                float lineX = -font.width(line) / 2.0F;
+                font.drawInBatch(line, lineX, startY + index * font.lineHeight, 0x000000, false,
+                        poseStack.last().pose(), bufferSource, Font.DisplayMode.POLYGON_OFFSET, 0, packedLight);
+            }
             poseStack.popPose();
         }
     }

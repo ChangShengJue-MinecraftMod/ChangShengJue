@@ -2,12 +2,13 @@ package com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
+import com.shengchanshe.chang_sheng_jue.block.custom.CraftingMaterialTransaction;
+import com.shengchanshe.chang_sheng_jue.block.custom.PersistedCraftingJob;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase.TailoringCaseMenu;
 import com.shengchanshe.chang_sheng_jue.recipe.TailoringCaseRecipe;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
@@ -22,7 +23,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -31,7 +32,9 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.RangedWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
@@ -40,32 +43,61 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.ClientUtils;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Optional;
 
-public class TailoringCaseEntity extends BlockEntity implements MenuProvider , GeoBlockEntity {
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    public static final DirectionProperty FACING = TailoringCase.FACING;
-    // 物品槽位处理器（9个输入，1个输出）
-    private final ItemStackHandler itemHandler = new ItemStackHandler(10);
+public class TailoringCaseEntity extends BlockEntity implements MenuProvider, GeoBlockEntity {
+    private static final int INPUT_SLOT_COUNT = 9;
+    private static final String ACTIVE_JOB = "active_job";
     public static final int SLOT_OUTPUT = 9;
-    private LazyOptional<ItemStackHandler> itemHandlerLazy = LazyOptional.empty();
-    protected final ContainerData data;
-    public int progress = 0;
-    public int maxProgress = 100;
-    private Player currentUser; // 当前使用玩家
+    public static final DirectionProperty FACING = TailoringCase.FACING;
 
-    // 当前选中的配方和配方组
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private final ItemStackHandler itemHandler = new ItemStackHandler(10) {
+        @Override
+        public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            if (slot == SLOT_OUTPUT || (slot < INPUT_SLOT_COUNT && level != null && !level.isClientSide)) return stack;
+            return super.insertItem(slot, stack, simulate);
+        }
+
+        @Override
+        protected void onContentsChanged(int slot) {
+            if (level != null && !level.isClientSide && !suppressHandlerCallbacks) {
+                if (slot == SLOT_OUTPUT) TailoringCaseEntity.this.syncToClient();
+                else TailoringCaseEntity.this.setChanged();
+            }
+        }
+    };
+    private LazyOptional<ItemStackHandler> itemHandlerLazy = LazyOptional.empty();
+    private LazyOptional<IItemHandler> outputHandlerLazy = LazyOptional.empty();
+    protected final ContainerData data;
+    public int progress;
+    public int maxProgress = 100;
+    private Player currentUser;
     private TailoringCaseRecipe currentRecipe;
-    private String currentRecipeGroup = ""; // 当前配方组
+    private String currentRecipeGroup = "";
+    private ResourceLocation pendingRecipeId;
+    private PersistedCraftingJob activeJob;
+    private boolean activeRecipeAvailable;
+    private boolean legacyWaiting;
+    private boolean missingRecipeLogged;
+    private boolean legacyGhostLogged;
+    private boolean suppressHandlerCallbacks;
+    private int recipeRetryTicks;
+
+    public TailoringCaseEntity(BlockPos pos, BlockState state) {
+        super(ChangShengJueBlocksEntities.TAILORING_CASE_ENTITY.get(), pos, state);
+        data = new ContainerData() {
+            @Override public int get(int index) { return index == 0 ? progress : index == 1 ? maxProgress : 0; }
+            @Override public void set(int index, int value) { if (index == 0) progress = value; else if (index == 1) maxProgress = value; }
+            @Override public int getCount() { return 2; }
+        };
+    }
 
     @Override
     public @Nullable <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            return itemHandlerLazy.cast();
-        }
+        if (cap == ForgeCapabilities.ITEM_HANDLER) return (side == null ? itemHandlerLazy : outputHandlerLazy).cast();
         return super.getCapability(cap, side);
     }
 
@@ -73,350 +105,199 @@ public class TailoringCaseEntity extends BlockEntity implements MenuProvider , G
     public void onLoad() {
         super.onLoad();
         itemHandlerLazy = LazyOptional.of(() -> itemHandler);
+        outputHandlerLazy = LazyOptional.of(() -> new RangedWrapper(itemHandler, SLOT_OUTPUT, SLOT_OUTPUT + 1));
+        if (level != null && !level.isClientSide) clearLegacyGhostInputs();
+        resolveRecipes();
     }
 
-    @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        itemHandlerLazy.invalidate();
-    }
-
-    public TailoringCaseEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ChangShengJueBlocksEntities.TAILORING_CASE_ENTITY.get(), pPos, pBlockState);
-        this.data = new ContainerData() {
-            @Override
-            public int getCount() {
-                return 2; // 只需要进度和最大进度
-            }
-
-            @Override
-            public int get(int i) {
-                return switch (i){
-                    case 0 -> TailoringCaseEntity.this.progress;
-                    case 1 -> TailoringCaseEntity.this.maxProgress;
-                    default -> 0;
-                };
-            }
-
-            @Override
-            public void set(int i, int i1) {
-                switch (i){
-                    case 0 -> TailoringCaseEntity.this.progress = i1;
-                    case 1 -> TailoringCaseEntity.this.maxProgress = i1;
-                }
-            }
-        };
-    }
-
+    @Override public void invalidateCaps() { super.invalidateCaps(); itemHandlerLazy.invalidate(); outputHandlerLazy.invalidate(); }
 
     public void drop() {
-        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
-        }
-        Containers.dropContents(this.level, worldPosition, inventory);
+        SimpleContainer inventory = new SimpleContainer(1);
+        inventory.setItem(0, itemHandler.getStackInSlot(SLOT_OUTPUT));
+        Containers.dropContents(level, worldPosition, inventory);
     }
 
-
-    @Override
-    public Component getDisplayName() {
-        return Component.translatable("container." + ChangShengJue.MOD_ID + ".tailoring_case");
-    }
+    @Override public Component getDisplayName() { return Component.translatable("container." + ChangShengJue.MOD_ID + ".tailoring_case"); }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player player) {
-        // 如果已有玩家在使用，且不是当前玩家，则拒绝打开
-        if (currentUser != null && currentUser != player) {
-            return null; // 返回null会阻止GUI打开
-        }
-
-        // 首次打开时记录玩家
-        if (currentUser == null) {
-            currentUser = player;
-        }
-
-        return new TailoringCaseMenu(containerId, inventory, this, this.data);
+        if (currentUser != null && currentUser != player) return null;
+        currentUser = player;
+        return new TailoringCaseMenu(containerId, inventory, this, data);
     }
 
-    // 玩家关闭容器时清除记录
-    public void onClose(Player player) {
-        if (player == currentUser) {
-            currentUser = null;
-        }
-    }
+    public void onClose(Player player) { if (player == currentUser) currentUser = null; }
 
     @Override
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.put("inventory", itemHandler.serializeNBT());
         tag.putInt("progress", progress);
-
-        // 保存当前配方信息
-        if (currentRecipe != null) {
-            tag.putString("current_recipe", currentRecipe.getId().toString());
-        }
+        ResourceLocation selected = currentRecipe != null ? currentRecipe.getId() : pendingRecipeId;
+        if (selected != null) tag.putString("current_recipe", selected.toString());
+        if (activeJob != null) tag.put(ACTIVE_JOB, activeJob.save(progress));
     }
 
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
         itemHandler.deserializeNBT(tag.getCompound("inventory"));
-        progress = tag.getInt("progress");
+        int loadedProgress = tag.getInt("progress");
+        progress = loadedProgress >= 0 && loadedProgress <= maxProgress ? loadedProgress : 0;
+        pendingRecipeId = tag.contains("current_recipe") ? ResourceLocation.tryParse(tag.getString("current_recipe")) : null;
+        currentRecipe = null;
+        activeJob = null;
+        if (tag.contains(ACTIVE_JOB)) {
+            PersistedCraftingJob.Loaded loaded = PersistedCraftingJob.load(tag.getCompound(ACTIVE_JOB), maxProgress);
+            if (loaded != null) { activeJob = loaded.job(); progress = loaded.progress(); }
+        }
+        if (level != null) resolveRecipes();
+    }
 
-        // 加载当前配方信息
-        if (tag.contains("current_recipe")) {
-            ResourceLocation recipeId = new ResourceLocation(tag.getString("current_recipe"));
-            // 注意：这里我们只保存配方ID，在实际使用时需要通过配方管理器获取完整配方
-            // 在getOrCreateLevel()方法中处理配方的实际获取
-            if (level != null) {
-                Optional<? extends net.minecraft.world.item.crafting.Recipe<?>> recipe = level.getRecipeManager().byKey(recipeId);
-                if (recipe.isPresent() && recipe.get() instanceof TailoringCaseRecipe) {
-                    currentRecipe = (TailoringCaseRecipe) recipe.get();
-                } else {
-                    currentRecipe = null;
-                }
-            } else {
-                currentRecipe = null;
-            }
-        } else {
-            currentRecipe = null;
+    private void resolveRecipes() {
+        if (level == null) return;
+        ResourceLocation selected = activeJob != null ? activeJob.recipeId() : pendingRecipeId;
+        currentRecipe = findRecipe(selected).orElse(null);
+        activeRecipeAvailable = activeJob == null || findRecipe(activeJob.recipeId()).isPresent();
+        if (activeJob == null && progress > 0 && currentRecipe != null) {
+            activeJob = new PersistedCraftingJob(currentRecipe.getId(), currentRecipe.getResultItem(level.registryAccess()), 1, 1);
+            activeRecipeAvailable = true;
+        }
+        legacyWaiting = progress > 0 && activeJob == null;
+        if (!level.isClientSide && (legacyWaiting || !activeRecipeAvailable) && !missingRecipeLogged) {
+            ChangShengJue.LOGGER.warn("Tailoring case at {} is waiting for missing recipe {}", worldPosition, selected);
+            missingRecipeLogged = true;
+        } else if (!legacyWaiting && activeRecipeAvailable) {
+            missingRecipeLogged = false;
         }
     }
 
-    @Nullable
-    @Override
-    public ClientboundBlockEntityDataPacket getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
+    private Optional<TailoringCaseRecipe> findRecipe(@Nullable ResourceLocation id) {
+        if (id == null || level == null) return Optional.empty();
+        Optional<? extends Recipe<?>> recipe = level.getRecipeManager().byKey(id);
+        return recipe.isPresent() && recipe.get() instanceof TailoringCaseRecipe typed ? Optional.of(typed) : Optional.empty();
     }
 
-    @Override
-    public CompoundTag getUpdateTag() {
-        CompoundTag tag = new CompoundTag();
-        saveAdditional(tag);
-        return tag;
+    @Nullable @Override public ClientboundBlockEntityDataPacket getUpdatePacket() { return ClientboundBlockEntityDataPacket.create(this); }
+    @Override public CompoundTag getUpdateTag() { CompoundTag tag = new CompoundTag(); saveAdditional(tag); return tag; }
+    @Override public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet) { load(packet.getTag()); }
+    @Override public void handleUpdateTag(CompoundTag tag) { super.handleUpdateTag(tag); load(tag); }
+    public ItemStackHandler getItemHandler() { return itemHandler; }
+    public boolean isCrafting() { return activeJob != null; }
+
+    public void tick(Level level, BlockPos pos, BlockState state) {
+        if (level.isClientSide) return;
+        retryMissingRecipe();
+        if (activeJob == null || !activeRecipeAvailable) return;
+        if (progress < maxProgress) { progress++; super.setChanged(); return; }
+        if (!canInsert(activeJob.output())) return;
+        craftItem(activeJob.output());
+        activeJob = null;
+        progress = 0;
+        syncToClient();
     }
 
-    @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-        load(pkt.getTag());
-    }
-
-    public ItemStackHandler getItemHandler() {
-        return itemHandler;
-    }
-
-    public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-        if (pLevel.isClientSide()) return; // 客户端不处理逻辑
-
-        // 只有在制作中时才增加进度
-        if (progress > 0 && progress < maxProgress) {
-            progress++;
-            this.setChanged();
-        } else if (progress >= maxProgress) {
-            // 进度完成，生成物品
-            if (currentRecipe != null) {
-                craftItem(currentRecipe.getResultItem(pLevel.registryAccess()));
-            }
-            progress = 0;
-            this.setChanged();
-        }
+    private boolean canInsert(ItemStack result) {
+        if (!isValidOutput(result)) return false;
+        ItemStack output = itemHandler.getStackInSlot(SLOT_OUTPUT);
+        return output.isEmpty() || ItemStack.isSameItemSameTags(output, result)
+                && output.getCount() + result.getCount() <= output.getMaxStackSize();
     }
 
     public void craftItem(ItemStack result) {
         ItemStack output = itemHandler.getStackInSlot(SLOT_OUTPUT);
-        ItemStack stack = new ItemStack(result.getItem());
-        if (output.isEmpty()) {
-            itemHandler.setStackInSlot(SLOT_OUTPUT, stack);
-        } else {
-            output.grow(result.getCount());
-        }
-        setChanged(); // 标记数据变更
-        if (level != null) {
-            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3); // 同步到客户端
-        }
+        if (output.isEmpty()) itemHandler.setStackInSlot(SLOT_OUTPUT, result.copy()); else output.grow(result.getCount());
+        super.setChanged();
     }
 
     public void craftCurrentRecipe(Player player) {
-        TailoringCaseRecipe recipeToUse = null;
-
-        // 首先检查当前配方是否有足够材料
-        if (currentRecipe != null && hasEnoughMaterials(player.getInventory(), currentRecipe)) {
-            recipeToUse = currentRecipe;
-        } else {
-            // 如果当前配方材料不足，只查找同一结果物品的其他配方
-            if (currentRecipe != null) {
-                ItemStack resultItem = currentRecipe.getResultItem(level.registryAccess());
-                // 获取所有可用的配方
-                var recipeManager = level.getRecipeManager();
-                var recipeType = TailoringCaseRecipe.Type.INSTANCE;
-                var allRecipes = recipeManager.getAllRecipesFor(recipeType);
-
-                // 查找第一个材料足够的配方，且结果物品相同
-                for (TailoringCaseRecipe recipe : allRecipes) {
-                    if (ItemStack.isSameItemSameTags(recipe.getResultItem(level.registryAccess()), resultItem)) {
-                        if (hasEnoughMaterials(player.getInventory(), recipe)) {
-                            // 找到匹配的配方
-                            recipeToUse = recipe;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
-        if (recipeToUse == null) return;
-
-        // 检查输出槽是否有物品
-        if (!itemHandler.getStackInSlot(SLOT_OUTPUT).isEmpty()) {
-            return; // 输出槽有物品，禁止合成
-        }
-
-        // 设置要使用的配方为当前配方（如果不同的话）
-        if (recipeToUse != currentRecipe) {
-            setCurrentRecipe(recipeToUse);
-        }
-
-        // 检查玩家是否有足够材料（再次检查以确保一致性）
-        if (hasEnoughMaterials(player.getInventory(), recipeToUse)) {
-            // 消耗材料
-            consumeMaterials(player.getInventory(), recipeToUse);
-            // 开始制作进度
-            this.progress = 1;
-            this.setChanged();
-        }
+        if (level == null || level.isClientSide || activeJob != null || currentRecipe == null) return;
+        TailoringCaseRecipe recipe = chooseRecipe(player.getInventory());
+        if (recipe == null) return;
+        ItemStack result = recipe.getResultItem(level.registryAccess()).copy();
+        if (!isValidOutput(result) || !canInsert(result)) return;
+        var ingredients = recipe.getIngredients();
+        int[] counts = CraftingMaterialTransaction.countsFromIngredients(ingredients);
+        if (!CraftingMaterialTransaction.consume(player.getInventory(), ingredients, counts, 1)) return;
+        currentRecipe = recipe;
+        pendingRecipeId = recipe.getId();
+        activeJob = new PersistedCraftingJob(recipe.getId(), result, 1, 1);
+        activeRecipeAvailable = true;
+        legacyWaiting = false;
+        progress = 1;
+        syncToClient();
     }
 
-    private boolean hasEnoughMaterials(Inventory playerInventory, TailoringCaseRecipe recipe) {
-        ItemStack[] requiredMaterials = getMaterialsFromRecipe(recipe);
-        for (ItemStack required : requiredMaterials) {
-            if (required.isEmpty()) continue;
-
-            int needed = required.getCount();
-            int found = 0;
-
-            for (int i = 0; i < playerInventory.getContainerSize(); i++) {
-                ItemStack stack = playerInventory.getItem(i);
-                if (ItemStack.isSameItemSameTags(stack, required)) {
-                    found += stack.getCount();
-                    if (found >= needed) break;
-                }
-            }
-
-            if (found < needed) return false;
+    @Nullable
+    private TailoringCaseRecipe chooseRecipe(Inventory inventory) {
+        var ingredients = currentRecipe.getIngredients();
+        if (CraftingMaterialTransaction.canConsume(inventory, ingredients, CraftingMaterialTransaction.countsFromIngredients(ingredients), 1)) return currentRecipe;
+        ItemStack wanted = currentRecipe.getResultItem(level.registryAccess());
+        for (TailoringCaseRecipe recipe : level.getRecipeManager().getAllRecipesFor(TailoringCaseRecipe.Type.INSTANCE)) {
+            var alternative = recipe.getIngredients();
+            if (ItemStack.isSameItemSameTags(recipe.getResultItem(level.registryAccess()), wanted)
+                    && CraftingMaterialTransaction.canConsume(inventory, alternative, CraftingMaterialTransaction.countsFromIngredients(alternative), 1)) return recipe;
         }
-        return true;
+        return null;
     }
 
-    private void consumeMaterials(Inventory playerInventory, TailoringCaseRecipe recipe) {
-        ItemStack[] requiredMaterials = getMaterialsFromRecipe(recipe);
-        for (ItemStack required : requiredMaterials) {
-            if (required.isEmpty()) continue;
-
-            int needed = required.getCount();
-            for (int i = 0; i < playerInventory.getContainerSize(); i++) {
-                ItemStack stack = playerInventory.getItem(i);
-                if (ItemStack.isSameItemSameTags(stack, required)) {
-                    int take = Math.min(needed, stack.getCount());
-                    stack.shrink(take);
-                    needed -= take;
-                    if (needed <= 0) break;
-                }
-            }
-        }
-    }
-
-    // 从配方中获取材料示例物品（用于UI显示）
     public ItemStack[] getMaterialsFromRecipe(TailoringCaseRecipe recipe) {
-        return recipe.getIngredients().stream()
-                .map(ingredient -> ingredient.getItems().length > 0 ? ingredient.getItems()[0] : ItemStack.EMPTY)
-                .toArray(ItemStack[]::new);
+        return recipe.getIngredients().stream().map(i -> i.getItems().length > 0 ? i.getItems()[0] : ItemStack.EMPTY).toArray(ItemStack[]::new);
     }
 
-    @Override
-    public void handleUpdateTag(CompoundTag tag) {
-        super.handleUpdateTag(tag);
-        load(tag); // 确保客户端同步物品数据
-    }
-
-
-
-    public void setCurrentRecipe(TailoringCaseRecipe recipe) {
-        setCurrentRecipe(recipe, recipe != null ? recipe.getGroup() : null);
-    }
-
+    public void setCurrentRecipe(TailoringCaseRecipe recipe) { setCurrentRecipe(recipe, recipe != null ? recipe.getGroup() : null); }
     public void setCurrentRecipe(TailoringCaseRecipe recipe, String group) {
-        this.currentRecipe = recipe;
-        this.currentRecipeGroup = group != null ? group : "";
+        if (activeJob != null || progress > 0) return;
+        currentRecipe = recipe;
+        pendingRecipeId = recipe == null ? null : recipe.getId();
+        currentRecipeGroup = group == null ? "" : group;
+        clearInputSlots();
+        syncToClient();
+    }
 
-        // 清空输入槽
-        for (int i = 0; i < 9; i++) {
-            itemHandler.setStackInSlot(i, ItemStack.EMPTY);
+    private void clearInputSlots() { for (int i = 0; i < INPUT_SLOT_COUNT; i++) itemHandler.setStackInSlot(i, ItemStack.EMPTY); }
+    private void clearLegacyGhostInputs() {
+        boolean found = false;
+        suppressHandlerCallbacks = true;
+        try {
+            for (int i = 0; i < INPUT_SLOT_COUNT; i++) {
+                if (!itemHandler.getStackInSlot(i).isEmpty()) { found = true; itemHandler.setStackInSlot(i, ItemStack.EMPTY); }
+            }
+        } finally {
+            suppressHandlerCallbacks = false;
         }
-
-        // 设置配方材料到输入槽
-        if (recipe != null) {
-            NonNullList<Ingredient> ingredients = recipe.getIngredients();
-            for (int i = 0; i < ingredients.size() && i < 9; i++) {
-                ItemStack[] matchingStacks = ingredients.get(i).getItems();
-                if (matchingStacks.length > 0) {
-                    itemHandler.setStackInSlot(i, matchingStacks[0].copy());
-                }
+        if (found) {
+            super.setChanged();
+            if (!legacyGhostLogged) {
+                ChangShengJue.LOGGER.warn("Cleared legacy tailoring display items at {} without dropping them", worldPosition);
+                legacyGhostLogged = true;
             }
         }
-
-        setChanged();
-        if (level != null) {
-            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
-        }
     }
-
-    public TailoringCaseRecipe getCurrentRecipe() {
-        return currentRecipe;
+    public TailoringCaseRecipe getCurrentRecipe() { return currentRecipe; }
+    public ItemStack getRecipeResultItem() { return currentRecipe == null || level == null ? ItemStack.EMPTY : currentRecipe.getResultItem(level.registryAccess()); }
+    public void setRecipeGroup(String group) { if (activeJob == null) currentRecipeGroup = group == null ? "" : group; }
+    private static boolean isValidOutput(ItemStack output) { return !output.isEmpty() && output.getCount() <= output.getMaxStackSize(); }
+    private void retryMissingRecipe() {
+        if (!legacyWaiting && activeRecipeAvailable) return;
+        if (recipeRetryTicks-- > 0) return;
+        recipeRetryTicks = 100;
+        resolveRecipes();
     }
-
-    // 获取当前配方的结果物品
-    public ItemStack getRecipeResultItem() {
-        if (currentRecipe != null) {
-            return currentRecipe.getResultItem(level.registryAccess());
-        }
-        return ItemStack.EMPTY;
-    }
-
-    public void setRecipeGroup(String group) {
-        this.currentRecipeGroup = group != null ? group : "";
-        // 如果需要根据组更新UI，可以在这里添加相关逻辑
-        setChanged();
-    }
-
-
+    private void syncToClient() { super.setChanged(); if (level != null) level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS); }
+    @Override public void setChanged() { super.setChanged(); }
 
     @Override
-    public void setChanged() {
-        super.setChanged();
-        if (this.level != null){
-            this.level.sendBlockUpdated(this.getBlockPos(),this.getBlockState(),this.getBlockState(), Block.UPDATE_CLIENTS);
-        }
+    public void registerControllers(AnimatableManager.ControllerRegistrar registrar) {
+        registrar.add(new AnimationController<>(this, "work", 0, state -> {
+            if (progress != 0) { state.setAndContinue(RawAnimation.begin().thenPlay("work")); return PlayState.CONTINUE; }
+            return PlayState.STOP;
+        }).setSoundKeyframeHandler(state -> {
+            if (level != null && level.isClientSide) level.playLocalSound(worldPosition, ChangShengJueSound.TAILORING_CASE_SOUND.get(), SoundSource.BLOCKS, 0.1F, 1.0F, false);
+        }));
     }
 
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(((new AnimationController<>(this, "work", 0, (state) ->{
-            if (this.progress != 0){
-                state.setAndContinue(RawAnimation.begin().thenPlay("work"));
-                return PlayState.CONTINUE;
-            } else {
-                return PlayState.STOP;
-            }
-        }).setSoundKeyframeHandler((state) -> {
-            Player player = ClientUtils.getClientPlayer();
-            Level level1 = ClientUtils.getLevel();
-            level1.playSound(player,this.getBlockPos(), ChangShengJueSound.TAILORING_CASE_SOUND.get(), SoundSource.BLOCKS, 0.1F, 1.0F);
-        }))));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
-    }
+    @Override public AnimatableInstanceCache getAnimatableInstanceCache() { return cache; }
 }

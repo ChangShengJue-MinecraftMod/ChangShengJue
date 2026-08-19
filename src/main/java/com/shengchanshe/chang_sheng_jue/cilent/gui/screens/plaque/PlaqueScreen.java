@@ -17,9 +17,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class PlaqueScreen extends AbstractContainerScreen<PlaqueMenu> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/plaque_gui.png");
-    private String inputText = ""; // 用于保存用户输入的文本
     // 文本输入框
     private EditBox textBox;
+    private int textCapacity;
 
     Button button_empty;
 
@@ -34,18 +34,35 @@ public class PlaqueScreen extends AbstractContainerScreen<PlaqueMenu> {
         // 计算 GUI 的中心位置
         int centerX = (this.width - imageWidth) / 2;
         int centerY = (this.height - imageHeight) / 2;
+        this.textCapacity = this.menu.getTextCapacity();
         // 初始化文本输入框
-        this.textBox = new EditBox(this.font, centerX + 10, centerY + 60, 120, 20, Component.literal(inputText));
-        this.textBox.setMaxLength(1); // 限制输入最大字符数
+        this.textBox = new EditBox(this.font, centerX + 10, centerY + 60, 120, 20,
+                Component.translatable("gui." + ChangShengJue.MOD_ID + ".plaque.placeholder"));
+        this.textBox.setMaxLength(this.textCapacity);
         this.textBox.setEditable(true); // 可编辑
         this.textBox.setFocused(false); // 默认不聚焦
-        this.textBox.setValue(""); // 默认内容为空
+        this.textBox.setValue(this.menu.getPlaqueText());
         this.addRenderableWidget(this.textBox); // 添加到渲染列表
-        button_empty = Button.builder(Component.translatable("写下"), e -> {
+        button_empty = Button.builder(Component.translatable("gui." + ChangShengJue.MOD_ID + ".plaque.write"), e -> {
+            if (this.textCapacity == 0) {
+                return;
+            }
             String text = this.textBox.getValue();
             ChangShengJueMessages.sendToServer(new UpdatePlaqueTextPacket(this.menu.getBlockPos(), text));
         }).bounds(centerX - 15, centerY + 90, imageWidth, 20).build();
+        button_empty.active = this.textCapacity > 0;
         this.addRenderableWidget(button_empty);
+    }
+
+    @Override
+    public void containerTick() {
+        super.containerTick();
+        int currentCapacity = this.menu.getTextCapacity();
+        if (currentCapacity != this.textCapacity) {
+            this.textCapacity = currentCapacity;
+            this.textBox.setMaxLength(this.textCapacity);
+        }
+        this.button_empty.active = this.textCapacity > 0;
     }
 
     @Override
@@ -73,8 +90,14 @@ public class PlaqueScreen extends AbstractContainerScreen<PlaqueMenu> {
         super.render(guiGraphics, mouseX, mouseY, delta);
         // 渲染提示文字（当文本框为空且未聚焦时）
         if (this.textBox.getValue().isEmpty() && !this.textBox.isFocused()) {
-            guiGraphics.drawString(this.font, "写...", this.textBox.getX() + 4, this.textBox.getY() + 6, 0xAAAAAA, false);
+            guiGraphics.drawString(this.font,
+                    Component.translatable("gui." + ChangShengJue.MOD_ID + ".plaque.placeholder"),
+                    this.textBox.getX() + 4, this.textBox.getY() + 6, 0xAAAAAA, false);
         }
+        String lengthText = this.textBox.getValue().length() + "/" + this.textCapacity;
+        guiGraphics.drawString(this.font, lengthText,
+                this.textBox.getX() + this.textBox.getWidth() - this.font.width(lengthText),
+                this.textBox.getY() + this.textBox.getHeight() + 2, 0xAAAAAA, false);
     }
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
@@ -90,10 +113,9 @@ public class PlaqueScreen extends AbstractContainerScreen<PlaqueMenu> {
         }
         return super.mouseReleased(mouseX, mouseY, button);
     }
+
     @Override
     public boolean charTyped(char codePoint, int modifiers) {
-        // 处理用户输入
-        inputText += codePoint; // 简单实现：将输入字符追加到字符串中
         return super.charTyped(codePoint, modifiers);
     }
 }

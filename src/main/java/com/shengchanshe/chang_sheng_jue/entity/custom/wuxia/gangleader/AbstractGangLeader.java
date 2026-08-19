@@ -20,8 +20,12 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class AbstractGangLeader extends AbstractWuXiaMerchant {
+    private static final int MAX_PLAYER_QUEST_ENTRIES = 128;
+    private static final int MAX_QUESTS_PER_PLAYER = 32;
+    private static final long STALE_ENTRY_TICKS = 7L * 24000L;
     // 使用ConcurrentHashMap存储每个玩家的任务列表
     private final Map<UUID, List<Quest>> playerQuests = new ConcurrentHashMap<>();
+    private final Map<UUID, Long> playerQuestLastAccess = new ConcurrentHashMap<>();
 
     public AbstractGangLeader(EntityType<? extends AbstractWuXia> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -61,8 +65,9 @@ public class AbstractGangLeader extends AbstractWuXiaMerchant {
      * @param questId 要删除的任务ID
      */
     public void removeQuest(UUID playerId, UUID questId) {
-        if (playerQuests.containsKey(playerId)) {
-            playerQuests.get(playerId).removeIf(quest -> quest.getQuestId().equals(questId));
+        if (playerId != null && questId != null && playerQuests.containsKey(playerId)) {
+            playerQuests.get(playerId).removeIf(quest -> quest != null && questId.equals(quest.getQuestId()));
+            removeEmptyEntry(playerId);
             ChangShengJue.LOGGER.info("已移除玩家{}的任务: {}", playerId, questId);
         }
     }
@@ -73,7 +78,8 @@ public class AbstractGangLeader extends AbstractWuXiaMerchant {
      */
     public void removeUnacceptedQuests(UUID playerId) {
         if (playerQuests.containsKey(playerId)) {
-            playerQuests.get(playerId).removeIf(quest -> quest.getAcceptedBy() == null);
+            playerQuests.get(playerId).removeIf(quest -> quest == null || quest.getAcceptedBy() == null);
+            removeEmptyEntry(playerId);
         }
     }
 
@@ -83,20 +89,23 @@ public class AbstractGangLeader extends AbstractWuXiaMerchant {
      */
     public void clearPlayerQuests(UUID playerId) {
         playerQuests.remove(playerId);
+        playerQuestLastAccess.remove(playerId);
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
+        prunePlayerEntries(currentGameTime());
 
         // 保存所有玩家的任务数据
         ListTag playerQuestsTag = new ListTag();
         for (Map.Entry<UUID, List<Quest>> entry : playerQuests.entrySet()) {
             CompoundTag playerTag = new CompoundTag();
             playerTag.putUUID("PlayerId", entry.getKey());
+            playerTag.putLong("LastAccess", playerQuestLastAccess.getOrDefault(entry.getKey(), currentGameTime()));
 
             ListTag questsTag = new ListTag();
-            for (Quest quest : entry.getValue()) {
+            for (Quest quest : entry.getValue().stream().filter(Objects::nonNull).limit(MAX_QUESTS_PER_PLAYER).toList()) {
                 CompoundTag questTag = quest.toNbt();
                 questsTag.add(questTag);
             }
@@ -109,23 +118,45 @@ public class AbstractGangLeader extends AbstractWuXiaMerchant {
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
+        playerQuests.clear();
+        playerQuestLastAccess.clear();
 
         // 读取所有玩家的任务数据
         if (pCompound.contains("PlayerQuests", Tag.TAG_LIST)) {
             ListTag playerQuestsTag = pCompound.getList("PlayerQuests", Tag.TAG_COMPOUND);
+            int loadedPlayers = 0;
             for (Tag tag : playerQuestsTag) {
+                if (loadedPlayers >= MAX_PLAYER_QUEST_ENTRIES) {
+                    break;
+                }
                 CompoundTag playerTag = (CompoundTag) tag;
+                if (!playerTag.hasUUID("PlayerId")) {
+                    continue;
+                }
                 UUID playerId = playerTag.getUUID("PlayerId");
 
                 List<Quest> quests = new ArrayList<>();
                 ListTag questsTag = playerTag.getList("Quests", Tag.TAG_COMPOUND);
                 for (Tag questTag : questsTag) {
+                    if (quests.size() >= MAX_QUESTS_PER_PLAYER) {
+                        break;
+                    }
                     Quest quest = new Quest((CompoundTag) questTag);
-                    quests.add(quest);
+                    if (quest.isValid()) {
+                        quests.add(quest);
+                    }
                 }
-                playerQuests.put(playerId, quests);
+                if (!quests.isEmpty()) {
+                    playerQuests.put(playerId, quests);
+                    playerQuestLastAccess.put(playerId,
+                            playerTag.contains("LastAccess", Tag.TAG_LONG)
+                                    ? playerTag.getLong("LastAccess")
+                                    : currentGameTime());
+                    loadedPlayers++;
+                }
             }
         }
+        prunePlayerEntries(currentGameTime());
     }
 
     /**
@@ -134,7 +165,18 @@ public class AbstractGangLeader extends AbstractWuXiaMerchant {
      * @return 该玩家的任务列表(如果没有则创建空列表)
      */
     public List<Quest> getPlayerQuests(UUID playerId) {
-        return playerQuests.computeIfAbsent(playerId, k -> new ArrayList<>());
+        if (playerId == null) {
+            return Collections.emptyList();
+        }
+        touchPlayerEntry(playerId);
+        List<Quest> existing = playerQuests.get(playerId);
+        if (existing != null) {
+            return existing;
+        }
+        ensurePlayerCapacity(playerId);
+        List<Quest> created = new ArrayList<>();
+        playerQuests.put(playerId, created);
+        return created;
     }
 
     /**
@@ -143,7 +185,7 @@ public class AbstractGangLeader extends AbstractWuXiaMerchant {
      * @param quest 要添加的任务
      */
     public void addQuestForPlayer(UUID playerId, Quest quest) {
-        if (quest == null) return;
+        if (playerId == null || quest == null || !quest.isValid()) return;
         List<Quest> quests = getPlayerQuests(playerId);
 
         // 检查是否已存在相同ID的任务
@@ -158,6 +200,12 @@ public class AbstractGangLeader extends AbstractWuXiaMerchant {
         }
 
         // 如果不存在，添加新任务
+        quests.removeIf(existing -> existing == null || existing.isNeedRefresh() || !existing.isValid());
+        if (quests.size() >= MAX_QUESTS_PER_PLAYER) {
+            ChangShengJue.LOGGER.warn("拒绝为玩家 {} 在帮派首领 {} 上保存超过 {} 条任务",
+                    playerId, getUUID(), MAX_QUESTS_PER_PLAYER);
+            return;
+        }
         quests.add(quest);
         ChangShengJue.LOGGER.debug("为玩家 {} 添加新任务: {}", playerId, quest.getQuestId());
     }
@@ -168,5 +216,61 @@ public class AbstractGangLeader extends AbstractWuXiaMerchant {
      */
     public Map<UUID, List<Quest>> getAllPlayerQuests() {
         return Collections.unmodifiableMap(playerQuests);
+    }
+
+    private long currentGameTime() {
+        return level() == null ? 0L : level().getGameTime();
+    }
+
+    private void touchPlayerEntry(UUID playerId) {
+        playerQuestLastAccess.put(playerId, currentGameTime());
+    }
+
+    private void removeEmptyEntry(UUID playerId) {
+        List<Quest> quests = playerQuests.get(playerId);
+        if (quests != null && quests.isEmpty()) {
+            clearPlayerQuests(playerId);
+        } else {
+            touchPlayerEntry(playerId);
+        }
+    }
+
+    private void ensurePlayerCapacity(UUID requestedPlayer) {
+        long now = currentGameTime();
+        prunePlayerEntries(now);
+        if (playerQuests.size() < MAX_PLAYER_QUEST_ENTRIES || playerQuests.containsKey(requestedPlayer)) {
+            return;
+        }
+        playerQuestLastAccess.entrySet().stream()
+                .min(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
+                .ifPresent(this::clearPlayerQuests);
+    }
+
+    private void prunePlayerEntries(long now) {
+        playerQuests.entrySet().removeIf(entry -> {
+            List<Quest> quests = entry.getValue();
+            if (quests == null || quests.isEmpty()) {
+                playerQuestLastAccess.remove(entry.getKey());
+                return true;
+            }
+            quests.removeIf(Objects::isNull);
+            long lastAccess = playerQuestLastAccess.getOrDefault(entry.getKey(), now);
+            boolean stale = now >= lastAccess && now - lastAccess > STALE_ENTRY_TICKS;
+            if (stale || quests.isEmpty()) {
+                playerQuestLastAccess.remove(entry.getKey());
+                return true;
+            }
+            return false;
+        });
+        while (playerQuests.size() > MAX_PLAYER_QUEST_ENTRIES) {
+            Optional<UUID> oldest = playerQuestLastAccess.entrySet().stream()
+                    .min(Map.Entry.comparingByValue())
+                    .map(Map.Entry::getKey);
+            if (oldest.isEmpty()) {
+                break;
+            }
+            clearPlayerQuests(oldest.get());
+        }
     }
 }

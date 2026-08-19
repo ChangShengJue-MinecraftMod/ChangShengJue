@@ -121,30 +121,12 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
     }
 
     void updateRecipeSlots() {
-        clearAllSlots();
-
-        if (currentRecipe != null) {
-            ItemStack[] materials = getMaterialsFromRecipe(currentRecipe);
-            // 将材料放入对应的槽位
-            for (int i = 0; i < materials.length && i < 9; i++) {
-                final int slotIndex = i;
-                ItemStack material = materials[i].copy();
-                // 在客户端只更新显示，在服务端更新实际的物品处理器
-                blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-                    handler.insertItem(slotIndex, material, false);
-                });
-            }
-        }
+        // 展示材料由Screen根据currentRecipe直接绘制，不能进入真实物品处理器。
     }
 
 
     void clearAllSlots() {
-        for (int i = 0; i < 9; i++) { // 只清空输入槽
-            int finalI = i;
-            blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-                handler.extractItem(finalI, 64, false);
-            });
-        }
+        // 保留方法描述符兼容旧调用；输入槽不再承载展示物。
     }
 
 
@@ -214,6 +196,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
+        if (sourceSlot instanceof ReadOnlySlot) return ItemStack.EMPTY;
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 

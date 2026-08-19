@@ -22,7 +22,7 @@ public class BrickKilnJeiPlugin implements IModPlugin {
 
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return new ResourceLocation(ChangShengJue.MOD_ID, "jei_plugin");
+        return new ResourceLocation(ChangShengJue.MOD_ID, "brick_kiln_jei_plugin");
     }
 
     @Override

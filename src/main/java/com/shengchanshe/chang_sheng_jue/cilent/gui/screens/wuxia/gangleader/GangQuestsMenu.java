@@ -5,6 +5,7 @@ import com.shengchanshe.chang_sheng_jue.quest.Quest;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
 import net.minecraft.world.entity.npc.ClientSideMerchant;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -33,6 +34,7 @@ public class GangQuestsMenu extends AbstractContainerMenu {
         this.availableQuests = availableQuests != null ?
                 sortQuestsByWeight(availableQuests) : new ArrayList<>();
         this.trader = merchant;
+        this.trader.setTradingPlayer(inv.player);
 
         for (int row = 0; row < 3; ++row) {
             for (int col = 0; col < 9; ++col) {
@@ -122,7 +124,21 @@ public class GangQuestsMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return true;
+        if (!(this.trader instanceof Entity entity)) {
+            return player.level().isClientSide;
+        }
+        return entity.isAlive()
+                && entity.level() == player.level()
+                && entity.distanceToSqr(player) <= 64.0D
+                && this.trader.getTradingPlayer() == player;
+    }
+
+    @Override
+    public void removed(Player player) {
+        super.removed(player);
+        if (!this.trader.isClientSide() && this.trader.getTradingPlayer() == player) {
+            this.trader.setTradingPlayer(null);
+        }
     }
 
     @Override

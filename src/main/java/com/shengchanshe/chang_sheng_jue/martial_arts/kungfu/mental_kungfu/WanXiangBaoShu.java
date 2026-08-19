@@ -1,7 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuType;
 import net.minecraft.ChatFormatting;
@@ -14,14 +13,12 @@ import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.AABB;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class WanXiangBaoShu extends AbstractionMentalKungfu {
     public static final ResourceLocation KUNG_FU_ID = new ResourceLocation(ChangShengJue.MOD_ID, "wan_xiang_bao_shu");
-    private static final double DETECTION_RANGE = 16.0; // 检测范围16格
     private static final int BUFF_DURATION_TICKS = 40;
     private static final String ATTACK_MODIFIER_PREFIX = "wan_xiang_bao_shu_attack_bonus_";
     private int stackCount = 0; // 当前叠加层数
@@ -59,7 +56,11 @@ public class WanXiangBaoShu extends AbstractionMentalKungfu {
     /**
      * 被动心法：更新自身状态（层数、自动大成）
      */
-    public boolean updatePassiveState(Player player) {
+    public void updatePassiveState(Player player) {
+        updatePassiveStateAndReportChange(player);
+    }
+
+    public boolean updatePassiveStateAndReportChange(Player player) {
         PassiveContext context = computePassiveContext(player);
         int oldStackCount = this.stackCount;
         int oldLevel = this.level;
@@ -121,37 +122,19 @@ public class WanXiangBaoShu extends AbstractionMentalKungfu {
     }
 
     private static PassiveContext computePassiveContext(Player player) {
-        AABB searchBox = new AABB(
-            player.getX() - DETECTION_RANGE, player.getY() - DETECTION_RANGE, player.getZ() - DETECTION_RANGE,
-            player.getX() + DETECTION_RANGE, player.getY() + DETECTION_RANGE, player.getZ() + DETECTION_RANGE
-        );
-
-        List<Player> nearbyPlayers = player.level().getEntitiesOfClass(Player.class, searchBox, LivingEntity::isAlive);
         int stackCount = 0;
         boolean hasMastery = false;
         List<Contributor> contributors = new ArrayList<>();
-        for (Player nearbyPlayer : nearbyPlayers) {
-            WanXiangBaoShu kungFu = null;
-            var capOpt = nearbyPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU);
-            if (capOpt.isPresent()) {
-                final WanXiangBaoShu[] holder = new WanXiangBaoShu[1];
-                capOpt.ifPresent(cap -> {
-                    var opt = cap.getKungFu(KUNG_FU_ID.toString());
-                    if (opt.isPresent() && opt.get() instanceof WanXiangBaoShu) {
-                        holder[0] = (WanXiangBaoShu) opt.get();
-                    }
-                });
-                kungFu = holder[0];
-            }
-            if (kungFu == null || !kungFu.isComprehend()) {
+        for (MentalKungFuNeighborhoodSnapshot.Entry entry : MentalKungFuNeighborhoodSnapshot.get(player)) {
+            if (!entry.wanXiangComprehended()) {
                 continue;
             }
-            int level = kungFu.getLevel();
+            int level = entry.wanXiangLevel();
             if (level >= 2) {
                 hasMastery = true;
             }
             double bonus = level >= 2 ? 3.0 : 2.0;
-            contributors.add(new Contributor(nearbyPlayer.getUUID(), bonus));
+            contributors.add(new Contributor(entry.playerId(), bonus));
             stackCount++;
         }
 

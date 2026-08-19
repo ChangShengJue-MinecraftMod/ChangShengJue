@@ -62,6 +62,22 @@
     "facing=west,right=false,left=true,middle=false": {
       "model": "chang_sheng_jue:block/mangrove_low_desk_side",
       "y": 270
-    }
+    },
+    "facing=east,right=false,left=false,middle=true": {"model":"chang_sheng_jue:block/mangrove_low_desk_side","y":270},
+    "facing=east,right=false,left=true,middle=true": {"model":"chang_sheng_jue:block/mangrove_low_desk_side","y":270},
+    "facing=east,right=true,left=false,middle=true": {"model":"chang_sheng_jue:block/mangrove_low_desk_side","y":270},
+    "facing=east,right=true,left=true,middle=false": {"model":"chang_sheng_jue:block/mangrove_low_desk_side","y":270},
+    "facing=north,right=false,left=false,middle=true": {"model":"chang_sheng_jue:block/mangrove_low_desk_side","y":180},
+    "facing=north,right=false,left=true,middle=true": {"model":"chang_sheng_jue:block/mangrove_low_desk_side","y":180},
+    "facing=north,right=true,left=false,middle=true": {"model":"chang_sheng_jue:block/mangrove_low_desk_side","y":180},
+    "facing=north,right=true,left=true,middle=false": {"model":"chang_sheng_jue:block/mangrove_low_desk_side","y":180},
+    "facing=south,right=false,left=false,middle=true": {"model":"chang_sheng_jue:block/mangrove_low_desk_side"},
+    "facing=south,right=false,left=true,middle=true": {"model":"chang_sheng_jue:block/mangrove_low_desk_side"},
+    "facing=south,right=true,left=false,middle=true": {"model":"chang_sheng_jue:block/mangrove_low_desk_side"},
+    "facing=south,right=true,left=true,middle=false": {"model":"chang_sheng_jue:block/mangrove_low_desk_side"},
+    "facing=west,right=false,left=false,middle=true": {"model":"chang_sheng_jue:block/mangrove_low_desk_side","y":90},
+    "facing=west,right=false,left=true,middle=true": {"model":"chang_sheng_jue:block/mangrove_low_desk_side","y":90},
+    "facing=west,right=true,left=false,middle=true": {"model":"chang_sheng_jue:block/mangrove_low_desk_side","y":90},
+    "facing=west,right=true,left=true,middle=false": {"model":"chang_sheng_jue:block/mangrove_low_desk_side","y":90}
   }
 }

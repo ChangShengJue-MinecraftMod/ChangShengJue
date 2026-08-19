@@ -9,6 +9,7 @@ import com.shengchanshe.chang_sheng_jue.datagen.loot.CSJGlobalLootModifiersProvi
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.structures.SnbtToNbt;
 import net.minecraft.data.advancements.AdvancementProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -27,6 +28,7 @@ public class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         generator.addProvider(event.includeServer(), new CSJRecipesProvider(packOutput));
+        generator.addProvider(event.includeServer(), new SnbtToNbt(packOutput, event.getInputs()));
         generator.addProvider(event.includeServer(), new CSJWorldGenProvider(packOutput, lookupProvider));
 
         generator.addProvider(event.includeClient(), new CSJBlockModelProvider(packOutput,existingFileHelper));

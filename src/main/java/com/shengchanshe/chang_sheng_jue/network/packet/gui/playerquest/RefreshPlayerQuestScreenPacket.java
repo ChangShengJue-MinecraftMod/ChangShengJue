@@ -1,7 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest;
 
-import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.PlayerQuestScreen;
-import net.minecraft.client.Minecraft;
+import com.shengchanshe.chang_sheng_jue.network.ClientPacketBridge;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -17,13 +16,7 @@ public record RefreshPlayerQuestScreenPacket() {
     }
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            if (Minecraft.getInstance().screen instanceof PlayerQuestScreen screen) {
-                screen.getMenu().getCurrentQuest(screen.getMenu().getCurrentPage()).ifPresent(quest -> {
-                    screen.refreshUI();
-                });
-            }
-        });
+        ctx.get().enqueueWork(ClientPacketBridge::refreshPlayerQuestScreen);
         ctx.get().setPacketHandled(true);
     }
 }

@@ -8,9 +8,12 @@ import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -18,15 +21,14 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.phys.AABB;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class QingPingJi extends AbstractionMentalKungfu {
     public static final ResourceLocation KUNG_FU_ID = new ResourceLocation(ChangShengJue.MOD_ID, "qing_ping_ji");
-    private static final double DETECTION_RANGE = 16.0;
     private static final String ATTACK_MODIFIER_PREFIX = "qing_ping_ji_attack_bonus_";
+    private static final String SUPPRESSED_INTERNAL_MARKER = ChangShengJue.MOD_ID + ":qing_ping_suppressed_internal";
 
     private int stealCount = 0;
 
@@ -89,16 +91,22 @@ public class QingPingJi extends AbstractionMentalKungfu {
         attackAttribute.removeModifier(modifierId);
     }
 
-    public static boolean updateInternalSuppression(Player target) {
+    public static void updateInternalSuppression(Player target) {
+        updateInternalSuppressionAndReportChange(target);
+    }
+
+    public static boolean updateInternalSuppressionAndReportChange(Player target) {
         boolean suppress = shouldSuppressInternal(target);
         boolean[] changed = {false};
         if (suppress) {
             target.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                Set<String> suppressed = SUPPRESSED_INTERNAL.computeIfAbsent(target.getUUID(), k -> new HashSet<>());
+                Set<String> suppressed = getOrLoadSuppressedInternal(target);
                 for (IKungFu kungFu : cap.getAllLearned()) {
                     if (kungFu.getKungFuType() == KungFuType.INTERNAL_KUNGFU && kungFu.isStart()) {
+                        if (suppressed.add(kungFu.getId())) {
+                            writePersistedSuppressedInternal(target.getPersistentData(), suppressed);
+                        }
                         kungFu.startKungFu(false);
-                        suppressed.add(kungFu.getId());
                         changed[0] = true;
                     }
                 }
@@ -106,9 +114,20 @@ public class QingPingJi extends AbstractionMentalKungfu {
             return changed[0];
         }
 
-        Set<String> suppressed = SUPPRESSED_INTERNAL.remove(target.getUUID());
-        if (suppressed != null) {
+        return restoreInternalSuppressionAndReportChange(target);
+    }
+
+    public static void restoreInternalSuppression(Player target) {
+        restoreInternalSuppressionAndReportChange(target);
+    }
+
+    public static boolean restoreInternalSuppressionAndReportChange(Player target) {
+        boolean[] changed = {false};
+        boolean[] capabilityAvailable = {false};
+        Set<String> suppressed = getOrLoadSuppressedInternal(target);
+        if (!suppressed.isEmpty()) {
             target.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
+                capabilityAvailable[0] = true;
                 for (String id : suppressed) {
                     cap.getKungFu(id).ifPresent(kungFu -> {
                         if (!kungFu.isStart()) {
@@ -118,50 +137,86 @@ public class QingPingJi extends AbstractionMentalKungfu {
                     });
                 }
             });
+            if (capabilityAvailable[0]) {
+                SUPPRESSED_INTERNAL.remove(target.getUUID());
+                writePersistedSuppressedInternal(target.getPersistentData(), Set.of());
+            }
+        } else {
+            SUPPRESSED_INTERNAL.remove(target.getUUID());
         }
         return changed[0];
     }
 
+    public static void restoreAllInternalSuppressions(MinecraftServer server) {
+        for (Player player : server.getPlayerList().getPlayers()) {
+            restoreInternalSuppression(player);
+        }
+        SUPPRESSED_INTERNAL.clear();
+    }
+
+    public static void clearInternalSuppressionTracking() {
+        SUPPRESSED_INTERNAL.clear();
+    }
+
+    private static Set<String> getOrLoadSuppressedInternal(Player target) {
+        return SUPPRESSED_INTERNAL.computeIfAbsent(target.getUUID(), ignored ->
+                new HashSet<>(readPersistedSuppressedInternal(target.getPersistentData())));
+    }
+
+    static Set<String> readPersistedSuppressedInternal(CompoundTag entityPersistentData) {
+        if (!entityPersistentData.contains(Player.PERSISTED_NBT_TAG, Tag.TAG_COMPOUND)) {
+            return Set.of();
+        }
+        CompoundTag persisted = entityPersistentData.getCompound(Player.PERSISTED_NBT_TAG);
+        if (!persisted.contains(SUPPRESSED_INTERNAL_MARKER, Tag.TAG_LIST)) {
+            return Set.of();
+        }
+        ListTag ids = persisted.getList(SUPPRESSED_INTERNAL_MARKER, Tag.TAG_STRING);
+        Set<String> result = new LinkedHashSet<>();
+        for (int i = 0; i < ids.size(); i++) {
+            String id = ids.getString(i);
+            if (!id.isBlank()) {
+                result.add(id);
+            }
+        }
+        return Set.copyOf(result);
+    }
+
+    static void writePersistedSuppressedInternal(CompoundTag entityPersistentData, Set<String> suppressed) {
+        CompoundTag persisted = entityPersistentData.contains(Player.PERSISTED_NBT_TAG, Tag.TAG_COMPOUND)
+                ? entityPersistentData.getCompound(Player.PERSISTED_NBT_TAG)
+                : new CompoundTag();
+        if (suppressed.isEmpty()) {
+            persisted.remove(SUPPRESSED_INTERNAL_MARKER);
+        } else {
+            ListTag ids = new ListTag();
+            suppressed.stream()
+                    .filter(id -> id != null && !id.isBlank())
+                    .sorted()
+                    .map(StringTag::valueOf)
+                    .forEach(ids::add);
+            if (ids.isEmpty()) {
+                persisted.remove(SUPPRESSED_INTERNAL_MARKER);
+            } else {
+                persisted.put(SUPPRESSED_INTERNAL_MARKER, ids);
+            }
+        }
+        entityPersistentData.put(Player.PERSISTED_NBT_TAG, persisted);
+    }
+
     private static boolean shouldSuppressInternal(Player target) {
-        if (countEnabledWanXiangNearby(target) >= 3) {
-            return false;
-        }
-        return countActiveQingPingJiNearby(target) > 0;
-    }
-
-    private static int countActiveQingPingJiNearby(Player player) {
-        AABB searchBox = new AABB(
-            player.getX() - DETECTION_RANGE, player.getY() - DETECTION_RANGE, player.getZ() - DETECTION_RANGE,
-            player.getX() + DETECTION_RANGE, player.getY() + DETECTION_RANGE, player.getZ() + DETECTION_RANGE
-        );
-        List<Player> nearbyPlayers = player.level().getEntitiesOfClass(Player.class, searchBox, p -> p.isAlive());
-        int count = 0;
-        for (Player nearbyPlayer : nearbyPlayers) {
-            if (nearbyPlayer == player) {
-                continue;
+        int enabledWanXiang = 0;
+        int activeQingPing = 0;
+        int targetEntityId = target.getId();
+        for (MentalKungFuNeighborhoodSnapshot.Entry entry : MentalKungFuNeighborhoodSnapshot.get(target)) {
+            if (entry.wanXiangComprehended() && entry.wanXiangStarted() && entry.wanXiangLevel() > 0) {
+                enabledWanXiang++;
             }
-            QingPingJi kungFu = getKungFu(nearbyPlayer);
-            if (kungFu != null && kungFu.isComprehend && kungFu.isStart && kungFu.level > 0) {
-                count++;
+            if (entry.entityId() != targetEntityId && entry.qingPingActive()) {
+                activeQingPing++;
             }
         }
-        return count;
-    }
-
-    private static int countEnabledWanXiangNearby(Player player) {
-        AABB searchBox = new AABB(
-            player.getX() - DETECTION_RANGE, player.getY() - DETECTION_RANGE, player.getZ() - DETECTION_RANGE,
-            player.getX() + DETECTION_RANGE, player.getY() + DETECTION_RANGE, player.getZ() + DETECTION_RANGE
-        );
-        List<Player> nearbyPlayers = player.level().getEntitiesOfClass(Player.class, searchBox, p -> p.isAlive());
-        int count = 0;
-        for (Player nearbyPlayer : nearbyPlayers) {
-            WanXiangBaoShu wanXiang = getWanXiang(nearbyPlayer);
-            if (wanXiang != null && wanXiang.isComprehend() && wanXiang.isStart() && wanXiang.getLevel() > 0) {
-                count++;
-            }
-        }
-        return count;
+        return enabledWanXiang < 3 && activeQingPing > 0;
     }
 
     public boolean tryStealMoney(Player attacker, Player victim) {
@@ -261,21 +316,6 @@ public class QingPingJi extends AbstractionMentalKungfu {
                 var opt = cap.getKungFu(KUNG_FU_ID.toString());
                 if (opt.isPresent() && opt.get() instanceof QingPingJi) {
                     holder[0] = (QingPingJi) opt.get();
-                }
-            });
-            return holder[0];
-        }
-        return null;
-    }
-
-    private static WanXiangBaoShu getWanXiang(Player player) {
-        var capOpt = player.getCapability(ChangShengJueCapabiliy.KUNGFU);
-        if (capOpt.isPresent()) {
-            final WanXiangBaoShu[] holder = new WanXiangBaoShu[1];
-            capOpt.ifPresent(cap -> {
-                var opt = cap.getKungFu(WanXiangBaoShu.KUNG_FU_ID.toString());
-                if (opt.isPresent() && opt.get() instanceof WanXiangBaoShu) {
-                    holder[0] = (WanXiangBaoShu) opt.get();
                 }
             });
             return holder[0];

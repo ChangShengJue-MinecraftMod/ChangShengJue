@@ -1677,6 +1677,10 @@
             this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_exp", "独孤九剑突破所需的成功释放次数");
             this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_cooldown", "独孤九剑最大冷却时间");
 
+            this.add("config."+ ChangShengJue.MOD_ID +".tread_the_snow_without_trace_max_level", "踏雪无痕最大等级上限");
+            this.add("config."+ ChangShengJue.MOD_ID +".tread_the_snow_without_trace_max_exp", "踏雪无痕突破所需的成功释放次数");
+            this.add("config."+ ChangShengJue.MOD_ID +".tread_the_snow_without_trace_max_cooldown", "踏雪无痕最大冷却时间");
+
             this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_level", "高家枪法最大等级上限");
             this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_exp", "高家枪法突破所需的成功释放次数");
             this.add("config."+ ChangShengJue.MOD_ID +".gao_marksmanship_max_cooldown", "高家枪法最大冷却时间");
@@ -1850,6 +1854,8 @@
             this.add("gui."+ ChangShengJue.MOD_ID +".trade.blue", "青");
             this.add("gui."+ ChangShengJue.MOD_ID +".trade.golden", "金");
             this.add("gui."+ ChangShengJue.MOD_ID +".trade.wood", "木");
+            this.add("gui."+ ChangShengJue.MOD_ID +".plaque.write", "写下");
+            this.add("gui."+ ChangShengJue.MOD_ID +".plaque.placeholder", "写下文字……");
 
             //任务
             this.add("quest."+ ChangShengJue.MOD_ID +".button", "任务");

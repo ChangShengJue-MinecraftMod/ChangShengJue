@@ -1,8 +1,12 @@
 package com.shengchanshe.chang_sheng_jue.event;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.ClientGangQuestDataCache;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.GangQuestsScreen;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.button.TexturedButtonWithText;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.ClientQuestDataCache;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.PlayerQuestScreen;
+import com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu.KungFuClientData;
 import com.shengchanshe.chang_sheng_jue.event.kungfu.TreadTheSnowWithoutTraceClientEvent;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.OpenPlayerQuestScreenPacket;
@@ -13,8 +17,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -34,6 +40,29 @@ public class CSJEventClientEvents {
     @SubscribeEvent
     public static void onFall(LivingFallEvent event) {
         TreadTheSnowWithoutTraceClientEvent.onFall(event);
+    }
+
+    @SubscribeEvent
+    public static void onClientLoggingOut(ClientPlayerNetworkEvent.LoggingOut event) {
+        clearClientCaches();
+    }
+
+    @SubscribeEvent
+    public static void onClientLevelUnload(LevelEvent.Unload event) {
+        if (event.getLevel().isClientSide()) {
+            clearClientCaches();
+        }
+    }
+
+    private static void clearClientCaches() {
+        if (Minecraft.getInstance().screen instanceof PlayerQuestScreen screen) {
+            screen.clearEntityCache();
+        } else if (Minecraft.getInstance().screen instanceof GangQuestsScreen screen) {
+            screen.clearEntityCache();
+        }
+        KungFuClientData.get().clear();
+        ClientQuestDataCache.get().clear();
+        ClientGangQuestDataCache.get().clear();
     }
 
     private static final ResourceLocation BUTTON_TEXTURE = new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/botton.png");

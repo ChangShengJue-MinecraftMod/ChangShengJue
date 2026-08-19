@@ -8,12 +8,14 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.server.ServerLifecycleHooks;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class KungFuConfig {
     public static final ForgeConfigSpec SPEC;
+    public static final ForgeConfigSpec.IntValue CONFIG_SCHEMA_VERSION;
     public static final ForgeConfigSpec.IntValue DUGU_NINE_SWORDS_MAX_LEVEL;
     public static final ForgeConfigSpec.IntValue DUGU_NINE_SWORDS_MAX_EXP;
     public static final ForgeConfigSpec.IntValue DUGU_NINE_SWORDS_MAX_COOLDOWN;
@@ -91,6 +93,10 @@ public class KungFuConfig {
 
     static {
         ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
+
+        CONFIG_SCHEMA_VERSION = builder
+                .comment("功法配置结构版本。由模组自动迁移，请勿手动降低。")
+                .defineInRange("configSchemaVersion", 0, 0, Integer.MAX_VALUE);
 
         DUGU_NINE_SWORDS_MAX_LEVEL = builder
                 .comment("独孤九剑最大等级上限", "默认: 2")
@@ -212,15 +218,15 @@ public class KungFuConfig {
         GOLDEN_BELL_JAR_MAX_LEVEL = builder
                 .comment("金钟罩最大等级上限", "默认: 2")
                 .translation("config."+ ChangShengJue.MOD_ID +".golden_bell_jar_max_level")
-                .defineInRange("relentlessThrowingKnivesMaxLevel", 2, 0, Integer.MAX_VALUE);
+                .defineInRange("goldenBellJarMaxLevel", 2, 0, Integer.MAX_VALUE);
         GOLDEN_BELL_JAR_MAX_EXP = builder
                 .comment("金钟罩突破所需的成功释放次数", "默认: 100")
                 .translation("config."+ ChangShengJue.MOD_ID +".golden_bell_jar_max_exp")
-                .defineInRange("relentlessThrowingKnivesMaxExp", 100, 0, Integer.MAX_VALUE);
+                .defineInRange("goldenBellJarMaxExp", 100, 0, Integer.MAX_VALUE);
         GOLDEN_BELL_JAR_MAX_COOLDOWN = builder
                 .comment("金钟罩最大冷却时间", "默认: 160(tick)")
                 .translation("config."+ ChangShengJue.MOD_ID +".golden_bell_jar_max_cooldown")
-                .defineInRange("relentlessThrowingKnivesMaxCooldown", 160, 0, Integer.MAX_VALUE);
+                .defineInRange("goldenBellJarMaxCooldown", 160, 0, Integer.MAX_VALUE);
 
         HERCULES_MAX_EXP = builder
                 .comment("大力神功突破所需的移动距离", "默认: 1000000")
@@ -312,21 +318,21 @@ public class KungFuConfig {
 
         TREAD_THE_SNOW_WITHOUT_TRACE_MAX_LEVEL = builder
                 .comment("踏雪无痕最大等级上限", "默认: 2")
-                .translation("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_level")
-                .defineInRange("duguNineSwordsMaxLevel", 2, 0, Integer.MAX_VALUE);
+                .translation("config."+ ChangShengJue.MOD_ID +".tread_the_snow_without_trace_max_level")
+                .defineInRange("treadTheSnowWithoutTraceMaxLevel", 2, 0, Integer.MAX_VALUE);
         TREAD_THE_SNOW_WITHOUT_TRACE_MAX_EXP = builder
                 .comment("踏雪无痕突破所需的成功释放次数", "默认: 100")
-                .translation("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_exp")
-                .defineInRange("duguNineSwordsMaxExp", 100, 0, Integer.MAX_VALUE);
+                .translation("config."+ ChangShengJue.MOD_ID +".tread_the_snow_without_trace_max_exp")
+                .defineInRange("treadTheSnowWithoutTraceMaxExp", 100, 0, Integer.MAX_VALUE);
         TREAD_THE_SNOW_WITHOUT_TRACE_MAX_COOLDOWN = builder
                 .comment("踏雪无痕最大冷却时间", "默认: 100(tick)")
-                .translation("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_cooldown")
-                .defineInRange("duguNineSwordsMaxCooldown", 100, 0, Integer.MAX_VALUE);
+                .translation("config."+ ChangShengJue.MOD_ID +".tread_the_snow_without_trace_max_cooldown")
+                .defineInRange("treadTheSnowWithoutTraceMaxCooldown", 100, 0, Integer.MAX_VALUE);
 
         ZA_BIGN_SHOU_CE_MAX_EXP = builder
                 .comment("杂病手册突破所需的施展次数", "默认: 1000")
                 .translation("config."+ ChangShengJue.MOD_ID +".za_bign_shou_ce_max_exp")
-                .defineInRange("zhangMenXinXueMaxExp", 1000, 0, Integer.MAX_VALUE);
+                .defineInRange("zaBingShouCeMaxExp", 1000, 0, Integer.MAX_VALUE);
         QING_PING_JI_MASTERY_STEAL_COUNT = builder
                 .comment("清平记大成所需的成功偷窃次数", "默认: 100")
                 .translation("config."+ ChangShengJue.MOD_ID +".qing_ping_ji_mastery_steal_count")
@@ -335,18 +341,78 @@ public class KungFuConfig {
     }
 
     @SubscribeEvent
+    public static void onConfigLoading(ModConfigEvent.Loading event) {
+        handleConfigEvent(event, true);
+    }
+
+    @SubscribeEvent
     public static void onConfigReload(ModConfigEvent.Reloading event) {
-        if (event.getConfig().getModId().equals(ChangShengJue.MOD_ID)) {
-            // 遍历所有玩家，修正等级
-            for (ServerPlayer player : ServerLifecycleHooks.getCurrentServer().getPlayerList().getPlayers()) {
-                player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(kungFuData ->
-                        kungFuData.getKungFu(DuguNineSwords.KUNG_FU_ID.toString()).ifPresent(kungFu -> {
-                    if (kungFu instanceof AbstractionExternalKunfu) {
-                        ((AbstractionExternalKunfu) kungFu).clampLevelToMax();
-                    }
-                }));
-            }
+        handleConfigEvent(event, false);
+    }
+
+    private static void handleConfigEvent(ModConfigEvent event, boolean migrate) {
+        ModConfig config = event.getConfig();
+        if (config.getSpec() != SPEC) {
+            return;
         }
+
+        if (migrate) {
+            migrateLegacyAliases(config, KungFuConfigOriginProbe.consumeForLoading());
+        }
+
+        var server = ServerLifecycleHooks.getCurrentServer();
+        if (server != null) {
+            server.execute(() -> {
+                for (ServerPlayer player : server.getPlayerList().getPlayers()) {
+                    player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(kungFuData ->
+                            kungFuData.getKungFu(DuguNineSwords.KUNG_FU_ID.toString()).ifPresent(kungFu -> {
+                                if (kungFu instanceof AbstractionExternalKunfu externalKungFu) {
+                                    externalKungFu.clampLevelToMax();
+                                }
+                            }));
+                }
+            });
+        }
+    }
+
+    private static void migrateLegacyAliases(
+            ModConfig config, KungFuConfigOriginProbe.Snapshot originSnapshot) {
+        var uniqueValues = new KungFuConfigMigration.Values(
+                GOLDEN_BELL_JAR_MAX_LEVEL.get(),
+                GOLDEN_BELL_JAR_MAX_EXP.get(),
+                GOLDEN_BELL_JAR_MAX_COOLDOWN.get(),
+                TREAD_THE_SNOW_WITHOUT_TRACE_MAX_LEVEL.get(),
+                TREAD_THE_SNOW_WITHOUT_TRACE_MAX_EXP.get(),
+                TREAD_THE_SNOW_WITHOUT_TRACE_MAX_COOLDOWN.get(),
+                ZA_BIGN_SHOU_CE_MAX_EXP.get()
+        );
+        var plan = KungFuConfigMigration.decide(
+                originSnapshot.origin(),
+                CONFIG_SCHEMA_VERSION.get(),
+                originSnapshot.legacyValues(),
+                uniqueValues);
+        if (plan.action() == KungFuConfigMigration.Action.NO_CHANGE) {
+            return;
+        }
+
+        if (plan.action() == KungFuConfigMigration.Action.COPY_LEGACY_VALUES) {
+            var values = plan.values();
+            GOLDEN_BELL_JAR_MAX_LEVEL.set(values.goldenBellMaxLevel());
+            GOLDEN_BELL_JAR_MAX_EXP.set(values.goldenBellMaxExp());
+            GOLDEN_BELL_JAR_MAX_COOLDOWN.set(values.goldenBellMaxCooldown());
+            TREAD_THE_SNOW_WITHOUT_TRACE_MAX_LEVEL.set(values.treadMaxLevel());
+            TREAD_THE_SNOW_WITHOUT_TRACE_MAX_EXP.set(values.treadMaxExp());
+            TREAD_THE_SNOW_WITHOUT_TRACE_MAX_COOLDOWN.set(values.treadMaxCooldown());
+            ZA_BIGN_SHOU_CE_MAX_EXP.set(values.zaBingMaxExp());
+        }
+
+        CONFIG_SCHEMA_VERSION.set(plan.targetSchemaVersion());
+        config.save();
+        ChangShengJue.LOGGER.info(
+                "Processed kung_fu.toml config schema {} with action {}",
+                plan.targetSchemaVersion(),
+                plan.action()
+        );
     }
 
 }

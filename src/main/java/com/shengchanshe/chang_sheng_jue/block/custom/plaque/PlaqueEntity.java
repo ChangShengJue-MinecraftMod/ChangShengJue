@@ -33,6 +33,9 @@ public class PlaqueEntity extends BlockEntity implements MenuProvider {
     }
 
     public void setText(String text) {
+        if (this.text.equals(text)) {
+            return;
+        }
         this.text = text;
         this.setChanged(); // 标记数据变更
     }

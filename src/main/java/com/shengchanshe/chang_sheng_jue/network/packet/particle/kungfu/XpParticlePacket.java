@@ -1,12 +1,10 @@
 package com.shengchanshe.chang_sheng_jue.network.packet.particle.kungfu;
 
+import com.shengchanshe.chang_sheng_jue.network.ClientPacketBridge;
 import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
-import com.shengchanshe.chang_sheng_jue.util.particle.XpParatice;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -34,16 +32,7 @@ public record XpParticlePacket(UUID playerUUID, SimpleParticleType particleType,
         }
     }
     public static void handle(XpParticlePacket packet, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            Minecraft mc = Minecraft.getInstance();
-            if (mc.level == null) return;
-
-            Player player = Minecraft.getInstance().level.getPlayerByUUID(packet.playerUUID());
-
-            if (player != null && player.level() == mc.level) {
-                XpParatice.XpParaticeParticle(packet.particleType(), player, player.level(), packet.tick);
-            }
-        });
+        ctx.get().enqueueWork(() -> ClientPacketBridge.xpParticle(packet.playerUUID(), packet.particleType(), packet.tick()));
         ctx.get().setPacketHandled(true);
     }
 }

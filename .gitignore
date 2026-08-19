@@ -23,6 +23,10 @@ build
 eclipse
 run
 run-data
+/run-client/
+/run-server/
+/run-server-compat/
+/run-gametest/
 /.claude/
 /.agents/
 /.codex/

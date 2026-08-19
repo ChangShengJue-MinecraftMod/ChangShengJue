@@ -2,13 +2,14 @@ package com.shengchanshe.chang_sheng_jue.block.custom.forgeblock;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocksEntities;
+import com.shengchanshe.chang_sheng_jue.block.custom.CraftingMaterialTransaction;
+import com.shengchanshe.chang_sheng_jue.block.custom.PersistedCraftingJob;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.forgeblock.ForgeBlockMenu;
 import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
 import com.shengchanshe.chang_sheng_jue.recipe.ForgeBlockRecipe;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
@@ -23,7 +24,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -32,7 +33,9 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.RangedWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import software.bernie.geckolib.animatable.GeoBlockEntity;
@@ -41,436 +44,242 @@ import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.ClientUtils;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.Collection;
+import java.util.Optional;
 
-public class ForgeBlockEntity extends BlockEntity implements MenuProvider , GeoBlockEntity {
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    public static final DirectionProperty FACING = ForgeBlock.FACING;
-    // 物品槽位处理器（9个输入，1个输出）
-    private final ItemStackHandler itemHandler = new ItemStackHandler(10);
+public class ForgeBlockEntity extends BlockEntity implements MenuProvider, GeoBlockEntity {
+    private static final int INPUT_SLOT_COUNT = 9;
+    private static final String ACTIVE_JOB = "active_job";
     public static final int SLOT_OUTPUT = 9;
-    private LazyOptional<ItemStackHandler> itemHandlerLazy = LazyOptional.empty();
-    protected final ContainerData data;
-    public int progress = 0;
-    public int maxProgress = 100;
-    // 当前选中的配方和配方组
-    private ForgeBlockRecipe currentRecipe;
-    private String currentRecipeGroup = ""; // 当前配方组
-    private Player currentUser; // 当前使用玩家
-
-    @Override
-    public @Nullable <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == ForgeCapabilities.ITEM_HANDLER) {
-            return itemHandlerLazy.cast();
+    public static final DirectionProperty FACING = ForgeBlock.FACING;
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private final ItemStackHandler itemHandler = new ItemStackHandler(10) {
+        @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            if (slot == SLOT_OUTPUT || (slot < INPUT_SLOT_COUNT && level != null && !level.isClientSide)) return stack;
+            return super.insertItem(slot, stack, simulate);
         }
-        return super.getCapability(cap, side);
-    }
-
-    @Override
-    public void onLoad() {
-        super.onLoad();
-        itemHandlerLazy = LazyOptional.of(() -> itemHandler);
-    }
-
-    @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        itemHandlerLazy.invalidate();
-    }
-
-    public ForgeBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ChangShengJueBlocksEntities.FORGE_BLOCK_ENTITY.get(), pPos, pBlockState);
-        this.data = new ContainerData() {
-            @Override
-            public int getCount() {
-                return 2; // 只需要进度和最大进度
+        @Override protected void onContentsChanged(int slot) {
+            if (level != null && !level.isClientSide && !suppressHandlerCallbacks) {
+                if (slot == SLOT_OUTPUT) ForgeBlockEntity.this.syncToClient();
+                else ForgeBlockEntity.this.setChanged();
             }
+        }
+    };
+    private LazyOptional<ItemStackHandler> itemHandlerLazy = LazyOptional.empty();
+    private LazyOptional<IItemHandler> outputHandlerLazy = LazyOptional.empty();
+    protected final ContainerData data;
+    public int progress;
+    public int maxProgress = 100;
+    private ForgeBlockRecipe currentRecipe;
+    private String currentRecipeGroup = "";
+    private Player currentUser;
+    private ResourceLocation pendingRecipeId;
+    private PersistedCraftingJob activeJob;
+    private boolean activeRecipeAvailable;
+    private boolean legacyWaiting;
+    private boolean missingRecipeLogged;
+    private boolean legacyGhostLogged;
+    private boolean suppressHandlerCallbacks;
+    private int recipeRetryTicks;
 
-            @Override
-            public int get(int i) {
-                return switch (i){
-                    case 0 -> progress;
-                    case 1 -> maxProgress;
-                    default -> 0;
-                };
-            }
-
-            @Override
-            public void set(int i, int i1) {
-                switch (i){
-                    case 0 -> progress = i1;
-                    case 1 -> maxProgress = i1;
-                }
-            }
+    public ForgeBlockEntity(BlockPos pos, BlockState state) {
+        super(ChangShengJueBlocksEntities.FORGE_BLOCK_ENTITY.get(), pos, state);
+        data = new ContainerData() {
+            @Override public int get(int index) { return index == 0 ? progress : index == 1 ? maxProgress : 0; }
+            @Override public void set(int index, int value) { if (index == 0) progress = value; else if (index == 1) maxProgress = value; }
+            @Override public int getCount() { return 2; }
         };
     }
 
-
-    public void drop() {
-        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        for (int i = 0; i < itemHandler.getSlots(); i++) {
-            inventory.setItem(i, itemHandler.getStackInSlot(i));
-        }
-        Containers.dropContents(this.level, worldPosition, inventory);
+    @Override public @Nullable <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) return (side == null ? itemHandlerLazy : outputHandlerLazy).cast();
+        return super.getCapability(cap, side);
     }
-
-
-    @Override
-    public Component getDisplayName() {
-        return Component.translatable("container." + ChangShengJue.MOD_ID + ".forge_block");
+    @Override public void onLoad() {
+        super.onLoad();
+        itemHandlerLazy = LazyOptional.of(() -> itemHandler);
+        outputHandlerLazy = LazyOptional.of(() -> new RangedWrapper(itemHandler, SLOT_OUTPUT, SLOT_OUTPUT + 1));
+        if (level != null && !level.isClientSide) clearLegacyGhostInputs();
+        resolveRecipes();
     }
-
-    @Nullable
-    @Override
-    public AbstractContainerMenu createMenu(int containerId, Inventory inventory, Player player) {
-        if (currentUser != null && currentUser != player) {
-            return null; // 返回null会阻止GUI打开
-        }
-
-        if (currentUser == null) {
-            currentUser = player;
-        }
-
-        return new ForgeBlockMenu(containerId, inventory, this, this.data);
+    @Override public void invalidateCaps() { super.invalidateCaps(); itemHandlerLazy.invalidate(); outputHandlerLazy.invalidate(); }
+    public void drop() { SimpleContainer inventory = new SimpleContainer(1); inventory.setItem(0, itemHandler.getStackInSlot(SLOT_OUTPUT)); Containers.dropContents(level, worldPosition, inventory); }
+    @Override public Component getDisplayName() { return Component.translatable("container." + ChangShengJue.MOD_ID + ".forge_block"); }
+    @Nullable @Override public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
+        if (currentUser != null && currentUser != player) return null;
+        currentUser = player;
+        return new ForgeBlockMenu(id, inventory, this, data);
     }
+    public void onClose(Player player) { if (player == currentUser) currentUser = null; }
 
-    // 玩家关闭容器时清除记录
-    public void onClose(Player player) {
-        if (player == currentUser) {
-            currentUser = null;
-        }
-    }
-
-
-    @Override
-    protected void saveAdditional(CompoundTag tag) {
+    @Override protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.put("inventory", itemHandler.serializeNBT());
         tag.putInt("progress", progress);
-
-        // 保存当前配方信息
-        if (currentRecipe != null) {
-            tag.putString("current_recipe", currentRecipe.getId().toString());
-        }
+        ResourceLocation selected = currentRecipe != null ? currentRecipe.getId() : pendingRecipeId;
+        if (selected != null) tag.putString("current_recipe", selected.toString());
+        if (activeJob != null) tag.put(ACTIVE_JOB, activeJob.save(progress));
     }
-
-    @Override
-    public void load(CompoundTag tag) {
+    @Override public void load(CompoundTag tag) {
         super.load(tag);
         itemHandler.deserializeNBT(tag.getCompound("inventory"));
-        progress = tag.getInt("progress");
-
-        // 加载当前配方信息
-        if (tag.contains("current_recipe")) {
-            ResourceLocation recipeId = new ResourceLocation(tag.getString("current_recipe"));
-            // 注意：这里我们只保存配方ID，在实际使用时需要通过配方管理器获取完整配方
-            // 在getOrCreateLevel()方法中处理配方的实际获取
-            if (level != null) {
-                java.util.Optional<? extends net.minecraft.world.item.crafting.Recipe<?>> recipe = level.getRecipeManager().byKey(recipeId);
-                if (recipe.isPresent() && recipe.get() instanceof ForgeBlockRecipe) {
-                    currentRecipe = (ForgeBlockRecipe) recipe.get();
-                } else {
-                    currentRecipe = null;
-                }
-            } else {
-                currentRecipe = null;
-            }
-        } else {
-            currentRecipe = null;
+        int loadedProgress = tag.getInt("progress");
+        progress = loadedProgress >= 0 && loadedProgress <= maxProgress ? loadedProgress : 0;
+        pendingRecipeId = tag.contains("current_recipe") ? ResourceLocation.tryParse(tag.getString("current_recipe")) : null;
+        currentRecipe = null;
+        activeJob = null;
+        if (tag.contains(ACTIVE_JOB)) {
+            PersistedCraftingJob.Loaded loaded = PersistedCraftingJob.load(tag.getCompound(ACTIVE_JOB), maxProgress);
+            if (loaded != null) { activeJob = loaded.job(); progress = loaded.progress(); }
         }
+        if (level != null) resolveRecipes();
     }
-
-    @Nullable
-    @Override
-    public ClientboundBlockEntityDataPacket getUpdatePacket() {
-        return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @Override
-    public CompoundTag getUpdateTag() {
-        CompoundTag tag = new CompoundTag();
-        saveAdditional(tag);
-        return tag;
-    }
-
-    @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
-        load(pkt.getTag());
-    }
-
-    public ItemStackHandler getItemHandler() {
-        return itemHandler;
-    }
-
-    public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
-        if (pLevel.isClientSide()) return; // 客户端不处理逻辑
-
-        // 只有在制作中时才增加进度
-        if (progress > 0 && progress < maxProgress) {
-            progress++;
-            this.setChanged();
-        } else if (progress >= maxProgress) {
-            // 进度完成，生成物品
-            if (currentRecipe != null) {
-                craftItem(currentRecipe.getResultItem(pLevel.registryAccess()));
-            }
-            progress = 0;
-            this.setChanged();
+    private void resolveRecipes() {
+        if (level == null) return;
+        ResourceLocation selected = activeJob != null ? activeJob.recipeId() : pendingRecipeId;
+        currentRecipe = findRecipe(selected).orElse(null);
+        activeRecipeAvailable = activeJob == null || findRecipe(activeJob.recipeId()).isPresent();
+        if (activeJob == null && progress > 0 && currentRecipe != null) {
+            activeJob = new PersistedCraftingJob(currentRecipe.getId(), currentRecipe.getResultItem(level.registryAccess()), 1, 1);
+            activeRecipeAvailable = true;
         }
+        legacyWaiting = progress > 0 && activeJob == null;
+        if (!level.isClientSide && (legacyWaiting || !activeRecipeAvailable) && !missingRecipeLogged) {
+            ChangShengJue.LOGGER.warn("Forge block at {} is waiting for missing recipe {}", worldPosition, selected);
+            missingRecipeLogged = true;
+        } else if (!legacyWaiting && activeRecipeAvailable) missingRecipeLogged = false;
     }
+    private Optional<ForgeBlockRecipe> findRecipe(@Nullable ResourceLocation id) {
+        if (id == null || level == null) return Optional.empty();
+        Optional<? extends Recipe<?>> recipe = level.getRecipeManager().byKey(id);
+        return recipe.isPresent() && recipe.get() instanceof ForgeBlockRecipe typed ? Optional.of(typed) : Optional.empty();
+    }
+    @Nullable @Override public ClientboundBlockEntityDataPacket getUpdatePacket() { return ClientboundBlockEntityDataPacket.create(this); }
+    @Override public CompoundTag getUpdateTag() { CompoundTag tag = new CompoundTag(); saveAdditional(tag); return tag; }
+    @Override public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet) { load(packet.getTag()); }
+    @Override public void handleUpdateTag(CompoundTag tag) { super.handleUpdateTag(tag); load(tag); }
+    public ItemStackHandler getItemHandler() { return itemHandler; }
+    public boolean isCrafting() { return activeJob != null; }
 
+    public void tick(Level level, BlockPos pos, BlockState state) {
+        if (level.isClientSide) return;
+        retryMissingRecipe();
+        if (activeJob == null || !activeRecipeAvailable) return;
+        if (progress < maxProgress) { progress++; super.setChanged(); return; }
+        if (!canInsert(activeJob.output())) return;
+        craftItem(activeJob.output());
+        activeJob = null;
+        progress = 0;
+        syncToClient();
+    }
+    private boolean canInsert(ItemStack result) {
+        if (!isValidOutput(result)) return false;
+        ItemStack output = itemHandler.getStackInSlot(SLOT_OUTPUT);
+        return output.isEmpty() || ItemStack.isSameItemSameTags(output, result) && output.getCount() + result.getCount() <= output.getMaxStackSize();
+    }
     public void craftItem(ItemStack result) {
         ItemStack output = itemHandler.getStackInSlot(SLOT_OUTPUT);
-        ItemStack stack = new ItemStack(result.getItem());
-        if (output.isEmpty()) {
-            itemHandler.setStackInSlot(SLOT_OUTPUT, stack);
-        } else {
-            output.grow(result.getCount());
-        }
-        setChanged(); // 标记数据变更
-        if (level != null) {
-            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3); // 同步到客户端
-        }
-    }
-
-    @Override
-    public void handleUpdateTag(CompoundTag tag) {
-        super.handleUpdateTag(tag);
-        load(tag); // 确保客户端同步物品数据
-    }
-
-
-    public void craftCurrentRecipe(Player player) {
-        ForgeBlockRecipe recipeToUse = null;
-        
-        // 首先检查当前配方是否有足够材料
-        if (currentRecipe != null && hasEnoughMaterials(player.getInventory(), currentRecipe)) {
-            recipeToUse = currentRecipe;
-        } else {
-            // 如果当前配方材料不足，只查找同一结果物品的其他配方
-            if (currentRecipe != null) {
-                ItemStack resultItem = currentRecipe.getResultItem(level.registryAccess());
-                // 获取所有可用的配方
-                Collection<ForgeBlockRecipe> allRecipes = level.getRecipeManager().getAllRecipesFor(ForgeBlockRecipe.Type.INSTANCE);
-                
-                // 查找第一个材料足够的配方，且结果物品相同
-                for (ForgeBlockRecipe recipe : allRecipes) {
-                    if (ItemStack.isSameItemSameTags(recipe.getResultItem(level.registryAccess()), resultItem)) {
-                        if (hasEnoughMaterials(player.getInventory(), recipe)) {
-                            // 找到匹配的配方
-                            recipeToUse = recipe;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
-        if (recipeToUse == null) return;
-
-        // 检查输出槽是否有物品
-        if (!itemHandler.getStackInSlot(SLOT_OUTPUT).isEmpty()) {
-            return; // 输出槽有物品，禁止合成
-        }
-
-        // 设置要使用的配方为当前配方（如果不同的话）
-        if (recipeToUse != currentRecipe) {
-            setCurrentRecipe(recipeToUse);
-        }
-
-        // 检查玩家是否有足够材料（再次检查以确保一致性）
-        if (hasEnoughMaterials(player.getInventory(), recipeToUse)) {
-            // 消耗材料
-            consumeMaterials(player.getInventory(), recipeToUse);
-            // 开始制作进度
-            this.progress = 1;
-            this.setChanged();
-        }
-    }
-
-    private boolean hasEnoughMaterials(Inventory playerInventory, ForgeBlockRecipe recipe) {
-        ItemStack[] requiredMaterials = getMaterialsFromRecipe(recipe);
-        for (ItemStack required : requiredMaterials) {
-            if (required.isEmpty()) continue;
-
-            int needed = required.getCount();
-            int found = 0;
-
-            for (int i = 0; i < playerInventory.getContainerSize(); i++) {
-                ItemStack stack = playerInventory.getItem(i);
-                if (ItemStack.isSameItemSameTags(stack, required)) {
-                    found += stack.getCount();
-                    if (found >= needed) break;
-                }
-            }
-
-            if (found < needed) return false;
-        }
-        return true;
-    }
-
-    private void consumeMaterials(Inventory playerInventory, ForgeBlockRecipe recipe) {
-        ItemStack[] requiredMaterials = getMaterialsFromRecipe(recipe);
-        for (ItemStack required : requiredMaterials) {
-            if (required.isEmpty()) continue;
-
-            int needed = required.getCount();
-            for (int i = 0; i < playerInventory.getContainerSize(); i++) {
-                ItemStack stack = playerInventory.getItem(i);
-                if (ItemStack.isSameItemSameTags(stack, required)) {
-                    int take = Math.min(needed, stack.getCount());
-                    stack.shrink(take);
-                    needed -= take;
-                    if (needed <= 0) break;
-                }
-            }
-        }
-    }
-    
-    // 从配方中获取材料示例物品（用于UI显示）
-    public ItemStack[] getMaterialsFromRecipe(ForgeBlockRecipe recipe) {
-        return recipe.getIngredients().stream()
-                .map(ingredient -> ingredient.getItems().length > 0 ? ingredient.getItems()[0] : ItemStack.EMPTY)
-                .toArray(ItemStack[]::new);
-    }
-
-    public void setCurrentRecipe(ForgeBlockRecipe recipe) {
-        setCurrentRecipe(recipe, recipe != null ? recipe.getGroup() : null);
-    }
-
-    public void setCurrentRecipe(ForgeBlockRecipe recipe, String group) {
-        this.currentRecipe = recipe;
-        this.currentRecipeGroup = group != null ? group : "";
-        
-        // 清空输入槽
-        for (int i = 0; i < 9; i++) {
-            itemHandler.setStackInSlot(i, ItemStack.EMPTY);
-        }
-
-        // 设置配方材料到输入槽
-        if (recipe != null) {
-            NonNullList<Ingredient> ingredients = recipe.getIngredients();
-            for (int i = 0; i < ingredients.size() && i < 9; i++) {
-                ItemStack[] matchingStacks = ingredients.get(i).getItems();
-                if (matchingStacks.length > 0) {
-                    itemHandler.setStackInSlot(i, matchingStacks[0].copy());
-                }
-            }
-        }
-
-        setChanged();
-        if (level != null) {
-            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 3);
-        }
-    }
-
-    public void setRecipeGroup(String group) {
-        this.currentRecipeGroup = group != null ? group : "";
-        // 如果需要根据组更新UI，可以在这里添加相关逻辑
-        setChanged();
-    }
-
-    public ForgeBlockRecipe getCurrentRecipe() {
-        return currentRecipe;
-    }
-    
-    // 获取当前配方的结果物品
-    public ItemStack getRecipeResultItem() {
-        if (currentRecipe != null) {
-            return currentRecipe.getResultItem(level.registryAccess());
-        }
-        return ItemStack.EMPTY;
-    }
-
-    @Override
-    public void setChanged() {
+        if (output.isEmpty()) itemHandler.setStackInSlot(SLOT_OUTPUT, result.copy()); else output.grow(result.getCount());
         super.setChanged();
-        if (this.level != null){
-            this.level.sendBlockUpdated(this.getBlockPos(),this.getBlockState(),this.getBlockState(), Block.UPDATE_CLIENTS);
+    }
+    public void craftCurrentRecipe(Player player) {
+        if (level == null || level.isClientSide || activeJob != null || currentRecipe == null) return;
+        ForgeBlockRecipe recipe = chooseRecipe(player.getInventory());
+        if (recipe == null) return;
+        ItemStack result = recipe.getResultItem(level.registryAccess()).copy();
+        if (!isValidOutput(result) || !canInsert(result)) return;
+        var ingredients = recipe.getIngredients();
+        int[] counts = CraftingMaterialTransaction.countsFromIngredients(ingredients);
+        if (!CraftingMaterialTransaction.consume(player.getInventory(), ingredients, counts, 1)) return;
+        currentRecipe = recipe;
+        pendingRecipeId = recipe.getId();
+        activeJob = new PersistedCraftingJob(recipe.getId(), result, 1, 1);
+        activeRecipeAvailable = true;
+        legacyWaiting = false;
+        progress = 1;
+        syncToClient();
+    }
+    @Nullable private ForgeBlockRecipe chooseRecipe(Inventory inventory) {
+        var ingredients = currentRecipe.getIngredients();
+        if (CraftingMaterialTransaction.canConsume(inventory, ingredients, CraftingMaterialTransaction.countsFromIngredients(ingredients), 1)) return currentRecipe;
+        ItemStack wanted = currentRecipe.getResultItem(level.registryAccess());
+        for (ForgeBlockRecipe recipe : level.getRecipeManager().getAllRecipesFor(ForgeBlockRecipe.Type.INSTANCE)) {
+            var alternative = recipe.getIngredients();
+            if (ItemStack.isSameItemSameTags(recipe.getResultItem(level.registryAccess()), wanted)
+                    && CraftingMaterialTransaction.canConsume(inventory, alternative, CraftingMaterialTransaction.countsFromIngredients(alternative), 1)) return recipe;
+        }
+        return null;
+    }
+    public ItemStack[] getMaterialsFromRecipe(ForgeBlockRecipe recipe) { return recipe.getIngredients().stream().map(i -> i.getItems().length > 0 ? i.getItems()[0] : ItemStack.EMPTY).toArray(ItemStack[]::new); }
+    public void setCurrentRecipe(ForgeBlockRecipe recipe) { setCurrentRecipe(recipe, recipe != null ? recipe.getGroup() : null); }
+    public void setCurrentRecipe(ForgeBlockRecipe recipe, String group) {
+        if (activeJob != null || progress > 0) return;
+        currentRecipe = recipe;
+        pendingRecipeId = recipe == null ? null : recipe.getId();
+        currentRecipeGroup = group == null ? "" : group;
+        clearInputSlots();
+        syncToClient();
+    }
+    private void clearInputSlots() { for (int i = 0; i < INPUT_SLOT_COUNT; i++) itemHandler.setStackInSlot(i, ItemStack.EMPTY); }
+    private void clearLegacyGhostInputs() {
+        boolean found = false;
+        suppressHandlerCallbacks = true;
+        try {
+            for (int i = 0; i < INPUT_SLOT_COUNT; i++) {
+                if (!itemHandler.getStackInSlot(i).isEmpty()) { found = true; itemHandler.setStackInSlot(i, ItemStack.EMPTY); }
+            }
+        } finally { suppressHandlerCallbacks = false; }
+        if (found) {
+            super.setChanged();
+            if (!legacyGhostLogged) {
+                ChangShengJue.LOGGER.warn("Cleared legacy forge display items at {} without dropping them", worldPosition);
+                legacyGhostLogged = true;
+            }
         }
     }
-
-    @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
-        controllerRegistrar.add(((new AnimationController<>(this, "work", 0, (state) ->{
-            if (this.progress != 0){
-                state.setAndContinue(RawAnimation.begin().thenPlay("work"));
-                return PlayState.CONTINUE;
-            } else {
-                return PlayState.STOP;
-            }
-        }).setSoundKeyframeHandler((state) -> {
-            Player player = ClientUtils.getClientPlayer();
-            Level level1 = ClientUtils.getLevel();
-            level1.playSound(player,this.getBlockPos(), ChangShengJueSound.FORGE_BLOCK_SOUND.get(), SoundSource.BLOCKS, 0.1F, 1.0F);
-        }).setParticleKeyframeHandler((state) -> {
-            Level level1 = ClientUtils.getLevel();
-            spawnForgeParticles(level1);
-        }))));
+    public void setRecipeGroup(String group) { if (activeJob == null) currentRecipeGroup = group == null ? "" : group; }
+    public ForgeBlockRecipe getCurrentRecipe() { return currentRecipe; }
+    public ItemStack getRecipeResultItem() { return currentRecipe == null || level == null ? ItemStack.EMPTY : currentRecipe.getResultItem(level.registryAccess()); }
+    private static boolean isValidOutput(ItemStack output) { return !output.isEmpty() && output.getCount() <= output.getMaxStackSize(); }
+    private void retryMissingRecipe() {
+        if (!legacyWaiting && activeRecipeAvailable) return;
+        if (recipeRetryTicks-- > 0) return;
+        recipeRetryTicks = 100;
+        resolveRecipes();
     }
+    private void syncToClient() { super.setChanged(); if (level != null) level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_CLIENTS); }
+    @Override public void setChanged() { super.setChanged(); }
 
+    @Override public void registerControllers(AnimatableManager.ControllerRegistrar registrar) {
+        registrar.add(new AnimationController<>(this, "work", 0, state -> {
+            if (progress != 0) { state.setAndContinue(RawAnimation.begin().thenPlay("work")); return PlayState.CONTINUE; }
+            return PlayState.STOP;
+        }).setSoundKeyframeHandler(state -> {
+            if (level != null && level.isClientSide) level.playLocalSound(worldPosition, ChangShengJueSound.FORGE_BLOCK_SOUND.get(), SoundSource.BLOCKS, 0.1F, 1.0F, false);
+        }).setParticleKeyframeHandler(state -> { if (level != null && level.isClientSide) spawnForgeParticles(level); }));
+    }
     public void spawnForgeParticles(Level level) {
         if (level == null) return;
-
         Direction facing = getBlockState().getValue(FACING);
-
-        double baseX = worldPosition.getX() + 0.5;
-        double baseY = worldPosition.getY() + 0.8;
-        double baseZ = worldPosition.getZ() + 0.5;
-
+        double x = worldPosition.getX() + 0.5;
+        double y = worldPosition.getY() + 0.8;
+        double z = worldPosition.getZ() + 0.5;
         switch (facing) {
-            case NORTH -> {
-                baseX += 0.2;
-                baseZ += 0.2;
-            }
-            case SOUTH -> {
-                baseX -= 0.2;
-                baseZ -= 0.2;
-            }
-            case EAST -> {
-                baseZ += 0.2;
-                baseX -= 0.2;
-            }
-            case WEST -> {
-                baseZ -= 0.2;
-                baseX += 0.2;
-            }
+            case NORTH -> { x += 0.2; z += 0.2; }
+            case SOUTH -> { x -= 0.2; z -= 0.2; }
+            case EAST -> { z += 0.2; x -= 0.2; }
+            case WEST -> { z -= 0.2; x += 0.2; }
         }
-        int particleCount = 6 + level.random.nextInt(6);
-        for (int i = 0; i < particleCount; i++) {
-            // 小范围随机偏移
-            double xOffset = (level.random.nextDouble() - 0.5) * 0.1;
-            double yOffset = level.random.nextDouble() * 0.15;
-            double zOffset = (level.random.nextDouble() - 0.5) * 0.1;
-
-            // 速度参数
-            double xSpeed = (level.random.nextDouble() - 0.5) * 0.2;
-            double ySpeed = level.random.nextDouble() * 0.06 + 0.03;
-            double zSpeed = (level.random.nextDouble() - 0.5) * 0.2;
-
-            // 根据朝向调整主要喷射方向
-            switch (facing) {
-                case NORTH -> zSpeed = -Math.abs(zSpeed) * 1.2;
-                case SOUTH -> zSpeed = Math.abs(zSpeed) * 1.2;
-                case EAST -> xSpeed = Math.abs(xSpeed) * 1.2;
-                case WEST -> xSpeed = -Math.abs(xSpeed) * 1.2;
-            }
-
-            level.addParticle(ChangShengJueParticles.FORGE_BLOCK_PARTCLE.get(),
-                    baseX + xOffset,
-                    baseY + yOffset,
-                    baseZ + zOffset,
-                    xSpeed,
-                    ySpeed,
-                    zSpeed);
+        int count = 6 + level.random.nextInt(6);
+        for (int i = 0; i < count; i++) {
+            double xs = (level.random.nextDouble() - 0.5) * 0.2;
+            double ys = level.random.nextDouble() * 0.06 + 0.03;
+            double zs = (level.random.nextDouble() - 0.5) * 0.2;
+            switch (facing) { case NORTH -> zs = -Math.abs(zs) * 1.2; case SOUTH -> zs = Math.abs(zs) * 1.2; case EAST -> xs = Math.abs(xs) * 1.2; case WEST -> xs = -Math.abs(xs) * 1.2; }
+            level.addParticle(ChangShengJueParticles.FORGE_BLOCK_PARTCLE.get(), x + (level.random.nextDouble() - 0.5) * 0.1,
+                    y + level.random.nextDouble() * 0.15, z + (level.random.nextDouble() - 0.5) * 0.1, xs, ys, zs);
         }
     }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
-    }
+    @Override public AnimatableInstanceCache getAnimatableInstanceCache() { return cache; }
 }

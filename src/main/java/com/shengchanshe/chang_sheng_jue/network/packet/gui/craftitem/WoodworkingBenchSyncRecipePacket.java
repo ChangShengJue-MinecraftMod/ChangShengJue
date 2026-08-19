@@ -1,13 +1,12 @@
 package com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem;
 
-import com.shengchanshe.chang_sheng_jue.block.custom.workbench.WoodworkingBenchEntity;
+import com.shengchanshe.chang_sheng_jue.network.ServerPacketGuard;
 import com.shengchanshe.chang_sheng_jue.recipe.WoodworkingBenchRecipe;
 import io.netty.handler.codec.DecoderException;
 import net.minecraft.ResourceLocationException;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -19,6 +18,7 @@ import java.util.function.Supplier;
  * 用于在客户端和服务端之间同步锻造台当前使用的配方
  */
 public class WoodworkingBenchSyncRecipePacket {
+    private static final int MAX_RECIPE_ID_LENGTH = 256;
     private final BlockPos pos;
     private final ResourceLocation recipeId; // 存储配方的唯一标识符
 
@@ -46,7 +46,7 @@ public class WoodworkingBenchSyncRecipePacket {
         buf.writeBlockPos(pos); // 写入方块位置
         if (recipeId != null) {
             buf.writeBoolean(true); // 标记存在 recipeId
-            buf.writeUtf(recipeId.toString()); // 使用 UTF-8 编码写入字符串
+            buf.writeUtf(recipeId.toString(), MAX_RECIPE_ID_LENGTH); // 保留原线格式，仅限制异常载荷
         } else {
             buf.writeBoolean(false); // 标记无 recipeId
         }
@@ -56,7 +56,7 @@ public class WoodworkingBenchSyncRecipePacket {
         BlockPos pos = buf.readBlockPos();
         ResourceLocation recipeId = null;
         if (buf.readBoolean()) { // 检查是否有 recipeId
-            String recipeIdStr = buf.readUtf(); // 使用 UTF-8 解码
+            String recipeIdStr = buf.readUtf(MAX_RECIPE_ID_LENGTH); // 使用 UTF-8 解码
             try {
                 recipeId = new ResourceLocation(recipeIdStr); // 转换为 ResourceLocation
             } catch (ResourceLocationException e) {
@@ -73,19 +73,21 @@ public class WoodworkingBenchSyncRecipePacket {
      */
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
-            ServerPlayer player = ctx.get().getSender();
-            if (player != null && player.level().getBlockEntity(pos) instanceof WoodworkingBenchEntity blockEntity) {
-                WoodworkingBenchRecipe recipe = null;
-                if (recipeId != null) {
-                    Optional<? extends Recipe<?>> optionalRecipe = player.level().getRecipeManager().byKey(recipeId);
-                    if (optionalRecipe.isPresent() && optionalRecipe.get() instanceof WoodworkingBenchRecipe) {
-                        recipe = (WoodworkingBenchRecipe) optionalRecipe.get();
-                    }
+            var player = ctx.get().getSender();
+            ServerPacketGuard.woodworkingBench(player, pos).ifPresent(blockEntity -> {
+                if (recipeId == null) {
+                    blockEntity.setCurrentRecipe(null);
+                    blockEntity.setChanged();
+                    return;
                 }
 
+                Optional<? extends Recipe<?>> optionalRecipe = player.level().getRecipeManager().byKey(recipeId);
+                if (optionalRecipe.isEmpty() || !(optionalRecipe.get() instanceof WoodworkingBenchRecipe recipe)) {
+                    return;
+                }
                 blockEntity.setCurrentRecipe(recipe);
                 blockEntity.setChanged();
-            }
+            });
         });
         ctx.get().setPacketHandled(true);
     }

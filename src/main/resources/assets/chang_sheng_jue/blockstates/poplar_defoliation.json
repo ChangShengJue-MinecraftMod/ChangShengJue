@@ -8,6 +8,7 @@
     },
     "level=2": {
       "model": "chang_sheng_jue:block/poplar_defoliation_2"
-    }
+    },
+    "level=3": {"model":"chang_sheng_jue:block/poplar_defoliation_2"}
   }
 }

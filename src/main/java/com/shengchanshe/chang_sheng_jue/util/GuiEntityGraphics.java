@@ -9,22 +9,30 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.joml.Quaternionf;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
 
 public record GuiEntityGraphics(Font font, int headSize, int maxVisibleHeads, Map<EntityType<?>, Entity> entityCache) {
-//    private float rotationAngle = 0; // 当前旋转角度（度）
-//    private long lastUpdateTime = 0; // 上次更新时间
-    private static GuiEntityGraphics instance;
+    private static final Field RENDER_SHADOW_FIELD = ObfuscationReflectionHelper.findField(
+            EntityRenderDispatcher.class, "f_114368_");
 
-    public static GuiEntityGraphics getInstance(Font font,int headSize,int maxVisibleHeads,Map<EntityType<?>, Entity> entityCache) {
-        if (instance == null) {
-            instance = new GuiEntityGraphics(font, headSize, maxVisibleHeads,entityCache);
-        }
-        return instance;
+    /**
+     * 保留 0.7.9 的公开调用签名，但不再共享跨 Screen、跨世界的单例状态。
+     */
+    @Deprecated
+    public static GuiEntityGraphics getInstance(Font font, int headSize, int maxVisibleHeads,
+                                                Map<EntityType<?>, Entity> entityCache) {
+        return new GuiEntityGraphics(font, headSize, maxVisibleHeads, entityCache);
+    }
+
+    public void clear() {
+        this.entityCache.clear();
     }
 
     public void renderKillTargetHead(GuiGraphics guiGraphics, int x, int y, String questEntity, int currentKillsCount, int requiredKillsCount) {
@@ -105,7 +113,13 @@ public record GuiEntityGraphics(Font font, int headSize, int maxVisibleHeads, Ma
         }
 
         // 计算动画进度（每20 ticks切换一次生物）
-        long gameTime = Minecraft.getInstance().level.getGameTime();
+        Level level = Minecraft.getInstance().level;
+        if (level == null) {
+            clear();
+            renderMissingIcon(guiGraphics, x, y);
+            return;
+        }
+        long gameTime = level.getGameTime();
         int index = (int)((gameTime / 20) % taggedEntities.size()); // 循环索引
 
         // 渲染当前选中的生物
@@ -152,11 +166,23 @@ public record GuiEntityGraphics(Font font, int headSize, int maxVisibleHeads, Ma
     }
 
     public void renderEntityHead(GuiGraphics guiGraphics, int x, int y, EntityType<?> entityType) {
+        Level level = Minecraft.getInstance().level;
+        if (level == null) {
+            clear();
+            renderMissingIcon(guiGraphics, x, y);
+            return;
+        }
+
         // 从缓存获取或创建实体
-        Entity entity = entityCache.computeIfAbsent(entityType, type -> {
-            Entity e = type.create(Minecraft.getInstance().level);
-            return e;
-        });
+        Entity cachedEntity = entityCache.get(entityType);
+        if (cachedEntity != null && cachedEntity.level() != level) {
+            clear();
+            cachedEntity = null;
+        }
+        Entity entity = cachedEntity != null ? cachedEntity : entityType.create(level);
+        if (entity != null) {
+            entityCache.put(entityType, entity);
+        }
 
         if (entity == null) {
             renderMissingIcon(guiGraphics, x, y);
@@ -167,12 +193,17 @@ public record GuiEntityGraphics(Font font, int headSize, int maxVisibleHeads, Ma
         float yOffset = 0.0F;
 
         guiGraphics.pose().pushPose();
-        guiGraphics.pose().translate(x + (float) headSize / 2, y + (float) headSize / 2 + yOffset, 100.0F);
-        guiGraphics.pose().scale(headSize, headSize, headSize);
+        EntityRenderDispatcher renderer = Minecraft.getInstance().getEntityRenderDispatcher();
+        Quaternionf previousOrientation = new Quaternionf(renderer.cameraOrientation());
+        boolean previousRenderShadow = getRenderShadow(renderer);
+        MultiBufferSource.BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
+        try {
+            guiGraphics.pose().translate(x + (float) headSize / 2, y + (float) headSize / 2 + yOffset, 100.0F);
+            guiGraphics.pose().scale(headSize, headSize, headSize);
 
-        // 设置朝向
-        Quaternionf quaternion = new Quaternionf().rotateZ(180.0F * (float)Math.PI / 180.0F);
-        guiGraphics.pose().mulPose(quaternion);
+            // 设置朝向
+            Quaternionf quaternion = new Quaternionf().rotateZ(180.0F * (float)Math.PI / 180.0F);
+            guiGraphics.pose().mulPose(quaternion);
         //让生物旋转
 //        Quaternionf rotation = new Quaternionf()
 //                .rotateYXZ(
@@ -184,18 +215,25 @@ public record GuiEntityGraphics(Font font, int headSize, int maxVisibleHeads, Ma
 //
 //        guiGraphics.pose().mulPose(rotation);
 
-        // 渲染实体
-        EntityRenderDispatcher renderer = Minecraft.getInstance().getEntityRenderDispatcher();
-        quaternion.conjugate();
-        renderer.overrideCameraOrientation(quaternion);
-        renderer.setRenderShadow(false);
+            // 渲染实体
+            quaternion.conjugate();
+            renderer.overrideCameraOrientation(quaternion);
+            renderer.setRenderShadow(false);
+            renderer.render(entity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F,
+                    guiGraphics.pose(), buffer, 0xF000F0);
+        } finally {
+            buffer.endBatch();
+            renderer.setRenderShadow(previousRenderShadow);
+            renderer.overrideCameraOrientation(previousOrientation);
+            guiGraphics.pose().popPose();
+        }
+    }
 
-        MultiBufferSource.BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
-        renderer.render(entity, 0.0D, 0.0D, 0.0D, 0.0F, 1.0F,
-                guiGraphics.pose(), buffer, 0xF000F0);
-
-        buffer.endBatch();
-        renderer.setRenderShadow(false);
-        guiGraphics.pose().popPose();
+    private static boolean getRenderShadow(EntityRenderDispatcher renderer) {
+        try {
+            return RENDER_SHADOW_FIELD.getBoolean(renderer);
+        } catch (IllegalAccessException exception) {
+            return true;
+        }
     }
 }

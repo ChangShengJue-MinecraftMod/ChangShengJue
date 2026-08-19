@@ -11,12 +11,14 @@ import com.shengchanshe.chang_sheng_jue.network.packet.gui.quest.RefreshQuestScr
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -36,6 +38,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class QuestManager {
     private static QuestManager instance;
+    private static final int MAX_GENERATED_TARGETS = 32;
+    private static final Map<ResourceLocation, TagKey<EntityType<?>>> ENTITY_TAG_CACHE = new ConcurrentHashMap<>();
     // 任务完成次数统计 <任务ID, 完成次数>
     private final Map<UUID, Integer> questCompletionCounts = new ConcurrentHashMap<>();
 
@@ -50,6 +54,16 @@ public class QuestManager {
      * 玩家接受帮派任务
      */
     public void acceptQuest(Player player, AbstractGangLeader gangLeader, UUID questId) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            tryAcceptQuest(serverPlayer, gangLeader, questId);
+        }
+    }
+
+    public boolean tryAcceptQuest(ServerPlayer player, AbstractGangLeader gangLeader, UUID questId) {
+        if (player == null || gangLeader == null || questId == null) {
+            return false;
+        }
+        boolean[] accepted = {false};
         player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
             List<Quest> npcQuests = gangLeader.getPlayerQuests(player.getUUID());
             Optional<Quest> existingQuest = npcQuests.stream()
@@ -77,16 +91,15 @@ public class QuestManager {
 
                 this.spawnTargetForQuest((ServerPlayer) player, targetQuest, requiredKills);
 
-                if (player instanceof ServerPlayer serverPlayer) {
-                    cap.syncToClient(serverPlayer);
-
-                    ChangShengJueMessages.sendToPlayer(
-                            new RefreshQuestScreenPacket(gangLeader.getPlayerQuests(player.getUUID())),
-                            serverPlayer
-                    );
-                }
+                cap.syncToClient(player);
+                ChangShengJueMessages.sendToPlayer(
+                        new RefreshQuestScreenPacket(gangLeader.getPlayerQuests(player.getUUID())),
+                        player
+                );
+                accepted[0] = true;
             }
         });
+        return accepted[0];
     }
     /**
      * 玩家提交背包任务
@@ -185,92 +198,72 @@ public class QuestManager {
      * @param quest 关联的任务
      */
     public void spawnTargetForQuest(ServerPlayer player, Quest quest, int count) {
+        if (player == null || quest == null || !player.isAlive()) {
+            return;
+        }
         Level level = player.level();
         RandomSource rand = player.getRandom();
         String targetId = quest.getTargetEntity();
         String secondTargetId = quest.getSecondTargetEntity();
+        int safeCount = Mth.clamp(count, 0, MAX_GENERATED_TARGETS);
 
         if (quest.isAcceptQuestEffects()){
             quest.applyEffects(player);
         }
-        if (quest.isQuestGenerateTarget()){
+        if (quest.isQuestGenerateTarget() && safeCount > 0){
             if (secondTargetId != null && !secondTargetId.isEmpty()) {
-                if (secondTargetId.startsWith("#")) {
-                    ResourceLocation tagId = new ResourceLocation(secondTargetId.substring(1));
-                    TagKey<EntityType<?>> entityTag = TagKey.create(Registries.ENTITY_TYPE, tagId);
-
-                    List<EntityType<?>> possibleTypes = ForgeRegistries.ENTITY_TYPES.getValues()
-                            .stream()
-                            .filter(type -> {
-                                Optional<Holder<EntityType<?>>> holder = ForgeRegistries.ENTITY_TYPES.getHolder(type);
-                                return holder.map(h -> level.registryAccess()
-                                                .registryOrThrow(Registries.ENTITY_TYPE)
-                                                .getTag(entityTag)
-                                                .map(tag -> tag.contains(h))
-                                                .orElse(false))
-                                        .orElse(false);
-                            })
-                            .toList();
-
-                    if (!possibleTypes.isEmpty()) {
-                        EntityType<?> selectedType = possibleTypes.get(rand.nextInt(possibleTypes.size()));
-                        for (int i = 0; i < count; i++){
-                            LivingEntity entity = spawnEntityAtValidPosition(level, player, selectedType);
-                            if (entity != null) {
-                                setAttackTarget(entity, player);  // 设置攻击目标
-                            }
-                        }
-                    }
-                } else {
-                    EntityType<?> type = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(secondTargetId));
-                    if (type != null) {
-                        for (int i = 0; i < count; i++){
-                            LivingEntity entity = spawnEntityAtValidPosition(level, player, type);
-                            if (entity != null) {
-                                setAttackTarget(entity, player);  // 设置攻击目标
-                            }
-                        }
-                    }
-                }
+                spawnTargets(level, player, secondTargetId, safeCount, rand);
             }
-            if (targetId.startsWith("#")) {
-                ResourceLocation tagId = new ResourceLocation(targetId.substring(1));
-                TagKey<EntityType<?>> entityTag = TagKey.create(Registries.ENTITY_TYPE, tagId);
+            spawnTargets(level, player, targetId, safeCount, rand);
+        }
+    }
 
-                List<EntityType<?>> possibleTypes = ForgeRegistries.ENTITY_TYPES.getValues()
-                        .stream()
-                        .filter(type -> {
-                            Optional<Holder<EntityType<?>>> holder = ForgeRegistries.ENTITY_TYPES.getHolder(type);
-                            return holder.map(h -> level.registryAccess()
-                                            .registryOrThrow(Registries.ENTITY_TYPE)
-                                            .getTag(entityTag)
-                                            .map(tag -> tag.contains(h))
-                                            .orElse(false))
-                                    .orElse(false);
-                        })
-                        .toList();
-
-                if (!possibleTypes.isEmpty()) {
-                    EntityType<?> selectedType = possibleTypes.get(rand.nextInt(possibleTypes.size()));
-                    for (int i = 0; i < count; i++){
-                        LivingEntity entity = spawnEntityAtValidPosition(level, player, selectedType);
-                        if (entity != null) {
-                            setAttackTarget(entity, player);  // 设置攻击目标
-                        }
-                    }
-                }
-            } else {
-                EntityType<?> type = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(targetId));
-                if (type != null) {
-                    for (int i = 0; i < count; i++){
-                        LivingEntity entity = spawnEntityAtValidPosition(level, player, type);
-                        if (entity != null) {
-                            setAttackTarget(entity, player);  // 设置攻击目标
-                        }
-                    }
-                }
+    private void spawnTargets(Level level, ServerPlayer player, String targetId, int count, RandomSource random) {
+        List<EntityType<?>> possibleTypes = resolveTargetTypes(level, targetId);
+        if (possibleTypes.isEmpty()) {
+            return;
+        }
+        EntityType<?> selectedType = possibleTypes.get(random.nextInt(possibleTypes.size()));
+        for (int i = 0; i < count; i++) {
+            LivingEntity entity = spawnEntityAtValidPosition(level, player, selectedType);
+            if (entity != null) {
+                setAttackTarget(entity, player);
             }
         }
+    }
+
+    private List<EntityType<?>> resolveTargetTypes(Level level, String targetId) {
+        if (targetId == null || targetId.isBlank()) {
+            return Collections.emptyList();
+        }
+        if (targetId.startsWith("#")) {
+            ResourceLocation tagId = ResourceLocation.tryParse(targetId.substring(1));
+            if (tagId == null) {
+                ChangShengJue.LOGGER.warn("任务实体标签无效: {}", targetId);
+                return Collections.emptyList();
+            }
+            TagKey<EntityType<?>> tagKey = ENTITY_TAG_CACHE.computeIfAbsent(tagId,
+                    id -> TagKey.create(Registries.ENTITY_TYPE, id));
+            Registry<EntityType<?>> registry = level.registryAccess().registryOrThrow(Registries.ENTITY_TYPE);
+            return registry.getTag(tagKey)
+                    .map(named -> named.stream()
+                            .map(Holder::value)
+                            .filter(this::createsLivingEntity)
+                            .toList())
+                    .orElse(Collections.emptyList());
+        }
+
+        ResourceLocation entityId = ResourceLocation.tryParse(targetId);
+        if (entityId == null) {
+            ChangShengJue.LOGGER.warn("任务实体标识无效: {}", targetId);
+            return Collections.emptyList();
+        }
+        EntityType<?> type = ForgeRegistries.ENTITY_TYPES.getValue(entityId);
+        return type != null && createsLivingEntity(type) ? List.of(type) : Collections.emptyList();
+    }
+
+    private boolean createsLivingEntity(EntityType<?> type) {
+        return type.getCategory() != net.minecraft.world.entity.MobCategory.MISC;
     }
     // 在有效位置生成实体
     private LivingEntity spawnEntityAtValidPosition(Level level, ServerPlayer player, EntityType<?> type) {
@@ -280,8 +273,8 @@ public class QuestManager {
 
             BlockPos groundPos = findGroundPos(level, new BlockPos((int) pos.x, (int) pos.y, (int) pos.z));
             if (groundPos != null) {
-                LivingEntity entity = (LivingEntity) type.create(level);
-                if (entity != null) {
+                net.minecraft.world.entity.Entity created = type.create(level);
+                if (created instanceof LivingEntity entity) {
                     entity.setPos(groundPos.getX() + 0.5, groundPos.getY(), groundPos.getZ() + 0.5);
                     if (level.noCollision(entity)) {
                         level.addFreshEntity(entity);
@@ -296,15 +289,20 @@ public class QuestManager {
                         return entity;  // 返回生成的实体
                     }
                     entity.discard();
+                } else if (created != null) {
+                    created.discard();
                 }
             }
         }
         // 回退到玩家位置生成
-        LivingEntity entity = (LivingEntity) type.create(level);
-        if (entity != null) {
+        net.minecraft.world.entity.Entity created = type.create(level);
+        if (created instanceof LivingEntity entity) {
             entity.setPos(player.position());
             level.addFreshEntity(entity);
             return entity;
+        }
+        if (created != null) {
+            created.discard();
         }
         return null;
     }
@@ -362,9 +360,8 @@ public class QuestManager {
             }
         }
 
-        ServerPlayer serverPlayer = ServerLifecycleHooks.getCurrentServer()
-                .getPlayerList()
-                .getPlayer(playerId);
+        var server = ServerLifecycleHooks.getCurrentServer();
+        ServerPlayer serverPlayer = server == null ? null : server.getPlayerList().getPlayer(playerId);
         if (serverPlayer != null) {
             return getQuestsFromCapability(serverPlayer);
         }

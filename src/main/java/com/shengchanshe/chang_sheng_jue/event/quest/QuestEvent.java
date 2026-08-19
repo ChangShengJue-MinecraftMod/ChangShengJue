@@ -2,7 +2,6 @@ package com.shengchanshe.chang_sheng_jue.event.quest;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
-import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.ClientQuestDataCache;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;
@@ -28,14 +27,21 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.level.LevelEvent;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class QuestEvent {
     public static final UUID PROTECT_THE_VILLAGE_QUEST_ID = UUID.fromString("85248ab7-ff1b-4d4d-8a05-92d5360e70eb");
     public static final UUID XING_XIA_ZHANG_YI_QUEST_ID = UUID.fromString("a35c7c77-6920-43c0-abaa-94763adfaa10");
+    private static final UUID WRITTEN_PLEDGE_QUEST_ID = UUID.fromString("c4ac1553-b219-4e7c-a54d-e274f9815109");
+    private static final UUID RESCUE_VILLAGERS_QUEST_ID = UUID.fromString("7dc9c671-ec29-4f3f-9467-5324fa026499");
+    private static final int QUEST_STATE_REFRESH_INTERVAL_TICKS = 20;
+    private static final Set<UUID> FIRST_GANG_TASK_IDS = Set.of(
+            WRITTEN_PLEDGE_QUEST_ID,
+            RESCUE_VILLAGERS_QUEST_ID,
+            PlayerQuestEvent.VEGETARIAN_FOOD_QUEST_ID);
+    private static final Map<ServerLevel, VillageSiege> DIMENSION_SIEGES = new WeakHashMap<>();
+    private static final Set<ServerLevel> ACTIVE_SIEGE_LEVELS = Collections.newSetFromMap(new WeakHashMap<>());
+    private static final Map<ServerLevel, Long> INITIALIZED_SIEGE_DAYS = new WeakHashMap<>();
 
     public static void onEntityDeath(LivingDeathEvent event){
         if (event.getSource().getEntity() instanceof Player player) {
@@ -67,11 +73,7 @@ public class QuestEvent {
                                     player.sendSystemMessage(getColoredTranslation(
                                             "quest." + ChangShengJue.MOD_ID + ".finish",
                                             getColoredTranslation(quest.getQuestName())));
-                                    if(Objects.equals(quest.getQuestName(), "救民侠医") && Objects.equals(quest.getQuestName(), "投名状") && Objects.equals(quest.getQuestName(), "斋饭")){
-                                        if(player instanceof ServerPlayer serverPlayer) {
-                                            CSJAdvanceInit.FINISH_TASK.trigger(serverPlayer);
-                                        }
-                                    }
+                                    triggerFinishTaskAdvancement(player, quest);
                                 }
                             } else if (quest.getSecondCurrentKills() < quest.getSecondRequiredKills()) {
                                 if (quest.matchesSecondEntity(entity)) {
@@ -104,11 +106,7 @@ public class QuestEvent {
                                     player.sendSystemMessage(getColoredTranslation(
                                             "quest." + ChangShengJue.MOD_ID + ".finish",
                                             getColoredTranslation(quest.getQuestName())));
-                                    if(Objects.equals(quest.getQuestName(), "救民侠医") && Objects.equals(quest.getQuestName(), "投名状") && Objects.equals(quest.getQuestName(), "斋饭")){
-                                        if(player instanceof ServerPlayer serverPlayer) {
-                                            CSJAdvanceInit.FINISH_TASK.trigger(serverPlayer);
-                                        }
-                                    }
+                                    triggerFinishTaskAdvancement(player, quest);
                                 }
                             }
                         }
@@ -148,19 +146,45 @@ public class QuestEvent {
     public static void onServerTick(TickEvent.ServerTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
 
+        if (shouldRefreshQuestState(event.getServer().getTickCount())) {
+            refreshQuestState(event);
+        }
+        tickActiveSieges();
+    }
+
+    static boolean shouldRefreshQuestState(int serverTickCount) {
+        return Math.floorMod(serverTickCount, QUEST_STATE_REFRESH_INTERVAL_TICKS) == 0;
+    }
+
+    private static void refreshQuestState(TickEvent.ServerTickEvent event) {
+        Set<ServerLevel> activeSiegeLevels = Collections.newSetFromMap(new IdentityHashMap<>());
         for (ServerPlayer player : event.getServer().getPlayerList().getPlayers()) {
             ServerLevel level = (ServerLevel) player.level();
-            Raid raid = level.getRaidAt(player.blockPosition());
 
             player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
                 List<Quest> quests = cap.getQuests(player.getUUID());
-
+                int activeQuestMask = 0;
+                List<Quest> activeQuests = new ArrayList<>(2);
                 for (Quest quest : quests) {
-                    if (quest == null) continue;
+                    if (quest == null || quest.isComplete() || !player.getUUID().equals(quest.getAcceptedBy())) {
+                        continue;
+                    }
+                    if (PROTECT_THE_VILLAGE_QUEST_ID.equals(quest.getQuestId())) {
+                        activeQuestMask |= 1;
+                        activeQuests.add(quest);
+                    } else if (XING_XIA_ZHANG_YI_QUEST_ID.equals(quest.getQuestId())) {
+                        activeQuestMask |= 2;
+                        activeQuests.add(quest);
+                    }
+                }
+                if (activeQuestMask == 0) {
+                    return;
+                }
 
-                    if (quest.getAcceptedBy() != null
-                            && quest.getAcceptedBy().equals(player.getUUID())
-                            && quest.getQuestId().equals(PROTECT_THE_VILLAGE_QUEST_ID)) {
+                Raid raid = (activeQuestMask & 1) != 0 ? level.getRaidAt(player.blockPosition()) : null;
+
+                for (Quest quest : activeQuests) {
+                    if (quest.getQuestId().equals(PROTECT_THE_VILLAGE_QUEST_ID)) {
 
                         if (raid != null && raid.isVictory() && !quest.isComplete()) {
                             quest.setComplete(true);
@@ -169,6 +193,7 @@ public class QuestEvent {
                                         "quest." + ChangShengJue.MOD_ID + ".finish",
                                         getColoredTranslation(quest.getQuestName())));
                             }
+                            cap.syncToClient(player);
                         }
 
                     } else if (quest.getQuestId().equals(XING_XIA_ZHANG_YI_QUEST_ID)
@@ -180,27 +205,18 @@ public class QuestEvent {
                                 if (level.isVillage(player.blockPosition())
                                         && !level.getBiome(player.blockPosition()).is(BiomeTags.WITHOUT_ZOMBIE_SIEGES)) {
 
-                                    float f = level.getTimeOfDay(0.0F);
-                                    VillageSiege siege = new VillageSiege();
-
-                                    if ((double) f >= 0.5 && f < 0.503) {
-                                        siege.siegeState = VillageSiege.State.SIEGE_TONIGHT;
-                                    }
-
-                                    siege.tick(level, true, false);
+                                    activeSiegeLevels.add(level);
                                 }
                             } else if (!quest.isComplete()) {
-                                float f = level.getTimeOfDay(0.0F);
-                                if ((double) f >= 0.0
-                                        && level.isVillage(player.blockPosition())
+                                if (level.isVillage(player.blockPosition())
                                         && !level.getBiome(player.blockPosition()).is(BiomeTags.WITHOUT_ZOMBIE_SIEGES)) {
                                     quest.setComplete(true);
-                                }
-
-                                if (quest.canComplete(player)) {
-                                    player.sendSystemMessage(getColoredTranslation(
-                                            "quest." + ChangShengJue.MOD_ID + ".finish",
-                                            getColoredTranslation(quest.getQuestName())));
+                                    if (quest.canComplete(player)) {
+                                        player.sendSystemMessage(getColoredTranslation(
+                                                "quest." + ChangShengJue.MOD_ID + ".finish",
+                                                getColoredTranslation(quest.getQuestName())));
+                                    }
+                                    cap.syncToClient(player);
                                 }
                             }
                         }
@@ -208,6 +224,56 @@ public class QuestEvent {
                 }
             });
         }
+
+        for (ServerLevel level : activeSiegeLevels) {
+            VillageSiege siege = DIMENSION_SIEGES.computeIfAbsent(level, ignored -> new VillageSiege());
+            initializeSiegeForNightWindow(level, siege);
+        }
+        ACTIVE_SIEGE_LEVELS.retainAll(activeSiegeLevels);
+        ACTIVE_SIEGE_LEVELS.addAll(activeSiegeLevels);
+    }
+
+    private static void tickActiveSieges() {
+        for (ServerLevel level : List.copyOf(ACTIVE_SIEGE_LEVELS)) {
+            VillageSiege siege = DIMENSION_SIEGES.get(level);
+            if (siege == null) {
+                ACTIVE_SIEGE_LEVELS.remove(level);
+                continue;
+            }
+            siege.tick(level, true, false);
+        }
+    }
+
+    private static void initializeSiegeForNightWindow(ServerLevel level, VillageSiege siege) {
+        long currentDay = Math.floorDiv(level.getDayTime(), 24000L);
+        Long initializedDay = INITIALIZED_SIEGE_DAYS.get(level);
+        if (shouldInitializeSiege(level.getTimeOfDay(0.0F), currentDay, initializedDay)) {
+            siege.siegeState = VillageSiege.State.SIEGE_TONIGHT;
+            INITIALIZED_SIEGE_DAYS.put(level, currentDay);
+        }
+    }
+
+    static boolean isSiegeInitializationWindow(float timeOfDay) {
+        return (double) timeOfDay >= 0.5D && (double) timeOfDay < 0.503D;
+    }
+
+    static boolean shouldInitializeSiege(float timeOfDay, long currentDay, Long initializedDay) {
+        return isSiegeInitializationWindow(timeOfDay)
+                && (initializedDay == null || initializedDay.longValue() != currentDay);
+    }
+
+    public static void onWorldUnload(LevelEvent.Unload event) {
+        if (event.getLevel() instanceof ServerLevel serverLevel) {
+            ACTIVE_SIEGE_LEVELS.remove(serverLevel);
+            DIMENSION_SIEGES.remove(serverLevel);
+            INITIALIZED_SIEGE_DAYS.remove(serverLevel);
+        }
+    }
+
+    public static void clearServerState() {
+        ACTIVE_SIEGE_LEVELS.clear();
+        DIMENSION_SIEGES.clear();
+        INITIALIZED_SIEGE_DAYS.clear();
     }
 
     // 在僵尸村民实体上直接标记治愈者
@@ -227,12 +293,13 @@ public class QuestEvent {
         if (event.getEntity() instanceof ZombieVillager oldZombie &&
                 event.getOutcome() instanceof Villager villager) {
 
-            UUID playerId = oldZombie.getPersistentData()
-                    .getUUID("CuringPlayer");
+            if (!oldZombie.getPersistentData().hasUUID("CuringPlayer")) {
+                return;
+            }
+            UUID playerId = oldZombie.getPersistentData().getUUID("CuringPlayer");
 
-            ServerPlayer player = (ServerPlayer) villager.level()
-                    .getPlayerByUUID(playerId);
-            if (player != null) {
+            Player curingPlayer = villager.level().getPlayerByUUID(playerId);
+            if (curingPlayer instanceof ServerPlayer player) {
                 player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
                     List<Quest> quests = cap.getQuests(player.getUUID());
                     Optional<Quest> existingUncompleted = quests.stream()
@@ -248,6 +315,8 @@ public class QuestEvent {
                                 player.sendSystemMessage(getColoredTranslation(
                                         "quest." + ChangShengJue.MOD_ID + ".finish",
                                         getColoredTranslation(quest.getQuestName())));
+                                triggerFinishTaskAdvancement(player, quest);
+                                cap.syncToClient(player);
                             }
                         }
                     }
@@ -256,13 +325,16 @@ public class QuestEvent {
         }
     }
 
-    public static void onWorldUnload(LevelEvent.Unload event) {
-        ClientQuestDataCache.get().clear();
+    private static void triggerFinishTaskAdvancement(Player player, Quest quest) {
+        if (player instanceof ServerPlayer serverPlayer
+                && quest != null
+                && FIRST_GANG_TASK_IDS.contains(quest.getQuestId())) {
+            CSJAdvanceInit.FINISH_TASK.trigger(serverPlayer);
+        }
     }
 
     // 获取带颜色的翻译文本
     public static Component getColoredTranslation(String key, Object... args) {
-        String raw = Component.translatable(key, args).getString();
-        return Component.literal(raw);
+        return Component.translatable(key, args);
     }
 }

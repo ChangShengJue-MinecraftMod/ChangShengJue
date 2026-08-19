@@ -2,6 +2,7 @@ package com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest;
 
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.PlayerQuestMenu;
+import io.netty.handler.codec.DecoderException;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -12,19 +13,26 @@ import net.minecraftforge.network.NetworkHooks;
 import java.util.function.Supplier;
 
 public record OpenPlayerQuestScreenPacket(int newPage,Component title) {
+    private static final int MAX_TITLE_JSON_LENGTH = 512;
+
     public static void encode(OpenPlayerQuestScreenPacket packet, FriendlyByteBuf buf) {
         buf.writeInt(packet.newPage);
-        buf.writeComponent(packet.title);
+        buf.writeUtf(Component.Serializer.toJson(packet.title), MAX_TITLE_JSON_LENGTH);
     }
 
     public static OpenPlayerQuestScreenPacket decode(FriendlyByteBuf buf) {
-        return new OpenPlayerQuestScreenPacket(buf.readInt(), buf.readComponent());
+        int page = buf.readInt();
+        Component title = Component.Serializer.fromJson(buf.readUtf(MAX_TITLE_JSON_LENGTH));
+        if (title == null) {
+            throw new DecoderException("Invalid player quest title component");
+        }
+        return new OpenPlayerQuestScreenPacket(page, title);
     }
 
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer serverPlayer = ctx.get().getSender();
-            if (serverPlayer != null) {
+            if (PlayerQuestPacketGuard.allowOpen(serverPlayer)) {
                 serverPlayer.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY)
                         .ifPresent(cap -> cap.syncToClient(serverPlayer));
                 NetworkHooks.openScreen(

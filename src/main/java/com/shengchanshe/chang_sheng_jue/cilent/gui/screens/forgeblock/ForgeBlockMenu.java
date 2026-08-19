@@ -99,20 +99,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
 
     // 更新配方槽位显示
     void updateRecipeSlots() {
-        clearAllSlots();
-
-        if (currentRecipe != null) {
-            ItemStack[] materials = getMaterialsFromRecipe(currentRecipe);
-            // 将材料放入对应的槽位
-            for (int i = 0; i < materials.length && i < 9; i++) {
-                final int slotIndex = i;
-                ItemStack material = materials[i].copy();
-                // 在客户端只更新显示，在服务端更新实际的物品处理器
-                blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-                    handler.insertItem(slotIndex, material, false);
-                });
-            }
-        }
+        // 展示材料由Screen根据currentRecipe直接绘制，不能进入真实物品处理器。
     }
 
     // 移除界面时的处理
@@ -161,32 +148,14 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
 
     // 清空所有槽位
     void clearAllSlots() {
-        for (int i = 0; i < 9; i++) { // 只清空输入槽
-            int finalI = i;
-            blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-                handler.extractItem(finalI, 64, false);
-            });
-        }
+        // 保留方法描述符兼容旧调用；输入槽不再承载展示物。
     }
 
     // 制作物品
     public boolean craftItem(Player player) {
-        if (currentRecipe == null || level.isClientSide()) {
-            return false;
-        }
-
-        // 检查输出槽是否有物品
-        if (!blockEntity.getItemHandler().getStackInSlot(ForgeBlockEntity.SLOT_OUTPUT).isEmpty()) {
-            return false; // 输出槽有物品，禁止合成
-        }
-
-        if (hasEnoughMaterials(player.getInventory())) {
-            consumeMaterials(player.getInventory());
-            blockEntity.progress = 1; // 开始进度
-            blockEntity.setChanged();
-            return true;
-        }
-        return false;
+        if (currentRecipe == null || level.isClientSide()) return false;
+        blockEntity.craftCurrentRecipe(player);
+        return blockEntity.isCrafting();
     }
 
     // 检查是否有足够材料
@@ -258,6 +227,7 @@ public class ForgeBlockMenu extends AbstractContainerMenu {
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
         Slot sourceSlot = slots.get(pIndex);
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;
+        if (sourceSlot instanceof ReadOnlySlot) return ItemStack.EMPTY;
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 

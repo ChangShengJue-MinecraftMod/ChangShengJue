@@ -1,9 +1,9 @@
 package com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu;
 
-import cn.mcmod.arsenal.item.rapier.RapierItem;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.cilent.hud.CSJDisplayHud;
+import com.shengchanshe.chang_sheng_jue.compat.arsenal.ArsenalCompat;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.item.combat.clubbed.Clubbed;
 import com.shengchanshe.chang_sheng_jue.item.combat.glove.GoldThreadGlove;
@@ -268,7 +268,7 @@ public class KungFuHudOverlay {
                 CSJDisplayHud.displayHudPermanent(guiGraphics, gui.getFont(),
                         ChatFormatting.BOLD + I18n.get("item." + ChangShengJue.MOD_ID + "." + ShaolinStickMethod.KUNG_FU_ID.getPath()), x, y, ChatFormatting.RED.getColor());
             }
-        } else if (mainHand.getItem() instanceof SoftSword || (net.minecraftforge.fml.ModList.get().isLoaded("arsenal_core") && mainHand.getItem() instanceof RapierItem)) {
+        } else if (mainHand.getItem() instanceof SoftSword || ArsenalCompat.isRapier(mainHand)) {
             if (KungFuClientData.get().knowsKungFu(XuannuSwordsmanship.KUNG_FU_ID.toString())) {
                 CSJDisplayHud.displayHudPermanent(
                         getKungLevel(XuannuSwordsmanship.KUNG_FU_ID.toString()),

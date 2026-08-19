@@ -1,10 +1,7 @@
 package com.shengchanshe.chang_sheng_jue.network.packet.particle.kungfu;
 
-import com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu.KungFuClientData;
-import com.shengchanshe.chang_sheng_jue.util.particle.ComprehendParticle;
-import net.minecraft.client.Minecraft;
+import com.shengchanshe.chang_sheng_jue.network.ClientPacketBridge;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.UUID;
@@ -22,17 +19,7 @@ public record TriggerKungFuParticlePacket(UUID playerUUID, String kungFuId) {
     }
 
     public static void handle(TriggerKungFuParticlePacket packet, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() -> {
-            Minecraft mc = Minecraft.getInstance();
-            if (mc.level == null) return;
-
-            Player player = Minecraft.getInstance().level.getPlayerByUUID(packet.playerUUID());
-
-            if (player != null && player.level() == mc.level) {
-                int remainingCooldown = KungFuClientData.get().kungFuComprehend(packet.kungFuId);
-                ComprehendParticle.ComprehendParticle(player, player.level(), remainingCooldown);
-            }
-        });
+        ctx.get().enqueueWork(() -> ClientPacketBridge.triggerKungFuParticle(packet.playerUUID(), packet.kungFuId()));
         ctx.get().setPacketHandled(true);
     }
 }

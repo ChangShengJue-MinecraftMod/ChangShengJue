@@ -50,7 +50,8 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
 
     private static final int HEAD_SIZE = 9; // 每个头像的大小
     private static final int MAX_VISIBLE_HEADS = 5; // 最多显示的头像数量
-    private static final Map<EntityType<?>, Entity> ENTITY_CACHE = new HashMap<>();
+    private final Map<EntityType<?>, Entity> entityCache = new HashMap<>();
+    private GuiEntityGraphics entityGraphics;
 
     private int scrollTick = 0;
 
@@ -69,6 +70,9 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
     @Override
     protected void init() {
         super.init();
+        if (this.entityGraphics == null) {
+            this.entityGraphics = new GuiEntityGraphics(this.font, HEAD_SIZE, MAX_VISIBLE_HEADS, this.entityCache);
+        }
         int left = (this.width - this.imageWidth) / 2;
         int top = (this.height - this.imageHeight) / 2;
         // 动态按钮位置计算
@@ -164,12 +168,10 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 renderItemAt(guiGraphics, rewardsDescriptionStartX + i * SLOT_SIZE, y + REWARD_SLOTS_Y + 8, stack);
             }
             if (!quest.getTargetEntity().isEmpty()){
-                GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
-                        renderKillTargetHead(guiGraphics, descriptionStartX, y + REQ_SLOTS_Y ,
+                this.entityGraphics.renderKillTargetHead(guiGraphics, descriptionStartX, y + REQ_SLOTS_Y ,
                                 quest.getTargetEntity(), quest.getCurrentKills(), quest.getRequiredKills());
                 if (quest.getSecondTargetEntity() != null && !quest.getSecondTargetEntity().isEmpty()) {
-                    GuiEntityGraphics.getInstance(font, HEAD_SIZE, MAX_VISIBLE_HEADS, ENTITY_CACHE).
-                            renderKillTargetHead(guiGraphics, descriptionStartX + 15, y + REQ_SLOTS_Y,
+                    this.entityGraphics.renderKillTargetHead(guiGraphics, descriptionStartX + 15, y + REQ_SLOTS_Y,
                                     quest.getSecondTargetEntity(), quest.getSecondCurrentKills(), quest.getSecondRequiredKills());
                 }
             }
@@ -309,6 +311,18 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
 
         // 强制布局更新
         this.repositionElements();
+    }
+
+    public void clearEntityCache() {
+        if (this.entityGraphics != null) {
+            this.entityGraphics.clear();
+        }
+    }
+
+    @Override
+    public void removed() {
+        clearEntityCache();
+        super.removed();
     }
 
     public static class TexturedButtonWithLabel extends ImageButton {

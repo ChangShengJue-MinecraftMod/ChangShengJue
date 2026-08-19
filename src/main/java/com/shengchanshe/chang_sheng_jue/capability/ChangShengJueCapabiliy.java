@@ -4,6 +4,7 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.kungfu.IKungFuCapability;
 import com.shengchanshe.chang_sheng_jue.capability.kungfu.KungFuCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
+import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapability;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
@@ -15,14 +16,18 @@ import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ChangShengJueCapabiliy {
     public static final Capability<IKungFuCapability> KUNGFU =
             CapabilityManager.get(new CapabilityToken<>() {});
 
+    @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        event.register(PlayerQuestCapabilityProvider.class);
-        event.register(KungFuCapabilityProvider.class);
+        event.register(PlayerQuestCapability.class);
+        event.register(IKungFuCapability.class);
     }
 
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
@@ -74,4 +79,5 @@ public class ChangShengJueCapabiliy {
             }
         }
     }
+
 }

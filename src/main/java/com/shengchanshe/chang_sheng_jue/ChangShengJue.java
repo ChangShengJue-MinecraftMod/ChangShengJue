@@ -11,6 +11,7 @@ import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.loot_modifier.ChangShengJueLootModifier;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfigOriginProbe;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.particle.ChangShengJueParticles;
 import com.shengchanshe.chang_sheng_jue.recipe.CSJRecipeTypes;
@@ -37,6 +38,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import software.bernie.geckolib.GeckoLib;
@@ -83,6 +85,8 @@ public class ChangShengJue {
         GeckoLib.initialize();
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ChangShengJueConfig.SPEC, MOD_ID + "/" + MOD_ID + ".toml");
+        KungFuConfigOriginProbe.captureBeforeConfigRegistration(
+                FMLPaths.CONFIGDIR.get().resolve(MOD_ID).resolve("kung_fu.toml"));
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, KungFuConfig.SPEC, MOD_ID + "/" + "kung_fu.toml");
 
         MinecraftForge.EVENT_BUS.register(this);

@@ -1,6 +1,7 @@
 package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.plaque;
 
 import com.shengchanshe.chang_sheng_jue.block.custom.plaque.PlaqueEntity;
+import com.shengchanshe.chang_sheng_jue.block.custom.plaque.PlaqueTextLayout;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.ChangShengJueMenuTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -39,5 +40,13 @@ public class PlaqueMenu extends AbstractContainerMenu {
 
     public BlockPos getBlockPos() {
         return blockEntity.getBlockPos();
+    }
+
+    public int getTextCapacity() {
+        return PlaqueTextLayout.getCapacity(this.level, this.getBlockPos());
+    }
+
+    public String getPlaqueText() {
+        return PlaqueTextLayout.read(this.level, this.getBlockPos());
     }
 }

@@ -4,7 +4,7 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.ChangShengJueConfig;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
-import com.shengchanshe.chang_sheng_jue.cilent.hud.kungfu.KungFuClientData;
+import com.shengchanshe.chang_sheng_jue.capability.kungfu.FoodDataOwnerTracker;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.entity.custom.croc.Croc;
 import com.shengchanshe.chang_sheng_jue.entity.custom.tiger.Tiger;
@@ -22,6 +22,9 @@ import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.item.combat.knife.Knife;
 import com.shengchanshe.chang_sheng_jue.item.items.Parcel;
 import com.shengchanshe.chang_sheng_jue.item.items.StructureIntelligence;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.MentalKungFuNeighborhoodSnapshot;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.QingPingJi;
+import com.shengchanshe.chang_sheng_jue.network.packet.martial_arts.tread_the_snow_without_trace.TreadTheSnowWithoutTraceIntentGuard;
 import com.shengchanshe.chang_sheng_jue.util.TradeHelper;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.ChatFormatting;
@@ -51,6 +54,8 @@ import net.minecraftforge.event.entity.player.*;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.event.level.ChunkEvent;
 import net.minecraftforge.event.level.LevelEvent;
+import net.minecraftforge.event.server.ServerStoppedEvent;
+import net.minecraftforge.event.server.ServerStoppingEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
@@ -556,12 +561,20 @@ public class CSJEvent {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
+        if (!player.level().isClientSide
+                && event.phase == TickEvent.Phase.END
+                && player instanceof ServerPlayer serverPlayer) {
+            FoodDataOwnerTracker.bind(serverPlayer);
+        }
         hasWheatNuggetsTributeWine = player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get());
         KungFuEvent.onPlayerTick(event);
         // 任务
         PlayerQuestEvent.onPlayerTick(event);
         PlayerQuestEvent.onEntityGenerate(event);
         if (!player.level().isClientSide && event.phase == TickEvent.Phase.END) {
+            if (player instanceof ServerPlayer serverPlayer) {
+                TreadTheSnowWithoutTraceIntentGuard.tickPlayer(serverPlayer);
+            }
             tickMoneySlave(player);
         }
     }
@@ -577,6 +590,9 @@ public class CSJEvent {
     @SubscribeEvent
     public static void onServerTick(TickEvent.ServerTickEvent event) {
         QuestEvent.onServerTick(event);
+        if (event.phase == TickEvent.Phase.END) {
+            StructureIntelligence.tickSearches(event.getServer());
+        }
     }
 
     //生物攻击事件
@@ -690,6 +706,14 @@ public class CSJEvent {
         ChangShengJueCapabiliy.onAttachCapabilitiesPlayer(event);
     }
 
+    /**
+     * @deprecated 能力注册由 {@link ChangShengJueCapabiliy} 的 MOD 总线订阅完成。
+     */
+    @Deprecated(forRemoval = false)
+    public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
+        ChangShengJueCapabiliy.registerCapabilities(event);
+    }
+
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event) {
         ChangShengJueConfig.onRegisterCommands(event);
@@ -702,27 +726,49 @@ public class CSJEvent {
     }
 
     @SubscribeEvent
-    public static void onRegisterCapabilities(RegisterCapabilitiesEvent event){
-        //把能力注册到世界中
-        ChangShengJueCapabiliy.registerCapabilities(event);
-    }
-
-    @SubscribeEvent
     public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {
         //玩家进入世界时同步能力数据
         ChangShengJueCapabiliy.onPlayerJoinWorld(event);
     }
 
-    // 在玩家退出世界时调用
-    @SubscribeEvent
-    public void onWorldUnload(LevelEvent.Unload event) {
-        QuestEvent.onWorldUnload(event);
-        KungFuClientData.get().clear();
-    }
-
-
     @SubscribeEvent
     public static void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
+        if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+            QingPingJi.restoreInternalSuppression(serverPlayer);
+            FoodDataOwnerTracker.unbind(serverPlayer);
+            TreadTheSnowWithoutTraceIntentGuard.forget(serverPlayer);
+        }
+    }
+
+    @SubscribeEvent
+    public static void onServerStopping(ServerStoppingEvent event) {
+        QingPingJi.restoreAllInternalSuppressions(event.getServer());
+    }
+
+    @SubscribeEvent
+    public static void onServerStopped(ServerStoppedEvent event) {
+        StructureIntelligence.clearSearches();
+        QuestEvent.clearServerState();
+        FoodDataOwnerTracker.clear();
+        TreadTheSnowWithoutTraceIntentGuard.clearAll();
+        MentalKungFuNeighborhoodSnapshot.clearAll();
+        QingPingJi.clearInternalSuppressionTracking();
+    }
+
+    public void onWorldUnload(LevelEvent.Unload event) {
+        handleWorldUnload(event);
+    }
+
+    @SubscribeEvent
+    public static void onServerLevelUnload(LevelEvent.Unload event) {
+        handleWorldUnload(event);
+    }
+
+    private static void handleWorldUnload(LevelEvent.Unload event) {
+        QuestEvent.onWorldUnload(event);
+        if (event.getLevel() instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+            MentalKungFuNeighborhoodSnapshot.clear(serverLevel);
+        }
     }
 
     @SubscribeEvent

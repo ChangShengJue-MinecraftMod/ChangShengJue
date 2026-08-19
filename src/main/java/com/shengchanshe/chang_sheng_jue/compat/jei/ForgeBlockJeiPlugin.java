@@ -23,7 +23,7 @@ public class ForgeBlockJeiPlugin implements IModPlugin {
 
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return new ResourceLocation(ChangShengJue.MOD_ID, "jei_plugin");
+        return new ResourceLocation(ChangShengJue.MOD_ID, "forge_block_jei_plugin");
     }
 
     @Override

@@ -102,6 +102,11 @@ public class TailoringCaseRecipe implements Recipe<SimpleContainer> {
         return Type.INSTANCE;
     }
 
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
     public static TailoringCaseRecipe create(ResourceLocation id, ItemStack result,
                                              NonNullList<Ingredient> ingredients, String group) {
         return new TailoringCaseRecipe(id, result, ingredients, group);
@@ -198,6 +203,7 @@ public class TailoringCaseRecipe implements Recipe<SimpleContainer> {
         private static Ingredient parseIngredient(JsonElement json) {
             try {
                 JsonObject jsonObj = GsonHelper.convertToJsonObject(json, "ingredient");
+                validateIngredientFields(jsonObj);
 
                 int count = 1;
                 if (jsonObj.has(JSON_KEY_COUNT)) {
@@ -213,10 +219,8 @@ public class TailoringCaseRecipe implements Recipe<SimpleContainer> {
                 if (jsonObj.has(JSON_KEY_TAG)) {
                     tagId = GsonHelper.getAsString(jsonObj, JSON_KEY_TAG);
                     ingredientJson.addProperty(JSON_KEY_TAG, tagId);
-                } else if (jsonObj.has("item")) {
-                    ingredientJson.add("item", jsonObj.get("item"));
                 } else {
-                    return Ingredient.EMPTY;
+                    ingredientJson.add("item", jsonObj.get("item"));
                 }
 
                 // 使用Minecraft原生的fromJson方法，它会正确处理tag
@@ -228,9 +232,21 @@ public class TailoringCaseRecipe implements Recipe<SimpleContainer> {
                     return baseIngredient;
                 }
 
+            } catch (JsonSyntaxException e) {
+                throw e;
             } catch (Exception e) {
-                ChangShengJue.LOGGER.error("Failed to parse ingredient from JSON: {}", json, e);
-                return Ingredient.EMPTY;
+                throw new JsonSyntaxException("Invalid recipe ingredient: " + json, e);
+            }
+        }
+
+        private static void validateIngredientFields(JsonObject json) {
+            for (String key : json.keySet()) {
+                if (!key.equals("item") && !key.equals(JSON_KEY_TAG) && !key.equals(JSON_KEY_COUNT)) {
+                    throw new JsonSyntaxException("Unknown ingredient field: " + key);
+                }
+            }
+            if (json.has("item") == json.has(JSON_KEY_TAG)) {
+                throw new JsonSyntaxException("Ingredient must define exactly one of 'item' or 'tag'");
             }
         }
 
@@ -256,19 +272,21 @@ public class TailoringCaseRecipe implements Recipe<SimpleContainer> {
                 String tagId = buffer.readBoolean() ? buffer.readUtf() : null;
 
                 if (baseIngredient.isEmpty()) {
-                    return Ingredient.EMPTY;
+                    throw new RecipeDecodeException("Received empty ingredient from network");
                 }
 
                 if (count > 1 || tagId != null) {
+                    if (count <= 0) {
+                        throw new RecipeDecodeException("Ingredient count must be positive: " + count);
+                    }
                     return new CountedIngredient(baseIngredient, count, tagId);
                 } else if (count == 1) {
                     return baseIngredient;
                 }
 
-                return Ingredient.EMPTY;
+                throw new RecipeDecodeException("Ingredient count must be positive: " + count);
             } catch (Exception e) {
-                ChangShengJue.LOGGER.error("Failed to read ingredient from network", e);
-                return Ingredient.EMPTY;
+                throw new RecipeDecodeException("Failed to read ingredient from network", e);
             }
         }
 
@@ -287,6 +305,10 @@ public class TailoringCaseRecipe implements Recipe<SimpleContainer> {
 
         private static void writeIngredient(FriendlyByteBuf buffer, Ingredient ingredient) {
             try {
+                if (ingredient == null || ingredient.isEmpty()) {
+                    throw new RecipeEncodeException("Cannot write empty ingredient to network");
+                }
+
                 // 获取数量和Tag ID
                 int count = 1;
                 String tagId = null;
@@ -303,6 +325,10 @@ public class TailoringCaseRecipe implements Recipe<SimpleContainer> {
                     }
                 }
 
+                if (count <= 0) {
+                    throw new RecipeEncodeException("Ingredient count must be positive: " + count);
+                }
+
                 // 写入原始Ingredient（保留tag信息）
                 baseIngredient.toNetwork(buffer);
                 buffer.writeVarInt(count);
@@ -312,10 +338,7 @@ public class TailoringCaseRecipe implements Recipe<SimpleContainer> {
                     buffer.writeUtf(tagId);
                 }
             } catch (Exception e) {
-                ChangShengJue.LOGGER.error("Failed to write ingredient to network", e);
-                Ingredient.EMPTY.toNetwork(buffer);
-                buffer.writeVarInt(0);
-                buffer.writeBoolean(false);
+                throw new RecipeEncodeException("Failed to write ingredient to network", e);
             }
         }
 

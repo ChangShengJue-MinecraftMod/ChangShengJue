@@ -22,7 +22,7 @@ public class WoodworkingBenchJeiPlugin implements IModPlugin {
 
     @Override
     public @NotNull ResourceLocation getPluginUid() {
-        return new ResourceLocation(ChangShengJue.MOD_ID, "jei_plugin");
+        return new ResourceLocation(ChangShengJue.MOD_ID, "wood_working_bench_jei_plugin");
     }
 
     @Override
@@ -70,7 +70,7 @@ public class WoodworkingBenchJeiPlugin implements IModPlugin {
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        ResourceLocation benchId = new ResourceLocation(ChangShengJue.MOD_ID, "woodworking_bench");
+        ResourceLocation benchId = new ResourceLocation(ChangShengJue.MOD_ID, "wood_working_bench");
 
         var benchBlock = ForgeRegistries.BLOCKS.getValue(benchId);
         if (benchBlock == null) {

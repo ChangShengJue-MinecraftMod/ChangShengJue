@@ -3,7 +3,7 @@
   "group": "furniture:liangge",
   "ingredients": [
     {
-      "item": "minecraft:wenge_planks",
+      "item": "chang_sheng_jue:wenge_planks",
       "count": 4
     }
   ],

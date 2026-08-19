@@ -6,6 +6,7 @@ import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.Gangleade
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.clubbed.ClubbedGangLeader;
 import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.gangleader.other.GangLeader;
 import com.shengchanshe.chang_sheng_jue.event.quest.PlayerQuestEvent;
+import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.playerquest.SyncQuestDataPacket;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;
@@ -39,11 +40,27 @@ public class PlayerQuestCapability {
 
     public void copyFrom(PlayerQuestCapability source) {
         this.playerQuests.clear();
-        this.playerQuests.putAll(source.playerQuests);
+        source.playerQuests.forEach((playerId, quests) -> {
+            if (playerId == null || quests == null) {
+                return;
+            }
+            List<Quest> copiedQuests = new CopyOnWriteArrayList<>();
+            quests.stream()
+                    .filter(Objects::nonNull)
+                    .map(quest -> new Quest(quest.toNbt()))
+                    .filter(Quest::isValid)
+                    .forEach(copiedQuests::add);
+            if (!copiedQuests.isEmpty()) {
+                this.playerQuests.put(playerId, copiedQuests);
+            }
+        });
         this.questCompletionCounts.clear();
         this.questCompletionCounts.putAll(source.questCompletionCounts);
         this.completedQuests.clear();
         this.completedQuests.addAll(source.completedQuests);
+        this.acceptedQuests.clear();
+        this.acceptedQuests.addAll(source.acceptedQuests);
+        this.firstLargeTransactionTrigger = source.firstLargeTransactionTrigger;
     }
 
     public CompoundTag serializeNBT() {
@@ -93,11 +110,16 @@ public class PlayerQuestCapability {
                 .filter(Objects::nonNull)
                 .forEach(uuid -> acceptedTag.add(NbtUtils.createUUID(uuid)));
         tag.put("AcceptedQuests", acceptedTag);
+        tag.putBoolean("FirstLargeTransactionTrigger", firstLargeTransactionTrigger);
 
         return tag;
     }
 
     public void deserializeNBT(CompoundTag tag) {
+        playerQuests.clear();
+        questCompletionCounts.clear();
+        completedQuests.clear();
+        acceptedQuests.clear();
         // 加载玩家任务
         if (tag.contains("PlayerQuests", Tag.TAG_LIST)) {
             ListTag playersTag = tag.getList("PlayerQuests", Tag.TAG_COMPOUND);
@@ -121,13 +143,6 @@ public class PlayerQuestCapability {
                     }
                 }
 
-                if (tag.contains("AcceptedQuests", Tag.TAG_LIST)) {
-                    ListTag acceptedTag = tag.getList("AcceptedQuests", Tag.TAG_INT_ARRAY);
-                    acceptedTag.stream()
-                            .map(NbtUtils::loadUUID)
-                            .forEach(acceptedQuests::add);
-                }
-
                 if (!quests.isEmpty()) {
                     playerQuests.put(playerId, quests);
                 }
@@ -149,9 +164,15 @@ public class PlayerQuestCapability {
 
         if (tag.contains("CompletedQuests", Tag.TAG_LIST)) {
             ListTag completedTag = tag.getList("CompletedQuests", Tag.TAG_INT_ARRAY);
-            completedTag.stream()
-                    .map(NbtUtils::loadUUID)
-                    .forEach(completedQuests::add);
+            loadUuidSet(completedTag, completedQuests, "CompletedQuests");
+        }
+
+        if (tag.contains("AcceptedQuests", Tag.TAG_LIST)) {
+            ListTag acceptedTag = tag.getList("AcceptedQuests", Tag.TAG_INT_ARRAY);
+            loadUuidSet(acceptedTag, acceptedQuests, "AcceptedQuests");
+        }
+        if (tag.contains("FirstLargeTransactionTrigger", Tag.TAG_BYTE)) {
+            firstLargeTransactionTrigger = tag.getBoolean("FirstLargeTransactionTrigger");
         }
     }
 
@@ -331,6 +352,9 @@ public class PlayerQuestCapability {
                     if (!quest.isComplete()) {
                         quest.setComplete(true);
                         quest.setQuestCurrentDay(0);
+                        if (player instanceof ServerPlayer serverPlayer) {
+                            CSJAdvanceInit.FINISH_TASK.trigger(serverPlayer);
+                        }
                         player.sendSystemMessage(getColoredTranslation(
                                 "quest." + ChangShengJue.MOD_ID + ".finish", getColoredTranslation(quest.getQuestName())));
                     }
@@ -438,6 +462,16 @@ public class PlayerQuestCapability {
 
     public void setFirstLargeTransactionTrigger(boolean firstLargeTransactionTrigger) {
         this.firstLargeTransactionTrigger = firstLargeTransactionTrigger;
+    }
+
+    private static void loadUuidSet(ListTag source, Set<UUID> target, String fieldName) {
+        for (Tag entry : source) {
+            try {
+                target.add(NbtUtils.loadUUID(entry));
+            } catch (IllegalArgumentException exception) {
+                ChangShengJue.LOGGER.warn("忽略任务能力中无效的 {} UUID", fieldName);
+            }
+        }
     }
 
 }

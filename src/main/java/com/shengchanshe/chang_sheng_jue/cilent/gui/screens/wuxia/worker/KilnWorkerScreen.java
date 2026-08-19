@@ -4,6 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.button.TexturedButtonWithText;
+import com.shengchanshe.chang_sheng_jue.entity.villagers.worker.KilnWorkerTradeType;
 import com.shengchanshe.chang_sheng_jue.network.ChangShengJueMessages;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.KilnWorkerSetTradeTypePacket;
 import net.minecraft.client.Minecraft;
@@ -154,7 +155,7 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
     private void sendTradeTypeUpdate(TradeType tradeType) {
         if (this.minecraft != null && this.minecraft.player != null) {
             // 发送数据包到服务器
-            ChangShengJueMessages.sendToServer(new KilnWorkerSetTradeTypePacket(tradeType));
+            ChangShengJueMessages.sendToServer(new KilnWorkerSetTradeTypePacket(tradeType.toCommon()));
         }
     }
 
@@ -455,22 +456,28 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
         }
     }
 
+    @Deprecated
     public enum TradeType {
-        GRE(Component.translatable("gui." + ChangShengJue.MOD_ID + ".trade.gre")),
-        RED(Component.translatable("gui." + ChangShengJue.MOD_ID + ".trade.red")),
-        BLACK(Component.translatable("gui." + ChangShengJue.MOD_ID + ".trade.black")),
-        BLUE(Component.translatable("gui." + ChangShengJue.MOD_ID + ".trade.blue")),
-        GOLDEN(Component.translatable("gui." + ChangShengJue.MOD_ID + ".trade.golden")),
-        WOOD(Component.translatable("gui." + ChangShengJue.MOD_ID + ".trade.wood"));
+        GRE(KilnWorkerTradeType.GRE),
+        RED(KilnWorkerTradeType.RED),
+        BLACK(KilnWorkerTradeType.BLACK),
+        BLUE(KilnWorkerTradeType.BLUE),
+        GOLDEN(KilnWorkerTradeType.GOLDEN),
+        WOOD(KilnWorkerTradeType.WOOD);
 
-        private final Component displayName;
+        private final KilnWorkerTradeType commonType;
 
-        TradeType(Component displayName) {
-            this.displayName = displayName;
+        TradeType(KilnWorkerTradeType commonType) {
+            this.commonType = commonType;
         }
 
         public Component getDisplayName() {
-            return displayName;
+            return this.commonType.getDisplayName();
+        }
+
+        public KilnWorkerTradeType toCommon() {
+            return this.commonType;
         }
     }
+
 }

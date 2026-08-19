@@ -1,7 +1,9 @@
 package com.shengchanshe.chang_sheng_jue.item.foods;
 
+import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
@@ -15,15 +17,11 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
 @Mod.EventBusSubscriber
 public class PorcelainCupsFoodItem extends BlockItem {
 
-    // 存储玩家UUID和是否已减少醉酒状态的映射
-    private static final Map<UUID, Boolean> HAS_REDUCED_DRUNKENNESS = new HashMap<>();
+    private static final String REDUCED_DRUNKENNESS_MARKER =
+            ChangShengJue.MOD_ID + ":porcelain_cup_reduced_drunkenness";
 
     public PorcelainCupsFoodItem(Block pBlock, Properties pProperties) {
         super(pBlock, pProperties);
@@ -32,13 +30,13 @@ public class PorcelainCupsFoodItem extends BlockItem {
     public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity pEntityLiving) {
         if (!pLevel.isClientSide && pEntityLiving instanceof Player) {
             Player player = (Player) pEntityLiving;
-            UUID playerUUID = player.getUUID();
 
             if ((pStack.getItem() == ChangShengJueItems.LONG_JING_TEAS.get() ||
                     pStack.getItem() == ChangShengJueItems.BILUOCHUN_TEAS.get()) &&
                     player.hasEffect(ChangShengJueEffects.DRUNKEN.get())) {
 
-                boolean reduced = HAS_REDUCED_DRUNKENNESS.getOrDefault(playerUUID, false);
+                CompoundTag persistentData = player.getPersistentData();
+                boolean reduced = hasReducedDrunkenness(persistentData);
 
                 if (!reduced) {
                     // 获取当前的 DRUNKEN 效果
@@ -78,7 +76,7 @@ public class PorcelainCupsFoodItem extends BlockItem {
                         }
 
                         // 标记玩家已经减少过这次醉酒状态
-                        HAS_REDUCED_DRUNKENNESS.put(playerUUID, true);
+                        markReducedDrunkenness(persistentData);
                     }
                 }
             }
@@ -98,17 +96,27 @@ public class PorcelainCupsFoodItem extends BlockItem {
     @SubscribeEvent
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
         LivingEntity entity = event.getEntity();
-        if (entity instanceof Player) {
-            Player player = (Player) entity;
-            UUID playerUUID = player.getUUID();
-
-            // 检查玩家是否有醉酒效果
-            boolean hasDrunkenEffect = player.hasEffect(ChangShengJueEffects.DRUNKEN.get());
-
-            // 如果玩家没有醉酒效果但有标记，则清除标记
-            if (!hasDrunkenEffect && HAS_REDUCED_DRUNKENNESS.containsKey(playerUUID)) {
-                HAS_REDUCED_DRUNKENNESS.remove(playerUUID);
-            }
+        if (entity instanceof Player player && !player.level().isClientSide) {
+            updateReducedDrunkenness(
+                    player.getPersistentData(), player.hasEffect(ChangShengJueEffects.DRUNKEN.get()));
         }
+    }
+
+    static boolean hasReducedDrunkenness(CompoundTag persistentData) {
+        return persistentData.getBoolean(REDUCED_DRUNKENNESS_MARKER);
+    }
+
+    static void markReducedDrunkenness(CompoundTag persistentData) {
+        persistentData.putBoolean(REDUCED_DRUNKENNESS_MARKER, true);
+    }
+
+    static void updateReducedDrunkenness(CompoundTag persistentData, boolean hasDrunkenEffect) {
+        if (!hasDrunkenEffect) {
+            clearReducedDrunkenness(persistentData);
+        }
+    }
+
+    static void clearReducedDrunkenness(CompoundTag persistentData) {
+        persistentData.remove(REDUCED_DRUNKENNESS_MARKER);
     }
 }

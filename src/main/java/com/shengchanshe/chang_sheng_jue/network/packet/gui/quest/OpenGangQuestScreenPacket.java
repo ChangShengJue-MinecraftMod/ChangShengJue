@@ -19,6 +19,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 public record OpenGangQuestScreenPacket(UUID playerId) {
+    private static final int MAX_AVAILABLE_QUESTS = 32;
     public static void encode(OpenGangQuestScreenPacket packet, FriendlyByteBuf buf) {
         buf.writeUUID(packet.playerId());
     }
@@ -30,23 +31,29 @@ public record OpenGangQuestScreenPacket(UUID playerId) {
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer player = ctx.get().getSender();
-            if (player != null && player.containerMenu instanceof GangleaderTradingMenu menu) {
-                if (menu.getTrader() instanceof AbstractGangLeader abstractGangLeader) {
+            if (player != null) {
+                AbstractGangLeader abstractGangLeader = GangQuestPacketGuard.validateOpen(player);
+                if (abstractGangLeader != null) {
+                    UUID authoritativePlayerId = player.getUUID();
                     player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(playerQuest -> {
-                        List<Quest> quests = abstractGangLeader.getPlayerQuests(playerId);
+                        List<Quest> quests = abstractGangLeader.getPlayerQuests(authoritativePlayerId);
                         List<Quest> availableQuests = new ArrayList<>();
 
+                        boolean needsRefresh = false;
                         for (Quest quest : quests) {
                             if (quest != null){
                                 if (quest.isNeedRefresh()) {
-                                    abstractGangLeader.clearPlayerQuests(playerId);
-                                    availableQuests.clear();
+                                    needsRefresh = true;
                                 }
-                                if (quest.isValid() && !quest.isNeedRefresh() && quest.getAcceptedBy() == null) {
+                                if (availableQuests.size() < MAX_AVAILABLE_QUESTS
+                                        && quest.isValid() && !quest.isNeedRefresh() && quest.getAcceptedBy() == null) {
                                     availableQuests.add(quest);
                                 }
                             }
-
+                        }
+                        if (needsRefresh) {
+                            abstractGangLeader.clearPlayerQuests(authoritativePlayerId);
+                            availableQuests.clear();
                         }
 
                         List<Quest> newQuests = playerQuest.triggerGangQuest(player, abstractGangLeader, 1.0f);
@@ -62,15 +69,16 @@ public record OpenGangQuestScreenPacket(UUID playerId) {
                                         if (existingQuest.getQuestId().equals(newQuest.getQuestId()) && existingQuest.getAcceptedBy() == null) {
                                             // 存在相同任务，更新现有任务
                                             availableQuests.set(i, newQuest); // 替换为新的任务对象
-                                            abstractGangLeader.addQuestForPlayer(playerId, newQuest);
+                                            abstractGangLeader.addQuestForPlayer(authoritativePlayerId, newQuest);
                                             alreadyExists = true;
                                             break;
                                         }
                                     }
 
                                     // 不存在相同任务，添加新任务
-                                    if (!alreadyExists && newQuest.getAcceptedBy() == null) {
-                                        abstractGangLeader.addQuestForPlayer(playerId, newQuest);
+                                    if (!alreadyExists && newQuest.getAcceptedBy() == null
+                                            && availableQuests.size() < MAX_AVAILABLE_QUESTS) {
+                                        abstractGangLeader.addQuestForPlayer(authoritativePlayerId, newQuest);
                                         availableQuests.add(newQuest);
                                     }
                                 }

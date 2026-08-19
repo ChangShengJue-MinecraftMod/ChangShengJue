@@ -2,7 +2,6 @@ package com.shengchanshe.chang_sheng_jue.entity.villagers.worker;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.worker.KilnWorkerMenu;
-import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.worker.KilnWorkerScreen;
 import com.shengchanshe.chang_sheng_jue.entity.custom.goal.ReturnToSpawnGoal;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.world.village.WuXiaMerahantTrades;
@@ -37,7 +36,7 @@ import java.util.Map;
 import java.util.OptionalInt;
 
 public class KilnWorker extends AbstractVillager {
-    private KilnWorkerScreen.TradeType currentTradeType = KilnWorkerScreen.TradeType.GRE;
+    private KilnWorkerTradeType currentTradeType = KilnWorkerTradeType.GRE;
     // 补货相关变量
     private long lastRestockGameTime; // 上次补货的游戏时间（以游戏刻为单位）
     private int numberOfRestocksToday; // 今天补货的次数
@@ -76,7 +75,7 @@ public class KilnWorker extends AbstractVillager {
         }
     }
 
-    public void setCurrentTradeType(KilnWorkerScreen.TradeType tradeType) {
+    public void setCurrentTradeType(KilnWorkerTradeType tradeType) {
         this.currentTradeType = tradeType;
         this.updateTrades(); // 更新交易
     }
