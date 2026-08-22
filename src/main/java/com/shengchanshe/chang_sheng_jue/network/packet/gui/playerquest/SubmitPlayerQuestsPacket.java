@@ -25,7 +25,7 @@ public record SubmitPlayerQuestsPacket(UUID questId, int page) {
     public void handle(Supplier<NetworkEvent.Context> ctx) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer player = ctx.get().getSender();
-            if (player == null) return;
+            if (!PlayerQuestPacketGuard.allowAction(player)) return;
 
             // 直接从玩家能力获取任务
             player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY)

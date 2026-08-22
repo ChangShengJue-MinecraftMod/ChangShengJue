@@ -59,7 +59,7 @@ public class PlaqueEntity extends BlockEntity implements MenuProvider {
     }
     @Override
     public Component getDisplayName() {
-        return Component.translatable("牌匾");
+        return Component.translatable(this.getBlockState().getBlock().getDescriptionId());
     }
 
     private CompoundTag writeItems(CompoundTag compoundTag){

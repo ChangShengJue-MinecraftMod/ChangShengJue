@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase.TailoringCaseEntity;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.ChangShengJueMenuTypes;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.MenuBlockEntityResolver;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.recipe.TailoringCaseRecipe;
 import net.minecraft.core.BlockPos;
@@ -18,30 +19,47 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.*;
+import java.util.function.BooleanSupplier;
 
 public class TailoringCaseMenu extends AbstractContainerMenu {
     public final TailoringCaseEntity blockEntity;
     private final Level level;
     public final ContainerData data;
+    private final boolean backingEntityValid;
+    private final IItemHandler menuItemHandler;
     TailoringCaseRecipe currentRecipe = null;
 
     public TailoringCaseMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+        this(pContainerId, inv, MenuBlockEntityResolver.resolve(
+                inv.player.level(), extraData.readBlockPos(), TailoringCaseEntity.class,
+                ChangShengJueBlocks.TAILORING_CASE.get(), TailoringCaseEntity::new), new SimpleContainerData(2));
     }
 
     public TailoringCaseMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+        this(pContainerId, inv, MenuBlockEntityResolver.resolve(
+                inv.player.level(), entity, TailoringCaseEntity.class,
+                ChangShengJueBlocks.TAILORING_CASE.get(), TailoringCaseEntity::new), data);
+    }
+
+    private TailoringCaseMenu(int pContainerId, Inventory inv,
+                              MenuBlockEntityResolver.Resolution<TailoringCaseEntity> resolution,
+                              ContainerData data) {
         super(ChangShengJueMenuTypes.TAILORING_CASE_MENU.get(), pContainerId);
         checkContainerSize(inv, 10);
-        blockEntity = ((TailoringCaseEntity) entity);
+        blockEntity = resolution.entity();
         this.level = inv.player.level();
         this.data = data;
+        this.backingEntityValid = resolution.valid();
+        this.menuItemHandler = this.backingEntityValid
+                ? this.blockEntity.getItemHandler()
+                : new ItemStackHandler(TE_INVENTORY_SLOT_COUNT);
 
         // 加载配方
         this.currentRecipe = blockEntity.getCurrentRecipe();
@@ -50,7 +68,8 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         // 输入槽（只读，仅显示配方材料）
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
+        {
+            IItemHandler handler = this.menuItemHandler;
             this.addSlot(new ReadOnlySlot(handler, 0, 135, 46));
             this.addSlot(new ReadOnlySlot(handler, 1, 153, 46));
             this.addSlot(new ReadOnlySlot(handler, 2, 171, 46));
@@ -60,12 +79,10 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
             this.addSlot(new ReadOnlySlot(handler, 6, 135, 82));
             this.addSlot(new ReadOnlySlot(handler, 7, 153, 82));
             this.addSlot(new ReadOnlySlot(handler, 8, 171, 82));
-        });
+        }
 
         // 输出槽（可拾取）
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new OutputSlot(handler, 9, 229, 63));
-        });
+        this.addSlot(new OutputSlot(this.menuItemHandler, 9, 229, 63, this::hasValidBackingEntity));
 
         addDataSlots(data);
 
@@ -77,6 +94,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
     }
 
     public TailoringCaseRecipe getCurrentRecipe() {
+        if (!hasValidBackingEntity()) return null;
         // 优先使用菜单中的配方，如果没有则从方块实体获取
         if (this.currentRecipe != null) {
             return this.currentRecipe;
@@ -90,6 +108,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
     @Override
     public void removed(Player player) {
         super.removed(player);
+        if (!hasValidBackingEntity()) return;
         blockEntity.onClose(player);
         // 只有不在制作中时才清除
         if(!isCrafting()) {
@@ -99,10 +118,11 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
     }
 
     public boolean isCrafting() {
-        return data.get(0) > 0;
+        return hasValidBackingEntity() && data.get(0) > 0;
     }
 
     public int getScaledProgress() {
+        if (!hasValidBackingEntity()) return 0;
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
         int progressArrowSize = 26;
@@ -110,6 +130,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
     }
 
     public void setCurrentRecipe(TailoringCaseRecipe recipe) {
+        if (!hasValidBackingEntity()) return;
         this.currentRecipe = recipe;
         updateRecipeSlots();
 
@@ -131,7 +152,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
 
 
     boolean hasEnoughMaterials(Inventory playerInventory) {
-        if (currentRecipe == null) return false;
+        if (!hasValidBackingEntity() || currentRecipe == null) return false;
 
         IItemHandler playerItems = new InvWrapper(playerInventory);
         ItemStack[] requiredMaterials = getMaterialsFromRecipe(currentRecipe);
@@ -162,7 +183,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
     }
 
     private void consumeMaterials(Inventory playerInventory) {
-        if (currentRecipe == null) return;
+        if (!hasValidBackingEntity() || currentRecipe == null) return;
 
         ItemStack[] requiredMaterials = getMaterialsFromRecipe(currentRecipe);
         for (ItemStack required : requiredMaterials) {
@@ -194,13 +215,18 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
+        if (!hasValidBackingEntity() || pIndex < 0 || pIndex >= slots.size()) return ItemStack.EMPTY;
         Slot sourceSlot = slots.get(pIndex);
         if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
         if (sourceSlot instanceof ReadOnlySlot) return ItemStack.EMPTY;
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
-        if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
+        if (pIndex >= TE_INVENTORY_FIRST_SLOT_INDEX
+                && pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
+            if (pIndex != TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT - 1) {
+                return ItemStack.EMPTY;
+            }
             if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;
             }
@@ -218,8 +244,14 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
+        return hasValidBackingEntity() && stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 player, ChangShengJueBlocks.TAILORING_CASE.get());
+    }
+
+    public boolean hasValidBackingEntity() {
+        return this.backingEntityValid
+                && MenuBlockEntityResolver.isWorldBackingValid(
+                this.level, this.blockEntity, ChangShengJueBlocks.TAILORING_CASE.get());
     }
 
     public BlockPos getBlockPos() {
@@ -257,13 +289,26 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
     }
 
     public static class OutputSlot extends SlotItemHandler {
+        private final BooleanSupplier backingEntityValid;
+
         public OutputSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+            this(itemHandler, index, xPosition, yPosition, () -> true);
+        }
+
+        public OutputSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition,
+                          BooleanSupplier backingEntityValid) {
             super(itemHandler, index, xPosition, yPosition);
+            this.backingEntityValid = backingEntityValid;
         }
 
         @Override
         public boolean mayPlace(ItemStack stack) {
             return false; // 输出槽不接受输入
+        }
+
+        @Override
+        public boolean mayPickup(Player playerIn) {
+            return this.backingEntityValid.getAsBoolean();
         }
     }
 
@@ -320,6 +365,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
      * @return 若数量充足返回true，否则返回false
      */
     public boolean hasEnoughOfMaterial(Inventory playerInventory, ItemStack required) {
+        if (!hasValidBackingEntity()) return false;
         if (required.isEmpty()) return true; // 空材料默认充足
 
         IItemHandler playerItems = new InvWrapper(playerInventory);
@@ -342,6 +388,7 @@ public class TailoringCaseMenu extends AbstractContainerMenu {
      * @return 材料物品数组
      */
     public ItemStack[] getMaterialsFromRecipe(TailoringCaseRecipe recipe) {
+        if (!hasValidBackingEntity() || recipe == null) return new ItemStack[0];
         ItemStack[] materials = new ItemStack[recipe.getIngredients().size()];
         for (int i = 0; i < recipe.getIngredients().size(); i++) {
             ItemStack[] items = recipe.getIngredients().get(i).getItems();

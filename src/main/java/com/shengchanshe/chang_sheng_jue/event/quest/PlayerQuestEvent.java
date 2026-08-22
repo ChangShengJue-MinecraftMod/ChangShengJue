@@ -1,7 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.event.quest;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
-import com.shengchanshe.chang_sheng_jue.ChangShengJueConfig;
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityProvider;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.entity.custom.tiger.Tiger;
@@ -89,12 +88,8 @@ public class PlayerQuestEvent {
         long currentTime = player.level().getDayTime() % 24000;
         // 每天只在第一次tick时检查（避免重复触发）
         if (currentTime != 1) return; // 改为每天开始时检测
-
-
         player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
             cap.triggerQuest(player, VEGETARIAN_FOOD_QUEST_ID, 0.1F, null);
-            // 全局开关检查
-            if (!ChangShengJueConfig.ENABLE_QUESTS.get()) return;
             cap.triggerQuest(player, JIANG_HU_ZHUI_SHA_LING_QUEST_ID, 0.1F, null);
 
             cap.triggerQuest(player, REN_WO_XING_QUEST_ID, 1.0F, null);
@@ -119,8 +114,6 @@ public class PlayerQuestEvent {
         Player player = event.player;
         if (!(player instanceof ServerPlayer)) return;
         if (event.phase != TickEvent.Phase.END) return;
-        // 全局开关检查
-        if (!ChangShengJueConfig.ENABLE_QUESTS.get()) return;
         entityGenerate(player, 200, JIANG_HU_ZHUI_SHA_LING_QUEST_ID, 3);
     }
 
@@ -148,8 +141,6 @@ public class PlayerQuestEvent {
     public static void onVillagerInteract(PlayerInteractEvent.EntityInteract event) {
         if (!(event.getTarget() instanceof ChangShengJueVillagerEntity villager)) return;
         if (!(event.getEntity() instanceof ServerPlayer player)) return;
-        // 全局开关检查
-        if (!ChangShengJueConfig.ENABLE_QUESTS.get()) return;
         // 检查村民职业（例如农民）
         if (villager.getVillagerData().getProfession() != ChangShengJueVillagers.CHANG_SHENG_JUE_CHIEF.get()) {
             return;
@@ -159,7 +150,7 @@ public class PlayerQuestEvent {
             cap.triggerQuest(player, CHU_QIANG_FU_RUO_QUEST_ID, 0.3F, null);
 
             if (player.getRandom().nextFloat() < 0.5) {
-                float triggerChance = cap.isQuestAccepted(CHU_BAO_AN_LIANG_QUEST_ID) ? 0.2F : 0.5F;
+                float triggerChance = cap.hasNeverAcceptedQuest(CHU_BAO_AN_LIANG_QUEST_ID) ? 0.2F : 0.5F;
                 cap.triggerQuest(player, CHU_BAO_AN_LIANG_QUEST_ID, triggerChance, null);
             } else {
                 List<Quest> quests = cap.getQuests(player.getUUID());
@@ -170,7 +161,7 @@ public class PlayerQuestEvent {
                         .findFirst();
 
                 if (existingUncompleted.isEmpty()) {
-                    float triggerChance = cap.isQuestAccepted(CHU_BAO_AN_LIANG_QUEST_ID) ? 0.2F : 0.5F;
+                    float triggerChance = cap.hasNeverAcceptedQuest(CHU_BAO_AN_LIANG_QUEST_ID) ? 0.2F : 0.5F;
                     UUID newQuestId = player.getRandom().nextBoolean() ? LARGE_TRANSACTIONS_A_QUEST_ID : LARGE_TRANSACTIONS_B_QUEST_ID;
                     cap.triggerQuest(player, newQuestId, triggerChance, null);
                 }
@@ -180,8 +171,6 @@ public class PlayerQuestEvent {
 
     public static void onTrackingStart(PlayerEvent.StartTracking event) {
         if (event.getEntity().level().isClientSide) return;
-        if (!ChangShengJueConfig.ENABLE_QUESTS.get()) return;
-
         Player player = event.getEntity();
         Entity target = event.getTarget();
         BlockPos blockPos = player.blockPosition();
@@ -194,7 +183,7 @@ public class PlayerQuestEvent {
         }
         if (target instanceof Tiger) {
             player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
-                float triggerChance = cap.isQuestAccepted(WEI_MIN_CHU_HAI_QUEST_ID) ? 0.05F : 0.75F;
+                float triggerChance = cap.hasNeverAcceptedQuest(WEI_MIN_CHU_HAI_QUEST_ID) ? 0.05F : 0.75F;
                 cap.triggerQuest(player, WEI_MIN_CHU_HAI_QUEST_ID, triggerChance, null);
             });
         } else if (target instanceof Zombie) {
@@ -243,8 +232,6 @@ public class PlayerQuestEvent {
 
     public static void onEntityHurt(LivingDamageEvent event) {
         if (event.getEntity().level().isClientSide) return;
-        if (!ChangShengJueConfig.ENABLE_QUESTS.get()) return;
-
         if (event.getEntity() instanceof Player player) {
             if (event.getSource().getEntity() instanceof Mob mob && !(mob instanceof AbstractWuXiaMonster)
                     && !(mob instanceof Creeper) && !(mob instanceof Spider) && !(mob instanceof Silverfish) && !(mob instanceof Endermite)) {

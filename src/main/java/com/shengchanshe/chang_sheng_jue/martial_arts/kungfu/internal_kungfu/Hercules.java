@@ -2,6 +2,7 @@ package com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuItemContext;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuType;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -50,9 +51,7 @@ public class Hercules extends AbstractionInternalkungfu {
                     PlayerEnderChestContainer playerenderchestcontainer = pPlayer.getEnderChestInventory();
                     pPlayer.openMenu(new SimpleMenuProvider((i, inventory, player) -> ChestMenu.threeRows(i, inventory, playerenderchestcontainer), CONTAINER_TITLE));
                 }
-                pPlayer.getMainHandItem().hurtAndBreak(1, pPlayer, (player1) -> {//消耗耐久
-                    player1.broadcastBreakEvent(pPlayer.getUsedItemHand());
-                });
+                KungFuItemContext.hurtCastingItem(pPlayer, 1);
             }
         }
     }

@@ -150,6 +150,7 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
                 0, 106, 17,
                 BOTTON, 256, 256,
                 button -> {
+                    if (!menu.hasValidBackingEntity()) return;
                     ChangShengJueMessages.sendToServer(new WoodworkingBenchPacket(menu.getBlockPos()));
                     isCarouselPaused = true;
                     carouselTick = 0;
@@ -169,6 +170,7 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
 
     // 减少制作次数
     private void decreaseCraftTimes() {
+        if (!menu.hasValidBackingEntity()) return;
         int currentTimes = menu.getCraftTimes();
         if (currentTimes > 1 && !menu.isCrafting()) {
             int newTimes = currentTimes - 1;
@@ -182,6 +184,7 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
         }
     }
     private void batchDecreaseCraftTimes() {
+        if (!menu.hasValidBackingEntity()) return;
         int currentTimes = menu.getCraftTimes();
         if (currentTimes > 1 && !menu.isCrafting()) {
             int newTimes = Math.max(1, currentTimes - 4);
@@ -196,6 +199,7 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
     }
     // 增加制作次数
     private void increaseCraftTimes() {
+        if (!menu.hasValidBackingEntity()) return;
         int currentTimes = menu.getCraftTimes();
         if (currentTimes < 64 && !menu.isCrafting()) {
             int newTimes = currentTimes + 1;
@@ -209,6 +213,7 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
         }
     }
     private void batchIncreaseCraftTimes() {
+        if (!menu.hasValidBackingEntity()) return;
         int currentTimes = menu.getCraftTimes();
         if (currentTimes < 64 && !menu.isCrafting()) {
             int newTimes = Math.min(64, currentTimes + 4);
@@ -250,7 +255,7 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
 
         int buttonWidth = 37;
         int buttonHeight = 26;
-        int buttonX = guiX - 56; // 在物品列表左侧
+        int buttonX = Math.max(2, guiX - 56); // 窄屏时保持按钮可见
         int startY = guiY + 45; // 与物品列表顶部对齐
         int buttonSpacing = 30; // 按钮间距
 
@@ -272,7 +277,8 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
                     0, 160, buttonHeight,
                     BOTTON, 256, 256,
                     button -> onCategoryButtonClicked(category),
-                    Component.empty(), 0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F
+                    Component.translatable(CATEGORY_KEY_PREFIX + category),
+                    0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F
             );
 
             // 设置分类对应的物品图标
@@ -573,7 +579,7 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
             } catch (Exception e) {
                 cachedRecipes = new ArrayList<>();
                 recipesByGroup.clear();
-                e.printStackTrace();
+                ChangShengJue.LOGGER.warn("Unable to refresh woodworking recipes", e);
             }
         } else {
             cachedRecipes.clear();
@@ -693,6 +699,7 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
      */
     private void updateRecipeSlots(WoodworkingBenchRecipe recipe, boolean checkCrafting,
                                    boolean resetCarousel, boolean syncToServer) {
+        if (!menu.hasValidBackingEntity()) return;
         if (checkCrafting && menu.isCrafting()) {
             return;
         }
@@ -929,6 +936,10 @@ public class WoodworkingBenchScreen extends AbstractContainerScreen<WoodworkingB
     @Override
     public void containerTick() {
         super.containerTick();
+        if (!menu.hasValidBackingEntity()) {
+            if (minecraft != null && minecraft.player != null) minecraft.player.closeContainer();
+            return;
+        }
 
         // 检测制作状态变化，缓存/清除制作材料
         if (menu.isCrafting() && craftingMaterials == null) {

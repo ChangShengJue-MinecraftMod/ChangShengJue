@@ -25,6 +25,8 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nullable;
+
 @OnlyIn(Dist.CLIENT)
 public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
     private static final ResourceLocation VILLAGER_LOCATION = new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/container/worker_trading.png");
@@ -63,12 +65,14 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
     int scrollOff;
     private boolean isDragging;
 
-    private TradeType currentTradeType = TradeType.GRE;
+    @Nullable
+    private TradeType currentTradeType;
     private ImageButton greButton;
     private ImageButton redButton;
     private ImageButton blackButton;
     private ImageButton blueButton;
     private ImageButton goldenButton;
+    private ImageButton woodButton;
 
     public KilnWorkerScreen(KilnWorkerMenu menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
@@ -103,53 +107,91 @@ public class KilnWorkerScreen extends AbstractContainerScreen<KilnWorkerMenu> {
         }
 
         this.greButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, top + 48, 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
-                    this.setCurrentTradeType(TradeType.GRE);
-                    this.sendTradeTypeUpdate(TradeType.GRE);
+                    this.selectTradeType(TradeType.GRE);
                 }, Component.translatable("button." + ChangShengJue.MOD_ID + ".gre_button.tips"),
                         0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
                         .setItemIcon(new ItemStack(ChangShengJueBlocks.GRE_DOUBLE_CYLINDER_TILE.get())))
                 .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
                 .setItemIconScale(1.2f);
         this.redButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + 25, 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
-                    this.setCurrentTradeType(TradeType.RED);
-                    this.sendTradeTypeUpdate(TradeType.RED);
+                    this.selectTradeType(TradeType.RED);
                 }, Component.translatable("button." + ChangShengJue.MOD_ID + ".red_button.tips"),
                         0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
                         .setItemIcon(new ItemStack(ChangShengJueBlocks.RED_DOUBLE_CYLINDER_TILE.get())))
                 .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
                 .setItemIconScale(1.2f);
         this.blackButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + (25 * 2), 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
-                    this.setCurrentTradeType(TradeType.BLACK);
-                    this.sendTradeTypeUpdate(TradeType.BLACK);
+                    this.selectTradeType(TradeType.BLACK);
                 }, Component.translatable("button." + ChangShengJue.MOD_ID + ".black_button.tips"),
                         0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
                         .setItemIcon(new ItemStack(ChangShengJueBlocks.BLACK_DOUBLE_CYLINDER_TILE.get())))
                 .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
                 .setItemIconScale(1.2f);
         this.blueButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + (25 * 3), 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
-                    this.setCurrentTradeType(TradeType.BLUE);
-                    this.sendTradeTypeUpdate(TradeType.BLUE);
+                    this.selectTradeType(TradeType.BLUE);
                 }, Component.translatable("button." + ChangShengJue.MOD_ID + ".blue_button.tips"),
                         0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
                         .setItemIcon(new ItemStack(ChangShengJueBlocks.CYAN_DOUBLE_CYLINDER_TILE.get())))
                 .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
                 .setItemIconScale(1.2f);
         this.goldenButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + (25 * 4), 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
-                    this.setCurrentTradeType(TradeType.GOLDEN);
-                    this.sendTradeTypeUpdate(TradeType.GOLDEN);
+                    this.selectTradeType(TradeType.GOLDEN);
                 }, Component.translatable("button." + ChangShengJue.MOD_ID + ".golden_button.tips"),
                         0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
                         .setItemIcon(new ItemStack(ChangShengJueBlocks.GOLDEN_DOUBLE_CYLINDER_TILE.get())))
                 .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
                 .setItemIconScale(1.2f);
-        this.goldenButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + (25 * 5), 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
-                    this.setCurrentTradeType(TradeType.WOOD);
-                    this.sendTradeTypeUpdate(TradeType.WOOD);
+        this.woodButton = this.addRenderableWidget(new TexturedButtonWithText(left - 32, (top + 48) + (25 * 5), 35, 25, 0, 0, 25, BOTTON, 256, 256, button -> {
+                    this.selectTradeType(TradeType.WOOD);
                 }, Component.translatable("button." + ChangShengJue.MOD_ID + ".wood_button.tips"),
                         0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F)
                         .setItemIcon(new ItemStack(ChangShengJueBlocks.OAK_BALUSTRADE.get())))
                 .setItemIconPosition(TexturedButtonWithText.IconPosition.CENTER)
                 .setItemIconScale(1.2f);
+    }
+
+    private void selectTradeType(TradeType tradeType) {
+        if (tradeType == this.currentTradeType) {
+            return;
+        }
+        this.sendTradeTypeUpdate(tradeType);
+    }
+
+    @Override
+    public void containerTick() {
+        super.containerTick();
+        TradeType serverTradeType = inferTradeType(this.menu.getOffers());
+        if (serverTradeType != null && serverTradeType != this.currentTradeType) {
+            this.setCurrentTradeType(serverTradeType);
+        }
+    }
+
+    @Nullable
+    private static TradeType inferTradeType(MerchantOffers offers) {
+        if (offers.isEmpty()) {
+            return null;
+        }
+
+        ItemStack result = offers.get(0).getResult();
+        if (result.is(ChangShengJueBlocks.GRE_SHORT_CYLINDER_TILE.get().asItem())) {
+            return TradeType.GRE;
+        }
+        if (result.is(ChangShengJueBlocks.RED_SHORT_CYLINDER_TILE.get().asItem())) {
+            return TradeType.RED;
+        }
+        if (result.is(ChangShengJueBlocks.BLACK_SHORT_CYLINDER_TILE.get().asItem())) {
+            return TradeType.BLACK;
+        }
+        if (result.is(ChangShengJueBlocks.CYAN_SHORT_CYLINDER_TILE.get().asItem())) {
+            return TradeType.BLUE;
+        }
+        if (result.is(ChangShengJueBlocks.GOLDEN_SHORT_CYLINDER_TILE.get().asItem())) {
+            return TradeType.GOLDEN;
+        }
+        if (result.is(ChangShengJueBlocks.OAK_BALUSTRADE.get().asItem())) {
+            return TradeType.WOOD;
+        }
+        return null;
     }
 
     private void sendTradeTypeUpdate(TradeType tradeType) {

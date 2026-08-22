@@ -1,6 +1,8 @@
 package com.shengchanshe.chang_sheng_jue.event;
 
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
+import com.shengchanshe.chang_sheng_jue.block.custom.racks.ClothesRackRenderer;
+import com.shengchanshe.chang_sheng_jue.block.custom.racks.DryingRailRenderer;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.ClientGangQuestDataCache;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.gangleader.GangQuestsScreen;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.button.TexturedButtonWithText;
@@ -63,6 +65,9 @@ public class CSJEventClientEvents {
         KungFuClientData.get().clear();
         ClientQuestDataCache.get().clear();
         ClientGangQuestDataCache.get().clear();
+        ClothesRackRenderer.clearArmorStandCache();
+        DryingRailRenderer.clearArmorStandCache();
+        TreadTheSnowWithoutTraceClientEvent.reset();
     }
 
     private static final ResourceLocation BUTTON_TEXTURE = new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/botton.png");

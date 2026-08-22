@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuItemContext;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuType;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import com.shengchanshe.chang_sheng_jue.util.EffectUtils;
@@ -14,6 +15,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.EntityHitResult;
@@ -44,13 +46,14 @@ public class SunflowerPointCaveman extends AbstractionExternalKunfu {
     public void release(LivingEntity livingEntity) {
         if (!isReady()) return;
 
+        ItemStack usedItem = KungFuItemContext.getCastingItem(livingEntity);
         if (livingEntity instanceof Player player) {
             if (!player.getAbilities().instabuild) {
                 int maxCoolDown = (getMaxCoolDown() - wheatNuggetsTributeWineEffect(player));
                 cooldown = maxCoolDown;
                 int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? hunger - 1 : hunger;
                 player.getFoodData().eat(-foodLevel, getSaturation());
-                player.getCooldowns().addCooldown(player.getMainHandItem().getItem(), maxCoolDown);
+                player.getCooldowns().addCooldown(usedItem.getItem(), maxCoolDown);
             }
             biluochunTeasAndLongJingTeasEffect(player);
             Vec3 lookVec = player.getLookAngle();
@@ -71,20 +74,21 @@ public class SunflowerPointCaveman extends AbstractionExternalKunfu {
                 addExp(player, !player.getAbilities().instabuild ? 1 : getMaxExp());
             }
         }
-        livingEntity.getMainHandItem().getItem().getDefaultInstance().hurtAndBreak(1, livingEntity, (player1) -> player1.broadcastBreakEvent(livingEntity.getUsedItemHand()));
+        KungFuItemContext.hurtCastingItem(livingEntity, 1);
     }
 
     @Override
     public void release(LivingEntity source, LivingEntity target) {
         if (!isReady()) return;
 
+        ItemStack usedItem = KungFuItemContext.getCastingItem(source);
         if (source instanceof Player player) {
             if (!player.getAbilities().instabuild) {
                 cooldown = getMaxCoolDown();
                 int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? hunger - 1
                         : player.hasEffect(ChangShengJueEffects.FEN_JIU.get()) ? 3 : hunger;
                 player.getFoodData().eat(-foodLevel, getSaturation()); // 消耗饱食度
-                player.getCooldowns().addCooldown(player.getMainHandItem().getItem(), getMaxCoolDown()); //添加使用冷却
+                player.getCooldowns().addCooldown(usedItem.getItem(), getMaxCoolDown()); //添加使用冷却
             }
         }
         if (target.getHealth() < getHealth()) {

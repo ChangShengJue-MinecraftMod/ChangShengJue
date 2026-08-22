@@ -12,8 +12,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.HitResult;
 
-import java.util.Random;
-
 public class PeacockEgg extends ThrowableItemProjectile {
 
     public PeacockEgg(EntityType<? extends ThrowableItemProjectile> p_37442_, Level p_37443_) {
@@ -43,7 +41,7 @@ public class PeacockEgg extends ThrowableItemProjectile {
                 }
 
                 for(int j = 0; j < i; ++j) {
-                    AbstractPeacock peacock = (new Random().nextInt(2)+1) > 1 ? ChangShengJueEntity.FEMALE_PEACOCK.get().create(this.level()) : ChangShengJueEntity.MALE_PEACOCK.get().create(this.level());
+                    AbstractPeacock peacock = this.random.nextInt(2) == 1 ? ChangShengJueEntity.FEMALE_PEACOCK.get().create(this.level()) : ChangShengJueEntity.MALE_PEACOCK.get().create(this.level());
                     peacock.setAge(-24000);
                     peacock.moveTo(this.getX(), this.getY(), this.getZ(), this.getYRot(), 0.0F);
                     this.level().addFreshEntity(peacock);

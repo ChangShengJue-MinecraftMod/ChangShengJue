@@ -17,9 +17,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class PlaqueScreen extends AbstractContainerScreen<PlaqueMenu> {
     private static final ResourceLocation TEXTURE = new ResourceLocation(ChangShengJue.MOD_ID, "textures/gui/plaque_gui.png");
+    private static final int TOPOLOGY_REFRESH_INTERVAL = 10;
     // 文本输入框
     private EditBox textBox;
     private int textCapacity;
+    private int topologyRefreshTicks;
 
     Button button_empty;
 
@@ -44,7 +46,7 @@ public class PlaqueScreen extends AbstractContainerScreen<PlaqueMenu> {
         this.textBox.setValue(this.menu.getPlaqueText());
         this.addRenderableWidget(this.textBox); // 添加到渲染列表
         button_empty = Button.builder(Component.translatable("gui." + ChangShengJue.MOD_ID + ".plaque.write"), e -> {
-            if (this.textCapacity == 0) {
+            if (!this.menu.hasValidBackingEntity() || this.textCapacity == 0) {
                 return;
             }
             String text = this.textBox.getValue();
@@ -57,6 +59,14 @@ public class PlaqueScreen extends AbstractContainerScreen<PlaqueMenu> {
     @Override
     public void containerTick() {
         super.containerTick();
+        if (!this.menu.hasValidBackingEntity()) {
+            if (minecraft != null && minecraft.player != null) minecraft.player.closeContainer();
+            return;
+        }
+        if (++this.topologyRefreshTicks < TOPOLOGY_REFRESH_INTERVAL) {
+            return;
+        }
+        this.topologyRefreshTicks = 0;
         int currentCapacity = this.menu.getTextCapacity();
         if (currentCapacity != this.textCapacity) {
             this.textCapacity = currentCapacity;

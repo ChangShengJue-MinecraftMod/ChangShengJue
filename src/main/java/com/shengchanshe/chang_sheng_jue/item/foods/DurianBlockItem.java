@@ -26,10 +26,12 @@ public class DurianBlockItem extends BlockItem {
         ItemStack itemstack = player.getItemInHand(hand);
         ItemStack offhandStack = player.getOffhandItem();
         if (offhandStack.getItem() instanceof AxeItem) {
-            itemstack.shrink(1);
-            offhandStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
-            player.addItem(ChangShengJueItems.DURIAN_MEAT.get().getDefaultInstance());
-            return InteractionResultHolder.success(itemstack);
+            if (!level.isClientSide) {
+                itemstack.shrink(1);
+                offhandStack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(InteractionHand.OFF_HAND));
+                player.addItem(ChangShengJueItems.DURIAN_MEAT.get().getDefaultInstance());
+            }
+            return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide);
         }
         return super.use(level, player, hand);
     }

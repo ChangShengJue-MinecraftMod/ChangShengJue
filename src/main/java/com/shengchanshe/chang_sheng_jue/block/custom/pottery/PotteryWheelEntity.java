@@ -9,6 +9,7 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.inventory.ContainerData;
@@ -27,6 +28,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class PotteryWheelEntity extends BlockEntity {
+    // 保持旧存档的三个单件材料槽；成品只向世界交付一次。
     private ItemStackHandler inventory = new ItemStackHandler(3){
         @Override
         protected int getStackLimit(int slot, @NotNull ItemStack stack) {
@@ -44,7 +46,6 @@ public class PotteryWheelEntity extends BlockEntity {
     private int progress = 0;
     private int maxProgress = 200;
     private final int INPUT_SLOT = 0;
-    private final int OUTPUT_SLOT = 1;
 
     public PotteryWheelEntity(BlockPos pPos, BlockState pBlockState) {
         super(ChangShengJueBlocksEntities.POTTERY_WHEEL_ENTITY.get(), pPos, pBlockState);
@@ -125,7 +126,7 @@ public class PotteryWheelEntity extends BlockEntity {
     public void load(CompoundTag pTag) {
         super.load(pTag);
         this.inventory.deserializeNBT(pTag.getCompound("PotteryWheelInventory"));
-        progress = pTag.getInt("PotteryProgress");
+        progress = Mth.clamp(pTag.getInt("PotteryProgress"), 0, maxProgress);
     }
 
     @Override
@@ -194,7 +195,10 @@ public class PotteryWheelEntity extends BlockEntity {
                 resrtProgress();
             }
         }else {
-            resrtProgress();
+            if (progress != 0) {
+                resrtProgress();
+                this.setChanged();
+            }
         }
     }
 
@@ -221,10 +225,16 @@ public class PotteryWheelEntity extends BlockEntity {
             }
         }
         Containers.dropItemStack(this.level, this.getBlockPos().getX(),  this.getBlockPos().getY(),  this.getBlockPos().getZ(), stack);
-        this.inventory.setStackInSlot(OUTPUT_SLOT,new ItemStack(stack.getItem(),this.inventory.getStackInSlot(OUTPUT_SLOT).getCount() + stack.getCount()));
     }
     private boolean hasRecipe() {
-        boolean hasCraftingItem = this.inventory.getStackInSlot(INPUT_SLOT).getItem() == Items.CLAY_BALL;
+        // 0.7.9 会把成品写回槽位；非黏土物品必须保留到玩家拆除或自动化取回。
+        for (int slot = 0; slot < this.inventory.getSlots(); slot++) {
+            ItemStack stack = this.inventory.getStackInSlot(slot);
+            if (!stack.isEmpty() && !stack.is(Items.CLAY_BALL)) {
+                return false;
+            }
+        }
+        boolean hasCraftingItem = this.inventory.getStackInSlot(INPUT_SLOT).is(Items.CLAY_BALL);
 //        ItemStack itemStack = new ItemStack(Items.CLAY_BALL);
 
         return hasCraftingItem;

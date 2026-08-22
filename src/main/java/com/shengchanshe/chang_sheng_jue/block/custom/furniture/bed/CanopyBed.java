@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -40,9 +41,7 @@ import java.util.stream.Stream;
 public class CanopyBed extends HorizontalDirectionalBlock {
     public static final EnumProperty<CanopyBedSection> SECTION = EnumProperty.create("section", CanopyBedSection.class);
 
-    private static final Set<BlockPos> BEDS_IN_PROGRESS = Collections.newSetFromMap(new WeakHashMap<>());
-
-    private final Map<BlockPos, Set<LivingEntity>> sleepingEntities = new WeakHashMap<>();
+    private static final Set<BlockPos> BEDS_IN_PROGRESS = new HashSet<>();
 
     private static class BedPart {
         public final CanopyBedSection section;
@@ -143,14 +142,8 @@ public class CanopyBed extends HorizontalDirectionalBlock {
     }
 
     private void wakeUpAllSleepers(Level level, BlockPos mainPos, Direction facing) {
-        Set<LivingEntity> sleepers = sleepingEntities.get(mainPos);
-        if (sleepers != null) {
-            for (LivingEntity sleeper : sleepers) {
-                if (sleeper.isSleeping()) {
-                    sleeper.stopSleeping();
-                }
-            }
-            sleepingEntities.remove(mainPos);
+        for (LivingEntity sleeper : getSleepers(level, mainPos, facing)) {
+            sleeper.stopSleeping();
         }
     }
 
@@ -276,29 +269,16 @@ public class CanopyBed extends HorizontalDirectionalBlock {
             }
         });
 
-        if (pPlayer.isSleeping()) {
-            addSleeper(pLevel, mainBedPos, facing, sleepBlockPos, pPlayer);
-        }
-
         return InteractionResult.SUCCESS;
     }
 
     private boolean isBedFull(Level level, BlockPos mainPos, Direction facing) {
-        Set<LivingEntity> sleepers = sleepingEntities.get(mainPos);
-        return sleepers != null && sleepers.size() >= 2;
+        return getSleepers(level, mainPos, facing).size() >= 2;
     }
 
     private boolean isSleepPositionOccupied(Level level, BlockPos mainPos, Direction facing, BlockPos sleepPos) {
-        Set<LivingEntity> sleepers = sleepingEntities.get(mainPos);
-        if (sleepers != null) {
-            for (LivingEntity sleeper : sleepers) {
-                BlockPos sleeperPos = sleeper.getSleepingPos().orElse(null);
-                if (sleeperPos != null && sleeperPos.equals(sleepPos)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return getSleepers(level, mainPos, facing).stream()
+                .anyMatch(sleeper -> sleeper.getSleepingPos().filter(sleepPos::equals).isPresent());
     }
 
     private BlockPos determineSleepPosition(BlockState pState, BlockPos mainPos, Direction facing, BlockPos clickedPos) {
@@ -313,28 +293,19 @@ public class CanopyBed extends HorizontalDirectionalBlock {
         }
     }
 
-    private void addSleeper(Level level, BlockPos mainPos, Direction facing, BlockPos sleepPos, LivingEntity sleeper) {
-        sleepingEntities.computeIfAbsent(mainPos, k -> Collections.newSetFromMap(new WeakHashMap<>())).add(sleeper);
-    }
-
-    private void removeSleeper(Level level, BlockPos mainPos, LivingEntity sleeper) {
-        Set<LivingEntity> sleepers = sleepingEntities.get(mainPos);
-        if (sleepers != null) {
-            sleepers.remove(sleeper);
-            if (sleepers.isEmpty()) {
-                sleepingEntities.remove(mainPos);
-            }
-        }
+    private List<LivingEntity> getSleepers(Level level, BlockPos mainPos, Direction facing) {
+        BlockPos front = calculateActualPos(mainPos, new BlockPos(0, 0, 2), facing);
+        BlockPos rear = calculateActualPos(mainPos, new BlockPos(-1, 0, 2), facing);
+        AABB searchArea = new AABB(front).minmax(new AABB(rear)).inflate(1.0D);
+        return level.getEntitiesOfClass(LivingEntity.class, searchArea, sleeper ->
+                sleeper.isSleeping() && sleeper.getSleepingPos()
+                        .filter(sleepPos -> sleepPos.equals(front) || sleepPos.equals(rear))
+                        .isPresent());
     }
 
     @Override
     public void setBedOccupied(BlockState state, Level level, BlockPos pos, LivingEntity sleeper, boolean occupied) {
-        if (!occupied) {
-            BlockPos mainPos = findMainBedPart(level, pos, state.getValue(FACING), state.getValue(SECTION));
-            if (mainPos != null) {
-                removeSleeper(level, mainPos, sleeper);
-            }
-        }
+        // 占用状态直接来自当前维度的睡眠实体，无需维护跨生命周期缓存。
     }
 
     private static VoxelShape createShapeFromStream(Stream<VoxelShape> boxes) {

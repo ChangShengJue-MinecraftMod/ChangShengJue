@@ -22,6 +22,9 @@ public class ServerGamePacketListenerImplMixin {
     @Inject(method = "handleSelectTrade", at = @At(value = "TAIL"))
     public void handleSelectWuXiaTrade(ServerboundSelectTradePacket packet, CallbackInfo ci) {
         int item = packet.getItem();
+        if (item < 0) {
+            return;
+        }
         AbstractContainerMenu menu = this.player.containerMenu;
         if (menu instanceof InnkeeperMenu innkeeperMenu) {
             if (!innkeeperMenu.stillValid(this.player)) {

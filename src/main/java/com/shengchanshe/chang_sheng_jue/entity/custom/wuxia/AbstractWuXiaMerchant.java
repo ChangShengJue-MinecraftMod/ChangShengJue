@@ -90,11 +90,8 @@ public class AbstractWuXiaMerchant extends AbstractWuXia {
     // 检查是否允许补货
     private boolean allowedToRestock() {
         long currentTime = this.level().getGameTime();
-        long timeSinceLastRestock = currentTime - this.lastRestockGameTime;
-        long oneGameDayInTicks = 24000L; // 一个游戏日为 24000 游戏刻
-
-        // 如果今天还没有补货，并且距离上次补货时间超过一个游戏日，则允许补货
-        return this.numberOfRestocksToday == 0 && timeSinceLastRestock >= oneGameDayInTicks;
+        return this.numberOfRestocksToday == 0
+                || this.numberOfRestocksToday < 2 && currentTime > this.lastRestockGameTime + 2400L;
     }
 
     // 检查是否应该补货
@@ -136,21 +133,8 @@ public class AbstractWuXiaMerchant extends AbstractWuXia {
 
     // 补货时更新需求
     private void catchUpDemand() {
-        int i = this.numberOfRestocksToday;
-        if (i == 0) {
-            Iterator var2 = this.getOffers().iterator();
-
-            // 重置所有交易的已使用次数
-            while (var2.hasNext()) {
-                MerchantOffer merchantoffer = (MerchantOffer) var2.next();
-                merchantoffer.resetUses();
-            }
-
-            // 更新需求
+        if (this.numberOfRestocksToday == 0) {
             this.updateDemand();
-
-            // 重新发送交易给当前交易的玩家
-            this.resendOffersToTradingPlayer();
         }
     }
 

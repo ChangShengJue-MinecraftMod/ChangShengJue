@@ -26,13 +26,10 @@ public class ExternalKunfuXpParticle extends SimpleAnimatedParticle {
     @Override
     public void tick() {
         super.tick();
-        if (this.age++ >= this.lifetime) {
-            this.remove();
-        } else {
-            float f = (float)this.age / (float)this.lifetime;
-            this.friction = this.friction * f;
-            this.alpha = 1.0F - f;
-        }
+        if (this.age >= this.lifetime) return;
+        float f = (float)this.age / (float)this.lifetime;
+        this.friction = this.friction * f;
+        this.alpha = 1.0F - f;
     }
 
     @OnlyIn(Dist.CLIENT)

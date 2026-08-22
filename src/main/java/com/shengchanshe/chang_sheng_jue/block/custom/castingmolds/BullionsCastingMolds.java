@@ -45,27 +45,26 @@ public class BullionsCastingMolds extends BaseEntityBlock {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-        ItemStack mainHandItem = pPlayer.getMainHandItem();
-        ItemStack offhandItem = pPlayer.getOffhandItem();
+        ItemStack heldItem = pPlayer.getItemInHand(pHand);
 
         if (blockEntity instanceof BullionsCastingMoldsBlockEntity entity) {
             ItemStackHandler inventory = entity.getInventory();
 
             // 检查是否为空槽位且手持有效坩埚
             if (inventory.getStackInSlot(0).isEmpty() && inventory.getStackInSlot(1).isEmpty()) {
-                if (mainHandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get() ||
-                        offhandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get() ||
-                        mainHandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get() ||
-                        offhandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get()) {
+                if (heldItem.is(ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get()) ||
+                        heldItem.is(ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get())) {
 
-                    if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? mainHandItem.copy() : mainHandItem)) {
-                        pPlayer.setItemInHand(InteractionHand.MAIN_HAND, ChangShengJueItems.CRUCIBLE.get().getDefaultInstance());
+                    if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? heldItem.copy() : heldItem)) {
+                        pPlayer.setItemInHand(pHand, ChangShengJueItems.CRUCIBLE.get().getDefaultInstance());
                         return InteractionResult.SUCCESS;
                     }
                 }
             } else {
                 // 槽位有物品时执行掉落逻辑
-                entity.drops();
+                if (!pLevel.isClientSide) {
+                    entity.drops();
+                }
                 return InteractionResult.SUCCESS;
             }
         }
@@ -80,7 +79,7 @@ public class BullionsCastingMolds extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-            if (blockentity instanceof BullionsCastingMoldsBlockEntity) {
+            if (!pLevel.isClientSide && blockentity instanceof BullionsCastingMoldsBlockEntity) {
                 ((BullionsCastingMoldsBlockEntity) blockentity).drops();
             }
             super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);

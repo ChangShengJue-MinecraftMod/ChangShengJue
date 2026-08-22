@@ -26,7 +26,9 @@ import java.util.function.Function;
 public final class ServerPacketGuard {
     private static final double MAX_MENU_DISTANCE_SQUARED = 64.0D;
     private static final int PLAQUE_WRITE_INTERVAL_TICKS = 10;
+    private static final int KILN_TRADE_UPDATE_INTERVAL_TICKS = 2;
     private static final Map<ServerPlayer, Long> LAST_PLAQUE_WRITE_TICK = new WeakHashMap<>();
+    private static final Map<ServerPlayer, Long> LAST_KILN_TRADE_UPDATE_TICK = new WeakHashMap<>();
 
     private ServerPacketGuard() {
     }
@@ -96,6 +98,19 @@ public final class ServerPacketGuard {
             return Optional.empty();
         }
         return Optional.of(worker);
+    }
+
+    public static boolean allowKilnTradeUpdate(ServerPlayer player) {
+        if (player == null || !player.isAlive() || player.hasDisconnected()) {
+            return false;
+        }
+        long now = player.level().getGameTime();
+        Long last = LAST_KILN_TRADE_UPDATE_TICK.get(player);
+        if (last != null && now >= last && now - last < KILN_TRADE_UPDATE_INTERVAL_TICKS) {
+            return false;
+        }
+        LAST_KILN_TRADE_UPDATE_TICK.put(player, now);
+        return true;
     }
 
     public static boolean isCraftAmountValid(int amount) {

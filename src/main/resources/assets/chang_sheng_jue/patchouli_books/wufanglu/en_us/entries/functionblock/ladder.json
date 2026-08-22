@@ -5,15 +5,15 @@
   "icon": "chang_sheng_jue:yun_shan_fu_ti_block",
   "pages": [
     {
-      "Title": "chang_sheng_jue.function.ladder",
+      "title": "chang_sheng_jue.function.ladder",
       "type": "patchouli:spotlight",
       "item": "chang_sheng_jue:yun_shan_fu_ti_block",
       "text": "chang_sheng_jue.function.ladder.page1.text"
     },
     {
-      "type": "patchouli:crafting",
-      "recipe": "chang_sheng_jue:yun_shan_fu_ti_block",
-      "recipe2": "chang_sheng_jue:bai_hua_fu_ti_block"
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:bai_hua_fu_ti_block",
+      "text": "chang_sheng_jue.function.ladder.page1.text"
     }
   ]
 }

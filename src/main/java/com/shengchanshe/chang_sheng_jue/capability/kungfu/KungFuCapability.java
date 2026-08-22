@@ -23,10 +23,16 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class KungFuCapability implements IKungFuCapability {
+    private static final int MAX_SAVED_KUNG_FU_ENTRIES = 128;
+    private static final long MALFORMED_NBT_WARNING_INTERVAL_NANOS = TimeUnit.MINUTES.toNanos(1);
+    private static final AtomicLong LAST_MALFORMED_NBT_WARNING_NANOS = new AtomicLong();
     private final Map<String, IKungFu> learnedKungFu = new HashMap<>();
     private final Set<IInteranlKungFu> activePassives = new HashSet<>();
+    private final Map<String, Integer> lastObservedCooldowns = new HashMap<>();
 
     @Override
     public void learnKungFu(ServerPlayer player, String kungFuId) {
@@ -291,6 +297,7 @@ public class KungFuCapability implements IKungFuCapability {
     public void syncToClient(ServerPlayer player) {
         player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
             ChangShengJueMessages.sendToPlayer(new SyncKungFuCapabilityPacket(cap.serializeNBT()), player);
+            learnedKungFu.forEach((id, kungFu) -> lastObservedCooldowns.put(id, kungFu.getCoolDown()));
         });
     }
 
@@ -312,36 +319,95 @@ public class KungFuCapability implements IKungFuCapability {
     public void deserializeNBT(CompoundTag tag) {
         learnedKungFu.clear();
         activePassives.clear();
+        lastObservedCooldowns.clear();
 
         ListTag kungFuList = tag.getList("LearnedKungFu", Tag.TAG_COMPOUND);
-        for (Tag t : kungFuList) {
-            CompoundTag kungFuTag = (CompoundTag)t;
+        int emptyIds = 0;
+        int unknownIds = 0;
+        int duplicateIds = 0;
+        int invalidEntries = 0;
+        int entriesToRead = Math.min(kungFuList.size(), MAX_SAVED_KUNG_FU_ENTRIES);
+        for (int index = 0; index < entriesToRead; index++) {
+            CompoundTag kungFuTag = kungFuList.getCompound(index);
             String id = kungFuTag.getString("KungFuId");
-            KungFuRegistry.getInstance().getKungFu(id).ifPresent(kungFu -> {
+            if (id.isBlank()) {
+                emptyIds++;
+                continue;
+            }
+            if (learnedKungFu.containsKey(id)) {
+                duplicateIds++;
+                continue;
+            }
+            Optional<IKungFu> registeredKungFu = KungFuRegistry.getInstance().getKungFu(id);
+            if (registeredKungFu.isEmpty()) {
+                unknownIds++;
+                continue;
+            }
+
+            IKungFu kungFu = registeredKungFu.get();
+            String storedType = kungFuTag.getString("KungFuType");
+            if (!id.equals(kungFu.getId()) || !kungFu.getKungFuType().name().equals(storedType)) {
+                invalidEntries++;
+                continue;
+            }
+            try {
                 kungFu.deserializeNBT(kungFuTag);
-                learnedKungFu.put(id, kungFu);
-                if (kungFu instanceof IInteranlKungFu passive) {
-                    activePassives.add(passive);
-                }
-            });
+            } catch (RuntimeException exception) {
+                invalidEntries++;
+                continue;
+            }
+            if (!id.equals(kungFu.getId()) || !storedType.equals(kungFu.getKungFuType().name())) {
+                invalidEntries++;
+                continue;
+            }
+            learnedKungFu.put(id, kungFu);
+            if (kungFu instanceof IInteranlKungFu passive) {
+                activePassives.add(passive);
+            }
+        }
+
+        int truncatedEntries = Math.max(0, kungFuList.size() - MAX_SAVED_KUNG_FU_ENTRIES);
+        warnAboutRejectedSavedKungFu(emptyIds, unknownIds, duplicateIds, invalidEntries, truncatedEntries);
+    }
+
+    private static void warnAboutRejectedSavedKungFu(int emptyIds, int unknownIds, int duplicateIds,
+                                                      int invalidEntries, int truncatedEntries) {
+        int rejectedEntries = emptyIds + unknownIds + duplicateIds + invalidEntries + truncatedEntries;
+        if (rejectedEntries == 0) {
+            return;
+        }
+
+        long now = System.nanoTime();
+        long previous = LAST_MALFORMED_NBT_WARNING_NANOS.get();
+        if (previous != 0L && now - previous < MALFORMED_NBT_WARNING_INTERVAL_NANOS) {
+            return;
+        }
+        if (LAST_MALFORMED_NBT_WARNING_NANOS.compareAndSet(previous, now)) {
+            ChangShengJue.LOGGER.warn(
+                    "忽略武功能力存档中的无效条目：空ID {}，未知ID {}，重复ID {}，非法字段 {}，超限 {}",
+                    emptyIds, unknownIds, duplicateIds, invalidEntries, truncatedEntries);
         }
     }
 
     @Override
-    public boolean tick(LivingEntity entity) {
-        boolean changed = false;
+    public void tick(LivingEntity entity) {
+        tickAndReportChanges(entity);
+    }
+
+    @Override
+    public boolean tickAndReportChanges(LivingEntity entity) {
+        boolean requiresImmediateSync = false;
         for (IKungFu kungFu : learnedKungFu.values()) {
-            if (kungFu.getCoolDown() > 0 || kungFu.getLevelUpTick() > 0 || kungFu.getDachengTick() > 0) {
-                changed = true;
-            }
+            int cooldownBefore = kungFu.getCoolDown();
+            int lastObservedCooldown = lastObservedCooldowns.getOrDefault(kungFu.getId(), cooldownBefore);
+            int levelUpBefore = kungFu.getLevelUpTick();
+            int dachengBefore = kungFu.getDachengTick();
             kungFu.tickCooldown();
-            if (kungFu.getLevelUpTick() > 0) {
+            if (levelUpBefore > 0) {
                 kungFu.setLevelUpTick();
-                changed = true;
             }
-            if (kungFu.getDachengTick() > 0) {
+            if (dachengBefore > 0) {
                 kungFu.setDachengTick();
-                changed = true;
             }
             if (kungFu instanceof IInteranlKungFu internal) {
                 internal.onEntityTick(entity);
@@ -349,8 +415,21 @@ public class KungFuCapability implements IKungFuCapability {
             if (kungFu instanceof ILightKungfu lightKungfu){
                 lightKungfu.onEntityTick(entity);
             }
+            int cooldownAfter = kungFu.getCoolDown();
+            int levelUpAfter = kungFu.getLevelUpTick();
+            int dachengAfter = kungFu.getDachengTick();
+            requiresImmediateSync |= cooldownBefore > lastObservedCooldown;
+            requiresImmediateSync |= cooldownBefore > 0 && cooldownAfter == 0;
+            requiresImmediateSync |= levelUpBefore == 1 && levelUpAfter > 1;
+            requiresImmediateSync |= dachengBefore == 1 && dachengAfter > 1;
+            requiresImmediateSync |= levelUpBefore > 0 && levelUpAfter == 0;
+            requiresImmediateSync |= dachengBefore > 0 && dachengAfter == 0;
+            requiresImmediateSync |= cooldownBefore == 0 && cooldownAfter > 0;
+            requiresImmediateSync |= levelUpBefore == 0 && levelUpAfter == 1;
+            requiresImmediateSync |= dachengBefore == 0 && dachengAfter == 1;
+            lastObservedCooldowns.put(kungFu.getId(), cooldownAfter);
         }
-        return changed;
+        return requiresImmediateSync;
     }
 
     @Override

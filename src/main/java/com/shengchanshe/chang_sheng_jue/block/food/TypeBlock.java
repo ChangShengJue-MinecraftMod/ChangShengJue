@@ -35,6 +35,8 @@ public class TypeBlock extends Block {
 
     public static int fed = 0;
     public static float fedpro = 0.0F;
+    private final int instanceFed;
+    private final float instanceFedpro;
     protected static final VoxelShape[] SHAPES = new VoxelShape[]{
             Block.box(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D),
             Block.box(2.0D, 0.0D, 2.0D, 14.0D, 6.0D, 14.0D),
@@ -46,13 +48,17 @@ public class TypeBlock extends Block {
         this.hasLeftovers = hasLeftovers;
         TypeBlock.fed = fed;
         TypeBlock.fedpro = fedpro;
+        this.instanceFed = fed;
+        this.instanceFedpro = fedpro;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(getTYPE(), getMaxTYPES()));
     }
 
     public TypeBlock(Properties pProperties, int fed, float fedpro) {
         super(pProperties);
-        this.fed = fed;
-        this.fedpro = fedpro;
+        TypeBlock.fed = fed;
+        TypeBlock.fedpro = fedpro;
+        this.instanceFed = fed;
+        this.instanceFedpro = fedpro;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
@@ -67,16 +73,18 @@ public class TypeBlock extends Block {
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (level.isClientSide) {
-            if (this.addFed(level, pos, state, player, hand, fed, fedpro).consumesAction()) {
-                return InteractionResult.SUCCESS;
-            }
+            return this.getClientInteractionResult(state, player, hand);
         }
 
-        return this.addFed(level, pos, state, player, hand, fed, fedpro);
+        return this.addFed(level, pos, state, player, hand, instanceFed, instanceFedpro);
+    }
+
+    protected InteractionResult getClientInteractionResult(BlockState state, Player player, InteractionHand hand) {
+        return InteractionResult.SUCCESS;
     }
 
     public void put(Level level, BlockPos pos, Player player, InteractionHand hand, Item item, Block block){
-        if (player.getItemInHand(hand).getItem() == item) {
+        if (!level.isClientSide && player.getItemInHand(hand).getItem() == item) {
             level.playSound(null, pos, SoundEvents.WOOD_BREAK, SoundSource.PLAYERS, 0.8F, 0.8F);
             level.setBlock(pos, block.defaultBlockState(), 3);
 

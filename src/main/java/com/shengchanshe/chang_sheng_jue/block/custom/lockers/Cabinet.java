@@ -221,7 +221,7 @@ public class Cabinet extends BaseEntityBlock {
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.is(newState.getBlock())) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof Container container) {
+            if (!level.isClientSide && blockEntity instanceof Container container) {
                 Containers.dropContents(level, pos, container);
             }
             super.onRemove(state, level, pos, newState, isMoving);

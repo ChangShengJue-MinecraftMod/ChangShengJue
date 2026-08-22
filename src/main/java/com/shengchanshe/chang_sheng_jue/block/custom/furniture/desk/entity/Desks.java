@@ -45,7 +45,7 @@ public class Desks extends HorizontalDirectionalBlock implements EntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-            if (blockentity instanceof DesksEntity) {
+            if (!pLevel.isClientSide && blockentity instanceof DesksEntity) {
                 ((DesksEntity) blockentity).drops();
             }
             super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);

@@ -14,7 +14,9 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
@@ -28,6 +30,7 @@ import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -39,9 +42,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class QuestManager {
     private static QuestManager instance;
     private static final int MAX_GENERATED_TARGETS = 32;
+    private static final String COMPLETION_DATA_NAME = ChangShengJue.MOD_ID + "_quest_completion_counts";
     private static final Map<ResourceLocation, TagKey<EntityType<?>>> ENTITY_TAG_CACHE = new ConcurrentHashMap<>();
-    // 任务完成次数统计 <任务ID, 完成次数>
-    private final Map<UUID, Integer> questCompletionCounts = new ConcurrentHashMap<>();
 
     public static QuestManager getInstance() {
         if (instance == null) {
@@ -82,9 +84,12 @@ public class QuestManager {
                     return;
                 }
 
-                // 设置任务为已接受
+                if (!cap.trySetQuest(targetQuest, player.getUUID())) {
+                    return;
+                }
+
+                // 容量校验通过后才产生接受任务的副作用。
                 targetQuest.setAcceptedBy(player.getUUID());
-                cap.setQuests(targetQuest, player.getUUID());
                 cap.markQuestAccepted(targetQuest.getQuestId());
                 gangLeader.addQuestForPlayer(player.getUUID(), targetQuest);
                 int requiredKills = targetQuest.getRequiredKills();
@@ -92,10 +97,12 @@ public class QuestManager {
                 this.spawnTargetForQuest((ServerPlayer) player, targetQuest, requiredKills);
 
                 cap.syncToClient(player);
-                ChangShengJueMessages.sendToPlayer(
-                        new RefreshQuestScreenPacket(gangLeader.getPlayerQuests(player.getUUID())),
-                        player
-                );
+                if (player.connection != null) {
+                    ChangShengJueMessages.sendToPlayer(
+                            new RefreshQuestScreenPacket(gangLeader.getPlayerQuests(player.getUUID())),
+                            player
+                    );
+                }
                 accepted[0] = true;
             }
         });
@@ -133,7 +140,10 @@ public class QuestManager {
                 actualQuest.setNeedRefresh(true);
 
                 if (actualQuest.getQuestId().equals(PlayerQuestEvent.KUAI_YI_EN_CHOU_QUEST_ID) && quest.getQuestNpcId() != null) {
-                    questCompletionCounts.merge(actualQuest.getQuestId(), 1, Integer::sum);
+                    MinecraftServer server = player.getServer();
+                    if (server != null) {
+                        getCompletionData(server).increment(actualQuest.getQuestId());
+                    }
                 }
 
                 cap.markQuestCompleted(actualQuest.getQuestId());
@@ -381,10 +391,65 @@ public class QuestManager {
      * @return 所有任务完成次数的累加值
      */
     public int getTotalQuestCompletions() {
-        return questCompletionCounts.values()
-                .stream()
-                .mapToInt(Integer::intValue)
-                .sum();
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        return server == null ? 0 : getCompletionData(server).getTotal();
+    }
+
+    private static QuestCompletionData getCompletionData(MinecraftServer server) {
+        return server.overworld().getDataStorage().computeIfAbsent(
+                QuestCompletionData::load, QuestCompletionData::new, COMPLETION_DATA_NAME);
+    }
+
+    private static final class QuestCompletionData extends SavedData {
+        private static final String COUNTS_KEY = "QuestCompletionCounts";
+        private static final int MAX_SAVED_ENTRIES = 4096;
+        private static final int MAX_COMPLETION_COUNT = 1_000_000;
+        private final Map<UUID, Integer> counts = new HashMap<>();
+
+        private static QuestCompletionData load(CompoundTag tag) {
+            QuestCompletionData data = new QuestCompletionData();
+            CompoundTag countsTag = tag.getCompound(COUNTS_KEY);
+            int loaded = 0;
+            for (String key : countsTag.getAllKeys()) {
+                if (loaded++ >= MAX_SAVED_ENTRIES) {
+                    break;
+                }
+                try {
+                    UUID questId = UUID.fromString(key);
+                    int count = Mth.clamp(countsTag.getInt(key), 0, MAX_COMPLETION_COUNT);
+                    data.counts.put(questId, count);
+                } catch (IllegalArgumentException exception) {
+                    ChangShengJue.LOGGER.warn("忽略全服任务计数中无效的任务 UUID: {}", key);
+                }
+            }
+            return data;
+        }
+
+        private void increment(UUID questId) {
+            if (questId == null || (!counts.containsKey(questId) && counts.size() >= MAX_SAVED_ENTRIES)) {
+                return;
+            }
+            counts.compute(questId, (id, count) -> count == null ? 1
+                    : count >= MAX_COMPLETION_COUNT ? MAX_COMPLETION_COUNT : Math.max(0, count) + 1);
+            setDirty();
+        }
+
+        private int getTotal() {
+            long total = counts.values().stream().mapToLong(Integer::longValue).sum();
+            return (int) Math.min(total, Integer.MAX_VALUE);
+        }
+
+        @Override
+        public CompoundTag save(CompoundTag tag) {
+            CompoundTag countsTag = new CompoundTag();
+            counts.entrySet().stream()
+                    .filter(entry -> entry.getKey() != null && entry.getValue() != null)
+                    .limit(MAX_SAVED_ENTRIES)
+                    .forEach(entry -> countsTag.putInt(entry.getKey().toString(),
+                            Mth.clamp(entry.getValue(), 0, MAX_COMPLETION_COUNT)));
+            tag.put(COUNTS_KEY, countsTag);
+            return tag;
+        }
     }
 
     public void addKungFuCount(Player player,int count){

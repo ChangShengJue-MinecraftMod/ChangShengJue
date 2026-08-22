@@ -33,6 +33,9 @@ public final class ServerAuthorityGameTests {
 
     @GameTest(template = "empty")
     public static void gangQuestGuardRejectsWrongContextWithoutMutation(GameTestHelper helper) {
+        helper.assertTrue(GangQuestPacketGuard.validateOpen(null) == null
+                        && GangQuestPacketGuard.validateAccept(null) == null,
+                "missing sender was not rejected safely");
         GangLeader leader = createGangLeader(helper);
         BlockPos leaderPos = helper.absolutePos(BlockPos.ZERO);
         leader.setPos(leaderPos.getX() + 0.5D, leaderPos.getY(), leaderPos.getZ() + 0.5D);
@@ -59,6 +62,9 @@ public final class ServerAuthorityGameTests {
         farPlayer.containerMenu = new GangleaderTradingMenu(2, farPlayer.getInventory(), leader);
         assertGuardRejectedWithoutMutation(helper, farPlayer, leader,
                 () -> GangQuestPacketGuard.validateOpen(farPlayer), "distant sender was accepted");
+        farPlayer.setPos(leader.getX(), leader.getY(), leader.getZ());
+        helper.assertTrue(GangQuestPacketGuard.validateOpen(farPlayer) == leader,
+                "rejected distant request consumed the valid request cooldown");
 
         ServerPlayer validPlayer = createUnconnectedServerPlayer(helper, "quest-valid");
         validPlayer.setPos(leader.getX(), leader.getY(), leader.getZ());
@@ -91,7 +97,8 @@ public final class ServerAuthorityGameTests {
 
         PlayerQuestCapability capability = new PlayerQuestCapability();
         capability.deserializeNBT(legacy);
-        helper.assertTrue(!capability.isQuestAccepted(acceptedQuest),
+        helper.assertTrue(capability.hasAcceptedQuest(acceptedQuest)
+                        && !capability.isQuestAccepted(acceptedQuest),
                 "accepted quest was lost when legacy NBT had no active PlayerQuests list");
         helper.assertTrue(capability.serializeNBT().getList("AcceptedQuests", net.minecraft.nbt.Tag.TAG_INT_ARRAY).size() == 1,
                 "accepted-only legacy NBT was not preserved on save");
@@ -120,7 +127,9 @@ public final class ServerAuthorityGameTests {
         Quest copiedQuest = copy.getQuests(playerId).get(0);
         helper.assertTrue(copiedQuest != sourceQuest && !copiedQuest.isComplete(),
                 "death copy retained the original mutable quest instance");
-        helper.assertTrue(!copy.isQuestAccepted(questId), "death copy lost accepted quest history");
+        helper.assertTrue(copy.hasAcceptedQuest(questId)
+                        && !copy.isQuestAccepted(questId),
+                "death copy lost accepted quest history");
         helper.assertTrue(copy.isQuestCompleted(completedId) && copy.getCompletionCount(completedId) == 1,
                 "death copy lost completion history");
         helper.assertTrue(!copy.isFirstLargeTransactionTrigger(),

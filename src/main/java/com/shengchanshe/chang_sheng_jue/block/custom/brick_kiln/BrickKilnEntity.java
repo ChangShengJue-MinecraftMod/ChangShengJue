@@ -9,6 +9,7 @@ import com.shengchanshe.chang_sheng_jue.recipe.BrickKilnRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
@@ -69,9 +70,10 @@ public class BrickKilnEntity extends BlockEntity implements MenuProvider {
     private int craftTimes = 1;
     private ResourceLocation pendingRecipeId;
     private PersistedCraftingJob activeJob;
-    private boolean activeRecipeAvailable;
+    private Tag quarantinedActiveJob;
     private boolean legacyWaiting;
     private boolean missingRecipeLogged;
+    private boolean invalidJobLogged;
     private boolean legacyGhostLogged;
     private boolean suppressHandlerCallbacks;
     private int recipeRetryTicks;
@@ -80,7 +82,7 @@ public class BrickKilnEntity extends BlockEntity implements MenuProvider {
         super(ChangShengJueBlocksEntities.BRICK_KILN_ENTITY.get(), pos, state);
         data = new ContainerData() {
             @Override public int get(int index) { return index == 0 ? progress : index == 1 ? maxProgress : index == 2 ? craftTimes : 0; }
-            @Override public void set(int index, int value) { if (index == 0) progress = value; else if (index == 1) maxProgress = value; else if (index == 2 && activeJob == null) craftTimes = clamp(value); }
+            @Override public void set(int index, int value) { if (index == 0) progress = value; else if (index == 1) maxProgress = value; else if (index == 2 && !isCrafting()) craftTimes = clamp(value); }
             @Override public int getCount() { return 3; }
         };
     }
@@ -113,6 +115,7 @@ public class BrickKilnEntity extends BlockEntity implements MenuProvider {
         ResourceLocation selected = currentRecipe != null ? currentRecipe.getId() : pendingRecipeId;
         if (selected != null) tag.putString("current_recipe", selected.toString());
         if (activeJob != null) tag.put(ACTIVE_JOB, activeJob.save(progress));
+        else if (quarantinedActiveJob != null) tag.put(ACTIVE_JOB, quarantinedActiveJob.copy());
     }
     @Override public void load(CompoundTag tag) {
         super.load(tag);
@@ -123,47 +126,69 @@ public class BrickKilnEntity extends BlockEntity implements MenuProvider {
         pendingRecipeId = tag.contains("current_recipe") ? ResourceLocation.tryParse(tag.getString("current_recipe")) : null;
         currentRecipe = null;
         activeJob = null;
-        if (tag.contains(ACTIVE_JOB)) {
-            PersistedCraftingJob.Loaded loaded = PersistedCraftingJob.load(tag.getCompound(ACTIVE_JOB), maxProgress);
-            if (loaded != null) { activeJob = loaded.job(); progress = loaded.progress(); craftTimes = activeJob.remaining(); }
+        quarantinedActiveJob = null;
+        Tag persistedJob = tag.get(ACTIVE_JOB);
+        if (persistedJob instanceof CompoundTag persistedCompound) {
+            PersistedCraftingJob.Loaded loaded = PersistedCraftingJob.load(persistedCompound, maxProgress);
+            if (loaded != null) {
+                activeJob = loaded.job();
+                progress = loaded.progress();
+                craftTimes = activeJob.remaining();
+            } else {
+                quarantinedActiveJob = persistedJob.copy();
+                progress = 0;
+            }
+        } else if (persistedJob != null) {
+            quarantinedActiveJob = persistedJob.copy();
+            progress = 0;
         }
         if (level != null) resolveRecipes();
     }
     private void resolveRecipes() {
         if (level == null) return;
+        warnInvalidActiveJob();
         ResourceLocation selected = activeJob != null ? activeJob.recipeId() : pendingRecipeId;
         currentRecipe = findRecipe(selected).orElse(null);
-        activeRecipeAvailable = activeJob == null || findRecipe(activeJob.recipeId()).isPresent();
-        if (activeJob == null && progress > 0 && currentRecipe != null) {
+        if (activeJob == null && quarantinedActiveJob == null && progress > 0 && currentRecipe != null) {
             activeJob = new PersistedCraftingJob(currentRecipe.getId(), currentRecipe.getResultItem(level.registryAccess()), craftTimes, craftTimes);
-            activeRecipeAvailable = true;
         }
-        legacyWaiting = progress > 0 && activeJob == null;
-        if (!level.isClientSide && (legacyWaiting || !activeRecipeAvailable) && !missingRecipeLogged) {
+        legacyWaiting = quarantinedActiveJob == null && progress > 0 && activeJob == null;
+        if (!level.isClientSide && legacyWaiting && !missingRecipeLogged) {
             ChangShengJue.LOGGER.warn("Brick kiln at {} is waiting for missing recipe {}", worldPosition, selected);
             missingRecipeLogged = true;
-        } else if (!legacyWaiting && activeRecipeAvailable) missingRecipeLogged = false;
+        } else if (!legacyWaiting) missingRecipeLogged = false;
     }
     private Optional<BrickKilnRecipe> findRecipe(@Nullable ResourceLocation id) {
         if (id == null || level == null) return Optional.empty();
         Optional<? extends Recipe<?>> recipe = level.getRecipeManager().byKey(id);
         return recipe.isPresent() && recipe.get() instanceof BrickKilnRecipe typed ? Optional.of(typed) : Optional.empty();
     }
+    private void warnInvalidActiveJob() {
+        if (quarantinedActiveJob != null && !invalidJobLogged && level != null && !level.isClientSide) {
+            ChangShengJue.LOGGER.warn("Brick kiln at {} quarantined an invalid active_job", worldPosition);
+            invalidJobLogged = true;
+        }
+    }
     @Nullable @Override public Packet<ClientGamePacketListener> getUpdatePacket() { return ClientboundBlockEntityDataPacket.create(this); }
-    @Override public CompoundTag getUpdateTag() { CompoundTag tag = new CompoundTag(); saveAdditional(tag); return tag; }
+    @Override public CompoundTag getUpdateTag() {
+        CompoundTag tag = new CompoundTag();
+        saveAdditional(tag);
+        if (quarantinedActiveJob != null) tag.put(ACTIVE_JOB, new CompoundTag());
+        return tag;
+    }
     @Override public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket packet) { load(Objects.requireNonNull(packet.getTag())); }
     @Override public void handleUpdateTag(CompoundTag tag) { super.handleUpdateTag(tag); load(tag); }
     public ItemStackHandler getItemHandler() { return itemHandler; }
     public int getCraftTimes() { return craftTimes; }
-    public boolean isCrafting() { return activeJob != null; }
-    public void setCraftTimes(int count) { if (activeJob != null || progress > 0) return; craftTimes = clamp(count); syncToClient(); }
+    public boolean isCrafting() { return activeJob != null || quarantinedActiveJob != null; }
+    public void setCraftTimes(int count) { if (isCrafting() || progress > 0) return; craftTimes = clamp(count); syncToClient(); }
 
     public void tick(Level level, BlockPos pos, BlockState state) {
         if (level.isClientSide) return;
         retryMissingRecipe();
-        boolean lit = activeJob != null && activeRecipeAvailable;
+        boolean lit = activeJob != null;
         if (state.getValue(BrickKiln.LIT) != lit) level.setBlock(pos, state.setValue(BrickKiln.LIT, lit), Block.UPDATE_ALL);
-        if (activeJob == null || !activeRecipeAvailable) return;
+        if (activeJob == null) return;
         if (progress < maxProgress) { progress++; super.setChanged(); return; }
         ItemStack result = activeJob.output();
         if (!canInsert(result)) return;
@@ -183,7 +208,7 @@ public class BrickKilnEntity extends BlockEntity implements MenuProvider {
         super.setChanged();
     }
     public void craftCurrentRecipe(Player player) {
-        if (level == null || level.isClientSide || activeJob != null || currentRecipe == null) return;
+        if (level == null || level.isClientSide || isCrafting() || currentRecipe == null) return;
         int count = craftTimes;
         BrickKilnRecipe recipe = chooseRecipe(player.getInventory(), count);
         if (recipe == null) return;
@@ -193,7 +218,6 @@ public class BrickKilnEntity extends BlockEntity implements MenuProvider {
         currentRecipe = recipe;
         pendingRecipeId = recipe.getId();
         activeJob = new PersistedCraftingJob(recipe.getId(), result, count, count);
-        activeRecipeAvailable = true;
         legacyWaiting = false;
         progress = 1;
         syncToClient();
@@ -215,7 +239,7 @@ public class BrickKilnEntity extends BlockEntity implements MenuProvider {
     public ItemStack[] getMaterialsFromRecipe(BrickKilnRecipe recipe) { return recipe.getIngredients().stream().map(i -> i.getItems().length > 0 ? i.getItems()[0] : ItemStack.EMPTY).toArray(ItemStack[]::new); }
     public void setCurrentRecipe(BrickKilnRecipe recipe) { setCurrentRecipe(recipe, recipe != null ? recipe.getGroup() : null); }
     public void setCurrentRecipe(BrickKilnRecipe recipe, String group) {
-        if (activeJob != null || progress > 0) return;
+        if (isCrafting() || progress > 0) return;
         currentRecipe = recipe;
         pendingRecipeId = recipe == null ? null : recipe.getId();
         currentRecipeGroup = group == null ? "" : group;
@@ -243,7 +267,7 @@ public class BrickKilnEntity extends BlockEntity implements MenuProvider {
     public ItemStack getRecipeResultItem() { return currentRecipe == null || level == null ? ItemStack.EMPTY : currentRecipe.getResultItem(level.registryAccess()); }
     private static boolean isValidOutput(ItemStack output) { return !output.isEmpty() && output.getCount() <= output.getMaxStackSize(); }
     private void retryMissingRecipe() {
-        if (!legacyWaiting && activeRecipeAvailable) return;
+        if (!legacyWaiting) return;
         if (recipeRetryTicks-- > 0) return;
         recipeRetryTicks = 100;
         resolveRecipes();

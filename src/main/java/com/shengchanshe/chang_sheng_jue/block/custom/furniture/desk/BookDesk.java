@@ -74,7 +74,7 @@ public class BookDesk extends Desks {
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);
-        if (pState.getBlock() != pNewState.getBlock()) {
+        if (!pLevel.isClientSide && pState.getBlock() != pNewState.getBlock()) {
             Direction facing = pState.getValue(FACING);
             Direction rightDirection = rightOf(pState.getValue(RIGHT) ? facing.getOpposite() : facing);
             BlockPos pos2 = pPos.relative(rightDirection);

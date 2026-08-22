@@ -6,8 +6,8 @@
   "pages": [
     {
       "title": "chang_sheng_jue.function.plaque",
-      "type": "patchouli:crafting",
-      "recipe": "chang_sheng_jue:plaque",
+      "type": "patchouli:spotlight",
+      "item": "chang_sheng_jue:plaque",
       "text": "chang_sheng_jue.function.plaque.page1.text"
     }
   ]

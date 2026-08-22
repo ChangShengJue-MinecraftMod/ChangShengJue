@@ -8,6 +8,7 @@ import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.Yugo
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -80,7 +81,7 @@ public class KaishanPickaxe extends PickaxeItem {
                     minedBlocks.add(pos);
 
                     // 消耗耐久度
-                    stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(p.getUsedItemHand()));
+                    stack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
                 }
             }
         }

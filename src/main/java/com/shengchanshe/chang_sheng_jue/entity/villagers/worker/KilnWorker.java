@@ -6,6 +6,7 @@ import com.shengchanshe.chang_sheng_jue.entity.custom.goal.ReturnToSpawnGoal;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.world.village.WuXiaMerahantTrades;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
@@ -30,13 +31,19 @@ import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.IdentityHashMap;
 import java.util.Map;
 import java.util.OptionalInt;
+import java.util.Set;
 
 public class KilnWorker extends AbstractVillager {
+    private static final String TRADE_OFFERS_BY_TYPE_TAG = "TradeOffersByType";
+
     private KilnWorkerTradeType currentTradeType = KilnWorkerTradeType.GRE;
+    private final Map<KilnWorkerTradeType, MerchantOffers> tradeOffersByType =
+            new EnumMap<>(KilnWorkerTradeType.class);
     // 补货相关变量
     private long lastRestockGameTime; // 上次补货的游戏时间（以游戏刻为单位）
     private int numberOfRestocksToday; // 今天补货的次数
@@ -76,20 +83,30 @@ public class KilnWorker extends AbstractVillager {
     }
 
     public void setCurrentTradeType(KilnWorkerTradeType tradeType) {
+        this.changeCurrentTradeType(tradeType);
+    }
+
+    public boolean changeCurrentTradeType(KilnWorkerTradeType tradeType) {
+        if (tradeType == null || tradeType == this.currentTradeType) {
+            return false;
+        }
+        this.tradeOffersByType.put(this.currentTradeType, this.getOffers());
         this.currentTradeType = tradeType;
-        this.updateTrades(); // 更新交易
+        MerchantOffers storedOffers = this.tradeOffersByType.get(tradeType);
+        if (storedOffers == null) {
+            this.updateTrades();
+        } else {
+            this.offers = storedOffers;
+        }
+        return true;
+    }
+
+    public KilnWorkerTradeType getCurrentTradeType() {
+        return this.currentTradeType;
     }
 
     @Override
     protected void updateTrades() {
-        // 保存当前交易状态
-        Map<Integer, Integer> usesMap = new HashMap<>();
-        if (this.offers != null) {
-            for (int i = 0; i < this.offers.size(); i++) {
-                usesMap.put(i, this.offers.get(i).getUses());
-            }
-        }
-
         // 获取新的交易列表
         VillagerTrades.ItemListing[] listings = switch (this.currentTradeType) {
             case GRE -> WuXiaMerahantTrades.KILN_WORKER_TRADES.get(1);
@@ -110,7 +127,7 @@ public class KilnWorker extends AbstractVillager {
                             originalOffer.getBaseCostA(),
                             originalOffer.getCostB(),
                             originalOffer.getResult(),
-                            usesMap.getOrDefault(i, 0),
+                            0,
                             originalOffer.getMaxUses(),
                             originalOffer.getXp(),
                             originalOffer.getPriceMultiplier(),
@@ -122,17 +139,7 @@ public class KilnWorker extends AbstractVillager {
                 }
             }
             this.offers = newOffers;
-
-            // 更新所有正在交易的玩家
-            if (this.getTradingPlayer() != null) {
-                this.getTradingPlayer().sendMerchantOffers(
-                        ((KilnWorkerMenu)this.getTradingPlayer().containerMenu).getContainerId(),
-                        this.offers, 1,
-                        this.getVillagerXp(),
-                        this.showProgressBar(),
-                        this.canRestock()
-                );
-            }
+            this.tradeOffersByType.put(this.currentTradeType, newOffers);
         }
     }
 
@@ -202,13 +209,7 @@ public class KilnWorker extends AbstractVillager {
     // 执行补货操作
     public void restock() {
         this.updateDemand(); // 更新交易需求
-        Iterator var1 = this.getOffers().iterator();
-
-        // 重置所有交易的已使用次数
-        while (var1.hasNext()) {
-            MerchantOffer merchantoffer = (MerchantOffer) var1.next();
-            merchantoffer.resetUses();
-        }
+        this.forEachTradeOffer(MerchantOffer::resetUses);
 
         // 重新发送交易给当前交易的玩家
         this.resendOffersToTradingPlayer();
@@ -218,28 +219,22 @@ public class KilnWorker extends AbstractVillager {
 
     // 检查是否需要补货
     private boolean needsToRestock() {
-        Iterator var1 = this.getOffers().iterator();
-
-        MerchantOffer merchantoffer;
-        do {
-            if (!var1.hasNext()) {
-                return false; // 如果没有需要补货的交易，返回false
+        this.rememberCurrentOffers();
+        for (MerchantOffers offers : this.uniqueTradeOffers()) {
+            for (MerchantOffer offer : offers) {
+                if (offer.needsRestock()) {
+                    return true;
+                }
             }
-
-            merchantoffer = (MerchantOffer) var1.next();
-        } while (!merchantoffer.needsRestock()); // 检查交易是否需要补货
-
-        return true; // 如果有需要补货的交易，返回true
+        }
+        return false;
     }
 
     // 检查是否允许补货
     private boolean allowedToRestock() {
         long currentTime = this.level().getGameTime();
-        long timeSinceLastRestock = currentTime - this.lastRestockGameTime;
-        long oneGameDayInTicks = 24000L; // 一个游戏日为 24000 游戏刻
-
-        // 如果今天还没有补货，并且距离上次补货时间超过一个游戏日，则允许补货
-        return this.numberOfRestocksToday == 0 && timeSinceLastRestock >= oneGameDayInTicks;
+        return this.numberOfRestocksToday == 0
+                || this.numberOfRestocksToday < 2 && currentTime > this.lastRestockGameTime + 2400L;
     }
 
     // 检查是否应该补货
@@ -271,32 +266,31 @@ public class KilnWorker extends AbstractVillager {
 
     // 更新交易需求
     private void updateDemand() {
-        Iterator var1 = this.getOffers().iterator();
-
-        while (var1.hasNext()) {
-            MerchantOffer merchantoffer = (MerchantOffer) var1.next();
-            merchantoffer.updateDemand(); // 更新每个交易的需求
-        }
+        this.forEachTradeOffer(MerchantOffer::updateDemand);
     }
 
     // 补货时更新需求
     private void catchUpDemand() {
-        int i = this.numberOfRestocksToday;
-        if (i == 0) {
-            Iterator var2 = this.getOffers().iterator();
-
-            // 重置所有交易的已使用次数
-            while (var2.hasNext()) {
-                MerchantOffer merchantoffer = (MerchantOffer) var2.next();
-                merchantoffer.resetUses();
-            }
-
-            // 更新需求
+        if (this.numberOfRestocksToday == 0) {
             this.updateDemand();
-
-            // 重新发送交易给当前交易的玩家
-            this.resendOffersToTradingPlayer();
         }
+    }
+
+    private void forEachTradeOffer(java.util.function.Consumer<MerchantOffer> action) {
+        this.rememberCurrentOffers();
+        for (MerchantOffers offers : this.uniqueTradeOffers()) {
+            offers.forEach(action);
+        }
+    }
+
+    private Set<MerchantOffers> uniqueTradeOffers() {
+        Set<MerchantOffers> offers = Collections.newSetFromMap(new IdentityHashMap<>());
+        offers.addAll(this.tradeOffersByType.values());
+        return offers;
+    }
+
+    private void rememberCurrentOffers() {
+        this.tradeOffersByType.put(this.currentTradeType, this.getOffers());
     }
 
     @Override
@@ -327,16 +321,23 @@ public class KilnWorker extends AbstractVillager {
     // 保存补货数据到 NBT
     @Override
     public void addAdditionalSaveData(CompoundTag pCompound) {
+        this.tradeOffersByType.put(this.currentTradeType, this.getOffers());
         super.addAdditionalSaveData(pCompound);
         pCompound.putLong("LastRestock", this.lastRestockGameTime); // 保存上次补货时间
         pCompound.putInt("RestocksToday", this.numberOfRestocksToday); // 保存今天的补货次数
         pCompound.putLong("LastRestockCheckDayTime", this.lastRestockCheckDayTime); // 保存上次检查补货的时间
+        pCompound.putString("CurrentTradeType", this.currentTradeType.name());
+        CompoundTag offersByTypeTag = new CompoundTag();
+        this.tradeOffersByType.forEach((tradeType, offers) ->
+                offersByTypeTag.put(tradeType.name(), offers.createTag()));
+        pCompound.put(TRADE_OFFERS_BY_TYPE_TAG, offersByTypeTag);
     }
 
     // 从 NBT 加载补货数据
     @Override
     public void readAdditionalSaveData(CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
+        MerchantOffers legacyActiveOffers = this.offers;
         if (pCompound.contains("LastRestock")) {
             this.lastRestockGameTime = pCompound.getLong("LastRestock"); // 加载上次补货时间
         }
@@ -346,6 +347,34 @@ public class KilnWorker extends AbstractVillager {
         if (pCompound.contains("LastRestockCheckDayTime")) {
             this.lastRestockCheckDayTime = pCompound.getLong("LastRestockCheckDayTime"); // 加载上次检查补货的时间
         }
+        if (pCompound.contains("CurrentTradeType")) {
+            try {
+                this.currentTradeType = KilnWorkerTradeType.valueOf(pCompound.getString("CurrentTradeType"));
+            } catch (IllegalArgumentException exception) {
+                ChangShengJue.LOGGER.warn("忽略营造主事存档中的未知交易类型: {}", pCompound.getString("CurrentTradeType"));
+                this.currentTradeType = KilnWorkerTradeType.GRE;
+            }
+        }
+        this.tradeOffersByType.clear();
+        if (pCompound.contains(TRADE_OFFERS_BY_TYPE_TAG, Tag.TAG_COMPOUND)) {
+            CompoundTag offersByTypeTag = pCompound.getCompound(TRADE_OFFERS_BY_TYPE_TAG);
+            for (KilnWorkerTradeType tradeType : KilnWorkerTradeType.values()) {
+                if (offersByTypeTag.contains(tradeType.name(), Tag.TAG_COMPOUND)) {
+                    this.tradeOffersByType.put(tradeType,
+                            new MerchantOffers(offersByTypeTag.getCompound(tradeType.name())));
+                }
+            }
+        }
+        MerchantOffers activeOffers = this.tradeOffersByType.get(this.currentTradeType);
+        if (activeOffers == null) {
+            activeOffers = legacyActiveOffers;
+            if (activeOffers == null) {
+                this.updateTrades();
+                activeOffers = this.offers;
+            }
+            this.tradeOffersByType.put(this.currentTradeType, activeOffers);
+        }
+        this.offers = activeOffers;
     }
 
 

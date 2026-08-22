@@ -8,7 +8,7 @@ import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.RelentlessThrowingKnives;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
+import com.shengchanshe.chang_sheng_jue.util.TooltipInput;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -239,7 +239,7 @@ public class FlyingDaggerPouch extends Item {
 
         tooltip.add(Component.translatable("tooltip." + ChangShengJue.MOD_ID + ".flying_dagger_pouch.right_click.tooltip").withStyle(ChatFormatting.GRAY));
 
-        if (Screen.hasShiftDown()) {
+        if (TooltipInput.isShiftDown()) {
             if(daggers.isEmpty()) {
                 tooltip.add(Component.translatable("message." + ChangShengJue.MOD_ID + ".dagger_pouch.empty"));
             } else {

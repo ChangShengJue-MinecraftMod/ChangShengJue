@@ -56,7 +56,11 @@ public class Parcel extends Item {
             return ParcelType.COTTON_ARMOR;
         }
         int typeOrdinal = stack.getTag().getInt(TYPE_TAG);
-        return ParcelType.values()[typeOrdinal];
+        ParcelType[] types = ParcelType.values();
+        if (typeOrdinal < 0 || typeOrdinal >= types.length) {
+            return ParcelType.COTTON_ARMOR;
+        }
+        return types[typeOrdinal];
     }
 
     @Override

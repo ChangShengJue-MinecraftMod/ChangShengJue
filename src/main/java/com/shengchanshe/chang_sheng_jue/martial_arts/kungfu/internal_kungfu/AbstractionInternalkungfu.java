@@ -7,6 +7,7 @@ import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IInteranlKungFu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IKungFuUpgradable;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuType;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuNbtSanitizer;
 import com.shengchanshe.chang_sheng_jue.sound.ChangShengJueSound;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.Registries;
@@ -339,6 +340,10 @@ public abstract class AbstractionInternalkungfu implements IInteranlKungFu, IKun
 
     @Override
     public void deserializeNBT(CompoundTag tag) {
+        float defaultDamage = this.damage;
+        float defaultSaturation = this.saturation;
+        float defaultEffectProbability = this.effectProbability;
+        float defaultCooldownFactor = this.cooldownFactor;
         this.id = tag.getString("KungFuId");
         this.name = Component.Serializer.fromJson(tag.getString("KungFuName"));
         if (tag.contains("KungFuDescription", Tag.TAG_STRING)) {
@@ -362,7 +367,16 @@ public abstract class AbstractionInternalkungfu implements IInteranlKungFu, IKun
         this.cooldown = tag.getInt("KungFuCooldown");
         this.cooldownFactor = tag.getFloat("KungFuCooldownFactor");
         this.isStart = tag.getBoolean("KungFuIsStart");
-        clampLevelToMax();
+        this.level = KungFuNbtSanitizer.bounded(this.level, getMaxLevel());
+        this.exp = KungFuNbtSanitizer.bounded(this.exp, getMaxExp());
+        this.cooldown = KungFuNbtSanitizer.bounded(this.cooldown, getMaxCoolDown());
+        this.levelUpTick = KungFuNbtSanitizer.bounded(this.levelUpTick, 79);
+        this.dachengTick = KungFuNbtSanitizer.bounded(this.dachengTick, 29);
+        this.hunger = Math.max(0, this.hunger);
+        this.damage = KungFuNbtSanitizer.nonNegativeFinite(this.damage, defaultDamage);
+        this.saturation = KungFuNbtSanitizer.nonNegativeFinite(this.saturation, defaultSaturation);
+        this.effectProbability = KungFuNbtSanitizer.probability(this.effectProbability, defaultEffectProbability);
+        this.cooldownFactor = KungFuNbtSanitizer.nonNegativeFinite(this.cooldownFactor, defaultCooldownFactor);
     }
 
 }

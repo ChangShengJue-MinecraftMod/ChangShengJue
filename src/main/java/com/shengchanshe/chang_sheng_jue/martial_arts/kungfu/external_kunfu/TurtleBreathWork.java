@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuItemContext;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuType;
 import com.shengchanshe.chang_sheng_jue.util.EffectUtils;
 import net.minecraft.ChatFormatting;
@@ -13,6 +14,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 public class TurtleBreathWork extends AbstractionExternalKunfu {
     public static final ResourceLocation KUNG_FU_ID = new ResourceLocation(ChangShengJue.MOD_ID, "turtle_breath_work");
@@ -28,21 +30,21 @@ public class TurtleBreathWork extends AbstractionExternalKunfu {
     public void release(LivingEntity pEntity) {
         if (!isReady()) return;
 
+        ItemStack usedItem = KungFuItemContext.getCastingItem(pEntity);
         if (pEntity instanceof Player player) {
             if (!player.getAbilities().instabuild) {
                 int maxCoolDown = (getMaxCoolDown() - wheatNuggetsTributeWineEffect(player));
                 cooldown = maxCoolDown;
                 int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? hunger - 1 : hunger;
                 player.getFoodData().eat(-foodLevel, getSaturation());
-                player.getCooldowns().addCooldown(player.getMainHandItem().getItem(), maxCoolDown);
+                player.getCooldowns().addCooldown(usedItem.getItem(), maxCoolDown);
             }
             player.addEffect(new MobEffectInstance(ChangShengJueEffects.TURTLE_BREATH_EFFECT.get(), 300, 0, false, true), player);
             player.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 900, level <= 1 ? 1 : 2));
             addExp(pEntity, !player.getAbilities().instabuild ? 1 : 100);
             biluochunTeasAndLongJingTeasEffect(player);
         }
-        pEntity.getMainHandItem().getItem().getDefaultInstance().hurtAndBreak(1, pEntity,
-                (player1) -> player1.broadcastBreakEvent(pEntity.getUsedItemHand()));
+        KungFuItemContext.hurtCastingItem(pEntity, 1);
     }
     @Override
     public float getDamage(LivingEntity entity) {

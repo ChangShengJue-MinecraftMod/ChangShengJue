@@ -150,7 +150,7 @@ public class LargeCabinet extends BaseEntityBlock {
         }
         BlockPos masterPos = findMasterPos(pos, state);
         BlockEntity be = level.getBlockEntity(masterPos);
-        if (be instanceof LargeCabinetEntity master) {
+        if (!level.isClientSide && be instanceof LargeCabinetEntity master) {
             master.unpackLootTable(null);
             Containers.dropContents(level, masterPos, master);
             level.removeBlock(masterPos, false);

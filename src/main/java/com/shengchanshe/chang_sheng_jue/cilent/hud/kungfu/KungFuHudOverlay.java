@@ -107,14 +107,17 @@ public class KungFuHudOverlay {
     }
 
     public static boolean playerCanOpened() {
-        int foodLevel = minecraft.player.getFoodData().getFoodLevel();
-        return foodLevel > 8;
+        LocalPlayer player = minecraft.player;
+        return player != null && player.getFoodData().getFoodLevel() > 8;
     }
 
     // 通过这个属性进行绘制，这个是一个IguiOverLay的接口，实现这个接口，注册他。
     // 通过lammbd表达式实现。
     public static final IGuiOverlay HUD = (gui, guiGraphics, partialTick, screenWidth, screenHeight) -> {
         LocalPlayer player = minecraft.player;
+        if (player == null) {
+            return;
+        }
         ItemStack mainHand = player.getMainHandItem();
         // 通过宽高获得绘制的x，y
         int x = 5;

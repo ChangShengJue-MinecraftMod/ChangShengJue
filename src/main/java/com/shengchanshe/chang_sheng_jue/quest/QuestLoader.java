@@ -3,132 +3,212 @@ package com.shengchanshe.chang_sheng_jue.quest;
 import com.google.gson.*;
 import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.AddReloadListenerEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.event.server.ServerStoppedEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
 import net.minecraftforge.server.ServerLifecycleHooks;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.server.packs.resources.SimplePreparableReloadListener;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
+@Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class QuestLoader {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    private static final int MAX_ITEM_COUNT = Byte.MAX_VALUE;
+    private static final int MAX_ITEM_ENTRIES = 128;
+    private static final int MAX_EFFECT_ENTRIES = 64;
+    private static final int MAX_QUEST_ID_ENTRIES = 128;
+    private static final int MAX_BINOMIAL_TRIALS = 4096;
+    private static final String AUTOMATIC_PATH = "quests/automatic";
+    private static final List<String> REGULAR_PATHS = List.of(
+            "quests/gather", "quests/kill", "quests/raid", "quests/treat");
+    private static final Object CACHE_LOCK = new Object();
+    private static volatile QuestDefinitionCache definitionCache = QuestDefinitionCache.empty();
+    private static boolean cacheUnavailableReported;
+    private static final QuestDefinitionReloadListener RELOAD_LISTENER = new QuestDefinitionReloadListener();
+
+    @SubscribeEvent
+    public static void addReloadListener(AddReloadListenerEvent event) {
+        event.addListener(RELOAD_LISTENER);
+    }
+
+    @SubscribeEvent
+    public static void clearCacheOnServerStop(ServerStoppedEvent event) {
+        synchronized (CACHE_LOCK) {
+            definitionCache = QuestDefinitionCache.empty();
+            cacheUnavailableReported = false;
+        }
+    }
 
     public static Quest loadSpecificQuest(UUID questId, Set<UUID> completedNonRepeatable,UUID npcId) {
-        Map<ResourceLocation, Resource> allResources = getAutomaticResourceLocationResourceMap();
-
-        // 从所有资源中查找指定ID的任务
-        for (ResourceLocation loc : allResources.keySet()) {
-            try (InputStream stream = allResources.get(loc).open()) {
-                JsonObject json = GSON.fromJson(new InputStreamReader(stream), JsonObject.class);
-
-                UUID currentId = UUID.fromString(json.get("questId").getAsString());
-                boolean repeatable = json.get("repeatable").getAsBoolean();
-
-                if (repeatable || !completedNonRepeatable.contains(questId)) {
-                    if (currentId.equals(questId)) {
-                        return parseQuest(json, npcId);
-                    }
-                }
-            } catch (Exception e) {
-                ChangShengJue.LOGGER.error("加载任务失败: {}", loc, e);
-            }
+        if (questId == null || npcId == null) {
+            return null;
         }
-        return null;
+        Set<UUID> completed = completedNonRepeatable == null ? Set.of() : completedNonRepeatable;
+        QuestDefinition definition = findAutomaticDefinition(ensureDefinitionCache(), questId, npcId);
+        return definition != null
+                && (definition.repeatable() || !completed.contains(questId))
+                ? parseQuest(definition.json(), npcId) : null;
     }
+
     public static Quest loadSpecificQuest(UUID questId, UUID npcId) {
-        Map<ResourceLocation, Resource> allResources = getAutomaticResourceLocationResourceMap();
-
-        // 从所有资源中查找指定ID的任务
-        for (ResourceLocation loc : allResources.keySet()) {
-            try (InputStream stream = allResources.get(loc).open()) {
-                JsonObject json = GSON.fromJson(new InputStreamReader(stream), JsonObject.class);
-
-                UUID currentId = UUID.fromString(json.get("questId").getAsString());
-
-                if (currentId.equals(questId)) {
-                    return parseQuest(json, npcId);
-                }
-            } catch (Exception e) {
-                ChangShengJue.LOGGER.error("加载任务失败: {}", loc, e);
-            }
+        if (questId == null || npcId == null) {
+            return null;
         }
-        return null;
+        QuestDefinition definition = findAutomaticDefinition(ensureDefinitionCache(), questId, npcId);
+        return definition == null ? null : parseQuest(definition.json(), npcId);
     }
 
     public static List<Quest> loadAllAvailableQuests(UUID npcId, Set<UUID> completedNonRepeatable) {
-        Map<ResourceLocation, Resource> allResources = getResourceLocationResourceMap();
+        if (npcId == null) {
+            return Collections.emptyList();
+        }
+        Set<UUID> completed = completedNonRepeatable == null ? Set.of() : completedNonRepeatable;
         List<Quest> quests = new ArrayList<>();
-
-        // 加载所有符合条件的任务
-        for (ResourceLocation loc : allResources.keySet()) {
-            try (InputStream stream = allResources.get(loc).open()) {
-                JsonObject json = GSON.fromJson(new InputStreamReader(stream), JsonObject.class);
-
-                // 检查是否可重复 或 未完成
-                boolean repeatable = json.get("repeatable").getAsBoolean();
-                UUID questId = json.has("questId")
-                        ? UUID.fromString(json.get("questId").getAsString())
-                        : generateDeterministicId(npcId, json);
-
-                if (repeatable || !completedNonRepeatable.contains(questId)) {
-                    Quest quest = parseQuest(json, npcId);
-                    if (quest != null) {
-                        quests.add(quest);
-                    }
+        for (QuestDefinition definition : ensureDefinitionCache().regularDefinitions()) {
+            UUID questId = definition.explicitId() != null
+                    ? definition.explicitId() : generateDeterministicId(npcId, definition.json());
+            if (definition.repeatable() || !completed.contains(questId)) {
+                Quest quest = parseQuest(definition.json(), npcId);
+                if (quest != null) {
+                    quests.add(quest);
                 }
-            } catch (Exception e) {
-                ChangShengJue.LOGGER.error("加载任务失败: {}", loc, e);
             }
         }
-
         return quests;
     }
 
-    private static @NotNull Map<ResourceLocation, Resource> getAutomaticResourceLocationResourceMap() {
-        ResourceManager resourceManager = ServerLifecycleHooks.getCurrentServer().getResourceManager(); // 服务端
-        String namespace = ChangShengJue.MOD_ID;
-
-        // 定义任务类型的路径
-        String[] questPaths = {"quests/automatic"};
-        // 收集任务文件
-        Map<ResourceLocation, Resource> allResources = new HashMap<>();
-
-        for (String path : questPaths) {
-            Map<ResourceLocation, Resource> resources = resourceManager.listResources(
-                    path,
-                    location -> location.getNamespace().equals(namespace) && location.getPath().endsWith(".json")
-            );
-            allResources.putAll(resources);
+    private static QuestDefinitionCache ensureDefinitionCache() {
+        QuestDefinitionCache current = definitionCache;
+        if (current.initialized()) {
+            return current;
         }
-        return allResources;
+        synchronized (CACHE_LOCK) {
+            current = definitionCache;
+            if (current.initialized()) {
+                return current;
+            }
+            MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+            if (server == null) {
+                if (!cacheUnavailableReported) {
+                    ChangShengJue.LOGGER.error("任务定义缓存尚未初始化，且当前没有可用的服务端资源管理器");
+                    cacheUnavailableReported = true;
+                }
+                return current;
+            }
+            ChangShengJue.LOGGER.warn("任务定义缓存未经过资源重载监听器初始化，执行一次同步回退加载");
+            current = buildDefinitionCache(server.getResourceManager());
+            definitionCache = current;
+            cacheUnavailableReported = false;
+            return current;
+        }
     }
 
-    private static @NotNull Map<ResourceLocation, Resource> getResourceLocationResourceMap() {
-        ResourceManager resourceManager = ServerLifecycleHooks.getCurrentServer().getResourceManager(); // 服务端
-        String namespace = ChangShengJue.MOD_ID;
-
-        // 定义任务类型的路径
-        String[] questPaths = {"quests/gather", "quests/kill", "quests/raid", "quests/treat"};
-        // 收集任务文件
-        Map<ResourceLocation, Resource> allResources = new HashMap<>();
-
-        for (String path : questPaths) {
-            Map<ResourceLocation, Resource> resources = resourceManager.listResources(
-                    path,
-                    location -> location.getNamespace().equals(namespace) && location.getPath().endsWith(".json")
-            );
-            allResources.putAll(resources);
+    private static QuestDefinition findAutomaticDefinition(QuestDefinitionCache cache, UUID questId, UUID npcId) {
+        QuestDefinition indexed = cache.automaticById().get(questId);
+        if (indexed != null) {
+            return indexed;
         }
-        return allResources;
+        for (QuestDefinition definition : cache.automaticWithoutId()) {
+            if (generateDeterministicId(npcId, definition.json()).equals(questId)) {
+                return definition;
+            }
+        }
+        return null;
+    }
+
+    private static QuestDefinitionCache buildDefinitionCache(ResourceManager resourceManager) {
+        List<QuestDefinition> automatic = loadDefinitions(resourceManager, List.of(AUTOMATIC_PATH));
+        List<QuestDefinition> regular = loadDefinitions(resourceManager, REGULAR_PATHS);
+        Map<UUID, QuestDefinition> automaticById = new HashMap<>();
+        List<QuestDefinition> automaticWithoutId = new ArrayList<>();
+        for (QuestDefinition definition : automatic) {
+            if (definition.explicitId() == null) {
+                automaticWithoutId.add(definition);
+                continue;
+            }
+            QuestDefinition previous = automaticById.putIfAbsent(definition.explicitId(), definition);
+            if (previous != null) {
+                ChangShengJue.LOGGER.error("自动任务 UUID 重复: {} ({} 与 {})",
+                        definition.explicitId(), previous.source(), definition.source());
+            }
+        }
+        ChangShengJue.LOGGER.info("已缓存 {} 个自动任务定义和 {} 个普通任务定义",
+                automatic.size(), regular.size());
+        return new QuestDefinitionCache(true, List.copyOf(regular), Map.copyOf(automaticById),
+                List.copyOf(automaticWithoutId));
+    }
+
+    private static List<QuestDefinition> loadDefinitions(ResourceManager resourceManager, List<String> paths) {
+        Map<ResourceLocation, Resource> resources = new HashMap<>();
+        for (String path : paths) {
+            resources.putAll(resourceManager.listResources(path,
+                    location -> location.getNamespace().equals(ChangShengJue.MOD_ID)
+                            && location.getPath().endsWith(".json")));
+        }
+        List<Map.Entry<ResourceLocation, Resource>> orderedResources = new ArrayList<>(resources.entrySet());
+        orderedResources.sort(Map.Entry.comparingByKey());
+        List<QuestDefinition> definitions = new ArrayList<>(orderedResources.size());
+        for (Map.Entry<ResourceLocation, Resource> entry : orderedResources) {
+            try (InputStream stream = entry.getValue().open();
+                 InputStreamReader reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
+                JsonObject json = GSON.fromJson(reader, JsonObject.class);
+                if (json == null) {
+                    ChangShengJue.LOGGER.error("任务定义为空: {}", entry.getKey());
+                    continue;
+                }
+                UUID explicitId = null;
+                if (json.has("questId")) {
+                    explicitId = UUID.fromString(json.get("questId").getAsString());
+                }
+                boolean repeatable = json.has("repeatable") && json.get("repeatable").getAsBoolean();
+                definitions.add(new QuestDefinition(entry.getKey(), json.deepCopy(), explicitId, repeatable));
+            } catch (Exception exception) {
+                ChangShengJue.LOGGER.error("加载任务定义失败: {}", entry.getKey(), exception);
+            }
+        }
+        return List.copyOf(definitions);
+    }
+
+    private record QuestDefinition(ResourceLocation source, JsonObject json, UUID explicitId, boolean repeatable) {
+    }
+
+    private record QuestDefinitionCache(boolean initialized, List<QuestDefinition> regularDefinitions,
+                                        Map<UUID, QuestDefinition> automaticById,
+                                        List<QuestDefinition> automaticWithoutId) {
+        private static QuestDefinitionCache empty() {
+            return new QuestDefinitionCache(false, List.of(), Map.of(), List.of());
+        }
+    }
+
+    private static final class QuestDefinitionReloadListener
+            extends SimplePreparableReloadListener<QuestDefinitionCache> {
+        @Override
+        protected QuestDefinitionCache prepare(ResourceManager resourceManager, ProfilerFiller profiler) {
+            return buildDefinitionCache(resourceManager);
+        }
+
+        @Override
+        protected void apply(QuestDefinitionCache prepared, ResourceManager resourceManager, ProfilerFiller profiler) {
+            synchronized (CACHE_LOCK) {
+                definitionCache = prepared;
+                cacheUnavailableReported = false;
+            }
+        }
     }
 
 
@@ -146,7 +226,13 @@ public class QuestLoader {
 
             // 获取任务类型，默认为 GATHER
             String typeStr = json.has("questType") ? json.get("questType").getAsString() : "GATHER";
-            Quest.QuestType type = Quest.QuestType.valueOf(typeStr.toUpperCase());
+            Quest.QuestType type;
+            try {
+                type = Quest.QuestType.valueOf(typeStr.toUpperCase(Locale.ROOT));
+            } catch (IllegalArgumentException exception) {
+                ChangShengJue.LOGGER.warn("未知的任务类型 {}，按 GATHER 读取", typeStr);
+                type = Quest.QuestType.GATHER;
+            }
 
             boolean repeatable = json.has("repeatable") &&  json.get("repeatable").getAsBoolean();
 
@@ -158,6 +244,9 @@ public class QuestLoader {
             if (json.has("effects")) {
                 JsonArray effectsJson = json.getAsJsonArray("effects");
                 for (JsonElement element : effectsJson) {
+                    if (effects.size() >= MAX_EFFECT_ENTRIES) {
+                        break;
+                    }
                     JsonObject effectJson = element.getAsJsonObject();
                     effects.add(new QuestEffectEntry(
                             effectJson.get("effectId").getAsString(),
@@ -175,7 +264,8 @@ public class QuestLoader {
             List<ItemStack> rewards = json.has("questRewards") ?
                     parseItemList(json.getAsJsonArray("questRewards")) : Collections.emptyList();
 
-            int questDay = json.has("qusetDay") ? json.get("questDay").getAsInt() : 0;
+            int questDay = json.has("questDay") ? json.get("questDay").getAsInt()
+                    : json.has("qusetDay") ? json.get("qusetDay").getAsInt() : 0;
 
             String targetEntity = json.has("targetEntity") ? json.get("targetEntity").getAsString() : "";
             boolean isEntityTag = targetEntity.startsWith("#");
@@ -194,6 +284,9 @@ public class QuestLoader {
             if (json.has("limitQuestIds")) {
                 JsonArray idArray = json.getAsJsonArray("limitQuestIds");
                 for (JsonElement element : idArray) {
+                    if (limitQuestIds.size() >= MAX_QUEST_ID_ENTRIES) {
+                        break;
+                    }
                     try {
                         limitQuestIds.add(UUID.fromString(element.getAsString()));
                     } catch (IllegalArgumentException e) {
@@ -208,6 +301,9 @@ public class QuestLoader {
             if (json.has("conflictQuestIds")) {
                 JsonArray idArray = json.getAsJsonArray("conflictQuestIds");
                 for (JsonElement element : idArray) {
+                    if (conflictQuestIds.size() >= MAX_QUEST_ID_ENTRIES) {
+                        break;
+                    }
                     try {
                         conflictQuestIds.add(UUID.fromString(element.getAsString()));
                     } catch (IllegalArgumentException e) {
@@ -224,7 +320,7 @@ public class QuestLoader {
 
             int weight = json.has("weight") ? json.get("weight").getAsInt() : 1;
             String secondTargetEntity = json.has("secondTargetEntity") ? json.get("secondTargetEntity").getAsString() : "";
-            boolean isSecondEntityTag = targetEntity.startsWith("#");
+            boolean isSecondEntityTag = secondTargetEntity.startsWith("#");
 
             int secondRequiredKills = getSecondRequiredKills(json);
 
@@ -261,8 +357,9 @@ public class QuestLoader {
     private static UUID generateDeterministicId(UUID npcId, JsonObject json) {
         String uniqueKey = String.format("%s|%s|%s",
                 npcId,
-                json.get("questName").getAsString(),
-                json.get("type").getAsString()
+                json.has("questName") ? json.get("questName").getAsString() : "",
+                json.has("questType") ? json.get("questType").getAsString()
+                        : json.has("type") ? json.get("type").getAsString() : "GATHER"
         );
         return UUID.nameUUIDFromBytes(uniqueKey.getBytes(StandardCharsets.UTF_8));
     }
@@ -271,21 +368,39 @@ public class QuestLoader {
         List<ItemStack> items = new ArrayList<>();
         RandomSource random = RandomSource.create();
 
-        element.getAsJsonArray().forEach(itemJson -> {
+        for (JsonElement itemJson : element.getAsJsonArray()) {
+            if (items.size() >= MAX_ITEM_ENTRIES) {
+                break;
+            }
+            if (!itemJson.isJsonObject()) {
+                ChangShengJue.LOGGER.warn("忽略非对象格式的任务物品条目");
+                continue;
+            }
             JsonObject itemObj = itemJson.getAsJsonObject();
+            if (!itemObj.has("item") || !itemObj.has("count")) {
+                ChangShengJue.LOGGER.warn("忽略缺少 item 或 count 的任务物品条目");
+                continue;
+            }
             String itemId = itemObj.get("item").getAsString();
-            int count = parseCount(itemObj.get("count"), random);
+            int count = Math.max(0, Math.min(parseCount(itemObj.get("count"), random), MAX_ITEM_COUNT));
+            if (count == 0) {
+                continue;
+            }
 
             // 检查是否是标签（以#开头）
             if (itemId.startsWith("#")) {
                 String tagId = itemId.substring(1); // 去掉#
-                ResourceLocation tagLocation = new ResourceLocation(tagId);
+                ResourceLocation tagLocation = ResourceLocation.tryParse(tagId);
+                if (tagLocation == null) {
+                    ChangShengJue.LOGGER.warn("忽略无效的任务物品标签: {}", itemId);
+                    continue;
+                }
                 TagKey<Item> tagKey = TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), tagLocation);
 
                 // 检查标签系统是否已加载
                 if (ForgeRegistries.ITEMS.tags() == null) {
-                    System.err.println("标签系统未初始化，无法解析标签: " + tagId);
-                    return;
+                    ChangShengJue.LOGGER.warn("标签系统未初始化，无法解析标签: {}", tagId);
+                    continue;
                 }
 
                 // 获取所有带有该标签的物品
@@ -296,18 +411,23 @@ public class QuestLoader {
                     Item randomItem = tagItems.get(random.nextInt(tagItems.size()));
                     items.add(new ItemStack(randomItem, count));
                 } else {
-                    System.err.println("标签不存在或为空: " + tagId);
+                    ChangShengJue.LOGGER.warn("标签不存在或为空: {}", tagId);
                 }
             } else {
                 // 普通物品处理
-                Item item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemId));
+                ResourceLocation itemLocation = ResourceLocation.tryParse(itemId);
+                if (itemLocation == null) {
+                    ChangShengJue.LOGGER.warn("忽略无效的任务物品标识: {}", itemId);
+                    continue;
+                }
+                Item item = ForgeRegistries.ITEMS.getValue(itemLocation);
                 if (item != null) {
                     items.add(new ItemStack(item, count));
                 } else {
-                    System.err.println("未知物品: " + itemId);
+                    ChangShengJue.LOGGER.warn("未知物品: {}", itemId);
                 }
             }
-        });
+        }
 
         return items;
     }
@@ -328,8 +448,8 @@ public class QuestLoader {
                     return Math.round(min + (max - min) * random.nextFloat());
 
                 case "minecraft:binomial":
-                    int n = countObj.get("n").getAsInt();
-                    float p = countObj.get("p").getAsFloat();
+                    int n = Math.max(0, Math.min(countObj.get("n").getAsInt(), MAX_BINOMIAL_TRIALS));
+                    float p = Math.max(0.0F, Math.min(countObj.get("p").getAsFloat(), 1.0F));
                     int binomialCount = 0;
                     for (int i = 0; i < n; i++) {
                         if (random.nextFloat() < p) binomialCount++;
@@ -338,7 +458,7 @@ public class QuestLoader {
 
                 // 可以添加更多分布类型
                 default:
-                    System.err.println("未知的count类型: " + type);
+                    ChangShengJue.LOGGER.warn("未知的任务 count 类型: {}", type);
                     return 1;
             }
         }

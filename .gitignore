@@ -27,6 +27,7 @@ run-data
 /run-server/
 /run-server-compat/
 /run-gametest/
+/src/generated/resources/.cache/
 /.claude/
 /.agents/
 /.codex/

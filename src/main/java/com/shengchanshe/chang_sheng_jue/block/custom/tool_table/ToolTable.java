@@ -56,7 +56,7 @@ public class ToolTable extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-            if (blockentity instanceof ToolTableEntity) {
+            if (!pLevel.isClientSide && blockentity instanceof ToolTableEntity) {
                 ((ToolTableEntity) blockentity).drops();
             }
             super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);

@@ -5,7 +5,7 @@ import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.DuguNineSwords;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
+import com.shengchanshe.chang_sheng_jue.util.TooltipInput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -37,7 +37,7 @@ public class DuguNineSwordsBook extends Item {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        if (Screen.hasShiftDown()) {
+        if (TooltipInput.isShiftDown()) {
             Component fullDesc = Component.translatable("tooltip." + ChangShengJue.MOD_ID + "."
                     + this + ".hold_shift.tooltip", Component.translatable(KungFuConfig.DUGU_NINE_SWORDS_MAX_EXP.get().toString())).withStyle(ChatFormatting.AQUA);
             String formattedText = fullDesc.getString();

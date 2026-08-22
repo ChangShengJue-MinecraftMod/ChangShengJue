@@ -4,6 +4,7 @@ import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.item.combat.lance.Lance;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuConfig;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuItemContext;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.KungFuType;
 import com.shengchanshe.chang_sheng_jue.util.EffectUtils;
 import net.minecraft.ChatFormatting;
@@ -15,6 +16,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
@@ -35,13 +37,14 @@ public class GaoMarksmanship extends AbstractionExternalKunfu {
     public void release(LivingEntity pEntity) {
         if (!isReady()) return;
 
+        ItemStack usedItem = KungFuItemContext.getCastingItem(pEntity);
         if (pEntity instanceof Player player) {
             if (!player.getAbilities().instabuild) {
                 int maxCoolDown = (getMaxCoolDown() - wheatNuggetsTributeWineEffect(player));
                 cooldown = maxCoolDown;
                 int foodLevel = player.hasEffect(ChangShengJueEffects.SHI_LI_XIANG.get()) ? hunger - 1 : hunger;
                 player.getFoodData().eat(-foodLevel, getSaturation());
-                player.getCooldowns().addCooldown(player.getMainHandItem().getItem(), maxCoolDown);
+                player.getCooldowns().addCooldown(usedItem.getItem(), maxCoolDown);
             }
             biluochunTeasAndLongJingTeasEffect(player);
         }
@@ -73,12 +76,13 @@ public class GaoMarksmanship extends AbstractionExternalKunfu {
                 }
             }
         }
-        pEntity.getMainHandItem().getItem().getDefaultInstance().hurtAndBreak(1, pEntity, (player1) -> player1.broadcastBreakEvent(pEntity.getUsedItemHand()));
+        KungFuItemContext.hurtCastingItem(pEntity, 1);
     }
 
     @Override
     public float getDamage(LivingEntity entity) {
-        if (entity.getMainHandItem().getItem() instanceof Lance lance){
+        ItemStack usedItem = KungFuItemContext.getCastingItem(entity);
+        if (usedItem.getItem() instanceof Lance lance){
             damage = funJiuEffect(entity, lance.getDamage());
         }
         return ((damage + 2) * getDamageFactor());

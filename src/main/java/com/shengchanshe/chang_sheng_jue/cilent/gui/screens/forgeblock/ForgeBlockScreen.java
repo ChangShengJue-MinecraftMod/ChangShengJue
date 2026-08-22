@@ -19,7 +19,6 @@ import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.decoration.ArmorStand;
@@ -39,6 +38,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     private static final ResourceLocation BOTTON = new ResourceLocation(ChangShengJue.MOD_ID,"textures/gui/botton.png");
     private final List<CustomButton> customButtons = new ArrayList<>();
     private ItemStack currentSelectedItem = ItemStack.EMPTY;
+    private ItemStack lastPreviewItem = ItemStack.EMPTY;
     private ArmorStand armorStandEntity;
     private float rotation = 0;
     private TexturedButtonWithText craftButton;
@@ -96,6 +96,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                 0, 106, 17,
                 BOTTON, 256, 256,
                 button -> {
+                    if (!menu.hasValidBackingEntity()) return;
                     // 发送制作请求到服务端
                     ChangShengJueMessages.sendToServer(
                             new ForgeCraftPacket(menu.getBlockPos())
@@ -109,12 +110,16 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     }
 
     // 刷新配方列表
-    private void refreshRecipes() {
+    private boolean refreshRecipes() {
         if (minecraft != null && minecraft.level != null) {
             try {
                 var recipeManager = minecraft.level.getRecipeManager();
                 var recipeType = ForgeBlockRecipe.Type.INSTANCE;
-                cachedRecipes = recipeManager.getAllRecipesFor(recipeType);
+                List<ForgeBlockRecipe> recipes = recipeManager.getAllRecipesFor(recipeType);
+                if (cachedRecipes.equals(recipes)) {
+                    return false;
+                }
+                cachedRecipes = new ArrayList<>(recipes);
                 
                 // 按组分类配方
                 recipesByGroup.clear();
@@ -124,14 +129,19 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
                         recipesByGroup.computeIfAbsent(group, k -> new ArrayList<>()).add(recipe);
                     }
                 }
+                return true;
             } catch (Exception e) {
+                boolean changed = !cachedRecipes.isEmpty();
                 cachedRecipes = new ArrayList<>();
                 recipesByGroup.clear();
-                e.printStackTrace();
+                ChangShengJue.LOGGER.warn("Unable to refresh forge recipes", e);
+                return changed;
             }
         } else {
+            boolean changed = !cachedRecipes.isEmpty();
             cachedRecipes.clear();
             recipesByGroup.clear();
+            return changed;
         }
     }
 
@@ -255,6 +265,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
 
     // 更新槽位显示并同步配方到服务端
     private void updateSlotsForSelectedItem(ForgeBlockRecipe recipe) {
+        if (!menu.hasValidBackingEntity()) return;
         if (menu.isCrafting()) {
             return;
         }
@@ -348,6 +359,7 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
         armorStandEntity.setShowArms(true);
         armorStandEntity.setInvisible(false);
         armorStandEntity.setYBodyRot(0);
+        lastPreviewItem = ItemStack.EMPTY;
     }
 
     // 渲染背景纹理
@@ -514,26 +526,18 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
 
     // 更新盔甲架装备
     private void updateArmorStandEquipment() {
-        EquipmentSlot targetSlot = null;
-        InteractionHand targetHand = null;
-
-        if (currentSelectedItem.getItem() instanceof ArmorItem armor) {
-            targetSlot = armor.getEquipmentSlot();
-        } else {
-            targetHand = InteractionHand.MAIN_HAND;
+        if (ItemStack.matches(currentSelectedItem, lastPreviewItem)) {
+            return;
         }
-
-        if (targetSlot != null) {
-            ItemStack currentInSlot = armorStandEntity.getItemBySlot(targetSlot);
-            if (!ItemStack.matches(currentSelectedItem, currentInSlot)) {
-                armorStandEntity.setItemSlot(targetSlot, currentSelectedItem);
-            }
-        } else {
-            ItemStack currentInHand = armorStandEntity.getItemInHand(targetHand);
-            if (!ItemStack.matches(currentSelectedItem, currentInHand)) {
-                armorStandEntity.setItemInHand(targetHand, currentSelectedItem);
-            }
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
+            armorStandEntity.setItemSlot(slot, ItemStack.EMPTY);
         }
+        if (!currentSelectedItem.isEmpty()) {
+            EquipmentSlot targetSlot = currentSelectedItem.getItem() instanceof ArmorItem armor
+                    ? armor.getEquipmentSlot() : EquipmentSlot.MAINHAND;
+            armorStandEntity.setItemSlot(targetSlot, currentSelectedItem.copy());
+        }
+        lastPreviewItem = currentSelectedItem.copy();
     }
 
     // 在GUI中渲染实体
@@ -545,36 +549,47 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
             Entity entity
     ) {
         PoseStack poseStack = guiGraphics.pose();
-        poseStack.pushPose();
-
-        poseStack.translate(posX, posY, 50.0);
-        poseStack.scale(scale, scale, scale);
-
         Quaternionf rotationQuat = new Quaternionf().rotationXYZ(
                 (float) Math.toRadians(rotationX),
                 (float) Math.toRadians(rotationY),
                 0
         );
-        poseStack.mulPose(rotationQuat);
-
         EntityRenderDispatcher renderer = Minecraft.getInstance().getEntityRenderDispatcher();
-        renderer.overrideCameraOrientation(rotationQuat);
-        renderer.setRenderShadow(false);
-
+        Quaternionf previousCameraOrientation = new Quaternionf(renderer.cameraOrientation());
         MultiBufferSource.BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
-        renderer.render(
-                entity,
-                0, 0, 0,
-                0.0F,
-                1.0F,
-                poseStack,
-                buffer,
-                0xF000F0
-        );
-        buffer.endBatch();
-        renderer.setRenderShadow(true);
 
-        poseStack.popPose();
+        poseStack.pushPose();
+        try {
+            poseStack.translate(posX, posY, 50.0);
+            poseStack.scale(scale, scale, scale);
+            poseStack.mulPose(rotationQuat);
+
+            renderer.overrideCameraOrientation(rotationQuat);
+            renderer.setRenderShadow(false);
+            renderer.render(
+                    entity,
+                    0, 0, 0,
+                    0.0F,
+                    1.0F,
+                    poseStack,
+                    buffer,
+                    0xF000F0
+            );
+        } finally {
+            try {
+                buffer.endBatch();
+            } finally {
+                try {
+                    renderer.setRenderShadow(true);
+                } finally {
+                    try {
+                        renderer.overrideCameraOrientation(previousCameraOrientation);
+                    } finally {
+                        poseStack.popPose();
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -632,10 +647,15 @@ public class ForgeBlockScreen extends AbstractContainerScreen<ForgeBlockMenu> {
     @Override
     public void containerTick() {
         super.containerTick();
+        if (!menu.hasValidBackingEntity()) {
+            if (minecraft != null && minecraft.player != null) minecraft.player.closeContainer();
+            return;
+        }
         // 定期刷新配方以确保显示最新数据
         if (minecraft != null && minecraft.level != null && minecraft.level.getGameTime() % 20 == 0) {
-            refreshRecipes();
-            refreshItemButtons();
+            if (refreshRecipes()) {
+                refreshItemButtons();
+            }
         }
         
         // 处理配方轮播 (1秒自动轮播)

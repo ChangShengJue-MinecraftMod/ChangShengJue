@@ -3,6 +3,7 @@ package com.shengchanshe.chang_sheng_jue.cilent.gui.screens.workbench;
 import com.shengchanshe.chang_sheng_jue.block.ChangShengJueBlocks;
 import com.shengchanshe.chang_sheng_jue.block.custom.workbench.WoodworkingBenchEntity;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.ChangShengJueMenuTypes;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.MenuBlockEntityResolver;
 import com.shengchanshe.chang_sheng_jue.recipe.WoodworkingBenchRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -15,7 +16,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
+
+import java.util.function.BooleanSupplier;
 
 public class WoodworkingBenchMenu extends AbstractContainerMenu {
 
@@ -40,6 +44,8 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
     public final Level level;
 
     public final ContainerData data;
+    private final boolean backingEntityValid;
+    private final IItemHandler menuItemHandler;
     public WoodworkingBenchRecipe currentRecipe = null;
 
     // 材料缓存，避免重复计算
@@ -49,16 +55,31 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
     private WoodworkingBenchRecipe lastCachedRecipe = null;
 
     public WoodworkingBenchMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3)); // 改为3个数据
+        this(pContainerId, inv, MenuBlockEntityResolver.resolve(
+                inv.player.level(), extraData.readBlockPos(), WoodworkingBenchEntity.class,
+                ChangShengJueBlocks.WOOD_WORKING_BENCH.get(), WoodworkingBenchEntity::new),
+                new SimpleContainerData(3));
     }
 
     public WoodworkingBenchMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+        this(pContainerId, inv, MenuBlockEntityResolver.resolve(
+                inv.player.level(), entity, WoodworkingBenchEntity.class,
+                ChangShengJueBlocks.WOOD_WORKING_BENCH.get(), WoodworkingBenchEntity::new), data);
+    }
+
+    private WoodworkingBenchMenu(int pContainerId, Inventory inv,
+                                 MenuBlockEntityResolver.Resolution<WoodworkingBenchEntity> resolution,
+                                 ContainerData data) {
         super(ChangShengJueMenuTypes.WOOD_WORKING_BENCH_MENU.get(), pContainerId);
         checkContainerSize(inv, 10);
 
-        this.blockEntity = (WoodworkingBenchEntity) entity;
+        this.blockEntity = resolution.entity();
         this.level = inv.player.level();
         this.data = data;
+        this.backingEntityValid = resolution.valid();
+        this.menuItemHandler = this.backingEntityValid
+                ? this.blockEntity.getItemHandler()
+                : new ItemStackHandler(TE_INVENTORY_SLOT_COUNT);
         this.currentRecipe = blockEntity.getCurrentRecipe();
 
         addPlayerInventory(inv);
@@ -75,10 +96,11 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
 
     // 获取制作次数
     public int getCraftTimes() {
-        return data.get(2);
+        return hasValidBackingEntity() ? data.get(2) : 0;
     }
     // 设置制作次数
     public void setCraftTimes(int times) {
+        if (!hasValidBackingEntity()) return;
         int clampedTimes = Math.max(1, Math.min(64, times));
         this.data.set(2, clampedTimes);
 
@@ -95,6 +117,7 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
     }
 
     public void setCurrentRecipe(WoodworkingBenchRecipe recipe) {
+        if (!hasValidBackingEntity()) return;
         this.currentRecipe = recipe;
         invalidateMaterialCache();
         updateRecipeSlots();
@@ -117,6 +140,7 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
     }
 
     public WoodworkingBenchRecipe getCurrentRecipe() {
+        if (!hasValidBackingEntity()) return null;
         if (this.currentRecipe != null) {
             return this.currentRecipe;
         }
@@ -135,7 +159,7 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
      * 获取单次合成所需材料（使用缓存）
      */
     public ItemStack[] getSingleMaterialsFromRecipe(WoodworkingBenchRecipe recipe) {
-        if (recipe == null) {
+        if (!hasValidBackingEntity() || recipe == null) {
             return new ItemStack[0];
         }
 
@@ -146,6 +170,7 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
     @Override
     public void removed(Player player) {
         super.removed(player);
+        if (!hasValidBackingEntity()) return;
         blockEntity.onClose(player);
         // 只有不在制作中时才清除
         if (!isCrafting()) {
@@ -155,10 +180,11 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
     }
 
     public boolean isCrafting() {
-        return data.get(0) > 0;
+        return hasValidBackingEntity() && data.get(0) > 0;
     }
 
     public int getScaledProgress() {
+        if (!hasValidBackingEntity()) return 0;
         int progress = this.data.get(0);
         int maxProgress = this.data.get(1);
         int progressArrowSize = 26;
@@ -169,7 +195,7 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
      * 获取总材料需求（使用缓存）
      */
     public ItemStack[] getMaterialsFromRecipe(WoodworkingBenchRecipe recipe) {
-        if (recipe == null) {
+        if (!hasValidBackingEntity() || recipe == null) {
             return new ItemStack[0];
         }
 
@@ -191,6 +217,7 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
     }
 
     void clearAllSlots() {
+        if (!hasValidBackingEntity()) return;
         for (int i = 0; i < 9; i++) {
             final int slotIndex = i;
             blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
@@ -200,7 +227,7 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
     }
 
     public boolean craftItem(Player player) {
-        if (currentRecipe == null || level.isClientSide()) {
+        if (!hasValidBackingEntity() || currentRecipe == null || level.isClientSide()) {
             return false;
         }
 
@@ -222,14 +249,14 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
      * 检查玩家是否有足够材料（优化版）
      */
     boolean hasEnoughMaterials(Inventory playerInventory) {
-        if (currentRecipe == null) return false;
+        if (!hasValidBackingEntity() || currentRecipe == null) return false;
 
         // 使用配方内置的优化方法
         return currentRecipe.hasEnoughMaterials(playerInventory, getCraftTimes());
     }
 
     void consumeMaterials(Inventory playerInventory) {
-        if (currentRecipe == null) return;
+        if (!hasValidBackingEntity() || currentRecipe == null) return;
 
         var ingredients = currentRecipe.getIngredients();
         int[] requiredCounts = currentRecipe.getCachedRequiredCounts();
@@ -254,13 +281,18 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
+        if (!hasValidBackingEntity() || pIndex < 0 || pIndex >= slots.size()) return ItemStack.EMPTY;
         Slot sourceSlot = slots.get(pIndex);
         if (!sourceSlot.hasItem()) return ItemStack.EMPTY;
 
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
-        if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
+        if (pIndex >= TE_INVENTORY_FIRST_SLOT_INDEX
+                && pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
+            if (pIndex != TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT - 1) {
+                return ItemStack.EMPTY;
+            }
             // 从锻台移动到玩家物品栏
             if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX,
                     VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
@@ -282,8 +314,14 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
+        return hasValidBackingEntity() && stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
                 player, ChangShengJueBlocks.WOOD_WORKING_BENCH.get());
+    }
+
+    public boolean hasValidBackingEntity() {
+        return this.backingEntityValid
+                && MenuBlockEntityResolver.isWorldBackingValid(
+                this.level, this.blockEntity, ChangShengJueBlocks.WOOD_WORKING_BENCH.get());
     }
 
     public BlockPos getBlockPos() {
@@ -291,18 +329,14 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
     }
 
     private void addInputSlots() {
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            for (int i = 0; i < INPUT_SLOT_POSITIONS.length; i++) {
-                int[] pos = INPUT_SLOT_POSITIONS[i];
-                this.addSlot(new ReadOnlySlot(handler, i, pos[0], pos[1]));
-            }
-        });
+        for (int i = 0; i < INPUT_SLOT_POSITIONS.length; i++) {
+            int[] pos = INPUT_SLOT_POSITIONS[i];
+            this.addSlot(new ReadOnlySlot(this.menuItemHandler, i, pos[0], pos[1]));
+        }
     }
 
     private void addOutputSlot() {
-        this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new OutputSlot(handler, 9, 207, 63));
-        });
+        this.addSlot(new OutputSlot(this.menuItemHandler, 9, 207, 63, this::hasValidBackingEntity));
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
@@ -326,6 +360,7 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
      * @param ingredientIndex 材料在配方中的索引（用于获取对应的Ingredient进行tag匹配）
      */
     public boolean hasEnoughOfMaterial(Inventory playerInventory, ItemStack required, int ingredientIndex) {
+        if (!hasValidBackingEntity()) return false;
         if (required.isEmpty()) return true;
         if (currentRecipe == null) return false;
 
@@ -352,6 +387,7 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
      * 检查玩家是否有足够的指定材料（精确匹配，兼容旧调用）
      */
     public boolean hasEnoughOfMaterial(Inventory playerInventory, ItemStack required) {
+        if (!hasValidBackingEntity()) return false;
         if (required.isEmpty()) return true;
         if (currentRecipe == null) return hasEnoughOfMaterialExact(playerInventory, required);
 
@@ -405,13 +441,26 @@ public class WoodworkingBenchMenu extends AbstractContainerMenu {
     }
 
     public static class OutputSlot extends SlotItemHandler {
+        private final BooleanSupplier backingEntityValid;
+
         public OutputSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+            this(itemHandler, index, xPosition, yPosition, () -> true);
+        }
+
+        public OutputSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition,
+                          BooleanSupplier backingEntityValid) {
             super(itemHandler, index, xPosition, yPosition);
+            this.backingEntityValid = backingEntityValid;
         }
 
         @Override
         public boolean mayPlace(ItemStack stack) {
             return false;
+        }
+
+        @Override
+        public boolean mayPickup(Player playerIn) {
+            return this.backingEntityValid.getAsBoolean();
         }
     }
 }

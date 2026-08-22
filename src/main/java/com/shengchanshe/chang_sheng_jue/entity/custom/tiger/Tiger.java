@@ -38,8 +38,6 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
-import java.util.Random;
-
 public class Tiger extends TamableAnimal implements GeoEntity {
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);//动画工厂
     protected int xpReward;
@@ -303,7 +301,7 @@ public class Tiger extends TamableAnimal implements GeoEntity {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        int i = new Random().nextInt(2);
+        int i = this.random.nextInt(2);
         switch (i){
             case 1:
                 return ChangShengJueSound.TIGER_SOUND_1.get();

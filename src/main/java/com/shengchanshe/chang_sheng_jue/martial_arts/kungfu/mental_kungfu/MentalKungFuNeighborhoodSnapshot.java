@@ -25,6 +25,15 @@ public final class MentalKungFuNeighborhoodSnapshot {
     private MentalKungFuNeighborhoodSnapshot() {
     }
 
+    public static boolean isRefreshTick(Player target) {
+        return target.level() instanceof ServerLevel serverLevel
+            && isRefreshTick(serverLevel.getGameTime());
+    }
+
+    static boolean isRefreshTick(long gameTime) {
+        return Math.floorMod(gameTime, SNAPSHOT_INTERVAL_TICKS) == 0;
+    }
+
     static List<Entry> get(Player target) {
         if (!(target.level() instanceof ServerLevel serverLevel)) {
             return List.of();

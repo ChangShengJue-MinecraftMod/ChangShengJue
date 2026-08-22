@@ -19,9 +19,7 @@ public class YiTianJianAttackEntity extends Projectile {
 
     @Override
     public void tick() {
-        if (!firstTick) {
-            firstTick = true;
-        }
+        super.tick();
         if (tickCount >= 7){
             discard();
         }

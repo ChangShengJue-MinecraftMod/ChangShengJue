@@ -44,11 +44,9 @@ public class ImmortalMiracleParticle extends TextureSheetParticle {
 
     public void tick() {
         super.tick();
+        if (this.age >= this.lifetime) return;
         this.setSpriteFromAge(this.sprites);
-        if (this.age++ >= this.lifetime) {
-            this.remove();
-        } else {
-            float f = (float)this.age / (float)this.lifetime;
+        float f = (float)this.age / (float)this.lifetime;
             // 让摩擦力随着寿命的减少而减少
             this.friction = this.friction * f;
 //
@@ -60,8 +58,7 @@ public class ImmortalMiracleParticle extends TextureSheetParticle {
             float green = this.gCol + f * (endGreen - this.gCol);
             float blue = this.bCol + f * (endBlue - this.bCol);
             // 设置当前颜色
-            this.setColor(red, green, blue);
-        }
+        this.setColor(red, green, blue);
     }
 
     @OnlyIn(Dist.CLIENT)

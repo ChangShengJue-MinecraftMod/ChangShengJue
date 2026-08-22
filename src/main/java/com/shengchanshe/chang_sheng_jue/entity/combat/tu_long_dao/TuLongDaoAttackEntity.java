@@ -19,9 +19,7 @@ public class TuLongDaoAttackEntity extends Projectile {
 
     @Override
     public void tick() {
-        if (!firstTick) {
-            firstTick = true;
-        }
+        super.tick();
         if (tickCount >= 5){
             discard();
         }

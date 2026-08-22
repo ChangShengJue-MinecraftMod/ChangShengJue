@@ -21,18 +21,20 @@ final class GangQuestPacketGuard {
     }
 
     static AbstractGangLeader validateOpen(ServerPlayer player) {
-        if (!(player.containerMenu instanceof GangleaderTradingMenu menu)
-                || !allow(player, true)
-                || !isValidMenu(player, menu, menu.getTrader())) {
+        if (player == null
+                || !(player.containerMenu instanceof GangleaderTradingMenu menu)
+                || !isValidMenu(player, menu, menu.getTrader())
+                || !allow(player, true)) {
             return null;
         }
         return menu.getTrader() instanceof AbstractGangLeader gangLeader ? gangLeader : null;
     }
 
     static AbstractGangLeader validateAccept(ServerPlayer player) {
-        if (!(player.containerMenu instanceof GangQuestsMenu menu)
-                || !allow(player, false)
-                || !isValidMenu(player, menu, menu.getTrader())) {
+        if (player == null
+                || !(player.containerMenu instanceof GangQuestsMenu menu)
+                || !isValidMenu(player, menu, menu.getTrader())
+                || !allow(player, false)) {
             return null;
         }
         return menu.getTrader() instanceof AbstractGangLeader gangLeader ? gangLeader : null;

@@ -33,10 +33,14 @@ public class ChangShengJueCapabiliy {
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof Player player) {//判断生物为玩家,只给玩家添加这些能力
             if (!event.getObject().getCapability(KUNGFU).isPresent()) {
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID, "kungfu"), new KungFuCapabilityProvider(player));
+                KungFuCapabilityProvider provider = new KungFuCapabilityProvider(player);
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID, "kungfu"), provider);
+                event.addListener(provider::invalidate);
             }
             if (!event.getObject().getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).isPresent()) {
-                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID, "quest"), new PlayerQuestCapabilityProvider());
+                PlayerQuestCapabilityProvider provider = new PlayerQuestCapabilityProvider();
+                event.addCapability(new ResourceLocation(ChangShengJue.MOD_ID, "quest"), provider);
+                event.addListener(provider::invalidate);
             }
         }
     }

@@ -11,6 +11,7 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.util.Mth;
 import net.minecraft.server.TickTask;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
@@ -40,6 +41,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class CastingMoldsBlockEntity extends BlockEntity implements GeoBlockEntity {
+    private static final int MAX_COIN_OUTPUT = 24;
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private final ItemStackHandler inventory = new ItemStackHandler(2){
         @Override
@@ -180,11 +182,11 @@ public class CastingMoldsBlockEntity extends BlockEntity implements GeoBlockEnti
     public void load(CompoundTag pTag) {
         super.load(pTag);
         this.inventory.deserializeNBT(pTag.getCompound("CastingMoldsInventory"));
-        progress = pTag.getInt("CastingMoldsProgress");
+        progress = Mth.clamp(pTag.getInt("CastingMoldsProgress"), 0, maxProgress);
         open = pTag.getBoolean("CastingMoldsOpen");
         // 加载粒子生成状态
-        particleSpawnTimer = pTag.getInt("ParticleSpawnTimer");
-        particlesToSpawn = pTag.getInt("ParticlesToSpawn");
+        particleSpawnTimer = Mth.clamp(pTag.getInt("ParticleSpawnTimer"), 0, particleSpawnDelay);
+        particlesToSpawn = Mth.clamp(pTag.getInt("ParticlesToSpawn"), 0, 5);
     }
 
     @Override
@@ -228,7 +230,10 @@ public class CastingMoldsBlockEntity extends BlockEntity implements GeoBlockEnti
                 this.resrtProgress();
             }
         }else {
-            this.resrtProgress();
+            if (this.progress != 0) {
+                this.resrtProgress();
+                this.setChanged();
+            }
         }
         
         // 处理粒子生成
@@ -334,7 +339,7 @@ public class CastingMoldsBlockEntity extends BlockEntity implements GeoBlockEnti
 
     private boolean hasRecipe() {
         boolean hasCraftingItem = this.inventory.getStackInSlot(INPUT_SLOT).getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get();
-        ItemStack itemStack = new ItemStack(ChangShengJueItems.TONG_QIAN.get());
+        ItemStack itemStack = new ItemStack(ChangShengJueItems.TONG_QIAN.get(), MAX_COIN_OUTPUT);
 
         return hasCraftingItem && canInsertItemIntoOutputSlot(itemStack.getItem()) && canInsertAmountIntoOutputSlot(itemStack.getCount());
     }

@@ -36,11 +36,10 @@ public class PotteryWheel extends BaseEntityBlock {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-        ItemStack mainHandItem = pPlayer.getMainHandItem();
-        ItemStack offhandItem = pPlayer.getOffhandItem();
-        if (mainHandItem.getItem() == Items.CLAY_BALL || offhandItem.getItem() == Items.CLAY_BALL){
+        ItemStack heldItem = pPlayer.getItemInHand(pHand);
+        if (heldItem.is(Items.CLAY_BALL)){
             if (blockEntity instanceof PotteryWheelEntity potteryWheelEntity){
-                if (!pLevel.isClientSide && potteryWheelEntity.addItem(pPlayer.getAbilities().instabuild ? pPlayer.getMainHandItem().copy() : pPlayer.getMainHandItem())){
+                if (!pLevel.isClientSide && potteryWheelEntity.addItem(pPlayer.getAbilities().instabuild ? heldItem.copy() : heldItem)){
                     if (pPlayer instanceof ServerPlayer serverPlayer) {
                         CSJAdvanceInit.MAKE_CHINAWARE.trigger(serverPlayer);
                     }
@@ -57,7 +56,7 @@ public class PotteryWheel extends BaseEntityBlock {
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-            if (blockentity instanceof PotteryWheelEntity) {
+            if (!pLevel.isClientSide && blockentity instanceof PotteryWheelEntity) {
                 ((PotteryWheelEntity) blockentity).drops();
             }
             super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);

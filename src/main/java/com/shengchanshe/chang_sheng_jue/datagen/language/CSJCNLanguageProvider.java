@@ -1672,6 +1672,8 @@
             //配置文件信息
             this.add("config."+ ChangShengJue.MOD_ID +".reload", "配置已重新加载");
             this.add("config."+ ChangShengJue.MOD_ID +".enable_quests", "是否启用自动接受类型任务。");
+            this.add("config."+ ChangShengJue.MOD_ID +".enable_bandit_spawn", "是否允许生成土匪。");
+            this.add("config."+ ChangShengJue.MOD_ID +".enable_villain_spawn", "是否允许生成恶人。");
 
             this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_level", "独孤九剑最大等级上限");
             this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_exp", "独孤九剑突破所需的成功释放次数");

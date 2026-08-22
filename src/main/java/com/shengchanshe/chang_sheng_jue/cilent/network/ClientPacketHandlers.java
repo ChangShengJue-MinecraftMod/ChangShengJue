@@ -18,7 +18,6 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 public final class ClientPacketHandlers {
@@ -110,10 +109,10 @@ public final class ClientPacketHandlers {
             int particleCount = 3;
 
             for (int i = 0; i < particleCount; i++) {
-                double phi = Math.random() * Math.PI * 2;
-                double costheta = Math.random() * 2 - 1;
+                double phi = player.getRandom().nextDouble() * Math.PI * 2;
+                double costheta = player.getRandom().nextDouble() * 2 - 1;
                 double theta = Math.acos(costheta);
-                double randomAngleVariation = Math.random() * 0.5 - 0.25;
+                double randomAngleVariation = player.getRandom().nextDouble() * 0.5 - 0.25;
                 phi += randomAngleVariation;
 
                 double dx = radius * Math.sin(theta) * Math.cos(phi);
@@ -148,12 +147,11 @@ public final class ClientPacketHandlers {
         Player player = minecraft.level.getPlayerByUUID(playerId);
         if (player != null && player.level() == minecraft.level) {
             int numParticles = 1;
-            Random random = new Random();
 
             for (int i = 0; i < numParticles; ++i) {
                 double radius = 0.3;
-                double theta = random.nextDouble() * 2 * Math.PI;
-                double phi = random.nextDouble() * Math.PI;
+                double theta = player.getRandom().nextDouble() * 2 * Math.PI;
+                double phi = player.getRandom().nextDouble() * Math.PI;
                 double offsetX = radius * Math.sin(phi) * Math.cos(theta);
                 double offsetY = radius * Math.sin(phi) * Math.sin(theta);
                 double offsetZ = radius * Math.cos(phi);

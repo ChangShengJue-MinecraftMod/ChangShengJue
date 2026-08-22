@@ -157,6 +157,7 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
                 0, 106, 17,
                 BOTTON, 256, 256,
                 button -> {
+                    if (!menu.hasValidBackingEntity()) return;
                     ChangShengJueMessages.sendToServer(new BrickKilnPacket(menu.getBlockPos()));
                     isCarouselPaused = true;
                     carouselTick = 0;
@@ -176,6 +177,7 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
 
     // 减少制作次数
     private void decreaseCraftTimes() {
+        if (!menu.hasValidBackingEntity()) return;
         int currentTimes = menu.getCraftTimes();
         if (currentTimes > 1 && !menu.isCrafting()) {
             int newTimes = currentTimes - 1;
@@ -189,6 +191,7 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         }
     }
     private void batchDecreaseCraftTimes() {
+        if (!menu.hasValidBackingEntity()) return;
         int currentTimes = menu.getCraftTimes();
         if (currentTimes > 1 && !menu.isCrafting()) {
             int newTimes = Math.max(1, currentTimes - 4);
@@ -203,6 +206,7 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
     }
     // 增加制作次数
     private void increaseCraftTimes() {
+        if (!menu.hasValidBackingEntity()) return;
         int currentTimes = menu.getCraftTimes();
         if (currentTimes < 64 && !menu.isCrafting()) {
             int newTimes = currentTimes + 1;
@@ -216,6 +220,7 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         }
     }
     private void batchIncreaseCraftTimes() {
+        if (!menu.hasValidBackingEntity()) return;
         int currentTimes = menu.getCraftTimes();
         if (currentTimes < 64 && !menu.isCrafting()) {
             int newTimes = Math.min(64, currentTimes + 4);
@@ -258,7 +263,7 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
 
         int buttonWidth = 37;
         int buttonHeight = 26;
-        int buttonX = guiX - 56; // 在物品列表左侧
+        int buttonX = Math.max(2, guiX - 56); // 窄屏时保持按钮可见
         int startY = guiY + 45; // 与物品列表顶部对齐
         int buttonSpacing = 30; // 按钮间距
 
@@ -278,7 +283,8 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
                     0, 160, buttonHeight,
                     BOTTON, 256, 256,
                     button -> onMainCategoryButtonClicked(category),
-                    Component.empty(), 0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F
+                    Component.translatable(CATEGORY_KEY_PREFIX + category),
+                    0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F
             );
 
             categoryButton.setItemIcon(mainCategoryIcons[i])
@@ -293,7 +299,7 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
         int colorButtonWidth = 18;
         int colorButtonHeight = 18;
         int wazuoButtonY = startY + buttonSpacing; // 瓦作是第二个按钮（索引1）
-        int colorStartX = buttonX - buttonWidth + 18; // 在瓦作按钮右侧
+        int colorStartX = Math.max(2, buttonX - buttonWidth + 18);
         int colorButtonSpacing = 20; // 按钮之间的垂直间距
 
         ItemStack[] colorIcons = {
@@ -314,7 +320,8 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
                     0, 217, 18,
                     TEXTURE, 512, 512,
                     button -> onColorCategoryButtonClicked(color),
-                    Component.empty(), 0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F
+                    Component.translatable(CATEGORY_KEY_PREFIX + "color." + color),
+                    0x000, 0x000, 1.0F, 1.0F, 1.0F, 1.0F
             );
 
             colorButton.setItemIcon(colorIcons[i])
@@ -508,7 +515,7 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
             } catch (Exception e) {
                 cachedRecipes = new ArrayList<>();
                 recipesByGroup.clear();
-                e.printStackTrace();
+                ChangShengJue.LOGGER.warn("Unable to refresh brick kiln recipes", e);
             }
         } else {
             cachedRecipes.clear();
@@ -628,6 +635,7 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
      */
     private void updateRecipeSlots(BrickKilnRecipe recipe, boolean checkCrafting,
                                    boolean resetCarousel, boolean syncToServer) {
+        if (!menu.hasValidBackingEntity()) return;
         if (checkCrafting && menu.isCrafting()) {
             return;
         }
@@ -1023,6 +1031,10 @@ public class BrickKilnScreen extends AbstractContainerScreen<BrickKilnMenu> {
     @Override
     public void containerTick() {
         super.containerTick();
+        if (!menu.hasValidBackingEntity()) {
+            if (minecraft != null && minecraft.player != null) minecraft.player.closeContainer();
+            return;
+        }
 
         // 检测制作状态变化，缓存/清除制作材料
         if (menu.isCrafting() && craftingMaterials == null) {

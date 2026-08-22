@@ -42,4 +42,8 @@ public class PlayerQuestCapabilityProvider implements ICapabilityProvider, INBTS
     public void deserializeNBT(CompoundTag nbt) {
         createCapability().deserializeNBT(nbt);
     }
+
+    public void invalidate() {
+        optional.invalidate();
+    }
 }

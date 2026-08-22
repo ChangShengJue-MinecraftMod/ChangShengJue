@@ -1706,6 +1706,8 @@ public class CSJENLanguageProvider extends LanguageProvider {
         //配置文件信息
         this.add("config."+ ChangShengJue.MOD_ID +".reload", "Configuration reloaded");
         this.add("config."+ ChangShengJue.MOD_ID +".enable_quests", "Whether to enable auto-accept type quests.");
+        this.add("config."+ ChangShengJue.MOD_ID +".enable_bandit_spawn", "Whether bandits may spawn.");
+        this.add("config."+ ChangShengJue.MOD_ID +".enable_villain_spawn", "Whether villains may spawn.");
 
         this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_level", "Dugu Nine Swords Maximum Level Cap");
         this.add("config."+ ChangShengJue.MOD_ID +".dugu_nine_swords_max_exp", "Successful Casts Required for Dugu Nine Swords Breakthrough");

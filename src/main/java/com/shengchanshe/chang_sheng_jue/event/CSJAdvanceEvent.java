@@ -8,11 +8,9 @@ import com.shengchanshe.chang_sheng_jue.entity.custom.wuxia.challenger.Challenge
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;
-import com.shengchanshe.chang_sheng_jue.world.CSJStructures;
-import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
@@ -21,184 +19,143 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.structure.BuiltinStructures;
-import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.*;
+import java.util.Set;
+import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJAdvanceEvent {
-    private static int COOLDOWN = 3;
+    private static final int INVENTORY_CHECK_INTERVAL = 20;
+    private static final int BANDIT_COOLDOWN_DAYS = 4;
+    private static final int MAX_BANDIT_SUMMONS = 3;
+    private static final String LAST_BANDIT_ATTEMPT_DAY = ChangShengJue.MOD_ID + ":last_bandit_attempt_day";
+    private static final String NEXT_BANDIT_DAY = ChangShengJue.MOD_ID + ":next_bandit_day";
+    private static final String BANDIT_SUMMON_COUNT = ChangShengJue.MOD_ID + ":bandit_summon_count";
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-        if (event.phase == TickEvent.Phase.END && event.player instanceof ServerPlayer serverPlayer) {
-            Player player = event.player;
-            checkForItem(player);
-
-            //玩家是否处于某结构
-            Level level = player.level();
-            BlockPos pos = player.blockPosition();
-            ServerLevel serverLevel = (ServerLevel) level;
-            List<ResourceKey<Structure>> villages = List.of(
-                    CSJStructures.PIT_YARD,
-                    CSJStructures.SANDSTONE_CASTLE,
-                    CSJStructures.SI_HE_YUAN,
-                    CSJStructures.SU_PAI_VILLAGE,
-                    CSJStructures.HUI_PAI_VILLAGE,
-                    BuiltinStructures.VILLAGE_DESERT,
-                    BuiltinStructures.VILLAGE_PLAINS,
-                    BuiltinStructures.VILLAGE_SAVANNA,
-                    BuiltinStructures.VILLAGE_SNOWY,
-                    BuiltinStructures.VILLAGE_TAIGA
-            );
-            boolean isInAnyVillage = false;
-            ChunkPos villageChunk = null; // 记录村庄所在的区块
-
-            for (ResourceKey<Structure> village : villages) {
-                LocationPredicate predicate = LocationPredicate.inStructure(village);
-                if (predicate.matches(serverLevel, pos.getX(), pos.getY(), pos.getZ())) {
-                    villageChunk = new ChunkPos(pos);
-                    isInAnyVillage = true;
-                    break;
-                }
-            }
-//            if (isInAnyVillage && villageChunk != null && !generatedVillainChunks.contains(villageChunk)) {
-//                summonVillain(serverLevel, player, villageChunk); // 传递区块参数
-//            }
+        if (event.phase == TickEvent.Phase.END
+                && event.player instanceof ServerPlayer serverPlayer
+                && serverPlayer.tickCount % INVENTORY_CHECK_INTERVAL == 0) {
+            checkForItem(serverPlayer);
         }
     }
 
-    private static void checkForItem(net.minecraft.world.entity.player.Player player) {
+    private static void checkForItem(ServerPlayer player) {
         boolean hasQiTianHelmet = false;
         boolean hasQiTianChestplate = false;
         boolean hasQiTianLeggings = false;
         boolean hasQiTianBoots = false;
-        //获取世界时间
-        Level level = player.level();
-        long worldTime = level.getDayTime();
-        if (worldTime % 24000 == 0) {
-            if (COOLDOWN == 3) {
-                //强盗
-                //当玩家拥有8个铜钱时
-                if (player.getInventory().countItem(ChangShengJueItems.YI_GUAN_TONG_QIAN.get()) >= 9 ||
-                    player.getInventory().countItem(ChangShengJueItems.SILVER_BULLIONS.get()) >= 3 ||
-                    player.getInventory().countItem(ChangShengJueItems.GOLD_BULLIONS.get()) >= 1)
-                {
-                    System.out.println("0");
-                    summonBandit(level, player);
-                }
-            } else if (COOLDOWN >= 4) {
-                COOLDOWN = 0;
-            } else {
-                COOLDOWN++;
-            }
-        }
+        tryDailyBanditSpawn(player);
 
 
         for (ItemStack itemStack : player.getInventory().items) {
             Item item = itemStack.getItem();
-            if (player instanceof ServerPlayer serverPlayer) {
-                //获取玩家所在群系
-                 String biome = serverPlayer.level().getBiome(player.blockPosition()).toString();
-                //成就
                 if (item == ChangShengJueItems.MI_FAN.get()) {
-                    CSJAdvanceInit.HAS_MI_FAN.trigger(serverPlayer);//人是铁饭是钢
+                    CSJAdvanceInit.HAS_MI_FAN.trigger(player);//人是铁饭是钢
                 }else if (item == ChangShengJueItems.SILVER_BULLIONS.get()) {
-                    CSJAdvanceInit.HAS_SILVER_BULLIONS.trigger(serverPlayer);//银华熠熠
+                    CSJAdvanceInit.HAS_SILVER_BULLIONS.trigger(player);//银华熠熠
                 }else if (item == ChangShengJueItems.GOLD_BULLIONS.get()) {
-                    CSJAdvanceInit.HASGOLD_BULLIONS.trigger(serverPlayer);//金光闪闪
+                    CSJAdvanceInit.HASGOLD_BULLIONS.trigger(player);//金光闪闪
                 }else if (item == ChangShengJueItems.BA_BAO_ZHOU.get()){
-                    CSJAdvanceInit.HAS_BA_BAO_ZHOU.trigger(serverPlayer);//吉祥如意
+                    CSJAdvanceInit.HAS_BA_BAO_ZHOU.trigger(player);//吉祥如意
                 }else if(item == ChangShengJueItems.GUI_HUA_TANG_OU.get()){
-                    CSJAdvanceInit.HAS_GUI_HUA_TANG_OU.trigger(serverPlayer);//甜蜜蜜
+                    CSJAdvanceInit.HAS_GUI_HUA_TANG_OU.trigger(player);//甜蜜蜜
                 }else if (item == ChangShengJueItems.BRONZE_SWORD.get()) {
-                    CSJAdvanceInit.HAS_BRONZE_SWORD.trigger(serverPlayer);//侠客行
+                    CSJAdvanceInit.HAS_BRONZE_SWORD.trigger(player);//侠客行
                 }else if (item == ChangShengJueItems.LICHEE.get()) {
-                    CSJAdvanceInit.HAS_LICHEE.trigger(serverPlayer);//似是妃子笑
+                    CSJAdvanceInit.HAS_LICHEE.trigger(player);//似是妃子笑
                 }else if (item == ChangShengJueItems.BILUOCHUN_TEAS.get()
                         || item == ChangShengJueItems.LONG_JING_TEAS.get()) {
-                    CSJAdvanceInit.HAS_TEA.trigger(serverPlayer);//习习清风生
+                    CSJAdvanceInit.HAS_TEA.trigger(player);//习习清风生
                 }else if (item == ChangShengJueItems.SHI_LI_XIANG.get()
                         || item == ChangShengJueItems.FEN_JIU.get()
                         || item == ChangShengJueItems.WHEAT_NUGGETS_TRIBUTE_WINE.get()) {
-                    CSJAdvanceInit.HAS_WINE.trigger(serverPlayer);//对酒当歌
+                    CSJAdvanceInit.HAS_WINE.trigger(player);//对酒当歌
                 }else if (item == ChangShengJueItems.TOMATO_EGG.get()) {
-                    CSJAdvanceInit.HAS_TOMATO_EGG.trigger(serverPlayer);//家常小炒
+                    CSJAdvanceInit.HAS_TOMATO_EGG.trigger(player);//家常小炒
                 }else if (item == ChangShengJueItems.TU_LONG_DAO.get()
                         || item == ChangShengJueItems.YI_TIAN_JIAN.get()
                         || item == ChangShengJueItems.BA_WANG_QIANG.get()
                         || item == ChangShengJueItems.BEAT_DOG_STICK.get()) {
-                    CSJAdvanceInit.HAS_SWORD.trigger(serverPlayer);//四大神器
+                    CSJAdvanceInit.HAS_SWORD.trigger(player);//四大神器
                 }else if (item == Items.LEATHER_CHESTPLATE
                         || item == ChangShengJueItems.FEMALE_TAOIST_CHESTPLATE.get()
                         || item == ChangShengJueItems.MALE_TAOIST_CHESTPLATE.get()
                         || item == ChangShengJueItems.MALE_CHINESE_WEDDING_DRESS_KYLIN_BUFU.get()
                         || item == ChangShengJueItems.FEMALE_CHINESE_WEDDING_DRESS_QUEEN_CLOTHING.get()
                         || item == ChangShengJueItems.CONFUCIAN_INK_CHESTPLATE.get()){
-                    CSJAdvanceInit.HAS_ARMOR.trigger(serverPlayer);
+                    CSJAdvanceInit.HAS_ARMOR.trigger(player);
                 }else if (item == ChangShengJueItems.COTTON_CHESTPLATE.get()
                         || item == ChangShengJueItems.MOUNTAIN_PATTERN_ARMOR.get()
                         || item == ChangShengJueItems.FLY_FISH_CHESTPLATE.get()
                         || item == ChangShengJueItems.WALKER_CHESTPLATE.get()
                         || item == ChangShengJueItems.THE_GREAT_GENERAL_MING_GUANG_LIGHT_CHESTPLATE.get()) {
-                    CSJAdvanceInit.HAS_ADVANCED_ARRMOR.trigger(serverPlayer);
+                    CSJAdvanceInit.HAS_ADVANCED_ARRMOR.trigger(player);
                 }else if (item == ChangShengJueItems.PHOENIX_FEATHER_CAP.get()) {
                     hasQiTianHelmet = true;
-                    if (hasQiTianHelmet && hasQiTianChestplate && hasQiTianLeggings && hasQiTianBoots) {
-                        CSJAdvanceInit.HAS_QI_TIAN.trigger(serverPlayer);
-                    }
                 }else if (item == ChangShengJueItems.OLDEN_CHAIN_MAIL_SHIRT.get()){
                     hasQiTianChestplate = true;
-                    if (hasQiTianHelmet && hasQiTianChestplate && hasQiTianLeggings && hasQiTianBoots) {
-                        CSJAdvanceInit.HAS_QI_TIAN.trigger(serverPlayer);
-                    }
                 }else if (item == ChangShengJueItems.TIGER_SKIN_GARMENT.get()) {
                     hasQiTianLeggings = true;
-                    if (hasQiTianHelmet && hasQiTianChestplate && hasQiTianLeggings && hasQiTianBoots) {
-                        CSJAdvanceInit.HAS_QI_TIAN.trigger(serverPlayer);
-                    }
                 }else if (item == ChangShengJueItems.CLOUD_WALKING_BOOTS.get()) {
                     hasQiTianBoots = true;
-                    if (hasQiTianHelmet && hasQiTianChestplate && hasQiTianLeggings && hasQiTianBoots) {
-                        CSJAdvanceInit.HAS_QI_TIAN.trigger(serverPlayer);
-                    }
                 }else if (item == ChangShengJueItems.GANG_TOKEN.get() && itemStack.getCount() == 64) {
-                    CSJAdvanceInit.A_GROUP_GANG_TOKEN.trigger(serverPlayer);
+                    CSJAdvanceInit.A_GROUP_GANG_TOKEN.trigger(player);
                 }
-            }
+        }
+        if (hasQiTianHelmet && hasQiTianChestplate && hasQiTianLeggings && hasQiTianBoots) {
+            CSJAdvanceInit.HAS_QI_TIAN.trigger(player);
         }
     }
 
-    private static final Map<UUID, Integer> summonTracker = new HashMap<>();
+    private static void tryDailyBanditSpawn(ServerPlayer player) {
+        CompoundTag data = getBanditData(player);
+        long currentDay = player.level().getDayTime() / 24000L;
+        long lastAttemptDay = data.contains(LAST_BANDIT_ATTEMPT_DAY, Tag.TAG_LONG)
+                ? data.getLong(LAST_BANDIT_ATTEMPT_DAY) : Long.MIN_VALUE;
+        if (lastAttemptDay == currentDay) {
+            return;
+        }
+        data.putLong(LAST_BANDIT_ATTEMPT_DAY, currentDay);
+
+        long nextEligibleDay = data.getLong(NEXT_BANDIT_DAY);
+        boolean hasTribute = player.getInventory().countItem(ChangShengJueItems.YI_GUAN_TONG_QIAN.get()) >= 9
+                || player.getInventory().countItem(ChangShengJueItems.SILVER_BULLIONS.get()) >= 3
+                || player.getInventory().countItem(ChangShengJueItems.GOLD_BULLIONS.get()) >= 1;
+        if (hasTribute && currentDay >= nextEligibleDay && trySummonBandit(player.serverLevel(), player)) {
+            data.putLong(NEXT_BANDIT_DAY, currentDay + BANDIT_COOLDOWN_DAYS);
+        }
+    }
 
     public static void summonBandit(Level level, Player player) {
-        if (!ChangShengJueConfig.ENABLE_BANDIT_SPAWN.get() || level.isClientSide()) {
-            return;
+        if (level instanceof ServerLevel serverLevel && player instanceof ServerPlayer serverPlayer) {
+            trySummonBandit(serverLevel, serverPlayer);
         }
-        UUID playerUUID = player.getUUID();
+    }
 
-        int summonCount = summonTracker.getOrDefault(playerUUID, 0);
-
-        ServerPlayer serverPlayer = (ServerPlayer) player;
-        if (summonCount >= 3) {
-            return;
+    private static boolean trySummonBandit(ServerLevel serverLevel, ServerPlayer player) {
+        if (!ChangShengJueConfig.ENABLE_BANDIT_SPAWN.get()) {
+            return false;
+        }
+        CompoundTag data = getBanditData(player);
+        int summonCount = data.getInt(BANDIT_SUMMON_COUNT);
+        if (summonCount >= MAX_BANDIT_SUMMONS) {
+            return false;
         }
         BlockPos pos = player.blockPosition();
-        ServerLevel serverLevel = (ServerLevel) level;
         BlockPos playerPos = player.blockPosition();
         RandomSource random = serverLevel.getRandom();
-        if (serverLevel.getRandom().nextInt(100) <= 20) {
-
-            int numberOfBandits = RandomSource.create().nextInt(3) + 1;
+        boolean spawned = false;
+        if (random.nextInt(100) <= 20) {
+            int numberOfBandits = random.nextInt(3) + 1;
             for (int i = 0; i < numberOfBandits; i++) {
                 BlockPos spawnPos = findValidSpawnPosition(serverLevel, playerPos, random,20);
                 if (spawnPos == null) {
@@ -209,17 +166,44 @@ public class CSJAdvanceEvent {
                     );
                 }
                 Bandit bandit = new Bandit(ChangShengJueEntity.BANDIT.get(), serverLevel);
-                if (bandit != null) {
-                    bandit.moveTo(spawnPos,
-                            5.0F, 5.0F);
-                    bandit.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(pos),
-                            MobSpawnType.EVENT, null, null);
-                    serverLevel.addFreshEntity(bandit);
-                    COOLDOWN = 0;
-                    summonTracker.put(playerUUID, summonCount + 1);
+                bandit.moveTo(spawnPos, random.nextFloat() * 360.0F, 0.0F);
+                bandit.finalizeSpawn(serverLevel, serverLevel.getCurrentDifficultyAt(pos),
+                        MobSpawnType.EVENT, null, null);
+                if (serverLevel.addFreshEntity(bandit)) {
+                    spawned = true;
                 }
             }
         }
+        if (spawned) {
+            data.putInt(BANDIT_SUMMON_COUNT, summonCount + 1);
+        }
+        return spawned;
+    }
+
+    static CompoundTag getBanditData(Player player) {
+        CompoundTag entityData = player.getPersistentData();
+        CompoundTag persisted = entityData.contains(Player.PERSISTED_NBT_TAG, Tag.TAG_COMPOUND)
+                ? entityData.getCompound(Player.PERSISTED_NBT_TAG)
+                : new CompoundTag();
+        migrateLegacyLong(entityData, persisted, LAST_BANDIT_ATTEMPT_DAY);
+        migrateLegacyLong(entityData, persisted, NEXT_BANDIT_DAY);
+        migrateLegacyInt(entityData, persisted, BANDIT_SUMMON_COUNT);
+        entityData.put(Player.PERSISTED_NBT_TAG, persisted);
+        return persisted;
+    }
+
+    private static void migrateLegacyLong(CompoundTag entityData, CompoundTag persisted, String key) {
+        if (!persisted.contains(key, Tag.TAG_ANY_NUMERIC) && entityData.contains(key, Tag.TAG_ANY_NUMERIC)) {
+            persisted.putLong(key, entityData.getLong(key));
+        }
+        entityData.remove(key);
+    }
+
+    private static void migrateLegacyInt(CompoundTag entityData, CompoundTag persisted, String key) {
+        if (!persisted.contains(key, Tag.TAG_ANY_NUMERIC) && entityData.contains(key, Tag.TAG_ANY_NUMERIC)) {
+            persisted.putInt(key, entityData.getInt(key));
+        }
+        entityData.remove(key);
     }
 
     public static void summonChallenger(Level level, Player player) {

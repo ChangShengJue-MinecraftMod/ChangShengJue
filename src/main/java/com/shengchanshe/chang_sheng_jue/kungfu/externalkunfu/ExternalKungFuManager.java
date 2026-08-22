@@ -95,7 +95,6 @@ public class ExternalKungFuManager {
     }
 
     public List<ExternalKungFuCapability> getRandomExternalKungFuCapabilities(LivingEntity entity) {
-        Random random = new Random();
         List<ExternalKungFu> availableKungFus = new ArrayList<>(Arrays.asList(ExternalKungFu.values()));
         List<ExternalKungFuCapability> externalKungFuCapabilities = new ArrayList<>();
 
@@ -123,7 +122,7 @@ public class ExternalKungFuManager {
             availableKungFus.remove(ExternalKungFu.GOLDEN_BLACK_KNIFE_METHOD);
             availableKungFus.remove(ExternalKungFu.GAO_MARKSMANSHIP);
             availableKungFus.remove(ExternalKungFu.SHAOLIN_STICK_METHOD);
-            ExternalKungFu randomKungFu = availableKungFus.get(random.nextInt(availableKungFus.size()));
+            ExternalKungFu randomKungFu = availableKungFus.get(entity.getRandom().nextInt(availableKungFus.size()));
             externalKungFuCapabilities.add(kungFuCapabilities.get(randomKungFu));
         }
 
@@ -146,13 +145,13 @@ public class ExternalKungFuManager {
         if (entity instanceof GangLeader){
             for (int i = 0; i < 2; i++) {
                 if (!availableKungFus.isEmpty()) {
-                    ExternalKungFu randomKungFu = availableKungFus.get(random.nextInt(availableKungFus.size()));
+                    ExternalKungFu randomKungFu = availableKungFus.get(entity.getRandom().nextInt(availableKungFus.size()));
                     externalKungFuCapabilities.add(kungFuCapabilities.get(randomKungFu));
                     availableKungFus.remove(randomKungFu);
                 }
             }
         }else {
-            ExternalKungFu randomKungFu = availableKungFus.get(random.nextInt(availableKungFus.size()));
+            ExternalKungFu randomKungFu = availableKungFus.get(entity.getRandom().nextInt(availableKungFus.size()));
             externalKungFuCapabilities.add(kungFuCapabilities.get(randomKungFu));
         }
         return externalKungFuCapabilities;
@@ -160,7 +159,6 @@ public class ExternalKungFuManager {
 
 
     public ExternalKungFuCapability getRandomExternalKungFuCapability(LivingEntity entity) {
-        Random random = new Random();
         List<ExternalKungFu> availableKungFus = new ArrayList<>(Arrays.asList(ExternalKungFu.values()));
 
         if (!(entity instanceof Assassin)) {
@@ -173,7 +171,7 @@ public class ExternalKungFuManager {
             availableKungFus.remove(ExternalKungFu.GOLDEN_BLACK_KNIFE_METHOD);
         }
 
-        ExternalKungFu randomKungFu = availableKungFus.get(random.nextInt(availableKungFus.size()));
+        ExternalKungFu randomKungFu = availableKungFus.get(entity.getRandom().nextInt(availableKungFus.size()));
         return kungFuCapabilities.get(randomKungFu);
     }
 }

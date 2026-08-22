@@ -39,17 +39,19 @@ public class FruitLeaves extends LeavesBlock implements BonemealableBlock {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (pState.getValue(STATE) == State.FRUITS){
-            if (this == ChangShengJueBlocks.MANGO_LEAVES.get()){
-                dropResources(pState, pLevel, pPos);
-            }else if (this == ChangShengJueBlocks.PEAR_LEAVES.get()){
-                dropResources(pState, pLevel, pPos);
-            }else if (this == ChangShengJueBlocks.LICHEE_LEAVES.get()){
-                dropResources(pState, pLevel, pPos);
-            }else if (this == ChangShengJueBlocks.DURIAN_LEAVES.get()){
-                dropResources(pState, pLevel, pPos);
+            if (!pLevel.isClientSide) {
+                if (this == ChangShengJueBlocks.MANGO_LEAVES.get()){
+                    dropResources(pState, pLevel, pPos);
+                }else if (this == ChangShengJueBlocks.PEAR_LEAVES.get()){
+                    dropResources(pState, pLevel, pPos);
+                }else if (this == ChangShengJueBlocks.LICHEE_LEAVES.get()){
+                    dropResources(pState, pLevel, pPos);
+                }else if (this == ChangShengJueBlocks.DURIAN_LEAVES.get()){
+                    dropResources(pState, pLevel, pPos);
+                }
+                pLevel.setBlockAndUpdate(pPos, pState.setValue(STATE, State.LEAVES));
             }
-            pLevel.setBlockAndUpdate(pPos, pState.setValue(STATE, State.LEAVES));
-            return InteractionResult.SUCCESS;
+            return InteractionResult.sidedSuccess(pLevel.isClientSide);
         }
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }

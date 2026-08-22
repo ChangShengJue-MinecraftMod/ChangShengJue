@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.quest;
 
+import com.shengchanshe.chang_sheng_jue.ChangShengJue;
 import com.shengchanshe.chang_sheng_jue.capability.ChangShengJueCapabiliy;
 import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapability;
 import com.shengchanshe.chang_sheng_jue.event.quest.PlayerQuestEvent;
@@ -27,6 +28,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 public class Quest {
+    private static final int MAX_SERIALIZED_ITEM_ENTRIES = 128;
+    private static final int MAX_SERIALIZED_EFFECT_ENTRIES = 64;
+    private static final int MAX_SERIALIZED_UUID_ENTRIES = 128;
+    private static final int MAX_SERIALIZED_ITEM_COUNT = Byte.MAX_VALUE;
+    private static final int MAX_QUEST_COUNTER = 1_000_000;
     private UUID questId;
     private String questName;
     private String questDescription;
@@ -98,13 +104,13 @@ public class Quest {
         this.questName = questName;
         this.needRefresh = needRefresh;
         this.questDescription = questDescription;
-        this.questRequirements = questRequirements != null ? questRequirements : new ArrayList<>();
-        this.questRewards = questRewards != null ? questRewards : new ArrayList<>();
+        this.questRequirements = boundedItemStacks(questRequirements);
+        this.questRewards = boundedItemStacks(questRewards);
         this.questType = questType;
         this.repeatable = repeatable;
         this.questRequirementsDescription = questRequirementsDescription;
-        this.effects = effects != null ? effects : new ArrayList<>();
-        this.limitQuestIds = limitQuestIds != null ? limitQuestIds : new ArrayList<>();;
+        this.effects = boundedList(effects, MAX_SERIALIZED_EFFECT_ENTRIES);
+        this.limitQuestIds = boundedList(limitQuestIds, MAX_SERIALIZED_UUID_ENTRIES);
         this.targetEntity = targetEntity;
         this.requiredKills = requiredKills;
         this.currentKills = 0;
@@ -123,7 +129,7 @@ public class Quest {
         this.isComplete = false;
         this.isAcceptQuestEffects = isAcceptQuestEffects;
         this.isNeedCompletePreQuest = isNeedCompletePreQuest;
-        this.conflictQuestIds = conflictQuestIds != null ? conflictQuestIds : new ArrayList<>();;
+        this.conflictQuestIds = boundedList(conflictQuestIds, MAX_SERIALIZED_UUID_ENTRIES);
         this.isConflictQuest = isConflictQuest;
         this.needCompletionCount = needCompletionCount;
         this.weight = weight;
@@ -133,8 +139,8 @@ public class Quest {
         this.questId = newQuest.questId;
         this.questName = newQuest.questName;
         this.questDescription = newQuest.questDescription;
-        this.questRequirements = newQuest.questRequirements;
-        this.questRewards = newQuest.questRewards;
+        this.questRequirements = boundedItemStacks(newQuest.questRequirements);
+        this.questRewards = boundedItemStacks(newQuest.questRewards);
         this.questNpcId = newQuest.questNpcId;
         this.acceptedBy = newQuest.acceptedBy;
         this.needRefresh = newQuest.needRefresh;
@@ -150,31 +156,33 @@ public class Quest {
         this.repeatable = newQuest.repeatable;
         this.questRequirementsDescription = newQuest.questRequirementsDescription;
         this.questGenerateTarget = newQuest.questGenerateTarget;
-        this.effects = newQuest.effects;
+        this.effects = boundedList(newQuest.effects, MAX_SERIALIZED_EFFECT_ENTRIES);
         this.isComplete = newQuest.isComplete;
         this.questDay = newQuest.questDay;
         this.questCurrentDay = newQuest.questCurrentDay;
         this.questTargetCount = newQuest.questTargetCount;
         this.questCurrentTargetCount = newQuest.questCurrentTargetCount;
         this.questTime = newQuest.questTime;
+        this.questCurrentTime = newQuest.questCurrentTime;
         this.isAcceptQuestEffects = newQuest.isAcceptQuestEffects;
-        this.limitQuestIds = newQuest.limitQuestIds;
+        this.limitQuestIds = boundedList(newQuest.limitQuestIds, MAX_SERIALIZED_UUID_ENTRIES);
         this.isNeedCompletePreQuest = newQuest.isNeedCompletePreQuest;
-        this.conflictQuestIds = newQuest.conflictQuestIds;
+        this.conflictQuestIds = boundedList(newQuest.conflictQuestIds, MAX_SERIALIZED_UUID_ENTRIES);
         this.isConflictQuest = newQuest.isConflictQuest;
         this.needCompletionCount = newQuest.needCompletionCount;
         this.weight = newQuest.weight;
     }
 
     public Quest(CompoundTag tag) {
-        this.questId = tag.hasUUID("QuestId") ? tag.getUUID("QuestId") : UUID.randomUUID();
+        resetLoadedCollections();
+        this.questId = tag.hasUUID("QuestId") ? tag.getUUID("QuestId") : null;
         this.questName = tag.contains("QuestName") ? tag.getString("QuestName") : "当前未接取任务";
         this.questDescription = tag.contains("QuestDescription") ? tag.getString("QuestDescription") : "当前未接取任务";
 
         if (tag.contains("QuestRewards")) {
             this.questRewards = new ArrayList<>();
             ListTag rewardList = tag.getList("QuestRewards", Tag.TAG_COMPOUND);
-            for (int i = 0; i < rewardList.size(); i++) {
+            for (int i = 0; i < Math.min(rewardList.size(), MAX_SERIALIZED_ITEM_ENTRIES); i++) {
                 questRewards.add(ItemStack.of(rewardList.getCompound(i)));
             }
         }
@@ -189,7 +197,7 @@ public class Quest {
         }
         if (tag.contains("Effects")) {
             ListTag effectsList = tag.getList("Effects", Tag.TAG_COMPOUND);
-            for (int i = 0; i < effectsList.size(); i++) {
+            for (int i = 0; i < Math.min(effectsList.size(), MAX_SERIALIZED_EFFECT_ENTRIES); i++) {
                 CompoundTag effectTag = effectsList.getCompound(i);
                 effects.add(new QuestEffectEntry(
                         effectTag.getString("id"),
@@ -201,9 +209,7 @@ public class Quest {
                 ));
             }
         }
-        if (tag.contains("QuestType")) {
-            this.questType = QuestType.valueOf(tag.getString("QuestType"));
-        }
+        this.questType = readQuestType(tag);
         this.questRequirementsDescription = tag.contains("QuestRequirementsDescription") ? tag.getString("QuestRequirementsDescription") : "当前未接取任务";
         if (tag.hasUUID("QuestNpcId")) {
             this.questNpcId = tag.getUUID("QuestNpcId");
@@ -212,7 +218,7 @@ public class Quest {
         if (tag.contains("QuestRequirements")) {
             this.questRequirements = new ArrayList<>();
             ListTag reqList = tag.getList("QuestRequirements", Tag.TAG_COMPOUND);
-            for (int i = 0; i < reqList.size(); i++) {
+            for (int i = 0; i < Math.min(reqList.size(), MAX_SERIALIZED_ITEM_ENTRIES); i++) {
                 questRequirements.add(ItemStack.of(reqList.getCompound(i)));
             }
         }
@@ -262,16 +268,16 @@ public class Quest {
         if (tag.contains("QuestTime")){
             this.questTime = tag.getInt("QuestTime");
         }
+        if (tag.contains("QuestCurrentTime")) {
+            this.questCurrentTime = tag.getInt("QuestCurrentTime");
+        }
         if (tag.contains("IsAcceptQuestEffects")){
             this.isAcceptQuestEffects = tag.getBoolean("IsAcceptQuestEffects");
         }
 
         this.limitQuestIds = new ArrayList<>();
         if (tag.contains("LimitQuestIds")) {
-            ListTag idList = tag.getList("LimitQuestIds", Tag.TAG_INT_ARRAY);
-            for (Tag value : idList) {
-                limitQuestIds.add(NbtUtils.loadUUID(value));
-            }
+            loadUuidList(tag.getList("LimitQuestIds", Tag.TAG_INT_ARRAY), limitQuestIds, "LimitQuestIds");
         }
 
         if (tag.contains("IsNeedCompletePreQuest")) {
@@ -280,10 +286,7 @@ public class Quest {
 
         this.conflictQuestIds = new ArrayList<>();
         if (tag.contains("ConflictQuestIds")) {
-            ListTag idList = tag.getList("ConflictQuestIds", Tag.TAG_INT_ARRAY);
-            for (Tag value : idList) {
-                conflictQuestIds.add(NbtUtils.loadUUID(value));
-            }
+            loadUuidList(tag.getList("ConflictQuestIds", Tag.TAG_INT_ARRAY), conflictQuestIds, "ConflictQuestIds");
         }
 
         if (tag.contains("IsConflictQuest")) {
@@ -296,6 +299,7 @@ public class Quest {
         if (tag.contains("Weight")) {
             this.weight = tag.getInt("Weight");
         }
+        sanitizeLoadedState();
     }
 
     // 将任务写入NBT
@@ -311,11 +315,7 @@ public class Quest {
             tag.putString("QuestDescription", this.questDescription);
         }
         if (this.questRewards != null) {
-            ListTag rewardList = new ListTag();
-            for (ItemStack stack : this.questRewards) {
-                rewardList.add(stack.save(new CompoundTag()));
-            }
-            tag.put("QuestRewards", rewardList);
+            tag.put("QuestRewards", writeItemStacks(this.questRewards));
         }
 
         if (this.acceptedBy != null) {
@@ -338,11 +338,7 @@ public class Quest {
         }
 
         if (this.questRequirements != null) {
-            ListTag reqList = new ListTag();
-            for (ItemStack stack : this.questRequirements) {
-                reqList.add(stack.save(new CompoundTag()));
-            }
-            tag.put("QuestRequirements", reqList);
+            tag.put("QuestRequirements", writeItemStacks(this.questRequirements));
         }
 
         if (this.targetEntity != null) {
@@ -359,15 +355,12 @@ public class Quest {
         tag.putInt("QuestTargetCount", this.questTargetCount);
         tag.putInt("QuestCurrentTargetCount", this.questCurrentTargetCount);
         tag.putInt("QuestTime", this.questTime);
+        tag.putInt("QuestCurrentTime", this.questCurrentTime);
         tag.putBoolean("IsAcceptQuestEffects", this.isAcceptQuestEffects);
-        ListTag idList = new ListTag();
-        limitQuestIds.forEach(id -> idList.add(NbtUtils.createUUID(id)));
-        tag.put("LimitQuestIds", idList);
+        tag.put("LimitQuestIds", writeUuidList(limitQuestIds));
         tag.putBoolean("IsNeedCompletePreQuest", this.isNeedCompletePreQuest);
 
-        ListTag idListC = new ListTag();
-        conflictQuestIds.forEach(id -> idListC.add(NbtUtils.createUUID(id)));
-        tag.put("ConflictQuestIds", idListC);
+        tag.put("ConflictQuestIds", writeUuidList(conflictQuestIds));
         tag.putBoolean("IsConflictQuest", this.isConflictQuest);
 
         tag.putInt("NeedCompletionCount", this.needCompletionCount);
@@ -392,15 +385,12 @@ public class Quest {
             compound.putString("QuestDescription", this.questDescription);
         }
         if (this.questRewards != null) {
-            ListTag rewardList = new ListTag();
-            for (ItemStack stack : this.questRewards) {
-                rewardList.add(stack.save(new CompoundTag()));
-            }
-            compound.put("QuestRewards", rewardList);
+            compound.put("QuestRewards", writeItemStacks(this.questRewards));
         }
         if (this.acceptedBy != null) {
             compound.putUUID("AcceptedBy", this.acceptedBy);
         }
+        compound.putBoolean("NeedRefresh", this.needRefresh);
         compound.putBoolean("Repeatable", this.repeatable);
         ListTag effectsList = getTags();
         compound.put("Effects", effectsList);
@@ -415,11 +405,7 @@ public class Quest {
         }
 
         if (this.questRequirements != null) {
-            ListTag reqList = new ListTag();
-            for (ItemStack stack : this.questRequirements) {
-                reqList.add(stack.save(new CompoundTag()));
-            }
-            compound.put("QuestRequirements", reqList);
+            compound.put("QuestRequirements", writeItemStacks(this.questRequirements));
         }
 
         if (this.targetEntity != null) {
@@ -436,13 +422,15 @@ public class Quest {
         compound.putInt("QuestTargetCount", this.questTargetCount);
         compound.putInt("QuestCurrentTargetCount", this.questCurrentTargetCount);
         compound.putInt("QuestTime", this.questTime);
+        compound.putInt("QuestCurrentTime", this.questCurrentTime);
         compound.putBoolean("IsAcceptQuestEffects", this.isAcceptQuestEffects);
 
-        ListTag idList = new ListTag();
-        limitQuestIds.forEach(id -> idList.add(NbtUtils.createUUID(id)));
-        compound.put("LimitQuestIds", idList);
+        compound.put("LimitQuestIds", writeUuidList(limitQuestIds));
 
         compound.putBoolean("IsNeedCompletePreQuest", this.isNeedCompletePreQuest);
+
+        compound.put("ConflictQuestIds", writeUuidList(conflictQuestIds));
+        compound.putBoolean("IsConflictQuest", this.isConflictQuest);
 
         compound.putInt("NeedCompletionCount", this.needCompletionCount);
 
@@ -455,14 +443,15 @@ public class Quest {
 
     }
     public void loadNBTData(CompoundTag tag) {
-        this.questId = tag.hasUUID("QuestId") ? tag.getUUID("QuestId") : UUID.randomUUID();
+        resetLoadedCollections();
+        this.questId = tag.hasUUID("QuestId") ? tag.getUUID("QuestId") : null;
         this.questName = tag.contains("QuestName") ? tag.getString("QuestName") : "当前没有任务";
         this.questDescription = tag.contains("QuestDescription") ? tag.getString("QuestDescription") : "当前没有任务";
 
         if (tag.contains("QuestRewards")) {
             this.questRewards = new ArrayList<>();
             ListTag rewardList = tag.getList("QuestRewards", Tag.TAG_COMPOUND);
-            for (int i = 0; i < rewardList.size(); i++) {
+            for (int i = 0; i < Math.min(rewardList.size(), MAX_SERIALIZED_ITEM_ENTRIES); i++) {
                 questRewards.add(ItemStack.of(rewardList.getCompound(i)));
             }
         }
@@ -472,9 +461,7 @@ public class Quest {
         if (tag.contains("Repeatable")) {
             this.repeatable = tag.getBoolean("Repeatable");
         }
-        if (tag.contains("QuestType")) {
-            this.questType = QuestType.valueOf(tag.getString("QuestType"));
-        }
+        this.questType = readQuestType(tag);
         this.questRequirementsDescription = tag.contains("QuestRequirementsDescription") ? tag.getString("QuestRequirementsDescription") : "当前未接取任务";
         if (tag.hasUUID("QuestNpcId")) {
             this.questNpcId = tag.getUUID("QuestNpcId");
@@ -483,7 +470,7 @@ public class Quest {
         if (tag.contains("QuestRequirements")) {
             this.questRequirements = new ArrayList<>();
             ListTag reqList = tag.getList("QuestRequirements", Tag.TAG_COMPOUND);
-            for (int i = 0; i < reqList.size(); i++) {
+            for (int i = 0; i < Math.min(reqList.size(), MAX_SERIALIZED_ITEM_ENTRIES); i++) {
                 questRequirements.add(ItemStack.of(reqList.getCompound(i)));
             }
         }
@@ -524,9 +511,12 @@ public class Quest {
         if (tag.contains("QuestTime")) {
             this.questTime = tag.getInt("QuestTime");
         }
+        if (tag.contains("QuestCurrentTime")) {
+            this.questCurrentTime = tag.getInt("QuestCurrentTime");
+        }
         if (tag.contains("Effects")) {
             ListTag effectsList = tag.getList("Effects", Tag.TAG_COMPOUND);
-            for (int i = 0; i < effectsList.size(); i++) {
+            for (int i = 0; i < Math.min(effectsList.size(), MAX_SERIALIZED_EFFECT_ENTRIES); i++) {
                 CompoundTag effectTag = effectsList.getCompound(i);
                 effects.add(new QuestEffectEntry(
                         effectTag.getString("id"),
@@ -543,16 +533,19 @@ public class Quest {
         }
         this.limitQuestIds = new ArrayList<>();
         if (tag.contains("LimitQuestIds")) {
-            ListTag idList = tag.getList("LimitQuestIds", Tag.TAG_INT_ARRAY);
-            for (Tag value : idList) {
-                limitQuestIds.add(NbtUtils.loadUUID(value));
-            }
+            loadUuidList(tag.getList("LimitQuestIds", Tag.TAG_INT_ARRAY), limitQuestIds, "LimitQuestIds");
         }
         if (tag.contains("IsNeedCompletePreQuest")) {
             this.isNeedCompletePreQuest = tag.getBoolean("IsNeedCompletePreQuest");
         }
         if (tag.contains("NeedCompletionCount")){
             this.needCompletionCount = tag.getInt("NeedCompletionCount");
+        }
+        if (tag.contains("ConflictQuestIds")) {
+            loadUuidList(tag.getList("ConflictQuestIds", Tag.TAG_INT_ARRAY), conflictQuestIds, "ConflictQuestIds");
+        }
+        if (tag.contains("IsConflictQuest")) {
+            this.isConflictQuest = tag.getBoolean("IsConflictQuest");
         }
         if (tag.contains("SecondTargetEntity")) {
             this.secondTargetEntity = tag.getString("SecondTargetEntity");
@@ -566,9 +559,100 @@ public class Quest {
         if (tag.contains("Weight")) {
             this.weight = tag.getInt("Weight");
         }
+        sanitizeLoadedState();
     }
     public boolean isValid() {
         return this.questId != null && this.questNpcId != null;
+    }
+
+    private void resetLoadedCollections() {
+        questRewards = new ArrayList<>();
+        questRequirements = new ArrayList<>();
+        effects = new ArrayList<>();
+        limitQuestIds = new ArrayList<>();
+        conflictQuestIds = new ArrayList<>();
+        questType = QuestType.GATHER;
+        questName = "当前未接取任务";
+        questDescription = "当前未接取任务";
+        questRequirementsDescription = "当前未接取任务";
+        questNpcId = null;
+        acceptedBy = null;
+        targetEntity = "";
+        secondTargetEntity = "";
+        needRefresh = false;
+        repeatable = false;
+        isEntityTag = false;
+        isSecondEntityTag = false;
+        questGenerateTarget = false;
+        isComplete = false;
+        isAcceptQuestEffects = false;
+        isNeedCompletePreQuest = false;
+        isConflictQuest = false;
+        requiredKills = 0;
+        currentKills = 0;
+        secondRequiredKills = 0;
+        secondCurrentKills = 0;
+        questDay = 0;
+        questCurrentDay = 0;
+        questTargetCount = 0;
+        questCurrentTargetCount = 0;
+        questTime = 0;
+        questCurrentTime = 0;
+        needCompletionCount = 0;
+        weight = 1;
+    }
+
+    private QuestType readQuestType(CompoundTag tag) {
+        if (!tag.contains("QuestType", Tag.TAG_STRING)) {
+            return QuestType.GATHER;
+        }
+        String value = tag.getString("QuestType");
+        try {
+            return QuestType.valueOf(value.toUpperCase(Locale.ROOT));
+        } catch (IllegalArgumentException exception) {
+            ChangShengJue.LOGGER.warn("忽略任务存档中未知的 QuestType: {}", value);
+            return QuestType.GATHER;
+        }
+    }
+
+    private static void loadUuidList(ListTag source, List<UUID> target, String fieldName) {
+        int limit = Math.min(source.size(), MAX_SERIALIZED_UUID_ENTRIES);
+        for (int i = 0; i < limit; i++) {
+            try {
+                target.add(NbtUtils.loadUUID(source.get(i)));
+            } catch (IllegalArgumentException exception) {
+                ChangShengJue.LOGGER.warn("忽略任务存档中无效的 {} UUID", fieldName);
+            }
+        }
+    }
+
+    private void sanitizeLoadedState() {
+        requiredKills = clampCounter(requiredKills);
+        currentKills = Math.min(clampCounter(currentKills), requiredKills);
+        secondRequiredKills = clampCounter(secondRequiredKills);
+        secondCurrentKills = Math.min(clampCounter(secondCurrentKills), secondRequiredKills);
+        questDay = clampCounter(questDay);
+        questCurrentDay = Math.min(clampCounter(questCurrentDay), questDay);
+        questTargetCount = clampCounter(questTargetCount);
+        questCurrentTargetCount = Math.min(clampCounter(questCurrentTargetCount), questTargetCount);
+        questTime = clampCounter(questTime);
+        questCurrentTime = clampCounter(questCurrentTime);
+        needCompletionCount = clampCounter(needCompletionCount);
+        weight = Math.max(0, Math.min(weight, MAX_QUEST_COUNTER));
+        questRewards.forEach(Quest::clampStackCount);
+        questRequirements.forEach(Quest::clampStackCount);
+        effects.replaceAll(effect -> new QuestEffectEntry(
+                effect.effectId(), clampCounter(effect.duration()),
+                Math.max(0, Math.min(effect.amplifier(), 255)),
+                effect.isAmbient(), effect.showParticles(), effect.showIcon()));
+    }
+
+    private static int clampCounter(int value) {
+        return Math.max(0, Math.min(value, MAX_QUEST_COUNTER));
+    }
+
+    private static void clampStackCount(ItemStack stack) {
+        stack.setCount(clampCounter(stack.getCount()));
     }
     // Getter 和 Setter 方法
     public UUID getQuestId() {
@@ -592,7 +676,7 @@ public class Quest {
     }
 
     public void setQuestRewards(List<ItemStack> questRewards) {
-        this.questRewards = questRewards;
+        this.questRewards = boundedItemStacks(questRewards);
     }
 
     public boolean isNeedRefresh() {
@@ -712,7 +796,7 @@ public class Quest {
     }
 
     public void setEffects(List<QuestEffectEntry> effects) {
-        this.effects = effects != null ? effects : new ArrayList<>();
+        this.effects = boundedList(effects, MAX_SERIALIZED_EFFECT_ENTRIES);
     }
 
     public boolean isAcceptQuestEffects() {
@@ -760,7 +844,7 @@ public class Quest {
     }
 
     public void setConflictQuestIds(List<UUID> conflictQuestIds) {
-        this.conflictQuestIds = conflictQuestIds;
+        this.conflictQuestIds = boundedList(conflictQuestIds, MAX_SERIALIZED_UUID_ENTRIES);
     }
 
     public List<UUID> getLimitQuestIds() {
@@ -815,16 +899,24 @@ public class Quest {
     }
 
     private boolean matchesEntityTag(Entity entity, String targetEntity) {
+        if (targetEntity == null || !targetEntity.startsWith("#")) {
+            return false;
+        }
+        ResourceLocation tagId = ResourceLocation.tryParse(targetEntity.substring(1));
+        if (tagId == null) {
+            return false;
+        }
         TagKey<EntityType<?>> tag = TagKey.create(
             ForgeRegistries.ENTITY_TYPES.getRegistryKey(),
-            new ResourceLocation(targetEntity.substring(1)) // 去掉#
+            tagId
         );
         return entity.getType().is(tag);
     }
 
     private boolean matchesEntityId(Entity entity, String targetEntity) {
+        ResourceLocation expectedId = targetEntity == null ? null : ResourceLocation.tryParse(targetEntity);
         ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entity.getType());
-        return entityId.toString().equals(targetEntity);
+        return expectedId != null && expectedId.equals(entityId);
     }
 
     /**
@@ -859,7 +951,7 @@ public class Quest {
     }
     // 检查是否从未接受过所有前置任务
     private boolean checkNeverAcceptedPrerequisites(PlayerQuestCapability capability) {
-        return limitQuestIds.stream().anyMatch(capability::isQuestAccepted);
+        return limitQuestIds.stream().anyMatch(capability::hasNeverAcceptedQuest);
     }
 
     // 给予玩家奖励
@@ -877,15 +969,17 @@ public class Quest {
                 for (AbstractionInternalkungfu kungFu : kungFus) {
                     if (kungFu.getLevel() < kungFu.getMaxLevel() && kungFu.isComprehend()) {
                         for (ItemStack reward : questRewards) {
-                            if (reward.getItem() instanceof InternalkungfuXp internalkungfuXp) {
-                                internalkungfuXp.use(player.level(),player, player.getUsedItemHand());
+                            if (reward.getItem() instanceof InternalkungfuXp) {
+                                if (InternalkungfuXp.grantExperience(player, 5) > 0) {
+                                    InternalkungfuXp.playExperienceParticle(player);
+                                }
                                 return;
                             }
                         }
                     } else {
                         for (ItemStack reward : questRewards) {
                             if (!(reward.getItem() instanceof InternalkungfuXp)) {
-                                player.getInventory().add(reward.copy());
+                                giveOrDrop(player, reward);
                                 return;
                             }
                         }
@@ -906,15 +1000,17 @@ public class Quest {
                 for (AbstractionExternalKunfu kungFu : kungFus) {
                     if (kungFu.getLevel() < kungFu.getMaxLevel() && kungFu.isAttackReday()) {
                         for (ItemStack reward : questRewards) {
-                            if (reward.getItem() instanceof ExternalKungfuXp externalKungfuXp) {
-                                externalKungfuXp.use(player.level(),player, player.getUsedItemHand());
+                            if (reward.getItem() instanceof ExternalKungfuXp) {
+                                if (ExternalKungfuXp.grantExperience(player, 5) > 0) {
+                                    ExternalKungfuXp.playExperienceParticle(player);
+                                }
                                 return;
                             }
                         }
                     } else {
                         for (ItemStack reward : questRewards) {
                             if (!(reward.getItem() instanceof ExternalKungfuXp)) {
-                                player.getInventory().add(reward.copy());
+                                giveOrDrop(player, reward);
                                 return;
                             }
                         }
@@ -924,7 +1020,7 @@ public class Quest {
         }else {
             for (ItemStack reward : questRewards) {
                 if (!(reward.getItem() instanceof ExternalKungfuXp) && !(reward.getItem() instanceof InternalkungfuXp)) {
-                    player.getInventory().add(reward.copy());
+                    giveOrDrop(player, reward);
                 }
             }
         }
@@ -1004,14 +1100,21 @@ public class Quest {
         }
     }
 
+    private static void giveOrDrop(Player player, ItemStack reward) {
+        ItemStack remaining = reward.copy();
+        player.getInventory().add(remaining);
+        if (!remaining.isEmpty()) {
+            player.drop(remaining, false);
+        }
+    }
+
     //应用效果方法
     public void applyEffects(Player player) {
         if (player.level().isClientSide) return;
 
         for (QuestEffectEntry effect : effects) {
-            MobEffect mobEffect = ForgeRegistries.MOB_EFFECTS.getValue(
-                    new ResourceLocation(effect.effectId())
-            );
+            ResourceLocation effectId = effect.effectId() == null ? null : ResourceLocation.tryParse(effect.effectId());
+            MobEffect mobEffect = effectId == null ? null : ForgeRegistries.MOB_EFFECTS.getValue(effectId);
             if (mobEffect != null) {
                 player.addEffect(new MobEffectInstance(
                         mobEffect,
@@ -1027,7 +1130,7 @@ public class Quest {
 
     private @NotNull ListTag getTags() {
         ListTag effectsList = new ListTag();
-        for (QuestEffectEntry effect : effects) {
+        for (QuestEffectEntry effect : boundedList(effects, MAX_SERIALIZED_EFFECT_ENTRIES)) {
             CompoundTag effectTag = new CompoundTag();
             effectTag.putString("id", effect.effectId());
             effectTag.putInt("duration", effect.duration());
@@ -1038,6 +1141,49 @@ public class Quest {
             effectsList.add(effectTag);
         }
         return effectsList;
+    }
+
+    private static List<ItemStack> boundedItemStacks(List<ItemStack> stacks) {
+        List<ItemStack> bounded = new ArrayList<>();
+        if (stacks == null) {
+            return bounded;
+        }
+        for (ItemStack stack : stacks) {
+            if (bounded.size() >= MAX_SERIALIZED_ITEM_ENTRIES) {
+                break;
+            }
+            if (stack == null || stack.isEmpty() || stack.getCount() <= 0) {
+                continue;
+            }
+            ItemStack copy = stack.copy();
+            copy.setCount(Math.min(copy.getCount(), MAX_SERIALIZED_ITEM_COUNT));
+            bounded.add(copy);
+        }
+        return bounded;
+    }
+
+    private static <T> List<T> boundedList(List<T> values, int limit) {
+        if (values == null || values.isEmpty()) {
+            return new ArrayList<>();
+        }
+        return values.stream().filter(Objects::nonNull).limit(limit)
+                .collect(java.util.stream.Collectors.toCollection(ArrayList::new));
+    }
+
+    private static ListTag writeItemStacks(List<ItemStack> stacks) {
+        ListTag result = new ListTag();
+        for (ItemStack stack : boundedItemStacks(stacks)) {
+            result.add(stack.save(new CompoundTag()));
+        }
+        return result;
+    }
+
+    private static ListTag writeUuidList(List<UUID> ids) {
+        ListTag result = new ListTag();
+        for (UUID id : boundedList(ids, MAX_SERIALIZED_UUID_ENTRIES)) {
+            result.add(NbtUtils.createUUID(id));
+        }
+        return result;
     }
 
     @Override

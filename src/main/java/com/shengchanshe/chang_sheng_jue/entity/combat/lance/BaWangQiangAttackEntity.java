@@ -19,9 +19,7 @@ public class BaWangQiangAttackEntity extends Projectile {
 
     @Override
     public void tick() {
-        if (!firstTick) {
-            firstTick = true;
-        }
+        super.tick();
         if (tickCount >= 8){
             discard();
         }

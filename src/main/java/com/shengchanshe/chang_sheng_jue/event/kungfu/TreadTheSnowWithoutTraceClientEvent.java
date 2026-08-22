@@ -62,4 +62,8 @@ public class TreadTheSnowWithoutTraceClientEvent {
             }
         }
     }
+
+    public static void reset() {
+        jumpCount = 0;
+    }
 }

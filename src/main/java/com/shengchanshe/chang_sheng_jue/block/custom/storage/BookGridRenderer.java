@@ -113,7 +113,7 @@ public class BookGridRenderer implements BlockEntityRenderer<BookGridEntity> {
         ItemStack storedItem = blockEntity.getItem(0);
         if (storedItem.isEmpty() || storedItem.getItem() instanceof TieredItem) return;
 
-        int itemCount = storedItem.getCount();
+        int itemCount = StoredItemRenderHelper.visibleCount(storedItem);
 
         poseStack.pushPose();
 

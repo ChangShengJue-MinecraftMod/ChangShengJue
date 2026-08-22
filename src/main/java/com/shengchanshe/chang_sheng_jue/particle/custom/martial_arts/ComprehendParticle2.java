@@ -34,16 +34,13 @@ public class ComprehendParticle2 extends SimpleAnimatedParticle {
     @Override
     public void tick() {
         super.tick();
-        if (this.age++ >= this.lifetime) {
-            this.remove();
-        } else {
-            float f = (float)this.age / (float)this.lifetime;
-            this.friction = this.friction * f;
-            float red = this.rCol + f * (endRed - 0.05F);
-            float green = this.gCol + f * (endGreen - this.gCol);
-            float blue = this.bCol + f * (endBlue - 0.05F);
-            this.setColor(red, green, blue);
-        }
+        if (this.age >= this.lifetime) return;
+        float f = (float)this.age / (float)this.lifetime;
+        this.friction = this.friction * f;
+        float red = this.rCol + f * (endRed - 0.05F);
+        float green = this.gCol + f * (endGreen - this.gCol);
+        float blue = this.bCol + f * (endBlue - 0.05F);
+        this.setColor(red, green, blue);
     }
 
     @OnlyIn(Dist.CLIENT)

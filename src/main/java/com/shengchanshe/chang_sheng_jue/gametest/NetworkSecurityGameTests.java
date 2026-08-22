@@ -11,9 +11,11 @@ import com.shengchanshe.chang_sheng_jue.block.custom.tailoringcase.TailoringCase
 import com.shengchanshe.chang_sheng_jue.block.custom.workbench.WoodworkingBenchEntity;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.brick_kiln.BrickKilnMenu;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.forgeblock.ForgeBlockMenu;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.plaque.PlaqueMenu;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.plaque.UpdatePlaqueTextPacket;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.tailoringcase.TailoringCaseMenu;
 import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.workbench.WoodworkingBenchMenu;
+import com.shengchanshe.chang_sheng_jue.cilent.gui.screens.wuxia.playerquest.PlayerQuestMenu;
 import com.shengchanshe.chang_sheng_jue.network.ServerPacketGuard;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.BrickKilnSyncRecipePacket;
 import com.shengchanshe.chang_sheng_jue.network.packet.gui.craftitem.ForgeSyncRecipePacket;
@@ -102,6 +104,20 @@ public final class NetworkSecurityGameTests {
         } finally {
             buffer.release();
         }
+        helper.succeed();
+    }
+
+    @GameTest(template = "empty")
+    public static void playerQuestActionsAreContextBoundAndRateLimited(GameTestHelper helper) {
+        ServerPlayer player = createUnconnectedServerPlayer(helper);
+        player.containerMenu = new PlayerQuestMenu(1, player.getInventory(), player);
+        helper.assertTrue(PlayerQuestPacketGuard.allowAction(player),
+                "first action from the player quest menu must be accepted");
+        helper.assertTrue(!PlayerQuestPacketGuard.allowAction(player),
+                "repeated action in the cooldown window must be rejected");
+        player.containerMenu = player.inventoryMenu;
+        helper.assertTrue(!PlayerQuestPacketGuard.allowAction(player),
+                "action outside the player quest menu must be rejected");
         helper.succeed();
     }
 
@@ -238,6 +254,56 @@ public final class NetworkSecurityGameTests {
         forge.getItemHandler().setStackInSlot(0, new ItemStack(Items.DIAMOND));
         helper.assertTrue(forgeMenu.quickMoveStack(player, 36).isEmpty(), "forge ghost slot was quick-moved");
         helper.assertTrue(forge.getItemHandler().getStackInSlot(0).is(Items.DIAMOND), "forge ghost slot changed");
+        helper.succeed();
+    }
+
+    @GameTest(template = "empty")
+    public static void invalidMenuBlockEntitiesUseSafeEmptyMirrors(GameTestHelper helper) {
+        ServerPlayer player = createUnconnectedServerPlayer(helper);
+        BlockPos wrongTypePos = helper.absolutePos(BlockPos.ZERO);
+        helper.setBlock(BlockPos.ZERO, ChangShengJueBlocks.FORGE_BLOCK.get());
+        BlockPos missingPos = wrongTypePos.offset(2, 0, 0);
+
+        BrickKilnMenu kiln = withMenuBuffer(wrongTypePos,
+                buffer -> new BrickKilnMenu(1, player.getInventory(), buffer));
+        TailoringCaseMenu tailoring = withMenuBuffer(wrongTypePos,
+                buffer -> new TailoringCaseMenu(2, player.getInventory(), buffer));
+        WoodworkingBenchMenu woodworking = withMenuBuffer(wrongTypePos,
+                buffer -> new WoodworkingBenchMenu(3, player.getInventory(), buffer));
+        ForgeBlockMenu forge = withMenuBuffer(missingPos,
+                buffer -> new ForgeBlockMenu(4, player.getInventory(), buffer));
+        PlaqueMenu plaque = withMenuBuffer(wrongTypePos,
+                buffer -> new PlaqueMenu(5, player.getInventory(), buffer));
+
+        helper.assertTrue(!kiln.hasValidBackingEntity() && kiln.slots.size() == 46,
+                "invalid kiln menu did not expose a safe 36+10 slot mirror");
+        helper.assertTrue(!tailoring.hasValidBackingEntity() && tailoring.slots.size() == 46,
+                "invalid tailoring menu did not expose a safe 36+10 slot mirror");
+        helper.assertTrue(!woodworking.hasValidBackingEntity() && woodworking.slots.size() == 46,
+                "invalid woodworking menu did not expose a safe 36+10 slot mirror");
+        helper.assertTrue(!forge.hasValidBackingEntity() && forge.slots.size() == 46,
+                "invalid forge menu did not expose a safe 36+10 slot mirror");
+        helper.assertTrue(!plaque.hasValidBackingEntity() && !plaque.stillValid(player),
+                "invalid plaque menu remained interactive");
+
+        player.getInventory().setItem(0, new ItemStack(Items.DIAMOND));
+        helper.assertTrue(kiln.quickMoveStack(player, 0).isEmpty()
+                        && tailoring.quickMoveStack(player, 0).isEmpty()
+                        && woodworking.quickMoveStack(player, 0).isEmpty()
+                        && forge.quickMoveStack(player, 0).isEmpty(),
+                "invalid menu moved a player item");
+        helper.assertTrue(player.getInventory().getItem(0).is(Items.DIAMOND),
+                "invalid menu changed the player inventory");
+        helper.assertTrue(kiln.getCurrentRecipe() == null && kiln.getCraftTimes() == 0
+                        && !kiln.craftItem(player),
+                "invalid kiln mirror exposed mutable crafting state");
+        helper.assertTrue(tailoring.getCurrentRecipe() == null
+                        && woodworking.getCurrentRecipe() == null && woodworking.getCraftTimes() == 0
+                        && !woodworking.craftItem(player)
+                        && forge.getCurrentRecipe() == null && !forge.craftItem(player),
+                "invalid crafting mirror exposed mutable recipe state");
+        helper.assertTrue(plaque.getTextCapacity() == 0 && plaque.getPlaqueText().isEmpty(),
+                "invalid plaque mirror exposed world text");
         helper.succeed();
     }
 
@@ -543,6 +609,16 @@ public final class NetworkSecurityGameTests {
                 return true;
             }
         };
+    }
+
+    private static <T> T withMenuBuffer(BlockPos pos, java.util.function.Function<FriendlyByteBuf, T> factory) {
+        FriendlyByteBuf buffer = new FriendlyByteBuf(Unpooled.buffer());
+        try {
+            buffer.writeBlockPos(pos);
+            return factory.apply(buffer);
+        } finally {
+            buffer.release();
+        }
     }
 
     private static <B extends BlockEntity> B placeEntity(GameTestHelper helper, BlockPos relativePos,

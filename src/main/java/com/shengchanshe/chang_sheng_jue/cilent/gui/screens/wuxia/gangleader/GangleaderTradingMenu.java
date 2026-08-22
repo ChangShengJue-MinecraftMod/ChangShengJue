@@ -198,7 +198,7 @@ public class GangleaderTradingMenu extends AbstractContainerMenu {
     }
 
     public void tryMoveItems(int index) {
-        if (this.getOffers().size() > index) {
+        if (index >= 0 && index < this.getOffers().size()) {
             ItemStack itemstack = this.tradeContainer.getItem(PAYMENT1_SLOT);
             if (!itemstack.isEmpty()) {
                 if (!this.moveItemStackTo(itemstack, INV_SLOT_START, USE_ROW_SLOT_END, true)) {

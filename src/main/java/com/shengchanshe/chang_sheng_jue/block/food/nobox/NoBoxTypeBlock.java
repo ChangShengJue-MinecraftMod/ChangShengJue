@@ -24,6 +24,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class NoBoxTypeBlock extends TypeBlock {
     public int fed;
+    private final float instanceFedpro;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     protected static final VoxelShape PLATE_SHAPE = Block.box(0D, 0D, 0D, 0D, 0D, 0D);
 
@@ -36,17 +37,25 @@ public class NoBoxTypeBlock extends TypeBlock {
         super(pProperties, fed, fedpro);
         this.fed = fed;
         this.fedpro = fedpro;
+        this.instanceFedpro = fedpro;
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     protected InteractionResult addFed(Level level, BlockPos pos, BlockState state, Player player, InteractionHand hand, int fed, float fedpro) {
         if (player.getFoodData().getFoodLevel() < 20 || player.isCreative()) {
-            player.getFoodData().eat(this.fed, this.fedpro);
+            player.getFoodData().eat(this.fed, this.instanceFedpro);
             level.destroyBlock(pos, false);
             level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;
+    }
+
+    @Override
+    protected InteractionResult getClientInteractionResult(BlockState state, Player player, InteractionHand hand) {
+        return player.getFoodData().getFoodLevel() < 20 || player.isCreative()
+                ? InteractionResult.SUCCESS
+                : InteractionResult.PASS;
     }
 
     @Override

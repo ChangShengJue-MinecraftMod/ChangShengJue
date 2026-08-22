@@ -9,6 +9,7 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.inventory.ContainerData;
@@ -93,8 +94,6 @@ public class ChangShengJueLoomBlockEntity extends BlockEntity implements GeoBloc
 
     public boolean addItem(ItemStack itemStack){
         for (int i = 0; i <  this.inventory.getSlots(); i++) {
-            System.out.println(this.inventory.getSlots());
-            System.out.println(i);
             ItemStack stackInSlot = this.inventory.getStackInSlot(i);
             if(stackInSlot.isEmpty()){
                 this.inventory.setStackInSlot(i,itemStack.split(1));
@@ -115,7 +114,7 @@ public class ChangShengJueLoomBlockEntity extends BlockEntity implements GeoBloc
     public void load(CompoundTag pTag) {
         super.load(pTag);
         this.inventory.deserializeNBT(pTag.getCompound("Inventory"));
-        progress = pTag.getInt("LoomBlockProgress");
+        progress = Mth.clamp(pTag.getInt("LoomBlockProgress"), 0, maxProgress);
     }
 
     @Override
@@ -167,7 +166,10 @@ public class ChangShengJueLoomBlockEntity extends BlockEntity implements GeoBloc
                 this.resrtProgress();
             }
         }else {
-            this.resrtProgress();
+            if (this.progress != 0) {
+                this.resrtProgress();
+                this.setChanged();
+            }
         }
     }
 

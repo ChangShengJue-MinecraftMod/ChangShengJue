@@ -20,9 +20,7 @@ public class GoldenBlackKnifeMethodEntity extends Projectile{
 
     @Override
     public void tick() {
-        if (!firstTick) {
-            firstTick = true;
-        }
+        super.tick();
         if (tickCount >= 9){
             discard();
         }

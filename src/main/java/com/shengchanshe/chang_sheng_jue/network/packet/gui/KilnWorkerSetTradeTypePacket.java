@@ -27,20 +27,8 @@ public class KilnWorkerSetTradeTypePacket {
         ctx.get().enqueueWork(() -> {
             ServerPlayer player = ctx.get().getSender();
             ServerPacketGuard.kilnWorkerTrader(player).ifPresent(worker -> {
-                    // 保存当前补货状态
-                    long lastRestockTime = worker.getLastRestockGameTime();
-                    int restocksToday = worker.getNumberOfRestocksToday();
-                    long lastRestockCheckDayTime = worker.getLastRestockCheckDayTime();
-
-                    // 更新交易类型
-                    worker.setCurrentTradeType(packet.tradeType);
-
-                    // 恢复补货状态
-                    worker.setLastRestockGameTime(lastRestockTime);
-                    worker.setNumberOfRestocksToday(restocksToday);
-                    worker.setLastRestockCheckDayTime(lastRestockCheckDayTime);
-
-                    // 发送更新
+                if (ServerPacketGuard.allowKilnTradeUpdate(player)
+                        && worker.changeCurrentTradeType(packet.tradeType)) {
                     player.sendMerchantOffers(
                             player.containerMenu.containerId,
                             worker.getOffers(),
@@ -49,6 +37,7 @@ public class KilnWorkerSetTradeTypePacket {
                             worker.showProgressBar(),
                             worker.canRestock()
                     );
+                }
             });
         });
         ctx.get().setPacketHandled(true);

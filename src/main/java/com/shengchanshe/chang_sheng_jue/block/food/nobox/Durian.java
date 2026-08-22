@@ -33,7 +33,7 @@ public class Durian extends NoBoxTypeBlock{
         ItemStack itemstack = player.getItemInHand(hand);
         if(state.getBlock()==ChangShengJueBlocks.DURIAN.get()){
             if(itemstack.getItem() instanceof AxeItem){
-                itemstack.hurtAndBreak(1, player, (p) -> {p.broadcastBreakEvent(player.getUsedItemHand());});
+                itemstack.hurtAndBreak(1, player, p -> p.broadcastBreakEvent(hand));
 
                 // 使用level.random生成随机数
                 int dropCount = level.getRandom().nextInt(5) + 3; // 生成3~7的随机数
@@ -50,6 +50,11 @@ public class Durian extends NoBoxTypeBlock{
             }
             return InteractionResult.SUCCESS;
         }
+        return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    protected InteractionResult getClientInteractionResult(BlockState state, Player player, InteractionHand hand) {
         return InteractionResult.SUCCESS;
     }
 

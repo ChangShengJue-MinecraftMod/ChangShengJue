@@ -273,6 +273,7 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
                 button -> menu.previousPage(),
                 CommonComponents.EMPTY,0xFFFFFF,0xFFFFFF,1.0F,1.5F,1.5F,1.6F
         ));
+        this.onPageButton.setMessage(Component.translatable("spectatorMenu.previous_page"));
 
         this.nextPageButton = this.addRenderableWidget(new TexturedButtonWithText(
                 pageButtonX + 112, pageButtonY, PAGE_BUTTON_WIDTH, PAGE_BUTTON_HEIGHT,
@@ -281,6 +282,7 @@ public class GangQuestsScreen extends AbstractContainerScreen<GangQuestsMenu> {
                 button -> menu.nextPage(),
                 CommonComponents.EMPTY,0xFFFFFF,0xFFFFFF,1.0F,1.5F,1.5F,1.6F
         ));
+        this.nextPageButton.setMessage(Component.translatable("spectatorMenu.next_page"));
     }
     // 处理接受按钮点击
     private void handleActionButtonClick(Button button) {

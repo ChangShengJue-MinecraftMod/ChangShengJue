@@ -7,6 +7,7 @@ import com.shengchanshe.chang_sheng_jue.cilent.setup.ClientMenuRegistrar;
 import com.shengchanshe.chang_sheng_jue.cilent.setup.ClientRendererRegistrar;
 import com.shengchanshe.chang_sheng_jue.cilent.setup.ClientRenderTypeRegistrar;
 import com.shengchanshe.chang_sheng_jue.item.ChangShengJueItems;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
@@ -87,11 +88,14 @@ public class ClientSetup {
     );
 
     public static void clientSetup(final FMLClientSetupEvent event) {
-        ClientPacketHandlers.register();
-        ClientRenderTypeRegistrar.register();
-        ClientColorRegistrar.register();
-        ClientMenuRegistrar.register();
-        ClientRendererRegistrar.register();
+        event.enqueueWork(() -> {
+            TooltipInput.installShiftStateSupplier(Screen::hasShiftDown);
+            ClientPacketHandlers.register();
+            ClientRenderTypeRegistrar.register();
+            ClientColorRegistrar.register();
+            ClientMenuRegistrar.register();
+            ClientRendererRegistrar.register();
+        });
         ClientItemPropertyRegistrar.register(event);
     }
 }

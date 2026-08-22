@@ -1,23 +1,36 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
+  "type": "forge:conditional",
+  "recipes": [
     {
-        "item": "minecraft:paper"
-    },
-    {
-        "item": "minecraft:paper"
-    },
-    {
-        "item": "minecraft:cornflower"
-    },
-    {
-        "item": "minecraft:string"
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "patchouli"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shapeless",
+        "ingredients": [
+          {
+            "item": "minecraft:paper"
+          },
+          {
+            "item": "minecraft:paper"
+          },
+          {
+            "item": "minecraft:cornflower"
+          },
+          {
+            "item": "minecraft:string"
+          }
+        ],
+        "result": {
+          "item": "patchouli:guide_book",
+          "nbt": {
+            "patchouli:book": "chang_sheng_jue:wufanglu"
+          }
+        }
+      }
     }
-  ],
-  "result": {
-    "item": "patchouli:guide_book",
-    "nbt": {
-      "patchouli:book": "chang_sheng_jue:wufanglu"
-    }
-  }
+  ]
 }

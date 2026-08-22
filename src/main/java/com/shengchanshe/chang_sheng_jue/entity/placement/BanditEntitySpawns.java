@@ -1,5 +1,6 @@
 package com.shengchanshe.chang_sheng_jue.entity.placement;
 
+import com.shengchanshe.chang_sheng_jue.ChangShengJueConfig;
 import com.shengchanshe.chang_sheng_jue.entity.ChangShengJueEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -19,6 +20,7 @@ public class BanditEntitySpawns {
                 SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (type, level, spawnType, pos, random) -> {
+                    if (!ChangShengJueConfig.ENABLE_VILLAIN_SPAWN.get()) return false;
                     // 仅在村庄附近黑暗处生成
                     if (!(level instanceof ServerLevel serverLevel)) return false;
                     return isNearVillage(serverLevel, pos) && Monster.checkMonsterSpawnRules(type, level, spawnType, pos, random);},

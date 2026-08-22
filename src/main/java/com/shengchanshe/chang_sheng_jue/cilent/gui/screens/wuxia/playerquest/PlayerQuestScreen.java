@@ -89,6 +89,7 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 (button) -> this.menu.prevPage(),
                 Component.empty()
         ));
+        peviousButton.setMessage(Component.translatable("spectatorMenu.previous_page"));
 
         nextButton = this.addRenderableWidget(new TexturedButtonWithLabel(
                 arrowButtonX + ARROW_BUTTON_WIDTH + (ARROW_BUTTON_SPACING * 2) - 15, arrowButtonY,
@@ -98,6 +99,7 @@ public class PlayerQuestScreen extends AbstractContainerScreen<PlayerQuestMenu> 
                 (button) -> this.menu.nextPage(),
                 Component.empty()
         ));
+        nextButton.setMessage(Component.translatable("spectatorMenu.next_page"));
 
         actionButton = this.addRenderableWidget(new TexturedButtonWithLabel(
                 buttonX, buttonY, BUTTON_WIDTH, BUTTON_HEIGHT,

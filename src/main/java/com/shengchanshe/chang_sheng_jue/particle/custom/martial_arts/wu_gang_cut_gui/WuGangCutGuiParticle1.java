@@ -110,10 +110,8 @@ public class WuGangCutGuiParticle1 extends SimpleAnimatedParticle {
     @Override
     public void tick() {
         super.tick();
-        if (this.age++ >= this.lifetime) {
-            this.remove();
-        } else {
-            float f = (float)this.age / (float)this.lifetime;
+        if (this.age >= this.lifetime) return;
+        float f = (float)this.age / (float)this.lifetime;
             // 计算颜色变化
             float red = this.rCol + f * (endRed - 1.0F);
             float green = this.gCol + f * (endGreen - 1.0F);
@@ -124,8 +122,8 @@ public class WuGangCutGuiParticle1 extends SimpleAnimatedParticle {
             int numberOfPoints = 2; // 生成数量
             for (int i = 0; i < numberOfPoints; i++) {
                 // 随机生成一个点
-                double phi = Math.random() * Math.PI * 2; // 随机生成方位角
-                double costheta = Math.random() * 2 - 1; // 随机生成余弦值
+                double phi = this.random.nextDouble() * Math.PI * 2; // 随机生成方位角
+                double costheta = this.random.nextDouble() * 2 - 1; // 随机生成余弦值
                 double theta = Math.acos(costheta); // 计算天顶角
                 double dx = radius * Math.sin(theta) * Math.cos(phi); // 计算X坐标
                 double dy = radius * Math.sin(theta) * Math.sin(phi); // 计算Y坐标
@@ -139,7 +137,6 @@ public class WuGangCutGuiParticle1 extends SimpleAnimatedParticle {
 
                 // 生成粒子并设置速度
                 this.level.addParticle(ChangShengJueParticles.WU_GANG_CUT_GUI_PARTICLE.get(), this.xo + dx + 0.5, this.yo + 0.1 + dy, this.zo + dz + 0.5, speedX, speedY, speedZ);
-            }
         }
     }
 

@@ -110,16 +110,12 @@ public class WuGangCutGuiParticle extends SimpleAnimatedParticle {
     @Override
     public void tick() {
         super.tick();
-        if (this.age++ >= this.lifetime) {
-            this.remove();
-        } else {
-            this.xd += this.accelerationX; // 每帧加上x轴加速度
-            this.yd += this.accelerationY; // 每帧加上y轴加速度
-            this.zd += this.accelerationZ; // 每帧加上z轴加速度
-            // 移动粒子
-            this.move(xd, yd, zd);
+        if (this.age >= this.lifetime) return;
+        this.xd += this.accelerationX; // 每帧加上x轴加速度
+        this.yd += this.accelerationY; // 每帧加上y轴加速度
+        this.zd += this.accelerationZ; // 每帧加上z轴加速度
 
-            float f = (float)this.age / (float)this.lifetime;
+        float f = (float)this.age / (float)this.lifetime;
             // 让摩擦力随着寿命的减少而减少
             this.friction = this.friction * f;
             // 计算颜色变化
@@ -127,8 +123,7 @@ public class WuGangCutGuiParticle extends SimpleAnimatedParticle {
             float green = this.gCol + f * (endGreen - 1.0F);
             float blue = this.bCol + f * (endBlue + 0.05F);
             // 设置当前颜色
-            this.setColor(red, green, blue);
-        }
+        this.setColor(red, green, blue);
     }
 
     @OnlyIn(Dist.CLIENT)

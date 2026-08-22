@@ -50,11 +50,15 @@ public class BlueAndWhitePorcelainFlowerPots extends BaseEntityBlock {
             boolean isPlaceable = ITEMS.contains(itemStack.getItem()) || ITEMTAGS.stream().anyMatch(itemStack::is);
             ItemStack itemStack2 = entity.getPlant(Slot.PLANT);
             if (isPlaceable && itemStack2.isEmpty()) {
-                this.setPlant(entity, Slot.PLANT, pPlayer, itemStack);
+                if (!pLevel.isClientSide) {
+                    this.setPlant(entity, Slot.PLANT, pPlayer, itemStack);
+                }
             } else {
                 if (!itemStack2.isEmpty()) {
-                    Block.popResource(pLevel, pPos, itemStack2.copyWithCount(1));
-                    this.setPlant(entity, Slot.PLANT, pPlayer, ItemStack.EMPTY);
+                    if (!pLevel.isClientSide) {
+                        Block.popResource(pLevel, pPos, itemStack2.copyWithCount(1));
+                        this.setPlant(entity, Slot.PLANT, pPlayer, ItemStack.EMPTY);
+                    }
                 } else {
                     return InteractionResult.PASS;
                 }
@@ -82,14 +86,16 @@ public class BlueAndWhitePorcelainFlowerPots extends BaseEntityBlock {
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (!pState.is(pNewState.getBlock())) {
-            BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-            if (blockentity instanceof BlueAndWhitePorcelainFlowerPotsEntity) {
-                for (Slot slot : Slot.values()) {
-                    ItemStack itemstack = ((BlueAndWhitePorcelainFlowerPotsEntity) blockentity).getPlant(slot).copyWithCount(1);
-                    if (!itemstack.isEmpty()) {
-                        ItemEntity itementity = new ItemEntity(pLevel, (double) pPos.getX() + 0.5D, pPos.getY() + 1, (double) pPos.getZ() + 0.5D, itemstack);
-                        itementity.setDefaultPickUpDelay();
-                        pLevel.addFreshEntity(itementity);
+            if (!pLevel.isClientSide) {
+                BlockEntity blockentity = pLevel.getBlockEntity(pPos);
+                if (blockentity instanceof BlueAndWhitePorcelainFlowerPotsEntity) {
+                    for (Slot slot : Slot.values()) {
+                        ItemStack itemstack = ((BlueAndWhitePorcelainFlowerPotsEntity) blockentity).getPlant(slot).copyWithCount(1);
+                        if (!itemstack.isEmpty()) {
+                            ItemEntity itementity = new ItemEntity(pLevel, (double) pPos.getX() + 0.5D, pPos.getY() + 1, (double) pPos.getZ() + 0.5D, itemstack);
+                            itementity.setDefaultPickUpDelay();
+                            pLevel.addFreshEntity(itementity);
+                        }
                     }
                 }
             }

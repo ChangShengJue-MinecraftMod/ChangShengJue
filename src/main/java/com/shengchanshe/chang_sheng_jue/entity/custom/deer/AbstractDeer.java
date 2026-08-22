@@ -122,7 +122,7 @@ public abstract class AbstractDeer extends Animal implements GeoEntity {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        int i = new Random().nextInt(6);
+        int i = this.random.nextInt(6);
         switch (i){
             case 0:
                 return ChangShengJueSound.DEER_SOUND.get();

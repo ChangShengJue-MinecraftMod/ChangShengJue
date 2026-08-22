@@ -17,8 +17,6 @@ import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.util.ClientUtils;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-import java.util.Random;
-
 public class GeShanDaNiuEntity extends Projectile implements GeoEntity {
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     public GeShanDaNiuEntity(EntityType<? extends Projectile> pEntityType, Level pLevel) {
@@ -28,9 +26,7 @@ public class GeShanDaNiuEntity extends Projectile implements GeoEntity {
 
     @Override
     public void tick() {
-        if (!firstTick) {
-            firstTick = true;
-        }
+        super.tick();
         if (level().isClientSide){
             if (this.tickCount % 2 == 0){
                 this.geShanDaNiuParticle();
@@ -49,8 +45,6 @@ public class GeShanDaNiuEntity extends Projectile implements GeoEntity {
         double centerX = this.getBoundingBox().getCenter().x;
         double centerY = this.getBoundingBox().getCenter().y + 0.1;
         double centerZ = this.getBoundingBox().getCenter().z;
-        // 生成一个随机数生成器
-        Random random = new Random();
         // 偏移量，稍微向视角方向移动一点距离
         double offset = 0.2; // 偏移距离
         double radianYaw = Math.toRadians(yaw);
@@ -60,14 +54,14 @@ public class GeShanDaNiuEntity extends Projectile implements GeoEntity {
         double startY = centerY + offset * -Math.sin(radianPitch);
         double startZ = centerZ + offset * Math.cos(radianYaw) * Math.cos(radianPitch);
         // 计算在生物视角方向两格内的随机位置
-        double distance = 2 * random.nextDouble(); // 随机距离，范围0-2
+        double distance = 2 * this.random.nextDouble(); // 随机距离，范围0-2
         double particleX = startX + distance * -Math.sin(radianYaw) * Math.cos(radianPitch);
         double particleY = startY + distance * -Math.sin(radianPitch);
         double particleZ = startZ + distance * Math.cos(radianYaw) * Math.cos(radianPitch);
         // 计算粒子的随机运动方向，并将速度降低到原来的10%
-        double xSpeed = (random.nextDouble() * 2 - 1) * 0.1;
-        double ySpeed = (random.nextDouble() * 2 - 1) * 0.1;
-        double zSpeed = (random.nextDouble() * 2 - 1) * 0.1;
+        double xSpeed = (this.random.nextDouble() * 2 - 1) * 0.1;
+        double ySpeed = (this.random.nextDouble() * 2 - 1) * 0.1;
+        double zSpeed = (this.random.nextDouble() * 2 - 1) * 0.1;
         // 在计算出的位置生成粒子，并使粒子向计算出的方向运动
         this.level().addParticle(ChangShengJueParticles.GE_SHAN_DA_NIU_PARTICLE.get(), particleX, particleY, particleZ, xSpeed, ySpeed, zSpeed);
     }

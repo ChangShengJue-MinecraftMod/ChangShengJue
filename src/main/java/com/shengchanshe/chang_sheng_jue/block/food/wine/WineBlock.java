@@ -48,7 +48,7 @@ public class WineBlock extends TypeBlock {
                 if (player.getFoodData().getFoodLevel() < 20 || player.isCreative()) {
                     level.setBlock(pos, state.setValue(getTYPE(), 0), 3);
                     // 增加饥饿值
-                    player.getFoodData().eat(this.fed, this.fedpro);
+                    player.getFoodData().eat(fed, fedpro);
                     player.swing(InteractionHand.MAIN_HAND);
                     level.playSound(null, pos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.8F, 0.8F);
                 }
@@ -95,6 +95,11 @@ public class WineBlock extends TypeBlock {
             }
         }
         return InteractionResult.PASS;
+    }
+
+    @Override
+    protected InteractionResult getClientInteractionResult(BlockState state, Player player, InteractionHand hand) {
+        return state.getValue(getTYPE()) == 0 ? InteractionResult.SUCCESS : InteractionResult.PASS;
     }
 
 

@@ -10,8 +10,8 @@ public class XpParatice {
             double radius = 0.3;
 //            player.playSound(SoundEvents.EXPERIENCE_ORB_PICKUP, 0.6F, 0.8F + player.getRandom().nextFloat() * 0.4F);
             for (int i = 0; i < 2; i++) {
-                double phi = Math.random() * Math.PI * 2;
-                double costheta = Math.random() * 2 - 1;
+                double phi = player.getRandom().nextDouble() * Math.PI * 2;
+                double costheta = player.getRandom().nextDouble() * 2 - 1;
                 double theta = Math.acos(costheta);
                 double dx = radius * Math.sin(theta) * Math.cos(phi);
                 double dy = radius * Math.sin(theta) * Math.sin(phi);

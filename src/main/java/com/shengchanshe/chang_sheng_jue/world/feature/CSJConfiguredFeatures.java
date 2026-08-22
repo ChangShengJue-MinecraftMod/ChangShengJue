@@ -34,7 +34,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
 import java.util.List;
-import java.util.Random;
 
 
 public class CSJConfiguredFeatures {
@@ -311,15 +310,6 @@ public class CSJConfiguredFeatures {
                 new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
                 new TwoLayersFeatureSize(1, 0, 2)).ignoreVines().build());
 
-
-        BlockState blockState;
-        if (new Random().nextInt() <= 0.1){
-            blockState = ChangShengJueBlocks.MULBERRY_LEAVES.get().defaultBlockState();
-            blockState.setValue(MulberryLeaves.STATE,MulberryLeaves.State.FRUITS);
-        }else {
-            blockState = ChangShengJueBlocks.MULBERRY_LEAVES.get().defaultBlockState();
-            blockState.setValue(MulberryLeaves.STATE,MulberryLeaves.State.LEAVES);
-        }
         register(context,MULBERRY_TREE,Feature.TREE,new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(ChangShengJueBlocks.MULBERRY_LOG.get()),
                 new StraightTrunkPlacer(5, 2, 1),
@@ -389,8 +379,9 @@ public class CSJConfiguredFeatures {
         RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
         RuleTest netherrackReplacables = new BlockMatchTest(Blocks.NETHERRACK);
         RuleTest endReplaceables = new BlockMatchTest(Blocks.END_STONE);
+        BlockState deepslateState = state1 != null ? state1 : state;
         return List.of(OreConfiguration.target(stoneReplaceable, state),//在石头方块上生成矿石
-                OreConfiguration.target(deepslateReplaceables, state));
+                OreConfiguration.target(deepslateReplaceables, deepslateState));
     }
 
     private static RandomPatchConfiguration grassPatch(BlockStateProvider blockStateProvider, int pTries) {

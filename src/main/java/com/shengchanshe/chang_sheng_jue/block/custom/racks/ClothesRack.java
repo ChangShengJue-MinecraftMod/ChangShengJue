@@ -147,20 +147,11 @@ public class ClothesRack extends HorizontalDirectionalBlock implements EntityBlo
         BlockPos otherPos = half == DoubleBlockHalf.LOWER ? pos.above() : pos.below();
         BlockState otherState = level.getBlockState(otherPos);
 
-        // 如果另一半也是衣架，则破坏另一半
-        if (otherState.is(this) && otherState.getValue(HALF) != half) {
-            // 只在 playerWillDestroy 中处理另一半的掉落，当前方块的掉落交给 onRemove
-            BlockEntity blockEntity = level.getBlockEntity(otherPos);
-            if (blockEntity instanceof ClothesRackEntity rackEntity && !player.isCreative()) {
-                // 掉落所有盔甲物品
-                for (ItemStack armorStack : rackEntity.getAllArmorItems()) {
-                    if (!armorStack.isEmpty()) {
-                        popResource(level, otherPos, armorStack.copy());
-                    }
-                }
+        if (!level.isClientSide && otherState.is(this) && otherState.getValue(HALF) != half) {
+            BlockPos storagePos = half == DoubleBlockHalf.LOWER ? pos : otherPos;
+            if (player.isCreative() && level.getBlockEntity(storagePos) instanceof ClothesRackEntity rackEntity) {
+                rackEntity.clearAllArmor();
             }
-
-            // 设置空气并更新
             level.setBlock(otherPos, net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 3);
             level.levelEvent(player, 2001, otherPos, Block.getId(otherState));
         }
@@ -172,24 +163,20 @@ public class ClothesRack extends HorizontalDirectionalBlock implements EntityBlo
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.is(newState.getBlock())) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof ClothesRackEntity rackEntity) {
-                // 掉落所有盔甲物品（在生存模式下）
-                Player player = level.getNearestPlayer(pos.getX(), pos.getY(), pos.getZ(), 10, false);
-                if (player == null || !player.isCreative()) {
-                    for (ItemStack armorStack : rackEntity.getAllArmorItems()) {
-                        if (!armorStack.isEmpty()) {
-                            popResource(level, pos, armorStack.copy());
-                        }
+            if (!level.isClientSide && blockEntity instanceof ClothesRackEntity rackEntity) {
+                for (ItemStack armorStack : rackEntity.getAllArmorItems()) {
+                    if (!armorStack.isEmpty()) {
+                        popResource(level, pos, armorStack.copy());
                     }
                 }
+                rackEntity.clearAllArmor();
             }
 
-            // 确保另一半也被正确处理
             DoubleBlockHalf half = state.getValue(HALF);
             BlockPos otherPos = half == DoubleBlockHalf.LOWER ? pos.above() : pos.below();
             BlockState otherState = level.getBlockState(otherPos);
 
-            if (otherState.is(this) && otherState.getValue(HALF) != half) {
+            if (!level.isClientSide && otherState.is(this) && otherState.getValue(HALF) != half) {
                 level.setBlock(otherPos, net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(), 3);
             }
 

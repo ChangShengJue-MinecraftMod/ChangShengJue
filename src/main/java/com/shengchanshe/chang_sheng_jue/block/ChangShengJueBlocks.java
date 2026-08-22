@@ -478,11 +478,13 @@ public class ChangShengJueBlocks {
                 @Override
                 public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult blockHitResult) {
                     if (player.getItemInHand(hand).is(Items.FLINT_AND_STEEL)){
-                        level.setBlock(blockPos,ChangShengJueBlocks.STONE_LAMPS_LIANG_BLOCK.get().defaultBlockState(),3);
-                        if (!player.getAbilities().instabuild) {
-                            player.getItemInHand(hand).hurtAndBreak(1,player,(p)->p.broadcastBreakEvent(hand));
+                        if (!level.isClientSide) {
+                            level.setBlock(blockPos,ChangShengJueBlocks.STONE_LAMPS_LIANG_BLOCK.get().defaultBlockState(),3);
+                            if (!player.getAbilities().instabuild) {
+                                player.getItemInHand(hand).hurtAndBreak(1,player,(p)->p.broadcastBreakEvent(hand));
+                            }
                         }
-                        return InteractionResult.SUCCESS;
+                        return InteractionResult.sidedSuccess(level.isClientSide);
                     }
                     return InteractionResult.PASS;
                 }

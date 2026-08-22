@@ -5,20 +5,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-import java.util.Random;
-
 public class ComprehendParticle {
 
     public static void ComprehendParticle(Player player,Level level,float tick){
         if (tick > 0 && tick <= 20){
             int numParticles = 3;  // 可以根据需要调整数量
-            Random random = new Random();
 
             for (int i = 0; i < numParticles; ++i) {
                 // 使用球坐标系生成球形范围内的粒子位置
                 double radius = 0.3;
-                double theta = random.nextDouble() * 2 * Math.PI;  // 0 到 2π 之间的随机角度
-                double phi = random.nextDouble() * Math.PI;  // 0 到 π 之间的随机角度
+                double theta = player.getRandom().nextDouble() * 2 * Math.PI;  // 0 到 2π 之间的随机角度
+                double phi = player.getRandom().nextDouble() * Math.PI;  // 0 到 π 之间的随机角度
 
                 // 球坐标转换为笛卡尔坐标
                 double offsetX = radius * Math.sin(phi) * Math.cos(theta);
@@ -47,8 +44,8 @@ public class ComprehendParticle {
             double radius = 0.3;
             for (int i = 0; i < 2; i++) {
                 // 在球体上随机生成一个点
-                double phi = Math.random() * Math.PI * 2;
-                double costheta = Math.random() * 2 - 1;
+                double phi = player.getRandom().nextDouble() * Math.PI * 2;
+                double costheta = player.getRandom().nextDouble() * 2 - 1;
                 double theta = Math.acos(costheta);
                 double dx = radius * Math.sin(theta) * Math.cos(phi);
                 double dy = radius * Math.sin(theta) * Math.sin(phi);

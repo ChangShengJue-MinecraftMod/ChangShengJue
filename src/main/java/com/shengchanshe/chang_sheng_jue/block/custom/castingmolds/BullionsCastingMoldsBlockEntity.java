@@ -11,6 +11,7 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.util.Mth;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
@@ -38,6 +39,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class BullionsCastingMoldsBlockEntity extends BlockEntity implements GeoBlockEntity {
+    private static final int BULLION_OUTPUT_COUNT = 3;
     private AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private ItemStackHandler inventory = new ItemStackHandler(2){
         @Override
@@ -157,7 +159,7 @@ public class BullionsCastingMoldsBlockEntity extends BlockEntity implements GeoB
     public void load(CompoundTag pTag) {
         super.load(pTag);
         this.inventory.deserializeNBT(pTag.getCompound("LngotMoldsInventory"));
-        progress = pTag.getInt("LngotMoldsProgress");
+        progress = Mth.clamp(pTag.getInt("LngotMoldsProgress"), 0, maxProgress);
         open = pTag.getBoolean("LngotMoldsOpen");
     }
 
@@ -215,7 +217,10 @@ public class BullionsCastingMoldsBlockEntity extends BlockEntity implements GeoB
                 this.resrtProgress();
             }
         }else {
-            this.resrtProgress();
+            if (this.progress != 0) {
+                this.resrtProgress();
+                this.setChanged();
+            }
         }
     }
 
@@ -228,9 +233,9 @@ public class BullionsCastingMoldsBlockEntity extends BlockEntity implements GeoB
             ItemStack outputStack;
             // 确定产出的物品类型（元宝不考虑坏币率）
             if (this.inventory.getStackInSlot(INPUT_SLOT).is(ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get())){
-                outputStack = new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), 3);
+                outputStack = new ItemStack(ChangShengJueItems.SILVER_BULLIONS.get(), BULLION_OUTPUT_COUNT);
             } else {
-                outputStack = new ItemStack(ChangShengJueItems.GOLD_BULLIONS.get(), 3);
+                outputStack = new ItemStack(ChangShengJueItems.GOLD_BULLIONS.get(), BULLION_OUTPUT_COUNT);
             }
 
             // 移除输入槽的材料
@@ -274,7 +279,11 @@ public class BullionsCastingMoldsBlockEntity extends BlockEntity implements GeoB
 
     private boolean hasRecipe() {
         boolean hasCraftingItem = this.inventory.getStackInSlot(INPUT_SLOT).getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get() || this.inventory.getStackInSlot(INPUT_SLOT).getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_GOLD.get();
-        ItemStack itemStack = new ItemStack(inventory.getStackInSlot(INPUT_SLOT).getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get() ? ChangShengJueItems.SILVER_BULLIONS.get() : ChangShengJueItems.GOLD_BULLIONS.get());
+        ItemStack itemStack = new ItemStack(
+                inventory.getStackInSlot(INPUT_SLOT).getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_SILVER.get()
+                        ? ChangShengJueItems.SILVER_BULLIONS.get()
+                        : ChangShengJueItems.GOLD_BULLIONS.get(),
+                BULLION_OUTPUT_COUNT);
 
         return hasCraftingItem && canInsertItemIntoOutputSlot(itemStack.getItem()) && canInsertAmountIntoOutputSlot(itemStack.getCount());
     }

@@ -5,7 +5,6 @@ import com.shengchanshe.chang_sheng_jue.capability.quest.PlayerQuestCapabilityPr
 import com.shengchanshe.chang_sheng_jue.effect.ChangShengJueEffects;
 import com.shengchanshe.chang_sheng_jue.init.CSJAdvanceInit;
 import com.shengchanshe.chang_sheng_jue.quest.Quest;
-import com.shengchanshe.chang_sheng_jue.quest.QuestManager;
 import com.shengchanshe.chang_sheng_jue.util.TimeDetection;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -50,6 +49,7 @@ public class QuestEvent {
             player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY).ifPresent(cap -> {
                 LivingEntity entity = event.getEntity();
                 List<Quest> currentQuest = cap.getQuests(playerId);
+                boolean changed = false;
                 for (Quest quest : currentQuest) {
                     if (quest != null && quest.getQuestType() == Quest.QuestType.KILL) {
                         if (quest.getSecondTargetEntity() != null && !quest.getSecondTargetEntity().isEmpty()) {
@@ -60,13 +60,16 @@ public class QuestEvent {
                                         ServerLevel level = (ServerLevel) player.level();
                                         if (level.isVillage(blockpos) && TimeDetection.isFullNight(player.level())) {
                                             quest.incrementKills();
+                                            changed = true;
                                         }
                                     } else {
                                         quest.incrementKills();
+                                        changed = true;
                                     }
                                 } else if(quest.getQuestId().equals(PlayerQuestEvent.KUAI_YI_EN_CHOU_QUEST_ID)) {
                                     if (quest.getQuestNpcId() != null && entity.getUUID().equals(quest.getQuestNpcId())) {
                                         quest.incrementKills();
+                                        changed = true;
                                     }
                                 }
                                 if (quest.canComplete(player)) {
@@ -78,6 +81,7 @@ public class QuestEvent {
                             } else if (quest.getSecondCurrentKills() < quest.getSecondRequiredKills()) {
                                 if (quest.matchesSecondEntity(entity)) {
                                     quest.secondIncrementKills();
+                                    changed = true;
                                 }
                                 if (quest.canComplete(player)) {
                                     player.sendSystemMessage(getColoredTranslation(
@@ -93,13 +97,16 @@ public class QuestEvent {
                                         ServerLevel level = (ServerLevel) player.level();
                                         if (level.isVillage(blockpos) && TimeDetection.isFullNight(player.level())) {
                                             quest.incrementKills();
+                                            changed = true;
                                         }
                                     } else {
                                         quest.incrementKills();
+                                        changed = true;
                                     }
                                 } else if(quest.getQuestId().equals(PlayerQuestEvent.KUAI_YI_EN_CHOU_QUEST_ID)) {
                                     if (quest.getQuestNpcId() != null && entity.getUUID().equals(quest.getQuestNpcId())) {
                                         quest.incrementKills();
+                                        changed = true;
                                     }
                                 }
                                 if (quest.canComplete(player)) {
@@ -121,24 +128,21 @@ public class QuestEvent {
                     }
                 }
                 if (entity instanceof Animal){
-                    QuestManager manager = QuestManager.getInstance();
-                    // 防御性检查（包含日志记录）
-                    if (manager == null) {
-                        ChangShengJue.LOGGER.warn("QuestManager或PlayerUUID为空");
-                        return;
-                    }
-                    // 优化后的查询逻辑
-                    manager.getPlayerQuests(player.level(),playerId).stream()
+                    Optional<Quest> vegetarianQuest = currentQuest.stream()
                             .filter(Objects::nonNull) // 过滤空任务
                             .filter(quest -> PlayerQuestEvent.VEGETARIAN_FOOD_QUEST_ID.equals(quest.getQuestId()))
-                            .findFirst() // 找到第一个匹配即可
-                            .ifPresent(quest -> {
-                                if (quest.canComplete(player)) {
-                                    quest.setQuestCurrentDay(0);
-                                }
-                            });
+                            .findFirst(); // 保持第一个匹配任务的旧语义
+                    if (vegetarianQuest.isPresent()) {
+                        Quest quest = vegetarianQuest.get();
+                        if (quest.canComplete(player) && quest.getQuestCurrentDay() != 0) {
+                            quest.setQuestCurrentDay(0);
+                            changed = true;
+                        }
+                    }
                 }
-                cap.syncToClient((ServerPlayer) player);
+                if (changed && player instanceof ServerPlayer serverPlayer) {
+                    cap.syncToClient(serverPlayer);
+                }
             });
         }
     }

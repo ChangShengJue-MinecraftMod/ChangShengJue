@@ -32,9 +32,8 @@ public class QingGongManager {
 
 
     public QingGongCapability getRandomExternalKungFuCapability(LivingEntity entity) {
-        Random random = new Random();
         List<QingGong> availableKungFus = new ArrayList<>(Arrays.asList(QingGong.values()));
-        QingGong randomKungFu = availableKungFus.get(random.nextInt(availableKungFus.size()));
+        QingGong randomKungFu = availableKungFus.get(entity.getRandom().nextInt(availableKungFus.size()));
         return kungFuCapabilities.get(randomKungFu);
     }
 }

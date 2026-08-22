@@ -28,10 +28,13 @@ public class ClothesRackRenderer implements BlockEntityRenderer<ClothesRackEntit
     private final EntityRenderDispatcher entityRenderer;
 
     private static class ArmorStandCache {
+        private static final int MAX_POOL_SIZE = 16;
         private final List<ArmorStand> standardStands = new ArrayList<>();
         private final List<ArmorStand> smallStands = new ArrayList<>();
+        private Level cachedLevel;
 
         public ArmorStand getArmorStand(Level level, boolean small) {
+            ensureLevel(level);
             List<ArmorStand> pool = small ? smallStands : standardStands;
 
             if (!pool.isEmpty()) {
@@ -44,10 +47,25 @@ public class ClothesRackRenderer implements BlockEntityRenderer<ClothesRackEntit
         }
 
         public void returnArmorStand(ArmorStand stand, boolean small) {
-            if (stand != null) {
+            if (stand != null && stand.level() == cachedLevel) {
                 List<ArmorStand> pool = small ? smallStands : standardStands;
-                pool.add(stand);
+                if (pool.size() < MAX_POOL_SIZE) {
+                    pool.add(stand);
+                }
             }
+        }
+
+        private void ensureLevel(Level level) {
+            if (cachedLevel != level) {
+                clear();
+                cachedLevel = level;
+            }
+        }
+
+        private void clear() {
+            standardStands.clear();
+            smallStands.clear();
+            cachedLevel = null;
         }
 
         private ArmorStand createNewArmorStand(Level level, boolean small) {
@@ -62,14 +80,17 @@ public class ClothesRackRenderer implements BlockEntityRenderer<ClothesRackEntit
         }
 
         private void resetArmorStand(ArmorStand stand) {
-            stand.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
-            stand.setItemSlot(EquipmentSlot.CHEST, ItemStack.EMPTY);
-            stand.setItemSlot(EquipmentSlot.LEGS, ItemStack.EMPTY);
-            stand.setItemSlot(EquipmentSlot.FEET, ItemStack.EMPTY);
+            for (EquipmentSlot slot : EquipmentSlot.values()) {
+                stand.setItemSlot(slot, ItemStack.EMPTY);
+            }
         }
     }
 
-    private final ArmorStandCache armorStandCache = new ArmorStandCache();
+    private static final ArmorStandCache ARMOR_STAND_CACHE = new ArmorStandCache();
+
+    public static void clearArmorStandCache() {
+        ARMOR_STAND_CACHE.clear();
+    }
 
     public ClothesRackRenderer(BlockEntityRendererProvider.Context context) {
         this.entityRenderer = Minecraft.getInstance().getEntityRenderDispatcher();
@@ -98,31 +119,28 @@ public class ClothesRackRenderer implements BlockEntityRenderer<ClothesRackEntit
             }
 
             poseStack.pushPose();
-            poseStack.translate(0.5, 0.5, 0.5);
+            ArmorStand armorStand = null;
+            try {
+                poseStack.translate(0.5, 0.5, 0.5);
 
-            float rotation = -direction.toYRot();
-            poseStack.mulPose(Axis.YP.rotationDegrees(rotation));
+                float rotation = -direction.toYRot();
+                poseStack.mulPose(Axis.YP.rotationDegrees(rotation));
 
-            float yOffset = getFixedYOffsetForSlot(i);
-            poseStack.translate(0, yOffset, 0);
-            poseStack.scale(1.0f, 1.0f, 1.0f);
+                float yOffset = getFixedYOffsetForSlot(i);
+                poseStack.translate(0, yOffset, 0);
 
-            ArmorStand armorStand = armorStandCache.getArmorStand(level, false);
+                armorStand = ARMOR_STAND_CACHE.getArmorStand(level, false);
+                armorStand.setPos(blockEntity.getBlockPos().getX() + 0.5,
+                        blockEntity.getBlockPos().getY(),
+                        blockEntity.getBlockPos().getZ() + 0.5);
 
-            armorStand.setPos(blockEntity.getBlockPos().getX() + 0.5,
-                    blockEntity.getBlockPos().getY(),
-                    blockEntity.getBlockPos().getZ() + 0.5);
-
-            if (armorItem.getItem() instanceof ArmorItem armor) {
-                EquipmentSlot slot = armor.getEquipmentSlot();
-                armorStand.setItemSlot(slot, armorItem.copy());
+                ArmorItem armor = (ArmorItem) armorItem.getItem();
+                armorStand.setItemSlot(armor.getEquipmentSlot(), armorItem.copy());
+                entityRenderer.render(armorStand, 0, 0, 0, 0, partialTick, poseStack, bufferSource, packedLight);
+            } finally {
+                ARMOR_STAND_CACHE.returnArmorStand(armorStand, false);
+                poseStack.popPose();
             }
-
-            entityRenderer.render(armorStand, 0, 0, 0, 0, partialTick, poseStack, bufferSource, packedLight);
-
-            armorStandCache.returnArmorStand(armorStand, false);
-
-            poseStack.popPose();
         }
     }
 

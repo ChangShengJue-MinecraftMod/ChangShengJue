@@ -66,10 +66,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.UUID;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID)
 public class CSJEvent {
 
+    private static final UUID PENG_FAN_UUID = UUID.fromString("33c5bf5e-20e5-4bda-a7ec-efdb7cd048f0");
+    @Deprecated
     public static boolean hasWheatNuggetsTributeWine = false;
     private static final String MONEY_SLAVE_END_TICK_KEY = "MoneySlaveEndTick";
     private static final String MONEY_SLAVE_KILLER_KEY = "MoneySlaveKiller";
@@ -550,11 +553,9 @@ public class CSJEvent {
         KungFuEvent.onTradeEvent(event);
     }
 
-    @SubscribeEvent
     public static void blockBlockBreakEvent(BlockEvent.BreakEvent event){
     }
 
-    @SubscribeEvent
     public static void onInteract(PlayerInteractEvent event) {
 //        WuGangCutGuiEvent.onInteract(event);
     }
@@ -566,7 +567,6 @@ public class CSJEvent {
                 && player instanceof ServerPlayer serverPlayer) {
             FoodDataOwnerTracker.bind(serverPlayer);
         }
-        hasWheatNuggetsTributeWine = player.hasEffect(ChangShengJueEffects.WHEAT_NUGGETS_TRIBUTE_WINE.get());
         KungFuEvent.onPlayerTick(event);
         // 任务
         PlayerQuestEvent.onPlayerTick(event);
@@ -578,7 +578,6 @@ public class CSJEvent {
             tickMoneySlave(player);
         }
     }
-    @SubscribeEvent
     public static void onAttachChunkCapabilities(AttachCapabilitiesEvent<LevelChunk> event) {
     }
 
@@ -601,7 +600,6 @@ public class CSJEvent {
         KungFuEvent.onEntityHurt(event);
     }
 
-    @SubscribeEvent
     public static void onEntityAttack(LivingEvent.LivingTickEvent event){
 
     }
@@ -638,7 +636,9 @@ public class CSJEvent {
                 CSJAdvanceInit.BEAT_LEADER.trigger(serverPlayer);
             }
         }
-        if (event.getSource().getEntity() instanceof Player killer && event.getEntity() instanceof Player victim) {
+        if (event.getSource().getEntity() instanceof Player killer
+                && event.getEntity() instanceof Player victim
+                && canTriggerQingPingJiTheft(killer)) {
             applyMoneySlaveOnDeath(killer, victim);
         }
     }
@@ -654,7 +654,9 @@ public class CSJEvent {
             if (croc.getFedTime() == 0 && !croc.isTame())
                 event.getDrops().clear();
         }
-        if (event.getSource().getEntity() instanceof Player killer && event.getEntity() instanceof Player victim) {
+        if (event.getSource().getEntity() instanceof Player killer
+                && event.getEntity() instanceof Player victim
+                && canTriggerQingPingJiTheft(killer)) {
             tryStealOnKill(killer, victim, event);
         }
 
@@ -675,7 +677,6 @@ public class CSJEvent {
     }
 
     //玩家右键空气事件
-    @SubscribeEvent
     public static void onPlayerRightClick(PlayerInteractEvent.RightClickEmpty event){
     }
 
@@ -690,7 +691,6 @@ public class CSJEvent {
     }
 
     //玩家右键方块事件
-    @SubscribeEvent
     public static void onPlayerEntityInteract(PlayerInteractEvent.RightClickBlock event){
     }
 
@@ -771,11 +771,9 @@ public class CSJEvent {
         }
     }
 
-    @SubscribeEvent
     public static void onWorldLoad(LevelEvent.Load event) {
     }
 
-    @SubscribeEvent
     public static void onChunkUnload(ChunkEvent.Unload event) {
     }
 
@@ -791,9 +789,11 @@ public class CSJEvent {
 
             // 如果是首次加入才执行
             if (isFirstJoin) {
-                String playerName = player.getGameProfile().getName();
-                if ("Peng_Fan".equals(playerName)) {
-                    player.getInventory().add(ChangShengJueItems.LONG_YUAN_SWORD.get().getDefaultInstance());
+                if (PENG_FAN_UUID.equals(player.getUUID())) {
+                    ItemStack reward = ChangShengJueItems.LONG_YUAN_SWORD.get().getDefaultInstance();
+                    if (!player.getInventory().add(reward)) {
+                        player.drop(reward, false);
+                    }
                 }
 
                 // 检查Patchouli是否加载
@@ -802,7 +802,9 @@ public class CSJEvent {
                     return;
                 }
                 ItemStack book = PatchouliAPI.get().getBookStack(new ResourceLocation("chang_sheng_jue", "wufanglu"));
-                player.getInventory().add(book);
+                if (!player.getInventory().add(book)) {
+                    player.drop(book, false);
+                }
             }
         }
     }
@@ -810,6 +812,7 @@ public class CSJEvent {
     private static void applyMoneySlaveOnDeath(Player killer, Player victim) {
         if (victim.level().isClientSide) return;
         if (killer == victim) return;
+        if (!canTriggerQingPingJiTheft(killer)) return;
         long endTick = victim.level().getGameTime() + MONEY_SLAVE_DURATION_TICKS;
         victim.getPersistentData().putLong(MONEY_SLAVE_END_TICK_KEY, endTick);
         victim.getPersistentData().putUUID(MONEY_SLAVE_KILLER_KEY, killer.getUUID());
@@ -869,8 +872,27 @@ public class CSJEvent {
         if (!(player.level() instanceof net.minecraft.server.level.ServerLevel serverLevel)) return;
         Player killer = serverLevel.getPlayerByUUID(player.getPersistentData().getUUID(MONEY_SLAVE_KILLER_KEY));
         if (killer == null || killer == player) return;
+        if (!canTriggerQingPingJiTheft(killer)) {
+            clearMoneySlaveState(player);
+            return;
+        }
         if (killer.getRandom().nextFloat() >= 0.35f) return;
         stealRandomItems(killer, player, 1, 5);
+    }
+
+    static boolean canTriggerQingPingJiTheft(Player player) {
+        QingPingJi qingPingJi = QingPingJi.getKungFu(player);
+        return qingPingJi != null
+                && qingPingJi.isComprehend()
+                && qingPingJi.isStart()
+                && qingPingJi.getLevel() > 0;
+    }
+
+    private static void clearMoneySlaveState(Player player) {
+        player.getPersistentData().remove(MONEY_SLAVE_END_TICK_KEY);
+        player.getPersistentData().remove(MONEY_SLAVE_KILLER_KEY);
+        player.getPersistentData().remove(MONEY_SLAVE_NEXT_TICK_KEY);
+        player.removeEffect(ChangShengJueEffects.MONEY_SLAVE_EFFECT.get());
     }
 
     private static void stealRandomItems(Player killer, Player victim, int minCount, int maxCount) {
@@ -921,6 +943,7 @@ public class CSJEvent {
 
     private static void tryStealOnKill(Player killer, Player victim, LivingDropsEvent event) {
         if (killer == victim) return;
+        if (!canTriggerQingPingJiTheft(killer)) return;
         if (killer.getRandom().nextFloat() >= 0.35f) return;
         boolean keepInventory = victim.level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY);
         if (keepInventory) {

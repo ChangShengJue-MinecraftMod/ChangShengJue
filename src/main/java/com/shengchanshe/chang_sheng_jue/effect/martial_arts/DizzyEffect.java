@@ -11,8 +11,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.common.ForgeMod;
 
-import java.util.Random;
-
 public class DizzyEffect extends MobEffect {
     public DizzyEffect() {
         super(MobEffectCategory.HARMFUL, 0);
@@ -26,10 +24,14 @@ public class DizzyEffect extends MobEffect {
 //        super.applyEffectTick(pLivingEntity, pAmplifier);
         if (this == ChangShengJueEffects.FIXATION_EFFECT.get()) {
             if (!pLivingEntity.level().isClientSide && !pLivingEntity.isDeadOrDying()){
+                int entityId = pLivingEntity.getId();
+                float encodedEntityId = entityId;
+                // 粒子包以 float 传递速度，客户端无法还原原 ID 时沿用 0 的无绑定行为。
+                double particleEntityId = (int) encodedEntityId == entityId ? encodedEntityId : 0.0D;
                 if (pLivingEntity.getEffect(ChangShengJueEffects.FIXATION_EFFECT.get()).getDuration() % 20 == 0){
                     ((ServerLevel)pLivingEntity.level()).sendParticles(ChangShengJueParticles.SUNFLOWER_POINT_CAVEMAN_PARTICLE.get(),
                             pLivingEntity.getX(), pLivingEntity.getY(1.5D), pLivingEntity.getZ(),
-                            1, 0.0D, 0.0D, 0.0D, 0.0D);
+                            0, particleEntityId, 0.0D, 0.0D, 1.0D);
                     // 玩家当前坐标
                     double playerX = pLivingEntity.getX();
                     double playerY = pLivingEntity.getY() + pLivingEntity.getBbHeight() * 0.6; // 胸部高度
@@ -50,9 +52,8 @@ public class DizzyEffect extends MobEffect {
                     double chestZ = playerZ + offsetZ;
                     ((ServerLevel)pLivingEntity.level()).sendParticles(ChangShengJueParticles.SUNFLOWER_POINT_CAVEMAN_PARTICLE_1.get(),
                             chestX,playerY, chestZ,
-                            1, 0.0D, 0.0D, 0.0D, 0.0D);
+                            0, particleEntityId, 0.0D, 0.0D, 1.0D);
                 }
-                Random random = new Random();
                 // 玩家脚部位置
                 double centerX = pLivingEntity.getX();
                 double centerY = pLivingEntity.getY();
@@ -66,7 +67,7 @@ public class DizzyEffect extends MobEffect {
 
                 for (int i = 0; i < particleCount; i++) {
                     // 随机生成角度（0 到 2π 弧度）
-                    double angle = 2 * Math.PI * random.nextDouble();
+                    double angle = 2 * Math.PI * pLivingEntity.getRandom().nextDouble();
 
                     // 根据角度计算粒子位置
                     double offsetX1 = Math.cos(angle) * radius;
@@ -80,7 +81,7 @@ public class DizzyEffect extends MobEffect {
                     // 生成粒子
                     ((ServerLevel)pLivingEntity.level()).sendParticles(ChangShengJueParticles.SUNFLOWER_POINT_CAVEMAN_PARTICLE_2.get(),
                             particleX, particleY, particleZ,
-                            1, 0.0D, 0.0D, 0.0D, 0.0D);
+                            0, particleEntityId, 0.0D, 0.0D, 1.0D);
                 }
             }
         }

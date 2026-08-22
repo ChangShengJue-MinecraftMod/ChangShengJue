@@ -35,4 +35,8 @@ public class KungFuCapabilityProvider implements ICapabilityProvider, INBTSerial
     public void deserializeNBT(CompoundTag nbt) {
         capability.deserializeNBT(nbt);
     }
+
+    public void invalidate() {
+        optional.invalidate();
+    }
 }

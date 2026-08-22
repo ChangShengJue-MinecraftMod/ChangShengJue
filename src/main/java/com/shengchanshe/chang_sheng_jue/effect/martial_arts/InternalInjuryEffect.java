@@ -25,10 +25,10 @@ public class InternalInjuryEffect extends MobEffect {
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
         // 每秒5%概率眩晕（每级+5%概率）
-        if (RANDOM.nextFloat() < (0.05f * (pAmplifier + 1))) {
-            if (pLivingEntity.hasEffect(ChangShengJueEffects.DIZZY_EFFECT.get())){
-                pLivingEntity.addEffect(new MobEffectInstance(ChangShengJueEffects.DIZZY_EFFECT.get(), 30, 0, true, true, true));
-            }
+        if (!pLivingEntity.level().isClientSide()
+                && RANDOM.nextFloat() < (0.05f * (pAmplifier + 1))) {
+            pLivingEntity.addEffect(new MobEffectInstance(
+                    ChangShengJueEffects.DIZZY_EFFECT.get(), 30, 0, true, true, true));
         }
     }
 

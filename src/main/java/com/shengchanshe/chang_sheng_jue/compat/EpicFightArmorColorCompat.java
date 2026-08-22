@@ -7,12 +7,15 @@ import com.shengchanshe.chang_sheng_jue.item.combat.armor.DyeableItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
+import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,16 +24,25 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.HashMap;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public final class EpicFightArmorColorCompat {
     private static final String EVENT_CLASS = "yesman.epicfight.api.client.forgeevent.AnimatedArmorTextureEvent";
     private static final ResourceLocation TRANSPARENT = new ResourceLocation(ChangShengJue.MOD_ID, "textures/misc/transparent.png");
-    private static final Map<Class<?>, EventMethods> METHOD_CACHE = new HashMap<>();
-    private static final Map<Class<?>, Field> RESULT_FIELD_CACHE = new HashMap<>();
-    private static final Map<CompositeKey, ResourceLocation> COMPOSITE_CACHE = new HashMap<>();
+    private static final int MAX_COMPOSITE_TEXTURES = 128;
+    private static final Map<Class<?>, Optional<EventMethods>> METHOD_CACHE = new LinkedHashMap<>();
+    private static final Map<Class<?>, Optional<Field>> RESULT_FIELD_CACHE = new LinkedHashMap<>();
+    private static final Map<CompositeKey, ResourceLocation> COMPOSITE_CACHE =
+            new LinkedHashMap<>(MAX_COMPOSITE_TEXTURES, 0.75F, true);
+    private static final AtomicBoolean EVENT_FAILURE_LOGGED = new AtomicBoolean();
+    private static final AtomicBoolean TEXTURE_FAILURE_LOGGED = new AtomicBoolean();
+    private static long nextTextureId;
 
     private EpicFightArmorColorCompat() {}
 
@@ -100,8 +112,38 @@ public final class EpicFightArmorColorCompat {
                 return;
             }
 
-        } catch (Throwable ignored) {
+        } catch (Exception exception) {
+            if (EVENT_FAILURE_LOGGED.compareAndSet(false, true)) {
+                ChangShengJue.LOGGER.warn("Unable to apply Epic Fight armor color compatibility; further failures are suppressed", exception);
+            }
+        }
+    }
 
+    @SubscribeEvent
+    public static void onClientLogout(ClientPlayerNetworkEvent.LoggingOut event) {
+        scheduleCompositeCacheClear();
+    }
+
+    private static void scheduleCompositeCacheClear() {
+        Minecraft.getInstance().execute(EpicFightArmorColorCompat::clearCompositeCache);
+    }
+
+    private static synchronized void clearCompositeCache() {
+        var textureManager = Minecraft.getInstance().getTextureManager();
+        for (ResourceLocation location : new ArrayList<>(COMPOSITE_CACHE.values())) {
+            textureManager.release(location);
+        }
+        COMPOSITE_CACHE.clear();
+    }
+
+    @Mod.EventBusSubscriber(modid = ChangShengJue.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static final class ModBusEvents {
+        private ModBusEvents() {
+        }
+
+        @SubscribeEvent
+        public static void registerReloadListener(RegisterClientReloadListenersEvent event) {
+            event.registerReloadListener((ResourceManagerReloadListener) resourceManager -> scheduleCompositeCacheClear());
         }
     }
 
@@ -146,9 +188,9 @@ public final class EpicFightArmorColorCompat {
                                 Method getResultLocation, Method setResultLocation) {}
 
     private static EventMethods getEventMethods(Class<?> eventClass) {
-        EventMethods cached = METHOD_CACHE.get(eventClass);
+        Optional<EventMethods> cached = METHOD_CACHE.get(eventClass);
         if (cached != null) {
-            return cached;
+            return cached.orElse(null);
         }
         try {
             EventMethods methods = new EventMethods(
@@ -158,17 +200,19 @@ public final class EpicFightArmorColorCompat {
                     eventClass.getMethod("getResultLocation"),
                     eventClass.getMethod("setResultLocation", ResourceLocation.class)
             );
-            METHOD_CACHE.put(eventClass, methods);
+            METHOD_CACHE.put(eventClass, Optional.of(methods));
             return methods;
-        } catch (Throwable ignored) {
-            METHOD_CACHE.put(eventClass, null);
+        } catch (ReflectiveOperationException exception) {
+            METHOD_CACHE.put(eventClass, Optional.empty());
+            ChangShengJue.LOGGER.warn("Epic Fight AnimatedArmorTextureEvent API is incompatible; armor tint compatibility is disabled", exception);
             return null;
         }
     }
 
     private record CompositeKey(ResourceLocation base, ResourceLocation layer, ResourceLocation overlay, int color) {}
 
-    private static ResourceLocation getOrCreateTintedComposite(ResourceLocation base, ResourceLocation layer, ResourceLocation overlay, int color) {
+    private static synchronized ResourceLocation getOrCreateTintedComposite(
+            ResourceLocation base, ResourceLocation layer, ResourceLocation overlay, int color) {
         CompositeKey key = new CompositeKey(base, layer, overlay, color);
         ResourceLocation cached = COMPOSITE_CACHE.get(key);
         if (cached != null) {
@@ -253,11 +297,19 @@ public final class EpicFightArmorColorCompat {
             }
 
             ResourceLocation id = new ResourceLocation(ChangShengJue.MOD_ID,
-                    "generated/epicfight/armor/" + Integer.toHexString(key.hashCode()) + ".png");
-            Minecraft.getInstance().getTextureManager().register(id, new DynamicTexture(out));
+                    "generated/epicfight/armor/composite_" + nextTextureId++);
+            DynamicTexture texture = new DynamicTexture(out);
+            try {
+                Minecraft.getInstance().getTextureManager().register(id, texture);
+            } catch (RuntimeException exception) {
+                texture.close();
+                throw exception;
+            }
             COMPOSITE_CACHE.put(key, id);
+            evictCompositeTexturesIfNeeded();
             return id;
-        } catch (Throwable ignored) {
+        } catch (RuntimeException exception) {
+            logTextureFailure("Unable to create Epic Fight armor tint composite for " + base, exception);
             return null;
         } finally {
             if (baseImg != null) {
@@ -272,20 +324,37 @@ public final class EpicFightArmorColorCompat {
         }
     }
 
+    private static void evictCompositeTexturesIfNeeded() {
+        var iterator = COMPOSITE_CACHE.entrySet().iterator();
+        while (COMPOSITE_CACHE.size() > MAX_COMPOSITE_TEXTURES && iterator.hasNext()) {
+            ResourceLocation location = iterator.next().getValue();
+            iterator.remove();
+            Minecraft.getInstance().getTextureManager().release(location);
+        }
+    }
+
     private static NativeImage loadImage(ResourceLocation location) {
         try {
             return Minecraft.getInstance().getResourceManager()
                     .getResource(location)
                     .map(resource -> {
-                        try {
-                            return NativeImage.read(resource.open());
-                        } catch (Throwable ignored) {
+                        try (InputStream stream = resource.open()) {
+                            return NativeImage.read(stream);
+                        } catch (Exception exception) {
+                            logTextureFailure("Unable to read armor texture " + location, exception);
                             return null;
                         }
                     })
                     .orElse(null);
-        } catch (Throwable ignored) {
+        } catch (RuntimeException exception) {
+            logTextureFailure("Unable to resolve armor texture " + location, exception);
             return null;
+        }
+    }
+
+    private static void logTextureFailure(String message, Throwable exception) {
+        if (TEXTURE_FAILURE_LOGGED.compareAndSet(false, true)) {
+            ChangShengJue.LOGGER.warn(message + "; further texture failures are suppressed", exception);
         }
     }
 
@@ -367,11 +436,9 @@ public final class EpicFightArmorColorCompat {
     }
 
     private static void setResultLocationSilently(Event event, Method setResultLocation, ResourceLocation desired) throws Exception {
-        Field field = RESULT_FIELD_CACHE.get(event.getClass());
-        if (field == null && !RESULT_FIELD_CACHE.containsKey(event.getClass())) {
-            field = findResultField(event.getClass());
-            RESULT_FIELD_CACHE.put(event.getClass(), field);
-        }
+        Optional<Field> cached = RESULT_FIELD_CACHE.computeIfAbsent(
+                event.getClass(), eventClass -> Optional.ofNullable(findResultField(eventClass)));
+        Field field = cached.orElse(null);
         if (field != null) {
             field.set(event, desired);
             return;
@@ -384,13 +451,13 @@ public final class EpicFightArmorColorCompat {
             Field f = eventClass.getDeclaredField("resultLocation");
             f.setAccessible(true);
             return f;
-        } catch (Throwable ignored) {
+        } catch (ReflectiveOperationException ignored) {
         }
         try {
             Field f = eventClass.getDeclaredField("result");
             f.setAccessible(true);
             return f;
-        } catch (Throwable ignored) {
+        } catch (ReflectiveOperationException ignored) {
         }
         for (Field f : eventClass.getDeclaredFields()) {
             if (f.getType() == ResourceLocation.class) {

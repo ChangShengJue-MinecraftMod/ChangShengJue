@@ -98,6 +98,7 @@ public class CSJItemModelProvider extends ItemModelProvider {
         simpleItem(ChangShengJueItems.EMPTY_FEN_JIU);
         //情报
         simpleItem(ChangShengJueItems.STRUCTURE_INTELLIGENCE);
+        simpleItem(ChangShengJueItems.WU_FANG_LU, "guideline");
 
         //令牌
         simpleItem(ChangShengJueItems.GANG_TOKEN);
@@ -822,7 +823,7 @@ public class CSJItemModelProvider extends ItemModelProvider {
         parentItem(ChangShengJueBlocks.WHITE_JADE_BALUSTRADE,
                 ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.getId().getPath() + "_inventory");
         parentItem(ChangShengJueBlocks.OAK_BALUSTRADE,
-                ChangShengJueBlocks.WHITE_JADE_BALUSTRADE.getId().getPath() + "_inventory");
+                ChangShengJueBlocks.OAK_BALUSTRADE.getId().getPath() + "_inventory");
         parentItem(ChangShengJueBlocks.SPRUCE_BALUSTRADE,
                 ChangShengJueBlocks.SPRUCE_BALUSTRADE.getId().getPath() + "_inventory");
         parentItem(ChangShengJueBlocks.BIRCH_BALUSTRADE,

@@ -1114,6 +1114,8 @@
   "config.chang_sheng_jue.dugu_nine_swords_max_exp": "Кол-во успешных использований, необходимое для продвижения в технике «Девять мечей одинокого мастера»",
   "config.chang_sheng_jue.dugu_nine_swords_max_level": "Макс. ур. техники «Девять мечей одинокого мастера»",
   "config.chang_sheng_jue.enable_quests": "Включить ли автоматически принимаемые задания",
+  "config.chang_sheng_jue.enable_bandit_spawn": "Разрешить появление бандитов",
+  "config.chang_sheng_jue.enable_villain_spawn": "Разрешить появление злодеев",
   "config.chang_sheng_jue.flying_dagger_pouch_max_slots": "Максимальное кол-во метательных ножей, вмещаемое сумкой для ножей",
   "config.chang_sheng_jue.gao_marksmanship_max_cooldown": "Макс. время перезарядки «Техники копья школы Гао»",
   "config.chang_sheng_jue.gao_marksmanship_max_exp": "Кол-во успешных использований, необходимое для продвижения в «Технике копья школы Гао»",

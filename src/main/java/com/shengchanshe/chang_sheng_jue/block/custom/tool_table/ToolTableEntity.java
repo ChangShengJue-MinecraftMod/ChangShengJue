@@ -8,6 +8,7 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.util.Mth;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
@@ -139,7 +140,7 @@ public class ToolTableEntity extends BlockEntity {
     public void load(CompoundTag pTag) {
         super.load(pTag);
         this.inventory.deserializeNBT(pTag.getCompound("ToolTableInventory"));
-        progress = pTag.getInt("ToolTableProgress");
+        progress = Mth.clamp(pTag.getInt("ToolTableProgress"), 0, maxProgress);
     }
 
     @Override

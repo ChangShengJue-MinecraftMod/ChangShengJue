@@ -26,11 +26,12 @@ public record AbandonPlayerQuestPacket(UUID questId,int page) {
         ctx.get().enqueueWork(() -> {
             ServerPlayer player = ctx.get().getSender();
             // 直接从玩家能力获取任务
-            if (player != null) {
+            if (PlayerQuestPacketGuard.allowAction(player)) {
                 player.getCapability(PlayerQuestCapabilityProvider.PLAYER_QUEST_CAPABILITY)
                         .ifPresent(cap -> {
                             Optional<Quest> quest = cap.getQuests(player.getUUID()).stream()
-                                    .filter(q -> q != null && questId.equals(q.getQuestId()))
+                                    .filter(q -> q != null && questId.equals(q.getQuestId())
+                                            && player.getUUID().equals(q.getAcceptedBy()))
                                     .findFirst();
 
                             if (quest.isPresent() && player.containerMenu instanceof PlayerQuestMenu) {

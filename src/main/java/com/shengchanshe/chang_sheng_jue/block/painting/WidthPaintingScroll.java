@@ -71,7 +71,7 @@ public class WidthPaintingScroll extends HorizontalDirectionalBlock {
 
     @Override
     public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (state.getBlock() != newState.getBlock()) {
+        if (!world.isClientSide && state.getBlock() != newState.getBlock()) {
             Direction facing = state.getValue(FACING);
             Direction rightDirection = rightOf(state.getValue(RIGHT) ? facing.getOpposite() : facing);
             BlockPos pos2 = pos.relative(rightDirection);

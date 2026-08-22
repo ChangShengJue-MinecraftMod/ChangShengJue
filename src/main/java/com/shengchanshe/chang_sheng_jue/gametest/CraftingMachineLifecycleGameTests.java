@@ -18,6 +18,7 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.StringTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -191,11 +192,256 @@ public final class CraftingMachineLifecycleGameTests {
         cleanup(helper, player, loaded, BrickKilnEntity.SLOT_OUTPUT);
     }
 
+    @GameTest(template = "empty")
+    public static void tailoringCaseQuarantinesInvalidActiveJobs(GameTestHelper helper) {
+        TailoringCaseRecipe recipe = requireRecipe(helper, "cotton_boots", TailoringCaseRecipe.class);
+        ServerPlayer player = createUnconnectedServerPlayer(helper, "tailorQuarantine");
+        assertInvalidActiveJobVariants(helper, ChangShengJueBlocks.TAILORING_CASE.get(),
+                TailoringCaseEntity.class, recipe, player, 1);
+        finishQuarantineTest(helper, player);
+    }
+
+    @GameTest(template = "empty")
+    public static void forgeBlockQuarantinesInvalidActiveJobs(GameTestHelper helper) {
+        ForgeBlockRecipe recipe = requireRecipe(helper, "bronze_sword", ForgeBlockRecipe.class);
+        ServerPlayer player = createUnconnectedServerPlayer(helper, "forgeQuarantine");
+        assertInvalidActiveJobVariants(helper, ChangShengJueBlocks.FORGE_BLOCK.get(),
+                ForgeBlockEntity.class, recipe, player, 1);
+        finishQuarantineTest(helper, player);
+    }
+
+    @GameTest(template = "empty")
+    public static void woodworkingBenchQuarantinesInvalidActiveJobs(GameTestHelper helper) {
+        WoodworkingBenchRecipe recipe = requireRecipe(helper,
+                "woodworking_bench/xiao_mu_zuo/acacia_balustrade", WoodworkingBenchRecipe.class);
+        ServerPlayer player = createUnconnectedServerPlayer(helper, "woodQuarantine");
+        assertInvalidActiveJobVariants(helper, ChangShengJueBlocks.WOOD_WORKING_BENCH.get(),
+                WoodworkingBenchEntity.class, recipe, player, 2);
+        finishQuarantineTest(helper, player);
+    }
+
+    @GameTest(template = "empty")
+    public static void brickKilnQuarantinesInvalidActiveJobs(GameTestHelper helper) {
+        BrickKilnRecipe recipe = requireRecipe(helper,
+                "brick_kiln/shi_zuo/stone_bench", BrickKilnRecipe.class);
+        ServerPlayer player = createUnconnectedServerPlayer(helper, "kilnQuarantine");
+        assertInvalidActiveJobVariants(helper, ChangShengJueBlocks.BRICK_KILN.get(),
+                BrickKilnEntity.class, recipe, player, 2);
+        finishQuarantineTest(helper, player);
+    }
+
+    @GameTest(template = "empty")
+    public static void absentActiveJobStillUsesLegacyFallback(GameTestHelper helper) {
+        assertLegacyFallback(helper, ChangShengJueBlocks.TAILORING_CASE.get(), TailoringCaseEntity.class,
+                requireRecipe(helper, "cotton_boots", TailoringCaseRecipe.class), 1);
+        assertLegacyFallback(helper, ChangShengJueBlocks.FORGE_BLOCK.get(), ForgeBlockEntity.class,
+                requireRecipe(helper, "bronze_sword", ForgeBlockRecipe.class), 1);
+        assertLegacyFallback(helper, ChangShengJueBlocks.WOOD_WORKING_BENCH.get(), WoodworkingBenchEntity.class,
+                requireRecipe(helper, "woodworking_bench/xiao_mu_zuo/acacia_balustrade",
+                        WoodworkingBenchRecipe.class), 2);
+        assertLegacyFallback(helper, ChangShengJueBlocks.BRICK_KILN.get(), BrickKilnEntity.class,
+                requireRecipe(helper, "brick_kiln/shi_zuo/stone_bench", BrickKilnRecipe.class), 2);
+        helper.succeed();
+    }
+
+    private static <B extends BlockEntity> void assertInvalidActiveJobVariants(
+            GameTestHelper helper, Block block, Class<B> type, Recipe<?> recipe, ServerPlayer player, int craftTimes) {
+        CompoundTag invalidCompound = new CompoundTag();
+        invalidCompound.putString("recipe", "not a resource location");
+        invalidCompound.putString("output", "wrong_tag_type");
+        invalidCompound.putInt("total", 2);
+        invalidCompound.putInt("remaining", 3);
+        invalidCompound.putInt("progress", -17);
+        invalidCompound.putString("preserve_marker", type.getSimpleName());
+        assertInvalidActiveJob(helper, block, type, recipe, player, craftTimes, invalidCompound);
+        assertInvalidActiveJob(helper, block, type, recipe, player, craftTimes,
+                StringTag.valueOf("wrong_active_job_type:" + type.getSimpleName()));
+    }
+
+    private static <B extends BlockEntity> void assertInvalidActiveJob(
+            GameTestHelper helper, Block block, Class<B> type, Recipe<?> recipe, ServerPlayer player,
+            int craftTimes, Tag invalidJob) {
+        B original = placeEntity(helper, block, type);
+        setCurrentRecipe(original, recipe);
+        setCraftTimes(original, craftTimes);
+        int[] counts = requiredCounts(recipe);
+        seedExactMaterials(helper, player, recipe.getIngredients(), counts, craftTimes);
+
+        CompoundTag saved = original.saveWithFullMetadata();
+        saved.putInt("progress", maxProgress(original) / 2);
+        saved.put("active_job", invalidJob.copy());
+        CompoundTag machineInventory = saved.getCompound("inventory").copy();
+        int playerInventoryCount = inventoryItemCount(player);
+
+        B loaded = replaceAndLoadRaw(helper, original, saved, block, type, invalidJob);
+        String machine = type.getSimpleName();
+        helper.assertTrue(loaded.isRemoved() == false, machine + " quarantine fixture was removed");
+        helper.assertTrue(isCrafting(loaded), machine + " did not expose quarantined data as occupied");
+        helper.assertTrue(progress(loaded) == 0, machine + " did not reset progress for invalid active_job");
+        assertSelectedRecipe(helper, loaded, recipe,
+                machine + " lost its selected recipe while quarantining active_job");
+        Tag updateJob = loaded.getUpdateTag().get("active_job");
+        helper.assertTrue(updateJob instanceof CompoundTag compound && compound.isEmpty()
+                        && !updateJob.equals(invalidJob),
+                machine + " exposed the quarantined raw active_job through its client update tag");
+
+        craftCurrentRecipe(loaded, player);
+        helper.assertTrue(inventoryItemCount(player) == playerInventoryCount,
+                machine + " consumed or refunded inventory while active_job was quarantined");
+        assertRawActiveJob(helper, loaded, invalidJob,
+                machine + " replaced invalid active_job while rejecting a new craft");
+
+        setCurrentRecipe(loaded, null);
+        setCraftTimes(loaded, 64);
+        assertSelectedRecipe(helper, loaded, recipe,
+                machine + " allowed recipe replacement while active_job was quarantined");
+        if (supportsCraftTimes(loaded)) {
+            helper.assertTrue(getCraftTimes(loaded) == craftTimes,
+                    machine + " allowed craft count replacement while active_job was quarantined");
+        }
+
+        for (int tick = 0; tick < maxProgress(loaded) + 2; tick++) tickOnce(helper, loaded);
+        helper.assertTrue(progress(loaded) == 0, machine + " advanced quarantined progress");
+        helper.assertTrue(output(loaded).isEmpty(), machine + " produced output from quarantined active_job");
+        helper.assertTrue(inventoryItemCount(player) == playerInventoryCount,
+                machine + " changed player inventory while ticking quarantined active_job");
+        CompoundTag afterTick = loaded.saveWithFullMetadata();
+        helper.assertTrue(afterTick.getCompound("inventory").equals(machineInventory),
+                machine + " changed machine inventory while active_job was quarantined");
+        assertRawActiveJob(helper, loaded, invalidJob,
+                machine + " changed invalid active_job during tick/save");
+
+        B reloaded = replaceAndLoadRaw(helper, loaded, afterTick, block, type, invalidJob);
+        tickOnce(helper, reloaded);
+        helper.assertTrue(isCrafting(reloaded) && progress(reloaded) == 0 && output(reloaded).isEmpty(),
+                machine + " did not retain quarantine after save/reload");
+        helper.assertTrue(inventoryItemCount(player) == playerInventoryCount,
+                machine + " changed player inventory after quarantine reload");
+        assertRawActiveJob(helper, reloaded, invalidJob,
+                machine + " did not preserve invalid active_job after reload");
+        helper.setBlock(MACHINE_POS, Blocks.AIR);
+    }
+
+    private static <B extends BlockEntity> void assertLegacyFallback(
+            GameTestHelper helper, Block block, Class<B> type, Recipe<?> recipe, int craftTimes) {
+        B original = placeEntity(helper, block, type);
+        setCurrentRecipe(original, recipe);
+        setCraftTimes(original, craftTimes);
+        CompoundTag saved = original.saveWithFullMetadata();
+        saved.remove("active_job");
+        saved.putInt("progress", maxProgress(original) / 2);
+
+        B loaded = replaceAndLoadUnchecked(helper, original, saved, block, type);
+        String machine = type.getSimpleName();
+        helper.assertTrue(isCrafting(loaded), machine + " did not restore an absent-tag legacy job");
+        helper.assertTrue(progress(loaded) == maxProgress(loaded) / 2,
+                machine + " changed legacy progress while restoring fallback");
+        CompoundTag restored = loaded.saveWithFullMetadata();
+        helper.assertTrue(restored.contains("active_job", Tag.TAG_COMPOUND),
+                machine + " did not migrate an absent-tag legacy job to active_job");
+        PersistedCraftingJob.Loaded persisted = PersistedCraftingJob.load(
+                restored.getCompound("active_job"), maxProgress(loaded));
+        helper.assertTrue(persisted != null && persisted.job().total() == craftTimes,
+                machine + " restored the wrong legacy job count");
+
+        int tickBudget = maxProgress(loaded) * craftTimes + craftTimes + 2;
+        for (int tick = 0; tick < tickBudget && isCrafting(loaded); tick++) tickOnce(helper, loaded);
+        ItemStack expected = recipe.getResultItem(helper.getLevel().registryAccess()).copy();
+        expected.setCount(expected.getCount() * craftTimes);
+        helper.assertTrue(!isCrafting(loaded), machine + " legacy fallback did not finish");
+        assertOutput(helper, output(loaded), expected, machine + " legacy fallback emitted the wrong output");
+        clearOutput(loaded);
+        helper.setBlock(MACHINE_POS, Blocks.AIR);
+    }
+
     private static <R extends Recipe<?>> R requireRecipe(GameTestHelper helper, String path, Class<R> type) {
         ResourceLocation id = new ResourceLocation(ChangShengJue.MOD_ID, path);
         Recipe<?> recipe = helper.getLevel().getRecipeManager().byKey(id).orElse(null);
         helper.assertTrue(type.isInstance(recipe), "expected live recipe " + id + " was not loaded");
         return type.cast(recipe);
+    }
+
+    private static int[] requiredCounts(Recipe<?> recipe) {
+        if (recipe instanceof WoodworkingBenchRecipe typed) return typed.getCachedRequiredCounts();
+        if (recipe instanceof BrickKilnRecipe typed) return typed.getCachedRequiredCounts();
+        return CraftingMaterialTransaction.countsFromIngredients(recipe.getIngredients());
+    }
+
+    private static void setCurrentRecipe(BlockEntity entity, Recipe<?> recipe) {
+        if (entity instanceof TailoringCaseEntity value) {
+            value.setCurrentRecipe((TailoringCaseRecipe) recipe);
+        } else if (entity instanceof ForgeBlockEntity value) {
+            value.setCurrentRecipe((ForgeBlockRecipe) recipe);
+        } else if (entity instanceof WoodworkingBenchEntity value) {
+            value.setCurrentRecipe((WoodworkingBenchRecipe) recipe);
+        } else if (entity instanceof BrickKilnEntity value) {
+            value.setCurrentRecipe((BrickKilnRecipe) recipe);
+        } else {
+            throw new IllegalArgumentException("unsupported crafting machine");
+        }
+    }
+
+    private static void setCraftTimes(BlockEntity entity, int count) {
+        if (entity instanceof WoodworkingBenchEntity value) value.setCraftTimes(count);
+        else if (entity instanceof BrickKilnEntity value) value.setCraftTimes(count);
+    }
+
+    private static boolean supportsCraftTimes(BlockEntity entity) {
+        return entity instanceof WoodworkingBenchEntity || entity instanceof BrickKilnEntity;
+    }
+
+    private static int getCraftTimes(BlockEntity entity) {
+        if (entity instanceof WoodworkingBenchEntity value) return value.getCraftTimes();
+        if (entity instanceof BrickKilnEntity value) return value.getCraftTimes();
+        throw new IllegalArgumentException("crafting machine has no craft count");
+    }
+
+    private static void craftCurrentRecipe(BlockEntity entity, ServerPlayer player) {
+        if (entity instanceof TailoringCaseEntity value) value.craftCurrentRecipe(player);
+        else if (entity instanceof ForgeBlockEntity value) value.craftCurrentRecipe(player);
+        else if (entity instanceof WoodworkingBenchEntity value) value.craftCurrentRecipe(player);
+        else if (entity instanceof BrickKilnEntity value) value.craftCurrentRecipe(player);
+        else throw new IllegalArgumentException("unsupported crafting machine");
+    }
+
+    private static Recipe<?> currentRecipe(BlockEntity entity) {
+        if (entity instanceof TailoringCaseEntity value) return value.getCurrentRecipe();
+        if (entity instanceof ForgeBlockEntity value) return value.getCurrentRecipe();
+        if (entity instanceof WoodworkingBenchEntity value) return value.getCurrentRecipe();
+        if (entity instanceof BrickKilnEntity value) return value.getCurrentRecipe();
+        throw new IllegalArgumentException("unsupported crafting machine");
+    }
+
+    private static void assertSelectedRecipe(GameTestHelper helper, BlockEntity entity, Recipe<?> expected,
+                                             String message) {
+        Recipe<?> actual = currentRecipe(entity);
+        helper.assertTrue(actual != null && actual.getId().equals(expected.getId()), message);
+    }
+
+    private static void assertRawActiveJob(GameTestHelper helper, BlockEntity entity, Tag expected,
+                                           String message) {
+        Tag actual = entity.saveWithFullMetadata().get("active_job");
+        helper.assertTrue(actual != null && actual.getId() == expected.getId() && actual.equals(expected), message);
+    }
+
+    private static void clearOutput(BlockEntity entity) {
+        if (entity instanceof TailoringCaseEntity value) {
+            value.getItemHandler().setStackInSlot(TailoringCaseEntity.SLOT_OUTPUT, ItemStack.EMPTY);
+        } else if (entity instanceof ForgeBlockEntity value) {
+            value.getItemHandler().setStackInSlot(ForgeBlockEntity.SLOT_OUTPUT, ItemStack.EMPTY);
+        } else if (entity instanceof WoodworkingBenchEntity value) {
+            value.getItemHandler().setStackInSlot(WoodworkingBenchEntity.SLOT_OUTPUT, ItemStack.EMPTY);
+        } else if (entity instanceof BrickKilnEntity value) {
+            value.getItemHandler().setStackInSlot(BrickKilnEntity.SLOT_OUTPUT, ItemStack.EMPTY);
+        } else {
+            throw new IllegalArgumentException("unsupported crafting machine");
+        }
+    }
+
+    private static void finishQuarantineTest(GameTestHelper helper, ServerPlayer player) {
+        player.getInventory().clearContent();
+        helper.setBlock(MACHINE_POS, Blocks.AIR);
+        helper.succeed();
     }
 
     private static int seedExactMaterials(GameTestHelper helper, ServerPlayer player,
@@ -261,13 +507,29 @@ public final class CraftingMachineLifecycleGameTests {
 
     private static <B extends BlockEntity> B replaceAndLoad(GameTestHelper helper, B original, CompoundTag saved,
                                                             Block block, Class<B> type) {
+        B loaded = replaceAndLoadUnchecked(helper, original, saved, block, type);
+        helper.assertTrue(activeJob(loaded).equals(saved.getCompound("active_job")),
+                "new block entity did not restore the persisted active_job");
+        return loaded;
+    }
+
+    private static <B extends BlockEntity> B replaceAndLoadRaw(GameTestHelper helper, B original,
+                                                               CompoundTag saved, Block block, Class<B> type,
+                                                               Tag expectedActiveJob) {
+        B loaded = replaceAndLoadUnchecked(helper, original, saved, block, type);
+        assertRawActiveJob(helper, loaded, expectedActiveJob,
+                "new block entity did not preserve the quarantined active_job");
+        return loaded;
+    }
+
+    private static <B extends BlockEntity> B replaceAndLoadUnchecked(GameTestHelper helper, B original,
+                                                                     CompoundTag saved, Block block,
+                                                                     Class<B> type) {
         helper.setBlock(MACHINE_POS, Blocks.AIR);
         B loaded = placeEntity(helper, block, type);
         helper.assertTrue(loaded != original, "block replacement reused the original block entity");
         loaded.load(saved);
         loaded.onLoad();
-        helper.assertTrue(activeJob(loaded).equals(saved.getCompound("active_job")),
-                "new block entity did not restore the persisted active_job");
         return loaded;
     }
 

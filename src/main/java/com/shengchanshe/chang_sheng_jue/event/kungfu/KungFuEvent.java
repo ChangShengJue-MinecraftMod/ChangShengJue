@@ -13,6 +13,7 @@ import com.shengchanshe.chang_sheng_jue.martial_arts.IKungFu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.IMentalKungfu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.external_kunfu.*;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.internal_kungfu.QianKunDaNuoYi;
+import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.MentalKungFuNeighborhoodSnapshot;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.QingPingJi;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.WanXiangBaoShu;
 import com.shengchanshe.chang_sheng_jue.martial_arts.kungfu.mental_kungfu.WheatNuggetEncyclopedia;
@@ -38,45 +39,60 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.TradeWithVillagerEvent;
 
 public class KungFuEvent {
+    private static final int COUNTDOWN_SYNC_INTERVAL = 5;
+
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.END) {
             Player player = event.player;
             if (!player.level().isClientSide && player instanceof ServerPlayer serverPlayer){
-                // 万象宝书被动效果：对所有玩家刷新原版Buff
-                WanXiangBaoShu.applyPassiveToPlayer(player);
-                // 杂病手册被动效果：对所有玩家刷新自定义Buff
-                ZaBingShouCe.applyPassiveToPlayer(player);
+                boolean refreshNeighborhoodState = MentalKungFuNeighborhoodSnapshot.isRefreshTick(player);
+                if (refreshNeighborhoodState) {
+                    WanXiangBaoShu.applyPassiveToPlayer(player);
+                    ZaBingShouCe.applyPassiveToPlayer(player);
+                }
                 player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                     boolean changed = false;
                     // 万象宝书被动状态更新（层数/自动大成）
-                    changed |= cap.getKungFu(WanXiangBaoShu.KUNG_FU_ID.toString())
-                        .filter(kungFu -> kungFu instanceof WanXiangBaoShu)
-                        .map(kungFu -> ((WanXiangBaoShu) kungFu).updatePassiveStateAndReportChange(player))
-                        .orElse(false);
+                    if (refreshNeighborhoodState) {
+                        changed |= cap.getKungFu(WanXiangBaoShu.KUNG_FU_ID.toString())
+                            .filter(kungFu -> kungFu instanceof WanXiangBaoShu)
+                            .map(kungFu -> ((WanXiangBaoShu) kungFu).updatePassiveStateAndReportChange(player))
+                            .orElse(false);
+                    }
                     // 杂病手册被动状态更新（层数）
                     changed |= cap.getKungFu(ZaBingShouCe.KUNG_FU_ID.toString())
                         .filter(kungFu -> kungFu instanceof ZaBingShouCe)
                         .map(kungFu -> {
                             ZaBingShouCe zb = (ZaBingShouCe) kungFu;
-                            return zb.updatePassiveStateAndReportChange(player) | zb.applyPendingHealAndReportChange(player);
+                            boolean passiveChanged = refreshNeighborhoodState
+                                && zb.updatePassiveStateAndReportChange(player);
+                            return passiveChanged | zb.applyPendingHealAndReportChange(player);
                         })
                         .orElse(false);
                     cap.getKungFu(QingPingJi.KUNG_FU_ID.toString())
                         .filter(kungFu -> kungFu instanceof QingPingJi)
                         .ifPresent(kungFu -> ((QingPingJi) kungFu).updateSelfState(player));
                     // 清平记：内功失效压制（受万象宝书启用人数影响）
-                    changed |= QingPingJi.updateInternalSuppressionAndReportChange(player);
-                    changed |= cap.tick(player);
-                    if (changed) {
-                        cap.syncToClient(serverPlayer);
+                    if (refreshNeighborhoodState) {
+                        changed |= QingPingJi.updateInternalSuppressionAndReportChange(player);
                     }
+                    boolean requiresImmediateTickSync = cap.tickAndReportChanges(player);
+                    boolean hasActiveCountdown = false;
                     for (IKungFu kungFu : cap.getAllLearned()) {
-                        if (kungFu.getLevelUpTick() > 0) {
+                        int levelUpTick = kungFu.getLevelUpTick();
+                        int dachengTick = kungFu.getDachengTick();
+                        hasActiveCountdown |= kungFu.getCoolDown() > 0 || levelUpTick > 0 || dachengTick > 0;
+                        if (levelUpTick > 0) {
                             ChangShengJueMessages.sendToPlayer(new TriggerKungFuParticlePacket(player.getUUID(), kungFu.getId()), serverPlayer);
                         }
-                        if (kungFu.getDachengTick() > 0) {
+                        if (dachengTick > 0) {
                             ChangShengJueMessages.sendToPlayer(new TriggerKungFuLevelUpParticlePacket(player.getUUID(), kungFu.getId()), serverPlayer);
                         }
+                    }
+                    boolean periodicCountdownSync = hasActiveCountdown
+                            && serverPlayer.tickCount % COUNTDOWN_SYNC_INTERVAL == 0;
+                    if (changed || requiresImmediateTickSync || periodicCountdownSync) {
+                        cap.syncToClient(serverPlayer);
                     }
                 });
             }
@@ -139,11 +155,10 @@ public class KungFuEvent {
             if (event.getEntity() instanceof Player player && event.getSource().getEntity() != null) {
                 if ((player.getFoodData().getFoodLevel() > 8)) {
                     player.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
-                        cap.getAllLearned().forEach(id -> {
-                            if (!id.getId().equals(QianKunDaNuoYi.KUNG_FU_ID.toString())) {
-                                cap.onHurt(event);
-                            }
-                        });
+                        cap.onHurt(event);
+                        if (player instanceof ServerPlayer serverPlayer) {
+                            cap.syncToClient(serverPlayer);
+                        }
                     });
                 }
             }
@@ -219,7 +234,7 @@ public class KungFuEvent {
     public static void onPlayerAttackEntity(AttackEntityEvent event){
         Player player = event.getEntity();
         if (!player.level().isClientSide) {
-            ItemStack itemstack = player.getItemInHand(player.getUsedItemHand());
+            ItemStack itemstack = player.getMainHandItem();
             if (itemstack.getItem() instanceof SwordItem
                     && !(itemstack.getItem() instanceof Sword)
                     && !(itemstack.getItem() instanceof Lance)
@@ -244,7 +259,7 @@ public class KungFuEvent {
         Player pPlayer = event.getEntity();
         if (!pPlayer.level().isClientSide) {
             if ((pPlayer.getFoodData().getFoodLevel() > 8) || pPlayer.getAbilities().instabuild) {
-                ItemStack itemstack = pPlayer.getItemInHand(pPlayer.getUsedItemHand());
+                ItemStack itemstack = pPlayer.getItemInHand(event.getHand());
                 if (itemstack.getItem() instanceof SwordItem
                         && !(itemstack.getItem() instanceof Sword)
                         && !(itemstack.getItem() instanceof Lance)
@@ -254,14 +269,14 @@ public class KungFuEvent {
                         && !(pPlayer.getOffhandItem().getItem() instanceof ShieldItem)) {
                     pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                         if (cap.getCooldownTick(DuguNineSwords.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(DuguNineSwords.KUNG_FU_ID.toString()) >= 1) {
-                            pPlayer.startUsingItem(pPlayer.getUsedItemHand());
+                            pPlayer.startUsingItem(event.getHand());
                         }
                     });
                 }
                 if (ArsenalCompat.isRapier(itemstack) && !(pPlayer.getOffhandItem().getItem() instanceof ShieldItem)) {
                     pPlayer.getCapability(ChangShengJueCapabiliy.KUNGFU).ifPresent(cap -> {
                         if (cap.getCooldownTick(XuannuSwordsmanship.KUNG_FU_ID.toString()) <= 0 && cap.getKungFuLevel(XuannuSwordsmanship.KUNG_FU_ID.toString()) >= 1) {
-                            pPlayer.startUsingItem(pPlayer.getUsedItemHand()); // 开始记录按住时间
+                            pPlayer.startUsingItem(event.getHand()); // 开始记录按住时间
                         }
                     });
                 }

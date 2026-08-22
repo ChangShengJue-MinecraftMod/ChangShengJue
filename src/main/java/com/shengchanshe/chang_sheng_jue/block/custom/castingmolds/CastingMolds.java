@@ -46,20 +46,21 @@ public class CastingMolds extends BaseEntityBlock{
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-        ItemStack mainHandItem = pPlayer.getMainHandItem();
-        ItemStack offhandItem = pPlayer.getOffhandItem();
+        ItemStack heldItem = pPlayer.getItemInHand(pHand);
         if (blockEntity instanceof CastingMoldsBlockEntity entity){
             ItemStackHandler inventroy = entity.getInventory();
             if(inventroy.getStackInSlot(0).isEmpty() && inventroy.getStackInSlot(1).isEmpty()) {
-                if (mainHandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get() || offhandItem.getItem() == ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get()) {
-                    if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? pPlayer.getMainHandItem().copy() : pPlayer.getMainHandItem())) {
-                        pPlayer.setItemInHand(InteractionHand.MAIN_HAND, ChangShengJueItems.CRUCIBLE.get().getDefaultInstance());
+                if (heldItem.is(ChangShengJueItems.CRUCIBLE_LIQUID_COPPER.get())) {
+                    if (!pLevel.isClientSide && entity.addItem(pPlayer.getAbilities().instabuild ? heldItem.copy() : heldItem)) {
+                        pPlayer.setItemInHand(pHand, ChangShengJueItems.CRUCIBLE.get().getDefaultInstance());
                         return InteractionResult.SUCCESS;
                     }
                 }
             } else {
                 if (blockEntity instanceof CastingMoldsBlockEntity) {
-                    ((CastingMoldsBlockEntity) blockEntity).drops();
+                    if (!pLevel.isClientSide) {
+                        ((CastingMoldsBlockEntity) blockEntity).drops();
+                    }
                     return InteractionResult.SUCCESS;
                 }
             }
@@ -70,7 +71,7 @@ public class CastingMolds extends BaseEntityBlock{
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-            if (blockentity instanceof CastingMoldsBlockEntity) {
+            if (!pLevel.isClientSide && blockentity instanceof CastingMoldsBlockEntity) {
                 ((CastingMoldsBlockEntity) blockentity).drops();
             }
             super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);

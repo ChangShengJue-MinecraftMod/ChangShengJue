@@ -70,7 +70,7 @@ public class ChangShengJueLoomBlock extends BaseEntityBlock{
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pMovedByPiston) {
         if (!pState.is(pNewState.getBlock())) {
             BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-            if (blockentity instanceof ChangShengJueLoomBlockEntity) {
+            if (!pLevel.isClientSide && blockentity instanceof ChangShengJueLoomBlockEntity) {
                 ((ChangShengJueLoomBlockEntity) blockentity).drops();
             }
             super.onRemove(pState, pLevel, pPos, pNewState, pMovedByPiston);

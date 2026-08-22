@@ -21,12 +21,12 @@ public class DachengParticle {
 
         for (int i = 0; i < particleCount; i++) {
             // 在球体上随机生成一个点并引入随机角度偏差
-            double phi = Math.random() * Math.PI * 2;  // 产生随机的phi角
-            double costheta = Math.random() * 2 - 1;  // 产生随机的cos(theta)
+            double phi = player.getRandom().nextDouble() * Math.PI * 2;  // 产生随机的phi角
+            double costheta = player.getRandom().nextDouble() * 2 - 1;  // 产生随机的cos(theta)
             double theta = Math.acos(costheta);  // 计算theta角
 
             // 在角度上引入一定的随机波动
-            double randomAngleVariation = Math.random() * 0.5 - 0.25;  // 角度变化范围[-0.25, 0.25]
+            double randomAngleVariation = player.getRandom().nextDouble() * 0.5 - 0.25;  // 角度变化范围[-0.25, 0.25]
             phi += randomAngleVariation;  // 在phi角上增加偏差
 
             // 计算粒子位置

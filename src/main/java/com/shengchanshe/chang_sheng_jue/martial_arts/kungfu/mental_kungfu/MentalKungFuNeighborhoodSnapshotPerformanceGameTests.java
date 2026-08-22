@@ -28,6 +28,11 @@ public final class MentalKungFuNeighborhoodSnapshotPerformanceGameTests {
 
     @GameTest(template = "empty", timeoutTicks = 200)
     public static void snapshotScalesAcrossSyntheticPlayerCounts(GameTestHelper helper) {
+        helper.assertTrue(MentalKungFuNeighborhoodSnapshot.isRefreshTick(0)
+                        && MentalKungFuNeighborhoodSnapshot.isRefreshTick(10)
+                        && !MentalKungFuNeighborhoodSnapshot.isRefreshTick(1)
+                        && !MentalKungFuNeighborhoodSnapshot.isRefreshTick(9),
+                "snapshot refresh cadence is not a stable ten Tick cycle");
         ServerLevel level = helper.getLevel();
         for (int playerCount : PLAYER_COUNTS) {
             benchmarkLayout(helper, level, playerCount, true);
